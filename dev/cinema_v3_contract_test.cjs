@@ -1,0 +1,17 @@
+'use strict';
+const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
+(async()=>{const {J}=engine(),V=J.cinemaV3;
+ for(const status of ['MEASURED','UNMEASURED','NOT_APPLICABLE','FAILED'])V.validate('EvidenceStatus',status);
+ assert.throws(()=>V.validate('EvidenceStatus','GOOD'));assert.throws(()=>V.validate('Feature',{value:100,confidence:0,source:'fixture',status:'UNMEASURED'}));
+ for(const status of ['UNMEASURED','FAILED','NOT_APPLICABLE'])assert.equal(V.feature(null,'fixture',0,status).value,null);
+ assert.throws(()=>V.validate('Feature',{value:null,confidence:1,source:'fixture',status:'FAILED'}));
+ const profile={purpose:'FULL_MV',aspect:'16:9',fps:24,range:[0,4],loopRequired:false};V.validateProfile(profile);assert.throws(()=>V.validateProfile({...profile,range:[4,0]}));
+ const feature=V.feature(.5,'decodedPCM',.8),section={from:0,to:4,energy:feature,beatSalience:feature,onsetDensity:feature,lyricDensity:feature,repetition:feature,role:V.feature('verse','analysis',.6)};V.validate('SectionFeatures',section);assert.throws(()=>V.validate('SectionFeatures',{...section,to:0}));
+ const policy={mode:'lyric_first',stageRole:'sustain',motionBudget:.1,attentionBudget:.5,typographyBudget:.5,desiredChange:0,confidence:.5,quietIntent:true};V.validate('DirectionPolicy',policy);assert.throws(()=>V.validate('DirectionPolicy',{...policy,motionBudget:2}));
+ const shot={line:0,from:0,to:4,role:'sustain',grammarId:'still',typographyId:'embedded_bold',motionId:'still',safeArea:{left:.1,right:.9,top:.1,bottom:.9},minReadableFrames:24,maxOcclusionRatio:0,reasonCodes:['READING'],featureSources:['LRC'],userLocked:true};V.validate('ShotContract',shot);assert.throws(()=>V.validate('ShotContract',{...shot,safeArea:{left:.9,right:.1,top:.1,bottom:.9}}));
+ const metric={id:'readability',value:92,unit:'score/100',source:'CANVAS',status:'MEASURED',sampleCount:3,affectedLineIds:[0],confidence:1,profileId:'FULL_MV',thresholdId:'existing-90',method:'glyph raster',planHash:'plan',inputHash:'input',rendererVersion:V.version,outputProfile:profile};V.validate('MetricEvidence',metric);assert.throws(()=>V.validate('MetricEvidence',{...metric,value:null}));assert.throws(()=>V.validate('MetricEvidence',{...metric,status:'UNMEASURED'}));
+ const candidate={id:'a',planHash:'plan',candidateSeed:1,hardFailures:[],measurements:[metric],objectives:{readability:92,musicFit:null},lowerTail:null,constraintViolations:0,memoryBudgetBytes:0,timeCostMs:12};V.validate('CandidateEvaluation',candidate);assert.throws(()=>V.validate('CandidateEvaluation',{...candidate,measurements:[metric,metric]}));
+ V.validate('RepairResult',{previousPlanHash:'a',nextPlanHash:'b',failuresAddressed:['contrast'],operatorId:'MICRO',changedLines:[0],unchangedLines:[1],before:candidate,after:candidate,accepted:false,reason:'NO_IMPROVEMENT',artifacts:[]});
+ const {validateSourceOrder}=await import('../scripts/source-order.mjs');assert.deepEqual(validateSourceOrder(['01.js','02.js'],['02.js','01.js']),['01.js','02.js']);assert.throws(()=>validateSourceOrder(['01.js','01.js'],['01.js']));assert.throws(()=>validateSourceOrder(['01.js'],['01.js','02.js']));assert.throws(()=>validateSourceOrder(['01.js','02.js'],['01.js']));assert.throws(()=>validateSourceOrder(['02.js','01.js'],['01.js','02.js']));
+ console.log('Cinema V3 contracts, evidence status, profile and manifest failure cases PASS');
+})().catch(error=>{console.error(error);process.exitCode=1;});

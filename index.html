@@ -3983,6 +3983,12 @@ mediabunny/dist/modules/src/index.js:
 
 </script>
 <script>
+window.KAMEN_MODULE_AUDIT={modules:[],registrations:[],warnings:[],previous:new Map(),owners:new Map(),observe(moduleId){
+ if(this.modules.includes(moduleId))this.warnings.push('DUPLICATE_MODULE:'+moduleId);this.modules.push(moduleId);
+ const J=window.J;if(!J)return;const entries=[...Object.entries(J),...Object.entries(J.Renderer?.prototype||{}).map(([k,v])=>['Renderer.prototype.'+k,v])];
+ for(const [property,value]of entries){if(typeof value!=='function'||this.previous.get(property)===value)continue;
+ const previousId=this.owners.get(property)||null;this.registrations.push({moduleId,property,previousId,registration:this.registrations.length});this.previous.set(property,value);this.owners.set(property,moduleId);}
+}};
 /* ============================================================
    JIZURA — util: math, easing, deterministic randomness, colour
    ============================================================ */
@@ -4165,6 +4171,8 @@ J.fmtTime = (t, fps) => {
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}${fps ? ':' + String(f).padStart(2, '0') : '.' + String(f).padStart(2, '0')}`;
 };
 
+window.KAMEN_MODULE_AUDIT.observe("01_util.js");
+
 /* Processing telemetry contains no project data and never drives the engine. */
 (() => {
 'use strict';
@@ -4232,6 +4240,8 @@ J.processing = {
 };
 J.processingYield = () => new Promise(resolve=>setTimeout(resolve,0));
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("01p_processing.js");
 
 /* ============================================================
    JIZURA — local image analysis and safe palette generation
@@ -4713,6 +4723,8 @@ J.paletteContrast = contrast;
 J.paletteLuma = hexLuma;
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("01z_image_palette.js");
+
 /* ============================================================
    JIZURA — fonts: catalogue, loading, glyph decomposition
    ============================================================ */
@@ -5012,6 +5024,8 @@ function clipHalf(poly, nx, ny, d0, sgn) {
 }
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("02_fonts.js");
+
 /* ============================================================
    JIZURA — lyric language: auto-detection + per-language faces
    The styles are designed around Japanese fonts. For Chinese
@@ -5142,6 +5156,8 @@ J.langBaseFaces = (keys) => {
 /* segmenter locale for chunking */
 J.segLocale = () => (J.lang === 'zh-Hant' ? 'zh-Hant' : J.lang === 'zh-Hans' ? 'zh-Hans' : J.lang === 'ko' ? 'ko' : 'ja');
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("02b_lang.js");
 
 /* ============================================================
    JIZURA — text items: layout + drawing (whole glyphs or pieces)
@@ -5457,6 +5473,8 @@ J.fitSize = (text, font, maxW, maxH, opt = {}) => {
 };
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("03_text.js");
+
 /* ============================================================
    JIZURA — style packs (palettes, type roles, texture, tendencies)
    Each pack = a set of colour schemes the cuts can swap between,
@@ -5663,6 +5681,8 @@ function keyStyle(st) {
 }
 function pickDefined(o, keys) { const r = {}; for (const k of keys) if (o[k]) r[k] = o[k]; return r; }
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("04_styles.js");
 
 /* ============================================================
    JIZURA — motion recipes: entrances / holds / exits
@@ -6080,6 +6100,8 @@ J.combinePiece = (fns) => {
 };
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("05_anim.js");
+
 /* ============================================================
    JIZURA — registries for the newer expression groups + a single
    registration helper used by every expression pack (src/11p_*.js)
@@ -6153,6 +6175,8 @@ J.registerAll = (group, defs, pack) => { for (const k of Object.keys(defs)) J.re
 /* items whose tags include a mood key (used by おまかせ) */
 J.taggedWith = (group, mood) => J.order(group).filter(k => { const d = J.registry(group)[k]; return d && d.tags && d.tags.includes(mood); });
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("05b_registry.js");
 
 /* ============================================================
    JIZURA — layouts (how a chunk of lyric is composed on screen)
@@ -6828,6 +6852,8 @@ J.HOLD_ORDER = ['still', 'jitter', 'drift', 'breathe', 'wave', 'glitchtick'];
 J.EXIT_ORDER = ['cut', 'explode', 'fall', 'drift', 'slice', 'wipe', 'shrink', 'blur', 'stretch', 'scatter', 'glitch'];
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("06_layouts.js");
+
 /* ============================================================
    JIZURA — decor (graphic elements around / behind the lyric) + HUD
    ============================================================ */
@@ -7087,6 +7113,8 @@ J.drawHUD = (env, plan) => {
   env.line([[W * 0.3, H - m - L * 0.9], [J.lerp(W * 0.3, W * 0.7, u), H - m - L * 0.9]], sc.accent, 2, 0.9, false);
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("07_decor.js");
 
 /* ============================================================
    JIZURA — planner: lyrics -> lines -> chunks -> timed cuts + events
@@ -7683,6 +7711,8 @@ J.outputSize = (project) => {
 };
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("08_planner.js");
+
 /* ============================================================
    JIZURA — おまかせ (randomise everything into a coherent mood)
    Each call rolls a mood, a style, effect strengths, a technique
@@ -7783,6 +7813,8 @@ J.omakase = (project, rnd = Math.random, moodOverride = null) => {
   return { mood, style, fx, enabled, fonts, colors, overrides, seed: Math.floor(rnd() * 1e9) };
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("08b_omakase.js");
 
 /* Input-sensitive, deterministic art direction. All analysis stays in the browser. */
 (() => {
@@ -8081,6 +8113,8 @@ J.planTitleDisplay = (project, title, artist, style, W, H, direction, lyricPlace
     maxWidth, W, H };
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("08c_auto_direction.js");
 
 /* Preflight checks only what the browser can measure or infer from the render plan. */
 (() => {
@@ -8388,6 +8422,8 @@ J.analyzeRenderedFrames = async (plan,range=null,audio=null,telemetry={}) => {
 J.inspectRenderedFrames=async(plan,range=null,audio=null)=>(await J.analyzeRenderedFrames(plan,range,audio)).issues;
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("08d_quality.js");
+
 /* LRC-boundary highlight selection. Output is an original-audio interval, never a stitched edit. */
 (() => {
 'use strict';
@@ -8444,6 +8480,8 @@ J.highlightCandidates=(plan,audio,maxSeconds=60)=>{
   return picks;
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("08e_highlight.js");
 
 /* Deterministic song-level motion, typography and continuous camera direction. */
 (() => {
@@ -8568,6 +8606,8 @@ J.loopQuality=(plan,audio,range=null)=>{
 };
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("08f_motion_dna.js");
+
 /* Metadata guard for restoring only the soundtrack saved with this project. */
 (() => {
 'use strict';
@@ -8575,6 +8615,8 @@ J.audioAssetInfo=file=>({name:file.name||'',size:file.size||0,lastModified:file.
 J.audioAssetMatches=(info,file)=>!!(info&&file&&info.name===file.name&&info.size===file.size&&
   info.lastModified===(file.lastModified||0)&&info.type===(file.type||''));
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("08g_audio_persistence.js");
 
 /* ============================================================
    JIZURA — portable project schema and migrations
@@ -8701,6 +8743,8 @@ J.createControlLock = () => {
   };
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("08i_project.js");
 
 /* ============================================================
    JIZURA — frame renderer: background, chroma passes, HUD, post FX
@@ -9313,6 +9357,8 @@ function prevBeat(beats, t) {
 J.Renderer = Renderer;
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("09_render.js");
+
 /* ============================================================
    JIZURA — audio: decode, energy envelope, onset, BPM & beat grid
    ============================================================ */
@@ -9559,6 +9605,8 @@ J.beatGrid = (bpm, offset, duration) => {
   return out;
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("10_audio.js");
 
 /* ============================================================
    JIZURA — export: MP4 (WebCodecs + mp4-muxer), PNG sequence ZIP,
@@ -10051,6 +10099,8 @@ J.planForAE = (plan, project) => {
   return clean;
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11_export.js");
 
 /* JIZURA pack: bgcamB — background graphics (gradients, wa / textile patterns, scenes, textures) + camera moves */
 (() => {
@@ -11302,6 +11352,8 @@ reg('cam', 'jelly', { name: 'ぷるん', tags: ['pop', 'graphic'], w: 0.7,
     return { sx: 1 + A * w, sy: 1 - A * w * 0.9, y: env.H * 0.008 * K * w, s: 1.01 };
   } });
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11p_bgcamB.js");
 
 /* JIZURA pack: decor — 45 refined graphic accents: HUD / measuring marks, geometry, particles & light, hand-drawn marks, type ornaments */
 (() => {
@@ -12984,6 +13036,8 @@ DEF.seal = {
 /* ============================================================ registration */
 for (const k of Object.keys(DEF)) J.register('decor', k, DEF[k], PK);
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11p_decor.js");
 
 /* JIZURA pack: decorB — 55 more graphic accents: Japanese motifs, sci-fi HUD, print & stationery, nature / atmosphere, graphic shapes, UI widgets */
 (() => {
@@ -15402,6 +15456,8 @@ for (const k of SETTLE) if (DEF[k]) DEF[k].draw = withSettle(DEF[k].draw);
 for (const k of Object.keys(DEF)) J.register('decor', k, DEF[k], PK);
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11p_decorB.js");
+
 /* JIZURA pack: enter — 40 extra entrances (glyph masks, flips, squash & stretch, graphic wipes, glitch, neon, stamps) */
 (() => {
 'use strict';
@@ -16271,6 +16327,8 @@ const DEFS = {
 
 for (const k of Object.keys(DEFS)) J.register('enter', k, DEFS[k], P);
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11p_enter.js");
 
 /* JIZURA pack: enterB — 47 more entrances (physics, paper, light, digital devices, graphic masks) */
 (() => {
@@ -17766,6 +17824,8 @@ function dRange(it, b) {
 for (const k of Object.keys(DEFS)) J.register('enter', k, DEFS[k], P);
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11p_enterB.js");
+
 /* JIZURA pack: exitHold — 36 exits (退場) + 20 holds (待機中の動き)
    Exits:  p 0 (rest) → 1 (fully gone).   Holds: amt 0..1 × fx.motion, subtle idle motion.
    Everything is relative to it.size / the item box and deterministic (it.seed, glyph index, env.step). */
@@ -18869,6 +18929,8 @@ H.echoTrail = {
 
 for (const k of Object.keys(H)) J.register('hold', k, H[k], P);
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11p_exit.js");
 
 /* JIZURA pack: exitB — 39 more exits (退場) + 12 more holds (待機中の動き)
    Exits:  p 0 (rest) → 1 (fully gone).   Holds: amt 0..1 × fx.motion, subtle idle motion.
@@ -20807,6 +20869,8 @@ H.pluckString = {
 for (const k of Object.keys(H)) J.register('hold', k, H[k], P);
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11p_exitB.js");
+
 /* JIZURA pack: fxB — more post-processing / accent effects: lens, print, film, glitch and manga-style overlays */
 (() => {
 'use strict';
@@ -21614,6 +21678,8 @@ fx('loopScroll', { name: '横ループ', tags: ['pop', 'graphic', 'glitch'], w: 
   } });
 
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11p_fxB.js");
 
 /* JIZURA pack: layoutsA — 28 compositional layouts: telops, editorial typesetting, graphic devices and UI mock-ups */
 (() => {
@@ -23508,6 +23574,8 @@ reg('ticket', {
 });
 
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11p_layoutsA.js");
 
 /* JIZURA pack: layoutsB — kinetic / typographic layouts (rain, hanging, orbit, tunnel, word cloud, mechanical reveals …) */
 (() => {
@@ -25420,6 +25488,8 @@ J.register('layout', 'tape', {
 }, P);
 
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11p_layoutsB.js");
 
 /* JIZURA pack: layoutsC — 34 layouts themed on print, editorial design and Japanese paper objects */
 (() => {
@@ -28806,6 +28876,8 @@ reg('karuta', {
 
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11p_layoutsC.js");
+
 /* JIZURA pack: layoutsD — kinetic / faux-3D / physical / pop-graphic layouts (cube, cylinder, flags, pendulums, signs, puzzles, masks …) */
 (() => {
 'use strict';
@@ -31830,6 +31902,8 @@ reg('stencil', {
 
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11p_layoutsD.js");
+
 /* JIZURA pack: looks — text treatments, background graphics, camera moves and post / transition effects */
 (() => {
 'use strict';
@@ -33120,6 +33194,8 @@ fxReg('splitSlide', { name: '上下スライド', tags: ['graphic', 'pop', 'glit
   } });
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11p_looks.js");
+
 /* JIZURA pack: styles — twelve more style packs (配色セット: colour schemes, font roles, texture, tendencies) */
 (() => {
 'use strict';
@@ -33409,6 +33485,8 @@ for (const [k, v] of Object.entries(S)) {
   if (!J.STYLE_ORDER.includes(k)) J.STYLE_ORDER.push(k);
 }
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11p_styles.js");
 
 /* JIZURA pack: treattrans — text treatments (neon, chrome, karaoke, reflection, ransom…) + cut-to-cut transitions (カット間のつなぎ) */
 (() => {
@@ -34543,6 +34621,8 @@ trReg('pixelate', { name: 'モザイク転換', tags: ['glitch', 'pop'], w: 0.6,
 
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11p_treattrans.js");
+
 /* ============================================================
    JIZURA — which entries random picks may use
    1) 追加分 (extra): everything added after the first public
@@ -34588,6 +34668,8 @@ J.randomOk = (project, g, k) => {
   return true;
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11q_sets.js");
 
 /* Style Intelligence 2: profiles are measured from the actual installed style packs.
    No rotation, usage counters, random choice, or per-style score bonuses. */
@@ -34866,6 +34948,8 @@ J.Renderer.prototype.drawTitleCredit=function(ctx,plan,t,scale){
 };
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11r_style_intelligence.js");
+
 /* Controlled maximalism: reuse the installed style, layout and FX registries. */
 (() => {
 'use strict';
@@ -35086,6 +35170,8 @@ if(baseFrame)J.Renderer.prototype.frame=function(ctx,plan,t,opt={}){
  ctx.restore();return value;
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11s_hype_engine.js");
 
 /* Next-generation direction, perceptual QA and offline Director Bridge. */
 (() => {
@@ -35501,6 +35587,8 @@ J.createSocialHookPlan=(source,candidate)=>{
 };
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11t_nextgen.js");
+
 /* Motion Director 5: measured music boundaries, shared visual language, offline intents. */
 (() => {
 'use strict';
@@ -35774,6 +35862,8 @@ J.Renderer.prototype.drawCustomBackground=function(ctx,plan,t,...args){
 
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11u_motion_director.js");
+
 /* Motion Director 6: causal raster realization, semantic intent and export certification. */
 (()=>{'use strict';
 const J=window.J,C=(x,a=0,b=1)=>Math.max(a,Math.min(b,+x||0)),avg=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
@@ -35870,6 +35960,8 @@ J.certifyExport=async(blob,expected)=>{
 };
 const exportMP4=J.exportMP4;J.exportMP4=async args=>{const out=await exportMP4(args);args.onProgress?.(.995,'生成済みMP4のフレーム・音声・タイミングを検査中…',{stage:'verify',indeterminate:true});out.validation=await J.certifyExport(out.blob,{width:out.width,height:out.height,fps:args.plan.fps,duration:(args.range?.end??args.plan.duration)-(args.range?.start??0),audio:!!out.audio,signal:args.signal});if(!out.validation.certification.passed)throw Object.assign(Error('EXPORT_INVALID: MP4再読込検査に失敗しました '+JSON.stringify(out.validation.certification.checks)),{inspection:out.validation});return out;};
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11v_perceptual_director.js");
 
 /* Motion Director 7. Independent pixel observer never receives a render plan or event list. */
 (()=>{'use strict';
@@ -36026,6 +36118,8 @@ J.exportMP4=async args=>{if(args.project.exportSettings?.fpsMode==='auto'){const
 J.exportMP4Fallback=async args=>{const result=await fallback6(args);const [w,h]=J.outputSize(args.project);result.width=w;result.height=h;result.validation=await J.certifyExport(result.blob,{width:w,height:h,fps:args.plan.fps,duration:(args.range?.end??args.plan.duration)-(args.range?.start??0),audio:!!result.audio});if(!result.validation.certification.passed)throw Error('EXPORT_INVALID');return finalize7(args,result);};
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11w_observer_director.js");
+
 /* Motion Director 8: local visual descriptors, bounded scene search and evidence-only metrics. */
 (()=>{'use strict';
 const J=window.J,C=(v,a=0,b=1)=>Math.max(a,Math.min(b,Number(v)||0)),avg=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
@@ -36109,6 +36203,8 @@ const collect=J.collectCanvasObserver;J.collectCanvasObserver=async(...args)=>co
 })();
 (()=>{'use strict';const J=window.J,hash=J.directorProjectHash;J.directorProjectHash=(p,d,a)=>{const base=hash(p,d,a);if((p.visualAssets?.length||0)<2)return base;let h=2166136261;const value=JSON.stringify(p.visualAssets.map(x=>({id:x.id,role:x.role,pin:x.pin,crop:x.crop,dataUrl:x.dataUrl||''})));for(let i=0;i<value.length;i++)h=Math.imul(h^value.charCodeAt(i),16777619)>>>0;return base+'-'+h.toString(16).padStart(8,'0');};})();
 
+window.KAMEN_MODULE_AUDIT.observe("11x_multi_image_director.js");
+
 /* Optional progress events are scoped per call, including nested pixel audits. */
 (() => {
 'use strict';
@@ -36131,6 +36227,8 @@ J.optimizeDirectionCandidatesRendered=async(project,audio,image,max=3,telemetry=
 J.audioProgressStages=[['read','音源ファイルを読み込んでいます',3],['decode','音源をデコードしています',12],['wave','波形・音楽の強弱・アタックを解析しています',20],['beat','BPMと拍の位置を解析しています',10],['spectrum','周波数・曲の展開を解析しています',45],['features','音楽の特徴量をまとめています',5],['save','音源と解析後のプロジェクトを保存しています',5]];
 J.audioProgressEvent=task=>e=>{task.enter(e.stage);task.update(e.current,e.total,e.detail+(e.total?` · ${e.current} / ${e.total}`:''));};
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11y_processing_tasks.js");
 
 /* Application policy: one active background; archive assets remain portable. */
 (()=>{'use strict';const J=window.J;
@@ -36179,6 +36277,8 @@ J.adjustLocalReadability=(env,it)=>{
   shadow:{...next.shadow,color:`rgba(${channel},0.78)`,blur:Math.max(next.shadow?.blur||0,2),dx:0,dy:1}};
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11z_single_background.js");
 
 /* Offline lyric cues: conservative explicit Japanese actions, never an LLM. */
 (()=>{'use strict';const J=window.J;
@@ -36231,6 +36331,8 @@ J.plan=(project,audio)=>{
 };
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zz_kamen_quality.js");
+
 /* LRC output uses saved musical timestamps; no guessing or storage migration. */
 (()=>{'use strict';const J=window.J;
 J.lrcTimestamp=time=>{
@@ -36261,6 +36363,8 @@ J.exportLRC=(project,audio)=>{
  return [...tags,'[re:KAMEN]',...out].join('\n')+'\n';
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zz_lrc_export.js");
 
 /* Preserve lyric phrases and supplied photography in automatic direction. */
 (()=>{'use strict';const J=window.J;
@@ -36331,6 +36435,8 @@ J.directorPrompt=()=>prompt().replaceAll('JIZURA','KAMEN').replace('最大3案',
 J.createExportProvenance=async(...args)=>({...await provenance(...args),applicationVersion:window.KAMEN_APP_INFO?.version||'2.0.10',artistic100Established:false,measurementApplicability:{climax:args[0].plan.musicalStructure?.sections?.some(s=>s.role==='climax')?'PIXEL_PROXY':'NOT_APPLICABLE_NO_SUPPORTED_CLIMAX',decorativeMotif:args[0].plan.lastPixelQA?.metrics?.motifReality?.status||'PIXEL_PROXY'},measurementSources:{beatSync:'decoded-export-pixels',lyricSync:'decoded-export-pixels',audienceImpact:'decoded-export-pixels',typography:'pre-export-canvas-and-plan',musicalDirection:'decoded-export-pixels-and-audio-targets',visualWorld:'pre-export-canvas',social:'automatic-proxy'},measurementPolicy:{structureRole:'反復境界の確信度と音楽的役割の確信度を分離。歌詞反復だけではclimaxと判定しない',beatSync:'音声ビートと実画素ピークの近接推定',lyricSync:'LRC開始と実画素ピークの近接推定。歌唱同期ではない',audienceImpact:'画素変化の推定。観客評価ではない',unmeasured:['歌唱との知覚的同期','観客評価','芸術的完全性'],certified100Meaning:'内部の自動検査基準への適合。作品の芸術的100点を保証しない'},lyricEndStatus:args[0].plan.musicalStructure?.lyricEndStatus||'DISPLAY_DURATION_HEURISTIC_NOT_VOCAL_DETECTION'});
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zz_quality_policy.js");
+
 /* One background analysis per plan. Chapter anchors are stable, not frame-driven. */
 (()=>{'use strict';const J=window.J,C=J.clamp,cache=new WeakMap();
 const locked=(p,c)=>!!(Object.keys(p.directionOverrides7?.[c?.line]||{}).length||p.directorLyricDirectives7?.some(d=>d.line===c?.line)||c?.assetScene?.locked);
@@ -36382,6 +36488,8 @@ J.adjustLocalReadability=(env,it)=>{
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>({...await provenance(...args),photoComposition:{algorithm:args[0].plan.photoCompositionAlgorithm,scenes:J.getPhotoComposition(args[0].plan),measurement:'region-based background sampling; artistic judgment and subject recognition unmeasured'}});
 const context=J.directorContext;J.directorContext=(project,p,...args)=>({...context(project,p,...args),photoComposition:{algorithm:p.photoCompositionAlgorithm,scenes:J.getPhotoComposition(p),limitations:['No subject recognition','Regional predicted contrast is not measured glyph contrast']}});
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zza_photo_composition.js");
 
 /* Target-conditioned timing evidence. The observer remains pixel-only. */
 (()=>{'use strict';const J=window.J,legacy=J.alignmentDomains8;
@@ -36436,6 +36544,8 @@ J.alignmentDomains8=(observer,targets={})=>{
 };
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzb_sync_evidence.js");
+
 /* Evidence classification; restrained editorial motion is not a frozen renderer. */
 (()=>{'use strict';const J=window.J;
 const novelty=J.measurePerceptualNovelty;
@@ -36485,6 +36595,8 @@ const provenance=J.createExportProvenance;
 J.createExportProvenance=async(...args)=>{const result=await provenance(...args),metrics=args[0].plan.lastPixelQA?.metrics;return {...result,qualityEvidence:{typography:{measurement:'layout-variety-and-technical-proxy',readabilityScore:null,glyphInspection:metrics?.glyphInspection??null},temporal:metrics?.temporalEvidence??null},measurementSources:{...result.measurementSources,typography:'pre-export-layout-variety-and-technical-proxy'},measurementPolicy:{...result.measurementPolicy,typography:'文字組の種類数と技術点の代理指標。局所コントラストや読みやすさの実測ではない',stagnation:'歌詞表示中の低変化・意図した無歌詞の静かな区間・代表画素の静止疑いを区別'}};};
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzc_quality_evidence.js");
+
 /* Creative evidence remains visible; only actual output faults stop export. */
 (()=>{'use strict';const J=window.J;
 const creative=new Set(['SCENE_INDISTINCT','direction_realization','motion_excess','effect_soup','BROKEN_STYLE_ARC','EVENT_NOT_REALIZED','SUBJECT_CRITICAL_OVERLAP','BROKEN_DIRECTOR_INTENT','BROKEN_VISUAL_WORLD','SEMANTIC_NOT_REALIZED','CLIMAX_TOO_WEAK','VISUAL_STAGNATION','BROKEN_IMAGE_TRANSITION']);
@@ -36499,6 +36611,8 @@ const fix=J.fixMVQuality;J.fixMVQuality=(project,report,audio)=>{const fingerpri
 const check=J.checkMVQuality;J.checkMVQuality=(...args)=>J.finalizeExportReadiness(check(...args));
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>{const result=await provenance(...args);return {...result,exportReadiness:args[2].quality.exportGates,creativeFindings:args[2].creativeFindings?.map(i=>({code:i.code,message:i.message,severity:i.severity})),measurementPolicy:{...result.measurementPolicy,export:'創作上の不足は実測値とともに残す。歌詞欠落・描画失敗・MP4破損・音源や出所の不一致は書き出しを止める'}};};
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzd_export_policy.js");
 
 /* Bounded glyph-footprint evidence. This measures pixels; it does not certify legibility. */
 (()=>{'use strict';const J=window.J,cache=new WeakMap();
@@ -36540,6 +36654,8 @@ const analyze=J.analyzeRenderedFrames;J.analyzeRenderedFrames=async(p,range,audi
 const provenance=J.createExportProvenance;if(provenance)J.createExportProvenance=async(...args)=>({...await provenance(...args),glyphContrastEvidence:J.getGlyphContrastEvidence(args[0]?.plan)});
 const context=J.directorContext;if(context)J.directorContext=(project,p,...args)=>({...context(project,p,...args),glyphContrastEvidence:J.getGlyphContrastEvidence(p)});
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zze_glyph_contrast.js");
 
 /* Phrase-level direction: one composition, developed across repeated lyrics. */
 (()=>{'use strict';const J=window.J;
@@ -36615,6 +36731,8 @@ const context=J.directorContext;if(context)J.directorContext=(project,p,...args)
 const provenance=J.createExportProvenance;if(provenance)J.createExportProvenance=async(...args)=>({...await provenance(...args),photoChoreography:args[0]?.plan.photoChoreography||null});
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzf_social_choreography.js");
+
 /* Optional short selection: original audio interval, exact supplied lyric times. */
 (()=>{'use strict';const J=window.J;
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,Number.isFinite(x)?x:a));
@@ -36656,6 +36774,8 @@ J.socialHookCandidates=(plan,audio,minSeconds=12,maxSeconds=15)=>{
  return picks;
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzg_social_range.js");
 
 /* Repeated text masks, including a same-presentation render control. No aesthetic score. */
 (()=>{'use strict';const J=window.J,cache=new WeakMap();
@@ -36699,6 +36819,8 @@ J.getPresentationVariation=p=>p.lastPixelQA?.metrics?.presentationVariation??nul
 const context=J.directorContext;J.directorContext=(project,p,...args)=>({...context(project,p,...args),presentationVariation:J.getPresentationVariation(p)});
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>({...await provenance(...args),presentationVariation:J.getPresentationVariation(args[0].plan)});
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzh_presentation_evidence.js");
 
 /* Compare inexpensive actual lyric renders, then persist one coherent selection. */
 (()=>{'use strict';const J=window.J,C=J.clamp,norm=s=>String(s||'').replace(/\s/g,''),yieldUI=()=>new Promise(r=>setTimeout(r,0));
@@ -36809,8 +36931,12 @@ const context=J.directorContext;J.directorContext=(p,plan,...args)=>({...context
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>({...await provenance(...args),registrySelection:args[0]?.plan.artDirection?.registrySelection||null});
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzi_render_selection.js");
+
 /* Current native catalogue dispatch evidence. Browser availability remains unverified here. */
 (()=>{const J=window.J;J.registryAudit={"version":"2.0.12","styleCount":24,"techniqueCount":724,"fontCount":24,"samples":4476,"rendererCalls":4476,"aspects":["16:9","9:16"],"phasesPerAspect":3,"method":"Native Canvas full renderer; isolated registry dispatch, 2 aspects \u00d7 3 phases. This is not browser font verification or aesthetic certification.","evidence":{"style":{"noir":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"crimson":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"caution":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"magenta":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"paper":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"hud":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"mint":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"specimen":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"transit":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blueprint":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rouge":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"mono":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sakura":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ocean":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sunset":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"forest":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"vapor":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"newsprint":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"synth80":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"kraft":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"candy":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"acid":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sumi":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"gold":{"dispatch":"STYLE_PALETTE_RENDERED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0}},"layout":{"center":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"mixed":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"vcols":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"marquee":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tile":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"scatter":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":3},"ring":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"wave":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"huge":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":6},"labels":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"condensed":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"gloss":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"type":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"diag":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"circle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stack":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"pill":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"title":{"dispatch":"CREDIT_ONLY","samples":0,"lyricInkFrames":0,"outOfFrameSamples":0},"interlude":{"dispatch":"CREDIT_ONLY","samples":0,"lyricInkFrames":0,"outOfFrameSamples":0},"lowerThird":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"corners":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"staircase":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zigzag":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"arcTop":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"spiral":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"gridCells":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dropCap":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"justified":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"frameBox":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bubble":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"subtitleBar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ticker":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"splitScreen":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"mirror":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sideways":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"edgeFrame":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"perspective":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"hanko":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"genkou":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"panels":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"filmstrip":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"quote":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ruler":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"searchBar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"chat":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"notification":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ticket":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rain":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":2},"hanging":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"orbit":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tunnel":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"wordCloud":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bounceLine":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"elastic":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"crossBands":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stickerBomb":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"neon":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"keycaps":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bubbles":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"slotMachine":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"flipBoard":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"credits":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zoomRepeat":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"splitHalves":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"columnsBig":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"circleWords":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dotMatrix":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"depthStack":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"typeSpecimen":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"kanjiFocus":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"halfVertical":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"curtain":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"equalizer":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tape":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"magazine":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"headlineDeck":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"contents":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"footnote":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"proofread":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"numbered":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"poster":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"swissGrid":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dictionary":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":2},"ema":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"ransom":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"newspaper":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"vinyl":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"cassette":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"bookSpine":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"polaroid":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stampSheet":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"postcard":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"letterPaper":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"calendar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"chochin":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"routeMap":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stationSign":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"noren":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tanzaku":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"omikuji":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"kakejiku":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shoji":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"clapper":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"warningLabel":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"priceTag":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"nameTag":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"stickyNotes":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"karuta":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"cube":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"cylinder":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"flipCards":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"accordion":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"flag":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ribbon":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"pendulum":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"pile":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":3},"blocks":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":4},"balloons":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"magnets":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tiles":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"bulbs":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ledScroll":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"billboard":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"crowdBubbles":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"crossword":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"wordSearch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"puzzle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":2},"shadowPlay":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":5},"kaleido":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":6},"dominoes":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"burst":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"fisheye":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"wall":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":6},"origami":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zipper":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sliceStack":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":1},"glitchGrid":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":6},"mosaicTiles":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"maskReveal":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"contour":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"halftoneBig":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":6},"stencil":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"portraitDiag":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"verticalSplit":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"verticalMarquee":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"portraitScatter":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"portraitStack":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tallArc":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"photoStatement":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"photoPhrase":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"photoChant":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"photoBanner":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"photoFocus":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"photoCondensed":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0}},"enter":{"cut":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"assemble":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"slice":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"type":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"pop":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"drop":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"stretch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"wipe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blur":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"spin":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"flicker":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"scramble":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zoom":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"riseMask":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"dropMask":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"slideL":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"slideR":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"slideWhole":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"flipX":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"flipY":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"domino":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"fold":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"unroll":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"strokeDraw":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"outlineFill":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":2,"outOfFrameSamples":0},"splitJoin":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"vSlice":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"shutter":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"iris":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"diagWipe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blinds":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"checker":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"randomOrder":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"bounceBig":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"squashDrop":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"rubber":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"glitchIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"echoIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"whip":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":1},"skewIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"trackIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":1},"trackOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"blurStagger":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"fadeStagger":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"waveIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"spiralIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":1},"zoomOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":2},"resolve":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"magnet":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":1},"inkBleed":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"neonOn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"cursorSweep":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"stamp":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":2},"springIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"pendulum":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"rollIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":1},"slingshot":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"rockSettle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"bounceBall":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"snapRail":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"fanOpen":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":1},"cylinder":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"shuffle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stopMotion":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"ripple":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"zipper":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"zoomAlt":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"tiltUp":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"stickerPeel":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"crumple":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"noteUnfold":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"tornJoin":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"splitFlap":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"overexpose":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"glint":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"loupe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"filmFeed":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"backlight":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"lightLeak":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"heatHaze":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"crtOn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":2,"outOfFrameSamples":0},"interlace":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"loadingBar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"dither":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"odometer":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"matrixRain":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"hatchFill":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":2,"outOfFrameSamples":0},"brushReveal":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"inkDrop":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"quarters":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"invertBox":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"printRegister":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"echoCount":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"liquidFill":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"windBlown":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"strokeOrder":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"clockWipe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shadowFirst":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"bubbles":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"tokoroten":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"photoSettle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"photoResolve":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0}},"hold":{"still":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"jitter":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"drift":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"breathe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"wave":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"glitchtick":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"float":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sway":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"pulse":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shimmer":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"colorRun":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rotateSlow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"trackBreathe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"skewWobble":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"beatHop":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"hWave":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"heartbeat":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"orbitSmall":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"jelly":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"scanBand":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"noiseDrift":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tilt":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zoomSlow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stretchPulse":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"glitchJump":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"echoTrail":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"glowFlicker":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"windGust":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dangle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"eqBounce":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"flashBox":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"glintSweep":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"flipSwap":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shadowSway":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"magnetJiggle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"typeRattle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"focusRack":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"pluckString":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0}},"exit":{"cut":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"explode":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"fall":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"drift":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"slice":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"wipe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shrink":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blur":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stretch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":2},"scatter":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":2},"glitch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sinkMask":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"riseOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"slideOutL":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"slideOutR":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"flipOutX":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"flipOutY":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"foldOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"squash":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"trackOutWide":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"collapse":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zoomThrough":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"zoomFar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"spinOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"twist":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"waveOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blurOutStagger":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"undraw":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"outlineOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"irisClose":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"diagWipeOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blindsClose":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"checkerOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"splitApart":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"vSliceDrop":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"melt":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dissolve":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"backspace":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"scrambleOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"glitchDissolve":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"echoOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":2,"outOfFrameSamples":0},"whipOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"gravity":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":3},"popOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"burn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sweepCover":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":3,"outOfFrameSamples":0},"shatterLite":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":1},"peelOff":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"crumpleOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tearOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":3},"scorchOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"overexposeOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"scanOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stripesOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"halftoneOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"eraserOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"vacuumOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":2},"sandOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shredOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dominoOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":1},"hingeOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":1},"rocketOff":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":3},"bounceOff":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"balloonOff":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":2},"deflateOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"hazeOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"glassBreak":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":2,"outOfFrameSamples":0},"zipOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":5,"outOfFrameSamples":0},"clapShut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"lampOff":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"slotOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"clockOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"matrixOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"tornadoOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":3},"rollUpOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"snakeOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"flutterOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"rollOff":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":4},"fanClose":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rgbSplitOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":2,"outOfFrameSamples":0},"shockOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":3,"outOfFrameSamples":1},"floodOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"slashOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"mosaicOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":2,"outOfFrameSamples":0},"scribbleOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0},"candleOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":4,"outOfFrameSamples":0}},"decor":{"grid":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stripes":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blobs":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bars":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shapes":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"counter":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"brackets":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rings":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dots":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"arrows":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"slash":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sparks":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"leaders":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":6},"waveform":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"barcode":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"crosshair":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"cropMarks":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"reticle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"radar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"progressRing":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"timecodeBar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rulerEdge":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dimension":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"indexNum":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dateStamp":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"qrBlock":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"glitchRects":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"concentricSquares":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"triangleSpin":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"lineBurst":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"plusGrid":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"guides":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"waveLine":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"spiralLine":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"halftonePatch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"checkerStrip":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"beatRing":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"orbitDots":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"constellation":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"confetti":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"petals":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rainStreaks":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"snow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"lightLeak":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bokeh":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"speedCorner":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"risingParticles":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"twinkle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"brushStroke":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tapePieces":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"scribbleCircle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"scribbleUnder":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"crossOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"highlightMark":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"heartsStars":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"watermarkKanji":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":6},"verticalStrip":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"romajiLine":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bracketsJP":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"seal":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"kamon":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"seigaiha":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"asanoha":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"hanabi":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"chochin":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shimenawa":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sensu":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tsukiKumo":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"momiji":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"namiGashira":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"kasumi":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"hexGrid":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"spectrumRing":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dataColumns":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"spinner":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"headingTape":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"glyphLock":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"atomOrbit":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sonarArcs":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"circuit":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"swatches":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ruledLines":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"registration":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"punchHoles":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"staple":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"paperClip":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"indexTabs":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"vines":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"cloudPuffs":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"starField":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"moonPhases":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sunRays":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rainRipples":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bubbles":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"smoke":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dandelion":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"fireflies":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"memphis":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zigzagRibbon":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"polkaPatch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stripeCircle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"decoCorners":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"halfCircles":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"loopArrows":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"starburst":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tally":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"cursorClick":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"windowChrome":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"progressBar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"toggleSwitch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"notifBell":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"likeCounter":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"mediaControls":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"volumeBars":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"musicNotes":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0}},"treat":{"none":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"outline":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"outlineFill":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"doubleOutline":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"extrude":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"longShadow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"hardShadow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"softShadow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"glow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"marker":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"underline":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"strike":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"boxed":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"gradientV":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"splitColor":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"halftone":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stripes":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"hatch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dotted":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"alternate":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"italic":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"wide":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tall":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"echoOutline":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"emphasisDots":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"neonOutline":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"chrome":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rainbow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"glitchSplit":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shadowStack":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stencilGap":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"waterline":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"karaoke":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sizeWave":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rotateAlt":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"baselineShift":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"fauxBold":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"circled":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bracketsQuote":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"reflection":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"inline":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sticker":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"gradientSweep":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"kerningWide":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"monoGrid":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"outlineOffset":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"toneShadow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"fadeChars":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"cutShift":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"focusPull":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"spotChar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ransom":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0}},"bg":{"none":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"auroraRibbons":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"meshBlobs":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"duotoneSweep":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"horizonGlow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"seigaiha":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"asanoha":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"houndstooth":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"herringbone":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"argyle":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tartan":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"chevron":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"isoCubes":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"hexGrid":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"triTess":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"moire":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"squareTunnel":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"spiralArms":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"topoLines":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ridgePlot":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"starfield":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"nightMoon":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"skyline":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sunsetSun":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"oceanWaves":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rainWindow":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"snowLayers":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"fireworks":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"cloudLayers":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"mountains":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"filmStrip":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"vhsBand":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tornPaper":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"godRays":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"vignettePulse":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"kaleidoscope":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"marble":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"paperCut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sunburst":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"concentric":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"halftoneFade":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bigStripes":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"splitV":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"splitH":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"splitDiag":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"gradientSweep":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"spotlight":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tvBars":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"checker":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bigChar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":6},"speedLines":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"scanBars":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dotGrid":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"retroGrid":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bokehBg":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"particlesBg":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ripples":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"polka":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"eqBars":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"borderFrame":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"letterbox":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"noiseField":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0}},"cam":{"push":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stillCamera":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"orbitDrift":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"barrelRoll":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"pendulumSway":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"focusIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rackFocus":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"earthquake":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"floatNoise":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"vertigo":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tiltDown":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"spiralIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"snapPan":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"jelly":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"pullOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"panL":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"panR":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tiltUp":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dutch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"handheld":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"beatPunch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"whipIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"crashZoom":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bounce":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"roll":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"driftDiag":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shakeHard":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dollyIn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"stepZoom":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0}},"fx":{"slice":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"block":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"invert":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"flash":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zoom":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"mosaic":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shake":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"chroma":{"dispatch":"BUILTIN_IDENTITY","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"radialChroma":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bloomFlash":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bulge":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"pixelSort":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"interlace":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"macroBlock":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"halftone":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"duotone":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ditherBit":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rotateSnap":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"echoFrames":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"kaleido":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"bandInvert":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"lightRays":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"anamorphic":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"heartbeat":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tvStatic":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"dustScratches":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"filmAdvance":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"perspectiveTilt":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"ripple":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"focusLines":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"speedLines":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"starGlint":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"colorBars":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zoomStutter":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"negativeRing":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"edgeDetect":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shatter":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"defocus":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"snapshot":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"squash":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"scanBar":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"loopScroll":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"panelWipe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"irisTrans":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"doors":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blindsTrans":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"rgbSplit":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"smear":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"vhsRoll":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"trackingNoise":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"mirrorFlash":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"strobe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"posterize":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"hueShift":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"tileShift":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"filmBurn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"whipBlur":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blackFrame":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"whiteFrame":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"gridRepeat":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"waveWarp":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"pixelDrift":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zoomPunch":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"lightSweep":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"crtOff":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"splitSlide":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0}},"trans":{"wipe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"diagonalWipe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"clockWipe":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"irisOpen":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"pushSlide":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"cover":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"uncover":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"zoomThrough":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"doorsOpen":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blinds":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"checker":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"blockDissolve":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"whipPan":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"spinOut":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"inkBlob":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"shatterTiles":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"sliceShift":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"cubeTurn":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"flashCross":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0},"pixelate":{"dispatch":"EXECUTED","samples":6,"lyricInkFrames":6,"outOfFrameSamples":0}}},"fonts":[{"id":"embedded_bold","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"gothic_black","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"gothic_bold","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"gothic_med","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"gothic_light","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"dela","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"zenkaku","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"mincho_black","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"mincho_bold","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"mincho","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"mincho_light","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"tokumin","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"round","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"pop","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"dot","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"brush","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"mono","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"reggae","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"rampart","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"potta","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"kiwi","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"klee","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"shippori","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"},{"id":"sansui","status":"NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED"}]};const catalog=J.registrySelectionCatalog;J.registrySelectionCatalog=()=>Object.fromEntries(Object.entries(catalog()).map(([group,entries])=>[group,entries.map(e=>({...e,nativeDispatch:J.registryAudit.evidence[group]?.[e.id]||{dispatch:"UNMEASURED"}}))]));const context=J.directorContext;J.directorContext=(...args)=>({...context(...args),registryAudit:J.registryAudit});})();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzia_catalog_audit.js");
 
 /* Photographic direction: music-timed poses, with no free-running pulse. */
 (()=>{'use strict';const J=window.J;
@@ -36934,6 +37060,8 @@ J.refinePhotoExport=async(args,encode)=>{
 for(const key of ['exportMP4','exportMP4Fallback']){const encode=J[key];if(encode)J[key]=args=>J.refinePhotoExport(args,encode);}
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzj_musical_photo.js");
+
 /* Explicit weakest-item acceptance, with actual photographic direction. */
 (()=>{'use strict';const J=window.J,C=J.clamp;
 const locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c);
@@ -37043,6 +37171,8 @@ J.repairPhotoBottlenecks=(p,acceptance,attempt)=>{
 const context=J.directorContext;J.directorContext=(project,p,audio,...rest)=>({...context(project,p,audio,...rest),qualityTarget:p.lastQualityTarget||null,audioAnalysis:audio?{features:audio.features,energy:Array.from(audio.energy||[]),onset:Array.from(audio.onset||[]),energyRate:audio.energyRate}:null});
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzk_quality_target.js");
+
 /* Input-driven direction. Readability is a gate, not a template selector. */
 (()=>{'use strict';const J=window.J,C=J.clamp;
 J.songDirectionProfile=audio=>{
@@ -37095,6 +37225,8 @@ const camera=J.cameraAt;J.cameraAt=(p,t,range)=>{
  return pose;
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzl_song_direction.js");
 
 /* Single-artwork narrative search. All quality numbers remain measurements. */
 (()=>{'use strict';const J=window.J,C=J.clamp,locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c);
@@ -37244,6 +37376,8 @@ const repair=J.repairPhotoBottlenecks;J.repairPhotoBottlenecks=(p,a,attempt)=>{
  return changes;
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzm_story_director.js");
 
 /* Single-image editing. Pixel evidence, lyric fidelity and authored overrides
    remain authoritative; no subject/depth recognition is claimed. */
@@ -37435,6 +37569,8 @@ const check=J.checkMVQuality;J.checkMVQuality=(...args)=>{
 const context=J.directorContext;J.directorContext=(project,p,...args)=>({...context(project,p,...args),singleImageCinema:p.musicalPhoto?.cinema||null});
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzn_single_image_cinema.js");
+
 /* Regional 2.5D: connected colour/edge regions, not recognized objects or learned depth. */
 (()=>{'use strict';const J=window.J,C=J.clamp,active=p=>!!p.musicalPhoto?.cinema,locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c),cache=new WeakMap(),ease=u=>{u=C(u);return u*u*(3-2*u);};
 const canvas=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;};
@@ -37501,6 +37637,8 @@ const check=J.checkMVQuality;J.checkMVQuality=(...args)=>{const r=check(...args)
  if(unmeasured.length){q.certified100=q.perfectEligible=false;if(!r.issues.some(i=>i.code==='CINEMA_UNMEASURED'))r.issues.push({code:'CINEMA_UNMEASURED',severity:'WARNING',exportBlocking:false,message:'意味・動作・拍演出の未計測項目があるため100点認定できません'});}
  r.errors=r.issues.filter(i=>i.severity==='ERROR');r.warnings=r.issues.filter(i=>i.severity==='WARNING');q.hardGates={...q.hardGates,total:r.errors.length,passed:!r.errors.length};q.targetAcceptance=J.evaluateQualityTarget(r);if(failures.length||unmeasured.length)q.targetAcceptance.certified100=false;if(failures.length)q.qualification='QUALITY_UNMET';for(const i of r.issues)if(['LOW_FOREGROUND_NOVELTY','LOW_LYRIC_FOREGROUND_NOVELTY','CINEMA_BOTTLENECK','CINEMA_UNMEASURED','NON_CROP_STAGNATION'].includes(i.code))i.category='creative';return J.finalizeExportReadiness(r);};
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzo_layered_cinema.js");
 
 /* Editorial shot grammar from the supplied artwork. No new imagery or object-recognition claims. */
 (()=>{'use strict';const J=window.J,C=J.clamp,active=p=>!!p.musicalPhoto?.cinema,locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c),ease=u=>{u=C(u);return u*u*(3-2*u);};
@@ -37587,6 +37725,8 @@ const provenance=J.createExportProvenance;J.createExportProvenance=async(...args
 const context=J.directorContext;J.directorContext=(project,p,...args)=>({...context(project,p,...args),shotGrammar:p.musicalPhoto?.cinema?.grammar||null,loopTextPolicy:active(p)?'Background returns to opening; final lyric retained until boundary; title begins at next playback, no title/lyric crossfade':null});
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzp_shot_grammar.js");
+
 /* Input-conditioned production raster feedback. Scores are never repaired. */
 (()=>{'use strict';const J=window.J,C=J.clamp,active=p=>!!p.musicalPhoto?.cinema,locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c);
 const difference=(a,b)=>{let total=0;for(let i=0;i<a.length;i+=4)total+=(Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]))/765;return total/(a.length/4);};
@@ -37655,6 +37795,8 @@ const provenance=J.createExportProvenance;J.createExportProvenance=async(...args
 const fps=J.chooseAdaptiveFPS;J.chooseAdaptiveFPS=(p,...args)=>p.customBg?.enabled&&p.exportSettings?.fpsMode==='auto'?{fps:30,reason:'single artwork lyric MV: 30fps delivery',capabilityVerified:false}:fps(p,...args);
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzq_render_feedback.js");
+
 /* Conservative single-source compositing and verifiable blueprint rendering. */
 (()=>{'use strict';const J=window.J,C=J.clamp,active=p=>!!p.musicalPhoto?.cinema;
 // Keep Japanese pronoun/particle groups intact instead of isolating one glyph.
@@ -37682,6 +37824,8 @@ const dispose=J.Renderer.prototype.disposeAssets;J.Renderer.prototype.disposeAss
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>({...await provenance(...args),foregroundArtifactPolicy:args[2].quality.foregroundArtifactPolicy||null,sameSourceReuse:args[2].quality.sameSourceReuse||null,antiTemplateEvidence:args[2].quality.antiTemplateEvidence||null});
 const context=J.directorContext;J.directorContext=(project,p,...args)=>({...context(project,p,...args),foregroundArtifactPolicy:p.musicalPhoto?.cinema?.compositing||null,antiTemplatePolicy:'Different musical profiles select different arcs; repeated vocalise groups use different shot sequences. Actual raster novelty remains a separate requirement.'});
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzr_artifact_style.js");
 
 /* Content-seeded composition tournament. Only visible raster improvements survive. */
 (()=>{'use strict';const J=window.J,C=J.clamp,ease=u=>{u=C(u);return u*u*(3-2*u);},active=p=>!!p.musicalPhoto?.cinema,locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c);
@@ -37739,6 +37883,8 @@ const openingBackground=J.Renderer.prototype.drawCustomBackground;J.Renderer.pro
 const context=J.directorContext;J.directorContext=(...args)=>({...context(...args),compositionSearch:args[1].musicalPhoto?.cinema?.architectureSearch||null,compositionArchitecture:args[1].musicalPhoto?.cinema?.architecture||null});
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzs_architecture_cinema.js");
+
 /* Final encoded media is authoritative. No edge mask is called a subject mask. */
 (()=>{'use strict';const J=window.J,C=J.clamp,mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0,delta=(a,b)=>a?.length&&a.length===b?.length?mean(a.map((v,i)=>Math.abs(v-b[i]))):null;
 const grid=(v,w,h)=>{const out=Array(144).fill(0),counts=Array(144).fill(0);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=Math.min(7,Math.floor(y/h*8))*18+Math.min(17,Math.floor(x/w*18));out[i]+=v[y*w+x];counts[i]++;}return out.map((v,i)=>v/Math.max(1,counts[i]));};
@@ -37778,6 +37924,8 @@ const check=J.checkMVQuality;J.checkMVQuality=(...args)=>{const r=check(...args)
  q.certificationEvidence={finalEncodedPixels:!!decoded?.completed,decodedTextRecognition:false,decodedSemanticDirection:false,artistic100Established:false};q.targetAcceptance=J.evaluateQualityTarget(r);return J.finalizeExportReadiness(r);};
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>{const r=await provenance(...args);return {...r,decodedCinema:args[2].quality.decodedCinema||null,compositionSearch:args[0].plan.musicalPhoto?.cinema?.architectureSearch||null,measurementSources:{...r.measurementSources,perceptualNovelty:args[2].quality.decodedCinema?.completed?'decoded-MP4-full-frame-proxy':'pre-export-canvas',temporalContrast:args[2].quality.decodedCinema?.completed?'decoded-MP4':'pre-export-canvas',loopQuality:args[2].quality.decodedCinema?.completed?'decoded-MP4-image-and-text-luma-seam':'pre-export-canvas',foreground:'decoded-layer-presence-counterfactual; source segmentation unmeasured',lyricForegroundNovelty:args[2].quality.decodedCinema?.completed?'decoded-MP4-verified-primary-alpha-occupancy':'pre-export-primary-alpha-mask',displayOnsetAccuracy:'pre-export-full-glyph-mask; decoded-OCR-unmeasured'}};};
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzt_decoded_cinema.js");
 
 /* Temporal direction: principles conditioned on meaning, sound and content. */
 (()=>{'use strict';const J=window.J,C=J.clamp,ease=u=>{u=C(u);return u*u*(3-2*u);},active=p=>!!p.musicalPhoto?.cinema?.architecture,locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c);
@@ -37821,6 +37969,8 @@ const provenance=J.createExportProvenance;J.createExportProvenance=async(...args
 const context=J.directorContext;J.directorContext=(...args)=>({...context(...args),temporalDirection:args[1].musicalPhoto?.cinema?.temporalDirection||null,loopTextPolicy:active(args[1])?'Background returns to opening; complete final lyric holds then fades over the final 0.36 seconds; title begins next playback without overlap':null});
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzu_temporal_direction.js");
+
 /* Climax alternatives are selected by production pixels, never by style IDs. */
 (()=>{'use strict';const J=window.J,C=J.clamp,locked=(p,c)=>J.photoChoreographyLocked(p,c),active=p=>!!p.musicalPhoto?.cinema?.architecture;
 const hash=s=>{let n=2166136261;for(const ch of String(s))n=Math.imul(n^ch.charCodeAt(0),16777619);return n>>>0;};
@@ -37841,6 +37991,8 @@ const reconcile=J.reconcileDecodedCinemaQuality;J.reconcileDecodedCinemaQuality=
 // A missing encoded layer changes the renderer on the next bounded retry.
 const repair=J.repairPhotoBottlenecks;J.repairPhotoBottlenecks=(p,...args)=>{const d=p.lastPixelQA?.metrics?.decodedCinema,missing=d?.layerPresence?.samples?.filter(s=>!s.visible)||[],result=repair(p,...args);if(!active(p))return result;for(const s of missing){const c=p.cuts.find(c=>c.line===s.line);if(!c?.grammar?.safeDerived||locked(p,c))continue;c.grammar.layerRepair={strength:Math.min(2,(c.grammar.layerStrength||1)*1.4),width:Math.min(2,(c.grammar.layerWidth||1)*1.35),source:'decoded ON/OFF layer counterfactual'};c.grammar.layerStrength=c.grammar.layerRepair.strength;c.grammar.layerWidth=c.grammar.layerRepair.width;result.push('encoded-layer-render-repair:'+s.line);}return result;};
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzv_climax_realization.js");
 
 /* Explicit renderer capabilities, input-conditioned worlds and verified scores. */
 (()=>{'use strict';const J=window.J,C=J.clamp,active=p=>!!p.musicalPhoto?.cinema?.architecture,locked=(p,c)=>J.photoChoreographyLocked(p,c),mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
@@ -37873,12 +38025,16 @@ J.measureSocialProfilePreviews=async(p,range)=>{const R=new J.Renderer(),cv=docu
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>{const r=await provenance(...args),p=args[0].plan;if(!active(p))return r;return {...r,scoreStages:args[2].quality.scoreStages,verifiedScore:args[2].quality.verifiedScore,antiTemplate:args[2].quality.antiTemplate,visualDNA:p.musicalPhoto.cinema.visualDNA,techniqueCapabilities:J.TECHNIQUE_CAPABILITIES,socialProfilePreviews:await J.measureSocialProfilePreviews(p,args[0].range)};};
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzw_quality_contract.js");
+
 /* Observable axes only; camera/depth/semantic axes are never invented. */
 (()=>{'use strict';const J=window.J,mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0,active=p=>!!p.musicalPhoto?.cinema?.architecture;
 const measure=J.measureDecodedCinemaFrames;J.measureDecodedCinemaFrames=(frames,p,...args)=>{const d=measure(frames,p,...args);if(!d.completed||!active(p))return d;const entry=p.cuts.find(c=>c.grammar?.temporal?.climax)?.start;if(entry==null)return d;const vector=rows=>{const light=rows.map(f=>mean(Array.from(f.features.luma))),contrast=rows.map((f,i)=>Math.sqrt(mean(Array.from(f.features.luma,v=>(v-light[i])**2)))),edge=rows.map(f=>mean(Array.from(f.features.edge,v=>v>.05?1:0)));return {brightness:mean(light),contrast:mean(contrast),edgeOccupancy:mean(edge)};};const before=frames.filter(f=>f.time>=entry-3&&f.time<entry-.1),after=frames.filter(f=>f.time>=entry+.1&&f.time<entry+3);if(!before.length||!after.length)return d;const a=vector(before),b=vector(after),thresholds={brightness:.08,contrast:.06,edgeOccupancy:.06};d.climaxAxes={entry,source:'decoded luma/edge plus verified expected primary mask; correlated engineering axes, not camera/depth or artistic proof',before:a,after:b,changes:Object.keys(a).map(key=>({key,delta:Math.abs(a[key]-b[key]),threshold:thresholds[key],changed:Math.abs(a[key]-b[key])>=thresholds[key]})),unmeasured:['camera','layerDepth','semanticDirection','subjectIdentity'],minimumChangedAxes:3};return d;};
 const apply=J.applyDecodedCinemaEvidence;J.applyDecodedCinemaEvidence=d=>{apply(d);const e=d?.climaxAxes,primary=d?.layerPresence?.primaryText;if(!e||!primary?.samples?.length||primary.visibleFraction<.8)return d;const rows=primary.samples,entry=rows.findIndex(s=>d.samples.find(c=>c.line===s.line)?.from>=e.entry),a=rows[entry-1],b=rows[entry];if(!a||!b)return d;const vec=s=>{const total=s.structure.reduce((v,x)=>v+x,0);return {textOccupancy:mean(s.structure),textCenterX:total?s.structure.reduce((v,x,i)=>v+x*((i%18)+.5)/18,0)/total:.5,textCenterY:total?s.structure.reduce((v,x,i)=>v+x*(Math.floor(i/18)+.5)/8,0)/total:.5};};e.changes=e.changes.filter(x=>!x.key.startsWith('text'));const first=vec(a),second=vec(b);for(const key of Object.keys(first)){const threshold=key==='textOccupancy'?.035:.12;e.changes.push({key,delta:Math.abs(first[key]-second[key]),threshold,changed:Math.abs(first[key]-second[key])>=threshold});}e.changedAxes=e.changes.filter(x=>x.changed).length;e.verifiedPrimaryMask=true;return d;};
 const reconcile=J.reconcileDecodedCinemaQuality;J.reconcileDecodedCinemaQuality=(r,d)=>{r.issues=r.issues.filter(i=>i.code!=='ENCODED_CLIMAX_AXES_UNMET');reconcile(r,d);if(d?.climaxAxes&&(!d.climaxAxes.verifiedPrimaryMask||d.climaxAxes.changedAxes<d.climaxAxes.minimumChangedAxes)){r.issues.push({code:'ENCODED_CLIMAX_AXES_UNMET',category:'creative',severity:'ERROR',exportBlocking:false,message:'クライマックスの複数視覚軸の変化が未達／未計測です',evidence:d.climaxAxes});r.errors=r.issues.filter(i=>i.severity==='ERROR');r.quality.hardGates={...r.quality.hardGates,total:r.errors.length,passed:false};r.quality.certified100=false;}return r;};
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzx_climax_evidence.js");
 
 /* Evidence-driven repairs. Unknown semantic and human judgments remain unknown. */
 (()=>{'use strict';const J=window.J,C=J.clamp,mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:null,active=p=>!!p.musicalPhoto?.cinema?.architecture;
@@ -37897,6 +38053,8 @@ const check=J.checkMVQuality;J.checkMVQuality=(...args)=>{const r=check(...args)
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>({...await provenance(...args),kamenVersion:window.KAMEN_APP_INFO?.version??null,qualityAssurance:args[2].quality.qualityAssurance||null,targetedRepair:args[0].plan.musicalPhoto?.cinema?.targetedRepair||null});
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzy_closed_loop.js");
+
 /* Tiered content-conditioned search: 32 sparse raster proposals, three full proxies. */
 (()=>{'use strict';const J=window.J,clone=x=>JSON.parse(JSON.stringify(x)),distance=(a,b)=>a.length===b.length&&a.length?a.reduce((s,v,i)=>s+Math.abs(v-b[i]),0)/a.length:1;
 const candidates=J.cinemaArchitectureCandidates;J.cinemaArchitectureCandidates=p=>{const first=candidates(p);return [...first,...Array.from({length:20},(_,i)=>{const id=i+12,seed=J.cinemaContentSeed(p),mixed=(Math.imul(seed^id,2654435761)>>>0);return {id,seed,climaxArchetype:first[id%first.length].climaxArchetype,quiet:first[0].quiet,rotation:mixed%6,direction:(mixed>>>3)%2,opening:(mixed>>>7)%3};})];};
@@ -37904,6 +38062,8 @@ const repair=J.repairCinemaSequence;J.repairCinemaSequence=async(p,range,telemet
  for(const candidate of J.cinemaArchitectureCandidates(p)){restore(baseline);J.applyCinemaArchitecture(p,candidate);const sparse=await J.measureCinemaSequence(p,range,{lines:indices.map(i=>cuts[i].line)}),samples=sparse.samples;const sig=samples.flatMap(s=>[...s.signature,...s.primarySignature]),duplicate=signatures.some(s=>distance(sig,s)<.012),unsafe=samples.some(s=>!s.safe),ds=samples.slice(1).map((s,i)=>distance(s.signature,samples[i].signature)),rank=(ds.length?Math.min(...ds):0)+samples.reduce((v,s)=>v+s.energy-s.energyGap,0)/Math.max(1,samples.length);signatures.push(sig);attempts.push({candidate:candidate.id,stage:'sparse-128px-production-raster',sampledLines:samples.map(s=>s.line),rank,duplicate,rejectedUnreadable:unsafe});if(!duplicate&&!unsafe){shortlist.push({candidate,state:save(),rank});shortlist.sort((a,b)=>b.rank-a.rank);shortlist.length=Math.min(3,shortlist.length);}telemetry.onProgress?.({label:'低解像度の演出候補を比較中 '+(candidate.id+1)+'/32'});await new Promise(r=>setTimeout(r,0));}
  const finalists=[];for(const item of shortlist){restore(item.state);const probe=await J.measureCinemaSequence(p,range);finalists.push({candidate:item.candidate.id,rank:probe.rank,rejectedUnreadable:probe.samples.some(s=>!s.safe)});if(probe.rank>best.rank){best=probe;chosen=save();}}restore(chosen);f.grammar.shots=p.cuts.filter(c=>c.grammar).map(c=>({line:c.line,from:c.start,to:c.end,...c.grammar}));for(const s of p.storyboard||[]){const c=p.cuts.find(c=>c.start===s.from);if(c?.grammar&&!s.locked)s.shotGrammar=clone(c.grammar);}f.architectureSearch={version:2,seed:J.cinemaContentSeed(p),attempts,finalists,selectedCandidate:f.architecture.candidate,initialRank:baselineRank,selectedRank:best.rank,baselineRank,finalRank:best.rank,candidateCount:32,fullProxyCount:finalists.length,proxyResolution:best.resolution,sparseUsesOriginalExportRange:true,finalEncodesDuringSearch:0,limits:'Sparse low-resolution candidate screening and full-sequence proxy ranking; final encoded QA remains mandatory'};f.feedback={...best,attempts,selectedAttempt:f.architecture.candidate,scoreThresholdsChanged:false};return best;};
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzz_proxy_search.js");
 
 /* Phase-aware encoded evidence; ordinary endings are not forced to loop. */
 (()=>{'use strict';const J=window.J,C=J.clamp,avg=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:null,quant=(a,q)=>a.length?[...a].sort((x,y)=>x-y)[Math.floor((a.length-1)*q)]:null,active=p=>!!p.musicalPhoto?.cinema?.architecture;
@@ -37925,6 +38085,8 @@ const observe=J.observeExportedMP4;J.observeExportedMP4=async(blob,p,range,signa
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>{const r=await provenance(...args),p=args[0].plan;if(!active(p))return r;const profile=J.cinemaOutputProfile(p);return {...r,outputProfile:profile,metricApplicability:{loopQuality:profile.loopRequired?'REQUIRED':'NOT_APPLICABLE',endingClosure:profile.loopRequired?'NOT_APPLICABLE':'REQUIRED',shortCertification:'Only the dedicated exported short MP4 can establish its score'},holdMotion:args[2].quality.holdMotion||null};};
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzzz_observed_quality.js");
+
 /* Failure-family escalation. No lyrics, source audio or manual choreography mutations. */
 (()=>{'use strict';const J=window.J,clone=x=>JSON.parse(JSON.stringify(x));
 const classify=J.classifyCinemaRepairFailures;
@@ -37937,6 +38099,8 @@ const focus=J.temporalCinemaFocus;J.temporalCinemaFocus=(p,c,f,t)=>{const q=focu
 const type=J.applyTypography5;J.applyTypography5=(env,it)=>{type(env,it);const r=env.cut?.grammar?.typeRepair;if(!r||!it.grammarMode||env.pass!=='main'||J.photoChoreographyLocked(env.plan,env.cut))return;if(r.mode===0){it.fill=false;it.stroke=Math.max(2,(it.size||32)*.07);}else if(r.mode===1){it.charFns=it.charFns||[];it.charFns.push((i,g)=>({color:(g.li||0)%2?(env.st?.schemes?.[0]?.accent||'#ffffff'):(it.color||'#ffffff')}));}else{it.charFns=it.charFns||[];it.charFns.push((i,g)=>({dy:Math.sin((env.t-env.cut.start)*1.6-(g.li||0)*.7)*(env.H||720)*.004*r.level}));}};
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("11zzzzz_plateau_repair.js");
+
 /* Raster screening → timed 320px HOLD proxies → actual 640px H264 finalists. */
 (()=>{'use strict';const J=window.J,clone=x=>JSON.parse(JSON.stringify(x));
 J.measureCinemaVideoProxy=async(p,range,signal)=>{const w=320,h=Math.round(w*p.H/p.W),R=new J.Renderer(),cv=document.createElement('canvas');cv.width=w;cv.height=h;const ctx=cv.getContext('2d'),start=range?.start??0,end=range?.end??p.duration,rows=[];try{await R.loadCustomBackground(p.customBg.dataUrl);await R.loadAssetDeck?.(p);const eligible=p.cuts.filter(c=>c.grammar&&c.start<end&&c.end>start),groups=new Map();for(const c of eligible){const section=p.musicalStructure?.sections.findIndex(s=>c.start>=s.from&&c.start<s.to)??0;groups.set(section,[...(groups.get(section)||[]),c]);}const representative=[...groups.values()].flatMap(cs=>cs.length>1?[cs[0],cs.at(-1)]:cs);for(const c of representative){const from=Math.max(start,c.start+.4),to=Math.min(end,c.end-.2,from+1.4),frames=[];for(let t=from;t<=to+1e-6;t+=.1){if(signal?.aborted)throw new DOMException('Aborted','AbortError');R.frame(ctx,p,t,{scale:w/p.W,production:true,range});frames.push({time:t,features:J.observePixelFrame(ctx.getImageData(0,0,w,h).data,w,h)});}const measured=J.measureCinemaHold(frames,{...p,cuts:[{...c,start:from-.4,end:to+.2}]},{start:from-.4,end:to+.2},w,h).samples[0];rows.push({...measured,macroSection:p.musicalStructure?.sections.findIndex(s=>c.start>=s.from&&c.start<s.to)});await new Promise(r=>setTimeout(r,0));}return {source:'production timed HOLD proxy, not encoded',resolution:[w,h],fps:10,samples:rows,score:rows.some(s=>!s.intentionalHold&&s.score==null)?null:J.cinemaLowerTailScore(rows.map(s=>s.score)),macroSections:[...new Set(rows.map(s=>s.macroSection))],intentionalHoldsExcluded:true,sampling:'first and last phrase HOLD in each macro section; full encoded finalists inspect every phrase'};}finally{R.disposeAssets?.();cv.width=cv.height=1;}};
@@ -37944,6 +38108,8 @@ J.encodeCinemaVisualProxy=async(p,range,signal)=>{if(typeof VideoEncoder==='unde
 J.measureCinemaEncodedProxy=async(p,range,signal)=>{const blob=await J.encodeCinemaVisualProxy(p,range,signal);if(!blob)return {completed:false,status:'UNMEASURED',reason:'H264 encoder or decoder unavailable'};const start=range?.start??0,end=range?.end??p.duration,w=96,h=Math.round(w*p.H/p.W),times=J.cinemaDecodeTimes7(p,end-start),frames=[],control=new AbortController(),abort=()=>control.abort();signal?.addEventListener('abort',abort,{once:true});if(signal?.aborted)abort();try{await J.waitExportStep(()=>window.JIZURAMedia.sampleMP4(blob,times,{width:w,height:h,signal:control.signal,onSample:(t,bytes)=>frames.push({time:t+start,features:J.observePixelFrame(bytes,w,h)})}),{signal:control.signal,onTimeout:abort,timeout:30000,label:'候補MP4を再デコード'});}finally{abort();signal?.removeEventListener('abort',abort);}const d=J.measureDecodedCinemaFrames(frames,p,range,w,h);if(!d.completed)return d;const textWidth=320,textHeight=Math.round(textWidth*p.H/p.W),phaseTimes=[...new Set(p.cuts.filter(c=>c.grammar&&c.end>start&&c.start<end).flatMap(c=>[c.start+.04,c.start+c.dur*.25,c.start+c.dur*.5,c.start+c.dur*.75,c.end-.2,c.grammar.temporal?.hit]).filter(t=>Number.isFinite(t)&&t>=start&&t<end).map(t=>t-start).sort((a,b)=>a-b))],textFrames=[],high=new AbortController(),cancel=()=>high.abort();signal?.addEventListener('abort',cancel,{once:true});if(signal?.aborted)cancel();try{await J.waitExportStep(()=>window.JIZURAMedia.sampleMP4(blob,phaseTimes,{width:textWidth,height:textHeight,signal:high.signal,onSample:(t,bytes)=>textFrames.push({time:t+start,features:J.observePixelFrame(bytes,textWidth,textHeight)})}),{signal:high.signal,onTimeout:cancel,timeout:30000,label:'候補MP4の文字・レイヤーを検査'});d.layerPresence=await J.verifyDecodedCinemaLayers(textFrames,p,range,{width:textWidth});}finally{cancel();signal?.removeEventListener('abort',cancel);}J.applyDecodedCinemaEvidence(d);return {...d,source:'640px H264 candidate: continuous 96px motion decode + 320px text/layer phase decode; visual only, no audio-loop score',encodedResolution:[640,Math.round(640*p.H/p.W/2)*2],fps:10,score:d.lowerTailQuality};};
 const old=J.repairCinemaSequence;J.repairCinemaSequence=async(p,range,telemetry={})=>{const f=p.musicalPhoto?.cinema;if(!f?.architecture||f.architectureSearch)return old(p,range,telemetry);const cuts=p.cuts.filter(c=>c.grammar&&!J.photoChoreographyLocked(p,c)&&c.start<(range?.end??p.duration)&&c.end>(range?.start??0));if(!cuts.length)return old(p,range,telemetry);const save=()=>({cuts:cuts.map(c=>({grammar:clone(c.grammar),params:clone(c.params)})),architecture:clone(f.architecture),dna:clone(f.visualDNA||{}),beatIntentMap:clone(f.beatIntentMap||{})}),restore=s=>{cuts.forEach((c,i)=>{c.grammar=clone(s.cuts[i].grammar);c.params=clone(s.cuts[i].params);});f.architecture=clone(s.architecture);f.visualDNA=clone(s.dna);f.beatIntentMap=clone(s.beatIntentMap);},baseline=save(),initial=await J.measureCinemaSequence(p,range),shortlist=[{id:'baseline',state:baseline,raster:initial}],attempts=[],seen=[];const distance=(a,b)=>a.length===b.length?a.reduce((n,v,i)=>n+Math.abs(v-b[i]),0)/a.length:1,indices=[0,Math.floor(cuts.length/2),cuts.length-1];for(const c of J.cinemaArchitectureCandidates(p)){if(telemetry.signal?.aborted)throw new DOMException('Aborted','AbortError');restore(baseline);J.applyCinemaArchitecture(p,c);const r=await J.measureCinemaSequence(p,range,{lines:[...new Set(indices.map(i=>cuts[i].line))]}),sig=r.samples.flatMap(s=>[...s.signature,...s.primarySignature]),duplicate=seen.some(v=>distance(v,sig)<.012),unsafe=r.samples.some(s=>!s.safe);seen.push(sig);attempts.push({candidate:c.id,stage:'A-128px-raster',duplicate,rejectedUnreadable:unsafe,rank:r.rank});if(!duplicate&&!unsafe)shortlist.push({id:c.id,state:save(),raster:r});telemetry.onProgress?.({label:'構図の重複・破綻を検査 '+(c.id+1)+'/32'});await new Promise(r=>setTimeout(r,0));}shortlist.sort((a,b)=>b.raster.rank-a.raster.rank);const top=[shortlist.find(s=>s.id==='baseline'),...shortlist.filter(s=>s.id!=='baseline').slice(0,7)].filter(Boolean),stageB=[];for(const item of top){restore(item.state);const raster=await J.measureCinemaSequence(p,range),video=await J.measureCinemaVideoProxy(p,range,telemetry.signal);stageB.push({...item,raster,video,score:video.score??-1});telemetry.onProgress?.({label:'320px動画でフレーズ内部を比較 '+stageB.length+'/'+top.length});}stageB.sort((a,b)=>b.score-a.score||b.raster.rank-a.raster.rank);const finalists=[stageB.find(s=>s.id==='baseline'),...stageB.filter(s=>s.id!=='baseline').slice(0,2)].filter(Boolean),stageC=[];for(const item of finalists){restore(item.state);let encoded;try{encoded=await J.measureCinemaEncodedProxy(p,range,telemetry.signal);}catch(e){if(telemetry.signal?.aborted)throw e;encoded={completed:false,status:'UNMEASURED',reason:e.message};}stageC.push({...item,encoded});telemetry.onProgress?.({label:'640px H.264候補を再検証 '+stageC.length+'/'+finalists.length});}const measured=stageC.filter(s=>s.encoded.completed&&Number.isFinite(s.encoded.score)&&!s.raster.samples.some(v=>!v.safe)).sort((a,b)=>b.encoded.score-a.encoded.score),fallback=stageB.filter(s=>!s.raster.samples.some(v=>!v.safe))[0],chosen=measured[0]||fallback||stageB.find(s=>s.id==='baseline');restore(chosen.state);const best=chosen.raster;f.grammar.shots=p.cuts.filter(c=>c.grammar).map(c=>({line:c.line,from:c.start,to:c.end,...c.grammar}));for(const s of p.storyboard||[]){const c=p.cuts.find(c=>c.start===s.from);if(c?.grammar&&!s.locked)s.shotGrammar=clone(c.grammar);}f.architectureSearch={version:3,seed:J.cinemaContentSeed(p),attempts,stageB:stageB.map(s=>({candidate:s.id,...s.video})),stageC:stageC.map(s=>({candidate:s.id,completed:s.encoded.completed,status:s.encoded.status,score:s.encoded.score??null,reason:s.encoded.reason,source:s.encoded.source,encodedResolution:s.encoded.encodedResolution})),selectedCandidate:chosen.id,initialRank:initial.rank,selectedRank:best.rank,selectionScore:chosen.encoded?.score??chosen.score,candidateCount:32,fullProxyCount:stageB.length,encodedProxyCount:measured.length,ranking:'50% median + 50% lowest 20% mean, decoded scene evidence when available',encodedStageMeasured:!!measured.length,baselineRetainedAsCandidate:true,limits:'Stage C capability failures remain UNMEASURED; final full-resolution encoded QA is mandatory'};f.feedback={...best,scoreThresholdsChanged:false,attempts,selectedAttempt:chosen.id};return best;};
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzzzzz_video_search.js");
 
 /* Applicability is an evidence policy, never an invented passing score. */
 (()=>{'use strict';const J=window.J,finite=Number.isFinite;
@@ -37962,6 +38128,56 @@ const evaluatePolicy=J.evaluateQualityTarget;J.evaluateQualityTarget=report=>{co
 const checkPolicy=J.checkMVQuality;J.checkMVQuality=(...args)=>{const r=checkPolicy(...args),p=args[1],d=args[4]?.metrics?.decodedCinema,policy=r.quality.metricApplicability;if(!policy||!d?.completed)return r;const score=d.metrics.regionalPerceptualNovelty;r.quality.metrics.regionalPerceptualNovelty=score??null;d.metricApplicability=policy;r.quality.scoreStages=J.qualityScoreStages(r.quality,d);r.quality.verifiedScore=r.quality.scoreStages.verifiedScore;if(r.quality.qualityAssurance)r.quality.qualityAssurance.creative.metrics=r.quality.verifiedScore.metrics;if(policy.foregroundNovelty.state==='FALLBACK'){r.issues=r.issues.filter(i=>i.code!=='LOW_FOREGROUND_NOVELTY');if(!finite(score)||score<80)r.issues.push({code:'REGIONAL_NOVELTY_UNMEASURED_OR_UNMET',severity:'ERROR',category:'creative',exportBlocking:false,message:'被写体未分離モードの画面領域の変化が未計測または80未達です',evidence:d.regionalPerceptualEvidence??null});}r.errors=r.issues.filter(i=>i.severity==='ERROR');r.quality.hardGates={...r.quality.hardGates,total:r.errors.length,passed:!r.errors.length};r.quality.targetAcceptance=J.evaluateQualityTarget(r);return J.finalizeExportReadiness(r);};
 const classifyPolicy=J.classifyCinemaRepairFailures;J.classifyCinemaRepairFailures=(p,a)=>{const tasks=classifyPolicy(p,a),d=p.lastPixelQA?.metrics?.decodedCinema;if((a?.hardFailures||[]).some(x=>(x.code||x)==='REGIONAL_NOVELTY_UNMEASURED_OR_UNMET')){const lines=(d?.regionalPerceptualEvidence?.checks||[]).filter(x=>finite(x.minimumHistoryDistance)&&x.minimumHistoryDistance<.096).map(x=>x.line);if(lines.length)tasks.push({code:'REGIONAL_NOVELTY_UNMEASURED_OR_UNMET',operator:'composition-architecture',lines});}return tasks;};
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzzzzzz_measurement_policy.js");
+
+/* Cinema V3 contracts and adapters. Existing renderer and save formats stay authoritative. */
+(()=>{
+'use strict';
+const J=window.J, V=J.cinemaV3={version:'3.0.0',enabled:true}, finite=Number.isFinite;
+/** @typedef {'MEASURED'|'UNMEASURED'|'NOT_APPLICABLE'|'FAILED'} EvidenceStatus */
+/** @typedef {{value:*,confidence:number,source:string,status:EvidenceStatus,limitations?:string[]}} Feature */
+/** @typedef {{inputHash:string,audioHash:?string,imageHashes:string[],lyricsHash:string,projectHash:string,rendererVersion:string,outputProfile:Object,userLocks:Object}} ImmutableInputSnapshot */
+/** @typedef {{from:number,to:number,energy:Feature,beatSalience:Feature,onsetDensity:Feature,lyricDensity:Feature,repetition:Feature,role:Feature}} SectionFeatures */
+/** @typedef {{mode:string,stageRole:string,motionBudget:number,attentionBudget:number,typographyBudget:number,desiredChange:number,confidence:number,quietIntent:boolean}} DirectionPolicy */
+/** @typedef {{line:number,from:number,to:number,role:string,grammarId:string,typographyId:string,motionId:string,safeArea:Object,minReadableFrames:number,maxOcclusionRatio:number,reasonCodes:string[],featureSources:string[],userLocked:boolean}} ShotContract */
+/** @typedef {{id:string,value:?number,unit:string,source:string,status:EvidenceStatus,sampleCount:number,affectedLineIds:number[],confidence:number,profileId:string,thresholdId:string,method:string,planHash:string,inputHash:string,rendererVersion:string,outputProfile:Object}} MetricEvidence */
+/** @typedef {{id:string,planHash:string,candidateSeed:number,hardFailures:string[],measurements:MetricEvidence[],objectives:Object,lowerTail:?number,constraintViolations:number,memoryBudgetBytes:number,timeCostMs:number}} CandidateEvaluation */
+/** @typedef {{previousPlanHash:string,nextPlanHash:string,failuresAddressed:string[],operatorId:string,changedLines:number[],unchangedLines:number[],before:CandidateEvaluation,after:CandidateEvaluation,accepted:boolean,reason:string,artifacts:string[]}} RepairResult */
+const statuses=['MEASURED','UNMEASURED','NOT_APPLICABLE','FAILED'], roles=['introduce','develop','contrast','resolve','sustain'];
+const str=v=>typeof v==='string'&&v.length>0, number=v=>finite(v), nonnegative=v=>finite(v)&&v>=0, integer=v=>Number.isInteger(v)&&v>=0, unit=v=>finite(v)&&v>=0&&v<=1, bool=v=>typeof v==='boolean', arrayOf=f=>v=>Array.isArray(v)&&v.every(f), nullable=f=>v=>v===null||f(v), oneOf=a=>v=>a.includes(v), object=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
+const profile=p=>object(p)&&oneOf(['FULL_MV','SHORT','LOOP_SHORT','SQUARE'])(p.purpose)&&str(p.aspect)&&number(p.fps)&&p.fps>0&&Array.isArray(p.range)&&p.range.length===2&&p.range.every(nonnegative)&&p.range[1]>p.range[0]&&bool(p.loopRequired);
+const fields=(v,schema)=>object(v)&&Object.entries(schema).every(([k,f])=>f(v[k]));
+const feature=v=>fields(v,{value:x=>x!==undefined,confidence:unit,source:str,status:oneOf(statuses)})&&(v.status==='MEASURED'?v.value!==null:v.value===null&&v.confidence===0)&&(v.limitations===undefined||arrayOf(str)(v.limitations));
+const snapshot=v=>fields(v,{inputHash:str,audioHash:nullable(str),imageHashes:arrayOf(str),lyricsHash:str,projectHash:str,rendererVersion:str,outputProfile:profile,userLocks:x=>fields(x,{lockedLines:arrayOf(integer),manualTypography:arrayOf(integer),manualCamera:arrayOf(integer)})});
+const metric=v=>fields(v,{id:str,value:nullable(number),unit:str,source:oneOf(['PLAN','CANVAS','ENCODED_MP4','HUMAN']),status:oneOf(statuses),sampleCount:integer,affectedLineIds:arrayOf(integer),confidence:unit,profileId:str,thresholdId:str,method:str,planHash:str,inputHash:str,rendererVersion:str,outputProfile:profile})&&(v.status==='MEASURED'?v.value!==null&&v.sampleCount>0&&v.confidence>0:v.value===null&&v.confidence===0)&&(v.status!=='NOT_APPLICABLE'||str(v.reason));
+const evaluation=v=>fields(v,{id:str,planHash:str,candidateSeed:integer,hardFailures:arrayOf(str),measurements:arrayOf(metric),objectives:x=>object(x)&&Object.values(x).every(nullable(number)),lowerTail:nullable(number),constraintViolations:integer,memoryBudgetBytes:nonnegative,timeCostMs:nonnegative})&&new Set(v.measurements.map(m=>m.id)).size===v.measurements.length;
+const validators={EvidenceStatus:oneOf(statuses),Feature:feature,ImmutableInputSnapshot:snapshot,SectionFeatures:v=>fields(v,{from:nonnegative,to:nonnegative,energy:feature,beatSalience:feature,onsetDensity:feature,lyricDensity:feature,repetition:feature,role:x=>feature(x)&&(x.value===null||oneOf(['intro','verse','chorus','bridge','climax','outro','unknown'])(x.value))})&&v.to>v.from,DirectionPolicy:v=>fields(v,{mode:oneOf(['cinematic','energetic','minimal','lyric_first','mixed']),stageRole:oneOf(roles),motionBudget:unit,attentionBudget:unit,typographyBudget:unit,desiredChange:unit,confidence:unit,quietIntent:bool}),ShotContract:v=>fields(v,{line:integer,from:nonnegative,to:nonnegative,role:oneOf(roles),grammarId:str,typographyId:str,motionId:str,safeArea:x=>fields(x,{left:unit,right:unit,top:unit,bottom:unit})&&x.left<x.right&&x.top<x.bottom,minReadableFrames:integer,maxOcclusionRatio:unit,reasonCodes:arrayOf(str),featureSources:arrayOf(str),userLocked:bool})&&v.to>v.from,MetricEvidence:metric,CandidateEvaluation:evaluation,RepairResult:v=>fields(v,{previousPlanHash:str,nextPlanHash:str,failuresAddressed:arrayOf(str),operatorId:str,changedLines:arrayOf(integer),unchangedLines:arrayOf(integer),before:evaluation,after:evaluation,accepted:bool,reason:str,artifacts:arrayOf(str)})};
+V.validate=(type,value)=>{if(!validators[type])throw new TypeError('Unknown Cinema V3 contract: '+type);if(!validators[type](value))throw new TypeError('Invalid Cinema V3 '+type);return value;};
+V.feature=(value,source,confidence=1,status=value===null?'UNMEASURED':'MEASURED')=>V.validate('Feature',{value,status,source,confidence:status==='MEASURED'?confidence:0});
+V.clone=value=>J.clonePhotoRenderPlan(value);
+// Freeze only owned JSON metadata; never freeze PCM buffers, DOM or codec objects.
+V.freezeMetadata=value=>{if(value&&typeof value==='object'){Object.values(value).forEach(V.freezeMetadata);Object.freeze(value);}return value;};
+V.outputProfile=(p,range=null)=>{const loop=p.exportSettings?.loopRequired===true,short=!!p.socialHook,aspect=p.W===p.H?'1:1':p.H>p.W?'9:16':'16:9';return V.validateProfile({purpose:loop?'LOOP_SHORT':short?'SHORT':aspect==='1:1'?'SQUARE':'FULL_MV',aspect,fps:p.fps,range:[range?.start??p.socialHook?.start??0,range?.end??p.socialHook?.end??p.duration],loopRequired:loop});};
+V.validateProfile=p=>{if(!profile(p))throw new TypeError('Invalid Cinema V3 output profile');return p;};
+V.profileId=p=>J.canonicalJSON(p);
+V.audioHash=async audio=>{const b=audio?.buffer;if(!b?.getChannelData)return null;const parts=[];for(let c=0;c<b.numberOfChannels;c++){const pcm=b.getChannelData(c);parts.push(await J.sha256(new Uint8Array(pcm.buffer,pcm.byteOffset,pcm.byteLength)));}return J.sha256(J.canonicalJSON({sampleRate:b.sampleRate,channels:b.numberOfChannels,length:b.length,parts}));};
+V.snapshot=async(project,audio,p,range=null)=>{
+ const images=[project.customBg?.dataUrl,...(project.visualAssets||[]).map(a=>a.dataUrl)].filter(Boolean),outputProfile=V.outputProfile(p,range),locked=(p.cuts||[]).filter(c=>c.line>=0&&(c.locked||J.photoChoreographyLocked?.(p,c))).map(c=>c.line);
+ const [audioHash,imageHashes,lyricsHash,projectHash]=await Promise.all([V.audioHash(audio),Promise.all(images.map(src=>J.sha256(src))),J.sha256(J.canonicalJSON({lyrics:project.lyrics,timing:project.timing,lines:p.lines})),J.sha256(J.canonicalJSON(project))]);
+ const state={audioHash,imageHashes,lyricsHash,projectHash,rendererVersion:V.version,outputProfile,userLocks:{lockedLines:[...new Set(locked)].sort((a,b)=>a-b),manualTypography:locked.slice(),manualCamera:locked.slice()}};
+ state.inputHash=await J.sha256(J.canonicalJSON(state));return V.freezeMetadata(V.validate('ImmutableInputSnapshot',state));
+};
+V.planHash=p=>J.sha256(J.canonicalJSON(p));
+V.assertSnapshot=async(expected,project,audio,p,range)=>{const next=await V.snapshot(project,audio,p,range);if(next.inputHash!==expected.inputHash){V.invalidate(p);throw new Error('INPUT_CHANGED');}return next;};
+V.invalidate=p=>{p.lastPixelQA=null;delete p.lastQualityTarget;delete p._provenancePlanHash;J.clearPhotoComposition?.(p);};
+V.createPlan=async(project,audio,options={})=>{const workingProject=V.clone(project),working=J.plan(workingProject,audio),input=await V.snapshot(project,audio,working,options.range);return {input,working,confirmed:null,planHash:await V.planHash(working)};};
+V.evaluate=(...args)=>J.checkMVQuality(...args);
+V.repair=(p,acceptance,attempt=1)=>J.repairPhotoBottlenecks(p,acceptance,attempt);
+V.confirm=async(session,project,audio,range)=>{await V.assertSnapshot(session.input,project,audio,session.working,range);session.confirmed=V.clone(session.working);session.planHash=await V.planHash(session.confirmed);return session.confirmed;};
+})();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzzzzzzz_cinema_v3.js");
 
 /* ============================================================
    JIZURA — editor UI
@@ -39892,6 +40108,8 @@ J.ui = S;
 J.uiApi = { toast, startTap, tapNow, undoTap, stopTap, exportLRC, replan, syncUI, pause, seek, flushSave, loadAudioFile, restartPreview };
 })();
 
+window.KAMEN_MODULE_AUDIT.observe("12_ui.js");
+
 (() => {
 'use strict';
 J.mountProcessingUI=()=>{
@@ -39945,6 +40163,8 @@ J.mountProcessingUI=()=>{
   return ()=>{unsubscribe();if(timer)clearTimeout(timer);if(heartbeat)clearInterval(heartbeat);for(const card of cards.values())card.remove();cards.clear();host.hidden=true;delete host.dataset.mounted;};
 };
 })();
+
+window.KAMEN_MODULE_AUDIT.observe("12a_processing_ui.js");
 
 </script>
 </body>

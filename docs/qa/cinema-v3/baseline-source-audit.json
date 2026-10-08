@@ -1,0 +1,5417 @@
+{
+  "sources": [
+    "01_util.js",
+    "01p_processing.js",
+    "01z_image_palette.js",
+    "02_fonts.js",
+    "02b_lang.js",
+    "03_text.js",
+    "04_styles.js",
+    "05_anim.js",
+    "05b_registry.js",
+    "06_layouts.js",
+    "07_decor.js",
+    "08_planner.js",
+    "08b_omakase.js",
+    "08c_auto_direction.js",
+    "08d_quality.js",
+    "08e_highlight.js",
+    "08f_motion_dna.js",
+    "08g_audio_persistence.js",
+    "08i_project.js",
+    "09_render.js",
+    "10_audio.js",
+    "11_export.js",
+    "11p_bgcamB.js",
+    "11p_decor.js",
+    "11p_decorB.js",
+    "11p_enter.js",
+    "11p_enterB.js",
+    "11p_exit.js",
+    "11p_exitB.js",
+    "11p_fxB.js",
+    "11p_layoutsA.js",
+    "11p_layoutsB.js",
+    "11p_layoutsC.js",
+    "11p_layoutsD.js",
+    "11p_looks.js",
+    "11p_styles.js",
+    "11p_treattrans.js",
+    "11q_sets.js",
+    "11r_style_intelligence.js",
+    "11s_hype_engine.js",
+    "11t_nextgen.js",
+    "11u_motion_director.js",
+    "11v_perceptual_director.js",
+    "11w_observer_director.js",
+    "11x_multi_image_director.js",
+    "11y_processing_tasks.js",
+    "11z_single_background.js",
+    "11zz_kamen_quality.js",
+    "11zz_lrc_export.js",
+    "11zz_quality_policy.js",
+    "11zza_photo_composition.js",
+    "11zzb_sync_evidence.js",
+    "11zzc_quality_evidence.js",
+    "11zzd_export_policy.js",
+    "11zze_glyph_contrast.js",
+    "11zzf_social_choreography.js",
+    "11zzg_social_range.js",
+    "11zzh_presentation_evidence.js",
+    "11zzi_render_selection.js",
+    "11zzia_catalog_audit.js",
+    "11zzj_musical_photo.js",
+    "11zzk_quality_target.js",
+    "11zzl_song_direction.js",
+    "11zzm_story_director.js",
+    "11zzn_single_image_cinema.js",
+    "11zzo_layered_cinema.js",
+    "11zzp_shot_grammar.js",
+    "11zzq_render_feedback.js",
+    "11zzr_artifact_style.js",
+    "11zzs_architecture_cinema.js",
+    "11zzt_decoded_cinema.js",
+    "11zzu_temporal_direction.js",
+    "11zzv_climax_realization.js",
+    "11zzw_quality_contract.js",
+    "11zzx_climax_evidence.js",
+    "11zzy_closed_loop.js",
+    "11zzz_proxy_search.js",
+    "11zzzz_observed_quality.js",
+    "11zzzzz_plateau_repair.js",
+    "11zzzzzz_video_search.js",
+    "11zzzzzzz_measurement_policy.js",
+    "12_ui.js",
+    "12a_processing_ui.js"
+  ],
+  "assignmentSites": [
+    {
+      "moduleId": "01_util.js",
+      "property": "clamp",
+      "line": 7,
+      "previousId": null,
+      "registration": 0
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "lerp",
+      "line": 8,
+      "previousId": null,
+      "registration": 1
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "inv",
+      "line": 9,
+      "previousId": null,
+      "registration": 2
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "smooth",
+      "line": 10,
+      "previousId": null,
+      "registration": 3
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "TAU",
+      "line": 11,
+      "previousId": null,
+      "registration": 4
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "DEG",
+      "line": 12,
+      "previousId": null,
+      "registration": 5
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "E",
+      "line": 14,
+      "previousId": null,
+      "registration": 6
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "sid",
+      "line": 31,
+      "previousId": null,
+      "registration": 7
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "h",
+      "line": 38,
+      "previousId": null,
+      "registration": 8
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "r",
+      "line": 51,
+      "previousId": null,
+      "registration": 9
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "rs",
+      "line": 52,
+      "previousId": null,
+      "registration": 10
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "rr",
+      "line": 53,
+      "previousId": null,
+      "registration": 11
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "pick",
+      "line": 54,
+      "previousId": null,
+      "registration": 12
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "rng",
+      "line": 56,
+      "previousId": null,
+      "registration": 13
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "noise1",
+      "line": 73,
+      "previousId": null,
+      "registration": 14
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "hex",
+      "line": 79,
+      "previousId": null,
+      "registration": 15
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "rgba",
+      "line": 85,
+      "previousId": null,
+      "registration": 16
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "mix",
+      "line": 86,
+      "previousId": null,
+      "registration": 17
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "lum",
+      "line": 91,
+      "previousId": null,
+      "registration": 18
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "toHex",
+      "line": 92,
+      "previousId": null,
+      "registration": 19
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "hsl",
+      "line": 93,
+      "previousId": null,
+      "registration": 20
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "toHsl",
+      "line": 99,
+      "previousId": null,
+      "registration": 21
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "contrast",
+      "line": 107,
+      "previousId": null,
+      "registration": 22
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "fitContrast",
+      "line": 112,
+      "previousId": null,
+      "registration": 23
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "GHOST_PAIRS",
+      "line": 124,
+      "previousId": null,
+      "registration": 24
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "randomPalette",
+      "line": 126,
+      "previousId": null,
+      "registration": 25
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "isKanji",
+      "line": 149,
+      "previousId": null,
+      "registration": 26
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "isHira",
+      "line": 150,
+      "previousId": null,
+      "registration": 27
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "isKata",
+      "line": 151,
+      "previousId": null,
+      "registration": 28
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "isSmallKana",
+      "line": 152,
+      "previousId": null,
+      "registration": 29
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "isPunct",
+      "line": 153,
+      "previousId": null,
+      "registration": 30
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "isLatin",
+      "line": 154,
+      "previousId": null,
+      "registration": 31
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "VERT_ROTATE",
+      "line": 155,
+      "previousId": null,
+      "registration": 32
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "romaji",
+      "line": 161,
+      "previousId": null,
+      "registration": 33
+    },
+    {
+      "moduleId": "01_util.js",
+      "property": "fmtTime",
+      "line": 177,
+      "previousId": null,
+      "registration": 34
+    },
+    {
+      "moduleId": "01p_processing.js",
+      "property": "processing",
+      "line": 6,
+      "previousId": null,
+      "registration": 35
+    },
+    {
+      "moduleId": "01p_processing.js",
+      "property": "processingYield",
+      "line": 66,
+      "previousId": null,
+      "registration": 36
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "emptyAutoPalette",
+      "line": 57,
+      "previousId": null,
+      "registration": 37
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "normalizeAutoPalette",
+      "line": 60,
+      "previousId": null,
+      "registration": 38
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "customBgGeometry",
+      "line": 102,
+      "previousId": null,
+      "registration": 39
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "autoPaletteViewportKey",
+      "line": 113,
+      "previousId": null,
+      "registration": 40
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "captureCustomBackground",
+      "line": 118,
+      "previousId": null,
+      "registration": 41
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "imageFingerprint",
+      "line": 140,
+      "previousId": null,
+      "registration": 42
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "localLumaMap",
+      "line": 152,
+      "previousId": null,
+      "registration": 43
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "sampleLocalLuma",
+      "line": 168,
+      "previousId": null,
+      "registration": 44
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "analyzeImagePixels",
+      "line": 284,
+      "previousId": null,
+      "registration": 45
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "analyzeCustomBackground",
+      "line": 333,
+      "previousId": null,
+      "registration": 46
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "refreshAutoPaletteMap",
+      "line": 347,
+      "previousId": null,
+      "registration": 47
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "applyImagePalette",
+      "line": 366,
+      "previousId": null,
+      "registration": 48
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "setImagePaletteOption",
+      "line": 393,
+      "previousId": null,
+      "registration": 49
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "invalidateAutoPalette",
+      "line": 412,
+      "previousId": null,
+      "registration": 50
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "cameraMatrix",
+      "line": 428,
+      "previousId": null,
+      "registration": 51
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "inversePoint",
+      "line": 435,
+      "previousId": null,
+      "registration": 52
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "adjustLocalReadability",
+      "line": 443,
+      "previousId": null,
+      "registration": 53
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "paletteContrast",
+      "line": 477,
+      "previousId": null,
+      "registration": 54
+    },
+    {
+      "moduleId": "01z_image_palette.js",
+      "property": "paletteLuma",
+      "line": 478,
+      "previousId": null,
+      "registration": 55
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "FONTS",
+      "line": 11,
+      "previousId": null,
+      "registration": 56
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "GOOGLE_FONTS_URL",
+      "line": 37,
+      "previousId": null,
+      "registration": 57
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "addUserFont",
+      "line": 40,
+      "previousId": null,
+      "registration": 58
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "userFontBytes",
+      "line": 44,
+      "previousId": null,
+      "registration": 59
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "fontContentHash",
+      "line": 45,
+      "previousId": null,
+      "registration": 60
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "restoreUserFont",
+      "line": 57,
+      "previousId": null,
+      "registration": 61
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "loadFontFile",
+      "line": 68,
+      "previousId": null,
+      "registration": 62
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "fontCSS",
+      "line": 75,
+      "previousId": null,
+      "registration": 63
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "fontLoadEvidence",
+      "line": 83,
+      "previousId": null,
+      "registration": 64
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "fontsOfPlan",
+      "line": 98,
+      "previousId": null,
+      "registration": 65
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "ensureFonts",
+      "line": 109,
+      "previousId": null,
+      "registration": 66
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "metrics",
+      "line": 135,
+      "previousId": null,
+      "registration": 67
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "glyphs",
+      "line": 181,
+      "previousId": null,
+      "registration": 68
+    },
+    {
+      "moduleId": "02_fonts.js",
+      "property": "fragments",
+      "line": 265,
+      "previousId": null,
+      "registration": 69
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "LANGS",
+      "line": 12,
+      "previousId": null,
+      "registration": 70
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "LANG_LABEL",
+      "line": 13,
+      "previousId": null,
+      "registration": 71
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "detectLang",
+      "line": 22,
+      "previousId": null,
+      "registration": 72
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "resolveLang",
+      "line": 40,
+      "previousId": null,
+      "registration": 73
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "LANG_FACES",
+      "line": 52,
+      "previousId": null,
+      "registration": 74
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "lang",
+      "line": 98,
+      "previousId": null,
+      "registration": 75
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "setLang",
+      "line": 99,
+      "previousId": null,
+      "registration": 76
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "lang",
+      "line": 102,
+      "previousId": "02b_lang.js",
+      "registration": 77
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "faceOf",
+      "line": 109,
+      "previousId": null,
+      "registration": 78
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "langBaseFaces",
+      "line": 122,
+      "previousId": null,
+      "registration": 79
+    },
+    {
+      "moduleId": "02b_lang.js",
+      "property": "segLocale",
+      "line": 129,
+      "previousId": null,
+      "registration": 80
+    },
+    {
+      "moduleId": "03_text.js",
+      "property": "PID",
+      "line": 7,
+      "previousId": null,
+      "registration": 81
+    },
+    {
+      "moduleId": "03_text.js",
+      "property": "PT",
+      "line": 8,
+      "previousId": null,
+      "registration": 82
+    },
+    {
+      "moduleId": "03_text.js",
+      "property": "layoutText",
+      "line": 11,
+      "previousId": null,
+      "registration": 83
+    },
+    {
+      "moduleId": "03_text.js",
+      "property": "drawItem",
+      "line": 110,
+      "previousId": null,
+      "registration": 84
+    },
+    {
+      "moduleId": "03_text.js",
+      "property": "textPattern",
+      "line": 281,
+      "previousId": null,
+      "registration": 85
+    },
+    {
+      "moduleId": "03_text.js",
+      "property": "measure",
+      "line": 304,
+      "previousId": null,
+      "registration": 86
+    },
+    {
+      "moduleId": "03_text.js",
+      "property": "fitSize",
+      "line": 307,
+      "previousId": null,
+      "registration": 87
+    },
+    {
+      "moduleId": "04_styles.js",
+      "property": "STYLES",
+      "line": 10,
+      "previousId": null,
+      "registration": 88
+    },
+    {
+      "moduleId": "04_styles.js",
+      "property": "STYLE_ORDER",
+      "line": 152,
+      "previousId": null,
+      "registration": 89
+    },
+    {
+      "moduleId": "04_styles.js",
+      "property": "resolveStyle",
+      "line": 155,
+      "previousId": null,
+      "registration": 90
+    },
+    {
+      "moduleId": "04_styles.js",
+      "property": "KEY_BG",
+      "line": 194,
+      "previousId": null,
+      "registration": 91
+    },
+    {
+      "moduleId": "04_styles.js",
+      "property": "keyMode",
+      "line": 195,
+      "previousId": null,
+      "registration": 92
+    },
+    {
+      "moduleId": "05_anim.js",
+      "property": "itemBands",
+      "line": 13,
+      "previousId": null,
+      "registration": 93
+    },
+    {
+      "moduleId": "05_anim.js",
+      "property": "itemVBands",
+      "line": 25,
+      "previousId": null,
+      "registration": 94
+    },
+    {
+      "moduleId": "05_anim.js",
+      "property": "itemBox",
+      "line": 34,
+      "previousId": null,
+      "registration": 95
+    },
+    {
+      "moduleId": "05_anim.js",
+      "property": "ENTER",
+      "line": 42,
+      "previousId": null,
+      "registration": 96
+    },
+    {
+      "moduleId": "05_anim.js",
+      "property": "HOLD",
+      "line": 199,
+      "previousId": null,
+      "registration": 97
+    },
+    {
+      "moduleId": "05_anim.js",
+      "property": "EXIT",
+      "line": 244,
+      "previousId": null,
+      "registration": 98
+    },
+    {
+      "moduleId": "05_anim.js",
+      "property": "combineChar",
+      "line": 377,
+      "previousId": null,
+      "registration": 99
+    },
+    {
+      "moduleId": "05_anim.js",
+      "property": "combinePiece",
+      "line": 399,
+      "previousId": null,
+      "registration": 100
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "TREAT",
+      "line": 24,
+      "previousId": null,
+      "registration": 101
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "TREAT_ORDER",
+      "line": 25,
+      "previousId": null,
+      "registration": 102
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "BG",
+      "line": 26,
+      "previousId": null,
+      "registration": 103
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "BG_ORDER",
+      "line": 27,
+      "previousId": null,
+      "registration": 104
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "CAMERA",
+      "line": 28,
+      "previousId": null,
+      "registration": 105
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "CAMERA_ORDER",
+      "line": 32,
+      "previousId": null,
+      "registration": 106
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "FXE",
+      "line": 34,
+      "previousId": null,
+      "registration": 107
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "FXE_ORDER",
+      "line": 44,
+      "previousId": null,
+      "registration": 108
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "TRANS",
+      "line": 46,
+      "previousId": null,
+      "registration": 109
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "TRANS_ORDER",
+      "line": 47,
+      "previousId": null,
+      "registration": 110
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "GROUP_KEYS",
+      "line": 53,
+      "previousId": null,
+      "registration": 111
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "registry",
+      "line": 54,
+      "previousId": null,
+      "registration": 112
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "order",
+      "line": 55,
+      "previousId": null,
+      "registration": 113
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "register",
+      "line": 58,
+      "previousId": null,
+      "registration": 114
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "registerAll",
+      "line": 69,
+      "previousId": null,
+      "registration": 115
+    },
+    {
+      "moduleId": "05b_registry.js",
+      "property": "taggedWith",
+      "line": 72,
+      "previousId": null,
+      "registration": 116
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "mainDraw",
+      "line": 11,
+      "previousId": null,
+      "registration": 117
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "drawFx",
+      "line": 64,
+      "previousId": null,
+      "registration": 118
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "splitLines",
+      "line": 123,
+      "previousId": null,
+      "registration": 119
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "glyphCount",
+      "line": 147,
+      "previousId": null,
+      "registration": 120
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "fontsOf",
+      "line": 147,
+      "previousId": null,
+      "registration": 121
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "unionBB",
+      "line": 147,
+      "previousId": null,
+      "registration": 122
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "centerBB",
+      "line": 148,
+      "previousId": null,
+      "registration": 123
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "LAYOUTS",
+      "line": 150,
+      "previousId": null,
+      "registration": 124
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "LAYOUT_ORDER",
+      "line": 669,
+      "previousId": null,
+      "registration": 125
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "ENTER_ORDER",
+      "line": 670,
+      "previousId": null,
+      "registration": 126
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "HOLD_ORDER",
+      "line": 671,
+      "previousId": null,
+      "registration": 127
+    },
+    {
+      "moduleId": "06_layouts.js",
+      "property": "EXIT_ORDER",
+      "line": 672,
+      "previousId": null,
+      "registration": 128
+    },
+    {
+      "moduleId": "07_decor.js",
+      "property": "DECOR",
+      "line": 11,
+      "previousId": null,
+      "registration": 129
+    },
+    {
+      "moduleId": "07_decor.js",
+      "property": "DECOR_ORDER",
+      "line": 238,
+      "previousId": null,
+      "registration": 130
+    },
+    {
+      "moduleId": "07_decor.js",
+      "property": "drawHUD",
+      "line": 241,
+      "previousId": null,
+      "registration": 131
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "SAMPLE_LYRICS",
+      "line": 7,
+      "previousId": null,
+      "registration": 132
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "defaultProject",
+      "line": 12,
+      "previousId": null,
+      "registration": 133
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "CORE_ORDER",
+      "line": 39,
+      "previousId": null,
+      "registration": 134
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "komaOf",
+      "line": 42,
+      "previousId": null,
+      "registration": 135
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "stepDur",
+      "line": 43,
+      "previousId": null,
+      "registration": 136
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "parseLyrics",
+      "line": 46,
+      "previousId": null,
+      "registration": 137
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "importLRC",
+      "line": 95,
+      "previousId": null,
+      "registration": 138
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "importLyricsFile",
+      "line": 104,
+      "previousId": null,
+      "registration": 139
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "segments",
+      "line": 132,
+      "previousId": null,
+      "registration": 140
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "chunkText",
+      "line": 144,
+      "previousId": null,
+      "registration": 141
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "computeTiming",
+      "line": 178,
+      "previousId": null,
+      "registration": 142
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "plan",
+      "line": 215,
+      "previousId": null,
+      "registration": 143
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "designSize",
+      "line": 580,
+      "previousId": null,
+      "registration": 144
+    },
+    {
+      "moduleId": "08_planner.js",
+      "property": "outputSize",
+      "line": 589,
+      "previousId": null,
+      "registration": 145
+    },
+    {
+      "moduleId": "08b_omakase.js",
+      "property": "MOODS",
+      "line": 10,
+      "previousId": null,
+      "registration": 146
+    },
+    {
+      "moduleId": "08b_omakase.js",
+      "property": "omakase",
+      "line": 40,
+      "previousId": null,
+      "registration": 147
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "DIRECTION_ARCHETYPES",
+      "line": 27,
+      "previousId": null,
+      "registration": 148
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "lyricsProfile",
+      "line": 30,
+      "previousId": null,
+      "registration": 149
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "classifySong",
+      "line": 47,
+      "previousId": null,
+      "registration": 150
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "proposeDirection",
+      "line": 100,
+      "previousId": null,
+      "registration": 151
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "lastAutoDirectionDebug",
+      "line": 171,
+      "previousId": null,
+      "registration": 152
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "visualDNASimilarity",
+      "line": 176,
+      "previousId": null,
+      "registration": 153
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "makeArtDirection",
+      "line": 181,
+      "previousId": null,
+      "registration": 154
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "validArtDirection",
+      "line": 216,
+      "previousId": null,
+      "registration": 155
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "directionSection",
+      "line": 217,
+      "previousId": null,
+      "registration": 156
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "selectLyricPlacement",
+      "line": 218,
+      "previousId": null,
+      "registration": 157
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "inspectDirection",
+      "line": 239,
+      "previousId": null,
+      "registration": 158
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "auditDirectionRealization",
+      "line": 249,
+      "previousId": null,
+      "registration": 159
+    },
+    {
+      "moduleId": "08c_auto_direction.js",
+      "property": "planTitleDisplay",
+      "line": 271,
+      "previousId": null,
+      "registration": 160
+    },
+    {
+      "moduleId": "08d_quality.js",
+      "property": "checkMVQuality",
+      "line": 6,
+      "previousId": null,
+      "registration": 161
+    },
+    {
+      "moduleId": "08d_quality.js",
+      "property": "scoreMVQuality",
+      "line": 97,
+      "previousId": null,
+      "registration": 162
+    },
+    {
+      "moduleId": "08d_quality.js",
+      "property": "fixMVQuality",
+      "line": 119,
+      "previousId": null,
+      "registration": 163
+    },
+    {
+      "moduleId": "08d_quality.js",
+      "property": "preflightMV",
+      "line": 172,
+      "previousId": null,
+      "registration": 164
+    },
+    {
+      "moduleId": "08d_quality.js",
+      "property": "optimizeDirectionCandidates",
+      "line": 183,
+      "previousId": null,
+      "registration": 165
+    },
+    {
+      "moduleId": "08d_quality.js",
+      "property": "analyzeRenderedFrames",
+      "line": 203,
+      "previousId": null,
+      "registration": 166
+    },
+    {
+      "moduleId": "08d_quality.js",
+      "property": "inspectRenderedFrames",
+      "line": 304,
+      "previousId": null,
+      "registration": 167
+    },
+    {
+      "moduleId": "08e_highlight.js",
+      "property": "highlightCandidates",
+      "line": 6,
+      "previousId": null,
+      "registration": 168
+    },
+    {
+      "moduleId": "08f_motion_dna.js",
+      "property": "chantSubtype",
+      "line": 6,
+      "previousId": null,
+      "registration": 169
+    },
+    {
+      "moduleId": "08f_motion_dna.js",
+      "property": "buildMotionDNA",
+      "line": 16,
+      "previousId": null,
+      "registration": 170
+    },
+    {
+      "moduleId": "08f_motion_dna.js",
+      "property": "motionEnergyAt",
+      "line": 73,
+      "previousId": null,
+      "registration": 171
+    },
+    {
+      "moduleId": "08f_motion_dna.js",
+      "property": "cameraAt",
+      "line": 78,
+      "previousId": null,
+      "registration": 172
+    },
+    {
+      "moduleId": "08f_motion_dna.js",
+      "property": "motionSignature",
+      "line": 99,
+      "previousId": null,
+      "registration": 173
+    },
+    {
+      "moduleId": "08f_motion_dna.js",
+      "property": "auditMotionDiversity",
+      "line": 104,
+      "previousId": null,
+      "registration": 174
+    },
+    {
+      "moduleId": "08f_motion_dna.js",
+      "property": "loopQuality",
+      "line": 114,
+      "previousId": null,
+      "registration": 175
+    },
+    {
+      "moduleId": "08g_audio_persistence.js",
+      "property": "audioAssetInfo",
+      "line": 4,
+      "previousId": null,
+      "registration": 176
+    },
+    {
+      "moduleId": "08g_audio_persistence.js",
+      "property": "audioAssetMatches",
+      "line": 5,
+      "previousId": null,
+      "registration": 177
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "PROJECT_SCHEMA_VERSION",
+      "line": 7,
+      "previousId": null,
+      "registration": 178
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "BPM_RANGE",
+      "line": 8,
+      "previousId": null,
+      "registration": 179
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "migrateProject",
+      "line": 10,
+      "previousId": null,
+      "registration": 180
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "isValidProjectStyle",
+      "line": 34,
+      "previousId": null,
+      "registration": 181
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "timelineViewport",
+      "line": 36,
+      "previousId": null,
+      "registration": 182
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "previewAspectForMode",
+      "line": 42,
+      "previousId": null,
+      "registration": 183
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "timelineTimeAtRatio",
+      "line": 43,
+      "previousId": null,
+      "registration": 184
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "snapTimelineLineTime",
+      "line": 44,
+      "previousId": null,
+      "registration": 185
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "createAssetSaveQueue",
+      "line": 58,
+      "previousId": null,
+      "registration": 186
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "historyFields",
+      "line": 79,
+      "previousId": null,
+      "registration": 187
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "historySnapshot",
+      "line": 80,
+      "previousId": null,
+      "registration": 188
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "restoreHistory",
+      "line": 91,
+      "previousId": null,
+      "registration": 189
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "pruneHistoryAssets",
+      "line": 97,
+      "previousId": null,
+      "registration": 190
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "waitMediaEvent",
+      "line": 102,
+      "previousId": null,
+      "registration": 191
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "nonBlackRGBFraction",
+      "line": 113,
+      "previousId": null,
+      "registration": 192
+    },
+    {
+      "moduleId": "08i_project.js",
+      "property": "createControlLock",
+      "line": 118,
+      "previousId": null,
+      "registration": 193
+    },
+    {
+      "moduleId": "09_render.js",
+      "property": "cutAt",
+      "line": 10,
+      "previousId": null,
+      "registration": 194
+    },
+    {
+      "moduleId": "09_render.js",
+      "property": "Renderer",
+      "line": 609,
+      "previousId": null,
+      "registration": 195
+    },
+    {
+      "moduleId": "10_audio.js",
+      "property": "audioFeatures",
+      "line": 8,
+      "previousId": null,
+      "registration": 196
+    },
+    {
+      "moduleId": "10_audio.js",
+      "property": "spectralTimeline",
+      "line": 118,
+      "previousId": null,
+      "registration": 197
+    },
+    {
+      "moduleId": "10_audio.js",
+      "property": "spectralTimelineAsync",
+      "line": 119,
+      "previousId": null,
+      "registration": 198
+    },
+    {
+      "moduleId": "10_audio.js",
+      "property": "analyzeAudio",
+      "line": 121,
+      "previousId": null,
+      "registration": 199
+    },
+    {
+      "moduleId": "10_audio.js",
+      "property": "bpmFamily",
+      "line": 234,
+      "previousId": null,
+      "registration": 200
+    },
+    {
+      "moduleId": "10_audio.js",
+      "property": "beatGrid",
+      "line": 240,
+      "previousId": null,
+      "registration": 201
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "EXPORT_PRESETS",
+      "line": 8,
+      "previousId": null,
+      "registration": 202
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "resolveExportSettings",
+      "line": 15,
+      "previousId": null,
+      "registration": 203
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "applyExportPreset",
+      "line": 16,
+      "previousId": null,
+      "registration": 204
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "estimateExport",
+      "line": 25,
+      "previousId": null,
+      "registration": 205
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "prepareFileSave",
+      "line": 37,
+      "previousId": null,
+      "registration": 206
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "saveFile",
+      "line": 45,
+      "previousId": null,
+      "registration": 207
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "waitExportStep",
+      "line": 74,
+      "previousId": null,
+      "registration": 208
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "waitEncoderCapacity",
+      "line": 83,
+      "previousId": null,
+      "registration": 209
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "pickVideoCodec",
+      "line": 97,
+      "previousId": null,
+      "registration": 210
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "videoAttempts",
+      "line": 112,
+      "previousId": null,
+      "registration": 211
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "verifyEncodedTracks",
+      "line": 125,
+      "previousId": null,
+      "registration": 212
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "pickAudioCodec",
+      "line": 130,
+      "previousId": null,
+      "registration": 213
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "inspectMP4Buffer",
+      "line": 142,
+      "previousId": null,
+      "registration": 214
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "exportMP4",
+      "line": 214,
+      "previousId": null,
+      "registration": 215
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "exportCapabilities",
+      "line": 319,
+      "previousId": null,
+      "registration": 216
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "exportMP4Fallback",
+      "line": 331,
+      "previousId": null,
+      "registration": 217
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "ZipWriter",
+      "line": 410,
+      "previousId": null,
+      "registration": 218
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "createDirectorPack",
+      "line": 411,
+      "previousId": null,
+      "registration": 219
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "exportPNGZip",
+      "line": 439,
+      "previousId": null,
+      "registration": 220
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "AE_MAP",
+      "line": 464,
+      "previousId": null,
+      "registration": 221
+    },
+    {
+      "moduleId": "11_export.js",
+      "property": "planForAE",
+      "line": 475,
+      "previousId": null,
+      "registration": 222
+    },
+    {
+      "moduleId": "11q_sets.js",
+      "property": "BASE_PACKS",
+      "line": 16,
+      "previousId": null,
+      "registration": 223
+    },
+    {
+      "moduleId": "11q_sets.js",
+      "property": "BASE_STYLES",
+      "line": 17,
+      "previousId": null,
+      "registration": 224
+    },
+    {
+      "moduleId": "11q_sets.js",
+      "property": "EXTRA_FONTS",
+      "line": 18,
+      "previousId": null,
+      "registration": 225
+    },
+    {
+      "moduleId": "11q_sets.js",
+      "property": "WA",
+      "line": 19,
+      "previousId": null,
+      "registration": 226
+    },
+    {
+      "moduleId": "11q_sets.js",
+      "property": "isWa",
+      "line": 36,
+      "previousId": null,
+      "registration": 227
+    },
+    {
+      "moduleId": "11q_sets.js",
+      "property": "isExtra",
+      "line": 37,
+      "previousId": null,
+      "registration": 228
+    },
+    {
+      "moduleId": "11q_sets.js",
+      "property": "randomOk",
+      "line": 39,
+      "previousId": null,
+      "registration": 229
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "buildStyleProfile",
+      "line": 13,
+      "previousId": null,
+      "registration": 230
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "styleInputProfile",
+      "line": 34,
+      "previousId": null,
+      "registration": 231
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "scoreStyleProfiles",
+      "line": 44,
+      "previousId": null,
+      "registration": 232
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "rankStyles",
+      "line": 49,
+      "previousId": null,
+      "registration": 233
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "lastStyleDecision",
+      "line": 53,
+      "previousId": null,
+      "registration": 234
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "fuseStylePalette",
+      "line": 55,
+      "previousId": null,
+      "registration": 235
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "styleSignature",
+      "line": 61,
+      "previousId": null,
+      "registration": 236
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "proposeDirection",
+      "line": 66,
+      "previousId": "08c_auto_direction.js",
+      "registration": 237
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "makeArtDirection",
+      "line": 84,
+      "previousId": "08c_auto_direction.js",
+      "registration": 238
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "plan",
+      "line": 90,
+      "previousId": "08_planner.js",
+      "registration": 239
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "lyricsCameraAt",
+      "line": 106,
+      "previousId": null,
+      "registration": 240
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "measureLyricItemBounds",
+      "line": 109,
+      "previousId": null,
+      "registration": 241
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "safeLyricItem",
+      "line": 139,
+      "previousId": null,
+      "registration": 242
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "planTitleDisplay",
+      "line": 163,
+      "previousId": "08c_auto_direction.js",
+      "registration": 243
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "auditDirectionReality",
+      "line": 168,
+      "previousId": null,
+      "registration": 244
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "scoreMVQuality",
+      "line": 184,
+      "previousId": "08d_quality.js",
+      "registration": 245
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "fixMVQuality",
+      "line": 200,
+      "previousId": "08d_quality.js",
+      "registration": 246
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "optimizeDirectionCandidatesRendered",
+      "line": 205,
+      "previousId": null,
+      "registration": 247
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "lastStyleDecision",
+      "line": 227,
+      "previousId": "11r_style_intelligence.js",
+      "registration": 248
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "analyzeRenderedFrames",
+      "line": 233,
+      "previousId": "08d_quality.js",
+      "registration": 249
+    },
+    {
+      "moduleId": "11r_style_intelligence.js",
+      "property": "Renderer.prototype.drawTitleCredit",
+      "line": 264,
+      "previousId": null,
+      "registration": 250
+    },
+    {
+      "moduleId": "11s_hype_engine.js",
+      "property": "resolveVisualEnergy",
+      "line": 10,
+      "previousId": null,
+      "registration": 251
+    },
+    {
+      "moduleId": "11s_hype_engine.js",
+      "property": "tokenizeKinetic",
+      "line": 21,
+      "previousId": null,
+      "registration": 252
+    },
+    {
+      "moduleId": "11s_hype_engine.js",
+      "property": "socialHookCandidates",
+      "line": 33,
+      "previousId": null,
+      "registration": 253
+    },
+    {
+      "moduleId": "11s_hype_engine.js",
+      "property": "plan",
+      "line": 62,
+      "previousId": "11r_style_intelligence.js",
+      "registration": 254
+    },
+    {
+      "moduleId": "11s_hype_engine.js",
+      "property": "hasKineticTypography",
+      "line": 148,
+      "previousId": null,
+      "registration": 255
+    },
+    {
+      "moduleId": "11s_hype_engine.js",
+      "property": "auditHypePlan",
+      "line": 149,
+      "previousId": null,
+      "registration": 256
+    },
+    {
+      "moduleId": "11s_hype_engine.js",
+      "property": "hypeQuality",
+      "line": 156,
+      "previousId": null,
+      "registration": 257
+    },
+    {
+      "moduleId": "11s_hype_engine.js",
+      "property": "scoreMVQuality",
+      "line": 172,
+      "previousId": "11r_style_intelligence.js",
+      "registration": 258
+    },
+    {
+      "moduleId": "11s_hype_engine.js",
+      "property": "Renderer.prototype.frame",
+      "line": 188,
+      "previousId": null,
+      "registration": 259
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "STYLE_FAMILIES",
+      "line": 16,
+      "previousId": null,
+      "registration": 260
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "styleCompatibility",
+      "line": 17,
+      "previousId": null,
+      "registration": 261
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "STYLE_COMPATIBILITY_GRAPH",
+      "line": 26,
+      "previousId": null,
+      "registration": 262
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "measurePerceptualNovelty",
+      "line": 29,
+      "previousId": null,
+      "registration": 263
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "attentionCost",
+      "line": 50,
+      "previousId": null,
+      "registration": 264
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "auditAttentionBudget",
+      "line": 54,
+      "previousId": null,
+      "registration": 265
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "buildTechniquePalette",
+      "line": 69,
+      "previousId": null,
+      "registration": 266
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "resolveTechniqueIntent",
+      "line": 83,
+      "previousId": null,
+      "registration": 267
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "buildStyleArc",
+      "line": 91,
+      "previousId": null,
+      "registration": 268
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "buildBeatHierarchy",
+      "line": 123,
+      "previousId": null,
+      "registration": 269
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "directorProjectHash",
+      "line": 130,
+      "previousId": null,
+      "registration": 270
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "directorContext",
+      "line": 131,
+      "previousId": null,
+      "registration": 271
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "directorPrompt",
+      "line": 139,
+      "previousId": null,
+      "registration": 272
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "directorWindows",
+      "line": 140,
+      "previousId": null,
+      "registration": 273
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "validateDirectorPlan",
+      "line": 144,
+      "previousId": null,
+      "registration": 274
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "applyDirectorPlan",
+      "line": 185,
+      "previousId": null,
+      "registration": 275
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "compareDirectorCandidates",
+      "line": 196,
+      "previousId": null,
+      "registration": 276
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "plan",
+      "line": 207,
+      "previousId": "11s_hype_engine.js",
+      "registration": 277
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "analyzeRenderedFrames",
+      "line": 326,
+      "previousId": "11r_style_intelligence.js",
+      "registration": 278
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "Renderer.prototype.drawTitleCredit",
+      "line": 340,
+      "previousId": "11r_style_intelligence.js",
+      "registration": 279
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "scoreMVQuality",
+      "line": 355,
+      "previousId": "11s_hype_engine.js",
+      "registration": 280
+    },
+    {
+      "moduleId": "11t_nextgen.js",
+      "property": "createSocialHookPlan",
+      "line": 387,
+      "previousId": null,
+      "registration": 281
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "snapMusicalBoundary",
+      "line": 28,
+      "previousId": null,
+      "registration": 282
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "analyzeMusicalStructure",
+      "line": 33,
+      "previousId": null,
+      "registration": 283
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "buildBeatHierarchy",
+      "line": 68,
+      "previousId": "11t_nextgen.js",
+      "registration": 284
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "measureVisualHitAlignment",
+      "line": 78,
+      "previousId": null,
+      "registration": 285
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "sceneDistinctness",
+      "line": 83,
+      "previousId": null,
+      "registration": 286
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "generateSceneCandidates",
+      "line": 89,
+      "previousId": null,
+      "registration": 287
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "chooseMotifs",
+      "line": 95,
+      "previousId": null,
+      "registration": 288
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "motifStateAt",
+      "line": 96,
+      "previousId": null,
+      "registration": 289
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "auditMotifFatigue",
+      "line": 97,
+      "previousId": null,
+      "registration": 290
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "drawUnifiedMotif",
+      "line": 102,
+      "previousId": null,
+      "registration": 291
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "resolvePortraitLayout",
+      "line": 113,
+      "previousId": null,
+      "registration": 292
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "fontCapabilities",
+      "line": 119,
+      "previousId": null,
+      "registration": 293
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "typography5State",
+      "line": 122,
+      "previousId": null,
+      "registration": 294
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "applyTypography5",
+      "line": 124,
+      "previousId": null,
+      "registration": 295
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "creditStateAt",
+      "line": 131,
+      "previousId": null,
+      "registration": 296
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "validateAssetDeck",
+      "line": 133,
+      "previousId": null,
+      "registration": 297
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "plan",
+      "line": 137,
+      "previousId": "11t_nextgen.js",
+      "registration": 298
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "createSocialHookPlan",
+      "line": 169,
+      "previousId": "11t_nextgen.js",
+      "registration": 299
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "measureSocialLoop",
+      "line": 184,
+      "previousId": null,
+      "registration": 300
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "directorContext",
+      "line": 191,
+      "previousId": "11t_nextgen.js",
+      "registration": 301
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "directorPrompt",
+      "line": 196,
+      "previousId": "11t_nextgen.js",
+      "registration": 302
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "validateDirectorPlan",
+      "line": 198,
+      "previousId": "11t_nextgen.js",
+      "registration": 303
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "compareDirectorCandidates",
+      "line": 207,
+      "previousId": "11t_nextgen.js",
+      "registration": 304
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "checkMVQuality",
+      "line": 209,
+      "previousId": "08d_quality.js",
+      "registration": 305
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "analyzeRenderedFrames",
+      "line": 222,
+      "previousId": "11t_nextgen.js",
+      "registration": 306
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "Renderer.prototype.loadAssetDeck",
+      "line": 247,
+      "previousId": null,
+      "registration": 307
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "Renderer.prototype.prepareAssetFrame",
+      "line": 256,
+      "previousId": null,
+      "registration": 308
+    },
+    {
+      "moduleId": "11u_motion_director.js",
+      "property": "Renderer.prototype.drawCustomBackground",
+      "line": 261,
+      "previousId": null,
+      "registration": 309
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "resolveVisualVerb",
+      "line": 6,
+      "previousId": null,
+      "registration": 310
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "validateDirectorPlan",
+      "line": 8,
+      "previousId": "11u_motion_director.js",
+      "registration": 311
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "applyDirectorPlan",
+      "line": 16,
+      "previousId": "11t_nextgen.js",
+      "registration": 312
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "portraitSaliency",
+      "line": 17,
+      "previousId": null,
+      "registration": 313
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "mergeCoincidentStrongEvents",
+      "line": 26,
+      "previousId": null,
+      "registration": 314
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "plan",
+      "line": 27,
+      "previousId": "11u_motion_director.js",
+      "registration": 315
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "createSocialHookPlan",
+      "line": 37,
+      "previousId": "11u_motion_director.js",
+      "registration": 316
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "motifPhysicsAt",
+      "line": 38,
+      "previousId": null,
+      "registration": 317
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "applyTypography5",
+      "line": 41,
+      "previousId": "11u_motion_director.js",
+      "registration": 318
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "cameraAt",
+      "line": 48,
+      "previousId": "08f_motion_dna.js",
+      "registration": 319
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "Renderer.prototype.drawCustomBackground",
+      "line": 49,
+      "previousId": "11u_motion_director.js",
+      "registration": 320
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "mainDraw",
+      "line": 51,
+      "previousId": "06_layouts.js",
+      "registration": 321
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "Renderer.prototype.frame",
+      "line": 52,
+      "previousId": "11s_hype_engine.js",
+      "registration": 322
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "measureEventRealization",
+      "line": 55,
+      "previousId": null,
+      "registration": 323
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "repairStrongEvents",
+      "line": 69,
+      "previousId": null,
+      "registration": 324
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "analyzeRenderedFrames",
+      "line": 70,
+      "previousId": "11u_motion_director.js",
+      "registration": 325
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "directorContext",
+      "line": 72,
+      "previousId": "11u_motion_director.js",
+      "registration": 326
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "directorPrompt",
+      "line": 73,
+      "previousId": "11u_motion_director.js",
+      "registration": 327
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "createDirectorRevisionPack",
+      "line": 74,
+      "previousId": null,
+      "registration": 328
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "compareDirectorCandidates",
+      "line": 79,
+      "previousId": "11u_motion_director.js",
+      "registration": 329
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "checkMVQuality",
+      "line": 80,
+      "previousId": "11u_motion_director.js",
+      "registration": 330
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "verifyVariableFontRaster",
+      "line": 86,
+      "previousId": null,
+      "registration": 331
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "certifyExport",
+      "line": 87,
+      "previousId": null,
+      "registration": 332
+    },
+    {
+      "moduleId": "11v_perceptual_director.js",
+      "property": "exportMP4",
+      "line": 95,
+      "previousId": "11_export.js",
+      "registration": 333
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "MOTION_DIRECTOR_VERSION",
+      "line": 4,
+      "previousId": null,
+      "registration": 334
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "canonicalJSON",
+      "line": 6,
+      "previousId": null,
+      "registration": 335
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "sha256",
+      "line": 7,
+      "previousId": null,
+      "registration": 336
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "exportPolicies",
+      "line": 14,
+      "previousId": null,
+      "registration": 337
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "EXPORT_POLICY",
+      "line": 15,
+      "previousId": null,
+      "registration": 338
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "chooseAdaptiveFPS",
+      "line": 16,
+      "previousId": null,
+      "registration": 339
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "observePixelFrame",
+      "line": 18,
+      "previousId": null,
+      "registration": 340
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "observeVisualPeaks",
+      "line": 25,
+      "previousId": null,
+      "registration": 341
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "musicalTargets",
+      "line": 31,
+      "previousId": null,
+      "registration": 342
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "alignObservedPeaks",
+      "line": 33,
+      "previousId": null,
+      "registration": 343
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "plannedEventAlignment",
+      "line": 34,
+      "previousId": null,
+      "registration": 344
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "chapterIntent",
+      "line": 36,
+      "previousId": null,
+      "registration": 345
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "captureDirectionPreferences7",
+      "line": 38,
+      "previousId": null,
+      "registration": 346
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "applyExplicitOverrides7",
+      "line": 44,
+      "previousId": null,
+      "registration": 347
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "buildVisualWorld7",
+      "line": 51,
+      "previousId": null,
+      "registration": 348
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "applyVisualWorld7",
+      "line": 65,
+      "previousId": null,
+      "registration": 349
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "resolveVisualVerb",
+      "line": 77,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 350
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "plan",
+      "line": 78,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 351
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "auditLayoutFatigue7",
+      "line": 79,
+      "previousId": null,
+      "registration": 352
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "motifPhysicsAt",
+      "line": 80,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 353
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "semanticTypographyState",
+      "line": 81,
+      "previousId": null,
+      "registration": 354
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "negativeSpaceAt",
+      "line": 82,
+      "previousId": null,
+      "registration": 355
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "cameraAt",
+      "line": 84,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 356
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "adjustLocalReadability",
+      "line": 92,
+      "previousId": "01z_image_palette.js",
+      "registration": 357
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "applyTypography5",
+      "line": 93,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 358
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "Renderer.prototype.drawCustomBackground",
+      "line": 96,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 359
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "collectCanvasObserver",
+      "line": 97,
+      "previousId": null,
+      "registration": 360
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "measureWorldDistance7",
+      "line": 98,
+      "previousId": null,
+      "registration": 361
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "measureSemanticReality7",
+      "line": 99,
+      "previousId": null,
+      "registration": 362
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "audienceImpact7",
+      "line": 100,
+      "previousId": null,
+      "registration": 363
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "motifReality7",
+      "line": 101,
+      "previousId": null,
+      "registration": 364
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "drawUnifiedMotif",
+      "line": 102,
+      "previousId": "11u_motion_director.js",
+      "registration": 365
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "measureMotifReality7",
+      "line": 103,
+      "previousId": null,
+      "registration": 366
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "analyzeRenderedFrames",
+      "line": 104,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 367
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "bottleneckCreative7",
+      "line": 107,
+      "previousId": null,
+      "registration": 368
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "normalizeQARange7",
+      "line": 108,
+      "previousId": null,
+      "registration": 369
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "certificationEligibility7",
+      "line": 109,
+      "previousId": null,
+      "registration": 370
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "checkMVQuality",
+      "line": 110,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 371
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "createSocialHookPlan",
+      "line": 112,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 372
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "directorContext",
+      "line": 113,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 373
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "directorPrompt",
+      "line": 114,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 374
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "directorWindows",
+      "line": 115,
+      "previousId": "11t_nextgen.js",
+      "registration": 375
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "compareDirectorCandidates",
+      "line": 116,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 376
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "createDirectorRevisionPack",
+      "line": 117,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 377
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "observerTimeOrigin7",
+      "line": 120,
+      "previousId": null,
+      "registration": 378
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "cinemaDecodeTimes7",
+      "line": 121,
+      "previousId": null,
+      "registration": 379
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "observeExportedMP4",
+      "line": 123,
+      "previousId": null,
+      "registration": 380
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "createExportProvenance",
+      "line": 137,
+      "previousId": null,
+      "registration": 381
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "verifyExportProvenance",
+      "line": 150,
+      "previousId": null,
+      "registration": 382
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "exportMP4",
+      "line": 152,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 383
+    },
+    {
+      "moduleId": "11w_observer_director.js",
+      "property": "exportMP4Fallback",
+      "line": 153,
+      "previousId": "11_export.js",
+      "registration": 384
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "MOTION_DIRECTOR_VERSION",
+      "line": 4,
+      "previousId": "11w_observer_director.js",
+      "registration": 385
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "ASSET_ROLES",
+      "line": 5,
+      "previousId": null,
+      "registration": 386
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "migrateProject",
+      "line": 6,
+      "previousId": "08i_project.js",
+      "registration": 387
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "PROJECT_SCHEMA_VERSION",
+      "line": 6,
+      "previousId": "08i_project.js",
+      "registration": 388
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "normalizeVisualAssets",
+      "line": 7,
+      "previousId": null,
+      "registration": 389
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "analyzeVisualAsset",
+      "line": 8,
+      "previousId": null,
+      "registration": 390
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "assetSimilarity",
+      "line": 14,
+      "previousId": null,
+      "registration": 391
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "detectAssetDuplicates",
+      "line": 15,
+      "previousId": null,
+      "registration": 392
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "assetChapterFit",
+      "line": 16,
+      "previousId": null,
+      "registration": 393
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "buildAssetStoryboard",
+      "line": 18,
+      "previousId": null,
+      "registration": 394
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "applyAssetStoryboard",
+      "line": 25,
+      "previousId": null,
+      "registration": 395
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "plan",
+      "line": 26,
+      "previousId": "11w_observer_director.js",
+      "registration": 396
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "applyVisualWorld7",
+      "line": 27,
+      "previousId": "11w_observer_director.js",
+      "registration": 397
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "createSocialHookPlan",
+      "line": 28,
+      "previousId": "11w_observer_director.js",
+      "registration": 398
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "Renderer.prototype.loadAssetDeck",
+      "line": 31,
+      "previousId": "11u_motion_director.js",
+      "registration": 399
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "Renderer.prototype.disposeAssets",
+      "line": 55,
+      "previousId": null,
+      "registration": 400
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "Renderer.prototype.frame",
+      "line": 56,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 401
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "SEMANTIC_REGISTRY",
+      "line": 58,
+      "previousId": null,
+      "registration": 402
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "resolveVisualVerb",
+      "line": 59,
+      "previousId": "11w_observer_director.js",
+      "registration": 403
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "alignmentDomains8",
+      "line": 60,
+      "previousId": null,
+      "registration": 404
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "directorContext",
+      "line": 61,
+      "previousId": "11w_observer_director.js",
+      "registration": 405
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "directorPrompt",
+      "line": 62,
+      "previousId": "11w_observer_director.js",
+      "registration": 406
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "validateDirectorPlan",
+      "line": 63,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 407
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "applyDirectorPlan",
+      "line": 64,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 408
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "assetContactSheet",
+      "line": 65,
+      "previousId": null,
+      "registration": 409
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "createDirectorPack",
+      "line": 67,
+      "previousId": "11_export.js",
+      "registration": 410
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "createDirectorRevisionPack",
+      "line": 68,
+      "previousId": "11w_observer_director.js",
+      "registration": 411
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "checkMVQuality",
+      "line": 69,
+      "previousId": "11w_observer_director.js",
+      "registration": 412
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "measureAssetReality8",
+      "line": 73,
+      "previousId": null,
+      "registration": 413
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "analyzeRenderedFrames",
+      "line": 77,
+      "previousId": "11w_observer_director.js",
+      "registration": 414
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "createExportProvenance",
+      "line": 78,
+      "previousId": "11w_observer_director.js",
+      "registration": 415
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "collectCanvasObserver",
+      "line": 80,
+      "previousId": "11w_observer_director.js",
+      "registration": 416
+    },
+    {
+      "moduleId": "11x_multi_image_director.js",
+      "property": "directorProjectHash",
+      "line": 82,
+      "previousId": "11t_nextgen.js",
+      "registration": 417
+    },
+    {
+      "moduleId": "11y_processing_tasks.js",
+      "property": "analyzeRenderedFrames",
+      "line": 5,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 418
+    },
+    {
+      "moduleId": "11y_processing_tasks.js",
+      "property": "optimizeDirectionCandidatesRendered",
+      "line": 15,
+      "previousId": "11r_style_intelligence.js",
+      "registration": 419
+    },
+    {
+      "moduleId": "11y_processing_tasks.js",
+      "property": "audioProgressStages",
+      "line": 20,
+      "previousId": null,
+      "registration": 420
+    },
+    {
+      "moduleId": "11y_processing_tasks.js",
+      "property": "audioProgressEvent",
+      "line": 21,
+      "previousId": null,
+      "registration": 421
+    },
+    {
+      "moduleId": "11z_single_background.js",
+      "property": "singleBackgroundProject",
+      "line": 3,
+      "previousId": null,
+      "registration": 422
+    },
+    {
+      "moduleId": "11z_single_background.js",
+      "property": "enableSingleBackgroundMode",
+      "line": 13,
+      "previousId": null,
+      "registration": 423
+    },
+    {
+      "moduleId": "11z_single_background.js",
+      "property": "singleBackgroundMode",
+      "line": 13,
+      "previousId": null,
+      "registration": 424
+    },
+    {
+      "moduleId": "11z_single_background.js",
+      "property": "backgroundResolutionInfo",
+      "line": 14,
+      "previousId": null,
+      "registration": 425
+    },
+    {
+      "moduleId": "11z_single_background.js",
+      "property": "plan",
+      "line": 20,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 426
+    },
+    {
+      "moduleId": "11z_single_background.js",
+      "property": "createDirectorPack",
+      "line": 22,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 427
+    },
+    {
+      "moduleId": "11z_single_background.js",
+      "property": "directorContext",
+      "line": 24,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 428
+    },
+    {
+      "moduleId": "11z_single_background.js",
+      "property": "adjustLocalReadability",
+      "line": 29,
+      "previousId": "11w_observer_director.js",
+      "registration": 429
+    },
+    {
+      "moduleId": "11zz_kamen_quality.js",
+      "property": "localLyricCue",
+      "line": 9,
+      "previousId": null,
+      "registration": 430
+    },
+    {
+      "moduleId": "11zz_kamen_quality.js",
+      "property": "plan",
+      "line": 18,
+      "previousId": "11z_single_background.js",
+      "registration": 431
+    },
+    {
+      "moduleId": "11zz_lrc_export.js",
+      "property": "lrcTimestamp",
+      "line": 3,
+      "previousId": null,
+      "registration": 432
+    },
+    {
+      "moduleId": "11zz_lrc_export.js",
+      "property": "exportLRC",
+      "line": 8,
+      "previousId": null,
+      "registration": 433
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "analyzeMusicalStructure",
+      "line": 4,
+      "previousId": "11u_motion_director.js",
+      "registration": 434
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "chapterIntent",
+      "line": 26,
+      "previousId": "11w_observer_director.js",
+      "registration": 435
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "audienceImpact7",
+      "line": 27,
+      "previousId": "11w_observer_director.js",
+      "registration": 436
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "measureMotifReality7",
+      "line": 28,
+      "previousId": "11w_observer_director.js",
+      "registration": 437
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "applyAssetStoryboard",
+      "line": 31,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 438
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "adjustLocalReadability",
+      "line": 45,
+      "previousId": "11z_single_background.js",
+      "registration": 439
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "directorPrompt",
+      "line": 58,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 440
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "drawUnifiedMotif",
+      "line": 61,
+      "previousId": "11w_observer_director.js",
+      "registration": 441
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "cameraAt",
+      "line": 63,
+      "previousId": "11w_observer_director.js",
+      "registration": 442
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "plan",
+      "line": 65,
+      "previousId": "11zz_kamen_quality.js",
+      "registration": 443
+    },
+    {
+      "moduleId": "11zz_quality_policy.js",
+      "property": "createExportProvenance",
+      "line": 67,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 444
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "photoRegionEvidence",
+      "line": 4,
+      "previousId": null,
+      "registration": 445
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "choosePhotoAnchor",
+      "line": 11,
+      "previousId": null,
+      "registration": 446
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "getPhotoComposition",
+      "line": 13,
+      "previousId": null,
+      "registration": 447
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "getPhotoCompositionStatus",
+      "line": 13,
+      "previousId": null,
+      "registration": 448
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "clearPhotoComposition",
+      "line": 13,
+      "previousId": null,
+      "registration": 449
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "sharePhotoComposition",
+      "line": 15,
+      "previousId": null,
+      "registration": 450
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "cameraAt",
+      "line": 17,
+      "previousId": "11zz_quality_policy.js",
+      "registration": 451
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "plan",
+      "line": 25,
+      "previousId": "11zz_quality_policy.js",
+      "registration": 452
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "Renderer.prototype.frame",
+      "line": 27,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 453
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "centerPhotoLyricItem",
+      "line": 40,
+      "previousId": null,
+      "registration": 454
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "adjustLocalReadability",
+      "line": 42,
+      "previousId": "11zz_quality_policy.js",
+      "registration": 455
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "createExportProvenance",
+      "line": 49,
+      "previousId": "11zz_quality_policy.js",
+      "registration": 456
+    },
+    {
+      "moduleId": "11zza_photo_composition.js",
+      "property": "directorContext",
+      "line": 50,
+      "previousId": "11z_single_background.js",
+      "registration": 457
+    },
+    {
+      "moduleId": "11zzb_sync_evidence.js",
+      "property": "alignmentDomains8",
+      "line": 3,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 458
+    },
+    {
+      "moduleId": "11zzc_quality_evidence.js",
+      "property": "measurePerceptualNovelty",
+      "line": 4,
+      "previousId": "11t_nextgen.js",
+      "registration": 459
+    },
+    {
+      "moduleId": "11zzc_quality_evidence.js",
+      "property": "classifyTemporalEvidence",
+      "line": 10,
+      "previousId": null,
+      "registration": 460
+    },
+    {
+      "moduleId": "11zzc_quality_evidence.js",
+      "property": "glyphInspectionEvidence",
+      "line": 27,
+      "previousId": null,
+      "registration": 461
+    },
+    {
+      "moduleId": "11zzc_quality_evidence.js",
+      "property": "analyzeRenderedFrames",
+      "line": 32,
+      "previousId": "11y_processing_tasks.js",
+      "registration": 462
+    },
+    {
+      "moduleId": "11zzc_quality_evidence.js",
+      "property": "checkMVQuality",
+      "line": 41,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 463
+    },
+    {
+      "moduleId": "11zzc_quality_evidence.js",
+      "property": "createExportProvenance",
+      "line": 47,
+      "previousId": "11zza_photo_composition.js",
+      "registration": 464
+    },
+    {
+      "moduleId": "11zzd_export_policy.js",
+      "property": "finalizeExportReadiness",
+      "line": 5,
+      "previousId": null,
+      "registration": 465
+    },
+    {
+      "moduleId": "11zzd_export_policy.js",
+      "property": "fixMVQuality",
+      "line": 11,
+      "previousId": "11r_style_intelligence.js",
+      "registration": 466
+    },
+    {
+      "moduleId": "11zzd_export_policy.js",
+      "property": "checkMVQuality",
+      "line": 12,
+      "previousId": "11zzc_quality_evidence.js",
+      "registration": 467
+    },
+    {
+      "moduleId": "11zzd_export_policy.js",
+      "property": "createExportProvenance",
+      "line": 13,
+      "previousId": "11zzc_quality_evidence.js",
+      "registration": 468
+    },
+    {
+      "moduleId": "11zze_glyph_contrast.js",
+      "property": "glyphFootprintContrast",
+      "line": 6,
+      "previousId": null,
+      "registration": 469
+    },
+    {
+      "moduleId": "11zze_glyph_contrast.js",
+      "property": "glyphContrastSamplePoints",
+      "line": 16,
+      "previousId": null,
+      "registration": 470
+    },
+    {
+      "moduleId": "11zze_glyph_contrast.js",
+      "property": "measureGlyphContrastEvidence",
+      "line": 22,
+      "previousId": null,
+      "registration": 471
+    },
+    {
+      "moduleId": "11zze_glyph_contrast.js",
+      "property": "getGlyphContrastEvidence",
+      "line": 36,
+      "previousId": null,
+      "registration": 472
+    },
+    {
+      "moduleId": "11zze_glyph_contrast.js",
+      "property": "analyzeRenderedFrames",
+      "line": 37,
+      "previousId": "11zzc_quality_evidence.js",
+      "registration": 473
+    },
+    {
+      "moduleId": "11zze_glyph_contrast.js",
+      "property": "createExportProvenance",
+      "line": 38,
+      "previousId": "11zzd_export_policy.js",
+      "registration": 474
+    },
+    {
+      "moduleId": "11zze_glyph_contrast.js",
+      "property": "directorContext",
+      "line": 39,
+      "previousId": "11zza_photo_composition.js",
+      "registration": 475
+    },
+    {
+      "moduleId": "11zzf_social_choreography.js",
+      "property": "photoChoreographyLocked",
+      "line": 5,
+      "previousId": null,
+      "registration": 476
+    },
+    {
+      "moduleId": "11zzf_social_choreography.js",
+      "property": "composeLyricPhrase",
+      "line": 8,
+      "previousId": null,
+      "registration": 477
+    },
+    {
+      "moduleId": "11zzf_social_choreography.js",
+      "property": "applyTypography5",
+      "line": 37,
+      "previousId": "11w_observer_director.js",
+      "registration": 478
+    },
+    {
+      "moduleId": "11zzf_social_choreography.js",
+      "property": "applyPhotoChoreography",
+      "line": 42,
+      "previousId": null,
+      "registration": 479
+    },
+    {
+      "moduleId": "11zzf_social_choreography.js",
+      "property": "plan",
+      "line": 69,
+      "previousId": "11zza_photo_composition.js",
+      "registration": 480
+    },
+    {
+      "moduleId": "11zzf_social_choreography.js",
+      "property": "createSocialHookPlan",
+      "line": 70,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 481
+    },
+    {
+      "moduleId": "11zzf_social_choreography.js",
+      "property": "directorContext",
+      "line": 71,
+      "previousId": "11zze_glyph_contrast.js",
+      "registration": 482
+    },
+    {
+      "moduleId": "11zzf_social_choreography.js",
+      "property": "createExportProvenance",
+      "line": 72,
+      "previousId": "11zze_glyph_contrast.js",
+      "registration": 483
+    },
+    {
+      "moduleId": "11zzg_social_range.js",
+      "property": "socialHookCandidates",
+      "line": 6,
+      "previousId": "11s_hype_engine.js",
+      "registration": 484
+    },
+    {
+      "moduleId": "11zzh_presentation_evidence.js",
+      "property": "comparePresentationMasks",
+      "line": 3,
+      "previousId": null,
+      "registration": 485
+    },
+    {
+      "moduleId": "11zzh_presentation_evidence.js",
+      "property": "presentationRepeatPairs",
+      "line": 9,
+      "previousId": null,
+      "registration": 486
+    },
+    {
+      "moduleId": "11zzh_presentation_evidence.js",
+      "property": "measurePresentationVariation",
+      "line": 16,
+      "previousId": null,
+      "registration": 487
+    },
+    {
+      "moduleId": "11zzh_presentation_evidence.js",
+      "property": "analyzeRenderedFrames",
+      "line": 38,
+      "previousId": "11zze_glyph_contrast.js",
+      "registration": 488
+    },
+    {
+      "moduleId": "11zzh_presentation_evidence.js",
+      "property": "getPresentationVariation",
+      "line": 39,
+      "previousId": null,
+      "registration": 489
+    },
+    {
+      "moduleId": "11zzh_presentation_evidence.js",
+      "property": "directorContext",
+      "line": 40,
+      "previousId": "11zzf_social_choreography.js",
+      "registration": 490
+    },
+    {
+      "moduleId": "11zzh_presentation_evidence.js",
+      "property": "createExportProvenance",
+      "line": 41,
+      "previousId": "11zzf_social_choreography.js",
+      "registration": 491
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "registrySelectionLyricsKey",
+      "line": 4,
+      "previousId": null,
+      "registration": 492
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "registrySelectionBackgroundKey",
+      "line": 5,
+      "previousId": null,
+      "registration": 493
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "registrySelectionCatalog",
+      "line": 15,
+      "previousId": null,
+      "registration": 494
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "sanitizePhotoEvents",
+      "line": 17,
+      "previousId": null,
+      "registration": 495
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "Renderer.prototype.frame",
+      "line": 20,
+      "previousId": "11zza_photo_composition.js",
+      "registration": 496
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "Renderer.prototype.drawTitleCredit",
+      "line": 21,
+      "previousId": "11t_nextgen.js",
+      "registration": 497
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "measureEventRealization",
+      "line": 22,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 498
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "repairStrongEvents",
+      "line": 23,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 499
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "auditDirectionReality",
+      "line": 27,
+      "previousId": "11r_style_intelligence.js",
+      "registration": 500
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "fixMVQuality",
+      "line": 31,
+      "previousId": "11zzd_export_policy.js",
+      "registration": 501
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "buildStyleArc",
+      "line": 34,
+      "previousId": "11t_nextgen.js",
+      "registration": 502
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "makeArtDirection",
+      "line": 35,
+      "previousId": "11r_style_intelligence.js",
+      "registration": 503
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "plan",
+      "line": 36,
+      "previousId": "11zzf_social_choreography.js",
+      "registration": 504
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "createSocialHookPlan",
+      "line": 37,
+      "previousId": "11zzf_social_choreography.js",
+      "registration": 505
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "analyzeRenderedFrames",
+      "line": 38,
+      "previousId": "11zzh_presentation_evidence.js",
+      "registration": 506
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "selectionPixelEvidence",
+      "line": 43,
+      "previousId": null,
+      "registration": 507
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "selectionGlyphEvidence",
+      "line": 48,
+      "previousId": null,
+      "registration": 508
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "compareRegistryCandidates",
+      "line": 56,
+      "previousId": null,
+      "registration": 509
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "drawItem",
+      "line": 64,
+      "previousId": "03_text.js",
+      "registration": 510
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "drawItem",
+      "line": 66,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 511
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "optimizeDirectionCandidatesRendered",
+      "line": 105,
+      "previousId": "11y_processing_tasks.js",
+      "registration": 512
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "directorContext",
+      "line": 106,
+      "previousId": "11zzh_presentation_evidence.js",
+      "registration": 513
+    },
+    {
+      "moduleId": "11zzi_render_selection.js",
+      "property": "createExportProvenance",
+      "line": 107,
+      "previousId": "11zzh_presentation_evidence.js",
+      "registration": 514
+    },
+    {
+      "moduleId": "11zzia_catalog_audit.js",
+      "property": "registryAudit",
+      "line": 2,
+      "previousId": null,
+      "registration": 515
+    },
+    {
+      "moduleId": "11zzia_catalog_audit.js",
+      "property": "registrySelectionCatalog",
+      "line": 2,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 516
+    },
+    {
+      "moduleId": "11zzia_catalog_audit.js",
+      "property": "directorContext",
+      "line": 2,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 517
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "plan",
+      "line": 5,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 518
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "cameraAt",
+      "line": 24,
+      "previousId": "11zza_photo_composition.js",
+      "registration": 519
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "motifPhysicsAt",
+      "line": 34,
+      "previousId": "11w_observer_director.js",
+      "registration": 520
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "applyTypography5",
+      "line": 35,
+      "previousId": "11zzf_social_choreography.js",
+      "registration": 521
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "Renderer.prototype.drawCustomBackground",
+      "line": 36,
+      "previousId": "11w_observer_director.js",
+      "registration": 522
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "creditStateAt",
+      "line": 37,
+      "previousId": "11u_motion_director.js",
+      "registration": 523
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "Renderer.prototype.drawTitleCredit",
+      "line": 38,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 524
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "Renderer.prototype.frame",
+      "line": 41,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 525
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "Renderer.prototype.post",
+      "line": 44,
+      "previousId": null,
+      "registration": 526
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "refineMusicalPhotoPlan",
+      "line": 51,
+      "previousId": null,
+      "registration": 527
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "analyzeRenderedFrames",
+      "line": 70,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 528
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "directorContext",
+      "line": 71,
+      "previousId": "11zzia_catalog_audit.js",
+      "registration": 529
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "createExportProvenance",
+      "line": 72,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 530
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "clonePhotoRenderPlan",
+      "line": 75,
+      "previousId": null,
+      "registration": 531
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "preparePhotoExport",
+      "line": 84,
+      "previousId": null,
+      "registration": 532
+    },
+    {
+      "moduleId": "11zzj_musical_photo.js",
+      "property": "refinePhotoExport",
+      "line": 99,
+      "previousId": null,
+      "registration": 533
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "plan",
+      "line": 4,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 534
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "cameraAt",
+      "line": 27,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 535
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "Renderer.prototype.drawCustomBackground",
+      "line": 39,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 536
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "Renderer.prototype.drawCut",
+      "line": 49,
+      "previousId": null,
+      "registration": 537
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "applyTypography5",
+      "line": 58,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 538
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "Renderer.prototype.drawTitleCredit",
+      "line": 63,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 539
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "Renderer.prototype.frame",
+      "line": 69,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 540
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "Renderer.prototype.disposeAssets",
+      "line": 76,
+      "previousId": "11x_multi_image_director.js",
+      "registration": 541
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "musicalTargets",
+      "line": 77,
+      "previousId": "11w_observer_director.js",
+      "registration": 542
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "analyzeRenderedFrames",
+      "line": 81,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 543
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "evaluateQualityTarget",
+      "line": 89,
+      "previousId": null,
+      "registration": 544
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "checkMVQuality",
+      "line": 98,
+      "previousId": "11zzd_export_policy.js",
+      "registration": 545
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "repairPhotoBottlenecks",
+      "line": 99,
+      "previousId": null,
+      "registration": 546
+    },
+    {
+      "moduleId": "11zzk_quality_target.js",
+      "property": "directorContext",
+      "line": 107,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 547
+    },
+    {
+      "moduleId": "11zzl_song_direction.js",
+      "property": "songDirectionProfile",
+      "line": 3,
+      "previousId": null,
+      "registration": 548
+    },
+    {
+      "moduleId": "11zzl_song_direction.js",
+      "property": "registrySelectionAudioKey",
+      "line": 10,
+      "previousId": null,
+      "registration": 549
+    },
+    {
+      "moduleId": "11zzl_song_direction.js",
+      "property": "songLayoutFit",
+      "line": 16,
+      "previousId": null,
+      "registration": 550
+    },
+    {
+      "moduleId": "11zzl_song_direction.js",
+      "property": "plan",
+      "line": 24,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 551
+    },
+    {
+      "moduleId": "11zzl_song_direction.js",
+      "property": "cameraAt",
+      "line": 40,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 552
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "vocaliseGroup",
+      "line": 3,
+      "previousId": null,
+      "registration": 553
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "photoAnchorCandidates",
+      "line": 5,
+      "previousId": null,
+      "registration": 554
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "centerPhotoLyricItem",
+      "line": 10,
+      "previousId": "11zza_photo_composition.js",
+      "registration": 555
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "buildPhotoStory",
+      "line": 15,
+      "previousId": null,
+      "registration": 556
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "plan",
+      "line": 44,
+      "previousId": "11zzl_song_direction.js",
+      "registration": 557
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "photoStoryAt",
+      "line": 45,
+      "previousId": null,
+      "registration": 558
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "cameraAt",
+      "line": 46,
+      "previousId": "11zzl_song_direction.js",
+      "registration": 559
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "Renderer.prototype.drawCustomBackground",
+      "line": 58,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 560
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "Renderer.prototype.disposeAssets",
+      "line": 81,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 561
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "creditStateAt",
+      "line": 82,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 562
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "measureDisplayOnsets",
+      "line": 84,
+      "previousId": null,
+      "registration": 563
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "drawItem",
+      "line": 88,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 564
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "drawItem",
+      "line": 88,
+      "previousId": "11zzm_story_director.js",
+      "registration": 565
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "refineMusicalPhotoPlan",
+      "line": 94,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 566
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "analyzeRenderedFrames",
+      "line": 95,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 567
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "checkMVQuality",
+      "line": 96,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 568
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "directorContext",
+      "line": 105,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 569
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "createExportProvenance",
+      "line": 106,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 570
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "evaluateQualityTarget",
+      "line": 110,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 571
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "compareRegistryCandidates",
+      "line": 112,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 572
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "drawItem",
+      "line": 123,
+      "previousId": "11zzm_story_director.js",
+      "registration": 573
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "drawItem",
+      "line": 123,
+      "previousId": "11zzm_story_director.js",
+      "registration": 574
+    },
+    {
+      "moduleId": "11zzm_story_director.js",
+      "property": "repairPhotoBottlenecks",
+      "line": 140,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 575
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "virtualShotCandidates",
+      "line": 14,
+      "previousId": null,
+      "registration": 576
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "lyricCinemaMeaning",
+      "line": 26,
+      "previousId": null,
+      "registration": 577
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "vocaliseUnits",
+      "line": 32,
+      "previousId": null,
+      "registration": 578
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "buildPhotoStory",
+      "line": 37,
+      "previousId": "11zzm_story_director.js",
+      "registration": 579
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "createSocialHookPlan",
+      "line": 70,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 580
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "cinemaShotAt",
+      "line": 94,
+      "previousId": null,
+      "registration": 581
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "cameraAt",
+      "line": 95,
+      "previousId": "11zzm_story_director.js",
+      "registration": 582
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "Renderer.prototype.drawCustomBackground",
+      "line": 107,
+      "previousId": "11zzm_story_director.js",
+      "registration": 583
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "applyTypography5",
+      "line": 128,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 584
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "creditStateAt",
+      "line": 136,
+      "previousId": "11zzm_story_director.js",
+      "registration": 585
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "Renderer.prototype.drawTitleCredit",
+      "line": 137,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 586
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "Renderer.prototype.frame",
+      "line": 141,
+      "previousId": "11zzk_quality_target.js",
+      "registration": 587
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "Renderer.prototype.disposeAssets",
+      "line": 154,
+      "previousId": "11zzm_story_director.js",
+      "registration": 588
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "measureCinemaEvidence",
+      "line": 155,
+      "previousId": null,
+      "registration": 589
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "analyzeRenderedFrames",
+      "line": 166,
+      "previousId": "11zzm_story_director.js",
+      "registration": 590
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "loopQuality",
+      "line": 167,
+      "previousId": "08f_motion_dna.js",
+      "registration": 591
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "repairPhotoBottlenecks",
+      "line": 172,
+      "previousId": "11zzm_story_director.js",
+      "registration": 592
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "checkMVQuality",
+      "line": 179,
+      "previousId": "11zzm_story_director.js",
+      "registration": 593
+    },
+    {
+      "moduleId": "11zzn_single_image_cinema.js",
+      "property": "directorContext",
+      "line": 188,
+      "previousId": "11zzm_story_director.js",
+      "registration": 594
+    },
+    {
+      "moduleId": "11zzo_layered_cinema.js",
+      "property": "segmentCinemaArtwork",
+      "line": 4,
+      "previousId": null,
+      "registration": 595
+    },
+    {
+      "moduleId": "11zzo_layered_cinema.js",
+      "property": "cinemaLayerMotion",
+      "line": 28,
+      "previousId": null,
+      "registration": 596
+    },
+    {
+      "moduleId": "11zzo_layered_cinema.js",
+      "property": "drawLayeredCinema",
+      "line": 36,
+      "previousId": null,
+      "registration": 597
+    },
+    {
+      "moduleId": "11zzo_layered_cinema.js",
+      "property": "buildPhotoStory",
+      "line": 42,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 598
+    },
+    {
+      "moduleId": "11zzo_layered_cinema.js",
+      "property": "applyTypography5",
+      "line": 43,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 599
+    },
+    {
+      "moduleId": "11zzo_layered_cinema.js",
+      "property": "drawCinemaAccent",
+      "line": 48,
+      "previousId": null,
+      "registration": 600
+    },
+    {
+      "moduleId": "11zzo_layered_cinema.js",
+      "property": "measureArtworkForeground",
+      "line": 56,
+      "previousId": null,
+      "registration": 601
+    },
+    {
+      "moduleId": "11zzo_layered_cinema.js",
+      "property": "analyzeRenderedFrames",
+      "line": 60,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 602
+    },
+    {
+      "moduleId": "11zzo_layered_cinema.js",
+      "property": "checkMVQuality",
+      "line": 61,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 603
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "buildPhotoStory",
+      "line": 18,
+      "previousId": "11zzo_layered_cinema.js",
+      "registration": 604
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "repairPhotoBottlenecks",
+      "line": 19,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 605
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "createSocialHookPlan",
+      "line": 20,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 606
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "applyTypography5",
+      "line": 26,
+      "previousId": "11zzo_layered_cinema.js",
+      "registration": 607
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "adjustLocalReadability",
+      "line": 33,
+      "previousId": "11zza_photo_composition.js",
+      "registration": 608
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "paintCinemaGrammarForeground",
+      "line": 38,
+      "previousId": null,
+      "registration": 609
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "drawCinemaSourceTile",
+      "line": 39,
+      "previousId": null,
+      "registration": 610
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "drawCinemaGrammar",
+      "line": 40,
+      "previousId": null,
+      "registration": 611
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "Renderer.prototype.drawCustomBackground",
+      "line": 62,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 612
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "creditStateAt",
+      "line": 68,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 613
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "Renderer.prototype.disposeAssets",
+      "line": 70,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 614
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "applyCinemaDependencyCaps",
+      "line": 71,
+      "previousId": null,
+      "registration": 615
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "checkMVQuality",
+      "line": 81,
+      "previousId": "11zzo_layered_cinema.js",
+      "registration": 616
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "createExportProvenance",
+      "line": 82,
+      "previousId": "11zzm_story_director.js",
+      "registration": 617
+    },
+    {
+      "moduleId": "11zzp_shot_grammar.js",
+      "property": "directorContext",
+      "line": 83,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 618
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "measureCinemaSequence",
+      "line": 7,
+      "previousId": null,
+      "registration": 619
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "drawItem",
+      "line": 9,
+      "previousId": "11zzm_story_director.js",
+      "registration": 620
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "drawItem",
+      "line": 9,
+      "previousId": "11zzq_render_feedback.js",
+      "registration": 621
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "repairCinemaSequence",
+      "line": 25,
+      "previousId": null,
+      "registration": 622
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "compareRegistryCandidates",
+      "line": 39,
+      "previousId": "11zzm_story_director.js",
+      "registration": 623
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "analyzeRenderedFrames",
+      "line": 40,
+      "previousId": "11zzo_layered_cinema.js",
+      "registration": 624
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "Renderer.prototype.drawCustomBackground",
+      "line": 44,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 625
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "applyTypography5",
+      "line": 46,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 626
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "checkMVQuality",
+      "line": 47,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 627
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "loopQuality",
+      "line": 61,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 628
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "applyExportPreset",
+      "line": 62,
+      "previousId": "11_export.js",
+      "registration": 629
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "directorContext",
+      "line": 63,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 630
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "createExportProvenance",
+      "line": 64,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 631
+    },
+    {
+      "moduleId": "11zzq_render_feedback.js",
+      "property": "chooseAdaptiveFPS",
+      "line": 66,
+      "previousId": "11w_observer_director.js",
+      "registration": 632
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "composeLyricPhrase",
+      "line": 4,
+      "previousId": "11zzf_social_choreography.js",
+      "registration": 633
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "drawLayeredCinema",
+      "line": 7,
+      "previousId": "11zzo_layered_cinema.js",
+      "registration": 634
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "buildPhotoStory",
+      "line": 8,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 635
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "repairPhotoBottlenecks",
+      "line": 9,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 636
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "createSocialHookPlan",
+      "line": 10,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 637
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "blueprintContour",
+      "line": 12,
+      "previousId": null,
+      "registration": 638
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "drawCinemaGrammar",
+      "line": 13,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 639
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "auditDirectionReality",
+      "line": 14,
+      "previousId": "11zzi_render_selection.js",
+      "registration": 640
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "measureArtworkForeground",
+      "line": 15,
+      "previousId": "11zzo_layered_cinema.js",
+      "registration": 641
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "measurePhotoStyleTrial",
+      "line": 17,
+      "previousId": null,
+      "registration": 642
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "checkMVQuality",
+      "line": 18,
+      "previousId": "11zzq_render_feedback.js",
+      "registration": 643
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "Renderer.prototype.disposeAssets",
+      "line": 24,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 644
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "createExportProvenance",
+      "line": 25,
+      "previousId": "11zzq_render_feedback.js",
+      "registration": 645
+    },
+    {
+      "moduleId": "11zzr_artifact_style.js",
+      "property": "directorContext",
+      "line": 26,
+      "previousId": "11zzq_render_feedback.js",
+      "registration": 646
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "cinemaContentSeed",
+      "line": 4,
+      "previousId": null,
+      "registration": 647
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "cinemaArchitectureCandidates",
+      "line": 6,
+      "previousId": null,
+      "registration": 648
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "applyCinemaArchitecture",
+      "line": 8,
+      "previousId": null,
+      "registration": 649
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "buildPhotoStory",
+      "line": 23,
+      "previousId": "11zzr_artifact_style.js",
+      "registration": 650
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "repairPhotoBottlenecks",
+      "line": 24,
+      "previousId": "11zzr_artifact_style.js",
+      "registration": 651
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "createSocialHookPlan",
+      "line": 25,
+      "previousId": "11zzr_artifact_style.js",
+      "registration": 652
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "cinemaFieldBoxes",
+      "line": 26,
+      "previousId": null,
+      "registration": 653
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "paintCinemaGrammarForeground",
+      "line": 35,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 654
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "drawCinemaGrammar",
+      "line": 41,
+      "previousId": "11zzr_artifact_style.js",
+      "registration": 655
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "applyTypography5",
+      "line": 44,
+      "previousId": "11zzq_render_feedback.js",
+      "registration": 656
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "centerPhotoLyricItem",
+      "line": 47,
+      "previousId": "11zzm_story_director.js",
+      "registration": 657
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "repairCinemaSequence",
+      "line": 49,
+      "previousId": "11zzq_render_feedback.js",
+      "registration": 658
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "measureArtworkForeground",
+      "line": 52,
+      "previousId": "11zzr_artifact_style.js",
+      "registration": 659
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "Renderer.prototype.drawCustomBackground",
+      "line": 53,
+      "previousId": "11zzq_render_feedback.js",
+      "registration": 660
+    },
+    {
+      "moduleId": "11zzs_architecture_cinema.js",
+      "property": "directorContext",
+      "line": 54,
+      "previousId": "11zzr_artifact_style.js",
+      "registration": 661
+    },
+    {
+      "moduleId": "11zzt_decoded_cinema.js",
+      "property": "measureDecodedCinemaFrames",
+      "line": 4,
+      "previousId": null,
+      "registration": 662
+    },
+    {
+      "moduleId": "11zzt_decoded_cinema.js",
+      "property": "verifyDecodedCinemaLayers",
+      "line": 14,
+      "previousId": null,
+      "registration": 663
+    },
+    {
+      "moduleId": "11zzt_decoded_cinema.js",
+      "property": "applyDecodedCinemaEvidence",
+      "line": 26,
+      "previousId": null,
+      "registration": 664
+    },
+    {
+      "moduleId": "11zzt_decoded_cinema.js",
+      "property": "reconcileDecodedCinemaQuality",
+      "line": 27,
+      "previousId": null,
+      "registration": 665
+    },
+    {
+      "moduleId": "11zzt_decoded_cinema.js",
+      "property": "checkMVQuality",
+      "line": 36,
+      "previousId": "11zzr_artifact_style.js",
+      "registration": 666
+    },
+    {
+      "moduleId": "11zzt_decoded_cinema.js",
+      "property": "createExportProvenance",
+      "line": 38,
+      "previousId": "11zzr_artifact_style.js",
+      "registration": 667
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "cinemaMotionRole",
+      "line": 3,
+      "previousId": null,
+      "registration": 668
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "applyCinemaArchitecture",
+      "line": 4,
+      "previousId": "11zzs_architecture_cinema.js",
+      "registration": 669
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "cinemaTemporalState",
+      "line": 16,
+      "previousId": null,
+      "registration": 670
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "temporalCinemaFocus",
+      "line": 17,
+      "previousId": null,
+      "registration": 671
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "cinemaFieldBoxes",
+      "line": 20,
+      "previousId": "11zzs_architecture_cinema.js",
+      "registration": 672
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "Renderer.prototype.makeEnv",
+      "line": 21,
+      "previousId": null,
+      "registration": 673
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "drawCinemaGrammar",
+      "line": 22,
+      "previousId": "11zzs_architecture_cinema.js",
+      "registration": 674
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "mainDraw",
+      "line": 26,
+      "previousId": "11v_perceptual_director.js",
+      "registration": 675
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "applyTypography5",
+      "line": 29,
+      "previousId": "11zzs_architecture_cinema.js",
+      "registration": 676
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "drawCinemaAccent",
+      "line": 34,
+      "previousId": "11zzo_layered_cinema.js",
+      "registration": 677
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "creditStateAt",
+      "line": 38,
+      "previousId": "11zzp_shot_grammar.js",
+      "registration": 678
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "Renderer.prototype.drawTitleCredit",
+      "line": 38,
+      "previousId": "11zzn_single_image_cinema.js",
+      "registration": 679
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "createExportProvenance",
+      "line": 39,
+      "previousId": "11zzt_decoded_cinema.js",
+      "registration": 680
+    },
+    {
+      "moduleId": "11zzu_temporal_direction.js",
+      "property": "directorContext",
+      "line": 40,
+      "previousId": "11zzs_architecture_cinema.js",
+      "registration": 681
+    },
+    {
+      "moduleId": "11zzv_climax_realization.js",
+      "property": "cinemaArchitectureCandidates",
+      "line": 5,
+      "previousId": "11zzs_architecture_cinema.js",
+      "registration": 682
+    },
+    {
+      "moduleId": "11zzv_climax_realization.js",
+      "property": "applyCinemaArchitecture",
+      "line": 6,
+      "previousId": "11zzu_temporal_direction.js",
+      "registration": 683
+    },
+    {
+      "moduleId": "11zzv_climax_realization.js",
+      "property": "measureCinemaSequence",
+      "line": 14,
+      "previousId": "11zzq_render_feedback.js",
+      "registration": 684
+    },
+    {
+      "moduleId": "11zzv_climax_realization.js",
+      "property": "measureDecodedCinemaFrames",
+      "line": 16,
+      "previousId": "11zzt_decoded_cinema.js",
+      "registration": 685
+    },
+    {
+      "moduleId": "11zzv_climax_realization.js",
+      "property": "reconcileDecodedCinemaQuality",
+      "line": 17,
+      "previousId": "11zzt_decoded_cinema.js",
+      "registration": 686
+    },
+    {
+      "moduleId": "11zzv_climax_realization.js",
+      "property": "repairPhotoBottlenecks",
+      "line": 19,
+      "previousId": "11zzs_architecture_cinema.js",
+      "registration": 687
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "TECHNIQUE_CAPABILITIES",
+      "line": 4,
+      "previousId": null,
+      "registration": 688
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "cinemaTechniqueSupported",
+      "line": 5,
+      "previousId": null,
+      "registration": 689
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "cinemaLayerPixelEvidence",
+      "line": 6,
+      "previousId": null,
+      "registration": 690
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "plan",
+      "line": 7,
+      "previousId": "11zzm_story_director.js",
+      "registration": 691
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "applyCinemaArchitecture",
+      "line": 10,
+      "previousId": "11zzv_climax_realization.js",
+      "registration": 692
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "cinemaFieldBoxes",
+      "line": 18,
+      "previousId": "11zzu_temporal_direction.js",
+      "registration": 693
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "applyTypography5",
+      "line": 20,
+      "previousId": "11zzu_temporal_direction.js",
+      "registration": 694
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "measureCinemaSequence",
+      "line": 22,
+      "previousId": "11zzv_climax_realization.js",
+      "registration": 695
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "repairPhotoBottlenecks",
+      "line": 23,
+      "previousId": "11zzv_climax_realization.js",
+      "registration": 696
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "qualityScoreStages",
+      "line": 25,
+      "previousId": null,
+      "registration": 697
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "checkMVQuality",
+      "line": 26,
+      "previousId": "11zzt_decoded_cinema.js",
+      "registration": 698
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "measureSocialProfilePreviews",
+      "line": 28,
+      "previousId": null,
+      "registration": 699
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "drawItem",
+      "line": 28,
+      "previousId": "11zzq_render_feedback.js",
+      "registration": 700
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "drawItem",
+      "line": 28,
+      "previousId": "11zzw_quality_contract.js",
+      "registration": 701
+    },
+    {
+      "moduleId": "11zzw_quality_contract.js",
+      "property": "createExportProvenance",
+      "line": 29,
+      "previousId": "11zzu_temporal_direction.js",
+      "registration": 702
+    },
+    {
+      "moduleId": "11zzx_climax_evidence.js",
+      "property": "measureDecodedCinemaFrames",
+      "line": 3,
+      "previousId": "11zzv_climax_realization.js",
+      "registration": 703
+    },
+    {
+      "moduleId": "11zzx_climax_evidence.js",
+      "property": "applyDecodedCinemaEvidence",
+      "line": 4,
+      "previousId": "11zzt_decoded_cinema.js",
+      "registration": 704
+    },
+    {
+      "moduleId": "11zzx_climax_evidence.js",
+      "property": "reconcileDecodedCinemaQuality",
+      "line": 5,
+      "previousId": "11zzv_climax_realization.js",
+      "registration": 705
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "decodedGlyphContrast",
+      "line": 3,
+      "previousId": null,
+      "registration": 706
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "measureAudioEndpointSeam",
+      "line": 4,
+      "previousId": null,
+      "registration": 707
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "decodedTextSeam",
+      "line": 5,
+      "previousId": null,
+      "registration": 708
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "drawCinemaGrammar",
+      "line": 6,
+      "previousId": "11zzu_temporal_direction.js",
+      "registration": 709
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "measureDecodedCinemaFrames",
+      "line": 7,
+      "previousId": "11zzx_climax_evidence.js",
+      "registration": 710
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "applyDecodedCinemaEvidence",
+      "line": 8,
+      "previousId": "11zzx_climax_evidence.js",
+      "registration": 711
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "observeExportedMP4",
+      "line": 9,
+      "previousId": "11w_observer_director.js",
+      "registration": 712
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "qualityScoreStages",
+      "line": 10,
+      "previousId": "11zzw_quality_contract.js",
+      "registration": 713
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "cinemaWeakTypographyLines",
+      "line": 11,
+      "previousId": null,
+      "registration": 714
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "classifyCinemaRepairFailures",
+      "line": 12,
+      "previousId": null,
+      "registration": 715
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "repairPhotoBottlenecks",
+      "line": 13,
+      "previousId": "11zzw_quality_contract.js",
+      "registration": 716
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "checkMVQuality",
+      "line": 14,
+      "previousId": "11zzw_quality_contract.js",
+      "registration": 717
+    },
+    {
+      "moduleId": "11zzy_closed_loop.js",
+      "property": "createExportProvenance",
+      "line": 15,
+      "previousId": "11zzw_quality_contract.js",
+      "registration": 718
+    },
+    {
+      "moduleId": "11zzz_proxy_search.js",
+      "property": "cinemaArchitectureCandidates",
+      "line": 3,
+      "previousId": "11zzv_climax_realization.js",
+      "registration": 719
+    },
+    {
+      "moduleId": "11zzz_proxy_search.js",
+      "property": "repairCinemaSequence",
+      "line": 4,
+      "previousId": "11zzs_architecture_cinema.js",
+      "registration": 720
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "cinemaLowerTailScore",
+      "line": 3,
+      "previousId": null,
+      "registration": 721
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "cinemaOutputProfile",
+      "line": 4,
+      "previousId": null,
+      "registration": 722
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "cinemaBlockFlow",
+      "line": 6,
+      "previousId": null,
+      "registration": 723
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "measureCinemaHold",
+      "line": 7,
+      "previousId": null,
+      "registration": 724
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "measureDecodedCinemaFrames",
+      "line": 8,
+      "previousId": "11zzy_closed_loop.js",
+      "registration": 725
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "rebuildCinemaBeatIntent",
+      "line": 10,
+      "previousId": null,
+      "registration": 726
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "applyCinemaArchitecture",
+      "line": 11,
+      "previousId": "11zzw_quality_contract.js",
+      "registration": 727
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "measureCinemaBeatPrecision",
+      "line": 12,
+      "previousId": null,
+      "registration": 728
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "applyDecodedCinemaEvidence",
+      "line": 13,
+      "previousId": "11zzy_closed_loop.js",
+      "registration": 729
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "qualityScoreStages",
+      "line": 14,
+      "previousId": "11zzy_closed_loop.js",
+      "registration": 730
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "checkMVQuality",
+      "line": 15,
+      "previousId": "11zzy_closed_loop.js",
+      "registration": 731
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "evaluateQualityTarget",
+      "line": 16,
+      "previousId": "11zzm_story_director.js",
+      "registration": 732
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "observeExportedMP4",
+      "line": 17,
+      "previousId": "11zzy_closed_loop.js",
+      "registration": 733
+    },
+    {
+      "moduleId": "11zzzz_observed_quality.js",
+      "property": "createExportProvenance",
+      "line": 18,
+      "previousId": "11zzy_closed_loop.js",
+      "registration": 734
+    },
+    {
+      "moduleId": "11zzzzz_plateau_repair.js",
+      "property": "classifyCinemaRepairFailures",
+      "line": 4,
+      "previousId": "11zzy_closed_loop.js",
+      "registration": 735
+    },
+    {
+      "moduleId": "11zzzzz_plateau_repair.js",
+      "property": "preparePhotoExport",
+      "line": 5,
+      "previousId": "11zzj_musical_photo.js",
+      "registration": 736
+    },
+    {
+      "moduleId": "11zzzzz_plateau_repair.js",
+      "property": "repairPhotoBottlenecks",
+      "line": 6,
+      "previousId": "11zzy_closed_loop.js",
+      "registration": 737
+    },
+    {
+      "moduleId": "11zzzzz_plateau_repair.js",
+      "property": "temporalCinemaFocus",
+      "line": 9,
+      "previousId": "11zzu_temporal_direction.js",
+      "registration": 738
+    },
+    {
+      "moduleId": "11zzzzz_plateau_repair.js",
+      "property": "applyTypography5",
+      "line": 10,
+      "previousId": "11zzw_quality_contract.js",
+      "registration": 739
+    },
+    {
+      "moduleId": "11zzzzzz_video_search.js",
+      "property": "measureCinemaVideoProxy",
+      "line": 3,
+      "previousId": null,
+      "registration": 740
+    },
+    {
+      "moduleId": "11zzzzzz_video_search.js",
+      "property": "encodeCinemaVisualProxy",
+      "line": 4,
+      "previousId": null,
+      "registration": 741
+    },
+    {
+      "moduleId": "11zzzzzz_video_search.js",
+      "property": "measureCinemaEncodedProxy",
+      "line": 5,
+      "previousId": null,
+      "registration": 742
+    },
+    {
+      "moduleId": "11zzzzzz_video_search.js",
+      "property": "repairCinemaSequence",
+      "line": 6,
+      "previousId": "11zzz_proxy_search.js",
+      "registration": 743
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "cinemaCandidateRank",
+      "line": 3,
+      "previousId": null,
+      "registration": 744
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "cinemaProtectedRegressions",
+      "line": 4,
+      "previousId": null,
+      "registration": 745
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "repairCinemaBeatTiming",
+      "line": 5,
+      "previousId": null,
+      "registration": 746
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "measureCinemaEndingClosure",
+      "line": 6,
+      "previousId": null,
+      "registration": 747
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "resolveCinemaMetricApplicability",
+      "line": 7,
+      "previousId": null,
+      "registration": 748
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "measureDecodedCinemaFrames",
+      "line": 8,
+      "previousId": "11zzzz_observed_quality.js",
+      "registration": 749
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "observeExportedMP4",
+      "line": 9,
+      "previousId": "11zzzz_observed_quality.js",
+      "registration": 750
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "classifyCinemaRepairFailures",
+      "line": 10,
+      "previousId": "11zzzzz_plateau_repair.js",
+      "registration": 751
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "checkMVQuality",
+      "line": 11,
+      "previousId": "11zzzz_observed_quality.js",
+      "registration": 752
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "createExportProvenance",
+      "line": 12,
+      "previousId": "11zzzz_observed_quality.js",
+      "registration": 753
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "qualityScoreStages",
+      "line": 13,
+      "previousId": "11zzzz_observed_quality.js",
+      "registration": 754
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "evaluateQualityTarget",
+      "line": 14,
+      "previousId": "11zzzz_observed_quality.js",
+      "registration": 755
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "checkMVQuality",
+      "line": 15,
+      "previousId": "11zzzzzzz_measurement_policy.js",
+      "registration": 756
+    },
+    {
+      "moduleId": "11zzzzzzz_measurement_policy.js",
+      "property": "classifyCinemaRepairFailures",
+      "line": 16,
+      "previousId": "11zzzzzzz_measurement_policy.js",
+      "registration": 757
+    },
+    {
+      "moduleId": "12_ui.js",
+      "property": "ui",
+      "line": 1925,
+      "previousId": null,
+      "registration": 758
+    },
+    {
+      "moduleId": "12_ui.js",
+      "property": "uiApi",
+      "line": 1927,
+      "previousId": null,
+      "registration": 759
+    },
+    {
+      "moduleId": "12a_processing_ui.js",
+      "property": "mountProcessingUI",
+      "line": 3,
+      "previousId": null,
+      "registration": 760
+    }
+  ],
+  "scope": "Static assignment-site ledger; includes temporary assignments, not a dynamic call trace"
+}
