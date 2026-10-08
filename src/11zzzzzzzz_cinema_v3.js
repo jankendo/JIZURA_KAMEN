@@ -25,7 +25,7 @@ V.feature=(value,source,confidence=1,status=value===null?'UNMEASURED':'MEASURED'
 V.clone=value=>J.clonePhotoRenderPlan(value);
 // Freeze only owned JSON metadata; never freeze PCM buffers, DOM or codec objects.
 V.freezeMetadata=value=>{if(value&&typeof value==='object'){Object.values(value).forEach(V.freezeMetadata);Object.freeze(value);}return value;};
-V.outputProfile=(p,range=null)=>{const loop=p.exportSettings?.loopRequired===true,short=!!p.socialHook,aspect=p.W===p.H?'1:1':p.H>p.W?'9:16':'16:9';return V.validateProfile({purpose:loop?'LOOP_SHORT':short?'SHORT':aspect==='1:1'?'SQUARE':'FULL_MV',aspect,fps:p.fps,range:[range?.start??p.socialHook?.start??0,range?.end??p.socialHook?.end??p.duration],loopRequired:loop});};
+V.outputProfile=(p,range=null)=>{const loop=p.exportSettings?.loopRequired===true,short=!!p.socialHook,aspect=(()=>{const gcd=(a,b)=>b?gcd(b,a%b):a,d=gcd(p.W,p.H);return p.W/d+':'+p.H/d;})();return V.validateProfile({purpose:loop?'LOOP_SHORT':short?'SHORT':aspect==='1:1'?'SQUARE':'FULL_MV',aspect,fps:p.fps,range:[range?.start??p.socialHook?.start??0,range?.end??p.socialHook?.end??p.duration],loopRequired:loop});};
 V.validateProfile=p=>{if(!profile(p))throw new TypeError('Invalid Cinema V3 output profile');return p;};
 V.profileId=p=>J.canonicalJSON(p);
 V.audioHash=async audio=>{const b=audio?.buffer;if(!b?.getChannelData)return null;const parts=[];for(let c=0;c<b.numberOfChannels;c++){const pcm=b.getChannelData(c);parts.push(await J.sha256(new Uint8Array(pcm.buffer,pcm.byteOffset,pcm.byteLength)));}return J.sha256(J.canonicalJSON({sampleRate:b.sampleRate,channels:b.numberOfChannels,length:b.length,parts}));};
@@ -143,4 +143,40 @@ J.generateCinemaCandidates=(p)=>[{id:'baseline',plan:V.clone(p)},...(p.musicalPh
 J.assessCandidatePreview=async(candidate,range,signal)=>{const p=candidate.plan,raster=await J.measureCinemaSequence(p,range),video=await J.measureCinemaVideoProxy(p,range,signal);return {...candidate,raster,video};};
 J.exportAndObserveCandidate=args=>J.exportMP4({...args,cinemaV3:true});
 V.repair=args=>J.exportAndObserveCandidate(args);
+})();
+
+/* Confidence-aware grammar extension. The authoritative lyric/audio ranges never move. */
+(()=>{
+'use strict';const J=window.J,V=J.cinemaV3,C=J.clamp,mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+V.sectionFeatures=(p,audio)=>{
+ const energy=Array.from(audio?.energy||[]),peak=energy.length?energy.reduce((m,v)=>Number.isFinite(v)?Math.max(m,v):m,0):0,rate=audio?.energyRate||energy.length/(audio?.duration||p.duration),tempo=audio?.tempoConfidence??audio?.features?.tempoConfidence,energyConfidence=audio?.features?.statistics?.energy?.confidence;
+ const sections=p.musicalStructure?.sections?.length?p.musicalStructure.sections:[{from:0,to:p.duration}];
+ return sections.map(s=>{const values=rate?energy.slice(Math.floor(s.from*rate),Math.ceil(s.to*rate)).filter(Number.isFinite):[],beats=(p.beatHierarchy||[]).filter(b=>b.time>=s.from&&b.time<s.to),lyrics=(p.lines||[]).filter(l=>l.start>=s.from&&l.start<s.to),texts=lyrics.map(l=>String(l.text).trim()),duration=s.to-s.from,onsets=Array.from(audio?.onset||[]).slice(Math.floor(s.from*rate),Math.ceil(s.to*rate)),confidence=values.length?(Number.isFinite(energyConfidence)?C(energyConfidence):Math.min(.85,values.length/(values.length+20))):0;
+ const result={from:s.from,to:s.to,energy:V.feature(values.length?(peak?mean(values)/peak:0):null,'decodedPCM normalized envelope',confidence),beatSalience:V.feature(beats.length&&Number.isFinite(tempo)&&tempo>0?mean(beats.map(b=>b.beatSalience).filter(Number.isFinite)):null,'existing beat hierarchy; tempo autocorrelation confidence',Number.isFinite(tempo)?C(tempo):0),onsetDensity:V.feature(onsets.length?onsets.filter(x=>x>0).length/Math.max(.001,duration):null,'decodedPCM positive onset bins / seconds',onsets.length?confidence:0),lyricDensity:V.feature(texts.reduce((n,t)=>n+Array.from(t).length,0)/Math.max(.001,duration),'authoritative lyric characters / seconds',1),repetition:V.feature(texts.length?1-new Set(texts).size/texts.length:0,'exact authoritative phrase repetition',1),role:V.feature(Number.isFinite(s.confidence)&&s.confidence>0&&['intro','verse','chorus','bridge','climax','outro'].includes(s.role)?s.role:null,'existing section analysis; uncertain role remains unknown',Number.isFinite(s.confidence)?C(s.confidence):0)};
+ result.energy.limitations=['Envelope confidence is sampling coverage / existing analysis confidence, not genre or perceptual certainty'];return V.validate('SectionFeatures',result);
+ });
+};
+V.directionPolicy=(features,index,count)=>{
+ const e=features.energy.value,beat=features.beatSalience,density=features.lyricDensity.value,quiet=e!==null&&e<.3&&density<8,confidence=features.energy.confidence,knownBeat=beat.status==='MEASURED'&&beat.confidence>=.35;
+ const stageRole=quiet?'sustain':index===0?'introduce':index===count-1?'resolve':features.role.value==='bridge'?'contrast':'develop';
+ return V.validate('DirectionPolicy',{mode:e===null||!knownBeat?'lyric_first':quiet?'minimal':e>.7?'energetic':'cinematic',stageRole,motionBudget:C((e??.25)*.65*(knownBeat?1:.5)),attentionBudget:C(1-density/30),typographyBudget:C(1-density/40),desiredChange:quiet?0:C((e??.25)*.5),confidence,quietIntent:quiet});
+};
+V.phases=(c,fps)=>{const from=c.start,to=c.end,dur=Math.max(0,to-from),frame=1/fps,enter=Math.min(dur*.12,.12),settle=Math.min(dur*.15,Math.max(frame,.05+Array.from(c.lineText||'').length*.002)),release=Math.min(dur*.12,.2),exit=Math.min(dur*.06,frame);return {PREPARE:[Math.max(0,from-Math.min(.15,dur*.1)),from],ENTER:[from,from+enter],SETTLE:[from+enter,Math.min(to-release-exit,from+enter+settle)],HOLD:[Math.min(to-release-exit,from+enter+settle),to-release-exit],RELEASE:[to-release-exit,to-exit],EXIT:[to-exit,to]};};
+V.phaseAt=(phases,t)=>Object.keys(phases).find(key=>t>=phases[key][0]&&t<phases[key][1])||(t<phases.ENTER[0]?'PREPARE':'EXIT');
+V.typographyPreflight=(p,c)=>{
+ const text=J.composeLyricPhrase(String(c.lineText||c.text||'')),font=c.params?.font||'embedded_bold',cv=document.createElement('canvas'),ctx=cv.getContext?.('2d');
+ try{if(typeof ctx?.measureText!=='function')return {text,font,size:null,lineCount:text.split('\n').length,widths:null,widthStatus:'UNMEASURED',safeArea:{left:.11,right:.89,top:.08,bottom:.92},minReadableFrames:Math.ceil(Math.min(2,Math.max(.15,Array.from(text).length/20))*p.fps),availableFrames:Math.max(0,Math.floor((c.end-c.start)*p.fps)),constraintFailures:['CANVAS_TEXT_MEASUREMENT_UNAVAILABLE'],fontCoverage:V.feature(null,'Canvas text measurement unavailable',0),rubyPresent:/[《》｜]|<ruby\b/i.test(text),source:'UNMEASURED: no Canvas text measurement capability'};const safeArea={left:.11,right:.89,top:.08,bottom:.92},width=p.W*(safeArea.right-safeArea.left),height=p.H*(safeArea.bottom-safeArea.top),size=J.fitSize(text,font,width,height,{lead:1.12,track:.015});ctx.font=J.fontCSS(font,size);const rows=text.split('\n'),widths=rows.map(row=>ctx.measureText(row).width),chars=Array.from(text.replace(/\s/g,'')).length,minSeconds=Math.min(2,Math.max(.15,chars/20)),minReadableFrames=Math.ceil(minSeconds*p.fps),availableFrames=Math.max(0,Math.floor((c.end-c.start)*p.fps)),fontKnown=!!J.FONTS[font];
+ return {text,font,size,lineCount:rows.length,widths,safeArea,minReadableFrames,availableFrames,constraintFailures:[...widths.some(w=>w>width+1)?['TEXT_WIDTH']:[],...availableFrames<minReadableFrames?['READ_DURATION_UNMET']:[],...!fontKnown?['FONT_UNKNOWN']:[]],fontCoverage:V.feature(null,'Font availability is not per-character cmap coverage; final glyph raster required',0),rubyPresent:/[《》｜]|<ruby\b/i.test(text),source:'existing composeLyricPhrase / fitSize / browser text measurement; no input rewrite'};
+ }finally{cv.width=cv.height=1;}
+};
+V.adaptPlan=(p,audio,project)=>{if(!V.enabled)return p;const features=V.sectionFeatures(p,audio);p.cinemaV3Features={sections:features,imageSaliency:V.feature(null,'No verified subject segmentation or calibrated saliency confidence',0),inputMode:!project.customBg?.enabled?'no-image':(project.visualAssets||[]).filter(a=>a.dataUrl).length>1?'multi-image':'single-image',vocalSynchronization:V.feature(null,'No vocal separation or sung onset detector',0)};return V.adaptGrammar(p);};
+V.adaptGrammar=p=>{
+ if(!V.enabled||!p.cinemaV3Features)return p;const sections=p.cinemaV3Features.sections,policies=sections.map((s,i)=>V.directionPolicy(s,i,sections.length));
+ for(const c of p.cuts||[]){if(c.line<0||c.locked||J.photoChoreographyLocked?.(p,c))continue;const i=Math.max(0,sections.findIndex(s=>c.start>=s.from&&c.start<s.to)),policy=policies[i],preflight=V.typographyPreflight(p,c),g=c.grammar;
+ c.cinemaV3Shot=V.validate('ShotContract',{line:c.line,from:c.start,to:c.end,role:policy.stageRole,grammarId:g?.field||c.layout||'legacy',typographyId:preflight.font,motionId:g?.temporal?.motionPrinciple||c.hold||'still',safeArea:preflight.safeArea,minReadableFrames:preflight.minReadableFrames,maxOcclusionRatio:0,reasonCodes:[policy.mode,...preflight.constraintFailures],featureSources:['authoritative LRC','normalized PCM envelope'],userLocked:false});c.cinemaV3Typography=preflight;
+ if(!g)continue;g.directionPolicy=policy;g.scenePhases=V.phases(c,p.fps);g.intentionalHold=g.intentionalHold===true||g.quiet===true||g.temporal?.motionPrinciple==='weighted-hold'||policy.quietIntent;
+ if(g.temporal&&policy.mode==='lyric_first'){g.temporal.level=Math.min(g.temporal.level,Math.max(.15,policy.motionBudget));g.motion=g.temporal.level;}
+ }
+ const f=p.musicalPhoto?.cinema;if(f?.grammar)f.grammar.shots=p.cuts.filter(c=>c.grammar).map(c=>({line:c.line,from:c.start,to:c.end,...V.clone(c.grammar)}));for(const s of p.storyboard||[]){const c=p.cuts.find(c=>c.start===s.from);if(c?.grammar&&!s.locked)s.shotGrammar=V.clone(c.grammar);}return p;
+};
 })();
