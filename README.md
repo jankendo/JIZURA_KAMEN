@@ -66,3 +66,5 @@ E2Eはブラウザーの通常ダウンロード経路を検証するため、�
 ## Cinema V3 開発
 
 段階的な改修と検証結果は [実装状況](docs/CINEMA_V3_IMPLEMENTATION_STATUS.md) を参照してください。ソース順は `scripts/source-manifest.json` で固定し、追加ファイル・欠落・順序変更はビルドで検出します。既存API・保存形式・品質閾値を維持し、未測定値はnullのまま扱います。美的100点は認定しません。
+
+Cinema V3の検証手順・素材範囲・ブラインド比較・未測定項目・切り戻し: [docs/CINEMA_V3_VALIDATION.md](docs/CINEMA_V3_VALIDATION.md)。

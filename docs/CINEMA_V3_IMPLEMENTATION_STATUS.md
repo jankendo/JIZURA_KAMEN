@@ -45,7 +45,7 @@
 | P1-C image conditions | intact image / asset deck | PR-4: input-mode/capability; PR-5 real MP4 matrix | 主題分離未提供、マトリクス実行中 |
 | P1-D music/lyrics sync | onset/beat evidence | PR-4: tempo confidence / normalized envelope | 実装、歌唱同期は未測定 |
 | P1-E output profiles | existing profile policy | PR-4: exact aspect, explicit loop, actual range | 実装・契約試験完了、比率別動画実行中 |
-| P2 matrix/calibration/performance | dev QA suites | PR-5 | 未完了 |
+| P2 matrix/calibration/performance | dev QA suites | PR-5: real MP4 matrix, formal E2E, benchmark/review generation | 実装、最終測定/CI実行中、人間評価未実施 |
 
 ## Phases
 
@@ -53,7 +53,7 @@
 2. Selection: 既存32→8→3の候補探索へ安全性・測定証拠・下位区間・可読性の階層/Pareto比較を統合。未知値はnull、単位/プロフィール/Hash不一致は拒否。高品質と既存raster rankを保護し、静止意図を扱う。実UI E2E 10 PASS、ページ例外0、外部リソース失敗0。全回帰の結果は後続の検証記録で確定する。
 3. Verified repair: 既存refinePhotoExportを再利用。CREATED→PROXY_MEASURED→SELECTED→FULL_ENCODED→DECODED_QAの状態を記録し、同一入力・ロック・単位・出力条件の実測改善だけ採用。許可行のMICRO/ARCHITECTURE/GRAMMAR_RESETへ限定し、全plan/QA/hash/artifactを復元する。単体試験のBlobは実MP4と区別。非cinema描画は既存経路を維持し、独立cinema観測の適用不可を明示する。
 4. Adaptive grammar: 既存plan/architecture/temporal/social入口を編集し、追加ラッパーなしで信頼度付きPCM特徴と歌詞密度/反復を統合。未知の歌唱同期/主題分離/cmapはUNMEASURED。低拍信頼度ではlyric_first、静止意図を維持。六段階phaseと文字組制約を記録し、アスペクトは実寸の最大公約数、ループは明示opt-in。全PCM/LRC/画像/手動設定は変更しない。専用メタモルフィック、既存grammar/contract/architecture、実UI MP4 E2E 10 PASS。
-5. Quality/performance: pending. Human blind evaluation **未実施**。実評価者・実素材を捏造しない。
+5. Quality/performance: 六つの指定試験を正式経路へ登録。実UI export/Hash/full decode、24素材+同一入力5試行、ブラインドA/B資料生成を実装。最終コードの全回帰・実動画性能・CIは実行中。 Human blind evaluation **未実施**。実評価者・実素材を捏造しない。
 
 ## Recovery and remaining work
 

@@ -54,7 +54,7 @@ jobs:
           done
           curl -fsS -o /dev/null http://127.0.0.1:4173/
           node --test dev/export_watchdog_test.cjs
-          node dev/pages_e2e.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa"
+          npm run test:cinema-export -- http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa"
       - name: Preserve validation evidence
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
