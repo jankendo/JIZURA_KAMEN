@@ -1433,7 +1433,7 @@ async function runExport(kind,allowUnqualified=false) {
     task.enter('fonts');await J.processingYield();
     await J.ensureFonts(S.project.lyrics + (S.project.title || '') + (S.project.artist || '') + HUD_CHARS, J.fontsOfPlan(exportPlan));
     if (kind === 'mp4') {
-      const args={plan:exportPlan,project:outputProject,audio:S.project.includeAudio!==false?S.audio:null,range,quality:S.project.quality||'high',onProgress,signal:ac.signal};
+      const args={plan:exportPlan,project:outputProject,audio:S.project.includeAudio!==false?S.audio:null,range,quality:S.project.quality||'high',cinemaV3:J.cinemaV3?.enabled===true,onProgress,signal:ac.signal};
       const caps=S.exportCapabilities||await J.exportCapabilities(outputProject,args.audio);
       let r;
       try{
