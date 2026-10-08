@@ -5,6 +5,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const {spawnSync} = require('node:child_process');
+const os = require('node:os');
+const {ExportWatchdog}=require('./export_watchdog.cjs');
 const {createCanvas} = require('@napi-rs/canvas');
 const {chromium} = require('playwright-core');
 const [url, output] = process.argv.slice(2);
@@ -25,9 +27,24 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.KAMEN_CHROME||'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
  const page=await browser.newPage({acceptDownloads:true,viewport:{width:1365,height:900}});
- const errors=[], resourceFailures=[], checks=[];
+ // This runner validates browser downloads, not the OS-native save picker.
+ // Headless Chrome aborts that picker before preflight/encoding. Model the
+ // supported no-picker browser capability; retain the real UI/encoder/QA/saveFile.
+ const saveMode=process.env.KAMEN_FILE_SAVE_MODE||'download';
+ assert(['download','native'].includes(saveMode),'KAMEN_FILE_SAVE_MODE must be download or native');
+ if(saveMode==='download')await page.addInitScript(()=>{
+  window.qaNativeSavePickerAvailable=typeof window.showSaveFilePicker==='function';
+  Object.defineProperty(window,'showSaveFilePicker',{value:undefined,configurable:true});
+ });
+ const errors=[], resourceFailures=[], checks=[], consoleMessages=[], states=[];
+ const environment={saveMode,browser:browser.version(),os:os.platform(),release:os.release(),node:process.version};
+ const safeURL=value=>{try{const u=new URL(value);return u.origin+u.pathname;}catch{return '[non-URL]';}};
+ page.on('console',m=>consoleMessages.push({time:new Date().toISOString(),type:m.type(),text:m.text().slice(0,4000)}));
+ page.on('response',r=>{if(r.status()>=400)resourceFailures.push({url:safeURL(r.url()),status:r.status()});});
+ await page.context().tracing.start({screenshots:true,snapshots:true,sources:false});
+ let lastState=null;
  page.on('pageerror',err=>errors.push(err.message));
- page.on('requestfailed',r=>resourceFailures.push({url:r.url(),error:r.failure()?.errorText}));
+ page.on('requestfailed',r=>resourceFailures.push({url:safeURL(r.url()),error:r.failure()?.errorText}));
  const check=(name,data={})=>{checks.push({name,status:'PASS',...data});console.log(name,'PASS',JSON.stringify(data));};
  try{
   const target=new URL(url);target.searchParams.set('kamen_qa',String(Date.now()));
@@ -48,35 +65,96 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
   await page.locator('#audioFile').setInputFiles(path.join(out,'audio.wav'));
   await page.waitForFunction(()=>J.ui.audio?.buffer&&Math.abs(J.ui.audio.duration-9)<.001&&!J.ui.audioLoading,null,{timeout:120000});
   check('audio upload and analysis',{bpm:await page.evaluate(()=>J.ui.audio.bpm)});
-  await page.locator('#btnAutoDirection').click({force:true});
+  await page.locator('#btnAutoDirection').click();
   await page.waitForFunction(()=>!document.querySelector('#studioResult').hidden&&!document.querySelector('#btnAutoDirection').disabled,null,{timeout:600000});
   const plan=await page.evaluate(()=>({cuts:J.ui.plan.cuts.length,lines:J.ui.plan.lines.length,duration:J.ui.plan.duration}));assert(plan.cuts>0);assert.equal(plan.lines,4);check('automatic MV generation',plan);
-  if(await page.evaluate(()=>J.ui.playing))await page.locator('#btnPlay').click({force:true});await page.keyboard.press('Home');await page.locator('#btnPlay').click({force:true});await page.waitForFunction(()=>J.ui.playing);
-  await page.waitForFunction(()=>J.ui.t>.3);await page.locator('#btnPlay').click({force:true});await page.waitForFunction(()=>!J.ui.playing);check('preview playback');
+  if(await page.evaluate(()=>J.ui.playing))await page.locator('#btnPlay').click();await page.keyboard.press('Home');await page.locator('#btnPlay').click();await page.waitForFunction(()=>J.ui.playing);
+  await page.waitForFunction(()=>J.ui.t>.3);await page.locator('#btnPlay').click();await page.waitForFunction(()=>!J.ui.playing);check('preview playback');
   const before=await page.evaluate(()=>({lyrics:J.ui.project.lyrics,image:J.ui.project.customBg.dataUrl}));
   await page.locator('#studioAdvanced').click();
   const saved=page.waitForEvent('download',{predicate:d=>d.suggestedFilename().endsWith('.json'),timeout:60000});saved.catch(()=>{});await page.locator('#btnSave').click();const projectFile=path.join(out,'saved-project.json');await (await saved).saveAs(projectFile);
   await page.locator('#fileProject').setInputFiles(projectFile);await page.waitForFunction(()=>!J.ui.projectLoading&&J.ui.audio===null,null,{timeout:60000});
   assert.deepEqual(await page.evaluate(()=>({lyrics:J.ui.project.lyrics,image:J.ui.project.customBg.dataUrl})),before);check('project save and reload');await page.locator('#studioAdvanced').click();
   await page.locator('#audioFile').setInputFiles(path.join(out,'audio.wav'));await page.waitForFunction(()=>J.ui.audio?.buffer&&!J.ui.audioLoading,null,{timeout:120000});
-  await page.locator('#btnAutoDirection').click({force:true});await page.waitForFunction(()=>!document.querySelector('#studioResult').hidden&&!document.querySelector('#btnAutoDirection').disabled,null,{timeout:600000});check('regenerate after restored audio');
+  await page.locator('#btnAutoDirection').click();await page.waitForFunction(()=>!document.querySelector('#studioResult').hidden&&!document.querySelector('#btnAutoDirection').disabled,null,{timeout:600000});check('regenerate after restored audio');
   await page.locator('#studioExportDetails').evaluate(el=>el.open=true);await page.locator('#studioRes').selectOption('720');await page.locator('#studioFPS').selectOption('24');
+  // Reproduce the native headless dialog separately; it never touches the project.
+  const pickerProbe=await browser.newPage();
+  try{
+   await pickerProbe.goto(target.toString(),{waitUntil:'load'});
+   await pickerProbe.evaluate(()=>{window.qaPickerProbe={available:typeof showSaveFilePicker==='function'};
+    const button=document.createElement('button');button.id='qaPickerProbe';button.textContent='Native save dialog pickerProbe';
+    button.style='position:fixed;top:0;left:0;z-index:999999';button.onclick=async()=>{
+     if(!qaPickerProbe.available){qaPickerProbe.outcome='unavailable';return;}
+     try{await showSaveFilePicker({suggestedName:'kamen-headless-pickerProbe.mp4'});qaPickerProbe.outcome='selected';}
+     catch(e){qaPickerProbe.outcome=e.name;qaPickerProbe.message=e.message;}
+    };document.body.appendChild(button);
+   });
+   await pickerProbe.locator('#qaPickerProbe').click();
+   await pickerProbe.waitForFunction(()=>qaPickerProbe.outcome,null,{timeout:3000}).catch(()=>{});
+   environment.nativePickerProbe=await pickerProbe.evaluate(()=>qaPickerProbe);
+  }finally{await pickerProbe.close();}
+  environment.codecs=await page.evaluate(async()=>({videoEncoder:typeof VideoEncoder,audioEncoder:typeof AudioEncoder,
+   nativeH264:typeof VideoEncoder!=='undefined'&&(await VideoEncoder.isConfigSupported({codec:'avc1.42001f',width:1280,height:720,framerate:24,bitrate:6000000})).supported,
+   nativeAAC:typeof AudioEncoder!=='undefined'&&(await AudioEncoder.isConfigSupported({codec:'mp4a.40.2',sampleRate:48000,numberOfChannels:2,bitrate:192000})).supported,
+   nativeSavePickerAvailable:window.qaNativeSavePickerAvailable??typeof showSaveFilePicker==='function',savePicker:typeof showSaveFilePicker,secure:isSecureContext}));
+  console.log('browser capabilities',JSON.stringify(environment));
   await page.evaluate(()=>{
-   const original=J.exportMP4;window.qaExport={progress:[]};J.exportMP4=async args=>{const progress=args.onProgress;const r=await original({...args,onProgress:(...p)=>{qaExport.progress.push({fraction:p[0],label:p[1]});progress?.(...p);}});qaExport.validation=r.validation;qaExport.provenance=r.provenance;return r;};
+   window.qaExport={progress:[],calls:0,completed:0,failures:[],picker:[],jobs:[],startedAt:null,endedAt:null};
+   const describe=s=>({id:s.id,title:s.title,status:s.status,stage:s.stages[s.index]?.id,detail:s.detail,error:s.error,stages:s.stages.map(x=>({id:x.id,status:x.status,fraction:x.fraction})),lastEvent:s.lastEvent});
+   window.qaUnsubscribe=J.processing.subscribe(s=>{const job=describe(s),i=qaExport.jobs.findIndex(x=>x.id===s.id);if(i<0)qaExport.jobs.push(job);else qaExport.jobs[i]=job;});
+   const prepare=J.prepareFileSave;J.prepareFileSave=async(...args)=>{const event={requestedAt:Date.now(),active:navigator.userActivation?.isActive,pending:true};qaExport.picker.push(event);try{const result=await prepare(...args);event.result=result==='declined'?'declined':result?'native-handle':'browser-download';return result;}finally{event.pending=false;event.endedAt=Date.now();}};
+   const original=J.exportMP4;J.exportMP4=async args=>{
+    qaExport.calls++;qaExport.startedAt??=Date.now();const progress=args.onProgress;
+    try{const r=await original({...args,onProgress:(...p)=>{qaExport.progress.push({time:Date.now(),fraction:p[0],label:p[1],stage:p[2]});progress?.(...p);}});
+     qaExport.completed++;qaExport.validation=r.validation;qaExport.provenance=r.provenance;return r;
+    }catch(error){qaExport.failures.push(String(error?.stack||error));throw error;}finally{qaExport.endedAt=Date.now();}
+   };
   });
-  const mp4=page.waitForEvent('download',{predicate:d=>d.suggestedFilename().endsWith('.mp4'),timeout:1200000});
-  mp4.catch(()=>{});await page.locator('#studioExport').click({force:true});
-  const branch=await Promise.race([mp4.then(()=> 'download'),page.locator('#qualityDraftExport').waitFor({state:'visible',timeout:1200000}).then(()=> 'draft')]);
-  let draftReason=null;
-  if(branch==='draft'){draftReason=await page.locator('#studioQuality').innerText();assert(draftReason.includes('品質未達'));await page.locator('#qualityDraftExport').click({force:true});}
-  const exported=await mp4;const video=path.join(out,'ui-export.mp4');await exported.saveAs(video);
+  const snapshot=()=>page.evaluate(()=>({time:Date.now(),calls:qaExport.calls,completed:qaExport.completed,
+   lastProgress:qaExport.progress.at(-1),progressCount:qaExport.progress.length,failures:qaExport.failures,picker:qaExport.picker,
+   jobs:qaExport.jobs,exporting:!!J.ui.exporting,quality:document.querySelector('#studioQuality')?.textContent,
+   draft:!!document.querySelector('#qualityDraftExport'),links:[...document.querySelectorAll('#kamenDownloads a[download]')].map(a=>({name:a.download,blob:a.href.startsWith('blob:')})),
+   progressDOM:[...document.querySelectorAll('.processing-card')].map(el=>({text:el.textContent,html:el.outerHTML})),
+   dialogs:[...document.querySelectorAll('dialog[open],[role="alert"]')].map(el=>el.textContent)}));
+  let exported=null,draftReason=null,downloadStarted=null,downloadError=null;
+  const onDownload=d=>{if(d.suggestedFilename().endsWith('.mp4')){exported=d;downloadStarted=Date.now();console.log('export state: download-started');}};
+  page.on('download',onDownload); // Register before either export button is clicked.
+  const started=Date.now(),watchdog=new ExportWatchdog(started);let draftClicked=false,linkClicked=false;
+  try{
+   console.log('export state: before-click');await page.locator('#studioExport').click();console.log('export state: clicked');
+   while(!exported){
+    lastState=await snapshot();states.push(lastState);
+    const deadline=watchdog.observe(lastState,Date.now());
+    console.log('export state',JSON.stringify({elapsedSeconds:Math.round((Date.now()-started)/1000),calls:lastState.calls,completed:lastState.completed,picker:lastState.picker,progress:lastState.lastProgress,jobs:lastState.jobs.map(({id,status,stage,detail,error})=>({id,status,stage,detail,error})),quality:lastState.quality}));
+    fs.writeFileSync(path.join(out,'export-states.json'),JSON.stringify(states,null,2));
+    if(lastState.draft&&!draftClicked){
+     draftReason=lastState.quality;assert(draftReason.includes('品質未達'));draftClicked=true;
+     console.log('export state: draft-awaiting-user; click real draft export');await page.locator('#qualityDraftExport').click();
+    }else if(lastState.links.some(l=>l.name.endsWith('.mp4'))&&!linkClicked){
+     linkClicked=true;console.log('export state: click retained MP4 save link');await page.locator('#kamenDownloads a[download$=".mp4"]').click();
+    }else{
+     const terminal=lastState.jobs.filter(j=>j.title==='動画を書き出しています').sort((a,b)=>a.id-b.id).at(-1);
+     if(terminal&&['error','cancelled'].includes(terminal.status)&&!lastState.draft&&!lastState.links.some(l=>l.name.endsWith('.mp4')))
+      throw new Error('Application export stopped: '+terminal.error);
+    }
+    if(deadline==='timeout')throw new Error('Export timeout: maximum 8 minutes exceeded');
+    if(deadline==='stalled')throw new Error('Export stalled: no state or progress change for 90 seconds');
+    if(!exported)await page.waitForTimeout(5000);
+   }
+   const video=path.join(out,'ui-export.mp4');console.log('export state: saving download');let saveTimer;
+   try{await Promise.race([exported.saveAs(video),new Promise((_,reject)=>{saveTimer=setTimeout(()=>reject(new Error('Export timeout while saving download')),Math.max(1,480000-(Date.now()-started)));})]);}
+   catch(error){await exported.cancel().catch(()=>{});throw error;}finally{clearTimeout(saveTimer);}
+   downloadError=await exported.failure();assert.equal(downloadError,null);console.log('export state: download-completed');
+  }finally{page.off('download',onDownload);await page.evaluate(()=>window.qaUnsubscribe?.()).catch(()=>{});}
+  const video=path.join(out,'ui-export.mp4');
   const observed=await page.evaluate(()=>qaExport);assert(observed.validation?.certification?.passed);assert.equal(observed.validation.videoCodec,'avc1');assert.equal(observed.validation.audioCodec,'mp4a');assert(observed.progress.length>0);
   const probe=spawnSync('ffprobe',['-v','error','-show_streams','-show_format','-of','json',video],{encoding:'utf8'});assert.equal(probe.status,0,probe.stderr);const media=JSON.parse(probe.stdout),v=media.streams.find(s=>s.codec_type==='video'),a=media.streams.find(s=>s.codec_type==='audio');assert(v&&a);assert.equal(v.codec_name,'h264');assert.equal(a.codec_name,'aac');assert.equal(v.width,1280);assert.equal(v.height,720);assert.equal(v.avg_frame_rate,'24/1');assert(Math.abs(Number(media.format.duration)-seconds)<.15);assert(Math.abs(Number(v.duration)-Number(a.duration))<.15);
-  const decode=spawnSync('ffmpeg',['-v','error','-i',video,'-f','null','-'],{encoding:'utf8'});assert.equal(decode.status,0,decode.stderr);check('UI MP4 export and decode',{draft:!!draftReason,video:v.codec_name,audio:a.codec_name,duration:media.format.duration,progressUpdates:observed.progress.length});
+  const decode=spawnSync('ffmpeg',['-v','error','-i',video,'-vf','signalstats,metadata=print:file=-','-f','null','-'],{encoding:'utf8'});assert.equal(decode.status,0,decode.stderr);const minima=[...decode.stdout.matchAll(/lavfi.signalstats.YMIN=(\d+)/g)].map(m=>Number(m[1])),maxima=[...decode.stdout.matchAll(/lavfi.signalstats.YMAX=(\d+)/g)].map(m=>Number(m[1]));assert(minima.length>200,'Expected decoded video frames');assert(maxima.some((max,i)=>max-minima[i]>32),'Decoded video must contain visible image content');check('UI MP4 export and decode',{draft:!!draftReason,video:v.codec_name,audio:a.codec_name,duration:media.format.duration,progressUpdates:observed.progress.length,decodedFrames:minima.length,visibleContent:true});
   assert.equal(errors.length,0,errors.join('\n'));await page.screenshot({path:path.join(out,'ui.png'),fullPage:true});
-  const report={status:'PASS',url:target.toString(),browser:browser.version(),checks,pageErrors:errors,resourceFailures,draftReason,validation:observed.validation,provenance:observed.provenance,ffprobe:media};
+  const report={status:'PASS',environment,consoleMessages,exportStates:states,downloadStarted,downloadError,url:target.toString(),browser:browser.version(),checks,pageErrors:errors,resourceFailures,draftReason,validation:observed.validation,provenance:observed.provenance,ffprobe:media};
   fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));
   console.log('PASS: actual uploads, generation, playback, save/reload, MP4 video/audio/progress. Creative quality:',draftReason?'below target; real draft UI exercised':'qualified');
- }catch(error){fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAIL',url,checks,pageErrors:errors,resourceFailures,error:error.stack},null,2));await page.screenshot({path:path.join(out,'failure.png'),fullPage:true}).catch(()=>{});throw error;}
- finally{await browser.close();}
+ }catch(error){fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAIL',url,environment,checks,pageErrors:errors,resourceFailures,consoleMessages,exportState:lastState,exportStates:states,error:error.stack},null,2));await page.screenshot({path:path.join(out,'failure.png'),fullPage:true}).catch(()=>{});throw error;}
+ finally{fs.writeFileSync(path.join(out,'console.json'),JSON.stringify(consoleMessages,null,2));await page.context().tracing.stop({path:path.join(out,'trace.zip')}).catch(()=>{});await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

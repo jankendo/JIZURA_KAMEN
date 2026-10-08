@@ -42,6 +42,7 @@ jobs:
           test -f dist/licenses/FFmpeg-LGPL-2.1.txt
           ! grep -q 'jizura-custom-background.jankendo14.chatgpt.site' dist/index.html
       - name: Browser UI and MP4 smoke test
+        timeout-minutes: 12
         env:
           KAMEN_CHROME: /usr/bin/google-chrome
         run: |
@@ -53,6 +54,7 @@ jobs:
             sleep 1
           done
           curl -fsS -o /dev/null http://127.0.0.1:4173/
+          node --test dev/export_watchdog_test.cjs
           node dev/pages_e2e.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa"
       - name: Preserve validation evidence
         if: always()
@@ -61,8 +63,7 @@ jobs:
           name: kamen-validation
           path: |
             ${{ runner.temp }}/kamen-tests.json
-            ${{ runner.temp }}/kamen-browser-qa/report.json
-            ${{ runner.temp }}/kamen-browser-qa/failure.json
+            ${{ runner.temp }}/kamen-browser-qa/
             ${{ runner.temp }}/kamen-server.log
           if-no-files-found: ignore
           retention-days: 7
