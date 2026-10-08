@@ -37,14 +37,14 @@
 | NFR cancellation cleanup | finally encoder/frame/renderer/decoder cleanup | Phase 3 failure/cancel tests | 既存、追加検証待ち |
 | NFR same preview/export plan | render plan / provenance | working/confirmed separation + hash binding | 基盤実装 |
 | NFR old project/LRC/ZIP/MP4 | migration/save pipeline | old formats and E2E regression | 追加検証待ち |
-| P0-A 階層選抜 | encoded.score selection | PR-2: hierarchy/Pareto, evidence guards, baseline protection | 実装・専用試験・実MP4完了、全回帰実行中 |
+| P0-A 階層選抜 | encoded.score selection | PR-2: hierarchy/Pareto, evidence guards, baseline protection | 完了: 182 suites / 180 PASS / 0 FAIL / 2 SKIP、実MP4 E2E 10 PASS |
 | P0-B 完成動画修復 | refinePhotoExport / plateau | PR-3: targeted operators, measured acceptance, complete rollback | 実装・状態/失敗/キャンセル試験完了、実MP4 E2E 10 PASS、実4回エンコードと後退棄却を確認 |
 | P0-C ラップ/状態 | sorted build / J wrappers | PR-1 manifest, boundary identity audit, contracts | 完了: 181 suites / 179 PASS / 0 FAIL / 2 SKIP、実MP4 E2E 10 PASS |
-| P1-A grammar | story/temporal architecture | PR-4 | 未完了 |
-| P1-B typography | compose/fit/safe/contrast | PR-4 pre-scene constraints | 未完了 |
-| P1-C image conditions | intact image / asset deck | PR-4 capability and matrix | 未完了 |
-| P1-D music/lyrics sync | onset/beat evidence | PR-4 confidence separation | 未完了 |
-| P1-E output profiles | existing profile policy | PR-4 explicit contracts | 未完了 |
+| P1-A grammar | story/temporal architecture | PR-4: policies, roles, phases, confidence fallback | 実装・専用/旧試験・実MP4完了 |
+| P1-B typography | compose/fit/safe/contrast | PR-4: pre-scene widths/duration/safe-area constraints | 実装、cmap全字形は未測定 |
+| P1-C image conditions | intact image / asset deck | PR-4: input-mode/capability; PR-5 real MP4 matrix | 主題分離未提供、マトリクス実行中 |
+| P1-D music/lyrics sync | onset/beat evidence | PR-4: tempo confidence / normalized envelope | 実装、歌唱同期は未測定 |
+| P1-E output profiles | existing profile policy | PR-4: exact aspect, explicit loop, actual range | 実装・契約試験完了、比率別動画実行中 |
 | P2 matrix/calibration/performance | dev QA suites | PR-5 | 未完了 |
 
 ## Phases
@@ -52,7 +52,7 @@
 1. Foundation: explicit 84-entry manifest (83 unchanged modules + additive adapter); identity observations between modules; all nine contracts; immutable owned metadata and editable candidate copy; new tests registered. Existing 83 source bytes verified unchanged in `foundation-source-equivalence.json`.
 2. Selection: 既存32→8→3の候補探索へ安全性・測定証拠・下位区間・可読性の階層/Pareto比較を統合。未知値はnull、単位/プロフィール/Hash不一致は拒否。高品質と既存raster rankを保護し、静止意図を扱う。実UI E2E 10 PASS、ページ例外0、外部リソース失敗0。全回帰の結果は後続の検証記録で確定する。
 3. Verified repair: 既存refinePhotoExportを再利用。CREATED→PROXY_MEASURED→SELECTED→FULL_ENCODED→DECODED_QAの状態を記録し、同一入力・ロック・単位・出力条件の実測改善だけ採用。許可行のMICRO/ARCHITECTURE/GRAMMAR_RESETへ限定し、全plan/QA/hash/artifactを復元する。単体試験のBlobは実MP4と区別。非cinema描画は既存経路を維持し、独立cinema観測の適用不可を明示する。
-4. Adaptive grammar: pending.
+4. Adaptive grammar: 既存plan/architecture/temporal/social入口を編集し、追加ラッパーなしで信頼度付きPCM特徴と歌詞密度/反復を統合。未知の歌唱同期/主題分離/cmapはUNMEASURED。低拍信頼度ではlyric_first、静止意図を維持。六段階phaseと文字組制約を記録し、アスペクトは実寸の最大公約数、ループは明示opt-in。全PCM/LRC/画像/手動設定は変更しない。専用メタモルフィック、既存grammar/contract/architecture、実UI MP4 E2E 10 PASS。
 5. Quality/performance: pending. Human blind evaluation **未実施**。実評価者・実素材を捏造しない。
 
 ## Recovery and remaining work
