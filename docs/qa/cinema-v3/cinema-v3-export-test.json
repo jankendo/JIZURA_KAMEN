@@ -1,0 +1,192 @@
+{
+  "name": "cinema_v3_export_e2e.cjs",
+  "status": "PASS",
+  "mode": "run-actual-UI-export",
+  "checks": 10,
+  "videoHash": "b1251ce22adc7c6602f3ecd2adb1e6ce270632cd4228734f7ae25c39c82ada16",
+  "planHash": "a724f58459461de83f9d4b09384a27b9c2131df141be5eff4333ef7879cc08ce",
+  "state": "UNREPAIRABLE",
+  "attempts": 4,
+  "decisions": [
+    "INITIAL_ARTIFACT_RETAINED_AS_DRAFT",
+    "VERIFIED_TARGET_IMPROVEMENT",
+    "VERIFIED_TARGET_IMPROVEMENT",
+    "PROTECTED_REGRESSION"
+  ],
+  "artistic100Established": false,
+  "peakMemoryStatus": "UNMEASURED",
+  "browser": "154.0.8037.97",
+  "decoderProbe": {
+    "status": "PASS",
+    "controls": 2,
+    "method": "actual H264/AAC UI artifact plus actual H264 black control; only native HTMLVideoElement canvas paint is injected to zero",
+    "thresholdChanged": false,
+    "previousTransientFailureCause": "UNRESOLVED: initial failed blob was not retained",
+    "recovered": {
+      "passed": true,
+      "checks": {
+        "container": true,
+        "video": true,
+        "audio": true,
+        "resolution": true,
+        "duration": true,
+        "frames": true,
+        "fps": true,
+        "avSync": true,
+        "reloaded": true,
+        "avDuration": true,
+        "seek": true,
+        "blackFrames": true,
+        "firstLast": true
+      },
+      "frames": [
+        {
+          "time": 0,
+          "nonBlack": 1
+        },
+        {
+          "time": 0.25,
+          "nonBlack": 1
+        },
+        {
+          "time": 4.512,
+          "nonBlack": 0.9014917695473251
+        },
+        {
+          "time": 8.943999999999999,
+          "nonBlack": 1
+        }
+      ],
+      "nativeFrames": [
+        {
+          "time": 0,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.25,
+          "nonBlack": 0
+        },
+        {
+          "time": 4.512,
+          "nonBlack": 0
+        },
+        {
+          "time": 8.943999999999999,
+          "nonBlack": 0
+        }
+      ],
+      "nativeChecks": {
+        "blackFrames": false,
+        "firstLast": false
+      },
+      "independentPixels": {
+        "status": "MEASURED",
+        "source": "independent encoded MP4 decoder; same RGB threshold and timestamps",
+        "frames": [
+          {
+            "time": 0,
+            "nonBlack": 1
+          },
+          {
+            "time": 0.25,
+            "nonBlack": 1
+          },
+          {
+            "time": 4.512,
+            "nonBlack": 0.9014917695473251
+          },
+          {
+            "time": 8.943999999999999,
+            "nonBlack": 1
+          }
+        ]
+      },
+      "path": "Browser WebCodecs → MP4 Blob → HTMLVideoElement reload/decode",
+      "fps": 24,
+      "avSync": "track timestamp/duration; no perceptual sync claim"
+    },
+    "black": {
+      "passed": false,
+      "checks": {
+        "container": true,
+        "video": true,
+        "audio": true,
+        "resolution": true,
+        "duration": true,
+        "frames": true,
+        "fps": true,
+        "avSync": true,
+        "reloaded": true,
+        "avDuration": true,
+        "seek": true,
+        "blackFrames": false,
+        "firstLast": false
+      },
+      "frames": [
+        {
+          "time": 0,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.25,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.5,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.92,
+          "nonBlack": 0
+        }
+      ],
+      "nativeFrames": [
+        {
+          "time": 0,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.25,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.5,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.92,
+          "nonBlack": 0
+        }
+      ],
+      "nativeChecks": {
+        "blackFrames": false,
+        "firstLast": false
+      },
+      "independentPixels": {
+        "status": "MEASURED",
+        "source": "independent encoded MP4 decoder; same RGB threshold and timestamps",
+        "frames": [
+          {
+            "time": 0,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.25,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.5,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.92,
+            "nonBlack": 0
+          }
+        ]
+      },
+      "path": "Browser WebCodecs → MP4 Blob → HTMLVideoElement reload/decode",
+      "fps": 24,
+      "avSync": "track timestamp/duration; no perceptual sync claim"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 /* Cinema V3 contracts and adapters. Existing renderer and save formats stay authoritative. */
 (()=>{
 'use strict';
-const J=window.J, V=J.cinemaV3={version:'3.0.0',enabled:true}, finite=Number.isFinite;
+const J=window.J, V=J.cinemaV3={version:'3.0.1',enabled:true}, finite=Number.isFinite;
 /** @typedef {'MEASURED'|'UNMEASURED'|'NOT_APPLICABLE'|'FAILED'} EvidenceStatus */
 /** @typedef {{value:*,confidence:number,source:string,status:EvidenceStatus,limitations?:string[]}} Feature */
 /** @typedef {{inputHash:string,audioHash:?string,imageHashes:string[],lyricsHash:string,projectHash:string,rendererVersion:string,outputProfile:Object,userLocks:Object}} ImmutableInputSnapshot */
@@ -55,9 +55,9 @@ V.comparable=(a,b)=>a.unit===b.unit&&a.source===b.source&&a.method===b.method&&a
 J.rankCinemaCandidateV2=(candidate,profile,baseline=null)=>{
  V.validate('CandidateEvaluation',candidate);const fail=(reason,extra={})=>({eligible:false,reason,...extra,rankVector:null});
  if(candidate.measurements.some(m=>m.planHash!==candidate.planHash)||new Set(candidate.measurements.map(m=>m.inputHash)).size>1||new Set(candidate.measurements.map(m=>m.rendererVersion)).size>1)return fail('STALE_EVIDENCE');
- if(candidate.hardFailures.length)return fail('HARD_FAILURE',{failures:candidate.hardFailures});
+ if(candidate.measurements.some(m=>m.rendererVersion!==V.version))return fail('STALE_RENDERER');if(candidate.hardFailures.length)return fail('HARD_FAILURE',{failures:candidate.hardFailures});const technical=candidate.measurements.filter(m=>['rasterSafety','videoStructure','audioEndpoint'].includes(m.id)&&m.status==='MEASURED'&&m.value!==100);if(technical.length)return fail('HARD_FAILURE',{failures:technical.map(m=>m.id)});
  const measurements=new Map(candidate.measurements.map(m=>[m.id,m])),required=profile.requiredMetrics||V.requiredMetrics(profile.stage,profile),missing=required.filter(id=>{const m=measurements.get(id);return !m||m.status!=='MEASURED'||m.confidence<=0||m.sampleCount<=0;});
- if(missing.length)return fail('REQUIRED_UNMEASURED',{missing});
+ const failed=required.filter(id=>measurements.get(id)?.status==='FAILED');if(failed.length)return fail('REQUIRED_FAILED',{failed});if(missing.length)return fail('REQUIRED_UNMEASURED',{missing});
  if(candidate.measurements.some(m=>m.profileId!==profile.profileId))return fail('PROFILE_MISMATCH');
  const regressions=[],incomparable=[];
  if(baseline)for(const prior of baseline.measurements){const m=measurements.get(prior.id),protectedMetric=prior.id==='rasterSafety'||prior.id==='localContrast'||(prior.status==='MEASURED'&&prior.value>=(profile.protectionThresholds?.[prior.id]??90));
@@ -113,11 +113,11 @@ V.finalEvaluation=async(result,p,args,session)=>{
  if(d?.loop?.lastFrameIncluded===false)hardFailures.push('MISSING_FINAL_FRAME');if(d?.endingClosure?.sourceAudioEndAligned===false)hardFailures.push('AUDIO_END_MISMATCH');
  if(r?.samples?.some(s=>!s.safe))hardFailures.push('LYRIC_OR_SAFE_AREA');
  if(d?.layerPresence?.primaryText?.samples?.some(s=>s.visibleSamples<s.samples.length))hardFailures.push('ENCODED_LYRIC_MISSING');
- const measurements=[V.metric('rasterSafety',r?.samples?.length?(r.samples.every(s=>s.safe)?100:0):null,{...base,source:'CANVAS',method:'128px production glyph presence and safe area',sampleCount:r?.samples?.length||0}),V.metric('localContrast',d?.metrics?.localContrast??null,{...base,sampleCount:d?.readability?.sampleCount||0}),V.metric('lowerTail',d?.lowerTailQuality??null,base),V.metric('videoStructure',result.validation?.certification?.passed===true?100:null,{...base,method:'MP4 track structure and frame count certification',sampleCount:result.validation?.certification?.passed?1:0})];
+ const measurements=[V.metric('rasterSafety',r?.samples?.length?(r.samples.every(s=>s.safe)?100:0):null,{...base,source:'CANVAS',method:'128px production glyph presence and safe area',sampleCount:r?.samples?.length||0}),V.metric('localContrast',d?.metrics?.localContrast??null,{...base,sampleCount:d?.readability?.sampleCount||0}),V.metric('lowerTail',d?.lowerTailQuality??null,base),V.metric('videoStructure',result.validation?.certification?.passed===true?100:null,{...base,method:'MP4 track structure and frame count certification',sampleCount:result.validation?.certification?.passed?1:0,status:result.validation?.certification?.passed===false?'FAILED':undefined})];
  if(args.audio?.buffer)measurements.push(V.metric('audioEndpoint',d?.endingClosure?.sourceAudioEndAligned===true?100:d?.endingClosure?.sourceAudioEndAligned===false?0:null,{...base,method:'decoded AAC duration versus authoritative output range',sampleCount:Number.isFinite(d?.endingClosure?.encodedAudioDuration)?1:0}));
  for(const [id,value]of Object.entries(d?.metrics||{}))if(!measurements.some(m=>m.id===id)&&(Number.isFinite(value)||value===null))measurements.push(V.metric(id,value,base));
  const evaluation={id:videoHash,planHash,candidateSeed:J.cinemaContentSeed(p),hardFailures,measurements,objectives:{readability:d?.metrics?.localContrast??null,musicFit:d?.metrics?.impactBeatSync??null,visualCoherence:null,contextualVariation:null},lowerTail:d?.lowerTailQuality??null,constraintViolations:hardFailures.length,memoryBudgetBytes:V.budgetPolicy(p.exportSettings).configuredMemoryBudgetBytes,timeCostMs:0,timeCostStatus:'UNMEASURED',memoryBudgetStatus:'CONFIGURED_SOFT_BUDGET'};
- V.validate('CandidateEvaluation',evaluation);return {evaluation,videoHash,profile:{stage:'FINAL',profileId:base.profileId,requiredMetrics:['rasterSafety','localContrast','lowerTail','videoStructure',...args.audio?.buffer?['audioEndpoint']:[]]},decodedCompleted:!!d?.completed};
+ V.validate('CandidateEvaluation',evaluation);return {evaluation,videoHash,profile:{stage:'FINAL',profileId:base.profileId,requiredMetrics:['rasterSafety','localContrast','lowerTail','videoStructure',...args.audio?.buffer?['audioEndpoint']:[],...(profile.loopRequired?['loopQuality']:[])]},decodedCompleted:!!d?.completed};
 };
 J.acceptOrRevertRepair=({before,after,profile,targets=['lowerTail','localContrast'],sameInputs=true,sameLocks=true})=>{
  if(!sameInputs||!sameLocks)return {accepted:false,reason:!sameInputs?'INPUT_CHANGED':'LOCK_CHANGED'};
