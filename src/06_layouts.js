@@ -10,6 +10,8 @@ const E = J.E;
 /* ---------- main-item pipeline: enter / hold / exit + draw ---------- */
 J.mainDraw = (env, it) => {
   const cut = env.cut;
+  if(!Number.isFinite(it.x))it.x=env.W/2;
+  if(!Number.isFinite(it.y))it.y=env.H/2;
   it.seed = it.seed != null ? it.seed : J.h(cut.seed, (it.mi | 0) + 1, 7);
   it.charFns = []; it.pieceFns = [];
   const stagger = cut.stagger || 0;
@@ -31,8 +33,30 @@ J.mainDraw = (env, it) => {
   const amt = J.clamp((ltI - cut.inDur * 0.85) / 0.25) * (1 - pOut);
   if (amt > 0 && !it.noHold) ho.apply(env, it, amt, ctx);
   if (pOut > 0 && ex !== J.EXIT.cut) ex.apply(env, it, pOut, ctx);
+  const dna=env.plan.artDirection?.motionDNA;
+  if(dna&&env.beat&&(!env.plan.musicalPhoto||J.photoChoreographyLocked?.(env.plan,cut))){
+    const beatPhase=Math.max(0,env.beat.since),strength=Math.exp(-beatPhase*(dna.motionSpeed>.6?12:8));
+    const energy=J.motionEnergyAt(env.plan.artDirection,env.t);
+    it.size*=1+Math.min(.085,dna.beatResponse*(cut.repeated ? .085 : .032)*strength*(.5+energy*.5));
+  }
+  if(dna&&cut.repetitionIndex>0){
+    const development=(cut.repetitionProgress??Math.min(3,cut.repetitionIndex)/3)*(dna.repetitionStrength||.5);
+    it.size*=1+.055*development;
+  }
+  if(env.plan.musicalPhoto&&!J.photoChoreographyLocked?.(env.plan,cut)&&cut.params?.hookScale>1)it.size*=Math.min(1.12,cut.params.hookScale);
+  if(J.applyTypography5)J.applyTypography5(env,it);
   it.charFn = J.combineChar(it.charFns);
   it.pieceFn = J.combinePiece(it.pieceFns);
+  // Primary lyrics bypass env.draw. Apply the same readability policy here,
+  // before safe-area fitting so the new separation edge is included in bounds.
+  if(J.adjustLocalReadability)it=J.adjustLocalReadability(env,it);
+  if(env.plan.artDirection?.realityVersion===2)it=J.safeLyricItem(env,it);
+  if(env.lyricAuditCtx&&env.pass==='main'&&env.cut?.line>=0){
+    const audit=env.lyricAuditCtx,auditEnv={...env,ctx:audit,inLayer:true,allowFilter:false,lyricAuditCtx:null};
+    audit.save();const m=env.ctx.getTransform();audit.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);
+    J.drawItem(auditEnv,{...it,shadow:null,blur:0,streak:null,echo:null,pre:null,post:null,blend:null});audit.restore();
+    env.lyricAuditItems?.push({line:env.cut.line,bounds:J.measureLyricItemBounds(env,it)});
+  }
   return J.drawFx(env, it);
 };
 
@@ -95,31 +119,10 @@ J.drawFx = (env, it) => {
 
 const unionBB = (a, b) => !a ? b : !b ? a : { x0: Math.min(a.x0, b.x0), y0: Math.min(a.y0, b.y0), x1: Math.max(a.x1, b.x1), y1: Math.max(a.y1, b.y1), boxes: [], cx: (Math.min(a.x0, b.x0) + Math.max(a.x1, b.x1)) / 2, cy: (Math.min(a.y0, b.y0) + Math.max(a.y1, b.y1)) / 2 };
 
-/* Latin text: break between words only, into as few balanced lines as fit (never more lines than words) */
-const splitWords = (text, maxPer) => {
-  const ws = text.trim().split(/\s+/), n = ws.length;
-  const total = ws.reduce((a, w) => a + [...w].length, 0) + n - 1;
-  const nLines = Math.min(n, Math.ceil(total / maxPer));
-  if (nLines <= 1) return ws.join(' ');
-  // balanced split: minimise the squared difference to the ideal line length
-  const len = (a, b) => ws.slice(a, b).reduce((s, w) => s + [...w].length, 0) + (b - a - 1);
-  const ideal = total / nLines, memo = new Map();
-  const best = (i, l) => {
-    if (l === 1) { const d = len(i, n) - ideal; return { c: d * d, cuts: [] }; }
-    const key = i + "," + l; if (memo.has(key)) return memo.get(key);
-    let r = { c: Infinity, cuts: [] };
-    for (let j = i + 1; j <= n - l + 1; j++) { const d = len(i, j) - ideal, sub = best(j, l - 1), c = d * d + sub.c; if (c < r.c) r = { c, cuts: [j, ...sub.cuts] }; }
-    memo.set(key, r); return r;
-  };
-  const cuts = [0, ...best(0, nLines).cuts, n], out = [];
-  for (let k = 0; k < cuts.length - 1; k++) out.push(ws.slice(cuts[k], cuts[k + 1]).join(' '));
-  return out.join('\n');
-};
 /* split long text into balanced lines, preferring script boundaries */
 J.splitLines = (text, maxPer) => {
   const arr = [...text];
   if (arr.length <= maxPer) return text;
-  if (J.isLatinText && J.isLatinText(text)) return /\s/.test(text.trim()) ? splitWords(text, maxPer) : text;   // one word stays whole
   const nLines = Math.ceil(arr.length / maxPer);
   const per = arr.length / nLines;
   const out = []; let start = 0;
@@ -130,7 +133,7 @@ J.splitLines = (text, maxPer) => {
       let s = 3 - Math.abs(k - target);
       if (J.isHira(a) && !J.isHira(b)) s += 3;
       if (J.isPunct(a) || a === ' ' || a === '　') s += 5;
-      if (J.isSmallKana(b) || 'ーっ、。'.includes(b)) s -= 6;
+      if (J.isSmallKana(b) || 'ーっ、。！？!?」』）】〉》'.includes(b)) s -= 20;
       if (s > bestScore) { bestScore = s; best = k; }
     }
     out.push(arr.slice(start, best).join('').trim()); start = best;
@@ -151,7 +154,7 @@ J.LAYOUTS = {
     plan: (rng, cut, st) => ({ font: rng.pick(fontsOf(st, rng.chance(0.7) ? ['display'] : ['serif'])), sx: rng.pick([1, 1, 1, 1.25, 1.45, 0.78]), track: rng.range(0.02, 0.14), sub: rng.chance(0.45), under: rng.chance(0.3), accent: rng.chance(0.18), ox: rng.range(-0.05, 0.05), oy: rng.range(-0.06, 0.06) }),
     render(env) {
       const { W, H, sc } = env, P = env.cut.params, text = J.splitLines(env.cut.text, W < H ? 5 : 11);
-      const size = Math.min(J.fitSize(text, P.font, W * 0.84, H * 0.5, { sx: P.sx, track: P.track, lead: 1.2 }), H * 0.33);
+      const size = Math.min(J.fitSize(text, P.font, W * (P.maxWidth||0.84), H * (P.maxWidth ? .34 : .5), { sx: P.sx, track: P.track, lead: 1.2 }), H * (P.maxWidth ? .22 : .33))*(P.intensityScale||1);
       const bb = J.mainDraw(env, { text, font: P.font, size, x: W / 2 + P.ox * W, y: H / 2 + P.oy * H, sx: P.sx, track: P.track, lead: 1.2, color: P.accent ? sc.accent : sc.fg });
       if (bb && P.sub && env.cut.lineText !== env.cut.text) {
         env.draw({ text: env.cut.lineText, font: env.st.fonts.body[0], size: J.clamp(H * 0.026, 16, 34), x: W / 2 + P.ox * W, y: bb.y1 + H * 0.07, track: 0.22, color: sc.sub, alpha: E.outCubic(env.pIn), ghost: false });
@@ -390,6 +393,7 @@ J.LAYOUTS = {
     plan: (rng, cut, st) => ({ font: rng.pick(fontsOf(st, ['display'])), grad: !!st.useGrad && rng.chance(0.75), dir: rng.pick([1, -1]), label: rng.chance(0.8) }),
     render(env) {
       const { W, H, sc } = env, P = env.cut.params, text0 = env.cut.text.replace(/\s+/g, '');
+      if(P.readableHero){const text=env.cut.text;const size=Math.min(H*.4,J.fitSize(text,P.font,W*.78,H*.5,{track:.02,lead:1.1}));return J.mainDraw(env,{text,font:P.font,size,x:W/2,y:H/2,track:.02,lead:1.1,color:sc.fg,gradient:P.grad&&sc.grad?sc.grad:null});}
       const n = glyphCount(text0);
       const text = n >= 5 ? J.splitLines(text0, Math.ceil(n / 2)) : text0;
       const lines = text.split('\n').length;
@@ -514,13 +518,11 @@ J.LAYOUTS = {
     render(env) {
       const { W, H, sc } = env, P = env.cut.params;
       const text = J.splitLines(env.cut.text, 14);
-      const size = Math.min(H * 0.11, J.fitSize(text, P.font, W * 0.74, H * 0.36, { track: 0.06, lead: 1.35 }));
+      const size = Math.min(H * 0.11, J.fitSize(text, P.font, W * 0.74, H * 0.36, { track: 0.06, lead: 1.35 }))*(P.intensityScale||1);
       const left = P.align === 'left';
       const x = left ? W * 0.13 : W / 2;
       if (P.prompt) env.draw({ text: '>', font: env.st.fonts.mono[0] || 'mono', size: size * 0.8, x: (left ? x : x - J.measure({ text, font: P.font, size, track: 0.06 }).w / 2) - size * 0.9, y: H / 2 - (text.split('\n').length - 1) * size * 0.67, color: sc.accent, ghost: false });
       const bb = J.mainDraw(env, { text, font: P.font, size, x, y: H / 2, align: left ? 'left' : 'center', track: 0.06, lead: 1.35, color: sc.fg, enter: env.cut.enter === 'cut' ? 'type' : undefined });
-      const ms = J.clamp(H * 0.02, 12, 20);
-      env.draw({ text: `LINE ${String((env.cut.line | 0) + 1).padStart(2, '0')} ─ ${J.fmtTime(env.t)}`, font: env.st.fonts.mono[0] || 'mono', size: ms, align: 'left', x: W * 0.13, y: H * 0.8, color: sc.sub, alpha: 0.8, ghost: false });
       return bb;
     },
   },
@@ -654,13 +656,6 @@ J.LAYOUTS = {
     render(env) {
       const { W, H, sc } = env, P = env.cut.params, lb = env.ltb;
       const fs = J.clamp(H * 0.022, 12, 22);
-      if (P.variant === 'quiet') {                        // [間奏]: nothing but the song title on long interludes
-        if (P.showTitle && P.titleText) {
-          const a = J.clamp(env.lt / 0.8) * J.clamp((env.cut.dur - env.lt) / 0.8);
-          env.draw({ text: P.titleText, font: env.st.fonts.body[0], size: fs * 1.1, x: W / 2, y: H * 0.88, track: 0.3, color: sc.sub, alpha: a, ghost: false });
-        }
-        return { x0: W * 0.3, x1: W * 0.7, y0: H * 0.3, y1: H * 0.7, cx: W / 2, cy: H / 2, boxes: [] };
-      }
       if (P.variant === 'counter') {
         const remain = Math.max(0, env.cut.dur - env.lt);
         env.draw({ text: remain.toFixed(1), font: env.st.fonts.display[0], size: H * 0.36, x: W / 2, y: H / 2, color: sc.fg, alpha: 0.9 });

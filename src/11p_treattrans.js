@@ -1105,7 +1105,7 @@ trReg('flashCross', { name: 'フラッシュ転換', tags: ['emotional', 'pop', 
     ctx.drawImage(A, 0, 0);
     if (x > 0) { ctx.globalAlpha = x; ctx.drawImage(B, 0, 0); ctx.globalAlpha = 1; }
     const a = p < 0.45 ? E.inQuad(p / 0.45) : 1 - E.outCubic((p - 0.45) / 0.55);
-    if (a > 0.003) { ctx.globalAlpha = a * 0.92; ctx.fillStyle = fl; ctx.fillRect(0, 0, cw, ch); }
+    if (a > 0.003) { ctx.globalAlpha = a * (I.photoReadablePolicy ? 0.06 : 0.92); ctx.fillStyle = fl; ctx.fillRect(0, 0, cw, ch); }
   } });
 
 /* ---- pixelate: the old cut breaks down into big pixels, the new one resolves out of them ---- */

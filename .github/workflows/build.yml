@@ -1,0 +1,93 @@
+name: Validate and deploy KAMEN
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Node.js 24
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - name: Set up media validation
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run regression tests
+        env:
+          JIZURA_QA_CACHE: ${{ runner.temp }}/kamen-npm-cache
+          JIZURA_TEST_SUMMARY: ${{ runner.temp }}/kamen-tests.json
+        run: npm run test
+      - name: Build production files
+        run: npm run build
+      - name: Verify production layout
+        run: |
+          cmp index.html dist/index.html
+          test -f dist/LICENSE
+          test -f dist/OFL.txt
+          test -f dist/THIRD_PARTY_NOTICES.md
+          test -f dist/licenses/FFmpeg-LGPL-2.1.txt
+          ! grep -q 'jizura-custom-background.jankendo14.chatgpt.site' dist/index.html
+      - name: Browser UI and MP4 smoke test
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          node scripts/serve.mjs dist 127.0.0.1 4173 > "$RUNNER_TEMP/kamen-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS -o /dev/null http://127.0.0.1:4173/; then break; fi
+            sleep 1
+          done
+          curl -fsS -o /dev/null http://127.0.0.1:4173/
+          node dev/pages_e2e.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa"
+      - name: Preserve validation evidence
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: kamen-validation
+          path: |
+            ${{ runner.temp }}/kamen-tests.json
+            ${{ runner.temp }}/kamen-browser-qa/report.json
+            ${{ runner.temp }}/kamen-browser-qa/failure.json
+            ${{ runner.temp }}/kamen-server.log
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages-production
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

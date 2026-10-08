@@ -1,0 +1,11 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const J={};vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../src/08g_audio_persistence.js'),'utf8'),{J});
+const source={name:'chant.m4a',size:12345,lastModified:1780000000000,type:'audio/mp4'};
+const info=J.audioAssetInfo(source);
+assert(J.audioAssetMatches(info,source));
+assert(J.audioAssetMatches(info,{...source}));
+assert(!J.audioAssetMatches(info,{...source,size:12346}),'another song with the same name must not restore');
+assert(!J.audioAssetMatches(info,{...source,lastModified:source.lastModified+1}));
+assert(!J.audioAssetMatches(info,null));
+console.log('Stored soundtrack identity and stale asset protection passed.');

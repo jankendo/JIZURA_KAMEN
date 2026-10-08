@@ -1,0 +1,2 @@
+const assert=require('node:assert/strict');const {J,plan}=require('./hype_test_helpers.cjs').chantProject(28,1.7);const arc=plan.styleArc;
+assert(arc.segments.length>=2);assert(arc.candidates.length<=3);assert.equal(arc.segments[0].from,0);assert(Math.abs(arc.segments.at(-1).to-plan.duration)<.01);assert(arc.shares.base>0);assert(plan.styleArcAudit.coherent);console.log('Three-style bounded Style Arc covers the full song.');

@@ -1,0 +1,3 @@
+const assert=require('node:assert/strict'),J=require('./style_test_harness.cjs');
+const a={time:0,grid:Array.from({length:24},(_,i)=>(i%3)/3),palette:[.3,.4,.5],layout:'type',style:'noir',line:'a',box:{x0:.1,y0:.2,x1:.8,y1:.7}},b={...a,time:1},c={...a,time:2,grid:a.grid.map(x=>1-x),palette:[.9,.1,.2],layout:'huge',style:'blueprint',line:'b',box:{x0:.2,y0:.2,x1:.9,y1:.7}};
+const stable=J.measurePerceptualNovelty([a,b]),change=J.measurePerceptualNovelty([a,c]);assert.equal(stable.score,0);assert(change.score>stable.score);assert(change.pairs[0].score>0);console.log('Perceptual novelty responds to raster, layout and lyric changes.');

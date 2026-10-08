@@ -29,9 +29,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## Fonts (not bundled)
+## Embedded Noto fonts
+
+`assets/fonts/NotoSansCJKjp-{Regular,Bold}.{ttf,woff2}` are included in this repository; the WOFF2 files are embedded in the production HTML. Font metadata identifies Noto Sans CJK JP, © 2014-2021 Adobe. These fonts use SIL Open Font License 1.1; the official license is in `assets/OFL.txt`. Source and license: https://github.com/notofonts/noto-cjk/tree/main/Sans .
+
+## Additional fonts (loaded on request)
 
 The web app loads the following typefaces at runtime from Google Fonts (https://fonts.google.com/); they are not
 included in this repository. They are distributed by their authors under the SIL Open Font License 1.1:
 Noto Sans JP, Noto Serif JP, Dela Gothic One, Zen Kaku Gothic New, Zen Old Mincho, Kaisei Tokumin,
 M PLUS Rounded 1c, Mochiy Pop One, DotGothic16, Yuji Syuku, IBM Plex Mono, IBM Plex Sans JP.
+
+## Browser AAC fallback
+Mediabunny 1.61.0 and @mediabunny/aac-encoder 1.61.0 by Vanilagy, MPL-2.0. Unmodified dependency source is available at https://github.com/Vanilagy/mediabunny/tree/v1.61.0 . AAC WASM uses FFmpeg (LGPL) as distributed by that package. Licenses are included under vendor/licenses; npm lock records exact distribution versions. No runtime CDN request is used.
+
+The AAC dependency incorporates FFmpeg AAC WASM; the LGPL-2.1 text is in `vendor/licenses/FFmpeg-LGPL-2.1.txt`. The unmodified package and its bridge/build instructions are available at https://github.com/Vanilagy/mediabunny/tree/v1.61.0/packages/aac-encoder . Exact npm versions and integrity hashes are retained in `package-lock.json`; `node scripts/build-aac.mjs` reproduces the application bundle from those packages. The upstream build instructions do not pin an exact FFmpeg commit; corresponding-source and relinking compliance for that upstream binary has not been independently established. This is a documented upstream limitation, not a claim of complete license clearance.
+
+The production distribution includes this notice, the original MIT license, the font OFL and the vendor license texts alongside `index.html`.

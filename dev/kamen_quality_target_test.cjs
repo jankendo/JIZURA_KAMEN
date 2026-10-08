@@ -1,0 +1,10 @@
+'use strict';const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');const {J}=engine();
+const report=()=>({errors:[],quality:{technicalScore:99,creativeScore:99,socialScore:99,overallScore:99,productionDomains:{musicalDirection:99,semanticDirection:null,visualWorld:99},categories:[{key:'lyrics',score:18,max:18}],metrics:{perceptualNovelty:90,foregroundNovelty:90,temporalContrast:90,backgroundShotDiversity:1,visualStagnationSeconds:2},certified100:false}});
+let r=report(),a=J.evaluateQualityTarget(r);assert(a.minimumMet);assert(!a.certified100);assert.deepEqual(Array.from(a.unmeasured),['semanticDirection']);
+r.quality.socialScore=80;a=J.evaluateQualityTarget(r);assert(!a.minimumMet);assert.equal(a.failures[0].key,'social');
+r=report();r.quality.metrics.temporalContrast=79;a=J.evaluateQualityTarget(r);assert(!a.minimumMet);assert.equal(a.failures[0].minimum,80);
+r=report();r.errors=[{code:'BROKEN_VISUAL_WORLD'}];assert(!J.evaluateQualityTarget(r).minimumMet);
+const plan={beatHierarchy:[{time:1,beatSalience:.1},{time:2,beatSalience:.8}],lines:[],musicalStructure:{sections:[]},events:[{targetType:'BEAT',t:1,amp:.5},{targetType:'BEAT',t:1.5,amp:.5}],hypeTimeline:[]},targets=J.musicalTargets(plan);assert.deepEqual(Array.from(targets.SALIENT_BEAT),[2,1]);assert.deepEqual(Array.from(targets.EXPECTED_BEAT,x=>x.time),[1]);
+const px=n=>new Uint8Array(Array.from({length:16},(_,i)=>i%4===3?255:n)),frame=(time,n)=>({time,features:J.observePixelFrame(px(n),2,2)}),observer=J.observeVisualPeaks([frame(0,0),frame(.1,255),frame(.2,255),frame(.3,255)]);assert(observer.peaks.some(p=>p.time===.05),'first measured raster pair must not be discarded');
+const hashA=J.canonicalJSON({title:'同じ',lastQualityTarget:{minimumMet:false}}),hashB=J.canonicalJSON({title:'同じ'});assert.equal(hashA,hashB,'audit results must not change the render fingerprint');
+console.log('Per-item minima, missing measurements, count units, original-beat validation, observer boundary and render hash PASS');

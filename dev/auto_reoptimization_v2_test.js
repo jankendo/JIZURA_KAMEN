@@ -1,0 +1,2 @@
+const assert=require('node:assert/strict'),J=require('./style_test_harness.cjs'),p=require('./fixtures/repetitive_chant.json'),a={duration:57.4,buffer:{},features:{energy:.75,bpm:150,beatStrength:.8,onsetDensity:.7}};
+const plan=J.plan(p,a),report=J.checkMVQuality(p,plan,a);assert(report.issues.some(x=>x.code==='dna_mismatch'));assert(J.fixMVQuality(p,report,a)>0);assert(J.auditDirectionReality(J.plan(p,a)).ok);const result=J.preflightMV(p,a);assert(result.fixes<8);console.log('Old contradictory fixture repaired to coherent plan and bounded convergence');

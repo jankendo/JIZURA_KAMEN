@@ -1,51 +1,45 @@
-<div id="tour" class="tour" hidden role="dialog" aria-modal="true" aria-labelledby="tourTitle">
-  <div class="tour-spot"></div>
-  <div class="tour-bub">
-    <div class="tour-step mono muted"></div>
-    <h3 id="tourTitle" class="tour-title"></h3>
-    <p class="tour-text"></p>
-    <div class="tour-nav"><button class="tour-skip ghost small">スキップ</button><span class="tour-sp"></span><button class="tour-prev ghost small">戻る</button><button class="tour-next primary small">次へ</button></div>
-  </div>
-</div>
 <div id="app">
   <header class="bar">
-    <div class="brand"><span class="mark" aria-hidden="true">字面</span><span class="word">JIZURA</span><span class="tag">lyric motion engine</span><span class="ver">v@VERSION@</span></div>
+    <div class="brand"><span class="mark" aria-hidden="true">仮面</span><span class="word">KAMEN</span><span class="tag">Custom Edition</span></div>
     <div class="proj">
-      <input id="songTitle" type="text" placeholder="曲名（タイトルカード・HUDに表示）" aria-label="曲名">
+      <input id="songTitle" type="text" placeholder="曲名" aria-label="曲名">
       <input id="songArtist" type="text" placeholder="アーティスト" aria-label="アーティスト">
+      <label class="credit-toggle"><input id="titleDisplayOn" type="checkbox" checked> 動画にタイトル・アーティストを表示</label>
     </div>
-    <button id="btnOmakaseTop" class="primary omk-top" title="スタイル・雰囲気・演出・配色をまるごとランダムに">おまかせ</button>
-    <button id="btnMenu" class="ghost menu-btn" aria-expanded="false" aria-controls="appMenu">メニュー</button>
     <div class="modes" role="group" aria-label="表示モード">
-      <button id="modeMobile" class="mode-mobile" aria-pressed="false" title="スマホ向けの画面（おまかせを上に固定、行はたたんで表示）">スマホ</button>
-      <button id="modeEasy" aria-pressed="false" title="おまかせボタン中心のシンプルな画面">かんたん</button>
-      <button id="modePro" aria-pressed="true" title="すべての設定を表示">詳細</button>
-      <button id="btnTour" class="ghost tour-btn" title="かんたんモードの使い方を案内します" aria-label="使い方の案内">？</button>
+      <button id="modeEasy" aria-pressed="false" title="Easy：素材選びと自動生成を中心に表示。モード変更で作品や設定は消えません">かんたん</button>
+      <button id="modePro" aria-pressed="true" title="Pro：Style・Motion・タイミング・書き出し設定を個別調整。かんたんモードと同じプロジェクトを編集します">詳細</button>
     </div>
     <div class="acts">
       <label class="file" title="保存したプロジェクト(.json)を開く">開く<input id="fileProject" type="file" accept=".json,application/json"></label>
-      <button id="btnSave" title="プロジェクトを .json で保存">保存</button>
+      <button id="btnSave" title="画像・歌詞・設定を含むJSONを保存。音源は別途保管してください">プロジェクト保存</button>
       <button id="btnAE" title="After Effects パネル用の構成データを書き出す">AE用に書き出し</button>
-      <button id="btnReset" class="ghost" title="歌詞・曲・設定・履歴をすべて消して、最初の状態に戻します">初期化</button>
+      <button id="btnHelp" class="ghost" title="使い方・用語・バージョンを確認">ヘルプ</button>
       <button id="btnTerms" class="ghost terms-open" title="出力物の権利とライセンス">利用について</button>
     </div>
   </header>
 
+  <p id="localSaveStatus" class="local-save-status" role="status" aria-live="polite">保存内容を確認中…</p>
+  <section id="studioSetup" class="studio-setup" aria-label="MV作成">
+    <div class="studio-intro"><div><span class="studio-kicker">KAMEN · LYRIC MV</span><h1>曲に合わせた映像を、ひとつの操作で。</h1><p>背景画像1枚・音源・歌詞を選び、演出を自動生成。プレビューで確認してMP4に保存できます。</p></div><span id="studioStep" class="studio-step" role="status" aria-live="polite">01 / 02　素材を準備</span></div>
+    <div class="studio-fields">
+      <label class="studio-file"><span class="studio-field-label">01　背景画像</span><span id="studioImageName">画像を選択</span><span id="studioImageSlot"></span></label>
+      <label class="studio-file"><span class="studio-field-label">02　音源</span><span id="studioAudioName">曲を選択</span><span id="studioAudioSlot"></span></label>
+      <label class="studio-file"><span class="studio-field-label" title="[00:12.30]のように表示時刻を付けた歌詞。時刻なしTXTはタップ同期で調整できます。音源と同じ曲のファイルを選んでください">03　歌詞（LRC / TXT）</span><span id="studioLrcName">LRC / TXTを選択</span><span id="studioLrcSlot"></span></label>
+      <label class="studio-text">タイトル<span id="studioTitleSlot"></span></label>
+      <label class="studio-text">アーティスト<span id="studioArtistSlot"></span></label>
+    </div>
+    <div class="studio-actions"><span id="studioGenerateSlot"></span><button id="studioAdvanced" type="button" aria-expanded="false">詳細設定</button></div>
+    <div id="studioStatusSlot" class="studio-status" role="status" aria-live="polite"></div>
+  </section>
+
   <main class="work">
     <!-- ================= left: lyrics & timing ================= -->
     <section class="col col-left" aria-label="歌詞とタイミング">
-      <div id="tapPanel" class="tapbox" hidden>
-          <div class="hint">曲に合わせて、各行が始まる瞬間に <span class="kbd">Space</span> かボタンを押してください。押し間違えたら <span class="kbd">Backspace</span> か「1つ戻る」。途中の行からやり直すときは、行一覧の ◎ を押します。1行に複数のカットがあるときは、カットが切り替わる瞬間に <span class="kbd">Tab</span> を押すと、その行のカットの開始時刻も合わせられます。</div>
-          <div class="tap-opts"><label>速さ <select id="tapRate" aria-label="タップ中の再生速度"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select></label><label><input type="checkbox" id="tapCount"> カウントダウン</label></div>
-          <div class="next">次: <b id="tapLine">—</b><b id="tapCountNum" class="tap-count" hidden></b></div>
-          <button id="tapBtn" class="tap">TAP</button>
-          <button id="tapBack" class="ghost">1つ戻る</button>
-          <button id="tapStop" class="ghost">終了する</button>
-      </div>
       <div class="sec">
-        <div class="sec-h"><h2>歌詞</h2><span class="sec-btns"><label class="file ghost small" title="LRC ファイル（タイムスタンプ付きの歌詞）を読み込み、今の歌詞と置き換えます（「元に戻す」で戻せます）">LRC を読み込む<input id="fileLrc" type="file" accept=".lrc,.txt,text/plain"></label><button id="btnClearLyrics" class="ghost small" title="歌詞と、行ごとのタイミング・指定・書き出す範囲を消します（「元に戻す」か Ctrl+Z で戻せます）">歌詞を消す</button><button id="btnSyntax" class="ghost small" aria-expanded="false">記法</button></span></div>
+        <div class="sec-h"><h2>歌詞（日本語）</h2><button id="btnSyntax" class="ghost small" aria-expanded="false">記法</button></div>
         <textarea id="lyrics" rows="9" spellcheck="false" aria-label="歌詞（1行 = 1フレーズ）"></textarea>
-        <label class="lang-row">歌詞の言語<select id="lyricLang"><option value="auto">自動判定</option><option value="ja">日本語</option><option value="zh-Hant">繁體中文</option><option value="zh-Hans">简体中文</option><option value="ko">한국어</option><option value="en">English</option></select><span id="langNote" class="muted"></span></label>
+        <div class="row"><label class="file">歌詞を読み込む<input id="lrcFile" type="file" accept=".lrc,.txt,text/plain,text/lrc"></label><button id="btnLRC" type="button" title="歌詞の表示時刻をLRCファイルに保存">LRCを書き出す</button><span id="lrcStatus" class="muted audio-name" role="status" aria-live="polite">時刻なしTXTも読み込めます。時刻はタップ同期で調整できます</span></div>
         <div id="syntax" class="syntax" hidden>
           <ul>
             <li>1行が1フレーズ。空行は少し間を空けます</li>
@@ -53,8 +47,7 @@
             <li><code>*透明*</code> … 強調（大きく・インパクト寄りの演出）</li>
             <li>行末の <code>!</code> … フラッシュと揺れを入れる</li>
             <li><code>歌詞|ruby or note</code> … 注釈レイアウトの小さな文字</li>
-            <li><code>[01:23.45]歌詞</code> … LRC のタイムスタンプをそのまま使用</li>
-            <li><code>[間奏 8]</code> … 8秒の間奏（歌詞は出さず、背景と装飾だけ）。秒数を省くと4秒、タップ同期やマーカーで長さを合わせられます</li>
+            <li><code>[01:23.45]歌詞</code> … LRC のタイムスタンプを使用。複数時刻と <code>[offset:500]</code>（ミリ秒）も対応</li>
             <li><code>#</code> で始まる行 … コメント（無視）</li>
           </ul>
         </div>
@@ -67,8 +60,9 @@
           <label class="file" title="mp3 / wav / m4a など">曲を読み込む<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
           <button id="btnTap" title="曲を再生しながら各行の頭でタップ">タップで同期</button>
         </div>
+        <div class="auto-direction"><button id="btnAutoDirection" class="primary" type="button">✨ 作品に合わせて自動仕上げ</button><p id="directionStatus" class="muted" role="status" aria-live="polite">背景画像か曲を選び、歌詞を入力すると、作品全体の演出をまとめて決めます。</p></div>
         <div class="fields pro-only">
-          <label class="field">BPM<input id="bpm" type="number" min="0" max="300" step="0.1" placeholder="自動"></label>
+          <label class="field">BPM<input id="bpm" type="number" min="45" max="240" step="0.1" placeholder="自動"></label>
           <label class="field">開始(秒)<input id="offset" type="number" min="0" step="0.05"></label>
           <label class="field">行の長さ<input id="lineScale" type="number" min="0.4" max="3" step="0.05"></label>
         </div>
@@ -76,10 +70,17 @@
           <label class="row" style="gap:6px"><input id="snap" type="checkbox"> 拍にスナップ</label>
           <button id="btnResetTimes" class="ghost small">手動タイミングを消す</button>
         </div>
+        <div id="tapPanel" class="tapbox" hidden>
+          <div class="hint">音源を再生し、各行が始まる瞬間に <span class="kbd">Space</span> かボタンを押してください。</div>
+          <div class="next">次: <b id="tapLine" role="status" aria-live="polite" aria-atomic="true">—</b></div>
+          <button id="tapBtn" class="tap" aria-label="次の歌詞行の開始時刻を記録">TAP</button>
+          <button id="tapUndo" class="ghost" type="button">1行戻す</button><button id="tapStop" class="ghost">終了する</button>
+        </div>
       </div>
 
       <div class="sec">
         <div class="sec-h"><h2>行とカット</h2><span id="linesInfo" class="muted mono"></span></div>
+        <div id="timingNudge" class="row" aria-label="歌詞の全体タイミング"><span>全体の時刻</span><button type="button" data-shift="-0.5">−0.5秒</button><button type="button" data-shift="-0.1">−0.1秒</button><button type="button" data-shift="0.1">＋0.1秒</button><button type="button" data-shift="0.5">＋0.5秒</button></div>
         <ol id="lineList"></ol>
       </div>
     </section>
@@ -91,35 +92,26 @@
         <button id="btnPlay" class="play" aria-label="再生">▶</button>
         <span id="timeNow" class="tc">00:00.00</span><span class="tc muted">/</span><span id="timeDur" class="tc muted">00:00.00</span>
         <input id="scrub" type="range" min="0" max="10000" value="0" aria-label="再生位置">
-        <button id="btnLoop" class="ghost small" aria-pressed="true" title="全体を繰り返し">ループ</button>
-        <span class="vol"><button id="btnMute" class="ghost small" aria-pressed="false" title="クリックで消音／解除（プレビューだけ。書き出しの音量は変わりません）">音量</button><input id="vol" type="range" min="0" max="100" value="80" aria-label="プレビューの音量"></span>
+        <button id="btnLoop" class="ghost small" aria-pressed="true">ループ</button>
         <span class="hist-btns">
           <button id="btnPrev" class="ghost small icon-txt" title="前の案に戻る" aria-label="前の案">◀</button>
           <button id="btnNext" class="ghost small icon-txt" title="次の案へ進む" aria-label="次の案">▶</button>
         </span>
         <button id="btnShuffle" class="accent" title="設定はそのままで構成だけ再抽選（ロックした行は維持）">シャッフル</button>
-        <select class="themeSel" aria-label="おまかせのテーマ" title="おまかせのテーマ（選ぶと、その方向の中でおまかせします。必要な部品のスイッチもオンになります）"><option value="">テーマなし</option><option value="lyricpv">文字PV</option><option value="kinetic">キネティック</option><option value="wa">和風</option><option value="horror">ホラー</option><option value="pop">ポップ</option><option value="ballad">バラード</option></select>
         <button id="btnOmakase" class="primary" title="スタイル・雰囲気・演出・配色をまるごとランダムに（キー R）">おまかせ</button>
       </div>
-      <div class="tl-bar">
-        <span class="tl-hint muted">行の区切り（上の目盛り）はドラッグで動かせます。<span class="kbd">Shift</span> で拍に吸着しない</span>
-        <span class="tl-btns">
-          <button id="btnUndoEdit" class="ghost small" title="歌詞・タイミングの変更を元に戻す（Ctrl+Z）" disabled>元に戻す</button>
-          <button id="tlOut" class="ghost small icon-txt" title="縮小" aria-label="タイムラインを縮小">−</button>
-          <button id="tlIn" class="ghost small icon-txt" title="拡大（タイムライン上でホイールでも）" aria-label="タイムラインを拡大">＋</button>
-          <button id="tlFit" class="ghost small" title="全体を表示">全体</button>
-        </span>
+      <div class="timeline-toolbar" role="group" aria-label="波形タイムライン">
+        <span class="timeline-title">波形・歌詞タイミング</span>
+        <span id="timelineStatus" class="muted" aria-live="polite">波形上部の歌詞マーカーをドラッグして調整</span>
+        <span class="timeline-tools"><button id="timelineZoomOut" type="button" aria-label="タイムラインを縮小">−</button><button id="timelineFit" type="button">全体</button><button id="timelineZoomIn" type="button" aria-label="タイムラインを拡大">＋</button><button type="button" data-line-nudge="-0.1" aria-label="選択した歌詞を0.1秒早く">選択 −0.1</button><button type="button" data-line-nudge="0.1" aria-label="選択した歌詞を0.1秒遅く">選択 ＋0.1</button></span>
       </div>
-      <canvas id="timeline" aria-label="タイムライン（クリックで移動・行の区切りはドラッグで調整）"></canvas>
+      <canvas id="timeline" aria-label="タイムライン。クリックで移動、上部の歌詞マーカーをドラッグして開始時刻を変更"></canvas>
       <div class="cutinfo" id="cutInfo"></div>
-      <div id="cutPick" class="cut-pick pro-only" hidden>
-        <div class="cut-pick-h">
-          <strong id="cutPickTitle">手法</strong>
-          <span class="muted" id="cutPickHint">このカットだけ差し替え</span>
-          <button type="button" id="cutPickAuto" class="ghost small">自動</button>
-          <button type="button" id="cutPickClose" class="ghost small" aria-label="閉じる">✕</button>
-        </div>
-        <div id="cutPickGrid" class="tech-grid checks"></div>
+      <div class="studio-result" id="studioResult" hidden><div class="studio-result-heading"><span class="studio-kicker">READY TO SHARE</span><h2>仕上がりを確認して書き出す</h2></div><div class="studio-result-main"><button id="studioExport" class="primary" type="button">X用MP4を書き出す</button><button id="studioShare" type="button" hidden>動画を共有・保存</button><label class="studio-select-label">画面比<select id="studioAspect" aria-label="書き出しの画面比"><option value="16:9">X・横長</option><option value="9:16">縦動画</option><option value="1:1">正方形</option></select></label><label class="studio-select-label">用途<select id="studioPurpose" aria-label="動画の用途"><option value="mv">SNS MV</option><option value="practice">チャント練習</option></select></label></div><div id="studioQuality" class="studio-quality" role="status" aria-live="polite"></div><details class="studio-quality-details" id="studioQualityDetails" hidden><summary id="studioScore">自動検査 — / 100</summary><details id="styleInspector"></details><div id="studioQualityBreakdown"></div></details><details class="studio-export-details" id="studioExportDetails"><summary>書き出し詳細設定</summary><div class="studio-export-grid"><label>書き出し preset<select id="studioPreset"><option value="auto">自動おすすめ</option><option value="xStandard">X 標準</option><option value="xHigh">X 高画質</option><option value="youtube1080">YouTube 1080p</option><option value="vertical">9:16 SNS</option><option value="master">高品質マスター</option><option value="custom">カスタム</option></select></label><label>コンテナ<select disabled aria-label="コンテナ"><option>MP4</option></select></label><label>映像コーデック<select disabled aria-label="映像コーデック"><option>H.264 / AVC（自動互換）</option></select></label><label>サンプルレート<select id="studioSampleRate"><option value="48000">48 kHz</option><option value="44100">44.1 kHz</option></select></label><label>解像度<select id="studioRes"><option value="720">720p</option><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">2160p</option></select></label><label>フレームレート<select id="studioFPS"><option value="auto">自動（動きに合わせる）</option><option value="24">24 fps</option><option value="30">30 fps</option><option value="60">60 fps</option></select></label><label>画質<select id="studioQualityLevel"><option value="standard">標準</option><option value="high">高画質</option><option value="max">最高</option></select></label><label>映像 bitrate（自動は空欄）<span class="studio-number-unit"><input id="studioVideoBitrate" type="number" min="1" max="60" step="0.5" inputmode="decimal" placeholder="自動"><span>Mbps</span></span></label><label>音声<select id="studioAudio"><option value="on">AAC を含める</option><option value="off">音声なし</option></select></label><label>音声 bitrate<select id="studioAudioBitrate"><option value="128000">128 kbps</option><option value="192000">192 kbps</option><option value="256000">256 kbps</option><option value="320000">320 kbps</option></select></label><label>書き出す範囲<select id="studioExportRange"><option value="full">曲全体</option><option value="socialHook">縦型ショート 12〜15秒</option><option value="highlight">SNS 60秒版</option></select></label><label>演出密度<select id="studioEnergyDensity"><option value="auto">自動選択</option><option value="clean">CLEAN</option><option value="standard">STANDARD</option><option value="high_energy">HIGH ENERGY</option><option value="hyper">HYPER</option></select></label><label>歌詞開始フック<select id="studioHookStrength"><option value="auto">自動</option><option value="strong">強め</option><option value="maximum">最大</option></select></label><label class="studio-export-name">ファイル名<input id="studioFileName" type="text" maxlength="80" autocomplete="off" placeholder="タイトルから自動設定"></label></div><p id="studioExportSummary" class="studio-export-summary" role="status" aria-live="polite"></p><p id="studioExportCapability" class="studio-export-capability"></p></details><div class="studio-result-sub"><button id="studioTiming" type="button">歌詞タイミングを調整</button><details class="studio-more"><summary>その他</summary><button id="studioPNG" type="button">現在フレームを画像保存</button></details></div></div>
+      <div id="studioTools" class="studio-tools" hidden>
+        <div class="studio-tool-row"><button id="studioSocialHook" type="button" aria-pressed="false">縦型ショートを作る（12〜15秒）</button><button id="studioHighlight" type="button" aria-pressed="false">SNS 60秒版</button><span id="highlightChoice" class="muted"></span><button id="highlightNext" type="button" hidden>別候補</button></div>
+        <div class="studio-tool-row"><button id="studioAlternative" type="button">別案を見る</button><span id="alternativeChoice" class="muted">推奨案</span><select id="studioPreviewMode" aria-label="プレビューの表示"><option value="editor">編集プレビュー</option><option value="x">Xでの表示</option><option value="vertical">縦動画での表示</option></select></div>
+        <div id="studioPreflight" role="status" aria-live="polite"></div>
       </div>
     </section>
 
@@ -128,7 +120,6 @@
       <div id="easyPanel" class="easy" hidden>
         <div class="easy-hero">
           <button id="btnOmakaseBig" class="omakase">おまかせで作る</button>
-          <label class="theme-row">テーマ<select class="themeSel" aria-label="おまかせのテーマ"><option value="">テーマなし</option><option value="lyricpv">文字PV</option><option value="kinetic">キネティック</option><option value="wa">和風</option><option value="horror">ホラー</option><option value="pop">ポップ</option><option value="ballad">バラード</option></select><small class="muted">選ぶと、その方向の中でおまかせします</small></label>
           <p class="hint">押すたびに、スタイル・雰囲気・動き・配色・構成がまるごと変わります。キーボードの <span class="kbd">R</span> でも実行できます。</p>
           <div class="hist-row">
             <button id="btnPrev2" class="ghost">◀ 前の案</button>
@@ -138,11 +129,6 @@
           <div class="pick-sets">
             <label class="check"><input id="eExtra" class="extra-toggle" type="checkbox"><span>追加分の演出も使う<small>最初の公開版のあとに追加した約350の演出・配色セット12・書体6も、おまかせやシャッフルの候補にします（オフのときは最初の公開版の演出だけ）</small></span></label>
             <label class="check"><input id="eWa" class="wa-toggle" type="checkbox" checked><span>和風の演出も使う<small>提灯・はがき・障子・扇・家紋・青海波・桜の花びらなどの和風グラフィック。オフにすると、おまかせやシャッフルで選ばれません</small></span></label>
-            <label class="check"><input class="typo-toggle" type="checkbox" checked><span>文字PV系の部品を使う<small>線・数字・字組みだけで見せる、文字PVらしい部品（約50）</small></span></label>
-            <label class="check"><input class="kinetic-toggle" type="checkbox" checked><span>キネティックの部品を使う<small>語ごとに動く・跳ねる・積み上がる、動き重視の部品（約50）</small></span></label>
-            <label class="check"><input class="horror-toggle" type="checkbox"><span>ホラーの演出も使う<small>不気味な雰囲気の部品（約50）と配色セット3。オンにすると、おまかせの雰囲気に「ホラー」が加わります</small></span></label>
-            <label class="check"><input class="unify-toggle" type="checkbox"><span>統一感</span></label>
-            <label class="check"><input class="typeset-toggle" type="checkbox"><span>文字整列</span></label>
           </div>
         </div>
         <div class="easy-sec">
@@ -164,19 +150,32 @@
             <label class="field">画面比<select id="eAspect"><option value="16:9">16:9</option><option value="9:16">9:16 縦</option><option value="4:3">4:3</option><option value="3:4">3:4 縦</option><option value="1:1">1:1</option><option value="4:5">4:5 縦</option><option value="21:9">21:9</option></select></label>
             <label class="field">解像度<select id="eRes"><option value="720">720p</option><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">4K</option></select></label>
             <label class="field">fps<select id="eFps"><option>24</option><option>30</option><option>60</option></select></label>
-            <label class="field field-wide">背景<select id="eKey"><option value="off">通常（スタイルの背景）</option><option value="green">グリーンバック（合成用）</option><option value="black">ブラックバック（合成用）</option></select></label>
+            <label class="field field-wide">背景<select id="eKey"><option value="off">通常（スタイルの背景）</option><option value="custom">カスタム画像</option><option value="green">グリーンバック（合成用）</option><option value="black">ブラックバック（合成用）</option></select></label>
           </div>
-          <label class="check center-free"><input id="eCenter" class="center-toggle" type="checkbox"><span>中央を空ける（キャラクター用）<small>中央にキャラクターなどを重ねる前提で、文字と演出を横長の画面では左右、縦長の画面では上下に、行ごとに交互に置きます。背景と画面効果は全体のままです（プレビューには空ける範囲を点線で表示）</small></span></label>
-          <label class="row center-dir" hidden>縦長のとき<select class="centerDirSel" aria-label="縦長の画面での分け方"><option value="tb">上下に分ける</option><option value="lr">左右に分ける</option></select></label>
-          <div class="rng-row"><span class="rng-lab">書き出す範囲</span><select class="rngFrom" aria-label="書き出す範囲の最初の行"></select><span class="muted">〜</span><select class="rngTo" aria-label="書き出す範囲の最後の行"></select><span class="rngInfo muted mono"></span></div>
-          <div class="outbtns"><button id="eMP4" class="primary">MP4 を書き出す</button><button id="eMP4File" class="ghost mp4file" hidden title="保存先のファイルを先に選び、そこへ直接書き込みます。長い曲・1080p 以上でブラウザのメモリが足りずに失敗するときに使ってください（Chrome / Edge）">大きな動画用（ファイルに直接保存）</button><button id="eLRC" class="ghost" title="各行の開始時刻を付けた歌詞（.lrc）を書き出します。書き出す範囲を選んでいるときは、その行だけを動画の頭からの時刻で書き出します">LRC を書き出す</button></div>
-          <div class="outbtns out-png"><button id="ePNG" class="ghost">連番PNG（ZIP）</button><button id="ePNGA" class="ghost">透過PNG（ZIP・背景なし）</button><button id="ePNGL" class="ghost" title="後景（背景のグラフィックと歌詞の後ろの装飾）と前景（歌詞とその装飾・ゴースト）を、別々のフォルダ（back / front）に透過PNGで書き出します。画面全体の演出は両方にかかるので、前景を後景の上に重ねると通常の見た目になります">透過PNG 前景／後景（ZIP）</button></div>
+          <div class="custom-bg-controls" id="eCustomBg" hidden>
+            <div class="row bg-image-row"><label class="file">画像を選択<input type="file" data-bg-file accept="image/png,image/jpeg,image/webp"></label><span class="muted bg-image-name" data-bg-name>画像未選択</span></div>
+            <div class="bg-auto">
+              <strong class="bg-auto-title">画像から自動調整</strong>
+              <div class="checks bg-auto-options">
+                <label><input type="checkbox" data-palette-option="palette" checked><span>配色を最適化</span></label>
+                <label><input type="checkbox" data-palette-option="readability" checked><span>文字の読みやすさを最適化</span></label>
+                <label><input type="checkbox" data-palette-option="mood" checked><span>雰囲気も画像に合わせる</span></label>
+              </div>
+              <button type="button" class="primary small" data-palette-action="analyze">✨ 画像から最適化</button>
+              <p class="note bg-palette-status" data-palette-status aria-live="polite">背景画像を選ぶと、画像に合わせて調整できます。解析はこのブラウザ内で行います。</p>
+              <div class="bg-palette-swatches" data-palette-swatches hidden></div>
+            </div>
+            <label class="field bg-fit">表示方法<select data-bg-setting="fit"><option value="cover">画面いっぱい</option><option value="contain">画像全体</option></select></label>
+            <label class="bg-slider"><span>位置 X</span><input type="range" min="0" max="100" step="1" value="50" data-bg-setting="x"><output>50%</output></label>
+            <label class="bg-slider"><span>位置 Y</span><input type="range" min="0" max="100" step="1" value="50" data-bg-setting="y"><output>50%</output></label>
+            <label class="bg-slider"><span>拡大率</span><input type="range" min="50" max="300" step="1" value="100" data-bg-setting="zoom"><output>100%</output></label>
+            <label class="bg-slider"><span>暗さ</span><input type="range" min="0" max="80" step="1" value="20" data-bg-setting="darkness"><output>20%</output></label>
+            <label class="bg-slider"><span>ぼかし</span><input type="range" min="0" max="30" step="1" value="0" data-bg-setting="blur"><output>0px</output></label>
+            <div class="row bg-actions"><button type="button" class="ghost small" data-bg-action="reset">設定をリセット</button><button type="button" class="ghost small" data-bg-action="clear">画像を解除</button></div>
+            <p class="note bg-help">画像はこのブラウザ内で処理されます。MP4・連番PNGに反映され、透過PNGには含まれません。</p>
+          </div>
+          <div class="outbtns"><button id="eMP4" class="primary">MP4 を書き出す</button></div>
           <button class="terms-open linkish">書き出した動画の権利について</button>
-          <div class="exp-box" hidden>
-            <button class="exp-share primary" hidden>共有して保存</button>
-            <div class="progress"><i class="exp-bar"></i></div>
-            <div class="row" style="justify-content:space-between;margin-top:6px"><span class="exp-text muted mono">—</span><button class="exp-cancel ghost small">中止</button></div>
-          </div>
         </div>
       </div>
       <nav class="tabs" role="tablist">
@@ -208,18 +207,10 @@
       </div>
 
       <div class="tabpane" data-pane="fx" hidden>
-        <div class="unify-box">
-          <label class="check"><input class="unify-toggle" type="checkbox"><span>統一感</span></label>
-          <label class="check"><input class="typeset-toggle" type="checkbox"><span>文字整列</span></label>
-        </div>
         <div id="fxSliders"></div>
         <div class="row" style="margin-top:6px">
           <label class="row" style="gap:6px"><input id="fxFlash" type="checkbox"> フラッシュ</label>
           <label class="row" style="gap:6px">コマ打ち <select id="fxKoma" title="動きを何枚/秒で描くか（出力fpsとは別）"><option value="0">フル（出力fpsのまま）</option><option value="12">2コマ打ち（12枚/秒）</option><option value="8">3コマ打ち（8枚/秒）</option></select></label>
-        </div>
-        <div class="row" style="margin-top:6px">
-          <label class="row" style="gap:6px" title="レイアウトや装飾が添える「No.01」「#03」のような数字を描きません（歌詞に含まれる数字はそのまま）"><input id="fxHideNo" type="checkbox"> 飾りの数字を消す</label>
-          <label class="row" style="gap:6px" title="レイアウトや装飾が添える「00:12.34」のような時刻を描きません（歌詞に含まれる時刻はそのまま）"><input id="fxHideTime" type="checkbox"> 飾りの時刻を消す</label>
         </div>
         <div class="fields" style="margin-top:12px">
           <label class="field">HUD<select id="fxHud"><option value="auto">スタイル次第</option><option value="on">常に表示</option><option value="off">表示しない</option></select></label>
@@ -233,13 +224,14 @@
         <div class="pick-sets">
           <label class="check"><input id="tExtra" class="extra-toggle" type="checkbox"><span>追加分の演出も使う<small>「追加」印の手法・スタイル・書体。オフのときは、おまかせやシャッフルで最初の公開版の演出だけを使います</small></span></label>
           <label class="check"><input id="tWa" class="wa-toggle" type="checkbox" checked><span>和風の演出も使う<small>「和」印の手法とスタイル。オフにすると、おまかせやシャッフルでは選ばれません（追加分の判定のあとに適用。行ごとに手動で指定した場合は使えます）</small></span></label>
-          <label class="check"><input class="typo-toggle" type="checkbox" checked><span>文字PV系の部品を使う<small>「文」印の手法。オフにすると、おまかせやシャッフルでは選ばれません</small></span></label>
-          <label class="check"><input class="kinetic-toggle" type="checkbox" checked><span>キネティックの部品を使う<small>「キ」印の手法。オフにすると、おまかせやシャッフルでは選ばれません</small></span></label>
-          <label class="check"><input class="horror-toggle" type="checkbox"><span>ホラーの演出も使う<small>「ホ」印の手法とスタイル。おまかせでは雰囲気が「ホラー」のときだけ使います</small></span></label>
         </div>
         <div class="row" style="margin-bottom:10px"><input id="techFilter" type="text" placeholder="手法を名前で絞り込み" style="flex:1" aria-label="手法を名前で絞り込み"><span id="techTotal" class="muted mono"></span></div>
-        <p class="note">画面に見えているプレビューは自動でループします。</p>
         <div id="techLists"></div>
+        <details class="director-bridge" id="directorBridge"><summary>素材・解析パックのダウンロード</summary>
+          <p class="note">音源・背景・LRC・解析情報をZIPにまとめます。外部LLMへ渡すための素材ダウンロードは利用できます。演出はこのアプリ内で自動生成し、LLMへの送信・JSON案の読み込みは行いません。</p>
+          <div class="row"><button id="directorExportContext" type="button">素材・解析パック（ZIP）を保存</button></div>
+          <p id="directorStatus" class="note" role="status" aria-live="polite">素材は外部へ送信されません。ダウンロード後の取り扱いはご自身で管理してください。</p>
+        </details>
       </div>
 
       <div class="tabpane" data-pane="out" hidden>
@@ -248,25 +240,36 @@
           <label class="field">解像度<select id="outRes"><option value="720">720p</option><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">4K</option></select></label>
           <label class="field">fps<select id="outFps"><option>24</option><option>30</option><option>60</option></select></label>
           <label class="field">画質<select id="outQuality"><option value="standard">標準</option><option value="high">高</option><option value="max">最高</option></select></label>
-          <label class="field field-wide">背景<select id="outKey"><option value="off">通常（スタイルの背景）</option><option value="green">グリーンバック（合成用）</option><option value="black">ブラックバック（合成用）</option></select></label>
+          <label class="field field-wide">背景<select id="outKey"><option value="off">通常（スタイルの背景）</option><option value="custom">カスタム画像</option><option value="green">グリーンバック（合成用）</option><option value="black">ブラックバック（合成用）</option></select></label>
+        </div>
+        <div class="custom-bg-controls" id="outCustomBg" hidden>
+          <div class="row bg-image-row"><label class="file">画像を選択<input type="file" data-bg-file accept="image/png,image/jpeg,image/webp"></label><span class="muted bg-image-name" data-bg-name>画像未選択</span></div>
+          <div class="bg-auto">
+            <strong class="bg-auto-title">画像から自動調整</strong>
+            <div class="checks bg-auto-options">
+              <label><input type="checkbox" data-palette-option="palette" checked><span>配色を最適化</span></label>
+              <label><input type="checkbox" data-palette-option="readability" checked><span>文字の読みやすさを最適化</span></label>
+              <label><input type="checkbox" data-palette-option="mood" checked><span>雰囲気も画像に合わせる</span></label>
+            </div>
+            <button type="button" class="primary small" data-palette-action="analyze">✨ 画像から最適化</button>
+            <p class="note bg-palette-status" data-palette-status aria-live="polite">背景画像を選ぶと、画像に合わせて調整できます。解析はこのブラウザ内で行います。</p>
+            <div class="bg-palette-swatches" data-palette-swatches hidden></div>
+          </div>
+          <label class="field bg-fit">表示方法<select data-bg-setting="fit"><option value="cover">画面いっぱい</option><option value="contain">画像全体</option></select></label>
+          <label class="bg-slider"><span>位置 X</span><input type="range" min="0" max="100" step="1" value="50" data-bg-setting="x"><output>50%</output></label>
+          <label class="bg-slider"><span>位置 Y</span><input type="range" min="0" max="100" step="1" value="50" data-bg-setting="y"><output>50%</output></label>
+          <label class="bg-slider"><span>拡大率</span><input type="range" min="50" max="300" step="1" value="100" data-bg-setting="zoom"><output>100%</output></label>
+          <label class="bg-slider"><span>暗さ</span><input type="range" min="0" max="80" step="1" value="20" data-bg-setting="darkness"><output>20%</output></label>
+          <label class="bg-slider"><span>ぼかし</span><input type="range" min="0" max="30" step="1" value="0" data-bg-setting="blur"><output>0px</output></label>
+          <div class="row bg-actions"><button type="button" class="ghost small" data-bg-action="reset">設定をリセット</button><button type="button" class="ghost small" data-bg-action="clear">画像を解除</button></div>
+          <p class="note bg-help">画像はこのブラウザ内で処理されます。MP4・連番PNGに反映され、透過PNGには含まれません。</p>
         </div>
         <p class="note key-note">グリーンバック／ブラックバックにすると、白い文字と演出だけを単色の背景の上に描きます（背景の模様・紙の質感・粒子・周辺減光は入りません）。プレビューにもそのまま反映されます。グリーンバックは動画編集ソフトのクロマキーで、ブラックバックは「スクリーン」合成や輝度キーで抜いて、別の映像の上に重ねられます。</p>
-        <label class="check center-free"><input id="outCenter" class="center-toggle" type="checkbox"><span>中央を空ける（キャラクター用）<small>中央にキャラクターなどを重ねる前提で、文字と演出を横長の画面では左右、縦長の画面では上下に、行ごとに交互に置きます。背景と画面効果は全体のままです（プレビューには空ける範囲を点線で表示）</small></span></label>
-          <label class="row center-dir" hidden>縦長のとき<select class="centerDirSel" aria-label="縦長の画面での分け方"><option value="tb">上下に分ける</option><option value="lr">左右に分ける</option></select></label>
         <label class="row" style="gap:6px;margin-top:10px"><input id="outAudio" type="checkbox" checked> 曲を動画に含める</label>
-        <div class="rng-row"><span class="rng-lab">書き出す範囲</span><select class="rngFrom" aria-label="書き出す範囲の最初の行"></select><span class="muted">〜</span><select class="rngTo" aria-label="書き出す範囲の最後の行"></select><span class="rngInfo muted mono"></span></div>
         <div class="outbtns">
           <button id="btnMP4" class="primary">MP4 を書き出す</button>
-          <button id="btnMP4File" class="mp4file" hidden title="保存先のファイルを先に選び、そこへ直接書き込みます。長い曲・1080p 以上でブラウザのメモリが足りずに失敗するときに使ってください（Chrome / Edge）">MP4（大きな動画用・ファイルに直接保存）</button>
           <button id="btnPNG">連番PNG（ZIP）</button>
           <button id="btnPNGA">透過PNG（ZIP・背景なし）</button>
-          <button id="btnLRC" title="各行の開始時刻を付けた歌詞（.lrc）を書き出します。書き出す範囲を選んでいるときは、その行だけを動画の頭からの時刻で書き出します">歌詞（LRC）</button>
-          <button id="btnPNGL" title="後景（背景のグラフィックと歌詞の後ろの装飾）と前景（歌詞とその装飾・ゴースト）を、別々のフォルダ（back / front）に透過PNGで書き出します。画面全体の演出は両方にかかるので、前景を後景の上に重ねると通常の見た目になります">透過PNG 前景／後景（ZIP）</button>
-        </div>
-        <div class="exp-box" hidden style="margin-top:12px">
-          <button class="exp-share primary" hidden>共有して保存</button>
-          <div class="progress"><i class="exp-bar"></i></div>
-          <div class="row" style="justify-content:space-between;margin-top:6px"><span class="exp-text muted mono">—</span><button class="exp-cancel ghost small">中止</button></div>
         </div>
         <button class="terms-open linkish" style="margin-top:10px">書き出した動画・画像の権利とライセンスについて</button>
         <p class="note" id="codecNote">書き出しはこのブラウザの中で行われます（Chrome / Edge 推奨）。</p>
@@ -275,21 +278,6 @@
   </main>
 </div>
 
-<dialog id="resetDlg" class="terms" aria-labelledby="resetTitle">
-  <form method="dialog">
-    <h2 id="resetTitle">初期化</h2>
-    <p>次のものをすべて消して、最初の状態に戻します。<strong>元に戻すことはできません。</strong></p>
-    <ul class="reset-list">
-      <li>歌詞・曲名・アーティスト</li>
-      <li>読み込んだ曲（このブラウザに残していた分も）</li>
-      <li>タイミング・行ごとの指定・書き出す範囲</li>
-      <li>スタイル・演出・配色・書体などの設定</li>
-      <li>案の履歴（◀ ▶）と、歌詞・タイミングの「元に戻す」の履歴</li>
-    </ul>
-    <p class="terms-sub">表示モード（かんたん／詳細）・プレビューの音量・画面の言語はそのままです。保存したプロジェクトファイル（.json）も消えません。</p>
-    <div class="terms-foot"><span></span><span class="row"><button value="cancel" class="ghost">やめる</button><button value="reset" class="danger">初期化する</button></span></div>
-  </form>
-</dialog>
 <dialog id="termsDlg" class="terms" aria-labelledby="termsTitle">
   <form method="dialog">
     <h2 id="termsTitle">利用について</h2>
@@ -297,8 +285,9 @@
       <p class="terms-big">このツールで作った<strong>動画や画像（出力物）の権利は、作った人</strong>に帰属します。</p>
       <p class="terms-sub">※ 使った歌詞や曲の権利は、それぞれの権利者に帰属します。</p>
     </div>
-    <p>ツール本体は <strong>MIT ライセンス</strong>で公開しています。詳細なライセンスはこちら：</p>
+    <p>本アプリは <strong>MIT ライセンスの JIZURA</strong> をベースにしています。ソースとライセンスはこちら：</p>
     <p><a href="https://github.com/852wa/JIZURA" target="_blank" rel="noopener">https://github.com/852wa/JIZURA</a></p>
+    <p class="muted terms-note">KAMEN は音源をこのブラウザ内に保存し、次回起動時の復元を試みます。保存できない場合は、曲を選び直してください。</p>
     <p class="muted terms-note">入力した歌詞や曲は、このブラウザの中だけで処理され、サーバーには送信されません。</p>
     <details class="terms-oss"><summary>使用しているオープンソース</summary>
       <p>MP4 書き出し：mp4-muxer（MIT License）<br>フォント：Google Fonts 配布の各書体（SIL Open Font License 1.1）</p>
@@ -306,3 +295,20 @@
     <div class="terms-foot"><span class="muted mono">© 2026 hakoniwa · MIT</span><button value="close" class="primary" autofocus>閉じる</button></div>
   </form>
 </dialog>
+
+<dialog id="helpDlg" class="terms help" aria-labelledby="helpTitle">
+  <form method="dialog">
+    <h2 id="helpTitle">KAMEN（仮面） <span class="edition-badge">Custom Edition</span></h2>
+    <p class="muted mono">Version __APP_VERSION__</p>
+    <p>日本語の歌詞に動きを付け、曲に合わせたMVをブラウザで作るツールです。オリジナルのJIZURAをベースに、背景画像と自動演出などを独自改修したカスタム版です。</p>
+    <ol class="help-steps"><li>画像・音源・LRCを選ぶ。</li><li>自動生成し、プレビューで歌詞と演出を確認する。</li><li>画面比率・範囲・品質を確認してMP4を書き出す。</li></ol>
+    <details open><summary>かんたん / 詳細（Easy / Pro）</summary><p>かんたんは素材と自動生成が中心。詳細では全設定を表示します。モードを切り替えても同じ作品を編集します。Undo / Redoは編集設定の履歴です。音源の差し替えは履歴の対象外です。</p></details>
+    <details><summary>素材・LRC・フォント</summary><p>音源は拍・音量・周波数・曲の展開を解析します。LRCは歌詞の表示時刻を持つテキストです。時刻が合わない場合はタイムラインで調整できます。時刻なしの歌詞は「タップで同期」で、音楽に合わせて各行の頭をSpaceまたはボタンで記録し、「LRCを書き出す」で保存します。「1行戻す」で直前のタップをやり直せます。全行を同期してから書き出してください。背景画像は1枚です。画像を選び直すと背景を置き換えます。以前の複数画像プロジェクトも読み込めますが、保存された追加素材は保全し、背景1枚で演出します。手持ちのフォントも読み込めます。</p></details>
+    <details><summary>Style / Director / Motion / シーン</summary><p>Styleは配色と文字の世界観、Motionは文字・カメラ・切替の動き、Directorは曲全体の演出方針です。シーンは曲の章ごとの構成。タイポグラフィは文字の配置や表現です。自動演出はブラウザ内で音楽の強弱・曲構成・反復を解析し、「貫け」「昇れ」「集まれ」などの明確な表現を対応する動きへ反映します。自動生成のあとも詳細画面で調整できます。</p></details>
+    <details><summary>プレビュー・MP4・SNS出力</summary><p>プレビューは編集確認用です。書き出しは指定した解像度・FPS・映像と音声のビットレートで生成し、MP4を検査します。処理が止まった場合は中止して再試行できます。端末の対応状況で失敗した場合も品質設定は自動で下げません。SNS向けには縦画面と曲の切り出し範囲を確認してください。X向けの設定は推定サイズも確認します。</p></details>
+    <details><summary>自動保存・プロジェクト保存・バックアップ</summary><p>自動保存はこのブラウザ内だけです。端末やブラウザを変えると引き継がれません。「プロジェクト保存」は画像・LRC・設定・読み込んだフォントをJSONにまとめます。音源は含まれないので元ファイルを一緒に保管してください。大切な作品は定期的にバックアップし、保存完了を確認してからページを閉じてください。</p><p>復元できない素材がある場合は、元データ保全のため自動保存を止めます。ブラウザデータを削除せず、保管したプロジェクトを「開く」で読み直してください。</p></details>
+    <div class="terms-foot"><span class="muted">素材の権利は「利用について」を確認</span><button value="close" class="primary" autofocus>閉じる</button></div>
+  </form>
+</dialog>
+
+<aside id="processingPanel" class="processing-panel" aria-label="処理状況" hidden></aside>

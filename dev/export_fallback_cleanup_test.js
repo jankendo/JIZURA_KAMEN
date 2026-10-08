@@ -1,0 +1,21 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+let canvas,closed=0,stopped=0,bitmapClosed=0;
+const J={outputSize:()=>[640,360],Renderer:class {async loadCustomBackground(){throw Error('画像を読み込めませんでした')} frame(){} get customBgBitmap(){return {close(){bitmapClosed++}}}}};
+const document={createElement(){canvas={width:0,height:0,getContext(){return {}}};return canvas}};
+const context=vm.createContext({J,window:{},document,console,Blob,ArrayBuffer,DataView,TextEncoder,URL,setTimeout,clearTimeout,cancelAnimationFrame(){}});
+vm.runInContext(fs.readFileSync(path.join(__dirname,'../src/11_export.js'),'utf8'),context);
+J.exportCapabilities=async()=>({recorder:'video/mp4'});
+(async()=>{
+  const plan={duration:2,W:640,customBg:{enabled:true,dataUrl:'data:image/png;base64,AAAA'}};
+  await assert.rejects(J.exportMP4Fallback({plan,project:{},audio:{buffer:{},duration:2}}),/画像を読み込めませんでした/);
+  assert.equal(canvas.width,1);assert.equal(canvas.height,1);assert.equal(bitmapClosed,1);
+  plan.customBg.enabled=false;
+  context.window.AudioContext=class {createMediaStreamDestination(){return {stream:{getAudioTracks(){return [{stop(){stopped++}}]}}}} createBufferSource(){return {connect(){},stop(){}}} async resume(){} async close(){closed++}};
+  context.MediaStream=class {constructor(tracks){this.tracks=tracks}getTracks(){return this.tracks}};
+  context.MediaRecorder=class {constructor(){throw Error('録画を開始できません')}};
+  document.createElement=()=>{canvas={width:0,height:0,getContext(){return {}},captureStream(){return {getVideoTracks(){return [{stop(){stopped++}}]}}}};return canvas};
+  await assert.rejects(J.exportMP4Fallback({plan,project:{},audio:{buffer:{},duration:2}}),/録画を開始できません/);
+  assert.equal(closed,1);assert.equal(stopped,2);assert.equal(canvas.width,1);
+  console.log('MP4 fallback failure releases canvas, tracks and AudioContext.');
+})().catch(e=>{console.error(e);process.exitCode=1});

@@ -1,0 +1,21 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),{engine,root}=require('./custom_test_support.cjs');
+(async()=>{
+ const e=engine(),{context,J}=e;let disposed=0,closed=0,requested=[],nullAt=-1;
+ context.VideoDecoder=class{};
+ context.Input=class{async getPrimaryVideoTrack(){return {canDecode:async()=>true};}dispose(){disposed++;}};
+ context.BlobSource=class{};context.Mp4InputFormat=class{};
+ context.VideoSampleSink=class{async *samplesAtTimestamps(times){requested=Array.from(times);for(let i=0;i<times.length;i++)yield i===nullAt?null:{draw(ctx){ctx.pixel=times[i];},close(){closed++;}};}};
+ context.document.createElement=()=>({getContext:()=>({pixel:0,getImageData(){return {data:new Uint8Array([Math.round(this.pixel*10)%256,0,0,255])};}})});
+ const source=fs.readFileSync(path.join(root,'scripts/aac-browser-entry.mjs'),'utf8');vm.runInContext(source.slice(source.indexOf('window.JIZURAMedia=')),context);
+ J.observePixelFrame=pixels=>({value:pixels[0]});J.observeVisualPeaks=frames=>({frames});J.musicalTargets=()=>[];J.alignObservedPeaks=()=>({});J.audienceImpact7=()=>({});
+ const p={W:1920,H:1080,duration:80},range={start:12,end:72};
+ const out=await J.observeExportedMP4(new Blob(['video']),p,range);
+ assert.equal(out.observer.frames.length,600);assert.equal(closed,600);assert.equal(disposed,1);assert.equal(requested[0],0);assert(Math.abs(requested.at(-1)-59.9)<1e-9);assert.equal(out.observer.frames[0].time,12);assert(Math.abs(out.observer.frames.at(-1).time-71.9)<1e-9);
+ assert.equal(out.observer.frames[101].features.value,101);assert(out.observer.media.includes('sequentially'));
+ const controller=new AbortController();controller.abort();await assert.rejects(e.context.window.JIZURAMedia.sampleMP4(new Blob(),[0,.1],{width:96,height:54,onSample(){},signal:controller.signal}),/Cancelled/);assert.equal(disposed,2);assert.equal(closed,600);
+ nullAt=1;await assert.rejects(e.context.window.JIZURAMedia.sampleMP4(new Blob(),[0,.1,.2],{width:96,height:54,onSample(){}}),/Missing/);assert.equal(disposed,3);assert.equal(closed,601);
+ const project={...J.defaultProject(),lyrics:'[00:00]光'},audio={buffer:{numberOfChannels:1,sampleRate:48000,getChannelData:()=>new Float32Array([.125,-.25])}},result={blob:new Blob(['bytes']),validation:{videoCodec:'avc1',audioCodec:'mp4a'},width:1920,height:1080};
+ const plan={fps:30,duration:2};const provenance=await J.createExportProvenance({project,plan,audio},result,{quality:{creativeScore:70},errors:[]});assert(await J.verifyExportProvenance(result.blob,provenance,{project,plan,audio}));
+ console.log('600 unchanged MP4 observer timestamps, range origin, decoded-frame release, cancellation, missing-frame rejection and parallel provenance hashes PASS');
+})().catch(e=>{console.error(e);process.exitCode=1;});

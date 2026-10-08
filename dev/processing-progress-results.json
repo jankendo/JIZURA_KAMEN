@@ -1,0 +1,50 @@
+{
+  "baseline": "v36",
+  "version": "1.2.1",
+  "tests": [
+    {
+      "name": "weighted_progress_unknown_work_does_not_advance_or_complete",
+      "result": "PASS"
+    },
+    {
+      "name": "backward_retry_clears_work_and_preserves_skipped_steps",
+      "result": "PASS"
+    },
+    {
+      "name": "parallel_jobs_errors_and_cancellation_keep_the_failed_stage",
+      "result": "PASS"
+    },
+    {
+      "name": "audio_progress_and_chunked_arithmetic_exactly_match_v36",
+      "result": "PASS"
+    },
+    {
+      "name": "analysis_yields_to_event_loop_and_cancellation_releases_audio_context",
+      "result": "PASS"
+    },
+    {
+      "name": "plans_and_canvas_pixels_unchanged_across_aspects_and_media_counts",
+      "result": "PASS"
+    },
+    {
+      "name": "real_canvas_quality_results_match_v36_with_scoped_events",
+      "result": "PASS"
+    },
+    {
+      "name": "progress_panel_completion_error_retry_and_elapsed_time",
+      "result": "PASS"
+    },
+    {
+      "name": "storage_schema_dependencies_and_output_settings_preserved",
+      "result": "PASS"
+    }
+  ],
+  "measurements": [
+    {
+      "test": "30s stereo analysis with progress",
+      "elapsedMs": 437.2519119999997,
+      "eventLoopHeartbeats": 23,
+      "decode": "mocked"
+    }
+  ]
+}

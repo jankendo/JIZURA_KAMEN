@@ -1,0 +1,14 @@
+'use strict';const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');const {J,context}=engine();context.DOMException=DOMException;
+(async()=>{
+ const copy=J.clonePhotoRenderPlan({energy:new Float32Array([.2,.7]),bytes:new Uint8Array([2,3])});assert(copy.energy instanceof Float32Array);assert.equal(copy.energy.length,2);assert(copy.bytes instanceof Uint8Array);
+ const check=J.checkMVQuality,analyze=J.analyzeRenderedFrames;let calls=0,audits=0;
+ J.checkMVQuality=(project,p)=>({errors:[],quality:{overallScore:p.lastPixelQA.score,creativeScore:p.lastPixelQA.score,productionDomains:{musicalDirection:p.lastPixelQA.score},certified100:false,metrics:{temporalContrast:p.lastPixelQA.detail??90}}});
+ J.analyzeRenderedFrames=async()=>{audits++;};
+ async function run(scores,detailScores=null){calls=audits=0;const p={musicalPhoto:{phraseSettle:{duration:.16,initialScale:.86}},lastPixelQA:null},project={lyrics:'[00:02]歌声'},audio={id:'source-audio'},args={plan:p,project,audio,refinementAttempts:5},source=JSON.stringify(project);const result=await J.refinePhotoExport(args,async a=>{assert.strictEqual(a.audio,audio);assert.strictEqual(a.project,project);assert(a._photoRefining);const score=scores[calls++];p.lastPixelQA={score,detail:detailScores?.[calls-1]};Object.defineProperty(p,'_provenancePlanHash',{value:'plan-'+calls,configurable:true});return {audio:'aac',blob:new Blob(['video-'+calls]),provenance:{videoSHA256:'video-'+calls},validation:{}};});assert.equal(JSON.stringify(project),source);return {p,result,calls,audits};}
+ let r=await run([94]);assert.equal(r.calls,1);assert.equal(r.audits,0);assert(r.result.provenance.machineRefinement.minimumMet);
+ r=await run([80,94]);assert.equal(r.calls,2);assert.equal(r.audits,1);assert.equal(r.p.musicalPhoto.phraseSettle.initialScale,.735);assert.equal(r.result.provenance.machineRefinement.score,94);
+ r=await run([89,86,87,85,86]);assert.equal(r.calls,5);assert.equal(r.result.provenance.videoSHA256,'video-1');assert.equal(r.p._provenancePlanHash,'plan-1');assert.equal(r.p.lastPixelQA.score,89);assert.equal(r.result.provenance.machineRefinement.minimumMet,false);assert.equal(r.result.provenance.machineRefinement.attempts.length,5);
+ r=await run([99,99,99],[41,60,80]);assert.equal(r.calls,3,'overall 99 cannot bypass a weak detail');assert.equal(r.result.provenance.machineRefinement.acceptance.minimumMet,true);
+ let passthrough=0;await J.refinePhotoExport({plan:{},audio:{}},async()=>{passthrough++;return {};});assert.equal(passthrough,1);await assert.rejects(()=>J.refinePhotoExport({plan:{musicalPhoto:{}},signal:{aborted:true}},()=>{}),{name:'AbortError'});
+ J.checkMVQuality=check;J.analyzeRenderedFrames=analyze;console.log('Decoded-score retries, bounded work, best artifact/hash restoration, source preservation and cancellation PASS');
+})().catch(e=>{console.error(e);process.exitCode=1;});

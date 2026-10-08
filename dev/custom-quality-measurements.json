@@ -1,0 +1,197 @@
+{
+  "baselineCommit": "4015911370e059147ee12cb8c124afcc1e3cd78c",
+  "environment": {
+    "node": "v24.19.0",
+    "canvas": "0.1.80"
+  },
+  "measurements": [
+    {
+      "label": "120s stereo PCM analysis; decode mocked, no UI stage yields",
+      "unit": "ms",
+      "before": 1720.0077810000003,
+      "after": 1383.3194670000012,
+      "improvementPercent": 19.5748134234748,
+      "samplesBefore": [
+        1723.1709570000003,
+        1725.3431110000001,
+        1702.2795700000006,
+        1720.0077810000003,
+        1658.7901859999984
+      ],
+      "samplesAfter": [
+        1383.9106510000001,
+        1405.9272149999997,
+        1383.3194670000012,
+        1363.6805569999979,
+        1380.4810089999992
+      ]
+    },
+    {
+      "label": "100 editor timeline playhead updates; 1200x160 canvas",
+      "unit": "ms",
+      "before": 152.71522899999763,
+      "after": 18.946391000001313,
+      "improvementPercent": 87.59364660350828,
+      "samplesBefore": [
+        152.20126399999936,
+        153.9892609999988,
+        152.71522899999763,
+        154.9364910000004,
+        152.4439999999995
+      ],
+      "samplesAfter": [
+        19.732676999999967,
+        19.145940999998857,
+        18.946391000001313,
+        18.798437000001286,
+        18.91324000000168
+      ]
+    },
+    {
+      "label": "MP4 reload RGB black-frame scan; 1080p synthetic buffer",
+      "unit": "ms",
+      "before": 470.94787200000064,
+      "after": 12.786678000000393,
+      "improvementPercent": 97.28490587595215,
+      "samplesBefore": [
+        470.94787200000064,
+        466.52935199999774,
+        471.6850940000004,
+        463.0334830000029,
+        471.90534599999955
+      ],
+      "samplesAfter": [
+        12.786678000000393,
+        14.287692000001698,
+        12.565385000001697,
+        13.420545000000857,
+        12.603581999999733
+      ]
+    },
+    {
+      "label": "100 MP4 reload RGB scans at actual 96x54 inspection size",
+      "unit": "ms",
+      "before": 94.26794299999892,
+      "after": 2.583447000000888,
+      "improvementPercent": 97.25946390916697,
+      "samplesBefore": [
+        93.88648699999976,
+        94.29484400000001,
+        94.73420500000066,
+        94.26794299999892,
+        93.7833610000016
+      ],
+      "samplesAfter": [
+        4.161417999999685,
+        3.475031999998464,
+        2.583447000000888,
+        2.5373970000000554,
+        2.5478629999997793
+      ]
+    }
+  ],
+  "integrity": [
+    {
+      "test": "full_audio_descriptor_equality",
+      "sampleRate": 8000,
+      "seconds": 0.1,
+      "channels": 1,
+      "silent": true,
+      "exact": true
+    },
+    {
+      "test": "full_audio_descriptor_equality",
+      "sampleRate": 16000,
+      "seconds": 6,
+      "channels": 1,
+      "silent": false,
+      "exact": true
+    },
+    {
+      "test": "full_audio_descriptor_equality",
+      "sampleRate": 44100,
+      "seconds": 30,
+      "channels": 2,
+      "silent": false,
+      "exact": true
+    },
+    {
+      "test": "plan_and_render_pixel_equality",
+      "aspect": "16:9",
+      "frames": 8,
+      "exact": true
+    },
+    {
+      "test": "plan_and_render_pixel_equality",
+      "aspect": "9:16",
+      "frames": 8,
+      "exact": true
+    },
+    {
+      "test": "plan_and_render_pixel_equality",
+      "aspect": "1:1",
+      "frames": 8,
+      "exact": true
+    },
+    {
+      "test": "plan_and_render_pixel_equality",
+      "aspect": "4:5",
+      "frames": 8,
+      "exact": true
+    },
+    {
+      "test": "background_and_multi_asset_pixel_equality",
+      "aspect": "16:9",
+      "images": 1,
+      "frames": 5,
+      "exact": true
+    },
+    {
+      "test": "background_and_multi_asset_pixel_equality",
+      "aspect": "9:16",
+      "images": 1,
+      "frames": 5,
+      "exact": true
+    },
+    {
+      "test": "background_and_multi_asset_pixel_equality",
+      "aspect": "16:9",
+      "images": 2,
+      "frames": 5,
+      "exact": true
+    },
+    {
+      "test": "background_and_multi_asset_pixel_equality",
+      "aspect": "9:16",
+      "images": 2,
+      "frames": 5,
+      "exact": true
+    },
+    {
+      "test": "timeline_first_frame_pixel_equality",
+      "exact": true
+    }
+  ],
+  "historySnapshotPayload": {
+    "fixtureProAssetCharacters": 300000,
+    "retainedStates": 60,
+    "beforeBytes": 18784370,
+    "afterBytes": 792050,
+    "reductionPercent": 95.7834625276227,
+    "notHeapMeasurement": true
+  },
+  "unmeasured": [
+    "Browser startup",
+    "Real decodeAudioData/audio file loading",
+    "Real IndexedDB project loading",
+    "Browser preview startup",
+    "Full WebCodecs H.264/AAC export",
+    "Browser process RSS/heap/GPU"
+  ],
+  "memoryEvidence": {
+    "history": "Pro media are interned once across 60 snapshots and unreferenced media are pruned",
+    "compressedInputCopy": "Removed one full input ArrayBuffer clone from decodeAudioData",
+    "blackFrameScan": "Removed full RGBA numeric array and two RGB numeric intermediate arrays; bytes depend on JS engine",
+    "rendererBudget": "Unchanged 48 MiB visual decode budget, 2048 dimension cap; originals preserved"
+  }
+}

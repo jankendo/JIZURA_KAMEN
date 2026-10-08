@@ -4,11 +4,12 @@
 (() => {
 'use strict';
 
-const JP_SANS_FB = '"Noto Sans JP","Noto Sans CJK JP","Hiragino Sans","Yu Gothic","Meiryo",sans-serif';
-const JP_SERIF_FB = '"Noto Serif JP","Noto Serif CJK JP","Hiragino Mincho ProN","Yu Mincho",serif';
+const JP_SANS_FB = '"JIZURA Noto CJK JP","Noto Sans JP","Noto Sans CJK JP","Hiragino Sans","Yu Gothic","Meiryo",sans-serif';
+const JP_SERIF_FB = '"Noto Serif JP","Noto Serif CJK JP","JIZURA Noto CJK JP","Hiragino Mincho ProN","Yu Mincho",serif';
 
 /* role catalogue: key -> {label, family, weight, kind} */
 J.FONTS = {
+  embedded_bold: { label: 'Noto CJK JP（内蔵 Bold）', family: '"JIZURA Noto CJK JP"', weight: 700, kind: 'gothic', fb: JP_SANS_FB },
   gothic_black:  { label: 'Noto Sans JP Black',        family: '"Noto Sans JP"', weight: 900, kind: 'gothic', fb: JP_SANS_FB, gf: 'Noto+Sans+JP:wght@300;500;700;900' },
   gothic_bold:   { label: 'Noto Sans JP Bold',         family: '"Noto Sans JP"', weight: 700, kind: 'gothic', fb: JP_SANS_FB, gf: 'Noto+Sans+JP:wght@300;500;700;900' },
   gothic_med:    { label: 'Noto Sans JP Medium',       family: '"Noto Sans JP"', weight: 500, kind: 'gothic', fb: JP_SANS_FB, gf: 'Noto+Sans+JP:wght@300;500;700;900' },
@@ -40,47 +41,47 @@ J.addUserFont = (key, label, family, weight = 400, kind = 'custom') => {
   J.FONTS[key] = { label, family: `"${family.replace(/"/g, '')}"`, weight, kind, fb: JP_SANS_FB, user: true };
   J.glyphs.clear();
 };
-/* only plain keys / family names ever reach the page (project files are untrusted input) */
-J.SAFE_FONT_KEY = /^user_[A-Za-z0-9_-]{1,80}$/;
-J.safeFamily = s => String(s || '').replace(/[^\w\- ]/g, '_').slice(0, 80);
-J.loadFontFile = async (file) => {
-  const buf = await file.arrayBuffer();
-  const fam = 'UF_' + file.name.replace(/\.[^.]+$/, '').replace(/[^\w]/g, '_').slice(0, 60);
-  const ff = new FontFace(fam, buf);
-  await ff.load(); document.fonts.add(ff);
-  const key = 'user_' + fam, label = file.name.replace(/\.[^.]+$/, '').slice(0, 80);
-  J.addUserFont(key, label, fam, 400, 'custom');
-  J.FONTS[key].loaded = true;
-  if (J.saveFontData) J.saveFontData(key, buf);        // kept in this browser, so a reload keeps the face
-  return { key, label, family: fam, weight: 400 };
-};
-/* uploaded faces of a project: register them from this browser's copy; returns the labels that are not available */
-J.restoreUserFonts = async (list) => {
-  const missing = [];
-  for (const uf of list || []) {
-    const f = J.FONTS[uf.key];
-    if (f && f.loaded) continue;
-    let ok = false;
+J.userFontBytes = new Map();
+J.fontContentHash = async buffer => {
+  const bytes = buffer instanceof ArrayBuffer ? new Uint8Array(buffer) : new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+  if (globalThis.crypto?.subtle) {
     try {
-      const buf = J.loadFontData ? await J.loadFontData(uf.key) : null;
-      if (buf) { const ff = new FontFace(J.safeFamily(uf.family), buf); await ff.load(); document.fonts.add(ff); ok = true; }
-    } catch (e) { ok = false; }
-    if (ok && J.FONTS[uf.key]) { J.FONTS[uf.key].loaded = true; J.glyphs.clear(); J.metrics.clear(); }
-    else missing.push(uf.label || uf.family || uf.key);
+      const digest = new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256', bytes));
+      return [...digest].map(v=>v.toString(16).padStart(2,'0')).join('');
+    } catch (e) { /* use the deterministic embedded-webview fallback below */ }
   }
-  return missing;
+  // Deterministic fallback for embedded webviews without SubtleCrypto.
+  let a=2166136261; for(const b of bytes){a^=b;a=Math.imul(a,16777619);}
+  return (a>>>0).toString(16).padStart(8,'0');
 };
-/* uploaded faces the plan draws with but this page does not have */
-J.missingUserFonts = (keys) => (keys || []).filter(k => J.FONTS[k] && J.FONTS[k].user && !J.FONTS[k].loaded).map(k => J.FONTS[k].label);
+J.restoreUserFont = async (meta, buffer) => {
+  if (!meta || !meta.key || !meta.family || !buffer) throw new Error('フォントデータがありません');
+  const bytes = buffer instanceof ArrayBuffer ? buffer : buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
+  J.userFontBytes.set(meta.key,bytes.slice(0));
+  const axis=J.fontCapabilities?.(meta.key)?.axes?.find(a=>a.tag==='wght');
+  const face = new FontFace(meta.family, bytes, { weight: axis?`${axis.min} ${axis.max}`:String(meta.weight || 400) });
+  await face.load(); document.fonts.add(face);
+  J.addUserFont(meta.key, meta.label || meta.family, meta.family, meta.weight || 400, 'custom');
+  J.userFontBytes.set(meta.key, bytes.slice(0));
+  return meta.key;
+};
+J.loadFontFile = async file => {
+  const buf = await file.arrayBuffer(), hash=await J.fontContentHash(buf);
+  const fam = 'UF_' + hash.slice(0, 16), key = 'user_font_' + hash.slice(0, 20);
+  await J.restoreUserFont({ key, label: file.name.replace(/\.[^.]+$/, ''), family: fam, weight: 400 }, buf);
+  return key;
+};
 
-J.fontCSS = (key, px) => {
+J.fontCSS = (key, px, verifiedWeight = null) => {
   const f = J.faceOf ? J.faceOf(key) : (J.FONTS[key] || J.FONTS.gothic_bold);   // per-language face (02b_lang.js)
-  return `${f.weight} ${px.toFixed(2)}px ${f.family},${f.fb}`;
+  return `${verifiedWeight == null ? f.weight : Math.max(500,Math.min(850,verifiedWeight))} ${px.toFixed(2)}px ${f.family},${f.fb}`;
 };
 
 /* Google Fonts stylesheets are attached lazily, one family at a time, only for the faces a plan actually uses —
    adding faces to the catalogue therefore costs nothing until a style or setting picks them */
 const cssJobs = new Map();
+J.fontLoadEvidence = new Map();
+const boundedFontWait=(promise,ms)=>new Promise((resolve,reject)=>{const timer=setTimeout(()=>resolve(null),ms);Promise.resolve(promise).then(value=>{clearTimeout(timer);resolve(value);},error=>{clearTimeout(timer);reject(error);});});
 function attachFamily(spec) {
   if (!spec || typeof document === 'undefined' || !document.head) return Promise.resolve();
   if (cssJobs.has(spec)) return cssJobs.get(spec);
@@ -102,18 +103,12 @@ J.fontsOfPlan = (plan) => {
     if (typeof v === 'string' && J.FONTS[v]) set.add(v);
     else if (Array.isArray(v)) v.forEach(x => { if (typeof x === 'string' && J.FONTS[x]) set.add(x); });
   }
-  const out = [...set].filter(k => J.FONTS[k]);
-  if ((plan.cuts || []).some(c => c.weightGrow)) out.push('@var');     // 太さ: the variable Noto Sans / Serif JP
-  return out;
+  return [...set].filter(k => J.FONTS[k]);
 };
 /* make sure the glyphs we need are loaded (Google Fonts are unicode-range split). keys = null → every catalogue face */
 J.ensureFonts = async (text, keys) => {
   if (!document.fonts || !document.fonts.load) return;
   const uniq = [...new Set([...text])].join('') || 'あ';
-  if (keys && keys.includes('@var')) {
-    await Promise.all(['Noto+Sans+JP:wght@100..900', 'Noto+Serif+JP:wght@200..900'].map(attachFamily));
-    await Promise.all(['100 64px "Noto Sans JP"', '900 64px "Noto Sans JP"', '200 64px "Noto Serif JP"', '900 64px "Noto Serif JP"'].map(f => document.fonts.load(f, uniq).catch(() => null)));
-  }
   const list = (keys || Object.keys(J.FONTS)).filter(k => J.FONTS[k]);
   // faces in the current lyric language (+ its fallback sans / serif), each with the weight it is drawn at
   const faces = list.map(k => (J.faceOf ? J.faceOf(k) : J.FONTS[k]));
@@ -123,10 +118,14 @@ J.ensureFonts = async (text, keys) => {
   for (const f of faces) {
     const spec = `${f.weight} 64px ${f.family}`;
     if (seen.has(spec)) continue; seen.add(spec);
-    jobs.push(document.fonts.load(spec, uniq).catch(() => null));
+    jobs.push(boundedFontWait(document.fonts.load(spec, uniq),8000).then(loaded => {
+      for (const key of list.filter(k => (J.faceOf ? J.faceOf(k) : J.FONTS[k]).family === f.family && (J.faceOf ? J.faceOf(k) : J.FONTS[k]).weight === f.weight))
+        J.fontLoadEvidence.set(key, {status: loaded?.length ? "LOADED" : "REQUESTED_FACE_UNAVAILABLE", family: f.family, faces: loaded?.length || 0});
+      return loaded;
+    }).catch(() => { for (const key of list.filter(k => J.FONTS[k].family === f.family && J.FONTS[k].weight === f.weight)) J.fontLoadEvidence.set(key,{status:"LOAD_FAILED",family:f.family}); return null; }));
   }
   await Promise.all(jobs);
-  if (document.fonts.ready) await document.fonts.ready;
+  if (document.fonts.ready) await boundedFontWait(document.fonts.ready,2000);
   J.glyphs.clear();
   J.metrics.clear();
 };

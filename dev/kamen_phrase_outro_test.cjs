@@ -1,0 +1,23 @@
+'use strict';
+const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
+const {J,createCanvas}=engine();J.enableSingleBackgroundMode();
+const bg=createCanvas(320,180);bg.getContext('2d').fillRect(0,0,320,180);
+const audio={duration:50.8,beats:Array.from({length:60},(_,i)=>i*.86),features:{bpm:69.7,energy:.7,beatStrength:.8,density:.7}};
+const p=J.defaultProject();Object.assign(p,{title:'闘い続けろ',lyrics:'[00:14.289]闘い極めろ男たち\n[00:17.609]我らの歌声響かせろ\n[00:20.980]オー We are ガンバ\n[00:23.919]大阪\n[00:25.769]青黒\n[00:28.089]闘い極めろ男たち\n[00:31.439]我らの歌声響かせろ\n[00:34.900]オー We are ガンバ\n[00:37.809]大阪\n[00:39.559]青黒',autoDirection:true});
+p.customBg={...p.customBg,enabled:true,dataUrl:bg.toDataURL('image/png')};
+const d=J.proposeDirection(p,audio,null);Object.assign(p,{style:d.style,mood:d.mood,fx:d.fx,enabled:d.enabled,seed:d.seed});p.artDirection=J.makeArtDirection(p,audio,d);
+const plan=J.plan(p,audio);
+assert.equal(plan.musicalStructure.method,'repeated-lyric-blocks');
+assert.equal(plan.musicalStructure.sections.find(s=>s.role==='reprise').from,28.089);
+assert(plan.lines.at(-1).end<43);assert(!J.cutAt(plan,45)||J.cutAt(plan,45).line<0);
+assert(plan.cuts.filter(c=>c.params.readablePhoto).every(c=>c.params.font!=='gothic_black'));assert(!plan.cuts.filter(c=>c.line>=0).some(c=>c.layout==='stack'));
+assert(plan.storyboard.every(s=>s.assetId));assert(plan.visualWorld.chapters.every(w=>!w.photoExit));
+for(const c of plan.cuts.filter(c=>c.layout==='huge')){assert(c.params.readableHero);assert.equal(c.params.label,false);}
+const env={W:1920,H:1080,plan,cut:{line:9,text:'青黒'},t:40,pass:'main',sc:{fg:'#fff'}};
+assert(J.adjustLocalReadability(env,{text:'青黒',size:500,stroke:25,color:'#fff'}).stroke<=3);
+plan.directionOverrides7[9]={lock:true};assert(J.adjustLocalReadability(env,{text:'青黒',size:500,stroke:25,color:'#fff'}).stroke>=25);
+const autoColor=J.plan({...p,colors:{enabled:true,fg:'#00ffff'},autoPalette:{...p.autoPalette,enabled:true,analyzed:true,userModified:false,palette:J.STYLES[p.style].schemes[0]}},audio);assert.equal(autoColor.manualLyricColor,false);const manualColor=J.plan({...p,colors:{enabled:true,fg:'#00ffff'},autoPalette:{...p.autoPalette,enabled:true,analyzed:true,userModified:true,palette:J.STYLES[p.style].schemes[0]}},audio);assert.equal(manualColor.manualLyricColor,true);assert.equal(J.adjustLocalReadability({...env,plan:manualColor},{text:'青黒',size:100,color:'#00ffff'}).color,'#00ffff');
+const directed={...p,directorPlan:{sections:[{from:0,to:50.8,sceneIntent:'graphic',typographyIntent:'giant'}]}};
+const explicit=J.plan(directed,audio);assert.notEqual(explicit.musicalStructure.method,'repeated-lyric-blocks');assert(explicit.visualWorld.chapters.some(w=>w.photoExit));
+assert(!J.directorPrompt().includes('最大3案'));assert(J.directorPrompt().includes('最適な1案'));
+console.log('Repeated phrase boundaries, bounded outro, retained photo, readable hero, manual direction and honest prompt passed.');

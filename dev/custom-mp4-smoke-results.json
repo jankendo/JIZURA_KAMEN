@@ -1,0 +1,144 @@
+{
+  "status": "PASS_COMPLEMENTARY_NATIVE_QA",
+  "browserWebCodecs": "NOT_TESTED",
+  "reports": [
+    {
+      "aspect": "16:9",
+      "status": "PASS",
+      "path": "検証_16x9_日本語.mp4",
+      "seconds": 2,
+      "renderAndExternalEncodeMs": 12599.416317,
+      "inspection": {
+        "container": "mp4",
+        "videoCodec": "avc1",
+        "audioCodec": "mp4a",
+        "duration": 2,
+        "width": 1920,
+        "height": 1080,
+        "videoSamples": 60,
+        "audioSamples": 95,
+        "bytes": 4477803,
+        "videoDuration": 2,
+        "audioDuration": 2.021333333333333
+      },
+      "requestedBitrate": 17418240,
+      "requestedAudioBitrate": 192000,
+      "audioDecodedSamples": 96256,
+      "audioRMS": 0.08822176287449719,
+      "decodedFrameComparisons": [
+        {
+          "frame": 0,
+          "meanAbsoluteRGBError": 0.027101488743645607,
+          "nonBlack": 0.2378472222222222
+        },
+        {
+          "frame": 15,
+          "meanAbsoluteRGBError": 0.04013026506899056,
+          "nonBlack": 0.3544238683127572
+        },
+        {
+          "frame": 30,
+          "meanAbsoluteRGBError": 0.03078148955055273,
+          "nonBlack": 0.2818287037037037
+        },
+        {
+          "frame": 59,
+          "meanAbsoluteRGBError": 0.02904638707334786,
+          "nonBlack": 0.3031121399176955
+        }
+      ]
+    },
+    {
+      "aspect": "9:16",
+      "status": "PASS",
+      "path": "検証_9x16_日本語.mp4",
+      "seconds": 2,
+      "renderAndExternalEncodeMs": 12840.543680000002,
+      "inspection": {
+        "container": "mp4",
+        "videoCodec": "avc1",
+        "audioCodec": "mp4a",
+        "duration": 2,
+        "width": 1080,
+        "height": 1920,
+        "videoSamples": 60,
+        "audioSamples": 95,
+        "bytes": 4506854,
+        "videoDuration": 2,
+        "audioDuration": 2.021333333333333
+      },
+      "requestedBitrate": 17418240,
+      "requestedAudioBitrate": 192000,
+      "audioDecodedSamples": 96256,
+      "audioRMS": 0.08822176287449719,
+      "decodedFrameComparisons": [
+        {
+          "frame": 0,
+          "meanAbsoluteRGBError": 0.016899262954044515,
+          "nonBlack": 0.4556327160493827
+        },
+        {
+          "frame": 15,
+          "meanAbsoluteRGBError": 0.031868876530469235,
+          "nonBlack": 0.5189246263807668
+        },
+        {
+          "frame": 30,
+          "meanAbsoluteRGBError": 0.018885687803386463,
+          "nonBlack": 0.49019249512670565
+        },
+        {
+          "frame": 59,
+          "meanAbsoluteRGBError": 0.017766581941418544,
+          "nonBlack": 0.57159681611436
+        }
+      ]
+    },
+    {
+      "aspect": "1:1",
+      "status": "PASS",
+      "path": "検証_1x1_日本語.mp4",
+      "seconds": 2,
+      "renderAndExternalEncodeMs": 7501.553507999997,
+      "inspection": {
+        "container": "mp4",
+        "videoCodec": "avc1",
+        "audioCodec": "mp4a",
+        "duration": 2,
+        "width": 1080,
+        "height": 1080,
+        "videoSamples": 60,
+        "audioSamples": 95,
+        "bytes": 2436400,
+        "videoDuration": 2,
+        "audioDuration": 2.021333333333333
+      },
+      "requestedBitrate": 9797760.000000002,
+      "requestedAudioBitrate": 192000,
+      "audioDecodedSamples": 96256,
+      "audioRMS": 0.08822176287449719,
+      "decodedFrameComparisons": [
+        {
+          "frame": 0,
+          "meanAbsoluteRGBError": 0.016241716594045025,
+          "nonBlack": 0.4484230324074074
+        },
+        {
+          "frame": 15,
+          "meanAbsoluteRGBError": 0.03449003154502542,
+          "nonBlack": 0.5343967013888888
+        },
+        {
+          "frame": 30,
+          "meanAbsoluteRGBError": 0.02172592706063907,
+          "nonBlack": 0.5015914351851852
+        },
+        {
+          "frame": 59,
+          "meanAbsoluteRGBError": 0.020001588598402325,
+          "nonBlack": 0.5906394675925926
+        }
+      ]
+    }
+  ]
+}

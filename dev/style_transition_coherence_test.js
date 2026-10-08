@@ -1,0 +1,2 @@
+const assert=require('node:assert/strict');const {J,plan}=require('./hype_test_helpers.cjs').chantProject(28,1.7);const sequence=plan.styleArc.segments.map(x=>x.style).filter((x,i,a)=>i===0||x!==a[i-1]);
+for(let i=1;i<sequence.length;i++)assert(J.styleCompatibility(sequence[i-1],sequence[i]).score>=.5,`${sequence[i-1]} → ${sequence[i]} has a bridge`);assert(plan.styleArcAudit.bridgeFeatures.includes('clubPalette'));console.log('Style transitions remain on the compatibility graph.');

@@ -1,0 +1,157 @@
+{
+  "exactCases": [
+    {
+      "sampleRate": 22050,
+      "channels": 3,
+      "samples": 66287,
+      "exactOutput": true
+    },
+    {
+      "sampleRate": 44100,
+      "channels": 3,
+      "samples": 132437,
+      "exactOutput": true
+    },
+    {
+      "sampleRate": 96000,
+      "channels": 3,
+      "samples": 288137,
+      "exactOutput": true
+    }
+  ],
+  "scope": "Application analysis of fixed decoded PCM; browser decode and input IO excluded",
+  "reports": [
+    {
+      "fixture": "provided-audio",
+      "duration": 68.7335,
+      "beforeMs": 960.250313,
+      "afterMs": 878.7308110000004,
+      "improvementPercent": 8.489401242194612,
+      "beforeRunsMs": [
+        960.250313,
+        939.1408339999998,
+        991.1073859999997
+      ],
+      "afterRunsMs": [
+        914.546855,
+        878.7308110000004,
+        877.0381509999997
+      ],
+      "exactOutput": true,
+      "stageMediansMs": {
+        "read": {
+          "before": 0.48526300000003175,
+          "after": 1.121082000000115
+        },
+        "decode": {
+          "before": 1.1037770000002638,
+          "after": 1.110936999999467
+        },
+        "wave": {
+          "before": 599.1358740000001,
+          "after": 558.0730599999997
+        },
+        "beat": {
+          "before": 138.24461199999996,
+          "after": 142.7833440000004
+        },
+        "spectrum": {
+          "before": 218.99137300000075,
+          "after": 172.58644600000025
+        },
+        "features": {
+          "before": 3.635146999999961,
+          "after": 3.6342759999997725
+        }
+      }
+    },
+    {
+      "fixture": "stereo-rhythmic-120s",
+      "duration": 120,
+      "beforeMs": 1631.900184000002,
+      "afterMs": 1486.168047000001,
+      "improvementPercent": 8.930211444844147,
+      "beforeRunsMs": [
+        1584.703531000001,
+        1656.1493429999991,
+        1631.900184000002
+      ],
+      "afterRunsMs": [
+        1486.168047000001,
+        1536.0532159999984,
+        1465.503053999997
+      ],
+      "exactOutput": true,
+      "stageMediansMs": {
+        "read": {
+          "before": 1.1153229999999894,
+          "after": 0.6023490000006859
+        },
+        "decode": {
+          "before": 1.0986789999988105,
+          "after": 1.1010519999999815
+        },
+        "wave": {
+          "before": 1018.9047800000008,
+          "after": 962.1512949999997
+        },
+        "beat": {
+          "before": 230.20067700000072,
+          "after": 235.7218009999997
+        },
+        "spectrum": {
+          "before": 372.48430599999847,
+          "after": 277.9735209999999
+        },
+        "features": {
+          "before": 4.67332400000123,
+          "after": 5.167339999999967
+        }
+      }
+    },
+    {
+      "fixture": "silence",
+      "duration": 2,
+      "beforeMs": 42.70042399999875,
+      "afterMs": 47.928446999998414,
+      "improvementPercent": -12.243492008416169,
+      "beforeRunsMs": [
+        42.09495999999854,
+        42.70042399999875,
+        44.6313590000027
+      ],
+      "afterRunsMs": [
+        47.928446999998414,
+        46.82110499999908,
+        48.677716999998665
+      ],
+      "exactOutput": true,
+      "stageMediansMs": {
+        "read": {
+          "before": 1.1104659999982687,
+          "after": 1.103846000001795
+        },
+        "decode": {
+          "before": 1.1069810000008147,
+          "after": 1.0939109999999346
+        },
+        "wave": {
+          "before": 19.58566300000166,
+          "after": 22.455105000000913
+        },
+        "beat": {
+          "before": 6.525269999998272,
+          "after": 6.842648000001645
+        },
+        "spectrum": {
+          "before": 12.687512000000424,
+          "after": 15.175677000002906
+        },
+        "features": {
+          "before": 1.3403629999993427,
+          "after": 1.3304280000011204
+        }
+      }
+    }
+  ]
+}

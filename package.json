@@ -1,0 +1,22 @@
+{
+  "name": "jizura-custom-background",
+  "version": "2.0.26",
+  "private": true,
+  "description": "KAMEN Japanese lyric MV maker — standalone static browser app",
+  "engines": {
+    "node": ">=20 <26"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && node scripts/serve.mjs dist 127.0.0.1 5173",
+    "preview": "node scripts/serve.mjs dist 127.0.0.1 4173",
+    "test": "node scripts/check-qa-environment.mjs && node scripts/run-tests.mjs"
+  },
+  "devDependencies": {
+    "@mediabunny/aac-encoder": "1.61.0",
+    "@napi-rs/canvas": "0.1.80",
+    "esbuild": "0.27.4",
+    "mediabunny": "1.61.0",
+    "playwright-core": "1.62.1"
+  }
+}

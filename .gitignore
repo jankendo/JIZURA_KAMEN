@@ -1,2 +1,21 @@
+# Local build output
+/dist/
+/node_modules/
+/dev/node_modules/
+/dev/www/
+
+# Python caches and local test artifacts
 __pycache__/
-*.pyc
+*.py[cod]
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Editor / operating-system / temporary files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp

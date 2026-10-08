@@ -1,0 +1,1 @@
+const assert=require('node:assert/strict'),J=require('./style_test_harness.cjs');for(const text of ['アレアレガンバエー','アレ、アレ！ガンバエー','進之介アレー']){const tokens=J.tokenizeKinetic(text);assert(tokens.length>1);assert.equal(tokens.join(''),text);}console.log('Japanese word and mora tokens retain every lyric character.');

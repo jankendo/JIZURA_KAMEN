@@ -1,0 +1,18 @@
+'use strict';const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
+const {J,createCanvas}=engine();
+(async()=>{
+ J.enableSingleBackgroundMode();const bg=createCanvas(640,360),bc=bg.getContext('2d');bc.fillStyle='#30291f';bc.fillRect(0,0,640,360);
+ const p=J.defaultProject();Object.assign(p,{autoDirection:true,res:720,fps:30,lyrics:'[00:02.000]闘い極めろ男たち\n[00:05.000]我らの歌声響かせろ\n[00:08.000]大阪\n[00:10.000]闘い極めろ男たち\n[00:13.000]我らの歌声響かせろ\n[00:16.000]大阪'});p.customBg={...p.customBg,enabled:true,dataUrl:bg.toDataURL()};const audio={duration:20,beats:[2,5,8,10,13,16],features:{energy:.5}};
+ const proposal=J.proposeDirection(p,audio,{});Object.assign(p,{style:proposal.style,mood:proposal.mood,fx:proposal.fx,enabled:proposal.enabled,seed:proposal.seed});p.artDirection=J.makeArtDirection(p,audio,proposal);
+ const original=JSON.stringify(p),plan=J.plan(p,audio);assert.equal(JSON.stringify(p),original);
+ assert.equal(J.composeLyricPhrase('闘い極めろ男たち'),'闘い極めろ\n男たち');assert.equal(J.composeLyricPhrase('我らの歌声響かせろ'),'我らの歌声\n響かせろ');
+ for(const t of ['オー We are ガンバ','We are blue and black','踊ろうよ😀👨‍👩‍👦今夜だけ','叫べ！青黒の誇り']){const rows=J.composeLyricPhrase(t);assert.equal(rows.replace(/\n/g,''),t);assert(!/W\ne|a\nre|b\nlack/.test(rows));assert(!rows.includes('\u200d\n'));}
+ const cuts=plan.cuts.filter(c=>c.line>=0);assert.equal(cuts.length,6);assert.equal(cuts[0].layout,'photoStatement');assert.equal(cuts[3].layout,'photoPhrase');assert.equal(cuts[2].layout,'photoChant');assert(cuts.every(c=>c.lineText===plan.lines[c.line].text));
+ const R=new J.Renderer(),canvas=createCanvas(640,360),mask=createCanvas(640,360);await R.loadCustomBackground(p.customBg.dataUrl);
+ const masks=[];let captured=[];const draw=J.mainDraw;J.mainDraw=(env,it)=>{if(env.pass==='main')captured.push({...it,cut:env.cut});return draw(env,it);};
+ for(const c of [cuts[0],cuts[3],cuts[2]]){for(const dt of [.06,.6]){captured=[];const items=[];R.frame(canvas.getContext('2d'),plan,c.start+dt,{scale:640/plan.W,production:true,lyricAuditCtx:mask.getContext('2d'),lyricAuditItems:items});assert(captured.some(i=>i.text.replace(/\s/g,'')===c.lineText.replace(/\s/g,'')),'full lyric at onset');assert(items.length);const b=items[0].bounds;if(dt===.6){assert(Math.abs((b.x0+b.x1)/2-plan.W/2)<1);assert(Math.abs((b.y0+b.y1)/2-plan.H/2)<1);masks.push(new Uint8ClampedArray(mask.getContext('2d').getImageData(0,0,640,360).data));}const data=canvas.getContext('2d').getImageData(0,0,640,360).data,ink=mask.getContext('2d').getImageData(0,0,640,360).data;let white=0,n=0;for(let i=0;i<ink.length;i+=4)if(ink[i+3]>240){n++;if(data[i]>200&&data[i+1]>200&&data[i+2]>200)white++;}assert(white/n>.75,'filled readable white typography');}}
+ const difference=J.comparePresentationMasks(masks[0],masks[1],640,360);assert(difference.rasterDifference>.25);assert(difference.heightRatio>1.5,'reprise is a visibly different two-row block');
+ const manual=J.plan({...p,overrides:{0:{layout:'type',enter:'fade'}}},audio);assert(!manual.cuts.find(c=>c.line===0).photoChoreography);assert.equal(manual.cuts.find(c=>c.line===0).layout,'type');
+ const portrait=J.plan({...p,aspect:'9:16'},audio),social=J.createSocialHookPlan(portrait,{start:2,end:16,duration:14});assert(social.cuts.filter(c=>c.line>=0&&c.start<16&&c.end>2).every(c=>c.photoChoreography));assert(social.cuts.filter(c=>c.line===0).every(c=>c.text===plan.lines[0].text));
+ R.disposeAssets();console.log(JSON.stringify({status:'PASS',fullLyricAtCue:true,centralGlyphs:true,filledWhite:true,repriseRasterDifference:difference.rasterDifference,repriseHeightRatio:difference.heightRatio,manualPreserved:true,socialDirected:true}));
+})().catch(e=>{console.error(e);process.exitCode=1});

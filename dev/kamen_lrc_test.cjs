@@ -1,0 +1,20 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const {engine,root}=require('./custom_test_support.cjs');const e=engine(),J=e.J;
+assert.equal(J.lrcTimestamp(59.9999),'[01:00.000]');assert.equal(J.lrcTimestamp(3600),'[60:00.000]');assert.throws(()=>J.lrcTimestamp(NaN));
+const p=J.defaultProject();p.title='日本語 [曲]\n名';p.lyrics='青黒大阪\n魅せろゴール';p.timing.lineTimes={0:.123,1:1.789};
+let lrc=J.exportLRC(p,{duration:3});assert(lrc.includes('[00:00.123]青黒大阪'));assert(lrc.includes('[00:01.789]魅せろゴール'));assert.deepEqual(Array.from(J.parseLyrics(lrc).lines,l=>Math.round(l.lrc*1000)),[123,1789]);
+assert.throws(()=>J.exportLRC({...p,timing:{...p.timing,lineTimes:{0:.1}}}),/2行目.*未設定/);assert.throws(()=>J.exportLRC({...p,timing:{...p.timing,lineTimes:{0:2,1:1}}}),/前の行/);assert.throws(()=>J.exportLRC(p,{duration:1}),/終了後/);
+p.lyrics='[offset:500]\n[00:01.00]青黒大阪\n[00:02.00]魅せろゴール';p.timing.lineTimes={};p.timing.lrcShift=.2;lrc=J.exportLRC(p);assert(lrc.includes('[00:01.700]青黒大阪'));assert(!lrc.includes('[offset:'));assert.equal(J.parseLyrics(lrc).lines[1].lrc,2.7);
+p.lyrics='[00:01.000]<00:01.000>青黒<00:01.500>大阪';p.timing.lrcShift=.2;p.timing.lineTimes={0:2};lrc=J.exportLRC(p);assert(lrc.includes('[00:02.000]<00:02.000>青黒<00:02.500>大阪'));assert.equal(J.parseLyrics(lrc).lines[0].wordTimes[1].start,2.5);
+p.lyrics='[00:01.000]<00:01.500>青黒<00:01.000>大阪';assert.throws(()=>J.exportLRC(p),/単語ごとの時刻/);
+// Actual tap handler: use audio clock rather than stale rAF time; one-line undo;
+// backward seeks do not create a reversed LRC; completion saves a transaction.
+const source=fs.readFileSync(path.join(root,'src/12_ui.js'),'utf8'),nodes=new Map(),$=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,disabled:false,textContent:'',setAttribute(){},focus(){}});return nodes.get(id);};
+let clock=.567,commits=0,saves=0,msg='';const project=J.defaultProject();project.lyrics='青黒大阪\n魅せろゴール';const S={project,plan:J.plan(project),audio:{duration:4},audioLoading:false,playing:true,t:0,tap:null};
+Object.assign(e.context,{S,$,directionBusy:false,AP:{time:()=>clock},remember(){},play(){S.playing=true;},pause(){S.playing=false;},seek(t){S.t=t;},updateTap(){},replan(){S.plan=J.plan(S.project);},syncDirectionUI(){},commit(){commits++;},flushSave(){saves++;},toast(m){msg=m;},audioLike:()=>S.audio});
+vm.runInContext(source.slice(source.indexOf('function startTap()'),source.indexOf('/* ---------------- sync all inputs')),e.context);
+vm.runInContext('startTap();tapNow()',e.context);assert.equal(project.timing.lineTimes[0],.567);clock=.2;vm.runInContext('tapNow()',e.context);assert.equal(S.tap.i,1);assert(msg.includes('前の行'));
+vm.runInContext('undoTap()',e.context);assert.equal(S.tap.i,0);assert.equal(project.timing.lineTimes[0],undefined);clock=.4;vm.runInContext('tapNow()',e.context);clock=1.2;vm.runInContext('tapNow()',e.context);assert.equal(S.tap,null);assert.equal(commits,1);assert.equal(saves,1);assert.equal(project.timing.lineTimes[1],1.2);
+const body=fs.readFileSync(path.join(root,'app/body.html'),'utf8');assert(!body.includes('id="directorJSON"'));assert(!source.includes("$('directorCopyPrompt').addEventListener"));assert(body.includes('id="directorExportContext"'));assert(body.includes('KAMEN'));assert(body.includes('id="btnLRC"'));assert(!body.includes('class="exp-box"'));assert(!source.includes("querySelector('.exp-box')"));
+console.log('KAMEN LRC: timestamps, UTF-8, offset, incomplete/reversed guards, actual tap clock/undo/save, LLM UI removal PASS');

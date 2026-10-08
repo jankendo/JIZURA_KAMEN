@@ -1,0 +1,2 @@
+const assert=require('node:assert/strict');const {plan}=require('./hype_test_helpers.cjs').chantProject(28,1.7);const cuts=plan.cuts.filter(c=>c.line>=0),actual=new Set(cuts.map(c=>c.styleKey));
+assert(actual.size>=2);assert(actual.size<=3);assert(cuts.every(c=>c.style&&c.style.schemes?.length));assert(cuts.some(c=>['GRAPHIC_HEAVY','TIGHT','HIGH_CONTRAST','graphic','tight','contrast'].includes(c.backgroundScene?.id)));assert(cuts.some(c=>c.styleBridge?.font));console.log('Style Arc styles, background variants and shared typography reach real cuts.');

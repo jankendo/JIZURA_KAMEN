@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict');
+const {J,p,a,plan}=require('./hype_test_helpers.cjs').chantProject(20,3);
+const hash=J.directorContext(p,plan,a).projectHash;
+const raw={schema:'jizura-director-v2',projectHash:hash,concept:{title:'Arc'},styleArc:[{from:0,to:plan.duration,styles:[p.style]}],chapters:[{from:0,to:plan.duration,role:'climax',motionIntent:['push'],sceneIntent:'tight',typographyIntent:'giant'}],constraints:{preserveLyrics:true,safeArea:true}};
+const parsed=J.validateDirectorPlan(raw,p,plan,a);
+assert(parsed.valid,parsed.errors.join('; '));
+assert.equal(parsed.candidates[0].plan.sections[0].sceneIntent,'tight');
+const applied=J.applyDirectorPlan(p,parsed.candidates[0].plan,a);
+assert.equal(applied.directorPlan.sections[0].typographyIntent,'giant');
+assert.equal(applied.lyrics,p.lyrics);
+assert.equal(J.directorWindows(plan.duration).length,5);
+assert(!J.validateDirectorPlan({...raw,constraints:{safeArea:false}},p,plan,a).valid);
+console.log('Director v2 schema, roundtrip, lyric and safe-area guards, five windows pass.');

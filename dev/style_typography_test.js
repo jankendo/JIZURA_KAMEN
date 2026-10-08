@@ -1,0 +1,2 @@
+const assert=require('node:assert/strict'),J=require('./style_test_harness.cjs'),scenarios=require('./fixtures/style_scenarios.json');
+const fonts=new Set();for(const s of Object.values(scenarios)){const p={...J.defaultProject(),extra:true,lyrics:'[00:00]空に響く声\n[00:03]空に響く声'};const d=J.proposeDirection(p,{duration:7,features:s.music},s.image);assert(J.STYLES[d.style].fonts.display.includes(d.motionDNA.font));fonts.add(d.motionDNA.font);}assert(fonts.size>=5);console.log(fonts.size+' different style-aware display fonts');

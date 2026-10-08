@@ -27,7 +27,90 @@ class Renderer {
     const sl = mk(1, 4), sx = sl.getContext('2d'); sx.fillStyle = '#fff'; sx.fillRect(0, 0, 1, 4); sx.fillStyle = '#000'; sx.fillRect(0, 3, 1, 1);
     this.scan = sl;
     this.paperCache = new Map();
+    this.customBgBitmap = null;
+    this.customBgSource = '';
     this.filterOK = (() => { try { const c = mk(4, 4).getContext('2d'); c.filter = 'blur(2px)'; return c.filter === 'blur(2px)'; } catch (e) { return false; } })();
+  }
+
+  loadCustomBackground(source) {
+    const task = (this._backgroundLoadQueue || Promise.resolve()).catch(() => {}).then(() => this.decodeCustomBackground(source));
+    this._backgroundLoadQueue = task;
+    return task;
+  }
+
+  async decodeCustomBackground(source) {
+    if(this._assetsDisposed)return null;
+    source = source || '';
+    if (source === this.customBgSource && (this.customBgBitmap || !source)) return this.customBgBitmap;
+    if (!source) {
+      if (this.customBgBitmap && this.customBgBitmap.close) this.customBgBitmap.close();
+      this.customBgBitmap = null; this.customBgSource = '';
+      return null;
+    }
+    if (!/^data:image\/(?:png|jpeg|webp);base64,/i.test(source)) throw new Error('画像を読み込めませんでした');
+    let next;
+    try {
+      if (typeof createImageBitmap === 'function') {
+        const response = await fetch(source);
+        if (!response.ok) throw new Error('画像を読み込めませんでした');
+        next = await createImageBitmap(await response.blob());
+      } else {
+        next = new Image(); next.decoding = 'async'; next.src = source;
+        if (next.decode) await next.decode();
+        else await new Promise((resolve, reject) => { next.onload = resolve; next.onerror = reject; });
+      }
+      if (!next.width || !next.height) throw new Error('画像を読み込めませんでした');
+    } catch (e) {
+      if (next && next.close) next.close();
+      throw new Error('画像を読み込めませんでした');
+    }
+    const prev = this.customBgBitmap;
+    if(this._assetsDisposed){next.close?.();return null;}
+    this.customBgBitmap = next; this.customBgSource = source;
+    if (prev && prev.close) prev.close();
+    return next;
+  }
+
+  drawCustomBackground(ctx, plan, t, tq, step, sc, scale, allowFilter) {
+    const image = this.customBgBitmap, cfg = plan.customBg || {}, cut=J.cutAt(plan,tq), scene=cut?.backgroundScene||null;
+    if (!image || !image.width || !image.height) return false;
+    const W = plan.W, H = plan.H;
+    const chapter=plan.styleArc?.segments?.find(s=>t>=s.from&&t<s.to),phase=chapter&&!plan.musicalPhoto?J.clamp((t-chapter.from)/Math.max(.1,chapter.to-chapter.from)):0;
+    const sceneCfg=scene?Object.assign({},cfg,{zoom:J.clamp((+cfg.zoom||1)*(scene.zoom||1)*(1+.025*phase),.5,3),x:J.clamp((+cfg.x||0)+(scene.x||0)+(scene.id==='tight'?2:-1.5)*phase,0,100),y:J.clamp((+cfg.y||0)+(scene.y||0)+phase*.8,0,100),blur:J.clamp((+cfg.blur||0)+(scene.blur||0),0,18),darkness:J.clamp((+cfg.darkness||0)+(scene.darkness||0),0,.8)}):cfg;
+    const rect = J.customBgGeometry(image.width, image.height, W, H, sceneCfg);
+    if (!rect) return false;
+    const { x: dx, y: dy, w: dw, h: dh, blur } = rect;
+    let cam = null;
+    cam=J.cameraAt?.(plan,t,this.renderRange)||null;
+    if (!cam&&cut && J.CAMERA[cut.cam]) {
+      try {
+        const env = this.makeEnv(ctx, plan, cut, sc, { pass: 'main', t: tq, lt: tq - cut.start, ltb: tq - cut.start, step, scale, allowFilter });
+        cam = J.CAMERA[cut.cam].get(env, cut.camP || {}) || null;
+      } catch (e) { cam = null; }
+    }
+    ctx.save();
+    if (cam) {
+      ctx.translate(W / 2 + (cam.x || 0), H / 2 + (cam.y || 0));
+      if (cam.rot) ctx.rotate(cam.rot * J.DEG);
+      if (cam.skx) ctx.transform(1, 0, Math.tan(cam.skx * J.DEG), 1, 0, 0);
+      const cs = cam.s ?? 1;
+      ctx.scale(cs * (cam.sx ?? 1), cs * (cam.sy ?? 1));
+      ctx.translate(-W / 2, -H / 2);
+    }
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    if (allowFilter && scene?.filter) ctx.filter=scene.filter;
+    if (this.filterOK && blur > 0) ctx.filter = `${ctx.filter&&ctx.filter!=='none'?ctx.filter+' ':''}blur(${(blur * scale).toFixed(1)}px)`;
+    ctx.drawImage(image, dx, dy, dw, dh);
+    ctx.filter = 'none';
+    const darkness = J.clamp(+sceneCfg.darkness || 0, 0, 0.8);
+    if (darkness > 0) { ctx.globalAlpha = darkness; ctx.fillStyle = '#000000'; ctx.fillRect(dx, dy, dw, dh); }
+    if(allowFilter&&scene?.tint){ctx.globalCompositeOperation='soft-light';ctx.globalAlpha=.1;ctx.fillStyle=scene.tint;ctx.fillRect(dx,dy,dw,dh);}
+    if(scene?.lightSweep){const p=(t*.22+scene.phase)%1,grad=ctx.createLinearGradient(-W*.15+p*W,H*.15,W*.15+p*W,H*.85);
+      grad.addColorStop(0,'rgba(255,255,255,0)');grad.addColorStop(.5,`rgba(255,255,255,${scene.lightSweep})`);grad.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.globalCompositeOperation='screen';ctx.globalAlpha=1;ctx.fillStyle=grad;ctx.fillRect(dx,dy,dw,dh);}
+    if(scene?.id==='graphic'){ctx.globalCompositeOperation='source-over';ctx.globalAlpha=.13;ctx.fillStyle=sc.accent||'#fff';ctx.fillRect(0,H*.13,W*.018,H*.74);ctx.fillRect(W*.96,H*.13,W*.018,H*.74);}
+    ctx.restore();
+    return true;
   }
 
   paper(W, H) {
@@ -56,18 +139,24 @@ class Renderer {
 
   /* main entry: draw frame at time t into ctx (canvas px = design * scale) */
   frame(ctx, plan, t, opt = {}) {
+    this.editorDebug = opt.editorDebug === true && opt.production !== true;
+    this._productionFrame = opt.production === true;
+    this.renderRange=opt.range||null;
     const W = plan.W, H = plan.H, scale = opt.scale || 1;
     const cw = ctx.canvas.width, ch = ctx.canvas.height;
+    this.lyricAuditCtx=opt.lyricAuditCtx||null;
+    this.lyricAuditItems=opt.lyricAuditItems||null;
+    if(this.lyricAuditCtx){const a=this.lyricAuditCtx;a.save();a.setTransform(1,0,0,1,0,0);a.clearRect(0,0,a.canvas.width,a.canvas.height);a.restore();}
     const fx = plan.fx, st = plan.style, fps = plan.fps;
     // motion is quantised to 'koma' drawings per second (24fps timebase); random flicker runs on a <=24Hz clock
     const stepDur = J.stepDur(fx, fps);
     const clock = J.komaOf(fx) > 0 ? stepDur : 1 / 24;
     const tq = Math.floor(t / stepDur + 1e-6) * stepDur;
     const mainCut = J.cutAt(plan, tq);
-    const sc = st.schemes[mainCut ? mainCut.scheme % st.schemes.length : 0] || st.schemes[0];
+    const mainStyle=mainCut?.style||st;
+    const sc = mainStyle.schemes[mainCut ? mainCut.scheme % mainStyle.schemes.length : 0] || mainStyle.schemes[0];
     const allowFilter = this.filterOK && !opt.fast;
     if (J.setLang) J.setLang(plan.lang || 'ja');           // faces follow the plan's lyric language
-    if (J.setTypeset) J.setTypeset(plan.typeset);          // 文字整列
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.filter = 'none';
@@ -75,17 +164,21 @@ class Renderer {
     ctx.setTransform(scale, 0, 0, scale, 0, 0);
     // ---------- background ----------
     const key = plan.keyBg && J.KEY_BG && J.KEY_BG[plan.keyBg] ? plan.keyBg : null;   // 合成用: white-on-black, finished in keyFinish()
+    const customBgOn = !key && !opt.transparent && plan.customBg && plan.customBg.enabled && this.customBgBitmap;
     if (key && !opt.transparent) { ctx.fillStyle = '#000000'; ctx.fillRect(0, 0, W, H); }
     else if (!opt.transparent) {
       ctx.fillStyle = sc.bg; ctx.fillRect(0, 0, W, H);
+      if (customBgOn) this.drawCustomBackground(ctx, plan, t, tq, Math.floor(tq / clock + 1e-6), sc, scale, allowFilter);
       const g = ctx.createRadialGradient(W / 2, H * 0.45, 0, W / 2, H / 2, Math.hypot(W, H) * 0.6);
-      const lift = J.lum(sc.bg) < 0.5 ? 'rgba(255,255,255,0.045)' : 'rgba(255,255,255,0.10)';
+      const lift = customBgOn ? 'rgba(255,255,255,0.025)' : (J.lum(sc.bg) < 0.5 ? 'rgba(255,255,255,0.045)' : 'rgba(255,255,255,0.10)');
       g.addColorStop(0, lift); g.addColorStop(1, 'rgba(0,0,0,0)');
+      if (customBgOn) ctx.globalAlpha = 0.6;
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-      const paperAmt = (sc.paper ? 1 : st.texture.paper || 0) * (fx.texture ?? 0.6);
+      ctx.globalAlpha = 1;
+      const paperAmt = (sc.paper ? 1 : mainStyle.texture.paper || 0) * (fx.texture ?? 0.6);
       if (paperAmt > 0.02) {
         ctx.globalCompositeOperation = J.lum(sc.bg) < 0.4 ? 'screen' : 'multiply';
-        ctx.globalAlpha = J.lum(sc.bg) < 0.4 ? paperAmt * 0.06 : paperAmt * 0.85;
+        ctx.globalAlpha = customBgOn ? paperAmt * 0.14 : (J.lum(sc.bg) < 0.4 ? paperAmt * 0.06 : paperAmt * 0.85);
         if (J.lum(sc.bg) < 0.4) ctx.filter = 'invert(1)';
         ctx.drawImage(this.paper(W, H), 0, 0, W, H);
         ctx.filter = 'none'; ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
@@ -105,20 +198,20 @@ class Renderer {
       const b = prevBeat(plan.beats, t);
       if (b != null && t - b < 0.25) beatPulse = 0.9 * Math.exp(-(t - b) * 16);
     }
-    const chroma = (fx.chroma ?? 0.7) * (st.ghost ?? 1) * (1 + spike + beatPulse);
+    const chroma = (fx.chroma ?? 0.7) * (mainStyle.ghost ?? 1) * (1 + spike + beatPulse);
     const step = Math.floor(tq / clock + 1e-6);
     const beatInfo = plan.beats && plan.beats.length ? beatAt(plan.beats, tq) : null;
     const energy = plan.energy ? plan.energy[Math.min(plan.energy.length - 1, Math.max(0, Math.floor(t * plan.energyRate)))] : null;
     // ---------- background graphic (per line) ----------
-    // 透過PNG 前景／後景 (opt.layer): 'back' = background graphic + the decorations behind the lyrics, 'front' = the rest
-    const layer = opt.transparent ? opt.layer || null : null;
-    if ((!opt.transparent || layer === 'back') && !key && mainCut && mainCut.bg && mainCut.bg !== 'none' && J.BG[mainCut.bg]) {
+    if (!opt.transparent && !key && mainCut && mainCut.bg && mainCut.bg !== 'none' && J.BG[mainCut.bg]) {
       const env = this.makeEnv(ctx, plan, mainCut, sc, { pass: 'main', t: tq, lt: tq - mainCut.start, ltb: tq - mainCut.start, step, scale, allowFilter, energy, beat: beatInfo, bgOnly: true });
       ctx.save();
+      if (customBgOn) ctx.globalAlpha = 0.42;
       try { J.BG[mainCut.bg].draw(env, mainCut.bgP || {}); } catch (e) { console.warn('bg', mainCut.bg, e); }
       ctx.restore();
       ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none';
     }
+    if(!opt.backgroundOnly&&J.drawUnifiedMotif&&!key)J.drawUnifiedMotif(ctx,plan,t,opt.graphicAuditCtx);
     const shx = J.rs(step, 71) * shake * 16 * u, shy = J.rs(step, 72) * shake * 11 * u;
     // ---------- content passes ----------
     const passes = [
@@ -126,16 +219,12 @@ class Renderer {
       { pass: 'A', lag: 0.8 / 24, off: [3.2 * chroma * u, 1.9 * chroma * u] },
       { pass: 'main', lag: 0, off: [0, 0] },
     ];
-    const ghostOn = (fx.chroma ?? 0.7) > 0.02 && (st.ghost ?? 1) > 0.02 && !opt.noGhost;
-    // モーフ (統一感): during the first moments of a morph cut its lyric is drawn by drawMorph (glyphs glide / melt)
-    const MC = !opt.noTrans && !opt.glyphLog && mainCut && mainCut.morph && mainCut.index > 0 ? mainCut : null;
-    const mPrev = MC ? plan.cuts[MC.index - 1] : null, mlt = MC ? tq - MC.start : 0;
-    const morphOn = !!(MC && mPrev && mlt < MC.morph.dur && Math.abs(mPrev.end - MC.start) < 0.06);
+    const ghostOn = !opt.backgroundOnly && (fx.chroma ?? 0.7) > 0.02 && (st.ghost ?? 1) > 0.02 && !opt.noGhost;
     let mainBB = null, mainEnv = null;
     // camera blur (focus pulls etc.) is applied ONCE to the whole content layer — a blur filter on every
     // individual draw call is extremely slow when a layout draws many text rows
     let layerBlur = 0, LX = null;
-    if (allowFilter && mainCut && J.CAMERA[mainCut.cam] && mainCut.cam !== 'push') {
+    if (allowFilter && mainCut && !plan.artDirection?.motionDNA && J.CAMERA[mainCut.cam] && mainCut.cam !== 'push') {
       try {
         const e0 = this.makeEnv(ctx, plan, mainCut, sc, { pass: 'main', t: tq, lt: tq - mainCut.start, ltb: tq - mainCut.start, step, scale, allowFilter, energy, beat: beatInfo });
         const c0 = J.CAMERA[mainCut.cam].get(e0, mainCut.camP || {});
@@ -147,51 +236,42 @@ class Renderer {
         LX.clearRect(0, 0, cw, ch); LX.setTransform(scale, 0, 0, scale, 0, 0);
       }
     }
-    for (const P of passes) {
+    for (const P of (opt.backgroundOnly?[]:passes)) {
       if (P.pass !== 'main' && !ghostOn) continue;
       const tp = Math.max(0, tq - P.lag);
-      const cut0 = P.lag ? J.cutAt(plan, tp) : mainCut;
-      if (!cut0) continue;
-      if (morphOn && cut0 !== mainCut) continue;
-      // 中央を空ける: the cut in its band, and its companion (echo / whole line / decorations) in the other band
-      for (const cut of plan.centerFree && cut0.companion ? [cut0, cut0.companion] : [cut0]) {
-      const csc = st.schemes[cut.scheme % st.schemes.length] || st.schemes[0];
+      const cut = P.lag ? J.cutAt(plan, tp) : mainCut;
+      if (!cut) continue;
+      const cutStyle=cut.style||st,csc = cutStyle.schemes[cut.scheme % cutStyle.schemes.length] || cutStyle.schemes[0];
       const lt = tp - cut.start;
       const X = LX || ctx;
-      const Z = plan.centerFree && cut.zone ? cut.zone : null;
       const env = this.makeEnv(X, plan, cut, csc, {
         pass: P.pass, passColor: P.pass === 'A' ? csc.ghostA : P.pass === 'B' ? csc.ghostB : null,
-        t: tp, lt, ltb: lt + P.lag, step: Math.floor(tp / clock + 1e-6), scale, allowFilter, energy, beat: beatInfo, layer, zone: Z,
-        hideText: morphOn, glyphLog: P.pass === 'main' ? opt.glyphLog || null : null,
+        t: tp, lt, ltb: lt + P.lag, step: Math.floor(tp / clock + 1e-6), scale, allowFilter, energy, beat: beatInfo,
       });
       X.save();
-      // 中央を空ける: the cut (text, decorations, its camera) is drawn in its band and clipped to it
-      if (Z) { X.beginPath(); X.rect(Z.x, Z.y, Z.w, Z.h); X.clip(); X.translate(Z.x, Z.y); }
-      const W = env.W, H = env.H;
       // camera move for this cut (default: slow push-in)
       let cam = null;
       const CD = J.CAMERA[cut.cam] || J.CAMERA.push;
-      try { cam = CD.get(env, cut.camP || {}); } catch (e) { cam = null; }
+      try { cam = (plan.artDirection?.realityVersion===2 ? J.lyricsCameraAt(plan,tp) : J.cameraAt?.(plan,tp,this.renderRange))||CD.get(env, cut.camP || {}); } catch (e) { cam = null; }
       cam = cam || {};
+      if (P.pass === 'main' && J.cameraMatrix) env.cameraMatrix = J.cameraMatrix(W, H, cam, shx + P.off[0], shy + P.off[1]);
       const cs = cam.s ?? 1;
       X.translate(W / 2 + shx + P.off[0] + (cam.x || 0), H / 2 + shy + P.off[1] + (cam.y || 0));
       if (cam.rot) X.rotate(cam.rot * J.DEG);
       if (cam.skx) X.transform(1, 0, Math.tan(cam.skx * J.DEG), 1, 0, 0);
       X.scale(cs * (cam.sx ?? 1), cs * (cam.sy ?? 1)); X.translate(-W / 2, -H / 2);
+      env.st=cutStyle;
       if (P.pass !== 'main') X.globalCompositeOperation = J.lum(csc.bg) > 0.55 ? 'multiply' : 'source-over';
-      this.drawCut(env);
-      X.restore();
-      if (P.pass === 'main' && cut === cut0) { mainEnv = env; }
+      const drawnBounds=this.drawCut(env);
+      if(P.pass==='main'&&opt.qualityCollector&&drawnBounds){
+        opt.qualityCollector.push({line:cut.line,layout:cut.layout,text:cut.text,box:{x0:drawnBounds.x0/W,y0:drawnBounds.y0/H,x1:drawnBounds.x1/W,y1:drawnBounds.y1/H}});
       }
+      X.restore();
+      if (P.pass === 'main') { mainEnv = env; }
     }
     if (LX) {
       ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
       ctx.filter = `blur(${(layerBlur * scale).toFixed(1)}px)`; ctx.drawImage(LX.canvas, 0, 0); ctx.restore();
-    }
-    if (morphOn && layer !== 'back') {
-      const L = this.morphLogs(plan, mPrev, MC, cw, ch, scale, opt);
-      const k = J.clamp(mlt / MC.morph.dur), e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
-      this.drawMorph(ctx, L, e, allowFilter);
     }
     // ---------- cut-to-cut transition: composite the previous cut's resting frame with this one ----------
     if (!opt.noTrans && mainCut && mainCut.trans && J.TRANS[mainCut.trans] && mainCut.index > 0) {
@@ -201,15 +281,15 @@ class Renderer {
         const A = this.ensure(this.transA || (this.transA = mk(2, 2)), cw, ch), B = this.ensure(this.transB || (this.transB = mk(2, 2)), cw, ch);
         const bx = B.getContext('2d'); bx.setTransform(1, 0, 0, 1, 0, 0); bx.globalCompositeOperation = 'copy'; bx.drawImage(ctx.canvas, 0, 0); bx.globalCompositeOperation = 'source-over';
         this.frame(A.getContext('2d'), plan, Math.max(prev.start, prev.end - 1e-3), Object.assign({}, opt, { noTrans: true, noPost: true, noHud: true }));
-        const psc = st.schemes[prev.scheme % st.schemes.length] || st.schemes[0];
+        const prevStyle=prev.style||st,psc = prevStyle.schemes[prev.scheme % prevStyle.schemes.length] || prevStyle.schemes[0];
         ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none';
-        try { J.TRANS[mainCut.trans].draw(ctx, A, B, J.clamp(lt / dur), { cw, ch, sc, scPrev: psc, st, P: mainCut.transP || {}, step, t, scale, allowFilter, seed: mainCut.seed | 0, tmp: (w, h) => this.ensure(this.transC || (this.transC = mk(2, 2)), w, h) }); }
+        try { J.TRANS[mainCut.trans].draw(ctx, A, B, J.clamp(lt / dur), { cw, ch, sc, scPrev: psc, st:mainStyle, photoReadablePolicy:plan.photoReadablePolicy&&!plan.directionOverrides7?.[mainCut.line]?.trans, P: mainCut.transP || {}, step, t, scale, allowFilter, seed: mainCut.seed | 0, tmp: (w, h) => this.ensure(this.transC || (this.transC = mk(2, 2)), w, h) }); }
         catch (e) { console.warn('trans', mainCut.trans, e); }
         ctx.restore();
       }
     }
     // ---------- HUD ----------
-    if (plan.hud && !opt.noHud && layer !== 'back') {
+    if (plan.hud && !opt.noHud && !opt.production) {
       const env = this.makeEnv(ctx, plan, mainCut, sc, { pass: 'main', t: tq, lt: 0, ltb: 0, step, scale, allowFilter, energy, beat: beatInfo });
       J.drawHUD(env, plan);
     }
@@ -217,6 +297,83 @@ class Renderer {
     // ---------- post ----------
     if (!opt.noPost) this.post(ctx, plan, t, tq, step, sc, scale, opt, allowFilter);
     if (key && !opt.noPost) this.keyFinish(ctx, key, opt);
+    if (!opt.noHud&&!opt.backgroundOnly) this.drawTitleCredit(ctx, plan, t, scale);
+    if (plan.practice && !opt.noHud) this.drawPractice(ctx, plan, t, scale);
+  }
+
+  drawPractice(ctx, plan, t, scale) {
+    const lines=plan.lines||[];if(!lines.length)return;
+    let index=-1;for(let i=0;i<lines.length;i++)if(t>=lines[i].start)index=i;
+    const current=lines[Math.max(0,index)],next=lines[index+1];
+    const W=plan.W,H=plan.H,portrait=H>W,boxW=W*(portrait?.84:.72),boxH=H*(portrait?.24:.27),x=(W-boxW)/2,y=H*(portrait?.56:.55)-boxH/2;
+    ctx.save();ctx.setTransform(scale,0,0,scale,0,0);
+    ctx.fillStyle='rgba(6,9,14,.79)';ctx.fillRect(x,y,boxW,boxH);
+    ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#FFFFFF';ctx.shadowColor='rgba(0,0,0,.7)';ctx.shadowBlur=8;
+    let size=Math.min(H*(portrait?.055:.07),boxH*.37);ctx.font=`700 ${size}px sans-serif`;
+    while(ctx.measureText(current.text).width>boxW*.91 && size>18){size*=.92;ctx.font=`700 ${size}px sans-serif`;}
+    ctx.fillText(current.text,W/2,y+boxH*.37,boxW*.91);
+    const end=Math.max(current.start+.2,current.end),words=current.wordTimes||[];
+    let progress=J.clamp((t-current.start)/(end-current.start));
+    if(words.length){
+      let active=-1;for(let i=0;i<words.length;i++)if(t>=words[i].start)active=i;
+      if(active>=0){
+        const from=words[active].start,to=words[active+1]?.start??end;
+        progress=J.clamp((active+J.clamp((t-from)/Math.max(.1,to-from)))/words.length);
+        const prefix=words.slice(0,active+1).map(w=>w.text).join('');
+        const fullWidth=ctx.measureText(current.text).width,scaleX=Math.min(1,boxW*.91/Math.max(1,fullWidth));
+        ctx.save();ctx.textAlign='left';ctx.translate(W/2-fullWidth*scaleX/2,0);ctx.scale(scaleX,1);
+        ctx.fillStyle='#e5c68f';ctx.fillText(prefix,0,y+boxH*.37);ctx.restore();
+      }else progress=0;
+    }
+    ctx.shadowBlur=0;ctx.fillStyle='rgba(255,255,255,.25)';ctx.fillRect(x+boxW*.08,y+boxH*.62,boxW*.84,3);
+    ctx.fillStyle='#e5c68f';ctx.fillRect(x+boxW*.08,y+boxH*.62,boxW*.84*progress,3);
+    if(next){ctx.globalAlpha=.72;ctx.fillStyle='#FFFFFF';ctx.font=`500 ${Math.max(16,Math.min(size*.42,boxH*.19))}px sans-serif`;ctx.fillText(`次：${next.text}`,W/2,y+boxH*.81,boxW*.88);}
+    ctx.restore();
+  }
+
+  /* Fixed after all camera, transition and post passes; shared by preview, MP4 and PNG frames. */
+  drawTitleCredit(ctx, plan, t, scale) {
+    const d = plan.titleDisplay;
+    const creditState=J.creditStateAt?.(plan,t);
+    if(creditState?.hidden)return;
+    if (!d || (!d.title && !d.artist)) return;
+    const bottom = d.position[0] === 'b', right = d.position[1] === 'r';
+    const x = right ? d.W - d.marginX : d.marginX;
+    const size = d.titleSize*(creditState?.scale??1), small = size * .9, gap = size * .46;
+    const titleY = bottom ? d.H - d.marginY - (d.artist ? small + gap : 0) : d.marginY + size;
+    const artistY = bottom ? d.H - d.marginY : d.marginY + size + gap + small;
+    const fit = (str, max) => {
+      const value = String(str || '');
+      if (ctx.measureText(value).width <= max) return value;
+      const chars = [...value]; let lo = 0, hi = chars.length;
+      while (lo < hi) {
+        const mid = Math.ceil((lo + hi) / 2);
+        if (ctx.measureText(chars.slice(0, mid).join('') + '…').width <= max) lo = mid;
+        else hi = mid - 1;
+      }
+      return chars.slice(0, lo).join('') + '…';
+    };
+    ctx.save(); ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none';
+    ctx.textAlign = right ? 'right' : 'left'; ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = d.color;
+    ctx.shadowColor = d.color === '#161719' ? 'rgba(255,255,255,.44)' : 'rgba(0,0,0,.72)';
+    ctx.shadowBlur = size * (d.detail > .27 ? .24 : .14);
+    ctx.lineJoin='round';ctx.lineWidth=Math.max(1.25,size*.075);
+    ctx.strokeStyle=d.color==='#161719'?'rgba(255,255,255,.62)':'rgba(0,0,0,.76)';
+    const alpha = J.clamp(t / .65, 0, 1)*(creditState?.opacity??1);
+    if(d.scrim){ctx.save();ctx.globalAlpha=d.scrim*alpha;ctx.fillStyle=d.color==='#161719'?'#FFFFFF':'#000000';const left=right?x-d.maxWidth-size*.3:x-size*.3;ctx.fillRect(left,Math.min(titleY,artistY)-size*1.1,d.maxWidth+size*.6,size*2.9);ctx.restore();}
+    const drawCredit=(text,fs,y,a)=>{
+      ctx.font=J.fontCSS(d.font,fs);const content=fit(text,d.maxWidth);ctx.globalAlpha=a;
+      if(typeof ctx.strokeText==='function')ctx.strokeText(content,x,y,d.maxWidth);ctx.fillText(content,x,y,d.maxWidth);
+    };
+    if (d.title) {
+      drawCredit(d.title,size,titleY,d.opacity*alpha);
+    }
+    if (d.artist) {
+      drawCredit(d.artist,small,artistY,d.opacity*.84*alpha);
+    }
+    ctx.restore();
   }
 
   /* 合成用の背景: make the finished frame monochrome (white text + effects only) and put it on the key colour.
@@ -245,71 +402,33 @@ class Renderer {
     ctx.restore();
   }
 
-  /* モーフ: where every glyph of the previous cut rests at its end, and where this cut's glyphs land (cached) */
-  morphLogs(plan, A, B, cw, ch, scale, opt) {
-    if (!this.morphCache || this.morphCache.plan !== plan) this.morphCache = { plan, map: new Map() };
-    const key = A.index + ':' + B.index + ':' + cw + 'x' + ch + ':' + scale.toFixed(4), M = this.morphCache.map;
-    if (M.has(key)) return M.get(key);
-    const cv = this.ensure(this.morphCv || (this.morphCv = mk(2, 2)), cw, ch), x = cv.getContext('2d');
-    const o2 = { scale, noPost: true, noHud: true, noTrans: true, noGhost: true, transparent: opt.transparent, fast: true };
-    const la = [], lb = [];
-    this.frame(x, plan, Math.max(A.start, A.end - 1e-3), Object.assign({}, o2, { glyphLog: la }));
-    this.frame(x, plan, B.start + B.morph.dur + 1e-3, Object.assign({}, o2, { glyphLog: lb }));
-    const r = { A: la, B: lb };
-    M.set(key, r); if (M.size > 24) M.delete(M.keys().next().value);
-    return r;
-  }
-  drawMorph(ctx, L, e, allowFilter) {
-    const used = new Array(L.A.length).fill(false), pairs = [];
-    for (const g of L.B) {
-      let j = -1;
-      for (let q = 0; q < L.A.length; q++) if (!used[q] && L.A[q].ch === g.ch) { j = q; break; }
-      if (j >= 0) used[j] = true;
-      pairs.push([j >= 0 ? L.A[j] : null, g]);
-    }
-    const det = m => Math.sqrt(Math.abs(m[0] * m[3] - m[1] * m[2])) || 1;
-    const put = (g, col, alpha, blur) => {
-      if (alpha <= 0.01) return;
-      ctx.globalAlpha = Math.min(1, alpha);
-      ctx.filter = allowFilter && blur > 0.4 ? `blur(${blur.toFixed(1)}px)` : 'none';
-      ctx.font = g.font; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      if (g.fill) { ctx.fillStyle = col; ctx.fillText(g.ch, 0, 0); }
-      if (g.stroke > 0) { ctx.lineJoin = 'round'; ctx.lineWidth = g.stroke; ctx.strokeStyle = g.strokeColor || col; ctx.strokeText(g.ch, 0, 0); }
-    };
-    ctx.save();
-    // the rest of the old line melts away (drips, swells, blurs)…
-    L.A.forEach((a, q) => {
-      if (used[q]) return;
-      ctx.setTransform(a.m[0], a.m[1], a.m[2], a.m[3], a.m[4], a.m[5]);
-      ctx.translate(0, e * a.px * 0.45); ctx.scale(1 + e * 0.12, 1 + e * 0.6);
-      put(a, a.color, a.a * Math.pow(1 - e, 1.4), e * a.px * 0.14 * det(a.m));
-    });
-    // …shared characters glide to their new place, new ones condense out of a blur
-    for (const [a, b] of pairs) {
-      if (a) {
-        const m = a.m.map((v, i) => v + (b.m[i] - v) * e);
-        ctx.setTransform(m[0], m[1], m[2], m[3], m[4], m[5]);
-        const k = (a.px / b.px) + (1 - a.px / b.px) * e; ctx.scale(k, k);
-        put(b, /^#[0-9a-f]{3,8}$/i.test(a.color) && /^#[0-9a-f]{3,8}$/i.test(b.color) ? J.mix(a.color, b.color, e) : (e < 0.5 ? a.color : b.color), a.a + (b.a - a.a) * e, 0);
-      } else {
-        const k = 1 - e;
-        ctx.setTransform(b.m[0], b.m[1], b.m[2], b.m[3], b.m[4], b.m[5]);
-        ctx.translate(0, -k * b.px * 0.3); ctx.scale(1 + k * 0.1, 1 + k * 0.4);
-        put(b, b.color, b.a * e, k * b.px * 0.14 * det(b.m));
-      }
-    }
-    ctx.restore();
-  }
   makeEnv(ctx, plan, cut, sc, o) {
-    const W = o.zone ? o.zone.w : plan.W, H = o.zone ? o.zone.h : plan.H;   // 中央を空ける: a cut lives in its side band
-    const env = Object.assign({ ctx, W, H, sc, st: plan.style, fx: plan.fx, fps: plan.fps, cut, plan }, o);
+    const W = plan.W, H = plan.H;
+    const env = Object.assign({ ctx, W, H, sc, st: cut?.style||plan.style, fx: plan.fx, fps: plan.fps, cut, plan, production:this._productionFrame===true,lyricAuditCtx:this.lyricAuditCtx,lyricAuditItems:this.lyricAuditItems }, o);
     if (cut) {
       env.pIn = J.clamp(o.lt / Math.max(0.01, cut.inDur));
       env.pOut = cut.outDur > 0 ? J.clamp((o.lt - (cut.dur - cut.outDur)) / cut.outDur) : 0;
     } else { env.pIn = 1; env.pOut = 0; }
     const ghost = env.pass !== 'main';
     const colOf = (c, g) => (ghost ? (g === false ? null : env.passColor) : c);
-    env.draw = it => J.drawItem(env, it);
+    // Layout packs may contain internal indices and timestamps. They are editor diagnostics,
+    // never content; suppress them in ordinary previews and every production render.
+    env.draw = it => {
+      const label=String(it?.text||'').trim();
+      const debugFlag=it?.debug===true||it?.internalTiming===true||it?.layer==='debug';
+      // Match diagnostics only on non-lyric items; a user may sing "LINE 1" or coordinates.
+      const lyric=env.cut?.line>=0&&String(env.cut.lineText||env.cut.text||'').includes(label);
+      const debugText=!lyric&&/(?:\bLINE\s*\d+\b|^LINE$|^TIME$|\bNo\.\d+\b|\b\d{2}:\d{2}\.\d{2}\b|^X-?\d+\s+Y-?\d+$)/iu.test(label);
+      if((env.production&&(debugFlag||debugText))||(!this.editorDebug&&(debugFlag||debugText)))return null;
+      const adjusted=J.adjustLocalReadability?J.adjustLocalReadability(env,it):it;
+      if(env.lyricAuditCtx&&env.pass==='main'&&env.cut?.line>=0&&label&&String(env.cut.lineText||env.cut.text||'').includes(label)){
+        const audit=env.lyricAuditCtx,auditEnv={...env,ctx:audit,inLayer:true,allowFilter:false,lyricAuditCtx:null};
+        audit.save();const m=env.ctx.getTransform();audit.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);
+        J.drawItem(auditEnv,{...adjusted,shadow:null,blur:0,pre:null,post:null,blend:null});audit.restore();
+        env.lyricAuditItems?.push({line:env.cut.line,bounds:J.measureLyricItemBounds(env,adjusted)});
+      }
+      return J.drawItem(env,adjusted);
+    };
     env.rect = (x, y, w, h, c, a = 1, g = true) => { const col = colOf(c, g); if (!col || a <= 0) return; ctx.globalAlpha = a; ctx.fillStyle = col; ctx.fillRect(x, y, w, h); ctx.globalAlpha = 1; };
     env.line = (pts, c, lw = 1, a = 1, g = true) => {
       const col = colOf(c, g); if (!col || a <= 0 || pts.length < 2) return;
@@ -370,80 +489,32 @@ class Renderer {
   drawCut(env) {
     const cut = env.cut, L = J.LAYOUTS[cut.layout] || J.LAYOUTS.center;
     const decor = cut.decor || [];
-    if (env.layer !== 'front') for (const d of decor) { const D = J.DECOR[d.id]; if (D && D.layer === 'back') try { D.draw(env, null, d); } catch (e) { console.warn(e); } }
-    if (env.layer === 'back') return null;                // 後景だけ: the lyrics and the front decorations go to the other layer
+    for (const d of decor) { const D = J.DECOR[d.id]; if (D && D.layer === 'back') try { D.draw(env, null, d); } catch (e) { console.warn(e); } }
     let bb = null;
     try { bb = L.render(env); } catch (e) { console.warn('layout', cut.layout, e); }
     for (const d of decor) { const D = J.DECOR[d.id]; if (D && D.layer === 'front') try { D.draw(env, bb, d); } catch (e) { console.warn(e); } }
     return bb;
   }
 
-  /* 透過PNG: screen effects are written for an opaque frame (they paint the background colour, wash the whole frame,
-     or redraw a shifted copy over it). In transparent mode each effect is fenced:
-       - a full-frame opaque fill (background colour, black/white frame…) clears instead — it hid everything anyway
-       - afterwards, alpha is limited to where content was (before the effect) plus where the effect drew the
-         content again (shifted / scaled / mirrored copies of the scratch copy), so washes, flashes and strobes
-         tint the lyrics and the graphics but never turn the empty background opaque                            */
-  alphaGuard(ctx, S, sc) {
-    const cw = ctx.canvas.width, ch = ctx.canvas.height, R = this;
-    const P = this.ensure(this.guardP || (this.guardP = mk(2, 2)), cw, ch), px = P.getContext('2d');
-    const M = this.ensure(this.guardM || (this.guardM = mk(2, 2)), cw, ch), mx = M.getContext('2d');
-    let cleared = false, bgN = null;
-    const content = img => img === S;                  // the scratch copy of the frame (temp canvases may carry an opaque background)
-    const own = ['fillRect', 'drawImage'];
-    return {
-      begin() {
-        cleared = false;
-        const fs0 = ctx.fillStyle; ctx.fillStyle = sc.bg; bgN = ctx.fillStyle; ctx.fillStyle = fs0;   // the background colour, normalised
-        px.setTransform(1, 0, 0, 1, 0, 0); px.globalAlpha = 1; px.globalCompositeOperation = 'copy'; px.filter = 'none'; px.drawImage(ctx.canvas, 0, 0);
-        mx.setTransform(1, 0, 0, 1, 0, 0); mx.globalAlpha = 1; mx.globalCompositeOperation = 'source-over'; mx.filter = 'none'; mx.clearRect(0, 0, cw, ch);
-        const proto = Object.getPrototypeOf(ctx);
-        ctx.fillRect = function (x, y, w, h) {
-          const T = this.getTransform(), full = this.globalCompositeOperation === 'source-over' && this.globalAlpha >= 0.999 && typeof this.fillStyle === 'string' &&
-            /^#[0-9a-f]{6}$/i.test(this.fillStyle) && T.b === 0 && T.c === 0 && T.e + x * T.a <= 1 && T.f + y * T.d <= 1 && T.e + (x + w) * T.a >= cw - 1 && T.f + (y + h) * T.d >= ch - 1;
-          if (full) { cleared = true; mx.clearRect(0, 0, cw, ch); return proto.clearRect.call(this, x, y, w, h); }
-          if (this.globalCompositeOperation === 'source-over' && typeof this.fillStyle === 'string' && /^#[0-9a-f]{6}$/i.test(this.fillStyle) && this.globalAlpha >= 0.999 && this.fillStyle === bgN) return proto.clearRect.call(this, x, y, w, h);
-          return proto.fillRect.call(this, x, y, w, h);
-        };
-        ctx.drawImage = function (img, ...a) {
-          if (content(img)) { mx.setTransform(this.getTransform()); mx.globalAlpha = this.globalAlpha; proto.drawImage.call(mx, img, ...a); }
-          return proto.drawImage.call(this, img, ...a);
-        };
-      },
-      end() {
-        for (const k of own) delete ctx[k];
-        mx.setTransform(1, 0, 0, 1, 0, 0); mx.globalAlpha = 1;
-        if (!cleared) { mx.globalCompositeOperation = 'source-over'; mx.drawImage(P, 0, 0); }
-        ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.filter = 'none';
-        ctx.globalCompositeOperation = 'destination-in'; ctx.drawImage(M, 0, 0);
-        ctx.restore();
-      },
-    };
-  }
-
   post(ctx, plan, t, tq, step, sc, scale, opt, allowFilter) {
     const cw = ctx.canvas.width, ch = ctx.canvas.height;
-    const fx = plan.fx, st = plan.style;
+    const fx = plan.fx, st = J.cutAt(plan,tq)?.style||plan.style;
     const active = plan.events.filter(ev => t >= ev.t && t < ev.t + Math.max(ev.dur, 1 / plan.fps));
     const needScratch = active.some(ev => ['slice', 'block', 'zoom', 'mosaic'].includes(ev.type) || (J.FXE[ev.type] && J.FXE[ev.type].scratch)) || (!opt.fast && (st.glow || 0) > 0);
     const S = needScratch ? this.ensure(this.scratch, cw, ch) : null;
     ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
     const copy = () => { const sx = S.getContext('2d'); sx.globalCompositeOperation = 'copy'; sx.drawImage(ctx.canvas, 0, 0); sx.globalCompositeOperation = 'source-over'; };
     const clock24 = Math.floor(t * 24);           // glitch randomness changes at most 24 times a second at any output fps
-    const guard = opt.transparent ? this.alphaGuard(ctx, S, sc) : null;   // 透過: effects must not fill the empty background
     for (const ev of active) {
-      // progress clamped to 0..1 (an event shorter than one output frame is still shown for that frame — k would pass 1)
-      const k0 = (t - ev.t) / Math.max(ev.dur, 1e-3), k = Number.isFinite(k0) ? J.clamp(k0, 0, 1) : 0;
+      const k = (t - ev.t) / Math.max(ev.dur, 1e-3);
       const st2 = clock24;
       const D = J.FXE[ev.type];
-      if (guard) guard.begin();
       if (D && D.draw) {
         if (D.scratch) copy();
         try {
-          D.draw(ctx, ev, k, { cw, ch, S, sc, st: plan.style, step: st2, t, scale, renderer: this, allowFilter, opt, transparent: !!opt.transparent, tmp: (w, h) => this.ensure(this.tiny, w, h), tmp2: (w, h) => this.ensure(this.small2 || (this.small2 = mk(2, 2)), w, h) });
+          D.draw(ctx, ev, k, { cw, ch, S, sc, st: plan.style, step: st2, t, scale, renderer: this, allowFilter, opt, photoReadablePolicy:plan.photoReadablePolicy, tmp: (w, h) => this.ensure(this.tiny, w, h), tmp2: (w, h) => this.ensure(this.small2 || (this.small2 = mk(2, 2)), w, h) });
         } catch (e) { console.warn('fx', ev.type, e); }
         ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none'; ctx.imageSmoothingEnabled = true;
-        if (guard) guard.end();
         continue;
       }
       if (ev.type === 'slice') {
@@ -468,7 +539,8 @@ class Renderer {
       } else if (ev.type === 'invert') {
         ctx.globalCompositeOperation = 'difference'; ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, cw, ch); ctx.globalCompositeOperation = 'source-over';
       } else if (ev.type === 'flash') {
-        ctx.globalAlpha = Math.pow(1 - k, 1.5) * 0.92; ctx.fillStyle = J.lum(sc.bg) < 0.5 ? sc.fg : '#ffffff'; ctx.fillRect(0, 0, cw, ch); ctx.globalAlpha = 1;
+        const cap=plan.photoReadablePolicy?0.06:0.92;
+        ctx.globalAlpha = Math.pow(1 - k, 1.5) * Math.min(cap,0.92*J.clamp(ev.amp??1)); ctx.fillStyle = J.lum(sc.bg) < 0.5 ? sc.fg : '#ffffff'; ctx.fillRect(0, 0, cw, ch); ctx.globalAlpha = 1;
       } else if (ev.type === 'zoom') {
         copy();
         const a = ev.amp * (1 - k);
@@ -483,8 +555,6 @@ class Renderer {
         tx.imageSmoothingEnabled = true; tx.drawImage(S, 0, 0, T.width, T.height);
         ctx.imageSmoothingEnabled = false; ctx.globalAlpha = 0.85 * (1 - k); ctx.drawImage(T, 0, 0, cw, ch); ctx.globalAlpha = 1; ctx.imageSmoothingEnabled = true;
       }
-      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
-      if (guard) guard.end();
     }
     // bloom
     const glow = (st.glow || 0.6) * 0.5 * (fx.texture ?? 0.6);

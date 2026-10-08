@@ -1,0 +1,377 @@
+{
+  "method": "Native Canvas renderer; attached feature context and unmodified LRC; not original full manual project",
+  "style": "transit",
+  "arc": {
+    "version": 1,
+    "base": "transit",
+    "duration": 50.8,
+    "segments": [
+      {
+        "from": 0,
+        "to": 14.289,
+        "style": "transit",
+        "role": "hook"
+      },
+      {
+        "from": 14.289,
+        "to": 28.089,
+        "style": "transit",
+        "role": "accent"
+      },
+      {
+        "from": 28.089,
+        "to": 41.059,
+        "style": "transit",
+        "role": "base"
+      },
+      {
+        "from": 41.059,
+        "to": 50.8,
+        "style": "transit",
+        "role": "base"
+      }
+    ],
+    "shares": {
+      "base": 1,
+      "accent": 0,
+      "peak": 0
+    },
+    "candidates": [
+      "transit"
+    ],
+    "source": "measured-photographic-identity"
+  },
+  "world": {
+    "measured": true,
+    "pairs": [
+      {
+        "from": 14.289,
+        "intent": "identity",
+        "target": 0.22,
+        "actual": 0.6091924653782992,
+        "channels": {
+          "crop": 0.1395730616235439,
+          "luminance": 0.1525463553851206,
+          "palette": 0.022966846203501385,
+          "architecture": 0.49276620370370366,
+          "geometry": 0.04977636101039305,
+          "texture": 0.003619396874871006,
+          "foreground": 0.03866497246143595
+        },
+        "pass": true
+      },
+      {
+        "from": 28.089,
+        "intent": "reprise",
+        "target": 0.44,
+        "actual": 0.3935071105524112,
+        "channels": {
+          "crop": 0.14337516366944283,
+          "luminance": 0.13326997587372952,
+          "palette": 0.03923005930767481,
+          "architecture": 0.02633101851851852,
+          "geometry": 0.0015523167889523667,
+          "texture": 0.020012154309459906,
+          "foreground": 0.0657483056129422
+        },
+        "pass": true
+      },
+      {
+        "from": 41.059,
+        "intent": "resolution",
+        "target": 0.44,
+        "actual": 0.7061598941050083,
+        "channels": {
+          "crop": 0.15659338718188215,
+          "luminance": 0.17463245549729042,
+          "palette": 0.022486484305657684,
+          "architecture": 0.49016203703703703,
+          "geometry": 0.048224044221440686,
+          "texture": 0.02424073245034647,
+          "foreground": 0.09178921615212285
+        },
+        "pass": true
+      }
+    ],
+    "weakChapters": [],
+    "score": 96
+  },
+  "variation": {
+    "measured": true,
+    "status": "SAMPLED_REPEATED_LYRIC_MASKS",
+    "width": 192,
+    "height": 108,
+    "maxPairs": 6,
+    "phase": 0.5,
+    "pairs": [
+      {
+        "firstLine": 0,
+        "secondLine": 5,
+        "text": "闘い極めろ男たち",
+        "firstTime": 15.949000000000002,
+        "secondTime": 29.764,
+        "actual": {
+          "measured": true,
+          "maskIoU": 0.16517335410985587,
+          "rasterDifference": 0.8049420625281689,
+          "heightRatio": 1.85,
+          "firstHeight": 20,
+          "secondHeight": 37,
+          "firstInkPixels": 1574,
+          "secondInkPixels": 1417
+        },
+        "samePresentationControl": {
+          "measured": true,
+          "maskIoU": 0.6714579055441479,
+          "rasterDifference": 0.3293392921850457,
+          "heightRatio": 1.05,
+          "firstHeight": 20,
+          "secondHeight": 21,
+          "firstInkPixels": 1574,
+          "secondInkPixels": 1682
+        },
+        "excessRasterDifference": 0.4756027703431232,
+        "presentationChangeObserved": true,
+        "manualStylingPresent": false
+      },
+      {
+        "firstLine": 1,
+        "secondLine": 6,
+        "text": "我らの歌声響かせろ",
+        "firstTime": 19.2945,
+        "secondTime": 33.1695,
+        "actual": {
+          "measured": true,
+          "maskIoU": 0.18551873198847263,
+          "rasterDifference": 0.7846188619540059,
+          "heightRatio": 0.5714285714285714,
+          "firstHeight": 35,
+          "secondHeight": 20,
+          "firstInkPixels": 1574,
+          "secondInkPixels": 1717
+        },
+        "samePresentationControl": {
+          "measured": true,
+          "maskIoU": 0.7601078167115903,
+          "rasterDifference": 0.24584324295755988,
+          "heightRatio": 1.0571428571428572,
+          "firstHeight": 35,
+          "secondHeight": 37,
+          "firstInkPixels": 1574,
+          "secondInkPixels": 1691
+        },
+        "excessRasterDifference": 0.538775618996446,
+        "presentationChangeObserved": true,
+        "manualStylingPresent": false
+      },
+      {
+        "firstLine": 2,
+        "secondLine": 7,
+        "text": "オー We are ガンバ",
+        "firstTime": 22.4495,
+        "secondTime": 36.3545,
+        "actual": {
+          "measured": true,
+          "maskIoU": 0.03176470588235294,
+          "rasterDifference": 0.8784106113033481,
+          "heightRatio": 2.5,
+          "firstHeight": 14,
+          "secondHeight": 35,
+          "firstInkPixels": 751,
+          "secondInkPixels": 1003
+        },
+        "samePresentationControl": {
+          "measured": true,
+          "maskIoU": 0.5917948717948718,
+          "rasterDifference": 0.40553846153846157,
+          "heightRatio": 1.1428571428571428,
+          "firstHeight": 14,
+          "secondHeight": 16,
+          "firstInkPixels": 751,
+          "secondInkPixels": 801
+        },
+        "excessRasterDifference": 0.4728721497648865,
+        "presentationChangeObserved": true,
+        "manualStylingPresent": false
+      },
+      {
+        "firstLine": 3,
+        "secondLine": 8,
+        "text": "大阪",
+        "firstTime": 24.844,
+        "secondTime": 38.684,
+        "actual": {
+          "measured": true,
+          "maskIoU": 0.3429906542056075,
+          "rasterDifference": 0.6532856881070188,
+          "heightRatio": 0.7241379310344828,
+          "firstHeight": 29,
+          "secondHeight": 21,
+          "firstInkPixels": 981,
+          "secondInkPixels": 456
+        },
+        "samePresentationControl": {
+          "measured": true,
+          "maskIoU": 1,
+          "rasterDifference": 0,
+          "heightRatio": 1,
+          "firstHeight": 29,
+          "secondHeight": 29,
+          "firstInkPixels": 981,
+          "secondInkPixels": 981
+        },
+        "excessRasterDifference": 0.6532856881070188,
+        "presentationChangeObserved": true,
+        "manualStylingPresent": false
+      },
+      {
+        "firstLine": 4,
+        "secondLine": 9,
+        "text": "青黒",
+        "firstTime": 26.929,
+        "secondTime": 40.309,
+        "actual": {
+          "measured": true,
+          "maskIoU": 0.27767857142857144,
+          "rasterDifference": 0.6914705882352932,
+          "heightRatio": 1.625,
+          "firstHeight": 16,
+          "secondHeight": 26,
+          "firstInkPixels": 376,
+          "secondInkPixels": 1055
+        },
+        "samePresentationControl": {
+          "measured": true,
+          "maskIoU": 0.9246231155778895,
+          "rasterDifference": 0.0816139521135087,
+          "heightRatio": 1,
+          "firstHeight": 16,
+          "secondHeight": 16,
+          "firstInkPixels": 376,
+          "secondInkPixels": 390
+        },
+        "excessRasterDifference": 0.6098566361217844,
+        "presentationChangeObserved": true,
+        "manualStylingPresent": false
+      }
+    ],
+    "observedChangedPairs": 5,
+    "measuredPairs": 5,
+    "score": null,
+    "method": "Actual repeated lyric alpha masks versus reference cut presentation transplanted into repeat timing; main plan/manual styling unchanged",
+    "limitations": [
+      "Midpoint sampling cannot establish entrance/exit motion variety",
+      "Camera and timeline differences can remain in control",
+      "Mask differences are not aesthetic or audience quality"
+    ]
+  },
+  "contrast": {
+    "measured": true,
+    "method": "rendered-main pixels / background-only pixels / eroded opaque lyric audit mask",
+    "backgroundDomain": "Background before lyric scrims and foreground overlays",
+    "width": 192,
+    "maxSamples": 12,
+    "samples": [
+      {
+        "line": 2,
+        "text": "オー We are ガンバ",
+        "phase": 0.2,
+        "time": 21.567800000000002,
+        "measured": true,
+        "interiorPixels": 132,
+        "backgroundLuminanceP90": 0.19730061217040068,
+        "renderedGlyphLuminanceP10": 0.9010751039066782,
+        "renderedVsBackgroundContrastP10": 3.831540649036211,
+        "predictedWhiteVsBackgroundContrastP10": 3.873697279895074,
+        "nearWhiteFraction": 0.9924242424242424
+      },
+      {
+        "line": 2,
+        "text": "オー We are ガンバ",
+        "phase": 0.5,
+        "time": 22.4495,
+        "measured": true,
+        "interiorPixels": 167,
+        "backgroundLuminanceP90": 0.21941575075580572,
+        "renderedGlyphLuminanceP10": 0.8849593160859001,
+        "renderedVsBackgroundContrastP10": 3.245762955432811,
+        "predictedWhiteVsBackgroundContrastP10": 3.5361578837174648,
+        "nearWhiteFraction": 0.9760479041916168
+      },
+      {
+        "line": 2,
+        "text": "オー We are ガンバ",
+        "phase": 0.8,
+        "time": 23.3312,
+        "measured": true,
+        "interiorPixels": 170,
+        "backgroundLuminanceP90": 0.21695607665244154,
+        "renderedGlyphLuminanceP10": 0.8927029533756561,
+        "renderedVsBackgroundContrastP10": 3.5968345804631894,
+        "predictedWhiteVsBackgroundContrastP10": 3.6466889010895986,
+        "nearWhiteFraction": 0.9823529411764705
+      },
+      {
+        "line": 7,
+        "text": "オー We are ガンバ",
+        "phase": 0.2,
+        "time": 35.4818,
+        "measured": true,
+        "interiorPixels": 269,
+        "backgroundLuminanceP90": 0.23437494063718245,
+        "renderedGlyphLuminanceP10": 0.9179563522602271,
+        "renderedVsBackgroundContrastP10": 3.299325647579418,
+        "predictedWhiteVsBackgroundContrastP10": 3.3542422326117953,
+        "nearWhiteFraction": 0.9739776951672863
+      },
+      {
+        "line": 7,
+        "text": "オー We are ガンバ",
+        "phase": 0.5,
+        "time": 36.3545,
+        "measured": true,
+        "interiorPixels": 287,
+        "backgroundLuminanceP90": 0.2503650054382805,
+        "renderedGlyphLuminanceP10": 0.9094928799453205,
+        "renderedVsBackgroundContrastP10": 3.242847247438336,
+        "predictedWhiteVsBackgroundContrastP10": 3.2923630665102337,
+        "nearWhiteFraction": 0.975609756097561
+      },
+      {
+        "line": 7,
+        "text": "オー We are ガンバ",
+        "phase": 0.8,
+        "time": 37.227199999999996,
+        "measured": true,
+        "interiorPixels": 289,
+        "backgroundLuminanceP90": 0.2826347458044996,
+        "renderedGlyphLuminanceP10": 0.9094928799453205,
+        "renderedVsBackgroundContrastP10": 2.829836344118831,
+        "predictedWhiteVsBackgroundContrastP10": 2.895790461425161,
+        "nearWhiteFraction": 0.9757785467128027
+      }
+    ],
+    "limitations": [
+      "Low resolution and erosion can miss thin glyphs.",
+      "Regional and glyph contrast are engineering evidence, not perceptual reading or artistic certification.",
+      "Background control omits lyric scrims; its contrast values are not final composite contrast.",
+      "Longest nominal glyph width per up to four sections; not exhaustive."
+    ],
+    "height": 108,
+    "measuredSamples": 6,
+    "status": "MEASURED"
+  },
+  "fontAvailability": "UNVERIFIED_IN_BROWSER",
+  "artistic100Established": false,
+  "backgroundSettingsSource": "Attached registrySelection.backgroundKey",
+  "referenceVideo": {
+    "method": "Native Canvas + ffmpeg; browser WebCodecs untested",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "duration": 50.8,
+    "frames": 1524,
+    "sha256": "39308c9f936cd387f0ea18f33bcdb2daeb748ca6799a6dfe0c6a7e8d8d7c5ab1"
+  },
+  "inputVideoSha256Match": true
+}

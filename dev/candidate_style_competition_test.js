@@ -1,0 +1,2 @@
+const assert=require('node:assert/strict'),J=require('./style_test_harness.cjs'),p=require('./fixtures/repetitive_chant.json'),a={duration:57.4,features:{energy:.75,bpm:150,beatStrength:.8,onsetDensity:.7}};
+const set=J.optimizeDirectionCandidates(p,a,p.autoPalette.stats,3);assert.equal(set.candidates.length,3);assert.equal(new Set(set.candidates.map(c=>c.proposal.style)).size,3);assert(set.candidates.every(c=>c.plan.cuts.length>0));console.log('Three distinct style candidates create actual render plans');

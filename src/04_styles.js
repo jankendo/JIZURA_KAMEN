@@ -156,19 +156,31 @@ J.resolveStyle = (project) => {
   const base = J.STYLES[project.style] || J.STYLES.noir;
   const st = JSON.parse(JSON.stringify(base));
   const ov = project.colors || {};
-  // base colours (background / text) replace the main scheme only
-  if (ov.enabled) st.schemes[0] = Object.assign({}, st.schemes[0], pickDefined(ov, ['bg', 'fg', 'sub']));
-  // accent + chromatic ghost colours apply to every scheme; accent is re-lit per background for contrast
-  if (ov.accentOn) {
-    st.schemes = st.schemes.map(s => {
-      const o = Object.assign({}, s);
-      if (ov.accent) { o.accent = J.fitContrast(ov.accent, s.bg, 2.4); if (s.ink === s.accent) o.ink = o.accent; }
-      // ghosts only need to stay visible against this scheme's background
-      if (ov.ghostA) o.ghostA = J.fitContrast(ov.ghostA, s.bg, 1.35);
-      if (ov.ghostB) o.ghostB = J.fitContrast(ov.ghostB, s.bg, 1.35);
-      if (ov.accent && s.grad) o.grad = [J.fitContrast(ov.accent, s.bg, 2.4), J.mix(ov.accent, '#000000', 0.7)];
+  const auto = project.autoPalette;
+  if (auto && auto.enabled && auto.analyzed && auto.palette) {
+    // Each style scheme receives a restrained image-derived variation. Manual color edits lock one palette.
+    const palettes = auto.userModified ? [ov] : (auto.variants && auto.variants.length ? auto.variants : [auto.palette]);
+    st.schemes = st.schemes.map((s, i) => {
+      const p = palettes[i % palettes.length] || auto.palette;
+      const o = auto.userModified || !J.fuseStylePalette ? Object.assign({}, s, pickDefined(p, ['bg', 'fg', 'sub', 'accent', 'accent2', 'ink', 'dim', 'ghostA', 'ghostB'])) : J.fuseStylePalette(s,p,auto.stats);
+      if (s.grad && o.accent) o.grad = [o.accent, o.accent2 || J.mix(o.accent, '#FFFFFF', 0.35)];
       return o;
     });
+  } else {
+    // base colours (background / text) replace the main scheme only
+    if (ov.enabled) st.schemes[0] = Object.assign({}, st.schemes[0], pickDefined(ov, ['bg', 'fg', 'sub']));
+    // accent + chromatic ghost colours apply to every scheme; accent is re-lit per background for contrast
+    if (ov.accentOn) {
+      st.schemes = st.schemes.map(s => {
+        const o = Object.assign({}, s);
+        if (ov.accent) { o.accent = J.fitContrast(ov.accent, s.bg, 2.4); if (s.ink === s.accent) o.ink = o.accent; }
+        // ghosts only need to stay visible against this scheme's background
+        if (ov.ghostA) o.ghostA = J.fitContrast(ov.ghostA, s.bg, 1.35);
+        if (ov.ghostB) o.ghostB = J.fitContrast(ov.ghostB, s.bg, 1.35);
+        if (ov.accent && s.grad) o.grad = [J.fitContrast(ov.accent, s.bg, 2.4), J.mix(ov.accent, '#000000', 0.7)];
+        return o;
+      });
+    }
   }
   const fo = project.fonts || {};
   for (const role of ['display', 'serif', 'body']) if (fo[role] && J.FONTS[fo[role]]) st.fonts[role] = [fo[role]];

@@ -129,7 +129,7 @@ J.DECOR = {
         env.arc(cx, cy, R, a0, a0 + 360 * e * (0.55 + 0.45 * J.r(s, k, 3)), sc.fg, 1.2, 0.7, false);
         const pa = (a0 + 40) * J.DEG, px = cx + Math.cos(pa) * R, py = cy + Math.sin(pa) * R;
         env.circle(px, py, 4, sc.accent, null, 0, 1, false);
-        env.draw({ text: `X${Math.round(px)} Y${Math.round(py)}`, font: monoF(env), size: J.clamp(H * 0.015, 10, 18), align: 'left', x: px + 10, y: py - 12, color: sc.sub, alpha: e, ghost: false });
+        env.draw({ debug:true, text: `X${Math.round(px)} Y${Math.round(py)}`, font: monoF(env), size: J.clamp(H * 0.015, 10, 18), align: 'left', x: px + 10, y: py - 12, color: sc.sub, alpha: e, ghost: false });
       }
     },
   },
@@ -154,6 +154,7 @@ J.DECOR = {
         for (let i = 0; i < 3; i++) {
           const on = (env.step + i) % 3 !== 0;
           const x = xEdge + side * (i * gap + (1 - e) * W * 0.2);
+          if(x-s*.35-Math.max(2,s*.14)/2<W*.055||x+s*.35+Math.max(2,s*.14)/2>W*.945||cy-s*.5<H*.08||cy+s*.5>H*.92)continue;
           const d = -side;                                   // chevrons point toward text
           env.line([[x - d * s * 0.35, cy - s * 0.5], [x + d * s * 0.35, cy], [x - d * s * 0.35, cy + s * 0.5]], i === 0 ? sc.accent : sc.fg, Math.max(2, s * 0.14), on ? 1 : 0.3, false);
         }
@@ -245,8 +246,6 @@ J.drawHUD = (env, plan) => {
   env.line([[W - m - L, m], [W - m, m], [W - m, m + L]], c, lw, 0.9, false);
   env.line([[m, H - m - L], [m, H - m], [m + L, H - m]], c, lw, 0.9, false);
   env.line([[W - m - L, H - m], [W - m, H - m], [W - m, H - m - L]], c, lw, 0.9, false);
-  const title = (plan.title || 'UNTITLED') + (plan.artist ? ' / ' + plan.artist : '');
-  env.draw({ text: title, font: env.st.fonts.body[0], size: fs, align: 'left', x: m + L * 0.6, y: m + L * 0.9, color: c, track: 0.12, ghost: false });
   const rec = env.step % 4 < 2;
   if (rec) env.circle(W - m - L * 2.6, m + L * 0.9, fs * 0.32, sc.accent, null, 0, 1, false);
   env.draw({ text: 'REC', font: mono, size: fs, align: 'left', x: W - m - L * 2.2, y: m + L * 0.9, color: c, ghost: false, track: 0.1 });

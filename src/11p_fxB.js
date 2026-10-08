@@ -83,7 +83,7 @@ fx('radialChroma', { name: '放射色収差', tags: ['glitch', 'emotional', 'pop
 fx('bloomFlash', { name: 'ブルーム', tags: ['pop', 'emotional', 'calm'], w: 1, dur: 6, amp: 1, mid: true, scratch: true, ae: 'flash',
   draw(ctx, ev, k, I) {
     const { cw, ch, S, sc } = I; if (!S) return;
-    const a = clamp(ampOf(ev), 0.5, 1.3) * (k < 0.12 ? E.outCubic(k / 0.12) : Math.pow(1 - (k - 0.12) / 0.88, 1.5));
+    const a = clamp(ev.amp ?? 1, 0, I.photoReadablePolicy ? 0.04 : 1.3) * (k < 0.12 ? E.outCubic(k / 0.12) : Math.pow(1 - (k - 0.12) / 0.88, 1.5));
     if (a < 0.02) return;
     const dk = isDark(sc.bg);
     const w1 = Math.max(4, Math.round(cw / 6)), h1 = Math.max(4, Math.round(ch / 6)), w2 = Math.max(2, Math.round(cw / 24)), h2 = Math.max(2, Math.round(ch / 24));

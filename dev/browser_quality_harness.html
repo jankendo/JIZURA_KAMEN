@@ -1,0 +1,28 @@
+<!doctype html><meta charset="utf-8"><title>JIZURA Rendering QA</title><style>body{background:#15171c;color:#eef;font:16px monospace;padding:24px}button{padding:14px}canvas{width:640px;max-width:100%}pre{white-space:pre-wrap}iframe{width:640px;height:200px;border:0}</style>
+<h1>JIZURA Rendering QA</h1><button id="run">Run fixture & pixel checks</button><button id="export" disabled>Export verified fixture MP4</button><button id="report" disabled>Download QA report</button><pre id="out">Ready</pre><canvas id="preview"></canvas><iframe src="/"></iframe>
+<script>
+const out=document.querySelector('#out'),frame=document.querySelector('iframe'),canvas=document.querySelector('canvas');let report={},state;
+const log=s=>{out.textContent+='\n'+s;};
+document.querySelector('#run').onclick=async()=>{try{
+ out.textContent='Running';const J=frame.contentWindow.J;
+ const project=await(await fetch('/qa-fixture.json')).json();const audio=await J.analyzeAudio(await(await fetch('/qa-audio.m4a')).blob());
+ const before=J.plan(project,audio);const beforePixels=await J.analyzeRenderedFrames(before,null,audio);report.before={quality:J.checkMVQuality(project,before,audio,null,beforePixels).quality,audit:J.auditDirectionReality(before,beforePixels),pixels:beforePixels.metrics};
+ log('Before: '+(report.before.quality.overallScore??report.before.quality.score)+' / 100');
+ const set=await J.optimizeDirectionCandidatesRendered(project,audio,project.autoPalette.stats,3),best=set.recommended;
+ Object.assign(project,{style:best.proposal.style,mood:best.proposal.mood,fx:best.proposal.fx,enabled:best.proposal.enabled,seed:best.proposal.seed,autoDirection:true,fonts:{}});project.artDirection=J.makeArtDirection(project,audio,best.proposal);project.fonts={...project.artDirection.typography};
+ let plan=J.plan(project,audio);await J.ensureFonts(project.lyrics,J.fontsOfPlan(plan));const pixels=await J.analyzeRenderedFrames(plan,null,audio);const caps=await J.exportCapabilities(project,audio);
+ report.after={quality:J.checkMVQuality(project,plan,audio,null,pixels,caps).quality,audit:J.auditDirectionReality(plan,pixels),pixels:pixels.metrics,style:project.style};
+ report.candidates=set.candidates.map(c=>({style:c.proposal.style,score:c.score,cues:c.pixelQA.metrics.styleCues}));
+ canvas.width=1280;canvas.height=720;const renderer=new J.Renderer();await renderer.loadCustomBackground(plan.customBg.dataUrl);renderer.frame(canvas.getContext('2d'),plan,20,{scale:1280/plan.W,production:true});
+ log('After: '+(report.after.quality.overallScore??report.after.quality.score)+' / 100 — '+project.style+' — Style realization '+report.after.quality.styleRealizationScore+'%');
+ report.stylePixels=[];
+ for(const style of ['mono','blueprint','paper','ocean','candy','sumi']){
+  const p={...project,style,fonts:{}};const proposal=J.proposeDirection(p,audio,p.autoPalette.stats);proposal.style=style;proposal.visualDNA.style=style;proposal.motionDNA.font=J.STYLES[style].fonts.display[0];proposal.styleSignature=J.styleSignature(style);
+  p.artDirection=J.makeArtDirection(p,audio,proposal);const film=J.plan(p,audio);await J.ensureFonts(p.lyrics,J.fontsOfPlan(film));const measured=await J.analyzeRenderedFrames(film,null,audio);
+  report.stylePixels.push({style,cues:measured.metrics.styleCues,completed:measured.completed});
+ }
+ state={J,project,plan,audio,pixels,caps};document.querySelector('#export').disabled=false;document.querySelector('#report').disabled=false;log('6 style pixel-ablation checks complete.');
+ }catch(e){log('FAILED '+e.stack);}};
+document.querySelector('#export').onclick=async()=>{try{const {J,project,plan,audio,pixels,caps}=state;const exported=await (caps.webCodecs?J.exportMP4:J.exportMP4Fallback)({project,plan,audio,quality:'standard',onProgress:p=>out.textContent='Export '+JSON.stringify(p)});const blob=exported.blob;const validation=J.inspectMP4Buffer(await blob.arrayBuffer());report.export=validation;report.after.quality=J.checkMVQuality(project,plan,audio,null,pixels,caps,validation).quality;const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='JIZURA_3_validation.mp4';a.textContent='Download generated MP4';document.querySelector('h1').after(a);log('EXPORT DONE '+JSON.stringify(validation));}catch(e){log('EXPORT FAILED '+e.stack+' '+JSON.stringify(e.inspection));}};
+document.querySelector('#report').onclick=()=>{out.textContent=JSON.stringify(report,null,2);const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([out.textContent],{type:'application/json'}));a.download='JIZURA_3_QA.json';a.textContent='Download report JSON';document.querySelector('h1').after(a);};
+</script>

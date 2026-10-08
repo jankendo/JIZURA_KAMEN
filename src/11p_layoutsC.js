@@ -226,7 +226,7 @@ function fitBlock(text, font, aw, ah, o = {}, maxLines = 4) {
 const rowW = (text, font, size) => { let w = 0; for (const ch of text) w += J.metrics.adv(font, ch) * size; return w; };
 /* one-call text row for dense secondary copy (main pass only); sp = extra px after each glyph */
 function fastRow(env, text, font, size, x, y, sp, color, alpha, align = 'left') {
-  if (env.pass !== 'main' || alpha <= 0.01 || !text || J.hideDecoText(env, text)) return;
+  if (env.pass !== 'main' || alpha <= 0.01 || !text) return;
   const ctx = env.ctx;
   if (!('letterSpacing' in ctx)) { env.draw({ text, font, size, x, y, align, track: sp / size, color, alpha, ghost: false }); return; }
   ctx.save();
@@ -1813,7 +1813,7 @@ reg('bookSpine', {
         const b = p.books[i], h = hs[i];
         const w = i === hi ? bw : bw * (0.72 + 0.26 * b[1]);
         const xo = J.rs(b[2], i, 3) * bw * 0.05;
-        const t = 0.04 + i * 0.09;
+        const t = i === hi ? 0 : 0.04 + i * 0.09;
         const e = E.outCubic(J.clamp((env.lt - t) / 0.3));
         y -= h;
         if (e <= 0) continue;
@@ -1826,7 +1826,7 @@ reg('bookSpine', {
         env.rect(W / 2 + w / 2 + xo - w * 0.07, yy, Math.max(2, w * 0.008), h - 2, bc, a * 0.7, false);
         if (i === hi) {
           env.draw({ text: pad2(p.vol), font: monoF(env), size: h * 0.24, x: W / 2 + w / 2 + xo - w * 0.035, y: yy + h / 2, rot: -90, color: htc, alpha: a, ghost: false });
-          bb = J.mainDraw(env, { text: fb.text, font: p.font, size, x: W / 2 + xo - w * 0.02, y: yy + h / 2, track: 0.04, color: htc, noHold: plateHold(env), mi: miAt(env, 0.1 + hi * 0.09 + 0.2) });
+          bb = J.mainDraw(env, { text: fb.text, font: p.font, size, x: W / 2 + xo - w * 0.02, y: yy + h / 2, track: 0.04, color: htc, noHold: plateHold(env), mi: 0 });
         } else if (h > H * 0.05) env.rect(W / 2 - w * 0.22 + xo, yy + h * 0.42, w * 0.3 * b[1], h * 0.16, J.mix(col, sc.fg, 0.3), a * 0.7, false);
       }
       return bb;

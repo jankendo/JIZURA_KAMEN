@@ -7,42 +7,6 @@
 J.PID = Object.freeze({ dx: 0, dy: 0, rot: 0, s: 1, st: 1, sdir: 0, a: 1 });
 J.PT = (dx = 0, dy = 0, rot = 0, s = 1, st = 1, sdir = 0, a = 1) => ({ dx, dy, rot, s, st, sdir, a });
 
-/* ---------- 文字整列 (typeset): set per plan by the planner / renderer (J.setTypeset) ----------
-   kana set a little tighter, particles smaller and the first character larger, Latin a little larger with a
-   small gap to Japanese. Only the size / advance of each glyph changes, so every layout keeps working. */
-J.TYPESET = false;
-J.setTypeset = on => { J.TYPESET = !!on; };
-const HIRA = /[ぁ-ゟ]/, KATA = /[゠-ヿㇰ-ㇿ]/, KANJI = /[㐀-鿿豈-﫿々〆]/, LATIN = /[A-Za-z0-9]/;
-const PARTICLES = 'はがをにでとのへも';
-const cls = ch => (!ch ? '' : LATIN.test(ch) ? 'L' : KANJI.test(ch) ? 'K' : KATA.test(ch) ? 'T' : HIRA.test(ch) ? 'H' : /\s/.test(ch) ? 'S' : 'P');
-function isParticle(arr, i) {
-  const ch = arr[i], prev = arr[i - 1], next = arr[i + 1];
-  if (!prev || PARTICLES.indexOf(ch) < 0 || prev === 'っ' || prev === 'ッ' || prev === 'ー') return false;
-  if (ch === 'を') return true;
-  const cp = cls(prev), cn = cls(next);
-  const nextOK = !next || cn === 'K' || cn === 'T' || cn === 'L' || cn === 'S' || cn === 'P';
-  return nextOK && cp !== 'S' && cp !== 'P' && !(cp === 'H' && cn === 'H');
-}
-/* per character: f = size factor, gap = extra space before it (in em) */
-J.typesetLine = (arr) => {
-  const out = arr.map(() => ({ f: 1, gap: 0, adv: 1 }));
-  if (!J.TYPESET) return out;
-  const content = arr.filter(c => !/\s/.test(c)).length;
-  let first = true;
-  arr.forEach((ch, i) => {
-    const c = cls(ch), o = out[i];
-    if (c === 'S') return;
-    if (c === 'H' || c === 'T') o.adv = J.isSmallKana(ch) ? 0.86 : ch === 'ー' ? 0.94 : 0.9;       // kana: set tighter
-    if (c === 'L') o.f = 1.08;
-    if ((c === 'H' || c === 'T') && content >= 3 && isParticle(arr, i)) o.f = 0.78;
-    if (first && content >= 3 && (c === 'K' || c === 'H' || c === 'T')) o.f = 1.18;               // 頭の字を大きく
-    first = false;
-    const pc = i > 0 ? cls(arr[i - 1]) : '';
-    if (i > 0 && pc !== 'S' && ((c === 'L') !== (pc === 'L')) && pc && pc !== 'P' && c !== 'P') o.gap = 0.2;   // 英字と日本語の間
-  });
-  return out;
-};
-
 /* layout: glyph centres relative to the item origin, in unscaled item space */
 J.layoutText = (it) => {
   const text = String(it.text ?? '');
@@ -53,40 +17,37 @@ J.layoutText = (it) => {
   const lead = (it.lead || 1.3) * size;
   let gi = 0;
   if (!vertical) {
-    const sets = lines.map(line => { const arr = [...line]; return { arr, ts: J.typesetLine(arr) }; });
-    const widths = sets.map(({ arr, ts }) => {
-      let w = 0;
-      arr.forEach((ch, i) => { w += (J.metrics.adv(it.font, ch) * ts[i].adv * ts[i].f + ts[i].gap) * size + (i < arr.length - 1 ? track * size : 0); });
+    const widths = lines.map(line => {
+      let w = 0; const arr = [...line];
+      arr.forEach((ch, i) => { w += J.metrics.adv(it.font, ch) * size + (i < arr.length - 1 ? track * size : 0); });
       return w;
     });
     const maxW = Math.max(1, ...widths);
-    sets.forEach(({ arr, ts }, li) => {
+    lines.forEach((line, li) => {
+      const arr = [...line];
       let x = it.align === 'left' ? 0 : it.align === 'right' ? -widths[li] : -widths[li] / 2;
       const y = (li - (lines.length - 1) / 2) * lead;
       arr.forEach((ch, ci) => {
-        const t = ts[ci], a = J.metrics.adv(it.font, ch) * size * t.adv * t.f;
-        x += t.gap * size;
-        // smaller / larger glyphs keep the line's baseline
-        out.push({ ch, i: gi++, li, ci, n: arr.length, x: x + a / 2, y: y + (1 - t.f) * size * 0.36, w: a, h: size * t.f, r90: false, vx: 0, vy: 0, fs: t.f });
+        const a = J.metrics.adv(it.font, ch) * size;
+        out.push({ ch, i: gi++, li, ci, n: arr.length, x: x + a / 2, y, w: a, h: size, r90: false, vx: 0, vy: 0 });
         x += a + track * size;
       });
     });
     out.W = maxW; out.H = lines.length * lead - (lead - size);
   } else {
-    const sets = lines.map(line => { const arr = [...line]; return { arr, ts: J.typesetLine(arr) }; });
-    const heights = sets.map(({ arr, ts }) => arr.reduce((h, ch, i) => h + (vAdv(it.font, ch, size) * ts[i].adv * ts[i].f + ts[i].gap * size) + track * size, 0) - track * size);
+    const heights = lines.map(line => [...line].reduce((h, ch) => h + vAdv(it.font, ch, size) + track * size, 0) - track * size);
     const maxH = Math.max(1, ...heights);
-    sets.forEach(({ arr, ts }, li) => {
-      let y = it.align === 'left' ? 0 : -heights[li] / 2;         // 'left' == top-aligned for vertical
+    lines.forEach((line, li) => {
+      const arr = [...line];
+      let y = (it.vAlign || (it.align === 'left' ? 'top' : 'center')) === 'top' ? 0 : -heights[li] / 2;
       const x = -(li - (lines.length - 1) / 2) * lead;
       arr.forEach((ch, ci) => {
-        const t = ts[ci], a = vAdv(it.font, ch, size) * t.adv * t.f;
-        y += t.gap * size;
+        const a = vAdv(it.font, ch, size);
         const r90 = J.VERT_ROTATE.includes(ch) || /[A-Za-z0-9]/.test(ch);
         let vx = 0, vy = 0;
         if (J.isSmallKana(ch)) { vx = 0.11 * size; vy = -0.11 * size; }
         if ('、。，．'.includes(ch)) { vx = 0.3 * size; vy = -0.3 * size; }
-        out.push({ ch, i: gi++, li, ci, n: arr.length, x, y: y + a / 2, w: size * t.f, h: a, r90, vx, vy, fs: t.f });
+        out.push({ ch, i: gi++, li, ci, n: arr.length, x, y: y + a / 2, w: size, h: a, r90, vx, vy });
         y += a + track * size;
       });
     });
@@ -146,31 +107,12 @@ function drawItemLayered(env, it) {
 }
 
 /* draw one text item. env = {ctx, pass, passColor, scale}. Returns design-space bbox + glyph boxes. */
-/* 飾りの数字・時刻を出さない: decorative copy that is only a number (No.01, #03, 128) or a time (00:12.34, REC 1:05).
-   Anything that also appears in the lyric of the cut is lyric, and stays. */
-const CJK = /[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff\uac00-\ud7af]/;
-J.decoTextKind = (t) => {
-  t = String(t || '').trim();
-  if (!t || !/\d/.test(t) || CJK.test(t)) return null;
-  if (/\d{1,2}[:：]\d{2}/.test(t) && /^[A-Za-z]{0,4}[\s.#]*[\d:：.;'"\s\/\-–—+]+[A-Za-z]{0,3}$/.test(t)) return 'time';
-  if ((t.match(/[A-Za-z]/g) || []).length <= 5 && /^[A-Za-z#№.\s\d\/\-–—+×x%:,'°]+$/.test(t)) return 'no';
-  return null;
-};
-J.hideDecoText = (env, text) => {
-  const fx = env.fx || {};
-  if (!fx.hideNo && !fx.hideTime) return false;
-  const k = J.decoTextKind(text);
-  if (!k || !(k === 'no' ? fx.hideNo : fx.hideTime)) return false;
-  const lyr = env.cut ? String(env.cut.lineText || env.cut.text || '') : '';
-  return !lyr.includes(String(text).trim());
-};
 J.drawItem = (env, it) => {
   const ctx = env.ctx;
   const ghostPass = env.pass !== 'main';
   if (ghostPass && it.ghost === false) return null;
   if (!it.text || it.size <= 0.5) return null;
-  if (J.hideDecoText(env, it.text)) return null;
-  if (!env.inLayer && !env.glyphLog && !env.hideText && env.allowFilter && !it.pieceFn && ((it.blur || 0) > 0.4 || (it.shadow && !ghostPass && (it.shadow.blur || 0) * (env.scale || 1) > 6))) {
+  if (env.plan?.artDirection?.realityVersion!==2 && !env.inLayer && env.allowFilter && !it.pieceFn && ((it.blur || 0) > 0.4 || (it.shadow && !ghostPass && (it.shadow.blur || 0) * (env.scale || 1) > 6))) {
     const r = drawItemLayered(env, it);
     if (r !== undefined) return r;
   }
@@ -187,9 +129,7 @@ J.drawItem = (env, it) => {
   if (it.skew) ctx.transform(1, 0, Math.tan(it.skew * J.DEG), 1, 0, 0);
   if (it.blend) ctx.globalCompositeOperation = it.blend;
   if (it.blur > 0.4 && env.allowFilter) ctx.filter = `blur(${(it.blur * env.scale).toFixed(1)}px)`;
-  // 太さ (統一感): the lyric grows from a hairline to heavy on a variable face (Noto Sans / Serif JP)
-  const wg = env.cut && env.cut.weightGrow && !it.noWeight ? J.weightNow(env) : 0;
-  ctx.font = wg ? J.varFontCSS(it.font, size, wg) : J.fontCSS(it.font, size);
+  ctx.font = J.fontCSS(it.font, size, it.fontWeight);
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   let grad = null;
   if (!ghostPass && it.gradient && fill) {
@@ -208,7 +148,7 @@ J.drawItem = (env, it) => {
   }
   const ext = !ghostPass && it.extrude && it.extrude.n > 0 ? it.extrude : null;
   const dash = it.dash != null && it.dash < 1 ? it.dash : null;
-  const boxes = [];
+  const boxes = [], pixelBounds=[];
   const pxScale = size * Math.max(sx, sy) * (env.scale || 1);
   for (const g of lay) {
     if (g.ch === ' ' || g.ch === '　') continue;
@@ -217,21 +157,13 @@ J.drawItem = (env, it) => {
     const a = baseAlpha * (c && c.a != null ? c.a : 1);
     if (a <= 0.002) continue;
     const ch = (c && c.ch) || g.ch;
-    const cs = (c && c.s != null ? c.s : 1) * (g.fs || 1);
+    const cs = c && c.s != null ? c.s : 1;
     const gx = g.x * sx + g.vx * sx + (c ? c.dx || 0 : 0);
     const gy = g.y * sy + g.vy * sy + (c ? c.dy || 0 : 0);
     const crot = (c ? c.rot || 0 : 0) + (g.r90 ? 90 : 0);
     const csx = sx * cs * (c && c.sx ? c.sx : 1), csy = sy * cs * (c && c.sy ? c.sy : 1);
     const gcol = (!ghostPass && c && c.color) || col;
-    boxes.push({ x: gx, y: gy, w: g.w * sx * cs / (g.fs || 1), h: g.h * sy * cs / (g.fs || 1) });
-    // モーフ: record where each glyph ends up (device space) / leave the glyphs out while the morph draws them
-    if (env.glyphLog && !ghostPass) {
-      ctx.save(); ctx.translate(gx, gy); if (crot) ctx.rotate(crot * J.DEG); if (csx !== 1 || csy !== 1) ctx.scale(csx, csy);
-      const T = ctx.getTransform(); ctx.restore();
-      env.glyphLog.push({ ch, m: [T.a, T.b, T.c, T.d, T.e, T.f], font: ctx.font, px: size, color: typeof gcol === 'string' ? gcol : (it.color || '#fff'), a: a * (fill ? fillA : 1),
-        stroke: it.stroke > 0 ? it.stroke : 0, strokeColor: typeof sCol === 'string' ? sCol : null, fill: fill && !(c && c.outline) });
-    }
-    if (env.hideText) continue;
+    boxes.push({ x: gx, y: gy, w: g.w * sx * cs, h: g.h * sy * cs });
     // ---- piece mode ----
     if (it.pieceFn && fill && !(c && c.ch) && !it.gradient && dash == null && !(c && (c.clipY || c.clipX || c.outline))) {
       if (drawPieces(env, it, g, ch, gx, gy, crot, csx, csy, gcol, a, pxScale * cs)) continue;
@@ -241,6 +173,12 @@ J.drawItem = (env, it) => {
     if (crot) ctx.rotate(crot * J.DEG);
     if (c && c.skew) ctx.transform(1, 0, Math.tan(c.skew * J.DEG), 1, 0, 0);
     if (csx !== 1 || csy !== 1) ctx.scale(csx, csy);
+    if(env.plan?.artDirection?.realityVersion===2 && ctx.getTransform){
+      const matrix=ctx.getTransform(),m=ctx.measureText(ch),pad=(it.stroke||0)/2;
+      const left=-(m.actualBoundingBoxLeft??g.w/2)-pad,right=(m.actualBoundingBoxRight??g.w/2)+pad;
+      const top=-(m.actualBoundingBoxAscent??g.h/2)-pad,bottom=(m.actualBoundingBoxDescent??g.h/2)+pad,k=env.scale||1;
+      for(const [x,y] of [[left,top],[right,top],[right,bottom],[left,bottom]])pixelBounds.push([(matrix.a*x+matrix.c*y+matrix.e)/k,(matrix.b*x+matrix.d*y+matrix.f)/k]);
+    }
     if (c && (c.clipY || c.clipX)) {           // per-glyph mask, in fractions of the glyph box (centre = 0)
       const cy = c.clipY || [-0.7, 0.7], cx = c.clipX || [-0.7, 0.7];
       ctx.beginPath(); ctx.rect(cx[0] * g.w, cy[0] * g.h, (cx[1] - cx[0]) * g.w, (cy[1] - cy[0]) * g.h); ctx.clip();
@@ -259,7 +197,7 @@ J.drawItem = (env, it) => {
       if (shadow && fill) { ctx.shadowColor = 'rgba(0,0,0,0)'; }
       ctx.lineJoin = 'round'; ctx.miterLimit = 2;
       ctx.lineWidth = (it.stroke > 0 ? it.stroke : Math.max(1, size * 0.02)) / Math.sqrt(Math.abs(csx * csy));
-      ctx.strokeStyle = (!ghostPass && c && c.color) || sCol;
+      ctx.strokeStyle = (!ghostPass && c && (c.strokeColor || (!it.strokeColor && c.color))) || sCol;
       if (dash != null) { const L = size * 3.2; ctx.setLineDash([Math.max(0.01, L * dash), L]); ctx.lineDashOffset = 0; }
       else if (it.strokeDash) ctx.setLineDash(it.strokeDash);
       ctx.strokeText(ch, 0, 0);
@@ -273,19 +211,8 @@ J.drawItem = (env, it) => {
   if (!boxes.length) return null;
   let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
   for (const b of boxes) { x0 = Math.min(x0, b.x - b.w / 2); x1 = Math.max(x1, b.x + b.w / 2); y0 = Math.min(y0, b.y - b.h / 2); y1 = Math.max(y1, b.y + b.h / 2); }
+  if(pixelBounds.length)return {x0:Math.min(...pixelBounds.map(p=>p[0])),y0:Math.min(...pixelBounds.map(p=>p[1])),x1:Math.max(...pixelBounds.map(p=>p[0])),y1:Math.max(...pixelBounds.map(p=>p[1])),boxes,cx:it.x,cy:it.y};
   return { x0: it.x + x0, y0: it.y + y0, x1: it.x + x1, y1: it.y + y1, boxes, cx: it.x, cy: it.y };
-};
-
-/* 太さ: growth 0..1 of the current cut (never exactly 0, so it also means "on"); eased, over the first half of the cut */
-J.weightNow = (env) => {
-  const span = Math.max(0.5, Math.min(1.4, env.cut.dur * 0.5));
-  const k = J.clamp(((env.ltb ?? env.lt) || 0) / span);
-  return 1e-3 + (1 - Math.pow(1 - k, 3)) * (1 - 1e-3);
-};
-J.varFontCSS = (key, px, e) => {
-  const f = J.FONTS[key] || {}, serif = f.kind === 'mincho';
-  const w = Math.round(serif ? 200 + e * 700 : 100 + e * 800);
-  return `${w} ${px.toFixed(2)}px ${serif ? '"Noto Serif JP"' : '"Noto Sans JP"'},${f.fb || 'sans-serif'}`;
 };
 
 /* returns true if pieces were drawn (i.e. not at rest) */

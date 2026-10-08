@@ -1,0 +1,6 @@
+const assert=require('node:assert/strict');const {chantProject}=require('./hype_test_helpers.cjs');
+const {J,p,a,plan}=chantProject();assert.equal(plan.hookEngine.window,3);assert(plan.hookEngine.patternInterrupt);assert([...plan.hypeTimeline,...plan.events].some(e=>e.reason==='hook-pattern-interrupt'||e.realizedReasons?.includes('hook-pattern-interrupt')));
+const delayed={...p,lyrics:p.lyrics.replace('[00:00]','[00:00.66]')},opening=J.plan(delayed,a);
+assert(opening.hookEngine.openingPunch);assert.equal(opening.hookEngine.openingAt,a.beats[0]);assert([...opening.hypeTimeline,...opening.events].some(e=>e.reason==='hook-opening-punch'||e.realizedReasons?.includes('hook-opening-punch')));
+assert(plan.hypeTimeline.filter(e=>e.t<3).every(e=>J.FXE[e.type]));assert(plan.events.length<=Math.ceil(plan.duration/8),'registry accents stay at major-event cadence');assert(plan.events.every(e=>e.registryDriven&&J.FXE[e.type]?.draw),'registry accents use installed effect implementations');assert(plan.attentionBudget.withinBudget,'the hook respects the attention budget');
+const q=J.hypeQuality(p,plan,a,{start:0,end:plan.duration},null);assert(q.hookStrength>=80);assert(q.scrollStopPower>=75);console.log('Hook pattern interrupt, beat-aligned punch and 3-second quality pass.');

@@ -1,0 +1,49 @@
+{
+  "baseline": "/workspace/scratch/f24d90e1b8fd/.sites-checkout",
+  "results": [
+    {
+      "name": "indexed_music_structure_preserves_every_result",
+      "status": "PASS"
+    },
+    {
+      "name": "timeline_duplicates_ties_and_legacy_order_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_weight_used_for_glyph_fitting_and_drawing",
+      "status": "PASS"
+    },
+    {
+      "name": "native_frames_identical_at_all_four_output_aspects",
+      "status": "PASS"
+    },
+    {
+      "name": "offline_cues_are_conservative_and_never_modify_project_data",
+      "status": "PASS"
+    }
+  ],
+  "timings": [
+    {
+      "name": "musicalStructure",
+      "beforeMs": 64.67949399999998,
+      "afterMs": 62.15739799999983,
+      "improvementPercent": 3.8993749703733704,
+      "repeats": 5,
+      "method": "median; chronological 10-minute, 100 ms timeline; identical output verified",
+      "scope": "structure or beat planning only, not full audio decode/MV/export"
+    },
+    {
+      "name": "beatHierarchy",
+      "beforeMs": 31.298725999999988,
+      "afterMs": 31.399109999999837,
+      "improvementPercent": -0.32072870953230304,
+      "repeats": 5,
+      "method": "median; chronological 10-minute, 100 ms timeline; identical output verified",
+      "scope": "structure or beat planning only, not full audio decode/MV/export"
+    }
+  ],
+  "limitations": [
+    "CPU benchmark uses synthetic features, not audio decoding.",
+    "Native Canvas frames do not validate browser variable-font rendering or perceptual singing alignment."
+  ]
+}
