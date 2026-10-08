@@ -23,29 +23,29 @@
 
 | Requirement | Existing path | V3 implementation / verification | Status |
 |---|---|---|---|
-| FR-01 入力モード | planner / multi-image / single-image | adapters; real upload/export matrix | 既存、追加検証待ち |
-| FR-02 信頼度付き適応 | auto_direction / localMusic / story | Phase 4 normalized features/grammar tests | 未完了 |
-| FR-03 意図的静止・反復 | observed_quality intentionalHold | Phase 2 applicability / Phase 4 policies | 未完了 |
-| FR-04 手動編集保護 | photoChoreographyLocked / overrides | snapshot + repair invariants tests | 基盤実装、修復統合待ち |
+| FR-01 入力モード | planner / multi-image / single-image | adapters; real upload/export matrix | 実装・実動画検証完了 |
+| FR-02 信頼度付き適応 | auto_direction / localMusic / story | Phase 4 normalized features/grammar tests | 実装・専用試験完了 |
+| FR-03 意図的静止・反復 | observed_quality intentionalHold | Phase 2 applicability / Phase 4 policies | 実装・専用試験完了 |
+| FR-04 手動編集保護 | photoChoreographyLocked / overrides | snapshot + repair invariants tests | 実装・ロック修復拒否/入力不変試験完了 |
 | FR-05 PCM/LRC/range不変 | authoritative input / audioHash | full PCM SHA256, LRC/settings/profile snapshot | 基盤実装 |
-| FR-06 独立レンダー/MP4 | video_search / observeExportedMP4 | Phase 2 hierarchy / Phase 3 verified repair | 未完了 |
-| FR-07 不足の説明/下書き | quality target / Draft UI | retained QA and repair history | 既存、追加検証待ち |
+| FR-06 独立レンダー/MP4 | video_search / observeExportedMP4 | Phase 2 hierarchy / Phase 3 verified repair | 実装・専用試験完了 |
+| FR-07 不足の説明/下書き | quality target / Draft UI | retained QA and repair history | 実装・実動画検証完了 |
 | FR-08 ブラウザー内処理 | local codecs / canvas | no new network/media transport | 維持 |
-| FR-09 比率別検証 | actual output geometry | profile identity; real aspect exports | 契約実装、実動画待ち |
-| FR-10 決定論 | content seed / registry keys | canonical hashes + stable selection tests | 基盤実装、選抜待ち |
-| NFR memory/budget | bounded candidates / encoder queue | Phase 3 budget; unknown memory explicit | 未完了 |
-| NFR cancellation cleanup | finally encoder/frame/renderer/decoder cleanup | Phase 3 failure/cancel tests | 既存、追加検証待ち |
+| FR-09 比率別検証 | actual output geometry | profile identity; real aspect exports | 実装・3比率実MP4、4:5は契約試験のみ |
+| FR-10 決定論 | content seed / registry keys | canonical hashes + stable selection tests | 実装・安定選抜/実動画5試行同一planHash |
+| NFR memory/budget | bounded candidates / encoder queue | Phase 3 budget; unknown memory explicit | 実装・専用試験完了 |
+| NFR cancellation cleanup | finally encoder/frame/renderer/decoder cleanup | Phase 3 failure/cancel tests | 実装・実動画検証完了 |
 | NFR same preview/export plan | render plan / provenance | working/confirmed separation + hash binding | 基盤実装 |
-| NFR old project/LRC/ZIP/MP4 | migration/save pipeline | old formats and E2E regression | 追加検証待ち |
+| NFR old project/LRC/ZIP/MP4 | migration/save pipeline | old formats and E2E regression | 既存回帰・実UI保存復元完了 |
 | P0-A 階層選抜 | encoded.score selection | PR-2: hierarchy/Pareto, evidence guards, baseline protection | 完了: 182 suites / 180 PASS / 0 FAIL / 2 SKIP、実MP4 E2E 10 PASS |
 | P0-B 完成動画修復 | refinePhotoExport / plateau | PR-3: targeted operators, measured acceptance, complete rollback | 実装・状態/失敗/キャンセル試験完了、実MP4 E2E 10 PASS、実4回エンコードと後退棄却を確認 |
 | P0-C ラップ/状態 | sorted build / J wrappers | PR-1 manifest, boundary identity audit, contracts | 完了: 181 suites / 179 PASS / 0 FAIL / 2 SKIP、実MP4 E2E 10 PASS |
 | P1-A grammar | story/temporal architecture | PR-4: policies, roles, phases, confidence fallback | 実装・専用/旧試験・実MP4完了 |
 | P1-B typography | compose/fit/safe/contrast | PR-4: pre-scene widths/duration/safe-area constraints | 実装、cmap全字形は未測定 |
-| P1-C image conditions | intact image / asset deck | PR-4: input-mode/capability; PR-5 real MP4 matrix | 主題分離未提供、マトリクス実行中 |
+| P1-C image conditions | intact image / asset deck | PR-4: input-mode/capability; PR-5 real MP4 matrix | 24種類実MP4完了、主題分離未提供 |
 | P1-D music/lyrics sync | onset/beat evidence | PR-4: tempo confidence / normalized envelope | 実装、歌唱同期は未測定 |
-| P1-E output profiles | existing profile policy | PR-4: exact aspect, explicit loop, actual range | 実装・契約試験完了、比率別動画実行中 |
-| P2 matrix/calibration/performance | dev QA suites | PR-5 | 未完了 |
+| P1-E output profiles | existing profile policy | PR-4: exact aspect, explicit loop, actual range | 実装・3比率実MP4、4:5/芸術的ループは未証明 |
+| P2 matrix/calibration/performance | dev QA suites | PR-5: real MP4 matrix, formal E2E, benchmark/review generation | 56実MP4/性能/比較資料完了、最終exact-head CIをPRで確認、人間評価未実施 |
 
 ## Phases
 
@@ -53,7 +53,7 @@
 2. Selection: 既存32→8→3の候補探索へ安全性・測定証拠・下位区間・可読性の階層/Pareto比較を統合。未知値はnull、単位/プロフィール/Hash不一致は拒否。高品質と既存raster rankを保護し、静止意図を扱う。実UI E2E 10 PASS、ページ例外0、外部リソース失敗0。全回帰の結果は後続の検証記録で確定する。
 3. Verified repair: 既存refinePhotoExportを再利用。CREATED→PROXY_MEASURED→SELECTED→FULL_ENCODED→DECODED_QAの状態を記録し、同一入力・ロック・単位・出力条件の実測改善だけ採用。許可行のMICRO/ARCHITECTURE/GRAMMAR_RESETへ限定し、全plan/QA/hash/artifactを復元する。単体試験のBlobは実MP4と区別。非cinema描画は既存経路を維持し、独立cinema観測の適用不可を明示する。
 4. Adaptive grammar: 既存plan/architecture/temporal/social入口を編集し、追加ラッパーなしで信頼度付きPCM特徴と歌詞密度/反復を統合。未知の歌唱同期/主題分離/cmapはUNMEASURED。低拍信頼度ではlyric_first、静止意図を維持。六段階phaseと文字組制約を記録し、アスペクトは実寸の最大公約数、ループは明示opt-in。全PCM/LRC/画像/手動設定は変更しない。専用メタモルフィック、既存grammar/contract/architecture、実UI MP4 E2E 10 PASS。
-5. Quality/performance: pending. Human blind evaluation **未実施**。実評価者・実素材を捏造しない。
+5. Quality/performance: 六つの指定試験を正式経路へ登録。実UI export/Hash/full decode、24素材+同一入力5試行、ブラインドA/B資料生成を実装。184-suite回帰は182 PASS / 0 FAIL / 2 SKIP。3.0.1描画の56実動画比較は全成功。最終追加ガードはexact-head CIで確認。 Human blind evaluation **未実施**。実評価者・実素材を捏造しない。
 
 ## Recovery and remaining work
 
@@ -62,3 +62,5 @@
 一時`J.drawItem`差し替え、プロキシのサンプル不足、未知の端末メモリ、人間評価、全素材の美的改善は未証明。検証結果を得るまでSUCCESSとはしない。
 
 Phase 1検証: 隔離コピーのnpm ci/test/build完了。NSS初期化のsandbox拒否を解消しTLS検証を維持したE2Eは外部リソース失敗0・ページ例外0。固定入力/3比率/15フレームのプランと画素は基準と完全一致。フォント取得に失敗した先行E2Eは同条件比較から除外し、成功したと偽装しない。
+
+最終性能: total P50 11,530.8→10,940.45ms、P95 25,085.9→28,512.9ms。中央値改善・末尾遅延悪化を両方記録。人間評価、全cmap/字形、写真主題分離、歌唱同期、実低メモリ端末、peak memory/cache/render-onlyは未検証。3.0.0先行試行の認証失敗1件は原因未確定として保持。詳細はCINEMA_V3_VALIDATION.md。
