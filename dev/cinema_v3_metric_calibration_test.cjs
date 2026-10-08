@@ -1,0 +1,15 @@
+'use strict';const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
+const {J}=engine(),V=J.cinemaV3,outputProfile={purpose:'FULL_MV',aspect:'16:9',fps:24,range:[0,4],loopRequired:false},profile={stage:'B',profileId:V.profileId(outputProfile),requiredMetrics:['rasterSafety','holdMotion']},m=(id,value,planHash)=>V.metric(id,value,{outputProfile,sampleCount:3,planHash,inputHash:'same',method:id}),c=(id,tail,read=90)=>({id,planHash:id,candidateSeed:1,hardFailures:[],measurements:[m('rasterSafety',100,id),m('holdMotion',tail,id),m('localContrast',read,id)],objectives:{readability:read,musicFit:null,visualCoherence:null,contextualVariation:null},lowerTail:tail,constraintViolations:0,memoryBudgetBytes:0,timeCostMs:10});
+let a=c('a',40),b=c('b',80);assert.equal(V.select([a,b],profile).selected.id,'b');assert.equal(V.select([b,a],profile).selected.id,'b');
+b.hardFailures=['CLIPPED'];assert.equal(V.select([a,b],profile).selected.id,'a');
+b=c('b',80,89);assert.equal(J.rankCinemaCandidateV2(b,profile,a).reason,'PROTECTED_REGRESSION');
+b=c('b',80);b.measurements[1]=V.metric('holdMotion',null,{outputProfile,sampleCount:0,method:'holdMotion',planHash:'b',inputHash:'same'});assert.equal(J.rankCinemaCandidateV2(b,profile).reason,'REQUIRED_UNMEASURED');assert.equal(b.measurements[1].value,null);
+a=c('z',80);b=c('a',80);assert.equal(V.select([a,b],profile).selected.id,'a');assert.equal(V.select([b,a],profile).selected.id,'a');
+b.measurements[0].unit='seconds';assert.equal(J.rankCinemaCandidateV2(b,profile,a).reason,'INCOMPARABLE_EVIDENCE');
+b=c('b',80);b.measurements[0].planHash='old';assert.equal(J.rankCinemaCandidateV2(b,profile).reason,'STALE_EVIDENCE');
+b=c('b',80);assert.equal(J.rankCinemaCandidateV2(b,{...profile,profileId:'portrait'}).reason,'PROFILE_MISMATCH');
+assert.equal(J.rankCinemaCandidateV2(c('preview',50),profile).eligible,true,'preview does not require final MP4 structure');
+const weak=c('weak',30,95),strong=c('strong',70,95);weak.encoded={score:100};strong.encoded={score:60};assert.equal(V.select([weak,strong],profile).selected.id,'strong','encoded.score cannot hide the weak interval');
+const evidence=V.metric('motion',null,{outputProfile,status:'FAILED',sampleCount:0,planHash:'failed',inputHash:'same'});assert.equal(evidence.status,'FAILED');assert.equal(evidence.value,null);
+const oldQA={metrics:{visualStagnationSeconds:144,typographyDiversity:144},productionDomains:{semanticDirection:null}},oldJSON=JSON.stringify(oldQA),stages=J.qualityScoreStages(oldQA,{completed:true,metrics:{motion:80,foregroundNovelty:null,regionalPerceptualNovelty:85}});assert.equal(oldJSON,JSON.stringify(oldQA));assert.equal(stages.verifiedScore.certified100,false);assert.equal(stages.verifiedScore.overall,null);
+console.log('Cinema V3 hard gates, worst interval, missing/failed/stale evidence, comparable units/profiles, protected readability, deterministic ties and old QA compatibility PASS');

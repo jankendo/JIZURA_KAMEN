@@ -43,3 +43,52 @@ V.evaluate=(...args)=>J.checkMVQuality(...args);
 V.repair=(p,acceptance,attempt=1)=>J.repairPhotoBottlenecks(p,acceptance,attempt);
 V.confirm=async(session,project,audio,range)=>{await V.assertSnapshot(session.input,project,audio,session.working,range);session.confirmed=V.clone(session.working);session.planHash=await V.planHash(session.confirmed);return session.confirmed;};
 })();
+/* Hierarchical ranking: values retain their units and missing evidence remains null. */
+(()=>{
+'use strict';const J=window.J,V=J.cinemaV3,finite=Number.isFinite;
+V.metric=(id,value,metadata={})=>{
+ const status=metadata.status||(finite(value)&&metadata.sampleCount>0?'MEASURED':'UNMEASURED');
+ return V.validate('MetricEvidence',{id,value:status==='MEASURED'?value:null,unit:'score/100',source:'CANVAS',sampleCount:0,affectedLineIds:[],confidence:status==='MEASURED'?1:0,profileId:V.profileId(metadata.outputProfile),thresholdId:'existing-kamen-v2.0.26',method:'existing renderer observation',planHash:'unbound',inputHash:'unbound',rendererVersion:V.version,...metadata,status,...(status==='MEASURED'?{}:{value:null,confidence:0})});
+};
+V.requiredMetrics=(stage,{allIntentionalHolds=false}={})=>stage==='A'?['rasterSafety']:stage==='B'?['rasterSafety',...allIntentionalHolds?[]:['holdMotion']]:stage==='C'?['rasterSafety','localContrast','lowerTail']:['rasterSafety','localContrast','lowerTail','videoStructure','audioEndpoint'];
+V.comparable=(a,b)=>a.unit===b.unit&&a.source===b.source&&a.method===b.method&&a.profileId===b.profileId&&a.inputHash===b.inputHash&&a.rendererVersion===b.rendererVersion;
+J.rankCinemaCandidateV2=(candidate,profile,baseline=null)=>{
+ V.validate('CandidateEvaluation',candidate);const fail=(reason,extra={})=>({eligible:false,reason,...extra,rankVector:null});
+ if(candidate.measurements.some(m=>m.planHash!==candidate.planHash)||new Set(candidate.measurements.map(m=>m.inputHash)).size>1||new Set(candidate.measurements.map(m=>m.rendererVersion)).size>1)return fail('STALE_EVIDENCE');
+ if(candidate.hardFailures.length)return fail('HARD_FAILURE',{failures:candidate.hardFailures});
+ const measurements=new Map(candidate.measurements.map(m=>[m.id,m])),required=profile.requiredMetrics||V.requiredMetrics(profile.stage,profile),missing=required.filter(id=>{const m=measurements.get(id);return !m||m.status!=='MEASURED'||m.confidence<=0||m.sampleCount<=0;});
+ if(missing.length)return fail('REQUIRED_UNMEASURED',{missing});
+ if(candidate.measurements.some(m=>m.profileId!==profile.profileId))return fail('PROFILE_MISMATCH');
+ const regressions=[],incomparable=[];
+ if(baseline)for(const prior of baseline.measurements){const m=measurements.get(prior.id),protectedMetric=prior.id==='rasterSafety'||prior.id==='localContrast'||(prior.status==='MEASURED'&&prior.value>=(profile.protectionThresholds?.[prior.id]??90));
+  if(!protectedMetric||prior.status!=='MEASURED')continue;if(!m||m.status!=='MEASURED'){regressions.push(prior.id);continue;}if(!V.comparable(m,prior)){incomparable.push(prior.id);continue;}if(m.value<prior.value)regressions.push(prior.id);
+ }
+ if(incomparable.length)return fail('INCOMPARABLE_EVIDENCE',{incomparable});if(regressions.length)return fail('PROTECTED_REGRESSION',{regressions});
+ const confidence=Math.min(...required.map(id=>measurements.get(id).confidence)),n=v=>finite(v)?v:-Infinity,o=candidate.objectives;
+ return {eligible:true,reason:'MEASURED_COMPARABLE',missing:[],rankVector:[-candidate.constraintViolations,confidence,n(candidate.lowerTail),n(o.readability),n(o.musicFit),n(o.visualCoherence),n(o.contextualVariation),candidate.timeCostStatus==='UNMEASURED'?-Infinity:-candidate.timeCostMs],artistic100Established:false};
+};
+V.compareRanks=(a,b)=>{for(let i=0;i<a.length;i++)if(a[i]!==b[i])return a[i]>b[i]?-1:1;return 0;};
+V.select=(candidates,profile,baseline=null)=>{
+ const ranked=candidates.map(c=>({candidate:c,...J.rankCinemaCandidateV2(c,profile,baseline)}));
+ const eligible=ranked.filter(c=>c.eligible),dominates=(a,b)=>a.rankVector.every((v,i)=>v>=b.rankVector[i])&&a.rankVector.some((v,i)=>v>b.rankVector[i]);
+ const frontier=eligible.filter(b=>!eligible.some(a=>a!==b&&dominates(a,b))).sort((a,b)=>V.compareRanks(a.rankVector,b.rankVector)||(String(a.candidate.id)<String(b.candidate.id)?-1:String(a.candidate.id)>String(b.candidate.id)?1:0));
+ return {selected:frontier[0]?.candidate??null,ranked,paretoIds:frontier.map(c=>c.candidate.id),status:frontier.length?'SELECTED':'NO_ELIGIBLE_CANDIDATE'};
+};
+V.searchEvaluation=(item,p,stage,inputHash='search-local',range=null)=>{
+ const profile=V.outputProfile(p,range),r=item.raster,encoded=item.encoded,rows=r?.samples||[],d=encoded?.completed?encoded:null,holds=item.video?.samples||[],allIntentionalHolds=holds.length>0&&holds.every(s=>s.intentionalHold),hardFailures=[];
+ if(rows.some(s=>!s.safe))hardFailures.push('RASTER_LYRIC_OR_SAFE_AREA');
+ if(d?.layerPresence?.primaryText?.samples?.some(s=>s.visibleSamples<s.samples.length))hardFailures.push('ENCODED_LYRIC_MISSING');
+ const base={outputProfile:profile,profileId:V.profileId(profile),planHash:item.planHash||'search-'+item.id,inputHash,sampleCount:rows.length,affectedLineIds:rows.map(s=>s.line),method:'128px production glyph presence and safe area'},measurements=[V.metric('rasterSafety',rows.length?(rows.every(s=>s.safe)?100:0):null,base)];
+ measurements.push(V.metric('rasterRank',r?.rank??null,{...base,unit:'legacy-raster-rank'}));
+ if(stage!=='A')measurements.push(V.metric('holdMotion',item.video?.score??null,{...base,sampleCount:holds.filter(s=>!s.intentionalHold).length,method:'320px 10fps production HOLD block-flow',...(allIntentionalHolds?{status:'NOT_APPLICABLE',reason:'Every sampled HOLD is intentional'}:{})}));
+ if(stage==='C')for(const [id,value,count]of [['localContrast',d?.metrics?.localContrast??null,d?.readability?.sampleCount||0],['lowerTail',d?.lowerTailQuality??null,d?.sceneQuality?.length||0]])measurements.push(V.metric(id,value,{...base,source:'ENCODED_MP4',method:'640px 10fps H264 decode / '+id,sampleCount:count,status:finite(value)&&count?'MEASURED':encoded?.status==='FAILED'?'FAILED':'UNMEASURED'}));
+ const lower=stage==='C'?d?.lowerTailQuality??null:stage==='B'?item.video?.score??null:null;
+ return {evaluation:V.validate('CandidateEvaluation',{id:String(item.id),planHash:base.planHash,candidateSeed:J.cinemaContentSeed(p),hardFailures,measurements,objectives:{readability:stage==='C'?d?.metrics?.localContrast??null:rows.length?Math.min(...rows.map(s=>s.safe?100:0)):null,musicFit:d?.metrics?.impactBeatSync??null,visualCoherence:null,contextualVariation:null},lowerTail:lower,constraintViolations:hardFailures.length,memoryBudgetBytes:0,timeCostMs:item.timeCostMs??0,timeCostStatus:finite(item.timeCostMs)?'MEASURED':'UNMEASURED',memoryBudgetStatus:'UNMEASURED'}),profile:{stage,profileId:base.profileId,allIntentionalHolds,requiredMetrics:V.requiredMetrics(stage,{allIntentionalHolds}),protectionThresholds:{rasterRank:-Infinity}}};
+};
+V.searchInputHash=async(p,range,audio)=>J.sha256(J.canonicalJSON({audioHash:await V.audioHash(audio),lyrics:p.lines,image:p.customBg,assets:p.visualAssets,locks:p.directionOverrides7,directives:p.directorLyricDirectives7,profile:V.outputProfile(p,range),rendererVersion:V.version}));
+V.selectSearch=(items,p,stage,range=null,inputHash='unbound')=>{const values=items.map(item=>({...V.searchEvaluation(item,p,stage,inputHash,range),item})),baseline=values.find(v=>v.item.id==='baseline'),profile=values[0]?.profile;if(!profile)return {item:null,status:'NO_CANDIDATES',ranked:[]};
+ // Applicability is determined once for the output and shared by every candidate.
+ profile.allIntentionalHolds=values.every(v=>v.profile.allIntentionalHolds);profile.requiredMetrics=V.requiredMetrics(stage,profile);
+ const selection=V.select(values.map(v=>v.evaluation),profile,baseline?.evaluation);return {...selection,item:values.find(v=>v.evaluation===selection.selected)?.item??null};
+};
+})();
