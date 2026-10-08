@@ -92,3 +92,55 @@ V.selectSearch=(items,p,stage,range=null,inputHash='unbound')=>{const values=ite
  const selection=V.select(values.map(v=>v.evaluation),profile,baseline?.evaluation);return {...selection,item:values.find(v=>v.evaluation===selection.selected)?.item??null};
 };
 })();
+
+/* Verified repair orchestration around the existing encoder, observer and repair operators. */
+(()=>{
+'use strict';const J=window.J,V=J.cinemaV3;
+const edges={CREATED:['PROXY_MEASURED'],PROXY_MEASURED:['SELECTED'],SELECTED:['FULL_ENCODED'],FULL_ENCODED:['DECODED_QA'],DECODED_QA:['ACCEPTED','REPAIRABLE','UNREPAIRABLE','BUDGET_EXHAUSTED'],REPAIRABLE:['CREATED','BUDGET_EXHAUSTED','UNREPAIRABLE'],ACCEPTED:[],UNREPAIRABLE:[],BUDGET_EXHAUSTED:[]};
+V.createState=(inputHash,planHash)=>({state:'CREATED',inputHash,planHash,confirmedPlanHash:null,videoHash:null,history:[{state:'CREATED',planHash}],outcome:null});
+V.transition=(state,next,data={})=>{if(!edges[state.state]?.includes(next))throw new Error('INVALID_TRANSITION:'+state.state+'→'+next);Object.assign(state,data,{state:next});state.history.push({state:next,planHash:state.planHash,videoHash:state.videoHash,outcome:state.outcome});return state;};
+V.interruptState=(state,reason)=>{if(['ACCEPTED','UNREPAIRABLE','BUDGET_EXHAUSTED'].includes(state.state))return state;state.state='UNREPAIRABLE';state.outcome=reason;state.history.push({state:'UNREPAIRABLE',outcome:reason,planHash:state.confirmedPlanHash});return state;};
+V.createResourceScope=()=>{const owned=[],closed={value:false};return {own(resource,dispose){if(closed.value)throw new Error('RESOURCE_SCOPE_CLOSED');owned.push(()=>dispose?dispose(resource):resource?.close?.());return resource;},async dispose(){if(closed.value)return;closed.value=true;const failures=[];for(const close of owned.splice(0).reverse())try{await close();}catch(error){failures.push(String(error));}return failures;}};};
+V.restorePlan=(p,snapshot,provenanceHash)=>{for(const key of Object.keys(p))delete p[key];Object.assign(p,V.clone(snapshot));delete p._provenancePlanHash;if(provenanceHash!==undefined)Object.defineProperty(p,'_provenancePlanHash',{value:provenanceHash,configurable:true});J.clearPhotoComposition?.(p);};
+V.lockSignature=p=>J.canonicalJSON((p.cuts||[]).filter(c=>c.line>=0&&(c.locked||J.photoChoreographyLocked?.(p,c))).map(c=>({line:c.line,start:c.start,end:c.end,lineText:c.lineText,layout:c.layout,params:c.params,enter:c.enter,exit:c.exit,hold:c.hold,cam:c.cam,decor:c.decor,grammar:c.grammar,assetScene:c.assetScene,semanticIntent:c.semanticIntent})));
+V.beginRepair=async args=>{if(args.project.exportSettings?.fpsMode==='auto'){const fps=J.chooseAdaptiveFPS(args.project).fps;if(args.plan.fps!==fps){args.plan.fps=fps;V.invalidate(args.plan);}}return {input:await V.snapshot(args.project,args.audio,args.plan,args.range),original:V.clone(args.plan),originalProvenanceHash:args.plan._provenancePlanHash,locks:V.lockSignature(args.plan),started:performance.now(),budgetMs:args.cinemaBudgetMs??Math.max(120000,Math.min(300000,args.plan.duration*15000)),state:null,evaluations:[],resourceScope:V.createResourceScope()};};
+V.finalEvaluation=async(result,p,args,session)=>{
+ await V.assertSnapshot(session.input,args.project,args.audio,p,args.range);if(V.lockSignature(p)!==session.locks)throw Error('LOCK_CHANGED');
+ const planHash=await V.planHash(p),videoHash=await J.sha256(await result.blob.arrayBuffer()),d=p.lastPixelQA?.metrics?.decodedCinema,r=p.lastPixelQA?.metrics?.cinemaFeedback,profile=V.outputProfile(p,args.range),base={outputProfile:profile,profileId:V.profileId(profile),planHash,inputHash:session.input.inputHash,source:'ENCODED_MP4',method:'final-resolution MP4 independent decode',sampleCount:d?.sceneQuality?.length||0},hardFailures=[];
+ if(result.provenance?.videoSHA256&&result.provenance.videoSHA256!==videoHash)hardFailures.push('VIDEO_HASH_MISMATCH');
+ if(result.validation?.certification?.passed===false)hardFailures.push('VIDEO_STRUCTURE');
+ if(d?.loop?.lastFrameIncluded===false)hardFailures.push('MISSING_FINAL_FRAME');if(d?.endingClosure?.sourceAudioEndAligned===false)hardFailures.push('AUDIO_END_MISMATCH');
+ if(r?.samples?.some(s=>!s.safe))hardFailures.push('LYRIC_OR_SAFE_AREA');
+ if(d?.layerPresence?.primaryText?.samples?.some(s=>s.visibleSamples<s.samples.length))hardFailures.push('ENCODED_LYRIC_MISSING');
+ const measurements=[V.metric('rasterSafety',r?.samples?.length?(r.samples.every(s=>s.safe)?100:0):null,{...base,source:'CANVAS',method:'128px production glyph presence and safe area',sampleCount:r?.samples?.length||0}),V.metric('localContrast',d?.metrics?.localContrast??null,{...base,sampleCount:d?.readability?.sampleCount||0}),V.metric('lowerTail',d?.lowerTailQuality??null,base),V.metric('videoStructure',result.validation?.certification?.passed===true?100:null,{...base,method:'MP4 track structure and frame count certification',sampleCount:result.validation?.certification?.passed?1:0})];
+ if(args.audio?.buffer)measurements.push(V.metric('audioEndpoint',d?.endingClosure?.sourceAudioEndAligned===true?100:d?.endingClosure?.sourceAudioEndAligned===false?0:null,{...base,method:'decoded AAC duration versus authoritative output range',sampleCount:Number.isFinite(d?.endingClosure?.encodedAudioDuration)?1:0}));
+ for(const [id,value]of Object.entries(d?.metrics||{}))if(!measurements.some(m=>m.id===id)&&(Number.isFinite(value)||value===null))measurements.push(V.metric(id,value,base));
+ const evaluation={id:videoHash,planHash,candidateSeed:J.cinemaContentSeed(p),hardFailures,measurements,objectives:{readability:d?.metrics?.localContrast??null,musicFit:d?.metrics?.impactBeatSync??null,visualCoherence:null,contextualVariation:null},lowerTail:d?.lowerTailQuality??null,constraintViolations:hardFailures.length,memoryBudgetBytes:0,timeCostMs:0,timeCostStatus:'UNMEASURED',memoryBudgetStatus:'UNMEASURED'};
+ V.validate('CandidateEvaluation',evaluation);return {evaluation,videoHash,profile:{stage:'FINAL',profileId:base.profileId,requiredMetrics:['rasterSafety','localContrast','lowerTail','videoStructure',...args.audio?.buffer?['audioEndpoint']:[]]},decodedCompleted:!!d?.completed};
+};
+J.acceptOrRevertRepair=({before,after,profile,targets=['lowerTail','localContrast'],sameInputs=true,sameLocks=true})=>{
+ if(!sameInputs||!sameLocks)return {accepted:false,reason:!sameInputs?'INPUT_CHANGED':'LOCK_CHANGED'};
+ const rank=J.rankCinemaCandidateV2(after,profile,before);if(!rank.eligible)return {accepted:false,reason:rank.reason,details:rank};
+ const old=new Map(before.measurements.map(m=>[m.id,m]));const improved=after.measurements.filter(m=>targets.includes(m.id)&&m.status==='MEASURED'&&old.get(m.id)?.status==='MEASURED'&&V.comparable(m,old.get(m.id))&&m.value>old.get(m.id).value);
+ // Readability and every previously verified high-quality metric are protected by the ranker.
+ if(!improved.length)return {accepted:false,reason:'NO_MEASURED_TARGET_IMPROVEMENT'};return {accepted:true,reason:'VERIFIED_TARGET_IMPROVEMENT',improved:improved.map(m=>m.id)};
+};
+J.proposeTargetedRepairs=(p,acceptance)=>{
+ if(!p.lastPixelQA?.metrics?.decodedCinema?.completed)return [];
+ return (J.classifyCinemaRepairFailures(p,acceptance)||[]).map(task=>({...task,lines:task.lines.filter(line=>{const c=p.cuts.find(c=>c.line===line);return c&&!c.locked&&!J.photoChoreographyLocked(p,c)&&!(c.grammar?.intentionalHold&&/HOLD|STAGNATION|MOTION|NOVELTY|TYPOGRAPHY_DIVERSITY/.test(task.code));}),stage:(p.musicalPhoto?.cinema?.repairEscalation?.[task.code]?.occurrences||0)===0?'MICRO':(p.musicalPhoto?.cinema?.repairEscalation?.[task.code]?.occurrences||0)===1?'ARCHITECTURE':'GRAMMAR_RESET'})).filter(task=>task.lines.length);
+};
+V.rebuildAfterRepair=p=>{const f=p.musicalPhoto?.cinema;if(!f)return;const shifted=new Map((f.beatTimingRepair?.records||[]).map(r=>[r.line,p.cuts.find(c=>c.line===r.line)?.grammar?.temporal?.hit]));J.rebuildCinemaBeatIntent?.(p);for(const [line,hit]of shifted)if(Number.isFinite(hit))p.cuts.find(c=>c.line===line).grammar.temporal.hit=hit;if(f.grammar)f.grammar.shots=(p.cuts||[]).filter(c=>c.grammar).map(c=>({line:c.line,from:c.start,to:c.end,...V.clone(c.grammar)}));for(const s of p.storyboard||[]){const c=p.cuts.find(c=>c.start===s.from);if(c?.grammar&&!s.locked)s.shotGrammar=V.clone(c.grammar);}V.invalidate(p);};
+V.applyRepair=(p,acceptance,attempt)=>{const tasks=J.proposeTargetedRepairs(p,acceptance),allowed=new Set(tasks.flatMap(t=>t.lines)),before=V.clone(p),hash=p._provenancePlanHash;if(!allowed.size)return {changes:[],reason:'NO_MEASURED_REPAIRABLE_LINES'};const locks=V.lockSignature(p),changes=J.repairPhotoBottlenecks(p,acceptance,attempt,{tasks}),changed=(p.cuts||[]).filter((c,i)=>J.canonicalJSON(c)!==J.canonicalJSON(before.cuts[i])).map(c=>c.line),master=J.canonicalJSON(before.musicalPhoto?.cinema?.visualDNA?.master??null);if(changed.some(line=>!allowed.has(line))||locks!==V.lockSignature(p)||master!==J.canonicalJSON(p.musicalPhoto?.cinema?.visualDNA?.master??null)){V.restorePlan(p,before,hash);return {changes:[],reason:'OUT_OF_SCOPE_OR_LOCKED_REPAIR_REVERTED'};}V.rebuildAfterRepair(p);return {changes,tasks,changedLines:changed,unchangedLines:(p.cuts||[]).map(c=>c.line).filter(line=>!changed.includes(line)),reason:'TARGETED_RENDER_CHANGE'};};
+V.observeRepair=async(session,args,result,best)=>{
+ const evidence=await V.finalEvaluation(result,args.plan,args,session),state=V.createState(session.input.inputHash,evidence.evaluation.planHash);
+ if(args.plan.lastPixelQA?.completed)V.transition(state,'PROXY_MEASURED',{proxyStatus:'MEASURED'});else{V.interruptState(state,'PROXY_UNMEASURED');session.state=state;return {...evidence,accepted:false,reason:'PROXY_UNMEASURED'};}
+ V.transition(state,'SELECTED');V.transition(state,'FULL_ENCODED',{videoHash:evidence.videoHash});
+ if(!evidence.decodedCompleted){V.interruptState(state,'DECODED_QA_UNMEASURED');session.state=state;return {...evidence,accepted:false,reason:'DECODED_QA_UNMEASURED'};}
+ V.transition(state,'DECODED_QA');const decision=best?J.acceptOrRevertRepair({before:best.v3.evaluation,after:evidence.evaluation,profile:evidence.profile}):{accepted:true,reason:'INITIAL_ARTIFACT_RETAINED_AS_DRAFT'};
+ const eligible=J.rankCinemaCandidateV2(evidence.evaluation,evidence.profile).eligible;session.state=state;session.evaluations.push({planHash:state.planHash,videoHash:state.videoHash,eligible,decision,stateHistory:state.history});return {...evidence,...decision,eligible};
+};
+J.generateCinemaCandidates=(p)=>[{id:'baseline',plan:V.clone(p)},...(p.musicalPhoto?.cinema?.architecture?J.cinemaArchitectureCandidates(p).map(candidate=>{const plan=V.clone(p);J.applyCinemaArchitecture(plan,candidate);return {id:String(candidate.id),plan};}):[])];
+J.assessCandidatePreview=async(candidate,range,signal)=>{const p=candidate.plan,raster=await J.measureCinemaSequence(p,range),video=await J.measureCinemaVideoProxy(p,range,signal);return {...candidate,raster,video};};
+J.exportAndObserveCandidate=args=>J.exportMP4({...args,cinemaV3:true});
+V.repair=args=>J.exportAndObserveCandidate(args);
+})();
