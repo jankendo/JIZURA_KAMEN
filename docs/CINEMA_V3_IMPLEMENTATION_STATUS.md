@@ -37,7 +37,7 @@
 | NFR cancellation cleanup | finally encoder/frame/renderer/decoder cleanup | Phase 3 failure/cancel tests | 既存、追加検証待ち |
 | NFR same preview/export plan | render plan / provenance | working/confirmed separation + hash binding | 基盤実装 |
 | NFR old project/LRC/ZIP/MP4 | migration/save pipeline | old formats and E2E regression | 追加検証待ち |
-| P0-A 階層選抜 | encoded.score selection | PR-2 | 未完了 |
+| P0-A 階層選抜 | encoded.score selection | PR-2: hierarchy/Pareto, evidence guards, baseline protection | 実装・専用試験・実MP4完了、全回帰実行中 |
 | P0-B 完成動画修復 | refinePhotoExport / plateau | PR-3 | 未完了 |
 | P0-C ラップ/状態 | sorted build / J wrappers | PR-1 manifest, boundary identity audit, contracts | 完了: 181 suites / 179 PASS / 0 FAIL / 2 SKIP、実MP4 E2E 10 PASS |
 | P1-A grammar | story/temporal architecture | PR-4 | 未完了 |
@@ -50,7 +50,7 @@
 ## Phases
 
 1. Foundation: explicit 84-entry manifest (83 unchanged modules + additive adapter); identity observations between modules; all nine contracts; immutable owned metadata and editable candidate copy; new tests registered. Existing 83 source bytes verified unchanged in `foundation-source-equivalence.json`.
-2. Selection: pending.
+2. Selection: 既存32→8→3の候補探索へ安全性・測定証拠・下位区間・可読性の階層/Pareto比較を統合。未知値はnull、単位/プロフィール/Hash不一致は拒否。高品質と既存raster rankを保護し、静止意図を扱う。実UI E2E 10 PASS、ページ例外0、外部リソース失敗0。全回帰の結果は後続の検証記録で確定する。
 3. Verified repair: pending.
 4. Adaptive grammar: pending.
 5. Quality/performance: pending. Human blind evaluation **未実施**。実評価者・実素材を捏造しない。
@@ -58,7 +58,7 @@
 ## Recovery and remaining work
 
 各PRは前段をbaseとするstack。マージ順は1→2→3→4→5、追加承認後のみ。
-内部の `J.cinemaV3.enabled` をfalseにする切り戻しと、個別PRの `git revert` を用意する。現時点ではadapter未呼び出しなので既存経路に変更なし。
+内部の `J.cinemaV3.enabled` をfalseにする切り戻しと、個別PRの `git revert` を用意する。Phase 2以降は候補選抜で有効。false時は従来の選抜へ戻る。
 一時`J.drawItem`差し替え、プロキシのサンプル不足、未知の端末メモリ、人間評価、全素材の美的改善は未証明。検証結果を得るまでSUCCESSとはしない。
 
 Phase 1検証: 隔離コピーのnpm ci/test/build完了。NSS初期化のsandbox拒否を解消しTLS検証を維持したE2Eは外部リソース失敗0・ページ例外0。固定入力/3比率/15フレームのプランと画素は基準と完全一致。フォント取得に失敗した先行E2Eは同条件比較から除外し、成功したと偽装しない。

@@ -10,7 +10,7 @@ J.measureCinemaSequence=async(p,range=null,options={})=>{
  try{await R.loadCustomBackground(p.customBg.dataUrl);await R.loadAssetDeck?.(p);const samples=[],intent=[];let previous=null,stagnationStart=start;
  for(const c of p.cuts.filter(c=>c.grammar&&!locked(p,c)&&c.end>start&&c.start<end&&(!options.lines||options.lines.includes(c.line)))){
   const ts=[.12,.4,.72].map(u=>Math.min(end-1/p.fps,Math.max(start,c.start+c.dur*u))),frames=ts.map(t=>frame(t)),sig=signature(frames[1].bytes,w,h),delta=previous?distance(sig,previous):null,energy=(difference(frames[0].bytes,frames[1].bytes)+difference(frames[1].bytes,frames[2].bytes))/2;
-  if(delta>.035)stagnationStart=c.start;const stagnant=c.end-stagnationStart>8,neutral=frame(ts[0],true),textChange=maskDifference(frames[0].mask,neutral.mask),motionVisible=energy>.003;
+  if(delta>.035)stagnationStart=c.start;const intentional=J.cinemaV3?.enabled&&(c.grammar.intentionalHold||c.grammar.quiet||c.grammar.temporal?.motionPrinciple==='weighted-hold');const stagnant=!intentional&&c.end-stagnationStart>8,neutral=frame(ts[0],true),textChange=maskDifference(frames[0].mask,neutral.mask),motionVisible=energy>.003;
   const audioEnergy=p.musicalStructure?.sections.find(s=>c.start>=s.from&&c.start<s.to)?.energy??p.musicalPhoto.songProfile.energy,expected=(c.cinema.quiet||c.grammar.quiet)?'quiet':c.grammar.stage?'escalate':c.cinema.meaning==='rage'?'rush':'move',energyGap=expected==='quiet'?0:Math.max(0,.004+.022*C(audioEnergy)-energy);
   const safe=frames.every(f=>f.records.length&&f.records.every(r=>r.readable)&&f.records.map(r=>r.text).join('')===String(c.lineText).replace(/\s/g,''));
   samples.push({safe,readabilityFailures:frames.flatMap((f,i)=>f.records.filter(r=>!r.readable).map(r=>({time:ts[i],...r.glyphEvidence}))),line:c.line,from:c.start,to:c.end,energy,compositionDistance:delta,stagnant,energyGap,expected,audioEnergy,targetMotion:expected==='quiet'?0:.004+.022*C(audioEnergy),layerEvidence:c.grammar.safeDerived?{...J.cinemaLayerPixelEvidence(frames[1].bytes,frame(ts[1],false,true).bytes),kind:c.grammar.derivedLayer}:null,signature:sig,primarySignature:signature(Uint8ClampedArray.from(frames[1].mask,(v,i)=>i%4===3?255:frames[1].mask[i-i%4+3]),w,h)});
@@ -38,6 +38,7 @@ J.repairCinemaSequence=async(p,range=null,telemetry={})=>{
 };
 const compare=J.compareRegistryCandidates;J.compareRegistryCandidates=(project,...args)=>{const preset=project.exportSettings?.preset||'auto';if(preset!=='auto')return compare(project,...args);const p=J.clonePhotoRenderPlan(project);p.res=Math.max(1080,p.res||1080);if(p.exportSettings?.fpsMode!=='manual')p.fps=30;return compare(p,...args);};
 const analyze=J.analyzeRenderedFrames;J.analyzeRenderedFrames=async(p,range,audio,telemetry={})=>{
+ if(J.cinemaV3?.enabled)telemetry={...telemetry,cinemaInputHash:await J.cinemaV3.searchInputHash(p,range,audio)};
  const feedback=active(p)?await J.repairCinemaSequence(p,range,telemetry):null,r=await analyze(p,range,audio,telemetry);if(r.completed&&feedback){r.metrics.cinemaFeedback=feedback;p.lastPixelQA=r;}return r;
 };
 // Intro is a distinct image treatment on energetic tracks, a slow reveal on calm tracks.
