@@ -1,0 +1,243 @@
+{
+  "name": "cinema_v3_export_e2e.cjs",
+  "status": "PASS",
+  "mode": "run-actual-UI-export",
+  "checks": 10,
+  "videoHash": "32b09279c5bf26041eb8ef48ac44816ef4cd871258faac1a712dccedea5e1127",
+  "planHash": "28d7000a3470e615cf4129a3f9c7fcb0df659d6ee1404590d47e34e58339df5c",
+  "state": "BUDGET_EXHAUSTED",
+  "attempts": 4,
+  "decisions": [
+    "INITIAL_ARTIFACT_RETAINED_AS_DRAFT",
+    "VERIFIED_TARGET_IMPROVEMENT",
+    "VERIFIED_TARGET_IMPROVEMENT",
+    "PROTECTED_REGRESSION"
+  ],
+  "artistic100Established": false,
+  "peakMemoryStatus": "UNMEASURED",
+  "browser": "154.0.8037.97",
+  "decoderProbe": {
+    "status": "PASS",
+    "controls": 2,
+    "method": "actual H264/AAC UI artifact plus actual H264 black control; only native HTMLVideoElement canvas paint is injected to zero",
+    "thresholdChanged": false,
+    "previousTransientFailureCause": "UNRESOLVED: initial failed blob was not retained",
+    "recovered": {
+      "passed": true,
+      "checks": {
+        "container": true,
+        "video": true,
+        "audio": true,
+        "resolution": true,
+        "duration": true,
+        "frames": true,
+        "fps": true,
+        "avSync": true,
+        "reloaded": true,
+        "avDuration": true,
+        "seek": true,
+        "blackFrames": true,
+        "firstLast": true
+      },
+      "frames": [
+        {
+          "time": 0,
+          "nonBlack": 1
+        },
+        {
+          "time": 0.25,
+          "nonBlack": 1
+        },
+        {
+          "time": 4.512,
+          "nonBlack": 0.9014917695473251
+        },
+        {
+          "time": 8.943999999999999,
+          "nonBlack": 1
+        }
+      ],
+      "nativeFrames": [
+        {
+          "time": 0,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.25,
+          "nonBlack": 0
+        },
+        {
+          "time": 4.512,
+          "nonBlack": 0
+        },
+        {
+          "time": 8.943999999999999,
+          "nonBlack": 0
+        }
+      ],
+      "nativeChecks": {
+        "blackFrames": false,
+        "firstLast": false
+      },
+      "independentPixels": {
+        "status": "MEASURED",
+        "source": "independent encoded MP4 decoder; same RGB threshold and timestamps",
+        "frames": [
+          {
+            "time": 0,
+            "nonBlack": 1
+          },
+          {
+            "time": 0.25,
+            "nonBlack": 1
+          },
+          {
+            "time": 4.512,
+            "nonBlack": 0.9014917695473251
+          },
+          {
+            "time": 8.943999999999999,
+            "nonBlack": 1
+          }
+        ]
+      },
+      "path": "Browser WebCodecs → MP4 Blob → HTMLVideoElement reload/decode",
+      "fps": 24,
+      "avSync": "track timestamp/duration; no perceptual sync claim"
+    },
+    "black": {
+      "passed": false,
+      "checks": {
+        "container": true,
+        "video": true,
+        "audio": true,
+        "resolution": true,
+        "duration": true,
+        "frames": true,
+        "fps": true,
+        "avSync": true,
+        "reloaded": true,
+        "avDuration": true,
+        "seek": true,
+        "blackFrames": false,
+        "firstLast": false
+      },
+      "frames": [
+        {
+          "time": 0,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.25,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.5,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.92,
+          "nonBlack": 0
+        }
+      ],
+      "nativeFrames": [
+        {
+          "time": 0,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.25,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.5,
+          "nonBlack": 0
+        },
+        {
+          "time": 0.92,
+          "nonBlack": 0
+        }
+      ],
+      "nativeChecks": {
+        "blackFrames": false,
+        "firstLast": false
+      },
+      "independentPixels": {
+        "status": "MEASURED",
+        "source": "independent encoded MP4 decoder; same RGB threshold and timestamps",
+        "frames": [
+          {
+            "time": 0,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.25,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.5,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.92,
+            "nonBlack": 0
+          }
+        ]
+      },
+      "path": "Browser WebCodecs → MP4 Blob → HTMLVideoElement reload/decode",
+      "fps": 24,
+      "avSync": "track timestamp/duration; no perceptual sync claim"
+    },
+    "cancellation": {
+      "status": "PASS",
+      "bitmapGuardResources": {
+        "status": "PASS",
+        "nativeImageBitmaps": 1,
+        "beforeDimensions": [
+          [
+            640,
+            360
+          ]
+        ],
+        "afterDimensions": [
+          [
+            0,
+            0
+          ]
+        ],
+        "peakMemoryStatus": "UNMEASURED"
+      },
+      "cancellation": {
+        "status": "PASS",
+        "source": "actual browser WebCodecs encoder/frame objects, cancellation after frame submission; no mocked encoder",
+        "beforePlanQAHash": "bcdd9a91c04a443971fbb36c79fed6eea07ac393c34dff44ab88d6f3d442817b",
+        "afterPlanQAHash": "bcdd9a91c04a443971fbb36c79fed6eea07ac393c34dff44ab88d6f3d442817b",
+        "hashMethod": "canonical plan plus explicit serialized pixel QA and quality target (canonical plan alone excludes QA)",
+        "restored": true,
+        "abortProgress": {
+          "stage": "frames",
+          "current": 22,
+          "total": 96,
+          "encoded": 20
+        },
+        "error": {
+          "name": "Error",
+          "message": "キャンセルしました"
+        },
+        "nativeEncoders": 1,
+        "nativeFrames": 22,
+        "allEncodersClosed": true,
+        "allFramesClosed": true,
+        "retry": "following actual full H264/AAC export independently validated by runner"
+      },
+      "retryVideoHash": "2d24f52a1344cf4da8c5a1021d182825496885ef75c0cc83d133398b6cc59a13",
+      "retryCodecs": [
+        "h264",
+        "aac"
+      ],
+      "retryFullDecode": "PASS",
+      "timingPurpose": "NOT_A_PERFORMANCE_BENCHMARK; canceled attempt plus retry",
+      "historicalCertificationCause": "UNRESOLVED; this is an independently controlled cancellation test"
+    }
+  }
+}

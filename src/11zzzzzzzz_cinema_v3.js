@@ -1,7 +1,7 @@
 /* Cinema V3 contracts and adapters. Existing renderer and save formats stay authoritative. */
 (()=>{
 'use strict';
-const J=window.J, V=J.cinemaV3={version:'3.0.1',enabled:true}, finite=Number.isFinite;
+const J=window.J, V=J.cinemaV3={version:'3.0.2',enabled:true}, finite=Number.isFinite;
 /** @typedef {'MEASURED'|'UNMEASURED'|'NOT_APPLICABLE'|'FAILED'} EvidenceStatus */
 /** @typedef {{value:*,confidence:number,source:string,status:EvidenceStatus,limitations?:string[]}} Feature */
 /** @typedef {{inputHash:string,audioHash:?string,imageHashes:string[],lyricsHash:string,projectHash:string,rendererVersion:string,outputProfile:Object,userLocks:Object}} ImmutableInputSnapshot */
@@ -25,7 +25,10 @@ V.feature=(value,source,confidence=1,status=value===null?'UNMEASURED':'MEASURED'
 V.clone=value=>J.clonePhotoRenderPlan(value);
 // Freeze only owned JSON metadata; never freeze PCM buffers, DOM or codec objects.
 V.freezeMetadata=value=>{if(value&&typeof value==='object'){Object.values(value).forEach(V.freezeMetadata);Object.freeze(value);}return value;};
-V.outputProfile=(p,range=null)=>{const loop=p.exportSettings?.loopRequired===true,short=!!p.socialHook,aspect=(()=>{const gcd=(a,b)=>b?gcd(b,a%b):a,d=gcd(p.W,p.H);return p.W/d+':'+p.H/d;})();return V.validateProfile({purpose:loop?'LOOP_SHORT':short?'SHORT':aspect==='1:1'?'SQUARE':'FULL_MV',aspect,fps:p.fps,range:[range?.start??p.socialHook?.start??0,range?.end??p.socialHook?.end??p.duration],loopRequired:loop});};
+// The design canvas (e.g. 1920×1080) is not the requested delivery raster.
+V.bindDelivery=(p,project)=>{const [width,height]=J.outputSize(project);if(p.cinemaDelivery?.width!==width||p.cinemaDelivery?.height!==height){delete p.musicalPhoto?.cinema?.architectureSearch;delete p.musicalPhoto?.preparation;}p.cinemaDelivery={width,height};return p;};
+const deliveryPlan=J.plan;J.plan=(project,...args)=>V.bindDelivery(deliveryPlan(project,...args),project);
+V.outputProfile=(p,range=null)=>{const loop=p.exportSettings?.loopRequired===true,short=!!p.socialHook,aspect=(()=>{const gcd=(a,b)=>b?gcd(b,a%b):a,d=gcd(p.W,p.H);return p.W/d+':'+p.H/d;})();return V.validateProfile({purpose:loop?'LOOP_SHORT':short?'SHORT':aspect==='1:1'?'SQUARE':'FULL_MV',aspect,fps:p.fps,range:[range?.start??p.socialHook?.start??0,range?.end??p.socialHook?.end??p.duration],loopRequired:loop,...(p.cinemaDelivery?{resolution:[p.cinemaDelivery.width,p.cinemaDelivery.height]}:{})});};
 V.validateProfile=p=>{if(!profile(p))throw new TypeError('Invalid Cinema V3 output profile');return p;};
 V.profileId=p=>J.canonicalJSON(p);
 V.audioHash=async audio=>{const b=audio?.buffer;if(!b?.getChannelData)return null;const parts=[];for(let c=0;c<b.numberOfChannels;c++){const pcm=b.getChannelData(c);parts.push(await J.sha256(new Uint8Array(pcm.buffer,pcm.byteOffset,pcm.byteLength)));}return J.sha256(J.canonicalJSON({sampleRate:b.sampleRate,channels:b.numberOfChannels,length:b.length,parts}));};
@@ -50,7 +53,7 @@ V.metric=(id,value,metadata={})=>{
  const status=metadata.status||(finite(value)&&metadata.sampleCount>0?'MEASURED':'UNMEASURED');
  return V.validate('MetricEvidence',{id,value:status==='MEASURED'?value:null,unit:'score/100',source:'CANVAS',sampleCount:0,affectedLineIds:[],confidence:status==='MEASURED'?1:0,profileId:V.profileId(metadata.outputProfile),thresholdId:'existing-kamen-v2.0.26',method:'existing renderer observation',planHash:'unbound',inputHash:'unbound',rendererVersion:V.version,...metadata,status,...(status==='MEASURED'?{}:{value:null,confidence:0})});
 };
-V.requiredMetrics=(stage,{allIntentionalHolds=false}={})=>stage==='A'?['rasterSafety']:stage==='B'?['rasterSafety',...allIntentionalHolds?[]:['holdMotion']]:stage==='C'?['rasterSafety','localContrast','lowerTail']:['rasterSafety','localContrast','lowerTail','videoStructure','audioEndpoint'];
+V.requiredMetrics=(stage,{allIntentionalHolds=false}={})=>stage==='A'?['rasterSafety']:stage==='B'?['rasterSafety',...allIntentionalHolds?[]:['holdMotion']]:stage==='C'?['rasterSafety','localContrast','outputReadability','lowerTail']:['rasterSafety','localContrast','lowerTail','videoStructure','audioEndpoint'];
 V.comparable=(a,b)=>a.unit===b.unit&&a.source===b.source&&a.method===b.method&&a.profileId===b.profileId&&a.inputHash===b.inputHash&&a.rendererVersion===b.rendererVersion;
 J.rankCinemaCandidateV2=(candidate,profile,baseline=null)=>{
  V.validate('CandidateEvaluation',candidate);const fail=(reason,extra={})=>({eligible:false,reason,...extra,rankVector:null});
@@ -60,7 +63,7 @@ J.rankCinemaCandidateV2=(candidate,profile,baseline=null)=>{
  const failed=required.filter(id=>measurements.get(id)?.status==='FAILED');if(failed.length)return fail('REQUIRED_FAILED',{failed});if(missing.length)return fail('REQUIRED_UNMEASURED',{missing});
  if(candidate.measurements.some(m=>m.profileId!==profile.profileId))return fail('PROFILE_MISMATCH');
  const regressions=[],incomparable=[];
- if(baseline)for(const prior of baseline.measurements){const m=measurements.get(prior.id),protectedMetric=prior.id==='rasterSafety'||prior.id==='localContrast'||(prior.status==='MEASURED'&&prior.value>=(profile.protectionThresholds?.[prior.id]??90));
+ if(baseline)for(const prior of baseline.measurements){const m=measurements.get(prior.id),protectedMetric=prior.id==='rasterSafety'||prior.id==='localContrast'||prior.id==='outputReadability'||(prior.status==='MEASURED'&&prior.value>=(profile.protectionThresholds?.[prior.id]??90));
   if(!protectedMetric||prior.status!=='MEASURED')continue;if(!m||m.status!=='MEASURED'){regressions.push(prior.id);continue;}if(!V.comparable(m,prior)){incomparable.push(prior.id);continue;}if(m.value<prior.value)regressions.push(prior.id);
  }
  if(incomparable.length)return fail('INCOMPARABLE_EVIDENCE',{incomparable});if(regressions.length)return fail('PROTECTED_REGRESSION',{regressions});
@@ -82,14 +85,28 @@ V.searchEvaluation=(item,p,stage,inputHash='search-local',range=null)=>{
  measurements.push(V.metric('rasterRank',r?.rank??null,{...base,unit:'legacy-raster-rank'}));
  if(stage!=='A')measurements.push(V.metric('holdMotion',item.video?.score??null,{...base,sampleCount:holds.filter(s=>!s.intentionalHold).length,method:'320px 10fps production HOLD block-flow',...(allIntentionalHolds?{status:'NOT_APPLICABLE',reason:'Every sampled HOLD is intentional'}:{})}));
  if(stage==='C')for(const [id,value,count]of [['localContrast',d?.metrics?.localContrast??null,d?.readability?.sampleCount||0],['lowerTail',d?.lowerTailQuality??null,d?.sceneQuality?.length||0]])measurements.push(V.metric(id,value,{...base,source:'ENCODED_MP4',method:'640px 10fps H264 decode / '+id,sampleCount:count,status:finite(value)&&count?'MEASURED':encoded?.status==='FAILED'?'FAILED':'UNMEASURED'}));
+ if(stage==='C'){const native={...base,source:'CANVAS',method:'requested raster/FPS with unchanged final observer cadence'};measurements.push(V.metric('outputReadability',item.outputReadability?.score??null,{...native,sampleCount:item.outputReadability?.samples?.length||0}));
+ // Preserve already-readable phrase intervals, not only the video's weakest point.
+ for(const sample of item.outputReadability?.samples||[])if(finite(sample.time))measurements.push(V.metric('outputReadability@'+sample.time,sample.contrast?.score??null,{...native,sampleCount:finite(sample.contrast?.score)?1:0,affectedLineIds:sample.line==null?[]:[sample.line]}));
+ }
  const lower=stage==='C'?d?.lowerTailQuality??null:stage==='B'?item.video?.score??null:null;
- return {evaluation:V.validate('CandidateEvaluation',{id:String(item.id),planHash:base.planHash,candidateSeed:J.cinemaContentSeed(p),hardFailures,measurements,objectives:{readability:stage==='C'?d?.metrics?.localContrast??null:rows.length?Math.min(...rows.map(s=>s.safe?100:0)):null,musicFit:d?.metrics?.impactBeatSync??null,visualCoherence:null,contextualVariation:null},lowerTail:lower,constraintViolations:hardFailures.length,memoryBudgetBytes:0,timeCostMs:item.timeCostMs??0,timeCostStatus:finite(item.timeCostMs)?'MEASURED':'UNMEASURED',memoryBudgetStatus:'UNMEASURED'}),profile:{stage,profileId:base.profileId,allIntentionalHolds,requiredMetrics:V.requiredMetrics(stage,{allIntentionalHolds}),protectionThresholds:{rasterRank:-Infinity}}};
+ return {evaluation:V.validate('CandidateEvaluation',{id:String(item.id),planHash:base.planHash,candidateSeed:J.cinemaContentSeed(p),hardFailures,measurements,objectives:{readability:stage==='C'?(finite(d?.metrics?.localContrast)&&finite(item.outputReadability?.score)?Math.min(d.metrics.localContrast,item.outputReadability.score):null):rows.length?Math.min(...rows.map(s=>s.safe?100:0)):null,musicFit:d?.metrics?.impactBeatSync??null,visualCoherence:null,contextualVariation:null},lowerTail:lower,constraintViolations:hardFailures.length,memoryBudgetBytes:0,timeCostMs:item.timeCostMs??0,timeCostStatus:finite(item.timeCostMs)?'MEASURED':'UNMEASURED',memoryBudgetStatus:'UNMEASURED'}),profile:{stage,profileId:base.profileId,allIntentionalHolds,requiredMetrics:V.requiredMetrics(stage,{allIntentionalHolds}),protectionThresholds:{rasterRank:-Infinity}}};
 };
+// Do not spend native-raster work on a proxy that already cannot be promoted.
+// Encoded proxy and final MP4 QA remain mandatory; this removes only irrelevant extra work.
+V.proxyEligibility=(item,p,range=null,inputHash='unbound')=>{const evidence=V.searchEvaluation(item,p,'C',inputHash,range);return J.rankCinemaCandidateV2(evidence.evaluation,{...evidence.profile,requiredMetrics:evidence.profile.requiredMetrics.filter(id=>id!=='outputReadability')});};
+// An ineligible incumbent can still supply readable-interval protection for another candidate.
+V.needsOutputReadability=(items,item)=>items.some(s=>s.proxyEligibility?.eligible)&&(item.id==='baseline'||item.proxyEligibility?.eligible===true);
 V.searchInputHash=async(p,range,audio)=>J.sha256(J.canonicalJSON({audioHash:await V.audioHash(audio),lyrics:p.lines,image:p.customBg,assets:p.visualAssets,locks:p.directionOverrides7,directives:p.directorLyricDirectives7,profile:V.outputProfile(p,range),rendererVersion:V.version}));
 V.selectSearch=(items,p,stage,range=null,inputHash='unbound')=>{const values=items.map(item=>({...V.searchEvaluation(item,p,stage,inputHash,range),item})),baseline=values.find(v=>v.item.id==='baseline'),profile=values[0]?.profile;if(!profile)return {item:null,status:'NO_CANDIDATES',ranked:[]};
  // Applicability is determined once for the output and shared by every candidate.
  profile.allIntentionalHolds=values.every(v=>v.profile.allIntentionalHolds);profile.requiredMetrics=V.requiredMetrics(stage,profile);
- const selection=V.select(values.map(v=>v.evaluation),profile,baseline?.evaluation);return {...selection,item:values.find(v=>v.evaluation===selection.selected)?.item??null};
+ const selection=V.select(values.map(v=>v.evaluation),profile,baseline?.evaluation);
+ // A proxy tie is not evidence that a changed composition improves the output.
+ // Preserve the incumbent when its complete measured rank equals the winner.
+ const incumbent=baseline&&selection.ranked.find(v=>v.candidate===baseline.evaluation),winner=selection.ranked.find(v=>v.candidate===selection.selected);
+ if(stage==='C'&&incumbent?.eligible&&winner&&V.compareRanks(incumbent.rankVector,winner.rankVector)===0){selection.selected=baseline.evaluation;selection.reason='BASELINE_EQUAL_MEASURED_EVIDENCE';}
+ return {...selection,item:values.find(v=>v.evaluation===selection.selected)?.item??null};
 };
 })();
 
@@ -104,7 +121,7 @@ V.createResourceScope=()=>{const owned=[],closed={value:false};return {own(resou
 V.restorePlan=(p,snapshot,provenanceHash)=>{for(const key of Object.keys(p))delete p[key];Object.assign(p,V.clone(snapshot));delete p._provenancePlanHash;if(provenanceHash!==undefined)Object.defineProperty(p,'_provenancePlanHash',{value:provenanceHash,configurable:true});J.clearPhotoComposition?.(p);};
 V.lockSignature=p=>J.canonicalJSON((p.cuts||[]).filter(c=>c.line>=0&&(c.locked||J.photoChoreographyLocked?.(p,c))).map(c=>({line:c.line,start:c.start,end:c.end,lineText:c.lineText,layout:c.layout,params:c.params,enter:c.enter,exit:c.exit,hold:c.hold,cam:c.cam,decor:c.decor,grammar:c.grammar,assetScene:c.assetScene,semanticIntent:c.semanticIntent})));
 V.budgetPolicy=(settings={},memoryGB=typeof navigator!=='undefined'?navigator.deviceMemory:null)=>{const low=Number.isFinite(memoryGB)&&memoryGB<=2;return {stageB:low?4:8,stageC:low?2:3,maxFullEncodes:low?2:5,budgetMs:low?120000:300000,memoryHintGB:memoryGB??null,memoryHintSource:memoryGB==null?'UNMEASURED':'browser coarse deviceMemory estimate',configuredMemoryBudgetBytes:low?134217728:268435456,hardProcessMemoryLimitEnforced:false};};
-V.beginRepair=async args=>{if(args.project.exportSettings?.fpsMode==='auto'){const fps=J.chooseAdaptiveFPS(args.project).fps;if(args.plan.fps!==fps){args.plan.fps=fps;V.adaptGrammar?.(args.plan);V.invalidate(args.plan);await J.analyzeRenderedFrames(args.plan,args.range,args.audio,{signal:args.signal});}}const budgetPolicy=V.budgetPolicy(args.project.exportSettings);return {budgetPolicy,input:await V.snapshot(args.project,args.audio,args.plan,args.range),original:V.clone(args.plan),originalProvenanceHash:args.plan._provenancePlanHash,locks:V.lockSignature(args.plan),started:performance.now(),budgetMs:args.cinemaBudgetMs??Math.min(budgetPolicy.budgetMs,Math.max(120000,Math.min(300000,args.plan.duration*15000))),state:null,evaluations:[],resourceScope:V.createResourceScope()};};
+V.beginRepair=async args=>{const [width,height]=J.outputSize(args.project);if(args.plan.cinemaDelivery?.width!==width||args.plan.cinemaDelivery?.height!==height){V.bindDelivery(args.plan,args.project);V.invalidate(args.plan);await J.analyzeRenderedFrames(args.plan,args.range,args.audio,{signal:args.signal});}if(args.project.exportSettings?.fpsMode==='auto'){const fps=J.chooseAdaptiveFPS(args.project).fps;if(args.plan.fps!==fps){args.plan.fps=fps;delete args.plan.musicalPhoto?.cinema?.architectureSearch;V.adaptGrammar?.(args.plan);V.invalidate(args.plan);await J.analyzeRenderedFrames(args.plan,args.range,args.audio,{signal:args.signal});}}const budgetPolicy=V.budgetPolicy(args.project.exportSettings);return {budgetPolicy,input:await V.snapshot(args.project,args.audio,args.plan,args.range),original:V.clone(args.plan),originalProvenanceHash:args.plan._provenancePlanHash,locks:V.lockSignature(args.plan),started:performance.now(),budgetMs:args.cinemaBudgetMs??Math.min(budgetPolicy.budgetMs,Math.max(120000,Math.min(300000,args.plan.duration*15000))),state:null,evaluations:[],resourceScope:V.createResourceScope()};};
 V.finalEvaluation=async(result,p,args,session)=>{
  await V.assertSnapshot(session.input,args.project,args.audio,p,args.range);if(V.lockSignature(p)!==session.locks)throw Error('LOCK_CHANGED');
  const planHash=await V.planHash(p),videoHash=await J.sha256(await result.blob.arrayBuffer()),d=p.lastPixelQA?.metrics?.decodedCinema,r=p.lastPixelQA?.metrics?.cinemaFeedback,profile=V.outputProfile(p,args.range),base={outputProfile:profile,profileId:V.profileId(profile),planHash,inputHash:session.input.inputHash,source:'ENCODED_MP4',method:'final-resolution MP4 independent decode',sampleCount:d?.sceneQuality?.length||0},hardFailures=[];
@@ -170,12 +187,21 @@ V.typographyPreflight=(p,c)=>{
  return {text,font,size,lineCount:rows.length,widths,safeArea,minReadableFrames,availableFrames,constraintFailures:[...widths.some(w=>w>width+1)?['TEXT_WIDTH']:[],...availableFrames<minReadableFrames?['READ_DURATION_UNMET']:[],...!fontKnown?['FONT_UNKNOWN']:[]],fontCoverage:V.feature(null,'Font availability is not per-character cmap coverage; final glyph raster required',0),rubyPresent:/[《》｜]|<ruby\b/i.test(text),source:'existing composeLyricPhrase / fitSize / browser text measurement; no input rewrite'};
  }finally{cv.width=cv.height=1;}
 };
+// Motion adaptation can move a brighter source patch under unchanged lyrics.
+// Compare its initial grammar to the internal pre-adaptation grammar before search.
+V.initialGrammarAcceptable=(adapted,legacy)=>{if(!Number.isFinite(adapted?.score)||!Number.isFinite(legacy?.score)||adapted.score<legacy.score)return false;const values=new Map((adapted.samples||[]).map(s=>[s.time,s.contrast?.score]));return (legacy.samples||[]).every(s=>!Number.isFinite(s.contrast?.score)||s.contrast.score<90||Number.isFinite(values.get(s.time))&&values.get(s.time)>=s.contrast.score);};
+V.protectInitialGrammar=async(p,range,signal)=>{
+ const cuts=(p.cuts||[]).filter(c=>c.grammar?.temporal&&c.cinemaV3LegacyGrammar?.temporal&&!c.locked&&!J.photoChoreographyLocked?.(p,c)&&c.grammar.temporal.level<c.cinemaV3LegacyGrammar.temporal.level);
+ if(!cuts.length)return null;const adapted=cuts.map(c=>V.clone(c.grammar));let keepLegacy=false;
+ try{const after=await J.measureCinemaOutputReadability(p,range,signal);cuts.forEach(c=>c.grammar=V.clone(c.cinemaV3LegacyGrammar));const before=await J.measureCinemaOutputReadability(p,range,signal);keepLegacy=!V.initialGrammarAcceptable(after,before);p.musicalPhoto.cinema.initialGrammarProtection={status:Number.isFinite(before.score)&&Number.isFinite(after.score)?'MEASURED':'UNMEASURED',decision:keepLegacy?'KEEP_INTERNAL_LEGACY_GRAMMAR':'KEEP_MEASURED_ADAPTATION',legacy:before,adapted:after,source:'CANVAS requested delivery raster; final decoded QA remains mandatory'};return p.musicalPhoto.cinema.initialGrammarProtection;
+ }finally{if(!keepLegacy)cuts.forEach((c,i)=>c.grammar=adapted[i]);const f=p.musicalPhoto?.cinema;if(f?.grammar)f.grammar.shots=p.cuts.filter(c=>c.grammar).map(c=>({line:c.line,from:c.start,to:c.end,...V.clone(c.grammar)}));for(const s of p.storyboard||[]){const c=p.cuts.find(c=>c.start===s.from);if(c?.grammar&&!s.locked)s.shotGrammar=V.clone(c.grammar);}}
+};
 V.adaptPlan=(p,audio,project)=>{if(!V.enabled)return p;const features=V.sectionFeatures(p,audio);p.cinemaV3Features={sections:features,imageSaliency:V.feature(null,'No verified subject segmentation or calibrated saliency confidence',0),inputMode:!project.customBg?.enabled?'no-image':(p.visualAssets||[]).filter(a=>a.dataUrl).length>1?'multi-image':'single-image',vocalSynchronization:V.feature(null,'No vocal separation or sung onset detector',0)};return V.adaptGrammar(p);};
 V.adaptGrammar=p=>{
  if(!V.enabled||!p.cinemaV3Features)return p;const sections=p.cinemaV3Features.sections,policies=sections.map((s,i)=>V.directionPolicy(s,i,sections.length));
  for(const c of p.cuts||[]){if(c.line<0||c.locked||J.photoChoreographyLocked?.(p,c))continue;const i=Math.max(0,sections.findIndex(s=>c.start>=s.from&&c.start<s.to)),policy=policies[i],preflight=V.typographyPreflight(p,c),g=c.grammar;
  c.cinemaV3Shot=V.validate('ShotContract',{line:c.line,from:c.start,to:c.end,role:policy.stageRole,grammarId:g?.field||c.layout||'legacy',typographyId:preflight.font,motionId:g?.temporal?.motionPrinciple||c.hold||'still',safeArea:preflight.safeArea,minReadableFrames:preflight.minReadableFrames,maxOcclusionRatio:0,reasonCodes:[policy.mode,...preflight.constraintFailures],featureSources:['authoritative LRC','normalized PCM envelope'],userLocked:false});c.cinemaV3Typography=preflight;
- if(!g)continue;g.directionPolicy=policy;g.scenePhases=V.phases(c,p.fps);g.intentionalHold=g.intentionalHold===true||g.quiet===true||g.temporal?.motionPrinciple==='weighted-hold'||policy.quietIntent;
+ if(!g)continue;c.cinemaV3LegacyGrammar??=V.clone(g);g.directionPolicy=policy;g.scenePhases=V.phases(c,p.fps);g.intentionalHold=g.intentionalHold===true||g.quiet===true||g.temporal?.motionPrinciple==='weighted-hold'||policy.quietIntent;
  if(g.temporal&&policy.mode==='lyric_first'){g.temporal.level=Math.min(g.temporal.level,Math.max(.15,policy.motionBudget));g.motion=g.temporal.level;}
  }
  const f=p.musicalPhoto?.cinema;if(f?.grammar)f.grammar.shots=p.cuts.filter(c=>c.grammar).map(c=>({line:c.line,from:c.start,to:c.end,...V.clone(c.grammar)}));for(const s of p.storyboard||[]){const c=p.cuts.find(c=>c.start===s.from);if(c?.grammar&&!s.locked)s.shotGrammar=V.clone(c.grammar);}return p;

@@ -33,7 +33,7 @@ window.JIZURAMedia={async sampleMP4(blob,timestamps,{width,height,onSample,signa
   const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;const ctx=canvas.getContext('2d',{willReadFrequently:true});
   let index=0;
   for await(const sample of new VideoSampleSink(track).samplesAtTimestamps(timestamps)){
-   try{if(signal?.aborted)throw Object.assign(new Error('Cancelled'),{name:'AbortError'});if(!sample)throw new Error('Missing decoded MP4 frame');sample.draw(ctx,0,0,width,height);onSample(timestamps[index++],ctx.getImageData(0,0,width,height).data);}
+   try{if(signal?.aborted)throw Object.assign(new Error('Cancelled'),{name:'AbortError'});if(!sample)throw new Error('Missing decoded MP4 frame');sample.draw(ctx,0,0,width,height);onSample(timestamps[index++],ctx.getImageData(0,0,width,height).data,{timestamp:sample.timestamp,duration:sample.duration});}
    finally{sample?.close();}
   }
   if(index!==timestamps.length)throw new Error('Incomplete decoded MP4 samples');
