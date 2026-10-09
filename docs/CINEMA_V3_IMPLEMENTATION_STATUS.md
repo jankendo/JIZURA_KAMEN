@@ -4,6 +4,10 @@
 設計書: ユーザー添付「KAMEN_v2.0.26_汎用歌詞MV品質改善_詳細設計書.md」全文確認。
 本作業の許可範囲はfeature branchのコミットとPRまで。mainへのpush、マージ、リリース、本番デプロイは行わない。
 
+## PR #6 release hardening
+
+Latest work: [CINEMA_V3_RELEASE_HARDENING.md](CINEMA_V3_RELEASE_HARDENING.md). Delivery-raster readability protection, proxy decoded-time alignment, conservative baseline selection and equivalent extraction optimizations extend PR #5; the five preceding differences are not reimplemented. The original performance and failure history below remain historical, not the new acceptance result. Human evaluation is **HUMAN_EVALUATION_PENDING**.
+
 ## Baseline and execution audit
 
 - Node 24、npmのlockfile、Canvas/Playwright、Chromium、FFmpegを再利用。外部AI・素材送信・追加依存なし。

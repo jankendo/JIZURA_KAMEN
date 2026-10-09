@@ -1,0 +1,14 @@
+{
+  "dateUTC": "2026-10-08T23:25:48.189149+00:00",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "cpuAffinityCount": 5,
+  "exclusiveCPUReservation": false,
+  "heavyJobsPolicy": "matrices, generalized outputs, engine tests and UI checks run sequentially",
+  "cgroup": {
+    "cpu.max": "400000 100000",
+    "cpu.stat": "usage_usec 19194720413\nuser_usec 17431198546\nsystem_usec 1763521866\nnice_usec 0\nnr_periods 144258\nnr_throttled 7909\nthrottled_usec 293884306\nnr_bursts 0\nburst_usec 0",
+    "memory.max": "34359738368",
+    "memory.current": "3971346432"
+  },
+  "memoryNote": "memory.current is a point sample of the whole container, not per-export or peak application memory"
+}

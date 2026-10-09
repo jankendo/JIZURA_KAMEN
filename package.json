@@ -12,7 +12,8 @@
     "preview": "node scripts/serve.mjs dist 127.0.0.1 4173",
     "test": "node scripts/check-qa-environment.mjs && node scripts/run-tests.mjs",
     "test:cinema-export": "node dev/cinema_v3_export_e2e.cjs",
-    "test:cinema-matrix": "node dev/cinema_v3_matrix_benchmark.cjs"
+    "test:cinema-matrix": "node dev/cinema_v3_matrix_benchmark.cjs",
+    "test:cinema-hardening": "node dev/cinema_v3_hardening_benchmark.cjs"
   },
   "devDependencies": {
     "@mediabunny/aac-encoder": "1.61.0",

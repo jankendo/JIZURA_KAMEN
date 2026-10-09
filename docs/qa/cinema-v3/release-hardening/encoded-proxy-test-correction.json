@@ -1,0 +1,33 @@
+{
+  "status": "PASS_TARGETED_AND_FULL_SUITE",
+  "test": "kamen_encoded_proxy_test.cjs",
+  "failure": "Fixed 4.8s pixel comparison targeted an unaffected strong HOLD, not the repaired weakest HOLD.",
+  "observedWeakHold": {
+    "line": 0,
+    "from": 1.4,
+    "to": 2.8,
+    "score": 46
+  },
+  "unaffectedHold": {
+    "line": 1,
+    "from": 3.4,
+    "to": 4.8,
+    "score": 100
+  },
+  "correction": "Report actual FFmpeg frame timestamps; select weakest measured nonintentional HOLD; assert hold-motion repair targets that line and real pixels change at its midpoint; authoritative lyric-onset assertion retained.",
+  "productionRuntimeChanged": false,
+  "qualityThresholdChanged": false,
+  "failedChildSuite": {
+    "total": 185,
+    "passed": 182,
+    "failed": 1,
+    "skipped": 2
+  },
+  "interruptedOuterSuite": "Stopped after clean-restore failure; incomplete results not accepted",
+  "finalSuite": {
+    "total": 185,
+    "passed": 183,
+    "failed": 0,
+    "skipped": 2
+  }
+}

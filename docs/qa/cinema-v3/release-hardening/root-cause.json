@@ -1,0 +1,104 @@
+{
+  "status": "PARTIAL",
+  "runtimeSHA256": "6c044b575e65e1e170bdd4dd8a2f88feb594d31dd051254f55335480f7ba0134",
+  "observedCauses": [
+    {
+      "stage": "Stage C proxy",
+      "cause": "Requested mask time differed from actual 10fps decoded frame; sample timestamp discarded",
+      "fix": "Preserve timestamps and align proxy mask/reference cadence",
+      "limit": "Proxy contrast 100 alone did not predict final case-15 contrast 78"
+    },
+    {
+      "stage": "Fallback",
+      "cause": "All Stage C candidates rejected; unmeasured Stage B composition could replace initial baseline",
+      "fix": "Retain initial baseline on all-C failure; baseline preferred for complete C rank ties"
+    },
+    {
+      "stage": "Native raster guard",
+      "cause": "Design-space raster differed from delivered raster",
+      "fix": "Bind actual output profile and protect native minimum and existing strong sampled intervals",
+      "evidenceTypes": [
+        "Canvas estimate",
+        "encoded proxy",
+        "final independently decoded MP4"
+      ],
+      "interchangeable": false
+    },
+    {
+      "stage": "Initial grammar",
+      "cause": "Motion reduction before candidate selection changed bright pixels behind lyrics",
+      "fix": "Compare changed unlocked phrases against internal legacy grammar before search; reject regressions",
+      "controlledFinalMP4": {
+        "case-12": 54,
+        "case-22": 39
+      }
+    },
+    {
+      "stage": "Tail latency",
+      "cause": "Unused per-frame analysis/intermediate arrays plus guards on ineligible proxies",
+      "fix": "Equivalent scalar luma/alpha/contrast extraction, two-pass proxy eligibility, owned bitmap cleanup",
+      "qualityChecksRemoved": false,
+      "candidateBudget": "32/8/3 unchanged; existing low-resource budget retained"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "case-23",
+      "oldFinalMP4LocalContrast": 43,
+      "pr5FinalMP4LocalContrast": 31,
+      "newFinalMP4LocalContrast": 31,
+      "status": "RELEASE_BLOCKER",
+      "cause": "Short dense phrases leave creative lower-tail unmeasured; initial fallback differs from old selected candidate",
+      "rejectedExperiment": {
+        "canvasMinimum": [
+          41,
+          43
+        ],
+        "protectedStrongPointBefore": 100,
+        "protectedStrongPointAfter": 99,
+        "finalMP4OfRejectedCandidate": "UNMEASURED",
+        "sourceAdopted": false
+      }
+    },
+    {
+      "id": "general-manual",
+      "cohort": "additional generalized input, separate from original 24",
+      "oldFinalMP4LocalContrast": 49,
+      "newFinalMP4LocalContrast": 48,
+      "manualLocksUnchanged": true,
+      "lockedCutCount": 2,
+      "status": "READABILITY_REGRESSION",
+      "cause": "NOT_ISOLATED; source locks preserved; one-point decoded regression is retained without tolerance waiver"
+    },
+    {
+      "type": "historical 3.0.0 certification failure",
+      "status": "UNRESOLVED",
+      "failedBlobAvailable": false,
+      "successfulRetryDoesNotProveCauseFixed": true
+    },
+    {
+      "type": "human preference",
+      "status": "HUMAN_EVALUATION_PENDING",
+      "responses": 0
+    }
+  ],
+  "historicalCohort": {
+    "all28Trials": {
+      "measured": 22,
+      "baselineMedian": 84,
+      "v3Median": 80
+    },
+    "original24Inputs": {
+      "measured": 18,
+      "baselineMedian": 63,
+      "v3Median": 57.5
+    }
+  },
+  "evidence": [
+    "root-cause-experiments.json.gz",
+    "rejected-draft-experiments.json.gz",
+    "frames/manifest.json",
+    "benchmark-summary.json",
+    "generalized-summary.json"
+  ]
+}

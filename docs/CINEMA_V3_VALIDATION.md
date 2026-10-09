@@ -1,8 +1,12 @@
 # Cinema V3 — verification and review
 
+## PR #6 evidence
+
+The current hardening work is described in [CINEMA_V3_RELEASE_HARDENING.md](CINEMA_V3_RELEASE_HARDENING.md). Its new data lives under `docs/qa/cinema-v3/release-hardening/`; the original 3.0.0/3.0.1 cohorts below remain historical evidence and are not overwritten. Final acceptance uses the original final-MP4 observer cadence and thresholds. Human evaluation remains **HUMAN_EVALUATION_PENDING**.
+
 ## Scope and commands
 
-Baseline is `ef829f93a933794c337bf1a37c39fcfb8d4de0f4`. Main, release and production Pages are unchanged. Five feature PRs are stacked; publishing requires a separate instruction.
+Baseline is `ef829f93a933794c337bf1a37c39fcfb8d4de0f4`. Main, release and production Pages are unchanged. Six feature PRs are stacked; publishing requires a separate instruction.
 
 ```sh
 npm ci --cache /workspace/cinema-v3/npm-cache
@@ -15,7 +19,7 @@ node dev/cinema_v3_summarize_benchmark.cjs /tmp/kamen-cinema-matrix /tmp/kamen-c
 
 Start the repository's `scripts/serve.mjs` for the built app. For comparisons, serve a **frozen** copy of final `dist` and baseline `index.html` with the same assets on a separate local server. Do not overwrite that copy during a run. Use the same `KAMEN_CHROME` path for both versions; retain TLS verification and the previously approved proxy CA. No worktree, additional runtime dependency, external AI or media upload is needed.
 
-Five new engine tests are registered in `scripts/run-tests.mjs`. `cinema_v3_export_e2e.cjs` is registered as `test:cinema-export` and executes in GitHub CI after build. It reuses the existing real UI/download test; `--verify` only verifies an already generated actual MP4 and clearly records that mode. It never substitutes mock artifacts for browser export. The state-machine unit test labels its Blob artifacts as synthetic unit data.
+Six Cinema V3 engine tests are registered in `scripts/run-tests.mjs`. `cinema_v3_export_e2e.cjs` is registered as `test:cinema-export` and executes in GitHub CI after build. It reuses the existing real UI/download test; `--verify` only verifies an already generated actual MP4 and clearly records that mode. It never substitutes mock artifacts for browser export. The state-machine unit test labels its Blob artifacts as synthetic unit data.
 
 ## Evidence and limits
 
