@@ -9663,7 +9663,7 @@ J.prepareFileSave = (filename, type) => {
   const ext='.'+filename.split('.').pop();
   try { return window.showSaveFilePicker({suggestedName:filename,types:[{description:filename,accept:{[type]:[ext]}}]})
     .catch(error=>error.name==='AbortError'?'declined':null); }
-  catch { return Promise.resolve(null); }
+  catch(error) { return Promise.resolve(error.name==='AbortError'?'declined':null); }
 };
 const downloads=new Map();
 J.saveFile = async (filename, data, options={}) => {
@@ -9673,7 +9673,7 @@ J.saveFile = async (filename, data, options={}) => {
   if(destination){
     let writable;
     try{writable=await destination.createWritable();await writable.write(blob);await writable.close();downloads.get(filename)?.remove();return 'saved';}
-    catch(error){try{await writable?.abort();}catch{} console.warn('KAMEN file write failed; download remains available',error);}
+    catch(error){try{await writable?.abort();}catch{} if(error.name==='AbortError')return 'declined';console.warn('KAMEN file write failed; download remains available',error);}
   }
   // A programmatic click after a long export can be blocked. Retain a real
   // user-clickable link until dismissed instead of claiming disk-save success.
@@ -36643,7 +36643,15 @@ J.finalizeExportReadiness=report=>{
 };
 const fix=J.fixMVQuality;J.fixMVQuality=(project,report,audio)=>{const fingerprint=()=>JSON.stringify(project,(key,value)=>key==='dataUrl'?undefined:value),before=fingerprint(),count=fix(project,report,audio);return count&&before!==fingerprint()?count:0;};
 const check=J.checkMVQuality;J.checkMVQuality=(...args)=>J.finalizeExportReadiness(check(...args));
-const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>{const result=await provenance(...args);return {...result,exportReadiness:args[2].quality.exportGates,creativeFindings:args[2].creativeFindings?.map(i=>({code:i.code,message:i.message,severity:i.severity})),measurementPolicy:{...result.measurementPolicy,export:'創作上の不足は実測値とともに残す。歌詞欠落・描画失敗・MP4破損・音源や出所の不一致は書き出しを止める'}};};
+// Creative evidence is separate from technical file certification.
+J.creativeExportState=acceptance=>{
+ if(acceptance?.status==='NOT_APPLICABLE')return 'NOT_APPLICABLE';
+ if(acceptance?.minimumMet===true)return 'TARGET_MET';
+ if(acceptance?.failures?.some(f=>Number.isFinite(f.score)))return 'BELOW_TARGET';
+ if(acceptance?.status==='BELOW_TARGET')return 'BELOW_TARGET';
+ return 'UNMEASURED';
+};
+const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>{const result=await provenance(...args);return {...result,exportReadiness:args[2].quality.exportGates,creativeState:J.creativeExportState(args[2].quality.targetAcceptance),creativeFindings:args[2].creativeFindings?.map(i=>({code:i.code,message:i.message,severity:i.severity})),measurementPolicy:{...result.measurementPolicy,export:'創作上の不足は実測値とともに残す。歌詞欠落・描画失敗・MP4破損・音源や出所の不一致は書き出しを止める'}};};
 })();
 
 window.KAMEN_MODULE_AUDIT.observe("11zzd_export_policy.js");
@@ -37094,6 +37102,7 @@ J.refinePhotoExport=async(args,encode)=>{
  if(best.plan){if(session)V.restorePlan(p,best.plan,best.hash);else{for(const key of Object.keys(p))delete p[key];Object.assign(p,best.plan);Object.defineProperty(p,'_provenancePlanHash',{value:best.hash,configurable:true});J.clearPhotoComposition?.(p);}}
  if(session){const state=session.state||V.createState(session.input.inputHash,best.v3.evaluation.planHash);if(state.state==='DECODED_QA')V.transition(state,best.v3.eligible&&best.acceptance.minimumMet?'ACCEPTED':stopReason.startsWith('BUDGET_EXHAUSTED')?'BUDGET_EXHAUSTED':'UNREPAIRABLE',{confirmedPlanHash:best.v3.evaluation.planHash,planHash:best.v3.evaluation.planHash,videoHash:best.v3.videoHash,outcome:stopReason});else if(state.state==='REPAIRABLE')V.transition(state,stopReason.startsWith('BUDGET_EXHAUSTED')?'BUDGET_EXHAUSTED':'UNREPAIRABLE',{confirmedPlanHash:best.v3.evaluation.planHash,planHash:best.v3.evaluation.planHash,videoHash:best.v3.videoHash,outcome:stopReason});best.result.provenance.cinemaV3={version:V.version,input:session.input,budgetPolicy:session.budgetPolicy,planHash:best.v3.evaluation.planHash,videoHash:best.v3.videoHash,state:state.state,history:session.evaluations,selectedEvidence:best.v3.evaluation,stopReason,artistic100Established:false,peakMemoryBytes:null,peakMemoryStatus:'UNMEASURED'};}
  best.result.provenance.targetedRepair={selectedRenderId:best.result.provenance.renderId,selectedArtifactAttempt:best.attempt,repairPassProducesRenderAttempt:true,appliedToSelectedArtifact:p.musicalPhoto?.cinema?.targetedRepair?{...p.musicalPhoto.cinema.targetedRepair,repairPass:p.musicalPhoto.cinema.targetedRepair.attempt,producedRenderAttempt:best.attempt,producedRenderId:best.result.provenance.renderId}:null,attemptedRepairs:repairHistory,rejectedRepairsRemainHistoryOnly:true};best.result.provenance.machineRefinement={target:100,minimum:90,minimumDetail:80,minimumMet:best.acceptance.minimumMet,acceptance:best.acceptance,score:best.score,attempts,selectedArtifactAttempt:best.attempt,repairHistory,maxAttempts,stopReason,preparation:p.musicalPhoto.preparation||null,scoring:'KAMEN scorer applied to decoded MP4; per-item acceptance, original thresholds and weights',limits:'Automatic architecture permits at most four encodes by default with decoded evidence; legacy defaults to one; best artifact retained; unresolved failures are retained. Manual direction and unmeasured certification requirements remain authoritative.'};
+ best.result.provenance.creativeState=J.creativeExportState(best.acceptance);
  best.result.provenance.renderHistory={schema:'kamen-render-dag-v1',selectedRenderId:best.result.provenance.renderId,nodes:renderHistory,limits:'Each parent is the actual preceding encode; rejected candidates remain history only'};best.result.sidecar=new Blob([JSON.stringify(best.result.provenance,null,2)],{type:'application/json'});return best.result;
 };
 for(const key of ['exportMP4','exportMP4Fallback']){const encode=J[key];if(encode)J[key]=args=>J.refinePhotoExport(args,encode);}
@@ -39893,11 +39902,12 @@ function baseName() {
   const settings=J.resolveExportSettings(S.project),source=(settings.fileName||S.project.title||'kamen').trim().replace(/\.mp4$/i,'');
   return (source.replace(/[\\/:*?"<>|]+/g,'_').slice(0,60)||'kamen')+(settings.fileName?'':(k?(k==='green'?'_greenback':'_blackback'):''));
 }
-async function runExport(kind,allowUnqualified=false) {
+async function runExport(kind) {
   if (S.exporting||exportPreflightBusy) return;
   pause();
+  const outcome=S.exportOutcome={fileState:'PREPARING',creativeState:'UNMEASURED'};
   const range=exportRangeForSettings();
-  if(!range){$('studioQuality').textContent='書き出す範囲を選べません。先に「SNS 60秒版」で候補を確認してください。';return;}
+  if(!range){outcome.fileState='FAILED_TECHNICAL';$('studioQuality').textContent='書き出す範囲を選べません。先に「SNS 60秒版」で候補を確認してください。';return;}
   const destination=kind==='mp4'?J.prepareFileSave(baseName()+'.mp4','video/mp4'):Promise.resolve(null);
   let saveHandle=null;
   const socialHook=J.resolveExportSettings(S.project).range==='socialHook';
@@ -39918,7 +39928,7 @@ async function runExport(kind,allowUnqualified=false) {
   if(kind==='mp4'){
     exportPreflightBusy=true;syncDirectionUI();showMsg('書き出し前に代表フレームを検査しています…');
     try{
-    S.exportValidation=null;saveHandle=await destination;if(saveHandle==='declined'){task.fail(new Error('保存を中止しました'),true);return;}
+    S.exportValidation=null;saveHandle=await destination;if(saveHandle==='declined'){outcome.fileState='CANCELLED';task.fail(new Error('保存を中止しました'),true);return;}
     let fixes=0,report=null;
     for(let pass=0;pass<3;pass++){
       outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;
@@ -39939,12 +39949,9 @@ async function runExport(kind,allowUnqualified=false) {
     report=J.checkMVQuality(outputProject,exportPlan,S.audio,range,S.pixelQA,S.exportCapabilities,null);S.lastQuality=report;
     if(socialHook)S.socialPlan=exportPlan;else S.plan=exportPlan;
     updateStudioQuality(fixes);
-    if(report.ready&&!report.quality.targetAcceptance?.minimumMet&&!allowUnqualified){
-      const a=report.quality.targetAcceptance,labels={technical:'技術',creative:'創造性',social:'SNS構成',visualWorld:'映像世界',typography:'文字組',assetDirection:'画像構成',styleSelection:'スタイル選択',styleRealization:'スタイルの実現',perceptualNovelty:'映像の新鮮さ',foregroundNovelty:'文字表現の変化',typographyDiversity:'文字組の多様性',temporalContrast:'溜めと解放',hookNovelty:'冒頭の変化',loopQuality:'ループの連続性',displayOnsetAccuracy:'歌詞表示の精度'};const message='品質未達：'+[...(a?.hardFailures||[]).map(code=>report.issues?.find(i=>i.code===code)?.message||'品質検査の不足'),...(a?.failures||[]).map(f=>(labels[f.key]||'品質項目')+' '+Math.round(f.score)+' / '+f.minimum)].slice(0,8).join('、');
-      $('studioQuality').textContent=message;let draft=document.getElementById('qualityDraftExport');if(!draft){draft=document.createElement('button');draft.id='qualityDraftExport';$('studioQuality').after(draft);}draft.textContent='品質未達のMP4を下書きとして保存';draft.onclick=()=>{draft.remove();runExport(kind,true);};task.fail(new Error(message));return;
-    }
-    if(!report.ready){$('studioQuality').textContent=(report.exportErrors||report.errors).map(i=>i.message).join(' / ');task.fail(new Error($('studioQuality').textContent));return;}
-    }catch(error){task.fail(error,ac.signal.aborted);
+    outcome.creativeState=J.creativeExportState(report.quality.targetAcceptance);
+    if(!report.ready){outcome.fileState='FAILED_TECHNICAL';$('studioQuality').textContent=(report.exportErrors||report.errors).map(i=>i.message).join(' / ');task.fail(new Error($('studioQuality').textContent));return;}
+    }catch(error){outcome.fileState=ac.signal.aborted?'CANCELLED':'FAILED_TECHNICAL';task.fail(error,ac.signal.aborted);
       if(ac.signal.aborted){$('studioQuality').textContent='書き出し前の検査を中止しました';return;}
       $('studioQuality').textContent='書き出し前の検査を完了できませんでした。素材を確認して、もう一度お試しください。';
       console.error('JIZURA preflight failed',error);return;
@@ -39960,6 +39967,7 @@ async function runExport(kind,allowUnqualified=false) {
     const id=stage.stage||(/音声/.test(m)?'audio':/検査|検証/.test(m)?'verify':/まとめ/.test(m)?'mux':'frames');
     for(const skipped of stage.skip||[])task.skip(skipped);
     if(stage.label){const current=task.state.stages.find(s=>s.id===id);if(current)current.label=stage.label;}
+    outcome.fileState=id==='verify'?'VERIFYING':id==='fonts'?'PREPARING':'ENCODING';
     task.enter(id);task.update(stage.indeterminate?null:stage.current,stage.indeterminate?null:stage.total,m+(Number.isFinite(stage.encoded)?' · エンコード済み '+stage.encoded+'フレーム':''));
   };
   const t0 = performance.now();
@@ -39991,8 +39999,10 @@ async function runExport(kind,allowUnqualified=false) {
           r=await J.exportMP4Fallback(args);
         }
       }
-      const qualified=r.provenance?.machineRefinement?.minimumMet??r.provenance?.qualityTarget?.minimumMet??false;
-      txt.textContent = `${qualified?'完成':'品質未達の下書き'} ${(r.blob.size / 1048576).toFixed(1)}MB・${r.codec}${r.audio ? ' + ' + r.audio.toUpperCase() : ''}・${((performance.now() - t0) / 1000).toFixed(0)}秒`;
+      outcome.creativeState=J.creativeExportState(r.provenance?.machineRefinement?.acceptance||r.provenance?.qualityTarget);
+      outcome.fileState='SAVE_AVAILABLE';
+      const qualified=['TARGET_MET','NOT_APPLICABLE'].includes(outcome.creativeState);
+      txt.textContent = `MP4生成完了 ${(r.blob.size / 1048576).toFixed(1)}MB・${r.codec}${r.audio ? ' + ' + r.audio.toUpperCase() : ''}・${((performance.now() - t0) / 1000).toFixed(0)}秒`;
       $('studioQuality').textContent=`${r.validation.certification?.passed?'EXPORT VERIFIED':'MP4コンテナ検査済み'}：${r.validation.videoCodec.toUpperCase()}映像 / ${r.validation.audioCodec?.toUpperCase()||'音声なし'}音声 / ${r.validation.duration.toFixed(1)}秒`;
       S.exportValidation=r.validation;updateStudioQuality();
       if(typeof File!=='undefined'&&navigator.share){
@@ -40000,8 +40010,10 @@ async function runExport(kind,allowUnqualified=false) {
         if(!navigator.canShare||navigator.canShare({files:[file]})){S.lastExport=file;$('studioShare').hidden=false;}
       }
       task.enter('file');task.state.cancel=null;const res = await J.saveFile(baseName() + '.mp4', r.blob,{destination:saveHandle});
-      if(res!=='declined'&&r.sidecar){try{await J.saveFile(baseName()+'.mp4.kamen-qa.json',r.sidecar,{automatic:false});}catch(qaError){console.warn('KAMEN QA save failed',qaError);toast('MP4は生成・検証済みです。QAファイルの保存に失敗しました。');}}
-      if (res === 'declined'){txt.textContent += '（保存はキャンセルされました）';task.fail(new Error('MP4は生成・検証済みですが、ファイル保存を中止しました'),true);}else if(qualified)task.complete(res==='saved'?'MP4を生成・検証し、保存しました':'MP4を生成・検証しました。画面下の保存リンクから保存できます');else task.fail(new Error('品質未達の下書きMP4を保存できます。QAに未達項目を記録しました。'));
+      outcome.fileState=res==='declined'?'CANCELLED':res==='saved'?'SAVED':'SAVE_AVAILABLE';
+      if(res!=='declined'&&r.sidecar){try{const qa=JSON.parse(await r.sidecar.text());qa.creativeState=outcome.creativeState;qa.outputOutcome={...outcome};await J.saveFile(baseName()+'.mp4.kamen-qa.json',new Blob([JSON.stringify(qa,null,2)],{type:'application/json'}),{automatic:false});}catch(qaError){console.warn('KAMEN QA save failed',qaError);toast('MP4は生成・検証済みです。QAファイルの保存に失敗しました。');}}
+      if(res==='declined'){txt.textContent+='（保存はキャンセルされました）';task.fail(new Error('MP4は生成・検証済みですが、ファイル保存を中止しました'),true);}
+      else task.complete((res==='saved'?'MP4を生成・検証し、保存しました':'MP4を生成しました。保存リンクを用意しました')+(qualified?'':'。演出品質には改善の余地があります。'));
     } else {
       const blob = await J.exportPNGZip({ plan: S.plan, project: S.project, transparent: kind === 'pnga', onProgress, signal: ac.signal });
       txt.textContent = `完成 ${(blob.size / 1048576).toFixed(1)}MB`;
@@ -40012,7 +40024,7 @@ async function runExport(kind,allowUnqualified=false) {
       /memory|allocation|quota|resource/i.test(raw)?'端末の空きメモリが足りません。短い区間か別の端末でお試しください。':
       /NotSupported|codec|encoder|MediaRecorder/i.test(raw)?'この端末ではMP4を書き出せませんでした。別のブラウザでお試しください。':
       /[ぁ-んァ-ヶ一-龠]/u.test(raw)?raw:'動画の書き出しに失敗しました。もう一度お試しください。';
-    task.fail(new Error(message),ac.signal.aborted);txt.textContent = message;$('studioQuality').textContent=message;
+    outcome.fileState=ac.signal.aborted?'CANCELLED':'FAILED_TECHNICAL';task.fail(new Error(message),ac.signal.aborted);txt.textContent = message;$('studioQuality').textContent=message;
     console.error('JIZURA export failed',e);
   } finally {
     S.exporting = null; S.need = true;
