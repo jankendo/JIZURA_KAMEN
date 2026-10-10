@@ -1,5 +1,7 @@
 # Cinema V3 implementation status
 
+Latest final-quality work: [CINEMA_V3_FINAL_QUALITY.md](CINEMA_V3_FINAL_QUALITY.md), with separate evidence under `docs/qa/cinema-v3/final-quality/`. Validation and the conditional technical-release gate are in progress; no production deployment is approved by the evidence yet. Prior cohorts and decisions below remain historical.
+
 基準: `ef829f93a933794c337bf1a37c39fcfb8d4de0f4`。2026-10-08のfetchでmainと一致。
 設計書: ユーザー添付「KAMEN_v2.0.26_汎用歌詞MV品質改善_詳細設計書.md」全文確認。
 本作業の許可範囲はfeature branchのコミットとPRまで。mainへのpush、マージ、リリース、本番デプロイは行わない。
@@ -68,3 +70,9 @@ Latest work: [CINEMA_V3_RELEASE_HARDENING.md](CINEMA_V3_RELEASE_HARDENING.md). D
 Phase 1検証: 隔離コピーのnpm ci/test/build完了。NSS初期化のsandbox拒否を解消しTLS検証を維持したE2Eは外部リソース失敗0・ページ例外0。固定入力/3比率/15フレームのプランと画素は基準と完全一致。フォント取得に失敗した先行E2Eは同条件比較から除外し、成功したと偽装しない。
 
 最終性能: total P50 11,530.8→10,940.45ms、P95 25,085.9→28,512.9ms。中央値改善・末尾遅延悪化を両方記録。人間評価、全cmap/字形、写真主題分離、歌唱同期、実低メモリ端末、peak memory/cache/render-onlyは未検証。3.0.0先行試行の認証失敗1件は原因未確定として保持。詳細はCINEMA_V3_VALIDATION.md。
+
+## PR #7 final-quality status
+
+Local legacy-finalist reuse, actual-frame/background-consistent native guards, protected final decoded timestamps/video Hash, selective local repair, deterministic procedural textures, shared raster resources, zero-duration lyric entrance and completed-failure Blob retention are implemented. Full suite: 184 PASS / 0 FAIL / 2 environment-dependent SKIP. 234 same-condition three-version exports and 12 same-Blob/independent-encode repeat exports completed technical validation; formal UI/cancel/retry/restore and black-video controls passed.
+
+**PARTIAL / NO-GO**: short/dense 43→68 and manual 49→54 improved, but one main interval 77→76 is not resolved and original Total P95 20,605→42,222.8 ms misses the performance target. Missing historical metrics remain null. Rejected fast prototypes are preserved as evidence and excluded from product source. Latest commit CI must complete after the observed 60-minute job-budget cancellation is corrected. [Final-quality report](CINEMA_V3_FINAL_QUALITY.md) and its linked JSON are authoritative; no main merge or production deployment has occurred. HUMAN_EVALUATION_PENDING; historical lost-Blob certification cause UNRESOLVED.

@@ -1,0 +1,8 @@
+{
+  "status": "FAIL",
+  "exitCode": 1,
+  "source": "existing browser_export_e2e.cjs using old production saved project",
+  "reason": "The fixture starts generation asynchronously; old driver waited only for visible result, then tried disabled studioRes before generation finished.",
+  "productTestWaived": false,
+  "correction": "Wait for generation completion/enabled controls; explicit headless download capability identical to pages runner."
+}

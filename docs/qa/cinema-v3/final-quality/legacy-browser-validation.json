@@ -1,0 +1,413 @@
+{
+  "status": "PASS",
+  "completion": {
+    "exitCode": 0,
+    "elapsedSeconds": 226.52823042869568
+  },
+  "runtimeSHA256": "316c5cb224f670898f929bb6b2e1d3cca9b7ea9afdafd5f2c5a39bd94716a843",
+  "fixtureSHA256": {
+    "/workspace/kamen-migration/qa/production/saved-project.json": "c80c091ba943d9cfaff0aa5b57c35e165bae0de001d48f29e4d4b939fb366c70",
+    "/workspace/kamen-migration/qa/production/audio.wav": "ad9f01eb3a4c884a6f516f7f709e58ae740e91e2c7febe4017e5515444665309",
+    "/workspace/kamen-migration/qa/NotoSansJP-variable.ttf": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f"
+  },
+  "fixtureOrigin": "Old production saved project from prior successful browser run; qa/production/report.json records HTTPS production URL.",
+  "browser": "154.0.8037.97",
+  "saveMode": "download",
+  "uiDownload": true,
+  "javascriptErrors": [],
+  "draftReason": "品質未達：自動演出の一部を動画へ反映できていません、画面の新規性が100点認定の基準80に達していません、歌詞前景の新規性が基準80に達していません、新規性・静動差・意味の実現が80未満または未計測のため総合は89以下です、選択したスタイルの主要表現を比較描画で基準80以上に確認できていません、創造性 78 / 90、品質項目 80 / 90、文字組 77 / 90",
+  "mainIndependentDecode": {
+    "status": "PASS",
+    "videoSHA256": "a435b1251cc6ed60f8c134c0a83642a5477d9ea04d51882d5cde8ad8d545b414",
+    "provenanceMatch": true,
+    "completeDecode": true,
+    "probe": {
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "profile": "High",
+          "codec_type": "video",
+          "codec_tag_string": "avc1",
+          "codec_tag": "0x31637661",
+          "width": 1280,
+          "height": 720,
+          "coded_width": 1280,
+          "coded_height": 720,
+          "closed_captions": 0,
+          "film_grain": 0,
+          "has_b_frames": 0,
+          "pix_fmt": "yuvj420p",
+          "level": 31,
+          "color_range": "pc",
+          "color_space": "bt709",
+          "color_transfer": "iec61966-2-1",
+          "color_primaries": "bt709",
+          "chroma_location": "left",
+          "field_order": "progressive",
+          "refs": 1,
+          "is_avc": "true",
+          "nal_length_size": "4",
+          "id": "0x1",
+          "r_frame_rate": "24/1",
+          "avg_frame_rate": "24/1",
+          "time_base": "1/24",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "duration_ts": 216,
+          "duration": "9.000000",
+          "bit_rate": "3360352",
+          "bits_per_raw_sample": "8",
+          "nb_frames": "216",
+          "extradata_size": 38,
+          "disposition": {
+            "default": 1,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "creation_time": "2026-10-10T04:49:49.000000Z",
+            "language": "und",
+            "handler_name": "mp4-muxer-hdlr",
+            "vendor_id": "[0][0][0][0]"
+          }
+        },
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_long_name": "AAC (Advanced Audio Coding)",
+          "profile": "LC",
+          "codec_type": "audio",
+          "codec_tag_string": "mp4a",
+          "codec_tag": "0x6134706d",
+          "sample_fmt": "fltp",
+          "sample_rate": "48000",
+          "channels": 2,
+          "channel_layout": "stereo",
+          "bits_per_sample": 0,
+          "initial_padding": 0,
+          "id": "0x2",
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "time_base": "1/48000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "duration_ts": 433152,
+          "duration": "9.024000",
+          "bit_rate": "191950",
+          "nb_frames": "423",
+          "extradata_size": 5,
+          "disposition": {
+            "default": 1,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "creation_time": "2026-10-10T04:49:49.000000Z",
+            "language": "und",
+            "handler_name": "mp4-muxer-hdlr",
+            "vendor_id": "[0][0][0][0]"
+          }
+        }
+      ],
+      "format": {
+        "filename": "/workspace/cinema-v3-pr7/legacy-browser-compatibility/final-outputs/Chrome154-full.mp4",
+        "nb_streams": 2,
+        "nb_programs": 0,
+        "nb_stream_groups": 0,
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "format_long_name": "QuickTime / MOV",
+        "start_time": "0.000000",
+        "duration": "9.024000",
+        "size": "4000780",
+        "bit_rate": "3546790",
+        "probe_score": 100,
+        "tags": {
+          "major_brand": "isom",
+          "minor_version": "512",
+          "compatible_brands": "isomavc1mp41",
+          "creation_time": "2026-10-10T04:49:49.000000Z"
+        }
+      }
+    }
+  },
+  "variableFont": {
+    "verified": true,
+    "status": "BROWSER_AXIS_VISIBLE",
+    "axis": "wght",
+    "difference": 0.027807034313725488,
+    "widths": [
+      231.6004638671875,
+      241.0564727783203
+    ],
+    "exportVerified": false,
+    "tested": true,
+    "axes": [
+      {
+        "tag": "wght",
+        "min": 100,
+        "default": 100,
+        "max": 900
+      }
+    ],
+    "fallback": true,
+    "exportCertification": {
+      "passed": true,
+      "checks": {
+        "container": true,
+        "video": true,
+        "audio": true,
+        "resolution": true,
+        "duration": true,
+        "frames": true,
+        "fps": true,
+        "avSync": true,
+        "reloaded": true,
+        "avDuration": true,
+        "seek": true,
+        "blackFrames": true,
+        "firstLast": true
+      },
+      "frames": [
+        {
+          "time": 0,
+          "nonBlack": 0.9655349794238683
+        },
+        {
+          "time": 0.25,
+          "nonBlack": 0.9986496913580247
+        },
+        {
+          "time": 1.5146665,
+          "nonBlack": 0.8695987654320988
+        },
+        {
+          "time": 2.9493329999999998,
+          "nonBlack": 0.9664994855967078
+        }
+      ],
+      "nativeFrames": [
+        {
+          "time": 0,
+          "nonBlack": 0.9655349794238683
+        },
+        {
+          "time": 0.25,
+          "nonBlack": 0.9986496913580247
+        },
+        {
+          "time": 1.5146665,
+          "nonBlack": 0.8695987654320988
+        },
+        {
+          "time": 2.9493329999999998,
+          "nonBlack": 0.9664994855967078
+        }
+      ],
+      "nativeChecks": {
+        "blackFrames": true,
+        "firstLast": true
+      },
+      "independentPixels": {
+        "status": "NOT_APPLICABLE",
+        "reason": "native probe passed; independent recovery unnecessary"
+      },
+      "path": "Browser WebCodecs → MP4 Blob → HTMLVideoElement reload/decode",
+      "fps": 24,
+      "avSync": "track timestamp/duration; no perceptual sync claim"
+    },
+    "independentDecode": {
+      "status": "PASS",
+      "videoSHA256": "0c716f815b8e128e48910411d6f36ce6a01bc598e6c0bace80fae6b021a8b1a0",
+      "provenanceMatch": true,
+      "completeDecode": true,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+            "profile": "High",
+            "codec_type": "video",
+            "codec_tag_string": "avc1",
+            "codec_tag": "0x31637661",
+            "width": 1280,
+            "height": 720,
+            "coded_width": 1280,
+            "coded_height": 720,
+            "closed_captions": 0,
+            "film_grain": 0,
+            "has_b_frames": 0,
+            "pix_fmt": "yuvj420p",
+            "level": 31,
+            "color_range": "pc",
+            "color_space": "bt709",
+            "color_transfer": "iec61966-2-1",
+            "color_primaries": "bt709",
+            "chroma_location": "left",
+            "field_order": "progressive",
+            "refs": 1,
+            "is_avc": "true",
+            "nal_length_size": "4",
+            "id": "0x1",
+            "r_frame_rate": "24/1",
+            "avg_frame_rate": "24/1",
+            "time_base": "1/24",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 72,
+            "duration": "3.000000",
+            "bit_rate": "4069885",
+            "bits_per_raw_sample": "8",
+            "nb_frames": "72",
+            "extradata_size": 38,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "creation_time": "2026-10-10T04:50:25.000000Z",
+              "language": "und",
+              "handler_name": "mp4-muxer-hdlr",
+              "vendor_id": "[0][0][0][0]"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_long_name": "AAC (Advanced Audio Coding)",
+            "profile": "LC",
+            "codec_type": "audio",
+            "codec_tag_string": "mp4a",
+            "codec_tag": "0x6134706d",
+            "sample_fmt": "fltp",
+            "sample_rate": "48000",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "id": "0x2",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/48000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 145408,
+            "duration": "3.029333",
+            "bit_rate": "191743",
+            "nb_frames": "142",
+            "extradata_size": 5,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "creation_time": "2026-10-10T04:50:25.000000Z",
+              "language": "und",
+              "handler_name": "mp4-muxer-hdlr",
+              "vendor_id": "[0][0][0][0]"
+            }
+          }
+        ],
+        "format": {
+          "filename": "/workspace/cinema-v3-pr7/legacy-browser-compatibility/final-outputs/Chrome154-full-variable-font.mp4",
+          "nb_streams": 2,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "start_time": "0.000000",
+          "duration": "3.029333",
+          "size": "1600869",
+          "bit_rate": "4227647",
+          "probe_score": 100,
+          "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomavc1mp41",
+            "creation_time": "2026-10-10T04:50:25.000000Z"
+          }
+        }
+      }
+    }
+  },
+  "videoCount": 2,
+  "suiteAccounting": "Supplementary actual-browser coverage; original full suite remains 184 PASS, 0 FAIL, 2 environment SKIP.",
+  "limitations": [
+    "Variable axis raster difference verified; MP4 uses existing safe fallback. exportVerified=false retained; no claim that variable-axis animation was encoded.",
+    "Console includes favicon/optional lookup 404s and expected quality/Draft messages; no JavaScript pageerror. Original formal UI resource checks remain separate."
+  ],
+  "driverFix": "Wait for actual generation/control readiness and use supported headless download capability; then independently decode both saved MP4s and bind their hash to certification.",
+  "earlierAttempts": [
+    "First readiness-race failure retained separately.",
+    "Intermediate corrected run passed browser certification but did not save font Blob for independent FFmpeg decode.",
+    "Detached start had no completion/exit record; not counted PASS. Final tracked-session result above is authoritative."
+  ]
+}

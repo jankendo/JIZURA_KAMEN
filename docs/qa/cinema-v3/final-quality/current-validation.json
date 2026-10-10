@@ -1,0 +1,51 @@
+{
+  "status": "VALIDATION_COMPLETED_RELEASE_NO_GO",
+  "releaseDecision": "NO_GO",
+  "runtimeSHA256": "316c5cb224f670898f929bb6b2e1d3cca9b7ea9afdafd5f2c5a39bd94716a843",
+  "baseSHA": "22d0a9270364bef43b1065740ad292f9d66e2ad1",
+  "productionSHA": "ef829f93a933794c337bf1a37c39fcfb8d4de0f4",
+  "productionChanged": false,
+  "humanEvaluation": "HUMAN_EVALUATION_PENDING",
+  "unitFocused": "PASS",
+  "build": "PASS",
+  "fullSuite": {
+    "passed": 184,
+    "failed": 0,
+    "skippedEnvironmentMissing": 2,
+    "elapsedSeconds": 3971.157845020294
+  },
+  "uiExport": "PASS: ten actual UI checks, actual MP4 hashes, FFmpeg full decode, decoder controls and native cancellation/retry/restoration",
+  "originalCohort": "PASS technical decode: 168 exports, 24 distinct + 4 repeat fixtures, 3 variants, 2 rounds",
+  "additionalCohort": "PASS technical decode: 48 exports, 8 materials, 3 variants, 2 rounds",
+  "independentCohort": "PASS technical decode: 18 exports; creative/missing evidence remains distinct",
+  "observerReproducibility": "12 additional real exports, each three same-Blob observations; variability measured and regression remains unresolved",
+  "knownDevelopmentLimitation": "Physical-only long-case probe still took 133409 ms; performance acceptance is not established.",
+  "historicalDecisionNote": "acceptance.json and other development files describe earlier frozen prototypes; they are not approval of this runtime.",
+  "latestCompletedDevelopmentEvidence": "development-physical-only-probe.json",
+  "rejectedPerformanceExperiment": "Single-core search prototypes rejected for finished-MP4 readability regression; same frame clocks and masks verified. See rejected-single-core-diagnosis.json and rejected-experiment-manifest.json. No prototype source adopted.",
+  "isolatedRestoredFullSuite": {
+    "passed": 184,
+    "failed": 0,
+    "skippedEnvironmentMissing": 2,
+    "build": "PASS",
+    "parentShippingFullSuite": "IN_PROGRESS"
+  },
+  "implementationCI": {
+    "headSHA": "de4735f01c6c1571a4f20304586cf52467c9473a",
+    "status": "SUCCESS",
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38007951825",
+    "deploy": "SKIPPED",
+    "actualUIExport": "PASS",
+    "independentDecoderControls": "PASS",
+    "failedCompletedBlobRetention": "PASS",
+    "nativeWebCodecsCancelRetryRestore": "PASS"
+  },
+  "humanReview": "24 regenerated anonymous pairs, empty CSV, separate answer key; actual browser CSV download PASS; zero human responses",
+  "previousHeadCI": {
+    "headSHA": "4ad83fd92e2997b6f5b4be3895714e9c102405c7",
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38011710649",
+    "status": "CANCELLED_AT_60_MINUTE_JOB_LIMIT",
+    "nextAction": "CI budget correction and exact final-HEAD validation"
+  },
+  "finalHeadCIStatusSource": "https://github.com/jankendo/JIZURA_KAMEN/pull/7/checks"
+}

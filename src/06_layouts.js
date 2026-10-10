@@ -19,7 +19,7 @@ J.mainDraw = (env, it) => {
   const ctx = { dur: cut.dur, inDur: cut.inDur, outDur: cut.outDur };
   const lt0 = env.lt;
   const ltI = lt0 - it.delay;
-  const pIn = J.clamp(ltI / Math.max(0.01, cut.inDur));
+  const pIn = cut.inDur > 0 ? J.clamp(ltI / cut.inDur) : (ltI >= 0 ? 1 : 0);
   const outStart = cut.dur - cut.outDur;
   const pOut = cut.outDur > 0 ? J.clamp((lt0 - outStart) / cut.outDur) : 0;
   const en = J.ENTER[it.enter || cut.enter] || J.ENTER.cut;

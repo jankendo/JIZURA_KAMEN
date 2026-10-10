@@ -1,0 +1,933 @@
+{
+  "status": "DEVELOPMENT_ONLY_NOT_RELEASE_ACCEPTANCE",
+  "historicalMetricsRetained": true,
+  "experiments": [
+    {
+      "experiment": "background-audit-probe",
+      "fixture": {
+        "id": "case-23",
+        "seed": 442,
+        "aspect": "1:1",
+        "image": "text",
+        "audio": "ambiguous",
+        "lyrics": [
+          "密集する長い歌詞の区間",
+          "次の言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          0.45
+        ]
+      },
+      "variant": "baseline",
+      "status": "PASS",
+      "localContrast": 43,
+      "alignedScore": 43,
+      "backgroundConsistentScore": 43,
+      "timing": {
+        "analysisAndPlanMs": 2480.699999988079,
+        "searchMs": 9113.10000000894,
+        "exportMs": 2672,
+        "totalMs": 14265.79999999702
+      },
+      "videoHash": "4a854bf22ec5f83fd401bd623e581d99734998b92b0df14dbe637d02e85f5358",
+      "rawResultSha256": "f218ac57816fdc73819ea5a74618b6278684dc9468a8f218774e9aec78ac0076"
+    },
+    {
+      "experiment": "background-audit-probe",
+      "fixture": {
+        "id": "case-23",
+        "seed": 442,
+        "aspect": "1:1",
+        "image": "text",
+        "audio": "ambiguous",
+        "lyrics": [
+          "密集する長い歌詞の区間",
+          "次の言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          0.45
+        ]
+      },
+      "variant": "pr5",
+      "status": "PASS",
+      "localContrast": 31,
+      "alignedScore": 31,
+      "backgroundConsistentScore": 31,
+      "timing": {
+        "analysisAndPlanMs": 1940.1000000089407,
+        "searchMs": 7678.199999988079,
+        "exportMs": 1694.1000000089407,
+        "totalMs": 11312.40000000596
+      },
+      "videoHash": "bb43dd13777d4c4194e9ad134b14d29196d8df7420075fdaf46aab6b32d78c82",
+      "rawResultSha256": "f218ac57816fdc73819ea5a74618b6278684dc9468a8f218774e9aec78ac0076"
+    },
+    {
+      "experiment": "background-audit-probe",
+      "fixture": {
+        "id": "case-23",
+        "seed": 442,
+        "aspect": "1:1",
+        "image": "text",
+        "audio": "ambiguous",
+        "lyrics": [
+          "密集する長い歌詞の区間",
+          "次の言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          0.45
+        ]
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 55,
+      "alignedScore": 55,
+      "backgroundConsistentScore": 55,
+      "timing": {
+        "analysisAndPlanMs": 1191.9000000059605,
+        "searchMs": 15586.20000000298,
+        "exportMs": 2151.7999999970198,
+        "totalMs": 18929.90000000596
+      },
+      "videoHash": "7acf3c1f47c69d8e31fe91dc5d8a2399dae31ddc366ef8342052ce5917fccca1",
+      "rawResultSha256": "f218ac57816fdc73819ea5a74618b6278684dc9468a8f218774e9aec78ac0076"
+    },
+    {
+      "experiment": "background-audit-probe",
+      "fixture": {
+        "id": "case-24",
+        "seed": 443,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "steady",
+        "lyrics": [
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー"
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "loop": true,
+        "short": true
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 75,
+      "alignedScore": 99,
+      "backgroundConsistentScore": 99,
+      "timing": {
+        "analysisAndPlanMs": 1804.5,
+        "searchMs": 92788.5,
+        "exportMs": 11205.39999999106,
+        "totalMs": 105798.39999999106
+      },
+      "videoHash": "b2c58a2c8ae5e80ab5707ddadfda8f32427f5d6f4cc9b1ff88cdcf742833c276",
+      "rawResultSha256": "f218ac57816fdc73819ea5a74618b6278684dc9468a8f218774e9aec78ac0076"
+    },
+    {
+      "experiment": "background-audit-probe",
+      "fixture": {
+        "id": "case-24",
+        "seed": 443,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "steady",
+        "lyrics": [
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー"
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "loop": true,
+        "short": true
+      },
+      "variant": "pr5",
+      "status": "PASS",
+      "localContrast": null,
+      "alignedScore": null,
+      "backgroundConsistentScore": null,
+      "timing": {
+        "analysisAndPlanMs": 1967.7999999970198,
+        "searchMs": 49584.5,
+        "exportMs": 7334.100000008941,
+        "totalMs": 58886.40000000596
+      },
+      "videoHash": "55b4a0e2e1ba5edc83844280ac16106a87c5352cef1ee719bdcf7b4b12a8ab02",
+      "rawResultSha256": "f218ac57816fdc73819ea5a74618b6278684dc9468a8f218774e9aec78ac0076"
+    },
+    {
+      "experiment": "background-audit-probe",
+      "fixture": {
+        "id": "case-24",
+        "seed": 443,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "steady",
+        "lyrics": [
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー"
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "loop": true,
+        "short": true
+      },
+      "variant": "baseline",
+      "status": "PASS",
+      "localContrast": null,
+      "alignedScore": null,
+      "backgroundConsistentScore": null,
+      "timing": {
+        "analysisAndPlanMs": 1449.7000000029802,
+        "searchMs": 43568,
+        "exportMs": 11317.59999999404,
+        "totalMs": 56335.29999999702
+      },
+      "videoHash": "42f17ad4208ca1c8604539e51e0184c270d3abf6faca5911af398fafc0e7366c",
+      "rawResultSha256": "f218ac57816fdc73819ea5a74618b6278684dc9468a8f218774e9aec78ac0076"
+    },
+    {
+      "experiment": "physical-weak-probe",
+      "fixture": {
+        "id": "case-02",
+        "seed": 411,
+        "aspect": "9:16",
+        "image": "dark",
+        "audio": "steady",
+        "lyrics": [
+          "ここから歩き出そう",
+          "未来へ進んでゆこう"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 27,
+      "alignedScore": 27,
+      "backgroundConsistentScore": 27,
+      "timing": {
+        "analysisAndPlanMs": 2511.3999999910593,
+        "searchMs": 20382.40000000596,
+        "exportMs": 3284.5999999940395,
+        "totalMs": 26178.39999999106
+      },
+      "videoHash": "0d81e6eb12fe1357277719f3726ea2c371e0092e15985ec66744009ee3568159",
+      "rawResultSha256": "ce9b74d7f459a9add5d4f2da56d5f886e3b641bc15eef49ee81da1ed3e3768f0"
+    },
+    {
+      "experiment": "physical-weak-probe",
+      "fixture": {
+        "id": "case-07",
+        "seed": 416,
+        "aspect": "16:9",
+        "image": "multi",
+        "audio": "steady",
+        "lyrics": [
+          "短",
+          "長い言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "activation": "engine-multi"
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": null,
+      "alignedScore": null,
+      "backgroundConsistentScore": null,
+      "timing": {
+        "analysisAndPlanMs": 1924.0999999940395,
+        "searchMs": 1158.5,
+        "exportMs": 2073.1000000089407,
+        "totalMs": 5155.70000000298
+      },
+      "videoHash": "a873aea8bb97816fd74557eb95c0dccae8a504b13c80d5a105f3695b875fe458",
+      "rawResultSha256": "ce9b74d7f459a9add5d4f2da56d5f886e3b641bc15eef49ee81da1ed3e3768f0"
+    },
+    {
+      "experiment": "physical-weak-probe",
+      "fixture": {
+        "id": "case-12",
+        "seed": 421,
+        "aspect": "1:1",
+        "image": "transparent",
+        "audio": "steady",
+        "lyrics": [
+          "漢字《かんじ》",
+          "夢へ"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 89,
+      "alignedScore": 89,
+      "backgroundConsistentScore": 89,
+      "timing": {
+        "analysisAndPlanMs": 5381.5999999940395,
+        "searchMs": 12327.60000000894,
+        "exportMs": 2017,
+        "totalMs": 19726.20000000298
+      },
+      "videoHash": "6763f923fb78856001e1762f626bed26f2ab1a3431ce1b5bf187340bb1225271",
+      "rawResultSha256": "ce9b74d7f459a9add5d4f2da56d5f886e3b641bc15eef49ee81da1ed3e3768f0"
+    },
+    {
+      "experiment": "physical-weak-probe",
+      "fixture": {
+        "id": "case-18",
+        "seed": 427,
+        "aspect": "1:1",
+        "image": "busy",
+        "audio": "intense",
+        "lyrics": [
+          "Hello 世界",
+          "明日 2026"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 72,
+      "alignedScore": 72,
+      "backgroundConsistentScore": 72,
+      "timing": {
+        "analysisAndPlanMs": 1704.4000000059605,
+        "searchMs": 13670.699999988079,
+        "exportMs": 1924.9000000059605,
+        "totalMs": 17300
+      },
+      "videoHash": "ebad58f82fdf8e6fa2eda5990f4b43d1b64c9c0f41c1fa88630f5607c4492272",
+      "rawResultSha256": "ce9b74d7f459a9add5d4f2da56d5f886e3b641bc15eef49ee81da1ed3e3768f0"
+    },
+    {
+      "experiment": "physical-weak-probe",
+      "fixture": {
+        "id": "case-23",
+        "seed": 442,
+        "aspect": "1:1",
+        "image": "text",
+        "audio": "ambiguous",
+        "lyrics": [
+          "密集する長い歌詞の区間",
+          "次の言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          0.45
+        ]
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 55,
+      "alignedScore": 55,
+      "backgroundConsistentScore": 55,
+      "timing": {
+        "analysisAndPlanMs": 1779.7000000029802,
+        "searchMs": 14102,
+        "exportMs": 2192.2000000029802,
+        "totalMs": 18073.90000000596
+      },
+      "videoHash": "a709691e89b4cb0d0e590b5d420280c3731caaee31d142c9b9afc3c6324a46a1",
+      "rawResultSha256": "ce9b74d7f459a9add5d4f2da56d5f886e3b641bc15eef49ee81da1ed3e3768f0"
+    },
+    {
+      "experiment": "physical-weak-probe",
+      "fixture": {
+        "id": "case-24",
+        "seed": 443,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "steady",
+        "lyrics": [
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー"
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "loop": true,
+        "short": true
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 57,
+      "alignedScore": 79,
+      "backgroundConsistentScore": 79,
+      "timing": {
+        "analysisAndPlanMs": 2557.2999999970198,
+        "searchMs": 81806.20000000298,
+        "exportMs": 11244.29999999702,
+        "totalMs": 95607.79999999702
+      },
+      "videoHash": "8819718682eb64301a1c30dc5b9d765692f0bfae407d0f86912f9141a9da6b96",
+      "rawResultSha256": "ce9b74d7f459a9add5d4f2da56d5f886e3b641bc15eef49ee81da1ed3e3768f0"
+    },
+    {
+      "experiment": "physical-weak-probe",
+      "fixture": {
+        "seed": 517,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-manual",
+        "aspect": "9:16",
+        "image": "busy",
+        "audio": "intense",
+        "lyrics": [
+          "手動固定した文字",
+          "固定したカメラ"
+        ],
+        "manual": true
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 54,
+      "alignedScore": 0,
+      "backgroundConsistentScore": 0,
+      "timing": {
+        "analysisAndPlanMs": 2729.7000000029802,
+        "searchMs": 14192,
+        "exportMs": 3361.1000000089407,
+        "totalMs": 20282.80000001192
+      },
+      "videoHash": "e5a22431c0620cf5042b9f74e9d13f2088ac91eaee0f4609a3f5f157c50331c8",
+      "rawResultSha256": "ce9b74d7f459a9add5d4f2da56d5f886e3b641bc15eef49ee81da1ed3e3768f0"
+    },
+    {
+      "experiment": "full-finalist-probe",
+      "fixture": {
+        "id": "case-02",
+        "seed": 411,
+        "aspect": "9:16",
+        "image": "dark",
+        "audio": "steady",
+        "lyrics": [
+          "ここから歩き出そう",
+          "未来へ進んでゆこう"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 59,
+      "alignedScore": 59,
+      "backgroundConsistentScore": 59,
+      "timing": {
+        "analysisAndPlanMs": 1706.5,
+        "searchMs": 29133.30000001192,
+        "exportMs": 3337.2999999970198,
+        "totalMs": 34177.10000000894
+      },
+      "videoHash": "3759e1f33f90a6cb01ee3b16eef3c7ebed480f4688c6bedf5fb9412bc2a36897",
+      "rawResultSha256": "c0595122d6da12671eaa6c786f0314175d5a14f1499994f707843b0a2e6f39bd"
+    },
+    {
+      "experiment": "full-finalist-probe",
+      "fixture": {
+        "id": "case-07",
+        "seed": 416,
+        "aspect": "16:9",
+        "image": "multi",
+        "audio": "steady",
+        "lyrics": [
+          "短",
+          "長い言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "activation": "engine-multi"
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": null,
+      "alignedScore": null,
+      "backgroundConsistentScore": null,
+      "timing": {
+        "analysisAndPlanMs": 1481.2000000029802,
+        "searchMs": 1065.6000000089407,
+        "exportMs": 1897,
+        "totalMs": 4443.800000011921
+      },
+      "videoHash": "41cf80ae277ecabff395f88e760c2e6227012a1655bf4382add5aa74e27a973a",
+      "rawResultSha256": "c0595122d6da12671eaa6c786f0314175d5a14f1499994f707843b0a2e6f39bd"
+    },
+    {
+      "experiment": "full-finalist-probe",
+      "fixture": {
+        "id": "case-12",
+        "seed": 421,
+        "aspect": "1:1",
+        "image": "transparent",
+        "audio": "steady",
+        "lyrics": [
+          "漢字《かんじ》",
+          "夢へ"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 95,
+      "alignedScore": 95,
+      "backgroundConsistentScore": 95,
+      "timing": {
+        "analysisAndPlanMs": 1390.7999999970198,
+        "searchMs": 16850.20000000298,
+        "exportMs": 2253.8999999910593,
+        "totalMs": 20494.89999999106
+      },
+      "videoHash": "a403854f5bf742a703d002db372520e59fd8df5beea6b3e6dbe012cdbb794725",
+      "rawResultSha256": "c0595122d6da12671eaa6c786f0314175d5a14f1499994f707843b0a2e6f39bd"
+    },
+    {
+      "experiment": "full-finalist-probe",
+      "fixture": {
+        "id": "case-18",
+        "seed": 427,
+        "aspect": "1:1",
+        "image": "busy",
+        "audio": "intense",
+        "lyrics": [
+          "Hello 世界",
+          "明日 2026"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 55,
+      "alignedScore": 55,
+      "backgroundConsistentScore": 55,
+      "timing": {
+        "analysisAndPlanMs": 2008.800000011921,
+        "searchMs": 17547.5,
+        "exportMs": 2178.5999999940395,
+        "totalMs": 21734.90000000596
+      },
+      "videoHash": "ef45712929a67701afefbef388a552d9d337372c693375b7a9676f7a2a87f8ae",
+      "rawResultSha256": "c0595122d6da12671eaa6c786f0314175d5a14f1499994f707843b0a2e6f39bd"
+    },
+    {
+      "experiment": "full-finalist-probe",
+      "fixture": {
+        "id": "case-23",
+        "seed": 442,
+        "aspect": "1:1",
+        "image": "text",
+        "audio": "ambiguous",
+        "lyrics": [
+          "密集する長い歌詞の区間",
+          "次の言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          0.45
+        ]
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 61,
+      "alignedScore": 61,
+      "backgroundConsistentScore": 61,
+      "timing": {
+        "analysisAndPlanMs": 1154.6000000089407,
+        "searchMs": 17505,
+        "exportMs": 2265.5999999940395,
+        "totalMs": 20925.20000000298
+      },
+      "videoHash": "09a3598d62a0e1611fc9f444725ed7318bad67f6a811ff04b42ae2a0112e9421",
+      "rawResultSha256": "c0595122d6da12671eaa6c786f0314175d5a14f1499994f707843b0a2e6f39bd"
+    },
+    {
+      "experiment": "full-finalist-probe",
+      "fixture": {
+        "id": "case-24",
+        "seed": 443,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "steady",
+        "lyrics": [
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー"
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "loop": true,
+        "short": true
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 57,
+      "alignedScore": 79,
+      "backgroundConsistentScore": 79,
+      "timing": {
+        "analysisAndPlanMs": 2146.7000000029802,
+        "searchMs": 115495.09999999404,
+        "exportMs": 11631.79999999702,
+        "totalMs": 129273.59999999404
+      },
+      "videoHash": "06eb16dfe9d6769b366052fe1de7ee010b3012b998c1cf1107c8dbfafded4731",
+      "rawResultSha256": "c0595122d6da12671eaa6c786f0314175d5a14f1499994f707843b0a2e6f39bd"
+    },
+    {
+      "experiment": "full-finalist-probe",
+      "fixture": {
+        "seed": 517,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-manual",
+        "aspect": "9:16",
+        "image": "busy",
+        "audio": "intense",
+        "lyrics": [
+          "手動固定した文字",
+          "固定したカメラ"
+        ],
+        "manual": true
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 54,
+      "alignedScore": 0,
+      "backgroundConsistentScore": 0,
+      "timing": {
+        "analysisAndPlanMs": 1916.5,
+        "searchMs": 22937.29999999702,
+        "exportMs": 3414,
+        "totalMs": 28267.79999999702
+      },
+      "videoHash": "703d5b396a5090c08b2c60f1a57837e6646493c2f50b422528ecbe724ab4ad28",
+      "rawResultSha256": "c0595122d6da12671eaa6c786f0314175d5a14f1499994f707843b0a2e6f39bd"
+    },
+    {
+      "experiment": "shared-working-probe",
+      "fixture": {
+        "id": "case-02",
+        "seed": 411,
+        "aspect": "9:16",
+        "image": "dark",
+        "audio": "steady",
+        "lyrics": [
+          "ここから歩き出そう",
+          "未来へ進んでゆこう"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 59,
+      "alignedScore": 59,
+      "backgroundConsistentScore": 59,
+      "timing": {
+        "analysisAndPlanMs": 1870.199999988079,
+        "searchMs": 28995.90000000596,
+        "exportMs": 3224.0999999940395,
+        "totalMs": 34090.19999998808
+      },
+      "videoHash": "8f5447853a7febcd74bc743bda78560571d5b04293efeec82e8cff8a201576e7",
+      "rawResultSha256": "f8bb596911074cb0fdc2a4166226f794317bfeb10b6175b280d0a90620a9cc66"
+    },
+    {
+      "experiment": "shared-working-probe",
+      "fixture": {
+        "id": "case-18",
+        "seed": 427,
+        "aspect": "1:1",
+        "image": "busy",
+        "audio": "intense",
+        "lyrics": [
+          "Hello 世界",
+          "明日 2026"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 55,
+      "alignedScore": 55,
+      "backgroundConsistentScore": 55,
+      "timing": {
+        "analysisAndPlanMs": 1645.6000000089407,
+        "searchMs": 17912.59999999404,
+        "exportMs": 2064.2000000029802,
+        "totalMs": 21622.40000000596
+      },
+      "videoHash": "db2e65742989eaac4d4c00e5b0fde8561a110fbdf1d6a249ce95a8c1138be6a2",
+      "rawResultSha256": "f8bb596911074cb0fdc2a4166226f794317bfeb10b6175b280d0a90620a9cc66"
+    },
+    {
+      "experiment": "shared-working-probe",
+      "fixture": {
+        "id": "case-23",
+        "seed": 442,
+        "aspect": "1:1",
+        "image": "text",
+        "audio": "ambiguous",
+        "lyrics": [
+          "密集する長い歌詞の区間",
+          "次の言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          0.45
+        ]
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 61,
+      "alignedScore": 61,
+      "backgroundConsistentScore": 61,
+      "timing": {
+        "analysisAndPlanMs": 2102.8999999910593,
+        "searchMs": 18716,
+        "exportMs": 2398.1000000089407,
+        "totalMs": 23217
+      },
+      "videoHash": "7a54d3ff61ac238bf10bf0fc7840a4477b0f1c0ff7bcda4c7f2101105ec70ba3",
+      "rawResultSha256": "f8bb596911074cb0fdc2a4166226f794317bfeb10b6175b280d0a90620a9cc66"
+    },
+    {
+      "experiment": "shared-working-probe",
+      "fixture": {
+        "id": "case-24",
+        "seed": 443,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "steady",
+        "lyrics": [
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー"
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "loop": true,
+        "short": true
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 57,
+      "alignedScore": 79,
+      "backgroundConsistentScore": 79,
+      "timing": {
+        "analysisAndPlanMs": 1505,
+        "searchMs": 109628.29999999702,
+        "exportMs": 11395.40000000596,
+        "totalMs": 122528.70000000298
+      },
+      "videoHash": "389d0204568cf3b83a9d71ae5d4cdfea78b94c5cf55f30f694d71cec13c45096",
+      "rawResultSha256": "f8bb596911074cb0fdc2a4166226f794317bfeb10b6175b280d0a90620a9cc66"
+    },
+    {
+      "experiment": "shared-working-probe",
+      "fixture": {
+        "seed": 517,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-manual",
+        "aspect": "9:16",
+        "image": "busy",
+        "audio": "intense",
+        "lyrics": [
+          "手動固定した文字",
+          "固定したカメラ"
+        ],
+        "manual": true
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 54,
+      "alignedScore": 0,
+      "backgroundConsistentScore": 0,
+      "timing": {
+        "analysisAndPlanMs": 1814.5,
+        "searchMs": 21399.19999998808,
+        "exportMs": 3343.7000000029802,
+        "totalMs": 26557.39999999106
+      },
+      "videoHash": "1cdaab8aa9c1b50dcffaf927b6053be00572554e4081eb04d98ebb590d9fa6e3",
+      "rawResultSha256": "f8bb596911074cb0fdc2a4166226f794317bfeb10b6175b280d0a90620a9cc66"
+    },
+    {
+      "experiment": "shadow-only-probe",
+      "fixture": {
+        "id": "case-18",
+        "seed": 427,
+        "aspect": "1:1",
+        "image": "busy",
+        "audio": "intense",
+        "lyrics": [
+          "Hello 世界",
+          "明日 2026"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 55,
+      "alignedScore": 55,
+      "backgroundConsistentScore": 55,
+      "timing": {
+        "analysisAndPlanMs": 1725.5999999940395,
+        "searchMs": 17265.29999999702,
+        "exportMs": 2069,
+        "totalMs": 21059.89999999106
+      },
+      "videoHash": "5a0d2cc23c9374ee5f454e59b3c257cdc939c3806fc09f6442f018e64469df16",
+      "rawResultSha256": "2ba5b3ecbefd776a520df29888e4910f2f9ad02c944d037b51f4a11577e2312b"
+    },
+    {
+      "experiment": "shadow-only-probe",
+      "fixture": {
+        "id": "case-23",
+        "seed": 442,
+        "aspect": "1:1",
+        "image": "text",
+        "audio": "ambiguous",
+        "lyrics": [
+          "密集する長い歌詞の区間",
+          "次の言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          0.45
+        ]
+      },
+      "variant": "v3",
+      "status": "PASS",
+      "localContrast": 61,
+      "alignedScore": 61,
+      "backgroundConsistentScore": 61,
+      "timing": {
+        "analysisAndPlanMs": 1704.0999999940395,
+        "searchMs": 17817.60000000894,
+        "exportMs": 2129.5999999940395,
+        "totalMs": 21651.29999999702
+      },
+      "videoHash": "7965501f2cf107bcb772bc4c7af9b8883a07805ca4d5e5b734b798fbfb0ba733",
+      "rawResultSha256": "2ba5b3ecbefd776a520df29888e4910f2f9ad02c944d037b51f4a11577e2312b"
+    }
+  ],
+  "conclusions": [
+    "Shadow-only repair did not resolve the observed case-18 readability regression.",
+    "Shared legacy B/C selection restores the actual legacy finalist rather than the highest Stage A proxy.",
+    "Background-consistent diagnostics are separate from historical localContrast and cannot silently replace it.",
+    "Finalist per-interval protection and additional already encoded finalists are being tested; no release conclusion yet."
+  ]
+}

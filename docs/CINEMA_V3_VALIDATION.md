@@ -1,5 +1,7 @@
 # Cinema V3 — verification and review
 
+Latest final-quality work: [CINEMA_V3_FINAL_QUALITY.md](CINEMA_V3_FINAL_QUALITY.md), with separate evidence under `docs/qa/cinema-v3/final-quality/`. Validation and the conditional technical-release gate are in progress; no production deployment is approved by the evidence yet. Prior cohorts and decisions below remain historical.
+
 ## PR #6 evidence
 
 The current hardening work is described in [CINEMA_V3_RELEASE_HARDENING.md](CINEMA_V3_RELEASE_HARDENING.md). Its new data lives under `docs/qa/cinema-v3/release-hardening/`; the original 3.0.0/3.0.1 cohorts below remain historical evidence and are not overwritten. Final acceptance uses the original final-MP4 observer cadence and thresholds. Human evaluation remains **HUMAN_EVALUATION_PENDING**.
@@ -76,3 +78,9 @@ Merge order: #1 → #2 → #3 → #4 → #5, only after explicit authorization a
 Feature-off recovery: set internal `J.cinemaV3.enabled=false`; clear derived QA and regenerate the plan before exporting. Selection and repair then return to their legacy paths; existing app formats/QA/sidecar fields remain. Full recovery: revert feature commits in reverse dependency order (5→4→3→2→1), rebuild, run the same regression and actual export checks, then deploy only when separately authorized. Runtime functions should not be replaced by console edits in a published site. Back up project files and keep the last accepted artifact/history before release.
 
 Unresolved: licensed real music/portrait corpus, full font cmap/character coverage, verified subject segmentation, sung-onset synchronization, complete low-memory device testing, peak memory/cache/renderer-only instrumentation, statistical calibration against human scores, human blind evaluation, and any artistic-100 claim. The engine exposes these limits and preserves a usable technical draft; it does not declare universal success.
+
+## PR #7 completed final validation
+
+The authoritative current decision is **PARTIAL / NO-GO** in [CINEMA_V3_FINAL_QUALITY.md](CINEMA_V3_FINAL_QUALITY.md). The immutable latest runtime completed 234 comparative plus 12 reproducibility H.264/AAC exports, full FFmpeg decode, local full suite (184 PASS / 0 FAIL / 2 environment-dependent SKIP), actual ten-check UI export and controlled failed-Blob/cancel/retry/restoration tests. Short/dense and manual global regressions improved, but one main interval difference remains unresolved, historical missing values remain, and original Total P95 worsened from 20,605 to 42,222.8 ms. Native/Canvas and final decoded evidence remain distinct. Human review was regenerated with 24 pairs and zero human responses. Refer to machine-readable evidence and limitations in that report rather than treating earlier developmental acceptance as current approval.
+
+The latest user authorization supersedes the earlier sequential merge/deploy instructions: a future GO uses one aggregate main release PR containing #1–#7, exact release-HEAD CI, a unique pre-release backup tag, then one merge commit. It must not publish #1–#6 intermediate states. Current NO-GO preserves main and production. Reverting an eventual aggregate merge uses a normal-history revert of its merge commit followed by CI/Pages and production E2E; no history rewrite or existing-tag overwrite.

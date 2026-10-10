@@ -1,0 +1,4251 @@
+{
+  "status": "MEASURED",
+  "rawVariantAlias": {
+    "pr5": "PR #6 (not PR #5)"
+  },
+  "humanEvaluation": "HUMAN_EVALUATION_PENDING",
+  "artisticImprovementEstablished": false,
+  "environments": [
+    {
+      "cohort": "original-24-plus-repeats",
+      "round": 0,
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.19.0",
+        "os": "linux",
+        "release": "6.18.44"
+      }
+    },
+    {
+      "cohort": "original-24-plus-repeats",
+      "round": 1,
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.19.0",
+        "os": "linux",
+        "release": "6.18.44"
+      }
+    },
+    {
+      "cohort": "additional-eight",
+      "round": 0,
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.19.0",
+        "os": "linux",
+        "release": "6.18.44"
+      }
+    },
+    {
+      "cohort": "additional-eight",
+      "round": 1,
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.19.0",
+        "os": "linux",
+        "release": "6.18.44"
+      }
+    },
+    {
+      "cohort": "independent-six",
+      "round": 0,
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.19.0",
+        "os": "linux",
+        "release": "6.18.44"
+      }
+    }
+  ],
+  "method": "Same synthetic input/seed/profile, counterbalanced variant order and two original/additional rounds; historical localContrast unchanged. Aligned observer runs after timed export on all builds; PR7 shipping aligned QA is included in export time.",
+  "limits": [
+    "Shared host CPU scheduling is uncontrolled; no exclusive reservation",
+    "Two per-case original/additional trials do not establish per-case P95 confidence",
+    "Synthetic fixtures and short ranges do not establish full-song artistic quality",
+    "Peak process/GPU memory, cache-hit ratio and native save picker are UNMEASURED"
+  ],
+  "cohorts": {
+    "original-24-plus-repeats": {
+      "main": {
+        "exports": 56,
+        "totalMs": {
+          "n": 56,
+          "p50": 8761.749999985099,
+          "p95": 20605,
+          "min": 2483.7999999821186,
+          "max": 55309.79999998212,
+          "sampleStandardDeviation": 9727.255580403875
+        },
+        "searchMs": {
+          "n": 56,
+          "p50": 5599.100000008941,
+          "p95": 15581.100000023842,
+          "min": 832.0999999940395,
+          "max": 43120.29999998212,
+          "sampleStandardDeviation": 7862.619938873818
+        },
+        "exportMs": {
+          "n": 56,
+          "p50": 2103.4500000029802,
+          "p95": 4528.9000000059605,
+          "min": 723,
+          "max": 11424.59999999404,
+          "sampleStandardDeviation": 1929.026734124569
+        },
+        "localContrast": {
+          "n": 44,
+          "p50": 84,
+          "p95": 100,
+          "min": 39,
+          "max": 100,
+          "sampleStandardDeviation": 24.752346291502576
+        },
+        "nonRepeatTrialLocalContrast": {
+          "n": 36,
+          "p50": 63,
+          "p95": 100,
+          "min": 39,
+          "max": 100,
+          "sampleStandardDeviation": 24.004298556849132
+        },
+        "distinctInputLocalContrast": {
+          "n": 18,
+          "p50": 63,
+          "p95": 100,
+          "min": 39,
+          "max": 100,
+          "sampleStandardDeviation": 24.354744810226233
+        },
+        "unmeasuredTrials": 12,
+        "unmeasuredInputs": [
+          "case-06",
+          "case-07",
+          "case-13",
+          "case-14",
+          "case-20",
+          "case-24"
+        ],
+        "perCase": {
+          "case-01": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 8393.95000001043,
+              "p95": 8494.79999999702,
+              "min": 8293.100000023842,
+              "max": 8494.79999999702,
+              "sampleStandardDeviation": 142.62343774636054
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "case-02": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 10004.699999988079,
+              "p95": 10146.799999982119,
+              "min": 9862.59999999404,
+              "max": 10146.799999982119,
+              "sampleStandardDeviation": 200.95974720478745
+            },
+            "localContrast": [
+              53,
+              53
+            ]
+          },
+          "case-03": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 8306.60000000894,
+              "p95": 8747.09999999404,
+              "min": 7866.100000023842,
+              "max": 8747.09999999404,
+              "sampleStandardDeviation": 622.961074204275
+            },
+            "localContrast": [
+              80,
+              80
+            ]
+          },
+          "case-04": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 9268.95000000298,
+              "p95": 9395.300000011921,
+              "min": 9142.59999999404,
+              "max": 9395.300000011921,
+              "sampleStandardDeviation": 178.6858836184846
+            },
+            "localContrast": [
+              88,
+              88
+            ]
+          },
+          "case-05": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 17378.35000000149,
+              "p95": 18074.29999999702,
+              "min": 16682.40000000596,
+              "max": 18074.29999999702,
+              "sampleStandardDeviation": 984.2219287272335
+            },
+            "localContrast": [
+              46,
+              46
+            ]
+          },
+          "case-06": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 2687.4500000029802,
+              "p95": 2891.100000023842,
+              "min": 2483.7999999821186,
+              "max": 2891.100000023842,
+              "sampleStandardDeviation": 288.0045920067836
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-07": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 3254.8500000089407,
+              "p95": 3370,
+              "min": 3139.7000000178814,
+              "max": 3370,
+              "sampleStandardDeviation": 162.84669169461785
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-08": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 18753.15000000596,
+              "p95": 18992.09999999404,
+              "min": 18514.20000001788,
+              "max": 18992.09999999404,
+              "sampleStandardDeviation": 337.92633071219234
+            },
+            "localContrast": [
+              39,
+              39
+            ]
+          },
+          "case-09": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 6900.799999982119,
+              "p95": 7072.199999988079,
+              "min": 6729.399999976158,
+              "max": 7072.199999988079,
+              "sampleStandardDeviation": 242.39620459917788
+            },
+            "localContrast": [
+              57,
+              57
+            ]
+          },
+          "case-10": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7739,
+              "p95": 7896.9000000059605,
+              "min": 7581.0999999940395,
+              "max": 7896.9000000059605,
+              "sampleStandardDeviation": 223.30432150714108
+            },
+            "localContrast": [
+              69,
+              69
+            ]
+          },
+          "case-11": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 18534.44999998808,
+              "p95": 18752.79999998212,
+              "min": 18316.09999999404,
+              "max": 18752.79999998212,
+              "sampleStandardDeviation": 308.79353133573596
+            },
+            "localContrast": [
+              46,
+              46
+            ]
+          },
+          "case-12": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 12180.449999988079,
+              "p95": 12321.5,
+              "min": 12039.399999976158,
+              "max": 12321.5,
+              "sampleStandardDeviation": 199.4748229895838
+            },
+            "localContrast": [
+              54,
+              54
+            ]
+          },
+          "case-13": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 2566.250000014901,
+              "p95": 2631.7000000178814,
+              "min": 2500.800000011921,
+              "max": 2631.7000000178814,
+              "sampleStandardDeviation": 92.56027766153376
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-14": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 3305.7999999970198,
+              "p95": 3328.699999988079,
+              "min": 3282.9000000059605,
+              "max": 3328.699999988079,
+              "sampleStandardDeviation": 32.385490565699826
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-15": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 9984.749999985099,
+              "p95": 10077.799999982119,
+              "min": 9891.699999988079,
+              "max": 10077.799999982119,
+              "sampleStandardDeviation": 131.5925719746018
+            },
+            "localContrast": [
+              94,
+              94
+            ]
+          },
+          "case-16": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 5271.550000011921,
+              "p95": 5274.9000000059605,
+              "min": 5268.200000017881,
+              "max": 5274.9000000059605,
+              "sampleStandardDeviation": 4.737615425520499
+            },
+            "localContrast": [
+              97,
+              97
+            ]
+          },
+          "case-17": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 12274.550000011921,
+              "p95": 12517.5,
+              "min": 12031.600000023842,
+              "max": 12517.5,
+              "sampleStandardDeviation": 343.5831849616847
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "case-18": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 12642.84999999404,
+              "p95": 13047.800000011921,
+              "min": 12237.899999976158,
+              "max": 13047.800000011921,
+              "sampleStandardDeviation": 572.685782108273
+            },
+            "localContrast": [
+              47,
+              47
+            ]
+          },
+          "case-19": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7432.25,
+              "p95": 7508.5,
+              "min": 7356,
+              "max": 7508.5,
+              "sampleStandardDeviation": 107.8337841309485
+            },
+            "localContrast": [
+              99,
+              99
+            ]
+          },
+          "case-20": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 2920.5,
+              "p95": 2926,
+              "min": 2915,
+              "max": 2926,
+              "sampleStandardDeviation": 7.7781745930520225
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-21": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 10956.09999999404,
+              "p95": 11097.799999982119,
+              "min": 10814.40000000596,
+              "max": 11097.799999982119,
+              "sampleStandardDeviation": 200.39406177140881
+            },
+            "localContrast": [
+              96,
+              96
+            ]
+          },
+          "case-22": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 20571.29999999702,
+              "p95": 20605,
+              "min": 20537.59999999404,
+              "max": 20605,
+              "sampleStandardDeviation": 47.658997056187985
+            },
+            "localContrast": [
+              39,
+              39
+            ]
+          },
+          "case-23": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 12260.64999999106,
+              "p95": 12431.299999982119,
+              "min": 12090,
+              "max": 12431.299999982119,
+              "sampleStandardDeviation": 241.33554440632463
+            },
+            "localContrast": [
+              43,
+              43
+            ]
+          },
+          "case-24": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 54594.4999999851,
+              "p95": 55309.79999998212,
+              "min": 53879.19999998808,
+              "max": 55309.79999998212,
+              "sampleStandardDeviation": 1011.5869611612602
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "repeat-2": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 8581.59999999404,
+              "p95": 8776.399999976158,
+              "min": 8386.800000011921,
+              "max": 8776.399999976158,
+              "sampleStandardDeviation": 275.4888019249908
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "repeat-3": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 8406.64999999106,
+              "p95": 8573.199999988079,
+              "min": 8240.09999999404,
+              "max": 8573.199999988079,
+              "sampleStandardDeviation": 235.53726880902428
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "repeat-4": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7986.700000017881,
+              "p95": 7987.100000023842,
+              "min": 7986.300000011921,
+              "max": 7987.100000023842,
+              "sampleStandardDeviation": 0.5656854333786078
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "repeat-5": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 8688.84999999404,
+              "p95": 8893.300000011921,
+              "min": 8484.399999976158,
+              "max": 8893.300000011921,
+              "sampleStandardDeviation": 289.1359628524674
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          }
+        },
+        "inclusiveProfile": {
+          "analyzeAudio": {
+            "n": 56,
+            "p50": 62.3999999910593,
+            "p95": 104.09999999403954,
+            "min": 38.400000005960464,
+            "max": 115.10000002384186,
+            "sampleStandardDeviation": 20.818757777352424
+          },
+          "plan": {
+            "n": 56,
+            "p50": 28.55000001192093,
+            "p95": 40.19999998807907,
+            "min": 16.30000001192093,
+            "max": 53.20000001788139,
+            "sampleStandardDeviation": 7.125837161034867
+          },
+          "ensureFonts": {
+            "n": 56,
+            "p50": 685.6500000059605,
+            "p95": 1172.5999999940395,
+            "min": 499.69999998807907,
+            "max": 1286.7999999970198,
+            "sampleStandardDeviation": 180.74609312204208
+          },
+          "renderer_loadCustomBackground": {
+            "n": 56,
+            "p50": 222.29999996721745,
+            "p95": 299.2000000476837,
+            "min": 0.09999999403953552,
+            "max": 334.2999998629093,
+            "sampleStandardDeviation": 88.96170138374538
+          },
+          "renderer_loadAssetDeck": {
+            "n": 56,
+            "p50": 114.14999993145466,
+            "p95": 148.19999998807907,
+            "min": 0.29999998211860657,
+            "max": 167.90000009536743,
+            "sampleStandardDeviation": 46.737010559430644
+          },
+          "measureCinemaSequence": {
+            "n": 46,
+            "p50": 1254.3000000417233,
+            "p95": 2047.6000000834465,
+            "min": 931.4000000059605,
+            "max": 2688.200000077486,
+            "sampleStandardDeviation": 407.2428904093513
+          },
+          "cinemaBlockFlow": {
+            "n": 46,
+            "p50": 168.1500000655651,
+            "p95": 858.799999922514,
+            "min": 53.39999982714653,
+            "max": 2654.7999999523163,
+            "sampleStandardDeviation": 520.4385764399174
+          },
+          "measureCinemaVideoProxy": {
+            "n": 46,
+            "p50": 1074.9999999850988,
+            "p95": 4911.300000041723,
+            "min": 276.90000000596046,
+            "max": 15435.799999952316,
+            "sampleStandardDeviation": 3066.2927428517423
+          },
+          "encodeCinemaVisualProxy": {
+            "n": 46,
+            "p50": 454.2500000298023,
+            "p95": 1340.5999999940395,
+            "min": 158.69999998807907,
+            "max": 4745.699999988079,
+            "sampleStandardDeviation": 881.6294883701621
+          },
+          "verifyDecodedCinemaLayers": {
+            "n": 56,
+            "p50": 3017.800000011921,
+            "p95": 8969.5,
+            "min": 0.30000001192092896,
+            "max": 20525.20000001788,
+            "sampleStandardDeviation": 3927.985192447969
+          },
+          "measureCinemaEncodedProxy": {
+            "n": 46,
+            "p50": 3087.000000014901,
+            "p95": 8470.90000000596,
+            "min": 915.8999999761581,
+            "max": 22142.199999958277,
+            "sampleStandardDeviation": 4191.834381992604
+          },
+          "analyzeRenderedFrames": {
+            "n": 56,
+            "p50": 5599.100000008941,
+            "p95": 15581.100000023842,
+            "min": 832.0999999940395,
+            "max": 43120.29999998212,
+            "sampleStandardDeviation": 7862.618214650118
+          },
+          "certifyExport": {
+            "n": 56,
+            "p50": 39.24999998509884,
+            "p95": 55.60000002384186,
+            "min": 28,
+            "max": 63.900000005960464,
+            "sampleStandardDeviation": 7.700517777437626
+          },
+          "observeExportedMP4": {
+            "n": 56,
+            "p50": 1447.1000000089407,
+            "p95": 3966.7000000178814,
+            "min": 150.59999999403954,
+            "max": 9100.699999988079,
+            "sampleStandardDeviation": 1709.848394173164
+          },
+          "finalEncodeExcludingCertification": {
+            "n": 56,
+            "p50": 2060.9000000208616,
+            "p95": 4486.0999999940395,
+            "min": 688.2000000178814,
+            "max": 11370.300000011921,
+            "sampleStandardDeviation": 1927.4203039843846
+          },
+          "refinePhotoExport": {
+            "n": 56,
+            "p50": 2103.3499999791384,
+            "p95": 4528.700000017881,
+            "min": 723,
+            "max": 11424.59999999404,
+            "sampleStandardDeviation": 1929.029236967558
+          }
+        }
+      },
+      "pr6": {
+        "exports": 56,
+        "totalMs": {
+          "n": 56,
+          "p50": 7387.45000000298,
+          "p95": 17746.90000000596,
+          "min": 2438.5,
+          "max": 54974.69999998808,
+          "sampleStandardDeviation": 9575.884605583913
+        },
+        "searchMs": {
+          "n": 56,
+          "p50": 4862.500000014901,
+          "p95": 13929.5,
+          "min": 790,
+          "max": 47206.09999999404,
+          "sampleStandardDeviation": 8499.551456410773
+        },
+        "exportMs": {
+          "n": 56,
+          "p50": 1446.550000011921,
+          "p95": 2700.7000000178814,
+          "min": 712.0999999940395,
+          "max": 6959.4000000059605,
+          "sampleStandardDeviation": 1104.5961821443113
+        },
+        "localContrast": {
+          "n": 44,
+          "p50": 90,
+          "p95": 100,
+          "min": 31,
+          "max": 100,
+          "sampleStandardDeviation": 25.476349767244955
+        },
+        "nonRepeatTrialLocalContrast": {
+          "n": 36,
+          "p50": 69,
+          "p95": 100,
+          "min": 31,
+          "max": 100,
+          "sampleStandardDeviation": 25.0815811759489
+        },
+        "distinctInputLocalContrast": {
+          "n": 18,
+          "p50": 64.5,
+          "p95": 100,
+          "min": 31,
+          "max": 100,
+          "sampleStandardDeviation": 25.25167437663351
+        },
+        "unmeasuredTrials": 12,
+        "unmeasuredInputs": [
+          "case-06",
+          "case-07",
+          "case-13",
+          "case-14",
+          "case-20",
+          "case-24"
+        ],
+        "perCase": {
+          "case-01": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7285.5,
+              "p95": 7699.9000000059605,
+              "min": 6871.0999999940395,
+              "max": 7699.9000000059605,
+              "sampleStandardDeviation": 586.05010025584
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "case-02": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 8372.85000000149,
+              "p95": 8440,
+              "min": 8305.70000000298,
+              "max": 8440,
+              "sampleStandardDeviation": 94.96444071124598
+            },
+            "localContrast": [
+              53,
+              53
+            ]
+          },
+          "case-03": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7187.350000008941,
+              "p95": 7450.9000000059605,
+              "min": 6923.800000011921,
+              "max": 7450.9000000059605,
+              "sampleStandardDeviation": 372.7159843592145
+            },
+            "localContrast": [
+              92,
+              92
+            ]
+          },
+          "case-04": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 8003.249999992549,
+              "p95": 8370.59999999404,
+              "min": 7635.899999991059,
+              "max": 8370.59999999404,
+              "sampleStandardDeviation": 519.5113521398638
+            },
+            "localContrast": [
+              88,
+              88
+            ]
+          },
+          "case-05": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 15260.10000000149,
+              "p95": 15678.89999999106,
+              "min": 14841.300000011921,
+              "max": 15678.89999999106,
+              "sampleStandardDeviation": 592.2726399071008
+            },
+            "localContrast": [
+              46,
+              46
+            ]
+          },
+          "case-06": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 2742.5499999970198,
+              "p95": 2875.5,
+              "min": 2609.5999999940395,
+              "max": 2875.5,
+              "sampleStandardDeviation": 188.01969312171767
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-07": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 3207.7000000029802,
+              "p95": 3313,
+              "min": 3102.4000000059605,
+              "max": 3313,
+              "sampleStandardDeviation": 148.91668811367222
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-08": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 15289.70000000298,
+              "p95": 15639.90000000596,
+              "min": 14939.5,
+              "max": 15639.90000000596,
+              "sampleStandardDeviation": 495.2575895472726
+            },
+            "localContrast": [
+              39,
+              39
+            ]
+          },
+          "case-09": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 5651.600000008941,
+              "p95": 5896.9000000059605,
+              "min": 5406.300000011921,
+              "max": 5896.9000000059605,
+              "sampleStandardDeviation": 346.9065868459055
+            },
+            "localContrast": [
+              57,
+              57
+            ]
+          },
+          "case-10": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7155.45000000298,
+              "p95": 7324,
+              "min": 6986.9000000059605,
+              "max": 7324,
+              "sampleStandardDeviation": 238.36569593377047
+            },
+            "localContrast": [
+              69,
+              69
+            ]
+          },
+          "case-11": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 15071.79999999702,
+              "p95": 15162.300000011921,
+              "min": 14981.299999982119,
+              "max": 15162.300000011921,
+              "sampleStandardDeviation": 127.98632741583853
+            },
+            "localContrast": [
+              46,
+              46
+            ]
+          },
+          "case-12": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 10285.39999999106,
+              "p95": 10487,
+              "min": 10083.799999982119,
+              "max": 10487,
+              "sampleStandardDeviation": 285.10545418706
+            },
+            "localContrast": [
+              54,
+              54
+            ]
+          },
+          "case-13": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 2484.0499999970198,
+              "p95": 2529.5999999940395,
+              "min": 2438.5,
+              "max": 2529.5999999940395,
+              "sampleStandardDeviation": 64.4174277618798
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-14": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 3344.2000000029802,
+              "p95": 3360.4000000059605,
+              "min": 3328,
+              "max": 3360.4000000059605,
+              "sampleStandardDeviation": 22.910259714658824
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-15": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 9613.550000011921,
+              "p95": 9745.200000017881,
+              "min": 9481.90000000596,
+              "max": 9745.200000017881,
+              "sampleStandardDeviation": 186.18121549484735
+            },
+            "localContrast": [
+              94,
+              94
+            ]
+          },
+          "case-16": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 4590.6500000059605,
+              "p95": 4866.5,
+              "min": 4314.800000011921,
+              "max": 4866.5,
+              "sampleStandardDeviation": 390.1108111721889
+            },
+            "localContrast": [
+              97,
+              97
+            ]
+          },
+          "case-17": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 10030.54999999702,
+              "p95": 10252.5,
+              "min": 9808.59999999404,
+              "max": 10252.5,
+              "sampleStandardDeviation": 313.88470017292315
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "case-18": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 11114.59999999404,
+              "p95": 11381.299999982119,
+              "min": 10847.90000000596,
+              "max": 11381.299999982119,
+              "sampleStandardDeviation": 377.1707570680457
+            },
+            "localContrast": [
+              47,
+              73
+            ]
+          },
+          "case-19": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7095.54999999702,
+              "p95": 7137.5999999940395,
+              "min": 7053.5,
+              "max": 7137.5999999940395,
+              "sampleStandardDeviation": 59.46768029357396
+            },
+            "localContrast": [
+              99,
+              99
+            ]
+          },
+          "case-20": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 2952.3499999940395,
+              "p95": 2960.5,
+              "min": 2944.199999988079,
+              "max": 2960.5,
+              "sampleStandardDeviation": 11.525840541770094
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-21": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 9994.29999999702,
+              "p95": 10378,
+              "min": 9610.59999999404,
+              "max": 10378,
+              "sampleStandardDeviation": 542.6337438867713
+            },
+            "localContrast": [
+              96,
+              96
+            ]
+          },
+          "case-22": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 17445.10000000894,
+              "p95": 17746.90000000596,
+              "min": 17143.30000001192,
+              "max": 17746.90000000596,
+              "sampleStandardDeviation": 426.8096531199854
+            },
+            "localContrast": [
+              39,
+              39
+            ]
+          },
+          "case-23": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 9633.84999999404,
+              "p95": 9645.90000000596,
+              "min": 9621.799999982119,
+              "max": 9645.90000000596,
+              "sampleStandardDeviation": 17.041273443454536
+            },
+            "localContrast": [
+              31,
+              31
+            ]
+          },
+          "case-24": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 54749.45000000298,
+              "p95": 54974.69999998808,
+              "min": 54524.20000001788,
+              "max": 54974.69999998808,
+              "sampleStandardDeviation": 318.5516049034662
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "repeat-2": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 6757.9000000059605,
+              "p95": 7010.5,
+              "min": 6505.300000011921,
+              "max": 7010.5,
+              "sampleStandardDeviation": 357.23034584701446
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "repeat-3": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 6671.0999999940395,
+              "p95": 6819.0999999940395,
+              "min": 6523.0999999940395,
+              "max": 6819.0999999940395,
+              "sampleStandardDeviation": 209.30360723121808
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "repeat-4": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 6532.70000000298,
+              "p95": 6539.300000011921,
+              "min": 6526.0999999940395,
+              "max": 6539.300000011921,
+              "sampleStandardDeviation": 9.333809524306481
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "repeat-5": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 6744.800000011921,
+              "p95": 6930.5,
+              "min": 6559.100000023842,
+              "max": 6930.5,
+              "sampleStandardDeviation": 262.61945851582504
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          }
+        },
+        "inclusiveProfile": {
+          "analyzeAudio": {
+            "n": 56,
+            "p50": 58.3999999910593,
+            "p95": 113.5,
+            "min": 34.900000005960464,
+            "max": 119.40000000596046,
+            "sampleStandardDeviation": 21.85217870996826
+          },
+          "plan": {
+            "n": 56,
+            "p50": 35.150000005960464,
+            "p95": 52.99999997019768,
+            "min": 20.69999998807907,
+            "max": 56.400000005960464,
+            "sampleStandardDeviation": 7.211800393869162
+          },
+          "ensureFonts": {
+            "n": 56,
+            "p50": 690.7000000029802,
+            "p95": 1246.0999999940395,
+            "min": 532.9000000059605,
+            "max": 1692.9000000059605,
+            "sampleStandardDeviation": 218.40598101314438
+          },
+          "initialGrammarProtection": {
+            "n": 46,
+            "p50": 487.84999999403954,
+            "p95": 1217.6000000238419,
+            "min": 0,
+            "max": 5021.300000011921,
+            "sampleStandardDeviation": 1024.662283635552
+          },
+          "renderer_loadCustomBackground": {
+            "n": 56,
+            "p50": 239.39999985694885,
+            "p95": 320.2999999523163,
+            "min": 0.09999999403953552,
+            "max": 399.80000004172325,
+            "sampleStandardDeviation": 100.7779418070435
+          },
+          "renderer_loadAssetDeck": {
+            "n": 56,
+            "p50": 118.04999992251396,
+            "p95": 165.70000004768372,
+            "min": 0.19999998807907104,
+            "max": 225.80000022053719,
+            "sampleStandardDeviation": 52.58698075204423
+          },
+          "measureCinemaSequence": {
+            "n": 46,
+            "p50": 1181.650000050664,
+            "p95": 1898.799999922514,
+            "min": 972.7000000476837,
+            "max": 2430.599999934435,
+            "sampleStandardDeviation": 344.94028156978476
+          },
+          "cinemaBlockFlow": {
+            "n": 46,
+            "p50": 192.95000004768372,
+            "p95": 805.2000002264977,
+            "min": 51.10000005364418,
+            "max": 2581.300000101328,
+            "sampleStandardDeviation": 501.88967502676013
+          },
+          "measureCinemaVideoProxy": {
+            "n": 46,
+            "p50": 1384.3999999910593,
+            "p95": 4729.199999988079,
+            "min": 285.30000001192093,
+            "max": 15026.600000023842,
+            "sampleStandardDeviation": 2979.5520745151043
+          },
+          "rankCinemaCandidateV2": {
+            "n": 46,
+            "p50": 0.7000000327825546,
+            "p95": 1.399999976158142,
+            "min": 0.19999998807907104,
+            "max": 1.899999976158142,
+            "sampleStandardDeviation": 0.3329055173799985
+          },
+          "encodeCinemaVisualProxy": {
+            "n": 46,
+            "p50": 430.69999998807907,
+            "p95": 1435.9999999701977,
+            "min": 196.09999999403954,
+            "max": 3676.4000000059605,
+            "sampleStandardDeviation": 708.8073454112957
+          },
+          "verifyDecodedCinemaLayers": {
+            "n": 56,
+            "p50": 1025.4999999701977,
+            "p95": 3252,
+            "min": 0.20000001788139343,
+            "max": 11323.200000017881,
+            "sampleStandardDeviation": 2029.2824743818376
+          },
+          "measureCinemaEncodedProxy": {
+            "n": 46,
+            "p50": 1428.6000000089407,
+            "p95": 4168.300000011921,
+            "min": 511.09999999403954,
+            "max": 14738.899999976158,
+            "sampleStandardDeviation": 2817.3164709498296
+          },
+          "measureCinemaOutputReadability": {
+            "n": 42,
+            "p50": 1024.4500000029802,
+            "p95": 2822.7999999821186,
+            "min": 506.5000000298023,
+            "max": 12286.59999999404,
+            "sampleStandardDeviation": 2460.7989476146754
+          },
+          "analyzeRenderedFrames": {
+            "n": 56,
+            "p50": 4862.500000014901,
+            "p95": 13929.40000000596,
+            "min": 789.8999999761581,
+            "max": 47206.09999999404,
+            "sampleStandardDeviation": 8499.555638147816
+          },
+          "certifyExport": {
+            "n": 56,
+            "p50": 37.5,
+            "p95": 63.69999998807907,
+            "min": 23.700000017881393,
+            "max": 77.8999999910593,
+            "sampleStandardDeviation": 11.195469715623037
+          },
+          "observeExportedMP4": {
+            "n": 56,
+            "p50": 825.4500000029802,
+            "p95": 2101.100000023842,
+            "min": 149.59999999403954,
+            "max": 5421.9000000059605,
+            "sampleStandardDeviation": 974.0622913148942
+          },
+          "finalEncodeExcludingCertification": {
+            "n": 56,
+            "p50": 1377.3999999910593,
+            "p95": 2631.800000011921,
+            "min": 662.7000000178814,
+            "max": 6880.4000000059605,
+            "sampleStandardDeviation": 1100.1400680244822
+          },
+          "refinePhotoExport": {
+            "n": 56,
+            "p50": 1446.5,
+            "p95": 2700.5999999940395,
+            "min": 711.8999999761581,
+            "max": 6959.4000000059605,
+            "sampleStandardDeviation": 1104.600981667518
+          }
+        }
+      },
+      "pr7": {
+        "exports": 56,
+        "totalMs": {
+          "n": 56,
+          "p50": 13803.75,
+          "p95": 42222.80000001192,
+          "min": 2905.899999976158,
+          "max": 129729.40000000596,
+          "sampleStandardDeviation": 23864.778523510486
+        },
+        "searchMs": {
+          "n": 56,
+          "p50": 10923.04999998957,
+          "p95": 36556.29999998212,
+          "min": 876.9000000059605,
+          "max": 115120.90000000596,
+          "sampleStandardDeviation": 21608.242185506533
+        },
+        "exportMs": {
+          "n": 56,
+          "p50": 2124.14999999851,
+          "p95": 4772.300000011921,
+          "min": 1255.8999999761581,
+          "max": 13811.59999999404,
+          "sampleStandardDeviation": 2299.715221704879
+        },
+        "localContrast": {
+          "n": 46,
+          "p50": 95,
+          "p95": 100,
+          "min": 48,
+          "max": 100,
+          "sampleStandardDeviation": 16.880254594320608
+        },
+        "nonRepeatTrialLocalContrast": {
+          "n": 38,
+          "p50": 94,
+          "p95": 100,
+          "min": 48,
+          "max": 100,
+          "sampleStandardDeviation": 17.454350132533584
+        },
+        "distinctInputLocalContrast": {
+          "n": 19,
+          "p50": 94,
+          "p95": 100,
+          "min": 48,
+          "max": 100,
+          "sampleStandardDeviation": 17.695111162813518
+        },
+        "unmeasuredTrials": 10,
+        "unmeasuredInputs": [
+          "case-06",
+          "case-07",
+          "case-13",
+          "case-14",
+          "case-20"
+        ],
+        "perCase": {
+          "case-01": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7061.55000000447,
+              "p95": 7305.700000017881,
+              "min": 6817.399999991059,
+              "max": 7305.700000017881,
+              "sampleStandardDeviation": 345.2802412723572
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "case-02": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 35315.10000000894,
+              "p95": 36264.20000001788,
+              "min": 34366,
+              "max": 36264.20000001788,
+              "sampleStandardDeviation": 1342.2300920609484
+            },
+            "localContrast": [
+              65,
+              65
+            ]
+          },
+          "case-03": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 13528.05000000447,
+              "p95": 13934.40000000596,
+              "min": 13121.70000000298,
+              "max": 13934.40000000596,
+              "sampleStandardDeviation": 574.6656810724145
+            },
+            "localContrast": [
+              92,
+              92
+            ]
+          },
+          "case-04": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 13965.949999988079,
+              "p95": 14258.799999982119,
+              "min": 13673.09999999404,
+              "max": 14258.799999982119,
+              "sampleStandardDeviation": 414.1524417325315
+            },
+            "localContrast": [
+              99,
+              99
+            ]
+          },
+          "case-05": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 32711.70000000298,
+              "p95": 33746.5,
+              "min": 31676.90000000596,
+              "max": 33746.5,
+              "sampleStandardDeviation": 1463.428194339464
+            },
+            "localContrast": [
+              79,
+              79
+            ]
+          },
+          "case-06": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 2947.0999999791384,
+              "p95": 2988.2999999821186,
+              "min": 2905.899999976158,
+              "max": 2988.2999999821186,
+              "sampleStandardDeviation": 58.2655987739862
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-07": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 3679.999999985099,
+              "p95": 3853.0999999940395,
+              "min": 3506.899999976158,
+              "max": 3853.0999999940395,
+              "sampleStandardDeviation": 244.8003676594268
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-08": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 35284.39999999106,
+              "p95": 35652.09999999404,
+              "min": 34916.69999998808,
+              "max": 35652.09999999404,
+              "sampleStandardDeviation": 520.0063268888017
+            },
+            "localContrast": [
+              48,
+              48
+            ]
+          },
+          "case-09": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 21273.64999999106,
+              "p95": 21801.29999998212,
+              "min": 20746,
+              "max": 21801.29999998212,
+              "sampleStandardDeviation": 746.2097861735195
+            },
+            "localContrast": [
+              62,
+              62
+            ]
+          },
+          "case-10": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 13784.85000000894,
+              "p95": 14266.40000000596,
+              "min": 13303.300000011921,
+              "max": 14266.40000000596,
+              "sampleStandardDeviation": 681.0145409565492
+            },
+            "localContrast": [
+              99,
+              99
+            ]
+          },
+          "case-11": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 33618.5,
+              "p95": 34026.09999999404,
+              "min": 33210.90000000596,
+              "max": 34026.09999999404,
+              "sampleStandardDeviation": 576.4334480148442
+            },
+            "localContrast": [
+              83,
+              83
+            ]
+          },
+          "case-12": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 21229.34999999404,
+              "p95": 21595.59999999404,
+              "min": 20863.09999999404,
+              "max": 21595.59999999404,
+              "sampleStandardDeviation": 517.9557172191461
+            },
+            "localContrast": [
+              95,
+              95
+            ]
+          },
+          "case-13": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 3279.949999988079,
+              "p95": 3635.5,
+              "min": 2924.399999976158,
+              "max": 3635.5,
+              "sampleStandardDeviation": 502.8236321186127
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-14": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 4562.850000008941,
+              "p95": 4780.800000011921,
+              "min": 4344.9000000059605,
+              "max": 4780.800000011921,
+              "sampleStandardDeviation": 308.2278459234308
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-15": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 17989.60000000894,
+              "p95": 18104.80000001192,
+              "min": 17874.40000000596,
+              "max": 18104.80000001192,
+              "sampleStandardDeviation": 162.91740238959522
+            },
+            "localContrast": [
+              94,
+              94
+            ]
+          },
+          "case-16": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 13809.34999999404,
+              "p95": 14176.09999999404,
+              "min": 13442.59999999404,
+              "max": 14176.09999999404,
+              "sampleStandardDeviation": 518.6628240003326
+            },
+            "localContrast": [
+              98,
+              98
+            ]
+          },
+          "case-17": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 11624,
+              "p95": 11694.59999999404,
+              "min": 11553.40000000596,
+              "max": 11694.59999999404,
+              "sampleStandardDeviation": 99.84347749511115
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "case-18": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 22964.45000000298,
+              "p95": 23270.80000001192,
+              "min": 22658.09999999404,
+              "max": 23270.80000001192,
+              "sampleStandardDeviation": 433.2443248456417
+            },
+            "localContrast": [
+              86,
+              86
+            ]
+          },
+          "case-19": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 11842.40000000596,
+              "p95": 12109.5,
+              "min": 11575.300000011921,
+              "max": 12109.5,
+              "sampleStandardDeviation": 377.7364425014243
+            },
+            "localContrast": [
+              99,
+              99
+            ]
+          },
+          "case-20": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 3869.2999999970198,
+              "p95": 3918.0999999940395,
+              "min": 3820.5,
+              "max": 3918.0999999940395,
+              "sampleStandardDeviation": 69.01362183959236
+            },
+            "localContrast": [
+              null,
+              null
+            ]
+          },
+          "case-21": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 18239.25,
+              "p95": 19049,
+              "min": 17429.5,
+              "max": 19049,
+              "sampleStandardDeviation": 1145.1594321316138
+            },
+            "localContrast": [
+              99,
+              99
+            ]
+          },
+          "case-22": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 41443.65000000596,
+              "p95": 42222.80000001192,
+              "min": 40664.5,
+              "max": 42222.80000001192,
+              "sampleStandardDeviation": 1101.8844971314263
+            },
+            "localContrast": [
+              94,
+              94
+            ]
+          },
+          "case-23": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 24120.85000000894,
+              "p95": 24540.30000001192,
+              "min": 23701.40000000596,
+              "max": 24540.30000001192,
+              "sampleStandardDeviation": 593.1918787416095
+            },
+            "localContrast": [
+              68,
+              68
+            ]
+          },
+          "case-24": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 129023.25,
+              "p95": 129729.40000000596,
+              "min": 128317.09999999404,
+              "max": 129729.40000000596,
+              "sampleStandardDeviation": 998.6469070781905
+            },
+            "localContrast": [
+              49,
+              49
+            ]
+          },
+          "repeat-2": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7100.600000008941,
+              "p95": 7157.800000011921,
+              "min": 7043.4000000059605,
+              "max": 7157.800000011921,
+              "sampleStandardDeviation": 80.89301577195572
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "repeat-3": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7223.9000000059605,
+              "p95": 7305.800000011921,
+              "min": 7142,
+              "max": 7305.800000011921,
+              "sampleStandardDeviation": 115.82409076678586
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "repeat-4": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7069.5999999940395,
+              "p95": 7125.5,
+              "min": 7013.699999988079,
+              "max": 7125.5,
+              "sampleStandardDeviation": 79.05453814508539
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          },
+          "repeat-5": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7005,
+              "p95": 7030.299999982119,
+              "min": 6979.700000017881,
+              "max": 7030.299999982119,
+              "sampleStandardDeviation": 35.779603102751196
+            },
+            "localContrast": [
+              100,
+              100
+            ]
+          }
+        },
+        "inclusiveProfile": {
+          "analyzeAudio": {
+            "n": 56,
+            "p50": 65.84999999403954,
+            "p95": 118.40000000596046,
+            "min": 34.19999998807907,
+            "max": 156.69999998807907,
+            "sampleStandardDeviation": 25.13785259316594
+          },
+          "plan": {
+            "n": 56,
+            "p50": 39.49999997019768,
+            "p95": 56,
+            "min": 26.299999982118607,
+            "max": 68.80000001192093,
+            "sampleStandardDeviation": 8.270385088890107
+          },
+          "ensureFonts": {
+            "n": 56,
+            "p50": 651.9000000059605,
+            "p95": 1114.5,
+            "min": 501.80000001192093,
+            "max": 1204.800000011921,
+            "sampleStandardDeviation": 159.83834649255598
+          },
+          "initialGrammarProtection": {
+            "n": 46,
+            "p50": 752.9500000029802,
+            "p95": 1909.5999999940395,
+            "min": 0,
+            "max": 9016.700000017881,
+            "sampleStandardDeviation": 1831.5507977869763
+          },
+          "renderer_loadCustomBackground": {
+            "n": 56,
+            "p50": 118,
+            "p95": 160.20000003278255,
+            "min": 0,
+            "max": 209.0999999642372,
+            "sampleStandardDeviation": 47.34914798664909
+          },
+          "renderer_loadAssetDeck": {
+            "n": 56,
+            "p50": 49.000000059604645,
+            "p95": 80.50000004470348,
+            "min": 0.30000001192092896,
+            "max": 112.8000001013279,
+            "sampleStandardDeviation": 22.93021570874559
+          },
+          "measureCinemaSequence": {
+            "n": 46,
+            "p50": 1588.4999999254942,
+            "p95": 3101.9999999701977,
+            "min": 588.3000000268221,
+            "max": 4056.399999856949,
+            "sampleStandardDeviation": 890.9386763784377
+          },
+          "cinemaBlockFlow": {
+            "n": 46,
+            "p50": 554.4499996751547,
+            "p95": 1666.2999999523163,
+            "min": 129.90000012516975,
+            "max": 5071.6000000834465,
+            "sampleStandardDeviation": 972.6157854781744
+          },
+          "measureCinemaVideoProxy": {
+            "n": 46,
+            "p50": 3764.7999999821186,
+            "p95": 9957.300000011921,
+            "min": 890.1999999880791,
+            "max": 29353.90000012517,
+            "sampleStandardDeviation": 5927.7839803114875
+          },
+          "rankCinemaCandidateV2": {
+            "n": 46,
+            "p50": 0.9000000283122063,
+            "p95": 1.399999976158142,
+            "min": 0.5000000149011612,
+            "max": 1.4000000655651093,
+            "sampleStandardDeviation": 0.22076940192369468
+          },
+          "encodeCinemaVisualProxy": {
+            "n": 46,
+            "p50": 1347.4000000357628,
+            "p95": 3099.900000035763,
+            "min": 332.39999997615814,
+            "max": 10639.5,
+            "sampleStandardDeviation": 2082.7242750288847
+          },
+          "verifyDecodedCinemaLayers": {
+            "n": 56,
+            "p50": 2224.9000000208616,
+            "p95": 7601.100000023842,
+            "min": 342.19999998807907,
+            "max": 25683.899999946356,
+            "sampleStandardDeviation": 4676.79101886057
+          },
+          "measureCinemaEncodedProxy": {
+            "n": 46,
+            "p50": 4551.549999982119,
+            "p95": 9803.09999999404,
+            "min": 1298.7999999970198,
+            "max": 34999.59999999404,
+            "sampleStandardDeviation": 6778.396712145458
+          },
+          "measureCinemaOutputReadability": {
+            "n": 46,
+            "p50": 4355.099999964237,
+            "p95": 12946.799999982119,
+            "min": 829.6999999880791,
+            "max": 43583.600000053644,
+            "sampleStandardDeviation": 8715.005738421462
+          },
+          "repairReadabilityPreview": {
+            "n": 46,
+            "p50": 1423.3500000014901,
+            "p95": 6489.199999988079,
+            "min": 2.2999999821186066,
+            "max": 12323.399999976158,
+            "sampleStandardDeviation": 2952.667887231456
+          },
+          "analyzeRenderedFrames": {
+            "n": 56,
+            "p50": 10922.99999999255,
+            "p95": 36556.29999998212,
+            "min": 876.9000000059605,
+            "max": 115120.90000000596,
+            "sampleStandardDeviation": 21608.24751575942
+          },
+          "certifyExport": {
+            "n": 56,
+            "p50": 38.099999994039536,
+            "p95": 58.5,
+            "min": 24.5,
+            "max": 63,
+            "sampleStandardDeviation": 8.563219254438971
+          },
+          "observeExportedMP4": {
+            "n": 56,
+            "p50": 1406.5999999940395,
+            "p95": 3938.2000000178814,
+            "min": 578.2000000178814,
+            "max": 11110.699999988079,
+            "sampleStandardDeviation": 1988.4959424091096
+          },
+          "finalEncodeExcludingCertification": {
+            "n": 56,
+            "p50": 2053.0499999970198,
+            "p95": 4696.800000011921,
+            "min": 1186.7999999821186,
+            "max": 13698.600000023842,
+            "sampleStandardDeviation": 2291.4727502214723
+          },
+          "refinePhotoExport": {
+            "n": 56,
+            "p50": 2124.10000000149,
+            "p95": 4772.199999988079,
+            "min": 1255.699999988079,
+            "max": 13811.5,
+            "sampleStandardDeviation": 2299.7135137778387
+          },
+          "compareLegacyFinalist": {
+            "n": 34,
+            "p50": 9431.59999999404,
+            "p95": 55702.79999998212,
+            "min": 4246.799999982119,
+            "max": 55927.70000001788,
+            "sampleStandardDeviation": 11817.706862160268
+          }
+        }
+      }
+    },
+    "additional-eight": {
+      "main": {
+        "exports": 16,
+        "totalMs": {
+          "n": 16,
+          "p50": 13080.85000000894,
+          "p95": 20918.59999999404,
+          "min": 7680.299999982119,
+          "max": 20918.59999999404,
+          "sampleStandardDeviation": 4568.136409595314
+        },
+        "searchMs": {
+          "n": 16,
+          "p50": 9227.75,
+          "p95": 15101,
+          "min": 4183.5999999940395,
+          "max": 15101,
+          "sampleStandardDeviation": 3729.690906489305
+        },
+        "exportMs": {
+          "n": 16,
+          "p50": 2842.300000011921,
+          "p95": 4999.300000011921,
+          "min": 1714.7999999821186,
+          "max": 4999.300000011921,
+          "sampleStandardDeviation": 966.8015753030613
+        },
+        "localContrast": {
+          "n": 16,
+          "p50": 45.5,
+          "p95": 78,
+          "min": 27,
+          "max": 78,
+          "sampleStandardDeviation": 17.103118624001493
+        },
+        "nonRepeatTrialLocalContrast": {
+          "n": 16,
+          "p50": 45.5,
+          "p95": 78,
+          "min": 27,
+          "max": 78,
+          "sampleStandardDeviation": 17.103118624001493
+        },
+        "distinctInputLocalContrast": {
+          "n": 8,
+          "p50": 45.5,
+          "p95": 78,
+          "min": 27,
+          "max": 78,
+          "sampleStandardDeviation": 17.703409679655337
+        },
+        "unmeasuredTrials": 0,
+        "unmeasuredInputs": [],
+        "perCase": {
+          "general-dark": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 20609.15000000596,
+              "p95": 20918.59999999404,
+              "min": 20299.70000001788,
+              "max": 20918.59999999404,
+              "sampleStandardDeviation": 437.62838685949555
+            },
+            "localContrast": [
+              36,
+              36
+            ]
+          },
+          "general-bright": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 9248.549999982119,
+              "p95": 9376.799999982119,
+              "min": 9120.299999982119,
+              "max": 9376.799999982119,
+              "sampleStandardDeviation": 181.37288937434943
+            },
+            "localContrast": [
+              42,
+              42
+            ]
+          },
+          "general-texture": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 14195.65000000596,
+              "p95": 14279.09999999404,
+              "min": 14112.200000017881,
+              "max": 14279.09999999404,
+              "sampleStandardDeviation": 118.01612176317605
+            },
+            "localContrast": [
+              63,
+              63
+            ]
+          },
+          "general-people": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 19448,
+              "p95": 19577.5,
+              "min": 19318.5,
+              "max": 19577.5,
+              "sampleStandardDeviation": 183.1406563273158
+            },
+            "localContrast": [
+              36,
+              36
+            ]
+          },
+          "general-background-text": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 9940.5,
+              "p95": 10246.699999988079,
+              "min": 9634.300000011921,
+              "max": 10246.699999988079,
+              "sampleStandardDeviation": 433.03219278178295
+            },
+            "localContrast": [
+              66,
+              66
+            ]
+          },
+          "general-dense": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 7724.399999991059,
+              "p95": 7768.5,
+              "min": 7680.299999982119,
+              "max": 7768.5,
+              "sampleStandardDeviation": 62.36681811329755
+            },
+            "localContrast": [
+              27,
+              27
+            ]
+          },
+          "general-long-hold": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 11949.65000000596,
+              "p95": 12049.5,
+              "min": 11849.800000011921,
+              "max": 12049.5,
+              "sampleStandardDeviation": 141.20922419452418
+            },
+            "localContrast": [
+              78,
+              78
+            ]
+          },
+          "general-manual": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 15236.85000000894,
+              "p95": 15834.90000000596,
+              "min": 14638.800000011921,
+              "max": 15834.90000000596,
+              "sampleStandardDeviation": 845.7704209730148
+            },
+            "localContrast": [
+              49,
+              49
+            ]
+          }
+        },
+        "inclusiveProfile": {
+          "analyzeAudio": {
+            "n": 16,
+            "p50": 59.349999994039536,
+            "p95": 116.2999999821186,
+            "min": 40.099999994039536,
+            "max": 116.2999999821186,
+            "sampleStandardDeviation": 20.196946962771285
+          },
+          "plan": {
+            "n": 16,
+            "p50": 33.69999998807907,
+            "p95": 42.5,
+            "min": 29.30000001192093,
+            "max": 42.5,
+            "sampleStandardDeviation": 3.6168068338167725
+          },
+          "ensureFonts": {
+            "n": 16,
+            "p50": 687.8499999940395,
+            "p95": 930.3000000119209,
+            "min": 570.5999999940395,
+            "max": 930.3000000119209,
+            "sampleStandardDeviation": 105.88296507409294
+          },
+          "renderer_loadCustomBackground": {
+            "n": 16,
+            "p50": 262.6499999165535,
+            "p95": 324.19999998807907,
+            "min": 182.40000000596046,
+            "max": 324.19999998807907,
+            "sampleStandardDeviation": 43.076590685291585
+          },
+          "renderer_loadAssetDeck": {
+            "n": 16,
+            "p50": 128.90000000596046,
+            "p95": 183.0999999642372,
+            "min": 95.49999997019768,
+            "max": 183.0999999642372,
+            "sampleStandardDeviation": 22.15537555933877
+          },
+          "measureCinemaSequence": {
+            "n": 16,
+            "p50": 1498.5000000745058,
+            "p95": 2054.2999998629093,
+            "min": 1101.5000000596046,
+            "max": 2054.2999998629093,
+            "sampleStandardDeviation": 285.14951271958535
+          },
+          "cinemaBlockFlow": {
+            "n": 16,
+            "p50": 408.34999972581863,
+            "p95": 656.4000000059605,
+            "min": 65.80000013113022,
+            "max": 656.4000000059605,
+            "sampleStandardDeviation": 197.2139530564026
+          },
+          "measureCinemaVideoProxy": {
+            "n": 16,
+            "p50": 2620.7999999970198,
+            "p95": 4680.5,
+            "min": 302.90000000596046,
+            "max": 4680.5,
+            "sampleStandardDeviation": 1271.93217842576
+          },
+          "encodeCinemaVisualProxy": {
+            "n": 16,
+            "p50": 1035.2999999821186,
+            "p95": 2145.2999999821186,
+            "min": 304.5,
+            "max": 2145.2999999821186,
+            "sampleStandardDeviation": 522.4273293966547
+          },
+          "verifyDecodedCinemaLayers": {
+            "n": 16,
+            "p50": 3295.75,
+            "p95": 7901.299999982119,
+            "min": 2171.600000023842,
+            "max": 7901.299999982119,
+            "sampleStandardDeviation": 2133.3320275796964
+          },
+          "measureCinemaEncodedProxy": {
+            "n": 16,
+            "p50": 4599.200000017881,
+            "p95": 7935.700000017881,
+            "min": 1652.199999988079,
+            "max": 7935.700000017881,
+            "sampleStandardDeviation": 2183.3407313582925
+          },
+          "analyzeRenderedFrames": {
+            "n": 16,
+            "p50": 9227.75,
+            "p95": 15101,
+            "min": 4183.5999999940395,
+            "max": 15101,
+            "sampleStandardDeviation": 3729.6960918566133
+          },
+          "certifyExport": {
+            "n": 16,
+            "p50": 35.29999999701977,
+            "p95": 60.80000001192093,
+            "min": 26.100000023841858,
+            "max": 60.80000001192093,
+            "sampleStandardDeviation": 9.267611611961051
+          },
+          "observeExportedMP4": {
+            "n": 16,
+            "p50": 1924.7499999850988,
+            "p95": 4175.5999999940395,
+            "min": 962.7999999821186,
+            "max": 4175.5999999940395,
+            "sampleStandardDeviation": 1017.9497985160612
+          },
+          "finalEncodeExcludingCertification": {
+            "n": 16,
+            "p50": 2795.8500000089407,
+            "p95": 4942.799999982119,
+            "min": 1681.9000000059605,
+            "max": 4942.799999982119,
+            "sampleStandardDeviation": 966.0785086930371
+          },
+          "refinePhotoExport": {
+            "n": 16,
+            "p50": 2842.250000014901,
+            "p95": 4999.300000011921,
+            "min": 1714.7999999821186,
+            "max": 4999.300000011921,
+            "sampleStandardDeviation": 966.8095955274146
+          }
+        }
+      },
+      "pr6": {
+        "exports": 16,
+        "totalMs": {
+          "n": 16,
+          "p50": 11238.25,
+          "p95": 16237.5,
+          "min": 6655.299999982119,
+          "max": 16237.5,
+          "sampleStandardDeviation": 3357.629215486082
+        },
+        "searchMs": {
+          "n": 16,
+          "p50": 8362.54999999702,
+          "p95": 12738.300000011921,
+          "min": 3972.0999999940395,
+          "max": 12738.300000011921,
+          "sampleStandardDeviation": 2974.6134260621566
+        },
+        "exportMs": {
+          "n": 16,
+          "p50": 1938.8499999940395,
+          "p95": 2758.7999999821186,
+          "min": 1347.2999999821186,
+          "max": 2758.7999999821186,
+          "sampleStandardDeviation": 467.99283684107706
+        },
+        "localContrast": {
+          "n": 16,
+          "p50": 46,
+          "p95": 78,
+          "min": 27,
+          "max": 78,
+          "sampleStandardDeviation": 17.274258305351346
+        },
+        "nonRepeatTrialLocalContrast": {
+          "n": 16,
+          "p50": 46,
+          "p95": 78,
+          "min": 27,
+          "max": 78,
+          "sampleStandardDeviation": 17.274258305351346
+        },
+        "distinctInputLocalContrast": {
+          "n": 8,
+          "p50": 46,
+          "p95": 78,
+          "min": 27,
+          "max": 78,
+          "sampleStandardDeviation": 17.880556079559877
+        },
+        "unmeasuredTrials": 0,
+        "unmeasuredInputs": [],
+        "perCase": {
+          "general-dark": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 16182.800000011921,
+              "p95": 16237.5,
+              "min": 16128.100000023842,
+              "max": 16237.5,
+              "sampleStandardDeviation": 77.35748184494956
+            },
+            "localContrast": [
+              36,
+              36
+            ]
+          },
+          "general-bright": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 8219.54999999702,
+              "p95": 8428.5,
+              "min": 8010.5999999940395,
+              "max": 8428.5,
+              "sampleStandardDeviation": 295.4999238620729
+            },
+            "localContrast": [
+              44,
+              44
+            ]
+          },
+          "general-texture": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 11704.04999999702,
+              "p95": 11925.5,
+              "min": 11482.59999999404,
+              "max": 11925.5,
+              "sampleStandardDeviation": 313.1775933917366
+            },
+            "localContrast": [
+              63,
+              63
+            ]
+          },
+          "general-people": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 16009.199999988079,
+              "p95": 16131.59999999404,
+              "min": 15886.799999982119,
+              "max": 16131.59999999404,
+              "sampleStandardDeviation": 173.0997400428962
+            },
+            "localContrast": [
+              36,
+              36
+            ]
+          },
+          "general-background-text": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 9138.45000000298,
+              "p95": 9496.5,
+              "min": 8780.40000000596,
+              "max": 9496.5,
+              "sampleStandardDeviation": 506.359166003472
+            },
+            "localContrast": [
+              68,
+              68
+            ]
+          },
+          "general-dense": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 6841.449999988079,
+              "p95": 7027.5999999940395,
+              "min": 6655.299999982119,
+              "max": 7027.5999999940395,
+              "sampleStandardDeviation": 263.255854644181
+            },
+            "localContrast": [
+              27,
+              27
+            ]
+          },
+          "general-long-hold": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 10798.34999999404,
+              "p95": 10993.90000000596,
+              "min": 10602.799999982119,
+              "max": 10993.90000000596,
+              "sampleStandardDeviation": 276.5494621389175
+            },
+            "localContrast": [
+              78,
+              78
+            ]
+          },
+          "general-manual": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 13328.75,
+              "p95": 13587.300000011921,
+              "min": 13070.199999988079,
+              "max": 13587.300000011921,
+              "sampleStandardDeviation": 365.6449165684225
+            },
+            "localContrast": [
+              48,
+              48
+            ]
+          }
+        },
+        "inclusiveProfile": {
+          "analyzeAudio": {
+            "n": 16,
+            "p50": 55.29999999701977,
+            "p95": 92.40000000596046,
+            "min": 45.70000001788139,
+            "max": 92.40000000596046,
+            "sampleStandardDeviation": 14.827339611193251
+          },
+          "plan": {
+            "n": 16,
+            "p50": 39.30000001192093,
+            "p95": 53.5,
+            "min": 33.099999994039536,
+            "max": 53.5,
+            "sampleStandardDeviation": 6.420121366477386
+          },
+          "ensureFonts": {
+            "n": 16,
+            "p50": 686.6499999910593,
+            "p95": 961.5,
+            "min": 579.7999999821186,
+            "max": 961.5,
+            "sampleStandardDeviation": 116.6192143962542
+          },
+          "initialGrammarProtection": {
+            "n": 16,
+            "p50": 574.75,
+            "p95": 1097.9000000059605,
+            "min": 0,
+            "max": 1097.9000000059605,
+            "sampleStandardDeviation": 350.9944707553856
+          },
+          "renderer_loadCustomBackground": {
+            "n": 16,
+            "p50": 291.5500000566244,
+            "p95": 331.39999997615814,
+            "min": 197.79999995231628,
+            "max": 331.39999997615814,
+            "sampleStandardDeviation": 40.057456655461706
+          },
+          "renderer_loadAssetDeck": {
+            "n": 16,
+            "p50": 142.45000003278255,
+            "p95": 188.70000013709068,
+            "min": 98.30000007152557,
+            "max": 188.70000013709068,
+            "sampleStandardDeviation": 22.384227146576333
+          },
+          "measureCinemaSequence": {
+            "n": 16,
+            "p50": 1330.9999999850988,
+            "p95": 1986.000000089407,
+            "min": 1141.599999845028,
+            "max": 1986.000000089407,
+            "sampleStandardDeviation": 259.62708770934887
+          },
+          "cinemaBlockFlow": {
+            "n": 16,
+            "p50": 366.99999986588955,
+            "p95": 617.9999999403954,
+            "min": 78.99999952316284,
+            "max": 617.9999999403954,
+            "sampleStandardDeviation": 172.44097345100488
+          },
+          "measureCinemaVideoProxy": {
+            "n": 16,
+            "p50": 2469.300000011921,
+            "p95": 4531.100000053644,
+            "min": 307,
+            "max": 4531.100000053644,
+            "sampleStandardDeviation": 1211.106606516035
+          },
+          "rankCinemaCandidateV2": {
+            "n": 16,
+            "p50": 0.8499999791383743,
+            "p95": 1.0000000298023224,
+            "min": 0.29999998211860657,
+            "max": 1.0000000298023224,
+            "sampleStandardDeviation": 0.1842778702327287
+          },
+          "encodeCinemaVisualProxy": {
+            "n": 16,
+            "p50": 1024.050000011921,
+            "p95": 1801.4000000059605,
+            "min": 315.59999999403954,
+            "max": 1801.4000000059605,
+            "sampleStandardDeviation": 468.25018308393726
+          },
+          "verifyDecodedCinemaLayers": {
+            "n": 16,
+            "p50": 1314.4500000178814,
+            "p95": 2595.5999999940395,
+            "min": 750.9000000059605,
+            "max": 2595.5999999940395,
+            "sampleStandardDeviation": 664.1100019335012
+          },
+          "measureCinemaEncodedProxy": {
+            "n": 16,
+            "p50": 2723.250000014901,
+            "p95": 4090.5999999940395,
+            "min": 852.5999999940395,
+            "max": 4090.5999999940395,
+            "sampleStandardDeviation": 1162.524036094144
+          },
+          "measureCinemaOutputReadability": {
+            "n": 16,
+            "p50": 1184.7000000029802,
+            "p95": 2514.9000000059605,
+            "min": 532.9000000357628,
+            "max": 2514.9000000059605,
+            "sampleStandardDeviation": 597.2981829360234
+          },
+          "analyzeRenderedFrames": {
+            "n": 16,
+            "p50": 8362.5,
+            "p95": 12738.300000011921,
+            "min": 3972.0999999940395,
+            "max": 12738.300000011921,
+            "sampleStandardDeviation": 2974.6127504771353
+          },
+          "certifyExport": {
+            "n": 16,
+            "p50": 32.49999998509884,
+            "p95": 54.5,
+            "min": 23.30000001192093,
+            "max": 54.5,
+            "sampleStandardDeviation": 8.642605224163724
+          },
+          "observeExportedMP4": {
+            "n": 16,
+            "p50": 1085.0499999970198,
+            "p95": 1985.199999988079,
+            "min": 601.9000000059605,
+            "max": 1985.199999988079,
+            "sampleStandardDeviation": 468.7153917901508
+          },
+          "finalEncodeExcludingCertification": {
+            "n": 16,
+            "p50": 1885.9500000178814,
+            "p95": 2692.0999999940395,
+            "min": 1289.5,
+            "max": 2692.0999999940395,
+            "sampleStandardDeviation": 466.6303569184916
+          },
+          "refinePhotoExport": {
+            "n": 16,
+            "p50": 1938.7999999970198,
+            "p95": 2758.7999999821186,
+            "min": 1347.199999988079,
+            "max": 2758.7999999821186,
+            "sampleStandardDeviation": 467.9858049387311
+          }
+        }
+      },
+      "pr7": {
+        "exports": 16,
+        "totalMs": {
+          "n": 16,
+          "p50": 24776.45000000298,
+          "p95": 36920.59999999404,
+          "min": 16971.30000001192,
+          "max": 36920.59999999404,
+          "sampleStandardDeviation": 7825.236650902121
+        },
+        "searchMs": {
+          "n": 16,
+          "p50": 21016.75,
+          "p95": 31996.100000023842,
+          "min": 14117.700000017881,
+          "max": 31996.100000023842,
+          "sampleStandardDeviation": 6956.21752525911
+        },
+        "exportMs": {
+          "n": 16,
+          "p50": 3148.6000000089407,
+          "p95": 4677,
+          "min": 1976,
+          "max": 4677,
+          "sampleStandardDeviation": 964.980223626158
+        },
+        "localContrast": {
+          "n": 16,
+          "p50": 73.5,
+          "p95": 98,
+          "min": 38,
+          "max": 98,
+          "sampleStandardDeviation": 20.764954450548004
+        },
+        "nonRepeatTrialLocalContrast": {
+          "n": 16,
+          "p50": 73.5,
+          "p95": 98,
+          "min": 38,
+          "max": 98,
+          "sampleStandardDeviation": 20.764954450548004
+        },
+        "distinctInputLocalContrast": {
+          "n": 8,
+          "p50": 73.5,
+          "p95": 98,
+          "min": 38,
+          "max": 98,
+          "sampleStandardDeviation": 21.493769861453874
+        },
+        "unmeasuredTrials": 0,
+        "unmeasuredInputs": [],
+        "perCase": {
+          "general-dark": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 36778.95000000298,
+              "p95": 36842,
+              "min": 36715.90000000596,
+              "max": 36842,
+              "sampleStandardDeviation": 89.16616510340896
+            },
+            "localContrast": [
+              38,
+              38
+            ]
+          },
+          "general-bright": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 17728.94999998808,
+              "p95": 18127.19999998808,
+              "min": 17330.69999998808,
+              "max": 18127.19999998808,
+              "sampleStandardDeviation": 563.210551215085
+            },
+            "localContrast": [
+              79,
+              79
+            ]
+          },
+          "general-texture": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 25436.54999999702,
+              "p95": 26137.19999998808,
+              "min": 24735.90000000596,
+              "max": 26137.19999998808,
+              "sampleStandardDeviation": 990.868732464065
+            },
+            "localContrast": [
+              68,
+              68
+            ]
+          },
+          "general-people": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 36516.79999999702,
+              "p95": 36920.59999999404,
+              "min": 36113,
+              "max": 36920.59999999404,
+              "sampleStandardDeviation": 571.0594364820411
+            },
+            "localContrast": [
+              95,
+              95
+            ]
+          },
+          "general-background-text": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 17647.95000000298,
+              "p95": 18324.59999999404,
+              "min": 16971.30000001192,
+              "max": 18324.59999999404,
+              "sampleStandardDeviation": 956.9276069671107
+            },
+            "localContrast": [
+              80,
+              80
+            ]
+          },
+          "general-dense": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 24049.04999999702,
+              "p95": 24817,
+              "min": 23281.09999999404,
+              "max": 24817,
+              "sampleStandardDeviation": 1086.045305228633
+            },
+            "localContrast": [
+              51,
+              51
+            ]
+          },
+          "general-long-hold": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 22265.5,
+              "p95": 22897.5,
+              "min": 21633.5,
+              "max": 22897.5,
+              "sampleStandardDeviation": 893.7829714197961
+            },
+            "localContrast": [
+              98,
+              98
+            ]
+          },
+          "general-manual": {
+            "trials": 2,
+            "totalMs": {
+              "n": 2,
+              "p50": 34990.19999998808,
+              "p95": 35112.69999998808,
+              "min": 34867.69999998808,
+              "max": 35112.69999998808,
+              "sampleStandardDeviation": 173.24116139070415
+            },
+            "localContrast": [
+              54,
+              54
+            ]
+          }
+        },
+        "inclusiveProfile": {
+          "analyzeAudio": {
+            "n": 16,
+            "p50": 77.95000000298023,
+            "p95": 112.10000002384186,
+            "min": 38.900000005960464,
+            "max": 112.10000002384186,
+            "sampleStandardDeviation": 25.356549948563977
+          },
+          "plan": {
+            "n": 16,
+            "p50": 41.849999994039536,
+            "p95": 61.80000001192093,
+            "min": 33.30000001192093,
+            "max": 61.80000001192093,
+            "sampleStandardDeviation": 9.244365397708313
+          },
+          "ensureFonts": {
+            "n": 16,
+            "p50": 700.4500000178814,
+            "p95": 925.5,
+            "min": 557.2000000178814,
+            "max": 925.5,
+            "sampleStandardDeviation": 105.02795104075575
+          },
+          "initialGrammarProtection": {
+            "n": 16,
+            "p50": 970.25,
+            "p95": 1836.2999999821186,
+            "min": 0,
+            "max": 1836.2999999821186,
+            "sampleStandardDeviation": 592.5293792636833
+          },
+          "renderer_loadCustomBackground": {
+            "n": 16,
+            "p50": 156.00000002980232,
+            "p95": 186.2999999821186,
+            "min": 125.5,
+            "max": 186.2999999821186,
+            "sampleStandardDeviation": 18.88336899678004
+          },
+          "renderer_loadAssetDeck": {
+            "n": 16,
+            "p50": 60.65000003576279,
+            "p95": 90.09999999403954,
+            "min": 50.60000002384186,
+            "max": 90.09999999403954,
+            "sampleStandardDeviation": 11.282368230731905
+          },
+          "measureCinemaSequence": {
+            "n": 16,
+            "p50": 1973.850000038743,
+            "p95": 3307.5000000298023,
+            "min": 1560.199999898672,
+            "max": 3307.5000000298023,
+            "sampleStandardDeviation": 562.342377281515
+          },
+          "cinemaBlockFlow": {
+            "n": 16,
+            "p50": 826.9000008553267,
+            "p95": 1618.9999996721745,
+            "min": 491.29999950528145,
+            "max": 1618.9999996721745,
+            "sampleStandardDeviation": 349.0566146028388
+          },
+          "measureCinemaVideoProxy": {
+            "n": 16,
+            "p50": 5154.599999979138,
+            "p95": 9874.599999964237,
+            "min": 3687.800000011921,
+            "max": 9874.599999964237,
+            "sampleStandardDeviation": 1894.2860947942204
+          },
+          "rankCinemaCandidateV2": {
+            "n": 16,
+            "p50": 0.9000000208616257,
+            "p95": 1.2000000178813934,
+            "min": 0.5999999940395355,
+            "max": 1.2000000178813934,
+            "sampleStandardDeviation": 0.21563858968415928
+          },
+          "encodeCinemaVisualProxy": {
+            "n": 16,
+            "p50": 2341.449999988079,
+            "p95": 4350.100000023842,
+            "min": 1289.0999999940395,
+            "max": 4350.100000023842,
+            "sampleStandardDeviation": 944.2584854221108
+          },
+          "verifyDecodedCinemaLayers": {
+            "n": 16,
+            "p50": 3914.5,
+            "p95": 5949.900000035763,
+            "min": 1956.5000000298023,
+            "max": 5949.900000035763,
+            "sampleStandardDeviation": 1509.2463070539932
+          },
+          "measureCinemaEncodedProxy": {
+            "n": 16,
+            "p50": 6310.049999982119,
+            "p95": 9357.700000017881,
+            "min": 3594.1999999582767,
+            "max": 9357.700000017881,
+            "sampleStandardDeviation": 2098.8644278876304
+          },
+          "measureCinemaOutputReadability": {
+            "n": 16,
+            "p50": 6302.449999913573,
+            "p95": 11567.999999940395,
+            "min": 3692.100000023842,
+            "max": 11567.999999940395,
+            "sampleStandardDeviation": 2996.8530041234244
+          },
+          "repairReadabilityPreview": {
+            "n": 16,
+            "p50": 3386.5999999791384,
+            "p95": 5697.400000035763,
+            "min": 1660.7000000178814,
+            "max": 5697.400000035763,
+            "sampleStandardDeviation": 1565.2105228830276
+          },
+          "compareLegacyFinalist": {
+            "n": 16,
+            "p50": 10509.500000014901,
+            "p95": 17002.29999998212,
+            "min": 6895.200000017881,
+            "max": 17002.29999998212,
+            "sampleStandardDeviation": 4046.887095857452
+          },
+          "analyzeRenderedFrames": {
+            "n": 16,
+            "p50": 21016.70000000298,
+            "p95": 31996.100000023842,
+            "min": 14117.700000017881,
+            "max": 31996.100000023842,
+            "sampleStandardDeviation": 6956.214324737484
+          },
+          "certifyExport": {
+            "n": 16,
+            "p50": 33.1000000089407,
+            "p95": 47.19999998807907,
+            "min": 24.399999976158142,
+            "max": 47.19999998807907,
+            "sampleStandardDeviation": 7.214141208910445
+          },
+          "observeExportedMP4": {
+            "n": 16,
+            "p50": 2219.749999985099,
+            "p95": 3755.399999976158,
+            "min": 1106.2999999821186,
+            "max": 3755.399999976158,
+            "sampleStandardDeviation": 1016.3939496861555
+          },
+          "finalEncodeExcludingCertification": {
+            "n": 16,
+            "p50": 3071.8500000089407,
+            "p95": 4585.600000023842,
+            "min": 1896.5,
+            "max": 4585.600000023842,
+            "sampleStandardDeviation": 964.7499883216087
+          },
+          "refinePhotoExport": {
+            "n": 16,
+            "p50": 3148.6000000089407,
+            "p95": 4676.9000000059605,
+            "min": 1975.699999988079,
+            "max": 4676.9000000059605,
+            "sampleStandardDeviation": 964.9945626539134
+          }
+        }
+      }
+    },
+    "independent-six": {
+      "main": {
+        "exports": 6,
+        "totalMs": {
+          "n": 6,
+          "p50": 15578.04999999702,
+          "p95": 21758.69999998808,
+          "min": 2930.199999988079,
+          "max": 21758.69999998808,
+          "sampleStandardDeviation": 6431.725924947213
+        },
+        "searchMs": {
+          "n": 6,
+          "p50": 9848.699999988079,
+          "p95": 16045.40000000596,
+          "min": 1022.2999999821186,
+          "max": 16045.40000000596,
+          "sampleStandardDeviation": 5321.397114080329
+        },
+        "exportMs": {
+          "n": 6,
+          "p50": 2624.5499999970198,
+          "p95": 4946.699999988079,
+          "min": 1108.5999999940395,
+          "max": 4946.699999988079,
+          "sampleStandardDeviation": 1274.445810535134
+        },
+        "localContrast": {
+          "n": 5,
+          "p50": 49,
+          "p95": 88,
+          "min": 20,
+          "max": 88,
+          "sampleStandardDeviation": 28.021420377989408
+        },
+        "nonRepeatTrialLocalContrast": {
+          "n": 5,
+          "p50": 49,
+          "p95": 88,
+          "min": 20,
+          "max": 88,
+          "sampleStandardDeviation": 28.021420377989408
+        },
+        "distinctInputLocalContrast": {
+          "n": 5,
+          "p50": 49,
+          "p95": 88,
+          "min": 20,
+          "max": 88,
+          "sampleStandardDeviation": 28.021420377989408
+        },
+        "unmeasuredTrials": 1,
+        "unmeasuredInputs": [
+          "independent-panels"
+        ],
+        "perCase": {
+          "independent-brief": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 21758.69999998808,
+              "p95": 21758.69999998808,
+              "min": 21758.69999998808,
+              "max": 21758.69999998808,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              88
+            ]
+          },
+          "independent-fixed": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 16646.899999976158,
+              "p95": 16646.899999976158,
+              "min": 16646.899999976158,
+              "max": 16646.899999976158,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              20
+            ]
+          },
+          "independent-panels": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 2930.199999988079,
+              "p95": 2930.199999988079,
+              "min": 2930.199999988079,
+              "max": 2930.199999988079,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              null
+            ]
+          },
+          "independent-long": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 14955.40000000596,
+              "p95": 14955.40000000596,
+              "min": 14955.40000000596,
+              "max": 14955.40000000596,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              49
+            ]
+          },
+          "independent-quiet": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 16200.699999988079,
+              "p95": 16200.699999988079,
+              "min": 16200.699999988079,
+              "max": 16200.699999988079,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              42
+            ]
+          },
+          "independent-text": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 10613.40000000596,
+              "p95": 10613.40000000596,
+              "min": 10613.40000000596,
+              "max": 10613.40000000596,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              80
+            ]
+          }
+        },
+        "inclusiveProfile": {
+          "analyzeAudio": {
+            "n": 6,
+            "p50": 67.19999998807907,
+            "p95": 97.19999998807907,
+            "min": 50.599999994039536,
+            "max": 97.19999998807907,
+            "sampleStandardDeviation": 17.094755527674394
+          },
+          "plan": {
+            "n": 6,
+            "p50": 32.50000002980232,
+            "p95": 43.49999997019768,
+            "min": 19.80000001192093,
+            "max": 43.49999997019768,
+            "sampleStandardDeviation": 8.487500605634668
+          },
+          "ensureFonts": {
+            "n": 6,
+            "p50": 665.2499999850988,
+            "p95": 5018.200000017881,
+            "min": 628.5,
+            "max": 5018.200000017881,
+            "sampleStandardDeviation": 1765.35024675012
+          },
+          "renderer_loadCustomBackground": {
+            "n": 6,
+            "p50": 302.1499999165535,
+            "p95": 656.3999999165535,
+            "min": 71.2000000178814,
+            "max": 656.3999999165535,
+            "sampleStandardDeviation": 225.84897094743133
+          },
+          "renderer_loadAssetDeck": {
+            "n": 6,
+            "p50": 166.49999997019768,
+            "p95": 514.3000000119209,
+            "min": 20.699999928474426,
+            "max": 514.3000000119209,
+            "sampleStandardDeviation": 200.5818178831704
+          },
+          "measureCinemaSequence": {
+            "n": 5,
+            "p50": 1844.699999988079,
+            "p95": 2447.699999898672,
+            "min": 1324.599999934435,
+            "max": 2447.699999898672,
+            "sampleStandardDeviation": 423.8185519589362
+          },
+          "cinemaBlockFlow": {
+            "n": 5,
+            "p50": 426.69999983906746,
+            "p95": 536.7000000178814,
+            "min": 299.8000003397465,
+            "max": 536.7000000178814,
+            "sampleStandardDeviation": 100.2980456573663
+          },
+          "measureCinemaVideoProxy": {
+            "n": 5,
+            "p50": 2504.0000000298023,
+            "p95": 3453.7999999821186,
+            "min": 2033.5,
+            "max": 3453.7999999821186,
+            "sampleStandardDeviation": 690.1959772222958
+          },
+          "encodeCinemaVisualProxy": {
+            "n": 5,
+            "p50": 1252.7999999821186,
+            "p95": 2126.599999964237,
+            "min": 657.9999999701977,
+            "max": 2126.599999964237,
+            "sampleStandardDeviation": 614.871016555235
+          },
+          "verifyDecodedCinemaLayers": {
+            "n": 6,
+            "p50": 3593.7500000298023,
+            "p95": 10063.099999964237,
+            "min": 0.5,
+            "max": 10063.099999964237,
+            "sampleStandardDeviation": 3318.697360491039
+          },
+          "measureCinemaEncodedProxy": {
+            "n": 5,
+            "p50": 5790.399999976158,
+            "p95": 10123.899999976158,
+            "min": 3312.699999988079,
+            "max": 10123.899999976158,
+            "sampleStandardDeviation": 2790.021364961966
+          },
+          "analyzeRenderedFrames": {
+            "n": 6,
+            "p50": 9848.699999988079,
+            "p95": 16045.40000000596,
+            "min": 1022.0999999940395,
+            "max": 16045.40000000596,
+            "sampleStandardDeviation": 5321.460772917721
+          },
+          "certifyExport": {
+            "n": 6,
+            "p50": 30.299999997019768,
+            "p95": 38.5,
+            "min": 23.099999994039536,
+            "max": 38.5,
+            "sampleStandardDeviation": 5.629002279905671
+          },
+          "observeExportedMP4": {
+            "n": 6,
+            "p50": 1686.7000000178814,
+            "p95": 4293.700000017881,
+            "min": 213.5,
+            "max": 4293.700000017881,
+            "sampleStandardDeviation": 1351.5498536927014
+          },
+          "finalEncodeExcludingCertification": {
+            "n": 6,
+            "p50": 2585.050000011921,
+            "p95": 4909.9000000059605,
+            "min": 1085,
+            "max": 4909.9000000059605,
+            "sampleStandardDeviation": 1272.0096437024044
+          },
+          "refinePhotoExport": {
+            "n": 6,
+            "p50": 2624.5,
+            "p95": 4946.699999988079,
+            "min": 1108.5999999940395,
+            "max": 4946.699999988079,
+            "sampleStandardDeviation": 1274.4436129768767
+          }
+        }
+      },
+      "pr6": {
+        "exports": 6,
+        "totalMs": {
+          "n": 6,
+          "p50": 12829.29999999702,
+          "p95": 18183.09999999404,
+          "min": 3239.7999999821186,
+          "max": 18183.09999999404,
+          "sampleStandardDeviation": 5682.646171171741
+        },
+        "searchMs": {
+          "n": 6,
+          "p50": 9980.999999985099,
+          "p95": 14166.700000017881,
+          "min": 1079.1000000238419,
+          "max": 14166.700000017881,
+          "sampleStandardDeviation": 4914.839006005041
+        },
+        "exportMs": {
+          "n": 6,
+          "p50": 1923.300000011921,
+          "p95": 3267.0999999940395,
+          "min": 1308.7999999821186,
+          "max": 3267.0999999940395,
+          "sampleStandardDeviation": 704.1223721763838
+        },
+        "localContrast": {
+          "n": 5,
+          "p50": 49,
+          "p95": 98,
+          "min": 20,
+          "max": 98,
+          "sampleStandardDeviation": 31.083757816583248
+        },
+        "nonRepeatTrialLocalContrast": {
+          "n": 5,
+          "p50": 49,
+          "p95": 98,
+          "min": 20,
+          "max": 98,
+          "sampleStandardDeviation": 31.083757816583248
+        },
+        "distinctInputLocalContrast": {
+          "n": 5,
+          "p50": 49,
+          "p95": 98,
+          "min": 20,
+          "max": 98,
+          "sampleStandardDeviation": 31.083757816583248
+        },
+        "unmeasuredTrials": 1,
+        "unmeasuredInputs": [
+          "independent-panels"
+        ],
+        "perCase": {
+          "independent-brief": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 18183.09999999404,
+              "p95": 18183.09999999404,
+              "min": 18183.09999999404,
+              "max": 18183.09999999404,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              98
+            ]
+          },
+          "independent-fixed": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 16666.20000001788,
+              "p95": 16666.20000001788,
+              "min": 16666.20000001788,
+              "max": 16666.20000001788,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              20
+            ]
+          },
+          "independent-panels": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 3239.7999999821186,
+              "p95": 3239.7999999821186,
+              "min": 3239.7999999821186,
+              "max": 3239.7999999821186,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              null
+            ]
+          },
+          "independent-long": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 10090.5,
+              "p95": 10090.5,
+              "min": 10090.5,
+              "max": 10090.5,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              49
+            ]
+          },
+          "independent-quiet": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 15568.09999999404,
+              "p95": 15568.09999999404,
+              "min": 15568.09999999404,
+              "max": 15568.09999999404,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              42
+            ]
+          },
+          "independent-text": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 9091.90000000596,
+              "p95": 9091.90000000596,
+              "min": 9091.90000000596,
+              "max": 9091.90000000596,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              80
+            ]
+          }
+        },
+        "inclusiveProfile": {
+          "analyzeAudio": {
+            "n": 6,
+            "p50": 62.849999979138374,
+            "p95": 76.69999998807907,
+            "min": 40.30000001192093,
+            "max": 76.69999998807907,
+            "sampleStandardDeviation": 16.056234500917622
+          },
+          "plan": {
+            "n": 6,
+            "p50": 38.80000001192093,
+            "p95": 47.69999998807907,
+            "min": 30.19999995827675,
+            "max": 47.69999998807907,
+            "sampleStandardDeviation": 7.335848070433045
+          },
+          "ensureFonts": {
+            "n": 6,
+            "p50": 664.3499999940395,
+            "p95": 1934.5,
+            "min": 579.7999999821186,
+            "max": 1934.5,
+            "sampleStandardDeviation": 526.0726223664582
+          },
+          "renderer_loadCustomBackground": {
+            "n": 6,
+            "p50": 344.74999998509884,
+            "p95": 744.7999998629093,
+            "min": 70.6000000834465,
+            "max": 744.7999998629093,
+            "sampleStandardDeviation": 264.99630744862844
+          },
+          "renderer_loadAssetDeck": {
+            "n": 6,
+            "p50": 209.20000000298023,
+            "p95": 532.2000002861023,
+            "min": 20.5,
+            "max": 532.2000002861023,
+            "sampleStandardDeviation": 211.10228258649784
+          },
+          "measureCinemaOutputReadability": {
+            "n": 5,
+            "p50": 1476.4000000059605,
+            "p95": 1673.699999988079,
+            "min": 1168.4000000059605,
+            "max": 1673.699999988079,
+            "sampleStandardDeviation": 220.06147323037106
+          },
+          "initialGrammarProtection": {
+            "n": 5,
+            "p50": 723.1999999880791,
+            "p95": 1477.0999999940395,
+            "min": 526.3000000119209,
+            "max": 1477.0999999940395,
+            "sampleStandardDeviation": 378.5761323677917
+          },
+          "measureCinemaSequence": {
+            "n": 5,
+            "p50": 1738.7000001370907,
+            "p95": 2083,
+            "min": 1113.1000001132488,
+            "max": 2083,
+            "sampleStandardDeviation": 354.163771394813
+          },
+          "cinemaBlockFlow": {
+            "n": 5,
+            "p50": 510.5,
+            "p95": 759.2999999821186,
+            "min": 309.2000004053116,
+            "max": 759.2999999821186,
+            "sampleStandardDeviation": 202.24442627948426
+          },
+          "measureCinemaVideoProxy": {
+            "n": 5,
+            "p50": 3575.9999999701977,
+            "p95": 5017.300000041723,
+            "min": 2012.0000000298023,
+            "max": 5017.300000041723,
+            "sampleStandardDeviation": 1290.0416846024789
+          },
+          "rankCinemaCandidateV2": {
+            "n": 5,
+            "p50": 0.7000000476837158,
+            "p95": 0.9000000357627869,
+            "min": 0.5,
+            "max": 0.9000000357627869,
+            "sampleStandardDeviation": 0.158113897144905
+          },
+          "encodeCinemaVisualProxy": {
+            "n": 5,
+            "p50": 1333.5,
+            "p95": 1929.9000000059605,
+            "min": 562.1999999880791,
+            "max": 1929.9000000059605,
+            "sampleStandardDeviation": 593.431236970319
+          },
+          "verifyDecodedCinemaLayers": {
+            "n": 6,
+            "p50": 1455.3999999910593,
+            "p95": 3419.600000023842,
+            "min": 0.29999998211860657,
+            "max": 3419.600000023842,
+            "sampleStandardDeviation": 1122.8319062519624
+          },
+          "measureCinemaEncodedProxy": {
+            "n": 5,
+            "p50": 3855.400000035763,
+            "p95": 4590.399999976158,
+            "min": 1786.1000000536442,
+            "max": 4590.399999976158,
+            "sampleStandardDeviation": 1328.510460994803
+          },
+          "analyzeRenderedFrames": {
+            "n": 6,
+            "p50": 9980.949999988079,
+            "p95": 14166.600000023842,
+            "min": 1079.1000000238419,
+            "max": 14166.600000023842,
+            "sampleStandardDeviation": 4914.824620840882
+          },
+          "certifyExport": {
+            "n": 6,
+            "p50": 35.6000000089407,
+            "p95": 47.599999994039536,
+            "min": 27.30000001192093,
+            "max": 47.599999994039536,
+            "sampleStandardDeviation": 7.77551712591721
+          },
+          "observeExportedMP4": {
+            "n": 6,
+            "p50": 986.9500000029802,
+            "p95": 2544.399999976158,
+            "min": 254.19999998807907,
+            "max": 2544.399999976158,
+            "sampleStandardDeviation": 778.1965629947235
+          },
+          "finalEncodeExcludingCertification": {
+            "n": 6,
+            "p50": 1847.699999988079,
+            "p95": 3206.099999964237,
+            "min": 1257.0999999940395,
+            "max": 3206.099999964237,
+            "sampleStandardDeviation": 701.6730057413351
+          },
+          "refinePhotoExport": {
+            "n": 6,
+            "p50": 1923.1500000059605,
+            "p95": 3267,
+            "min": 1308.699999988079,
+            "max": 3267,
+            "sampleStandardDeviation": 704.1062725184253
+          }
+        }
+      },
+      "pr7": {
+        "exports": 6,
+        "totalMs": {
+          "n": 6,
+          "p50": 25463.64999999106,
+          "p95": 39397.70000001788,
+          "min": 4366.699999988079,
+          "max": 39397.70000001788,
+          "sampleStandardDeviation": 13701.445991093346
+        },
+        "searchMs": {
+          "n": 6,
+          "p50": 21666.89999999106,
+          "p95": 33567.70000001788,
+          "min": 1015.9000000059605,
+          "max": 33567.70000001788,
+          "sampleStandardDeviation": 12655.145722549256
+        },
+        "exportMs": {
+          "n": 6,
+          "p50": 3022.1500000059605,
+          "p95": 5101.5999999940395,
+          "min": 2274.2999999821186,
+          "max": 5101.5999999940395,
+          "sampleStandardDeviation": 1310.9165953632948
+        },
+        "localContrast": {
+          "n": 4,
+          "p50": 67.5,
+          "p95": 91,
+          "min": 20,
+          "max": 91,
+          "sampleStandardDeviation": 30.138568866708543
+        },
+        "nonRepeatTrialLocalContrast": {
+          "n": 4,
+          "p50": 67.5,
+          "p95": 91,
+          "min": 20,
+          "max": 91,
+          "sampleStandardDeviation": 30.138568866708543
+        },
+        "distinctInputLocalContrast": {
+          "n": 4,
+          "p50": 67.5,
+          "p95": 91,
+          "min": 20,
+          "max": 91,
+          "sampleStandardDeviation": 30.138568866708543
+        },
+        "unmeasuredTrials": 2,
+        "unmeasuredInputs": [
+          "independent-brief",
+          "independent-panels"
+        ],
+        "perCase": {
+          "independent-brief": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 39011.69999998808,
+              "p95": 39011.69999998808,
+              "min": 39011.69999998808,
+              "max": 39011.69999998808,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              null
+            ]
+          },
+          "independent-fixed": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 39397.70000001788,
+              "p95": 39397.70000001788,
+              "min": 39397.70000001788,
+              "max": 39397.70000001788,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              20
+            ]
+          },
+          "independent-panels": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 4366.699999988079,
+              "p95": 4366.699999988079,
+              "min": 4366.699999988079,
+              "max": 4366.699999988079,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              null
+            ]
+          },
+          "independent-long": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 19593.69999998808,
+              "p95": 19593.69999998808,
+              "min": 19593.69999998808,
+              "max": 19593.69999998808,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              62
+            ]
+          },
+          "independent-quiet": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 31333.59999999404,
+              "p95": 31333.59999999404,
+              "min": 31333.59999999404,
+              "max": 31333.59999999404,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              73
+            ]
+          },
+          "independent-text": {
+            "trials": 1,
+            "totalMs": {
+              "n": 1,
+              "p50": 18609.19999998808,
+              "p95": 18609.19999998808,
+              "min": 18609.19999998808,
+              "max": 18609.19999998808,
+              "sampleStandardDeviation": null
+            },
+            "localContrast": [
+              91
+            ]
+          }
+        },
+        "inclusiveProfile": {
+          "analyzeAudio": {
+            "n": 6,
+            "p50": 72.45000000298023,
+            "p95": 93.19999998807907,
+            "min": 54.19999998807907,
+            "max": 93.19999998807907,
+            "sampleStandardDeviation": 17.0952234968946
+          },
+          "plan": {
+            "n": 6,
+            "p50": 39.099999994039536,
+            "p95": 43.79999998211861,
+            "min": 34.5,
+            "max": 43.79999998211861,
+            "sampleStandardDeviation": 3.4074428305607807
+          },
+          "ensureFonts": {
+            "n": 6,
+            "p50": 644.5999999791384,
+            "p95": 941.5999999940395,
+            "min": 512.2000000178814,
+            "max": 941.5999999940395,
+            "sampleStandardDeviation": 177.1091716025754
+          },
+          "renderer_loadCustomBackground": {
+            "n": 6,
+            "p50": 173.8499999642372,
+            "p95": 339.7999999821186,
+            "min": 65.39999997615814,
+            "max": 339.7999999821186,
+            "sampleStandardDeviation": 104.2259660471743
+          },
+          "renderer_loadAssetDeck": {
+            "n": 6,
+            "p50": 68.74999994039536,
+            "p95": 225.5,
+            "min": 34.09999996423721,
+            "max": 225.5,
+            "sampleStandardDeviation": 84.64352115143576
+          },
+          "measureCinemaOutputReadability": {
+            "n": 5,
+            "p50": 8186.900000035763,
+            "p95": 13083.100000083447,
+            "min": 4410.800000041723,
+            "max": 13083.100000083447,
+            "sampleStandardDeviation": 3402.9771960992402
+          },
+          "initialGrammarProtection": {
+            "n": 5,
+            "p50": 1151.9000000059605,
+            "p95": 2406.399999976158,
+            "min": 826,
+            "max": 2406.399999976158,
+            "sampleStandardDeviation": 641.1539245703498
+          },
+          "measureCinemaSequence": {
+            "n": 5,
+            "p50": 1974.400000154972,
+            "p95": 3685.8999997079372,
+            "min": 1485.6000000834465,
+            "max": 3685.8999997079372,
+            "sampleStandardDeviation": 847.7721054356125
+          },
+          "cinemaBlockFlow": {
+            "n": 5,
+            "p50": 1082.1000001430511,
+            "p95": 1561.3999998271465,
+            "min": 653.9999997913837,
+            "max": 1561.3999998271465,
+            "sampleStandardDeviation": 396.4827702714669
+          },
+          "measureCinemaVideoProxy": {
+            "n": 5,
+            "p50": 6884.699999928474,
+            "p95": 8019.300000011921,
+            "min": 3972.7999999821186,
+            "max": 8019.300000011921,
+            "sampleStandardDeviation": 1813.3358864391823
+          },
+          "rankCinemaCandidateV2": {
+            "n": 5,
+            "p50": 1.0999999642372131,
+            "p95": 1.199999988079071,
+            "min": 0.800000011920929,
+            "max": 1.199999988079071,
+            "sampleStandardDeviation": 0.15165749198111314
+          },
+          "encodeCinemaVisualProxy": {
+            "n": 5,
+            "p50": 3016.2999999821186,
+            "p95": 4539.099999934435,
+            "min": 1177.9000000059605,
+            "max": 4539.099999934435,
+            "sampleStandardDeviation": 1408.2685709454447
+          },
+          "verifyDecodedCinemaLayers": {
+            "n": 6,
+            "p50": 3793.000000014901,
+            "p95": 7737.999999940395,
+            "min": 990.6000000238419,
+            "max": 7737.999999940395,
+            "sampleStandardDeviation": 2430.5710945235055
+          },
+          "measureCinemaEncodedProxy": {
+            "n": 5,
+            "p50": 8507.200000047684,
+            "p95": 10769.099999964237,
+            "min": 3551.9000000059605,
+            "max": 10769.099999964237,
+            "sampleStandardDeviation": 3293.3038104409766
+          },
+          "repairReadabilityPreview": {
+            "n": 5,
+            "p50": 4187.200000017881,
+            "p95": 6571.700000017881,
+            "min": 1816.3999999761581,
+            "max": 6571.700000017881,
+            "sampleStandardDeviation": 1784.2079593066437
+          },
+          "compareLegacyFinalist": {
+            "n": 5,
+            "p50": 13058.40000000596,
+            "p95": 19326.30000001192,
+            "min": 7407.0999999940395,
+            "max": 19326.30000001192,
+            "sampleStandardDeviation": 5137.749486598745
+          },
+          "analyzeRenderedFrames": {
+            "n": 6,
+            "p50": 21666.89999999106,
+            "p95": 33567.70000001788,
+            "min": 1015.9000000059605,
+            "max": 33567.70000001788,
+            "sampleStandardDeviation": 12655.145722549256
+          },
+          "certifyExport": {
+            "n": 6,
+            "p50": 34.6000000089407,
+            "p95": 48.099999994039536,
+            "min": 30.900000005960464,
+            "max": 48.099999994039536,
+            "sampleStandardDeviation": 6.373931279115408
+          },
+          "observeExportedMP4": {
+            "n": 6,
+            "p50": 2038.0999999940395,
+            "p95": 4252.299999982119,
+            "min": 1368,
+            "max": 4252.299999982119,
+            "sampleStandardDeviation": 1325.3500951324384
+          },
+          "finalEncodeExcludingCertification": {
+            "n": 6,
+            "p50": 2928.749999985099,
+            "p95": 5021.399999976158,
+            "min": 2224.2000000178814,
+            "max": 5021.399999976158,
+            "sampleStandardDeviation": 1308.0714410854564
+          },
+          "refinePhotoExport": {
+            "n": 6,
+            "p50": 3022.1500000059605,
+            "p95": 5101.5,
+            "min": 2274.2999999821186,
+            "max": 5101.5,
+            "sampleStandardDeviation": 1310.861966293208
+          }
+        }
+      }
+    }
+  },
+  "exports": 234,
+  "failureHistory": [],
+  "completedRepeatedObserverExports": 12,
+  "pairedOriginalReadability": {
+    "distinctComparableInputs": 18,
+    "mainMedian": 63,
+    "pr7Median": 94,
+    "population": "Original 24 only, finite in both engines, per-input medians over two rounds; repeats excluded. Pooled original+repeat medians 84/94 are a different population."
+  },
+  "physicalComparisons": {
+    "main": {
+      "points": 974,
+      "measured": 960,
+      "regressions": 1,
+      "strongIntervalRegressions": 0,
+      "statuses": {
+        "MEASURED": 960,
+        "NO_SAME_PHRASE_TIME": 4,
+        "UNMEASURED": 10
+      }
+    },
+    "pr6": {
+      "points": 974,
+      "measured": 960,
+      "regressions": 0,
+      "strongIntervalRegressions": 0,
+      "statuses": {
+        "MEASURED": 960,
+        "NO_SAME_PHRASE_TIME": 4,
+        "UNMEASURED": 10
+      }
+    }
+  },
+  "knownCases": {
+    "case-02": [
+      {
+        "round": 0,
+        "before": "pr6",
+        "localContrastBefore": 53,
+        "localContrastAfter": 65
+      },
+      {
+        "round": 0,
+        "before": "main",
+        "localContrastBefore": 53,
+        "localContrastAfter": 65
+      },
+      {
+        "round": 1,
+        "before": "main",
+        "localContrastBefore": 53,
+        "localContrastAfter": 65
+      },
+      {
+        "round": 1,
+        "before": "pr6",
+        "localContrastBefore": 53,
+        "localContrastAfter": 65
+      }
+    ],
+    "case-12": [
+      {
+        "round": 0,
+        "before": "pr6",
+        "localContrastBefore": 54,
+        "localContrastAfter": 95
+      },
+      {
+        "round": 0,
+        "before": "main",
+        "localContrastBefore": 54,
+        "localContrastAfter": 95
+      },
+      {
+        "round": 1,
+        "before": "main",
+        "localContrastBefore": 54,
+        "localContrastAfter": 95
+      },
+      {
+        "round": 1,
+        "before": "pr6",
+        "localContrastBefore": 54,
+        "localContrastAfter": 95
+      }
+    ],
+    "case-15": [
+      {
+        "round": 0,
+        "before": "main",
+        "localContrastBefore": 94,
+        "localContrastAfter": 94
+      },
+      {
+        "round": 0,
+        "before": "pr6",
+        "localContrastBefore": 94,
+        "localContrastAfter": 94
+      },
+      {
+        "round": 1,
+        "before": "pr6",
+        "localContrastBefore": 94,
+        "localContrastAfter": 94
+      },
+      {
+        "round": 1,
+        "before": "main",
+        "localContrastBefore": 94,
+        "localContrastAfter": 94
+      }
+    ],
+    "case-18": [
+      {
+        "round": 0,
+        "before": "pr6",
+        "localContrastBefore": 47,
+        "localContrastAfter": 86
+      },
+      {
+        "round": 0,
+        "before": "main",
+        "localContrastBefore": 47,
+        "localContrastAfter": 86
+      },
+      {
+        "round": 1,
+        "before": "main",
+        "localContrastBefore": 47,
+        "localContrastAfter": 86
+      },
+      {
+        "round": 1,
+        "before": "pr6",
+        "localContrastBefore": 73,
+        "localContrastAfter": 86
+      }
+    ],
+    "case-21": [
+      {
+        "round": 0,
+        "before": "main",
+        "localContrastBefore": 96,
+        "localContrastAfter": 99
+      },
+      {
+        "round": 0,
+        "before": "pr6",
+        "localContrastBefore": 96,
+        "localContrastAfter": 99
+      },
+      {
+        "round": 1,
+        "before": "pr6",
+        "localContrastBefore": 96,
+        "localContrastAfter": 99
+      },
+      {
+        "round": 1,
+        "before": "main",
+        "localContrastBefore": 96,
+        "localContrastAfter": 99
+      }
+    ],
+    "case-23": [
+      {
+        "round": 0,
+        "before": "main",
+        "localContrastBefore": 43,
+        "localContrastAfter": 68
+      },
+      {
+        "round": 0,
+        "before": "pr6",
+        "localContrastBefore": 31,
+        "localContrastAfter": 68
+      },
+      {
+        "round": 1,
+        "before": "pr6",
+        "localContrastBefore": 31,
+        "localContrastAfter": 68
+      },
+      {
+        "round": 1,
+        "before": "main",
+        "localContrastBefore": 43,
+        "localContrastAfter": 68
+      }
+    ],
+    "case-24": [
+      {
+        "round": 0,
+        "before": "pr6",
+        "localContrastBefore": null,
+        "localContrastAfter": 49
+      },
+      {
+        "round": 0,
+        "before": "main",
+        "localContrastBefore": null,
+        "localContrastAfter": 49
+      },
+      {
+        "round": 1,
+        "before": "main",
+        "localContrastBefore": null,
+        "localContrastAfter": 49
+      },
+      {
+        "round": 1,
+        "before": "pr6",
+        "localContrastBefore": null,
+        "localContrastAfter": 49
+      }
+    ],
+    "general-manual": [
+      {
+        "round": 0,
+        "before": "pr6",
+        "localContrastBefore": 48,
+        "localContrastAfter": 54
+      },
+      {
+        "round": 0,
+        "before": "main",
+        "localContrastBefore": 49,
+        "localContrastAfter": 54
+      },
+      {
+        "round": 1,
+        "before": "main",
+        "localContrastBefore": 49,
+        "localContrastAfter": 54
+      },
+      {
+        "round": 1,
+        "before": "pr6",
+        "localContrastBefore": 48,
+        "localContrastAfter": 54
+      }
+    ]
+  },
+  "pairedOriginalPerformance": {
+    "distinctInputs": 24,
+    "slowerInputs": 22,
+    "fasterInputs": 2,
+    "twoTrialsPerEnginePerInput": true,
+    "statisticalSignificanceClaimed": false,
+    "pairs": [
+      {
+        "case": "case-01",
+        "mainMedianMs": 8393.95000001043,
+        "pr7MedianMs": 7061.55000000447,
+        "deltaMs": -1332.4000000059605,
+        "ratio": 0.8412666265579013
+      },
+      {
+        "case": "case-02",
+        "mainMedianMs": 10004.699999988079,
+        "pr7MedianMs": 35315.10000000894,
+        "deltaMs": 25310.40000002086,
+        "ratio": 3.529850970049179
+      },
+      {
+        "case": "case-03",
+        "mainMedianMs": 8306.60000000894,
+        "pr7MedianMs": 13528.05000000447,
+        "deltaMs": 5221.44999999553,
+        "ratio": 1.6285905183817577
+      },
+      {
+        "case": "case-04",
+        "mainMedianMs": 9268.95000000298,
+        "pr7MedianMs": 13965.949999988079,
+        "deltaMs": 4696.999999985099,
+        "ratio": 1.5067456400113917
+      },
+      {
+        "case": "case-05",
+        "mainMedianMs": 17378.35000000149,
+        "pr7MedianMs": 32711.70000000298,
+        "deltaMs": 15333.35000000149,
+        "ratio": 1.8823248467202107
+      },
+      {
+        "case": "case-06",
+        "mainMedianMs": 2687.4500000029802,
+        "pr7MedianMs": 2947.0999999791384,
+        "deltaMs": 259.64999997615814,
+        "ratio": 1.0966157509817374
+      },
+      {
+        "case": "case-07",
+        "mainMedianMs": 3254.8500000089407,
+        "pr7MedianMs": 3679.999999985099,
+        "deltaMs": 425.14999997615814,
+        "ratio": 1.1306204586924098
+      },
+      {
+        "case": "case-08",
+        "mainMedianMs": 18753.15000000596,
+        "pr7MedianMs": 35284.39999999106,
+        "deltaMs": 16531.2499999851,
+        "ratio": 1.881518571545572
+      },
+      {
+        "case": "case-09",
+        "mainMedianMs": 6900.799999982119,
+        "pr7MedianMs": 21273.64999999106,
+        "deltaMs": 14372.85000000894,
+        "ratio": 3.082780257368158
+      },
+      {
+        "case": "case-10",
+        "mainMedianMs": 7739,
+        "pr7MedianMs": 13784.85000000894,
+        "deltaMs": 6045.850000008941,
+        "ratio": 1.7812185036838015
+      },
+      {
+        "case": "case-11",
+        "mainMedianMs": 18534.44999998808,
+        "pr7MedianMs": 33618.5,
+        "deltaMs": 15084.050000011921,
+        "ratio": 1.8138385546925657
+      },
+      {
+        "case": "case-12",
+        "mainMedianMs": 12180.449999988079,
+        "pr7MedianMs": 21229.34999999404,
+        "deltaMs": 9048.90000000596,
+        "ratio": 1.7429035873071042
+      },
+      {
+        "case": "case-13",
+        "mainMedianMs": 2566.250000014901,
+        "pr7MedianMs": 3279.949999988079,
+        "deltaMs": 713.6999999731779,
+        "ratio": 1.2781100827935836
+      },
+      {
+        "case": "case-14",
+        "mainMedianMs": 3305.7999999970198,
+        "pr7MedianMs": 4562.850000008941,
+        "deltaMs": 1257.050000011921,
+        "ratio": 1.3802559138523365
+      },
+      {
+        "case": "case-15",
+        "mainMedianMs": 9984.749999985099,
+        "pr7MedianMs": 17989.60000000894,
+        "deltaMs": 8004.850000023842,
+        "ratio": 1.801707604099831
+      },
+      {
+        "case": "case-16",
+        "mainMedianMs": 5271.550000011921,
+        "pr7MedianMs": 13809.34999999404,
+        "deltaMs": 8537.799999982119,
+        "ratio": 2.6195995485128303
+      },
+      {
+        "case": "case-17",
+        "mainMedianMs": 12274.550000011921,
+        "pr7MedianMs": 11624,
+        "deltaMs": -650.5500000119209,
+        "ratio": 0.9470000936888693
+      },
+      {
+        "case": "case-18",
+        "mainMedianMs": 12642.84999999404,
+        "pr7MedianMs": 22964.45000000298,
+        "deltaMs": 10321.60000000894,
+        "ratio": 1.816398201356008
+      },
+      {
+        "case": "case-19",
+        "mainMedianMs": 7432.25,
+        "pr7MedianMs": 11842.40000000596,
+        "deltaMs": 4410.1500000059605,
+        "ratio": 1.593380201151194
+      },
+      {
+        "case": "case-20",
+        "mainMedianMs": 2920.5,
+        "pr7MedianMs": 3869.2999999970198,
+        "deltaMs": 948.7999999970198,
+        "ratio": 1.3248758774172298
+      },
+      {
+        "case": "case-21",
+        "mainMedianMs": 10956.09999999404,
+        "pr7MedianMs": 18239.25,
+        "deltaMs": 7283.1500000059605,
+        "ratio": 1.6647575323344916
+      },
+      {
+        "case": "case-22",
+        "mainMedianMs": 20571.29999999702,
+        "pr7MedianMs": 41443.65000000596,
+        "deltaMs": 20872.35000000894,
+        "ratio": 2.014634466465997
+      },
+      {
+        "case": "case-23",
+        "mainMedianMs": 12260.64999999106,
+        "pr7MedianMs": 24120.85000000894,
+        "deltaMs": 11860.200000017881,
+        "ratio": 1.9673385995054529
+      },
+      {
+        "case": "case-24",
+        "mainMedianMs": 54594.4999999851,
+        "pr7MedianMs": 129023.25,
+        "deltaMs": 74428.7500000149,
+        "ratio": 2.363301248294887
+      }
+    ]
+  }
+}

@@ -1,0 +1,1104 @@
+{
+  "status": "CONFIRMED_POST_SOURCE_RASTER_DIVERGENCE_IN_REJECTED_PROTOTYPE",
+  "adopted": false,
+  "runtimeIdentity": {
+    "runtimeSHA256": "f34c073c8d757783738cccfac0a346de4fc7a74c17b0db05e44d102315d268bf",
+    "status": "DIAGNOSTIC_ONLY_NOT_ADOPTED"
+  },
+  "input": {
+    "audioHash": "fd89c04b4754bd295e9b18baf3c4c7e62c73380751e396852b4246e0c896959b",
+    "imageHash": "2adfbf5c0f24b85d4baff7ba6ed561f61ab11286536829f5eb6541fcdd2acf5d",
+    "lyrics": "[00:00.20]Hello 世界\n[00:01.20]明日 2026",
+    "aspect": "16:9",
+    "fps": 24,
+    "range": [
+      0,
+      3
+    ]
+  },
+  "diagnosis": {
+    "method": "Actual 640x360 RGBA pixels at t=5/24 before encoder versus all native measurement frames at the same time; no production source change.",
+    "nativeFrames": 18,
+    "deliveryFrames": 1,
+    "comparisons": [
+      {
+        "time": 0.20833333333333334,
+        "deliveryCut": {
+          "hold": "still",
+          "inDur": 0,
+          "outDur": 0,
+          "stagger": 0,
+          "decor": [],
+          "params": {
+            "font": "embedded_bold",
+            "grad": false,
+            "dir": 1,
+            "label": true,
+            "directionAngle": 0,
+            "intensityScale": 1.3,
+            "maxWidth": 0.88,
+            "copies": 4,
+            "style": "outline",
+            "gap": 0.909801427256316,
+            "xs": 0.0015134141780436053,
+            "align": "center",
+            "prompt": false,
+            "readablePhoto": true,
+            "displayText": "Hello 世界",
+            "composition": "read",
+            "emphasisRow": 1,
+            "developed": false,
+            "hookScale": 1.12,
+            "story": true,
+            "photoAnchor": {
+              "x": 0.5,
+              "y": 0.56
+            },
+            "cinemaRole": "READ"
+          },
+          "scheme": 0,
+          "emph": false,
+          "words": [
+            "Hello"
+          ],
+          "note": null,
+          "treat": null,
+          "treatP": {},
+          "bg": "none",
+          "bgP": {
+            "seed": 338131956,
+            "dw": 0.1848824525438249,
+            "asp": 1.4307041072752327,
+            "k": 0.08324920152896084,
+            "up": 1
+          },
+          "cam": "driftDiag",
+          "camP": {
+            "dx": 1,
+            "dy": 1
+          },
+          "text": "Hello 世界",
+          "lineText": "Hello 世界",
+          "line": 0,
+          "start": 0.2,
+          "end": 1.2,
+          "layout": "cinemaGrammarstands",
+          "enter": "cut",
+          "exit": "cut",
+          "seed": 1170394831,
+          "repeated": false,
+          "repetitionIndex": 0,
+          "recap": false,
+          "trans": "cut",
+          "transP": {
+            "dir": "L"
+          },
+          "transDur": 0,
+          "dur": 1,
+          "index": 0,
+          "repetitionProgress": 0,
+          "kineticGrouped": false,
+          "kineticTokens": [],
+          "styleKey": "paper",
+          "style": {
+            "name": "ペーパー・インク",
+            "desc": "紙の質感・藍とマゼンタ・明朝の残像",
+            "schemes": [
+              {
+                "bg": "#ECE9E3",
+                "fg": "#1B2350",
+                "sub": "#4D5270",
+                "accent": "#C2185B",
+                "accent2": "#111111",
+                "ink": "#111111",
+                "dim": "#DAD6CE",
+                "ghostA": "#C2185B",
+                "ghostB": "#1B2350",
+                "paper": true
+              },
+              {
+                "bg": "#151515",
+                "fg": "#F0EDE7",
+                "sub": "#B8B4AC",
+                "accent": "#C2185B",
+                "accent2": "#6A6A6A",
+                "ink": "#F0EDE7",
+                "dim": "#232323",
+                "ghostA": "#C2185B",
+                "ghostB": "#1B2350",
+                "paper": true
+              },
+              {
+                "bg": "#C2185B",
+                "fg": "#FFFFFF",
+                "sub": "#F6C6D8",
+                "accent": "#F4AAC7",
+                "accent2": "#111111",
+                "ink": "#1B2350",
+                "dim": "#B5154F",
+                "ghostA": "#C2185B",
+                "ghostB": "#1B2350",
+                "paper": true
+              },
+              {
+                "bg": "#1B2350",
+                "fg": "#F0EDE7",
+                "sub": "#AEB2CC",
+                "accent": "#E21C6A",
+                "accent2": "#737373",
+                "ink": "#F0EDE7",
+                "dim": "#1F2858",
+                "ghostA": "#C2185B",
+                "ghostB": "#1B2350",
+                "paper": true
+              }
+            ],
+            "fonts": {
+              "display": [
+                "mincho_black",
+                "tokumin"
+              ],
+              "serif": [
+                "mincho_black",
+                "mincho_bold"
+              ],
+              "body": [
+                "mincho"
+              ],
+              "mono": [
+                "mono"
+              ]
+            },
+            "texture": {
+              "grain": 0.7,
+              "paper": 1,
+              "scan": 0
+            },
+            "ghost": 0.5,
+            "bias": {
+              "layout": {
+                "stack": 2.2,
+                "mixed": 1.8,
+                "huge": 1.6,
+                "vcols": 1.4,
+                "circle": 1.2
+              },
+              "enter": {
+                "wipe": 1.6,
+                "stretch": 1.4,
+                "blur": 1.2,
+                "slice": 1.2
+              },
+              "exit": {
+                "drift": 1.6,
+                "wipe": 1.4
+              }
+            },
+            "decor": {
+              "bars": 1,
+              "blobs": 0.8,
+              "shapes": 0.6,
+              "waveform": 0.4
+            },
+            "hud": false
+          },
+          "styleBridge": {
+            "font": "embedded_bold",
+            "clubAccent": "#C2185B",
+            "camera": "push",
+            "layoutAxis": "balanced"
+          },
+          "techniquePalette": {
+            "style": "paper",
+            "mood": "graphic",
+            "tier": "HYPER",
+            "layout": [
+              "huge",
+              "circle",
+              "stack",
+              "mixed"
+            ],
+            "enter": [
+              "wipe",
+              "stretch",
+              "slice",
+              "blinds"
+            ],
+            "hold": [
+              "colorRun",
+              "eqBounce"
+            ],
+            "exit": [
+              "wipe",
+              "drift",
+              "blindsClose"
+            ],
+            "decor": [
+              "bracketsJP",
+              "checkerStrip",
+              "circuit",
+              "concentricSquares"
+            ],
+            "treat": [
+              "alternate",
+              "baselineShift",
+              "boxed"
+            ],
+            "bg": [
+              "argyle",
+              "asanoha"
+            ],
+            "cam": [
+              "barrelRoll",
+              "beatPunch"
+            ],
+            "fx": [
+              "focusLines",
+              "speedLines",
+              "whipBlur",
+              "zoomPunch"
+            ],
+            "trans": [
+              "blinds",
+              "blockDissolve"
+            ]
+          },
+          "backgroundScene": {
+            "id": "WIDE",
+            "zoom": 1,
+            "x": 0,
+            "y": 0,
+            "filter": null,
+            "darkness": 0.12,
+            "semantic": "develop",
+            "sceneFocal": {
+              "x": 50,
+              "y": 50
+            },
+            "blur": 0,
+            "tint": "#C2185B",
+            "lightSweep": 0
+          },
+          "chapter": {
+            "index": 0,
+            "role": "hook",
+            "style": "paper",
+            "backgroundVariant": "TIGHT",
+            "graphicMotif": "stripe",
+            "camera": "drift",
+            "layerDensity": 3,
+            "transitionLanguage": "cut"
+          },
+          "architecture": "cinemaGrammarstands",
+          "motifState": {
+            "id": "stripe",
+            "state": "line",
+            "scale": 0.7,
+            "density": 2,
+            "intensity": 0.095,
+            "phase": 0.024,
+            "role": "hook"
+          },
+          "assetRole": "support",
+          "assetId": "background",
+          "worldIntent": "identity",
+          "photoExit": false,
+          "repetitionRole": "establish",
+          "visualAssetId": "background",
+          "assetScene": {
+            "from": 0,
+            "to": 3.39,
+            "chapter": 0,
+            "assetId": "background",
+            "variant": "WIDE",
+            "role": "identity",
+            "style": "paper",
+            "typography": "signage",
+            "motif": "introduce",
+            "camera": "float",
+            "transition": "cut",
+            "semanticIntent": "identity",
+            "fit": 0.405,
+            "locked": false,
+            "crop": {
+              "x": 50,
+              "y": 50,
+              "zoom": 1
+            },
+            "textAnchor": {
+              "x": 0.5,
+              "y": 0.46
+            },
+            "reason": "自動構成：指定背景を保持",
+            "usageState": "introduced"
+          },
+          "photoChoreography": true,
+          "registrySelected": true,
+          "story": {
+            "holdRepair": null,
+            "group": null,
+            "stage": 1,
+            "sequence": 0,
+            "recipe": "gather",
+            "variant": 0,
+            "quiet": true,
+            "strength": 0.3
+          },
+          "virtualShot": {
+            "id": "WIDE",
+            "x": 0.5,
+            "y": 0.5,
+            "zoom": 1.03,
+            "edgeDensity": 22.598,
+            "sourceWidth": 640,
+            "sourceHeight": 360,
+            "evidence": "local edge density around geometric region; not object recognition",
+            "semanticIntent": "read",
+            "role": "READ",
+            "source": "same supplied image"
+          },
+          "cinema": {
+            "meaning": "read",
+            "role": "READ",
+            "quiet": false,
+            "energy": 0.4,
+            "stage": 0,
+            "development": null,
+            "physics": "read"
+          },
+          "grammar": {
+            "mode": "stands",
+            "name": "スタンドの多面構成",
+            "stage": 0,
+            "panelCount": 4,
+            "foregroundLayers": 1,
+            "foregroundPolicy": "verified whole-image contour or authored geometry; no source fragments",
+            "source": "same supplied artwork; geometric views; no object-recognition claims",
+            "repair": 0,
+            "variant": 0,
+            "semanticMode": "solo",
+            "profile": "drive",
+            "quiet": false,
+            "motion": 0.5975259203910828,
+            "treatment": "poster",
+            "field": "graphic",
+            "architectureVersion": 1,
+            "side": 0,
+            "climaxLevel": 0,
+            "climaxPhase": null,
+            "derivedLayer": "contour",
+            "safeDerived": true,
+            "phraseMotion": "semantic",
+            "grade": "color",
+            "temporal": {
+              "version": 1,
+              "role": "narrative",
+              "level": 0.5975259203910828,
+              "hit": 0.38,
+              "entry": 0.18,
+              "exit": 0.08,
+              "motionPrinciple": "reveal-and-settle",
+              "climax": false,
+              "source": "lyric role + section energy + percussion profile + actual beat hierarchy; complete lyric visible at onset"
+            },
+            "layerStrength": 1,
+            "layerWidth": 1,
+            "suppressBlueprint": false,
+            "subWorld": "photograph",
+            "techniqueContract": {
+              "id": "contour",
+              "canRender": true,
+              "requiresSegmentation": false,
+              "requiresForegroundMask": false,
+              "minVisibleArea": 0.003,
+              "expectedPixelDelta": 0.001,
+              "supportsPhoto": true,
+              "supportsGraphic": true,
+              "supportsMobileExport": true
+            }
+          },
+          "cinemaV3LegacyCandidateGrammar": {
+            "mode": "stands",
+            "name": "スタンドの多面構成",
+            "stage": 0,
+            "panelCount": 4,
+            "foregroundLayers": 1,
+            "foregroundPolicy": "verified whole-image contour or authored geometry; no source fragments",
+            "source": "same supplied artwork; geometric views; no object-recognition claims",
+            "repair": 0,
+            "variant": 0,
+            "semanticMode": "solo",
+            "profile": "drive",
+            "quiet": false,
+            "motion": 0.5975259203910828,
+            "treatment": "poster",
+            "field": "graphic",
+            "architectureVersion": 1,
+            "side": 0,
+            "climaxLevel": 0,
+            "climaxPhase": null,
+            "derivedLayer": "contour",
+            "safeDerived": true,
+            "phraseMotion": "semantic",
+            "grade": "color",
+            "temporal": {
+              "version": 1,
+              "role": "narrative",
+              "level": 0.5975259203910828,
+              "hit": 0.38,
+              "entry": 0.18,
+              "exit": 0.08,
+              "motionPrinciple": "reveal-and-settle",
+              "climax": false,
+              "source": "lyric role + section energy + percussion profile + actual beat hierarchy; complete lyric visible at onset"
+            },
+            "layerStrength": 1,
+            "layerWidth": 1,
+            "suppressBlueprint": false,
+            "subWorld": "photograph",
+            "techniqueContract": {
+              "id": "contour",
+              "canRender": true,
+              "requiresSegmentation": false,
+              "requiresForegroundMask": false,
+              "minVisibleArea": 0.003,
+              "expectedPixelDelta": 0.001,
+              "supportsPhoto": true,
+              "supportsGraphic": true,
+              "supportsMobileExport": true
+            }
+          },
+          "cinemaV3Legacy": true,
+          "cinemaV3LegacyFinalist": true
+        },
+        "deliveryMode": null,
+        "deliveryPixelHash": "8d0b6d0d364662e6541dc5aa28cfbe0c79dc2a85145e057f35cb6c411fdce57a",
+        "closestNative": {
+          "nativeIndex": 2,
+          "meanAbsoluteRGBCodeDifference": 0,
+          "maxRGBCodeDifference": 0,
+          "differingChannels": 0,
+          "nativeCut": {
+            "hold": "still",
+            "inDur": 0,
+            "outDur": 0,
+            "stagger": 0,
+            "decor": [],
+            "params": {
+              "font": "embedded_bold",
+              "grad": false,
+              "dir": 1,
+              "label": true,
+              "directionAngle": 0,
+              "intensityScale": 1.3,
+              "maxWidth": 0.88,
+              "copies": 4,
+              "style": "outline",
+              "gap": 0.909801427256316,
+              "xs": 0.0015134141780436053,
+              "align": "center",
+              "prompt": false,
+              "readablePhoto": true,
+              "displayText": "Hello 世界",
+              "composition": "read",
+              "emphasisRow": 1,
+              "developed": false,
+              "hookScale": 1.12,
+              "story": true,
+              "photoAnchor": {
+                "x": 0.5,
+                "y": 0.56
+              },
+              "cinemaRole": "READ"
+            },
+            "scheme": 0,
+            "emph": false,
+            "words": [
+              "Hello"
+            ],
+            "note": null,
+            "treat": null,
+            "treatP": {},
+            "bg": "none",
+            "bgP": {
+              "seed": 338131956,
+              "dw": 0.1848824525438249,
+              "asp": 1.4307041072752327,
+              "k": 0.08324920152896084,
+              "up": 1
+            },
+            "cam": "driftDiag",
+            "camP": {
+              "dx": 1,
+              "dy": 1
+            },
+            "text": "Hello 世界",
+            "lineText": "Hello 世界",
+            "line": 0,
+            "start": 0.2,
+            "end": 1.2,
+            "layout": "cinemaGrammarstands",
+            "enter": "cut",
+            "exit": "cut",
+            "seed": 1170394831,
+            "repeated": false,
+            "repetitionIndex": 0,
+            "recap": false,
+            "trans": "cut",
+            "transP": {
+              "dir": "L"
+            },
+            "transDur": 0,
+            "dur": 1,
+            "index": 0,
+            "repetitionProgress": 0,
+            "kineticGrouped": false,
+            "kineticTokens": [],
+            "styleKey": "paper",
+            "style": {
+              "name": "ペーパー・インク",
+              "desc": "紙の質感・藍とマゼンタ・明朝の残像",
+              "schemes": [
+                {
+                  "bg": "#ECE9E3",
+                  "fg": "#1B2350",
+                  "sub": "#4D5270",
+                  "accent": "#C2185B",
+                  "accent2": "#111111",
+                  "ink": "#111111",
+                  "dim": "#DAD6CE",
+                  "ghostA": "#C2185B",
+                  "ghostB": "#1B2350",
+                  "paper": true
+                },
+                {
+                  "bg": "#151515",
+                  "fg": "#F0EDE7",
+                  "sub": "#B8B4AC",
+                  "accent": "#C2185B",
+                  "accent2": "#6A6A6A",
+                  "ink": "#F0EDE7",
+                  "dim": "#232323",
+                  "ghostA": "#C2185B",
+                  "ghostB": "#1B2350",
+                  "paper": true
+                },
+                {
+                  "bg": "#C2185B",
+                  "fg": "#FFFFFF",
+                  "sub": "#F6C6D8",
+                  "accent": "#F4AAC7",
+                  "accent2": "#111111",
+                  "ink": "#1B2350",
+                  "dim": "#B5154F",
+                  "ghostA": "#C2185B",
+                  "ghostB": "#1B2350",
+                  "paper": true
+                },
+                {
+                  "bg": "#1B2350",
+                  "fg": "#F0EDE7",
+                  "sub": "#AEB2CC",
+                  "accent": "#E21C6A",
+                  "accent2": "#737373",
+                  "ink": "#F0EDE7",
+                  "dim": "#1F2858",
+                  "ghostA": "#C2185B",
+                  "ghostB": "#1B2350",
+                  "paper": true
+                }
+              ],
+              "fonts": {
+                "display": [
+                  "mincho_black",
+                  "tokumin"
+                ],
+                "serif": [
+                  "mincho_black",
+                  "mincho_bold"
+                ],
+                "body": [
+                  "mincho"
+                ],
+                "mono": [
+                  "mono"
+                ]
+              },
+              "texture": {
+                "grain": 0.7,
+                "paper": 1,
+                "scan": 0
+              },
+              "ghost": 0.5,
+              "bias": {
+                "layout": {
+                  "stack": 2.2,
+                  "mixed": 1.8,
+                  "huge": 1.6,
+                  "vcols": 1.4,
+                  "circle": 1.2
+                },
+                "enter": {
+                  "wipe": 1.6,
+                  "stretch": 1.4,
+                  "blur": 1.2,
+                  "slice": 1.2
+                },
+                "exit": {
+                  "drift": 1.6,
+                  "wipe": 1.4
+                }
+              },
+              "decor": {
+                "bars": 1,
+                "blobs": 0.8,
+                "shapes": 0.6,
+                "waveform": 0.4
+              },
+              "hud": false
+            },
+            "styleBridge": {
+              "font": "embedded_bold",
+              "clubAccent": "#C2185B",
+              "camera": "push",
+              "layoutAxis": "balanced"
+            },
+            "techniquePalette": {
+              "style": "paper",
+              "mood": "graphic",
+              "tier": "HYPER",
+              "layout": [
+                "huge",
+                "circle",
+                "stack",
+                "mixed"
+              ],
+              "enter": [
+                "wipe",
+                "stretch",
+                "slice",
+                "blinds"
+              ],
+              "hold": [
+                "colorRun",
+                "eqBounce"
+              ],
+              "exit": [
+                "wipe",
+                "drift",
+                "blindsClose"
+              ],
+              "decor": [
+                "bracketsJP",
+                "checkerStrip",
+                "circuit",
+                "concentricSquares"
+              ],
+              "treat": [
+                "alternate",
+                "baselineShift",
+                "boxed"
+              ],
+              "bg": [
+                "argyle",
+                "asanoha"
+              ],
+              "cam": [
+                "barrelRoll",
+                "beatPunch"
+              ],
+              "fx": [
+                "focusLines",
+                "speedLines",
+                "whipBlur",
+                "zoomPunch"
+              ],
+              "trans": [
+                "blinds",
+                "blockDissolve"
+              ]
+            },
+            "backgroundScene": {
+              "id": "WIDE",
+              "zoom": 1,
+              "x": 0,
+              "y": 0,
+              "filter": null,
+              "darkness": 0.12,
+              "semantic": "develop",
+              "sceneFocal": {
+                "x": 50,
+                "y": 50
+              },
+              "blur": 0,
+              "tint": "#C2185B",
+              "lightSweep": 0
+            },
+            "chapter": {
+              "index": 0,
+              "role": "hook",
+              "style": "paper",
+              "backgroundVariant": "TIGHT",
+              "graphicMotif": "stripe",
+              "camera": "drift",
+              "layerDensity": 3,
+              "transitionLanguage": "cut"
+            },
+            "architecture": "cinemaGrammarstands",
+            "motifState": {
+              "id": "stripe",
+              "state": "line",
+              "scale": 0.7,
+              "density": 2,
+              "intensity": 0.095,
+              "phase": 0.024,
+              "role": "hook"
+            },
+            "assetRole": "support",
+            "assetId": "background",
+            "worldIntent": "identity",
+            "photoExit": false,
+            "repetitionRole": "establish",
+            "visualAssetId": "background",
+            "assetScene": {
+              "from": 0,
+              "to": 3.39,
+              "chapter": 0,
+              "assetId": "background",
+              "variant": "WIDE",
+              "role": "identity",
+              "style": "paper",
+              "typography": "signage",
+              "motif": "introduce",
+              "camera": "float",
+              "transition": "cut",
+              "semanticIntent": "identity",
+              "fit": 0.405,
+              "locked": false,
+              "crop": {
+                "x": 50,
+                "y": 50,
+                "zoom": 1
+              },
+              "textAnchor": {
+                "x": 0.5,
+                "y": 0.46
+              },
+              "reason": "自動構成：指定背景を保持",
+              "usageState": "introduced"
+            },
+            "photoChoreography": true,
+            "registrySelected": true,
+            "story": {
+              "holdRepair": null,
+              "group": null,
+              "stage": 1,
+              "sequence": 0,
+              "recipe": "gather",
+              "variant": 0,
+              "quiet": true,
+              "strength": 0.3
+            },
+            "virtualShot": {
+              "id": "WIDE",
+              "x": 0.5,
+              "y": 0.5,
+              "zoom": 1.03,
+              "edgeDensity": 22.598,
+              "sourceWidth": 640,
+              "sourceHeight": 360,
+              "evidence": "local edge density around geometric region; not object recognition",
+              "semanticIntent": "read",
+              "role": "READ",
+              "source": "same supplied image"
+            },
+            "cinema": {
+              "meaning": "read",
+              "role": "READ",
+              "quiet": false,
+              "energy": 0.4,
+              "stage": 0,
+              "development": null,
+              "physics": "read"
+            },
+            "grammar": {
+              "mode": "stands",
+              "name": "スタンドの多面構成",
+              "stage": 0,
+              "panelCount": 4,
+              "foregroundLayers": 1,
+              "foregroundPolicy": "verified whole-image contour or authored geometry; no source fragments",
+              "source": "same supplied artwork; geometric views; no object-recognition claims",
+              "repair": 0,
+              "variant": 0,
+              "semanticMode": "solo",
+              "profile": "drive",
+              "quiet": false,
+              "motion": 0.5975259203910828,
+              "treatment": "poster",
+              "field": "graphic",
+              "architectureVersion": 1,
+              "side": 0,
+              "climaxLevel": 0,
+              "climaxPhase": null,
+              "derivedLayer": "contour",
+              "safeDerived": true,
+              "phraseMotion": "semantic",
+              "grade": "color",
+              "temporal": {
+                "version": 1,
+                "role": "narrative",
+                "level": 0.5975259203910828,
+                "hit": 0.38,
+                "entry": 0.18,
+                "exit": 0.08,
+                "motionPrinciple": "reveal-and-settle",
+                "climax": false,
+                "source": "lyric role + section energy + percussion profile + actual beat hierarchy; complete lyric visible at onset"
+              },
+              "layerStrength": 1,
+              "layerWidth": 1,
+              "suppressBlueprint": false,
+              "subWorld": "photograph",
+              "techniqueContract": {
+                "id": "contour",
+                "canRender": true,
+                "requiresSegmentation": false,
+                "requiresForegroundMask": false,
+                "minVisibleArea": 0.003,
+                "expectedPixelDelta": 0.001,
+                "supportsPhoto": true,
+                "supportsGraphic": true,
+                "supportsMobileExport": true
+              }
+            },
+            "cinemaV3LegacyCandidateGrammar": {
+              "mode": "stands",
+              "name": "スタンドの多面構成",
+              "stage": 0,
+              "panelCount": 4,
+              "foregroundLayers": 1,
+              "foregroundPolicy": "verified whole-image contour or authored geometry; no source fragments",
+              "source": "same supplied artwork; geometric views; no object-recognition claims",
+              "repair": 0,
+              "variant": 0,
+              "semanticMode": "solo",
+              "profile": "drive",
+              "quiet": false,
+              "motion": 0.5975259203910828,
+              "treatment": "poster",
+              "field": "graphic",
+              "architectureVersion": 1,
+              "side": 0,
+              "climaxLevel": 0,
+              "climaxPhase": null,
+              "derivedLayer": "contour",
+              "safeDerived": true,
+              "phraseMotion": "semantic",
+              "grade": "color",
+              "temporal": {
+                "version": 1,
+                "role": "narrative",
+                "level": 0.5975259203910828,
+                "hit": 0.38,
+                "entry": 0.18,
+                "exit": 0.08,
+                "motionPrinciple": "reveal-and-settle",
+                "climax": false,
+                "source": "lyric role + section energy + percussion profile + actual beat hierarchy; complete lyric visible at onset"
+              },
+              "layerStrength": 1,
+              "layerWidth": 1,
+              "suppressBlueprint": false,
+              "subWorld": "photograph",
+              "techniqueContract": {
+                "id": "contour",
+                "canRender": true,
+                "requiresSegmentation": false,
+                "requiresForegroundMask": false,
+                "minVisibleArea": 0.003,
+                "expectedPixelDelta": 0.001,
+                "supportsPhoto": true,
+                "supportsGraphic": true,
+                "supportsMobileExport": true
+              }
+            },
+            "cinemaV3Shot": {
+              "line": 0,
+              "from": 0.2,
+              "to": 1.2,
+              "role": "introduce",
+              "grammarId": "graphic",
+              "typographyId": "embedded_bold",
+              "motionId": "reveal-and-settle",
+              "safeArea": {
+                "left": 0.11,
+                "right": 0.89,
+                "top": 0.08,
+                "bottom": 0.92
+              },
+              "minReadableFrames": 9,
+              "maxOcclusionRatio": 0,
+              "reasonCodes": [
+                "lyric_first"
+              ],
+              "featureSources": [
+                "authoritative LRC",
+                "normalized PCM envelope"
+              ],
+              "userLocked": false
+            },
+            "cinemaV3Typography": {
+              "text": "Hello \n世界",
+              "font": "embedded_bold",
+              "size": 427.9245283018868,
+              "lineCount": 2,
+              "widths": [
+                1207.160400390625,
+                855.838623046875
+              ],
+              "safeArea": {
+                "left": 0.11,
+                "right": 0.89,
+                "top": 0.08,
+                "bottom": 0.92
+              },
+              "minReadableFrames": 9,
+              "availableFrames": 24,
+              "constraintFailures": [],
+              "fontCoverage": {
+                "value": null,
+                "status": "UNMEASURED",
+                "source": "Font availability is not per-character cmap coverage; final glyph raster required",
+                "confidence": 0
+              },
+              "rubyPresent": false,
+              "source": "existing composeLyricPhrase / fitSize / browser text measurement; no input rewrite"
+            },
+            "cinemaV3LegacyGrammar": {
+              "mode": "stands",
+              "name": "スタンドの多面構成",
+              "stage": 0,
+              "panelCount": 4,
+              "foregroundLayers": 1,
+              "foregroundPolicy": "verified whole-image contour or authored geometry; no source fragments",
+              "source": "same supplied artwork; geometric views; no object-recognition claims",
+              "repair": 0,
+              "variant": 0,
+              "semanticMode": "solo",
+              "profile": "drive",
+              "quiet": false,
+              "motion": 0.5975259203910828,
+              "treatment": "poster",
+              "field": "graphic",
+              "architectureVersion": 1,
+              "side": 0,
+              "climaxLevel": 0,
+              "climaxPhase": null,
+              "derivedLayer": "contour",
+              "safeDerived": true,
+              "phraseMotion": "semantic",
+              "grade": "color",
+              "temporal": {
+                "version": 1,
+                "role": "narrative",
+                "level": 0.5975259203910828,
+                "hit": 0.38,
+                "entry": 0.18,
+                "exit": 0.08,
+                "motionPrinciple": "reveal-and-settle",
+                "climax": false,
+                "source": "lyric role + section energy + percussion profile + actual beat hierarchy; complete lyric visible at onset"
+              },
+              "layerStrength": 1,
+              "layerWidth": 1,
+              "suppressBlueprint": false,
+              "subWorld": "photograph",
+              "techniqueContract": {
+                "id": "contour",
+                "canRender": true,
+                "requiresSegmentation": false,
+                "requiresForegroundMask": false,
+                "minVisibleArea": 0.003,
+                "expectedPixelDelta": 0.001,
+                "supportsPhoto": true,
+                "supportsGraphic": true,
+                "supportsMobileExport": true
+              }
+            }
+          },
+          "nativeMode": null
+        },
+        "nativePixelHash": "8d0b6d0d364662e6541dc5aa28cfbe0c79dc2a85145e057f35cb6c411fdce57a"
+      }
+    ]
+  },
+  "pairedReadability": {
+    "requestedTime": 0.24000000000000002,
+    "nativeActualTime": 0.20833333333333334,
+    "decodedActualTime": 0.20833333333333334,
+    "native": {
+      "status": "DECODED_LOCAL_CONTRAST_PROXY",
+      "score": 100,
+      "contrastRatio": 3.081774618502799,
+      "corePixels": 1446,
+      "ringPixels": 908,
+      "resolution": [
+        384,
+        216
+      ],
+      "limits": "Eroded primary alpha cores and local ring; not OCR, WCAG certification or human reading accuracy"
+    },
+    "decoded": {
+      "status": "DECODED_LOCAL_CONTRAST_PROXY",
+      "score": 90,
+      "contrastRatio": 2.79013298760466,
+      "corePixels": 1446,
+      "ringPixels": 908,
+      "resolution": [
+        384,
+        216
+      ],
+      "limits": "Eroded primary alpha cores and local ring; not OCR, WCAG certification or human reading accuracy"
+    }
+  },
+  "limits": [
+    "This fixture proves loss occurs after matching pre-encode source raster, not the exact contribution of color conversion versus H264 loss.",
+    "Prior decoder resampling-path control compared identical decoded frames at 640px then 384px versus direct 384px; all RGB channels matched.",
+    "Timing concurrent with full suite excluded from acceptance.",
+    "Prototype remains rejected; this is root-cause evidence, not release quality certification."
+  ],
+  "decoderSamplingPathControl": {
+    "method": "Same decoded H264 frame: direct VideoSample.draw at 384px versus 640px RGBA canvas drawImage downsample. No new encoding; isolates sampling path, not original unencoded raster.",
+    "rows": [
+      {
+        "requestedTime": 0.24,
+        "fullFrameTime": 0.20833333333333334,
+        "directFrameTime": 0.20833333333333334,
+        "meanAbsoluteRGBCodeDifference": 0,
+        "maximumRGBCodeDifference": 0,
+        "differingChannels": 0,
+        "totalChannels": 248832
+      },
+      {
+        "requestedTime": 0.45,
+        "fullFrameTime": 0.4166666666666667,
+        "directFrameTime": 0.4166666666666667,
+        "meanAbsoluteRGBCodeDifference": 0,
+        "maximumRGBCodeDifference": 0,
+        "differingChannels": 0,
+        "totalChannels": 248832
+      },
+      {
+        "requestedTime": 0.95,
+        "fullFrameTime": 0.9166666666666666,
+        "directFrameTime": 0.9166666666666666,
+        "meanAbsoluteRGBCodeDifference": 0,
+        "maximumRGBCodeDifference": 0,
+        "differingChannels": 0,
+        "totalChannels": 248832
+      }
+    ]
+  },
+  "rawUncompressedSHA256": "36de343b8c125e8b5b4be02ffae396bf730e2ddc965ce646826cf91b2efc097b"
+}

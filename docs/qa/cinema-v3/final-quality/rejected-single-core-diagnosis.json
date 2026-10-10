@@ -1,0 +1,192 @@
+{
+  "status": "REJECTED_DEVELOPMENT_PROTOTYPE",
+  "adopted": false,
+  "reason": "Single-core trial regressed a previously readable finished MP4; native evidence is not final MP4 certification.",
+  "observations": {
+    "frameClockMismatch": false,
+    "maskCountsMismatch": false,
+    "samePlanFreshVersusBorrowedRenderer": {
+      "pairs": 15,
+      "scoreDifferences": 0,
+      "samePlanHash": true
+    },
+    "planSnapshots": "Selected, copied, and post-analysis cut parameters matched in instrumented fixture."
+  },
+  "inference": "Encoder conversion, compression, and/or decoded resampling are still candidates; exact contribution is NOT isolated.",
+  "pairedEvidence": [
+    {
+      "requestedTime": 0.24000000000000002,
+      "canvasActualTime": 0.20833333333333334,
+      "decodedActualTime": 0.20833333333333334,
+      "canvas": {
+        "score": 100,
+        "contrastRatio": 3.081774618502799,
+        "corePixels": 1446,
+        "ringPixels": 908
+      },
+      "decoded": {
+        "score": 90,
+        "contrastRatio": 2.79013298760466,
+        "corePixels": 1446,
+        "ringPixels": 908
+      }
+    },
+    {
+      "requestedTime": 0.38,
+      "canvasActualTime": 0.375,
+      "decodedActualTime": 0.375,
+      "canvas": {
+        "score": 100,
+        "contrastRatio": 3.4672129995410774,
+        "corePixels": 1742,
+        "ringPixels": 889
+      },
+      "decoded": {
+        "score": 100,
+        "contrastRatio": 3.095637688536545,
+        "corePixels": 1742,
+        "ringPixels": 889
+      }
+    },
+    {
+      "requestedTime": 0.45,
+      "canvasActualTime": 0.4166666666666667,
+      "decodedActualTime": 0.4166666666666667,
+      "canvas": {
+        "score": 100,
+        "contrastRatio": 3.2586429392709313,
+        "corePixels": 1802,
+        "ringPixels": 939
+      },
+      "decoded": {
+        "score": 95,
+        "contrastRatio": 2.907917841709413,
+        "corePixels": 1802,
+        "ringPixels": 939
+      }
+    },
+    {
+      "requestedTime": 0.7,
+      "canvasActualTime": 0.6666666666666666,
+      "decodedActualTime": 0.6666666666666666,
+      "canvas": {
+        "score": 100,
+        "contrastRatio": 3.748221875967591,
+        "corePixels": 1759,
+        "ringPixels": 908
+      },
+      "decoded": {
+        "score": 100,
+        "contrastRatio": 3.3034957482934155,
+        "corePixels": 1759,
+        "ringPixels": 908
+      }
+    },
+    {
+      "requestedTime": 0.95,
+      "canvasActualTime": 0.9166666666666666,
+      "decodedActualTime": 0.9166666666666666,
+      "canvas": {
+        "score": 100,
+        "contrastRatio": 3.0977712829821216,
+        "corePixels": 1737,
+        "ringPixels": 893
+      },
+      "decoded": {
+        "score": 90,
+        "contrastRatio": 2.805322083432759,
+        "corePixels": 1737,
+        "ringPixels": 893
+      }
+    },
+    {
+      "requestedTime": 1,
+      "canvasActualTime": 1,
+      "decodedActualTime": 1,
+      "canvas": {
+        "score": 100,
+        "contrastRatio": 3.4811960267322726,
+        "corePixels": 1758,
+        "ringPixels": 890
+      },
+      "decoded": {
+        "score": 100,
+        "contrastRatio": 3.0721115029982005,
+        "corePixels": 1758,
+        "ringPixels": 890
+      }
+    },
+    {
+      "requestedTime": 1.24,
+      "canvasActualTime": 1.2083333333333333,
+      "decodedActualTime": 1.2083333333333333,
+      "canvas": {
+        "score": 100,
+        "contrastRatio": 3.2055789303448927,
+        "corePixels": 1046,
+        "ringPixels": 743
+      },
+      "decoded": {
+        "score": 93,
+        "contrastRatio": 2.858036729594664,
+        "corePixels": 1046,
+        "ringPixels": 743
+      }
+    },
+    {
+      "requestedTime": 1.6975,
+      "canvasActualTime": 1.6666666666666667,
+      "decodedActualTime": 1.6666666666666667,
+      "canvas": {
+        "score": 100,
+        "contrastRatio": 3.444858947343308,
+        "corePixels": 1197,
+        "ringPixels": 795
+      },
+      "decoded": {
+        "score": 100,
+        "contrastRatio": 3.054329898145476,
+        "corePixels": 1197,
+        "ringPixels": 795
+      }
+    },
+    {
+      "requestedTime": 1.7997,
+      "canvasActualTime": 1.7916666666666667,
+      "decodedActualTime": 1.7916666666666667,
+      "canvas": {
+        "score": 100,
+        "contrastRatio": 3.5139958985697373,
+        "corePixels": 1307,
+        "ringPixels": 806
+      },
+      "decoded": {
+        "score": 100,
+        "contrastRatio": 3.0819515430896387,
+        "corePixels": 1307,
+        "ringPixels": 806
+      }
+    },
+    {
+      "requestedTime": 2.1950000000000003,
+      "canvasActualTime": 2.1666666666666665,
+      "decodedActualTime": 2.1666666666666665,
+      "canvas": {
+        "score": 100,
+        "contrastRatio": 3.578798004069207,
+        "corePixels": 1282,
+        "ringPixels": 797
+      },
+      "decoded": {
+        "score": 100,
+        "contrastRatio": 3.1395648983111646,
+        "corePixels": 1282,
+        "ringPixels": 797
+      }
+    }
+  ],
+  "performance": "Concurrent CPU measurements excluded from release acceptance. First single-core five-case run changed metadata-only runtime during execution and cannot be represented as one immutable runtime.",
+  "source": "/workspace/cinema-v3-pr7/single-core-diagnosis/outputs/results.json",
+  "sourceSha256": "35cc64b8552fc63a1c8c428ce7d389e3517a3e82881b6a16119ace0f37b9150c",
+  "releaseDecision": "NO-GO pending mandatory final validation; main unchanged."
+}

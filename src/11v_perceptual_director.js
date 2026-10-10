@@ -94,5 +94,23 @@ J.certifyExport=async(blob,expected)=>{
   return {...inspection,certification:{passed:Object.values(checks).every(Boolean),checks,frames,nativeFrames,nativeChecks,independentPixels,path:'Browser WebCodecs → MP4 Blob → HTMLVideoElement reload/decode',fps:inspection.videoSamples/(inspection.videoDuration||inspection.duration),avSync:'track timestamp/duration; no perceptual sync claim'}};
  }finally{video.removeAttribute('src');video.load();URL.revokeObjectURL(url);}
 };
-const exportMP4=J.exportMP4;J.exportMP4=async args=>{const out=await exportMP4(args);args.onProgress?.(.995,'生成済みMP4のフレーム・音声・タイミングを検査中…',{stage:'verify',indeterminate:true});out.validation=await J.certifyExport(out.blob,{width:out.width,height:out.height,fps:args.plan.fps,duration:(args.range?.end??args.plan.duration)-(args.range?.start??0),audio:!!out.audio,signal:args.signal});if(!out.validation.certification.passed)throw Object.assign(Error('EXPORT_INVALID: MP4再読込検査に失敗しました '+JSON.stringify(out.validation.certification.checks)),{inspection:out.validation});return out;};
+// Retain one completed but uncertified artifact for diagnosis. It is never a
+// successful export, project asset, or replacement for the last verified Blob.
+const exportMP4=J.exportMP4;J.exportMP4=async args=>{
+ const out=await exportMP4(args);
+ try{
+  args.onProgress?.(.995,'生成済みMP4のフレーム・音声・タイミングを検査中…',{stage:'verify',indeterminate:true});
+  out.validation=await J.certifyExport(out.blob,{width:out.width,height:out.height,fps:args.plan.fps,duration:(args.range?.end??args.plan.duration)-(args.range?.start??0),audio:!!out.audio,signal:args.signal});
+  if(!out.validation.certification.passed)throw Object.assign(Error('EXPORT_INVALID: MP4再読込検査に失敗しました '+JSON.stringify(out.validation.certification.checks)),{inspection:out.validation});
+  return out;
+ }catch(error){
+  let videoHash=null,planHash=null;
+  try{if(J.sha256)videoHash=await J.sha256(await out.blob.arrayBuffer());}catch{/* Failed hashing remains unmeasured. */}
+  try{if(J.cinemaV3?.planHash)planHash=await J.cinemaV3.planHash(args.plan);}catch{/* Retention must preserve the original error. */}
+  const failedArtifact={status:'FAILED',blob:out.blob,videoHash,planHash,inspection:out.validation||error.inspection||null,reason:error.message,stage:'POST_ENCODE_CERTIFICATION',width:out.width,height:out.height,fps:args.plan.fps};
+  J.lastFailedExportArtifact=failedArtifact;
+  try{if(error&&typeof error==='object')error.failedArtifact=failedArtifact;}catch{/* Frozen errors retain their original identity; the bounded diagnostic remains available. */}
+  throw error;
+ }
+};
 })();

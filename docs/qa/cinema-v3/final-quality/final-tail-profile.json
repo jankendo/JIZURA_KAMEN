@@ -1,0 +1,613 @@
+{
+  "status": "MEASURED",
+  "method": "Inclusive nested spans; do not sum overlapping timers. finalEncodeExcludingCertification includes decoded QA, not pure codec time.",
+  "rows": [
+    {
+      "cohort": "original-24-plus-repeats",
+      "round": 0,
+      "id": "case-24",
+      "variant": "pr7",
+      "inputHash": "422255b64774d55049ecc25b1dd63957861be0f2fdd60f22beafb7278614ecd6",
+      "immutableSnapshotInputHash": "9e4fafa52a0180445890e1357f05e1b64cda8de04e6206f7103472e06f8d138b",
+      "planHash": "8d2065f8e94ee09350d9743ee7d5869698e4e3aa8d3832def6bcb1ea24de82c3",
+      "videoHash": "5b9f01179a0d6d1b305b4822d9f80727a8fb97719c82ade9677c392df8b611d7",
+      "timing": {
+        "analysisAndPlanMs": 788.6999999880791,
+        "searchMs": 113716.80000001192,
+        "exportMs": 13811.59999999404,
+        "totalMs": 128317.09999999404
+      },
+      "searchStageWallMs": {
+        "A": 10634.5,
+        "B": 14479.40000000596,
+        "C": 27296.29999998212,
+        "method": "last progress boundary of unchanged 32/8/3 stages; A includes entry preparation; nested function times are separate"
+      },
+      "candidateCount": 32,
+      "profile": {
+        "analyzeAudio": {
+          "calls": 1,
+          "ms": 124.59999999403954
+        },
+        "plan": {
+          "calls": 2,
+          "ms": 56
+        },
+        "ensureFonts": {
+          "calls": 1,
+          "ms": 501.80000001192093
+        },
+        "renderer_loadCustomBackground": {
+          "calls": 32,
+          "ms": 171.39999985694885
+        },
+        "renderer_loadAssetDeck": {
+          "calls": 28,
+          "ms": 56.700000047683716
+        },
+        "measureCinemaOutputReadability": {
+          "calls": 23,
+          "ms": 42963.39999997616
+        },
+        "initialGrammarProtection": {
+          "calls": 1,
+          "ms": 9016.700000017881
+        },
+        "measureCinemaSequence": {
+          "calls": 84,
+          "ms": 4056.399999856949
+        },
+        "cinemaBlockFlow": {
+          "calls": 1856,
+          "ms": 4481.200000554323
+        },
+        "measureCinemaVideoProxy": {
+          "calls": 16,
+          "ms": 29167.600000053644
+        },
+        "rankCinemaCandidateV2": {
+          "calls": 15,
+          "ms": 1.399999976158142
+        },
+        "encodeCinemaVisualProxy": {
+          "calls": 7,
+          "ms": 10639.5
+        },
+        "verifyDecodedCinemaLayers": {
+          "calls": 11,
+          "ms": 25276.69999998808
+        },
+        "measureCinemaEncodedProxy": {
+          "calls": 7,
+          "ms": 34386.5000000298
+        },
+        "repairReadabilityPreview": {
+          "calls": 5,
+          "ms": 12273.100000023842
+        },
+        "compareLegacyFinalist": {
+          "calls": 1,
+          "ms": 55927.70000001788
+        },
+        "analyzeRenderedFrames": {
+          "calls": 1,
+          "ms": 113716.80000001192
+        },
+        "certifyExport": {
+          "calls": 1,
+          "ms": 44.39999997615814
+        },
+        "observeExportedMP4": {
+          "calls": 1,
+          "ms": 11110.200000017881
+        },
+        "finalEncodeExcludingCertification": {
+          "calls": 1,
+          "ms": 13698.600000023842
+        },
+        "refinePhotoExport": {
+          "calls": 1,
+          "ms": 13811.5
+        }
+      },
+      "heapSnapshot": 371384070
+    },
+    {
+      "cohort": "original-24-plus-repeats",
+      "round": 0,
+      "id": "case-24",
+      "variant": "pr6",
+      "inputHash": "422255b64774d55049ecc25b1dd63957861be0f2fdd60f22beafb7278614ecd6",
+      "immutableSnapshotInputHash": "a598da693110f67498572d2dc3775dcd40887c28cdc47c38ff94eb9eca65589d",
+      "planHash": "bc1b5d7c5cc0c1b8ecfa83335ea01a630deb008135eb35518ff8907a6a675ed9",
+      "videoHash": "2288bae6c611b8fde7ae3bb5f98b95a6fb288127e321f4cbd0838b553ba6a01c",
+      "timing": {
+        "analysisAndPlanMs": 1027.9000000059605,
+        "searchMs": 47206.09999999404,
+        "exportMs": 6740.699999988079,
+        "totalMs": 54974.69999998808
+      },
+      "searchStageWallMs": {
+        "A": 6816.299999982119,
+        "B": 15617.300000011921,
+        "C": 22161.69999998808,
+        "method": "last progress boundary of unchanged 32/8/3 stages; A includes entry preparation; nested function times are separate"
+      },
+      "candidateCount": 32,
+      "profile": {
+        "analyzeAudio": {
+          "calls": 1,
+          "ms": 119.2999999821186
+        },
+        "plan": {
+          "calls": 2,
+          "ms": 53.39999997615814
+        },
+        "ensureFonts": {
+          "calls": 1,
+          "ms": 752.4000000059605
+        },
+        "renderer_loadCustomBackground": {
+          "calls": 78,
+          "ms": 399.80000004172325
+        },
+        "renderer_loadAssetDeck": {
+          "calls": 74,
+          "ms": 191.59999975562096
+        },
+        "measureCinemaOutputReadability": {
+          "calls": 5,
+          "ms": 12286.59999999404
+        },
+        "initialGrammarProtection": {
+          "calls": 1,
+          "ms": 4899.300000011921
+        },
+        "measureCinemaSequence": {
+          "calls": 41,
+          "ms": 2430.599999934435
+        },
+        "cinemaBlockFlow": {
+          "calls": 928,
+          "ms": 2506.999999344349
+        },
+        "measureCinemaVideoProxy": {
+          "calls": 8,
+          "ms": 14957.100000023842
+        },
+        "rankCinemaCandidateV2": {
+          "calls": 15,
+          "ms": 1.0000000298023224
+        },
+        "encodeCinemaVisualProxy": {
+          "calls": 3,
+          "ms": 3667.899999976158
+        },
+        "verifyDecodedCinemaLayers": {
+          "calls": 5,
+          "ms": 10887.199999988079
+        },
+        "measureCinemaEncodedProxy": {
+          "calls": 3,
+          "ms": 14727.799999982119
+        },
+        "analyzeRenderedFrames": {
+          "calls": 1,
+          "ms": 47206.09999999404
+        },
+        "certifyExport": {
+          "calls": 1,
+          "ms": 34.099999994039536
+        },
+        "observeExportedMP4": {
+          "calls": 1,
+          "ms": 5181.699999988079
+        },
+        "finalEncodeExcludingCertification": {
+          "calls": 1,
+          "ms": 6659.800000011921
+        },
+        "refinePhotoExport": {
+          "calls": 1,
+          "ms": 6740.5999999940395
+        }
+      },
+      "heapSnapshot": 84049217
+    },
+    {
+      "cohort": "original-24-plus-repeats",
+      "round": 0,
+      "id": "case-24",
+      "variant": "main",
+      "inputHash": "422255b64774d55049ecc25b1dd63957861be0f2fdd60f22beafb7278614ecd6",
+      "immutableSnapshotInputHash": null,
+      "planHash": "25fd9d5321bba256faf2ec8134fe3adb4ff26d1b720a3d4b43616e9245f472fb",
+      "videoHash": "39ce8489eee4ff926712cc0170f76dc59604bfd4fa49a35219e9b647a4e30a4f",
+      "timing": {
+        "analysisAndPlanMs": 892.1999999880791,
+        "searchMs": 42022.40000000596,
+        "exportMs": 10964.59999999404,
+        "totalMs": 53879.19999998808
+      },
+      "searchStageWallMs": {
+        "A": 2037.699999988079,
+        "B": 15906.300000011921,
+        "C": 21377,
+        "method": "last progress boundary of unchanged 32/8/3 stages; A includes entry preparation; nested function times are separate"
+      },
+      "candidateCount": 32,
+      "profile": {
+        "analyzeAudio": {
+          "calls": 1,
+          "ms": 104
+        },
+        "plan": {
+          "calls": 2,
+          "ms": 50.60000002384186
+        },
+        "ensureFonts": {
+          "calls": 1,
+          "ms": 644.2999999821186
+        },
+        "renderer_loadCustomBackground": {
+          "calls": 73,
+          "ms": 319.50000005960464
+        },
+        "renderer_loadAssetDeck": {
+          "calls": 69,
+          "ms": 135.5
+        },
+        "measureCinemaSequence": {
+          "calls": 41,
+          "ms": 2661.5000001192093
+        },
+        "cinemaBlockFlow": {
+          "calls": 928,
+          "ms": 2591.2000000476837
+        },
+        "measureCinemaVideoProxy": {
+          "calls": 8,
+          "ms": 15249.899999976158
+        },
+        "encodeCinemaVisualProxy": {
+          "calls": 3,
+          "ms": 4472.4000000059605
+        },
+        "verifyDecodedCinemaLayers": {
+          "calls": 5,
+          "ms": 19638.900000035763
+        },
+        "measureCinemaEncodedProxy": {
+          "calls": 3,
+          "ms": 21376.500000029802
+        },
+        "analyzeRenderedFrames": {
+          "calls": 1,
+          "ms": 42022.30000001192
+        },
+        "certifyExport": {
+          "calls": 1,
+          "ms": 44.30000001192093
+        },
+        "observeExportedMP4": {
+          "calls": 1,
+          "ms": 8737.40000000596
+        },
+        "finalEncodeExcludingCertification": {
+          "calls": 1,
+          "ms": 10911.199999988079
+        },
+        "refinePhotoExport": {
+          "calls": 1,
+          "ms": 10964.5
+        }
+      },
+      "heapSnapshot": 151323977
+    },
+    {
+      "cohort": "original-24-plus-repeats",
+      "round": 1,
+      "id": "case-24",
+      "variant": "main",
+      "inputHash": "422255b64774d55049ecc25b1dd63957861be0f2fdd60f22beafb7278614ecd6",
+      "immutableSnapshotInputHash": null,
+      "planHash": "25fd9d5321bba256faf2ec8134fe3adb4ff26d1b720a3d4b43616e9245f472fb",
+      "videoHash": "7fed2b8b3614182e471f833d0909eb0e56c623e929b897045321ebea83bd9a8c",
+      "timing": {
+        "analysisAndPlanMs": 764.9000000059605,
+        "searchMs": 43120.29999998212,
+        "exportMs": 11424.59999999404,
+        "totalMs": 55309.79999998212
+      },
+      "searchStageWallMs": {
+        "A": 2032.3999999761581,
+        "B": 16122.90000000596,
+        "C": 22142.80000001192,
+        "method": "last progress boundary of unchanged 32/8/3 stages; A includes entry preparation; nested function times are separate"
+      },
+      "candidateCount": 32,
+      "profile": {
+        "analyzeAudio": {
+          "calls": 1,
+          "ms": 101.80000001192093
+        },
+        "plan": {
+          "calls": 2,
+          "ms": 39.099999994039536
+        },
+        "ensureFonts": {
+          "calls": 1,
+          "ms": 529.2999999821186
+        },
+        "renderer_loadCustomBackground": {
+          "calls": 73,
+          "ms": 334.2999998629093
+        },
+        "renderer_loadAssetDeck": {
+          "calls": 69,
+          "ms": 158.50000002980232
+        },
+        "measureCinemaSequence": {
+          "calls": 41,
+          "ms": 2688.200000077486
+        },
+        "cinemaBlockFlow": {
+          "calls": 928,
+          "ms": 2654.7999999523163
+        },
+        "measureCinemaVideoProxy": {
+          "calls": 8,
+          "ms": 15435.799999952316
+        },
+        "encodeCinemaVisualProxy": {
+          "calls": 3,
+          "ms": 4745.699999988079
+        },
+        "verifyDecodedCinemaLayers": {
+          "calls": 5,
+          "ms": 20525.20000001788
+        },
+        "measureCinemaEncodedProxy": {
+          "calls": 3,
+          "ms": 22142.199999958277
+        },
+        "analyzeRenderedFrames": {
+          "calls": 1,
+          "ms": 43120.29999998212
+        },
+        "certifyExport": {
+          "calls": 1,
+          "ms": 46.29999998211861
+        },
+        "observeExportedMP4": {
+          "calls": 1,
+          "ms": 9100.699999988079
+        },
+        "finalEncodeExcludingCertification": {
+          "calls": 1,
+          "ms": 11370.300000011921
+        },
+        "refinePhotoExport": {
+          "calls": 1,
+          "ms": 11424.59999999404
+        }
+      },
+      "heapSnapshot": 372593579
+    },
+    {
+      "cohort": "original-24-plus-repeats",
+      "round": 1,
+      "id": "case-24",
+      "variant": "pr6",
+      "inputHash": "422255b64774d55049ecc25b1dd63957861be0f2fdd60f22beafb7278614ecd6",
+      "immutableSnapshotInputHash": "a598da693110f67498572d2dc3775dcd40887c28cdc47c38ff94eb9eca65589d",
+      "planHash": "0812a46aeadee1359e0b581e25343a14377ac4706f260b65c0498503150bbc21",
+      "videoHash": "a561f335912ef158b6da66455e426fbcf4b85d0fafabed39384f20e5f713d7d2",
+      "timing": {
+        "analysisAndPlanMs": 881.8000000119209,
+        "searchMs": 46683,
+        "exportMs": 6959.4000000059605,
+        "totalMs": 54524.20000001788
+      },
+      "searchStageWallMs": {
+        "A": 6870.199999988079,
+        "B": 15713.700000017881,
+        "C": 21811.40000000596,
+        "method": "last progress boundary of unchanged 32/8/3 stages; A includes entry preparation; nested function times are separate"
+      },
+      "candidateCount": 32,
+      "profile": {
+        "analyzeAudio": {
+          "calls": 1,
+          "ms": 113.5
+        },
+        "plan": {
+          "calls": 2,
+          "ms": 56.400000005960464
+        },
+        "ensureFonts": {
+          "calls": 1,
+          "ms": 607.3000000119209
+        },
+        "renderer_loadCustomBackground": {
+          "calls": 78,
+          "ms": 390.3999999463558
+        },
+        "renderer_loadAssetDeck": {
+          "calls": 74,
+          "ms": 225.80000022053719
+        },
+        "measureCinemaOutputReadability": {
+          "calls": 5,
+          "ms": 12052.299999952316
+        },
+        "initialGrammarProtection": {
+          "calls": 1,
+          "ms": 5021.300000011921
+        },
+        "measureCinemaSequence": {
+          "calls": 41,
+          "ms": 2395.2999999523163
+        },
+        "cinemaBlockFlow": {
+          "calls": 928,
+          "ms": 2581.300000101328
+        },
+        "measureCinemaVideoProxy": {
+          "calls": 8,
+          "ms": 15026.600000023842
+        },
+        "rankCinemaCandidateV2": {
+          "calls": 15,
+          "ms": 0.7000000774860382
+        },
+        "encodeCinemaVisualProxy": {
+          "calls": 3,
+          "ms": 3676.4000000059605
+        },
+        "verifyDecodedCinemaLayers": {
+          "calls": 5,
+          "ms": 11323.200000017881
+        },
+        "measureCinemaEncodedProxy": {
+          "calls": 3,
+          "ms": 14738.899999976158
+        },
+        "analyzeRenderedFrames": {
+          "calls": 1,
+          "ms": 46683
+        },
+        "certifyExport": {
+          "calls": 1,
+          "ms": 32.099999994039536
+        },
+        "observeExportedMP4": {
+          "calls": 1,
+          "ms": 5421.9000000059605
+        },
+        "finalEncodeExcludingCertification": {
+          "calls": 1,
+          "ms": 6880.4000000059605
+        },
+        "refinePhotoExport": {
+          "calls": 1,
+          "ms": 6959.4000000059605
+        }
+      },
+      "heapSnapshot": 329233710
+    },
+    {
+      "cohort": "original-24-plus-repeats",
+      "round": 1,
+      "id": "case-24",
+      "variant": "pr7",
+      "inputHash": "422255b64774d55049ecc25b1dd63957861be0f2fdd60f22beafb7278614ecd6",
+      "immutableSnapshotInputHash": "9e4fafa52a0180445890e1357f05e1b64cda8de04e6206f7103472e06f8d138b",
+      "planHash": "7cb377d53e5cce1b83a7885353e258209a82a3b4e0f40d7465693f1a2a86b1d6",
+      "videoHash": "d34d6139d205fce42cd6564d99f308bd39502c0b038275a2eebe6b7f5e7dbe04",
+      "timing": {
+        "analysisAndPlanMs": 1081.2999999821186,
+        "searchMs": 115120.90000000596,
+        "exportMs": 13527.200000017881,
+        "totalMs": 129729.40000000596
+      },
+      "searchStageWallMs": {
+        "A": 10381.600000023842,
+        "B": 15164.399999976158,
+        "C": 28307.100000023842,
+        "method": "last progress boundary of unchanged 32/8/3 stages; A includes entry preparation; nested function times are separate"
+      },
+      "candidateCount": 32,
+      "profile": {
+        "analyzeAudio": {
+          "calls": 1,
+          "ms": 156.69999998807907
+        },
+        "plan": {
+          "calls": 2,
+          "ms": 63.20000001788139
+        },
+        "ensureFonts": {
+          "calls": 1,
+          "ms": 750.5999999940395
+        },
+        "renderer_loadCustomBackground": {
+          "calls": 32,
+          "ms": 209.0999999642372
+        },
+        "renderer_loadAssetDeck": {
+          "calls": 28,
+          "ms": 112.8000001013279
+        },
+        "measureCinemaOutputReadability": {
+          "calls": 23,
+          "ms": 43583.600000053644
+        },
+        "initialGrammarProtection": {
+          "calls": 1,
+          "ms": 8840.59999999404
+        },
+        "measureCinemaSequence": {
+          "calls": 84,
+          "ms": 3954.0999999046326
+        },
+        "cinemaBlockFlow": {
+          "calls": 1856,
+          "ms": 5071.6000000834465
+        },
+        "measureCinemaVideoProxy": {
+          "calls": 16,
+          "ms": 29353.90000012517
+        },
+        "rankCinemaCandidateV2": {
+          "calls": 15,
+          "ms": 1
+        },
+        "encodeCinemaVisualProxy": {
+          "calls": 7,
+          "ms": 10601.399999976158
+        },
+        "verifyDecodedCinemaLayers": {
+          "calls": 11,
+          "ms": 25683.899999946356
+        },
+        "measureCinemaEncodedProxy": {
+          "calls": 7,
+          "ms": 34999.59999999404
+        },
+        "repairReadabilityPreview": {
+          "calls": 5,
+          "ms": 12323.399999976158
+        },
+        "compareLegacyFinalist": {
+          "calls": 1,
+          "ms": 55702.79999998212
+        },
+        "analyzeRenderedFrames": {
+          "calls": 1,
+          "ms": 115120.90000000596
+        },
+        "certifyExport": {
+          "calls": 1,
+          "ms": 40.5
+        },
+        "observeExportedMP4": {
+          "calls": 1,
+          "ms": 11110.699999988079
+        },
+        "finalEncodeExcludingCertification": {
+          "calls": 1,
+          "ms": 13417.200000017881
+        },
+        "refinePhotoExport": {
+          "calls": 1,
+          "ms": 13527.200000017881
+        }
+      },
+      "heapSnapshot": 422247364
+    }
+  ],
+  "peakMemory": "UNMEASURED",
+  "cacheHitRate": "UNMEASURED",
+  "host": "Shared AMD EPYC host, cgroup 4 CPU cores/32 GiB; no exclusive CPU reservation. Heap values are snapshots, not peaks."
+}
