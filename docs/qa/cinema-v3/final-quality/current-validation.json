@@ -8,7 +8,7 @@
   "humanEvaluation": "HUMAN_EVALUATION_PENDING",
   "unitFocused": "PASS",
   "build": "PASS",
-  "fullSuite": "FIRST RUN FAILED background_test.js; complete collection still running. Initialization fix passes focused background and final-quality unit checks; full rerun pending.",
+  "fullSuite": "First run found background_test.js failure and was interrupted after preserving logs; constructor-less Renderer fix committed. Corrected full rerun is IN_PROGRESS, including isolated backup/restore dependency installation and full suite.",
   "uiExport": "QUEUED_AFTER_CORRECTED_FULL_SUITE",
   "originalCohort": "QUEUED: 24 distinct materials + 4 repeated trials, 3 variants, 2 rounds",
   "additionalCohort": "QUEUED: 8 materials, 3 variants, 2 rounds",
@@ -16,5 +16,6 @@
   "observerReproducibility": "QUEUED: same-Blob remeasurement distinguished from independent encode repeats",
   "knownDevelopmentLimitation": "Physical-only long-case probe still took 133409 ms; performance acceptance is not established.",
   "historicalDecisionNote": "acceptance.json and other development files describe earlier frozen prototypes; they are not approval of this runtime.",
-  "latestCompletedDevelopmentEvidence": "development-physical-only-probe.json"
+  "latestCompletedDevelopmentEvidence": "development-physical-only-probe.json",
+  "rejectedPerformanceExperiment": "Single-core search prototypes rejected for finished-MP4 readability regression; same frame clocks and masks verified. See rejected-single-core-diagnosis.json and rejected-experiment-manifest.json. No prototype source adopted."
 }
