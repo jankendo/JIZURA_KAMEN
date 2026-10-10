@@ -21,6 +21,9 @@ const times=[.31,.311,.312],range={start:0,end:2};
   const fontStatus=context.document.fonts.status;context.document.fonts.status='loading';assert(!(await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'one',scope})).measurementReuse);context.document.fonts.status=fontStatus;
   const raced=new AbortController(),hash=J.cinemaV3.planHash;
   try{J.cinemaV3.planHash=async p=>{const h=await hash(p);raced.abort();return h;};await assert.rejects(J.measureCinemaOutputReadability(p,range,raced.signal,{...options,inputHash:'one',scope}),{name:'AbortError'},'cancel during async hash must stop a cache hit');}finally{J.cinemaV3.planHash=hash;}
+  for(const change of ['font','glyph']){const hash=J.cinemaV3.planHash,resolution=J.glyphs.maxRes;
+   try{J.cinemaV3.planHash=async p=>{const h=await hash(p);if(change==='font')J.fontLoadEvidence.set('__cache_test__',{status:'LOADED',family:'synthetic'});else J.glyphs.maxRes=resolution+1;return h;};const result=await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'one',scope});assert(!result.measurementReuse,'font/glyph changes during awaited hash invalidate cache');}finally{J.cinemaV3.planHash=hash;J.fontLoadEvidence.delete('__cache_test__');J.glyphs.maxRes=resolution;}
+  }
   const controller=new AbortController();controller.abort();await assert.rejects(J.measureCinemaOutputReadability(p,range,controller.signal,{...options,inputHash:'one',scope}),{name:'AbortError'});
   for(let n=0;n<20;n++)await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'unique-'+n,scope});assert(scope.readabilityCache.size<=16);assert(renders>before);
  }

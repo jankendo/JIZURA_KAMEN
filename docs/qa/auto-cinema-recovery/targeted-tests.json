@@ -7,11 +7,15 @@
     "cinema_v3_readability_protection_test.cjs",
     "cinema_v3_final_quality_test.cjs"
   ],
-  "sourceRuntimeSHA256": "e2b08bd75f2e872de345552a69c0ddd92a2d690784fc7f607c88665ef57c20a8",
+  "sourceRuntimeSHA256": "b137fcb6d098caf7bb674e93b7028f20315c113e545781be3b7b5d7d07076333",
   "priorCancelRaceRegression": {
     "before": "FAIL: cache hit ignored cancel during async planHash",
     "after": "PASS: post-hash abort check"
   },
   "fullSuite": "PENDING_AT_COMMIT",
-  "exactHeadCI": "PENDING_AT_COMMIT"
+  "exactHeadCI": "PENDING_AT_COMMIT",
+  "awaitedFontGlyphIdentityRegression": {
+    "before": "FAIL: old cache returned after font/glyph state changed during planHash await",
+    "after": "PASS: identity rechecked before reuse"
+  }
 }

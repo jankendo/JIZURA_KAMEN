@@ -31,7 +31,7 @@ case-23はmain43、PR #7 68、今回68。manualは49、54、54。独立fixedは2
 
 ## キャンセルとフォント
 
-Hash計算のawait中に中止された場合、cacheHitを返す競合を対象試験で再現した（修正前FAILを保存）。Hash計算後に再確認する1行を追加し、修正後PASS。代表素材の測定はこのガード追加前の固定HTML `cb45ebd…`。描画・品質算法は変わらないが、最終HTML `e2b08bd…` の証拠と同一版として扱わず、最終版は対象試験・通常UI・正確なHEADのCIで検証する。両方の完全Hashをidentity JSONへ保存した。
+Hash計算のawait中に中止された場合、cacheHitを返す競合を対象試験で再現した（修正前FAILを保存）。Hash計算後に再確認する1行を追加し、修正後PASS。代表素材の測定はこのガード追加前の固定HTML `cb45ebd…`。描画・品質算法は変わらないが、キャンセル修正後のUI検証HTML `e2b08bd…` の証拠と同一版として扱わず、最終版は対象試験・通常UI・正確なHEADのCIで検証する。完全Hashをidentity JSONへ保存した。さらに、待機中のfont/glyph状態変化による古いキャッシュ返却を対象試験で再現して修正した。返却前に条件を再照合する最終版のHashはfinal-runtime-identity.jsonを参照。正確な最終HEADの全体試験・ブラウザー証拠はCIで確認する。
 
 現環境では通常のGoogle Font取得・ブラウザーによるface読み込みが成功し、失敗リクエスト0だった。意図的な外部通信遮断ではREQUESTED_FACE_UNAVAILABLE、内蔵フォントはLOADEDとなり、JavaScript例外0。未取得を成功として記録しない現経路を確認した。旧環境がofflineになる直前の通信失敗は原ログが新環境にないため原因UNRESOLVEDであり、アプリのバグ解決済みとは断言しない。3.0.0相当の過去認証失敗も失敗Blob不在でUNRESOLVED。
 
