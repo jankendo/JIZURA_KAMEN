@@ -1,0 +1,41 @@
+{
+  "status": "NO_GO_INTERVAL_REGRESSIONS_FOUND_IN_DEVELOPMENT",
+  "releaseDecision": "NO-GO",
+  "productionChanged": false,
+  "mainSHA": "ef829f93a933794c337bf1a37c39fcfb8d4de0f4",
+  "basePR6SHA": "22d0a9270364bef43b1065740ad292f9d66e2ad1",
+  "acceptanceRuntimeSHA256": null,
+  "productionBeforeSHA256": "2ccc9759f329a48eaee0fd0145f435bf098dbf4f68c80483a867783733a4dd46",
+  "humanEvaluation": "HUMAN_EVALUATION_PENDING",
+  "historicalCertificationFailure": "UNRESOLVED_NO_FAILED_BLOB",
+  "rawVariantAlias": {
+    "pr5": "PR6"
+  },
+  "peakMemory": "UNMEASURED",
+  "cacheHitRate": "UNMEASURED",
+  "independentFixturesSpecifiedBeforeConfirmation": true,
+  "previousDevelopmentRuntimeSHA256": "b0c27b5d92ba4c620386f5d57e403332e7e902caf37ad35e3030ab9aff185476",
+  "knownMainRelativeIntervalRegressions": [
+    {
+      "id": "case-23",
+      "line": 0,
+      "time": 0.24,
+      "before": 61,
+      "after": 46
+    },
+    {
+      "id": "case-24",
+      "line": 2,
+      "time": 7.7,
+      "before": 100,
+      "after": 66
+    },
+    {
+      "id": "case-24",
+      "line": 2,
+      "time": 8.45,
+      "before": 100,
+      "after": 99
+    }
+  ]
+}

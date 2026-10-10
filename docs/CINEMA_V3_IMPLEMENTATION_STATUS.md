@@ -1,5 +1,7 @@
 # Cinema V3 implementation status
 
+Latest final-quality work: [CINEMA_V3_FINAL_QUALITY.md](CINEMA_V3_FINAL_QUALITY.md), with separate evidence under `docs/qa/cinema-v3/final-quality/`. Validation and the conditional technical-release gate are in progress; no production deployment is approved by the evidence yet. Prior cohorts and decisions below remain historical.
+
 基準: `ef829f93a933794c337bf1a37c39fcfb8d4de0f4`。2026-10-08のfetchでmainと一致。
 設計書: ユーザー添付「KAMEN_v2.0.26_汎用歌詞MV品質改善_詳細設計書.md」全文確認。
 本作業の許可範囲はfeature branchのコミットとPRまで。mainへのpush、マージ、リリース、本番デプロイは行わない。

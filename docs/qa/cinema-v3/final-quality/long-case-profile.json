@@ -1,0 +1,106 @@
+{
+  "status": "FIRST_ACCEPTANCE_ROUND_OBSERVATION_NOT_FINAL_PERFORMANCE_VERDICT",
+  "case": "case-24",
+  "variant": "pr7",
+  "timing": {
+    "analysisAndPlanMs": 1125.7000000029802,
+    "searchMs": 70067.20000000298,
+    "exportMs": 9713.89999999106,
+    "totalMs": 80906.79999999702
+  },
+  "stageBoundaryWallMs": {
+    "A": 11857.29999999702,
+    "B": 17180.09999999404,
+    "C": 28815.60000000894,
+    "method": "last progress boundary of unchanged 32/8/3 stages; A includes entry preparation; nested function times are separate"
+  },
+  "inclusiveProfile": {
+    "analyzeAudio": {
+      "calls": 1,
+      "ms": 168.8999999910593
+    },
+    "plan": {
+      "calls": 2,
+      "ms": 60.8999999910593
+    },
+    "ensureFonts": {
+      "calls": 1,
+      "ms": 767.6999999880791
+    },
+    "renderer_loadCustomBackground": {
+      "calls": 81,
+      "ms": 434.49999998509884
+    },
+    "renderer_loadAssetDeck": {
+      "calls": 77,
+      "ms": 214.39999994635582
+    },
+    "measureCinemaOutputReadability": {
+      "calls": 12,
+      "ms": 32939.89999997616
+    },
+    "initialGrammarProtection": {
+      "calls": 1,
+      "ms": 9534.70000000298
+    },
+    "measureCinemaSequence": {
+      "calls": 42,
+      "ms": 2963.600000023842
+    },
+    "cinemaBlockFlow": {
+      "calls": 928,
+      "ms": 2767.5000000596046
+    },
+    "measureCinemaVideoProxy": {
+      "calls": 8,
+      "ms": 16453.70000000298
+    },
+    "rankCinemaCandidateV2": {
+      "calls": 15,
+      "ms": 1.5000000149011612
+    },
+    "encodeCinemaVisualProxy": {
+      "calls": 3,
+      "ms": 3692.2999999970198
+    },
+    "verifyDecodedCinemaLayers": {
+      "calls": 6,
+      "ms": 13832.59999999404
+    },
+    "measureCinemaEncodedProxy": {
+      "calls": 3,
+      "ms": 15087.800000011921
+    },
+    "repairReadabilityPreview": {
+      "calls": 1,
+      "ms": 9731.89999999106
+    },
+    "analyzeRenderedFrames": {
+      "calls": 1,
+      "ms": 70067.20000000298
+    },
+    "certifyExport": {
+      "calls": 1,
+      "ms": 50.70000000298023
+    },
+    "observeExportedMP4": {
+      "calls": 1,
+      "ms": 8028.300000011921
+    },
+    "finalEncodeExcludingCertification": {
+      "calls": 1,
+      "ms": 9596.90000000596
+    },
+    "refinePhotoExport": {
+      "calls": 1,
+      "ms": 9713.70000000298
+    }
+  },
+  "method": "Nested profiler spans overlap; they must not be summed. Same-host main and PR6 measurements and second counterbalanced round are pending.",
+  "inference": "Native readability sampling, including local repair, is a substantial inclusive span; this observation does not isolate CPU codec time or establish cross-environment regression.",
+  "unmeasured": [
+    "peakProcessMemory",
+    "peakGPUMemory",
+    "cacheHitRate"
+  ]
+}

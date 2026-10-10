@@ -1,5 +1,7 @@
 # Cinema V3 — verification and review
 
+Latest final-quality work: [CINEMA_V3_FINAL_QUALITY.md](CINEMA_V3_FINAL_QUALITY.md), with separate evidence under `docs/qa/cinema-v3/final-quality/`. Validation and the conditional technical-release gate are in progress; no production deployment is approved by the evidence yet. Prior cohorts and decisions below remain historical.
+
 ## PR #6 evidence
 
 The current hardening work is described in [CINEMA_V3_RELEASE_HARDENING.md](CINEMA_V3_RELEASE_HARDENING.md). Its new data lives under `docs/qa/cinema-v3/release-hardening/`; the original 3.0.0/3.0.1 cohorts below remain historical evidence and are not overwritten. Final acceptance uses the original final-MP4 observer cadence and thresholds. Human evaluation remains **HUMAN_EVALUATION_PENDING**.

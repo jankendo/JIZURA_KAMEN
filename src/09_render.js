@@ -15,15 +15,14 @@ J.cutAt = (plan, t) => {
   return t < c.end ? c : null;
 };
 
+// Keep the drawing clock, but never quantise an active lyric back before its LRC onset.
+J.renderTimeWithLyricBoundary=(plan,t,stepDur)=>{const quantised=Math.floor(t/stepDur+1e-6)*stepDur,cut=J.cutAt(plan,t);return cut?.line>=0&&quantised<cut.start?cut.start:quantised;};
+
+J.proceduralTextureVersion = 'seeded-procedural-texture-v1';
 class Renderer {
   constructor() {
     this.scratch = mk(2, 2); this.small = mk(2, 2); this.tiny = mk(2, 2);
-    this.grain = [];
-    for (let k = 0; k < 4; k++) {
-      const g = mk(256, 256), x = g.getContext('2d'), id = x.createImageData(256, 256);
-      for (let i = 0; i < id.data.length; i += 4) { const v = Math.random() * 255; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
-      x.putImageData(id, 0, 0); this.grain.push(g);
-    }
+    this.grain = []; this.textureSeed = null;
     const sl = mk(1, 4), sx = sl.getContext('2d'); sx.fillStyle = '#fff'; sx.fillRect(0, 0, 1, 4); sx.fillStyle = '#000'; sx.fillRect(0, 3, 1, 1);
     this.scan = sl;
     this.paperCache = new Map();
@@ -113,24 +112,36 @@ class Renderer {
     return true;
   }
 
+  setTextureSeed(seed) {
+    const normalized = Number.isFinite(seed) ? seed >>> 0 : 0;
+    if (this.textureSeed === normalized && this.grain.length === 4) return;
+    for (const canvas of [...this.grain, ...this.paperCache.values()]) canvas.width = canvas.height = 1;
+    this.grain = []; this.paperCache.clear(); this.textureSeed = normalized;
+    for (let k = 0; k < 4; k++) {
+      const random = J.rng(J.h(normalized, 0x47524149, k)), g = mk(256, 256), x = g.getContext('2d'), id = x.createImageData(256, 256);
+      for (let i = 0; i < id.data.length; i += 4) { const v = random() * 255; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
+      x.putImageData(id, 0, 0); this.grain.push(g);
+    }
+  }
+
   paper(W, H) {
-    const key = W + 'x' + H;
+    const key = (this.textureSeed ?? 0) + ':' + W + 'x' + H, random = J.rng(J.h(this.textureSeed ?? 0, W, H, 0x50415045));
     let p = this.paperCache.get(key);
     if (p) return p;
     const w = Math.round(W / 2), h = Math.round(H / 2);
     p = mk(w, h); const x = p.getContext('2d');
     x.fillStyle = '#fff'; x.fillRect(0, 0, w, h);
     const lo = mk(Math.ceil(w / 24), Math.ceil(h / 24)), lx = lo.getContext('2d'), ld = lx.createImageData(lo.width, lo.height);
-    for (let i = 0; i < ld.data.length; i += 4) { const v = 225 + Math.random() * 30; ld.data[i] = v; ld.data[i + 1] = v - 2; ld.data[i + 2] = v - 6; ld.data[i + 3] = 255; }
+    for (let i = 0; i < ld.data.length; i += 4) { const v = 225 + random() * 30; ld.data[i] = v; ld.data[i + 1] = v - 2; ld.data[i + 2] = v - 6; ld.data[i + 3] = 255; }
     lx.putImageData(ld, 0, 0);
     x.imageSmoothingEnabled = true; x.globalAlpha = 0.9; x.drawImage(lo, 0, 0, w, h); x.globalAlpha = 1;
     const id = x.getImageData(0, 0, w, h);
-    for (let i = 0; i < id.data.length; i += 4) { const n = (Math.random() - 0.5) * 22; id.data[i] += n; id.data[i + 1] += n; id.data[i + 2] += n; }
+    for (let i = 0; i < id.data.length; i += 4) { const n = (random() - 0.5) * 22; id.data[i] += n; id.data[i + 1] += n; id.data[i + 2] += n; }
     x.putImageData(id, 0, 0);
     x.strokeStyle = 'rgba(120,110,100,0.18)'; x.lineWidth = 0.7;
-    for (let i = 0; i < 900; i++) { const X = Math.random() * w, Y = Math.random() * h, a = Math.random() * J.TAU, L = 4 + Math.random() * 14; x.beginPath(); x.moveTo(X, Y); x.quadraticCurveTo(X + Math.cos(a + 0.5) * L / 2, Y + Math.sin(a + 0.5) * L / 2, X + Math.cos(a) * L, Y + Math.sin(a) * L); x.stroke(); }
+    for (let i = 0; i < 900; i++) { const X = random() * w, Y = random() * h, a = random() * J.TAU, L = 4 + random() * 14; x.beginPath(); x.moveTo(X, Y); x.quadraticCurveTo(X + Math.cos(a + 0.5) * L / 2, Y + Math.sin(a + 0.5) * L / 2, X + Math.cos(a) * L, Y + Math.sin(a) * L); x.stroke(); }
     x.fillStyle = 'rgba(60,50,40,0.25)';
-    for (let i = 0; i < 1400; i++) { x.fillRect(Math.random() * w, Math.random() * h, Math.random() * 1.6, Math.random() * 1.6); }
+    for (let i = 0; i < 1400; i++) { x.fillRect(random() * w, random() * h, random() * 1.6, random() * 1.6); }
     this.paperCache.set(key, p);
     return p;
   }
@@ -139,6 +150,7 @@ class Renderer {
 
   /* main entry: draw frame at time t into ctx (canvas px = design * scale) */
   frame(ctx, plan, t, opt = {}) {
+    this.setTextureSeed(plan.seed);
     this.editorDebug = opt.editorDebug === true && opt.production !== true;
     this._productionFrame = opt.production === true;
     this.renderRange=opt.range||null;
@@ -151,7 +163,7 @@ class Renderer {
     // motion is quantised to 'koma' drawings per second (24fps timebase); random flicker runs on a <=24Hz clock
     const stepDur = J.stepDur(fx, fps);
     const clock = J.komaOf(fx) > 0 ? stepDur : 1 / 24;
-    const tq = Math.floor(t / stepDur + 1e-6) * stepDur;
+    const tq = J.renderTimeWithLyricBoundary(plan,t,stepDur);
     const mainCut = J.cutAt(plan, tq);
     const mainStyle=mainCut?.style||st;
     const sc = mainStyle.schemes[mainCut ? mainCut.scheme % mainStyle.schemes.length : 0] || mainStyle.schemes[0];
@@ -406,7 +418,8 @@ class Renderer {
     const W = plan.W, H = plan.H;
     const env = Object.assign({ ctx, W, H, sc, st: cut?.style||plan.style, fx: plan.fx, fps: plan.fps, cut, plan, production:this._productionFrame===true,lyricAuditCtx:this.lyricAuditCtx,lyricAuditItems:this.lyricAuditItems }, o);
     if (cut) {
-      env.pIn = J.clamp(o.lt / Math.max(0.01, cut.inDur));
+      // A zero-duration cut has no entrance fade, including its exact first frame.
+      env.pIn = cut.inDur > 0 ? J.clamp(o.lt / Math.max(0.01, cut.inDur)) : (o.lt >= 0 ? 1 : 0);
       env.pOut = cut.outDur > 0 ? J.clamp((o.lt - (cut.dur - cut.outDur)) / cut.outDur) : 0;
     } else { env.pIn = 1; env.pOut = 0; }
     const ghost = env.pass !== 'main';
