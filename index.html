@@ -8861,6 +8861,7 @@ class Renderer {
   }
 
   setTextureSeed(seed) {
+    this.grain ??= []; this.paperCache ??= new Map();
     const normalized = Number.isFinite(seed) ? seed >>> 0 : 0;
     if (this.textureSeed === normalized && this.grain.length === 4) return;
     for (const canvas of [...this.grain, ...this.paperCache.values()]) canvas.width = canvas.height = 1;
