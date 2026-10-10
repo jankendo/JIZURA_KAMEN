@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "scope": "npm ci, complete engine suite including isolated restore, npm build; browser and full matrix pending",
+  "runtimeHTMLSHA256": "c8dc02a71553f9d2b9276846df252e29a1ff289197fbf48eb736c4a0f50bb579",
+  "tests": {
+    "total": 189,
+    "passed": 187,
+    "failed": 0,
+    "skipped": 2,
+    "skipStatus": "SKIPPED_ENVIRONMENT_MISSING",
+    "skipNames": [
+      "variable_font_browser_test.js",
+      "browser_export_e2e_test.js"
+    ],
+    "formalBrowserReplacement": "PENDING"
+  },
+  "commands": {
+    "npm-ci": 0,
+    "full-test": 0,
+    "build": 0
+  },
+  "testLog": {
+    "path": "/workspace/kamen-v4-validation/full-test.log",
+    "sha256": "05df88bedbdf0eb7ae846e4916c4619c21486730dcb929d2b5f76653e45e32a1"
+  },
+  "isolatedRestore": "187/189 PASS, 0 FAIL, 2 SKIP; same frozen application source, earlier metadata commit",
+  "finalCI": "PENDING"
+}
