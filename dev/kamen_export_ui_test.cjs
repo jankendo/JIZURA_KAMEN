@@ -14,4 +14,10 @@ J.prepareFileSave=async()=> 'declined';await c.runExport('mp4');assert.equal(S.e
 J.prepareFileSave=async()=>null;J.checkMVQuality=()=>({ready:false,exportErrors:[{message:'missing lyrics'}],quality:{targetAcceptance:{minimumMet:true}}});await c.runExport('mp4');assert.equal(S.exportOutcome.fileState,'FAILED_TECHNICAL');assert.equal(encodings.length,before);
 c.exportPreflightBusy=true;await c.runExport('mp4');assert.equal(encodings.length,before,'preflight double click is ignored');c.exportPreflightBusy=false;
 assert.equal(J.creativeExportState({minimumMet:false,failures:[{score:0}]}),'BELOW_TARGET');assert.equal(J.creativeExportState({minimumMet:false,failures:[{score:null}]}),'UNMEASURED');assert.equal(J.creativeExportState({status:'NOT_APPLICABLE'}),'NOT_APPLICABLE');
-console.log('UI runtime: final repair/audit, one-click met/below/unmeasured, technical rejection, cancel and QA-save protection PASS');})().catch(e=>{console.error(e);process.exitCode=1});
+J.checkMVQuality=()=>({ready:true,errors:[],quality:{targetAcceptance:{minimumMet:true}}});J.fixMVQuality=()=>0;J.exportMP4=result;J.canonicalJSON=JSON.stringify;
+let planned=0;const plan=J.plan;J.plan=(...args)=>{planned++;return plan(...args)};
+J.cinemaV3={enabled:true,snapshot:async(p,a)=>({inputHash:JSON.stringify({project:p,pcm:a.pcm})}),planHash:async p=>JSON.stringify(p)};
+const confirm=async()=>{S.confirmedCinemaPlan={plan:S.plan,inputHash:(await J.cinemaV3.snapshot(S.project,S.audio)).inputHash,analysisKey:JSON.stringify(S.audio),planHash:await J.cinemaV3.planHash(S.plan)}};
+await confirm();let count=planned;await c.runExport('mp4');assert.equal(planned,count,'unchanged confirmed plan is not regenerated');assert.equal(S.exportOutcome.initialConfirmedPlanReused,true);
+for(const mutation of [()=>{S.project.revision++},()=>{S.audio.pcm='changed'},()=>{S.audio.analysis='changed'},()=>{S.plan.revision++}]){await confirm();count=planned;mutation();await c.runExport('mp4');assert(planned>count);assert.equal(S.exportOutcome.initialConfirmedPlanReused,false,'changed input/PCM/analysis/plan must replan');}
+console.log('UI runtime: final repair/audit, one-click states, technical rejection, cancel, QA-save protection and exact confirmed plan invalidation PASS');})().catch(e=>{console.error(e);process.exitCode=1});

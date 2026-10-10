@@ -1111,11 +1111,13 @@ async function autoDirection() {
     const range={start:0,end:Math.min(S.plan.duration,S.audio?.duration||S.plan.duration)};
     let pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));
     if(pre.fixes){syncUI();replan();pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));}
+    const captureInput=async()=>J.cinemaV3?.enabled?{plan:S.plan,input:await J.cinemaV3.snapshot(S.project,S.audio,S.plan,range),analysisKey:J.canonicalJSON(audioLike())}:null;
+    let analyzedInput=await captureInput();
     S.pixelQA=await J.analyzeRenderedFrames(S.plan,range,S.audio,{onProgress:detail});
     S.exportCapabilities=await J.exportCapabilities(S.project,S.project.includeAudio!==false?S.audio:null).catch(()=>null);
     let report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);
     const renderFixes=J.fixMVQuality(S.project,report,S.audio);
-    if(renderFixes){syncUI();replan();S.pixelQA=await J.analyzeRenderedFrames(S.plan,range,S.audio,{onProgress:detail});report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);}
+    if(renderFixes){syncUI();replan();analyzedInput=await captureInput();S.pixelQA=await J.analyzeRenderedFrames(S.plan,range,S.audio,{onProgress:detail});report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);}
     S.lastQuality=report;updateStudioQuality(pre.fixes+renderFixes);
     const quality = J.inspectDirection(S.plan);
     if (!quality.coherent) console.warn('Art direction check:', quality.violations);
@@ -1124,6 +1126,7 @@ async function autoDirection() {
     $('directionStatus').dataset.result = 'true';
     task.enter('preview');await J.processingYield();S.need=true;
     task.enter('save');const saved=await flushSave();if(!saved)throw new Error('MVは作成しましたが、ブラウザへの保存を完了できませんでした。プロジェクト保存でバックアップしてください');
+    if(analyzedInput?.plan===S.plan){const plan=S.plan,input=await J.cinemaV3.snapshot(S.project,S.audio,plan,range),analysisKey=J.canonicalJSON(audioLike());if(input.inputHash===analyzedInput.input.inputHash&&analysisKey===analyzedInput.analysisKey)S.confirmedCinemaPlan={plan,inputHash:input.inputHash,analysisKey,planHash:await J.cinemaV3.planHash(plan)};}
     task.complete('MVを作成しました。仕上がりを確認してください');
     toast(`自動演出：${J.STYLES[proposal.style].name} × ${J.MOODS[proposal.mood].name}`);
   } catch (err) {task.fail(err);console.error('JIZURA MV generation failed',err); $('directionStatus').textContent = err.message || '演出を作成できませんでした'; delete $('directionStatus').dataset.result; }
@@ -1305,8 +1308,8 @@ function mountStudio() {
     if(S.plan.lines.some(l=>l.start<0 || l.start>S.audio.duration+.15)){
       $('studioQuality').textContent='音源の長さを超える歌詞があります。歌詞タイミングを調整してください。';return;
     }
-    S.project.aspect=$('studioAspect').value;
-    syncOut();replan();await runExport('mp4');
+    const before=J.canonicalJSON(S.project);S.project.aspect=$('studioAspect').value;
+    syncOut();if(before!==J.canonicalJSON(S.project))replan();await runExport('mp4');
   });
   $('studioPNG').addEventListener('click',()=>{
     $('view').toBlob(blob=>{if(blob)J.saveFile(baseName()+'_frame.png',blob);else $('studioQuality').textContent='画像を保存できませんでした。';},'image/png');
@@ -1384,10 +1387,13 @@ async function runExport(kind) {
     exportPreflightBusy=true;syncDirectionUI();showMsg('書き出し前に代表フレームを検査しています…');
     try{
     S.exportValidation=null;saveHandle=await destination;if(saveHandle==='declined'){outcome.fileState='CANCELLED';task.fail(new Error('保存を中止しました'),true);return;}
-    let fixes=0,report=null;
+    let fixes=0,report=null,retainConfirmedPlan=false;
+    const confirmed=S.confirmedCinemaPlan,V=J.cinemaV3;
+    if(!socialHook&&V?.enabled&&confirmed?.plan===exportPlan){const input=await V.snapshot(outputProject,S.audio,exportPlan,range);retainConfirmedPlan=input.inputHash===confirmed.inputHash&&J.canonicalJSON(audioLike())===confirmed.analysisKey&&await V.planHash(exportPlan)===confirmed.planHash;}
+    outcome.initialConfirmedPlanReused=retainConfirmedPlan;
     for(let pass=0;pass<3;pass++){
       outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;
-      const pre=J.preflightMV(outputProject,S.audio,range,makeOutputPlan);
+      const pre=pass===0&&retainConfirmedPlan?{fixes:0,plan:exportPlan}:J.preflightMV(outputProject,S.audio,range,makeOutputPlan);
       fixes+=pre.fixes;exportPlan=pre.plan;
       if(socialHook)S.socialPlan=exportPlan;else S.plan=exportPlan;
       if(pre.fixes){syncUI();replan();}
