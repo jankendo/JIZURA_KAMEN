@@ -27,6 +27,12 @@
 
 将来の公開は下記の[統合・復旧チェックリスト](qa/cinema-v3/final-quality/release-checklist.md)に従い、全ゲートがGOになった時だけ全stackを含む集約PRをmainへ一度だけmergeする。現在のNO-GOで公開は行わない。
 
+## 追加の旧プロジェクト・日本語可変フォント検証
+
+旧本番で保存したプロジェクトを現行ビルドへ読み込み、実UIで720p/24fpsのDraft MP4を保存した。通常出力と3秒の日本語可変フォント検証出力の2本はH.264/AAC、ffprobe、FFmpeg完全デコード、保存ファイルとQAのSHA-256一致にPASS。ブラウザーの可変軸によるraster差は確認できたが、動画では既存の安全なフォールバックを使い`exportVerified=false`を保持する。可変軸の動画反映を検証済みとは扱わない。既存ブラウザー/フォント検証wrapperも実レポート指定でPASS。全スイートの184 PASS / 2 SKIPとは別の追加検証である。
+
+旧ドライバーは生成途中の可視画面を完了と誤認してdisabled操作に失敗したため、生成・コントロールの完了待機とヘッドレス保存ピッカー対策を修正した。初回失敗と未完了起動を保全し、最終の完了記録を採用した。[legacy-browser-validation.json](qa/cinema-v3/final-quality/legacy-browser-validation.json)と圧縮した全レポート/ログを参照。製品ランタイムHashは変わらず、NO-GO判定も変更しない。
+
 ## 開発履歴（過去時点の記録）
 
 ## Scope and current decision
