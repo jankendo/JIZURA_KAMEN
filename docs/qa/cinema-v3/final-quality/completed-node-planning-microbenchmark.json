@@ -1,0 +1,49 @@
+{
+  "baseline": "/workspace/JIZURA_KAMEN",
+  "results": [
+    {
+      "name": "indexed_music_structure_preserves_every_result",
+      "status": "PASS"
+    },
+    {
+      "name": "timeline_duplicates_ties_and_legacy_order_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_weight_used_for_glyph_fitting_and_drawing",
+      "status": "PASS"
+    },
+    {
+      "name": "native_frames_identical_at_all_four_output_aspects",
+      "status": "PASS"
+    },
+    {
+      "name": "offline_cues_are_conservative_and_never_modify_project_data",
+      "status": "PASS"
+    }
+  ],
+  "timings": [
+    {
+      "name": "musicalStructure",
+      "beforeMs": 54.55565999999999,
+      "afterMs": 54.62286200000017,
+      "improvementPercent": -0.12318061957308224,
+      "repeats": 5,
+      "method": "median; chronological 10-minute, 100 ms timeline; identical output verified",
+      "scope": "structure or beat planning only, not full audio decode/MV/export"
+    },
+    {
+      "name": "beatHierarchy",
+      "beforeMs": 36.205441000000064,
+      "afterMs": 34.63150799999994,
+      "improvementPercent": 4.347227810317578,
+      "repeats": 5,
+      "method": "median; chronological 10-minute, 100 ms timeline; identical output verified",
+      "scope": "structure or beat planning only, not full audio decode/MV/export"
+    }
+  ],
+  "limitations": [
+    "CPU benchmark uses synthetic features, not audio decoding.",
+    "Native Canvas frames do not validate browser variable-font rendering or perceptual singing alignment."
+  ]
+}

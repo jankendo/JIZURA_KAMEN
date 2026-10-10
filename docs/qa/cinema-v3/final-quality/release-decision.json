@@ -1,0 +1,60 @@
+{
+  "overall": "PARTIAL",
+  "releaseDecision": "NO_GO",
+  "productionChanged": false,
+  "mainSHA": "ef829f93a933794c337bf1a37c39fcfb8d4de0f4",
+  "runtimeSHA256": "316c5cb224f670898f929bb6b2e1d3cca9b7ea9afdafd5f2c5a39bd94716a843",
+  "technicalReleaseApproved": false,
+  "blockingFindings": [
+    "One main physical interval regression 77 to 76 remains unresolved; measured same-Blob variability does not establish non-regression.",
+    "Performance target missed: original Total P95 20605 to 42222.8 ms; maximum 55309.8 to 129729.4 ms. Quality-preserving performance optimization is not established.",
+    "Five original historical global contrasts remain UNMEASURED; independent brief newly lacks historical certification while separate aligned observation is measured. Missing primary evidence and unmatched intervals cannot be counted as PASS."
+  ],
+  "passed": {
+    "localSuite": {
+      "pass": 184,
+      "fail": 0,
+      "environmentSkip": 2
+    },
+    "install": "PASS",
+    "build": "PASS",
+    "uiTenChecks": "PASS",
+    "comparativeRealH264AACMP4": 234,
+    "observerRepeatRealH264AACMP4": 12,
+    "completeFFmpegDecode": "PASS",
+    "ffprobeEndpointsFps": "PASS",
+    "sourceInvariantRecordedFields": "PASS",
+    "manualLockUnchanged": "PASS",
+    "knownShortDenseContrast": {
+      "main": 43,
+      "pr6": 31,
+      "pr7": 68,
+      "rounds": 2
+    },
+    "knownManualContrast": {
+      "main": 49,
+      "pr6": 48,
+      "pr7": 54,
+      "rounds": 2
+    },
+    "controlledCertificationBlackRejectFailedBlobRetentionCancelRetryBestStateRestore": "PASS",
+    "comparableHighQualityPhysicalIntervalsNoLoss": "PASS for measured points only; missing/incomparable points not passed"
+  },
+  "humanEvaluation": "HUMAN_EVALUATION_PENDING",
+  "historicalCertificationFailure": "UNRESOLVED: original failed Blob lost",
+  "memoryAndCache": "Peak process/GPU memory and cache-hit rate UNMEASURED; heap snapshots do not replace peaks.",
+  "integration": "NOT_STARTED because NO_GO; no release PR, backup tag, merge or deploy.",
+  "requiredNextEvidence": [
+    "Protect or resolve remaining interval evidence with reproducible decoded-pixel comparisons.",
+    "Retain full candidate safety and final QA while reducing duplicate native/encoded observation. Rejected pruning/single-core prototypes may not be shipped.",
+    "Validate any new implementation again on original, additional and held-out sets.",
+    "Complete exact aggregate-release-HEAD CI and browser tests before any main merge."
+  ],
+  "ciNotes": {
+    "implementationSuccess": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38007951825",
+    "cancelledDocumentationHead": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38011710649",
+    "fix": "Build-job budget raised from 60 to 120 minutes, preserving every regression/browser/MP4 check and deployment conditions. Local suite took 3971 s plus 347 s UI export.",
+    "finalHeadCheck": "See PR #7 status checks; final commit CI must finish before PR completion."
+  },
+  "exactFinalHeadCIRequirement": "Must pass before finishing PR #7. Dynamic final SHA/check URLs are recorded on the PR, rather than embedding a self-referential commit SHA in this document."
+}

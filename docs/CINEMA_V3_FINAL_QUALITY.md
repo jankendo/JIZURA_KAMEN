@@ -1,5 +1,34 @@
 # Cinema V3 final quality — PR #7
 
+## PR #7 現行ビルドの最終検証: PARTIAL / NO-GO
+
+現行ランタイム SHA-256 は `316c5cb224f670898f929bb6b2e1d3cca9b7ea9afdafd5f2c5a39bd94716a843`。main は `ef829f93a933794c337bf1a37c39fcfb8d4de0f4` のままで、集約リリースPR・マージ・本番デプロイは実施していない。以下を現行判定とし、後続の開発履歴にある「実行中」「未完了」はその時点の記録として読む。
+
+元24素材＋4反復を各エンジン2回、追加8素材を各2回、独立6素材を各1回で比較し、計234本のH.264/AAC MP4がffprobe・FFmpeg完全デコード・入力PCM/LRC/画像/手動指定の記録済み不変性検査にPASSした。追加12本で同一Blobを各3回再観測し、独立エンコードと区別した。正式UI10項目、保存/復元、Draft Export、実WebCodecsキャンセル/再試行/復元、黒動画拒否と失敗Blob保持もPASS。全回帰試験は184 PASS / 0 FAIL / 2環境依存SKIP。SKIPをPASSへ書き換えていない。
+
+可読性: 比較可能な元18素材の素材別中央値は main 63 → PR #7 94（従来の反復込み集計は84→94）。短文密集はmain 43 / PR #6 31 →68、手動ロック素材は49 / 48 →54を両反復で確認。元24素材の有限な全体指標でmain比後退は0件。一方、actual-time背景一致のフレーズ/時刻比較はmain比960点中1点で77→76。既存の高品質点（85以上）の測定済み比較に後退はないが、欠損/時刻不一致は合格に含めない。同一main Blobの観測値も77/76/77と変動したが、この事実だけでPR #7の1点差を解消済みとは扱わない。
+
+| 元24素材＋4反復、各2試行（ms） | main | PR #6 | PR #7 |
+| --- | ---: | ---: | ---: |
+| Total P50 / P95 | 8,761.75 / 20,605.0 | 7,387.45 / 17,746.9 | 13,803.75 / 42,222.8 |
+| Search P50 / P95 | 5,599.1 / 15,581.1 | 4,862.5 / 13,929.5 | 10,923.05 / 36,556.3 |
+| Export P50 / P95 | 2,103.45 / 4,528.9 | 1,446.55 / 2,700.7 | 2,124.15 / 4,772.3 |
+| 最遅Total | 55,309.8 | 54,974.7 | 129,729.4 |
+
+速度目標は未達。混合素材P95だけではなく、素材ごとの2試行中央値で元24素材中22素材がmainより遅い。共有EPYCホスト、cgroup 4 CPU/32 GiB、Chrome154.0.8037.97 / Node24.19.0、固定入力・seed・24fps・解像度・音源/LRC・出力範囲、順序を入れ替えた試行。独占CPUではなく、素材ごと2試行からP95の精密な信頼区間や統計的有意差は主張しない。ピーク/GPUメモリとキャッシュヒット率はUNMEASURED。長時間素材では23回のnative可読性計測が約43秒、旧候補比較が約56秒だった。これらは入れ子の包括時間で足し合わせられない。品質を後退させた単一探索/候補間引き試作は不採用。
+
+元24素材のhistorical localContrastは5素材がUNMEASURED（main/PR #6は6素材）。独立素材は2素材がUNMEASUREDで、うち短文素材はhistorical投影失敗とactual-time観測MEASUREDが併存する。既存のhistorical尺度を新観測で上書きしていない。旧経路のローカル最終候補を再利用したが、描画/観測修正により旧mainと候補IDが常に同一になる保証はない。短文密集の今回のmain最終候補ID15に対し、修正版ローカル旧経路の候補IDは12だった。同じ素材/seed/Profileの実MP4で品質を比較した結果として68を報告する。
+
+リリース判定と根拠は [release-decision.json](qa/cinema-v3/final-quality/release-decision.json)、[final-benchmark-summary.json](qa/cinema-v3/final-quality/final-benchmark-summary.json)、[final-root-cause.json](qa/cinema-v3/final-quality/final-root-cause.json)、[final-missing-observations.json](qa/cinema-v3/final-quality/final-missing-observations.json)、[observer-reproducibility.json](qa/cinema-v3/final-quality/observer-reproducibility.json) に集約した。圧縮した元JSONのHashは [final-raw-manifest.json](qa/cinema-v3/final-quality/final-raw-manifest.json)、全比較は `final-comparison.json.gz`、長時間の包括プロファイルは [final-tail-profile.json](qa/cinema-v3/final-quality/final-tail-profile.json)。正式UIの実出力Hashは `completed-ui-export-test.json` と `completed-ui-report.json.gz` で追跡できる。
+
+24組の匿名A/Bを現行動画で再生成し、別管理の回答キー、空CSV、評価HTML、集計スクリプトを用意した。実ChromiumでCSVダウンロード/BOM/改行/24組を確認した。人間の回答は0件で **HUMAN_EVALUATION_PENDING**。これだけをNO-GO理由にせず、可読性証拠の未解決と性能の重大な悪化を区別して判断する。過去の失われた認証失敗Blobは復元できず、原因はUNRESOLVED。
+
+実装コミットの[CI](https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38007951825)は成功・deploy SKIPPED。証拠追記HEADの[CI](https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38011710649)は60分のジョブ上限でキャンセルされた。全試験を維持してbuildジョブの枠を120分に修正し、最終コミットの結果は [PR #7のchecks](https://github.com/jankendo/JIZURA_KAMEN/pull/7/checks) で確認する。品質閾値、候補数、12分のブラウザー試験枠、main/Pagesの公開条件は変更していない。
+
+将来の公開は下記の[統合・復旧チェックリスト](qa/cinema-v3/final-quality/release-checklist.md)に従い、全ゲートがGOになった時だけ全stackを含む集約PRをmainへ一度だけmergeする。現在のNO-GOで公開は行わない。
+
+## 開発履歴（過去時点の記録）
+
 ## Scope and current decision
 
 This work starts at PR #6 `22d0a9270364bef43b1065740ad292f9d66e2ad1` and compares current main `ef829f93a933794c337bf1a37c39fcfb8d4de0f4`, PR #6 and the final-quality build. Existing PR #1–#6, historical measurements, original licenses and copyright remain intact. No ZIP reintegration is performed.
@@ -113,3 +142,13 @@ A local prototype reused one legacy 32→8→3 tournament and compared bounded V
 Instrumented comparison found matching requested/actual frame clocks and matching eroded glyph-core/ring counts. At 0.24 s the native contrast ratio was 3.0818 and the finished MP4 ratio 2.7901, producing scores 100 and 90 with the unchanged formula. Selected, copied and post-analysis cut parameters matched. Fifteen fresh-versus-borrowed Renderer comparisons produced no score differences. These observations reject the tested clock/cut-copy/renderer-scope hypotheses for this fixture; they do not establish the precise contribution of encoding conversion, compression or decoded resampling. Machine-readable paired evidence is in [rejected-single-core-diagnosis.json](qa/cinema-v3/final-quality/rejected-single-core-diagnosis.json). Native-only superiority cannot certify the finished video.
 
 The existing two-tournament implementation remains the shipping candidate. Its final immutable cohorts, corrected full suite, actual UI export and CI must complete before release acceptance. Tail latency is still an open concern, not an achieved target.
+
+### CI implementation evidence
+
+The implementation commit `de4735f01c6c1571a4f20304586cf52467c9473a` passed [CI](https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38007951825): 184 PASS, 0 FAIL, 2 environment-dependent SKIP; build and actual ten-check browser UI/MP4 smoke test passed; deployment was SKIPPED. Downloaded artifacts were independently rechecked locally: the UI export and cancellation retry contain H.264/AAC, and all three retained MP4 files, including the video-only black rejection control, fully decode in FFmpeg. Actual completed-black-Blob failure retention and native WebCodecs cancellation/closed resources/best state restoration/retry passed. This completes the earlier pending real-browser retention check without establishing the cause of the historical lost-Blob failure. Evidence: [ci-implementation-validation.json](qa/cinema-v3/final-quality/ci-implementation-validation.json).
+
+The isolated clean-backup restore also completed its dependency installation, full suite (184 PASS / 0 FAIL / 2 SKIP) and build. The parent checkout suite, documentation HEAD CI and final frozen comparison cohorts remain separate pending checks; neither the CI smoke video nor the restored unit suite substitutes for corpus readability/performance acceptance.
+
+### Direct pre-encode raster isolation
+
+A further instrumented export of the rejected single-core prototype captured native and actual delivery RGBA pixels at the identical 640×360 profile and 5/24 s timestamp. One of 18 native captures exactly matched the actual pre-encode frame: all 691,200 RGB channels matched, maximum difference zero and identical pixel SHA-256. Nevertheless, the corresponding requested 0.24 s evidence measured native contrast 100 and independently decoded contrast 90. The loss is therefore downstream of the matching source raster for this fixture. A separate same-decoded-frame sampling control also found zero RGB difference between direct 384px VideoSample drawing and a 640px decoded RGBA canvas subsequently resized to 384px at all three tested times. Exact contributions from encoding/color conversion are not isolated; no codec setting or threshold was changed. Evidence and development-only instrumentation are preserved in [post-encode-divergence-diagnosis.json](qa/cinema-v3/final-quality/post-encode-divergence-diagnosis.json). The trial remains rejected, and no native score of 100 is described as finished-MP4 certification.
