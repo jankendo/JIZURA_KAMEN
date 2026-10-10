@@ -1,3 +1,5 @@
+ワンクリックMP4復旧作業は [AUTO_CINEMA_ONE_CLICK.md](AUTO_CINEMA_ONE_CLICK.md) を参照。過去の実測は保全し、今回の証拠と区別する。
+
 # Cinema V3 implementation status
 
 Latest final-quality work: [CINEMA_V3_FINAL_QUALITY.md](CINEMA_V3_FINAL_QUALITY.md), with separate evidence under `docs/qa/cinema-v3/final-quality/`. Validation and the conditional technical-release gate are in progress; no production deployment is approved by the evidence yet. Prior cohorts and decisions below remain historical.

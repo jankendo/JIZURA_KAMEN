@@ -49,7 +49,7 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
  const check=(name,data={})=>{checks.push({name,status:'PASS',...data});console.log(name,'PASS',JSON.stringify(data));};
  try{
   const target=new URL(url);target.searchParams.set('kamen_qa',String(Date.now()));
-  const response=await page.goto(target.toString(),{waitUntil:'load',timeout:60000});assert.equal(response.status(),200);
+  const response=await page.goto(target.toString(),{waitUntil:'load',timeout:60000});assert.equal(response.status(),200);environment.runtimeSHA256=createHash('sha256').update(await response.body()).digest('hex');
   await page.waitForFunction(()=>window.J?.ui?.project&&document.querySelector('#studioExport'));
   assert((await page.title()).includes('KAMEN'));assert.equal(await page.evaluate(()=>KAMEN_APP_INFO.version),'2.0.26');
   check('startup',{version:'2.0.26',secure:await page.evaluate(()=>isSecureContext)});
@@ -150,7 +150,7 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
   assert.equal(errors.length,0,errors.join('\n'));await page.screenshot({path:path.join(out,'ui.png'),fullPage:true});
   const report={status:'PASS',outcome,oneClick:true,environment,consoleMessages,exportStates:states,downloadStarted,downloadError,saveTiming:{downloadSaveWallMs,method:'Playwright download.saveAs wall time; includes browser transfer and test-host persistence; native File System Access picker timing UNMEASURED'},url:target.toString(),browser:browser.version(),checks,pageErrors:errors,resourceFailures,draftReason,validation:observed.validation,provenance:observed.provenance,ffprobe:media};
   fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));
-  console.log('PASS: actual uploads, generation, playback, save/reload, MP4 video/audio/progress. Creative quality:',draftReason?'below target; real draft UI exercised':'qualified');
+  console.log('PASS: actual uploads, generation, playback, save/reload, MP4 video/audio/progress. Creative quality:',outcome.creativeState);
  }catch(error){fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAIL',url,environment,checks,pageErrors:errors,resourceFailures,consoleMessages,exportState:lastState,exportStates:states,error:error.stack},null,2));await page.screenshot({path:path.join(out,'failure.png'),fullPage:true}).catch(()=>{});throw error;}
  finally{fs.writeFileSync(path.join(out,'console.json'),JSON.stringify(consoleMessages,null,2));await page.context().tracing.stop({path:path.join(out,'trace.zip')}).catch(()=>{});await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

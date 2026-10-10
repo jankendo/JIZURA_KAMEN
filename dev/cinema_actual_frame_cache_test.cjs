@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
-const {J,context}=engine();let renders=0;
+const {J,context}=engine(),OriginalRenderer=J.Renderer,originalPrepare=J.prepareCinemaProxyRenderer;let renders=0;
 class Raster {
  frame(x,p,t,options){renders++;x.fillStyle='#456';x.fillRect(0,0,x.canvas.width,x.canvas.height);if(!p._decodedNeutralPrimary){x.fillStyle='#fff';x.fillRect(24+t*3,40,100,24);}if(options.lyricAuditCtx){const m=options.lyricAuditCtx;m.clearRect(0,0,m.canvas.width,m.canvas.height);if(!p._decodedNeutralPrimary){m.fillStyle='#fff';m.fillRect(24+t*3,40,100,24);}}}
  disposeAssets(){}
@@ -19,8 +19,17 @@ const times=[.31,.311,.312],range={start:0,end:2};
   for(const changed of [{inputHash:'two'},{times:[times[0]]},{lines:[1]},{backgroundConsistency:false},{physicalOnly:!physicalOnly}]){const next=await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'one',scope,...changed});assert(!next.measurementReuse,'changed measurement conditions never reuse evidence');}
   p.seed=2;assert(!(await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'one',scope})).measurementReuse);p.seed=1;
   const fontStatus=context.document.fonts.status;context.document.fonts.status='loading';assert(!(await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'one',scope})).measurementReuse);context.document.fonts.status=fontStatus;
+  const raced=new AbortController(),hash=J.cinemaV3.planHash;
+  try{J.cinemaV3.planHash=async p=>{const h=await hash(p);raced.abort();return h;};await assert.rejects(J.measureCinemaOutputReadability(p,range,raced.signal,{...options,inputHash:'one',scope}),{name:'AbortError'},'cancel during async hash must stop a cache hit');}finally{J.cinemaV3.planHash=hash;}
   const controller=new AbortController();controller.abort();await assert.rejects(J.measureCinemaOutputReadability(p,range,controller.signal,{...options,inputHash:'one',scope}),{name:'AbortError'});
   for(let n=0;n<20;n++)await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'unique-'+n,scope});assert(scope.readabilityCache.size<=16);assert(renders>before);
  }
- console.log('Actual Canvas pixels: fresh/adjacent frame equivalence across three aspects and two reference modes; immutable bounded cache, invalidation, hash identity and cancel PASS');
+ J.Renderer=OriginalRenderer;J.prepareCinemaProxyRenderer=originalPrepare;
+ for(const aspect of ['16:9','9:16','1:1']){
+  const project={...J.defaultProject(),aspect,res:360,fps:24,lyrics:'[00:00.20]光と夢'},p=J.plan(project,{duration:2,beats:[]});J.cinemaV3.bindDelivery(p,project);
+  const options={physicalOnly:true,backgroundConsistency:true,additionalTimes:times,times},individual=[];
+  for(const t of times){const r=await J.measureCinemaOutputReadability(p,range,null,{...options,times:[t]});individual.push(r.samples[0]);}
+  const batched=await J.measureCinemaOutputReadability(p,range,null,options);assert.equal(J.canonicalJSON(batched.samples),J.canonicalJSON(individual),'shipping Renderer samples must equal independent fresh calls');assert.equal(batched.renderCounts.native,1);
+ }
+ console.log('Canvas cache contracts plus shipping Renderer differential samples across three aspects PASS');
 })().catch(error=>{console.error(error);process.exitCode=1});

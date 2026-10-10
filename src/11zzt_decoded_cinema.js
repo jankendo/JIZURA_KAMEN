@@ -31,6 +31,7 @@ J.measureCinemaOutputReadability=async(p,range,signal,options={})=>{
  const fontState=()=>J.canonicalJSON({status:document.fonts?.status??null,evidence:[...(J.fontLoadEvidence||[])]}),fontKey=fontState(),glyphResolution=J.glyphs?.maxRes;
  const cachePlanHash=J.cinemaV3?.enabled?await J.cinemaV3.planHash(p):null,cacheKey=cachePlanHash&&options.inputHash&&options.scope&&document.fonts?.status!=='loading'?J.canonicalJSON({planHash:cachePlanHash,inputHash:options.inputHash,profile:J.cinemaV3.outputProfile(p,range),texture:J.proceduralTextureVersion,fontKey,glyphResolution,physicalOnly:!!options.physicalOnly,backgroundConsistency:!!options.backgroundConsistency,additionalTimes:options.additionalTimes||[],times:options.times||null,lines:options.lines||null}):null;
  const cache=cacheKey?(options.scope.readabilityCache??=new Map()):null;
+ if(signal?.aborted)throw new DOMException('Aborted','AbortError');
  if(cache?.has(cacheKey)){const result=J.clonePhotoRenderPlan(cache.get(cacheKey));Object.defineProperty(result,'measurementReuse',{value:{status:'REUSED_IDENTICAL_PLAN_INPUT_PROFILE_SAMPLES',freshNativeRenders:0},enumerable:false});return result;}
  await J.prepareCinemaProxyRenderer(R,p,options.scope);
  let actualFrame=null;const renderCounts={native:0,aligned:0,background:0,actualFrameHits:0};

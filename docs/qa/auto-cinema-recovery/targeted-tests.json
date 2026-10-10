@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "tests": [
+    "kamen_export_ui_test.cjs",
+    "one_click_save_test.cjs",
+    "cinema_actual_frame_cache_test.cjs",
+    "cinema_v3_readability_protection_test.cjs",
+    "cinema_v3_final_quality_test.cjs"
+  ],
+  "sourceRuntimeSHA256": "e2b08bd75f2e872de345552a69c0ddd92a2d690784fc7f607c88665ef57c20a8",
+  "priorCancelRaceRegression": {
+    "before": "FAIL: cache hit ignored cancel during async planHash",
+    "after": "PASS: post-hash abort check"
+  },
+  "fullSuite": "PENDING_AT_COMMIT",
+  "exactHeadCI": "PENDING_AT_COMMIT"
+}

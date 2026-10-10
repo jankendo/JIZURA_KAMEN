@@ -15,3 +15,5 @@
 生成前後の inputHash と音楽解析が一致し、書き出し時もプラン参照・planHashが一致する場合だけ確定プランを初回preflightへ渡す。変更時は再計画する。代表画素と最終MP4のQAは省略しない。native観測では同一実フレームの画素・マスク・背景を共有し、requested-timeの指標は個別に保持する。scopeキャッシュはinputHash、planHash、Profile、全サンプル条件、texture、フォント状態、glyph解像度で照合し、最大16件。フォント読込中は再利用せず、終了時の不変性を確認して格納する。返却値は複製し、ヒット情報は非列挙として証拠のcanonical JSONを変えない。
 
 `cinema_actual_frame_cache_test.cjs` は3アスペクト×2参照方式について、個別に新規描画した画素によるサンプルと共有後のサンプルを比較する。これはCanvasの等価性試験でありMP4品質測定ではない。実ブラウザー・素材比較と同じ結果として数えない。`font_loading_probe.cjs` は通常通信と意図的な外部通信障害を別コンテキストで観測し、外部フォント未取得をLOADEDとしないことを検証する。過去のネットワーク障害の原因特定とは区別する。
+
+復旧後の実測・原因分析・公開判定は [root-cause.md](qa/auto-cinema-recovery/root-cause.md) と同フォルダのJSONを参照。最終HEADのCI結果とブラウザー証拠はPR本文とActions artifactで追跡する。
