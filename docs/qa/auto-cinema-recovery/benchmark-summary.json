@@ -1,0 +1,431 @@
+{
+  "status": "MEASURED",
+  "exports": 18,
+  "inputCount": 6,
+  "trialsPerInputPerEngine": 1,
+  "environment": {
+    "browser": "154.0.8037.97",
+    "node": "v24.19.0",
+    "os": "linux",
+    "release": "6.18.44"
+  },
+  "cpu": "AMD EPYC 9V74 80-Core Processor",
+  "cpuCountHost": 5,
+  "load": [
+    1.32,
+    1.09,
+    0.64
+  ],
+  "variants": {
+    "baseline": {
+      "meaning": "main ef829f9",
+      "exports": 6,
+      "total": {
+        "n": 6,
+        "p50Ms": 16761.649999999965,
+        "p95Ms": 55604.09999999998,
+        "maximumMs": 55604.09999999998,
+        "sampleStddevMs": 17209.610892453875
+      },
+      "search": {
+        "n": 6,
+        "p50Ms": 9883.900000000023,
+        "p95Ms": 41930.19999999995,
+        "maximumMs": 41930.19999999995,
+        "sampleStddevMs": 14070.025937680399
+      },
+      "export": {
+        "n": 6,
+        "p50Ms": 2641.1999999999534,
+        "p95Ms": 10334.70000000007,
+        "maximumMs": 10334.70000000007,
+        "sampleStddevMs": 3268.829081133938
+      },
+      "localContrastMedian": 49,
+      "localContrastMeasured": 5,
+      "localContrastUnmeasured": 1
+    },
+    "pr5": {
+      "meaning": "PR #7 cd9aa5a (raw alias retained)",
+      "exports": 6,
+      "total": {
+        "n": 6,
+        "p50Ms": 30959.5,
+        "p95Ms": 125866.80000000005,
+        "maximumMs": 125866.80000000005,
+        "sampleStddevMs": 42010.13341591132
+      },
+      "search": {
+        "n": 6,
+        "p50Ms": 23875.70000000007,
+        "p95Ms": 109153.40000000002,
+        "maximumMs": 109153.40000000002,
+        "sampleStddevMs": 37598.965257539545
+      },
+      "export": {
+        "n": 6,
+        "p50Ms": 3597.5,
+        "p95Ms": 12800.20000000007,
+        "maximumMs": 12800.20000000007,
+        "sampleStddevMs": 4174.257098814154
+      },
+      "localContrastMedian": 61.0,
+      "localContrastMeasured": 6,
+      "localContrastUnmeasured": 0
+    },
+    "v3": {
+      "meaning": "reconstructed Auto Cinema PR #8",
+      "exports": 6,
+      "total": {
+        "n": 6,
+        "p50Ms": 29352.95000000001,
+        "p95Ms": 127111.59999999998,
+        "maximumMs": 127111.59999999998,
+        "sampleStddevMs": 42836.279073592115
+      },
+      "search": {
+        "n": 6,
+        "p50Ms": 21977.400000000023,
+        "p95Ms": 111174.70000000007,
+        "maximumMs": 111174.70000000007,
+        "sampleStddevMs": 38882.424131561915
+      },
+      "export": {
+        "n": 6,
+        "p50Ms": 3623.5499999999884,
+        "p95Ms": 12532.599999999977,
+        "maximumMs": 12532.599999999977,
+        "sampleStddevMs": 4064.5541648090507
+      },
+      "localContrastMedian": 61.0,
+      "localContrastMeasured": 6,
+      "localContrastUnmeasured": 0
+    }
+  },
+  "comparisons": [
+    {
+      "id": "case-03",
+      "baseline": "main",
+      "inputMatched": true,
+      "localContrastBefore": 80,
+      "localContrastAfter": 92,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 12,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3804,
+        "searchMs": 4328.900000000023,
+        "exportMs": 1894.6999999999534,
+        "totalMs": 10027.599999999977
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3308.79999999993,
+        "searchMs": 7407.400000000023,
+        "exportMs": 1920.2000000000698,
+        "totalMs": 12636.400000000023
+      }
+    },
+    {
+      "id": "case-03",
+      "baseline": "PR7",
+      "inputMatched": true,
+      "localContrastBefore": 92,
+      "localContrastAfter": 92,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 12,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3259.5,
+        "searchMs": 8819.600000000093,
+        "exportMs": 1965.2999999999302,
+        "totalMs": 14044.400000000023
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3308.79999999993,
+        "searchMs": 7407.400000000023,
+        "exportMs": 1920.2000000000698,
+        "totalMs": 12636.400000000023
+      }
+    },
+    {
+      "id": "case-04",
+      "baseline": "main",
+      "inputMatched": true,
+      "localContrastBefore": 88,
+      "localContrastAfter": 99,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 10,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3156.79999999993,
+        "searchMs": 5143.900000000023,
+        "exportMs": 1710.0999999999767,
+        "totalMs": 10010.79999999993
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3846,
+        "searchMs": 10614.900000000023,
+        "exportMs": 1514.2999999999302,
+        "totalMs": 15975.199999999953
+      }
+    },
+    {
+      "id": "case-04",
+      "baseline": "PR7",
+      "inputMatched": true,
+      "localContrastBefore": 99,
+      "localContrastAfter": 99,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 10,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3037.4000000000233,
+        "searchMs": 10511.099999999977,
+        "exportMs": 1497.6999999999534,
+        "totalMs": 15046.199999999953
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3846,
+        "searchMs": 10614.900000000023,
+        "exportMs": 1514.2999999999302,
+        "totalMs": 15975.199999999953
+      }
+    },
+    {
+      "id": "case-23",
+      "baseline": "main",
+      "inputMatched": true,
+      "localContrastBefore": 43,
+      "localContrastAfter": 68,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 12,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3786.5999999999767,
+        "searchMs": 9299.699999999953,
+        "exportMs": 3881.8000000000466,
+        "totalMs": 16968.099999999977
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3909.5,
+        "searchMs": 18037.199999999953,
+        "exportMs": 2901.4000000000233,
+        "totalMs": 24848.099999999977
+      }
+    },
+    {
+      "id": "case-23",
+      "baseline": "PR7",
+      "inputMatched": true,
+      "localContrastBefore": 68,
+      "localContrastAfter": 68,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 12,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3746,
+        "searchMs": 19949.300000000047,
+        "exportMs": 2778.5,
+        "totalMs": 26473.800000000047
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3909.5,
+        "searchMs": 18037.199999999953,
+        "exportMs": 2901.4000000000233,
+        "totalMs": 24848.099999999977
+      }
+    },
+    {
+      "id": "case-24",
+      "baseline": "main",
+      "inputMatched": true,
+      "localContrastBefore": null,
+      "localContrastAfter": 49,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 20,
+      "physicalUnmeasuredPoints": 1,
+      "physicalDifferentTimeOrAbsentPoints": 2,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3339.1999999999534,
+        "searchMs": 41930.19999999995,
+        "exportMs": 10334.70000000007,
+        "totalMs": 55604.09999999998
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3404.29999999993,
+        "searchMs": 111174.70000000007,
+        "exportMs": 12532.599999999977,
+        "totalMs": 127111.59999999998
+      }
+    },
+    {
+      "id": "case-24",
+      "baseline": "PR7",
+      "inputMatched": true,
+      "localContrastBefore": 49,
+      "localContrastAfter": 49,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 23,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3913.1999999999534,
+        "searchMs": 109153.40000000002,
+        "exportMs": 12800.20000000007,
+        "totalMs": 125866.80000000005
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3404.29999999993,
+        "searchMs": 111174.70000000007,
+        "exportMs": 12532.599999999977,
+        "totalMs": 127111.59999999998
+      }
+    },
+    {
+      "id": "general-manual",
+      "baseline": "main",
+      "inputMatched": true,
+      "localContrastBefore": 49,
+      "localContrastAfter": 54,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 17,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3602.5999999998603,
+        "searchMs": 10468.100000000093,
+        "exportMs": 2484.5,
+        "totalMs": 16555.199999999953
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3594.5,
+        "searchMs": 25917.600000000093,
+        "exportMs": 4345.699999999953,
+        "totalMs": 33857.80000000005
+      }
+    },
+    {
+      "id": "general-manual",
+      "baseline": "PR7",
+      "inputMatched": true,
+      "localContrastBefore": 54,
+      "localContrastAfter": 54,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 17,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3226.5999999998603,
+        "searchMs": 27802.100000000093,
+        "exportMs": 4416.5,
+        "totalMs": 35445.19999999995
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3594.5,
+        "searchMs": 25917.600000000093,
+        "exportMs": 4345.699999999953,
+        "totalMs": 33857.80000000005
+      }
+    },
+    {
+      "id": "independent-fixed",
+      "baseline": "main",
+      "inputMatched": true,
+      "localContrastBefore": 20,
+      "localContrastAfter": 20,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 18,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3430.2999999998137,
+        "searchMs": 12191.100000000093,
+        "exportMs": 2797.899999999907,
+        "totalMs": 18419.299999999814
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3071.100000000093,
+        "searchMs": 28521.199999999953,
+        "exportMs": 4842.600000000093,
+        "totalMs": 36434.90000000014
+      }
+    },
+    {
+      "id": "independent-fixed",
+      "baseline": "PR7",
+      "inputMatched": true,
+      "localContrastBefore": 20,
+      "localContrastAfter": 20,
+      "localContrastRegression": false,
+      "physicalPairedPoints": 18,
+      "physicalUnmeasuredPoints": 0,
+      "physicalDifferentTimeOrAbsentPoints": 0,
+      "physicalRegressions": [],
+      "manualLocksUnchanged": true,
+      "timingBefore": {
+        "analysisAndPlanMs": 3070.899999999907,
+        "searchMs": 32446.40000000014,
+        "exportMs": 4755.299999999814,
+        "totalMs": 40272.59999999986
+      },
+      "timingAfter": {
+        "analysisAndPlanMs": 3071.100000000093,
+        "searchMs": 28521.199999999953,
+        "exportMs": 4842.600000000093,
+        "totalMs": 36434.90000000014
+      }
+    }
+  ],
+  "runtimeIdentity": {
+    "src/12_ui.js": "5481b5b5972f39ee508cc994ad17a7d21376571ce0520e4f6bc3344a59eb7c04",
+    "src/11_export.js": "522e0fdea26c75a9a2361fb9419187c02471f09a9c634694a8bfade748268713",
+    "src/11zzd_export_policy.js": "276852433b293f3eb4782fab8b0c471444df5661c58712439206d1460bd9a629",
+    "src/11zzj_musical_photo.js": "4dd6b1c35dc499f09d10e0bbea9ee02067fe7bdb971b0685bf3a4d9cb4512a9b",
+    "src/11zzt_decoded_cinema.js": "d119b0b29085669df37d7c12c496e448e34f9d077a3a9e42fa992ed4d4873ab3",
+    "index.html": "cb45ebd20a9de0b9fb26658286d12954da5b8cc56db542cca251cf7e15552fb3"
+  },
+  "limits": [
+    "Representative set only; not the complete 24/8/6 matrix",
+    "Shared host, one trial per input/engine; no statistical significance claim",
+    "P95 of six inputs equals the maximum; cannot compare this aggregate with historical 28/56-trial P95",
+    "Total retains original definition: analysis+plan+search+export including internal QA; later independent observation, FFmpeg and persistence excluded",
+    "Profile times are nested inclusive wall times; do not sum",
+    "Peak process/GPU memory and whole-engine cache hit rate UNMEASURED"
+  ],
+  "humanEvaluation": "HUMAN_EVALUATION_PENDING",
+  "historicalFontFailureCause": "UNRESOLVED",
+  "pairedMainReadability": {
+    "inputs": 5,
+    "mainMedian": 49,
+    "currentMedian": 68
+  },
+  "implementationStage": "Frozen performance/readability runtime before adding post-hash cancellation guard; final runtime validated separately by targeted tests and exact-HEAD browser CI"
+}

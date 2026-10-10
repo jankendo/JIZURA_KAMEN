@@ -6,6 +6,7 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const {spawnSync} = require('node:child_process');
 const os = require('node:os');
+const {createHash}=require('node:crypto');
 const {ExportWatchdog}=require('./export_watchdog.cjs');
 const {createCanvas} = require('@napi-rs/canvas');
 const {chromium} = require('playwright-core');
@@ -48,7 +49,7 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
  const check=(name,data={})=>{checks.push({name,status:'PASS',...data});console.log(name,'PASS',JSON.stringify(data));};
  try{
   const target=new URL(url);target.searchParams.set('kamen_qa',String(Date.now()));
-  const response=await page.goto(target.toString(),{waitUntil:'load',timeout:60000});assert.equal(response.status(),200);
+  const response=await page.goto(target.toString(),{waitUntil:'load',timeout:60000});assert.equal(response.status(),200);environment.runtimeSHA256=createHash('sha256').update(await response.body()).digest('hex');
   await page.waitForFunction(()=>window.J?.ui?.project&&document.querySelector('#studioExport'));
   assert((await page.title()).includes('KAMEN'));assert.equal(await page.evaluate(()=>KAMEN_APP_INFO.version),'2.0.26');
   check('startup',{version:'2.0.26',secure:await page.evaluate(()=>isSecureContext)});
@@ -120,7 +121,7 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
   let exported=null,draftReason=null,downloadStarted=null,downloadError=null,downloadSaveWallMs=null;
   const onDownload=d=>{if(d.suggestedFilename().endsWith('.mp4')){exported=d;downloadStarted=Date.now();console.log('export state: download-started');}};
   page.on('download',onDownload); // Register before either export button is clicked.
-  const started=Date.now(),watchdog=new ExportWatchdog(started);let draftClicked=false,linkClicked=false;
+  const started=Date.now(),watchdog=new ExportWatchdog(started);
   try{
    console.log('export state: before-click');await page.locator('#studioExport').click();console.log('export state: clicked');
    while(!exported){
@@ -128,16 +129,9 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
     const deadline=watchdog.observe(lastState,Date.now());
     console.log('export state',JSON.stringify({elapsedSeconds:Math.round((Date.now()-started)/1000),calls:lastState.calls,completed:lastState.completed,picker:lastState.picker,progress:lastState.lastProgress,jobs:lastState.jobs.map(({id,status,stage,detail,error})=>({id,status,stage,detail,error})),quality:lastState.quality}));
     fs.writeFileSync(path.join(out,'export-states.json'),JSON.stringify(states,null,2));
-    if(lastState.draft&&!draftClicked){
-     draftReason=lastState.quality;assert(draftReason.includes('品質未達'));draftClicked=true;
-     console.log('export state: draft-awaiting-user; click real draft export');await page.locator('#qualityDraftExport').click();
-    }else if(lastState.links.some(l=>l.name.endsWith('.mp4'))&&!linkClicked){
-     linkClicked=true;console.log('export state: click retained MP4 save link');await page.locator('#kamenDownloads a[download$=".mp4"]').click();
-    }else{
-     const terminal=lastState.jobs.filter(j=>j.title==='動画を書き出しています').sort((a,b)=>a.id-b.id).at(-1);
-     if(terminal&&['error','cancelled'].includes(terminal.status)&&!lastState.draft&&!lastState.links.some(l=>l.name.endsWith('.mp4')))
-      throw new Error('Application export stopped: '+terminal.error);
-    }
+    assert.equal(lastState.draft,false,'one-click export must not request Draft approval');
+    const terminal=lastState.jobs.filter(j=>j.title==='動画を書き出しています').sort((a,b)=>a.id-b.id).at(-1);
+    if(terminal&&['error','cancelled'].includes(terminal.status))throw new Error('Application export stopped: '+terminal.error);
     if(deadline==='timeout')throw new Error('Export timeout: maximum 8 minutes exceeded');
     if(deadline==='stalled')throw new Error('Export stalled: no state or progress change for 90 seconds');
     if(!exported)await page.waitForTimeout(5000);
@@ -148,13 +142,15 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
    downloadError=await exported.failure();assert.equal(downloadError,null);console.log('export state: download-completed');
   }finally{page.off('download',onDownload);await page.evaluate(()=>window.qaUnsubscribe?.()).catch(()=>{});}
   const video=path.join(out,'ui-export.mp4');
-  const observed=await page.evaluate(()=>qaExport);assert(observed.validation?.certification?.passed);assert.equal(observed.validation.videoCodec,'avc1');assert.equal(observed.validation.audioCodec,'mp4a');assert(observed.progress.length>0);
+  await page.waitForFunction(()=>!J.ui.exporting&&['SAVED','SAVE_AVAILABLE'].includes(J.ui.exportOutcome?.fileState),null,{timeout:30000});
+  const outcome=await page.evaluate(()=>J.ui.exportOutcome);assert.equal(await page.locator('#qualityDraftExport').count(),0);
+  const observed=await page.evaluate(()=>qaExport);assert.equal(observed.calls,1);assert.equal(observed.jobs.filter(j=>j.title==='動画を書き出しています').at(-1)?.status,'completed');assert(observed.validation?.certification?.passed);assert.equal(observed.validation.videoCodec,'avc1');assert.equal(observed.validation.audioCodec,'mp4a');assert(observed.progress.length>0);
   const probe=spawnSync('ffprobe',['-v','error','-show_streams','-show_format','-of','json',video],{encoding:'utf8'});assert.equal(probe.status,0,probe.stderr);const media=JSON.parse(probe.stdout),v=media.streams.find(s=>s.codec_type==='video'),a=media.streams.find(s=>s.codec_type==='audio');assert(v&&a);assert.equal(v.codec_name,'h264');assert.equal(a.codec_name,'aac');assert.equal(v.width,1280);assert.equal(v.height,720);assert.equal(v.avg_frame_rate,'24/1');assert(Math.abs(Number(media.format.duration)-seconds)<.15);assert(Math.abs(Number(v.duration)-Number(a.duration))<.15);
-  const decode=spawnSync('ffmpeg',['-v','error','-i',video,'-vf','signalstats,metadata=print:file=-','-f','null','-'],{encoding:'utf8'});assert.equal(decode.status,0,decode.stderr);const minima=[...decode.stdout.matchAll(/lavfi.signalstats.YMIN=(\d+)/g)].map(m=>Number(m[1])),maxima=[...decode.stdout.matchAll(/lavfi.signalstats.YMAX=(\d+)/g)].map(m=>Number(m[1]));assert(minima.length>200,'Expected decoded video frames');assert(maxima.some((max,i)=>max-minima[i]>32),'Decoded video must contain visible image content');check('UI MP4 export and decode',{draft:!!draftReason,video:v.codec_name,audio:a.codec_name,duration:media.format.duration,progressUpdates:observed.progress.length,decodedFrames:minima.length,visibleContent:true});
+  const decode=spawnSync('ffmpeg',['-v','error','-i',video,'-vf','signalstats,metadata=print:file=-','-f','null','-'],{encoding:'utf8'});assert.equal(decode.status,0,decode.stderr);const minima=[...decode.stdout.matchAll(/lavfi.signalstats.YMIN=(\d+)/g)].map(m=>Number(m[1])),maxima=[...decode.stdout.matchAll(/lavfi.signalstats.YMAX=(\d+)/g)].map(m=>Number(m[1]));assert(minima.length>200,'Expected decoded video frames');assert(maxima.some((max,i)=>max-minima[i]>32),'Decoded video must contain visible image content');check('UI MP4 export and decode',{creativeState:outcome.creativeState,oneClick:true,video:v.codec_name,audio:a.codec_name,duration:media.format.duration,progressUpdates:observed.progress.length,decodedFrames:minima.length,visibleContent:true});
   assert.equal(errors.length,0,errors.join('\n'));await page.screenshot({path:path.join(out,'ui.png'),fullPage:true});
-  const report={status:'PASS',environment,consoleMessages,exportStates:states,downloadStarted,downloadError,saveTiming:{downloadSaveWallMs,method:'Playwright download.saveAs wall time; includes browser transfer and test-host persistence; native File System Access picker timing UNMEASURED'},url:target.toString(),browser:browser.version(),checks,pageErrors:errors,resourceFailures,draftReason,validation:observed.validation,provenance:observed.provenance,ffprobe:media};
+  const report={status:'PASS',outcome,oneClick:true,environment,consoleMessages,exportStates:states,downloadStarted,downloadError,saveTiming:{downloadSaveWallMs,method:'Playwright download.saveAs wall time; includes browser transfer and test-host persistence; native File System Access picker timing UNMEASURED'},url:target.toString(),browser:browser.version(),checks,pageErrors:errors,resourceFailures,draftReason,validation:observed.validation,provenance:observed.provenance,ffprobe:media};
   fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));
-  console.log('PASS: actual uploads, generation, playback, save/reload, MP4 video/audio/progress. Creative quality:',draftReason?'below target; real draft UI exercised':'qualified');
+  console.log('PASS: actual uploads, generation, playback, save/reload, MP4 video/audio/progress. Creative quality:',outcome.creativeState);
  }catch(error){fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAIL',url,environment,checks,pageErrors:errors,resourceFailures,consoleMessages,exportState:lastState,exportStates:states,error:error.stack},null,2));await page.screenshot({path:path.join(out,'failure.png'),fullPage:true}).catch(()=>{});throw error;}
  finally{fs.writeFileSync(path.join(out,'console.json'),JSON.stringify(consoleMessages,null,2));await page.context().tracing.stop({path:path.join(out,'trace.zip')}).catch(()=>{});await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});
