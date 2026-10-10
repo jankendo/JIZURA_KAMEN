@@ -269,10 +269,10 @@ V.repairReadabilityPreview=async(p,range,signal,options={})=>{
 (()=>{'use strict';const J=window.J,V=J.cinemaV3;
 V.captureLegacyGrammar=p=>{if(!V.enabled||p.cinemaCandidateMode==='legacy')return;for(const c of p.cuts||[])if(c.grammar&&!J.photoChoreographyLocked(p,c)){const g=V.clone(c.grammar);delete g.scenePhases;delete g.directionPolicy;delete g.intentionalHold;c.cinemaV3LegacyCandidateGrammar=g;}};
 V.readabilityDominates=(next,prior)=>{for(const key of ['outputResolution','observerResolution','fps'])if((next?.[key]!==undefined||prior?.[key]!==undefined)&&J.canonicalJSON(next?.[key]??null)!==J.canonicalJSON(prior?.[key]??null))return false;if(!Number.isFinite(next?.score)||!Number.isFinite(prior?.score)||next.score<prior.score)return false;const map=new Map(next.samples.map(s=>[s.time,s.contrast?.score]));const aligned=new Map(next.samples.map(s=>[s.time,s.alignedContrast?.score]));const clocks=new Map(next.samples.map(s=>[s.time,s.actualTime]));return prior.samples.every(s=>(!Number.isFinite(s.actualTime)||Number.isFinite(clocks.get(s.time))&&Math.abs(clocks.get(s.time)-s.actualTime)<1e-7)&&(!Number.isFinite(s.contrast?.score)||Number.isFinite(map.get(s.time))&&map.get(s.time)>=s.contrast.score)&&(!Number.isFinite(s.alignedContrast?.score)||Number.isFinite(aligned.get(s.time))&&aligned.get(s.time)>=s.alignedContrast.score));};
-V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
+V.compareLegacyFinalist=async(p,range,signal,shared,incumbent,options={})=>{
  if(!Number.isFinite(incumbent?.score))return {status:'UNMEASURED',reason:'INCUMBENT_DELIVERY_READABILITY_UNMEASURED'};
 
- const rasterScope={renderer:new J.Renderer(),ready:false};try{
+ const rasterScope=options.scope||{renderer:new J.Renderer(),ready:false};try{
  const seen=[],pool=[],attempts=[],legacyBase=V.legacyPlanningStates.get(p),distance=(a,b)=>a.length===b.length?a.reduce((n,v,i)=>n+Math.abs(v-b[i]),0)/a.length:1;
  if(!legacyBase)return {status:'UNMEASURED',reason:'NO_PRE_ADAPTATION_LEGACY_PLANNING_SOURCE'};
  const working=V.clone(legacyBase);working.cinemaCandidateMode='legacy';working.cinemaDelivery=V.clone(p.cinemaDelivery);working.exportSettings=V.clone(p.exportSettings);
@@ -312,6 +312,6 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  if(accepted){for(const c of plan.cuts){const target=p.cuts.find(x=>x.line===c.line&&x.start===c.start&&x.end===c.end);if(target&&!J.photoChoreographyLocked(p,target)){for(const k of Object.keys(target))delete target[k];Object.assign(target,V.clone(c));}}p.cinemaCandidateMode=plan.cinemaCandidateMode;const f=p.musicalPhoto.cinema;for(const key of Object.keys(f))delete f[key];Object.assign(f,V.clone(plan.musicalPhoto.cinema));p.storyboard=V.clone(plan.storyboard);J.rebuildCinemaBeatIntent(p);}
 
  return evidence;
- }finally{rasterScope.renderer.customBgBitmap?.close?.();rasterScope.renderer.disposeAssets?.();}
+ }finally{if(!options.scope){rasterScope.renderer.customBgBitmap?.close?.();rasterScope.renderer.disposeAssets?.();}}
 };
 })();
