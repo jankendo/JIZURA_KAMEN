@@ -18,8 +18,21 @@
     "creative score calibration"
   ],
   "verification": {
-    "baseline": "RUNNING_FRESH",
-    "changedAreaSmoke": "original grammar/calibration contracts PASS; broader tests pending"
+    "baseline": {
+      "head": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+      "freshExecution": true,
+      "passed": 187,
+      "failed": 0,
+      "skipped": 2
+    },
+    "changedAreaSmoke": "Interval protection, state machine, semantic layout, 146 layouts x 4 aspects PASS; complete final-head regression pending",
+    "priorCI": {
+      "head": "96727adccdffefdef595dc96e4e29eb383d02fca",
+      "passed": 183,
+      "failed": 9,
+      "skipped": 2,
+      "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38131126629"
+    }
   },
   "changedAreaTests": {
     "passed": 5,
@@ -27,8 +40,13 @@
     "registeredInFullSuite": true
   },
   "p2": {
-    "profiles": "Existing full 16:9 and short 9:16 contracts retained; fresh output validation pending",
-    "blindFoundation": "dev/cinema_v5_blind_samples.cjs; no human responses manufactured"
+    "profiles": "Fresh prior-V5 16:9 and 12-second 9:16 outputs fully decoded; final-source revalidation pending",
+    "blindFoundation": "Eight anonymous pairs prepared; HUMAN_UNVERIFIED"
   },
-  "comparisonCorrection": "V5 comparison explicitly enables the shipping Cinema pipeline on both URLs; historical baseline bypass is not valid old/new evidence."
+  "comparisonCorrection": "V5 comparison explicitly enables the shipping Cinema pipeline on both URLs; historical baseline bypass is not valid old/new evidence.",
+  "remaining": [
+    "Exact final-source CI and browser/MP4 verification",
+    "Confirm diverse-material quality improvement",
+    "Complete decoded operator-intent and lyric safety evidence"
+  ]
 }

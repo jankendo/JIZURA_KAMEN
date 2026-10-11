@@ -8,3 +8,6 @@ const samples=Array.from({length:5},(_,i)=>({time:i*.1,regions:regionA})),d={com
 console.log('V5 single flash, requested clock, text-only novelty and generic-difference motion false positives rejected PASS');
 
 const highFrame={time:1,decodedTimestamp:23/24,features:{luma:[.2]}};const actualFrame=J.cinemaActualObservationFrame(highFrame);assert.equal(actualFrame.requestedTime,1);assert.equal(actualFrame.time,23/24);assert.equal(actualFrame.actualTime,23/24);assert.equal(highFrame.time,1,'normalization does not mutate original requested observation');assert.equal(J.cinemaActualObservationFrame({time:1,actualTime:.9,decodedTimestamp:.8}).time,.9,'explicit actual time takes precedence');assert.equal(J.cinemaActualObservationFrame({time:1,decodedTimestamp:NaN}).actualTime,null,'missing/invalid decoder time remains unverified');
+
+// Locked/non-grammar lyrics require observations too; collecting them never edits locks.
+{const p={duration:4,fps:24,cuts:[{line:0,start:0,end:2,locked:true},{line:1,start:2,end:4,grammar:{temporal:{hit:2.5}}},{line:-1,start:0,end:4}]},before=JSON.stringify(p);const times=J.cinemaHighResolutionTimes(p,0,4);assert(times.includes(.5)&&times.includes(1)&&times.includes(3));assert(times.includes(2.5));assert.equal(JSON.stringify(p),before);assert(J.cinemaHighResolutionTimes(p,1,3).every(t=>t>=1&&t<3));}

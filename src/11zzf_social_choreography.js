@@ -5,7 +5,14 @@ const locked=(p,c)=>!!(Object.keys(p.directionOverrides7?.[c.line]||{}).length||
 J.photoChoreographyLocked=locked;
 // Prefer real word/script boundaries. Never split a Latin word, small kana,
 // closing punctuation or an emoji sequence merely to balance the rows.
-J.composeLyricPhrase=text=>J.splitLines(String(text??''),14);
+J.composeLyricPhrase=value=>{
+ const text=String(value??'');if(text.includes('\n')||J.graphemes(text).length<8)return text;
+ // A two-row phrase block uses linguistic boundaries, including attached particles/suffixes.
+ // Preserve the source when no safe boundary exists; the renderer then fits the whole token.
+ const candidates=J.lyricBreaks(text).boundaries.map(b=>({...b,balance:Math.abs(J.graphemes(text.slice(0,b.offset)).length-J.graphemes(text.slice(b.offset)).length)}));
+ const cut=candidates.sort((a,b)=>a.balance-b.balance||a.cost-b.cost||a.offset-b.offset)[0];
+ return cut?text.slice(0,cut.offset)+'\n'+text.slice(cut.offset):text;
+};
 J.ENTER.photoSettle={name:'全文を保った短い収束',apply(env,it,u){const e=1-(1-J.clamp(u))**3;it.size*=.96+.04*e;}};
 J.ENTER.photoResolve={name:'二段のまとまり',apply(env,it,u){const e=1-(1-J.clamp(u))**3;it.track=(it.track||0)+.025*(1-e);it.size*=.98+.02*e;}};
 for(const [key,name,mode] of [['photoStatement','中央の一行','statement'],['photoPhrase','中央の語句二段','phrase'],['photoChant','短語の見出し','chant']]){

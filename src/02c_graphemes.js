@@ -24,7 +24,7 @@ J.lyricBreaks=(value,{fallback=false}={})=>{
   if(/[\r\n]/u.test(a+b)||/^[、。，．！？!?：:；;）)］\]｝}」』】〉》ぁぃぅぇぉっゃゅょァィゥェォッャュョー]/u.test(b)||/[（(［\[｛{「『【〈《]$/u.test(a))continue;
   if(/[\p{Script=Latin}\p{Number}]$/u.test(a)&&/^[\p{Script=Latin}\p{Number}]/u.test(b))continue;
   // Japanese postpositions attach to the preceding word; this is a grammatical rule, never a fixture exception.
-  if(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]$/u.test(a)&&['は','が','を','に','へ','と','で','の','も','や','ね','よ','から','まで','より'].includes(wordStarts.get(offsets[i])))continue;
+  if(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]$/u.test(a)&&['は','が','を','に','へ','と','で','の','も','や','ね','よ','から','まで','より','ら','たち','ろ','ぜ','てる'].includes(wordStarts.get(offsets[i])))continue;
   const punct=/[、。，．！？!?：:；;\s]$/u.test(a),script=/[\p{Script=Hiragana}]$/u.test(a)&&/^[\p{Script=Han}\p{Script=Katakana}]/u.test(b);
   if(punct||wordEnds.has(offsets[i])||script)boundaries.push({offset:offsets[i],cost:punct?0:script?1:2,source:punct?'punctuation':wordEnds.has(offsets[i])?'word-boundary':'deterministic-script-boundary'});
  }
