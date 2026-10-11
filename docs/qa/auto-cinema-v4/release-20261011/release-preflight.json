@@ -1,0 +1,43 @@
+{
+  "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
+  "oldMain": "ef829f93a933794c337bf1a37c39fcfb8d4de0f4",
+  "aggregatePR": "https://github.com/jankendo/JIZURA_KAMEN/pull/10",
+  "aggregateCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38106566246",
+  "newUserReleasePolicy": {
+    "latencyAccepted": true,
+    "humanAestheticEvaluationNotSoleBlocker": true,
+    "historicalNetworkRootCauseNotSoleBlocker": true,
+    "mustPreserveTechnicalIntegrityAndKnownVisualQuality": true
+  },
+  "runtimeSourceChanged": false,
+  "checks": {
+    "dist/index.html": {
+      "exists": true,
+      "sha256": "b15a6ec31e8433f249bf280104a2a6050ca2d4e1abdbdbf1274ee1ed34c7bd2b"
+    },
+    "dist/LICENSE": {
+      "exists": true,
+      "sha256": "15183bfbec774052a5817a28eb03730c40ec941a642097b597f0c50092594adb"
+    },
+    "dist/OFL.txt": {
+      "exists": true,
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+    },
+    "dist/THIRD_PARTY_NOTICES.md": {
+      "exists": true,
+      "sha256": "18ec6c5e2404cd04d5bf07d3348dc3dd1c5435255243b3ed639fda5797f4ca66"
+    },
+    "dist/licenses/FFmpeg-LGPL-2.1.txt": {
+      "exists": true,
+      "sha256": "246041b6ecf9bc32d718a62c57877c78b5eb397b6467e74ed7ae2626ab189c30"
+    },
+    "sourceEqualsBuild": true,
+    "thirdPartyDeploymentHostAbsent": true
+  },
+  "qualityClaimLimits": [
+    "3888 equal decoded pixels prove preservation of PR8 output, not human artistic perfection",
+    "historical 75→74 lacks original raw MP4 and remains UNRESOLVED / not comparable",
+    "different actual-frame and requested-time metrics must not be combined",
+    "peak memory and human aesthetics remain UNMEASURED"
+  ]
+}
