@@ -1,232 +1,65 @@
 {
   "status": "IN_PROGRESS",
-  "sourceHead": "e433f5cd476bf5d133007360b367b81ef3008e35",
+  "sourceHead": "b6f72be876d19d269be5072d1b84ce8c7dd27550",
+  "runtimeSHA256": "dfa4755b34dbaca68c81d57f6b0134aa41b1a9723e1af044c8d54522c4f2d309",
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": false,
-  "historicalV4PassResultsReused": false,
   "humanStatus": "HUMAN_UNVERIFIED",
-  "newChangedAreaSuites": {
-    "passed": 5,
-    "failed": 0
-  },
-  "fullRegression": "RUNNING_EXACT_HEAD_CI",
-  "finalHeadCI": "RUNNING",
-  "ciURL": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38136015554",
-  "priorUITimeout": {
-    "status": "HISTORICAL_NEW_V5_TRIAL_FAILED",
-    "timeoutSeconds": 600,
-    "laterRecovery": "Intermediate fdcbb00 formal actual-UI PASS; final 531eaa7 formal UI pending. CPU contention observed, exact timeout cause unproven."
-  },
-  "comparison": {
-    "status": "COMPLETE_FINAL_SOURCE",
-    "pairedFixtures": 8,
-    "finalV5MP4": 8,
-    "finalBaselineMP4": 8,
-    "fullyDecodedFinalComparison": 16,
-    "fullyDecodedRejectedHistoricalV5Trial": 1,
-    "readabilityImprovementConfirmed": false,
-    "measuredReadabilityRegressionConfirmed": false,
-    "RGBPixelIdentityPairs": 3,
-    "humanStatus": "HUMAN_UNVERIFIED"
-  },
+  "sourceFrozen": true,
   "productionChanged": false,
-  "newManualExport": {
-    "status": "PASS",
-    "firstFailure": "Incorrectly required internal unit onset to repeat LRC phrase onset",
-    "fix": "Validate authoritative phrase first onset; internal units retain valid times",
-    "lyricSafetyCoverage": "UNMEASURED; successful save is not quality certification"
-  },
-  "qualityBlockers": [
-    "Decoded operator-intent realization unmeasured on all eight final fixtures",
-    "Required lyric safety coverage unavailable on no-image, legacy multi-image and split-manual paths",
-    "Requested diverse-material quality improvement not established"
-  ],
+  "baselineHead": "5ea7d953f1720654521a2cd9d800706d40f40c49",
   "baselineRegression": {
     "passed": 187,
     "failed": 0,
     "skipped": 2,
-    "freshExecution": true,
-    "head": "5ea7d953f1720654521a2cd9d800706d40f40c49"
+    "freshExecution": true
   },
-  "performance": {
-    "baseline": {
-      "count": 8,
-      "P50Seconds": 62.503449999999255,
-      "P95Seconds": 219.16005000000135,
-      "slowest": {
-        "fixture": "case-24",
-        "seconds": 299.0591000000015
-      },
-      "fullEncodeAttemptsPerFixture": {
-        "case-06": 1,
-        "case-07": 1,
-        "case-08": 1,
-        "case-24": 1,
-        "general-dark": 1,
-        "general-people": 1,
-        "general-dense": 1,
-        "general-manual": 1
-      },
-      "fullEncodeAttempts": 8,
-      "postExportHeapBytes": [
-        202896349,
-        76402660,
-        253384535,
-        446571219,
-        277841930,
-        208308915,
-        205446818,
-        206639318
-      ],
-      "peakMemoryStatus": "UNMEASURED"
-    },
-    "v3": {
-      "count": 8,
-      "P50Seconds": 58.56064999999851,
-      "P95Seconds": 183.65465500000187,
-      "slowest": {
-        "fixture": "case-24",
-        "seconds": 245.583200000003
-      },
-      "fullEncodeAttemptsPerFixture": {
-        "case-24": 1,
-        "general-manual": 1,
-        "case-06": 1,
-        "case-07": 1,
-        "case-08": 1,
-        "general-dark": 1,
-        "general-people": 1,
-        "general-dense": 1
-      },
-      "fullEncodeAttempts": 8,
-      "postExportHeapBytes": [
-        419491232,
-        94479073,
-        204043306,
-        93286397,
-        66583871,
-        173213662,
-        232717573,
-        134567454
-      ],
-      "peakMemoryStatus": "UNMEASURED"
-    }
+  "priorHeadCI": {
+    "head": "96727adccdffefdef595dc96e4e29eb383d02fca",
+    "passed": 183,
+    "failed": 9,
+    "skipped": 2,
+    "status": "FAIL",
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38131126629",
+    "log": "ci-96727ad.log"
   },
-  "finalHeadLocalFormalUI": {
-    "sourceHead": "96727adccdffefdef595dc96e4e29eb383d02fca",
-    "runtimeSHA256": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
-    "status": "PASS",
-    "checks": [
-      {
-        "name": "startup",
-        "status": "PASS",
-        "version": "2.0.26",
-        "secure": true
-      },
-      {
-        "name": "background upload",
-        "status": "PASS"
-      },
-      {
-        "name": "TXT import",
-        "status": "PASS"
-      },
-      {
-        "name": "LRC import and timing",
-        "status": "PASS"
-      },
-      {
-        "name": "audio upload and analysis",
-        "status": "PASS",
-        "bpm": 120
-      },
-      {
-        "name": "automatic MV generation",
-        "status": "PASS",
-        "cuts": 4,
-        "lines": 4,
-        "duration": 8.999977324263039
-      },
-      {
-        "name": "preview playback",
-        "status": "PASS"
-      },
-      {
-        "name": "project save and reload",
-        "status": "PASS"
-      },
-      {
-        "name": "regenerate after restored audio",
-        "status": "PASS"
-      },
-      {
-        "name": "UI MP4 export and decode",
-        "status": "PASS",
-        "creativeState": "BELOW_TARGET",
-        "oneClick": true,
-        "video": "h264",
-        "audio": "aac",
-        "duration": "9.024000",
-        "progressUpdates": 750,
-        "decodedFrames": 216,
-        "visibleContent": true
-      }
-    ],
-    "MP4Hash": "c221dff6552eeff7cb3b9389445cb8386544b3ae60823203c74fd9f717d62a50",
-    "fullEncodeAttempts": 4,
-    "repairDecisions": [
-      "INITIAL_ARTIFACT_RETAINED_AS_DRAFT",
-      "PROTECTED_REGRESSION",
-      "PROTECTED_REGRESSION",
-      "PROTECTED_REGRESSION"
-    ],
-    "decoderProbe": "PASS",
-    "pageErrors": [],
-    "resourceFailures": [],
-    "creativeState": "BELOW_TARGET",
-    "audioEvidence": {
-      "status": "MEASURED",
-      "value": 100,
-      "confidence": 0.8,
-      "sampleCount": 397958,
-      "method": "decoded AAC duration, source/decoded energy and bounded AAC-delay signal correlation guard",
-      "sourceEnergy": 0.0076488256232160375,
-      "decodedEnergy": 0.007612913270915073,
-      "signalCorrelation": 0.9721031263184436,
-      "correlationSampleLimit": 2000,
-      "delaySearchSamples": 2048,
-      "durationErrorSeconds": 0.024013605442176456,
-      "limits": "Signal preservation guard, not perceptual identity or syllable synchronization"
-    },
-    "qualityGate": "UNVERIFIED"
+  "currentHeadCI": {
+    "status": "RUNNING",
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38137038833"
   },
-  "finalHeadLocalBuild": "PASS",
-  "finalHeadNewSuites": {
-    "passed": 5,
-    "failed": 0
+  "targetedFixes": {
+    "intervalReadability": "PASS; each previously measured phrase interval protected",
+    "stateMachine": "PASS; explicitly synthetic V5 safety fixtures, not real MP4",
+    "genericPhraseLayout": "PASS; no material-specific rules",
+    "glyphRaster": "PASS; 146 layouts x 4 aspects",
+    "newV5Suites": "5 PASS",
+    "remainingPriorFailures": "Story/artifact/architecture/feedback revalidation running; clean restore pending exact-head CI"
   },
-  "environmentSkipsResolvedByFreshBrowser": {
-    "variable_font_browser_test": "PASS",
-    "browser_export_e2e_test": "PASS",
-    "sourceHead": "96727adccdffefdef595dc96e4e29eb383d02fca",
-    "axisRaster": "BROWSER_AXIS_VISIBLE",
-    "fontOutput": "Safe fallback with H264/AAC complete decode"
+  "currentHeadBrowserAndComparison": "RUNNING",
+  "priorHeadEvidence": {
+    "head": "96727adccdffefdef595dc96e4e29eb383d02fca",
+    "pairedMP4FullyDecoded": 16,
+    "acceptedMP4FullyDecodedTotal": 20,
+    "comparison": "Same synthetic inputs/seed/output profile; no measured readability improvement or regression established",
+    "UI": "PASS including actual MP4, save/restore/cancel/retry and BELOW_TARGET one-click",
+    "environmentSkips": "Resolved by fresh browser; prior source only",
+    "blindPairs": 8,
+    "humanRatings": 0,
+    "notCurrentHeadCertification": true
   },
-  "newMP4DecodeCounts": {
-    "finalComparison": 16,
-    "exactFinalHeadUIAndRetry": 2,
-    "fontBrowserAndVariableFont": 2,
-    "acceptedH264AACArtifactsTotal": 20,
-    "rejectedEarlierV5TrialSeparatelyDecoded": 1,
-    "historicalV4CountReused": 0
-  },
-  "previousValidatedHead": "96727adccdffefdef595dc96e4e29eb383d02fca",
-  "comparisonCurrentHead": "RUNNING; existing 96727ad comparison preserved as prior-head evidence",
-  "clockCorrection": {
-    "scope": "High-resolution layer verifier now uses decodedTimestamp when explicit actualTime is absent; keeps original requestedTime",
-    "changedAreaTests": "PASS",
-    "renderingChanged": false,
-    "QASelectionCanChange": true
+  "qualityBlockers": [
+    "Diverse-material quality improvement not established",
+    "Decoded operator-intent coverage not established",
+    "All required lyric safety observations not established"
+  ],
+  "lastFix": "Collect actual-clock high-resolution evidence for locked/non-grammar cuts without changing plan or locks; final MP4 revalidation required",
+  "historicalV4PassResultsReused": false,
+  "performanceReleaseThreshold": null,
+  "userAcceptsSlowGeneration": true,
+  "sourceBackup": {
+    "file": "source-b6f72be.bundle",
+    "sha256": "db7969c45a794950fe9b46493c9e05125e92a0a9b2cea07e4650c1a1f6f29745",
+    "requires": "5ea7d953f1720654521a2cd9d800706d40f40c49"
   }
 }
