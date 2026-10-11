@@ -16,13 +16,15 @@ J.graphemes=(value,{fallback=false}={})=>{
 };
 J.lyricBreaks=(value,{fallback=false}={})=>{
  const text=String(value??''),units=J.graphemes(text,{fallback}),offsets=[0];units.forEach(u=>offsets.push(offsets.at(-1)+u.length));
- const wordEnds=new Set();
- if(!fallback&&typeof Intl!=='undefined'&&typeof Intl.Segmenter==='function')try{for(const s of segmenter('word').segment(text))wordEnds.add(s.index+s.segment.length);}catch{}
+ const wordEnds=new Set(),wordStarts=new Map();
+ if(!fallback&&typeof Intl!=='undefined'&&typeof Intl.Segmenter==='function')try{for(const s of segmenter('word').segment(text)){wordEnds.add(s.index+s.segment.length);wordStarts.set(s.index,s.segment);}}catch{}
  const boundaries=[];
  for(let i=1;i<units.length;i++){
   const a=units[i-1],b=units[i];
   if(/[\r\n]/u.test(a+b)||/^[、。，．！？!?：:；;）)］\]｝}」』】〉》ぁぃぅぇぉっゃゅょァィゥェォッャュョー]/u.test(b)||/[（(［\[｛{「『【〈《]$/u.test(a))continue;
   if(/[\p{Script=Latin}\p{Number}]$/u.test(a)&&/^[\p{Script=Latin}\p{Number}]/u.test(b))continue;
+  // Japanese postpositions attach to the preceding word; this is a grammatical rule, never a fixture exception.
+  if(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]$/u.test(a)&&['は','が','を','に','へ','と','で','の','も','や','ね','よ','から','まで','より'].includes(wordStarts.get(offsets[i])))continue;
   const punct=/[、。，．！？!?：:；;\s]$/u.test(a),script=/[\p{Script=Hiragana}]$/u.test(a)&&/^[\p{Script=Han}\p{Script=Katakana}]/u.test(b);
   if(punct||wordEnds.has(offsets[i])||script)boundaries.push({offset:offsets[i],cost:punct?0:script?1:2,source:punct?'punctuation':wordEnds.has(offsets[i])?'word-boundary':'deterministic-script-boundary'});
  }

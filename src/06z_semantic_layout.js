@@ -3,10 +3,10 @@
 const cache=new Map();
 J.semanticLyricLayout=(value,options={})=>{
  const original=String(value??''),font=options.font||'embedded_bold',lead=options.lead??1.2,track=options.track??.015;
- const maxWidth=options.maxWidth??Infinity,maxHeight=options.maxHeight??Infinity,initialSize=options.size??48,minSize=options.minSize??initialSize*.55;
+ const maxWidth=options.maxWidth??Infinity,maxHeight=options.maxHeight??Infinity,initialSize=options.size??48;let minSize=options.minSize??initialSize*.55;
  let ctx=options.ctx;try{ctx??=document.createElement('canvas').getContext('2d');}catch{}
- const measured=typeof ctx?.measureText==='function'&&typeof J.fontCSS==='function',ledger=J.lyricBreaks(original,options);
- const width=(text,size)=>{if(measured){ctx.font=J.fontCSS(font,size);return ctx.measureText(text).width+Math.max(0,J.graphemes(text).length-1)*track*size;}return null;};
+ const measured=typeof ctx?.measureText==='function'&&typeof J.fontCSS==='function',ledger=J.lyricBreaks(original,options);if(measured&&options.minSize===undefined&&typeof J.fitSize==='function')minSize=Math.min(minSize,J.fitSize(original,font,maxWidth,maxHeight,{lead,track}));
+ const width=(text,size)=>{if(measured){ctx.font=J.fontCSS(font,size);return Math.max(ctx.measureText(text).width+Math.max(0,J.graphemes(text).length-1)*track*size,J.measure?.({text,font,size,lead,track})?.w??0);}return null;};
  const explicit=/\r?\n/u.test(original),manual=options.manual===true;
  const rowChoices=part=>{
   if(explicit||manual)return [[part]];
@@ -20,7 +20,7 @@ J.semanticLyricLayout=(value,options={})=>{
   }
   return choices;
  };
- const candidates=explicit?[[...original.split('\n')]]:rowChoices(original),sizes=[initialSize,initialSize*.9,initialSize*.8,initialSize*.7,minSize].filter((s,i,a)=>s>=minSize&&a.indexOf(s)===i),ranked=[];
+ const candidates=explicit?[[...original.split('\n')]]:rowChoices(original),sizes=[initialSize,initialSize*.9,initialSize*.8,initialSize*.7,initialSize*.55,initialSize*.4,minSize].filter((s,i,a)=>s>=minSize&&a.indexOf(s)===i),ranked=[];
  for(const rows of candidates)for(const size of sizes){
   const widths=rows.map(row=>width(row,size)),height=size*(1+Math.max(0,rows.length-1)*lead),fits=measured&&widths.every(w=>w<=maxWidth+.01)&&height<=maxHeight+.01;
   const rowCounts=rows.map(r=>J.graphemes(r).length),balanced=Math.max(...rowCounts,0)-Math.min(...rowCounts,0),characterLimit=options.maxPer??Infinity;

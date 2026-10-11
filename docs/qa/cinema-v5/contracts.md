@@ -17,3 +17,5 @@ Release remains blocked until fresh regression, real browser export and comparab
 The sequential decoder calls `onSample(requestedTime, pixels, {timestamp,duration})`. V5 uses the third argument for actual time and retains the first as requestedTime. The existing sequential decoder contract now checks both clocks separately; all closure/disposal/count/abort assertions remain. Pre-correction smoke runs are superseded, not final quality evidence.
 
 Text segmentation reuses native Segmenter instances and bounded immutable Unicode results. Returned arrays are owned by the caller. This cache has no renderer/pixel/font/evidence state; environment and native-constructor changes invalidate the relevant results.
+
+Semantic layout measures both full-string font width and the actual per-cluster advance geometry used by the renderer. A protected long word may shrink to the existing native fitting size before any illegal split; an explicitly supplied minimum remains respected. Japanese postpositions attach to their preceding word rather than starting a new row. Glyph coverage and human judgement remain separate unmeasured evidence.
