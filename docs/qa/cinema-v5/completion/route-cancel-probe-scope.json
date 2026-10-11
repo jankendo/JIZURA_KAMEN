@@ -1,0 +1,8 @@
+{
+  "status": "HARNESS_SCOPE_ERROR",
+  "route": "route-legacy-no-image",
+  "reason": "ImageBitmap lifetime probe was enabled on an image-free route and requires at least one bitmap; zero created bitmaps are not evidence of a leak",
+  "action": "Retain failed attempt; rerun image-free route without the image-specific lifetime probe; keep actual final-verification cancel/retry on multi-image route",
+  "sourceChanged": false,
+  "applicationFailureConfirmed": false
+}
