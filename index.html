@@ -38890,8 +38890,10 @@ Q.guardExport=async(result,args)=>{
  if(result.validation?.certification?.passed===false||audit.status==='FAILED')throw Object.assign(Error('CINEMA_V5_UNSAFE_EXPORT'),{code:'CINEMA_V5_UNSAFE_EXPORT',audioEvidence:audit});
  const measurements=selected?.cinemaV5?.after?.measurements||[],required=['lyricIntegrity','lyricTiming'],missing=required.filter(id=>!measurements.some(m=>m.id===id&&m.status==='MEASURED'&&m.value===100));
  result.provenance.cinemaV5={version:Q.version,videoHash,audioEvidence:audit,lyricSafety:missing.length?'UNMEASURED':'MEASURED',missingSafetyEvidence:missing,humanStatus:Q.humanStatus,creativeCalibration:Q.selectionPolicy.calibration,limits:'Legacy/non-image or incomplete registered lyric observations do not certify lyric safety. A technically valid draft remains savable; known failed AAC/MP4 is rejected.'};
+ const creative=selected?.cinemaV5?.after?Q.creativeEvidence(selected.cinemaV5.after):null,complete=missing.length===0&&creative?.aggregateStatus==='MEASURED';result.provenance.cinemaV5.creativeEvidenceStatus=creative?.aggregateStatus??'UNMEASURED';for(const acceptance of [result.provenance.qualityTarget,result.provenance.machineRefinement?.acceptance].filter(Boolean)){acceptance.v5EvidenceComplete=complete;acceptance.v5MissingSafety=[...missing];acceptance.v5MissingCreative=creative?.missing.map(m=>m.domain)??Object.keys(Q.selectionPolicy.weights);}if(!result.provenance.qualityTarget)result.provenance.qualityTarget={status:'UNMEASURED',v5EvidenceComplete:complete,v5MissingSafety:[...missing]};result.provenance.creativeState=J.creativeExportState(result.provenance.machineRefinement?.acceptance||result.provenance.qualityTarget);
  result.sidecar=new Blob([JSON.stringify(result.provenance,null,2)],{type:'application/json'});return result;
 };
+const creativeState=J.creativeExportState;J.creativeExportState=acceptance=>{const state=creativeState(acceptance);return state==='TARGET_MET'&&acceptance?.v5EvidenceComplete===false?'UNMEASURED':state;};
 const exportMP4=J.exportMP4;J.exportMP4=async args=>Q.guardExport(await exportMP4(args),args);
 
 })();
