@@ -19,7 +19,9 @@
     "failed": 5,
     "notRun": 55,
     "originalRawVideoAvailability": "NOT_RECOVERED",
-    "comparability": "INCOMPARABLE_BROWSER_VERSION: historical Chromium 154 vs current Chromium 151; no pooled statistics"
+    "comparability": "INCOMPARABLE: browser/source changed; 54 rows have decoded PCM hash mismatches",
+    "mismatchedPCMHashRows": 54,
+    "pcmMismatchCause": "UNRESOLVED"
   },
   "quality": {
     "main": {
@@ -6157,7 +6159,14 @@
   "exactHeadCI": {
     "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38100295682",
     "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
-    "status": "IN_PROGRESS"
+    "status": "COMPLETED_SUCCESS",
+    "engineRegression": "187 PASS / 189; 2 SKIPPED_ENVIRONMENT_MISSING",
+    "skippedTestsCompletedLocally": [
+      "variable_font_browser_test PASS",
+      "browser_export_e2e_test PASS"
+    ],
+    "browserDecoderCancellationRetryAndBoundaryStep": "PASS",
+    "deployJob": "SKIPPED"
   },
   "completeVideoPixelComparison": {
     "status": "PASS",
@@ -6165,7 +6174,8 @@
     "trials": 42,
     "frames": 3888,
     "method": "Full-resolution decoded frame SHA256 including frame timestamps, durations and sizes, for both complete videos. SSIM is an auxiliary rounded diagnostic; exact equality is established by every frame SHA256, not rounded SSIM.",
-    "allPerFrameSHA256Equal": true
+    "allPerFrameSHA256Equal": true,
+    "videoPixelFormatColorAndDeliveryMetadataEqual": true
   },
   "qualityCalibration": {
     "case07MainSameBlobAlignedScores": [
@@ -6180,6 +6190,21 @@
     ],
     "case07Attribution": "UNRESOLVED_OBSERVER_VARIANCE; do not claim a confirmed actual-video regression from the first sample",
     "PR8VersusFinalV4": "No decoded pixel regression; every frame in all 42 matching MP4 trials has the same SHA256",
-    "mainVersusV4": "Different choreography; historical/actual-frame metric differences and missing samples retained, not waived"
+    "mainVersusV4": "Different choreography; historical/actual-frame metric differences and missing samples retained, not waived",
+    "independentBriefHistoricalRequestedTime": {
+      "time": 0.4125,
+      "main": 92,
+      "V4": 9,
+      "actualFrameTime": 0.375,
+      "independentActualFrameScoreAllThreeVariants": 100,
+      "backgroundConsistentScoreAllThreeVariants": 100,
+      "interpretation": "Historical requested-time difference is not treated as confirmed actual-frame quality loss; current aligned observations agree."
+    }
+  },
+  "finalBrowserValidation": {
+    "status": "PASS",
+    "uiFull720pH264AACCompleteDecode": "PASS",
+    "variableFontStaticFallbackMP4CompleteDecode": "PASS",
+    "animatedVariableFontAxes": "NOT_VERIFIED; browser axis visible, export fallback retained"
   }
 }

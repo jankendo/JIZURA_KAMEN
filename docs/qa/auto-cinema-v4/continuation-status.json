@@ -1,7 +1,7 @@
 {
   "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
   "sourceRuntimeHTMLSHA256": "b15a6ec31e8433f249bf280104a2a6050ca2d4e1abdbdbf1274ee1ed34c7bd2b",
-  "status": "FINAL_MATRIX_AND_EXACT_HEAD_CI_IN_PROGRESS",
+  "status": "COMPLETE_NO_GO",
   "exactHeadCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38100295682",
   "historicalRows": {
     "passed": 66,
@@ -19,8 +19,24 @@
     "noAuthenticationResetOrRepeatedUploadAttempt": true
   },
   "finalSourceFrozen": true,
-  "releaseDecision": "NO-GO_PENDING_REQUIRED_VALIDATION",
+  "releaseDecision": "NO-GO",
   "retainedChange": "Invocation-local repeated actual-frame aligned contrast only; fresh frames preserve evaluation order and do not copy results",
   "alphaAllocation": "REJECTED; existing stencil source hash restored byte-for-byte",
-  "sourceFrameContract": "PASS_AFTER_FINAL_RETAINED_CHANGE"
+  "sourceFrameContract": "PASS_AFTER_FINAL_RETAINED_CHANGE",
+  "exactHeadCIConclusion": "SUCCESS",
+  "matrix": {
+    "passed": 126,
+    "failed": 0,
+    "notRun": 0
+  },
+  "completeVideoPixelComparison": {
+    "status": "PASS",
+    "comparedAgainst": "PR8",
+    "trials": 42,
+    "frames": 3888,
+    "method": "Full-resolution decoded frame SHA256 including frame timestamps, durations and sizes, for both complete videos. SSIM is an auxiliary rounded diagnostic; exact equality is established by every frame SHA256, not rounded SSIM.",
+    "allPerFrameSHA256Equal": true,
+    "videoPixelFormatColorAndDeliveryMetadataEqual": true
+  },
+  "finalValidationReport": "final-gates.json"
 }

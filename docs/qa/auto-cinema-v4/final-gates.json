@@ -1,0 +1,175 @@
+{
+  "capturedUTC": "2026-10-11T02:30:44.442454+00:00",
+  "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
+  "runtimeHTMLSHA256": "b15a6ec31e8433f249bf280104a2a6050ca2d4e1abdbdbf1274ee1ed34c7bd2b",
+  "recovery": {
+    "safeGitHubStartingHEAD": "c3e504da45787462fc31b172a42ed56acdb4727c",
+    "requestedUnsentHEAD": "d5791a12043e2d8884e3d07b623a84f99b2e7689",
+    "unsentHEADRecovered": false,
+    "missingChangesClaimedReconstructed": false,
+    "uncommittedChangesInitially": false,
+    "localVerifiedBundle": "/workspace/kamen-v4-recovery/pre-recovery.bundle",
+    "prohibitedOperationsPerformed": false
+  },
+  "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/9",
+  "exactCI": {
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38100295682",
+    "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
+    "status": "COMPLETED_SUCCESS",
+    "engineRegression": "187 PASS / 189; 2 SKIPPED_ENVIRONMENT_MISSING",
+    "skippedTestsCompletedLocally": [
+      "variable_font_browser_test PASS",
+      "browser_export_e2e_test PASS"
+    ],
+    "browserDecoderCancellationRetryAndBoundaryStep": "PASS",
+    "deployJob": "SKIPPED"
+  },
+  "requiredValidation": {
+    "freshMatrix": "126 PASS / 126; 0 failed / 0 not run; 38 unique inputs plus 4 repeats, three variants",
+    "H264AACAndFullFFmpegDecode": "PASS",
+    "realBrowserSaveRestoreBelowTargetOneClickMP4": "PASS_IN_EXACT_HEAD_CI",
+    "nativeCancellationClosedResourcesRestoredPlanQARetryDecode": "PASS_IN_EXACT_HEAD_CI",
+    "blackMP4RejectionAndFailureBlobPreservation": "PASS_IN_EXACT_HEAD_CI",
+    "oneClickBoundaryCases": "PASS_IN_EXACT_HEAD_CI",
+    "twoPreviouslySkippedRegressions": "PASS_WITH_REAL_FINAL_SOURCE_BROWSER_REPORT",
+    "originalStencilOnFinalSource": "1084 exact comparisons and 65536 luma values PASS",
+    "actualFrameCacheOwnershipMutationCancellationInvalidation": "PASS",
+    "finalLocalProductionBuildIdentity": "PASS: root index.html and dist/index.html both match final runtime hash"
+  },
+  "quality": {
+    "againstPR8": "PASS: all 42 complete videos, all 3888 decoded frames, SHA256 and color/pixel-format/delivery metadata equal",
+    "mainRelativeAcceptance": "UNRESOLVED: metric differences, missing samples and observer variance remain; no waiver",
+    "mainCase07SameBlobVariance": "aligned 10,8,10; background 9,9,10; main/V4 pixels differ; cause UNRESOLVED",
+    "mainCase23AlignedMetric": "100 to 99 at four intervals; background-consistent metric does not regress",
+    "independentBriefHistoricalMetric": {
+      "time": 0.4125,
+      "main": 92,
+      "V4": 9,
+      "actualFrameTime": 0.375,
+      "independentActualFrameScoreAllThreeVariants": 100,
+      "backgroundConsistentScoreAllThreeVariants": 100,
+      "interpretation": "Historical requested-time difference is not treated as confirmed actual-frame quality loss; current aligned observations agree."
+    },
+    "animatedVariableFontExport": "NOT_VERIFIED; static fallback is fully decoded and certified"
+  },
+  "performance": {
+    "main": {
+      "totalMs": {
+        "n": 38,
+        "p50": 17256.40000000014,
+        "p95": 35828.80000000028,
+        "maximum": 84716.20000000019
+      },
+      "searchMs": {
+        "n": 38,
+        "p50": 11332.25,
+        "p95": 26367,
+        "maximum": 67741.20000000019
+      },
+      "exportMs": {
+        "n": 38,
+        "p50": 3916.9500000001863,
+        "p95": 8488.5,
+        "maximum": 16042.599999999627
+      },
+      "slowest": [
+        {
+          "id": "case-24",
+          "totalMs": 84716.20000000019
+        },
+        {
+          "id": "case-11",
+          "totalMs": 35828.80000000028
+        },
+        {
+          "id": "independent-brief",
+          "totalMs": 34379.700000000186
+        }
+      ]
+    },
+    "PR8": {
+      "totalMs": {
+        "n": 38,
+        "p50": 29210.40000000014,
+        "p95": 64088.200000000186,
+        "maximum": 221254.80000000028
+      },
+      "searchMs": {
+        "n": 38,
+        "p50": 24584.899999999907,
+        "p95": 53576.89999999991,
+        "maximum": 197474.59999999963
+      },
+      "exportMs": {
+        "n": 38,
+        "p50": 4087.3499999998603,
+        "p95": 10392.900000000373,
+        "maximum": 22813.60000000056
+      },
+      "slowest": [
+        {
+          "id": "case-24",
+          "totalMs": 221254.80000000028
+        },
+        {
+          "id": "independent-brief",
+          "totalMs": 64088.200000000186
+        },
+        {
+          "id": "case-22",
+          "totalMs": 61764.799999999814
+        }
+      ]
+    },
+    "V4": {
+      "totalMs": {
+        "n": 38,
+        "p50": 25919.300000000047,
+        "p95": 56142.200000000186,
+        "maximum": 204585.90000000037
+      },
+      "searchMs": {
+        "n": 38,
+        "p50": 21975.05000000028,
+        "p95": 46809.09999999963,
+        "maximum": 183709.19999999972
+      },
+      "exportMs": {
+        "n": 38,
+        "p50": 3656.3000000000466,
+        "p95": 8760.299999999814,
+        "maximum": 20119.400000000373
+      },
+      "slowest": [
+        {
+          "id": "case-24",
+          "totalMs": 204585.90000000037
+        },
+        {
+          "id": "independent-brief",
+          "totalMs": 56142.200000000186
+        },
+        {
+          "id": "case-22",
+          "totalMs": 51553.19999999972
+        }
+      ]
+    }
+  },
+  "performanceAcceptance": "FAIL: V4 total P50 +50.20%, P95 +56.70% versus main; worst case-24 204.586s versus 84.716s",
+  "network": {
+    "currentGitHubAPIAndFontsVerifiedHTTPS": "PASS_HTTP200",
+    "currentGitFetchPushAuthentication": "PASS",
+    "historicalHTTP503": "UNRESOLVED: shared Envoy/Cloudflare tunnel error; no rendering/font application fix inferred",
+    "draftReleaseAssetUpload": "FAILED_HTTP401; zero assets",
+    "CIArtifactLocalDownload": "FAILED_HTTP403; no repeat attempt; artifact is available in GitHub until 2026-10-18",
+    "CIConsoleLogs": "FETCHED_SUCCESSFULLY; saved for durable normal Git backup"
+  },
+  "releaseDecision": "NO-GO",
+  "mergedIntoMain": false,
+  "deployedToPages": false,
+  "productionMP4Run": "NOT_RUN; release was not authorized by failing gates",
+  "mainHEADUnchanged": "ef829f93a933794c337bf1a37c39fcfb8d4de0f4",
+  "sourceFrozenAndClean": true,
+  "evidenceStorage": "Normal Git pushes to codex/kamen-auto-cinema-v4-evidence-20261011; matrix and browser archive manifests include SHA256"
+}
