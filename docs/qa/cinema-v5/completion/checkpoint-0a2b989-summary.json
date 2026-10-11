@@ -1,0 +1,2153 @@
+{
+  "status": "CHECKPOINT_NOT_RELEASE_CERTIFICATION",
+  "sourceHead": "0a2b989c9ba1d55603237a8c76f34b13ae963041",
+  "baselineHead": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+  "completedMP4": 26,
+  "fullDecodePass": 26,
+  "failureHistory": [],
+  "rows": [
+    {
+      "fixture": {
+        "id": "case-06",
+        "seed": 415,
+        "aspect": "1:1",
+        "image": "none",
+        "audio": "calm",
+        "lyrics": [
+          "静かな時を見つめる",
+          "光"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "a5bc003e6649b3e2262262662fb7c56d1777b1da9b000a66c0ad136e2acdaf98",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "units": [
+        {
+          "unitId": "14d5b1d98fa224c12cfceb9f0bae2350e08dec5484ed48676eced5e5d245e949",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            1.2
+          ],
+          "holdRange": [
+            0.27,
+            1.13
+          ],
+          "status": "MEASURED",
+          "frameCount": 24,
+          "holdFrameCount": 21,
+          "expectedHoldFrames": 21,
+          "readableHoldSeconds": 0.875,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 21,
+            "exit": 1
+          }
+        },
+        {
+          "unitId": "fb3a0f030b9bcbfe733f632ce0b1b27fbe5dbadc8f3d551907342de0cd256cc9",
+          "line": 1,
+          "timeRange": [
+            1.2,
+            2.7
+          ],
+          "holdRange": [
+            1.27,
+            2.6300000000000003
+          ],
+          "status": "MEASURED",
+          "frameCount": 36,
+          "holdFrameCount": 33,
+          "expectedHoldFrames": 33,
+          "readableHoldSeconds": 1.375,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 33,
+            "exit": 1
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 2,
+        "measured": 0,
+        "rendererAgreementSuccess": 0,
+        "measurableRate": 0,
+        "rendererAgreementRate": null,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": null,
+      "exportMs": 5535.20000000298,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "4dfe7afa792b018fbbf12f032522ad0607f94cf2b377bfd093d07d4d34adfb2d",
+        "imageHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lyrics": "[00:00.20]静かな時を見つめる\n[00:01.20]光",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "case-06",
+        "seed": 415,
+        "aspect": "1:1",
+        "image": "none",
+        "audio": "calm",
+        "lyrics": [
+          "静かな時を見つめる",
+          "光"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "7fe70ba20fa14662d62494d2227cec64fa75392467b40a02f5e55e7c4a01b3e9",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": null,
+      "exportMs": 2034.5,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "4dfe7afa792b018fbbf12f032522ad0607f94cf2b377bfd093d07d4d34adfb2d",
+        "imageHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lyrics": "[00:00.20]静かな時を見つめる\n[00:01.20]光",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "case-07",
+        "seed": 416,
+        "aspect": "16:9",
+        "image": "multi",
+        "audio": "steady",
+        "lyrics": [
+          "短",
+          "長い言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "activation": "engine-multi",
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "4309a2c90b607d8f333a373ac5ef32a351ca2a955bc17062d3d149e75d3b3295",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": null,
+      "exportMs": 3323.60000000149,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "b62ea3dcb4bba8d2b3d8472252e95fcbeec3a6bad71913b6b32845c8c17f9465",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]短\n[00:01.20]長い言葉を読む",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "case-07",
+        "seed": 416,
+        "aspect": "16:9",
+        "image": "multi",
+        "audio": "steady",
+        "lyrics": [
+          "短",
+          "長い言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "activation": "engine-multi",
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "910dceb83c9133d8657c606f8d36465a2f86ed18b8e13ac3c67a4e812831fa72",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "units": [
+        {
+          "unitId": "58e43ee60123a0c38430e2f515f39cc07bd1f06f149c88abc052936fa7452f4c",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            1.2
+          ],
+          "holdRange": [
+            0.27,
+            1.13
+          ],
+          "status": "MEASURED",
+          "frameCount": 24,
+          "holdFrameCount": 21,
+          "expectedHoldFrames": 21,
+          "readableHoldSeconds": 0.875,
+          "minimumContrast": 0,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 21,
+            "exit": 1
+          }
+        },
+        {
+          "unitId": "81fda53762b48491bed098ddd6a0fe4bbb4004608e6e380dca6d4034b81301ab",
+          "line": 1,
+          "timeRange": [
+            1.2,
+            2.5
+          ],
+          "holdRange": [
+            1.27,
+            2.43
+          ],
+          "status": "MEASURED",
+          "frameCount": 31,
+          "holdFrameCount": 28,
+          "expectedHoldFrames": 28,
+          "readableHoldSeconds": 1.1666666666666667,
+          "minimumContrast": 77,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 28,
+            "exit": 1
+          }
+        },
+        {
+          "unitId": "5eec8ab9ba7076392c4484b72ffaaa89616e49ff6c52e948475972a78421e4be",
+          "line": 1,
+          "timeRange": [
+            2.5,
+            3
+          ],
+          "holdRange": [
+            2.57,
+            3
+          ],
+          "status": "MEASURED",
+          "frameCount": 12,
+          "holdFrameCount": 10,
+          "expectedHoldFrames": 10,
+          "readableHoldSeconds": 0.4166666666666667,
+          "minimumContrast": 64,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 10,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 3,
+        "measured": 0,
+        "rendererAgreementSuccess": 0,
+        "measurableRate": 0,
+        "rendererAgreementRate": null,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": null,
+      "exportMs": 7844.10000000149,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "b62ea3dcb4bba8d2b3d8472252e95fcbeec3a6bad71913b6b32845c8c17f9465",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]短\n[00:01.20]長い言葉を読む",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "case-08",
+        "seed": 417,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "intense",
+        "lyrics": [
+          "光へ",
+          "空へ"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "323a133bcb8f9120d250fb70f9e417090d1d3edc06d873af5b310ef778dec716",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "units": [
+        {
+          "unitId": "12a5492d8a03e121bdcacd5ef6ebbbc93ada30c6d2d432c8f6fd877b99ab647a",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            1.2
+          ],
+          "holdRange": [
+            0.2,
+            1.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 24,
+          "holdFrameCount": 24,
+          "expectedHoldFrames": 24,
+          "readableHoldSeconds": 1,
+          "minimumContrast": 75,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 24,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "5caa4253375d4c7e47e63bf2b9662f8498f33396d0abe60bf033b90c70438028",
+          "line": 1,
+          "timeRange": [
+            1.2,
+            2.7
+          ],
+          "holdRange": [
+            1.2,
+            2.7
+          ],
+          "status": "MEASURED",
+          "frameCount": 36,
+          "holdFrameCount": 36,
+          "expectedHoldFrames": 36,
+          "readableHoldSeconds": 1.5,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 36,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 2,
+        "measured": 1,
+        "rendererAgreementSuccess": 1,
+        "measurableRate": 0.5,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": 49,
+      "exportMs": 12967.39999999851,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "b99ce85a5cefe7ec55bdb3ce9df068cad34beba94a0a1093eeec0544b86e8f9b",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]光へ\n[00:01.20]空へ",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "case-08",
+        "seed": 417,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "intense",
+        "lyrics": [
+          "光へ",
+          "空へ"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "a7bfbce80c0f3a289bb29ddb4eaa72f785b6ebac8789fcb2347ab0f18272e91b",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 49,
+      "exportMs": 12276.60000000149,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "b99ce85a5cefe7ec55bdb3ce9df068cad34beba94a0a1093eeec0544b86e8f9b",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]光へ\n[00:01.20]空へ",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "case-24",
+        "seed": 443,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "steady",
+        "lyrics": [
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー"
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "loop": true,
+        "short": true,
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "a66c6c4c91b9bdba431ea990892ff5b92d6560157b6383da6cf8198ce9b3f829",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "FAILED",
+      "units": [
+        {
+          "unitId": "b112d4e6832a2f7feecf0cc01cd2f9eea51b68f64fd251afe10fd02a9d5d7566",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            3.2
+          ],
+          "holdRange": [
+            0.2,
+            3.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 3,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "61845de526d98efbd6b5f3275fc9c0db00767cc0973bb8005fa8eafff8f7f2ad",
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.2
+          ],
+          "holdRange": [
+            3.2,
+            6.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 3,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "620432ef88df14ad3ea21e6f0726b997d4d511c57e92a22a825e0297e892e9a9",
+          "line": 2,
+          "timeRange": [
+            6.2,
+            9.2
+          ],
+          "holdRange": [
+            6.2,
+            9.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 3,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "7dfc1d92ef3dfaa4c08827c744ffbb6b53210ffa04f8cfe2e51e0aaeeca58734",
+          "line": 3,
+          "timeRange": [
+            9.2,
+            12.2
+          ],
+          "holdRange": [
+            9.2,
+            12.2
+          ],
+          "status": "FAILED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 2.8333333333333335,
+          "minimumContrast": null,
+          "reason": "NATIVE_OR_DECODED_GLYPH_FAILURE",
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 4,
+        "measured": 2,
+        "rendererAgreementSuccess": 2,
+        "measurableRate": 0.5,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": 100,
+      "exportMs": 94097.89999999851,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "5dba2a0255ccb85b9c9cb19c61771cbf8240af59fdd6651f3eb96cf5d44378d6",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]ラララー\n[00:03.20]ラララー\n[00:06.20]ラララー\n[00:09.20]ラララー\n[00:12.20]ラララー",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0.2,
+          12.2
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "case-24",
+        "seed": 443,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "steady",
+        "lyrics": [
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー"
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "loop": true,
+        "short": true,
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "6bf45a214c27f816b82ae3f07d9863eb16d80737b3a9d9448178a4bfdd9e3f97",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 100,
+      "exportMs": 28274.5,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "5dba2a0255ccb85b9c9cb19c61771cbf8240af59fdd6651f3eb96cf5d44378d6",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]ラララー\n[00:03.20]ラララー\n[00:06.20]ラララー\n[00:09.20]ラララー\n[00:12.20]ラララー",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0.2,
+          12.2
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "seed": 510,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-dark",
+        "aspect": "9:16",
+        "image": "dark",
+        "audio": "calm",
+        "lyrics": [
+          "短い言葉",
+          "ゆっくり読む長い日本語の一節"
+        ],
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "f399e0ad448ed008b6aa137cdc573112ac3203834e03fd83c82ab7f9ce603367",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 75,
+      "exportMs": 8586.39999999851,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "68bcf03d926bc147233b696e02655861b3afab9fbfdfeda6534e3fe1ee662532",
+        "imageHash": "f8b57eac444fb142474b8b44f53d8a4dbf104429fc36c0bcc659edac6c593632",
+        "lyrics": "[00:00.20]短い言葉\n[00:01.20]ゆっくり読む長い日本語の一節",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "seed": 510,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-dark",
+        "aspect": "9:16",
+        "image": "dark",
+        "audio": "calm",
+        "lyrics": [
+          "短い言葉",
+          "ゆっくり読む長い日本語の一節"
+        ],
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "cfd2b8d17db6d45b41f169b79df82271fad4ab86c31bef34e08e1799b956d060",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "FAILED",
+      "units": [
+        {
+          "unitId": "e30ec4100c19a46f67e4c6c22c261558b4c979f4d20de316f6576ba28f141795",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            1.2
+          ],
+          "holdRange": [
+            0.2,
+            1.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 24,
+          "holdFrameCount": 24,
+          "expectedHoldFrames": 24,
+          "readableHoldSeconds": 1,
+          "minimumContrast": 98,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 24,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "2139cdb303818cdb86c86367c386b684ad8a7784134e7b172ccc684263dd3588",
+          "line": 1,
+          "timeRange": [
+            1.2,
+            3.9999773242630385
+          ],
+          "holdRange": [
+            1.2,
+            3.9999773242630385
+          ],
+          "status": "FAILED",
+          "frameCount": 67,
+          "holdFrameCount": 67,
+          "expectedHoldFrames": 67,
+          "readableHoldSeconds": 2.5833333333333335,
+          "minimumContrast": null,
+          "reason": "NATIVE_OR_DECODED_GLYPH_FAILURE",
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 67,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 2,
+        "measured": 0,
+        "rendererAgreementSuccess": 0,
+        "measurableRate": 0,
+        "rendererAgreementRate": null,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": 75,
+      "exportMs": 11961.19999999553,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "68bcf03d926bc147233b696e02655861b3afab9fbfdfeda6534e3fe1ee662532",
+        "imageHash": "f8b57eac444fb142474b8b44f53d8a4dbf104429fc36c0bcc659edac6c593632",
+        "lyrics": "[00:00.20]短い言葉\n[00:01.20]ゆっくり読む長い日本語の一節",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "seed": 515,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-dense",
+        "aspect": "1:1",
+        "image": "bright",
+        "audio": "steady",
+        "lyrics": [
+          "長い日本語を短い時間で表示する区間",
+          "日本語と English words の混在"
+        ],
+        "starts": [
+          0.2,
+          0.65
+        ],
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "ee5477cea96e7e642978a9bbfa5a98737e337d332f065a4041c00c21f13c7f9b",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "FAILED",
+      "units": [
+        {
+          "unitId": "c38055edb96773cc4ed8332ad2578825c89e7633e7b5a6ddcd9e77f9787e7512",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            0.65
+          ],
+          "holdRange": [
+            0.2,
+            0.65
+          ],
+          "status": "MEASURED",
+          "frameCount": 11,
+          "holdFrameCount": 11,
+          "expectedHoldFrames": 11,
+          "readableHoldSeconds": 0.4583333333333333,
+          "minimumContrast": 42,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 11,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "ffc6d1a2256ce5958185e3eeff54d5699ce5f32b0f457d236d4352e907376a3c",
+          "line": 1,
+          "timeRange": [
+            0.65,
+            3.9999773242630385
+          ],
+          "holdRange": [
+            0.65,
+            3.9999773242630385
+          ],
+          "status": "FAILED",
+          "frameCount": 80,
+          "holdFrameCount": 80,
+          "expectedHoldFrames": 80,
+          "readableHoldSeconds": 3.125,
+          "minimumContrast": null,
+          "reason": "NATIVE_OR_DECODED_GLYPH_FAILURE",
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 80,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 2,
+        "measured": 0,
+        "rendererAgreementSuccess": 0,
+        "measurableRate": 0,
+        "rendererAgreementRate": null,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": 47,
+      "exportMs": 8867.80000000447,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "ed217ffa5245890ddd88728351f5cef4139c6137262f3a5aad46defd6f19c4cb",
+        "imageHash": "23abe8ceaaae491be8d0aabaf45dca47480dae04c905e73f0c20555daa1cad93",
+        "lyrics": "[00:00.20]長い日本語を短い時間で表示する区間\n[00:00.65]日本語と English words の混在",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "seed": 515,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-dense",
+        "aspect": "1:1",
+        "image": "bright",
+        "audio": "steady",
+        "lyrics": [
+          "長い日本語を短い時間で表示する区間",
+          "日本語と English words の混在"
+        ],
+        "starts": [
+          0.2,
+          0.65
+        ],
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "443bcda334312422ce40ec7effeedea1b7acfc3d5fe989033719af12c5e114fc",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 47,
+      "exportMs": 5553.5,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "ed217ffa5245890ddd88728351f5cef4139c6137262f3a5aad46defd6f19c4cb",
+        "imageHash": "23abe8ceaaae491be8d0aabaf45dca47480dae04c905e73f0c20555daa1cad93",
+        "lyrics": "[00:00.20]長い日本語を短い時間で表示する区間\n[00:00.65]日本語と English words の混在",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "seed": 517,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-manual",
+        "aspect": "9:16",
+        "image": "busy",
+        "audio": "intense",
+        "lyrics": [
+          "手動固定した文字",
+          "固定したカメラ"
+        ],
+        "manual": true,
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "c9ccea562817aadbc4a8b7d8d77a7fd157b45c1fb5a713d6856871f9a9765bfa",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "units": [
+        {
+          "unitId": "2868541d0a99b81627d1d2f3b2128f2d55f1255c45948f7b9419d26e865387b7",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            0.9001
+          ],
+          "holdRange": [
+            0.452036,
+            0.725075
+          ],
+          "status": "MEASURED",
+          "frameCount": 17,
+          "holdFrameCount": 7,
+          "expectedHoldFrames": 7,
+          "readableHoldSeconds": 0.2916666666666667,
+          "minimumContrast": 40,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 6,
+            "hold": 7,
+            "exit": 4
+          }
+        },
+        {
+          "unitId": "48e03136ab4033463bd2167551d2d01752234a0eb1082e9f283a298497282bf4",
+          "line": 0,
+          "timeRange": [
+            0.9001,
+            1.2
+          ],
+          "holdRange": [
+            1.008064,
+            1.125025
+          ],
+          "status": "MEASURED",
+          "frameCount": 7,
+          "holdFrameCount": 3,
+          "expectedHoldFrames": 3,
+          "readableHoldSeconds": 0.125,
+          "minimumContrast": 59,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 3,
+            "exit": 1
+          }
+        },
+        {
+          "unitId": "9411b3ec1fec2827f450975fbc95b600f0545359e384bcce7bb309bf0ad63448",
+          "line": 1,
+          "timeRange": [
+            1.2,
+            3.1900000000000004
+          ],
+          "holdRange": [
+            1.2,
+            3.1900000000000004
+          ],
+          "status": "MEASURED",
+          "frameCount": 48,
+          "holdFrameCount": 48,
+          "expectedHoldFrames": 48,
+          "readableHoldSeconds": 2,
+          "minimumContrast": 76,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 48,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 1,
+        "measured": 0,
+        "rendererAgreementSuccess": 0,
+        "measurableRate": 0,
+        "rendererAgreementRate": null,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 2
+      },
+      "alignedRawScore": 52,
+      "exportMs": 18883,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "ba3b6bdaf1d0a13aa9f360e3510172bc7427ee2ab98c9b2f24b9eb0ee9689b80",
+        "imageHash": "2adfbf5c0f24b85d4baff7ba6ed561f61ab11286536829f5eb6541fcdd2acf5d",
+        "lyrics": "[00:00.20]手動固定した文字\n[00:01.20]固定したカメラ",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ],
+        "manualOverrides": {
+          "0": {
+            "lock": true,
+            "layout": "center",
+            "cam": "stillCamera",
+            "enter": "cut",
+            "hold": "still",
+            "decor": []
+          }
+        },
+        "manualTypography": {
+          "font": "embedded_bold",
+          "align": "left",
+          "maxWidth": 0.72
+        }
+      }
+    },
+    {
+      "fixture": {
+        "seed": 517,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-manual",
+        "aspect": "9:16",
+        "image": "busy",
+        "audio": "intense",
+        "lyrics": [
+          "手動固定した文字",
+          "固定したカメラ"
+        ],
+        "manual": true,
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "bfa06ff2e2aed5128a2cc44a47abe75cea4b1a156ed85e29769084e383cc610e",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 0,
+      "exportMs": 7785.39999999851,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "ba3b6bdaf1d0a13aa9f360e3510172bc7427ee2ab98c9b2f24b9eb0ee9689b80",
+        "imageHash": "2adfbf5c0f24b85d4baff7ba6ed561f61ab11286536829f5eb6541fcdd2acf5d",
+        "lyrics": "[00:00.20]手動固定した文字\n[00:01.20]固定したカメラ",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ],
+        "manualOverrides": {
+          "0": {
+            "lock": true,
+            "layout": "center",
+            "cam": "stillCamera",
+            "enter": "cut",
+            "hold": "still",
+            "decor": []
+          }
+        },
+        "manualTypography": {
+          "font": "embedded_bold",
+          "align": "left",
+          "maxWidth": 0.72
+        }
+      }
+    },
+    {
+      "fixture": {
+        "seed": 513,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-people",
+        "aspect": "9:16",
+        "image": "multi-silhouette",
+        "audio": "variable",
+        "lyrics": [
+          "重なる声",
+          "集まる光"
+        ],
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "3c1b5f6e8daa7019587194d920727c224fd4b5e8addb7121c9e03f94e41b0ed9",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "units": [
+        {
+          "unitId": "e3613bd4a0e15cd9375df8fda8b55daf6e29687479ea85d8a1472686dd632a64",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            1.2
+          ],
+          "holdRange": [
+            0.2,
+            1.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 24,
+          "holdFrameCount": 24,
+          "expectedHoldFrames": 24,
+          "readableHoldSeconds": 1,
+          "minimumContrast": 99,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 24,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "9af43252cfab94bbd3a5a703762888debff9e8178a3fb26878f98f63e09a4aeb",
+          "line": 1,
+          "timeRange": [
+            1.2,
+            2.7
+          ],
+          "holdRange": [
+            1.2,
+            2.7
+          ],
+          "status": "MEASURED",
+          "frameCount": 36,
+          "holdFrameCount": 36,
+          "expectedHoldFrames": 36,
+          "readableHoldSeconds": 1.5,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 36,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 2,
+        "measured": 2,
+        "rendererAgreementSuccess": 2,
+        "measurableRate": 1,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": 95,
+      "exportMs": 15933.5,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "ccc58cc0dcb74e5891a1e75a14d06c24b076c597527478c61394ed5896ff16ec",
+        "imageHash": "8f3355890fc5b2424cb7f26818151c1bddd75bd12311a6c0687aa057f7e84447",
+        "lyrics": "[00:00.20]重なる声\n[00:01.20]集まる光",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "seed": 513,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-people",
+        "aspect": "9:16",
+        "image": "multi-silhouette",
+        "audio": "variable",
+        "lyrics": [
+          "重なる声",
+          "集まる光"
+        ],
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "0f1d299e8191e10e61d77ada9086a154b6967802fccfd190de22699b25439171",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 95,
+      "exportMs": 9237.20000000298,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "ccc58cc0dcb74e5891a1e75a14d06c24b076c597527478c61394ed5896ff16ec",
+        "imageHash": "8f3355890fc5b2424cb7f26818151c1bddd75bd12311a6c0687aa057f7e84447",
+        "lyrics": "[00:00.20]重なる声\n[00:01.20]集まる光",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "independent-long",
+        "seed": 613,
+        "aspect": "16:9",
+        "image": "independent-diagonal",
+        "audio": "intense",
+        "lyrics": [
+          "異なる背景で長い日本語と English lyrics を読む",
+          "次の行を確かめる"
+        ],
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "448aa65107e96e38e077c32812ae06243800a314421d383af4d9c997d072f5a8",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "units": [
+        {
+          "unitId": "d23bc551ca3c82c8b25e21e2765e7f2b2496c139aef0520e89d85f36ffc81c45",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            1.2
+          ],
+          "holdRange": [
+            0.2,
+            1.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 24,
+          "holdFrameCount": 24,
+          "expectedHoldFrames": 24,
+          "readableHoldSeconds": 1,
+          "minimumContrast": 49,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 24,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "b213b399c4198d2dcb2f8a9728be7cb305c3bf44fd4125600c06795bf73e1b11",
+          "line": 1,
+          "timeRange": [
+            1.2,
+            3.3600000000000003
+          ],
+          "holdRange": [
+            1.2,
+            3.3600000000000003
+          ],
+          "status": "MEASURED",
+          "frameCount": 52,
+          "holdFrameCount": 52,
+          "expectedHoldFrames": 52,
+          "readableHoldSeconds": 2.1666666666666665,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 52,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 2,
+        "measured": 0,
+        "rendererAgreementSuccess": 0,
+        "measurableRate": 0,
+        "rendererAgreementRate": null,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": 66,
+      "exportMs": 11767.70000000298,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "19be703295f82269b9ee0a3ae926415685471b9db56beeb36c545df5b86c95ec",
+        "imageHash": "926ab5862b56e7d54108eb8b3c3792e59c458c7e09ffd3bdf4900be7ed4a25f5",
+        "lyrics": "[00:00.20]異なる背景で長い日本語と English lyrics を読む\n[00:01.20]次の行を確かめる",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "independent-long",
+        "seed": 613,
+        "aspect": "16:9",
+        "image": "independent-diagonal",
+        "audio": "intense",
+        "lyrics": [
+          "異なる背景で長い日本語と English lyrics を読む",
+          "次の行を確かめる"
+        ],
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "1e24c417c1646133fc174c438e8324041b5d2b2fc2c5ab2c12594b254fb814c1",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 62,
+      "exportMs": 5747.4000000059605,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "19be703295f82269b9ee0a3ae926415685471b9db56beeb36c545df5b86c95ec",
+        "imageHash": "926ab5862b56e7d54108eb8b3c3792e59c458c7e09ffd3bdf4900be7ed4a25f5",
+        "lyrics": "[00:00.20]異なる背景で長い日本語と English lyrics を読む\n[00:01.20]次の行を確かめる",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "independent-panels",
+        "seed": 612,
+        "aspect": "1:1",
+        "image": "multi",
+        "activation": "engine-multi",
+        "audio": "intense",
+        "lyrics": [
+          "二枚の画像",
+          "言葉を守る"
+        ],
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "978b6d9f55851fa893ae364b7b7dee19075104e34ee7d522366620718437c9a0",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 0,
+      "exportMs": 4085,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "d3028f9497c1f61a4a085a8ec48ee365238040dd23ec75295b0a76ea49e1057c",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]二枚の画像\n[00:01.20]言葉を守る",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "independent-panels",
+        "seed": 612,
+        "aspect": "1:1",
+        "image": "multi",
+        "activation": "engine-multi",
+        "audio": "intense",
+        "lyrics": [
+          "二枚の画像",
+          "言葉を守る"
+        ],
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "a38980bead6f80501268f15cd6d0efc21e4ca2ef3c63c376d4858d49cb6fda7e",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "units": [
+        {
+          "unitId": "84632be7d14cad0e16fccc69798c7ca01c5a0bcbcdbfedc7e6ef409d89febb0a",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            0.7609756097560976
+          ],
+          "holdRange": [
+            0.27,
+            0.6909756097560975
+          ],
+          "status": "MEASURED",
+          "frameCount": 14,
+          "holdFrameCount": 10,
+          "expectedHoldFrames": 10,
+          "readableHoldSeconds": 0.4166666666666667,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 10,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "fb71ae30d487ad38aed4e14a3c11fed0dbe3c2b7e0b02a0b5de108492a586cb7",
+          "line": 0,
+          "timeRange": [
+            0.7609756097560976,
+            1.2
+          ],
+          "holdRange": [
+            0.8309756097560976,
+            1.13
+          ],
+          "status": "MEASURED",
+          "frameCount": 10,
+          "holdFrameCount": 8,
+          "expectedHoldFrames": 8,
+          "readableHoldSeconds": 0.3333333333333333,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 1,
+            "hold": 8,
+            "exit": 1
+          }
+        },
+        {
+          "unitId": "212ee330aaf5a6655dcc6e73cff3e2f1844f5b78a092c282e11bdeaf453802bd",
+          "line": 1,
+          "timeRange": [
+            1.2,
+            2.1
+          ],
+          "holdRange": [
+            1.27,
+            2.0300000000000002
+          ],
+          "status": "MEASURED",
+          "frameCount": 22,
+          "holdFrameCount": 18,
+          "expectedHoldFrames": 18,
+          "readableHoldSeconds": 0.75,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 18,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "ecedbbc75b7389fc8ec8e494ce53ceff63d40e12fbcd7fb22bc4f067cc756a91",
+          "line": 1,
+          "timeRange": [
+            2.1,
+            2.85
+          ],
+          "holdRange": [
+            2.17,
+            2.7800000000000002
+          ],
+          "status": "MEASURED",
+          "frameCount": 18,
+          "holdFrameCount": 14,
+          "expectedHoldFrames": 14,
+          "readableHoldSeconds": 0.5833333333333334,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 14,
+            "exit": 2
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 4,
+        "measured": 0,
+        "rendererAgreementSuccess": 0,
+        "measurableRate": 0,
+        "rendererAgreementRate": null,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": 0,
+      "exportMs": 9755.60000000149,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "d3028f9497c1f61a4a085a8ec48ee365238040dd23ec75295b0a76ea49e1057c",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]二枚の画像\n[00:01.20]言葉を守る",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "profile-full-16-9",
+        "seed": 704,
+        "aspect": "16:9",
+        "image": "bright",
+        "audio": "variable",
+        "lyrics": [
+          "光をたどる",
+          "静かな声",
+          "ここから歩く",
+          "響く未来へ"
+        ],
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2
+        ],
+        "duration": 12,
+        "res": 720,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "fd3066bf39bc29030d6a1fe97e4a99ecf2a108a03d267e7a4f99f82240dfc046",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 13,
+      "exportMs": 25243.70000000298,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "3c1bae44fe6d3378899be2d69e69dd1dd02150f8eea0db6fec31c7b87d944951",
+        "imageHash": "23abe8ceaaae491be8d0aabaf45dca47480dae04c905e73f0c20555daa1cad93",
+        "lyrics": "[00:00.20]光をたどる\n[00:03.20]静かな声\n[00:06.20]ここから歩く\n[00:09.20]響く未来へ",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          12
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "profile-full-16-9",
+        "seed": 704,
+        "aspect": "16:9",
+        "image": "bright",
+        "audio": "variable",
+        "lyrics": [
+          "光をたどる",
+          "静かな声",
+          "ここから歩く",
+          "響く未来へ"
+        ],
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2
+        ],
+        "duration": 12,
+        "res": 720,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "aa827b90b9ae01d56538fd61c822872ac65b19e91c82a34677630d7d83f02150",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "units": [
+        {
+          "unitId": "b53b9c69f6933589d89f57096989eaf0b8e4db3a82bbbb14dbf7dcd95f1226f4",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            3.2
+          ],
+          "holdRange": [
+            0.2,
+            3.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 3,
+          "minimumContrast": 44,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "56b9475c5702ede8b708595d4d0e3f1c8e99d27c5ae1dc241c6984614862eaf6",
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.2
+          ],
+          "holdRange": [
+            3.2,
+            6.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 3,
+          "minimumContrast": 69,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "8a2dcb0d88b6b95dbb6ad5e2623f2909afdb4ed9e42a7ead8c32fb0e4d81d450",
+          "line": 2,
+          "timeRange": [
+            6.2,
+            9.2
+          ],
+          "holdRange": [
+            6.2,
+            9.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 3,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "52373f3df70465113b044de497eb7227438e45d22044d78d3ac14d57a093eea4",
+          "line": 3,
+          "timeRange": [
+            9.2,
+            10.85
+          ],
+          "holdRange": [
+            9.2,
+            10.85
+          ],
+          "status": "MEASURED",
+          "frameCount": 40,
+          "holdFrameCount": 40,
+          "expectedHoldFrames": 40,
+          "readableHoldSeconds": 1.6666666666666667,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 40,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 4,
+        "measured": 3,
+        "rendererAgreementSuccess": 3,
+        "measurableRate": 0.75,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": 13,
+      "exportMs": 65366.30000000447,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "3c1bae44fe6d3378899be2d69e69dd1dd02150f8eea0db6fec31c7b87d944951",
+        "imageHash": "23abe8ceaaae491be8d0aabaf45dca47480dae04c905e73f0c20555daa1cad93",
+        "lyrics": "[00:00.20]光をたどる\n[00:03.20]静かな声\n[00:06.20]ここから歩く\n[00:09.20]響く未来へ",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          12
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "profile-short-9-16",
+        "seed": 705,
+        "aspect": "9:16",
+        "image": "dark",
+        "audio": "variable",
+        "lyrics": [
+          "光をたどる",
+          "静かな声",
+          "ここから歩く",
+          "響く未来へ",
+          "余韻を残す"
+        ],
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "short": true,
+        "loop": false,
+        "res": 720,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "0478d186d3303ed1360d1add0cd693daa335247795fc75b74a6dbbe1c1951492",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "FAILED",
+      "units": [
+        {
+          "unitId": "3243793240f3f103d7fbe7fba68392f86ad0ede47e4d132a85c96f2b511ebcbd",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            3.2
+          ],
+          "holdRange": [
+            0.2,
+            3.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 3,
+          "minimumContrast": 38,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "a6fbb17139cd47340a889a012fb4e99af89877f379448b045a470cabfa7285e5",
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.2
+          ],
+          "holdRange": [
+            3.2,
+            6.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 3,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "88a5809a96974db0344dce89795a5cd77021ca7150ae21852dd03baa960c1aaa",
+          "line": 2,
+          "timeRange": [
+            6.2,
+            9.2
+          ],
+          "holdRange": [
+            6.2,
+            9.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 3,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "46e875dd355b4acda9a857cf1d4854bfbeef0bfdd61d9a942613d7331207d1d7",
+          "line": 3,
+          "timeRange": [
+            9.2,
+            12.2
+          ],
+          "holdRange": [
+            9.2,
+            12.2
+          ],
+          "status": "FAILED",
+          "frameCount": 72,
+          "holdFrameCount": 72,
+          "expectedHoldFrames": 72,
+          "readableHoldSeconds": 2.8333333333333335,
+          "minimumContrast": null,
+          "reason": "NATIVE_OR_DECODED_GLYPH_FAILURE",
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 72,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 4,
+        "measured": 3,
+        "rendererAgreementSuccess": 3,
+        "measurableRate": 0.75,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 0
+      },
+      "alignedRawScore": 53,
+      "exportMs": 126642.5,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "c68f06e3fa3eceff87d00e5c2dace894392b8af7bf14582004cf00d3f8b85813",
+        "imageHash": "f8b57eac444fb142474b8b44f53d8a4dbf104429fc36c0bcc659edac6c593632",
+        "lyrics": "[00:00.20]光をたどる\n[00:03.20]静かな声\n[00:06.20]ここから歩く\n[00:09.20]響く未来へ\n[00:12.20]余韻を残す",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0.2,
+          12.2
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "profile-short-9-16",
+        "seed": 705,
+        "aspect": "9:16",
+        "image": "dark",
+        "audio": "variable",
+        "lyrics": [
+          "光をたどる",
+          "静かな声",
+          "ここから歩く",
+          "響く未来へ",
+          "余韻を残す"
+        ],
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "short": true,
+        "loop": false,
+        "res": 720,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "2fcd3fa53dd12c1f3ed0facbb63834e3e016cf85515bbcd4ffab92ef01e951ff",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 48,
+      "exportMs": 25484.10000000149,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "c68f06e3fa3eceff87d00e5c2dace894392b8af7bf14582004cf00d3f8b85813",
+        "imageHash": "f8b57eac444fb142474b8b44f53d8a4dbf104429fc36c0bcc659edac6c593632",
+        "lyrics": "[00:00.20]光をたどる\n[00:03.20]静かな声\n[00:06.20]ここから歩く\n[00:09.20]響く未来へ\n[00:12.20]余韻を残す",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0.2,
+          12.2
+        ]
+      }
+    },
+    {
+      "fixture": {
+        "id": "independent-fixed",
+        "seed": 611,
+        "aspect": "9:16",
+        "image": "independent-gradient",
+        "audio": "steady",
+        "lyrics": [
+          "固定した Long lyric",
+          "自動区間の明るい余白"
+        ],
+        "manual": true,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "v3",
+      "videoSHA256": "02e4b0dbdfd13b4db76e2980b7e67ba488f71e0a44beaa92e4fff7d0922dbdeb",
+      "runtimeHTMLSHA256": "acbe50e9c6c9ab1601af16f4b3e5e75ad0eae39d63b67c6cded656b9fd376a9b",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "FAILED",
+      "units": [
+        {
+          "unitId": "e86df8c2929cd0994278c39f007b3915149d5c013964e2e8d7fbb7477bb349c8",
+          "line": 0,
+          "timeRange": [
+            0.2,
+            0.8162790697674418
+          ],
+          "holdRange": [
+            0.42186046511627906,
+            0.6622093023255813
+          ],
+          "status": "FAILED",
+          "frameCount": 15,
+          "holdFrameCount": 5,
+          "expectedHoldFrames": 5,
+          "readableHoldSeconds": 0,
+          "minimumContrast": 100,
+          "reason": "NATIVE_OR_DECODED_GLYPH_FAILURE",
+          "phaseCounts": {
+            "entry": 6,
+            "hold": 5,
+            "exit": 4
+          }
+        },
+        {
+          "unitId": "9c014540aac40f53478fd21bb87552de40567d6629e2be9238451129d379c131",
+          "line": 0,
+          "timeRange": [
+            0.8162790697674418,
+            1.2
+          ],
+          "holdRange": [
+            0.9544186046511627,
+            1.1040697674418605
+          ],
+          "status": "FAILED",
+          "frameCount": 9,
+          "holdFrameCount": 4,
+          "expectedHoldFrames": 4,
+          "readableHoldSeconds": 0,
+          "minimumContrast": 100,
+          "reason": "NATIVE_OR_DECODED_GLYPH_FAILURE",
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 4,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "c7bae286f861aec880ef41b611617c4db8ad127952af989cb4897d2f824d11b6",
+          "line": 1,
+          "timeRange": [
+            1.2,
+            3.7
+          ],
+          "holdRange": [
+            1.2,
+            3.7
+          ],
+          "status": "MEASURED",
+          "frameCount": 60,
+          "holdFrameCount": 60,
+          "expectedHoldFrames": 60,
+          "readableHoldSeconds": 2.5,
+          "minimumContrast": 28,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 60,
+            "exit": 0
+          }
+        }
+      ],
+      "motionSummary": {
+        "population": 1,
+        "measured": 0,
+        "rendererAgreementSuccess": 0,
+        "measurableRate": 0,
+        "rendererAgreementRate": null,
+        "intentRealizationSuccessRate": null,
+        "manualExcluded": 2
+      },
+      "alignedRawScore": 21,
+      "exportMs": 21118.79999999702,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "6f7fa0b28001b3530382885978de59bcbbeed485f5f4eda174361c61aabce5dc",
+        "imageHash": "617b31a71877a0cb857a210b4f52524264ec0e3b1cc3eb580288679deafa9d64",
+        "lyrics": "[00:00.20]固定した Long lyric\n[00:01.20]自動区間の明るい余白",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ],
+        "manualOverrides": {
+          "0": {
+            "lock": true,
+            "layout": "center",
+            "cam": "stillCamera",
+            "enter": "cut",
+            "hold": "still",
+            "decor": []
+          }
+        },
+        "manualTypography": {
+          "font": "embedded_bold",
+          "align": "left",
+          "maxWidth": 0.72
+        }
+      }
+    },
+    {
+      "fixture": {
+        "id": "independent-fixed",
+        "seed": 611,
+        "aspect": "9:16",
+        "image": "independent-gradient",
+        "audio": "steady",
+        "lyrics": [
+          "固定した Long lyric",
+          "自動区間の明るい余白"
+        ],
+        "manual": true,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "variant": "baseline",
+      "videoSHA256": "5a2ae93d2cde7e4c8143ec03cc7487b4f31e96ab3f51fe88cda3e465ef082435",
+      "runtimeHTMLSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "NOT_AVAILABLE_BASELINE",
+      "units": [],
+      "motionSummary": null,
+      "alignedRawScore": 0,
+      "exportMs": 8379.30000000447,
+      "manualLockUnchanged": true,
+      "input": {
+        "audioHash": "6f7fa0b28001b3530382885978de59bcbbeed485f5f4eda174361c61aabce5dc",
+        "imageHash": "617b31a71877a0cb857a210b4f52524264ec0e3b1cc3eb580288679deafa9d64",
+        "lyrics": "[00:00.20]固定した Long lyric\n[00:01.20]自動区間の明るい余白",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ],
+        "manualOverrides": {
+          "0": {
+            "lock": true,
+            "layout": "center",
+            "cam": "stillCamera",
+            "enter": "cut",
+            "hold": "still",
+            "decor": []
+          }
+        },
+        "manualTypography": {
+          "font": "embedded_bold",
+          "align": "left",
+          "maxWidth": 0.72
+        }
+      }
+    }
+  ],
+  "humanStatus": "HUMAN_UNVERIFIED",
+  "limits": [
+    "MP4 technical PASS is separate from final lyric certification.",
+    "Five conditions have initial final-verifier failure traces; fade phases and supplementary caption attribution are being corrected without changing raw readability metrics.",
+    "This checkpoint does not certify the later implementation HEAD."
+  ]
+}

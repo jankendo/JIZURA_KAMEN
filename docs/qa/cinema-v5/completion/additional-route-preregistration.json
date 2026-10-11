@@ -1,0 +1,118 @@
+{
+  "purpose": "Additional route safety and normal shipping automatic direction; not fixed-initial-layout creative comparison",
+  "fixedBeforeExecution": true,
+  "fixtures": [
+    {
+      "id": "route-legacy-no-image",
+      "seed": 415,
+      "aspect": "1:1",
+      "image": "none",
+      "audio": "calm",
+      "lyrics": [
+        "静かな時を見つめる",
+        "光"
+      ],
+      "duration": 3,
+      "res": 360,
+      "fps": 24,
+      "baselineCinema": true,
+      "verificationRoute": "legacy"
+    },
+    {
+      "id": "route-legacy-multi",
+      "seed": 416,
+      "aspect": "16:9",
+      "image": "multi",
+      "audio": "steady",
+      "lyrics": [
+        "短",
+        "長い言葉を読む"
+      ],
+      "duration": 3,
+      "res": 360,
+      "fps": 24,
+      "activation": "engine-multi",
+      "baselineCinema": true,
+      "verificationRoute": "legacy"
+    },
+    {
+      "seed": 517,
+      "duration": 4,
+      "res": 360,
+      "fps": 24,
+      "id": "route-legacy-locked",
+      "aspect": "9:16",
+      "image": "busy",
+      "audio": "intense",
+      "lyrics": [
+        "手動固定した文字",
+        "固定したカメラ"
+      ],
+      "manual": true,
+      "baselineCinema": true,
+      "verificationRoute": "legacy"
+    },
+    {
+      "id": "route-final-verify-cancel",
+      "seed": 416,
+      "aspect": "16:9",
+      "image": "multi",
+      "audio": "steady",
+      "lyrics": [
+        "短",
+        "長い言葉を読む"
+      ],
+      "duration": 3,
+      "res": 360,
+      "fps": 24,
+      "activation": "engine-multi",
+      "baselineCinema": true,
+      "cancelStage": "final-verification"
+    },
+    {
+      "seed": 510,
+      "duration": 4,
+      "res": 360,
+      "fps": 24,
+      "id": "natural-calm",
+      "aspect": "9:16",
+      "image": "dark",
+      "audio": "calm",
+      "lyrics": [
+        "短い言葉",
+        "ゆっくり読む長い日本語の一節"
+      ],
+      "baselineCinema": true,
+      "naturalDirection": true
+    },
+    {
+      "id": "natural-chant",
+      "seed": 443,
+      "aspect": "9:16",
+      "image": "abstract",
+      "audio": "steady",
+      "lyrics": [
+        "ラララー",
+        "ラララー",
+        "ラララー",
+        "ラララー",
+        "ラララー"
+      ],
+      "duration": 13,
+      "outputDuration": 12,
+      "res": 360,
+      "fps": 24,
+      "starts": [
+        0.2,
+        3.2,
+        6.2,
+        9.2,
+        12.2
+      ],
+      "loop": true,
+      "short": true,
+      "baselineCinema": true,
+      "naturalDirection": true
+    }
+  ]
+}
