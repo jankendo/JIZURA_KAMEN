@@ -4,6 +4,7 @@
 const locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c),active=p=>!!p.musicalPhoto?.cinema;
 const endingCut=(p,end)=>p.cuts.filter(c=>c.line>=0&&c.start<end).at(-1)||J.cutAt(p,end-1/p.fps);
 const loopWindow=(p,end)=>{const c=endingCut(p,end);return Math.min(.65,Math.max(0,end-(c?.end??end))+Math.max(0,c?.dur||0)*.15);};
+J.cinemaLoopWindow=loopWindow;
 const shotCache=new WeakMap();
 const proposals=()=>[
  {id:'WIDE',x:.5,y:.5,zoom:1.03}, {id:'MEDIUM',x:.5,y:.53,zoom:1.4},
