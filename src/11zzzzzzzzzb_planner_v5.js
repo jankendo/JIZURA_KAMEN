@@ -1,0 +1,69 @@
+/* Music-led, confidence-labelled roles. This does not invent image subjects or impose an arc. */
+(()=>{'use strict';const J=window.J,V=J.cinemaV3,Q=J.cinemaV5,C=J.clamp;
+const cache=new Map();
+J.cinemaSemanticLyricLayout=(p,c,ctx)=>{
+ const W=p.W,H=p.H,mode=c.grammar?.mode||'read',stage=c.grammar?.stage||0,font=c.params?.font||'embedded_bold';
+ const width=W*(mode==='voice'?.62:stage?.50+.075*stage:mode==='ground'?.78:.72),height=H*(stage===3?.60:mode==='openSky'?.35:.45),lead=stage===3?1.15:mode==='ground'?1.10:1.26,cap=H*(H>W?(stage===4?.13:.105):stage===4?.22:mode==='ground'?.20:mode==='voice'?.15:.175);
+ try{ctx??=document.createElement('canvas').getContext('2d');}catch{}
+ const text=String(c.lineText??c.text??'');let probe=null;if(typeof ctx?.measureText==='function'){ctx.font=J.fontCSS(font,48);probe=ctx.measureText('Hgあ').width;}
+ const key=JSON.stringify([text,font,W,H,mode,stage,probe,!!c.locked,!!J.photoChoreographyLocked?.(p,c)]);
+ if(cache.has(key))return J.clonePhotoRenderPlan(cache.get(key));
+ const result={...J.semanticLyricLayout(text,{font,size:cap,maxWidth:width,maxHeight:height,lead,track:.015,ctx,manual:!!c.locked||!!J.photoChoreographyLocked?.(p,c)}),font,lead,track:.015};
+ if(probe!==null){if(cache.size>=128)cache.clear();cache.set(key,J.clonePhotoRenderPlan(result));}return result;
+};
+const preflight=V.typographyPreflight;
+V.typographyPreflight=(p,c)=>{
+ const old=preflight(p,c),r=J.cinemaSemanticLyricLayout(p,c);
+ return {...old,text:r.text,size:r.size,lineCount:r.rows.length,widths:r.status==='MEASURED'?r.widths:null,widthStatus:r.status,semanticLayout:r,source:'shared semantic renderer/QA layout; actual font probe invalidates cache',constraintFailures:[...old.constraintFailures.filter(id=>id!=='TEXT_WIDTH'),...r.status==='MEASURED'&&!r.fits?['TEXT_WIDTH']:[]]};
+};
+Q.planVisualGrammar=p=>{
+ if(p.cinemaCandidateMode==='legacy'||!p.cinemaV3Features)return p;
+ const sections=p.cinemaV3Features.sections||[],energies=sections.map(s=>s.energy.value).filter(Number.isFinite),peak=energies.length?Math.max(...energies):null;let previous=null;const repeats=new Map(),shots=[];
+ const inputMode=p.cinemaV3Features.inputMode,segmentation=p.verifiedSubjectSegmentation;
+ const subjectTrusted=segmentation?.status==='MEASURED'&&segmentation.confidence>=.8&&segmentation.maskValidated===true;
+ p.cinemaV5World={inputMode,mode:inputMode==='no-image'?'existing-non-image':inputMode==='multi-image'?'image-sequence-composition':subjectTrusted?'verified-subject-layer':'composition-and-typography',subjectSegmentation:subjectTrusted?{status:'MEASURED',confidence:segmentation.confidence}:{status:'UNMEASURED',confidence:0,reason:'Connected edges/regions are not subject recognition'},layerPermission:subjectTrusted,depth:{status:'UNMEASURED',reason:'No measured depth'},limits:'Focus anchors are composition heuristics. No guaranteed face, person, subject or depth.'};
+ for(const c of p.cuts||[]){
+  if(c.line<0||c.locked||c.cinemaV3LegacyFinalist||J.photoChoreographyLocked?.(p,c))continue;
+  const s=sections.find(s=>c.start>=s.from&&c.start<s.to),e=s?.energy?.value,confidence=s?.energy?.confidence??0,density=s?.lyricDensity?.value??null,text=String(c.lineText??c.text??''),repeat=repeats.get(text)||0,quiet=e!==null&&e!==undefined&&e<.3&&density!==null&&density<8;
+  let role='sustain',reasons=['musical-context'];
+  if(confidence>=.35&&e!==null){
+   if(quiet){role='sustain';reasons.push('measured-low-energy; deliberate-space');}
+   else if(peak!==null&&e>=peak-.02&&e>.65){role='peak';reasons.push('relative-song-energy-peak');}
+   else if(previous!==null&&e<previous-.2){role='contrast';reasons.push('measured-energy-drop');}
+   else if(previous!==null&&e>previous+.12){role='develop';reasons.push('measured-energy-build');}
+   else if(s?.role?.value==='intro')role='introduce';
+   else if(s?.role?.value==='outro')role='resolve';
+   else role='develop';
+  }else reasons.push('low-confidence; lyric-first fallback');
+  if(repeat){reasons.push(quiet?'intentional-repetition-preserved':'repeated-phrase-in-current-musical-role');}
+  const grammar=c.grammar||{},type=grammar.motionContract?.type||(/^(converge|expand|reveal|settle|impact)$/.test(c.cinema?.mode)?c.cinema.mode:null),contract=type?{type,time:type==='impact'?grammar.temporal?.hit??c.start:null,fps:p.fps,source:'existing renderer operator'}:null;
+  const direction={role,intention:quiet?'hold-and-read':role==='peak'?'musical-emphasis':role==='contrast'?'space-after-energy':'phrase-development',confidence,grammar:grammar.mode||c.layout,typography:{font:c.params?.font,semanticLayout:'shared-v2',status:'MEASURED_GEOMETRY; HUMAN_UNVERIFIED'},spatialComposition:{anchor:c.params?.photoAnchor??{x:.5,y:.5},source:'existing constrained composition',subjectClaim:false},motion:{operator:type||'existing-motion',contract},transition:{source:'existing transition',musicalBoundary:s?.from??null},quietIntent:quiet,repetitionIndex:repeat,reasons,semanticMeaning:{status:'UNMEASURED',reason:'No calibrated semantic model; musical features lead'}};
+  c.cinemaV5Direction=direction;
+  if(c.grammar){c.grammar.stage=quiet?0:role==='peak'?4:role==='contrast'?0:role==='resolve'?2:role==='develop'?1:0;c.grammar.intentionalHold=quiet||c.grammar.intentionalHold===true;c.grammar.directionPolicy={...c.grammar.directionPolicy,quietIntent:quiet};}
+  shots.push({line:c.line,from:c.start,to:c.end,...direction});repeats.set(text,repeat+1);if(Number.isFinite(e))previous=e;
+ }
+ p.cinemaV5Story={version:Q.version,shots,humanStatus:Q.humanStatus,arcForced:false,randomEffectCombination:false,manualSettingsPriority:true};return p;
+};
+const adapt=V.adaptGrammar;
+V.adaptGrammar=p=>{const out=adapt(p);Q.planVisualGrammar(out);for(const c of out.cuts||[])if(c.cinemaV5Direction)c.cinemaV3Typography=V.typographyPreflight(out,c);return out;};
+const layered=J.drawLayeredCinema;
+J.drawLayeredCinema=(R,ctx,p,...args)=>{
+ if(p.cinemaV5World&&!p.cinemaV5World.layerPermission&&!J.photoChoreographyLocked?.(p,J.cutAt(p,args[0])))return false;
+ return layered(R,ctx,p,...args);
+};
+const proposals=J.proposeTargetedRepairs;
+J.proposeTargetedRepairs=(p,acceptance)=>{
+ const tasks=proposals(p,acceptance),rank=t=>Number(t.kind==='readability'||t.reason?.includes('contrast'))*10+(t.severity??0);
+ return tasks.map((t,i)=>({...t,v5:{policy:'cause-specific-minimal-repair-v2',priority:rank(t),order:i,lockPolicy:'untouched',additionalEncodeBudget:0}})).sort((a,b)=>b.v5.priority-a.v5.priority||a.v5.order-b.v5.order);
+};
+const observe=V.observeRepair;
+V.observeRepair=async(session,args,result,best)=>{
+ const r=await observe(session,args,result,best),rank=J.rankCinemaCandidateV2(r.evaluation,r.profile);
+ const safetyStatus=rank.eligible?'PASS':['HARD_FAILURE','REQUIRED_FAILED'].includes(rank.reason)?'FAIL':'UNVERIFIED';r.safetyStatus=safetyStatus;
+ const ledger={policy:Q.selectionPolicy.version,before:best?.v3?.evaluation??null,after:r.evaluation,accepted:best?r.accepted:safetyStatus!=='FAIL',reason:r.reason,safetyStatus,videoHash:r.videoHash,planHash:r.evaluation.planHash,unmeasured:Q.creativeEvidence(r.evaluation).missing,humanStatus:Q.humanStatus};
+ session.evaluations.at(-1).cinemaV5=ledger;r.repairEvidence=ledger;
+ if(safetyStatus==='FAIL'&&best){r.accepted=false;r.reason=rank.reason;ledger.accepted=false;ledger.reason=rank.reason;return r;}
+ if(safetyStatus==='FAIL')throw Object.assign(Error('CINEMA_V5_UNSAFE_ARTIFACT'),{code:'CINEMA_V5_UNSAFE_ARTIFACT',evidence:ledger});
+ return r;
+};
+})();
