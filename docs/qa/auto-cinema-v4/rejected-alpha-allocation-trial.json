@@ -1,0 +1,667 @@
+{
+  "status": "REJECTED_ALPHA_ALLOCATION_TRIAL",
+  "rejectedHEAD": "88af76810881816bae1c999d1e8cd8cc1f93dd30",
+  "reason": "Counterbalanced browser alpha math showed alternating/twenty-mask regressions; exact output equivalence does not establish performance acceptance",
+  "microbenchmark": {
+    "status": "PASS_EXACT_DIFFERENTIAL",
+    "scope": "Browser math microbenchmark, not end-to-end performance acceptance",
+    "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+    "dimensions": [
+      384,
+      216
+    ],
+    "rounds": [
+      {
+        "mode": "same-alpha-classes",
+        "trial": 0,
+        "iterations": 60,
+        "old": 80.9000000001397,
+        "current": 30.199999999953434
+      },
+      {
+        "mode": "same-alpha-classes",
+        "trial": 1,
+        "iterations": 60,
+        "current": 25.299999999813735,
+        "old": 109.60000000009313
+      },
+      {
+        "mode": "same-alpha-classes",
+        "trial": 2,
+        "iterations": 60,
+        "old": 117,
+        "current": 18.899999999906868
+      },
+      {
+        "mode": "same-alpha-classes",
+        "trial": 3,
+        "iterations": 60,
+        "current": 21.899999999906868,
+        "old": 71.9000000001397
+      },
+      {
+        "mode": "same-alpha-classes",
+        "trial": 4,
+        "iterations": 60,
+        "old": 76.39999999990687,
+        "current": 24.800000000046566
+      },
+      {
+        "mode": "same-alpha-classes",
+        "trial": 5,
+        "iterations": 60,
+        "current": 28.699999999953434,
+        "old": 148.10000000009313
+      },
+      {
+        "mode": "alternate-two-masks",
+        "trial": 0,
+        "iterations": 60,
+        "old": 77.89999999990687,
+        "current": 84.9000000001397
+      },
+      {
+        "mode": "alternate-two-masks",
+        "trial": 1,
+        "iterations": 60,
+        "current": 97.5,
+        "old": 78.30000000004657
+      },
+      {
+        "mode": "alternate-two-masks",
+        "trial": 2,
+        "iterations": 60,
+        "old": 119,
+        "current": 127.39999999990687
+      },
+      {
+        "mode": "alternate-two-masks",
+        "trial": 3,
+        "iterations": 60,
+        "current": 158.5,
+        "old": 89.60000000009313
+      },
+      {
+        "mode": "alternate-two-masks",
+        "trial": 4,
+        "iterations": 60,
+        "old": 88,
+        "current": 120.4000000001397
+      },
+      {
+        "mode": "alternate-two-masks",
+        "trial": 5,
+        "iterations": 60,
+        "current": 159.0999999998603,
+        "old": 115.70000000018626
+      },
+      {
+        "mode": "twenty-masks",
+        "trial": 0,
+        "iterations": 60,
+        "old": 99.9000000001397,
+        "current": 152.19999999995343
+      },
+      {
+        "mode": "twenty-masks",
+        "trial": 1,
+        "iterations": 60,
+        "current": 141.69999999995343,
+        "old": 46.199999999953434
+      },
+      {
+        "mode": "twenty-masks",
+        "trial": 2,
+        "iterations": 60,
+        "old": 48.10000000009313,
+        "current": 127.5
+      },
+      {
+        "mode": "twenty-masks",
+        "trial": 3,
+        "iterations": 60,
+        "current": 121.30000000004657,
+        "old": 53.60000000009313
+      },
+      {
+        "mode": "twenty-masks",
+        "trial": 4,
+        "iterations": 60,
+        "old": 59.0999999998603,
+        "current": 119.60000000009313
+      },
+      {
+        "mode": "twenty-masks",
+        "trial": 5,
+        "iterations": 60,
+        "current": 127.69999999995343,
+        "old": 50.300000000046566
+      }
+    ]
+  },
+  "completedMP4Comparison": {
+    "capturedUTC": "2026-10-11T00:53:51.385662+00:00",
+    "status": "COMPLETE",
+    "sourceHEAD": "88af76810881816bae1c999d1e8cd8cc1f93dd30",
+    "environment": {
+      "browser": "151.0.7922.173",
+      "node": "v24.19.0",
+      "os": "linux",
+      "release": "6.18.44"
+    },
+    "expectedRows": 8,
+    "actualRows": 8,
+    "passed": 8,
+    "failed": 0,
+    "notRun": 0,
+    "historicalEvidence": {
+      "preservedUnchanged": true,
+      "passed": 66,
+      "failed": 5,
+      "notRun": 55,
+      "originalRawVideoAvailability": "NOT_RECOVERED",
+      "comparability": "INCOMPARABLE_BROWSER_VERSION: historical Chromium 154 vs current Chromium 151; no pooled statistics"
+    },
+    "quality": {
+      "main": {
+        "measured": 0,
+        "median": null
+      },
+      "saved-V4-c3e504d": {
+        "measured": 3,
+        "median": 85
+      },
+      "V4": {
+        "measured": 3,
+        "median": 85
+      }
+    },
+    "performance": {
+      "original": {
+        "main": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        },
+        "saved-V4-c3e504d": {
+          "totalMs": {
+            "n": 4,
+            "p50": 33560.29999999999,
+            "p95": 197968.5,
+            "maximum": 197968.5
+          },
+          "searchMs": {
+            "n": 4,
+            "p50": 28936.04999999999,
+            "p95": 178185.5,
+            "maximum": 178185.5
+          },
+          "exportMs": {
+            "n": 4,
+            "p50": 3765.8000000000466,
+            "p95": 18888.5,
+            "maximum": 18888.5
+          },
+          "slowest": [
+            {
+              "id": "case-24",
+              "totalMs": 197968.5
+            },
+            {
+              "id": "case-02",
+              "totalMs": 45910
+            },
+            {
+              "id": "case-04",
+              "totalMs": 21210.599999999977
+            }
+          ]
+        },
+        "V4": {
+          "totalMs": {
+            "n": 4,
+            "p50": 38697.15000000002,
+            "p95": 211170.40000000014,
+            "maximum": 211170.40000000014
+          },
+          "searchMs": {
+            "n": 4,
+            "p50": 33995.54999999999,
+            "p95": 185549.40000000014,
+            "maximum": 185549.40000000014
+          },
+          "exportMs": {
+            "n": 4,
+            "p50": 4265.799999999988,
+            "p95": 24705,
+            "maximum": 24705
+          },
+          "slowest": [
+            {
+              "id": "case-24",
+              "totalMs": 211170.40000000014
+            },
+            {
+              "id": "case-02",
+              "totalMs": 55835.90000000002
+            },
+            {
+              "id": "case-04",
+              "totalMs": 21558.400000000023
+            }
+          ]
+        }
+      },
+      "additional": {
+        "main": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        },
+        "saved-V4-c3e504d": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        },
+        "V4": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        }
+      },
+      "independent": {
+        "main": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        },
+        "saved-V4-c3e504d": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        },
+        "V4": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        }
+      },
+      "repeat": {
+        "main": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        },
+        "saved-V4-c3e504d": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        },
+        "V4": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        }
+      },
+      "unique-materials": {
+        "main": {
+          "totalMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "searchMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "exportMs": {
+            "n": 0,
+            "status": "UNMEASURED"
+          },
+          "slowest": []
+        },
+        "saved-V4-c3e504d": {
+          "totalMs": {
+            "n": 4,
+            "p50": 33560.29999999999,
+            "p95": 197968.5,
+            "maximum": 197968.5
+          },
+          "searchMs": {
+            "n": 4,
+            "p50": 28936.04999999999,
+            "p95": 178185.5,
+            "maximum": 178185.5
+          },
+          "exportMs": {
+            "n": 4,
+            "p50": 3765.8000000000466,
+            "p95": 18888.5,
+            "maximum": 18888.5
+          },
+          "slowest": [
+            {
+              "id": "case-24",
+              "totalMs": 197968.5
+            },
+            {
+              "id": "case-02",
+              "totalMs": 45910
+            },
+            {
+              "id": "case-04",
+              "totalMs": 21210.599999999977
+            }
+          ]
+        },
+        "V4": {
+          "totalMs": {
+            "n": 4,
+            "p50": 38697.15000000002,
+            "p95": 211170.40000000014,
+            "maximum": 211170.40000000014
+          },
+          "searchMs": {
+            "n": 4,
+            "p50": 33995.54999999999,
+            "p95": 185549.40000000014,
+            "maximum": 185549.40000000014
+          },
+          "exportMs": {
+            "n": 4,
+            "p50": 4265.799999999988,
+            "p95": 24705,
+            "maximum": 24705
+          },
+          "slowest": [
+            {
+              "id": "case-24",
+              "totalMs": 211170.40000000014
+            },
+            {
+              "id": "case-02",
+              "totalMs": 55835.90000000002
+            },
+            {
+              "id": "case-04",
+              "totalMs": 21558.400000000023
+            }
+          ]
+        }
+      }
+    },
+    "comparisons": [
+      {
+        "id": "case-02",
+        "baseline": "saved-V4-c3e504d",
+        "status": "COMPARABLE",
+        "sameInputAndProfile": true,
+        "intervals": {
+          "historical": {
+            "measured": 10,
+            "incomparableOrUnmeasured": [],
+            "regressions": []
+          },
+          "aligned": {
+            "measured": 10,
+            "incomparableOrUnmeasured": [],
+            "regressions": []
+          },
+          "backgroundConsistent": {
+            "measured": 10,
+            "incomparableOrUnmeasured": [],
+            "regressions": []
+          }
+        },
+        "globalRegression": false,
+        "before": 85,
+        "after": 85
+      },
+      {
+        "id": "case-04",
+        "baseline": "saved-V4-c3e504d",
+        "status": "COMPARABLE",
+        "sameInputAndProfile": true,
+        "intervals": {
+          "historical": {
+            "measured": 10,
+            "incomparableOrUnmeasured": [],
+            "regressions": []
+          },
+          "aligned": {
+            "measured": 10,
+            "incomparableOrUnmeasured": [],
+            "regressions": []
+          },
+          "backgroundConsistent": {
+            "measured": 10,
+            "incomparableOrUnmeasured": [],
+            "regressions": []
+          }
+        },
+        "globalRegression": false,
+        "before": 100,
+        "after": 100
+      },
+      {
+        "id": "case-07",
+        "baseline": "saved-V4-c3e504d",
+        "status": "COMPARABLE",
+        "sameInputAndProfile": true,
+        "intervals": {
+          "historical": {
+            "measured": 0,
+            "incomparableOrUnmeasured": [],
+            "regressions": []
+          },
+          "aligned": {
+            "measured": 12,
+            "incomparableOrUnmeasured": [
+              {
+                "line": 0,
+                "time": 0.24000000000000002,
+                "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+              }
+            ],
+            "regressions": []
+          },
+          "backgroundConsistent": {
+            "measured": 12,
+            "incomparableOrUnmeasured": [
+              {
+                "line": 0,
+                "time": 0.24000000000000002,
+                "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+              }
+            ],
+            "regressions": []
+          }
+        },
+        "globalRegression": false,
+        "before": null,
+        "after": null
+      },
+      {
+        "id": "case-24",
+        "baseline": "saved-V4-c3e504d",
+        "status": "COMPARABLE",
+        "sameInputAndProfile": true,
+        "intervals": {
+          "historical": {
+            "measured": 21,
+            "incomparableOrUnmeasured": [],
+            "regressions": []
+          },
+          "aligned": {
+            "measured": 23,
+            "incomparableOrUnmeasured": [],
+            "regressions": []
+          },
+          "backgroundConsistent": {
+            "measured": 23,
+            "incomparableOrUnmeasured": [],
+            "regressions": []
+          }
+        },
+        "globalRegression": false,
+        "before": 51,
+        "after": 51
+      }
+    ],
+    "qualityRegressions": [],
+    "inputOrFailureComparisonGaps": [],
+    "timingMethod": "same fixed registry seed; real PCM analysis, bounded 32/8/3 search, one full encode each; initial style tournament excluded from both",
+    "timingLimits": "Shared host; inclusive nested function times must not be summed; later same-Blob observation, FFmpeg and persistence excluded. One trial per unique input; repeats separately reported. No significance claim.",
+    "humanEvaluation": "HUMAN_EVALUATION_PENDING",
+    "peakProcessGpuMemory": "UNMEASURED",
+    "releaseDecision": "NO-GO_PENDING_FINAL_CI_AND_ALL_GATES",
+    "raw": {
+      "path": "/workspace/kamen-v4-recovery/source-equivalence/results.json",
+      "bytes": 17324551,
+      "sha256": "91520d54ce8075fe46ccde4ef4c805b94556cb27bf8b2d9db128547f06527afc"
+    },
+    "videoManifest": [
+      {
+        "file": "case-02-pr5.mp4",
+        "bytes": 422798,
+        "sha256": "675cddcd678bde583f3c1a8482eae1801b27892888f0cd1159acbfeab3d24214"
+      },
+      {
+        "file": "case-02-v3.mp4",
+        "bytes": 422798,
+        "sha256": "6cfc51bcfc32f7e07d7ba3f14d5ce95361e42dc832e34afc159b120d5ca05885"
+      },
+      {
+        "file": "case-04-pr5.mp4",
+        "bytes": 424695,
+        "sha256": "547381e7f4172f0d9069e8764dc68c41e5fbb655158276db3ebfba613d144b2a"
+      },
+      {
+        "file": "case-04-v3.mp4",
+        "bytes": 424695,
+        "sha256": "ff0ecb3f240f24026fdd76f926deb09267a6cfeeeba9296bc41e664111628e2c"
+      },
+      {
+        "file": "case-07-pr5.mp4",
+        "bytes": 646343,
+        "sha256": "67e63aa85835a5c704bcf6f93015634450dd54236ea62b32ac8b1c1615b063bc"
+      },
+      {
+        "file": "case-07-v3.mp4",
+        "bytes": 646343,
+        "sha256": "5052b62f3d9dbd2192392d8af4b4f551ff862a230b71a5a68e3efd8ffe19d9b5"
+      },
+      {
+        "file": "case-24-pr5.mp4",
+        "bytes": 1038004,
+        "sha256": "9844a531c1b2d05c892ca044370e234ecb67278e69b58fcaba9c767e247910e8"
+      },
+      {
+        "file": "case-24-v3.mp4",
+        "bytes": 1038004,
+        "sha256": "e0194f33eb19fed2fe06c85ab04166cee2539592967cf8e511bc26e861905b5d"
+      }
+    ]
+  },
+  "decision": "Restore unchanged adopted stencil; keep only invocation-local same-actual-frame contrast reuse; final source tests and matrix must use replacement HEAD",
+  "aggregationHelperFailure": "Nullable layerPresence in a valid UNMEASURED row was not initially handled; corrected summary only, no export repeated or source changed for this helper failure"
+}
