@@ -7,13 +7,15 @@ const stencils=new Map(),stencilStats={calls:0,hits:0,builds:0};Object.definePro
 let lastStencil=null;
 const alphaClass=v=>v>.75?3:v>.5?2:v<.05?0:1;
 const stencil=(mask,w,h)=>{
- stencilStats.calls++;const length=w*h;let hash=2166136261,same=lastStencil?.w===w&&lastStencil?.h===h;
- for(let i=0;i<length;i++){const c=alphaClass(mask[i]);hash=Math.imul(hash^c,16777619);if(same&&lastStencil.classes[i]!==c)same=false;}
+ stencilStats.calls++;const length=w*h;let hash=2166136261,same=lastStencil?.w===w&&lastStencil?.h===h,classes=same?null:new Uint8Array(length);
+ for(let i=0;i<length;i++){
+  const c=alphaClass(mask[i]);hash=Math.imul(hash^c,16777619);
+  if(same&&lastStencil.classes[i]!==c){same=false;classes=new Uint8Array(length);classes.set(lastStencil.classes.subarray(0,i));}
+  if(classes)classes[i]=c;
+ }
  if(same){stencilStats.hits++;return lastStencil;}
  const key=w+':'+h+':'+hash,old=stencils.get(key);
- if(old){let equal=true;for(let i=0;i<length;i++)if(old.classes[i]!==alphaClass(mask[i])){equal=false;break;}
-  if(equal){stencilStats.hits++;lastStencil=old;return old;}}
- const classes=new Uint8Array(length);for(let i=0;i<length;i++)classes[i]=alphaClass(mask[i]);
+ if(old&&old.classes.every((v,i)=>v===classes[i])){stencilStats.hits++;lastStencil=old;return old;}
  const cores=[],rings=[];for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const i=y*w+x;if(classes[i]===3&&classes[i-w]===3&&classes[i-1]===3&&classes[i+1]===3&&classes[i+w]===3)cores.push(i);else if(classes[i]===0&&(classes[i-w-1]>=2||classes[i-w]>=2||classes[i-w+1]>=2||classes[i-1]>=2||classes[i+1]>=2||classes[i+w-1]>=2||classes[i+w]>=2||classes[i+w+1]>=2))rings.push(i);}const result={w,h,classes,cores,rings};stencils.set(key,result);while(stencils.size>16)stencils.delete(stencils.keys().next().value);stencilStats.builds++;lastStencil=result;return result;};
 J.decodedGlyphContrast=(actual,background,mask,w,h)=>{if(!Number.isInteger(w)||!Number.isInteger(h)||w<3||h<3)return {status:'UNMEASURED',score:null};const geometry=stencil(mask,w,h),cores=geometry.cores.length,rings=geometry.rings.length;if(cores<3||rings<3)return {status:'UNMEASURED',score:null};let separated=0,ink=0,surround=0;for(const i of geometry.cores){ink+=actual[i];if(Math.abs(actual[i]-background[i])>=.25)separated++;}for(const i of geometry.rings)surround+=actual[i];ink/=cores;surround/=rings;const ratio=(Math.max(ink,surround)+.05)/(Math.min(ink,surround)+.05);return {status:'DECODED_LOCAL_CONTRAST_PROXY',score:Math.round(100*Math.min(separated/cores,C((ratio-1)/2))),contrastRatio:ratio,corePixels:cores,ringPixels:rings,resolution:[w,h],limits:'Eroded primary alpha cores and local ring; not OCR, WCAG certification or human reading accuracy'};};
 J.measureAudioEndpointSeam=e=>{if(!e?.head?.channels?.length||e.head.channels.length!==e.tail?.channels?.length)return null;const checks=e.head.channels.map((head,c)=>{const tail=e.tail.channels[c],rate=e.head.sampleRate,n=Math.round(rate*.02);if(!rate||rate!==e.tail.sampleRate||head.length<n*.9||tail.length<n*.9)return null;const rms=a=>Math.sqrt(a.reduce((s,v)=>s+v*v,0)/a.length),a=rms(head),b=rms(tail),rmsDelta=Math.abs(a-b)/Math.max(.01,a,b),boundaryJump=Math.abs(head[0]-tail.at(-1));return {rmsDelta,boundaryJump,score:Math.round(100*C(1-rmsDelta*2-boundaryJump)),samples:[head.length,tail.length]};});return checks.some(c=>!c)?null:{score:Math.min(...checks.map(c=>c.score)),channels:checks,duration:Number.isFinite(e.duration)?e.duration:null,source:e.source,windowSeconds:.02,limits:'Endpoint discontinuity proxy; musical phrase compatibility unmeasured'};};
