@@ -1,0 +1,15 @@
+{
+  "head": "96727adccdffefdef595dc96e4e29eb383d02fca",
+  "runtimeSHA256": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+  "baselineHead": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+  "baselineRuntimeSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+  "ci": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38131126629",
+  "sourceFrozen": true,
+  "localRegressionStartedBeforeLastFix": "CI uses immutable final commit; affected actual-clock/cache/repair tests also run individually.",
+  "previousFrozenHead": "531eaa7799c4f4a1c9a7bfb82392930952730772",
+  "lastFix": {
+    "scope": "Phrase-onset safety validation only; no render/search/layout/profile changes",
+    "reason": "First internal unit matches LRC; later valid internal units must not be required to repeat that onset",
+    "targetedTest": "PASS"
+  }
+}

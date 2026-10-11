@@ -1,6 +1,6 @@
 {
   "status": "IN_PROGRESS",
-  "sourceHead": "96727adccdffefdef595dc96e4e29eb383d02fca",
+  "sourceHead": "e433f5cd476bf5d133007360b367b81ef3008e35",
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": false,
@@ -12,7 +12,7 @@
   },
   "fullRegression": "RUNNING_EXACT_HEAD_CI",
   "finalHeadCI": "RUNNING",
-  "ciURL": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38131126629",
+  "ciURL": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38136015554",
   "priorUITimeout": {
     "status": "HISTORICAL_NEW_V5_TRIAL_FAILED",
     "timeoutSeconds": 600,
@@ -220,5 +220,13 @@
     "acceptedH264AACArtifactsTotal": 20,
     "rejectedEarlierV5TrialSeparatelyDecoded": 1,
     "historicalV4CountReused": 0
+  },
+  "previousValidatedHead": "96727adccdffefdef595dc96e4e29eb383d02fca",
+  "comparisonCurrentHead": "RUNNING; existing 96727ad comparison preserved as prior-head evidence",
+  "clockCorrection": {
+    "scope": "High-resolution layer verifier now uses decodedTimestamp when explicit actualTime is absent; keeps original requestedTime",
+    "changedAreaTests": "PASS",
+    "renderingChanged": false,
+    "QASelectionCanChange": true
   }
 }
