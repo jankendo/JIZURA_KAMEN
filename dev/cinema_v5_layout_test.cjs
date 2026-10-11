@@ -1,6 +1,7 @@
 const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs'),vm=require('node:vm');const {J,context,createCanvas}=engine();
 for(const text of ['e\u0301','👩🏽‍🚀','🇯🇵','👨‍👩‍👧‍👦','は\u3099']){assert.equal(J.graphemes(text).length,1);assert.equal(J.graphemes(text,{fallback:true}).length,1);}
 vm.runInContext('Intl=undefined',context);assert.equal(J.graphemes('👩🏽‍🚀').length,1,'fallback runs without Intl');
+const units=J.graphemes('immutable👩🏽‍🚀');units[0]='corrupt';assert.equal(J.graphemes('immutable👩🏽‍🚀').join(''),'immutable👩🏽‍🚀','cache returns owned arrays');
 const ctx=createCanvas(500,500).getContext('2d');
 for(const text of ['日本語と English words の混在','明日（あした）へ、進もう。','  preserve  spaces  ','長い語 Supercalifragilisticexpialidocious 20261011','👩🏽‍🚀 e\u0301 🇯🇵']){const r=J.semanticLyricLayout(text,{ctx,size:40,maxWidth:210,maxHeight:240});assert.equal(r.original,text);assert.equal(r.text.replace(/\n/g,''),text);assert.equal(r.status,'MEASURED');assert(!r.text.includes('Supercalifragilistic\n'));for(const row of r.rows.slice(1))assert(!/^[、。，）\]」]/u.test(row));}
 const manual='見せたい行\n  Hello world';assert.equal(J.semanticLyricLayout(manual,{ctx,size:40,maxWidth:100,maxHeight:200,manual:true}).text,manual);assert.equal(J.semanticLyricLayout('Hello world',{ctx:{},maxWidth:80}).widths[0],null);

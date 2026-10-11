@@ -15,3 +15,5 @@ Music-driven direction uses measured section context and confidence rather than 
 Release remains blocked until fresh regression, real browser export and comparable completed MP4 quality evidence support TECHNICAL_GO and QUALITY_GO. Independent human evaluation is HUMAN_UNVERIFIED; no artistic 100 claim.
 
 The sequential decoder calls `onSample(requestedTime, pixels, {timestamp,duration})`. V5 uses the third argument for actual time and retains the first as requestedTime. The existing sequential decoder contract now checks both clocks separately; all closure/disposal/count/abort assertions remain. Pre-correction smoke runs are superseded, not final quality evidence.
+
+Text segmentation reuses native Segmenter instances and bounded immutable Unicode results. Returned arrays are owned by the caller. This cache has no renderer/pixel/font/evidence state; environment and native-constructor changes invalidate the relevant results.

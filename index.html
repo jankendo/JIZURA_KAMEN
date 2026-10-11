@@ -5164,10 +5164,11 @@ window.KAMEN_MODULE_AUDIT.observe("02b_lang.js");
 
 /* Shared, lossless text units. The fallback deliberately favours keeping clusters together. */
 (()=>{'use strict';
-const J=window.J;
+const J=window.J,segmenters=new Map();let segmenterConstructor=null;
+const segmenter=granularity=>{if(typeof Intl==='undefined'||typeof Intl.Segmenter!=='function')return null;if(segmenterConstructor!==Intl.Segmenter){segmenters.clear();segmenterConstructor=Intl.Segmenter;}if(!segmenters.has(granularity))segmenters.set(granularity,new Intl.Segmenter('ja',{granularity}));return segmenters.get(granularity);};
 J.graphemes=(value,{fallback=false}={})=>{
  const text=String(value??'');
- if(!fallback&&typeof Intl!=='undefined'&&typeof Intl.Segmenter==='function')try{return [...new Intl.Segmenter('ja',{granularity:'grapheme'}).segment(text)].map(s=>s.segment);}catch{}
+ if(!fallback&&typeof Intl!=='undefined'&&typeof Intl.Segmenter==='function')try{return [...segmenter('grapheme').segment(text)].map(s=>s.segment);}catch{}
  const result=[];let join=false,regional=0;
  for(const ch of Array.from(text)){
   const mark=/[\p{Mark}\uFE00-\uFE0F\u{E0100}-\u{E01EF}\u{1F3FB}-\u{1F3FF}\u{E0020}-\u{E007F}]/u.test(ch),ri=/[\u{1F1E6}-\u{1F1FF}]/u.test(ch);
@@ -5180,7 +5181,7 @@ J.graphemes=(value,{fallback=false}={})=>{
 J.lyricBreaks=(value,{fallback=false}={})=>{
  const text=String(value??''),units=J.graphemes(text,{fallback}),offsets=[0];units.forEach(u=>offsets.push(offsets.at(-1)+u.length));
  const wordEnds=new Set();
- if(!fallback&&typeof Intl!=='undefined'&&typeof Intl.Segmenter==='function')try{for(const s of new Intl.Segmenter('ja',{granularity:'word'}).segment(text))wordEnds.add(s.index+s.segment.length);}catch{}
+ if(!fallback&&typeof Intl!=='undefined'&&typeof Intl.Segmenter==='function')try{for(const s of segmenter('word').segment(text))wordEnds.add(s.index+s.segment.length);}catch{}
  const boundaries=[];
  for(let i=1;i<units.length;i++){
   const a=units[i-1],b=units[i];
@@ -5191,6 +5192,10 @@ J.lyricBreaks=(value,{fallback=false}={})=>{
  }
  return {original:text,units,offsets,boundaries,method:wordEnds.size?'Intl.Segmenter plus Japanese punctuation constraints':'deterministic cluster/script fallback',semanticConfidence:wordEnds.size?.65:.3,limits:'Word boundaries are linguistic heuristics, not sung-syllable alignment or semantic understanding.'};
 };
+// Pure Unicode reuse only: no glyph pixels, renderer state, font measurement or quality evidence.
+const uncachedGraphemes=J.graphemes,graphemeCache=new Map();
+J.graphemes=(value,options={})=>{const text=String(value??''),available=typeof Intl!=='undefined'&&typeof Intl.Segmenter==='function',key=JSON.stringify([text,options.fallback===true,available]);if(available&&segmenterConstructor!==Intl.Segmenter)graphemeCache.clear();if(graphemeCache.has(key))return [...graphemeCache.get(key)];const units=uncachedGraphemes(text,options);if(graphemeCache.size>=512)graphemeCache.delete(graphemeCache.keys().next().value);graphemeCache.set(key,[...units]);return units;};
+
 })();
 
 window.KAMEN_MODULE_AUDIT.observe("02c_graphemes.js");
