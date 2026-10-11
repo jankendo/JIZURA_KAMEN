@@ -1,0 +1,45 @@
+{
+  "sourceHEAD": "2bd32cc9d5a1298d03a199e6e36ac27f016a0749",
+  "TECHNICAL_GO": "PASS",
+  "QUALITY_GO": "PASS",
+  "RELEASE_GO": "PASS",
+  "aggregatePR": "https://github.com/jankendo/JIZURA_KAMEN/pull/10",
+  "requiredCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38107864294",
+  "sourceDelta": "3 CSS lines; regression helper and CI invocation; all video JavaScript/fonts/markup byte-identical to validated 49660a7",
+  "qualityEvidence": "quality-release-review.json and overlay-runtime-equivalence.json",
+  "technicalEvidence": [
+    "final-ui-report.json",
+    "final-ui-cinema-v3-export-test.json",
+    "final-ui-native-ui-cancellation.json",
+    "overlay-browser-report.json",
+    "long-processing-ui-pass.json"
+  ],
+  "existingDecodedMP4s": 126,
+  "additionalTargetedDecodedMP4s": 6,
+  "additionalFinalLocalUI": 1,
+  "performanceAcceptedByUser": true,
+  "performanceNotReleaseGate": true,
+  "previousMain": "ef829f93a933794c337bf1a37c39fcfb8d4de0f4",
+  "rollbackBranch": "backup/kamen-pre-cinema-v4-20261011",
+  "unresolvedPreserved": [
+    "case07 same-Blob observer variability",
+    "case23 individual 100 to 99",
+    "historical 75 to 74 lacks original Blob",
+    "requested-time vs actual-frame independent brief discrepancy",
+    "human aesthetic highest-quality certification UNMEASURED",
+    "peak memory UNMEASURED",
+    "historical HTTP503 and interrupted local sessions cause UNRESOLVED"
+  ],
+  "production": "NOT_YET_DEPLOYED",
+  "regression": {
+    "pass": 187,
+    "fail": 0,
+    "environmentSkip": 2,
+    "twoSkipsSeparatelyRealBrowserPassed": true,
+    "reuseJustification": "Font and video JS byte-identical; original actual-browser wrapper evidence retained"
+  },
+  "aggregateCI": "SUCCESS",
+  "aggregateBrowserUI": "PASS",
+  "aggregateH264AACFullDecode": "PASS",
+  "aggregateDeploy": "SKIPPED_EXPECTED_PR"
+}

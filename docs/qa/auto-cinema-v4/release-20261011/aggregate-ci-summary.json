@@ -1,0 +1,76 @@
+{
+  "run": "38107864294",
+  "head": "2bd32cc9d5a1298d03a199e6e36ac27f016a0749",
+  "event": "pull_request",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "build",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check out source",
+          "conclusion": "success"
+        },
+        {
+          "name": "Set up Node.js 24",
+          "conclusion": "success"
+        },
+        {
+          "name": "Set up media validation",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install locked dependencies",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run regression tests",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build production files",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify production layout",
+          "conclusion": "success"
+        },
+        {
+          "name": "Browser UI and MP4 smoke test",
+          "conclusion": "success"
+        },
+        {
+          "name": "Preserve validation evidence",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload Pages artifact",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Set up Node.js 24",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Check out source",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "conclusion": "skipped",
+      "steps": []
+    }
+  ]
+}
