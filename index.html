@@ -6904,7 +6904,7 @@ J.semanticLyricLayout=(value,options={})=>{
  const original=String(value??''),font=options.font||'embedded_bold',lead=options.lead??1.2,track=options.track??.015;
  const maxWidth=options.maxWidth??Infinity,maxHeight=options.maxHeight??Infinity,initialSize=options.size??48;let minSize=options.minSize??initialSize*.55;
  let ctx=options.ctx;try{ctx??=document.createElement('canvas').getContext('2d');}catch{}
- const measured=typeof ctx?.measureText==='function'&&typeof J.fontCSS==='function',ledger=J.lyricBreaks(original,options);if(measured&&options.minSize===undefined&&typeof J.fitSize==='function')minSize=Math.min(minSize,J.fitSize(original,font,maxWidth,maxHeight,{lead,track}));
+ const previousFont=ctx?.font;const measured=typeof ctx?.measureText==='function'&&typeof J.fontCSS==='function',ledger=J.lyricBreaks(original,options);if(measured&&options.minSize===undefined&&typeof J.fitSize==='function')minSize=Math.min(minSize,J.fitSize(original,font,maxWidth,maxHeight,{lead,track}));
  const width=(text,size)=>{if(measured){ctx.font=J.fontCSS(font,size);return Math.max(ctx.measureText(text).width+Math.max(0,J.graphemes(text).length-1)*track*size,J.measure?.({text,font,size,lead,track})?.w??0);}return null;};
  const explicit=/\r?\n/u.test(original),manual=options.manual===true;
  const rowChoices=part=>{
@@ -6930,6 +6930,7 @@ J.semanticLyricLayout=(value,options={})=>{
  }
  const winner=ranked.sort((a,b)=>Number(b.fits)-Number(a.fits)||a.cost-b.cost||b.size-a.size||a.rows.join('\n').localeCompare(b.rows.join('\n'),'en'))[0]||{rows:[original],size:initialSize,widths:[null],height:initialSize,fits:false};
  const text=winner.rows.join('\n'),withoutInserted=text.replace(/\n/g,''),sourceWithoutBreaks=original.replace(/\n/g,'');
+ if(measured)ctx.font=previousFont;
  if(withoutInserted!==sourceWithoutBreaks)throw Error('LYRIC_LAYOUT_SOURCE_CHANGED');
  return {original,text,rows:winner.rows,size:winner.size,widths:winner.widths,height:winner.height,status:measured?'MEASURED':'UNMEASURED',fits:winner.fits,explicitBreaksPreserved:explicit,method:ledger.method,semanticConfidence:ledger.semanticConfidence,sourceOffsets:ledger.offsets,limits:ledger.limits};
 };
@@ -38822,7 +38823,7 @@ J.cinemaSemanticLyricLayout=(p,c,ctx)=>{
  let width=W*(mode==='voice'?.62:stage?.50+.075*stage:mode==='ground'?.78:.72),height=H*(stage===3?.60:mode==='openSky'?.35:.45),lead=stage===3?1.15:mode==='ground'?1.10:1.26,cap=H*(H>W?(stage===4?.13:.105):stage===4?.22:mode==='ground'?.20:mode==='voice'?.15:.175);
  if(single){width=W*(c.cinema?.development?.occupancy||.70);height=H*.48;lead=mode==='wave'?1.5:mode==='impact'||mode==='expand'?1.22:1.32;cap=H*(H>W?(mode==='read'?.09:.11):mode==='read'?.135:mode==='expand'?.195:mode==='impact'?.185:.155);}
  try{ctx??=document.createElement('canvas').getContext('2d');}catch{}
- const text=String(c.lineText??c.text??'');let probe=null;if(typeof ctx?.measureText==='function'){ctx.font=J.fontCSS(font,48);probe=ctx.measureText('Hgあ').width;}
+ const text=String(c.lineText??c.text??'');let probe=null;if(typeof ctx?.measureText==='function'){const previousFont=ctx.font;ctx.font=J.fontCSS(font,48);try{probe=ctx.measureText('Hgあ').width;}finally{ctx.font=previousFont;}}
  const key=JSON.stringify([text,font,W,H,mode,stage,width,height,lead,cap,probe,!!c.locked,!!J.photoChoreographyLocked?.(p,c)]);
  if(cache.has(key))return J.clonePhotoRenderPlan(cache.get(key));
  const result={...J.semanticLyricLayout(text,{font,size:cap,maxWidth:width,maxHeight:height,lead,track:single?(mode==='expand'?.025:.012):.015,ctx,manual:!!c.locked||!!J.photoChoreographyLocked?.(p,c)}),font,lead,track:single?(mode==='expand'?.025:.012):.015};

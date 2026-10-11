@@ -5,7 +5,7 @@ J.semanticLyricLayout=(value,options={})=>{
  const original=String(value??''),font=options.font||'embedded_bold',lead=options.lead??1.2,track=options.track??.015;
  const maxWidth=options.maxWidth??Infinity,maxHeight=options.maxHeight??Infinity,initialSize=options.size??48;let minSize=options.minSize??initialSize*.55;
  let ctx=options.ctx;try{ctx??=document.createElement('canvas').getContext('2d');}catch{}
- const measured=typeof ctx?.measureText==='function'&&typeof J.fontCSS==='function',ledger=J.lyricBreaks(original,options);if(measured&&options.minSize===undefined&&typeof J.fitSize==='function')minSize=Math.min(minSize,J.fitSize(original,font,maxWidth,maxHeight,{lead,track}));
+ const previousFont=ctx?.font;const measured=typeof ctx?.measureText==='function'&&typeof J.fontCSS==='function',ledger=J.lyricBreaks(original,options);if(measured&&options.minSize===undefined&&typeof J.fitSize==='function')minSize=Math.min(minSize,J.fitSize(original,font,maxWidth,maxHeight,{lead,track}));
  const width=(text,size)=>{if(measured){ctx.font=J.fontCSS(font,size);return Math.max(ctx.measureText(text).width+Math.max(0,J.graphemes(text).length-1)*track*size,J.measure?.({text,font,size,lead,track})?.w??0);}return null;};
  const explicit=/\r?\n/u.test(original),manual=options.manual===true;
  const rowChoices=part=>{
@@ -31,6 +31,7 @@ J.semanticLyricLayout=(value,options={})=>{
  }
  const winner=ranked.sort((a,b)=>Number(b.fits)-Number(a.fits)||a.cost-b.cost||b.size-a.size||a.rows.join('\n').localeCompare(b.rows.join('\n'),'en'))[0]||{rows:[original],size:initialSize,widths:[null],height:initialSize,fits:false};
  const text=winner.rows.join('\n'),withoutInserted=text.replace(/\n/g,''),sourceWithoutBreaks=original.replace(/\n/g,'');
+ if(measured)ctx.font=previousFont;
  if(withoutInserted!==sourceWithoutBreaks)throw Error('LYRIC_LAYOUT_SOURCE_CHANGED');
  return {original,text,rows:winner.rows,size:winner.size,widths:winner.widths,height:winner.height,status:measured?'MEASURED':'UNMEASURED',fits:winner.fits,explicitBreaksPreserved:explicit,method:ledger.method,semanticConfidence:ledger.semanticConfidence,sourceOffsets:ledger.offsets,limits:ledger.limits};
 };

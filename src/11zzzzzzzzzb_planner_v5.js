@@ -6,7 +6,7 @@ J.cinemaSemanticLyricLayout=(p,c,ctx)=>{
  let width=W*(mode==='voice'?.62:stage?.50+.075*stage:mode==='ground'?.78:.72),height=H*(stage===3?.60:mode==='openSky'?.35:.45),lead=stage===3?1.15:mode==='ground'?1.10:1.26,cap=H*(H>W?(stage===4?.13:.105):stage===4?.22:mode==='ground'?.20:mode==='voice'?.15:.175);
  if(single){width=W*(c.cinema?.development?.occupancy||.70);height=H*.48;lead=mode==='wave'?1.5:mode==='impact'||mode==='expand'?1.22:1.32;cap=H*(H>W?(mode==='read'?.09:.11):mode==='read'?.135:mode==='expand'?.195:mode==='impact'?.185:.155);}
  try{ctx??=document.createElement('canvas').getContext('2d');}catch{}
- const text=String(c.lineText??c.text??'');let probe=null;if(typeof ctx?.measureText==='function'){ctx.font=J.fontCSS(font,48);probe=ctx.measureText('Hgあ').width;}
+ const text=String(c.lineText??c.text??'');let probe=null;if(typeof ctx?.measureText==='function'){const previousFont=ctx.font;ctx.font=J.fontCSS(font,48);try{probe=ctx.measureText('Hgあ').width;}finally{ctx.font=previousFont;}}
  const key=JSON.stringify([text,font,W,H,mode,stage,width,height,lead,cap,probe,!!c.locked,!!J.photoChoreographyLocked?.(p,c)]);
  if(cache.has(key))return J.clonePhotoRenderPlan(cache.get(key));
  const result={...J.semanticLyricLayout(text,{font,size:cap,maxWidth:width,maxHeight:height,lead,track:single?(mode==='expand'?.025:.012):.015,ctx,manual:!!c.locked||!!J.photoChoreographyLocked?.(p,c)}),font,lead,track:single?(mode==='expand'?.025:.012):.015};
