@@ -38744,8 +38744,8 @@ Q.measureDecodedCreative=(frames,p,range,w,h)=>{
  const out={clockStatus:knownClock?'DECODED_TIMESTAMP':'UNVERIFIED_CLOCK',temporalContrast:evidence(index,'decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty',knownClock?steps.length:0,{distribution:{q10:quantile(energies,.1),q50:quantile(energies,.5),q90:quantile(energies,.9)},modulationChanges:changes,flashCount:flashes.length,stillRuns:pauses}),steps,regionalNovelty:evidence(null,'union-mask excluded stabilized background structure',0),motionRealization:evidence(null,'tracked actual glyph ink geometry vs explicit operator',0),musicSync:evidence(null,'one-to-one musical/visual event matching',0)};
  const visual=[];
  for(let i=1;i<steps.length-1;i++)if(steps[i].energy>steps[i-1].energy&&steps[i].energy>=steps[i+1].energy&&steps[i].energy>.02)visual.push({time:steps[i].time,strength:steps[i].energy});
- const categories={lyricOnset:(p.lines||[]).map(l=>({time:l.start,confidence:1})),beat:(p.beatHierarchy||[]).map(b=>({time:b.time,confidence:b.confidence??p.musicalPhoto?.songProfile?.tempoConfidence??0})),accent:(Array.isArray(p.musicalTargets7)?p.musicalTargets7:[]).filter(t=>F(t.time)).map(t=>({time:t.time,confidence:t.confidence??0}))};
- categories.strongBeat=(p.beatHierarchy||[]).filter(b=>b.strong===true||b.level==='bar'||b.salience>=.8).map(b=>({time:b.time,confidence:b.confidence??p.musicalPhoto?.songProfile?.tempoConfidence??0}));
+ const categories={lyricOnset:(p.lines||[]).map(l=>({time:l.start,confidence:1})),beat:(p.beatHierarchy||[]).map(b=>({time:b.time,confidence:b.confidence??p.cinemaV5MusicalEvidence?.tempo?.confidence??0})),accent:(Array.isArray(p.musicalTargets7)?p.musicalTargets7:[]).filter(t=>F(t.time)).map(t=>({time:t.time,confidence:t.confidence??0}))};
+ categories.strongBeat=(p.beatHierarchy||[]).filter(b=>b.strong===true||b.level==='bar'||b.salience>=.8||b.beatSalience>=.8||b.strength==='strong'||b.strength==='downbeat').map(b=>({time:b.time,confidence:b.confidence??p.cinemaV5MusicalEvidence?.tempo?.confidence??0}));
  out.musicEvents={};
  for(const [category,events]of Object.entries(categories)){
   const valid=events.filter(e=>F(e.time)&&e.confidence>=.35),used=new Set(),errors=[];const tolerance=Math.max(1/(p.fps||24),steps.length?Math.max(...steps.map(s=>s.dt)):.1);
@@ -38849,11 +38849,13 @@ Q.planVisualGrammar=p=>{
   const grammar=c.grammar||{},type=grammar.motionContract?.type||(/^(converge|expand|reveal|settle|impact)$/.test(c.cinema?.mode)?c.cinema.mode:null),contract=type?{type,time:type==='impact'?grammar.temporal?.hit??c.start:null,fps:p.fps,source:'existing renderer operator'}:null;
   const direction={role,intention:quiet?'hold-and-read':role==='peak'?'musical-emphasis':role==='contrast'?'space-after-energy':'phrase-development',confidence,grammar:grammar.mode||c.layout,typography:{font:c.params?.font,semanticLayout:'shared-v2',status:'MEASURED_GEOMETRY; HUMAN_UNVERIFIED'},spatialComposition:{anchor:c.params?.photoAnchor??{x:.5,y:.5},source:'existing constrained composition',subjectClaim:false},motion:{operator:type||'existing-motion',contract},transition:{source:'existing transition',musicalBoundary:s?.from??null},quietIntent:quiet,repetitionIndex:repeat,reasons,semanticMeaning:{status:'UNMEASURED',reason:'No calibrated semantic model; musical features lead'}};
   c.cinemaV5Direction=direction;
-  if(c.grammar){c.grammar.stage=quiet?0:role==='peak'?4:role==='contrast'?0:role==='resolve'?2:role==='develop'?1:0;c.grammar.intentionalHold=quiet||c.grammar.intentionalHold===true;c.grammar.directionPolicy={...c.grammar.directionPolicy,quietIntent:quiet};}
+  direction.repetitionDevelopment={applied:repeat>0&&confidence>=.35&&Number.isFinite(previous)&&Number.isFinite(e)&&e>previous+.12,reason:repeat?'Measured energy development permits stronger composition; otherwise preserve phrase continuity':'First occurrence'};
+  if(c.grammar){c.grammar.stage=quiet?0:direction.repetitionDevelopment.applied?2:role==='peak'?4:role==='contrast'?0:role==='resolve'?2:role==='develop'?1:0;c.grammar.intentionalHold=quiet||c.grammar.intentionalHold===true;c.grammar.directionPolicy={...c.grammar.directionPolicy,quietIntent:quiet};}
   shots.push({line:c.line,from:c.start,to:c.end,...direction});repeats.set(text,repeat+1);if(Number.isFinite(e))previous=e;
  }
  p.cinemaV5Story={version:Q.version,shots,humanStatus:Q.humanStatus,arcForced:false,randomEffectCombination:false,manualSettingsPriority:true};return p;
 };
+const adaptPlan=V.adaptPlan;V.adaptPlan=(p,audio,project)=>{const confidence=audio?.tempoConfidence??audio?.features?.tempoConfidence;p.cinemaV5MusicalEvidence={tempo:{status:Number.isFinite(confidence)?'MEASURED':'UNMEASURED',confidence:Number.isFinite(confidence)?C(confidence):null,source:'source PCM tempo autocorrelation confidence'}};return adaptPlan(p,audio,project);};
 const adapt=V.adaptGrammar;
 V.adaptGrammar=p=>{const out=adapt(p);Q.planVisualGrammar(out);for(const c of out.cuts||[])if(c.cinemaV5Direction)c.cinemaV3Typography=V.typographyPreflight(out,c);return out;};
 const layered=J.drawLayeredCinema;
