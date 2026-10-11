@@ -43,7 +43,7 @@ V.select=(candidates,profile,baseline=null)=>{
  frontier.sort((a,b)=>{
   if(comparable(a,b)&&a.creative.measuredUtility!==b.creative.measuredUtility)return (b.creative.measuredUtility??-Infinity)-(a.creative.measuredUtility??-Infinity);
   if(!comparable(a,b)){if(a.candidate===baseline)return -1;if(b.candidate===baseline)return 1;}
-  if(cost(a)!==null&&cost(b)!==null&&cost(a)!==cost(b))return cost(a)-cost(b);
+  if(comparable(a,b)&&cost(a)!==null&&cost(b)!==null&&cost(a)!==cost(b))return cost(a)-cost(b);
   return String(a.candidate.id)<String(b.candidate.id)?-1:String(a.candidate.id)>String(b.candidate.id)?1:0;
  });
  return {selected:frontier[0]?.candidate??null,ranked,paretoIds:frontier.map(c=>c.candidate.id),status:frontier.length?'SELECTED':'NO_ELIGIBLE_CANDIDATE',policy:Q.selectionPolicy,humanStatus:Q.humanStatus};

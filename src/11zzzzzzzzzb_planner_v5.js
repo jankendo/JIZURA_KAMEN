@@ -19,7 +19,7 @@ V.typographyPreflight=(p,c)=>{
 };
 Q.planVisualGrammar=p=>{
  if(p.cinemaCandidateMode==='legacy'||!p.cinemaV3Features)return p;
- const sections=p.cinemaV3Features.sections||[],energies=sections.map(s=>s.energy.value).filter(Number.isFinite),peak=energies.length?Math.max(...energies):null;let previous=null;const repeats=new Map(),shots=[];
+ const sections=p.cinemaV3Features.sections||[],energies=sections.map(s=>s.energy.value).filter(Number.isFinite),peak=energies.length?Math.max(...energies):null,median=energies.length?[...energies].sort((a,b)=>a-b)[Math.floor(energies.length/2)]:null;let previous=null;const repeats=new Map(),shots=[];
  const inputMode=p.cinemaV3Features.inputMode,segmentation=p.verifiedSubjectSegmentation;
  const subjectTrusted=segmentation?.status==='MEASURED'&&segmentation.confidence>=.8&&segmentation.maskValidated===true;
  p.cinemaV5World={inputMode,mode:inputMode==='no-image'?'existing-non-image':inputMode==='multi-image'?'image-sequence-composition':subjectTrusted?'verified-subject-layer':'composition-and-typography',subjectSegmentation:subjectTrusted?{status:'MEASURED',confidence:segmentation.confidence}:{status:'UNMEASURED',confidence:0,reason:'Connected edges/regions are not subject recognition'},layerPermission:subjectTrusted,depth:{status:'UNMEASURED',reason:'No measured depth'},limits:'Focus anchors are composition heuristics. No guaranteed face, person, subject or depth.'};
@@ -29,17 +29,17 @@ Q.planVisualGrammar=p=>{
   let role='sustain',reasons=['musical-context'];
   if(confidence>=.35&&e!==null){
    if(quiet){role='sustain';reasons.push('measured-low-energy; deliberate-space');}
-   else if(peak!==null&&e>=peak-.02&&e>.65){role='peak';reasons.push('relative-song-energy-peak');}
+   else if(peak!==null&&median!==null&&peak>median+.1&&e>=peak-.02&&e>.65){role='peak';reasons.push('relative-song-energy-peak');}
    else if(previous!==null&&e<previous-.2){role='contrast';reasons.push('measured-energy-drop');}
    else if(previous!==null&&e>previous+.12){role='develop';reasons.push('measured-energy-build');}
    else if(s?.role?.value==='intro')role='introduce';
    else if(s?.role?.value==='outro')role='resolve';
-   else role='develop';
+   else role='sustain';
   }else reasons.push('low-confidence; lyric-first fallback');
   if(repeat){reasons.push(quiet?'intentional-repetition-preserved':'repeated-phrase-in-current-musical-role');}
   const grammar=c.grammar||{},type=grammar.motionContract?.type||(/^(converge|expand|reveal|settle|impact)$/.test(c.cinema?.mode)?c.cinema.mode:null),contract=type?{type,time:type==='impact'?grammar.temporal?.hit??c.start:null,fps:p.fps,source:'existing renderer operator'}:null;
   const direction={role,intention:quiet?'hold-and-read':role==='peak'?'musical-emphasis':role==='contrast'?'space-after-energy':'phrase-development',confidence,grammar:grammar.mode||c.layout,typography:{font:c.params?.font,semanticLayout:'shared-v2',status:'MEASURED_GEOMETRY; HUMAN_UNVERIFIED'},spatialComposition:{anchor:c.params?.photoAnchor??{x:.5,y:.5},source:'existing constrained composition',subjectClaim:false},motion:{operator:type||'existing-motion',contract},transition:{source:'existing transition',musicalBoundary:s?.from??null},quietIntent:quiet,repetitionIndex:repeat,reasons,semanticMeaning:{status:'UNMEASURED',reason:'No calibrated semantic model; musical features lead'}};
-  c.cinemaV5Direction=direction;
+  c.cinemaV5Direction=direction;if(c.cinemaV3Shot)c.cinemaV3Shot.role=role;
   direction.repetitionDevelopment={applied:repeat>0&&confidence>=.35&&Number.isFinite(previous)&&Number.isFinite(e)&&e>previous+.12,reason:repeat?'Measured energy development permits stronger composition; otherwise preserve phrase continuity':'First occurrence'};
   if(c.grammar){c.grammar.stage=quiet?0:direction.repetitionDevelopment.applied?2:role==='peak'?4:role==='contrast'?0:role==='resolve'?2:role==='develop'?1:0;c.grammar.intentionalHold=quiet||c.grammar.intentionalHold===true;c.grammar.directionPolicy={...c.grammar.directionPolicy,quietIntent:quiet};}
   shots.push({line:c.line,from:c.start,to:c.end,...direction});repeats.set(text,repeat+1);if(Number.isFinite(e))previous=e;
