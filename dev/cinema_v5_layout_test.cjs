@@ -1,0 +1,8 @@
+const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs'),vm=require('node:vm');const {J,context,createCanvas}=engine();
+for(const text of ['e\u0301','👩🏽‍🚀','🇯🇵','👨‍👩‍👧‍👦','は\u3099']){assert.equal(J.graphemes(text).length,1);assert.equal(J.graphemes(text,{fallback:true}).length,1);}
+vm.runInContext('Intl=undefined',context);assert.equal(J.graphemes('👩🏽‍🚀').length,1,'fallback runs without Intl');
+const ctx=createCanvas(500,500).getContext('2d');
+for(const text of ['日本語と English words の混在','明日（あした）へ、進もう。','  preserve  spaces  ','長い語 Supercalifragilisticexpialidocious 20261011','👩🏽‍🚀 e\u0301 🇯🇵']){const r=J.semanticLyricLayout(text,{ctx,size:40,maxWidth:210,maxHeight:240});assert.equal(r.original,text);assert.equal(r.text.replace(/\n/g,''),text);assert.equal(r.status,'MEASURED');assert(!r.text.includes('Supercalifragilistic\n'));for(const row of r.rows.slice(1))assert(!/^[、。，）\]」]/u.test(row));}
+const manual='見せたい行\n  Hello world';assert.equal(J.semanticLyricLayout(manual,{ctx,size:40,maxWidth:100,maxHeight:200,manual:true}).text,manual);assert.equal(J.semanticLyricLayout('Hello world',{ctx:{},maxWidth:80}).widths[0],null);
+const p={W:640,H:360,lines:[{text:'日本語と English words の混在',start:0,end:4}],cuts:[],fps:24},c={line:0,lineText:p.lines[0].text,start:0,end:4,params:{font:'embedded_bold'},grammar:{mode:'ground',stage:0}};p.cuts=[c];const r=J.cinemaSemanticLyricLayout(p,c,ctx),q=J.cinemaV3.typographyPreflight(p,c);assert.equal(q.text,r.text);assert.equal(q.size,r.size);assert.equal(q.lineCount,r.rows.length);assert.equal(p.lines[0].text,c.lineText);
+console.log('V5 graphemes/Intl fallback, lossless semantic/manual wrapping, font width and shared render/QA geometry PASS');

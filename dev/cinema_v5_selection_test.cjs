@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
+const {J}=engine(),V=J.cinemaV3,Q=J.cinemaV5,op={purpose:'FULL_MV',aspect:'16:9',fps:24,range:[0,4],loopRequired:false},profile={stage:'B',profileId:V.profileId(op),requiredMetrics:['rasterSafety']};
+const candidate=(id,music,novel,read=95)=>({id,planHash:id,candidateSeed:1,hardFailures:[],measurements:Object.entries({rasterSafety:100,localContrast:read,impactBeatSync:music,regionalNoveltyV2:novel}).map(([key,value])=>V.metric(key,value,{outputProfile:op,sampleCount:5,planHash:id,inputHash:'same',method:key,unit:key==='regionalNoveltyV2'?'index/1':'score/100'})),objectives:{readability:read,musicFit:music,visualCoherence:null,contextualVariation:null},lowerTail:null,constraintViolations:0,memoryBudgetBytes:0,timeCostMs:10});
+let a=candidate('initial',90,.95),b=candidate('repair',99,.94);
+assert.equal(J.rankCinemaCandidateV2(b,profile,a).eligible,true,'non-safety 95→94 may be traded for verified music improvement');assert.equal(J.acceptOrRevertRepair({before:a,after:b,profile}).accepted,true);assert.equal(V.select([a,b],profile,a).selected.id,'repair');
+b=candidate('unsafe',99,.99,94);assert.equal(J.rankCinemaCandidateV2(b,profile,a).reason,'PROTECTED_REGRESSION');
+b=candidate('too-large',99,.90);assert.equal(J.rankCinemaCandidateV2(b,profile,a).eligible,false);
+b=candidate('tiny',90,.951);assert.equal(J.acceptOrRevertRepair({before:a,after:b,profile}).accepted,false,'nonmeaningful movement does not justify an encode repair');
+b=candidate('other-clock',99,.94);b.measurements[2].sampleCount=4;assert.equal(J.rankCinemaCandidateV2(b,profile,a).reason,'INCOMPARABLE_EVIDENCE');
+b=candidate('unknown',99,.94);b.measurements=b.measurements.filter(m=>m.id!=='regionalNoveltyV2');assert.equal(J.rankCinemaCandidateV2(b,profile,a).reason,'REQUIRED_UNMEASURED');assert.equal(Q.creativeEvidence(b).domains.regionalNovelty,null);
+b=candidate('missing-audio',99,.94);assert.equal(J.rankCinemaCandidateV2(b,{...profile,requiredMetrics:['rasterSafety','audioIntegrity']}).eligible,false);
+b=candidate('bad',99,.99);b.measurements[0].value=0;assert.equal(V.select([b,a],profile,a).selected.id,'initial','initial candidate survives unsafe alternatives');
+a=candidate('a',90,.95);b=candidate('b',90,.95);a.timeCostMs=100;b.timeCostMs=1;assert.equal(V.select([b,a],profile).selected.id,'a','unknown costs do not affect a tie');a.timeCostStatus=b.timeCostStatus='MEASURED';assert.equal(V.select([a,b],profile).selected.id,'b');
+assert.equal(Q.creativeEvidence(a).aggregateStatus,'UNMEASURED');assert.equal(Q.humanStatus,'HUMAN_UNVERIFIED');assert.equal(J.acceptOrRevertRepair({before:a,after:b,profile,sameLocks:false}).reason,'LOCK_CHANGED');
+console.log('V5 safety/creative tradeoff, initial retention, honest unknowns, comparable coverage and measured cost PASS');

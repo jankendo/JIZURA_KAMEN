@@ -2,13 +2,14 @@
 (()=>{'use strict';const J=window.J,V=J.cinemaV3,Q=J.cinemaV5,C=J.clamp;
 const cache=new Map();
 J.cinemaSemanticLyricLayout=(p,c,ctx)=>{
- const W=p.W,H=p.H,mode=c.grammar?.mode||'read',stage=c.grammar?.stage||0,font=c.params?.font||'embedded_bold';
- const width=W*(mode==='voice'?.62:stage?.50+.075*stage:mode==='ground'?.78:.72),height=H*(stage===3?.60:mode==='openSky'?.35:.45),lead=stage===3?1.15:mode==='ground'?1.10:1.26,cap=H*(H>W?(stage===4?.13:.105):stage===4?.22:mode==='ground'?.20:mode==='voice'?.15:.175);
+ const W=p.W,H=p.H,single=!c.grammar&&/^cinema(Response|Converge|Wave|Expand|Read|Impact)$/.test(c.layout||''),mode=single?c.layout.slice(6).toLowerCase():c.grammar?.mode||'read',stage=c.grammar?.stage||0,font=c.params?.font||'embedded_bold';
+ let width=W*(mode==='voice'?.62:stage?.50+.075*stage:mode==='ground'?.78:.72),height=H*(stage===3?.60:mode==='openSky'?.35:.45),lead=stage===3?1.15:mode==='ground'?1.10:1.26,cap=H*(H>W?(stage===4?.13:.105):stage===4?.22:mode==='ground'?.20:mode==='voice'?.15:.175);
+ if(single){width=W*(c.cinema?.development?.occupancy||.70);height=H*.48;lead=mode==='wave'?1.5:mode==='impact'||mode==='expand'?1.22:1.32;cap=H*(H>W?(mode==='read'?.09:.11):mode==='read'?.135:mode==='expand'?.195:mode==='impact'?.185:.155);}
  try{ctx??=document.createElement('canvas').getContext('2d');}catch{}
  const text=String(c.lineText??c.text??'');let probe=null;if(typeof ctx?.measureText==='function'){ctx.font=J.fontCSS(font,48);probe=ctx.measureText('Hgあ').width;}
- const key=JSON.stringify([text,font,W,H,mode,stage,probe,!!c.locked,!!J.photoChoreographyLocked?.(p,c)]);
+ const key=JSON.stringify([text,font,W,H,mode,stage,width,height,lead,cap,probe,!!c.locked,!!J.photoChoreographyLocked?.(p,c)]);
  if(cache.has(key))return J.clonePhotoRenderPlan(cache.get(key));
- const result={...J.semanticLyricLayout(text,{font,size:cap,maxWidth:width,maxHeight:height,lead,track:.015,ctx,manual:!!c.locked||!!J.photoChoreographyLocked?.(p,c)}),font,lead,track:.015};
+ const result={...J.semanticLyricLayout(text,{font,size:cap,maxWidth:width,maxHeight:height,lead,track:single?(mode==='expand'?.025:.012):.015,ctx,manual:!!c.locked||!!J.photoChoreographyLocked?.(p,c)}),font,lead,track:single?(mode==='expand'?.025:.012):.015};
  if(probe!==null){if(cache.size>=128)cache.clear();cache.set(key,J.clonePhotoRenderPlan(result));}return result;
 };
 const preflight=V.typographyPreflight;
@@ -53,15 +54,15 @@ J.drawLayeredCinema=(R,ctx,p,...args)=>{
 };
 const proposals=J.proposeTargetedRepairs;
 J.proposeTargetedRepairs=(p,acceptance)=>{
- const tasks=proposals(p,acceptance),rank=t=>Number(t.kind==='readability'||t.reason?.includes('contrast'))*10+(t.severity??0);
- return tasks.map((t,i)=>({...t,v5:{policy:'cause-specific-minimal-repair-v2',priority:rank(t),order:i,lockPolicy:'untouched',additionalEncodeBudget:0}})).sort((a,b)=>b.v5.priority-a.v5.priority||a.v5.order-b.v5.order);
+ const tasks=proposals(p,acceptance),rank=t=>Number(/READ|CONTRAST|CLIP|MISSING/.test(t.code||''))*10+(t.severity??0);
+ return tasks.map((t,i)=>({...t,v5:{policy:'cause-specific-minimal-repair-v2',priority:rank(t),order:i,cause:t.code,affectedLines:[...t.lines],observationSource:'decoded failure classification',stage:t.stage,lockPolicy:'untouched',additionalEncodeBudget:0}})).sort((a,b)=>b.v5.priority-a.v5.priority||a.v5.order-b.v5.order);
 };
 const observe=V.observeRepair;
 V.observeRepair=async(session,args,result,best)=>{
  const r=await observe(session,args,result,best),rank=J.rankCinemaCandidateV2(r.evaluation,r.profile);
  const safetyStatus=rank.eligible?'PASS':['HARD_FAILURE','REQUIRED_FAILED'].includes(rank.reason)?'FAIL':'UNVERIFIED';r.safetyStatus=safetyStatus;
  const ledger={policy:Q.selectionPolicy.version,before:best?.v3?.evaluation??null,after:r.evaluation,accepted:best?r.accepted:safetyStatus!=='FAIL',reason:r.reason,safetyStatus,videoHash:r.videoHash,planHash:r.evaluation.planHash,unmeasured:Q.creativeEvidence(r.evaluation).missing,humanStatus:Q.humanStatus};
- session.evaluations.at(-1).cinemaV5=ledger;r.repairEvidence=ledger;
+ const record=session.evaluations.at(-1);if(record)record.cinemaV5=ledger;else session.evaluations.push({planHash:r.evaluation.planHash,videoHash:r.videoHash,eligible:false,decision:{accepted:false,reason:r.reason},stateHistory:session.state?.history||[],cinemaV5:ledger});r.repairEvidence=ledger;
  if(safetyStatus==='FAIL'&&best){r.accepted=false;r.reason=rank.reason;ledger.accepted=false;ledger.reason=rank.reason;return r;}
  if(safetyStatus==='FAIL')throw Object.assign(Error('CINEMA_V5_UNSAFE_ARTIFACT'),{code:'CINEMA_V5_UNSAFE_ARTIFACT',evidence:ledger});
  return r;

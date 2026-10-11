@@ -88,8 +88,11 @@ Q.auditDecodedAudio=async(blob,audio,range,signal)=>{
   const decoded=await J.waitExportStep(async()=>context.decodeAudioData(await blob.arrayBuffer()),{signal,timeout:30000,label:'完成MP4の音声検査'}).catch(async e=>{throw e;});
   const source=audio.buffer.getChannelData(0),observed=decoded.getChannelData(0),sourceFrom=Math.floor(start*audio.buffer.sampleRate),sourceTo=Math.min(source.length,Math.ceil(end*audio.buffer.sampleRate));
   const energy=(values,from,to)=>{let sum=0;for(let i=from;i<to;i++)sum+=values[i]*values[i];return sum/Math.max(1,to-from);};
-  const expected=energy(source,sourceFrom,sourceTo),actual=energy(observed,0,observed.length),durationError=Math.abs(decoded.duration-(end-start)),passed=durationError<=2048/decoded.sampleRate+.05&&(expected<1e-8?actual<1e-6:actual>expected*.01);
-  return {status:passed?'MEASURED':'FAILED',value:passed?100:null,confidence:passed?.8:0,sampleCount:observed.length,method:'decoded AAC duration and source/decoded signal-energy catastrophic-loss guard',sourceEnergy:expected,decodedEnergy:actual,durationErrorSeconds:durationError,limits:'Signal preservation guard, not perceptual identity or syllable synchronization'};
+  const expected=energy(source,sourceFrom,sourceTo),actual=energy(observed,0,observed.length),durationError=Math.abs(decoded.duration-(end-start));
+  // Sample source and AAC signal with a bounded encoder-delay search. No claim of perceptual identity.
+  let correlation=null;if(expected>=1e-8){const n=Math.min(2000,sourceTo-sourceFrom,observed.length);let best=-1;for(let lag=-2048;lag<=2048;lag+=32){let xy=0,xx=0,yy=0,count=0;for(let j=0;j<n;j++){const i=Math.floor((j+.37)*(sourceTo-sourceFrom)/n),k=Math.round(i*decoded.sampleRate/audio.buffer.sampleRate)+lag;if(k<0||k>=observed.length)continue;const x=source[sourceFrom+i],y=observed[k];xy+=x*y;xx+=x*x;yy+=y*y;count++;}if(count>=n*.8&&xx>0&&yy>0)best=Math.max(best,xy/Math.sqrt(xx*yy));}correlation=best;}
+  const passed=durationError<=2048/decoded.sampleRate+.05&&(expected<1e-8?actual<1e-6:actual>expected*.01&&correlation>=.6);
+  return {status:passed?'MEASURED':'FAILED',value:passed?100:null,confidence:passed?.8:0,sampleCount:observed.length,method:'decoded AAC duration, source/decoded energy and bounded AAC-delay signal correlation guard',sourceEnergy:expected,decodedEnergy:actual,signalCorrelation:correlation,correlationSampleLimit:2000,delaySearchSamples:2048,durationErrorSeconds:durationError,limits:'Signal preservation guard, not perceptual identity or syllable synchronization'};
  }catch(e){if(signal?.aborted)throw e;return {status:'UNMEASURED',value:null,confidence:0,sampleCount:0,reason:String(e.message)};}
 };
 const final=V.finalEvaluation;
