@@ -1,0 +1,88 @@
+{
+  "sourceHead": "96727adccdffefdef595dc96e4e29eb383d02fca",
+  "runtimeSHA256": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "startup",
+      "status": "PASS",
+      "version": "2.0.26",
+      "secure": true
+    },
+    {
+      "name": "background upload",
+      "status": "PASS"
+    },
+    {
+      "name": "TXT import",
+      "status": "PASS"
+    },
+    {
+      "name": "LRC import and timing",
+      "status": "PASS"
+    },
+    {
+      "name": "audio upload and analysis",
+      "status": "PASS",
+      "bpm": 120
+    },
+    {
+      "name": "automatic MV generation",
+      "status": "PASS",
+      "cuts": 4,
+      "lines": 4,
+      "duration": 8.999977324263039
+    },
+    {
+      "name": "preview playback",
+      "status": "PASS"
+    },
+    {
+      "name": "project save and reload",
+      "status": "PASS"
+    },
+    {
+      "name": "regenerate after restored audio",
+      "status": "PASS"
+    },
+    {
+      "name": "UI MP4 export and decode",
+      "status": "PASS",
+      "creativeState": "BELOW_TARGET",
+      "oneClick": true,
+      "video": "h264",
+      "audio": "aac",
+      "duration": "9.024000",
+      "progressUpdates": 750,
+      "decodedFrames": 216,
+      "visibleContent": true
+    }
+  ],
+  "MP4Hash": "c221dff6552eeff7cb3b9389445cb8386544b3ae60823203c74fd9f717d62a50",
+  "fullEncodeAttempts": 4,
+  "repairDecisions": [
+    "INITIAL_ARTIFACT_RETAINED_AS_DRAFT",
+    "PROTECTED_REGRESSION",
+    "PROTECTED_REGRESSION",
+    "PROTECTED_REGRESSION"
+  ],
+  "decoderProbe": "PASS",
+  "pageErrors": [],
+  "resourceFailures": [],
+  "creativeState": "BELOW_TARGET",
+  "audioEvidence": {
+    "status": "MEASURED",
+    "value": 100,
+    "confidence": 0.8,
+    "sampleCount": 397958,
+    "method": "decoded AAC duration, source/decoded energy and bounded AAC-delay signal correlation guard",
+    "sourceEnergy": 0.0076488256232160375,
+    "decodedEnergy": 0.007612913270915073,
+    "signalCorrelation": 0.9721031263184436,
+    "correlationSampleLimit": 2000,
+    "delaySearchSamples": 2048,
+    "durationErrorSeconds": 0.024013605442176456,
+    "limits": "Signal preservation guard, not perceptual identity or syllable synchronization"
+  },
+  "qualityGate": "UNVERIFIED"
+}
