@@ -38871,9 +38871,9 @@ J.proposeTargetedRepairs=(p,acceptance)=>{
 const observe=V.observeRepair;
 V.observeRepair=async(session,args,result,best)=>{
  const r=await observe(session,args,result,best),rank=J.rankCinemaCandidateV2(r.evaluation,r.profile);
- const safetyStatus=rank.eligible?'PASS':['HARD_FAILURE','REQUIRED_FAILED'].includes(rank.reason)?'FAIL':'UNVERIFIED';r.safetyStatus=safetyStatus;
- const ledger={policy:Q.selectionPolicy.version,before:best?.v3?.evaluation??null,after:r.evaluation,accepted:best?r.accepted:safetyStatus!=='FAIL',reason:r.reason,safetyStatus,videoHash:r.videoHash,planHash:r.evaluation.planHash,unmeasured:Q.creativeEvidence(r.evaluation).missing,humanStatus:Q.humanStatus};
- const record=session.evaluations.at(-1);if(record)record.cinemaV5=ledger;else session.evaluations.push({planHash:r.evaluation.planHash,videoHash:r.videoHash,eligible:false,decision:{accepted:false,reason:r.reason},stateHistory:session.state?.history||[],cinemaV5:ledger});r.repairEvidence=ledger;
+ const safetyStatus=rank.eligible&&r.decodedCompleted?'PASS':['HARD_FAILURE','REQUIRED_FAILED'].includes(rank.reason)?'FAIL':'UNVERIFIED';r.safetyStatus=safetyStatus;
+ const ledger={policy:Q.selectionPolicy.version,before:best?.v3?.evaluation??null,after:r.evaluation,accepted:r.accepted===true&&safetyStatus!=='FAIL',reason:r.reason,safetyStatus,videoHash:r.videoHash,planHash:r.evaluation.planHash,unmeasured:Q.creativeEvidence(r.evaluation).missing,humanStatus:Q.humanStatus};
+ const record=session.evaluations.at(-1);if(record?.videoHash===r.videoHash)record.cinemaV5=ledger;else session.evaluations.push({planHash:r.evaluation.planHash,videoHash:r.videoHash,eligible:false,decision:{accepted:false,reason:r.reason},stateHistory:session.state?.history||[],cinemaV5:ledger});r.repairEvidence=ledger;
  if(safetyStatus==='FAIL'&&best){r.accepted=false;r.reason=rank.reason;ledger.accepted=false;ledger.reason=rank.reason;return r;}
  if(safetyStatus==='FAIL')throw Object.assign(Error('CINEMA_V5_UNSAFE_ARTIFACT'),{code:'CINEMA_V5_UNSAFE_ARTIFACT',evidence:ledger});
  return r;
