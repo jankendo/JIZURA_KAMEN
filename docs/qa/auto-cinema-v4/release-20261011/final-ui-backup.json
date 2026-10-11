@@ -1,0 +1,18 @@
+{
+  "sourceHEAD": "2bd32cc9d5a1298d03a199e6e36ac27f016a0749",
+  "archive": "qa-backups/auto-cinema-v4-20261011/release-ui-evidence.tgz",
+  "sha256": "b10387a70f2f57856583be92e4e4fe3cd7a120ad5fe33a2c0f81201ca28e7096",
+  "bytes": 92304075,
+  "strictFullDecode": {
+    "exitCode": 0,
+    "stderrBytes": 0
+  },
+  "TECHNICAL_GO": "PENDING_EXACT_HEAD_AGGREGATE_CI",
+  "QUALITY_GO": "PASS",
+  "notes": [
+    "Real pointer cancellation and native one-click retry PASS",
+    "Download saveAs produced actual disk MP4; UI SAVE_AVAILABLE is not native picker saved confirmation",
+    "205 second progress test uses controlled latency injection, not actual asset timing",
+    "Renderer JavaScript and embedded fonts unchanged byte-for-byte; prior 126 MP4 proof reused"
+  ]
+}
