@@ -4,7 +4,7 @@
   "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "PASS",
   "RELEASE_GO": "PASS",
-  "status": "APPROVED_FOR_FORMAL_MERGE",
+  "status": "MERGED_DEPLOYING",
   "currentCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38178818961",
   "previousCIFailure": "Obsolete sequential-decoder fixture and clean-restore test; fixed fixture PASS; current full regression still required",
   "completedEvidence": {
@@ -22,14 +22,13 @@
     "naturalSelectionScope": "Retained original-renderer calm/chant plus current-implementation no-image normal optimizer; benchmark fixed-initial-layout cases excluded"
   },
   "requiredRemaining": [
-    "Formal GitHub merge",
     "main Build/Pages artifact/Deploy SUCCESS",
     "HTTPS content hashes and actual production MP4 E2E"
   ],
   "generationSpeedReleaseGate": false,
   "humanStatus": "HUMAN_UNVERIFIED",
   "artistic100Established": false,
-  "mainChanged": false,
+  "mainChanged": true,
   "productionChanged": false,
   "environmentInterruptedWork": "completion/release-14c9343/environment-interruption-7fad8cb.json",
   "history": "Original final gates preserved in completion/historical-final-gates-9bc1a210.json and Git history",
@@ -76,6 +75,8 @@
     "total": 195,
     "skipAlternativeBrowserPass": 2
   },
-  "deployment": "NOT_YET_MERGED",
-  "productionE2E": "UNVERIFIED"
+  "deployment": "MAIN_CI_IN_PROGRESS",
+  "productionE2E": "UNVERIFIED",
+  "mainCommit": "7ec43236f28caef2dc6552b848caded602488a5e",
+  "mainCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38184028315"
 }
