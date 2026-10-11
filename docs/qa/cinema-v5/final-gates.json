@@ -10,7 +10,7 @@
     "passed": 5,
     "failed": 0
   },
-  "fullRegression": "RUNNING_FINAL_HEAD_CI",
+  "fullRegression": "RUNNING_EXACT_HEAD_CI",
   "finalHeadCI": "RUNNING",
   "ciURL": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38131126629",
   "priorUITimeout": {
@@ -18,12 +18,99 @@
     "timeoutSeconds": 600,
     "laterRecovery": "Intermediate fdcbb00 formal actual-UI PASS; final 531eaa7 formal UI pending. CPU contention observed, exact timeout cause unproven."
   },
-  "comparison": "Frozen source comparison running; preliminary frame identity and actual-clock readability recorded separately",
+  "comparison": {
+    "status": "COMPLETE_FINAL_SOURCE",
+    "pairedFixtures": 8,
+    "finalV5MP4": 8,
+    "finalBaselineMP4": 8,
+    "fullyDecodedFinalComparison": 16,
+    "fullyDecodedRejectedHistoricalV5Trial": 1,
+    "readabilityImprovementConfirmed": false,
+    "measuredReadabilityRegressionConfirmed": false,
+    "RGBPixelIdentityPairs": 3,
+    "humanStatus": "HUMAN_UNVERIFIED"
+  },
   "productionChanged": false,
   "newManualExport": {
     "status": "PASS",
     "firstFailure": "Incorrectly required internal unit onset to repeat LRC phrase onset",
     "fix": "Validate authoritative phrase first onset; internal units retain valid times",
     "lyricSafetyCoverage": "UNMEASURED; successful save is not quality certification"
+  },
+  "qualityBlockers": [
+    "Decoded operator-intent realization unmeasured on all eight final fixtures",
+    "Required lyric safety coverage unavailable on no-image, legacy multi-image and split-manual paths",
+    "Requested diverse-material quality improvement not established"
+  ],
+  "baselineRegression": {
+    "passed": 187,
+    "failed": 0,
+    "skipped": 2,
+    "freshExecution": true,
+    "head": "5ea7d953f1720654521a2cd9d800706d40f40c49"
+  },
+  "performance": {
+    "baseline": {
+      "count": 8,
+      "P50Seconds": 62.503449999999255,
+      "P95Seconds": 219.16005000000135,
+      "slowest": {
+        "fixture": "case-24",
+        "seconds": 299.0591000000015
+      },
+      "fullEncodeAttemptsPerFixture": {
+        "case-06": 1,
+        "case-07": 1,
+        "case-08": 1,
+        "case-24": 1,
+        "general-dark": 1,
+        "general-people": 1,
+        "general-dense": 1,
+        "general-manual": 1
+      },
+      "fullEncodeAttempts": 8,
+      "postExportHeapBytes": [
+        202896349,
+        76402660,
+        253384535,
+        446571219,
+        277841930,
+        208308915,
+        205446818,
+        206639318
+      ],
+      "peakMemoryStatus": "UNMEASURED"
+    },
+    "v3": {
+      "count": 8,
+      "P50Seconds": 58.56064999999851,
+      "P95Seconds": 183.65465500000187,
+      "slowest": {
+        "fixture": "case-24",
+        "seconds": 245.583200000003
+      },
+      "fullEncodeAttemptsPerFixture": {
+        "case-24": 1,
+        "general-manual": 1,
+        "case-06": 1,
+        "case-07": 1,
+        "case-08": 1,
+        "general-dark": 1,
+        "general-people": 1,
+        "general-dense": 1
+      },
+      "fullEncodeAttempts": 8,
+      "postExportHeapBytes": [
+        419491232,
+        94479073,
+        204043306,
+        93286397,
+        66583871,
+        173213662,
+        232717573,
+        134567454
+      ],
+      "peakMemoryStatus": "UNMEASURED"
+    }
   }
 }

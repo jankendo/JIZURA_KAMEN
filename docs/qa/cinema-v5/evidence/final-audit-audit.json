@@ -1,0 +1,672 @@
+{
+  "finalV5MP4Count": 8,
+  "finalBaselineMP4Count": 8,
+  "sourceFreeze": {
+    "head": "96727adccdffefdef595dc96e4e29eb383d02fca",
+    "runtimeSHA256": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+    "baselineHead": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+    "baselineRuntimeSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+    "ci": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38131126629",
+    "sourceFrozen": true,
+    "localRegressionStartedBeforeLastFix": "CI uses immutable final commit; affected actual-clock/cache/repair tests also run individually.",
+    "previousFrozenHead": "531eaa7799c4f4a1c9a7bfb82392930952730772",
+    "lastFix": {
+      "scope": "Phrase-onset safety validation only; no render/search/layout/profile changes",
+      "reason": "First internal unit matches LRC; later valid internal units must not be required to repeat that onset",
+      "targetedTest": "PASS"
+    }
+  },
+  "artifacts": [
+    {
+      "file": "case-06-baseline.mp4",
+      "sha256": "6fccbf987a591f95839e5e76c2528652978bc92d8f6138dc3b2c75430e5f54bd",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        360
+      ],
+      "fps": "24/1",
+      "durationSeconds": 3.029333,
+      "frameCount": 72,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "case-06-baseline.png",
+        "pngSHA256": "eea333417b7fbf4d43255bb7b02b8cc34ab9d4e62c169dfd23f4fb91621e680b"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "runtimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "case-06-v3.mp4",
+      "sha256": "f7d627dcd4375ee8cc77203ddb608f2f035c7f965e1683ebae9a1d68edef343d",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        360
+      ],
+      "fps": "24/1",
+      "durationSeconds": 3.029333,
+      "frameCount": 72,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "case-06-v3.png",
+        "pngSHA256": "eea333417b7fbf4d43255bb7b02b8cc34ab9d4e62c169dfd23f4fb91621e680b"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "runtimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "case-07-baseline.mp4",
+      "sha256": "2ed4a1346843f90ba13acd9310453bfdfc59f055ba3885d5a143222d7f732723",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        640,
+        360
+      ],
+      "fps": "24/1",
+      "durationSeconds": 3.029333,
+      "frameCount": 72,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "case-07-baseline.png",
+        "pngSHA256": "323781ea31c60c30bb55fd9989321fcc8a41f7d10b909e4f259687b0d09c4bbc"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "runtimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "case-07-v3.mp4",
+      "sha256": "5ebfdbd5f169801d7131211de71c3020f2b9657e9a81d8e239abe7121eb21972",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        640,
+        360
+      ],
+      "fps": "24/1",
+      "durationSeconds": 3.029333,
+      "frameCount": 72,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "case-07-v3.png",
+        "pngSHA256": "323781ea31c60c30bb55fd9989321fcc8a41f7d10b909e4f259687b0d09c4bbc"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "runtimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "case-08-baseline.mp4",
+      "sha256": "6e0631b85f888c7c89f00a7ef563c821749ed06dfd118cd00987292cb62f906f",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 3.029333,
+      "frameCount": 72,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "case-08-baseline.png",
+        "pngSHA256": "220809a747be43fdb7e298aa225a0ffb8ff78a05290f7544d039b48015addfb8"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "runtimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "case-08-v3.mp4",
+      "sha256": "3b0a55c97e2e1d960798b3d64cf270fde6492ed801e5a6a2fe97e4853c96e876",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 3.029333,
+      "frameCount": 72,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "case-08-v3.png",
+        "pngSHA256": "82b87562fda8e91c25ed20ca8d64fbf02717e0223440eeefae23962ace9ba306"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "runtimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "case-24-baseline.mp4",
+      "sha256": "13d7bbe76234dbc66335b5129f616d9b6ea5cdd4ce9b7076cd3894c8777c0894",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 12.032,
+      "frameCount": 288,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "case-24-baseline.png",
+        "pngSHA256": "d0f29e91abb7037f14ce4f8f119f66bf72a0531af92100b06be8812b1649bbb5"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "runtimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "case-24-v3.mp4",
+      "sha256": "1d07d0dc39a5cddc6d5cf1c613450e1daa44a3bd496e8b9c17a188c8b3b9de14",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 12.032,
+      "frameCount": 288,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "case-24-v3.png",
+        "pngSHA256": "2929dcb33d6948b5ada601a4bee4da21e7a208656c129001166997faea7fff39"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "runtimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "general-dark-baseline.mp4",
+      "sha256": "c49f2e5bcea9e0fb2d0b2ea14ee18e7d8cd68907c61144db2f61a78baed17cd7",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 4.032,
+      "frameCount": 96,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "general-dark-baseline.png",
+        "pngSHA256": "5544ea35dde3384370093f738e6b64dcef55cc71fd0d65e9700fa6acc00ac801"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "runtimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "general-dark-v3.mp4",
+      "sha256": "8af32b88255619a198b5acadac17a825ade99660e1fc10b1a75a85981328e4d2",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 4.032,
+      "frameCount": 96,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "general-dark-v3.png",
+        "pngSHA256": "5544ea35dde3384370093f738e6b64dcef55cc71fd0d65e9700fa6acc00ac801"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "runtimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "general-dense-baseline.mp4",
+      "sha256": "41c52316bfef7d21530ec7a0092cff6a1b66b4d00cb121f7707ce98ad4513f1b",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        360
+      ],
+      "fps": "24/1",
+      "durationSeconds": 4.032,
+      "frameCount": 96,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "general-dense-baseline.png",
+        "pngSHA256": "50e8fa838e5f38e9106fdcdd797ad117731690a1f7b6cc18ee015e7f65e26a68"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "runtimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "general-dense-v3.mp4",
+      "sha256": "c39904fc4cc9b879d659b093817af560b1d536adbe46ce659d51f0729e5ff75a",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        360
+      ],
+      "fps": "24/1",
+      "durationSeconds": 4.032,
+      "frameCount": 96,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "general-dense-v3.png",
+        "pngSHA256": "287984cfb3137061a3b64b7dd5116ad8099d54e8b4529dfb58dbaba7f678c35e"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "runtimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "general-manual-baseline.mp4",
+      "sha256": "370858abe3d46cef44bf69920ae02d2ae171cce7d2b8416a4b774b52d07e31ef",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 4.032,
+      "frameCount": 96,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "general-manual-baseline.png",
+        "pngSHA256": "81344915450e3c15e9b437d852e4d2662fff115b06bb4797e909649f24a96925"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "runtimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "general-manual-v3-failed.mp4",
+      "sha256": "9187aa9b5cce490a27bbff0a5e26e788a7afe325536724accc25cdad4e3a7967",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 4.032,
+      "frameCount": 96,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2
+    },
+    {
+      "file": "general-manual-v3.mp4",
+      "sha256": "1a69b306c5f2bb1d9b55d9ce9089928f83bab21de7fc01ef6664eb0d4bbc1004",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 4.032,
+      "frameCount": 96,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "general-manual-v3.png",
+        "pngSHA256": "147f23173ef4fef3ad513a07ccddca92cd6c455ba43ff01f6b35534a62a8e134"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "runtimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "general-people-baseline.mp4",
+      "sha256": "a00923ac07f73e297fc45b485f6d5b9d182b248d48bb998eb890bd4e45cf5a62",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 4.032,
+      "frameCount": 96,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "general-people-baseline.png",
+        "pngSHA256": "b865d430254318735932acad5febba81dae5bbec183dd840aeec94a2692d041a"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "runtimeHash": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    },
+    {
+      "file": "general-people-v3.mp4",
+      "sha256": "3004014e6f8d992ffd6c524df8f2854b4a147761ccbe812176daae3cb5b15ada",
+      "fullDecode": "PASS",
+      "decodeErrors": "",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "pixelFormat": "yuv420p",
+      "dimensions": [
+        360,
+        640
+      ],
+      "fps": "24/1",
+      "durationSeconds": 4.032,
+      "frameCount": 96,
+      "monotonicDecodedTimestamps": true,
+      "sampleRate": "48000",
+      "channels": 2,
+      "frameInspection": {
+        "status": "PASS",
+        "requestedTime": 0.8,
+        "actualFrameTime": 0.791667,
+        "frameIndex": 19,
+        "file": "general-people-v3.png",
+        "pngSHA256": "b865d430254318735932acad5febba81dae5bbec183dd840aeec94a2692d041a"
+      },
+      "runnerStatus": "PASS",
+      "expectedSourceRuntimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "runtimeHash": "77d35a243b79f334b0df7dc3c26c508ec125b416f4767505b7e1a7bb6825658b",
+      "finalSourceMatch": true,
+      "provenanceVideoHashMatch": true
+    }
+  ],
+  "pairs": [
+    {
+      "fixture": "case-06",
+      "comparison": "COMPARABLE_FINAL_SOURCE",
+      "inputProfileHashMatch": true,
+      "finalSourceMatch": true,
+      "independentActualClockReadability": {
+        "baseline": null,
+        "v5": null,
+        "delta": null,
+        "status": "UNMEASURED"
+      },
+      "humanStatus": "HUMAN_UNVERIFIED",
+      "aestheticImprovement": "UNMEASURED"
+    },
+    {
+      "fixture": "case-07",
+      "comparison": "COMPARABLE_FINAL_SOURCE",
+      "inputProfileHashMatch": true,
+      "finalSourceMatch": true,
+      "independentActualClockReadability": {
+        "baseline": null,
+        "v5": null,
+        "delta": null,
+        "status": "UNMEASURED"
+      },
+      "humanStatus": "HUMAN_UNVERIFIED",
+      "aestheticImprovement": "UNMEASURED"
+    },
+    {
+      "fixture": "case-08",
+      "comparison": "COMPARABLE_FINAL_SOURCE",
+      "inputProfileHashMatch": true,
+      "finalSourceMatch": true,
+      "independentActualClockReadability": {
+        "baseline": 49,
+        "v5": 49,
+        "delta": 0,
+        "status": "MEASURED"
+      },
+      "humanStatus": "HUMAN_UNVERIFIED",
+      "aestheticImprovement": "UNMEASURED"
+    },
+    {
+      "fixture": "case-24",
+      "comparison": "COMPARABLE_FINAL_SOURCE",
+      "inputProfileHashMatch": true,
+      "finalSourceMatch": true,
+      "independentActualClockReadability": {
+        "baseline": 100,
+        "v5": 100,
+        "delta": 0,
+        "status": "MEASURED"
+      },
+      "humanStatus": "HUMAN_UNVERIFIED",
+      "aestheticImprovement": "UNMEASURED"
+    },
+    {
+      "fixture": "general-dark",
+      "comparison": "COMPARABLE_FINAL_SOURCE",
+      "inputProfileHashMatch": true,
+      "finalSourceMatch": true,
+      "independentActualClockReadability": {
+        "baseline": 75,
+        "v5": 75,
+        "delta": 0,
+        "status": "MEASURED"
+      },
+      "humanStatus": "HUMAN_UNVERIFIED",
+      "aestheticImprovement": "UNMEASURED"
+    },
+    {
+      "fixture": "general-dense",
+      "comparison": "COMPARABLE_FINAL_SOURCE",
+      "inputProfileHashMatch": true,
+      "finalSourceMatch": true,
+      "independentActualClockReadability": {
+        "baseline": 47,
+        "v5": 47,
+        "delta": 0,
+        "status": "MEASURED"
+      },
+      "humanStatus": "HUMAN_UNVERIFIED",
+      "aestheticImprovement": "UNMEASURED"
+    },
+    {
+      "fixture": "general-manual",
+      "comparison": "COMPARABLE_FINAL_SOURCE",
+      "inputProfileHashMatch": true,
+      "finalSourceMatch": true,
+      "independentActualClockReadability": {
+        "baseline": 0,
+        "v5": 0,
+        "delta": 0,
+        "status": "MEASURED"
+      },
+      "humanStatus": "HUMAN_UNVERIFIED",
+      "aestheticImprovement": "UNMEASURED"
+    },
+    {
+      "fixture": "general-people",
+      "comparison": "COMPARABLE_FINAL_SOURCE",
+      "inputProfileHashMatch": true,
+      "finalSourceMatch": true,
+      "independentActualClockReadability": {
+        "baseline": 95,
+        "v5": 95,
+        "delta": 0,
+        "status": "MEASURED"
+      },
+      "humanStatus": "HUMAN_UNVERIFIED",
+      "aestheticImprovement": "UNMEASURED"
+    }
+  ],
+  "fullDecodedArtifacts": 17,
+  "uniqueFullyDecodedVideoHashes": 17,
+  "finalSourceMP4Count": 16,
+  "failedTrials": [],
+  "historicalResultsReused": false,
+  "qualityGate": "UNVERIFIED"
+}
