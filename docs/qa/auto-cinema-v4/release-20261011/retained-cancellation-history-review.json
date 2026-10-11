@@ -1,0 +1,8 @@
+{
+  "sourceHEAD": "2bd32cc9d5a1298d03a199e6e36ac27f016a0749",
+  "observation": "Final screenshot retains previous CANCELLED card after successful retry card auto-dismisses",
+  "actualRetryCompletion": "Native UI runner asserts latest observed export job status completed, exporting false, outcome SAVE_AVAILABLE; assertion PASS",
+  "mechanism": "01p_processing.js complete auto-dismisses noncompact success after1200ms; cancelled state retained until dismissed. 12a_processing_ui.js displays last remaining outcome",
+  "result": "No stalled retry or lost MP4; historical outcome reappearance is existing behavior, not fixed or hidden",
+  "sourceChanged": false
+}
