@@ -1,0 +1,93 @@
+{
+  "run": "38112449790",
+  "head": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+  "event": "push",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "build",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check out source",
+          "conclusion": "success"
+        },
+        {
+          "name": "Set up Node.js 24",
+          "conclusion": "success"
+        },
+        {
+          "name": "Set up media validation",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install locked dependencies",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run regression tests",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build production files",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify production layout",
+          "conclusion": "success"
+        },
+        {
+          "name": "Browser UI and MP4 smoke test",
+          "conclusion": "success"
+        },
+        {
+          "name": "Preserve validation evidence",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload Pages artifact",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Set up Node.js 24",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Check out source",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Configure Pages",
+          "conclusion": "success"
+        },
+        {
+          "name": "Deploy to GitHub Pages",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}
