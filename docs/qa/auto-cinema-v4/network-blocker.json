@@ -1,0 +1,22 @@
+{
+  "status": "ENVIRONMENT_UPSTREAM_CONNECTIVITY_FAILURE",
+  "capturedUTC": "2026-10-10T15:42:34.558136+00:00",
+  "observations": [
+    {
+      "endpoint": "Google Fonts CSS",
+      "httpStatus": 503,
+      "response": "upstream connect error or disconnect/reset before headers. reset reason: remote connection failure, transport failure reason: immediate connect error: Invalid argument|remote address:envoy://cloudflare_https_tunnel/"
+    },
+    {
+      "endpoint": "GitHub API",
+      "httpStatus": 503,
+      "response": "upstream connect error or disconnect/reset before headers. reset reason: remote connection failure, transport failure reason: immediate connect error: Invalid argument|remote address:envoy://cloudflare_https_tunnel/"
+    }
+  ],
+  "managedEnvironmentStatus": "connected/running reported by status API, but actual outbound requests fail",
+  "matrixExit": 130,
+  "termination": "Stopped owned benchmark after repeated external failures; preserved all completed and failed rows. Remaining rows are NOT_RUN, not PASS.",
+  "applicationFontCause": "No application-specific cause established; Google Fonts and independent GitHub HTTP requests fail in the same environment tunnel. Earlier normal-font and controlled-failure browser probes both completed.",
+  "historicalOfflineCause": "UNRESOLVED: old-instance artifacts unavailable",
+  "recovery": "Restore environment outbound connectivity without resetting or cleaning the repository. Then push the protected local commit, create the PR, retain this interrupted dataset and rerun affected/remaining comparisons in a separately identified dataset before final CI."
+}

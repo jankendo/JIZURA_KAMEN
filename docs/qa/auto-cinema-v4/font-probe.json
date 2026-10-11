@@ -1,0 +1,136 @@
+{
+  "status": "PASS",
+  "browser": "154.0.8037.97",
+  "cases": [
+    {
+      "mode": "NORMAL_NETWORK",
+      "elapsedMs": 3607.5,
+      "evidence": {
+        "embedded_bold": {
+          "status": "LOADED",
+          "family": "\"JIZURA Noto CJK JP\"",
+          "faces": 1
+        },
+        "mono": {
+          "status": "LOADED",
+          "family": "\"IBM Plex Mono\"",
+          "faces": 1
+        },
+        "dela": {
+          "status": "LOADED",
+          "family": "\"Dela Gothic One\"",
+          "faces": 8
+        },
+        "zenkaku": {
+          "status": "LOADED",
+          "family": "\"Zen Kaku Gothic New\"",
+          "faces": 8
+        },
+        "gothic_black": {
+          "status": "LOADED",
+          "family": "\"Noto Sans JP\"",
+          "faces": 8
+        },
+        "gothic_med": {
+          "status": "LOADED",
+          "family": "\"Noto Sans JP\"",
+          "faces": 8
+        },
+        "gothic_bold": {
+          "status": "LOADED",
+          "family": "\"Noto Sans JP\"",
+          "faces": 3
+        },
+        "mincho": {
+          "status": "LOADED",
+          "family": "\"Noto Serif JP\"",
+          "faces": 8
+        },
+        "mincho_light": {
+          "status": "LOADED",
+          "family": "\"Noto Serif JP\"",
+          "faces": 8
+        }
+      },
+      "embeddedAvailable": true,
+      "failures": [],
+      "pageErrors": []
+    },
+    {
+      "mode": "CONTROLLED_EXTERNAL_NETWORK_FAILURE",
+      "elapsedMs": 0.30000000074505806,
+      "evidence": {
+        "mono": {
+          "status": "REQUESTED_FACE_UNAVAILABLE",
+          "family": "\"IBM Plex Mono\"",
+          "faces": 0
+        },
+        "gothic_black": {
+          "status": "REQUESTED_FACE_UNAVAILABLE",
+          "family": "\"Noto Sans JP\"",
+          "faces": 0
+        },
+        "dela": {
+          "status": "REQUESTED_FACE_UNAVAILABLE",
+          "family": "\"Dela Gothic One\"",
+          "faces": 0
+        },
+        "zenkaku": {
+          "status": "REQUESTED_FACE_UNAVAILABLE",
+          "family": "\"Zen Kaku Gothic New\"",
+          "faces": 0
+        },
+        "mincho_light": {
+          "status": "REQUESTED_FACE_UNAVAILABLE",
+          "family": "\"Noto Serif JP\"",
+          "faces": 0
+        },
+        "mincho": {
+          "status": "REQUESTED_FACE_UNAVAILABLE",
+          "family": "\"Noto Serif JP\"",
+          "faces": 0
+        },
+        "gothic_med": {
+          "status": "REQUESTED_FACE_UNAVAILABLE",
+          "family": "\"Noto Sans JP\"",
+          "faces": 0
+        },
+        "gothic_bold": {
+          "status": "REQUESTED_FACE_UNAVAILABLE",
+          "family": "\"Noto Sans JP\"",
+          "faces": 0
+        },
+        "embedded_bold": {
+          "status": "LOADED",
+          "family": "\"JIZURA Noto CJK JP\"",
+          "faces": 1
+        }
+      },
+      "embeddedAvailable": true,
+      "failures": [
+        {
+          "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap",
+          "reason": "net::ERR_INTERNET_DISCONNECTED"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700;900&display=swap",
+          "reason": "net::ERR_INTERNET_DISCONNECTED"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap",
+          "reason": "net::ERR_INTERNET_DISCONNECTED"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@900&display=swap",
+          "reason": "net::ERR_INTERNET_DISCONNECTED"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&display=swap",
+          "reason": "net::ERR_INTERNET_DISCONNECTED"
+        }
+      ],
+      "pageErrors": []
+    }
+  ],
+  "historicalFailureCause": "UNRESOLVED: old-instance failure artifacts unavailable; present success cannot prove past cause"
+}

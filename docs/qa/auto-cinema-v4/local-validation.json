@@ -1,0 +1,423 @@
+{
+  "status": "PASS",
+  "scope": "npm ci, complete engine suite including isolated restore, build and real browser export; final matrix and exact-HEAD CI pending",
+  "runtimeHTMLSHA256": "c8dc02a71553f9d2b9276846df252e29a1ff289197fbf48eb736c4a0f50bb579",
+  "tests": {
+    "total": 189,
+    "passed": 187,
+    "failed": 0,
+    "skipped": 2,
+    "skipStatus": "SKIPPED_ENVIRONMENT_MISSING",
+    "skipNames": [
+      "variable_font_browser_test.js",
+      "browser_export_e2e_test.js"
+    ],
+    "formalBrowserReplacement": "PASS: real UI export 10 checks plus decoder, cancellation and independent retry"
+  },
+  "commands": {
+    "npm-ci": 0,
+    "full-test": 0,
+    "build": 0,
+    "browser": 0,
+    "ui-boundary": 0
+  },
+  "testLog": {
+    "path": "/workspace/kamen-v4-validation/full-test.log",
+    "sha256": "05df88bedbdf0eb7ae846e4916c4619c21486730dcb929d2b5f76653e45e32a1"
+  },
+  "isolatedRestore": "187/189 PASS, 0 FAIL, 2 SKIP; same frozen application source, earlier metadata commit",
+  "finalCI": "PENDING",
+  "browser": {
+    "checks": [
+      {
+        "name": "startup",
+        "status": "PASS",
+        "version": "2.0.26",
+        "secure": true
+      },
+      {
+        "name": "background upload",
+        "status": "PASS"
+      },
+      {
+        "name": "TXT import",
+        "status": "PASS"
+      },
+      {
+        "name": "LRC import and timing",
+        "status": "PASS"
+      },
+      {
+        "name": "audio upload and analysis",
+        "status": "PASS",
+        "bpm": 120
+      },
+      {
+        "name": "automatic MV generation",
+        "status": "PASS",
+        "cuts": 4,
+        "lines": 4,
+        "duration": 8.999977324263039
+      },
+      {
+        "name": "preview playback",
+        "status": "PASS"
+      },
+      {
+        "name": "project save and reload",
+        "status": "PASS"
+      },
+      {
+        "name": "regenerate after restored audio",
+        "status": "PASS"
+      },
+      {
+        "name": "UI MP4 export and decode",
+        "status": "PASS",
+        "creativeState": "BELOW_TARGET",
+        "oneClick": true,
+        "video": "h264",
+        "audio": "aac",
+        "duration": "9.024000",
+        "progressUpdates": 698,
+        "decodedFrames": 216,
+        "visibleContent": true
+      }
+    ],
+    "oneClick": true,
+    "outcome": {
+      "fileState": "SAVE_AVAILABLE",
+      "creativeState": "BELOW_TARGET",
+      "initialConfirmedPlanReused": false
+    },
+    "pageErrors": [],
+    "resourceFailures": [],
+    "videoHash": "39b866e07a23ff7e4e8dbc8e5b9e9fc31264d919174142947e604d6a104badde",
+    "actualExport": {
+      "name": "cinema_v3_export_e2e.cjs",
+      "status": "PASS",
+      "mode": "run-actual-UI-export",
+      "checks": 10,
+      "videoHash": "39b866e07a23ff7e4e8dbc8e5b9e9fc31264d919174142947e604d6a104badde",
+      "planHash": "80a24a60d0a4522cf86e7584c2fb13522027423ce5c43d5d1648f34a05ecacc9",
+      "state": "BUDGET_EXHAUSTED",
+      "attempts": 4,
+      "decisions": [
+        "INITIAL_ARTIFACT_RETAINED_AS_DRAFT",
+        "VERIFIED_TARGET_IMPROVEMENT",
+        "VERIFIED_TARGET_IMPROVEMENT",
+        "PROTECTED_REGRESSION"
+      ],
+      "artistic100Established": false,
+      "peakMemoryStatus": "UNMEASURED",
+      "browser": "154.0.8037.97",
+      "decoderProbe": {
+        "status": "PASS",
+        "controls": 3,
+        "method": "actual H264/AAC UI artifact plus actual H264 black control; only native HTMLVideoElement canvas paint is injected to zero",
+        "thresholdChanged": false,
+        "previousTransientFailureCause": "UNRESOLVED: initial failed blob was not retained",
+        "recovered": {
+          "passed": true,
+          "checks": {
+            "container": true,
+            "video": true,
+            "audio": true,
+            "resolution": true,
+            "duration": true,
+            "frames": true,
+            "fps": true,
+            "avSync": true,
+            "reloaded": true,
+            "avDuration": true,
+            "seek": true,
+            "blackFrames": true,
+            "firstLast": true
+          },
+          "frames": [
+            {
+              "time": 0,
+              "nonBlack": 1
+            },
+            {
+              "time": 0.25,
+              "nonBlack": 1
+            },
+            {
+              "time": 4.512,
+              "nonBlack": 0.9012988683127572
+            },
+            {
+              "time": 8.943999999999999,
+              "nonBlack": 1
+            }
+          ],
+          "nativeFrames": [
+            {
+              "time": 0,
+              "nonBlack": 0
+            },
+            {
+              "time": 0.25,
+              "nonBlack": 0
+            },
+            {
+              "time": 4.512,
+              "nonBlack": 0
+            },
+            {
+              "time": 8.943999999999999,
+              "nonBlack": 0
+            }
+          ],
+          "nativeChecks": {
+            "blackFrames": false,
+            "firstLast": false
+          },
+          "independentPixels": {
+            "status": "MEASURED",
+            "source": "independent encoded MP4 decoder; same RGB threshold and timestamps",
+            "frames": [
+              {
+                "time": 0,
+                "nonBlack": 1
+              },
+              {
+                "time": 0.25,
+                "nonBlack": 1
+              },
+              {
+                "time": 4.512,
+                "nonBlack": 0.9012988683127572
+              },
+              {
+                "time": 8.943999999999999,
+                "nonBlack": 1
+              }
+            ]
+          },
+          "path": "Browser WebCodecs \u2192 MP4 Blob \u2192 HTMLVideoElement reload/decode",
+          "fps": 24,
+          "avSync": "track timestamp/duration; no perceptual sync claim"
+        },
+        "black": {
+          "passed": false,
+          "checks": {
+            "container": true,
+            "video": true,
+            "audio": true,
+            "resolution": true,
+            "duration": true,
+            "frames": true,
+            "fps": true,
+            "avSync": true,
+            "reloaded": true,
+            "avDuration": true,
+            "seek": true,
+            "blackFrames": false,
+            "firstLast": false
+          },
+          "frames": [
+            {
+              "time": 0,
+              "nonBlack": 0
+            },
+            {
+              "time": 0.25,
+              "nonBlack": 0
+            },
+            {
+              "time": 0.5,
+              "nonBlack": 0
+            },
+            {
+              "time": 0.92,
+              "nonBlack": 0
+            }
+          ],
+          "nativeFrames": [
+            {
+              "time": 0,
+              "nonBlack": 0
+            },
+            {
+              "time": 0.25,
+              "nonBlack": 0
+            },
+            {
+              "time": 0.5,
+              "nonBlack": 0
+            },
+            {
+              "time": 0.92,
+              "nonBlack": 0
+            }
+          ],
+          "nativeChecks": {
+            "blackFrames": false,
+            "firstLast": false
+          },
+          "independentPixels": {
+            "status": "MEASURED",
+            "source": "independent encoded MP4 decoder; same RGB threshold and timestamps",
+            "frames": [
+              {
+                "time": 0,
+                "nonBlack": 0
+              },
+              {
+                "time": 0.25,
+                "nonBlack": 0
+              },
+              {
+                "time": 0.5,
+                "nonBlack": 0
+              },
+              {
+                "time": 0.92,
+                "nonBlack": 0
+              }
+            ]
+          },
+          "path": "Browser WebCodecs \u2192 MP4 Blob \u2192 HTMLVideoElement reload/decode",
+          "fps": 24,
+          "avSync": "track timestamp/duration; no perceptual sync claim"
+        },
+        "retention": {
+          "rejected": true,
+          "originalError": "EXPORT_INVALID: MP4\u518d\u8aad\u8fbc\u691c\u67fb\u306b\u5931\u6557\u3057\u307e\u3057\u305f {\"container\":true,\"video\":true,\"audio\":true,\"resolution\":true,\"duration\":true,\"frames\":true,\"fps\":true,\"avSync\":true,\"reloaded\":true,\"avDuration\":true,\"seek\":true,\"blackFrames\":false,\"firstLast\":false}",
+          "retainedSameBlob": true,
+          "attachedSameArtifact": true,
+          "status": "FAILED",
+          "videoHash": "07255ab34e502346bf4075143652504e5708fcd592c77d647df2f7a45dcae151",
+          "inspectionPassed": false,
+          "planHash": null,
+          "fullDecode": "PASS",
+          "file": "failed-black-control.mp4"
+        },
+        "cancellation": {
+          "status": "PASS",
+          "bitmapGuardResources": {
+            "status": "PASS",
+            "nativeImageBitmaps": 1,
+            "beforeDimensions": [
+              [
+                640,
+                360
+              ]
+            ],
+            "afterDimensions": [
+              [
+                0,
+                0
+              ]
+            ],
+            "peakMemoryStatus": "UNMEASURED"
+          },
+          "cancellation": {
+            "status": "PASS",
+            "source": "actual browser WebCodecs encoder/frame objects, cancellation after frame submission; no mocked encoder",
+            "beforePlanQAHash": "846400774b4ca3061296aef61bff5feca5ff9298d3a16d230b4b843c99466e6b",
+            "afterPlanQAHash": "846400774b4ca3061296aef61bff5feca5ff9298d3a16d230b4b843c99466e6b",
+            "hashMethod": "canonical plan plus explicit serialized pixel QA and quality target (canonical plan alone excludes QA)",
+            "restored": true,
+            "abortProgress": {
+              "stage": "frames",
+              "current": 21,
+              "total": 96,
+              "encoded": 18
+            },
+            "error": {
+              "name": "Error",
+              "message": "\u30ad\u30e3\u30f3\u30bb\u30eb\u3057\u307e\u3057\u305f"
+            },
+            "nativeEncoders": 1,
+            "nativeFrames": 21,
+            "allEncodersClosed": true,
+            "allFramesClosed": true,
+            "retry": "following actual full H264/AAC export independently validated by runner"
+          },
+          "retryVideoHash": "8bdf306f631e7d59d358c6b44138054cce5201af51737e3541d0d3b896978a4c",
+          "retryCodecs": [
+            "h264",
+            "aac"
+          ],
+          "retryFullDecode": "PASS",
+          "timingPurpose": "NOT_A_PERFORMANCE_BENCHMARK; canceled attempt plus retry",
+          "historicalCertificationCause": "UNRESOLVED; this is an independently controlled cancellation test"
+        }
+      }
+    },
+    "syntheticUIBoundary": {
+      "status": "PASS",
+      "evidence": "BROWSER_UI_BOUNDARY_WITH_SYNTHETIC_ACCEPTANCE_AND_VALIDATED_MP4_REUSE",
+      "freshEncodes": 0,
+      "sourceVideoHash": "39b866e07a23ff7e4e8dbc8e5b9e9fc31264d919174142947e604d6a104badde",
+      "browser": "154.0.8037.97",
+      "cases": [
+        {
+          "state": "TARGET_MET",
+          "outcome": {
+            "fileState": "SAVE_AVAILABLE",
+            "creativeState": "TARGET_MET",
+            "initialConfirmedPlanReused": false
+          },
+          "calls": 1,
+          "draft": false,
+          "job": {
+            "status": "completed",
+            "error": ""
+          }
+        },
+        {
+          "state": "BELOW_TARGET",
+          "outcome": {
+            "fileState": "SAVE_AVAILABLE",
+            "creativeState": "BELOW_TARGET",
+            "initialConfirmedPlanReused": false
+          },
+          "calls": 2,
+          "draft": false,
+          "job": {
+            "status": "completed",
+            "error": ""
+          }
+        },
+        {
+          "state": "UNMEASURED",
+          "outcome": {
+            "fileState": "SAVE_AVAILABLE",
+            "creativeState": "UNMEASURED",
+            "initialConfirmedPlanReused": false
+          },
+          "calls": 3,
+          "draft": false,
+          "job": {
+            "status": "completed",
+            "error": ""
+          }
+        },
+        {
+          "state": "INVALID_MP4",
+          "outcome": {
+            "fileState": "FAILED_TECHNICAL",
+            "creativeState": "UNMEASURED",
+            "initialConfirmedPlanReused": false
+          }
+        },
+        {
+          "state": "PICKER_CANCEL",
+          "outcome": {
+            "fileState": "CANCELLED",
+            "creativeState": "UNMEASURED"
+          }
+        }
+      ],
+      "pageErrors": []
+    }
+  },
+  "browserRawReport": {
+    "path": "/workspace/kamen-v4-validation/browser/report.json",
+    "sha256": "f60bd305f22f6b69d71f1742f0eb77a45a049bc19d99fd9109d4061a2654fed6"
+  }
+}

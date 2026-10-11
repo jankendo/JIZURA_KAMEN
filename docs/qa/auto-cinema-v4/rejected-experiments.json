@@ -1,0 +1,169 @@
+{
+  "status": "REJECTED",
+  "rendererSharingRejected": true,
+  "perTimeCandidateEvidenceReuseRemoved": true,
+  "internalRendererStateCause": "UNRESOLVED",
+  "interpretation": "same-Blob remeasurement confirms the regression; independent Renderer scopes restore 99. Successful technical MP4 decode is not quality acceptance. Earlier experiment history is preserved.",
+  "records": [
+    {
+      "experiment": "strong-representatives",
+      "variant": "strong-representatives",
+      "technicalStatus": "PASS",
+      "videoHash": "8e4b8042977e6c25f9df0c9a2a8d91e8d7665d923f4205490a0b03036bd5b9c1",
+      "inputHash": "f4c1a45a63c1e8e83add56a007dd0c2d99e91299318c582d36c154e8c94165cb",
+      "planHash": "9a59bc4d43681306b8920b0eef2bf3e1a9c25d059534e4bb11d935a8d97a24cd",
+      "localContrast": 95,
+      "sameBlobObserverScores": [],
+      "timeMs": {
+        "analysisAndPlanMs": 3506.5,
+        "searchMs": 10426.900000000373,
+        "exportMs": 1548.9000000003725,
+        "totalMs": 15482.300000000745
+      },
+      "nativeOperations": {
+        "observations": 14,
+        "cacheHits": 0,
+        "nativeFrames": 122,
+        "sameActualFrameReuses": 0,
+        "sampleCacheHits": 6,
+        "samples": 128
+      }
+    },
+    {
+      "experiment": "strong-representatives",
+      "variant": "PR8",
+      "technicalStatus": "PASS",
+      "videoHash": "dadf8023188e45f80da24967e256c7b62332db1ae28e01783b7c424fd38f71a6",
+      "inputHash": "f4c1a45a63c1e8e83add56a007dd0c2d99e91299318c582d36c154e8c94165cb",
+      "planHash": "3a4cc73f0f82ffb4f95b3818d85ec59fcb48a25267870d46d76496589957a12e",
+      "localContrast": 99,
+      "sameBlobObserverScores": [],
+      "timeMs": {
+        "analysisAndPlanMs": 3239.0999999996275,
+        "searchMs": 10781.800000000745,
+        "exportMs": 1476.2999999988824,
+        "totalMs": 15497.199999999255
+      },
+      "nativeOperations": {
+        "observations": 14,
+        "cacheHits": 0,
+        "nativeFrames": 128,
+        "sameActualFrameReuses": 0,
+        "sampleCacheHits": 0,
+        "samples": 128
+      }
+    },
+    {
+      "experiment": "isolate-sample",
+      "variant": "isolate-sample",
+      "technicalStatus": "PASS",
+      "videoHash": "d254c95fd51762900d49caf7ae01301308ed2727890dc6ecbb13cb402a14ce54",
+      "inputHash": "f4c1a45a63c1e8e83add56a007dd0c2d99e91299318c582d36c154e8c94165cb",
+      "planHash": "3a4cc73f0f82ffb4f95b3818d85ec59fcb48a25267870d46d76496589957a12e",
+      "localContrast": 99,
+      "sameBlobObserverScores": [
+        99,
+        99,
+        99
+      ],
+      "timeMs": {
+        "analysisAndPlanMs": 3500.5999999996275,
+        "searchMs": 10631.199999999255,
+        "exportMs": 1480.5,
+        "totalMs": 15612.299999998882
+      },
+      "nativeOperations": {
+        "observations": 14,
+        "cacheHits": 0,
+        "nativeFrames": 128,
+        "sameActualFrameReuses": 0,
+        "sampleCacheHits": 0,
+        "samples": 128
+      }
+    },
+    {
+      "experiment": "isolate-sample",
+      "variant": "PR8",
+      "technicalStatus": "PASS",
+      "videoHash": "bf9ac95d16cc02c86758bfaedbd87af6acdafbd9855308ff80151dd9a1294559",
+      "inputHash": "f4c1a45a63c1e8e83add56a007dd0c2d99e91299318c582d36c154e8c94165cb",
+      "planHash": "3a4cc73f0f82ffb4f95b3818d85ec59fcb48a25267870d46d76496589957a12e",
+      "localContrast": 99,
+      "sameBlobObserverScores": [
+        99,
+        99,
+        99
+      ],
+      "timeMs": {
+        "analysisAndPlanMs": 3708.5999999996275,
+        "searchMs": 11048.200000001118,
+        "exportMs": 1605.7999999988824,
+        "totalMs": 16362.599999999627
+      },
+      "nativeOperations": {
+        "observations": 14,
+        "cacheHits": 0,
+        "nativeFrames": 128,
+        "sameActualFrameReuses": 0,
+        "sampleCacheHits": 0,
+        "samples": 128
+      }
+    },
+    {
+      "experiment": "isolate-scope",
+      "variant": "isolate-scope",
+      "technicalStatus": "PASS",
+      "videoHash": "f9df9851eb838705dadeb6fb90f245276302efd9c5153b28aad88c8861493ec3",
+      "inputHash": "f4c1a45a63c1e8e83add56a007dd0c2d99e91299318c582d36c154e8c94165cb",
+      "planHash": "6d96b80a3fc29ebfe18fb11fda20d5ee9d06fb5e3cc11bd68451c7a58da75f52",
+      "localContrast": 90,
+      "sameBlobObserverScores": [
+        90,
+        90,
+        90
+      ],
+      "timeMs": {
+        "analysisAndPlanMs": 3268.5,
+        "searchMs": 10946.699999999255,
+        "exportMs": 1867.9000000003725,
+        "totalMs": 16083.099999999627
+      },
+      "nativeOperations": {
+        "observations": 14,
+        "cacheHits": 0,
+        "nativeFrames": 128,
+        "sameActualFrameReuses": 0,
+        "sampleCacheHits": 0,
+        "samples": 128
+      }
+    },
+    {
+      "experiment": "isolate-scope",
+      "variant": "PR8",
+      "technicalStatus": "PASS",
+      "videoHash": "e8104b8b70c46e9e1b4445e6b3339d4eca48ad211972dd595cf1c5bba2e5f144",
+      "inputHash": "f4c1a45a63c1e8e83add56a007dd0c2d99e91299318c582d36c154e8c94165cb",
+      "planHash": "3a4cc73f0f82ffb4f95b3818d85ec59fcb48a25267870d46d76496589957a12e",
+      "localContrast": 99,
+      "sameBlobObserverScores": [
+        99,
+        99,
+        99
+      ],
+      "timeMs": {
+        "analysisAndPlanMs": 3554.699999999255,
+        "searchMs": 11008.900000000373,
+        "exportMs": 1599.699999999255,
+        "totalMs": 16163.299999998882
+      },
+      "nativeOperations": {
+        "observations": 14,
+        "cacheHits": 0,
+        "nativeFrames": 128,
+        "sameActualFrameReuses": 0,
+        "sampleCacheHits": 0,
+        "samples": 128
+      }
+    }
+  ]
+}
