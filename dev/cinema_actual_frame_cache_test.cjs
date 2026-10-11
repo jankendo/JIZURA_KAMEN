@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
-const {J,context}=engine(),OriginalRenderer=J.Renderer,originalPrepare=J.prepareCinemaProxyRenderer;let renders=0;
+const {J,context}=engine(),OriginalRenderer=J.Renderer,originalPrepare=J.prepareCinemaProxyRenderer,originalContrast=J.decodedGlyphContrast;let renders=0,contrastCalls=0;
+J.decodedGlyphContrast=(...args)=>{contrastCalls++;return originalContrast(...args);};
 class Raster {
  frame(x,p,t,options){renders++;x.fillStyle='#456';x.fillRect(0,0,x.canvas.width,x.canvas.height);if(!p._decodedNeutralPrimary){x.fillStyle='#fff';x.fillRect(24+t*3,40,100,24);}if(options.lyricAuditCtx){const m=options.lyricAuditCtx;m.clearRect(0,0,m.canvas.width,m.canvas.height);if(!p._decodedNeutralPrimary){m.fillStyle='#fff';m.fillRect(24+t*3,40,100,24);}}}
  disposeAssets(){}
@@ -12,8 +13,10 @@ const times=[.31,.311,.312],range={start:0,end:2};
   const p={W,H,seed:1,fps:24,duration:2,cinemaDelivery:{width:W,height:H},cuts:[{line:0,start:0,end:2,dur:2,grammar:{temporal:{}}}],lines:[{text:'光'}]};
   const options={physicalOnly,backgroundConsistency:true,additionalTimes:times,times};
   const individual=[];for(const t of times){const r=await J.measureCinemaOutputReadability(p,range,null,{...options,times:[t]});individual.push(r.samples[0]);}
-  const scope={renderer:new Raster()},before=renders,batched=await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'one',scope});
-  assert.equal(J.canonicalJSON(batched.samples),J.canonicalJSON(individual),'batched physical and historical samples equal independent fresh pixels');assert.equal(batched.renderCounts.native,1);assert.equal(batched.renderCounts.actualFrameHits,2);
+  const scope={renderer:new Raster()},before=renders,beforeContrast=contrastCalls,batched=await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'one',scope});
+  assert.equal(J.canonicalJSON(batched.samples),J.canonicalJSON(individual),'batched physical and historical samples equal independent fresh pixels');assert.equal(batched.renderCounts.native,1);assert.equal(batched.renderCounts.actualFrameHits,2);assert.equal(contrastCalls-beforeContrast,physicalOnly?1:5,'immutable aligned references are evaluated once; requested-time references remain independent');
+  assert.notEqual(batched.samples[0].alignedContrast,batched.samples[1].alignedContrast,'sample evidence is independently owned');
+  assert.notEqual(batched.samples[0].backgroundConsistentAlignedContrast,batched.samples[1].backgroundConsistentAlignedContrast,'shared computation never aliases mutable sample evidence');
   const rendered=renders,hit=await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'one',scope});assert.equal(renders,rendered);assert(hit.measurementReuse);assert.equal(J.canonicalJSON(hit),J.canonicalJSON(batched),'cache telemetry cannot alter serialized evidence or plan hash');
   hit.samples[0].contrast.score=12345;const safe=await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'one',scope});assert.equal(J.canonicalJSON(safe),J.canonicalJSON(batched),'caller cannot corrupt cache');
   for(const changed of [{inputHash:'two'},{times:[times[0]]},{lines:[1]},{backgroundConsistency:false},{physicalOnly:!physicalOnly}]){const next=await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'one',scope,...changed});assert(!next.measurementReuse,'changed measurement conditions never reuse evidence');}
@@ -27,7 +30,7 @@ const times=[.31,.311,.312],range={start:0,end:2};
   const controller=new AbortController();controller.abort();await assert.rejects(J.measureCinemaOutputReadability(p,range,controller.signal,{...options,inputHash:'one',scope}),{name:'AbortError'});
   for(let n=0;n<20;n++)await J.measureCinemaOutputReadability(p,range,null,{...options,inputHash:'unique-'+n,scope});assert(scope.readabilityCache.size<=16);assert(renders>before);
  }
- J.Renderer=OriginalRenderer;J.prepareCinemaProxyRenderer=originalPrepare;
+ J.Renderer=OriginalRenderer;J.prepareCinemaProxyRenderer=originalPrepare;J.decodedGlyphContrast=originalContrast;
  for(const aspect of ['16:9','9:16','1:1']){
   const project={...J.defaultProject(),aspect,res:360,fps:24,lyrics:'[00:00.20]光と夢'},p=J.plan(project,{duration:2,beats:[]});J.cinemaV3.bindDelivery(p,project);
   const options={physicalOnly:true,backgroundConsistency:true,additionalTimes:times,times},individual=[];
