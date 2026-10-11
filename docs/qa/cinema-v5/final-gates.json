@@ -2,13 +2,13 @@
   "sourceCommit": "14c93432803984edbb4c8a3591d733d9b32380d7",
   "implementationSourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
   "TECHNICAL_GO": "UNVERIFIED",
-  "QUALITY_GO": "UNVERIFIED",
+  "QUALITY_GO": "PASS",
   "RELEASE_GO": "UNVERIFIED",
   "status": "FINAL_VERIFICATION_IN_PROGRESS",
   "currentCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38178818961",
   "previousCIFailure": "Obsolete sequential-decoder fixture and clean-restore test; fixed fixture PASS; current full regression still required",
   "completedEvidence": {
-    "comparisonConditions": 10,
+    "comparisonConditions": 13,
     "comparisonRequired": 13,
     "finalArtifactLyrics": "All ten completed V5 conditions MEASURED",
     "currentImplementationRouteExports": 4,
@@ -22,10 +22,9 @@
     "naturalSelectionScope": "Retained original-renderer calm/chant plus current-implementation no-image normal optimizer; benchmark fixed-initial-layout cases excluded"
   },
   "requiredRemaining": [
-    "Three final comparison conditions",
-    "Formal actual UI MP4 and decoder/cancel/one-click checks",
-    "Exact release HEAD full regression and CI",
-    "Main merge and deploy only after both gates PASS",
+    "Exact release HEAD full regression and successful CI",
+    "Formal GitHub merge after TECHNICAL_GO PASS",
+    "main Build/Pages artifact/Deploy SUCCESS",
     "HTTPS content hashes and actual production MP4 E2E"
   ],
   "generationSpeedReleaseGate": false,
@@ -34,5 +33,40 @@
   "mainChanged": false,
   "productionChanged": false,
   "environmentInterruptedWork": "completion/release-14c9343/environment-interruption-7fad8cb.json",
-  "history": "Original final gates preserved in completion/historical-final-gates-9bc1a210.json and Git history"
+  "history": "Original final gates preserved in completion/historical-final-gates-9bc1a210.json and Git history",
+  "qualityAcceptance": {
+    "comparisonPairs": 13,
+    "comparisonMP4CompleteDecode": 26,
+    "finalPrimaryLyricUnits": "37/37 MEASURED with unchanged safety policy",
+    "actualDecodedLyricFrames": 1557,
+    "independentActualImprovements": [
+      "general-manual primary glyph loss repaired",
+      "independent-fixed initial Latin glyph restored"
+    ],
+    "routeExports": "Four current-implementation paths PASS, including Legacy without candidate history and final-verification cancel/retry",
+    "naturalDirection": {
+      "selectedPlanPopulation": 13,
+      "exportApplicable": 12,
+      "outsideExportNotApplicable": 1,
+      "intentMeasured": 3,
+      "intentSuccessful": 3,
+      "unmeasuredApplicable": 9,
+      "unmeasuredReasons": "Unsupported explicit motion contract or insufficient partial-reveal observations; retained per unit"
+    },
+    "sameVideoReobservation": "Independent panels: all unit summaries and decoded frame observations exactly equal across two measurements; raw legacy aggregate 0 retained",
+    "majorActualRegressionConfirmed": false,
+    "scope": "Observed representative conditions and implementation equivalence; no universal aesthetic certification",
+    "rawLegacyDiagnostics": "Mixed changes, including lower typography-diversity proxies. Version-specific/missing coverage scores are not independent improvement proof and are not rewritten."
+  },
+  "localTechnicalVerification": {
+    "formalUIChecks": "10 PASS",
+    "actualOneClickBelowTargetMP4": "PASS, H.264/AAC 216 frames, save/reload, pageErrors=0, resourceFailures=0",
+    "nativeCancellationRetry": "PASS",
+    "actualBlackH264RejectionAndRetention": "PASS",
+    "saveCancelErrorBoundary": "PASS, synthetic acceptance with actual validated MP4 reuse; separate from generation proof",
+    "overlayFiveViewports": "PASS",
+    "fontBrowserAlternatives": "2 PASS distinct from formal environment SKIPs",
+    "acceptedMP4CompleteDecode": 35,
+    "negativeControlNotIncludedInAcceptedCount": true
+  }
 }
