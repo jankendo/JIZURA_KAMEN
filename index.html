@@ -38838,8 +38838,8 @@ Q.planVisualGrammar=p=>{
  if(p.cinemaCandidateMode==='legacy'||!p.cinemaV3Features)return p;
  const sections=p.cinemaV3Features.sections||[],energies=sections.map(s=>s.energy.value).filter(Number.isFinite),peak=energies.length?Math.max(...energies):null,median=energies.length?(()=>{const a=[...energies].sort((x,y)=>x-y),i=Math.floor(a.length/2);return a.length%2?a[i]:(a[i-1]+a[i])/2;})():null;let previous=null;const repeats=new Map(),shots=[];
  const inputMode=p.cinemaV3Features.inputMode,segmentation=p.verifiedSubjectSegmentation;
- const subjectTrusted=segmentation?.status==='MEASURED'&&segmentation.confidence>=.8&&segmentation.maskValidated===true;
- p.cinemaV5World={inputMode,mode:inputMode==='no-image'?'existing-non-image':inputMode==='multi-image'?'image-sequence-composition':subjectTrusted?'verified-subject-layer':'composition-and-typography',subjectSegmentation:subjectTrusted?{status:'MEASURED',confidence:segmentation.confidence}:{status:'UNMEASURED',confidence:0,reason:'Connected edges/regions are not subject recognition'},layerPermission:subjectTrusted,depth:{status:'UNMEASURED',reason:'No measured depth'},limits:'Focus anchors are composition heuristics. No guaranteed face, person, subject or depth.'};
+ const subjectTrusted=segmentation?.status==='MEASURED'&&segmentation.confidence>=.8&&segmentation.maskValidated===true&&segmentation.mask!=null&&typeof J.drawVerifiedSubjectCinema==='function';
+ p.cinemaV5World={inputMode,mode:inputMode==='no-image'?'existing-non-image':inputMode==='multi-image'?'image-sequence-composition':subjectTrusted?'verified-subject-layer':'composition-and-typography',subjectSegmentation:subjectTrusted?{status:'MEASURED',confidence:segmentation.confidence}:{status:'UNMEASURED',confidence:0,reason:'No usable verified mask renderer; connected edges/regions and validation metadata alone are not subject recognition'},layerPermission:subjectTrusted,depth:{status:'UNMEASURED',reason:'No measured depth'},limits:'Focus anchors are composition heuristics. No guaranteed face, person, subject or depth.'};
  for(const c of p.cuts||[]){
   if(c.line<0||c.locked||c.cinemaV3LegacyFinalist||J.photoChoreographyLocked?.(p,c))continue;
   const s=sections.find(s=>c.start>=s.from&&c.start<s.to),e=s?.energy?.value,confidence=s?.energy?.confidence??0,density=s?.lyricDensity?.value??null,text=String(c.lineText??c.text??''),repeat=repeats.get(text)||0,quiet=e!==null&&e!==undefined&&e<.3&&density!==null&&density<8;
@@ -38868,6 +38868,7 @@ const adapt=V.adaptGrammar;
 V.adaptGrammar=p=>{const out=adapt(p);Q.planVisualGrammar(out);for(const c of out.cuts||[])if(c.cinemaV5Direction)c.cinemaV3Typography=V.typographyPreflight(out,c);return out;};
 const layered=J.drawLayeredCinema;
 J.drawLayeredCinema=(R,ctx,p,...args)=>{
+ if(p.cinemaV5World?.layerPermission&&typeof J.drawVerifiedSubjectCinema==='function')return J.drawVerifiedSubjectCinema(R,ctx,p,...args,p.verifiedSubjectSegmentation.mask);
  const c=J.cutAt(p,args[0]),manual=!!c&&(c.locked||J.photoChoreographyLocked?.(p,c));if(p.cinemaV5World&&!p.cinemaV5World.layerPermission&&!manual)return false;
  return layered(R,ctx,p,...args);
 };
