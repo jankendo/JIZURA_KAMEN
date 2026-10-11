@@ -1,0 +1,51 @@
+{
+  "capturedUTC": "2026-10-11T00:29:09.210954+00:00",
+  "status": "REMOTE_SAVED_HEAD_RESTORED_UNSENT_HEAD_NOT_RECOVERED",
+  "initialLocalHEAD": "ef829f93a933794c337bf1a37c39fcfb8d4de0f4",
+  "restoredHEAD": "c3e504da45787462fc31b172a42ed56acdb4727c",
+  "requestedUnsentHEAD": "d5791a12043e2d8884e3d07b623a84f99b2e7689",
+  "unsentHEAD": "NOT_FOUND_IN_AVAILABLE_GIT_REPOSITORIES_OR_GITHUB",
+  "uncommittedChangesAtStart": [],
+  "rawV4Artifacts": "Original /workspace/kamen-v4-validation directory absent in available environment; committed evidence retained unchanged, raw MP4s not claimed recovered",
+  "backup": {
+    "path": "/workspace/kamen-v4-recovery/pre-recovery.bundle",
+    "verified": true,
+    "sha256": "62e3c4195d1a3fa0ebc5a031730782098e4a651b6d345a44978ee0e0cea3133b"
+  },
+  "networkProbe": {
+    "capturedUTC": "2026-10-11T00:28:44.597932+00:00",
+    "checks": [
+      {
+        "url": "https://api.github.com/repos/jankendo/JIZURA_KAMEN",
+        "status": 200,
+        "server": "envoy",
+        "bytes": 15572
+      },
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap",
+        "status": 200,
+        "server": "envoy",
+        "bytes": 233
+      },
+      {
+        "dnsHost": "github.com",
+        "addresses": [
+          "140.82.114.3"
+        ]
+      },
+      {
+        "dnsHost": "fonts.googleapis.com",
+        "addresses": [
+          "192.178.164.95",
+          "2607:f8b0:4023:200d::5f"
+        ]
+      }
+    ]
+  },
+  "gitFetch": "PASS",
+  "initialNormalPush": "PASS_ALREADY_UP_TO_DATE",
+  "historicalOfflineCause": "UNRESOLVED",
+  "tunnelHistoricalFailure": "Recorded upstream Envoy Cloudflare tunnel failure; current GitHub API and Google Fonts CSS HTTPS returned 200 with TLS verification enabled",
+  "dnsTLS": "DNS resolves; HTTPS via inherited proxy verified. Does not identify historical DNS/TLS root cause",
+  "releaseDecision": "NO-GO_PENDING_REQUIRED_VALIDATION"
+}
