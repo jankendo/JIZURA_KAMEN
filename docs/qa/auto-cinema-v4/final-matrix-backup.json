@@ -1,0 +1,20 @@
+{
+  "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
+  "contents": "126 independently fully decoded H264/AAC MP4s, raw observations, logs, summaries and reproducible helper commands",
+  "archiveBytes": 73401742,
+  "archiveSHA256": "50e7d913df0d810bdcfb8696eac19c7f775bcd2c2aba02e2b7ae46e5c08f2a61",
+  "parts": [
+    {
+      "file": "qa-backups/auto-cinema-v4-20261011/final-matrix-evidence.tgz.part-01",
+      "bytes": 41943040,
+      "sha256": "8631d7b9375c22ee93cb45ca25b6a21125f3753e00fe7602d46098de5d339b6e"
+    },
+    {
+      "file": "qa-backups/auto-cinema-v4-20261011/final-matrix-evidence.tgz.part-02",
+      "bytes": 31458702,
+      "sha256": "715f728c232353057b3efb3b775be10c0205d7a2448f3bc411efbf42aacdbe1d"
+    }
+  ],
+  "restore": "Concatenate parts in numeric order, verify archiveSHA256, then tar -xzf into an empty recovery directory.",
+  "uploadStatus": "PREPARED_FOR_NORMAL_GIT_PUSH"
+}

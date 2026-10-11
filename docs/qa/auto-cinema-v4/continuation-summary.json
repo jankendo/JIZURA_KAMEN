@@ -1,0 +1,6162 @@
+{
+  "capturedUTC": "2026-10-11T02:15:39.199988+00:00",
+  "status": "COMPLETE",
+  "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
+  "environment": {
+    "browser": "151.0.7922.173",
+    "node": "v24.19.0",
+    "os": "linux",
+    "release": "6.18.44"
+  },
+  "expectedRows": 126,
+  "actualRows": 126,
+  "passed": 126,
+  "failed": 0,
+  "notRun": 0,
+  "historicalEvidence": {
+    "preservedUnchanged": true,
+    "passed": 66,
+    "failed": 5,
+    "notRun": 55,
+    "originalRawVideoAvailability": "NOT_RECOVERED",
+    "comparability": "INCOMPARABLE_BROWSER_VERSION: historical Chromium 154 vs current Chromium 151; no pooled statistics"
+  },
+  "quality": {
+    "main": {
+      "measured": 34,
+      "median": 67.5
+    },
+    "PR8": {
+      "measured": 35,
+      "median": 92
+    },
+    "V4": {
+      "measured": 35,
+      "median": 92
+    }
+  },
+  "performance": {
+    "original": {
+      "main": {
+        "totalMs": {
+          "n": 24,
+          "p50": 15836.700000000186,
+          "p95": 35828.80000000028,
+          "maximum": 84716.20000000019
+        },
+        "searchMs": {
+          "n": 24,
+          "p50": 10718.499999999884,
+          "p95": 26367,
+          "maximum": 67741.20000000019
+        },
+        "exportMs": {
+          "n": 24,
+          "p50": 3743.5,
+          "p95": 8488.5,
+          "maximum": 16042.599999999627
+        },
+        "slowest": [
+          {
+            "id": "case-24",
+            "totalMs": 84716.20000000019
+          },
+          {
+            "id": "case-11",
+            "totalMs": 35828.80000000028
+          },
+          {
+            "id": "case-22",
+            "totalMs": 33523.89999999991
+          }
+        ]
+      },
+      "PR8": {
+        "totalMs": {
+          "n": 24,
+          "p50": 24173.800000000047,
+          "p95": 61764.799999999814,
+          "maximum": 221254.80000000028
+        },
+        "searchMs": {
+          "n": 24,
+          "p50": 20166.34999999986,
+          "p95": 53576.89999999991,
+          "maximum": 197474.59999999963
+        },
+        "exportMs": {
+          "n": 24,
+          "p50": 4009.5999999998603,
+          "p95": 7224.799999999814,
+          "maximum": 22813.60000000056
+        },
+        "slowest": [
+          {
+            "id": "case-24",
+            "totalMs": 221254.80000000028
+          },
+          {
+            "id": "case-22",
+            "totalMs": 61764.799999999814
+          },
+          {
+            "id": "case-02",
+            "totalMs": 51908.80000000028
+          }
+        ]
+      },
+      "V4": {
+        "totalMs": {
+          "n": 24,
+          "p50": 21171.0,
+          "p95": 51553.19999999972,
+          "maximum": 204585.90000000037
+        },
+        "searchMs": {
+          "n": 24,
+          "p50": 17734.0,
+          "p95": 44958.5,
+          "maximum": 183709.19999999972
+        },
+        "exportMs": {
+          "n": 24,
+          "p50": 2988.850000000093,
+          "p95": 8760.299999999814,
+          "maximum": 20119.400000000373
+        },
+        "slowest": [
+          {
+            "id": "case-24",
+            "totalMs": 204585.90000000037
+          },
+          {
+            "id": "case-22",
+            "totalMs": 51553.19999999972
+          },
+          {
+            "id": "case-02",
+            "totalMs": 46513
+          }
+        ]
+      }
+    },
+    "additional": {
+      "main": {
+        "totalMs": {
+          "n": 8,
+          "p50": 19261.69999999972,
+          "p95": 31673.700000000186,
+          "maximum": 31673.700000000186
+        },
+        "searchMs": {
+          "n": 8,
+          "p50": 13805.999999999534,
+          "p95": 23294.299999999814,
+          "maximum": 23294.299999999814
+        },
+        "exportMs": {
+          "n": 8,
+          "p50": 4090.350000000093,
+          "p95": 7467.299999999814,
+          "maximum": 7467.299999999814
+        },
+        "slowest": [
+          {
+            "id": "general-dark",
+            "totalMs": 31673.700000000186
+          },
+          {
+            "id": "general-people",
+            "totalMs": 27932.10000000056
+          },
+          {
+            "id": "general-manual",
+            "totalMs": 20851.599999999627
+          }
+        ]
+      },
+      "PR8": {
+        "totalMs": {
+          "n": 8,
+          "p50": 33147.94999999972,
+          "p95": 56511.699999999255,
+          "maximum": 56511.699999999255
+        },
+        "searchMs": {
+          "n": 8,
+          "p50": 28192.75,
+          "p95": 46201.59999999963,
+          "maximum": 46201.59999999963
+        },
+        "exportMs": {
+          "n": 8,
+          "p50": 4496.799999999814,
+          "p95": 9692.799999999814,
+          "maximum": 9692.799999999814
+        },
+        "slowest": [
+          {
+            "id": "general-manual",
+            "totalMs": 56511.699999999255
+          },
+          {
+            "id": "general-dark",
+            "totalMs": 50485.59999999963
+          },
+          {
+            "id": "general-people",
+            "totalMs": 48787.40000000037
+          }
+        ]
+      },
+      "V4": {
+        "totalMs": {
+          "n": 8,
+          "p50": 29854.349999999627,
+          "p95": 45600.40000000037,
+          "maximum": 45600.40000000037
+        },
+        "searchMs": {
+          "n": 8,
+          "p50": 25489.5,
+          "p95": 39495.90000000037,
+          "maximum": 39495.90000000037
+        },
+        "exportMs": {
+          "n": 8,
+          "p50": 3919.199999999255,
+          "p95": 5756.5,
+          "maximum": 5756.5
+        },
+        "slowest": [
+          {
+            "id": "general-dark",
+            "totalMs": 45600.40000000037
+          },
+          {
+            "id": "general-people",
+            "totalMs": 41235.09999999963
+          },
+          {
+            "id": "general-manual",
+            "totalMs": 41170.90000000037
+          }
+        ]
+      }
+    },
+    "independent": {
+      "main": {
+        "totalMs": {
+          "n": 6,
+          "p50": 19898.100000000093,
+          "p95": 34379.700000000186,
+          "maximum": 34379.700000000186
+        },
+        "searchMs": {
+          "n": 6,
+          "p50": 14242.450000000186,
+          "p95": 25289.799999999814,
+          "maximum": 25289.799999999814
+        },
+        "exportMs": {
+          "n": 6,
+          "p50": 4270.549999999814,
+          "p95": 7971.5,
+          "maximum": 7971.5
+        },
+        "slowest": [
+          {
+            "id": "independent-brief",
+            "totalMs": 34379.700000000186
+          },
+          {
+            "id": "independent-fixed",
+            "totalMs": 28948.099999999627
+          },
+          {
+            "id": "independent-quiet",
+            "totalMs": 23448
+          }
+        ]
+      },
+      "PR8": {
+        "totalMs": {
+          "n": 6,
+          "p50": 38103.84999999963,
+          "p95": 64088.200000000186,
+          "maximum": 64088.200000000186
+        },
+        "searchMs": {
+          "n": 6,
+          "p50": 32767.899999999907,
+          "p95": 52702.39999999944,
+          "maximum": 52702.39999999944
+        },
+        "exportMs": {
+          "n": 6,
+          "p50": 4358.0,
+          "p95": 10392.900000000373,
+          "maximum": 10392.900000000373
+        },
+        "slowest": [
+          {
+            "id": "independent-brief",
+            "totalMs": 64088.200000000186
+          },
+          {
+            "id": "independent-fixed",
+            "totalMs": 54877.5
+          },
+          {
+            "id": "independent-quiet",
+            "totalMs": 44950.299999999814
+          }
+        ]
+      },
+      "V4": {
+        "totalMs": {
+          "n": 6,
+          "p50": 36831.14999999991,
+          "p95": 56142.200000000186,
+          "maximum": 56142.200000000186
+        },
+        "searchMs": {
+          "n": 6,
+          "p50": 31696.80000000028,
+          "p95": 46809.09999999963,
+          "maximum": 46809.09999999963
+        },
+        "exportMs": {
+          "n": 6,
+          "p50": 4225.199999999721,
+          "p95": 8428.600000000559,
+          "maximum": 8428.600000000559
+        },
+        "slowest": [
+          {
+            "id": "independent-brief",
+            "totalMs": 56142.200000000186
+          },
+          {
+            "id": "independent-fixed",
+            "totalMs": 48889
+          },
+          {
+            "id": "independent-quiet",
+            "totalMs": 44891.299999999814
+          }
+        ]
+      }
+    },
+    "repeat": {
+      "main": {
+        "totalMs": {
+          "n": 4,
+          "p50": 12471.100000000093,
+          "p95": 17040.5,
+          "maximum": 17040.5
+        },
+        "searchMs": {
+          "n": 4,
+          "p50": 8691.850000000093,
+          "p95": 11716.700000000186,
+          "maximum": 11716.700000000186
+        },
+        "exportMs": {
+          "n": 4,
+          "p50": 3139.75,
+          "p95": 4240.699999999255,
+          "maximum": 4240.699999999255
+        },
+        "slowest": [
+          {
+            "id": "repeat-4",
+            "totalMs": 17040.5
+          },
+          {
+            "id": "repeat-5",
+            "totalMs": 12855.799999999814
+          },
+          {
+            "id": "repeat-2",
+            "totalMs": 12086.400000000373
+          }
+        ]
+      },
+      "PR8": {
+        "totalMs": {
+          "n": 4,
+          "p50": 11128.049999999814,
+          "p95": 19045.89999999944,
+          "maximum": 19045.89999999944
+        },
+        "searchMs": {
+          "n": 4,
+          "p50": 7453.550000000279,
+          "p95": 13747.299999999814,
+          "maximum": 13747.299999999814
+        },
+        "exportMs": {
+          "n": 4,
+          "p50": 2921.25,
+          "p95": 3862.0999999996275,
+          "maximum": 3862.0999999996275
+        },
+        "slowest": [
+          {
+            "id": "repeat-4",
+            "totalMs": 19045.89999999944
+          },
+          {
+            "id": "repeat-3",
+            "totalMs": 11417.900000000373
+          },
+          {
+            "id": "repeat-2",
+            "totalMs": 10838.199999999255
+          }
+        ]
+      },
+      "V4": {
+        "totalMs": {
+          "n": 4,
+          "p50": 10779.049999999814,
+          "p95": 18308,
+          "maximum": 18308
+        },
+        "searchMs": {
+          "n": 4,
+          "p50": 7138.649999999907,
+          "p95": 12730.700000000186,
+          "maximum": 12730.700000000186
+        },
+        "exportMs": {
+          "n": 4,
+          "p50": 2873.899999999907,
+          "p95": 3849.899999999441,
+          "maximum": 3849.899999999441
+        },
+        "slowest": [
+          {
+            "id": "repeat-3",
+            "totalMs": 18308
+          },
+          {
+            "id": "repeat-4",
+            "totalMs": 11601.799999999814
+          },
+          {
+            "id": "repeat-2",
+            "totalMs": 9956.299999999814
+          }
+        ]
+      }
+    },
+    "same-input-five-trials": {
+      "main": {
+        "totalMs": {
+          "n": 5,
+          "p50": 12855.799999999814,
+          "p95": 17040.5,
+          "maximum": 17040.5
+        },
+        "searchMs": {
+          "n": 5,
+          "p50": 8914,
+          "p95": 11716.700000000186,
+          "maximum": 11716.700000000186
+        },
+        "exportMs": {
+          "n": 5,
+          "p50": 3321,
+          "p95": 4240.699999999255,
+          "maximum": 4240.699999999255
+        },
+        "slowest": [
+          {
+            "id": "repeat-4",
+            "totalMs": 17040.5
+          },
+          {
+            "id": "case-01",
+            "totalMs": 14969.600000000093
+          },
+          {
+            "id": "repeat-5",
+            "totalMs": 12855.799999999814
+          }
+        ]
+      },
+      "PR8": {
+        "totalMs": {
+          "n": 5,
+          "p50": 10838.199999999255,
+          "p95": 19045.89999999944,
+          "maximum": 19045.89999999944
+        },
+        "searchMs": {
+          "n": 5,
+          "p50": 7317.299999999814,
+          "p95": 13747.299999999814,
+          "maximum": 13747.299999999814
+        },
+        "exportMs": {
+          "n": 5,
+          "p50": 2753.4000000003725,
+          "p95": 3862.0999999996275,
+          "maximum": 3862.0999999996275
+        },
+        "slowest": [
+          {
+            "id": "repeat-4",
+            "totalMs": 19045.89999999944
+          },
+          {
+            "id": "repeat-3",
+            "totalMs": 11417.900000000373
+          },
+          {
+            "id": "repeat-2",
+            "totalMs": 10838.199999999255
+          }
+        ]
+      },
+      "V4": {
+        "totalMs": {
+          "n": 5,
+          "p50": 9956.299999999814,
+          "p95": 18308,
+          "maximum": 18308
+        },
+        "searchMs": {
+          "n": 5,
+          "p50": 6793.5,
+          "p95": 12730.700000000186,
+          "maximum": 12730.700000000186
+        },
+        "exportMs": {
+          "n": 5,
+          "p50": 2429.199999999255,
+          "p95": 3849.899999999441,
+          "maximum": 3849.899999999441
+        },
+        "slowest": [
+          {
+            "id": "repeat-3",
+            "totalMs": 18308
+          },
+          {
+            "id": "repeat-4",
+            "totalMs": 11601.799999999814
+          },
+          {
+            "id": "repeat-2",
+            "totalMs": 9956.299999999814
+          }
+        ]
+      }
+    },
+    "unique-materials": {
+      "main": {
+        "totalMs": {
+          "n": 38,
+          "p50": 17256.40000000014,
+          "p95": 35828.80000000028,
+          "maximum": 84716.20000000019
+        },
+        "searchMs": {
+          "n": 38,
+          "p50": 11332.25,
+          "p95": 26367,
+          "maximum": 67741.20000000019
+        },
+        "exportMs": {
+          "n": 38,
+          "p50": 3916.9500000001863,
+          "p95": 8488.5,
+          "maximum": 16042.599999999627
+        },
+        "slowest": [
+          {
+            "id": "case-24",
+            "totalMs": 84716.20000000019
+          },
+          {
+            "id": "case-11",
+            "totalMs": 35828.80000000028
+          },
+          {
+            "id": "independent-brief",
+            "totalMs": 34379.700000000186
+          }
+        ]
+      },
+      "PR8": {
+        "totalMs": {
+          "n": 38,
+          "p50": 29210.40000000014,
+          "p95": 64088.200000000186,
+          "maximum": 221254.80000000028
+        },
+        "searchMs": {
+          "n": 38,
+          "p50": 24584.899999999907,
+          "p95": 53576.89999999991,
+          "maximum": 197474.59999999963
+        },
+        "exportMs": {
+          "n": 38,
+          "p50": 4087.3499999998603,
+          "p95": 10392.900000000373,
+          "maximum": 22813.60000000056
+        },
+        "slowest": [
+          {
+            "id": "case-24",
+            "totalMs": 221254.80000000028
+          },
+          {
+            "id": "independent-brief",
+            "totalMs": 64088.200000000186
+          },
+          {
+            "id": "case-22",
+            "totalMs": 61764.799999999814
+          }
+        ]
+      },
+      "V4": {
+        "totalMs": {
+          "n": 38,
+          "p50": 25919.300000000047,
+          "p95": 56142.200000000186,
+          "maximum": 204585.90000000037
+        },
+        "searchMs": {
+          "n": 38,
+          "p50": 21975.05000000028,
+          "p95": 46809.09999999963,
+          "maximum": 183709.19999999972
+        },
+        "exportMs": {
+          "n": 38,
+          "p50": 3656.3000000000466,
+          "p95": 8760.299999999814,
+          "maximum": 20119.400000000373
+        },
+        "slowest": [
+          {
+            "id": "case-24",
+            "totalMs": 204585.90000000037
+          },
+          {
+            "id": "independent-brief",
+            "totalMs": 56142.200000000186
+          },
+          {
+            "id": "case-22",
+            "totalMs": 51553.19999999972
+          }
+        ]
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "id": "case-01",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-01",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-02",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 61,
+      "after": 85,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-02",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 85,
+      "after": 85,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-03",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 81,
+      "after": 92,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-03",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 92,
+      "after": 92,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-04",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 85,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-04",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-05",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 46,
+      "after": 79,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-05",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 79,
+      "after": 79,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-06",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-06",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-07",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": [
+            {
+              "line": 0,
+              "time": 0.5,
+              "actualTime": 0.5,
+              "before": 10,
+              "after": 8
+            }
+          ]
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": [
+            {
+              "line": 0,
+              "time": 0.5,
+              "actualTime": 0.5,
+              "before": 9,
+              "after": 8
+            }
+          ]
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-07",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-08",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 39,
+      "after": 49,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-08",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 49,
+      "after": 49,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-09",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 49,
+      "after": 84,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-09",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 84,
+      "after": 84,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-10",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 69,
+      "after": 99,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-10",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 99,
+      "after": 99,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-11",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 45,
+      "after": 53,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-11",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 53,
+      "after": 53,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-12",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 54,
+      "after": 95,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-12",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 95,
+      "after": 95,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-13",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-13",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-14",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 13,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 13,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-14",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 13,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 13,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-15",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 95,
+      "after": 95,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-15",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 95,
+      "after": 95,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-16",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 98,
+      "after": 98,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-16",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 98,
+      "after": 98,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-17",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-17",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-18",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 47,
+      "after": 55,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-18",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 55,
+      "after": 55,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-19",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 99,
+      "after": 99,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-19",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 99,
+      "after": 99,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-20",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-20",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-21",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7.999977324263039
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7.999977324263039
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 90,
+      "after": 99,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-21",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7.999977324263039
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7.999977324263039
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 99,
+      "after": 99,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-22",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 46,
+      "after": 88,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-22",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 88,
+      "after": 88,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-23",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": [
+            {
+              "line": 0,
+              "time": 0.4625,
+              "actualTime": null,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 0.49,
+              "actualTime": null,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 1.17,
+              "actualTime": null,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 2.24,
+              "actualTime": null,
+              "before": 100,
+              "after": 99
+            }
+          ]
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": [
+            {
+              "line": 0,
+              "time": 0.4625,
+              "actualTime": 0.4583333333333333,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 0.49,
+              "actualTime": 0.4583333333333333,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 1.17,
+              "actualTime": 1.1666666666666667,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 2.24,
+              "actualTime": 2.2083333333333335,
+              "before": 100,
+              "after": 99
+            }
+          ]
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 43,
+      "after": 71,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-23",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 71,
+      "after": 71,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "case-24",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0.2,
+          12.2
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0.2,
+          12.2
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 21,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.54,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            },
+            {
+              "line": 2,
+              "time": 6.54,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 20,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            },
+            {
+              "line": 0,
+              "time": 0.54,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            },
+            {
+              "line": 2,
+              "time": 6.54,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 20,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            },
+            {
+              "line": 0,
+              "time": 0.54,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            },
+            {
+              "line": 2,
+              "time": 6.54,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": 51,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-24",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0.2,
+          12.2
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0.2,
+          12.2
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 21,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 23,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 23,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 51,
+      "after": 51,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-background-text",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 66,
+      "after": 80,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-background-text",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 80,
+      "after": 80,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-bright",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 29,
+      "after": 96,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-bright",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 96,
+      "after": 96,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-dark",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 73,
+      "after": 75,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-dark",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 11,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 75,
+      "after": 75,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-dense",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 27,
+      "after": 37,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-dense",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 10,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 37,
+      "after": 37,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-long-hold",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7.999977324263039
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7.999977324263039
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 85,
+      "after": 98,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-long-hold",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7.999977324263039
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7.999977324263039
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 98,
+      "after": 98,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-manual",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 6,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 17,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 17,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 49,
+      "after": 54,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-manual",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 6,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 17,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 17,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 54,
+      "after": 54,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-people",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 95,
+      "after": 95,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-people",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 95,
+      "after": 95,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-texture",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 63,
+      "after": 68,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "general-texture",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 68,
+      "after": 68,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "independent-brief",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": [
+            {
+              "line": 0,
+              "time": 0.4125,
+              "actualTime": null,
+              "before": 92,
+              "after": 9
+            }
+          ]
+        },
+        "aligned": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "independent-brief",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "independent-fixed",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 6,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 20,
+      "after": 20,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "independent-fixed",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 6,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 20,
+      "after": 20,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "independent-long",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 49,
+      "after": 62,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "independent-long",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 62,
+      "after": 62,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "independent-panels",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 24,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 24,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "independent-panels",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 24,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 24,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "independent-quiet",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 42,
+      "after": 73,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "independent-quiet",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          7
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 73,
+      "after": 73,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "independent-text",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 99,
+      "after": 99,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "independent-text",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 99,
+      "after": 99,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "repeat-2",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "repeat-2",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "repeat-3",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "repeat-3",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "repeat-4",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "repeat-4",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "repeat-5",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "repeat-5",
+      "baseline": "PR8",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 100,
+      "after": 100,
+      "qualityMeasurementStatus": "MEASURED"
+    }
+  ],
+  "qualityRegressions": [
+    {
+      "id": "case-07",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 640,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 0,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": [
+            {
+              "line": 0,
+              "time": 0.5,
+              "actualTime": 0.5,
+              "before": 10,
+              "after": 8
+            }
+          ]
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [
+            {
+              "line": 0,
+              "time": 0.24000000000000002,
+              "reason": "CLOCK_OR_SAMPLE_MISSING_OR_UNMEASURED"
+            }
+          ],
+          "regressions": [
+            {
+              "line": 0,
+              "time": 0.5,
+              "actualTime": 0.5,
+              "before": 9,
+              "after": 8
+            }
+          ]
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    },
+    {
+      "id": "case-23",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 360,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": [
+            {
+              "line": 0,
+              "time": 0.4625,
+              "actualTime": null,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 0.49,
+              "actualTime": null,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 1.17,
+              "actualTime": null,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 2.24,
+              "actualTime": null,
+              "before": 100,
+              "after": 99
+            }
+          ]
+        },
+        "aligned": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": [
+            {
+              "line": 0,
+              "time": 0.4625,
+              "actualTime": 0.4583333333333333,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 0.49,
+              "actualTime": 0.4583333333333333,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 1.17,
+              "actualTime": 1.1666666666666667,
+              "before": 100,
+              "after": 99
+            },
+            {
+              "line": 1,
+              "time": 2.24,
+              "actualTime": 2.2083333333333335,
+              "before": 100,
+              "after": 99
+            }
+          ]
+        },
+        "backgroundConsistent": {
+          "measured": 12,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": 43,
+      "after": 71,
+      "qualityMeasurementStatus": "MEASURED"
+    },
+    {
+      "id": "independent-brief",
+      "baseline": "main",
+      "status": "COMPARABLE",
+      "sameInputAndProfile": true,
+      "beforeProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "afterProfile": {
+        "videoCodec": "h264",
+        "width": 360,
+        "height": 640,
+        "fps": "24/1",
+        "audioCodec": "aac",
+        "sampleRate": "48000",
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "intervals": {
+        "historical": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": [
+            {
+              "line": 0,
+              "time": 0.4125,
+              "actualTime": null,
+              "before": 92,
+              "after": 9
+            }
+          ]
+        },
+        "aligned": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        },
+        "backgroundConsistent": {
+          "measured": 18,
+          "incomparableOrUnmeasured": [],
+          "regressions": []
+        }
+      },
+      "globalRegression": false,
+      "before": null,
+      "after": null,
+      "qualityMeasurementStatus": "UNMEASURED"
+    }
+  ],
+  "inputOrFailureComparisonGaps": [],
+  "timingMethod": "same fixed registry seed; real PCM analysis, bounded 32/8/3 search, one full encode each; initial style tournament excluded from both",
+  "timingLimits": "Shared host; inclusive nested function times must not be summed; later same-Blob observation, FFmpeg and persistence excluded. One trial per unique input; repeats separately reported. No significance claim. Function profiling enabled equally in the three variants. Brief status/summary file reads occurred on the shared host during measurement; no additional browser or heavy benchmark ran concurrently. Later font/browser checks are not performance measurements.",
+  "humanEvaluation": "HUMAN_EVALUATION_PENDING",
+  "peakProcessGpuMemory": "UNMEASURED",
+  "releaseDecision": "NO-GO_MAJOR_MAIN_RELATIVE_PERFORMANCE_REGRESSION_AND_INTERVAL_QUALITY_GAPS",
+  "raw": {
+    "path": "/workspace/kamen-v4-recovery/final-matrix/results.json",
+    "bytes": 185287553,
+    "sha256": "216dae4266545d570e5735874fee510913747b16a16fd991199ec2b600fb26c1"
+  },
+  "videoManifest": [
+    {
+      "file": "case-01-baseline.mp4",
+      "bytes": 399183,
+      "sha256": "5578a476bc7fb6513ecd9155ecf8bf91ac031c2d6849f7b8002ef81eb8e85f12"
+    },
+    {
+      "file": "case-01-pr5.mp4",
+      "bytes": 399096,
+      "sha256": "0663fafb0fa149dfc84895dc6139d3f77444d2536638bdc8efbb7b1ae38a3afb"
+    },
+    {
+      "file": "case-01-v3.mp4",
+      "bytes": 399096,
+      "sha256": "34f081868f8989989095a5d5323d9611b53fcbc3e097cae75477fa3707af1bd7"
+    },
+    {
+      "file": "case-02-baseline.mp4",
+      "bytes": 445662,
+      "sha256": "0eb92d22ed619b864a371ab5475bbf10ecc481dc2dcaae70069aa13b387a8002"
+    },
+    {
+      "file": "case-02-pr5.mp4",
+      "bytes": 422798,
+      "sha256": "2a41224f155a7e7b2c17cbe9f35ba7b76d0d6b44d75025bafb2439fe7b32c9a3"
+    },
+    {
+      "file": "case-02-v3.mp4",
+      "bytes": 422798,
+      "sha256": "b3220098735939dc53c278b3a69ae602bb23218c4e9a6b3ca71f399b83eec0eb"
+    },
+    {
+      "file": "case-03-baseline.mp4",
+      "bytes": 238366,
+      "sha256": "eafc1e67cb69238e399ee516bd157775875114224a8b1308f2e18900f9c69f9c"
+    },
+    {
+      "file": "case-03-pr5.mp4",
+      "bytes": 212851,
+      "sha256": "371ddbcc5f654116d8b1d8d7b9887eb77fd879c473c8ad187957ded912454e0d"
+    },
+    {
+      "file": "case-03-v3.mp4",
+      "bytes": 212851,
+      "sha256": "5124729ade311f77af5738bc0b08db6451f9fa552884b955b51162538f827b4c"
+    },
+    {
+      "file": "case-04-baseline.mp4",
+      "bytes": 481715,
+      "sha256": "1225c03be15783a36cda480886153c73715b37524e659b660fd7745a50b7fb6d"
+    },
+    {
+      "file": "case-04-pr5.mp4",
+      "bytes": 424695,
+      "sha256": "c34ef16f57a2d4292c956792b08eb467040bf840389a91fd798c8a7abc711aae"
+    },
+    {
+      "file": "case-04-v3.mp4",
+      "bytes": 424695,
+      "sha256": "37324cb402d1eff99301c70ef6d58670da62017a1e3f28db459e7dcbd7faac48"
+    },
+    {
+      "file": "case-05-baseline.mp4",
+      "bytes": 274641,
+      "sha256": "166daa7bdbe602184c7b5bf9c2196ff6bf6e379076026361f7b4a5dec2319ffa"
+    },
+    {
+      "file": "case-05-pr5.mp4",
+      "bytes": 262017,
+      "sha256": "9a9763b4a464f7b63f5a03f9732cea7f0b649602ce86a226fec8a87ac0c46910"
+    },
+    {
+      "file": "case-05-v3.mp4",
+      "bytes": 262017,
+      "sha256": "aa929986e7c391abe9e9e5f876c4cebcd19361d509b3faef34942bcbd35a974c"
+    },
+    {
+      "file": "case-06-baseline.mp4",
+      "bytes": 312201,
+      "sha256": "729d4082c0edb47d6a8729d466aff1e60e865bcfcc2ac3c2ebca41ca547a6b36"
+    },
+    {
+      "file": "case-06-pr5.mp4",
+      "bytes": 311444,
+      "sha256": "0b4f9e512e5a4a94dfccfb78c08a7d49ba3d6f9c4fbdb2456756a4451c7ebbe2"
+    },
+    {
+      "file": "case-06-v3.mp4",
+      "bytes": 311444,
+      "sha256": "627025fe778a15e3cf2069ebefd240d6300572d4d0acc23c23b41a37184df61e"
+    },
+    {
+      "file": "case-07-baseline.mp4",
+      "bytes": 647685,
+      "sha256": "63af2969714f88ff01a84da6c3767d2d95b656bd68e4b304d02dd6eb2b2bbb79"
+    },
+    {
+      "file": "case-07-pr5.mp4",
+      "bytes": 646343,
+      "sha256": "e6edde2b86ba220b2c873a1674897a9ad02fffe7cfbaef77c8b7674ebb097444"
+    },
+    {
+      "file": "case-07-v3.mp4",
+      "bytes": 646343,
+      "sha256": "42b9aecb4baeda868a1bd90bfdfb4be39870284bc7d98dc1c6d49eab5c87723b"
+    },
+    {
+      "file": "case-08-baseline.mp4",
+      "bytes": 372714,
+      "sha256": "47d458261f3f4890d50654cf7c5a40cccebce4132b40ca11e4a1f92850e069af"
+    },
+    {
+      "file": "case-08-pr5.mp4",
+      "bytes": 346340,
+      "sha256": "74f23454b36ac0eb5e8c86950fc7b6fdb65e41c68f91037150748cf6d72c57c5"
+    },
+    {
+      "file": "case-08-v3.mp4",
+      "bytes": 346340,
+      "sha256": "d987186ad8d413f080f0fec69f204a17e81fbc8bddc2471708ebb2bbdfd41c37"
+    },
+    {
+      "file": "case-09-baseline.mp4",
+      "bytes": 351281,
+      "sha256": "b61ef9b307fe9423057fbc85d22e92dbf4098328ba60b3db77535cb5f1332e0d"
+    },
+    {
+      "file": "case-09-pr5.mp4",
+      "bytes": 344391,
+      "sha256": "bce54ad25c2be87a1ea25364c773106e6b55bdc562522eeebced759af2445593"
+    },
+    {
+      "file": "case-09-v3.mp4",
+      "bytes": 344391,
+      "sha256": "d1bf8906c00afd6bccf30fc3a5f746c303eebaf7eafb356baa1eed61814e290c"
+    },
+    {
+      "file": "case-10-baseline.mp4",
+      "bytes": 176860,
+      "sha256": "327fa2266af8dcf991f5b638c05d3863a117287c199de6420ee418334c215d38"
+    },
+    {
+      "file": "case-10-pr5.mp4",
+      "bytes": 168225,
+      "sha256": "fe07b1ba85fff743556979ca51817ba3fab3e2a888add5e108526ac6e218db9a"
+    },
+    {
+      "file": "case-10-v3.mp4",
+      "bytes": 168225,
+      "sha256": "a5e59eef35f20d1a1da85bf98fbd58cc141f2d81662ba1499e2ac35db024c134"
+    },
+    {
+      "file": "case-11-baseline.mp4",
+      "bytes": 541390,
+      "sha256": "b762a1d0a301f06d4b7a2e27828deabc628451271f4d2c3aef5b31a38bc8c3fc"
+    },
+    {
+      "file": "case-11-pr5.mp4",
+      "bytes": 538655,
+      "sha256": "65b0a9a64491541e48665b24df22799d41c7bd5364c92f0628023ca7b4bf2ae2"
+    },
+    {
+      "file": "case-11-v3.mp4",
+      "bytes": 538655,
+      "sha256": "dc998268a2348283ce292f20d3a84735f6e9a82909c056e47508f572713745ed"
+    },
+    {
+      "file": "case-12-baseline.mp4",
+      "bytes": 294273,
+      "sha256": "95a09adbcd85904a5d3f13d20dd5d2c0dc825b112f7fa1b75b4dc9f67ef6cec1"
+    },
+    {
+      "file": "case-12-pr5.mp4",
+      "bytes": 288448,
+      "sha256": "d244996a311029435ae5ba8e0792a322328e97cb6f06e6366c0580f27b8a3404"
+    },
+    {
+      "file": "case-12-v3.mp4",
+      "bytes": 288448,
+      "sha256": "1aa13d68a9eec12c6f204d6535f99f4678cd0f77a20740e69c549412d5bda8ff"
+    },
+    {
+      "file": "case-13-baseline.mp4",
+      "bytes": 546386,
+      "sha256": "72b940555f160aada52662f10fde6c173a26ef2c6ae0ee3a979abc5454a06d27"
+    },
+    {
+      "file": "case-13-pr5.mp4",
+      "bytes": 550167,
+      "sha256": "bc57c0c01a3a12764b4f01915e332a0fd21baaa43a17802abc3420bff8e54af4"
+    },
+    {
+      "file": "case-13-v3.mp4",
+      "bytes": 550167,
+      "sha256": "2477f956ef11d3f71eda7116ef0c0c1b2ada1a857e32e45b594c4116e6283581"
+    },
+    {
+      "file": "case-14-baseline.mp4",
+      "bytes": 463345,
+      "sha256": "1e5b6f444074afe67d8d96410daaafe7de926a4f328d873f29b9c53f44f97653"
+    },
+    {
+      "file": "case-14-pr5.mp4",
+      "bytes": 460358,
+      "sha256": "ac95735d6391c9d6ff200bf3ca503818d0cdcb86ff82fdbc931072cd86d690ed"
+    },
+    {
+      "file": "case-14-v3.mp4",
+      "bytes": 460358,
+      "sha256": "370c643ef3950dda4096a19fb1ceb6b98dc98a3dd36beda9956dc504205491b9"
+    },
+    {
+      "file": "case-15-baseline.mp4",
+      "bytes": 205914,
+      "sha256": "7f17cd4f1d46c61cdeb24fb4a6140c16e9c778ca776b2768d2b0228023abf015"
+    },
+    {
+      "file": "case-15-pr5.mp4",
+      "bytes": 200121,
+      "sha256": "dbb67353513c8890217c6bbddb0264ad1db187e221d1e9aadc4265c43a24af45"
+    },
+    {
+      "file": "case-15-v3.mp4",
+      "bytes": 200121,
+      "sha256": "543c7f212a8a36c451f694a92b9dc4777a6fccad93074ae930ee766da9012a4a"
+    },
+    {
+      "file": "case-16-baseline.mp4",
+      "bytes": 531815,
+      "sha256": "e2b4e7b8e3682d04966b78daba7c1a2f9993d2a37b4088078dde67dca45ad0fb"
+    },
+    {
+      "file": "case-16-pr5.mp4",
+      "bytes": 527746,
+      "sha256": "74dae3994f92959af339d7c6023577a85a1035d8fe959891b34ffea6f7ac967a"
+    },
+    {
+      "file": "case-16-v3.mp4",
+      "bytes": 527746,
+      "sha256": "7239e3f7a2e16bf846a1191c0113a91fd67f091b235164652f6f3ad5aad0e3ad"
+    },
+    {
+      "file": "case-17-baseline.mp4",
+      "bytes": 348290,
+      "sha256": "7ae9b77d71d222e75b771c0f64b3c6a3587665034427242bb8f1447e3dee5551"
+    },
+    {
+      "file": "case-17-pr5.mp4",
+      "bytes": 312735,
+      "sha256": "d34580f36e3539d14eac50e4a3bde27bd4aa2dded301e136386b80e6ca61ab70"
+    },
+    {
+      "file": "case-17-v3.mp4",
+      "bytes": 312735,
+      "sha256": "a35dec7f2de6582a1e0b3e3c03eba87a840a9cda6069dcf97b2c6d8221e43432"
+    },
+    {
+      "file": "case-18-baseline.mp4",
+      "bytes": 396602,
+      "sha256": "deb5e1a2daab7a92535ba31507596faf92000230c52520f20c9a974ef441e5fd"
+    },
+    {
+      "file": "case-18-pr5.mp4",
+      "bytes": 376291,
+      "sha256": "1cc935210ec32693b82790bbb1ef76da258dabac3fe34ac50a3fdd6fe422f5c6"
+    },
+    {
+      "file": "case-18-v3.mp4",
+      "bytes": 376291,
+      "sha256": "560fe3890a72ecedaf358b9b61da556e3fca77d210b69da3c9bbe10deadb4aea"
+    },
+    {
+      "file": "case-19-baseline.mp4",
+      "bytes": 355530,
+      "sha256": "4a009ce17760aec3dd0b84533d75faf7d5c38acc970f4342cb0e3c2815546051"
+    },
+    {
+      "file": "case-19-pr5.mp4",
+      "bytes": 328385,
+      "sha256": "224b3162084fc08e89ce9667c33da53bfe1c6e30f4a5d94ff218683b1e384808"
+    },
+    {
+      "file": "case-19-v3.mp4",
+      "bytes": 328385,
+      "sha256": "a044974760c872f47ceff77a321c83e08a6b7c75dc5f44726334e6d2e32ed466"
+    },
+    {
+      "file": "case-20-baseline.mp4",
+      "bytes": 127823,
+      "sha256": "a1786d9e9c1859040f1044b470e2d10efc77ef22861f7976865eb12e8490a675"
+    },
+    {
+      "file": "case-20-pr5.mp4",
+      "bytes": 124866,
+      "sha256": "dc281a2dc2661e0aa3210c0c6d743388829d7a82ca98fb8d3914216ec2434a6a"
+    },
+    {
+      "file": "case-20-v3.mp4",
+      "bytes": 124866,
+      "sha256": "aa887fbfa92f298917be9c3d3269d5ddfb7663e86930138fbb31e54898322e93"
+    },
+    {
+      "file": "case-21-baseline.mp4",
+      "bytes": 770832,
+      "sha256": "d31e1ed8e8e136bb2b5d0352a458596e216b4bf9af1c0ade143e530faa230973"
+    },
+    {
+      "file": "case-21-pr5.mp4",
+      "bytes": 790505,
+      "sha256": "e46dc928e15afebb32555a937caa5aaaf58ecf9eed5aaccddd7c1180e981daad"
+    },
+    {
+      "file": "case-21-v3.mp4",
+      "bytes": 790505,
+      "sha256": "f54914b80bba9d91c370ccd1cc55920c37ecec8472cae6bd1df92cd98f8ad8c9"
+    },
+    {
+      "file": "case-22-baseline.mp4",
+      "bytes": 582168,
+      "sha256": "9594b12f063a5333db006921bcb8bf8496cb4912318ca7b89d5d9df4ae7bec9b"
+    },
+    {
+      "file": "case-22-pr5.mp4",
+      "bytes": 523305,
+      "sha256": "b05b6998fdea2ecfcc25d4fcb9b86e55e30388b5fc06cfd64078932c26169deb"
+    },
+    {
+      "file": "case-22-v3.mp4",
+      "bytes": 523305,
+      "sha256": "d18f990dfa67da6c476412898764222ec8532dd655ebcacb98a5fcc4e96861a3"
+    },
+    {
+      "file": "case-23-baseline.mp4",
+      "bytes": 378335,
+      "sha256": "3deecf27843f4bc5e0d42d052d26360a067c6b7182132f162945cc89dcdbc712"
+    },
+    {
+      "file": "case-23-pr5.mp4",
+      "bytes": 383897,
+      "sha256": "01d4e6833c2af43a511493cce228c91c13d2e7e13b21f046c2280cf95380bc05"
+    },
+    {
+      "file": "case-23-v3.mp4",
+      "bytes": 383897,
+      "sha256": "b403e21bc0f18548dc6e39bde43e36efc1f534afa3a1433c0bd9efcbd2098be8"
+    },
+    {
+      "file": "case-24-baseline.mp4",
+      "bytes": 1258791,
+      "sha256": "fa50eaff04d5006cf3ed7233a49205a26a1ac5146613ac1d17177662e9c383f8"
+    },
+    {
+      "file": "case-24-pr5.mp4",
+      "bytes": 1038004,
+      "sha256": "b54b173e8775debc4a6dbc5ff8f7ec4c6b9791bfeb43d83d1e23e03338dd60eb"
+    },
+    {
+      "file": "case-24-v3.mp4",
+      "bytes": 1038004,
+      "sha256": "6fa953dd4f6ffff4bca427409191167f02be26613d0f12c9af51cf50c0c0a5b4"
+    },
+    {
+      "file": "general-background-text-baseline.mp4",
+      "bytes": 711943,
+      "sha256": "6e367f79a488ce1e8e9e5fb01721d4884613467e4a55517f683e8a10c145024f"
+    },
+    {
+      "file": "general-background-text-pr5.mp4",
+      "bytes": 636093,
+      "sha256": "5c0486112ddc429dbb242a862e815e6d7e0fbefd34f03114c34602d0e7336947"
+    },
+    {
+      "file": "general-background-text-v3.mp4",
+      "bytes": 636093,
+      "sha256": "beb17510b96a6bdf83091f21746ae7805b49a5a859cd87701715cff0161c53d1"
+    },
+    {
+      "file": "general-bright-baseline.mp4",
+      "bytes": 539734,
+      "sha256": "5fe243355ccc390a276c37c38cd19baad0621a885cbc4726116f80e5b6e237bf"
+    },
+    {
+      "file": "general-bright-pr5.mp4",
+      "bytes": 476599,
+      "sha256": "b57d216d604ceb339058e0095ebbe2c5a4ff116a3b77c48453ac9e10055825de"
+    },
+    {
+      "file": "general-bright-v3.mp4",
+      "bytes": 476599,
+      "sha256": "e00a9d9fbed83dff6329693188195816974a96b19ccd8be11848644c5babbee0"
+    },
+    {
+      "file": "general-dark-baseline.mp4",
+      "bytes": 579801,
+      "sha256": "1b16f8bb8bb0f6949332d2994147ff472d47c90de4351497b9f2d358704c3ccc"
+    },
+    {
+      "file": "general-dark-pr5.mp4",
+      "bytes": 577960,
+      "sha256": "3d862c5b7a6f8edfc1a9fa1b2eb7a305b9c114eec130d0ae523b292ca7b955f1"
+    },
+    {
+      "file": "general-dark-v3.mp4",
+      "bytes": 577960,
+      "sha256": "305dfab2aa0321f1ae40472bc319713b35e838f486bf6815f97c3ee30c5550aa"
+    },
+    {
+      "file": "general-dense-baseline.mp4",
+      "bytes": 430690,
+      "sha256": "48fb939a504967f7c4f568230598b89544321cf80dc38f4ff08310e8af2fe943"
+    },
+    {
+      "file": "general-dense-pr5.mp4",
+      "bytes": 421254,
+      "sha256": "6d8a39abe10ab80cf2756c4e1bc23b91ee82c7968c197bead2a80eecd4f75e85"
+    },
+    {
+      "file": "general-dense-v3.mp4",
+      "bytes": 421254,
+      "sha256": "4a8631e8d4d508638c25c99b316dbf2fa7c16e2f38dcef9e9d5f7190eeba089a"
+    },
+    {
+      "file": "general-long-hold-baseline.mp4",
+      "bytes": 1250890,
+      "sha256": "5e28d0d6ecadb214e561a965068ae73581828937980029840aec922e28aa5783"
+    },
+    {
+      "file": "general-long-hold-pr5.mp4",
+      "bytes": 1220473,
+      "sha256": "ca6fc9873cde8cdbcb7172da380819dc733259e224ae0e6209388411ab12d15e"
+    },
+    {
+      "file": "general-long-hold-v3.mp4",
+      "bytes": 1220473,
+      "sha256": "225e942a6e2319c6316f37e691838df846e46361b150b9048fbc55561dd73589"
+    },
+    {
+      "file": "general-manual-baseline.mp4",
+      "bytes": 579949,
+      "sha256": "96a56b46f6c8b6699618566cbf2646334b2dfbc46ea988aec39f28b7ebd2541f"
+    },
+    {
+      "file": "general-manual-pr5.mp4",
+      "bytes": 538168,
+      "sha256": "7c48e94bb358478d1a46bc1f49a9c84dd03b4c70ff2551790ccaa6b50fca59a4"
+    },
+    {
+      "file": "general-manual-v3.mp4",
+      "bytes": 538168,
+      "sha256": "ba97e0e9cd658cd4158cd0fa1d6fac3d7b683b390015adc109664643dbbc6bd8"
+    },
+    {
+      "file": "general-people-baseline.mp4",
+      "bytes": 533629,
+      "sha256": "0a544cd337f0e365a1841c114309cb4e917293c59ee299fc768dfeb68a0a0b23"
+    },
+    {
+      "file": "general-people-pr5.mp4",
+      "bytes": 533190,
+      "sha256": "2812ee5b26c3555e5bb8193cba8a9c7e7ffec370ca9d39bf8509ea36cae1f428"
+    },
+    {
+      "file": "general-people-v3.mp4",
+      "bytes": 533190,
+      "sha256": "88948e0a20f0ba2b628b08e7689c558c1e1be77319b8002ff11a0194df67ec38"
+    },
+    {
+      "file": "general-texture-baseline.mp4",
+      "bytes": 477420,
+      "sha256": "7fbca7d265cac32fcd2b8faee0e757afb30fa78ba4fc04d99a7a8ff110bbb7f5"
+    },
+    {
+      "file": "general-texture-pr5.mp4",
+      "bytes": 477343,
+      "sha256": "8a3e7b587d332c5beaefff9bbafc4684a9fb9d3c882e1b9965e967ce8e399fbb"
+    },
+    {
+      "file": "general-texture-v3.mp4",
+      "bytes": 477343,
+      "sha256": "ffa21f0cb17e72b3d686170fc913d5e366dca694adbffd59fefefb644d621ddb"
+    },
+    {
+      "file": "independent-brief-baseline.mp4",
+      "bytes": 748522,
+      "sha256": "39658801474c78c37fa4d0fc07b123ba985eb2f620c497aa9df0838535b51ffe"
+    },
+    {
+      "file": "independent-brief-pr5.mp4",
+      "bytes": 747548,
+      "sha256": "5fd4daba5a4648c9f53b302f2fde306783035fd86670aa282b4863aab8d3a107"
+    },
+    {
+      "file": "independent-brief-v3.mp4",
+      "bytes": 747548,
+      "sha256": "64316f13645aa58cff4464d5b3a60680a9536dc068d3343b653e347bfd9564a9"
+    },
+    {
+      "file": "independent-fixed-baseline.mp4",
+      "bytes": 714504,
+      "sha256": "a93aa466be02f4331b9f81dd02aa136b6717bd808ef99cfe76333b8a385bff62"
+    },
+    {
+      "file": "independent-fixed-pr5.mp4",
+      "bytes": 706687,
+      "sha256": "1c7b699ccc69991e79612fa3f0c0b4f5c8c5123a41918ea22a235c4f6eeb5597"
+    },
+    {
+      "file": "independent-fixed-v3.mp4",
+      "bytes": 706687,
+      "sha256": "45f8f7e268a5842cf74e49091370615366cb61190b04d4ffc390e8308345aa6e"
+    },
+    {
+      "file": "independent-long-baseline.mp4",
+      "bytes": 863142,
+      "sha256": "e7a5b28dba6221712d0fafc8d0b02a541cd5d80f2774ce6b8f521a1314a7ad77"
+    },
+    {
+      "file": "independent-long-pr5.mp4",
+      "bytes": 863950,
+      "sha256": "80b35a66c65c9c02aa362d4be92610d07f7f6486c9cab05905e0a035607f6f07"
+    },
+    {
+      "file": "independent-long-v3.mp4",
+      "bytes": 863950,
+      "sha256": "91fef4aa3bc6feb0ab06d543769e94e6c68da43d60764d7eb45085a7a323ce49"
+    },
+    {
+      "file": "independent-panels-baseline.mp4",
+      "bytes": 384662,
+      "sha256": "8157729c6f0f3bbf70385b85349b571853a4e5acfc513adafa6393683fbf18ad"
+    },
+    {
+      "file": "independent-panels-pr5.mp4",
+      "bytes": 388027,
+      "sha256": "3ef6f6aa8a73ac881c8109ec2f8744a75b018732c489b5dbb7d24e25123d637a"
+    },
+    {
+      "file": "independent-panels-v3.mp4",
+      "bytes": 388027,
+      "sha256": "9f9453c86817f1f0b2f3235eee35e26dc78930ada28ff92fd8e3b60d44648494"
+    },
+    {
+      "file": "independent-quiet-baseline.mp4",
+      "bytes": 263778,
+      "sha256": "c6d53b5ee3736ed37eb75e1c066d5fb6caee9d70c31a3a9a99966010d91ec9d7"
+    },
+    {
+      "file": "independent-quiet-pr5.mp4",
+      "bytes": 264944,
+      "sha256": "0e1c222f6462efb0dbf259eb10a2bf614b5124052e2d518f50748eb50924771e"
+    },
+    {
+      "file": "independent-quiet-v3.mp4",
+      "bytes": 264944,
+      "sha256": "82585b0c6cb96b6b455233eb0c7a0120ae6519b563e902a4058c586307b691f4"
+    },
+    {
+      "file": "independent-text-baseline.mp4",
+      "bytes": 806057,
+      "sha256": "c1729b366b20225129f436c1164236c9d6c916ccd905bc5fa2444628028ed48f"
+    },
+    {
+      "file": "independent-text-pr5.mp4",
+      "bytes": 738869,
+      "sha256": "e55d55027e63969d2cb26721fd9e2b4e12100786a7192598935313d81edcf03f"
+    },
+    {
+      "file": "independent-text-v3.mp4",
+      "bytes": 738869,
+      "sha256": "fe0678c54664a69cec0eb4baa7b65fbbb6553265eac4a80c3d7834f255fb0b0a"
+    },
+    {
+      "file": "repeat-2-baseline.mp4",
+      "bytes": 399183,
+      "sha256": "362703db0b9658dab3978c4656cce0a7f67cb318bc9e73325244deb919af0be3"
+    },
+    {
+      "file": "repeat-2-pr5.mp4",
+      "bytes": 399096,
+      "sha256": "2ab6c1e76421146dd37601556844384f06b2b276cf871d33e54a733043521be3"
+    },
+    {
+      "file": "repeat-2-v3.mp4",
+      "bytes": 399096,
+      "sha256": "77cd72453aa157a1c769016193fe3c6f4630ad8230c3ea09ad16e33304c2fd1e"
+    },
+    {
+      "file": "repeat-3-baseline.mp4",
+      "bytes": 399183,
+      "sha256": "b00483365cc2c135c65be07be92b6d65ec5ffdef99e1448acbaa6570895b0f58"
+    },
+    {
+      "file": "repeat-3-pr5.mp4",
+      "bytes": 399096,
+      "sha256": "dda49424356869098893056929c64f61f38e0e0005c74a2ecdf7026ad2c7f3c2"
+    },
+    {
+      "file": "repeat-3-v3.mp4",
+      "bytes": 399096,
+      "sha256": "d526570d888bc6f7d0df70d45d0a82d60c116310cd3742e7380995614d18f64c"
+    },
+    {
+      "file": "repeat-4-baseline.mp4",
+      "bytes": 399183,
+      "sha256": "44245e39b3bfec7b79c95f8da2d08a4471b89fd82cabfc514a97b8b482412580"
+    },
+    {
+      "file": "repeat-4-pr5.mp4",
+      "bytes": 399096,
+      "sha256": "5ac149324339755d7ea44d6f61536215af3a9add4ab88b4b27efac849f85e065"
+    },
+    {
+      "file": "repeat-4-v3.mp4",
+      "bytes": 399096,
+      "sha256": "240a67a9ca8529d1ee0e1c06f93d0ce47c1cc7fb26f7f189baa8b0a3269b33f0"
+    },
+    {
+      "file": "repeat-5-baseline.mp4",
+      "bytes": 399183,
+      "sha256": "25219658683a82c8aa185c62817121259be2320e9634c2ffddda92d5d7aa51ea"
+    },
+    {
+      "file": "repeat-5-pr5.mp4",
+      "bytes": 399096,
+      "sha256": "4558f46b2b7dfd87669e53f46d1000afe34884452edc08e4c3e9a42fa4f1fbd8"
+    },
+    {
+      "file": "repeat-5-v3.mp4",
+      "bytes": 399096,
+      "sha256": "b48c5c17a5a49eaf9fca076eacfffde5a93212e7595fbce73414e62bba18a711"
+    }
+  ],
+  "runtimeHashesByVariant": {
+    "main": [
+      "2ccc9759f329a48eaee0fd0145f435bf098dbf4f68c80483a867783733a4dd46"
+    ],
+    "PR8": [
+      "b137fcb6d098caf7bb674e93b7028f20315c113e545781be3b7b5d7d07076333"
+    ],
+    "V4": [
+      "b15a6ec31e8433f249bf280104a2a6050ca2d4e1abdbdbf1274ee1ed34c7bd2b"
+    ]
+  },
+  "expectedFinalV4RuntimeHash": "b15a6ec31e8433f249bf280104a2a6050ca2d4e1abdbdbf1274ee1ed34c7bd2b",
+  "finalV4RuntimeIdentity": "PASS",
+  "repeatChecks": {
+    "main": {
+      "trials": 5,
+      "inputHashes": [
+        "22b4c21f7af331ea450c867d08120e739624a7f3d63b38d5f3d3db4521339a83"
+      ],
+      "planHashes": [
+        "68ffec66085c17c0b868effb4d20dc02510639ad7782e10d7939fa3e3635f73d"
+      ]
+    },
+    "PR8": {
+      "trials": 5,
+      "inputHashes": [
+        "22b4c21f7af331ea450c867d08120e739624a7f3d63b38d5f3d3db4521339a83"
+      ],
+      "planHashes": [
+        "4f8d1f63a001a0d78b6aec5e49193143365a5cd30c9525150fa8f3f0710a0bd8"
+      ]
+    },
+    "V4": {
+      "trials": 5,
+      "inputHashes": [
+        "22b4c21f7af331ea450c867d08120e739624a7f3d63b38d5f3d3db4521339a83"
+      ],
+      "planHashes": [
+        "4f8d1f63a001a0d78b6aec5e49193143365a5cd30c9525150fa8f3f0710a0bd8"
+      ]
+    }
+  },
+  "sameBlobRepeatChecks": {
+    "rowsWithThree": 126,
+    "identicalScoresClocksAndSamples": 125,
+    "nonidenticalOrMissing": [
+      {
+        "id": "case-07",
+        "variant": "main",
+        "n": 3,
+        "identical": false,
+        "globalScores": [
+          null,
+          null,
+          null
+        ],
+        "unmeasuredGlobal": 3
+      }
+    ]
+  },
+  "qualityCoverage": {
+    "globalMeasuredComparisons": 69,
+    "globalUnmeasuredComparisons": 15,
+    "intervals": {
+      "historical": {
+        "measured": 834,
+        "incomparableOrUnmeasured": 2,
+        "regressions": 5
+      },
+      "aligned": {
+        "measured": 1059,
+        "incomparableOrUnmeasured": 11,
+        "regressions": 5
+      },
+      "backgroundConsistent": {
+        "measured": 1059,
+        "incomparableOrUnmeasured": 11,
+        "regressions": 1
+      }
+    }
+  },
+  "performanceComparison": {
+    "main": {
+      "totalMs": 50.201084814908306,
+      "searchMs": 93.9160360916877,
+      "exportMs": -6.654412234011852,
+      "totalP95ChangePercent": 56.69573080873418
+    },
+    "PR8": {
+      "totalMs": -11.26687755046174,
+      "searchMs": -10.615662459475683,
+      "exportMs": -10.545952756671895
+    }
+  },
+  "exactHeadCI": {
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38100295682",
+    "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
+    "status": "IN_PROGRESS"
+  }
+}
