@@ -95,6 +95,16 @@ Q.auditDecodedAudio=async(blob,audio,range,signal)=>{
   return {status:passed?'MEASURED':'FAILED',value:passed?100:null,confidence:passed?.8:0,sampleCount:observed.length,method:'decoded AAC duration, source/decoded energy and bounded AAC-delay signal correlation guard',sourceEnergy:expected,decodedEnergy:actual,signalCorrelation:correlation,correlationSampleLimit:2000,delaySearchSamples:2048,durationErrorSeconds:durationError,limits:'Signal preservation guard, not perceptual identity or syllable synchronization'};
  }catch(e){if(signal?.aborted)throw e;return {status:'UNMEASURED',value:null,confidence:0,sampleCount:0,reason:String(e.message)};}
 };
+// A phrase may have several manual/legacy units. Only its first unit owns the LRC onset.
+Q.lyricTimingInvariant=(p,cuts)=>{
+ const tolerance=1/(p.fps||24),lines=new Set(cuts.map(c=>c.line));
+ if(cuts.some(c=>!F(c.start)||!F(c.end)||c.end<=c.start))return false;
+ for(const id of lines){const line=p.lines?.[id],units=(p.cuts||cuts).filter(c=>c.line===id);
+  if(!line||!F(line.start)||!units.length||units.some(c=>!F(c.start)||c.start<line.start-tolerance))return false;
+  if(Math.abs(Math.min(...units.map(c=>c.start))-line.start)>tolerance)return false;
+ }
+ return true;
+};
 const final=V.finalEvaluation;
 V.finalEvaluation=async(result,p,args,session)=>{
  const r=await final(result,p,args,session),base={outputProfile:V.outputProfile(p,args.range),profileId:r.profile.profileId,planHash:r.evaluation.planHash,inputHash:session.input.inputHash,rendererVersion:V.version,source:'ENCODED_MP4'},d=p.lastPixelQA?.metrics?.decodedCinema,q=d?.cinemaV5;
@@ -102,7 +112,7 @@ V.finalEvaluation=async(result,p,args,session)=>{
  for(const [id,key]of Object.entries({temporalContrastV2:'temporalContrast',regionalNoveltyV2:'regionalNovelty',motionRealizationV2:'motionRealization',musicFitV2:'musicSync'})){const m=q?.[key];add(id,m?.value??null,{...(m||{}),unit:'index/1',method:m?.method||'decoded V5 observation unavailable',sampleCount:m?.sampleCount||0,confidence:m?.confidence??0});}
  const primary=d?.layerPresence?.primaryText?.samples||[],cuts=(p.cuts||[]).filter(c=>c.line>=0&&c.start<(args.range?.end??p.duration)&&c.end>(args.range?.start??0)),covered=cuts.length>0&&cuts.every(c=>primary.some(s=>s.line===c.line&&s.samples?.length&&s.visibleSamples===s.samples.length)),original=cuts.every(c=>String(c.lineText??c.text??'')===String(p.lines?.[c.line]?.text??c.lineText??c.text??''));
  add('lyricIntegrity',covered&&original?100:null,{status:!original?'FAILED':covered?'MEASURED':'UNMEASURED',sampleCount:covered?primary.length:0,method:'input snapshot + original plan strings + decoded registered primary presence; not OCR'});r.profile.requiredMetrics.push('lyricIntegrity');
- const timing=cuts.every(c=>{const line=p.lines?.[c.line];return line&&F(line.start)&&Math.abs(c.start-line.start)<=1/(p.fps||24)&&c.end>c.start;}),clock=q?.clockStatus==='DECODED_TIMESTAMP';add('lyricTiming',timing&&clock&&covered?100:null,{status:!timing?'FAILED':clock&&covered?'MEASURED':'UNMEASURED',sampleCount:clock&&covered?primary.length:0,method:'original lyric/cut onset invariance + decoded clock/presence coverage; not sung-syllable synchronization'});r.profile.requiredMetrics.push('lyricTiming');
+ const timing=Q.lyricTimingInvariant(p,cuts),clock=q?.clockStatus==='DECODED_TIMESTAMP';add('lyricTiming',timing&&clock&&covered?100:null,{status:!timing?'FAILED':clock&&covered?'MEASURED':'UNMEASURED',sampleCount:clock&&covered?primary.length:0,method:'original phrase onset / valid internal unit times + decoded clock/presence coverage; not sung-syllable synchronization'});r.profile.requiredMetrics.push('lyricTiming');
  const audit=await Q.auditDecodedAudio(result.blob,args.audio,args.range,args.signal);if(audit.status!=='NOT_APPLICABLE'){add('audioIntegrity',audit.value,{...audit,method:audit.method||'decoded AAC unavailable'});r.profile.requiredMetrics.push('audioIntegrity');}
  r.evaluation.creativePhysicalEvidence=q||{status:'UNMEASURED'};r.evaluation.audioEvidence=audit;r.evaluation.humanStatus=Q.humanStatus;return r;
 };
