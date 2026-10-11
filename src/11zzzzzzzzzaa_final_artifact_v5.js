@@ -14,8 +14,21 @@ Q.nativeGlyphSafety=(env,it)=>{
 };
 Q.finalGlyphPresence=(on,off,actual,alpha,w,h,bounds,scale)=>{
  if(!bounds||[on,off,actual,alpha].some(a=>a.length!==w*h))return {status:'UNMEASURED',reason:'MISSING_NATIVE_GLYPH_GEOMETRY'};
- let expected=0,present=0,ex=0,ey=0,ax=0,ay=0,nativeInkBounds={x0:Infinity,y0:Infinity,x1:-Infinity,y1:-Infinity},decodedInkBounds={...nativeInkBounds};const extend=(b,x,y)=>{b.x0=Math.min(b.x0,x);b.x1=Math.max(b.x1,x);b.y0=Math.min(b.y0,y);b.y1=Math.max(b.y1,y);};for(let y=Math.max(0,Math.floor(bounds.y0*scale));y<Math.min(h,Math.ceil(bounds.y1*scale));y++)for(let x=Math.max(0,Math.floor(bounds.x0*scale));x<Math.min(w,Math.ceil(bounds.x1*scale));x++){const i=y*w+x;if(alpha[i]>.5&&Math.abs(on[i]-off[i])>=.25){expected++;ex+=x;ey+=y;extend(nativeInkBounds,x,y);if((actual[i]-off[i])/(on[i]-off[i])>.30&&(actual[i]-off[i])/(on[i]-off[i])<1.8){present++;ax+=x;ay+=y;extend(decodedInkBounds,x,y);}}}
- return {status:expected<3?'UNMEASURED':present/expected>=.95?'MEASURED':'FAILED',expectedInkPixels:expected,decodedInkFraction:expected?present/expected:null,nativeInkBounds:expected?nativeInkBounds:null,decodedInkBounds:present?decodedInkBounds:null,nativeCentroid:expected?[ex/expected,ey/expected]:null,decodedCentroid:present?[ax/present,ay/present]:null,reason:expected<3?'NO_MEASURABLE_CONTRAST_BEARING_GLYPH_INK':present/expected>=.95?null:'DECODED_GLYPH_INK_MISSING',method:'Native glyph box / registered expected contrast-bearing ink versus actual decoded pixels; not OCR'};
+ let expected=0,present=0,background=0,backgroundMatched=0,nativeCount=0,decodedCount=0,ex=0,ey=0,ax=0,ay=0;
+ const nativeInkBounds={x0:Infinity,y0:Infinity,x1:-Infinity,y1:-Infinity},decodedInkBounds={...nativeInkBounds},extend=(b,x,y)=>{b.x0=Math.min(b.x0,x);b.x1=Math.max(b.x1,x);b.y0=Math.min(b.y0,y);b.y1=Math.max(b.y1,y);};
+ const x0=Math.max(0,Math.floor(bounds.x0*scale)),x1=Math.min(w,Math.ceil(bounds.x1*scale)),y0=Math.max(0,Math.floor(bounds.y0*scale)),y1=Math.min(h,Math.ceil(bounds.y1*scale));
+ for(let y=Math.max(0,y0-2);y<Math.min(h,y1+2);y++)for(let x=Math.max(0,x0-2);x<Math.min(w,x1+2);x++){
+  const i=y*w+x,inside=x>=x0&&x<x1&&y>=y0&&y<y1,delta=on[i]-off[i];
+  if(inside&&alpha[i]>.5&&Math.abs(delta)>=.25){expected++;if((actual[i]-off[i])/delta>.30&&(actual[i]-off[i])/delta<1.8)present++;}
+  if(alpha[i]<.05){background++;if(Math.abs(actual[i]-on[i])<.25)backgroundMatched++;}
+  // Keep the native non-primary composite as background; measure actual contrast
+  // independently across the padded box, including unexpected foreground pixels.
+  const reference=alpha[i]>.5?off[i]:on[i];
+  if(Math.abs(on[i]-reference)>=.25){nativeCount++;ex+=x;ey+=y;extend(nativeInkBounds,x,y);}
+  if(Math.abs(actual[i]-reference)>=.25){decodedCount++;ax+=x;ay+=y;extend(decodedInkBounds,x,y);}
+ }
+ const unknown=expected<3||background<3,missing=!unknown&&present/expected<.95,extra=!unknown&&backgroundMatched/background<.95,status=unknown?'UNMEASURED':missing||extra?'FAILED':'MEASURED';
+ return {status,expectedInkPixels:expected,decodedInkFraction:expected?present/expected:null,backgroundSamplePixels:background,decodedBackgroundAgreement:background?backgroundMatched/background:null,nativeInkBounds:nativeCount?nativeInkBounds:null,decodedInkBounds:decodedCount?decodedInkBounds:null,nativeCentroid:nativeCount?[ex/nativeCount,ey/nativeCount]:null,decodedCentroid:decodedCount?[ax/decodedCount,ay/decodedCount]:null,reason:unknown?'INSUFFICIENT_GLYPH_OR_NEGATIVE_BACKGROUND_CONTROL':missing?'DECODED_GLYPH_INK_MISSING':extra?'UNEXPECTED_DECODED_FOREGROUND':null,method:'Registered per-glyph positive ink and negative composite-background controls; actual foreground geometry measured without clipping to expected ink; not OCR'};
 };
 Q.finalArtifactUnits=async(p,range,planHash)=>{
  const start=range?.start??p.socialHook?.start??0,end=range?.end??p.socialHook?.end??p.duration,out=[];
@@ -30,7 +43,7 @@ Q.finalArtifactUnits=async(p,range,planHash)=>{
 };
 Q.finalUnitSummary=(unit,frames,fps)=>{
  const own=frames.filter(f=>f.unitId===unit.id&&F(f.actualDecodedTimestamp)&&f.actualDecodedTimestamp>=unit.from&&f.actualDecodedTimestamp<unit.to),hold=own.filter(f=>f.phase==='hold'),expected=Math.max(0,Math.ceil(unit.hold[1]*fps-1e-7)-Math.ceil(unit.hold[0]*fps-1e-7));
- const full=own.length>1&&own.every((f,i)=>!i||f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp<=1.01/fps),complete=expected>1&&hold.length>=expected&&hold.every(f=>f.nativeComplete&&f.safeArea&&f.pixelPresence);
+ const full=own.length>1&&own.every((f,i)=>!i||f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp>=.99/fps&&f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp<=1.01/fps),complete=expected>1&&hold.length>=expected&&hold.every(f=>f.nativeComplete&&f.safeArea&&f.pixelPresence);
  const failed=hold.some(f=>f.nativeComplete===false||f.safeArea===false||f.pixelPresence===false);
  return {unitId:unit.id,line:unit.line,timeRange:[unit.from,unit.to],holdRange:unit.hold,status:failed?'FAILED':full&&complete?'MEASURED':'UNMEASURED',frameCount:own.length,holdFrameCount:hold.length,expectedHoldFrames:expected,readableHoldSeconds:hold.filter(f=>f.nativeComplete&&f.safeArea&&f.pixelPresence).length/fps,minimumContrast:hold.length&&hold.every(f=>F(f.localContrast))?Math.min(...hold.map(f=>f.localContrast)):null,reason:failed?'NATIVE_OR_DECODED_GLYPH_FAILURE':full&&complete?null:expected<=1?'NO_COMPLETE_HOLD_INTERVAL':'INCOMPLETE_ACTUAL_FRAME_COVERAGE',phaseCounts:Object.fromEntries(['entry','hold','exit'].map(k=>[k,own.filter(f=>f.phase===k).length]))};
 };
