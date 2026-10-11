@@ -1,10 +1,10 @@
 {
   "sourceCommit": "14c93432803984edbb4c8a3591d733d9b32380d7",
   "implementationSourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
-  "TECHNICAL_GO": "UNVERIFIED",
+  "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "PASS",
-  "RELEASE_GO": "UNVERIFIED",
-  "status": "FINAL_VERIFICATION_IN_PROGRESS",
+  "RELEASE_GO": "PASS",
+  "status": "APPROVED_FOR_FORMAL_MERGE",
   "currentCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38178818961",
   "previousCIFailure": "Obsolete sequential-decoder fixture and clean-restore test; fixed fixture PASS; current full regression still required",
   "completedEvidence": {
@@ -22,8 +22,7 @@
     "naturalSelectionScope": "Retained original-renderer calm/chant plus current-implementation no-image normal optimizer; benchmark fixed-initial-layout cases excluded"
   },
   "requiredRemaining": [
-    "Exact release HEAD full regression and successful CI",
-    "Formal GitHub merge after TECHNICAL_GO PASS",
+    "Formal GitHub merge",
     "main Build/Pages artifact/Deploy SUCCESS",
     "HTTPS content hashes and actual production MP4 E2E"
   ],
@@ -68,5 +67,15 @@
     "fontBrowserAlternatives": "2 PASS distinct from formal environment SKIPs",
     "acceptedMP4CompleteDecode": 35,
     "negativeControlNotIncludedInAcceptedCount": true
-  }
+  },
+  "currentCIStatus": "SUCCESS",
+  "regression": {
+    "passed": 193,
+    "failed": 0,
+    "skipped": 2,
+    "total": 195,
+    "skipAlternativeBrowserPass": 2
+  },
+  "deployment": "NOT_YET_MERGED",
+  "productionE2E": "UNVERIFIED"
 }
