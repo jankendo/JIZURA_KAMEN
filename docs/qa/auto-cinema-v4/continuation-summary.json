@@ -6158,5 +6158,28 @@
     "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38100295682",
     "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
     "status": "IN_PROGRESS"
+  },
+  "completeVideoPixelComparison": {
+    "status": "PASS",
+    "comparedAgainst": "PR8",
+    "trials": 42,
+    "frames": 3888,
+    "method": "Full-resolution decoded frame SHA256 including frame timestamps, durations and sizes, for both complete videos. SSIM is an auxiliary rounded diagnostic; exact equality is established by every frame SHA256, not rounded SSIM.",
+    "allPerFrameSHA256Equal": true
+  },
+  "qualityCalibration": {
+    "case07MainSameBlobAlignedScores": [
+      10,
+      8,
+      10
+    ],
+    "case07MainSameBlobBackgroundScores": [
+      9,
+      9,
+      10
+    ],
+    "case07Attribution": "UNRESOLVED_OBSERVER_VARIANCE; do not claim a confirmed actual-video regression from the first sample",
+    "PR8VersusFinalV4": "No decoded pixel regression; every frame in all 42 matching MP4 trials has the same SHA256",
+    "mainVersusV4": "Different choreography; historical/actual-frame metric differences and missing samples retained, not waived"
   }
 }
