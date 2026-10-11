@@ -5,6 +5,8 @@ const {J,createCanvas,context}=engine(),Q=J.cinemaV5;
 const unit={id:'immutable-unit-a',line:0,from:0,to:1,hold:[.2,.8]},fps=10;
 assert(Q.originalUnitTextIntegrity({lines:[{text:'原文を守る'}],cuts:[{line:0,text:'原文を'},{line:0,text:'守る'}]},[0]));
 assert(!Q.originalUnitTextIntegrity({lines:[{text:'原文を守る'}],cuts:[{line:0,text:'原文を'}]},[0]),'input hash alone cannot certify an omitted internal text unit');
+assert(!Q.originalUnitTextIntegrity({lines:[{text:'Hello world'}],cuts:[{line:0,text:'Helloworld'}]},[0]),'missing word spacing within one unit is not original-text integrity');
+assert(Q.originalUnitTextIntegrity({lines:[{text:'Hello world'}],cuts:[{line:0,text:'Hello'},{line:0,text:'world'}]},[0]),'separate internal words may consume source whitespace at unit boundaries');
 assert(Q.originalUnitTextIntegrity({lines:[{text:'反復'}],cuts:[{line:0,text:'反復'},{line:0,text:'反復'}]},[0]),'intentional repetition of the complete source phrase remains valid');
 {const input={audioHash:'pcm',imageHashes:['image'],lyricsHash:'lyrics',projectHash:'project',userLocks:{lockedLines:[0]},rendererVersion:'renderer',outputProfile:{fps:24}},adapted={...input,outputProfile:{fps:30}};assert(Q.sameFinalInput(input,adapted),'legitimate adaptive delivery FPS does not change immutable source input');assert(!Q.sameFinalInput(input,{...adapted,lyricsHash:'other lyrics'}));assert(!Q.sameFinalInput(input,{...adapted,userLocks:{lockedLines:[]}}));}
 const frames=Array.from({length:10},(_,i)=>({unitId:unit.id,actualDecodedTimestamp:i/10,phase:i<2?'entry':i>=8?'exit':'hold',nativeComplete:i>=2&&i<8,safeArea:true,pixelPresence:i>=2&&i<8,localContrast:100}));

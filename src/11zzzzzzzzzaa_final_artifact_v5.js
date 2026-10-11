@@ -3,8 +3,9 @@
 const hash=x=>J.sha256(J.canonicalJSON(x)),clean=s=>String(s??'').replace(/\s/gu,'');
 Q.sameFinalInput=(a,b)=>['audioHash','imageHashes','lyricsHash','projectHash','userLocks','rendererVersion'].every(k=>J.canonicalJSON(a[k])===J.canonicalJSON(b[k]));
 Q.originalUnitTextIntegrity=(p,lineIds)=>lineIds.every(line=>{
- const raw=clean(p.lines?.[line]?.text),texts=(p.cuts||[]).filter(c=>c.line===line).map(c=>clean(c.grammar?c.lineText??c.text:c.text??c.lineText));
- return !!raw&&texts.length>0&&(texts.every(t=>t===raw)||texts.join('')===raw);
+ const normalize=s=>String(s??'').replace(/\s+/gu,' ').trim(),raw=normalize(p.lines?.[line]?.text),texts=(p.cuts||[]).filter(c=>c.line===line).map(c=>normalize(c.grammar?c.lineText??c.text:c.text??c.lineText));
+ if(!raw||!texts.length||texts.some(t=>!t))return false;if(texts.every(t=>t===raw))return true;
+ let cursor=0;for(const text of texts){while(raw[cursor]===' ')cursor++;if(raw.slice(cursor,cursor+text.length)!==text)return false;cursor+=text.length;}return raw.slice(cursor).trim()==='';
 });
 Q.isPrimaryInternalLyric=(env,it)=>!(env.cut.layout==='center'&&env.cut.params?.sub&&clean(env.cut.text)!==clean(env.cut.lineText)&&clean(it.text)===clean(env.cut.lineText));
 Q.nativeGlyphSafety=(env,it)=>{
