@@ -1,0 +1,538 @@
+{
+  "status": "PASS_PRELIMINARY_BROWSER_FINAL_HEAD_CI_PENDING",
+  "sourceHEAD": "eafde13f21e3bc9b55032f0ade27e7f16b665722",
+  "sourceRuntimeSHA256": "9e8062cb0e06297d381164c3b00765139b28a538d3e4b4d74d8298835170f188",
+  "finalSourceHEAD": "88af76810881816bae1c999d1e8cd8cc1f93dd30",
+  "finalRuntimeHTMLSHA256": "4e076936003e3d18c2085ea4ed30cab368a7fa64a51d7c9090aa37b1ca223fb8",
+  "browser": "151.0.7922.173",
+  "checks": [
+    {
+      "name": "startup",
+      "status": "PASS",
+      "version": "2.0.26",
+      "secure": true
+    },
+    {
+      "name": "background upload",
+      "status": "PASS"
+    },
+    {
+      "name": "TXT import",
+      "status": "PASS"
+    },
+    {
+      "name": "LRC import and timing",
+      "status": "PASS"
+    },
+    {
+      "name": "audio upload and analysis",
+      "status": "PASS",
+      "bpm": 120
+    },
+    {
+      "name": "automatic MV generation",
+      "status": "PASS",
+      "cuts": 4,
+      "lines": 4,
+      "duration": 8.999977324263039
+    },
+    {
+      "name": "preview playback",
+      "status": "PASS"
+    },
+    {
+      "name": "project save and reload",
+      "status": "PASS"
+    },
+    {
+      "name": "regenerate after restored audio",
+      "status": "PASS"
+    },
+    {
+      "name": "UI MP4 export and decode",
+      "status": "PASS",
+      "creativeState": "BELOW_TARGET",
+      "oneClick": true,
+      "video": "h264",
+      "audio": "aac",
+      "duration": "9.024000",
+      "progressUpdates": 751,
+      "decodedFrames": 216,
+      "visibleContent": true
+    }
+  ],
+  "oneClick": true,
+  "outcome": {
+    "fileState": "SAVE_AVAILABLE",
+    "creativeState": "BELOW_TARGET",
+    "initialConfirmedPlanReused": false
+  },
+  "videoHash": "66ec13830d42f25a957a43f40232485ea3b0dae749f03fcad296832c186c068b",
+  "pageErrors": [],
+  "resourceFailures": [],
+  "formalMP4Export": {
+    "name": "cinema_v3_export_e2e.cjs",
+    "status": "PASS",
+    "mode": "run-actual-UI-export",
+    "checks": 10,
+    "videoHash": "66ec13830d42f25a957a43f40232485ea3b0dae749f03fcad296832c186c068b",
+    "planHash": "1c24286a4fe854228daf6b132134b04cbc71d28416fb7997d1b6cd68c4fa8ce1",
+    "state": "BUDGET_EXHAUSTED",
+    "attempts": 4,
+    "decisions": [
+      "INITIAL_ARTIFACT_RETAINED_AS_DRAFT",
+      "PROTECTED_REGRESSION",
+      "VERIFIED_TARGET_IMPROVEMENT",
+      "PROTECTED_REGRESSION"
+    ],
+    "artistic100Established": false,
+    "peakMemoryStatus": "UNMEASURED",
+    "browser": "151.0.7922.173",
+    "decoderProbe": {
+      "status": "PASS",
+      "controls": 3,
+      "method": "actual H264/AAC UI artifact plus actual H264 black control; only native HTMLVideoElement canvas paint is injected to zero",
+      "thresholdChanged": false,
+      "previousTransientFailureCause": "UNRESOLVED: initial failed blob was not retained",
+      "recovered": {
+        "passed": true,
+        "checks": {
+          "container": true,
+          "video": true,
+          "audio": true,
+          "resolution": true,
+          "duration": true,
+          "frames": true,
+          "fps": true,
+          "avSync": true,
+          "reloaded": true,
+          "avDuration": true,
+          "seek": true,
+          "blackFrames": true,
+          "firstLast": true
+        },
+        "frames": [
+          {
+            "time": 0,
+            "nonBlack": 1
+          },
+          {
+            "time": 0.25,
+            "nonBlack": 1
+          },
+          {
+            "time": 4.512,
+            "nonBlack": 0.824974279835391
+          },
+          {
+            "time": 8.943999999999999,
+            "nonBlack": 1
+          }
+        ],
+        "nativeFrames": [
+          {
+            "time": 0,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.25,
+            "nonBlack": 0
+          },
+          {
+            "time": 4.512,
+            "nonBlack": 0
+          },
+          {
+            "time": 8.943999999999999,
+            "nonBlack": 0
+          }
+        ],
+        "nativeChecks": {
+          "blackFrames": false,
+          "firstLast": false
+        },
+        "independentPixels": {
+          "status": "MEASURED",
+          "source": "independent encoded MP4 decoder; same RGB threshold and timestamps",
+          "frames": [
+            {
+              "time": 0,
+              "nonBlack": 1
+            },
+            {
+              "time": 0.25,
+              "nonBlack": 1
+            },
+            {
+              "time": 4.512,
+              "nonBlack": 0.824974279835391
+            },
+            {
+              "time": 8.943999999999999,
+              "nonBlack": 1
+            }
+          ]
+        },
+        "path": "Browser WebCodecs → MP4 Blob → HTMLVideoElement reload/decode",
+        "fps": 24,
+        "avSync": "track timestamp/duration; no perceptual sync claim"
+      },
+      "black": {
+        "passed": false,
+        "checks": {
+          "container": true,
+          "video": true,
+          "audio": true,
+          "resolution": true,
+          "duration": true,
+          "frames": true,
+          "fps": true,
+          "avSync": true,
+          "reloaded": true,
+          "avDuration": true,
+          "seek": true,
+          "blackFrames": false,
+          "firstLast": false
+        },
+        "frames": [
+          {
+            "time": 0,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.25,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.5,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.92,
+            "nonBlack": 0
+          }
+        ],
+        "nativeFrames": [
+          {
+            "time": 0,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.25,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.5,
+            "nonBlack": 0
+          },
+          {
+            "time": 0.92,
+            "nonBlack": 0
+          }
+        ],
+        "nativeChecks": {
+          "blackFrames": false,
+          "firstLast": false
+        },
+        "independentPixels": {
+          "status": "MEASURED",
+          "source": "independent encoded MP4 decoder; same RGB threshold and timestamps",
+          "frames": [
+            {
+              "time": 0,
+              "nonBlack": 0
+            },
+            {
+              "time": 0.25,
+              "nonBlack": 0
+            },
+            {
+              "time": 0.5,
+              "nonBlack": 0
+            },
+            {
+              "time": 0.92,
+              "nonBlack": 0
+            }
+          ]
+        },
+        "path": "Browser WebCodecs → MP4 Blob → HTMLVideoElement reload/decode",
+        "fps": 24,
+        "avSync": "track timestamp/duration; no perceptual sync claim"
+      },
+      "retention": {
+        "rejected": true,
+        "originalError": "EXPORT_INVALID: MP4再読込検査に失敗しました {\"container\":true,\"video\":true,\"audio\":true,\"resolution\":true,\"duration\":true,\"frames\":true,\"fps\":true,\"avSync\":true,\"reloaded\":true,\"avDuration\":true,\"seek\":true,\"blackFrames\":false,\"firstLast\":false}",
+        "retainedSameBlob": true,
+        "attachedSameArtifact": true,
+        "status": "FAILED",
+        "videoHash": "f531bc1082bd2b1c1960c376eaa8b9a44baa895562f57bc2595678ded12abc80",
+        "inspectionPassed": false,
+        "planHash": null,
+        "fullDecode": "PASS",
+        "file": "failed-black-control.mp4"
+      },
+      "cancellation": {
+        "status": "PASS",
+        "bitmapGuardResources": {
+          "status": "PASS",
+          "nativeImageBitmaps": 1,
+          "beforeDimensions": [
+            [
+              640,
+              360
+            ]
+          ],
+          "afterDimensions": [
+            [
+              0,
+              0
+            ]
+          ],
+          "peakMemoryStatus": "UNMEASURED"
+        },
+        "cancellation": {
+          "status": "PASS",
+          "source": "actual browser WebCodecs encoder/frame objects, cancellation after frame submission; no mocked encoder",
+          "beforePlanQAHash": "792eecda03df33640f4091a206ac0f524724625ee7d3ee739e829e85f9eb6415",
+          "afterPlanQAHash": "792eecda03df33640f4091a206ac0f524724625ee7d3ee739e829e85f9eb6415",
+          "hashMethod": "canonical plan plus explicit serialized pixel QA and quality target (canonical plan alone excludes QA)",
+          "restored": true,
+          "abortProgress": {
+            "stage": "frames",
+            "current": 12,
+            "total": 96,
+            "encoded": 10
+          },
+          "error": {
+            "name": "Error",
+            "message": "キャンセルしました"
+          },
+          "nativeEncoders": 1,
+          "nativeFrames": 12,
+          "allEncodersClosed": true,
+          "allFramesClosed": true,
+          "retry": "following actual full H264/AAC export independently validated by runner"
+        },
+        "retryVideoHash": "ae067bdb8a4cf45641e47ba45721286135d0487d7b6d48bc7ed59912b5db764a",
+        "retryCodecs": [
+          "h264",
+          "aac"
+        ],
+        "retryFullDecode": "PASS",
+        "timingPurpose": "NOT_A_PERFORMANCE_BENCHMARK; canceled attempt plus retry",
+        "historicalCertificationCause": "UNRESOLVED; this is an independently controlled cancellation test"
+      }
+    }
+  },
+  "fontProbe": {
+    "status": "PASS",
+    "browser": "151.0.7922.173",
+    "cases": [
+      {
+        "mode": "NORMAL_NETWORK",
+        "elapsedMs": 880.4000000000233,
+        "evidence": {
+          "embedded_bold": {
+            "status": "LOADED",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "faces": 1
+          },
+          "mono": {
+            "status": "LOADED",
+            "family": "\"IBM Plex Mono\"",
+            "faces": 1
+          },
+          "gothic_black": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 8
+          },
+          "gothic_med": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 8
+          },
+          "dela": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 8
+          },
+          "zenkaku": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 8
+          },
+          "gothic_bold": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 3
+          },
+          "mincho": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 8
+          },
+          "mincho_light": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 8
+          }
+        },
+        "embeddedAvailable": true,
+        "failures": [],
+        "pageErrors": []
+      },
+      {
+        "mode": "CONTROLLED_EXTERNAL_NETWORK_FAILURE",
+        "elapsedMs": 1.099999999976717,
+        "evidence": {
+          "mono": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"IBM Plex Mono\"",
+            "faces": 0
+          },
+          "gothic_black": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"Noto Sans JP\"",
+            "faces": 0
+          },
+          "dela": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"Dela Gothic One\"",
+            "faces": 0
+          },
+          "zenkaku": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 0
+          },
+          "mincho_light": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"Noto Serif JP\"",
+            "faces": 0
+          },
+          "mincho": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"Noto Serif JP\"",
+            "faces": 0
+          },
+          "gothic_med": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"Noto Sans JP\"",
+            "faces": 0
+          },
+          "gothic_bold": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"Noto Sans JP\"",
+            "faces": 0
+          },
+          "embedded_bold": {
+            "status": "LOADED",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "faces": 1
+          }
+        },
+        "embeddedAvailable": true,
+        "failures": [
+          {
+            "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap",
+            "reason": "net::ERR_INTERNET_DISCONNECTED"
+          },
+          {
+            "url": "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700;900&display=swap",
+            "reason": "net::ERR_INTERNET_DISCONNECTED"
+          },
+          {
+            "url": "https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap",
+            "reason": "net::ERR_INTERNET_DISCONNECTED"
+          },
+          {
+            "url": "https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@900&display=swap",
+            "reason": "net::ERR_INTERNET_DISCONNECTED"
+          },
+          {
+            "url": "https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&display=swap",
+            "reason": "net::ERR_INTERNET_DISCONNECTED"
+          }
+        ],
+        "pageErrors": []
+      }
+    ],
+    "historicalFailureCause": "UNRESOLVED: old-instance failure artifacts unavailable; present success cannot prove past cause"
+  },
+  "syntheticUIBoundary": {
+    "status": "PASS",
+    "evidence": "BROWSER_UI_BOUNDARY_WITH_SYNTHETIC_ACCEPTANCE_AND_VALIDATED_MP4_REUSE",
+    "freshEncodes": 0,
+    "sourceVideoHash": "66ec13830d42f25a957a43f40232485ea3b0dae749f03fcad296832c186c068b",
+    "browser": "151.0.7922.173",
+    "cases": [
+      {
+        "state": "TARGET_MET",
+        "outcome": {
+          "fileState": "SAVE_AVAILABLE",
+          "creativeState": "TARGET_MET",
+          "initialConfirmedPlanReused": false
+        },
+        "calls": 1,
+        "draft": false,
+        "job": {
+          "status": "completed",
+          "error": ""
+        }
+      },
+      {
+        "state": "BELOW_TARGET",
+        "outcome": {
+          "fileState": "SAVE_AVAILABLE",
+          "creativeState": "BELOW_TARGET",
+          "initialConfirmedPlanReused": false
+        },
+        "calls": 2,
+        "draft": false,
+        "job": {
+          "status": "completed",
+          "error": ""
+        }
+      },
+      {
+        "state": "UNMEASURED",
+        "outcome": {
+          "fileState": "SAVE_AVAILABLE",
+          "creativeState": "UNMEASURED",
+          "initialConfirmedPlanReused": false
+        },
+        "calls": 3,
+        "draft": false,
+        "job": {
+          "status": "completed",
+          "error": ""
+        }
+      },
+      {
+        "state": "INVALID_MP4",
+        "outcome": {
+          "fileState": "FAILED_TECHNICAL",
+          "creativeState": "UNMEASURED",
+          "initialConfirmedPlanReused": false
+        }
+      },
+      {
+        "state": "PICKER_CANCEL",
+        "outcome": {
+          "fileState": "CANCELLED",
+          "creativeState": "UNMEASURED"
+        }
+      }
+    ],
+    "pageErrors": []
+  },
+  "boundaryStartupFailure": {
+    "status": "PRESERVED",
+    "cause": "KAMEN_CHROME not supplied to optional UI contract runner; Playwright bundled executable absent",
+    "rerun": "PASS_WITH_EXISTING_USR_BIN_CHROMIUM",
+    "log": "ui-boundary-startup-failure.log"
+  },
+  "finalHeadCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38099067857"
+}
