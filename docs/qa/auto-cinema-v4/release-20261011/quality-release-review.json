@@ -1,0 +1,45 @@
+{
+  "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
+  "QUALITY_GO": "PASS",
+  "judgmentScope": "technical preservation and absence of known major actual-video regressions; not highest human aesthetic certification",
+  "PR8Preservation": {
+    "pairs": 42,
+    "decodedFrames": 3888,
+    "sameFixturesInputsProfilesColorMetadata": true,
+    "allPixelSHA256Equal": true,
+    "source": "../complete-frame-comparison.json"
+  },
+  "targetedAdditionalMP4s": 6,
+  "mainDisputes": {
+    "case07": "V4 old/new pixels identical; old Blob target point 8/8/8; fresh main 8/9/9. Fresh main plan hash and pixels differ from archived main, so old-reference remapping is incomparable. Main same-Blob observer variability remains UNRESOLVED. Inspected target native frames retain readable short glyph and no missing primary text.",
+    "case23": "100→99 remains at recorded individual points; completed native frames at indices 11/28/53 inspected, no major crop/missing/readability defect confirmed. Main minimum 43, V4 minimum71 within separately measured complete aligned sample set; minima do not erase individual regressions. V4 old/new pixels identical but planHash differs; strict reference mismatch recorded.",
+    "independentBrief": "Historical requested-time 92→9 remains documented; independent actual-frame .375s yields100 in both fresh main/V4. Actual-frame native PNG inspected. This is measurement-method conflict, not claimed resolved artistic deficiency.",
+    "historical75to74": "UNRESOLVED; original raw artifact unavailable, no same-Blob remeasurement claimed."
+  },
+  "representativeInspection": {
+    "fixtures": [
+      "case-01",
+      "case-08",
+      "case-05",
+      "case-24",
+      "independent-brief",
+      "independent-quiet",
+      "general-manual",
+      "general-dense"
+    ],
+    "actualFrames": 32,
+    "disputedNativeFrames": 10,
+    "readability": "No major clipping found in inspected frames; strict all-lyric transition/mask metrics that are unmeasured remain unmeasured. Short stress-fixture phrases and fading intervals are not represented as universally readable.",
+    "structure": "Observed phrase/layout changes and calmer sustained panels, repeated chorus layouts, exit/fade/empty-background tails; structural machine evidence retained, no human aesthetic score assigned.",
+    "manualSettings": "Existing frozen-source matrix sourceInvariant/manualLock checks pass; manual contrast settings respected, no automatic override for the manually fixed case.",
+    "musicAlignment": "Existing real generated PCM analysis, fixed-seed Scene Grammar search and timing/regression evidence reused; synthetic calm/intense/variable/silent/steady samples cover differing music conditions. This is not a human listening-panel rating.",
+    "expertParticipation": "No real external specialists participated; assistant technical review across requested disciplines."
+  },
+  "thresholdsChanged": false,
+  "runtimeSourceChanged": false,
+  "humanAestheticEvaluation": "UNMEASURED",
+  "peakMemory": "UNMEASURED",
+  "speedAcceptedByUser": true,
+  "remainingUnmeasured": "Transition opaque-mask insufficiency, semantic/aesthetic domains and measurement-method conflicts retained; no fabricated scores",
+  "releaseCondition": "aggregate CI success plus normal-history integration/rollback; final production browser/MP4 check still required"
+}
