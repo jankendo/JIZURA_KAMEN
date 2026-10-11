@@ -1,0 +1,26 @@
+{
+  "sourceHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
+  "status": "ROOT_COST_IDENTIFIED_NO_GENERAL_RENDERER_REUSE_PROVEN",
+  "illustrativeFixture": "case-02",
+  "finalV4": {
+    "totalMs": 46513,
+    "searchMs": 40393.9,
+    "legacyFinalistComparisonMs": 18447,
+    "nativeObservations": 23,
+    "nativeFrames": 154,
+    "samples": 182,
+    "encodedProxyCalls": 7,
+    "visualProxyCalls": 16,
+    "actualFrameReuseHits": 0
+  },
+  "mainTotalMs": 17885.1,
+  "PR8TotalMs": 51908.8,
+  "interpretation": [
+    "Candidate exploration plus adaptive-versus-legacy comparison dominate this fixture. Candidate IDs do not establish equivalent grammar or rendering state.",
+    "Inclusive nested profile times overlap and must not be summed.",
+    "This fixture has zero repeated actual-frame hits; the retained local optimization cannot remove the dominant cost.",
+    "Cross-candidate pixel and Renderer reuse remain unsafe until state dependence is isolated. Existing mathematical alpha-class stencil reuse remains unchanged.",
+    "The alternative alpha-allocation experiment was rejected after material cache-miss microbenchmark regressions."
+  ],
+  "limits": "Diagnostic single-fixture profile; final cohort statistics required. No claim that the performance acceptance gate is solved."
+}
