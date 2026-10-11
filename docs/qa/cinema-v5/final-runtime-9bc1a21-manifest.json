@@ -1,0 +1,40 @@
+{
+  "archive": "final-runtime-9bc1a21-evidence.tar.gz",
+  "sha256": "0f392d72ca16997788cbe0cd8be775ae60131b40dce7bb93823ca91e31eaf699",
+  "bytes": 117744964,
+  "sourceHead": "9bc1a210146de15bc6c278aeca3baf2469bd516b",
+  "runtimeSHA256": "f9c7af3a73c3809cfe2543c45e4bde56a5038de85f5e82876c8d9f9b5e1dcc51",
+  "scope": {
+    "matrix-33287e8": "Exact final application source; test-only commit afterward. Six paired H264/AAC complete decodes.",
+    "physical-control-b6f72be": "Prior application; explicit operator positive control, not natural quality certification.",
+    "ui-b6f72be": "Prior main UI application; later supplementary probes may use newer runtime. Not final-head formal UI certification."
+  },
+  "parts": [
+    {
+      "name": "final-runtime-9bc1a21-evidence.tar.gz.part-00",
+      "bytes": 25165824,
+      "sha256": "eac46f7d0a4a32f5f8021a2b94fa520e097f0fa32243542b338392c5e947cfa0"
+    },
+    {
+      "name": "final-runtime-9bc1a21-evidence.tar.gz.part-01",
+      "bytes": 25165824,
+      "sha256": "99a3ed7649d154bb92cd3bd91347546be0ec5edf181b521619b13b6db03cd84f"
+    },
+    {
+      "name": "final-runtime-9bc1a21-evidence.tar.gz.part-02",
+      "bytes": 25165824,
+      "sha256": "137a3a7b7c35d63af577b3011e8b7e9459800d5a7ada8c5d440c6cc2575b8bab"
+    },
+    {
+      "name": "final-runtime-9bc1a21-evidence.tar.gz.part-03",
+      "bytes": 25165824,
+      "sha256": "af8b8eaa41070654bb6a77960a826f3f417914d44e49e1753f0c7ffbe55a4d0e"
+    },
+    {
+      "name": "final-runtime-9bc1a21-evidence.tar.gz.part-04",
+      "bytes": 17081668,
+      "sha256": "42c9741669c35de4854997137e7e5b219fbb2649b650b0a38e738cd2cc0adc0e"
+    }
+  ],
+  "restore": "Concatenate parts in numeric order, verify archive SHA256, then extract"
+}

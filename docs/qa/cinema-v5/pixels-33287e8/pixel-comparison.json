@@ -1,0 +1,46 @@
+{
+  "source": {
+    "head": "33287e8a591f8b801531867a6f4f184de61013f0",
+    "runtimeSHA256": "f9c7af3a73c3809cfe2543c45e4bde56a5038de85f5e82876c8d9f9b5e1dcc51",
+    "baselineHead": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+    "sourceFrozen": true,
+    "qualityGate": "UNVERIFIED",
+    "bundleSHA256": "894aadc5b183fd9cdd378727b2c35d71963d1ea9a0e3654e57599619125a5b9f",
+    "baselineRuntimeSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+    "ci": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38138064091"
+  },
+  "method": "FFmpeg decoded RGB24 frame SHA-256; codec timestamps retained in raw framehash files",
+  "pairs": [
+    {
+      "fixture": "case-24",
+      "sourceAndInputComparable": true,
+      "baselineFrameCount": 288,
+      "v5FrameCount": 288,
+      "sameDecodedRGBFrames": 0,
+      "changedDecodedRGBFrames": 288,
+      "allDecodedFramesIdentical": false,
+      "interpretation": "Pixel identity establishes preservation for these frames; different pixels alone establish neither improvement nor regression."
+    },
+    {
+      "fixture": "general-dense",
+      "sourceAndInputComparable": true,
+      "baselineFrameCount": 96,
+      "v5FrameCount": 96,
+      "sameDecodedRGBFrames": 16,
+      "changedDecodedRGBFrames": 80,
+      "allDecodedFramesIdentical": false,
+      "interpretation": "Pixel identity establishes preservation for these frames; different pixels alone establish neither improvement nor regression."
+    },
+    {
+      "fixture": "general-manual",
+      "sourceAndInputComparable": true,
+      "baselineFrameCount": 96,
+      "v5FrameCount": 96,
+      "sameDecodedRGBFrames": 5,
+      "changedDecodedRGBFrames": 91,
+      "allDecodedFramesIdentical": false,
+      "interpretation": "Pixel identity establishes preservation for these frames; different pixels alone establish neither improvement nor regression."
+    }
+  ],
+  "humanStatus": "HUMAN_UNVERIFIED"
+}

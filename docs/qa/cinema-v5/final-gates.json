@@ -1,7 +1,7 @@
 {
   "status": "IN_PROGRESS",
-  "sourceHead": "b6f72be876d19d269be5072d1b84ce8c7dd27550",
-  "runtimeSHA256": "dfa4755b34dbaca68c81d57f6b0134aa41b1a9723e1af044c8d54522c4f2d309",
+  "sourceHead": "9bc1a210146de15bc6c278aeca3baf2469bd516b",
+  "runtimeSHA256": "f9c7af3a73c3809cfe2543c45e4bde56a5038de85f5e82876c8d9f9b5e1dcc51",
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": false,
@@ -26,17 +26,39 @@
   },
   "currentHeadCI": {
     "status": "RUNNING",
-    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38137038833"
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38139428352"
   },
   "targetedFixes": {
-    "intervalReadability": "PASS; each previously measured phrase interval protected",
-    "stateMachine": "PASS; explicitly synthetic V5 safety fixtures, not real MP4",
-    "genericPhraseLayout": "PASS; no material-specific rules",
-    "glyphRaster": "PASS; 146 layouts x 4 aspects",
-    "newV5Suites": "5 PASS",
-    "remainingPriorFailures": "Story/artifact/architecture/feedback revalidation running; clean restore pending exact-head CI"
+    "sourceSuites": 5,
+    "sourceSuitesStatus": "PASS",
+    "originalAffectedContracts": [
+      "interval readability protection",
+      "state-machine safety schema",
+      "146 layouts x 4 aspects",
+      "generic social phrase choreography",
+      "story director",
+      "artifact/style realization",
+      "architecture native-readability protection",
+      "render feedback"
+    ],
+    "originalAffectedStatus": "8 PASS",
+    "otherContracts": "Sequential decoder and V3 schema PASS",
+    "legacyRasterRankFailure": "0.07809022162202502 → 0.07784540016913831 after verified readability repair; test now independently protects every existing regular/aligned phrase observation at identical actual times/profiles and requires a measured gain. No threshold lowered."
   },
-  "currentHeadBrowserAndComparison": "RUNNING",
+  "currentHeadBrowserAndComparison": {
+    "paired": 3,
+    "H264AACCompleteDecode": 6,
+    "applicationCommit": "33287e8a591f8b801531867a6f4f184de61013f0",
+    "sourceCompatibility": "Application source and build are byte-identical to final test-contract commit",
+    "formalUI": "RUNNING_EXACT_HEAD",
+    "fontBrowser": {
+      "status": "PASS",
+      "H264AACFullyDecoded": 2,
+      "axisRaster": "BROWSER_AXIS_VISIBLE",
+      "exportUsesSafeFallback": true,
+      "environmentSkippedContracts": "Both rerun PASS with fresh real-browser report"
+    }
+  },
   "priorHeadEvidence": {
     "head": "96727adccdffefdef595dc96e4e29eb383d02fca",
     "pairedMP4FullyDecoded": 16,
@@ -49,9 +71,9 @@
     "notCurrentHeadCertification": true
   },
   "qualityBlockers": [
-    "Diverse-material quality improvement not established",
-    "Decoded operator-intent coverage not established",
-    "All required lyric safety observations not established"
+    "Natural selected operator-intent realization remains unmeasured",
+    "Legacy/no-image/multi-image/manual export paths do not bind all native lyric/safety evidence to selected-artifact certification",
+    "One observed word-boundary improvement does not establish diverse-material MV quality improvement"
   ],
   "lastFix": "Collect actual-clock high-resolution evidence for locked/non-grammar cuts without changing plan or locks; final MP4 revalidation required",
   "historicalV4PassResultsReused": false,
@@ -71,5 +93,30 @@
     "lyricSafety": "MEASURED",
     "motion": "MEASURED on 2/2 explicit expand intents; index 0.793, not aesthetic score",
     "limitation": "Forced existing renderer positive control, not natural candidate quality improvement"
-  }
+  },
+  "comparison": {
+    "case-24": {
+      "baseline": 100,
+      "V5": 100
+    },
+    "general-dense": {
+      "baseline": 47,
+      "V5": 47
+    },
+    "general-manual": {
+      "baseline": 0,
+      "V5": 0
+    },
+    "rawScoresRetained": true,
+    "majorRegressionConfirmed": false,
+    "diverseMaterialQualityImprovementConfirmed": false,
+    "manualFrameInspection": {
+      "actualTimeSeconds": 0.5,
+      "baselineRows": "手動固 / 定した",
+      "V5Rows": "手動 / 固定した",
+      "observation": "Existing compound is preserved within a row; no material rule. Native fill contrast remains zero and full phrase/OCR certification remains unmeasured. Later .8s samples occur during the preserved wipe exit, so partial glyphs there do not establish a persistent clipping defect."
+    },
+    "humanStatus": "HUMAN_UNVERIFIED"
+  },
+  "rawEvidenceManifest": "final-runtime-9bc1a21-manifest.json"
 }
