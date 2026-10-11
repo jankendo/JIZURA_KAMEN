@@ -1,8 +1,8 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "TECHNICAL_PASS_QUALITY_UNVERIFIED",
   "sourceHead": "9bc1a210146de15bc6c278aeca3baf2469bd516b",
   "runtimeSHA256": "f9c7af3a73c3809cfe2543c45e4bde56a5038de85f5e82876c8d9f9b5e1dcc51",
-  "TECHNICAL_GO": "UNVERIFIED",
+  "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": false,
   "humanStatus": "HUMAN_UNVERIFIED",
@@ -25,8 +25,16 @@
     "log": "ci-96727ad.txt"
   },
   "currentHeadCI": {
-    "status": "RUNNING",
-    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38139428352"
+    "status": "SUCCESS",
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38139428352",
+    "head": "9bc1a210146de15bc6c278aeca3baf2469bd516b",
+    "passed": 192,
+    "failed": 0,
+    "skipped": 2,
+    "total": 194,
+    "environmentSkipsVerifiedInRealBrowser": "2 PASS",
+    "log": "ci-9bc1a21.txt",
+    "deploy": "SKIPPED_EXPECTED_FOR_DRAFT_PR"
   },
   "targetedFixes": {
     "sourceSuites": 5,
@@ -50,7 +58,17 @@
     "H264AACCompleteDecode": 6,
     "applicationCommit": "33287e8a591f8b801531867a6f4f184de61013f0",
     "sourceCompatibility": "Application source and build are byte-identical to final test-contract commit",
-    "formalUI": "RUNNING_EXACT_HEAD",
+    "formalUI": {
+      "status": "PASS",
+      "exactHead": "9bc1a210146de15bc6c278aeca3baf2469bd516b",
+      "checks": 10,
+      "H264AACFullyDecoded": 2,
+      "summary": "ui-9bc1a21-summary.json",
+      "oneClickBelowTarget": true,
+      "cancelAndRetry": "PASS",
+      "saveRestore": "PASS",
+      "nativeDialogLimitation": "Browser download completion tested; native OS picker success not claimed"
+    },
     "fontBrowser": {
       "status": "PASS",
       "H264AACFullyDecoded": 2,
@@ -118,5 +136,26 @@
     },
     "humanStatus": "HUMAN_UNVERIFIED"
   },
-  "rawEvidenceManifest": "final-runtime-9bc1a21-manifest.json"
+  "rawEvidenceManifest": "final-runtime-9bc1a21-manifest.json",
+  "currentRuntimeNormalMP4FullyDecoded": 10,
+  "currentRuntimeMP4CountScope": "6 paired outputs (3 fresh baseline + 3 V5), 2 exact-head font browser outputs, 2 exact-head formal UI outputs. 7 new V5 and 3 baseline; prior-head files and negative controls excluded.",
+  "exactHeadRawBrowserEvidence": "exact-head-9bc1a21-browser-manifest.json",
+  "releaseBlockerClassification": "Missing important quality evidence, not slow performance or missing human aesthetic ratings alone",
+  "remainingWork": [
+    {
+      "cause": "Legacy renderer returns without finalEvaluation or selected-artifact history",
+      "impact": "Actual high-resolution decoded lyric observations cannot certify the selected artifact; generic 192px audit is not sufficient full-glyph evidence per internal unit",
+      "next": "Add and independently validate non-mutating native full-glyph coverage for every legacy internal lyric unit, bind it and decoded actual-time samples to exact plan/input/output hashes; retain unknown when unavailable"
+    },
+    {
+      "cause": "Natural selected physical intent lacks explicit measurable realization contracts",
+      "impact": "A forced expand control proves supported operator capability, not natural music-led intent fulfillment",
+      "next": "Validate existing selected renderer contracts on actual MP4; do not infer intent from arbitrary motion or counterfactual metadata"
+    },
+    {
+      "cause": "Final-runtime comparison only revalidated 3 affected materials",
+      "impact": "Cannot establish diverse-material V5 improvement or certify all changed paths/full social profiles",
+      "next": "Run remaining affected no-image/multi-image/bright/dark/profile pairs against immutable baseline, preserving raw scores and manual settings"
+    }
+  ]
 }

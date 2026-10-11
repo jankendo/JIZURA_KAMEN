@@ -1,0 +1,98 @@
+{
+  "sourceHead": "9bc1a210146de15bc6c278aeca3baf2469bd516b",
+  "runtimeSHA256": "f9c7af3a73c3809cfe2543c45e4bde56a5038de85f5e82876c8d9f9b5e1dcc51",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "startup",
+      "status": "PASS",
+      "version": "2.0.26",
+      "secure": true
+    },
+    {
+      "name": "background upload",
+      "status": "PASS"
+    },
+    {
+      "name": "TXT import",
+      "status": "PASS"
+    },
+    {
+      "name": "LRC import and timing",
+      "status": "PASS"
+    },
+    {
+      "name": "audio upload and analysis",
+      "status": "PASS",
+      "bpm": 120
+    },
+    {
+      "name": "automatic MV generation",
+      "status": "PASS",
+      "cuts": 4,
+      "lines": 4,
+      "duration": 8.999977324263039
+    },
+    {
+      "name": "preview playback",
+      "status": "PASS"
+    },
+    {
+      "name": "project save and reload",
+      "status": "PASS"
+    },
+    {
+      "name": "regenerate after restored audio",
+      "status": "PASS"
+    },
+    {
+      "name": "UI MP4 export and decode",
+      "status": "PASS",
+      "creativeState": "BELOW_TARGET",
+      "oneClick": true,
+      "video": "h264",
+      "audio": "aac",
+      "duration": "9.024000",
+      "progressUpdates": 788,
+      "decodedFrames": 216,
+      "visibleContent": true
+    }
+  ],
+  "pageErrors": [],
+  "oneClick": true,
+  "mainVideoHash": "e40b3dbde3d2243a590dcd7dbace7104b729760ff64c03551c679dff4a1eaf0b",
+  "fullEncodeAttempts": 4,
+  "retryVideoHash": "dff0229c6cfd8f08284f89c0e2c774e82d2b66fa07853dfdf90c789f5fc0e01c",
+  "retryCodecs": [
+    "h264",
+    "aac"
+  ],
+  "retryCompleteDecode": "PASS",
+  "nativeCancellation": {
+    "status": "PASS",
+    "source": "actual browser WebCodecs encoder/frame objects, cancellation after frame submission; no mocked encoder",
+    "beforePlanQAHash": "c35d165b1ecbc4257fd375fbeb9c0b1757c00c66116b04564007832aface4e0e",
+    "afterPlanQAHash": "c35d165b1ecbc4257fd375fbeb9c0b1757c00c66116b04564007832aface4e0e",
+    "hashMethod": "canonical plan plus explicit serialized pixel QA and quality target (canonical plan alone excludes QA)",
+    "restored": true,
+    "abortProgress": {
+      "stage": "frames",
+      "current": 9,
+      "total": 96,
+      "encoded": 7
+    },
+    "error": {
+      "name": "Error",
+      "message": "キャンセルしました"
+    },
+    "nativeEncoders": 1,
+    "nativeFrames": 9,
+    "allEncodersClosed": true,
+    "allFramesClosed": true,
+    "retry": "following actual full H264/AAC export independently validated by runner"
+  },
+  "normalH264AACFullyDecoded": 2,
+  "negativeControlsCountedAsNormal": false,
+  "saveMode": "download",
+  "humanStatus": "HUMAN_UNVERIFIED"
+}
