@@ -11,7 +11,6 @@
     "general-manual",
     "independent-fixed"
   ],
-  "rawScoresUnchanged": true,
   "humanStatus": "HUMAN_UNVERIFIED",
   "artistic100Established": false,
   "limits": "Input/rendering contracts are not OCR. Registered actual glyph contrast is not human reading accuracy. Missing or uncalibrated creativity scores remain unmeasured; equal scores are not improvement.",
@@ -24,8 +23,8 @@
         "image": "none",
         "audio": "calm",
         "lyrics": [
-          "静かな時を見つめる",
-          "光"
+          "\u9759\u304b\u306a\u6642\u3092\u898b\u3064\u3081\u308b",
+          "\u5149"
         ],
         "duration": 3,
         "res": 360,
@@ -36,7 +35,7 @@
       "input": {
         "audioHash": "4dfe7afa792b018fbbf12f032522ad0607f94cf2b377bfd093d07d4d34adfb2d",
         "imageHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "lyrics": "[00:00.20]静かな時を見つめる\n[00:01.20]光",
+        "lyrics": "[00:00.20]\u9759\u304b\u306a\u6642\u3092\u898b\u3064\u3081\u308b\n[00:01.20]\u5149",
         "aspect": "1:1",
         "fps": 24,
         "range": [
@@ -151,7 +150,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": null,
+          "v5": null,
+          "status": "UNMEASURED"
+        },
+        "typographyDiversity": {
+          "baseline": null,
+          "v5": 100,
+          "status": "UNMEASURED"
+        },
+        "motionRealization": {
+          "baseline": null,
+          "v5": 100,
+          "status": "UNMEASURED"
+        },
+        "loopQuality": {
+          "baseline": null,
+          "v5": 0,
+          "status": "UNMEASURED"
+        }
+      }
     },
     {
       "fixture": {
@@ -161,8 +182,8 @@
         "image": "multi",
         "audio": "steady",
         "lyrics": [
-          "短",
-          "長い言葉を読む"
+          "\u77ed",
+          "\u9577\u3044\u8a00\u8449\u3092\u8aad\u3080"
         ],
         "duration": 3,
         "res": 360,
@@ -174,7 +195,7 @@
       "input": {
         "audioHash": "b62ea3dcb4bba8d2b3d8472252e95fcbeec3a6bad71913b6b32845c8c17f9465",
         "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
-        "lyrics": "[00:00.20]短\n[00:01.20]長い言葉を読む",
+        "lyrics": "[00:00.20]\u77ed\n[00:01.20]\u9577\u3044\u8a00\u8449\u3092\u8aad\u3080",
         "aspect": "16:9",
         "fps": 24,
         "range": [
@@ -313,7 +334,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": null,
+          "v5": null,
+          "status": "UNMEASURED"
+        },
+        "typographyDiversity": {
+          "baseline": null,
+          "v5": 33,
+          "status": "UNMEASURED"
+        },
+        "motionRealization": {
+          "baseline": null,
+          "v5": 67,
+          "status": "UNMEASURED"
+        },
+        "loopQuality": {
+          "baseline": null,
+          "v5": 0,
+          "status": "UNMEASURED"
+        }
+      }
     },
     {
       "fixture": {
@@ -323,8 +366,8 @@
         "image": "abstract",
         "audio": "intense",
         "lyrics": [
-          "光へ",
-          "空へ"
+          "\u5149\u3078",
+          "\u7a7a\u3078"
         ],
         "duration": 3,
         "res": 360,
@@ -335,7 +378,7 @@
       "input": {
         "audioHash": "b99ce85a5cefe7ec55bdb3ce9df068cad34beba94a0a1093eeec0544b86e8f9b",
         "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
-        "lyrics": "[00:00.20]光へ\n[00:01.20]空へ",
+        "lyrics": "[00:00.20]\u5149\u3078\n[00:01.20]\u7a7a\u3078",
         "aspect": "9:16",
         "fps": 24,
         "range": [
@@ -454,7 +497,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": 49,
+          "v5": 49,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "typographyDiversity": {
+          "baseline": 31,
+          "v5": 29,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "motionRealization": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "loopQuality": {
+          "baseline": 0,
+          "v5": 0,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        }
+      }
     },
     {
       "fixture": {
@@ -464,11 +529,11 @@
         "image": "abstract",
         "audio": "steady",
         "lyrics": [
-          "ラララー",
-          "ラララー",
-          "ラララー",
-          "ラララー",
-          "ラララー"
+          "\u30e9\u30e9\u30e9\u30fc",
+          "\u30e9\u30e9\u30e9\u30fc",
+          "\u30e9\u30e9\u30e9\u30fc",
+          "\u30e9\u30e9\u30e9\u30fc",
+          "\u30e9\u30e9\u30e9\u30fc"
         ],
         "duration": 13,
         "outputDuration": 12,
@@ -489,7 +554,7 @@
       "input": {
         "audioHash": "5dba2a0255ccb85b9c9cb19c61771cbf8240af59fdd6651f3eb96cf5d44378d6",
         "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
-        "lyrics": "[00:00.20]ラララー\n[00:03.20]ラララー\n[00:06.20]ラララー\n[00:09.20]ラララー\n[00:12.20]ラララー",
+        "lyrics": "[00:00.20]\u30e9\u30e9\u30e9\u30fc\n[00:03.20]\u30e9\u30e9\u30e9\u30fc\n[00:06.20]\u30e9\u30e9\u30e9\u30fc\n[00:09.20]\u30e9\u30e9\u30e9\u30fc\n[00:12.20]\u30e9\u30e9\u30e9\u30fc",
         "aspect": "9:16",
         "fps": 24,
         "range": [
@@ -656,7 +721,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": 51,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "typographyDiversity": {
+          "baseline": 61,
+          "v5": 50,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "motionRealization": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "loopQuality": {
+          "baseline": 0,
+          "v5": 0,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        }
+      }
     },
     {
       "fixture": {
@@ -669,8 +756,8 @@
         "image": "dark",
         "audio": "calm",
         "lyrics": [
-          "短い言葉",
-          "ゆっくり読む長い日本語の一節"
+          "\u77ed\u3044\u8a00\u8449",
+          "\u3086\u3063\u304f\u308a\u8aad\u3080\u9577\u3044\u65e5\u672c\u8a9e\u306e\u4e00\u7bc0"
         ],
         "baselineCinema": true
       },
@@ -678,7 +765,7 @@
       "input": {
         "audioHash": "68bcf03d926bc147233b696e02655861b3afab9fbfdfeda6534e3fe1ee662532",
         "imageHash": "f8b57eac444fb142474b8b44f53d8a4dbf104429fc36c0bcc659edac6c593632",
-        "lyrics": "[00:00.20]短い言葉\n[00:01.20]ゆっくり読む長い日本語の一節",
+        "lyrics": "[00:00.20]\u77ed\u3044\u8a00\u8449\n[00:01.20]\u3086\u3063\u304f\u308a\u8aad\u3080\u9577\u3044\u65e5\u672c\u8a9e\u306e\u4e00\u7bc0",
         "aspect": "9:16",
         "fps": 24,
         "range": [
@@ -797,7 +884,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": 75,
+          "v5": 75,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "typographyDiversity": {
+          "baseline": 68,
+          "v5": 68,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "motionRealization": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "loopQuality": {
+          "baseline": 0,
+          "v5": 0,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        }
+      }
     },
     {
       "fixture": {
@@ -810,8 +919,8 @@
         "image": "bright",
         "audio": "steady",
         "lyrics": [
-          "長い日本語を短い時間で表示する区間",
-          "日本語と English words の混在"
+          "\u9577\u3044\u65e5\u672c\u8a9e\u3092\u77ed\u3044\u6642\u9593\u3067\u8868\u793a\u3059\u308b\u533a\u9593",
+          "\u65e5\u672c\u8a9e\u3068 English words \u306e\u6df7\u5728"
         ],
         "starts": [
           0.2,
@@ -823,7 +932,7 @@
       "input": {
         "audioHash": "ed217ffa5245890ddd88728351f5cef4139c6137262f3a5aad46defd6f19c4cb",
         "imageHash": "23abe8ceaaae491be8d0aabaf45dca47480dae04c905e73f0c20555daa1cad93",
-        "lyrics": "[00:00.20]長い日本語を短い時間で表示する区間\n[00:00.65]日本語と English words の混在",
+        "lyrics": "[00:00.20]\u9577\u3044\u65e5\u672c\u8a9e\u3092\u77ed\u3044\u6642\u9593\u3067\u8868\u793a\u3059\u308b\u533a\u9593\n[00:00.65]\u65e5\u672c\u8a9e\u3068 English words \u306e\u6df7\u5728",
         "aspect": "1:1",
         "fps": 24,
         "range": [
@@ -942,7 +1051,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": 37,
+          "v5": 47,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "typographyDiversity": {
+          "baseline": 49,
+          "v5": 40,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "motionRealization": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "loopQuality": {
+          "baseline": 0,
+          "v5": 0,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        }
+      }
     },
     {
       "fixture": {
@@ -955,8 +1086,8 @@
         "image": "busy",
         "audio": "intense",
         "lyrics": [
-          "手動固定した文字",
-          "固定したカメラ"
+          "\u624b\u52d5\u56fa\u5b9a\u3057\u305f\u6587\u5b57",
+          "\u56fa\u5b9a\u3057\u305f\u30ab\u30e1\u30e9"
         ],
         "manual": true,
         "baselineCinema": true
@@ -965,7 +1096,7 @@
       "input": {
         "audioHash": "ba3b6bdaf1d0a13aa9f360e3510172bc7427ee2ab98c9b2f24b9eb0ee9689b80",
         "imageHash": "2adfbf5c0f24b85d4baff7ba6ed561f61ab11286536829f5eb6541fcdd2acf5d",
-        "lyrics": "[00:00.20]手動固定した文字\n[00:01.20]固定したカメラ",
+        "lyrics": "[00:00.20]\u624b\u52d5\u56fa\u5b9a\u3057\u305f\u6587\u5b57\n[00:01.20]\u56fa\u5b9a\u3057\u305f\u30ab\u30e1\u30e9",
         "aspect": "9:16",
         "fps": 24,
         "range": [
@@ -1148,7 +1279,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "ACTUAL_PRIMARY_LYRIC_ABSENCE_REPAIRED"
+      "improvement": "ACTUAL_PRIMARY_LYRIC_ABSENCE_REPAIRED",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": 54,
+          "v5": 52,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "typographyDiversity": {
+          "baseline": null,
+          "v5": 25,
+          "status": "UNMEASURED"
+        },
+        "motionRealization": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "loopQuality": {
+          "baseline": 0,
+          "v5": 0,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        }
+      }
     },
     {
       "fixture": {
@@ -1161,8 +1314,8 @@
         "image": "multi-silhouette",
         "audio": "variable",
         "lyrics": [
-          "重なる声",
-          "集まる光"
+          "\u91cd\u306a\u308b\u58f0",
+          "\u96c6\u307e\u308b\u5149"
         ],
         "baselineCinema": true
       },
@@ -1170,7 +1323,7 @@
       "input": {
         "audioHash": "ccc58cc0dcb74e5891a1e75a14d06c24b076c597527478c61394ed5896ff16ec",
         "imageHash": "8f3355890fc5b2424cb7f26818151c1bddd75bd12311a6c0687aa057f7e84447",
-        "lyrics": "[00:00.20]重なる声\n[00:01.20]集まる光",
+        "lyrics": "[00:00.20]\u91cd\u306a\u308b\u58f0\n[00:01.20]\u96c6\u307e\u308b\u5149",
         "aspect": "9:16",
         "fps": 24,
         "range": [
@@ -1289,7 +1442,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": 95,
+          "v5": 95,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "typographyDiversity": {
+          "baseline": 22,
+          "v5": 22,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "motionRealization": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "loopQuality": {
+          "baseline": 0,
+          "v5": 0,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        }
+      }
     },
     {
       "fixture": {
@@ -1299,8 +1474,8 @@
         "image": "independent-diagonal",
         "audio": "intense",
         "lyrics": [
-          "異なる背景で長い日本語と English lyrics を読む",
-          "次の行を確かめる"
+          "\u7570\u306a\u308b\u80cc\u666f\u3067\u9577\u3044\u65e5\u672c\u8a9e\u3068 English lyrics \u3092\u8aad\u3080",
+          "\u6b21\u306e\u884c\u3092\u78ba\u304b\u3081\u308b"
         ],
         "duration": 4,
         "res": 360,
@@ -1311,7 +1486,7 @@
       "input": {
         "audioHash": "19be703295f82269b9ee0a3ae926415685471b9db56beeb36c545df5b86c95ec",
         "imageHash": "926ab5862b56e7d54108eb8b3c3792e59c458c7e09ffd3bdf4900be7ed4a25f5",
-        "lyrics": "[00:00.20]異なる背景で長い日本語と English lyrics を読む\n[00:01.20]次の行を確かめる",
+        "lyrics": "[00:00.20]\u7570\u306a\u308b\u80cc\u666f\u3067\u9577\u3044\u65e5\u672c\u8a9e\u3068 English lyrics \u3092\u8aad\u3080\n[00:01.20]\u6b21\u306e\u884c\u3092\u78ba\u304b\u3081\u308b",
         "aspect": "16:9",
         "fps": 24,
         "range": [
@@ -1430,7 +1605,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": 62,
+          "v5": 66,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "typographyDiversity": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "motionRealization": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "loopQuality": {
+          "baseline": 0,
+          "v5": 0,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        }
+      }
     },
     {
       "fixture": {
@@ -1441,8 +1638,8 @@
         "activation": "engine-multi",
         "audio": "intense",
         "lyrics": [
-          "二枚の画像",
-          "言葉を守る"
+          "\u4e8c\u679a\u306e\u753b\u50cf",
+          "\u8a00\u8449\u3092\u5b88\u308b"
         ],
         "duration": 4,
         "res": 360,
@@ -1453,7 +1650,7 @@
       "input": {
         "audioHash": "d3028f9497c1f61a4a085a8ec48ee365238040dd23ec75295b0a76ea49e1057c",
         "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
-        "lyrics": "[00:00.20]二枚の画像\n[00:01.20]言葉を守る",
+        "lyrics": "[00:00.20]\u4e8c\u679a\u306e\u753b\u50cf\n[00:01.20]\u8a00\u8449\u3092\u5b88\u308b",
         "aspect": "1:1",
         "fps": 24,
         "range": [
@@ -1616,7 +1813,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": null,
+          "v5": 0,
+          "status": "UNMEASURED"
+        },
+        "typographyDiversity": {
+          "baseline": null,
+          "v5": 19,
+          "status": "UNMEASURED"
+        },
+        "motionRealization": {
+          "baseline": null,
+          "v5": 100,
+          "status": "UNMEASURED"
+        },
+        "loopQuality": {
+          "baseline": null,
+          "v5": 0,
+          "status": "UNMEASURED"
+        }
+      }
     },
     {
       "fixture": {
@@ -1626,10 +1845,10 @@
         "image": "bright",
         "audio": "variable",
         "lyrics": [
-          "光をたどる",
-          "静かな声",
-          "ここから歩く",
-          "響く未来へ"
+          "\u5149\u3092\u305f\u3069\u308b",
+          "\u9759\u304b\u306a\u58f0",
+          "\u3053\u3053\u304b\u3089\u6b69\u304f",
+          "\u97ff\u304f\u672a\u6765\u3078"
         ],
         "starts": [
           0.2,
@@ -1646,7 +1865,7 @@
       "input": {
         "audioHash": "3c1bae44fe6d3378899be2d69e69dd1dd02150f8eea0db6fec31c7b87d944951",
         "imageHash": "23abe8ceaaae491be8d0aabaf45dca47480dae04c905e73f0c20555daa1cad93",
-        "lyrics": "[00:00.20]光をたどる\n[00:03.20]静かな声\n[00:06.20]ここから歩く\n[00:09.20]響く未来へ",
+        "lyrics": "[00:00.20]\u5149\u3092\u305f\u3069\u308b\n[00:03.20]\u9759\u304b\u306a\u58f0\n[00:06.20]\u3053\u3053\u304b\u3089\u6b69\u304f\n[00:09.20]\u97ff\u304f\u672a\u6765\u3078",
         "aspect": "16:9",
         "fps": 24,
         "range": [
@@ -1813,7 +2032,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": 7,
+          "v5": 13,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "typographyDiversity": {
+          "baseline": 58,
+          "v5": 30,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "motionRealization": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "loopQuality": {
+          "baseline": 0,
+          "v5": 0,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        }
+      }
     },
     {
       "fixture": {
@@ -1823,11 +2064,11 @@
         "image": "dark",
         "audio": "variable",
         "lyrics": [
-          "光をたどる",
-          "静かな声",
-          "ここから歩く",
-          "響く未来へ",
-          "余韻を残す"
+          "\u5149\u3092\u305f\u3069\u308b",
+          "\u9759\u304b\u306a\u58f0",
+          "\u3053\u3053\u304b\u3089\u6b69\u304f",
+          "\u97ff\u304f\u672a\u6765\u3078",
+          "\u4f59\u97fb\u3092\u6b8b\u3059"
         ],
         "starts": [
           0.2,
@@ -1848,7 +2089,7 @@
       "input": {
         "audioHash": "c68f06e3fa3eceff87d00e5c2dace894392b8af7bf14582004cf00d3f8b85813",
         "imageHash": "f8b57eac444fb142474b8b44f53d8a4dbf104429fc36c0bcc659edac6c593632",
-        "lyrics": "[00:00.20]光をたどる\n[00:03.20]静かな声\n[00:06.20]ここから歩く\n[00:09.20]響く未来へ\n[00:12.20]余韻を残す",
+        "lyrics": "[00:00.20]\u5149\u3092\u305f\u3069\u308b\n[00:03.20]\u9759\u304b\u306a\u58f0\n[00:06.20]\u3053\u3053\u304b\u3089\u6b69\u304f\n[00:09.20]\u97ff\u304f\u672a\u6765\u3078\n[00:12.20]\u4f59\u97fb\u3092\u6b8b\u3059",
         "aspect": "9:16",
         "fps": 24,
         "range": [
@@ -2015,7 +2256,29 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": 37,
+          "v5": 53,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "typographyDiversity": {
+          "baseline": 47,
+          "v5": 19,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "motionRealization": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "loopQuality": {
+          "baseline": 0,
+          "v5": 0,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        }
+      }
     },
     {
       "fixture": {
@@ -2025,8 +2288,8 @@
         "image": "independent-gradient",
         "audio": "steady",
         "lyrics": [
-          "固定した Long lyric",
-          "自動区間の明るい余白"
+          "\u56fa\u5b9a\u3057\u305f Long lyric",
+          "\u81ea\u52d5\u533a\u9593\u306e\u660e\u308b\u3044\u4f59\u767d"
         ],
         "manual": true,
         "duration": 4,
@@ -2038,7 +2301,7 @@
       "input": {
         "audioHash": "6f7fa0b28001b3530382885978de59bcbbeed485f5f4eda174361c61aabce5dc",
         "imageHash": "617b31a71877a0cb857a210b4f52524264ec0e3b1cc3eb580288679deafa9d64",
-        "lyrics": "[00:00.20]固定した Long lyric\n[00:01.20]自動区間の明るい余白",
+        "lyrics": "[00:00.20]\u56fa\u5b9a\u3057\u305f Long lyric\n[00:01.20]\u81ea\u52d5\u533a\u9593\u306e\u660e\u308b\u3044\u4f59\u767d",
         "aspect": "9:16",
         "fps": 24,
         "range": [
@@ -2221,7 +2484,33 @@
         },
         "manualSettingsUnchanged": true
       },
-      "improvement": "ACTUAL_PRIMARY_LYRIC_ABSENCE_REPAIRED"
+      "improvement": "ACTUAL_PRIMARY_LYRIC_ABSENCE_REPAIRED",
+      "rawMetricComparability": {
+        "localContrast": {
+          "baseline": 21,
+          "v5": 21,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "typographyDiversity": {
+          "baseline": null,
+          "v5": 21,
+          "status": "UNMEASURED"
+        },
+        "motionRealization": {
+          "baseline": 100,
+          "v5": 100,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        },
+        "loopQuality": {
+          "baseline": 0,
+          "v5": 0,
+          "status": "VERSION_SPECIFIC_DIAGNOSTIC_NOT_INDEPENDENT_IMPROVEMENT_PROOF"
+        }
+      }
     }
-  ]
+  ],
+  "rawScoresRewritten": false,
+  "scoreChangesDoNotEstablishImprovementAlone": true,
+  "creativeProxyLimit": "Typography-diversity proxy falls in some cases; raw values retained. This is not presented as uniform creative-score improvement or an aesthetic 100-point result.",
+  "formalComparisonMethod": "Same final-artifact verifier algorithm, native output size, all decoded FPS frames, original selected plan/renderers; immutable input/profile/hash assertions. Version-specific legacy aggregate scores are diagnostics, not improvement certification."
 }
