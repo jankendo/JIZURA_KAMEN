@@ -38878,6 +38878,15 @@ V.observeRepair=async(session,args,result,best)=>{
  if(safetyStatus==='FAIL')throw Object.assign(Error('CINEMA_V5_UNSAFE_ARTIFACT'),{code:'CINEMA_V5_UNSAFE_ARTIFACT',evidence:ledger});
  return r;
 };
+Q.guardExport=async(result,args)=>{
+ const videoHash=result.provenance?.videoSHA256,history=result.provenance?.cinemaV3?.history||[],selected=history.find(h=>h.videoHash===videoHash),audit=selected?.cinemaV5?.after?.audioEvidence??await Q.auditDecodedAudio(result.blob,args.audio,args.range,args.signal);
+ if(result.validation?.certification?.passed===false||audit.status==='FAILED')throw Object.assign(Error('CINEMA_V5_UNSAFE_EXPORT'),{code:'CINEMA_V5_UNSAFE_EXPORT',audioEvidence:audit});
+ const measurements=selected?.cinemaV5?.after?.measurements||[],required=['lyricIntegrity','lyricTiming'],missing=required.filter(id=>!measurements.some(m=>m.id===id&&m.status==='MEASURED'&&m.value===100));
+ result.provenance.cinemaV5={version:Q.version,videoHash,audioEvidence:audit,lyricSafety:missing.length?'UNMEASURED':'MEASURED',missingSafetyEvidence:missing,humanStatus:Q.humanStatus,creativeCalibration:Q.selectionPolicy.calibration,limits:'Legacy/non-image or incomplete registered lyric observations do not certify lyric safety. A technically valid draft remains savable; known failed AAC/MP4 is rejected.'};
+ result.sidecar=new Blob([JSON.stringify(result.provenance,null,2)],{type:'application/json'});return result;
+};
+const exportMP4=J.exportMP4;J.exportMP4=async args=>Q.guardExport(await exportMP4(args),args);
+
 })();
 
 window.KAMEN_MODULE_AUDIT.observe("11zzzzzzzzzb_planner_v5.js");
