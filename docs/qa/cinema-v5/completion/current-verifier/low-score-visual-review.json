@@ -1,0 +1,30 @@
+{
+  "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+  "status": "IN_PROGRESS",
+  "reobservationSourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+  "findings": [
+    {
+      "fixture": "independent-panels",
+      "rawReadabilityScore": 0,
+      "actualReviewedFrame": {
+        "timestamp": 1.5,
+        "file": "panels-quality-review.png",
+        "sha256": "86ace2c72bc227f5464a20194cd9be6fe491f9a3497a3e8f3e0c0e359e90198e"
+      },
+      "observation": "Visible complete readable primary phrase in this frame; single frame is not interval certification; original raw score retained",
+      "allHoldIntervals": "436 checkpoint measured; final HEAD pending"
+    },
+    {
+      "fixture": "general-dense",
+      "rawReadabilityScore": 47,
+      "actualReviewedFrame": {
+        "timestamp": 2,
+        "file": "dense-quality-review.png",
+        "sha256": "f0b330980369dba6810c1c770b21ab608b476191ef35fb8b86b8196ad6fee651"
+      },
+      "observation": "Mixed Japanese/English primary text complete in two lines on dark foreground area; not human aesthetic certification"
+    }
+  ],
+  "humanStatus": "HUMAN_UNVERIFIED",
+  "artistic100Established": false
+}
