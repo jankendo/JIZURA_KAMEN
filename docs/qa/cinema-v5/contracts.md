@@ -13,3 +13,5 @@ Decoded frame timestamps are authoritative. Seeking requested times do not certi
 Music-driven direction uses measured section context and confidence rather than assigning intro/climax/outro by row number. Existing non-image paths, locked settings and retained legacy finalists remain protected. Automatic edge regions cannot be represented as verified subject/depth layers. Repair budgets and mathematical-equivalence caches are unchanged.
 
 Release remains blocked until fresh regression, real browser export and comparable completed MP4 quality evidence support TECHNICAL_GO and QUALITY_GO. Independent human evaluation is HUMAN_UNVERIFIED; no artistic 100 claim.
+
+The sequential decoder calls `onSample(requestedTime, pixels, {timestamp,duration})`. V5 uses the third argument for actual time and retains the first as requestedTime. The existing sequential decoder contract now checks both clocks separately; all closure/disposal/count/abort assertions remain. Pre-correction smoke runs are superseded, not final quality evidence.

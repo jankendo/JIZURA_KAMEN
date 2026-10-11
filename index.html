@@ -36209,7 +36209,7 @@ J.observeExportedMP4=async(blob,p,range,signal,onProgress)=>{
   try{
    const decode=new AbortController(),abort=()=>decode.abort();signal?.addEventListener('abort',abort,{once:true});if(signal?.aborted)decode.abort();
    let watchdog;const idle=()=>{clearTimeout(watchdog);watchdog=setTimeout(()=>decode.abort(),45000);};idle();
-   try{await J.waitExportStep(()=>window.JIZURAMedia.sampleMP4(blob,timestamps,{width,height,signal:decode.signal,onSample:(time,pixels)=>{idle();frames.push({time:from+time,actualTime:from+time,clock:'DECODED_TIMESTAMP',features:J.observePixelFrame(pixels,width,height)});onProgress?.(.995,'完成したMP4を検査中 '+frames.length+'/'+timestamps.length+'フレーム',{stage:'verify',current:frames.length,total:timestamps.length});}}),{signal:decode.signal,label:'MP4の連続デコード',timeout:Math.max(60000,duration*3000)});}finally{clearTimeout(watchdog);decode.abort();signal?.removeEventListener('abort',abort);}
+   try{await J.waitExportStep(()=>window.JIZURAMedia.sampleMP4(blob,timestamps,{width,height,signal:decode.signal,onSample:(requested,pixels,frame)=>{idle();const actual=Number.isFinite(frame?.timestamp)?from+frame.timestamp:null;frames.push({time:actual??from+requested,actualTime:actual,requestedTime:from+requested,frameDuration:frame?.duration??null,clock:actual===null?'DECODE_TIMESTAMP_UNVERIFIED':'DECODED_TIMESTAMP',features:J.observePixelFrame(pixels,width,height)});onProgress?.(.995,'完成したMP4を検査中 '+frames.length+'/'+timestamps.length+'フレーム',{stage:'verify',current:frames.length,total:timestamps.length});}}),{signal:decode.signal,label:'MP4の連続デコード',timeout:Math.max(60000,duration*3000)});}finally{clearTimeout(watchdog);decode.abort();signal?.removeEventListener('abort',abort);}
    const observer=J.observeVisualPeaks(frames);observer.media='exported MP4 decoded sequentially in browser';
    const decodedCinema=J.measureDecodedCinemaFrames?.(frames,p,range,width,height);if(decodedCinema?.completed){decodedCinema.layerPresence=await J.verifyDecodedCinemaLayers?.(frames,p,range);J.applyDecodedCinemaEvidence?.(decodedCinema);}return {observer,alignment:J.alignObservedPeaks(observer,J.musicalTargets(p)),audienceImpact:J.audienceImpact7(observer,p),decodedCinema};
   }catch(error){if(signal?.aborted)throw error;console.warn('Sequential MP4 inspection unavailable; using browser seeking',error);}
@@ -38858,7 +38858,7 @@ const adapt=V.adaptGrammar;
 V.adaptGrammar=p=>{const out=adapt(p);Q.planVisualGrammar(out);for(const c of out.cuts||[])if(c.cinemaV5Direction)c.cinemaV3Typography=V.typographyPreflight(out,c);return out;};
 const layered=J.drawLayeredCinema;
 J.drawLayeredCinema=(R,ctx,p,...args)=>{
- if(p.cinemaV5World&&!p.cinemaV5World.layerPermission&&!J.photoChoreographyLocked?.(p,J.cutAt(p,args[0])))return false;
+ const c=J.cutAt(p,args[0]),manual=!!c&&(c.locked||J.photoChoreographyLocked?.(p,c));if(p.cinemaV5World&&!p.cinemaV5World.layerPermission&&!manual)return false;
  return layered(R,ctx,p,...args);
 };
 const proposals=J.proposeTargetedRepairs;

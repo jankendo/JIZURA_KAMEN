@@ -49,7 +49,7 @@ const adapt=V.adaptGrammar;
 V.adaptGrammar=p=>{const out=adapt(p);Q.planVisualGrammar(out);for(const c of out.cuts||[])if(c.cinemaV5Direction)c.cinemaV3Typography=V.typographyPreflight(out,c);return out;};
 const layered=J.drawLayeredCinema;
 J.drawLayeredCinema=(R,ctx,p,...args)=>{
- if(p.cinemaV5World&&!p.cinemaV5World.layerPermission&&!J.photoChoreographyLocked?.(p,J.cutAt(p,args[0])))return false;
+ const c=J.cutAt(p,args[0]),manual=!!c&&(c.locked||J.photoChoreographyLocked?.(p,c));if(p.cinemaV5World&&!p.cinemaV5World.layerPermission&&!manual)return false;
  return layered(R,ctx,p,...args);
 };
 const proposals=J.proposeTargetedRepairs;
