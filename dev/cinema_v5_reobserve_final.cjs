@@ -29,8 +29,8 @@ assert(directory&&currentURL&&baselineURL,'Usage: cinema_v5_reobserve_final.cjs 
     const observed=await J.cinemaV5.verifyFinalArtifact({blob:new Blob([bytes(video)],{type:'video/mp4'}),validation,provenance},{plan:ref.plan,project:ref.project,audio,range:ref.range},ref.inputSnapshot);
     return {artifact:observed,originalRuntime:variant,method:'Original immutable MP4 and selected plan; original renderer; newer independent verifier; no encode or plan repair'};
    },{reference:refBytes.toString(),wav:wav.toString('base64'),video:video.toString('base64'),validation:row.validation,provenance:{videoSHA256:row.sha256},variant:row.variant});
-   const file=row.fixture.id+'-'+row.variant+'-final-reobserved.json';fs.writeFileSync(path.join(directory,file),JSON.stringify(evidence));observations.push({fixture:row.fixture.id,variant:row.variant,videoSHA256:row.sha256,runtimeHTMLSHA256:row.runtimeHTMLSHA256,file,sha256:digest(fs.readFileSync(path.join(directory,file))),status:evidence.artifact.status,motionSummary:evidence.artifact.motionSummary,units:evidence.artifact.units});
-   fs.writeFileSync(path.join(directory,'final-reobservation-manifest.json'),JSON.stringify({observations},null,2));console.log(row.fixture.id,row.variant,evidence.artifact.status);
+   const file=row.fixture.id+'-'+row.variant+'-final-reobserved-'+evidence.artifact.evidenceId+'.json';fs.writeFileSync(path.join(directory,file),JSON.stringify(evidence));observations.push({fixture:row.fixture.id,variant:row.variant,videoSHA256:row.sha256,runtimeHTMLSHA256:row.runtimeHTMLSHA256,file,sha256:digest(fs.readFileSync(path.join(directory,file))),status:evidence.artifact.status,motionSummary:evidence.artifact.motionSummary,units:evidence.artifact.units});
+   fs.writeFileSync(path.join(directory,'final-reobservation-manifest-'+observations[0].file.split('-final-reobserved-')[1].slice(0,16)+'.json'),JSON.stringify({observations},null,2));console.log(row.fixture.id,row.variant,evidence.artifact.status);
   }finally{await page.close();}
  }}finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
