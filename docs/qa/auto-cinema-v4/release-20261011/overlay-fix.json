@@ -1,0 +1,12 @@
+{
+  "releaseHEAD": "2bd32cc9d5a1298d03a199e6e36ac27f016a0749",
+  "originalHEAD": "49660a766dbbf003b5c46cf7922aada34a3e79fd",
+  "problem": "Retained project download link intercepted normal pointer clicks on processing cancel button after 205s controlled latency. No pageerror occurred.",
+  "fix": "Three CSS lines keep desktop panels side-by-side and mobile panels in separate vertical space; download links/Blob ownership retained.",
+  "renderingJavaScriptChanged": false,
+  "old126MP4EvidenceReuse": "entire old HTML restores byte-for-byte by removing three CSS lines; all JavaScript/fonts/markup identical",
+  "smallBrowserRegression": "5 viewports PASS, actual non-forced download/cancel/retry clicks; desktop/mobile real export button hit-test PASS",
+  "longLatencyAndRealMP4Retry": "PENDING; test fixture delay explicitly not an asset timing measurement",
+  "supersededCI": "38106566246 cancelled because its HEAD was superseded, not because of a test failure",
+  "allMandatoryChecksOnNewReleaseHEAD": "PENDING"
+}
