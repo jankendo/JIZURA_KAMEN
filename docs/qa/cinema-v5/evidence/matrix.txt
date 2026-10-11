@@ -1,0 +1,20 @@
+case-06 v3 PASS 14211ms
+case-06 baseline PASS 9984ms
+case-07 baseline PASS 10385ms
+case-07 v3 PASS 40824ms
+case-08 v3 FAIL page.evaluate: TypeError: Cannot read properties of null (reading 'line')
+    at Object.locked [as photoChoreographyLocked] (http://127.0.0.1:5185/:36788:62)
+    at J.drawLayeredCinema (http://127.0.0.1:5185/:38861:84)
+    at J.Renderer.drawCustomBackground (http://127.0.0.1:5185/:37614:337)
+    at J.Renderer.drawCustomBackground (http://127.0.0.1:5185/:37820:189)
+    at J.Renderer.drawCustomBackground (http://127.0.0.1:5185/:37893:136)
+    at J.Renderer.drawCustomBackground (http://127.0.0.1:5185/:38002:166)
+    at J.Renderer.drawCustomBackground (http://127.0.0.1:5185/:37823:278)
+    at J.Renderer.drawCustomBackground (http://127.0.0.1:5185/:37893:136)
+    at J.Renderer.drawCustomBackground (http://127.0.0.1:5185/:38002:166)
+    at Renderer.frame (http://127.0.0.1:5185/:9015:28)
+case-08 baseline PASS 97456ms
+case-24 v3 FAIL [{"url":"https://fonts.googleapis.com","error":"net::ERR_ABORTED"},{"url":"https://fonts.googleapis.com","error":"net::ERR_ABORTED"}]
+
+2 !== 0
+
