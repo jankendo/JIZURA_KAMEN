@@ -4,6 +4,7 @@
 const locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c),active=p=>!!p.musicalPhoto?.cinema;
 const endingCut=(p,end)=>p.cuts.filter(c=>c.line>=0&&c.start<end).at(-1)||J.cutAt(p,end-1/p.fps);
 const loopWindow=(p,end)=>{const c=endingCut(p,end);return Math.min(.65,Math.max(0,end-(c?.end??end))+Math.max(0,c?.dur||0)*.15);};
+J.cinemaLoopWindow=loopWindow;
 const shotCache=new WeakMap();
 const proposals=()=>[
  {id:'WIDE',x:.5,y:.5,zoom:1.03}, {id:'MEDIUM',x:.5,y:.53,zoom:1.4},
@@ -123,7 +124,7 @@ J.Renderer.prototype.drawCustomBackground=function(ctx,p,t,...args){
 for(const [id,name,mode]of [['cinemaResponse','チャントの左右呼応','response'],['cinemaConverge','チャントの合流','converge'],['cinemaWave','チャントの波','wave'],['cinemaExpand','チャントの拡張','expand'],['cinemaRead','歌詞の語り','read'],['cinemaImpact','重要歌詞の強調','impact']])J.LAYOUTS[id]={name,special:true,plan:()=>({font:'embedded_bold'}),render(env){
  const {W,H,cut}=env,source=String(cut.lineText||cut.text),units=J.vocaliseUnits(source),rows=mode==='response'?units.join('\n'):mode==='converge'||mode==='impact'||mode==='expand'||mode==='read'&&(H>W||source.length>12)?J.composeLyricPhrase(source):mode==='wave'?units.join('\n'):source;
  const font=cut.params.font||'embedded_bold',lead=mode==='wave'?1.5:mode==='impact'||mode==='expand'?1.22:1.32,track=mode==='expand'?.025:.012,cap=H*(H>W?(mode==='read'?.09:.11):mode==='read'?.135:mode==='expand'?.195:mode==='impact'?.185:.155),size=Math.min(cap,J.fitSize(rows,font,W*(cut.cinema?.development?.occupancy||.70),H*.48,{lead,track}));
- return J.mainDraw(env,{text:rows,font,size,x:W/2,y:H/2,lead,track,color:'#fff',noHold:!!cut.cinema?.quiet,enter:cut.enter,exit:cut.exit,cinemaMotion:mode});
+ const semantic=J.cinemaSemanticLyricLayout?.(env.plan,cut,env.ctx);return J.mainDraw(env,{text:semantic?.text??rows,font,size:semantic?.size??size,x:W/2,y:H/2,lead:semantic?.lead??lead,track:semantic?.track??track,color:'#fff',noHold:!!cut.cinema?.quiet,enter:cut.enter,exit:cut.exit,cinemaMotion:mode});
 }};
 const typo=J.applyTypography5;J.applyTypography5=(env,it)=>{
  typo(env,it);if(!active(env.plan)||locked(env.plan,env.cut)||!it.cinemaMotion||['read','impact'].includes(it.cinemaMotion))return;

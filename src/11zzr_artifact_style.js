@@ -1,7 +1,7 @@
 /* Conservative single-source compositing and verifiable blueprint rendering. */
 (()=>{'use strict';const J=window.J,C=J.clamp,active=p=>!!p.musicalPhoto?.cinema;
 // Keep Japanese pronoun/particle groups intact instead of isolating one glyph.
-const phrase=J.composeLyricPhrase;J.composeLyricPhrase=value=>{const text=String(value||''),m=text.match(/^((?:俺ら|我ら|僕ら|私たち|君たち|僕たち|我々)(?:は|が|と|も))(.{5,})$/u);return m&&!text.includes('\n')?m[1]+'\n'+m[2]:phrase(value);};
+// Common lossless phrase layout replaces the former phrase-specific override.
 const decorate=p=>{if(!active(p))return p;for(const c of p.cuts||[])if(c.grammar&&!J.photoChoreographyLocked(p,c)){c.decor=(c.decor||[]).filter(d=>d.id!=='cinemaBlueprint');if(p.styleKey==='blueprint')c.decor.push({id:'cinemaBlueprint',layer:'background',source:'source contours + grid + dimension lines',alpha:1});}p.musicalPhoto.cinema.limits='Intact source framing and typography; unverified regional masks are not composited. No object recognition or learned depth.';p.musicalPhoto.cinema.compositing={version:1,unverifiedSourceFragments:'disabled',displacedSourceCopies:0,particles:'none without a semantic asset specification',sameSourceViewsAreNewAssets:false};return p;};
 // Also suppress the legacy regional-parallax path used by opening backgrounds.
 J.drawLayeredCinema=()=>false;

@@ -5,22 +5,13 @@ const locked=(p,c)=>!!(Object.keys(p.directionOverrides7?.[c.line]||{}).length||
 J.photoChoreographyLocked=locked;
 // Prefer real word/script boundaries. Never split a Latin word, small kana,
 // closing punctuation or an emoji sequence merely to balance the rows.
-J.composeLyricPhrase=text=>{
- const source=String(text||'');if(source.includes('\n'))return source;
- let units;try{units=[...new Intl.Segmenter('ja',{granularity:'grapheme'}).segment(source)].map(s=>s.segment);}catch{units=Array.from(source);}
- if(units.length<6)return source;
- const offsets=[];let n=0;for(const u of units){n+=u.length;offsets.push(n);}
- const boundaries=new Set();try{for(const s of new Intl.Segmenter('ja',{granularity:'word'}).segment(source))boundaries.add(s.index+s.segment.length);}catch{}
- let best=null;for(let i=1;i<units.length;i++){
-  const a=units[i-1],b=units[i],offset=offsets[i-1];if(/[A-Za-z0-9]/.test(a)&&/[A-Za-z0-9]/.test(b)||/^[ーっゃゅょぁぃぅぇぉ、。！？!?」』）】〉》]/u.test(b))continue;
-  const left=units.slice(0,i).join(''),right=units.slice(i).join('');if(!left.trim()||!right.trim())continue;
-  const width=s=>[...s.trim()].reduce((sum,ch)=>sum+(/[\x00-\x7f]/.test(ch)?.52:1),0),wl=width(left),wr=width(right);
-  const leftEnd=left.trimEnd().at(-1),rightStart=right.trimStart()[0],scriptBoundary=/[A-Za-z0-9]/.test(leftEnd)&&/[^\x00-\x7f]/.test(rightStart);
-  const particleStart=/^(?:も|は|が|を|に|の|へ|と|で|や|ね|よ|ぜ|けど|から|まで)/.test(right.trimStart()), phraseEnd=/(?:今日も|いつものように|と共に|ここに|たちよ|だろ|できること)$/.test(left.trimEnd());
-  const score=(particleStart?3:0)+(phraseEnd?-1.25:0)+Math.abs(wl-wr)/Math.max(wl,wr)+(boundaries.has(offset)?0:.7)+(J.isHira?.(a)&&J.isHira?.(b)?1:0)+(/\s/.test(a)||/\s/.test(b)?-.15:0)+(J.isHira?.(a)&&!J.isHira?.(b)?-.6:0)+(scriptBoundary?-.7:0)+('のをにがはでと'.includes(a)&&a.trim()?.55:0)+(/\s/.test(b)?.03:0);
-  if(!best||score<best.score)best={offset,score};
- }
- return best?source.slice(0,best.offset)+'\n'+source.slice(best.offset):source;
+J.composeLyricPhrase=value=>{
+ const text=String(value??'');if(text.includes('\n')||J.graphemes(text).length<8)return text;
+ // A two-row phrase block uses linguistic boundaries, including attached particles/suffixes.
+ // Preserve the source when no safe boundary exists; the renderer then fits the whole token.
+ const candidates=J.lyricBreaks(text).boundaries.map(b=>({...b,balance:Math.abs(J.graphemes(text.slice(0,b.offset)).length-J.graphemes(text.slice(b.offset)).length)}));
+ const cut=candidates.sort((a,b)=>a.balance-b.balance||a.cost-b.cost||a.offset-b.offset)[0];
+ return cut?text.slice(0,cut.offset)+'\n'+text.slice(cut.offset):text;
 };
 J.ENTER.photoSettle={name:'全文を保った短い収束',apply(env,it,u){const e=1-(1-J.clamp(u))**3;it.size*=.96+.04*e;}};
 J.ENTER.photoResolve={name:'二段のまとまり',apply(env,it,u){const e=1-(1-J.clamp(u))**3;it.track=(it.track||0)+.025*(1-e);it.size*=.98+.02*e;}};

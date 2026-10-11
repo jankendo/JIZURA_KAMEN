@@ -65,7 +65,7 @@ J.rankCinemaCandidateV2=(candidate,profile,baseline=null)=>{
  const failed=required.filter(id=>measurements.get(id)?.status==='FAILED');if(failed.length)return fail('REQUIRED_FAILED',{failed});if(missing.length)return fail('REQUIRED_UNMEASURED',{missing});
  if(candidate.measurements.some(m=>m.profileId!==profile.profileId))return fail('PROFILE_MISMATCH');
  const regressions=[],incomparable=[];
- if(baseline)for(const prior of baseline.measurements){const m=measurements.get(prior.id),protectedMetric=prior.id.startsWith('decodedPhysicalContrast@')||prior.id.startsWith('decodedFrameAlignedContrast@')||prior.id.startsWith('decodedLocalContrast@')||prior.id==='rasterSafety'||prior.id==='localContrast'||prior.id==='outputReadability'||prior.id==='frameAlignedOutputReadability'||(prior.status==='MEASURED'&&prior.value>=(profile.protectionThresholds?.[prior.id]??90));
+ if(baseline)for(const prior of baseline.measurements){const m=measurements.get(prior.id),protectedMetric=/^(decodedPhysicalContrast@|decodedFrameAlignedContrast@|decodedLocalContrast@|outputReadability@|frameAlignedOutputReadability@)/.test(prior.id)||prior.id==='rasterSafety'||prior.id==='localContrast'||prior.id==='outputReadability'||prior.id==='frameAlignedOutputReadability';
   if(!protectedMetric||prior.status!=='MEASURED')continue;if(!m||m.status!=='MEASURED'){regressions.push(prior.id);continue;}if(!V.comparable(m,prior)){incomparable.push(prior.id);continue;}if(m.value<prior.value)regressions.push(prior.id);
  }
  if(incomparable.length)return fail('INCOMPARABLE_EVIDENCE',{incomparable});if(regressions.length)return fail('PROTECTED_REGRESSION',{regressions});

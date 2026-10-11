@@ -1,6 +1,8 @@
 import { readdir, readFile, mkdir, writeFile, cp } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { readSourceOrder, auditBootstrap, auditBoundary } from './source-order.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -9,6 +11,9 @@ const {version} = JSON.parse(await read('package.json'));
 if(!/^\d+\.\d+\.\d+$/.test(version))throw new Error('Invalid application SemVer');
 const sources = await readSourceOrder(root);
 const js = auditBootstrap+'\n'+(await Promise.all(sources.map(async name => (await read(`src/${name}`))+auditBoundary(name)))).join('\n');
+let sourceCommit=null,sourceDirty=null;
+try {sourceCommit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim();sourceDirty=!!execFileSync('git',['status','--porcelain','--','src','scripts','app','assets','vendor','package.json','package-lock.json'],{cwd:root,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim();}catch{/* Source archives retain a content hash; they cannot claim an exact Git commit. */}
+const buildInfo = {sourceCommit,sourceDirty,sourceTreeSHA256:createHash('sha256').update(js).digest('hex')};
 const mux = '/*! mp4-muxer v5.2.2 | MIT License | (c) 2023 Vanilagy | see THIRD_PARTY_NOTICES.md */\n' + await read('vendor/mp4-muxer.min.js');
 const localFontCSS=(await Promise.all([['Regular',400],['Bold',700]].map(async ([name,weight])=>
   `@font-face{font-family:"JIZURA Noto CJK JP";src:url(data:font/woff2;base64,${(await readFile(path.join(root,'assets','fonts',`NotoSansCJKjp-${name}.woff2`))).toString('base64')}) format("woff2");font-weight:${weight};font-display:block}`))).join('\n');
@@ -39,6 +44,7 @@ ${await read('app/style.css')}
 ${(await read('app/body.html')).replaceAll('__APP_VERSION__',version)}
 <script>
 window.KAMEN_APP_INFO=window.JIZURA_APP_INFO=Object.freeze(${JSON.stringify({name:'KAMEN',edition:'Custom Edition',version})});
+window.KAMEN_BUILD_INFO=Object.freeze(${JSON.stringify(buildInfo)});
 ${mux}
 ${await read('vendor/aac-browser.min.js')}
 </script>

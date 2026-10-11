@@ -820,7 +820,7 @@ reg('pendulum', {
     } else {
       const wMax = W * (port ? 0.8 : 0.56);
       size = Math.min(...items.map(q => J.fitSize(q.t, Pm.font, wMax, H * 0.8 / (k + 1) * 0.62, { track: 0.03 })), u * 0.14);
-      step = size * 1.75; L0 = Math.max(H * 0.9 - step * k, size * 2);
+      step = size * 1.75; L0 = k === 1 ? Math.max(H * 0.5 - py, size * 2) : Math.max(H * 0.9 - step * k, size * 2);
       plateW = items.map(q => J.measure({ text: q.t, font: Pm.font, size, track: 0.03 }).w + size * 0.8);
     }
     const Lmax = L0 + step * (k - 1);

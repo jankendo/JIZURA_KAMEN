@@ -18,13 +18,13 @@ J.layoutText = (it) => {
   let gi = 0;
   if (!vertical) {
     const widths = lines.map(line => {
-      let w = 0; const arr = [...line];
+      let w = 0; const arr = J.graphemes(line);
       arr.forEach((ch, i) => { w += J.metrics.adv(it.font, ch) * size + (i < arr.length - 1 ? track * size : 0); });
       return w;
     });
     const maxW = Math.max(1, ...widths);
     lines.forEach((line, li) => {
-      const arr = [...line];
+      const arr = J.graphemes(line);
       let x = it.align === 'left' ? 0 : it.align === 'right' ? -widths[li] : -widths[li] / 2;
       const y = (li - (lines.length - 1) / 2) * lead;
       arr.forEach((ch, ci) => {
@@ -35,10 +35,10 @@ J.layoutText = (it) => {
     });
     out.W = maxW; out.H = lines.length * lead - (lead - size);
   } else {
-    const heights = lines.map(line => [...line].reduce((h, ch) => h + vAdv(it.font, ch, size) + track * size, 0) - track * size);
+    const heights = lines.map(line => J.graphemes(line).reduce((h, ch) => h + vAdv(it.font, ch, size) + track * size, 0) - track * size);
     const maxH = Math.max(1, ...heights);
     lines.forEach((line, li) => {
-      const arr = [...line];
+      const arr = J.graphemes(line);
       let y = (it.vAlign || (it.align === 'left' ? 'top' : 'center')) === 'top' ? 0 : -heights[li] / 2;
       const x = -(li - (lines.length - 1) / 2) * lead;
       arr.forEach((ch, ci) => {
