@@ -1,0 +1,12 @@
+{
+  "sourceHead": "96727adccdffefdef595dc96e4e29eb383d02fca",
+  "status": "FAIL",
+  "stage": "wait for btnAutoDirection enabled before generation",
+  "timeoutSeconds": 600,
+  "fixture": "background deliberately disabled; saved studio mode retained",
+  "cause": "Existing syncDirectionUI disables btnAutoDirection when no enabled custom background image. Confirmed src/12_ui.js:1041; this file is unchanged from baseline.",
+  "subsequentRun": "owned image restored; same source/PCM/profile/lyrics",
+  "classification": "TEST_PREREQUISITE_TIMEOUT",
+  "generationStarted": false,
+  "variableFontImported": false
+}
