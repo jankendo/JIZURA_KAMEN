@@ -288,7 +288,7 @@ class Renderer {
     }
     // ---------- cut-to-cut transition: composite the previous cut's resting frame with this one ----------
     if (!opt.noTrans && mainCut && mainCut.trans && J.TRANS[mainCut.trans] && mainCut.index > 0) {
-      const lt = tq - mainCut.start, dur = mainCut.transDur || 0.35;
+      const lt = tq - mainCut.start, dur = Number.isFinite(mainCut.transDur) ? Math.max(0,mainCut.transDur) : 0.35;
       const prev = plan.cuts[mainCut.index - 1];
       if (lt < dur && prev && Math.abs(prev.end - mainCut.start) < 0.06) {
         const A = this.ensure(this.transA || (this.transA = mk(2, 2)), cw, ch), B = this.ensure(this.transB || (this.transB = mk(2, 2)), cw, ch);

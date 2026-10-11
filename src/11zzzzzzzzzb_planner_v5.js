@@ -71,14 +71,16 @@ V.observeRepair=async(session,args,result,best)=>{
  return r;
 };
 Q.guardExport=async(result,args)=>{
- const videoHash=result.provenance?.videoSHA256,history=result.provenance?.cinemaV3?.history||[],selected=history.find(h=>h.videoHash===videoHash),audit=selected?.cinemaV5?.after?.audioEvidence??await Q.auditDecodedAudio(result.blob,args.audio,args.range,args.signal);
+ const artifact=args.plan&&args.project?await Q.verifyFinalArtifact(result,args,args._finalArtifactInput??await V.snapshot(args.project,args.audio,args.plan,args.range)):null;
+ if(artifact)result.provenance.finalArtifactVerification=artifact;
+ const videoHash=result.provenance?.videoSHA256,history=result.provenance?.cinemaV3?.history||[],selected=history.find(h=>h.videoHash===videoHash),audit=artifact?.audioEvidence??selected?.cinemaV5?.after?.audioEvidence??await Q.auditDecodedAudio(result.blob,args.audio,args.range,args.signal);
  if(result.validation?.certification?.passed===false||audit.status==='FAILED')throw Object.assign(Error('CINEMA_V5_UNSAFE_EXPORT'),{code:'CINEMA_V5_UNSAFE_EXPORT',audioEvidence:audit});
- const measurements=selected?.cinemaV5?.after?.measurements||[],required=['lyricIntegrity','lyricTiming'],missing=required.filter(id=>!measurements.some(m=>m.id===id&&m.status==='MEASURED'&&m.value===100));
- result.provenance.cinemaV5={version:Q.version,videoHash,audioEvidence:audit,lyricSafety:missing.length?'UNMEASURED':'MEASURED',missingSafetyEvidence:missing,humanStatus:Q.humanStatus,creativeCalibration:Q.selectionPolicy.calibration,limits:'Legacy/non-image or incomplete registered lyric observations do not certify lyric safety. A technically valid draft remains savable; known failed AAC/MP4 is rejected.'};
+ const measurements=selected?.cinemaV5?.after?.measurements||[],required=['lyricIntegrity','lyricTiming'],missing=artifact?.status==='MEASURED'&&artifact.inputContract.timingStatus==='MEASURED'?[]:required.filter(id=>!measurements.some(m=>m.id===id&&m.status==='MEASURED'&&m.value===100));
+ result.provenance.cinemaV5={version:Q.version,videoHash,finalArtifactEvidenceId:artifact?.evidenceId??null,audioEvidence:audit,lyricSafety:missing.length?'UNMEASURED':'MEASURED',missingSafetyEvidence:missing,humanStatus:Q.humanStatus,creativeCalibration:Q.selectionPolicy.calibration,limits:'Final artifact verification binds native per-unit and decoded registered ink evidence without relying on legacy candidate history; incomplete observation remains unmeasured. This is not OCR or aesthetic certification. A technically valid draft remains savable; known failed AAC/MP4 is rejected.'};
  const creative=selected?.cinemaV5?.after?Q.creativeEvidence(selected.cinemaV5.after):null,complete=missing.length===0&&creative?.aggregateStatus==='MEASURED';result.provenance.cinemaV5.creativeEvidenceStatus=creative?.aggregateStatus??'UNMEASURED';for(const acceptance of [result.provenance.qualityTarget,result.provenance.machineRefinement?.acceptance].filter(Boolean)){acceptance.v5EvidenceComplete=complete;acceptance.v5MissingSafety=[...missing];acceptance.v5MissingCreative=creative?.missing.map(m=>m.domain)??Object.keys(Q.selectionPolicy.weights);}if(!result.provenance.qualityTarget)result.provenance.qualityTarget={status:'UNMEASURED',v5EvidenceComplete:complete,v5MissingSafety:[...missing]};result.provenance.creativeState=J.creativeExportState(result.provenance.machineRefinement?.acceptance||result.provenance.qualityTarget);
  result.sidecar=new Blob([JSON.stringify(result.provenance,null,2)],{type:'application/json'});return result;
 };
 const creativeState=J.creativeExportState;J.creativeExportState=acceptance=>{const state=creativeState(acceptance);return state==='TARGET_MET'&&acceptance?.v5EvidenceComplete===false?'UNMEASURED':state;};
-const exportMP4=J.exportMP4;J.exportMP4=async args=>Q.guardExport(await exportMP4(args),args);
+const exportMP4=J.exportMP4;J.exportMP4=async args=>{const guarded=args.plan&&args.project?{...args,_finalArtifactInput:await V.snapshot(args.project,args.audio,args.plan,args.range)}:args;return Q.guardExport(await exportMP4(guarded),guarded);};
 
 })();

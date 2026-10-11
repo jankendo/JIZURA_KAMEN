@@ -51,7 +51,7 @@ J.selectionGlyphEvidence=(env,it)=>{
  for(const g of lay){if(!g.ch.trim())continue;const c=it.charFn?.(g.i,g,lay.N)||{},sx=(it.sx??1)*(c.s??1)*(c.sx??1),sy=(it.sy??1)*(c.s??1)*(c.sy??1),ratio=Math.abs(sx/sy),alpha=(it.alpha??1)*(c.a??1);minAlpha=Math.min(minAlpha,c.hide?0:alpha);if(ratio<.68||ratio>1.5)distortion=true;
  const m=ctx.measureText(c.ch||g.ch),pad=(it.stroke||0)/2,x=(g.x+g.vx)*(it.sx??1)+(c.dx||0),y=(g.y+g.vy)*(it.sy??1)+(c.dy||0),b={x0:x+(-m.actualBoundingBoxLeft-pad)*sx,x1:x+(m.actualBoundingBoxRight+pad)*sx,y0:y+(-m.actualBoundingBoxAscent-pad)*sy,y1:y+(m.actualBoundingBoxDescent+pad)*sy};maxHeight=Math.max(maxHeight,(b.y1-b.y0)/env.H);boxes.push(b);}
  ctx.restore();let collisions=0;for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const a=boxes[i],b=boxes[j],intersection=Math.max(0,Math.min(a.x1,b.x1)-Math.max(a.x0,b.x0))*Math.max(0,Math.min(a.y1,b.y1)-Math.max(a.y0,b.y0)),area=Math.min((a.x1-a.x0)*(a.y1-a.y0),(b.x1-b.x0)*(b.y1-b.y0));if(intersection>area*.12)collisions++;}
- const short=norm(env.cut.lineText).length<=4,cap=env.H>env.W?(short?.25:.145):(short?.29:.195);return {collisions,distortion,maxGlyphHeight:maxHeight,minAlpha,readable:!distortion&&!collisions&&maxHeight<=cap&&minAlpha>=.55};
+ const short=norm(env.cut.grammar?env.cut.lineText:env.cut.text??env.cut.lineText).length<=4,cap=env.H>env.W?(short?.25:.145):(short?.29:.195);return {collisions,distortion,maxGlyphHeight:maxHeight,minAlpha,readable:!distortion&&!collisions&&maxHeight<=cap&&minAlpha>=.55};
 };
 J.compareRegistryCandidates=async(project,audio,image,options={})=>{
  const musicProfile=J.songDirectionProfile(audio);
