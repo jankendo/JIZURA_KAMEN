@@ -1,15 +1,14 @@
 import { readdir, readFile, mkdir, writeFile, cp } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readSourceOrder, auditBootstrap, auditBoundary } from './source-order.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (name) => readFile(path.join(root, name), 'utf8');
 const {version} = JSON.parse(await read('package.json'));
 if(!/^\d+\.\d+\.\d+$/.test(version))throw new Error('Invalid application SemVer');
-const sources = (await readdir(path.join(root, 'src')))
-  .filter((name) => name.endsWith('.js'))
-  .sort();
-const js = (await Promise.all(sources.map((name) => read(`src/${name}`)))).join('\n');
+const sources = await readSourceOrder(root);
+const js = auditBootstrap+'\n'+(await Promise.all(sources.map(async name => (await read(`src/${name}`))+auditBoundary(name)))).join('\n');
 const mux = '/*! mp4-muxer v5.2.2 | MIT License | (c) 2023 Vanilagy | see THIRD_PARTY_NOTICES.md */\n' + await read('vendor/mp4-muxer.min.js');
 const localFontCSS=(await Promise.all([['Regular',400],['Bold',700]].map(async ([name,weight])=>
   `@font-face{font-family:"JIZURA Noto CJK JP";src:url(data:font/woff2;base64,${(await readFile(path.join(root,'assets','fonts',`NotoSansCJKjp-${name}.woff2`))).toString('base64')}) format("woff2");font-weight:${weight};font-display:block}`))).join('\n');

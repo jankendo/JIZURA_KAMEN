@@ -1,0 +1,152 @@
+{
+  "status": "PASS",
+  "mp4Count": 10,
+  "comparisons": [
+    {
+      "id": "case-03",
+      "before": 92,
+      "after": 92,
+      "pairedIntervals": 12,
+      "unmeasuredIntervals": 0,
+      "beforeTiming": {
+        "analysisAndPlanMs": 3431.4000000003725,
+        "searchMs": 8183.39999999851,
+        "exportMs": 2301.9000000003725,
+        "totalMs": 13916.699999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3354.699999999255,
+        "searchMs": 6860.5999999996275,
+        "exportMs": 1833.800000000745,
+        "totalMs": 12049.099999999627
+      },
+      "beforeLoads": {
+        "calls": 24,
+        "ms": 47.29999999515712
+      },
+      "afterLoads": {
+        "calls": 24,
+        "ms": 42.999999998137355
+      }
+    },
+    {
+      "id": "case-04",
+      "before": 99,
+      "after": 99,
+      "pairedIntervals": 10,
+      "unmeasuredIntervals": 0,
+      "beforeTiming": {
+        "analysisAndPlanMs": 3457.199999999255,
+        "searchMs": 10908.599999999627,
+        "exportMs": 1565.9000000003725,
+        "totalMs": 15931.699999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3170,
+        "searchMs": 9988.099999999627,
+        "exportMs": 1391.2000000011176,
+        "totalMs": 14549.300000000745
+      },
+      "beforeLoads": {
+        "calls": 26,
+        "ms": 45.70000000670552
+      },
+      "afterLoads": {
+        "calls": 26,
+        "ms": 60.40000000037253
+      }
+    },
+    {
+      "id": "case-23",
+      "before": 68,
+      "after": 68,
+      "pairedIntervals": 12,
+      "unmeasuredIntervals": 0,
+      "beforeTiming": {
+        "analysisAndPlanMs": 3608.9000000003725,
+        "searchMs": 18687.199999999255,
+        "exportMs": 2843.2000000011176,
+        "totalMs": 25139.300000000745
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3430.2999999988824,
+        "searchMs": 16055.599999999627,
+        "exportMs": 2377.5,
+        "totalMs": 21863.39999999851
+      },
+      "beforeLoads": {
+        "calls": 27,
+        "ms": 60.500000005587935
+      },
+      "afterLoads": {
+        "calls": 27,
+        "ms": 71.8999999947846
+      }
+    },
+    {
+      "id": "case-24",
+      "before": 49,
+      "after": 49,
+      "pairedIntervals": 23,
+      "unmeasuredIntervals": 0,
+      "beforeTiming": {
+        "analysisAndPlanMs": 3216.2999999988824,
+        "searchMs": 108012.90000000037,
+        "exportMs": 12647,
+        "totalMs": 123876.19999999925
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 2949,
+        "searchMs": 103762.09999999963,
+        "exportMs": 11695.5,
+        "totalMs": 118406.59999999963
+      },
+      "beforeLoads": {
+        "calls": 28,
+        "ms": 46.000000001862645
+      },
+      "afterLoads": {
+        "calls": 28,
+        "ms": 51.00000000372529
+      }
+    },
+    {
+      "id": "general-manual",
+      "before": 54,
+      "after": 54,
+      "pairedIntervals": 17,
+      "unmeasuredIntervals": 0,
+      "beforeTiming": {
+        "analysisAndPlanMs": 3516.5,
+        "searchMs": 25408.200000001118,
+        "exportMs": 4342.5999999996275,
+        "totalMs": 33267.300000000745
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3311.39999999851,
+        "searchMs": 24320.5,
+        "exportMs": 3823.10000000149,
+        "totalMs": 31455
+      },
+      "beforeLoads": {
+        "calls": 27,
+        "ms": 51.09999999590218
+      },
+      "afterLoads": {
+        "calls": 27,
+        "ms": 65.50000000372529
+      }
+    }
+  ],
+  "scope": "five representative materials, PR8 versus adopted mathematical optimization; not full release acceptance",
+  "runtimeHTMLSHA256": "c8dc02a71553f9d2b9276846df252e29a1ff289197fbf48eb736c4a0f50bb579",
+  "baseline": "PR8 3b7388491d058f9fe6d36fb9fc2a04e368d0f365",
+  "rawResults": {
+    "path": "/workspace/kamen-v4-validation/math-representatives/results.json",
+    "sha256": "3171d185694441ff6dfcb818a6dbcf46c2e55e97e189e1daaf0a77e208651225",
+    "bytes": 24321419
+  },
+  "timingLimitations": "One paired trial on a shared host; some target tests overlapped. Not a statistical demonstration of performance improvement.",
+  "stencilProfilingLimitations": "Initial counters include later independent observers; use final matrix timed counters for export-only comparisons.",
+  "humanEvaluation": "HUMAN_EVALUATION_PENDING"
+}

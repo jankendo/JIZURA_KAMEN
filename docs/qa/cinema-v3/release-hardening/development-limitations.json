@@ -1,0 +1,38 @@
+{
+  "purpose": "Development ablations and infrastructure interruptions; not acceptance performance rounds",
+  "records": [
+    {
+      "file": "protected-execution-interruption.json",
+      "record": {
+        "status": "INTERRUPTED_ROUND_NOT_ACCEPTANCE",
+        "round0CompletedExports": 84,
+        "partialRound1CompletedExports": 2,
+        "observed": "Foreground sessions and servers no longer exist; exact termination cause not recorded",
+        "action": "Retain partial round1; start an entire counterbalanced round in a fresh directory against the identical frozen bundle",
+        "notNativeCertificationFailure": true
+      }
+    },
+    {
+      "file": "initial-grammar-ablation.json",
+      "record": {
+        "status": "SUPERSEDED_ABLATION_NOT_ACCEPTANCE",
+        "rowsRetained": 71,
+        "reason": "Additional initial V3 grammar regressions in case-12 and case-22; delivery-raster protected legacy grammar comparison added; all raw data preserved",
+        "bundle": "site-release-final"
+      }
+    },
+    {
+      "file": "draft-fallback-ablation.json",
+      "record": {
+        "status": "PRE_DRAFT_FALLBACK_ABLATION_NOT_FINAL_ACCEPTANCE",
+        "reason": "Complete round0 identified remaining short/dense-phrase regression; lowerTail UNMEASURED must remain unknown; implement protected readability-only draft choice",
+        "completeRound": "protected-round-0",
+        "partialRounds": [
+          "protected-round-1",
+          "protected-round-1-restarted"
+        ],
+        "bundleSHA256": "6c044b575e65e1e170bdd4dd8a2f88feb594d31dd051254f55335480f7ba0134"
+      }
+    }
+  ]
+}

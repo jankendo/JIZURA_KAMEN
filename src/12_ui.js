@@ -1111,11 +1111,13 @@ async function autoDirection() {
     const range={start:0,end:Math.min(S.plan.duration,S.audio?.duration||S.plan.duration)};
     let pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));
     if(pre.fixes){syncUI();replan();pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));}
+    const captureInput=async()=>J.cinemaV3?.enabled?{plan:S.plan,input:await J.cinemaV3.snapshot(S.project,S.audio,S.plan,range),analysisKey:J.canonicalJSON(audioLike())}:null;
+    let analyzedInput=await captureInput();
     S.pixelQA=await J.analyzeRenderedFrames(S.plan,range,S.audio,{onProgress:detail});
     S.exportCapabilities=await J.exportCapabilities(S.project,S.project.includeAudio!==false?S.audio:null).catch(()=>null);
     let report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);
     const renderFixes=J.fixMVQuality(S.project,report,S.audio);
-    if(renderFixes){syncUI();replan();S.pixelQA=await J.analyzeRenderedFrames(S.plan,range,S.audio,{onProgress:detail});report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);}
+    if(renderFixes){syncUI();replan();analyzedInput=await captureInput();S.pixelQA=await J.analyzeRenderedFrames(S.plan,range,S.audio,{onProgress:detail});report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);}
     S.lastQuality=report;updateStudioQuality(pre.fixes+renderFixes);
     const quality = J.inspectDirection(S.plan);
     if (!quality.coherent) console.warn('Art direction check:', quality.violations);
@@ -1124,6 +1126,7 @@ async function autoDirection() {
     $('directionStatus').dataset.result = 'true';
     task.enter('preview');await J.processingYield();S.need=true;
     task.enter('save');const saved=await flushSave();if(!saved)throw new Error('MVは作成しましたが、ブラウザへの保存を完了できませんでした。プロジェクト保存でバックアップしてください');
+    if(analyzedInput?.plan===S.plan){const plan=S.plan,input=await J.cinemaV3.snapshot(S.project,S.audio,plan,range),analysisKey=J.canonicalJSON(audioLike());if(input.inputHash===analyzedInput.input.inputHash&&analysisKey===analyzedInput.analysisKey)S.confirmedCinemaPlan={plan,inputHash:input.inputHash,analysisKey,planHash:await J.cinemaV3.planHash(plan)};}
     task.complete('MVを作成しました。仕上がりを確認してください');
     toast(`自動演出：${J.STYLES[proposal.style].name} × ${J.MOODS[proposal.mood].name}`);
   } catch (err) {task.fail(err);console.error('JIZURA MV generation failed',err); $('directionStatus').textContent = err.message || '演出を作成できませんでした'; delete $('directionStatus').dataset.result; }
@@ -1305,8 +1308,8 @@ function mountStudio() {
     if(S.plan.lines.some(l=>l.start<0 || l.start>S.audio.duration+.15)){
       $('studioQuality').textContent='音源の長さを超える歌詞があります。歌詞タイミングを調整してください。';return;
     }
-    S.project.aspect=$('studioAspect').value;
-    syncOut();replan();await runExport('mp4');
+    const before=J.canonicalJSON(S.project);S.project.aspect=$('studioAspect').value;
+    syncOut();if(before!==J.canonicalJSON(S.project))replan();await runExport('mp4');
   });
   $('studioPNG').addEventListener('click',()=>{
     $('view').toBlob(blob=>{if(blob)J.saveFile(baseName()+'_frame.png',blob);else $('studioQuality').textContent='画像を保存できませんでした。';},'image/png');
@@ -1357,11 +1360,12 @@ function baseName() {
   const settings=J.resolveExportSettings(S.project),source=(settings.fileName||S.project.title||'kamen').trim().replace(/\.mp4$/i,'');
   return (source.replace(/[\\/:*?"<>|]+/g,'_').slice(0,60)||'kamen')+(settings.fileName?'':(k?(k==='green'?'_greenback':'_blackback'):''));
 }
-async function runExport(kind,allowUnqualified=false) {
+async function runExport(kind) {
   if (S.exporting||exportPreflightBusy) return;
   pause();
+  const outcome=S.exportOutcome={fileState:'PREPARING',creativeState:'UNMEASURED'};
   const range=exportRangeForSettings();
-  if(!range){$('studioQuality').textContent='書き出す範囲を選べません。先に「SNS 60秒版」で候補を確認してください。';return;}
+  if(!range){outcome.fileState='FAILED_TECHNICAL';$('studioQuality').textContent='書き出す範囲を選べません。先に「SNS 60秒版」で候補を確認してください。';return;}
   const destination=kind==='mp4'?J.prepareFileSave(baseName()+'.mp4','video/mp4'):Promise.resolve(null);
   let saveHandle=null;
   const socialHook=J.resolveExportSettings(S.project).range==='socialHook';
@@ -1382,11 +1386,14 @@ async function runExport(kind,allowUnqualified=false) {
   if(kind==='mp4'){
     exportPreflightBusy=true;syncDirectionUI();showMsg('書き出し前に代表フレームを検査しています…');
     try{
-    S.exportValidation=null;saveHandle=await destination;if(saveHandle==='declined'){task.fail(new Error('保存を中止しました'),true);return;}
-    let fixes=0,report=null;
+    S.exportValidation=null;saveHandle=await destination;if(saveHandle==='declined'){outcome.fileState='CANCELLED';task.fail(new Error('保存を中止しました'),true);return;}
+    let fixes=0,report=null,retainConfirmedPlan=false;
+    const confirmed=S.confirmedCinemaPlan,V=J.cinemaV3;
+    if(!socialHook&&V?.enabled&&confirmed?.plan===exportPlan){const input=await V.snapshot(outputProject,S.audio,exportPlan,range);retainConfirmedPlan=input.inputHash===confirmed.inputHash&&J.canonicalJSON(audioLike())===confirmed.analysisKey&&await V.planHash(exportPlan)===confirmed.planHash;}
+    outcome.initialConfirmedPlanReused=retainConfirmedPlan;
     for(let pass=0;pass<3;pass++){
       outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;
-      const pre=J.preflightMV(outputProject,S.audio,range,makeOutputPlan);
+      const pre=pass===0&&retainConfirmedPlan?{fixes:0,plan:exportPlan}:J.preflightMV(outputProject,S.audio,range,makeOutputPlan);
       fixes+=pre.fixes;exportPlan=pre.plan;
       if(socialHook)S.socialPlan=exportPlan;else S.plan=exportPlan;
       if(pre.fixes){syncUI();replan();}
@@ -1403,12 +1410,9 @@ async function runExport(kind,allowUnqualified=false) {
     report=J.checkMVQuality(outputProject,exportPlan,S.audio,range,S.pixelQA,S.exportCapabilities,null);S.lastQuality=report;
     if(socialHook)S.socialPlan=exportPlan;else S.plan=exportPlan;
     updateStudioQuality(fixes);
-    if(report.ready&&!report.quality.targetAcceptance?.minimumMet&&!allowUnqualified){
-      const a=report.quality.targetAcceptance,labels={technical:'技術',creative:'創造性',social:'SNS構成',visualWorld:'映像世界',typography:'文字組',assetDirection:'画像構成',styleSelection:'スタイル選択',styleRealization:'スタイルの実現',perceptualNovelty:'映像の新鮮さ',foregroundNovelty:'文字表現の変化',typographyDiversity:'文字組の多様性',temporalContrast:'溜めと解放',hookNovelty:'冒頭の変化',loopQuality:'ループの連続性',displayOnsetAccuracy:'歌詞表示の精度'};const message='品質未達：'+[...(a?.hardFailures||[]).map(code=>report.issues?.find(i=>i.code===code)?.message||'品質検査の不足'),...(a?.failures||[]).map(f=>(labels[f.key]||'品質項目')+' '+Math.round(f.score)+' / '+f.minimum)].slice(0,8).join('、');
-      $('studioQuality').textContent=message;let draft=document.getElementById('qualityDraftExport');if(!draft){draft=document.createElement('button');draft.id='qualityDraftExport';$('studioQuality').after(draft);}draft.textContent='品質未達のMP4を下書きとして保存';draft.onclick=()=>{draft.remove();runExport(kind,true);};task.fail(new Error(message));return;
-    }
-    if(!report.ready){$('studioQuality').textContent=(report.exportErrors||report.errors).map(i=>i.message).join(' / ');task.fail(new Error($('studioQuality').textContent));return;}
-    }catch(error){task.fail(error,ac.signal.aborted);
+    outcome.creativeState=J.creativeExportState(report.quality.targetAcceptance);
+    if(!report.ready){outcome.fileState='FAILED_TECHNICAL';$('studioQuality').textContent=(report.exportErrors||report.errors).map(i=>i.message).join(' / ');task.fail(new Error($('studioQuality').textContent));return;}
+    }catch(error){outcome.fileState=ac.signal.aborted?'CANCELLED':'FAILED_TECHNICAL';task.fail(error,ac.signal.aborted);
       if(ac.signal.aborted){$('studioQuality').textContent='書き出し前の検査を中止しました';return;}
       $('studioQuality').textContent='書き出し前の検査を完了できませんでした。素材を確認して、もう一度お試しください。';
       console.error('JIZURA preflight failed',error);return;
@@ -1424,6 +1428,7 @@ async function runExport(kind,allowUnqualified=false) {
     const id=stage.stage||(/音声/.test(m)?'audio':/検査|検証/.test(m)?'verify':/まとめ/.test(m)?'mux':'frames');
     for(const skipped of stage.skip||[])task.skip(skipped);
     if(stage.label){const current=task.state.stages.find(s=>s.id===id);if(current)current.label=stage.label;}
+    outcome.fileState=id==='verify'?'VERIFYING':id==='fonts'?'PREPARING':'ENCODING';
     task.enter(id);task.update(stage.indeterminate?null:stage.current,stage.indeterminate?null:stage.total,m+(Number.isFinite(stage.encoded)?' · エンコード済み '+stage.encoded+'フレーム':''));
   };
   const t0 = performance.now();
@@ -1433,7 +1438,7 @@ async function runExport(kind,allowUnqualified=false) {
     task.enter('fonts');await J.processingYield();
     await J.ensureFonts(S.project.lyrics + (S.project.title || '') + (S.project.artist || '') + HUD_CHARS, J.fontsOfPlan(exportPlan));
     if (kind === 'mp4') {
-      const args={plan:exportPlan,project:outputProject,audio:S.project.includeAudio!==false?S.audio:null,range,quality:S.project.quality||'high',onProgress,signal:ac.signal};
+      const args={plan:exportPlan,project:outputProject,audio:S.project.includeAudio!==false?S.audio:null,range,quality:S.project.quality||'high',cinemaV3:J.cinemaV3?.enabled===true,onProgress,signal:ac.signal};
       const caps=S.exportCapabilities||await J.exportCapabilities(outputProject,args.audio);
       let r;
       try{
@@ -1455,8 +1460,10 @@ async function runExport(kind,allowUnqualified=false) {
           r=await J.exportMP4Fallback(args);
         }
       }
-      const qualified=r.provenance?.machineRefinement?.minimumMet??r.provenance?.qualityTarget?.minimumMet??false;
-      txt.textContent = `${qualified?'完成':'品質未達の下書き'} ${(r.blob.size / 1048576).toFixed(1)}MB・${r.codec}${r.audio ? ' + ' + r.audio.toUpperCase() : ''}・${((performance.now() - t0) / 1000).toFixed(0)}秒`;
+      outcome.creativeState=J.creativeExportState(r.provenance?.machineRefinement?.acceptance||r.provenance?.qualityTarget);
+      outcome.fileState='SAVE_AVAILABLE';
+      const qualified=['TARGET_MET','NOT_APPLICABLE'].includes(outcome.creativeState);
+      txt.textContent = `MP4生成完了 ${(r.blob.size / 1048576).toFixed(1)}MB・${r.codec}${r.audio ? ' + ' + r.audio.toUpperCase() : ''}・${((performance.now() - t0) / 1000).toFixed(0)}秒`;
       $('studioQuality').textContent=`${r.validation.certification?.passed?'EXPORT VERIFIED':'MP4コンテナ検査済み'}：${r.validation.videoCodec.toUpperCase()}映像 / ${r.validation.audioCodec?.toUpperCase()||'音声なし'}音声 / ${r.validation.duration.toFixed(1)}秒`;
       S.exportValidation=r.validation;updateStudioQuality();
       if(typeof File!=='undefined'&&navigator.share){
@@ -1464,8 +1471,10 @@ async function runExport(kind,allowUnqualified=false) {
         if(!navigator.canShare||navigator.canShare({files:[file]})){S.lastExport=file;$('studioShare').hidden=false;}
       }
       task.enter('file');task.state.cancel=null;const res = await J.saveFile(baseName() + '.mp4', r.blob,{destination:saveHandle});
-      if(res!=='declined'&&r.sidecar){try{await J.saveFile(baseName()+'.mp4.kamen-qa.json',r.sidecar,{automatic:false});}catch(qaError){console.warn('KAMEN QA save failed',qaError);toast('MP4は生成・検証済みです。QAファイルの保存に失敗しました。');}}
-      if (res === 'declined'){txt.textContent += '（保存はキャンセルされました）';task.fail(new Error('MP4は生成・検証済みですが、ファイル保存を中止しました'),true);}else if(qualified)task.complete(res==='saved'?'MP4を生成・検証し、保存しました':'MP4を生成・検証しました。画面下の保存リンクから保存できます');else task.fail(new Error('品質未達の下書きMP4を保存できます。QAに未達項目を記録しました。'));
+      outcome.fileState=res==='declined'?'CANCELLED':res==='saved'?'SAVED':'SAVE_AVAILABLE';
+      if(res!=='declined'&&r.sidecar){try{const qa=JSON.parse(await r.sidecar.text());qa.creativeState=outcome.creativeState;qa.outputOutcome={...outcome};await J.saveFile(baseName()+'.mp4.kamen-qa.json',new Blob([JSON.stringify(qa,null,2)],{type:'application/json'}),{automatic:false});}catch(qaError){console.warn('KAMEN QA save failed',qaError);toast('MP4は生成・検証済みです。QAファイルの保存に失敗しました。');}}
+      if(res==='declined'){txt.textContent+='（保存はキャンセルされました）';task.fail(new Error('MP4は生成・検証済みですが、ファイル保存を中止しました'),true);}
+      else task.complete((res==='saved'?'MP4を生成・検証し、保存しました':'MP4を生成しました。保存リンクを用意しました')+(qualified?'':'。演出品質には改善の余地があります。'));
     } else {
       const blob = await J.exportPNGZip({ plan: S.plan, project: S.project, transparent: kind === 'pnga', onProgress, signal: ac.signal });
       txt.textContent = `完成 ${(blob.size / 1048576).toFixed(1)}MB`;
@@ -1476,7 +1485,7 @@ async function runExport(kind,allowUnqualified=false) {
       /memory|allocation|quota|resource/i.test(raw)?'端末の空きメモリが足りません。短い区間か別の端末でお試しください。':
       /NotSupported|codec|encoder|MediaRecorder/i.test(raw)?'この端末ではMP4を書き出せませんでした。別のブラウザでお試しください。':
       /[ぁ-んァ-ヶ一-龠]/u.test(raw)?raw:'動画の書き出しに失敗しました。もう一度お試しください。';
-    task.fail(new Error(message),ac.signal.aborted);txt.textContent = message;$('studioQuality').textContent=message;
+    outcome.fileState=ac.signal.aborted?'CANCELLED':'FAILED_TECHNICAL';task.fail(new Error(message),ac.signal.aborted);txt.textContent = message;$('studioQuality').textContent=message;
     console.error('JIZURA export failed',e);
   } finally {
     S.exporting = null; S.need = true;

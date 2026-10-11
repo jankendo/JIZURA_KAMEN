@@ -1,0 +1,38 @@
+{
+  "status": "SPECIFIED_BEFORE_CONFIRMATION",
+  "acceptanceRuntimeSHA256": "b0c27b5d92ba4c620386f5d57e403332e7e902caf37ad35e3030ab9aff185476",
+  "fixtureSource": "dev/cinema_v3_matrix_benchmark.cjs",
+  "fixtures": [
+    {
+      "id": "independent-brief",
+      "seed": 9001,
+      "purpose": "Non-grid onset, short dense lyrics and high-frequency background"
+    },
+    {
+      "id": "independent-fixed",
+      "seed": 9002,
+      "purpose": "Manual font/camera locks with surrounding automatic scene"
+    },
+    {
+      "id": "independent-panels",
+      "seed": 9003,
+      "purpose": "Real multi-image route and intense source"
+    },
+    {
+      "id": "independent-long",
+      "seed": 9004,
+      "purpose": "Long Japanese/English horizontal lyrics, diagonal background"
+    },
+    {
+      "id": "independent-quiet",
+      "seed": 9005,
+      "purpose": "Intentional quiet hold, square output and silent source"
+    },
+    {
+      "id": "independent-text",
+      "seed": 9006,
+      "purpose": "Text-bearing background, uncertain music profile"
+    }
+  ],
+  "policy": "If confirmation leads to tuning, preserve those results as development and specify fresh independent materials; do not silently reuse tuned inputs as held-out evidence."
+}

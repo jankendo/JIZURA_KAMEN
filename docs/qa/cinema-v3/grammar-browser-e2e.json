@@ -1,0 +1,921 @@
+{
+  "status": "PASS",
+  "environment": {
+    "saveMode": "download",
+    "browser": "154.0.8037.97",
+    "os": "linux",
+    "release": "6.18.44",
+    "node": "v24.19.0",
+    "nativePickerProbe": {
+      "available": true,
+      "outcome": "AbortError",
+      "message": "Failed to execute 'showSaveFilePicker' on 'Window': The user aborted a request."
+    },
+    "codecs": {
+      "videoEncoder": "function",
+      "audioEncoder": "function",
+      "nativeH264": true,
+      "nativeAAC": false,
+      "nativeSavePickerAvailable": true,
+      "savePicker": "undefined",
+      "secure": true
+    }
+  },
+  "browser": "154.0.8037.97",
+  "checks": [
+    {
+      "name": "startup",
+      "status": "PASS",
+      "version": "2.0.26",
+      "secure": true
+    },
+    {
+      "name": "background upload",
+      "status": "PASS"
+    },
+    {
+      "name": "TXT import",
+      "status": "PASS"
+    },
+    {
+      "name": "LRC import and timing",
+      "status": "PASS"
+    },
+    {
+      "name": "audio upload and analysis",
+      "status": "PASS",
+      "bpm": 120
+    },
+    {
+      "name": "automatic MV generation",
+      "status": "PASS",
+      "cuts": 4,
+      "lines": 4,
+      "duration": 8.999977324263039
+    },
+    {
+      "name": "preview playback",
+      "status": "PASS"
+    },
+    {
+      "name": "project save and reload",
+      "status": "PASS"
+    },
+    {
+      "name": "regenerate after restored audio",
+      "status": "PASS"
+    },
+    {
+      "name": "UI MP4 export and decode",
+      "status": "PASS",
+      "draft": true,
+      "video": "h264",
+      "audio": "aac",
+      "duration": "9.024000",
+      "progressUpdates": 765,
+      "decodedFrames": 216,
+      "visibleContent": true
+    }
+  ],
+  "pageErrors": [],
+  "resourceFailures": [],
+  "draftReason": "品質未達：自動演出の一部を動画へ反映できていません、画面の新規性が100点認定の基準80に達していません、歌詞前景の新規性が基準80に達していません、新規性・静動差・意味の実現が80未満または未計測のため総合は89以下です、選択したスタイルの主要表現を比較描画で基準80以上に確認できていません、創造性 78 / 90、品質項目 80 / 90、文字組 77 / 90",
+  "ffprobe": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "High",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "width": 1280,
+        "height": 720,
+        "coded_width": 1280,
+        "coded_height": 720,
+        "closed_captions": 0,
+        "film_grain": 0,
+        "has_b_frames": 0,
+        "pix_fmt": "yuvj420p",
+        "level": 31,
+        "color_range": "pc",
+        "color_space": "bt709",
+        "color_transfer": "iec61966-2-1",
+        "color_primaries": "bt709",
+        "chroma_location": "left",
+        "field_order": "progressive",
+        "refs": 1,
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "24/1",
+        "avg_frame_rate": "24/1",
+        "time_base": "1/24",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 216,
+        "duration": "9.000000",
+        "bit_rate": "2963625",
+        "bits_per_raw_sample": "8",
+        "nb_frames": "216",
+        "extradata_size": 38,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "creation_time": "2026-10-08T14:02:39.000000Z",
+          "language": "und",
+          "handler_name": "mp4-muxer-hdlr",
+          "vendor_id": "[0][0][0][0]"
+        }
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_long_name": "AAC (Advanced Audio Coding)",
+        "profile": "LC",
+        "codec_type": "audio",
+        "codec_tag_string": "mp4a",
+        "codec_tag": "0x6134706d",
+        "sample_fmt": "fltp",
+        "sample_rate": "48000",
+        "channels": 2,
+        "channel_layout": "stereo",
+        "bits_per_sample": 0,
+        "initial_padding": 0,
+        "id": "0x2",
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0",
+        "time_base": "1/48000",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 433152,
+        "duration": "9.024000",
+        "bit_rate": "191950",
+        "nb_frames": "423",
+        "extradata_size": 5,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "creation_time": "2026-10-08T14:02:39.000000Z",
+          "language": "und",
+          "handler_name": "mp4-muxer-hdlr",
+          "vendor_id": "[0][0][0][0]"
+        }
+      }
+    ],
+    "format": {
+      "filename": "/workspace/cinema-v3/evidence/phase4-browser/ui-export.mp4",
+      "nb_streams": 2,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "format_long_name": "QuickTime / MOV",
+      "start_time": "0.000000",
+      "duration": "9.024000",
+      "size": "3554462",
+      "bit_rate": "3151118",
+      "probe_score": 100,
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomavc1mp41",
+        "creation_time": "2026-10-08T14:02:39.000000Z"
+      }
+    }
+  },
+  "cinemaV3": {
+    "version": "3.0.0",
+    "input": {
+      "audioHash": "da769f6a2a25c0fc745e8e1d7fc7721096ce7822251993e34f97a657a8710a0d",
+      "imageHashes": [
+        "758e5d44f7781611efe096cacdfc0c155333459226aa988a5df609b33a410d28",
+        "758e5d44f7781611efe096cacdfc0c155333459226aa988a5df609b33a410d28"
+      ],
+      "lyricsHash": "1ca53f22526243ad1522abe7c5520f95440f12ef9e135aeffd83eee142440e35",
+      "projectHash": "2627f2859e8d3136c5a015de7d5cc9c9cef0936b6e5bf65fd117a3fa22dd5edc",
+      "rendererVersion": "3.0.0",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          8.999977324263039
+        ],
+        "loopRequired": false
+      },
+      "userLocks": {
+        "lockedLines": [],
+        "manualTypography": [],
+        "manualCamera": []
+      },
+      "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0"
+    },
+    "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+    "videoHash": "e17e54df1a85dc9c8c9a9fcbd0f1bbfbf24650e0437663bcd2d1717df769d38d",
+    "state": "UNREPAIRABLE",
+    "history": [
+      {
+        "planHash": "6b451f1709176090f378afe88db608b60f2cbb3e95b9fe59b66f8a7e781f79d3",
+        "videoHash": "5ce5822279d79ba052e3eca1027701664f17c410cf95175b685938fc19268549",
+        "eligible": true,
+        "decision": {
+          "accepted": true,
+          "reason": "INITIAL_ARTIFACT_RETAINED_AS_DRAFT"
+        },
+        "stateHistory": [
+          {
+            "state": "CREATED",
+            "planHash": "6b451f1709176090f378afe88db608b60f2cbb3e95b9fe59b66f8a7e781f79d3"
+          },
+          {
+            "state": "PROXY_MEASURED",
+            "planHash": "6b451f1709176090f378afe88db608b60f2cbb3e95b9fe59b66f8a7e781f79d3",
+            "videoHash": null,
+            "outcome": null
+          },
+          {
+            "state": "SELECTED",
+            "planHash": "6b451f1709176090f378afe88db608b60f2cbb3e95b9fe59b66f8a7e781f79d3",
+            "videoHash": null,
+            "outcome": null
+          },
+          {
+            "state": "FULL_ENCODED",
+            "planHash": "6b451f1709176090f378afe88db608b60f2cbb3e95b9fe59b66f8a7e781f79d3",
+            "videoHash": "5ce5822279d79ba052e3eca1027701664f17c410cf95175b685938fc19268549",
+            "outcome": null
+          },
+          {
+            "state": "DECODED_QA",
+            "planHash": "6b451f1709176090f378afe88db608b60f2cbb3e95b9fe59b66f8a7e781f79d3",
+            "videoHash": "5ce5822279d79ba052e3eca1027701664f17c410cf95175b685938fc19268549",
+            "outcome": null
+          },
+          {
+            "state": "REPAIRABLE",
+            "planHash": "6b451f1709176090f378afe88db608b60f2cbb3e95b9fe59b66f8a7e781f79d3",
+            "videoHash": "5ce5822279d79ba052e3eca1027701664f17c410cf95175b685938fc19268549",
+            "outcome": null
+          }
+        ]
+      },
+      {
+        "planHash": "c0e2122e1d579680a814131ab7f683bd451beada0f43be7a0144e0abba3bac2d",
+        "videoHash": "89a2e839496c121bdeaf385fb998fa61331baca7bda82115250a39c2b4d79fa0",
+        "eligible": true,
+        "decision": {
+          "accepted": true,
+          "reason": "VERIFIED_TARGET_IMPROVEMENT",
+          "improved": [
+            "localContrast"
+          ]
+        },
+        "stateHistory": [
+          {
+            "state": "CREATED",
+            "planHash": "c0e2122e1d579680a814131ab7f683bd451beada0f43be7a0144e0abba3bac2d"
+          },
+          {
+            "state": "PROXY_MEASURED",
+            "planHash": "c0e2122e1d579680a814131ab7f683bd451beada0f43be7a0144e0abba3bac2d",
+            "videoHash": null,
+            "outcome": null
+          },
+          {
+            "state": "SELECTED",
+            "planHash": "c0e2122e1d579680a814131ab7f683bd451beada0f43be7a0144e0abba3bac2d",
+            "videoHash": null,
+            "outcome": null
+          },
+          {
+            "state": "FULL_ENCODED",
+            "planHash": "c0e2122e1d579680a814131ab7f683bd451beada0f43be7a0144e0abba3bac2d",
+            "videoHash": "89a2e839496c121bdeaf385fb998fa61331baca7bda82115250a39c2b4d79fa0",
+            "outcome": null
+          },
+          {
+            "state": "DECODED_QA",
+            "planHash": "c0e2122e1d579680a814131ab7f683bd451beada0f43be7a0144e0abba3bac2d",
+            "videoHash": "89a2e839496c121bdeaf385fb998fa61331baca7bda82115250a39c2b4d79fa0",
+            "outcome": null
+          },
+          {
+            "state": "REPAIRABLE",
+            "planHash": "c0e2122e1d579680a814131ab7f683bd451beada0f43be7a0144e0abba3bac2d",
+            "videoHash": "89a2e839496c121bdeaf385fb998fa61331baca7bda82115250a39c2b4d79fa0",
+            "outcome": null
+          }
+        ]
+      },
+      {
+        "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+        "videoHash": "e17e54df1a85dc9c8c9a9fcbd0f1bbfbf24650e0437663bcd2d1717df769d38d",
+        "eligible": true,
+        "decision": {
+          "accepted": true,
+          "reason": "VERIFIED_TARGET_IMPROVEMENT",
+          "improved": [
+            "localContrast",
+            "lowerTail"
+          ]
+        },
+        "stateHistory": [
+          {
+            "state": "CREATED",
+            "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638"
+          },
+          {
+            "state": "PROXY_MEASURED",
+            "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+            "videoHash": null,
+            "outcome": null
+          },
+          {
+            "state": "SELECTED",
+            "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+            "videoHash": null,
+            "outcome": null
+          },
+          {
+            "state": "FULL_ENCODED",
+            "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+            "videoHash": "e17e54df1a85dc9c8c9a9fcbd0f1bbfbf24650e0437663bcd2d1717df769d38d",
+            "outcome": null
+          },
+          {
+            "state": "DECODED_QA",
+            "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+            "videoHash": "e17e54df1a85dc9c8c9a9fcbd0f1bbfbf24650e0437663bcd2d1717df769d38d",
+            "outcome": null
+          },
+          {
+            "state": "REPAIRABLE",
+            "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+            "videoHash": "e17e54df1a85dc9c8c9a9fcbd0f1bbfbf24650e0437663bcd2d1717df769d38d",
+            "outcome": null
+          }
+        ]
+      },
+      {
+        "planHash": "e27850154ab33ce6e6a3bf744fb3af39fab851447fa0d817e61f58a71c82f5bf",
+        "videoHash": "843c799036425f659e473ceea483d557541bb32cdecfdb6840da2679ddc84383",
+        "eligible": true,
+        "decision": {
+          "accepted": false,
+          "reason": "PROTECTED_REGRESSION",
+          "details": {
+            "eligible": false,
+            "reason": "PROTECTED_REGRESSION",
+            "regressions": [
+              "localContrast",
+              "hookNovelty"
+            ],
+            "rankVector": null
+          }
+        },
+        "stateHistory": [
+          {
+            "state": "CREATED",
+            "planHash": "e27850154ab33ce6e6a3bf744fb3af39fab851447fa0d817e61f58a71c82f5bf"
+          },
+          {
+            "state": "PROXY_MEASURED",
+            "planHash": "e27850154ab33ce6e6a3bf744fb3af39fab851447fa0d817e61f58a71c82f5bf",
+            "videoHash": null,
+            "outcome": null
+          },
+          {
+            "state": "SELECTED",
+            "planHash": "e27850154ab33ce6e6a3bf744fb3af39fab851447fa0d817e61f58a71c82f5bf",
+            "videoHash": null,
+            "outcome": null
+          },
+          {
+            "state": "FULL_ENCODED",
+            "planHash": "e27850154ab33ce6e6a3bf744fb3af39fab851447fa0d817e61f58a71c82f5bf",
+            "videoHash": "843c799036425f659e473ceea483d557541bb32cdecfdb6840da2679ddc84383",
+            "outcome": null
+          },
+          {
+            "state": "DECODED_QA",
+            "planHash": "e27850154ab33ce6e6a3bf744fb3af39fab851447fa0d817e61f58a71c82f5bf",
+            "videoHash": "843c799036425f659e473ceea483d557541bb32cdecfdb6840da2679ddc84383",
+            "outcome": null
+          },
+          {
+            "state": "UNREPAIRABLE",
+            "planHash": "e27850154ab33ce6e6a3bf744fb3af39fab851447fa0d817e61f58a71c82f5bf",
+            "videoHash": "843c799036425f659e473ceea483d557541bb32cdecfdb6840da2679ddc84383",
+            "outcome": "bounded-search-exhausted"
+          }
+        ]
+      }
+    ],
+    "selectedEvidence": {
+      "id": "e17e54df1a85dc9c8c9a9fcbd0f1bbfbf24650e0437663bcd2d1717df769d38d",
+      "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+      "candidateSeed": 2268248157,
+      "hardFailures": [],
+      "measurements": [
+        {
+          "id": "rasterSafety",
+          "value": 100,
+          "unit": "score/100",
+          "source": "CANVAS",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "128px production glyph presence and safe area",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "localContrast",
+          "value": 73,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 24,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "lowerTail",
+          "value": 68.5,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "videoStructure",
+          "value": 100,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 1,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "MP4 track structure and frame count certification",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "audioEndpoint",
+          "value": 100,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 1,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "decoded AAC duration versus authoritative output range",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "perceptualNovelty",
+          "value": 78,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "motion",
+          "value": 74,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "temporalContrast",
+          "value": 29,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "hookNovelty",
+          "value": 93,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "loopQuality",
+          "value": 0,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "foregroundNovelty",
+          "value": null,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 0,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "UNMEASURED"
+        },
+        {
+          "id": "lyricForegroundNovelty",
+          "value": 70,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "displayOnsetAccuracy",
+          "value": null,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 0,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "UNMEASURED"
+        },
+        {
+          "id": "impactBeatSync",
+          "value": null,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 0,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "UNMEASURED"
+        },
+        {
+          "id": "regionalPerceptualNovelty",
+          "value": 89.86028471000233,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "motionRealization",
+          "value": 100,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        },
+        {
+          "id": "typographyDiversity",
+          "value": 14,
+          "unit": "score/100",
+          "source": "ENCODED_MP4",
+          "sampleCount": 4,
+          "affectedLineIds": [],
+          "confidence": 1,
+          "profileId": "{\"aspect\":\"16:9\",\"fps\":24,\"loopRequired\":false,\"purpose\":\"FULL_MV\",\"range\":[0,8.999977324263039]}",
+          "thresholdId": "existing-kamen-v2.0.26",
+          "method": "final-resolution MP4 independent decode",
+          "planHash": "3f2c77c6a62bd930339d5eed9c4e57cb5c4d1f9c60beb83bd0bf82f596c2e638",
+          "inputHash": "d1692c3fd04f2f643f8fd5638cdbd360bf149b831e485ed2c104d3df106e21a0",
+          "rendererVersion": "3.0.0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              8.999977324263039
+            ],
+            "loopRequired": false
+          },
+          "status": "MEASURED"
+        }
+      ],
+      "objectives": {
+        "readability": 73,
+        "musicFit": null,
+        "visualCoherence": null,
+        "contextualVariation": null
+      },
+      "lowerTail": 68.5,
+      "constraintViolations": 0,
+      "memoryBudgetBytes": 0,
+      "timeCostMs": 0,
+      "timeCostStatus": "UNMEASURED",
+      "memoryBudgetStatus": "UNMEASURED"
+    },
+    "stopReason": "bounded-search-exhausted",
+    "artistic100Established": false,
+    "peakMemoryBytes": null,
+    "peakMemoryStatus": "UNMEASURED"
+  }
+}

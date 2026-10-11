@@ -1,0 +1,89 @@
+{
+  "status": "DEVELOPMENT_ONLY_NO_GO",
+  "runtimeSha256": "903ae8a5012e36ff5ae60171eb1f27cd5896f348506ab5805d4f947e923182fa",
+  "exports": 84,
+  "failed": 0,
+  "perBuild": {
+    "baseline": {
+      "totalMs": {
+        "n": 28,
+        "p50": 8286.54999999702,
+        "p95": 21604.10000000894,
+        "max": 54909.5
+      },
+      "searchMs": {
+        "n": 28,
+        "p50": 5439.1500000059605,
+        "p95": 16592.79999999702,
+        "max": 42897.09999999404
+      },
+      "exportMs": {
+        "n": 28,
+        "p50": 2109.75,
+        "p95": 4771.79999999702,
+        "max": 11114
+      },
+      "localContrast": {
+        "distinctInputs": 24,
+        "measured": 18,
+        "unmeasured": 6,
+        "median": 63.0
+      }
+    },
+    "pr5": {
+      "totalMs": {
+        "n": 28,
+        "p50": 7606.0,
+        "p95": 17705.09999999404,
+        "max": 53677.80000001192
+      },
+      "searchMs": {
+        "n": 28,
+        "p50": 5033.20000000298,
+        "p95": 13911.79999999702,
+        "max": 45935.39999999106
+      },
+      "exportMs": {
+        "n": 28,
+        "p50": 1424.9000000059605,
+        "p95": 2954.0999999940395,
+        "max": 6824.300000011921
+      },
+      "localContrast": {
+        "distinctInputs": 24,
+        "measured": 18,
+        "unmeasured": 6,
+        "median": 63.0
+      }
+    },
+    "v3": {
+      "totalMs": {
+        "n": 28,
+        "p50": 13700.34999999404,
+        "p95": 43013.39999999106,
+        "max": 129416.59999999404
+      },
+      "searchMs": {
+        "n": 28,
+        "p50": 11506.55000000447,
+        "p95": 38410.20000000298,
+        "max": 119359.10000000894
+      },
+      "exportMs": {
+        "n": 28,
+        "p50": 1861.3499999940395,
+        "p95": 3911.2999999970198,
+        "max": 9332.199999988079
+      },
+      "localContrast": {
+        "distinctInputs": 24,
+        "measured": 19,
+        "unmeasured": 5,
+        "median": 94
+      }
+    }
+  },
+  "knownRemainingRegression": "case-24 actual-frame matched local glyph contrast at 7.7 seconds: main 100, current 66; incumbent proxy source-climax path retained after legacy composition rejection",
+  "unmeasuredStatus": "Missing values remain missing; no imputation",
+  "rawResultHash": "47dddc079abac81dd9c931cb4feb8bdefb2f330d7dfaf6d95b2f3b4426864d4d"
+}

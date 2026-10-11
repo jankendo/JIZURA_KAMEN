@@ -1,0 +1,83 @@
+{
+  "baseline": {
+    "planHashChangesBetweenRounds": [
+      "case-06",
+      "case-07",
+      "case-13",
+      "case-14",
+      "case-20"
+    ],
+    "sameInputRepeatTotalMs": {
+      "n": 10,
+      "p50": 8272.949999999255,
+      "p95": 8827.80000000447,
+      "min": 8009.80000000447,
+      "max": 8827.80000000447,
+      "sampleStandardDeviation": 274.25470906583456
+    },
+    "mixedInputTotalSampleStandardDeviationMs": 9568.327842682638,
+    "selectedCandidateChangesBetweenRounds": [],
+    "planHashDifferenceCause": "NOT_ISOLATED; full post-QA plan hash, not selected candidate identity; individual artifact/plan/QA linkage verified"
+  },
+  "pr5": {
+    "planHashChangesBetweenRounds": [
+      "case-06",
+      "case-07",
+      "case-13",
+      "case-14",
+      "case-20"
+    ],
+    "sameInputRepeatTotalMs": {
+      "n": 10,
+      "p50": 8646.10000000149,
+      "p95": 8767.70000000298,
+      "min": 8092.70000000298,
+      "max": 8767.70000000298,
+      "sampleStandardDeviation": 264.23683085140675
+    },
+    "mixedInputTotalSampleStandardDeviationMs": 9994.219931692985,
+    "selectedCandidateChangesBetweenRounds": [],
+    "planHashDifferenceCause": "NOT_ISOLATED; full post-QA plan hash, not selected candidate identity; individual artifact/plan/QA linkage verified"
+  },
+  "v3": {
+    "planHashChangesBetweenRounds": [
+      "case-06",
+      "case-07",
+      "case-08",
+      "case-12",
+      "case-13",
+      "case-14",
+      "case-17",
+      "case-18",
+      "case-20",
+      "case-24"
+    ],
+    "sameInputRepeatTotalMs": {
+      "n": 10,
+      "p50": 6764.5,
+      "p95": 7084.10000000149,
+      "min": 6255.5,
+      "max": 7084.10000000149,
+      "sampleStandardDeviation": 247.61775739599312
+    },
+    "mixedInputTotalSampleStandardDeviationMs": 9447.443042450841,
+    "selectedCandidateChangesBetweenRounds": [],
+    "planHashDifferenceCause": "NOT_ISOLATED; full post-QA plan hash, not selected candidate identity; individual artifact/plan/QA linkage verified",
+    "observedHashVaryingMetadataExample": {
+      "id": "case-08",
+      "selectedCandidate": [
+        "baseline",
+        "baseline"
+      ],
+      "stageCBaselineScore": [
+        59,
+        60
+      ],
+      "finalLocalContrast": [
+        39,
+        39
+      ],
+      "meaning": "Full plan hash includes architectureSearch evidence; proxy evidence changed despite unchanged selected candidate and final contrast. Other complete varying fields not isolated."
+    }
+  }
+}

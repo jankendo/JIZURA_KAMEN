@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -13,7 +12,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # Full suite includes an isolated restore run; measured locally at 66 minutes.
+    timeout-minutes: 120
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -55,7 +55,9 @@ jobs:
           done
           curl -fsS -o /dev/null http://127.0.0.1:4173/
           node --test dev/export_watchdog_test.cjs
-          node dev/pages_e2e.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa"
+          npm run test:cinema-export -- http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa"
+          node dev/one_click_browser_contract.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa" "$RUNNER_TEMP/kamen-browser-qa/ui-boundary"
+          node dev/processing_overlay_browser_test.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa/processing-overlays"
       - name: Preserve validation evidence
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0

@@ -10,5 +10,13 @@ J.finalizeExportReadiness=report=>{
 };
 const fix=J.fixMVQuality;J.fixMVQuality=(project,report,audio)=>{const fingerprint=()=>JSON.stringify(project,(key,value)=>key==='dataUrl'?undefined:value),before=fingerprint(),count=fix(project,report,audio);return count&&before!==fingerprint()?count:0;};
 const check=J.checkMVQuality;J.checkMVQuality=(...args)=>J.finalizeExportReadiness(check(...args));
-const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>{const result=await provenance(...args);return {...result,exportReadiness:args[2].quality.exportGates,creativeFindings:args[2].creativeFindings?.map(i=>({code:i.code,message:i.message,severity:i.severity})),measurementPolicy:{...result.measurementPolicy,export:'創作上の不足は実測値とともに残す。歌詞欠落・描画失敗・MP4破損・音源や出所の不一致は書き出しを止める'}};};
+// Creative evidence is separate from technical file certification.
+J.creativeExportState=acceptance=>{
+ if(acceptance?.status==='NOT_APPLICABLE')return 'NOT_APPLICABLE';
+ if(acceptance?.minimumMet===true)return 'TARGET_MET';
+ if(acceptance?.failures?.some(f=>Number.isFinite(f.score)))return 'BELOW_TARGET';
+ if(acceptance?.status==='BELOW_TARGET')return 'BELOW_TARGET';
+ return 'UNMEASURED';
+};
+const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>{const result=await provenance(...args);return {...result,exportReadiness:args[2].quality.exportGates,creativeState:J.creativeExportState(args[2].quality.targetAcceptance),creativeFindings:args[2].creativeFindings?.map(i=>({code:i.code,message:i.message,severity:i.severity})),measurementPolicy:{...result.measurementPolicy,export:'創作上の不足は実測値とともに残す。歌詞欠落・描画失敗・MP4破損・音源や出所の不一致は書き出しを止める'}};};
 })();

@@ -1,0 +1,11 @@
+{
+  "type": "TEST_FIXTURE_ERROR",
+  "productFailure": false,
+  "failedAssertions": 2,
+  "exportsBeforeFailure": 14,
+  "cause": "Fixture requested legacy camera alias hold; shipping planner normalizes it to stillCamera. Assertion incorrectly expected unnormalized hold.",
+  "fix": "Request and assert registered stillCamera directly; keep real manual lock and params assertions.",
+  "original24Changed": false,
+  "productionRuntimeChanged": false,
+  "rerun": "All eight generalized pairs in a new directory; prior failed assertion rows preserved."
+}

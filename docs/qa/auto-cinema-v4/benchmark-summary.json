@@ -1,0 +1,1586 @@
+{
+  "basePR8": "3b7388491d058f9fe6d36fb9fc2a04e368d0f365",
+  "mainSHA": "ef829f93a933794c337bf1a37c39fcfb8d4de0f4",
+  "runtime": {
+    "htmlSHA256": "c8dc02a71553f9d2b9276846df252e29a1ff289197fbf48eb736c4a0f50bb579",
+    "sources": {
+      "src/11zzt_decoded_cinema.js": "9799d9c03874c002f670778c4a070458bf86775bdb322869c1f89c67361a89c8",
+      "src/11zzy_closed_loop.js": "fb991ecb06ec98dd419c6e058b0c9d1198a455a09db6f9ca1c40b45a794a8c78",
+      "src/11zzzzzz_video_search.js": "9b29d197eefed6c90fee52b25414b3891c2d44fb76718d69456f3eb7d7f5bd16",
+      "src/11zzzzzzzz_cinema_v3.js": "a05c1d9d35e915c92ae314414261775cd732361720486ab823d22ac4226ae7b5"
+    },
+    "basePR8": "3b7388491d058f9fe6d36fb9fc2a04e368d0f365",
+    "renderingChanged": false,
+    "selectionChanged": false,
+    "benchmarkSnapshots": {
+      "baseline": "2ccc9759f329a48eaee0fd0145f435bf098dbf4f68c80483a867783733a4dd46",
+      "pr5": "b137fcb6d098caf7bb674e93b7028f20315c113e545781be3b7b5d7d07076333",
+      "v3": "c8dc02a71553f9d2b9276846df252e29a1ff289197fbf48eb736c4a0f50bb579"
+    }
+  },
+  "environment": {
+    "browser": "154.0.8037.97",
+    "node": "v24.19.0",
+    "os": "linux",
+    "release": "6.18.44"
+  },
+  "cpu": "AMD EPYC 9V74 80-Core Processor",
+  "cpuCount": 5,
+  "method": "same fixed registry seed; real PCM analysis, bounded 32/8/3 search, one full encode each; initial style tournament excluded from both",
+  "variantAlias": {
+    "baseline": "main",
+    "pr5": "PR8",
+    "v3": "V4"
+  },
+  "validationStatus": "INCOMPLETE_ENVIRONMENT_UPSTREAM_FAILURE",
+  "expectedRows": 126,
+  "actualRows": 71,
+  "notCompletedRows": 55,
+  "mp4Count": 66,
+  "technicalPass": 66,
+  "technicalFail": 5,
+  "quality": {
+    "main": {
+      "measured": 17,
+      "unmeasured": 5,
+      "measuredMedian": 69
+    },
+    "PR8": {
+      "measured": 17,
+      "unmeasured": 5,
+      "measuredMedian": 94
+    },
+    "V4": {
+      "measured": 17,
+      "unmeasured": 5,
+      "measuredMedian": 94
+    }
+  },
+  "pairedQuality": {
+    "main": {
+      "n": 17,
+      "baselineMedian": 69,
+      "v4Median": 94
+    },
+    "PR8": {
+      "n": 17,
+      "baselineMedian": 94,
+      "v4Median": 94
+    }
+  },
+  "performance": {
+    "original": {
+      "main": {
+        "total": {
+          "n": 22,
+          "p50Ms": 10693.75,
+          "p95Ms": 20108.099999997765,
+          "maximumMs": 22766.5,
+          "acrossMaterialStddevMs": 5188.348701881268
+        },
+        "search": {
+          "n": 22,
+          "p50Ms": 5154.5999999996275,
+          "p95Ms": 13177.39999999851,
+          "maximumMs": 14728.89999999851,
+          "acrossMaterialStddevMs": 4218.328145530249
+        },
+        "export": {
+          "n": 22,
+          "p50Ms": 1988.050000000745,
+          "p95Ms": 4012.300000000745,
+          "maximumMs": 4120.199999999255,
+          "acrossMaterialStddevMs": 1015.8787161306844
+        }
+      },
+      "PR8": {
+        "total": {
+          "n": 22,
+          "p50Ms": 14235.699999999255,
+          "p95Ms": 35509,
+          "maximumMs": 41695.89999999851,
+          "acrossMaterialStddevMs": 11068.613552388255
+        },
+        "search": {
+          "n": 22,
+          "p50Ms": 10390.950000001118,
+          "p95Ms": 28395.29999999702,
+          "maximumMs": 33765.39999999851,
+          "acrossMaterialStddevMs": 10124.160273669047
+        },
+        "export": {
+          "n": 22,
+          "p50Ms": 2078.10000000149,
+          "p95Ms": 4053.2000000029802,
+          "maximumMs": 4584.300000000745,
+          "acrossMaterialStddevMs": 962.8379576802281
+        }
+      },
+      "V4": {
+        "total": {
+          "n": 22,
+          "p50Ms": 14736.150000000373,
+          "p95Ms": 32846.60000000149,
+          "maximumMs": 37001.10000000149,
+          "acrossMaterialStddevMs": 9615.0152132588
+        },
+        "search": {
+          "n": 22,
+          "p50Ms": 9802.099999999627,
+          "p95Ms": 25719.60000000149,
+          "maximumMs": 29711.699999999255,
+          "acrossMaterialStddevMs": 9063.928679669241
+        },
+        "export": {
+          "n": 22,
+          "p50Ms": 1845.5,
+          "p95Ms": 3698.5,
+          "maximumMs": 4036.699999999255,
+          "acrossMaterialStddevMs": 852.5831664379093
+        }
+      }
+    },
+    "additional": {
+      "main": {
+        "total": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "search": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "export": {
+          "n": 0,
+          "status": "UNMEASURED"
+        }
+      },
+      "PR8": {
+        "total": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "search": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "export": {
+          "n": 0,
+          "status": "UNMEASURED"
+        }
+      },
+      "V4": {
+        "total": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "search": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "export": {
+          "n": 0,
+          "status": "UNMEASURED"
+        }
+      }
+    },
+    "independent": {
+      "main": {
+        "total": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "search": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "export": {
+          "n": 0,
+          "status": "UNMEASURED"
+        }
+      },
+      "PR8": {
+        "total": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "search": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "export": {
+          "n": 0,
+          "status": "UNMEASURED"
+        }
+      },
+      "V4": {
+        "total": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "search": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "export": {
+          "n": 0,
+          "status": "UNMEASURED"
+        }
+      }
+    },
+    "repeated": {
+      "main": {
+        "total": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "search": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "export": {
+          "n": 0,
+          "status": "UNMEASURED"
+        }
+      },
+      "PR8": {
+        "total": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "search": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "export": {
+          "n": 0,
+          "status": "UNMEASURED"
+        }
+      },
+      "V4": {
+        "total": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "search": {
+          "n": 0,
+          "status": "UNMEASURED"
+        },
+        "export": {
+          "n": 0,
+          "status": "UNMEASURED"
+        }
+      }
+    },
+    "unique-materials": {
+      "main": {
+        "total": {
+          "n": 22,
+          "p50Ms": 10693.75,
+          "p95Ms": 20108.099999997765,
+          "maximumMs": 22766.5,
+          "acrossMaterialStddevMs": 5188.348701881268
+        },
+        "search": {
+          "n": 22,
+          "p50Ms": 5154.5999999996275,
+          "p95Ms": 13177.39999999851,
+          "maximumMs": 14728.89999999851,
+          "acrossMaterialStddevMs": 4218.328145530249
+        },
+        "export": {
+          "n": 22,
+          "p50Ms": 1988.050000000745,
+          "p95Ms": 4012.300000000745,
+          "maximumMs": 4120.199999999255,
+          "acrossMaterialStddevMs": 1015.8787161306844
+        }
+      },
+      "PR8": {
+        "total": {
+          "n": 22,
+          "p50Ms": 14235.699999999255,
+          "p95Ms": 35509,
+          "maximumMs": 41695.89999999851,
+          "acrossMaterialStddevMs": 11068.613552388255
+        },
+        "search": {
+          "n": 22,
+          "p50Ms": 10390.950000001118,
+          "p95Ms": 28395.29999999702,
+          "maximumMs": 33765.39999999851,
+          "acrossMaterialStddevMs": 10124.160273669047
+        },
+        "export": {
+          "n": 22,
+          "p50Ms": 2078.10000000149,
+          "p95Ms": 4053.2000000029802,
+          "maximumMs": 4584.300000000745,
+          "acrossMaterialStddevMs": 962.8379576802281
+        }
+      },
+      "V4": {
+        "total": {
+          "n": 22,
+          "p50Ms": 14736.150000000373,
+          "p95Ms": 32846.60000000149,
+          "maximumMs": 37001.10000000149,
+          "acrossMaterialStddevMs": 9615.0152132588
+        },
+        "search": {
+          "n": 22,
+          "p50Ms": 9802.099999999627,
+          "p95Ms": 25719.60000000149,
+          "maximumMs": 29711.699999999255,
+          "acrossMaterialStddevMs": 9063.928679669241
+        },
+        "export": {
+          "n": 22,
+          "p50Ms": 1845.5,
+          "p95Ms": 3698.5,
+          "maximumMs": 4036.699999999255,
+          "acrossMaterialStddevMs": 852.5831664379093
+        }
+      }
+    }
+  },
+  "repeatedInputs": [],
+  "comparisons": [
+    {
+      "id": "case-01",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 100,
+      "localContrastAfter": 100,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3364,
+        "searchMs": 5412.199999999255,
+        "exportMs": 1959.300000000745,
+        "totalMs": 10735.5
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3545.10000000149,
+        "searchMs": 4139.800000000745,
+        "exportMs": 1529.800000000745,
+        "totalMs": 9214.70000000298
+      }
+    },
+    {
+      "id": "case-01",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 100,
+      "localContrastAfter": 100,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 2437.5,
+        "searchMs": 4385.800000000745,
+        "exportMs": 1580.4000000022352,
+        "totalMs": 8403.70000000298
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3545.10000000149,
+        "searchMs": 4139.800000000745,
+        "exportMs": 1529.800000000745,
+        "totalMs": 9214.70000000298
+      }
+    },
+    {
+      "id": "case-02",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 53,
+      "localContrastAfter": 65,
+      "globalRegression": false,
+      "pairedIntervals": 10,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3404.900000002235,
+        "searchMs": 4897,
+        "exportMs": 3447.39999999851,
+        "totalMs": 11749.300000000745
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3716,
+        "searchMs": 25719.60000000149,
+        "exportMs": 3411,
+        "totalMs": 32846.60000000149
+      }
+    },
+    {
+      "id": "case-02",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 65,
+      "localContrastAfter": 65,
+      "globalRegression": false,
+      "pairedIntervals": 20,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3283.7000000029802,
+        "searchMs": 28395.29999999702,
+        "exportMs": 3830,
+        "totalMs": 35509
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3716,
+        "searchMs": 25719.60000000149,
+        "exportMs": 3411,
+        "totalMs": 32846.60000000149
+      }
+    },
+    {
+      "id": "case-03",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 80,
+      "localContrastAfter": 92,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3429,
+        "searchMs": 4474,
+        "exportMs": 1982.800000000745,
+        "totalMs": 9885.800000000745
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3503.800000000745,
+        "searchMs": 7237.699999999255,
+        "exportMs": 1803.6000000014901,
+        "totalMs": 12545.10000000149
+      }
+    },
+    {
+      "id": "case-03",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 92,
+      "localContrastAfter": 92,
+      "globalRegression": false,
+      "pairedIntervals": 24,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 2571.39999999851,
+        "searchMs": 7520.10000000149,
+        "exportMs": 1963.5999999977648,
+        "totalMs": 12055.099999997765
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3503.800000000745,
+        "searchMs": 7237.699999999255,
+        "exportMs": 1803.6000000014901,
+        "totalMs": 12545.10000000149
+      }
+    },
+    {
+      "id": "case-04",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 88,
+      "localContrastAfter": 99,
+      "globalRegression": false,
+      "pairedIntervals": 10,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3307.599999997765,
+        "searchMs": 5487.10000000149,
+        "exportMs": 1857.300000000745,
+        "totalMs": 10652
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3505.60000000149,
+        "searchMs": 10161.39999999851,
+        "exportMs": 1448.800000000745,
+        "totalMs": 15115.800000000745
+      }
+    },
+    {
+      "id": "case-04",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 99,
+      "localContrastAfter": 99,
+      "globalRegression": false,
+      "pairedIntervals": 20,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 2045.699999999255,
+        "searchMs": 10724.60000000149,
+        "exportMs": 1595.199999999255,
+        "totalMs": 14365.5
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3505.60000000149,
+        "searchMs": 10161.39999999851,
+        "exportMs": 1448.800000000745,
+        "totalMs": 15115.800000000745
+      }
+    },
+    {
+      "id": "case-05",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 46,
+      "localContrastAfter": 79,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3358.599999997765,
+        "searchMs": 11393.60000000149,
+        "exportMs": 3579.199999999255,
+        "totalMs": 18331.39999999851
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 2400.800000000745,
+        "searchMs": 21290,
+        "exportMs": 3228.10000000149,
+        "totalMs": 26918.900000002235
+      }
+    },
+    {
+      "id": "case-05",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 79,
+      "localContrastAfter": 79,
+      "globalRegression": false,
+      "pairedIntervals": 24,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3735.39999999851,
+        "searchMs": 24115.89999999851,
+        "exportMs": 3577.800000000745,
+        "totalMs": 31429.099999997765
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 2400.800000000745,
+        "searchMs": 21290,
+        "exportMs": 3228.10000000149,
+        "totalMs": 26918.900000002235
+      }
+    },
+    {
+      "id": "case-06",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": null,
+      "localContrastAfter": null,
+      "globalRegression": false,
+      "pairedIntervals": 11,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 1,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 2693.699999999255,
+        "searchMs": 779,
+        "exportMs": 699.7000000029802,
+        "totalMs": 4172.400000002235
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3133.5,
+        "searchMs": 877.1000000014901,
+        "exportMs": 1111.5999999977648,
+        "totalMs": 5122.199999999255
+      }
+    },
+    {
+      "id": "case-06",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": null,
+      "localContrastAfter": null,
+      "globalRegression": false,
+      "pairedIntervals": 11,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 1,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3184.7000000029802,
+        "searchMs": 878.3999999985099,
+        "exportMs": 1161.1000000014901,
+        "totalMs": 5224.20000000298
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3133.5,
+        "searchMs": 877.1000000014901,
+        "exportMs": 1111.5999999977648,
+        "totalMs": 5122.199999999255
+      }
+    },
+    {
+      "id": "case-07",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": null,
+      "localContrastAfter": null,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 1,
+      "intervalRegressions": [
+        {
+          "series": "regular",
+          "line": 1,
+          "time": 1.85,
+          "actualTime": 1.8333333333333333,
+          "before": 75,
+          "after": 74,
+          "strongInterval": false
+        }
+      ],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3645.60000000149,
+        "searchMs": 916.8000000007451,
+        "exportMs": 1374.199999999255,
+        "totalMs": 5936.60000000149
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3481.5,
+        "searchMs": 951.5999999977648,
+        "exportMs": 1621.6000000014901,
+        "totalMs": 6054.699999999255
+      }
+    },
+    {
+      "id": "case-07",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": null,
+      "localContrastAfter": null,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 1,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3576.199999999255,
+        "searchMs": 887.8000000007451,
+        "exportMs": 1653.800000000745,
+        "totalMs": 6117.800000000745
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3481.5,
+        "searchMs": 951.5999999977648,
+        "exportMs": 1621.6000000014901,
+        "totalMs": 6054.699999999255
+      }
+    },
+    {
+      "id": "case-08",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 39,
+      "localContrastAfter": 48,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3279.5,
+        "searchMs": 12708.39999999851,
+        "exportMs": 4120.199999999255,
+        "totalMs": 20108.099999997765
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 2146,
+        "searchMs": 25315.800000000745,
+        "exportMs": 3698.5,
+        "totalMs": 31160.300000000745
+      }
+    },
+    {
+      "id": "case-08",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 48,
+      "localContrastAfter": 48,
+      "globalRegression": false,
+      "pairedIntervals": 24,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3387.699999999255,
+        "searchMs": 27966.199999999255,
+        "exportMs": 4053.2000000029802,
+        "totalMs": 35407.10000000149
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 2146,
+        "searchMs": 25315.800000000745,
+        "exportMs": 3698.5,
+        "totalMs": 31160.300000000745
+      }
+    },
+    {
+      "id": "case-09",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 57,
+      "localContrastAfter": 62,
+      "globalRegression": false,
+      "pairedIntervals": 10,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3175.300000000745,
+        "searchMs": 3541.39999999851,
+        "exportMs": 1993.300000000745,
+        "totalMs": 8710
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3368.400000002235,
+        "searchMs": 14935.5,
+        "exportMs": 1887.3999999985099,
+        "totalMs": 20191.300000000745
+      }
+    },
+    {
+      "id": "case-09",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 62,
+      "localContrastAfter": 62,
+      "globalRegression": false,
+      "pairedIntervals": 20,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3205.300000000745,
+        "searchMs": 16369.099999997765,
+        "exportMs": 2090.400000002235,
+        "totalMs": 21664.800000000745
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3368.400000002235,
+        "searchMs": 14935.5,
+        "exportMs": 1887.3999999985099,
+        "totalMs": 20191.300000000745
+      }
+    },
+    {
+      "id": "case-10",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 69,
+      "localContrastAfter": 99,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3278.300000000745,
+        "searchMs": 4408.29999999702,
+        "exportMs": 1569.1000000014901,
+        "totalMs": 9255.699999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3369.89999999851,
+        "searchMs": 9442.800000000745,
+        "exportMs": 1543.800000000745,
+        "totalMs": 14356.5
+      }
+    },
+    {
+      "id": "case-10",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 99,
+      "localContrastAfter": 99,
+      "globalRegression": false,
+      "pairedIntervals": 24,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 2414,
+        "searchMs": 10057.300000000745,
+        "exportMs": 1634.5999999977648,
+        "totalMs": 14105.89999999851
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3369.89999999851,
+        "searchMs": 9442.800000000745,
+        "exportMs": 1543.800000000745,
+        "totalMs": 14356.5
+      }
+    },
+    {
+      "id": "case-11",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 46,
+      "localContrastAfter": 83,
+      "globalRegression": false,
+      "pairedIntervals": 10,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3246.400000002235,
+        "searchMs": 13177.39999999851,
+        "exportMs": 3236.10000000149,
+        "totalMs": 19659.900000002235
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3209.699999999255,
+        "searchMs": 24353.10000000149,
+        "exportMs": 3242.60000000149,
+        "totalMs": 30805.400000002235
+      }
+    },
+    {
+      "id": "case-11",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 83,
+      "localContrastAfter": 83,
+      "globalRegression": false,
+      "pairedIntervals": 20,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3254.599999997765,
+        "searchMs": 25866.10000000149,
+        "exportMs": 3250,
+        "totalMs": 32370.699999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3209.699999999255,
+        "searchMs": 24353.10000000149,
+        "exportMs": 3242.60000000149,
+        "totalMs": 30805.400000002235
+      }
+    },
+    {
+      "id": "case-12",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 54,
+      "localContrastAfter": 95,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3550.5,
+        "searchMs": 8095.199999999255,
+        "exportMs": 2589.5,
+        "totalMs": 14235.199999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3511.5,
+        "searchMs": 15361.89999999851,
+        "exportMs": 2135.199999999255,
+        "totalMs": 21008.599999997765
+      }
+    },
+    {
+      "id": "case-12",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 95,
+      "localContrastAfter": 95,
+      "globalRegression": false,
+      "pairedIntervals": 24,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3555.800000000745,
+        "searchMs": 16845.599999997765,
+        "exportMs": 2320.199999999255,
+        "totalMs": 22721.599999997765
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3511.5,
+        "searchMs": 15361.89999999851,
+        "exportMs": 2135.199999999255,
+        "totalMs": 21008.599999997765
+      }
+    },
+    {
+      "id": "case-13",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": null,
+      "localContrastAfter": null,
+      "globalRegression": false,
+      "pairedIntervals": 18,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3910.39999999851,
+        "searchMs": 853.6000000014901,
+        "exportMs": 789.1999999992549,
+        "totalMs": 5553.199999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3448.5,
+        "searchMs": 836.1000000014901,
+        "exportMs": 1164.0999999977648,
+        "totalMs": 5448.699999999255
+      }
+    },
+    {
+      "id": "case-13",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": null,
+      "localContrastAfter": null,
+      "globalRegression": false,
+      "pairedIntervals": 18,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3359.60000000149,
+        "searchMs": 846,
+        "exportMs": 1146.5,
+        "totalMs": 5352.10000000149
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3448.5,
+        "searchMs": 836.1000000014901,
+        "exportMs": 1164.0999999977648,
+        "totalMs": 5448.699999999255
+      }
+    },
+    {
+      "id": "case-14",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": null,
+      "localContrastAfter": null,
+      "globalRegression": false,
+      "pairedIntervals": 13,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 1,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3042.300000000745,
+        "searchMs": 926.4000000022352,
+        "exportMs": 1392.5999999977648,
+        "totalMs": 5361.300000000745
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3504.89999999851,
+        "searchMs": 1059,
+        "exportMs": 2514.699999999255,
+        "totalMs": 7078.599999997765
+      }
+    },
+    {
+      "id": "case-14",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": null,
+      "localContrastAfter": null,
+      "globalRegression": false,
+      "pairedIntervals": 13,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 1,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3286.5,
+        "searchMs": 1004.0999999977648,
+        "exportMs": 2608.60000000149,
+        "totalMs": 6899.199999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3504.89999999851,
+        "searchMs": 1059,
+        "exportMs": 2514.699999999255,
+        "totalMs": 7078.599999997765
+      }
+    },
+    {
+      "id": "case-15",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 94,
+      "localContrastAfter": 94,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3479.300000000745,
+        "searchMs": 6593.5,
+        "exportMs": 2234.39999999851,
+        "totalMs": 12307.199999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3222.5,
+        "searchMs": 12222,
+        "exportMs": 2045.300000000745,
+        "totalMs": 17489.800000000745
+      }
+    },
+    {
+      "id": "case-15",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 94,
+      "localContrastAfter": 94,
+      "globalRegression": false,
+      "pairedIntervals": 24,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 2395.900000002235,
+        "searchMs": 13774,
+        "exportMs": 2316.89999999851,
+        "totalMs": 18486.800000000745
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3222.5,
+        "searchMs": 12222,
+        "exportMs": 2045.300000000745,
+        "totalMs": 17489.800000000745
+      }
+    },
+    {
+      "id": "case-16",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 97,
+      "localContrastAfter": 98,
+      "globalRegression": false,
+      "pairedIntervals": 10,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3602.699999999255,
+        "searchMs": 2444.800000000745,
+        "exportMs": 1687.699999999255,
+        "totalMs": 7735.199999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3463.699999999255,
+        "searchMs": 9400.39999999851,
+        "exportMs": 1467,
+        "totalMs": 14331.099999997765
+      }
+    },
+    {
+      "id": "case-16",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 98,
+      "localContrastAfter": 98,
+      "globalRegression": false,
+      "pairedIntervals": 20,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 2623.2999999970198,
+        "searchMs": 9906.70000000298,
+        "exportMs": 1461.3999999985099,
+        "totalMs": 13991.39999999851
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3463.699999999255,
+        "searchMs": 9400.39999999851,
+        "exportMs": 1467,
+        "totalMs": 14331.099999997765
+      }
+    },
+    {
+      "id": "case-17",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 100,
+      "localContrastAfter": 100,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3615.800000000745,
+        "searchMs": 7023.5,
+        "exportMs": 3395,
+        "totalMs": 14034.300000000745
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3055.10000000149,
+        "searchMs": 6327,
+        "exportMs": 2673.60000000149,
+        "totalMs": 12055.70000000298
+      }
+    },
+    {
+      "id": "case-17",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 100,
+      "localContrastAfter": 100,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3284.5,
+        "searchMs": 7465.79999999702,
+        "exportMs": 2747.400000002235,
+        "totalMs": 13497.699999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3055.10000000149,
+        "searchMs": 6327,
+        "exportMs": 2673.60000000149,
+        "totalMs": 12055.70000000298
+      }
+    },
+    {
+      "id": "case-18",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 47,
+      "localContrastAfter": 86,
+      "globalRegression": false,
+      "pairedIntervals": 10,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3036.39999999851,
+        "searchMs": 8487.900000002235,
+        "exportMs": 2359.2999999970198,
+        "totalMs": 13883.599999997765
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3035.7999999970198,
+        "searchMs": 17164.20000000298,
+        "exportMs": 1774.2999999970198,
+        "totalMs": 21974.29999999702
+      }
+    },
+    {
+      "id": "case-18",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 86,
+      "localContrastAfter": 86,
+      "globalRegression": false,
+      "pairedIntervals": 20,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3307.7000000029802,
+        "searchMs": 18762.699999999255,
+        "exportMs": 2065.800000000745,
+        "totalMs": 24136.20000000298
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3035.7999999970198,
+        "searchMs": 17164.20000000298,
+        "exportMs": 1774.2999999970198,
+        "totalMs": 21974.29999999702
+      }
+    },
+    {
+      "id": "case-19",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 99,
+      "localContrastAfter": 99,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3305.199999999255,
+        "searchMs": 4470,
+        "exportMs": 1578.5,
+        "totalMs": 9353.699999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3373.300000000745,
+        "searchMs": 7593.400000002235,
+        "exportMs": 1673,
+        "totalMs": 12639.70000000298
+      }
+    },
+    {
+      "id": "case-19",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 99,
+      "localContrastAfter": 99,
+      "globalRegression": false,
+      "pairedIntervals": 24,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3773.599999997765,
+        "searchMs": 7916.10000000149,
+        "exportMs": 1732.8999999985099,
+        "totalMs": 13422.599999997765
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3373.300000000745,
+        "searchMs": 7593.400000002235,
+        "exportMs": 1673,
+        "totalMs": 12639.70000000298
+      }
+    },
+    {
+      "id": "case-20",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": null,
+      "localContrastAfter": null,
+      "globalRegression": false,
+      "pairedIntervals": 11,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 1,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3681.60000000149,
+        "searchMs": 1038,
+        "exportMs": 935.0999999977648,
+        "totalMs": 5654.699999999255
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3540.300000000745,
+        "searchMs": 1093.9000000022352,
+        "exportMs": 1631.0999999977648,
+        "totalMs": 6265.300000000745
+      }
+    },
+    {
+      "id": "case-20",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": null,
+      "localContrastAfter": null,
+      "globalRegression": false,
+      "pairedIntervals": 11,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 1,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3238.199999999255,
+        "searchMs": 1070.300000000745,
+        "exportMs": 1788,
+        "totalMs": 6096.5
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3540.300000000745,
+        "searchMs": 1093.9000000022352,
+        "exportMs": 1631.0999999977648,
+        "totalMs": 6265.300000000745
+      }
+    },
+    {
+      "id": "case-21",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 96,
+      "localContrastAfter": 99,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3198.900000002235,
+        "searchMs": 7592.39999999851,
+        "exportMs": 2539,
+        "totalMs": 13330.300000000745
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 2585.39999999851,
+        "searchMs": 12628,
+        "exportMs": 2476.5,
+        "totalMs": 17689.89999999851
+      }
+    },
+    {
+      "id": "case-21",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 99,
+      "localContrastAfter": 99,
+      "globalRegression": false,
+      "pairedIntervals": 24,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 2013.5,
+        "searchMs": 13498.800000000745,
+        "exportMs": 2540.800000000745,
+        "totalMs": 18053.10000000149
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 2585.39999999851,
+        "searchMs": 12628,
+        "exportMs": 2476.5,
+        "totalMs": 17689.89999999851
+      }
+    },
+    {
+      "id": "case-22",
+      "baseline": "main",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 39,
+      "localContrastAfter": 94,
+      "globalRegression": false,
+      "pairedIntervals": 12,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 4025.300000000745,
+        "searchMs": 14728.89999999851,
+        "exportMs": 4012.300000000745,
+        "totalMs": 22766.5
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3252.7000000029802,
+        "searchMs": 29711.699999999255,
+        "exportMs": 4036.699999999255,
+        "totalMs": 37001.10000000149
+      }
+    },
+    {
+      "id": "case-22",
+      "baseline": "PR8",
+      "status": "MEASURED_COMPARISON",
+      "sameProfile": true,
+      "sameInput": true,
+      "localContrastBefore": 94,
+      "localContrastAfter": 94,
+      "globalRegression": false,
+      "pairedIntervals": 24,
+      "differentClockOrMissingIntervals": 0,
+      "unmeasuredIntervals": 0,
+      "intervalRegressions": [],
+      "beforeTiming": {
+        "analysisAndPlanMs": 3346.199999999255,
+        "searchMs": 33765.39999999851,
+        "exportMs": 4584.300000000745,
+        "totalMs": 41695.89999999851
+      },
+      "afterTiming": {
+        "analysisAndPlanMs": 3252.7000000029802,
+        "searchMs": 29711.699999999255,
+        "exportMs": 4036.699999999255,
+        "totalMs": 37001.10000000149
+      }
+    }
+  ],
+  "issues": {
+    "technicalFailures": [
+      {
+        "id": "case-23",
+        "variant": "main",
+        "error": "AssertionError [ERR_ASSERTION]: [{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"},{\"url\":\"https://fonts.gstatic.com\",\"error\":\"net::ERR_FAILED\"}]\n\n20 !== 0\n\n    at /workspace/JIZURA_KAMEN/dev/cinema_v3_matrix_benchmark.cjs:32:1243"
+      },
+      {
+        "id": "case-23",
+        "variant": "PR8",
+        "error": "AssertionError [ERR_ASSERTION]: [{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"}]\n\n7 !== 0\n\n    at /workspace/JIZURA_KAMEN/dev/cinema_v3_matrix_benchmark.cjs:32:1243"
+      },
+      {
+        "id": "case-23",
+        "variant": "V4",
+        "error": "AssertionError [ERR_ASSERTION]: [{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"}]\n\n7 !== 0\n\n    at /workspace/JIZURA_KAMEN/dev/cinema_v3_matrix_benchmark.cjs:32:1243"
+      },
+      {
+        "id": "case-24",
+        "variant": "V4",
+        "error": "AssertionError [ERR_ASSERTION]: [{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"},{\"url\":\"https://fonts.googleapis.com\",\"error\":\"net::ERR_ABORTED\"}]\n\n7 !== 0\n\n    at /workspace/JIZURA_KAMEN/dev/cinema_v3_matrix_benchmark.cjs:32:1243"
+      },
+      {
+        "id": "case-24",
+        "variant": "PR8",
+        "error": "page.evaluate: Target page, context or browser has been closed\n    at /workspace/JIZURA_KAMEN/dev/cinema_v3_matrix_benchmark.cjs:27:26"
+      }
+    ],
+    "sourceFailures": [],
+    "runtimeMismatches": [],
+    "qualityRegressions": [
+      {
+        "id": "case-07",
+        "baseline": "main",
+        "status": "MEASURED_COMPARISON",
+        "sameProfile": true,
+        "sameInput": true,
+        "localContrastBefore": null,
+        "localContrastAfter": null,
+        "globalRegression": false,
+        "pairedIntervals": 12,
+        "differentClockOrMissingIntervals": 0,
+        "unmeasuredIntervals": 1,
+        "intervalRegressions": [
+          {
+            "series": "regular",
+            "line": 1,
+            "time": 1.85,
+            "actualTime": 1.8333333333333333,
+            "before": 75,
+            "after": 74,
+            "strongInterval": false
+          }
+        ],
+        "beforeTiming": {
+          "analysisAndPlanMs": 3645.60000000149,
+          "searchMs": 916.8000000007451,
+          "exportMs": 1374.199999999255,
+          "totalMs": 5936.60000000149
+        },
+        "afterTiming": {
+          "analysisAndPlanMs": 3481.5,
+          "searchMs": 951.5999999977648,
+          "exportMs": 1621.6000000014901,
+          "totalMs": 6054.699999999255
+        }
+      }
+    ],
+    "comparisonGaps": []
+  },
+  "peakProcessGpuMemory": "UNMEASURED",
+  "humanEvaluation": "HUMAN_EVALUATION_PENDING",
+  "statisticalCaveat": "P95 is the observed order statistic; across-material dispersion is not measurement noise. Repeated inputs are reported separately. Interrupted matrix round: external Google Fonts and GitHub returned environment tunnel HTTP 503. Successful rows form an incomplete subset; incomplete P50/P95 are not the requested 38-material result and must not establish performance acceptance. No completed repeat cohort and no significance claim.",
+  "timingMethod": "Original benchmark total includes analysis/plan/search/export and internal final QA; later independent observation, ffprobe/FFmpeg and persistence are excluded. Inclusive nested profile times must not be summed.",
+  "qualityScope": "Successful case-01 through case-22 only. Failed runs are excluded from quality medians and counted separately; remaining original, additional, independent and repeat cohorts are incomplete.",
+  "failedQualityNotEvaluated": {
+    "main": 1,
+    "PR8": 2,
+    "V4": 2
+  },
+  "releaseDecision": "NO-GO",
+  "finalCI": "NOT_RUN_NETWORK_BLOCKED"
+}

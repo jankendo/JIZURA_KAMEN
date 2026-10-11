@@ -1,0 +1,118 @@
+{
+  "overall": "PARTIAL",
+  "releaseReady": false,
+  "mainMerged": false,
+  "productionDeployed": false,
+  "basePR5Head": "36048e497a089b0649a7f7dfddd1986d98f99266",
+  "runtimeSHA256": "6c044b575e65e1e170bdd4dd8a2f88feb594d31dd051254f55335480f7ba0134",
+  "technical": {
+    "status": "PASS",
+    "ffmpegVerifiedPositiveExports": 186,
+    "originalMatrix": 168,
+    "additionalMatrix": 16,
+    "selectedShippingUI": 1,
+    "cancellationRetry": 1,
+    "codecs": [
+      "h264",
+      "aac"
+    ],
+    "unitTests": {
+      "total": 185,
+      "passed": 183,
+      "failed": 0,
+      "skipped": 2
+    },
+    "shippingUIChecks": 10,
+    "independentDecoderControls": 2,
+    "nativeCancellation": "PASS",
+    "nativeBitmapClosure": "PASS",
+    "draftBestArtifactRestoration": "PASS",
+    "negativeBlackControl": "REJECTED_AS_EXPECTED",
+    "earlierFixtureFailedRows": 2,
+    "earlierChildUnitFailedTests": 1,
+    "earlierSuccessfulGeneralizedExports": 14,
+    "earlierRecordsExcludedFromAcceptanceNotDeleted": true
+  },
+  "readability": {
+    "original24": {
+      "regressionInputsAgainstMain": 1,
+      "pairedRegressionObservations": 2,
+      "measuredInputs": 18,
+      "unmeasuredInputs": 6,
+      "unmeasuredObservationsPerBuild": 12,
+      "trialMedians": {
+        "baseline": 84,
+        "pr5": 80,
+        "v3": 90
+      },
+      "originalInputMedians": {
+        "baseline": 63,
+        "pr5": 57.5,
+        "v3": 63
+      },
+      "case15": [
+        94,
+        78,
+        94
+      ],
+      "case21": [
+        96,
+        82,
+        96
+      ],
+      "case23": [
+        43,
+        31,
+        31
+      ],
+      "regressionInputsAgainstPR5": [
+        "case-02",
+        "case-12",
+        "case-18"
+      ]
+    },
+    "additional8": {
+      "regressionInputsAgainstMain": 1,
+      "id": "general-manual",
+      "contrast": [
+        49,
+        48
+      ],
+      "actualManualLockedCuts": 2,
+      "manualLocksUnchanged": true
+    },
+    "qualityThresholdsChanged": false
+  },
+  "performance": {
+    "status": "MEASURED_COHORT_TARGET_MET_NOT_POPULATION_SLA",
+    "trialsPerBuild": 56,
+    "rounds": 2,
+    "counterbalanced": true,
+    "reservedCPU": false,
+    "originalStyleTournamentIncluded": false,
+    "matrixFullEncodesPerTrial": 1,
+    "fullInteractiveLatencyEstablished": false,
+    "slowestCase24StillApproximately54Seconds": true,
+    "peakApplicationOrGPUMemory": "UNMEASURED",
+    "cacheHitRate": "UNMEASURED",
+    "nativeApplicationSaveDuration": "UNMEASURED"
+  },
+  "creativeQualification": {
+    "matrixV3Exports": 64,
+    "draftOrUnrepairable": 64,
+    "minimumMetFalse": 54,
+    "minimumUnmeasured": 10,
+    "humanEvaluation": "HUMAN_EVALUATION_PENDING",
+    "actualHumanResponses": 0,
+    "artistic100Established": false
+  },
+  "remaining": [
+    "Original case-23 contrast regression",
+    "Additional manually locked input one-point contrast regression",
+    "Complete plan/output bit reproducibility not established; candidate IDs stable",
+    "Historical 3.0.0 certification cause UNRESOLVED, failed Blob unavailable",
+    "Human ratings absent",
+    "Mixed-cohort P95 is not production/default-interactive tail latency guarantee"
+  ],
+  "releaseProcedure": "Later explicit authorization only; resolve blockers; #1 through #6 in dependency order, retarget successor to main after predecessor merge, fresh conflict and exact-head CI, Pages review, production E2E, retained-main ordinary-history recovery"
+}

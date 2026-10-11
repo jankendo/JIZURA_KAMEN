@@ -39,7 +39,7 @@ J.prepareFileSave = (filename, type) => {
   const ext='.'+filename.split('.').pop();
   try { return window.showSaveFilePicker({suggestedName:filename,types:[{description:filename,accept:{[type]:[ext]}}]})
     .catch(error=>error.name==='AbortError'?'declined':null); }
-  catch { return Promise.resolve(null); }
+  catch(error) { return Promise.resolve(error.name==='AbortError'?'declined':null); }
 };
 const downloads=new Map();
 J.saveFile = async (filename, data, options={}) => {
@@ -49,7 +49,7 @@ J.saveFile = async (filename, data, options={}) => {
   if(destination){
     let writable;
     try{writable=await destination.createWritable();await writable.write(blob);await writable.close();downloads.get(filename)?.remove();return 'saved';}
-    catch(error){try{await writable?.abort();}catch{} console.warn('KAMEN file write failed; download remains available',error);}
+    catch(error){try{await writable?.abort();}catch{} if(error.name==='AbortError')return 'declined';console.warn('KAMEN file write failed; download remains available',error);}
   }
   // A programmatic click after a long export can be blocked. Retain a real
   // user-clickable link until dismissed instead of claiming disk-save success.

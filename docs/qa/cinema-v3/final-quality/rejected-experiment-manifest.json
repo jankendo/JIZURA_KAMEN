@@ -1,0 +1,51 @@
+[
+  {
+    "experiment": "single-core-v-counterparts",
+    "adopted": false,
+    "status": "REJECTED_DEVELOPMENT_ONLY",
+    "results": "single-core-v-counterparts-rejected-results.json.gz",
+    "uncompressedSHA256": "8e97ad47e4f7c060779d48db84a932136cd02fddd2d694d23fe9e60bfe6ca4da",
+    "compressedSHA256": "62073d2b7e5c5b090b569a93526b626b223a87791d713085bec57e13d4ecc23d",
+    "runtimeIdentity": {
+      "runtimeSHA256": "1828178131981e40cc8c284c2510d26373a0896b7a84fda1115654fb0dc249ac",
+      "serverPID": 310586,
+      "status": "EXPERIMENT_NOT_ADOPTED",
+      "qualityOnly": true,
+      "timingExcludedFromAcceptance": "Corrected full unit suite is running concurrently; no performance conclusion from these times.",
+      "change": "Keep original initial grammar protection and compare bounded V3 counterparts of existing legacy encoded geometries; all measured intervals and final encoded checks remain."
+    },
+    "timingLimitation": "Concurrent CPU workload; excluded from release performance acceptance."
+  },
+  {
+    "experiment": "single-core-diagnosis",
+    "adopted": false,
+    "status": "REJECTED_DEVELOPMENT_ONLY",
+    "results": "single-core-diagnosis-rejected-results.json.gz",
+    "uncompressedSHA256": "35cc64b8552fc63a1c8c428ce7d389e3517a3e82881b6a16119ace0f37b9150c",
+    "compressedSHA256": "5362efa8f3ba2dcf6016292ca4afdf39eaf3ad7308779ecb6c7b00b13912510c",
+    "runtimeIdentity": {
+      "runtimeSHA256": "91ebc33412d6a4d1f5f8c9486a58c5180e52bce504a124005085bacb15598d3e",
+      "serverPID": 311285,
+      "status": "DIAGNOSIS_ONLY_NOT_ADOPTED",
+      "timingExcludedFromAcceptance": true,
+      "purpose": "Compare actual selected plan, copy targets, post-copy and after underlying analysis snapshots against final exported plan."
+    },
+    "timingLimitation": "Concurrent CPU workload; excluded from release performance acceptance."
+  },
+  {
+    "experiment": "native-renderer-state-diagnosis",
+    "adopted": false,
+    "status": "REJECTED_DEVELOPMENT_ONLY",
+    "results": "native-renderer-state-diagnosis-rejected-results.json.gz",
+    "uncompressedSHA256": "0f06246b55ddbd152ca8fb9de985038506e8863d2bc83c3b97fdaef40e0e1c7c",
+    "compressedSHA256": "e212e6d38cf0001c15011e15496526b75b3fd0dbebaeb5eff968bc5b765829c3",
+    "runtimeIdentity": {
+      "runtimeSHA256": "20558ade54b003cb29ca98ab1ac42443ddfb7683ba2cbdafcbc978280c2042e0",
+      "serverPID": 311856,
+      "status": "DIAGNOSIS_ONLY_NOT_ADOPTED",
+      "timingExcludedFromAcceptance": true,
+      "purpose": "Measure identical native plan/time/input/profile with borrowed vs newly initialized renderer; choose fresh measurement only in this experiment."
+    },
+    "timingLimitation": "Concurrent CPU workload; excluded from release performance acceptance."
+  }
+]
