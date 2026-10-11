@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "bitmapGuardResources": {
+    "status": "PASS",
+    "nativeImageBitmaps": 1,
+    "beforeDimensions": [
+      [
+        640,
+        360
+      ]
+    ],
+    "afterDimensions": [
+      [
+        0,
+        0
+      ]
+    ],
+    "peakMemoryStatus": "UNMEASURED"
+  },
+  "cancellation": {
+    "status": "PASS",
+    "source": "actual browser WebCodecs encoder/frame objects, cancellation after frame submission; no mocked encoder",
+    "beforePlanQAHash": "792eecda03df33640f4091a206ac0f524724625ee7d3ee739e829e85f9eb6415",
+    "afterPlanQAHash": "792eecda03df33640f4091a206ac0f524724625ee7d3ee739e829e85f9eb6415",
+    "hashMethod": "canonical plan plus explicit serialized pixel QA and quality target (canonical plan alone excludes QA)",
+    "restored": true,
+    "abortProgress": {
+      "stage": "frames",
+      "current": 14,
+      "total": 96,
+      "encoded": 11
+    },
+    "error": {
+      "name": "Error",
+      "message": "キャンセルしました"
+    },
+    "nativeEncoders": 1,
+    "nativeFrames": 14,
+    "allEncodersClosed": true,
+    "allFramesClosed": true,
+    "retry": "following actual full H264/AAC export independently validated by runner"
+  },
+  "retryVideoHash": "ef31f5a49ee7c6abfe8210a62b95118981df84c815851f5b8c2df5d6dbcece5b",
+  "retryCodecs": [
+    "h264",
+    "aac"
+  ],
+  "retryFullDecode": "PASS",
+  "timingPurpose": "NOT_A_PERFORMANCE_BENCHMARK; canceled attempt plus retry",
+  "historicalCertificationCause": "UNRESOLVED; this is an independently controlled cancellation test"
+}

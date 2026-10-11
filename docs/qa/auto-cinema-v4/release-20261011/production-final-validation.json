@@ -1,0 +1,168 @@
+{
+  "status": "PASS",
+  "sourceHEAD": "2bd32cc9d5a1298d03a199e6e36ac27f016a0749",
+  "mainMergeSHA": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+  "URL": "https://jankendo.github.io/JIZURA_KAMEN/?kamen_qa=1791697024943",
+  "runtimeSHA256": "cceb08bc72595da29799ff79fa13155a23e734f0506953286a18ab9d03f354b9",
+  "publishedFilesVerified": 8,
+  "browser": "151.0.7922.173",
+  "UI": {
+    "status": "PASS",
+    "checks": 10,
+    "oneClick": true,
+    "outcome": {
+      "fileState": "SAVE_AVAILABLE",
+      "creativeState": "BELOW_TARGET",
+      "initialConfirmedPlanReused": false
+    },
+    "actualDownloadSaveAs": true,
+    "nativeSavePickerTiming": "UNMEASURED",
+    "pageErrors": [],
+    "resourceFailures": []
+  },
+  "formalExistingUIVerification": {
+    "name": "cinema_v3_export_e2e.cjs",
+    "status": "PASS",
+    "mode": "verify-existing-actual-export",
+    "checks": 10,
+    "videoHash": "102504d0b73f11206232513ba9947f94a8b3a1d4f1f1fb565ae3dda8aae9d353",
+    "planHash": "1c24286a4fe854228daf6b132134b04cbc71d28416fb7997d1b6cd68c4fa8ce1",
+    "state": "BUDGET_EXHAUSTED",
+    "attempts": 4,
+    "decisions": [
+      "INITIAL_ARTIFACT_RETAINED_AS_DRAFT",
+      "PROTECTED_REGRESSION",
+      "VERIFIED_TARGET_IMPROVEMENT",
+      "PROTECTED_REGRESSION"
+    ],
+    "artistic100Established": false,
+    "peakMemoryStatus": "UNMEASURED",
+    "browser": "151.0.7922.173",
+    "decoderProbe": {
+      "status": "NOT_RUN",
+      "reason": "verify-existing-artifact mode"
+    }
+  },
+  "independentDecoderProbe": {
+    "status": "PASS",
+    "blackControlRejected": true,
+    "unchangedThreshold": true
+  },
+  "nativeCancellationRetry": {
+    "status": "PASS",
+    "bitmapGuardResources": {
+      "status": "PASS",
+      "nativeImageBitmaps": 1,
+      "beforeDimensions": [
+        [
+          640,
+          360
+        ]
+      ],
+      "afterDimensions": [
+        [
+          0,
+          0
+        ]
+      ],
+      "peakMemoryStatus": "UNMEASURED"
+    },
+    "cancellation": {
+      "status": "PASS",
+      "source": "actual browser WebCodecs encoder/frame objects, cancellation after frame submission; no mocked encoder",
+      "beforePlanQAHash": "792eecda03df33640f4091a206ac0f524724625ee7d3ee739e829e85f9eb6415",
+      "afterPlanQAHash": "792eecda03df33640f4091a206ac0f524724625ee7d3ee739e829e85f9eb6415",
+      "hashMethod": "canonical plan plus explicit serialized pixel QA and quality target (canonical plan alone excludes QA)",
+      "restored": true,
+      "abortProgress": {
+        "stage": "frames",
+        "current": 14,
+        "total": 96,
+        "encoded": 11
+      },
+      "error": {
+        "name": "Error",
+        "message": "キャンセルしました"
+      },
+      "nativeEncoders": 1,
+      "nativeFrames": 14,
+      "allEncodersClosed": true,
+      "allFramesClosed": true,
+      "retry": "following actual full H264/AAC export independently validated by runner"
+    },
+    "retryVideoHash": "ef31f5a49ee7c6abfe8210a62b95118981df84c815851f5b8c2df5d6dbcece5b",
+    "retryCodecs": [
+      "h264",
+      "aac"
+    ],
+    "retryFullDecode": "PASS",
+    "timingPurpose": "NOT_A_PERFORMANCE_BENCHMARK; canceled attempt plus retry",
+    "historicalCertificationCause": "UNRESOLVED; this is an independently controlled cancellation test"
+  },
+  "videos": [
+    {
+      "file": "ui-export.mp4",
+      "sha256": "102504d0b73f11206232513ba9947f94a8b3a1d4f1f1fb565ae3dda8aae9d353",
+      "bytes": 3509811,
+      "codecs": [
+        "h264",
+        "aac"
+      ],
+      "strictFullDecodeExit": 0,
+      "stderrBytes": 0,
+      "dimensions": [
+        [
+          1280,
+          720
+        ]
+      ],
+      "duration": "9.024000"
+    },
+    {
+      "file": "cancellation-retry/general-bright-v3.mp4",
+      "sha256": "ef31f5a49ee7c6abfe8210a62b95118981df84c815851f5b8c2df5d6dbcece5b",
+      "bytes": 476599,
+      "codecs": [
+        "h264",
+        "aac"
+      ],
+      "strictFullDecodeExit": 0,
+      "stderrBytes": 0,
+      "dimensions": [
+        [
+          640,
+          360
+        ]
+      ],
+      "duration": "4.032000"
+    }
+  ],
+  "initialFormalAttempt": {
+    "status": "FAIL",
+    "stage": "Node matrix server preflight before browser startup",
+    "preservedFile": "initial-formal-failure.json",
+    "diagnosis": "Node direct HTTPS ECONNREFUSED in this environment; configured proxy unused",
+    "directProbe": {
+      "elapsedMs": 5129,
+      "cause": "ECONNREFUSED"
+    },
+    "proxyEnabledProbe": {
+      "http": 200,
+      "headerMs": 268
+    },
+    "resumedUsing": "NODE_USE_ENV_PROXY=1, unmodified shipping helper and original 5000ms preflight timeout",
+    "failedPhaseRerun": "PASS",
+    "completedUIAndDecoderChecksReused": true
+  },
+  "approvedFullDecodeTotal": 135,
+  "approvedFullDecodeComponents": {
+    "existingMatrix": 126,
+    "additionalTargeted": 6,
+    "finalLocalNativeUI": 1,
+    "productionUIAndCancellationRetry": 2
+  },
+  "blackControlExcludedFromApprovedVideoCount": true,
+  "humanAestheticHighestQuality": "UNMEASURED",
+  "peakMemory": "UNMEASURED",
+  "historical503AndLostBlobCause": "UNRESOLVED"
+}

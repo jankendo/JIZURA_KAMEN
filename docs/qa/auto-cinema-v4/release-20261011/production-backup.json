@@ -1,0 +1,10 @@
+{
+  "archive": "qa-backups/auto-cinema-v4-20261011/production-release-evidence.tgz",
+  "sha256": "46dd6960fc8f2a1fc141bb476edac0b2341055e2fa5cf4649b9bf189d21bd9aa",
+  "bytes": 4834566,
+  "contains": "Actual production MP4s, owned inputs, full QA/provenance/raw cancellation result, initial driver failure, final verification, overlay screenshots/reports, console and helper scripts",
+  "excludedBrowserTracesLocalOnly": [
+    "release-production/trace.zip"
+  ],
+  "exclusionReason": "Retain raw videos, inputs and complete JSON evidence; avoid redundant large trace binaries. Existing final local UI trace is separately preserved on GitHub."
+}

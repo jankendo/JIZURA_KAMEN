@@ -30,7 +30,7 @@
     "peak memory UNMEASURED",
     "historical HTTP503 and interrupted local sessions cause UNRESOLVED"
   ],
-  "production": "DEPLOYED; ACTUAL_BROWSER_MP4_E2E_IN_PROGRESS",
+  "production": "PASS",
   "regression": {
     "pass": 187,
     "fail": 0,
@@ -53,5 +53,17 @@
     "status": "PASS",
     "count": 8,
     "manifest": "production-https-build-verification.json"
-  }
+  },
+  "productionEvidence": "production-final-validation.json",
+  "productionActualMP4Count": 2,
+  "approvedFullDecodeTotal": 135,
+  "productionSavedMP4Hashes": [
+    "102504d0b73f11206232513ba9947f94a8b3a1d4f1f1fb565ae3dda8aae9d353",
+    "ef31f5a49ee7c6abfe8210a62b95118981df84c815851f5b8c2df5d6dbcece5b"
+  ],
+  "productionNativeCancellationRetry": "PASS_AFTER_NODE_ENV_PROXY_CONFIGURATION; initial pre-browser connection failure retained",
+  "productionOverlays": "PASS_5_VIEWPORTS",
+  "overallResult": "SUCCESS",
+  "rollbackNeeded": false,
+  "productionAppSourceChanged": false
 }
