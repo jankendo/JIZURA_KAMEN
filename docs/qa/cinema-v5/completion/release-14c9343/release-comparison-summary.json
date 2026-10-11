@@ -1,0 +1,2227 @@
+{
+  "releaseHead": "14c93432803984edbb4c8a3591d733d9b32380d7",
+  "runtimeEquivalence": "release-runtime-equivalence-14c9343.json",
+  "status": "COMPARISON_COMPLETE",
+  "pairs": 13,
+  "requiredPairs": 13,
+  "fullyDecodedMP4s": 26,
+  "finalLyricUnitsMeasured": 37,
+  "actualDecodedLyricFrames": 1557,
+  "independentActualImprovements": [
+    "general-manual",
+    "independent-fixed"
+  ],
+  "rawScoresUnchanged": true,
+  "humanStatus": "HUMAN_UNVERIFIED",
+  "artistic100Established": false,
+  "limits": "Input/rendering contracts are not OCR. Registered actual glyph contrast is not human reading accuracy. Missing or uncalibrated creativity scores remain unmeasured; equal scores are not improvement.",
+  "cases": [
+    {
+      "fixture": {
+        "id": "case-06",
+        "seed": 415,
+        "aspect": "1:1",
+        "image": "none",
+        "audio": "calm",
+        "lyrics": [
+          "静かな時を見つめる",
+          "光"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "4dfe7afa792b018fbbf12f032522ad0607f94cf2b377bfd093d07d4d34adfb2d",
+        "imageHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lyrics": "[00:00.20]静かな時を見つめる\n[00:01.20]光",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          3
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "b57569aed0262b89753cdeaf16db23f560f8c65e0beec08c1f1dc66173ef40ef",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 16,
+          "loopQuality": null,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": null,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": null,
+          "typographyDiversity": null
+        }
+      },
+      "v5": {
+        "videoSHA256": "8dc82296b3d78a718b27860a516210fce571bbfe9ad4495a1f5f9bb58c273b50",
+        "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "47707fb396f2cc8aa4d37309e664fcc7983b1910a3143964cd6f6e2618dbb1dc",
+        "inputHash": "e624d0f25fba88ae536ba9fb41cf0d6da5edb340d69b694c93f8e34071ab8a67",
+        "selectedCandidateId": "05b5eaf3bb425293dfe9fd3a466657c5c0e7db2fd7d180e89a663e08d4467ea1",
+        "evidenceId": "6b843ab24d5f44d4fb95a329f20e446410d7bbb66a721adf02b7da6b565f5f00",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            3
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "14d5b1d98fa224c12cfceb9f0bae2350e08dec5484ed48676eced5e5d245e949",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              1.2
+            ],
+            "holdRange": [
+              0.27,
+              1.13
+            ],
+            "status": "MEASURED",
+            "frameCount": 24,
+            "holdFrameCount": 21,
+            "expectedHoldFrames": 21,
+            "readableHoldSeconds": 0.875,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 2,
+              "hold": 21,
+              "exit": 1
+            }
+          },
+          {
+            "unitId": "fb3a0f030b9bcbfe733f632ce0b1b27fbe5dbadc8f3d551907342de0cd256cc9",
+            "line": 1,
+            "timeRange": [
+              1.2,
+              2.7
+            ],
+            "holdRange": [
+              1.27,
+              2.6300000000000003
+            ],
+            "status": "MEASURED",
+            "frameCount": 36,
+            "holdFrameCount": 33,
+            "expectedHoldFrames": 33,
+            "readableHoldSeconds": 1.375,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 2,
+              "hold": 33,
+              "exit": 1
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 16,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 88,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 100,
+          "typographyDiversity": 100
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "id": "case-07",
+        "seed": 416,
+        "aspect": "16:9",
+        "image": "multi",
+        "audio": "steady",
+        "lyrics": [
+          "短",
+          "長い言葉を読む"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "activation": "engine-multi",
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "b62ea3dcb4bba8d2b3d8472252e95fcbeec3a6bad71913b6b32845c8c17f9465",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]短\n[00:01.20]長い言葉を読む",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          3
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "e1e57a4f9e36d6672669584849fd0901c48ec635081ea3b5e1473c1a12edc0ce",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": null,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": null,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": null,
+          "typographyDiversity": null
+        }
+      },
+      "v5": {
+        "videoSHA256": "03d4a5739ab25fca70646410cce33241791d7133b415a083572c2738c4bfc38f",
+        "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "410458715159fcea402079cf7ea38d9fdabddc06f1992d6b01d0682d3f5663cd",
+        "inputHash": "cfa36d35efe71bffff140ac52bf3229696238c83dcf69bbf6c8baa88db46090c",
+        "selectedCandidateId": "09b57b7f2c7bfe538aeaecc03bf2f718485c11edb0498f268aa35b391cc6dc3b",
+        "evidenceId": "1527533de2b0535a58128bafa47f86eb89ee48acdda4eab86c7ee177f0601cea",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            3
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "58e43ee60123a0c38430e2f515f39cc07bd1f06f149c88abc052936fa7452f4c",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              1.2
+            ],
+            "holdRange": [
+              0.27,
+              1.13
+            ],
+            "status": "MEASURED",
+            "frameCount": 24,
+            "holdFrameCount": 21,
+            "expectedHoldFrames": 21,
+            "readableHoldSeconds": 0.875,
+            "minimumContrast": 0,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 2,
+              "hold": 21,
+              "exit": 1
+            }
+          },
+          {
+            "unitId": "81fda53762b48491bed098ddd6a0fe4bbb4004608e6e380dca6d4034b81301ab",
+            "line": 1,
+            "timeRange": [
+              1.2,
+              2.5
+            ],
+            "holdRange": [
+              1.27,
+              2.43
+            ],
+            "status": "MEASURED",
+            "frameCount": 31,
+            "holdFrameCount": 28,
+            "expectedHoldFrames": 28,
+            "readableHoldSeconds": 1.1666666666666667,
+            "minimumContrast": 77,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 2,
+              "hold": 28,
+              "exit": 1
+            }
+          },
+          {
+            "unitId": "5eec8ab9ba7076392c4484b72ffaaa89616e49ff6c52e948475972a78421e4be",
+            "line": 1,
+            "timeRange": [
+              2.5,
+              3
+            ],
+            "holdRange": [
+              2.57,
+              3
+            ],
+            "status": "MEASURED",
+            "frameCount": 12,
+            "holdFrameCount": 10,
+            "expectedHoldFrames": 10,
+            "readableHoldSeconds": 0.4166666666666667,
+            "minimumContrast": 64,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 2,
+              "hold": 10,
+              "exit": 0
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 36,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 67,
+          "typographyDiversity": 33
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "id": "case-08",
+        "seed": 417,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "intense",
+        "lyrics": [
+          "光へ",
+          "空へ"
+        ],
+        "duration": 3,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "b99ce85a5cefe7ec55bdb3ce9df068cad34beba94a0a1093eeec0544b86e8f9b",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]光へ\n[00:01.20]空へ",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "da7e03eeb5597a598f5eaa7a2af77b6d3c1beae02b2be2a7eaa8dc337d1f4cb9",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": 49,
+          "motion": 59,
+          "temporalContrast": 50,
+          "hookNovelty": 34,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 44,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 59.772233273333995,
+          "localContrast": 49,
+          "motionRealization": 100,
+          "typographyDiversity": 31
+        }
+      },
+      "v5": {
+        "videoSHA256": "4a6b486d732a1a47631136bd8d2f5e46c17e62db15b4bcb9ac3994e5919617ee",
+        "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "3e76ec85ac0da9cf0d233545fab31edebe818262913095f0df2181f6606db2a7",
+        "inputHash": "cb701cde0a7508e6aee8746406e3ba22230c45a1713c4db57174abcd33642e56",
+        "selectedCandidateId": "e1e2a53e5ccaddea9eca4db608c42ac0e12b02653376830c8ec6cb96d1c6ae04",
+        "evidenceId": "2432dfd2c8dc827f45f624835e8edb2168164570db4370a70767855cc0d50452",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            3
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "fb0b6d38fa23752a099614c0da32a231b2d02ccc6c334bf1e53cce4e41edf315",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              1.2
+            ],
+            "holdRange": [
+              0.374,
+              1.0383333333333333
+            ],
+            "status": "MEASURED",
+            "frameCount": 24,
+            "holdFrameCount": 16,
+            "expectedHoldFrames": 16,
+            "readableHoldSeconds": 0.6666666666666666,
+            "minimumContrast": 88,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 4,
+              "hold": 16,
+              "exit": 4
+            }
+          },
+          {
+            "unitId": "f93bbf2a8e861dbdc18a3adcdd22a4a937dc997e2e0b3afb27a17334598f3e96",
+            "line": 1,
+            "timeRange": [
+              1.2,
+              2.7
+            ],
+            "holdRange": [
+              1.3739999999999999,
+              2.4783333333333335
+            ],
+            "status": "MEASURED",
+            "frameCount": 36,
+            "holdFrameCount": 27,
+            "expectedHoldFrames": 27,
+            "readableHoldSeconds": 1.125,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 4,
+              "hold": 27,
+              "exit": 5
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": 49,
+          "motion": 59,
+          "temporalContrast": 48,
+          "hookNovelty": 34,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 44,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 59.81517513987973,
+          "localContrast": 49,
+          "motionRealization": 100,
+          "typographyDiversity": 29
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "id": "case-24",
+        "seed": 443,
+        "aspect": "9:16",
+        "image": "abstract",
+        "audio": "steady",
+        "lyrics": [
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー",
+          "ラララー"
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "res": 360,
+        "fps": 24,
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "loop": true,
+        "short": true,
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "5dba2a0255ccb85b9c9cb19c61771cbf8240af59fdd6651f3eb96cf5d44378d6",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]ラララー\n[00:03.20]ラララー\n[00:06.20]ラララー\n[00:09.20]ラララー\n[00:12.20]ラララー",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0.2,
+          12.2
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "b15294796268781945e98a3c8742d538f032fb9422cd0dce1458cddd74633cb4",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": 75,
+          "motion": 59,
+          "temporalContrast": 100,
+          "hookNovelty": 8,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 73,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 82.78078294263571,
+          "localContrast": 51,
+          "motionRealization": 100,
+          "typographyDiversity": 61
+        }
+      },
+      "v5": {
+        "videoSHA256": "2a91aec22e997501564c5c86503bb3ac70926d75f8ebad762f87657f5a63b58c",
+        "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "b7aee54ab08a24ac08f29b2dd3ba1d287eb1272ac0169a344654c9b7e9aaf7b5",
+        "inputHash": "3b5e465637919e94e9efdbb0e89fc0bf9763d770e02b36c36ba5f247854d112f",
+        "selectedCandidateId": "a9ccdaa9cb98fb58868353d60477ca330fddf833f6820ffb207d0eabf5b8b1b8",
+        "evidenceId": "6f1ee9bc14cf927534e7dd5eb75bda7bb3a55273e998e4f6e635d48d7f0ea74e",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.2,
+            12.2
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "43d3fdcf960b7bb5b42c4558de5d37fea895c3889d65df03dce3cfa993da7802",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              3.2
+            ],
+            "holdRange": [
+              0.2,
+              3.2
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 72,
+            "expectedHoldFrames": 72,
+            "readableHoldSeconds": 3,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 72,
+              "exit": 0
+            }
+          },
+          {
+            "unitId": "c43f92b044c0f10add5153942a8d4aea8b78303d79c12495a1f62b76edb56e30",
+            "line": 1,
+            "timeRange": [
+              3.2,
+              6.2
+            ],
+            "holdRange": [
+              3.2,
+              6.2
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 72,
+            "expectedHoldFrames": 72,
+            "readableHoldSeconds": 3,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 72,
+              "exit": 0
+            }
+          },
+          {
+            "unitId": "7ca9e7fd715bf946045624c375d22ac744b0275e1fa13d7288fac8b4be1b2978",
+            "line": 2,
+            "timeRange": [
+              6.2,
+              9.2
+            ],
+            "holdRange": [
+              6.2,
+              9.2
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 72,
+            "expectedHoldFrames": 72,
+            "readableHoldSeconds": 3,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 72,
+              "exit": 0
+            }
+          },
+          {
+            "unitId": "4e15d5f6bc450a6169fdd731dbb30b0be3b715460e62ee492cc96744f63848f0",
+            "line": 3,
+            "timeRange": [
+              9.2,
+              12.2
+            ],
+            "holdRange": [
+              9.2,
+              11.84
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 64,
+            "expectedHoldFrames": 64,
+            "readableHoldSeconds": 2.6666666666666665,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 64,
+              "exit": 8
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": 85,
+          "motion": 49.5,
+          "temporalContrast": 100,
+          "hookNovelty": 9,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 70,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 78.96794732977946,
+          "localContrast": 100,
+          "motionRealization": 100,
+          "typographyDiversity": 50
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "seed": 510,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-dark",
+        "aspect": "9:16",
+        "image": "dark",
+        "audio": "calm",
+        "lyrics": [
+          "短い言葉",
+          "ゆっくり読む長い日本語の一節"
+        ],
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "68bcf03d926bc147233b696e02655861b3afab9fbfdfeda6534e3fe1ee662532",
+        "imageHash": "f8b57eac444fb142474b8b44f53d8a4dbf104429fc36c0bcc659edac6c593632",
+        "lyrics": "[00:00.20]短い言葉\n[00:01.20]ゆっくり読む長い日本語の一節",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "cbefd39e0f91d5f7c59480f04b50a58ec6331d7e655b8de3b2e5d0c4fec3cbb7",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": 55,
+          "motion": 47,
+          "temporalContrast": 20,
+          "hookNovelty": 35,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 45,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 74.45555103429056,
+          "localContrast": 75,
+          "motionRealization": 100,
+          "typographyDiversity": 68
+        }
+      },
+      "v5": {
+        "videoSHA256": "fc1acf7b9ae94a84b881411e568a99b4ab7a0a987ce49d5cbceba5363d5cc1b9",
+        "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "ee95458fea8969fc551805bf67512bfce8f46caf809f621a23d413f3d2dcf6b8",
+        "inputHash": "2d94b24b4d70eaa8d20c28a3b3f9a7fd8df243ecc9916062fd471c3ca066e7b8",
+        "selectedCandidateId": "f824971711985048c481cc891576c8db8b650dd3478b5cbec6100d19aeefec8b",
+        "evidenceId": "12e9b5f025bb82d08a115244043a91feecda9b1acd9e93d7cd3f4a8a91ff6d3d",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            3.9999773242630385
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "173fb19a21c6cd82a4a1cb65ec6613274f4508d542a914b0e630910b16f9b845",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              1.2
+            ],
+            "holdRange": [
+              0.378,
+              1.0383333333333333
+            ],
+            "status": "MEASURED",
+            "frameCount": 24,
+            "holdFrameCount": 15,
+            "expectedHoldFrames": 15,
+            "readableHoldSeconds": 0.625,
+            "minimumContrast": 98,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 5,
+              "hold": 15,
+              "exit": 4
+            }
+          },
+          {
+            "unitId": "32aadafd9226b1fa63d168d0978cee8e7327e26e73a6ac2e4362f4ab4188c57e",
+            "line": 1,
+            "timeRange": [
+              1.2,
+              3.9999773242630385
+            ],
+            "holdRange": [
+              1.398,
+              3.6399773242630387
+            ],
+            "status": "MEASURED",
+            "frameCount": 67,
+            "holdFrameCount": 54,
+            "expectedHoldFrames": 54,
+            "readableHoldSeconds": 2.25,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 5,
+              "hold": 54,
+              "exit": 8
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": 55,
+          "motion": 42,
+          "temporalContrast": 19,
+          "hookNovelty": 35,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 45,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 75.19831687119026,
+          "localContrast": 75,
+          "motionRealization": 100,
+          "typographyDiversity": 68
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "seed": 515,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-dense",
+        "aspect": "1:1",
+        "image": "bright",
+        "audio": "steady",
+        "lyrics": [
+          "長い日本語を短い時間で表示する区間",
+          "日本語と English words の混在"
+        ],
+        "starts": [
+          0.2,
+          0.65
+        ],
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "ed217ffa5245890ddd88728351f5cef4139c6137262f3a5aad46defd6f19c4cb",
+        "imageHash": "23abe8ceaaae491be8d0aabaf45dca47480dae04c905e73f0c20555daa1cad93",
+        "lyrics": "[00:00.20]長い日本語を短い時間で表示する区間\n[00:00.65]日本語と English words の混在",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "e8e5c071c0fefd8d551f0f71ace96deb889178dda57a15711f968030ef6f2bc8",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": 100,
+          "motion": null,
+          "temporalContrast": 0,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": null,
+          "localContrast": 37,
+          "motionRealization": 100,
+          "typographyDiversity": 49
+        }
+      },
+      "v5": {
+        "videoSHA256": "852ec4b78f9b76cb6bc6a4606daa83e9b10cc96642f28546e63b9485e5c4d5db",
+        "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "5255698355d8f60f7d1f77d720856eecb0b5e415fb90931c35877a665ab79820",
+        "inputHash": "8e2d9e607a5cb69ca0579d6481d84b783e7a117302f6f11a78d4b63bc4b95dc8",
+        "selectedCandidateId": "756b266398df2be27419b2debb02a1b219759bf25e15d738646371ae22741dcf",
+        "evidenceId": "5b6a2744f1c1e946afd0065d7d4fbcdc51bf18d54c56a6be23c58489bf50bc88",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            3.9999773242630385
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "c38055edb96773cc4ed8332ad2578825c89e7633e7b5a6ddcd9e77f9787e7512",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              0.65
+            ],
+            "holdRange": [
+              0.3215,
+              0.569
+            ],
+            "status": "MEASURED",
+            "frameCount": 11,
+            "holdFrameCount": 6,
+            "expectedHoldFrames": 6,
+            "readableHoldSeconds": 0.25,
+            "minimumContrast": 78,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 3,
+              "hold": 6,
+              "exit": 2
+            }
+          },
+          {
+            "unitId": "ffc6d1a2256ce5958185e3eeff54d5699ce5f32b0f457d236d4352e907376a3c",
+            "line": 1,
+            "timeRange": [
+              0.65,
+              3.9999773242630385
+            ],
+            "holdRange": [
+              0.864,
+              3.6399773242630387
+            ],
+            "status": "MEASURED",
+            "frameCount": 80,
+            "holdFrameCount": 67,
+            "expectedHoldFrames": 67,
+            "readableHoldSeconds": 2.7916666666666665,
+            "minimumContrast": 49,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 5,
+              "hold": 67,
+              "exit": 8
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": 100,
+          "motion": null,
+          "temporalContrast": 6,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": null,
+          "localContrast": 47,
+          "motionRealization": 100,
+          "typographyDiversity": 40
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "seed": 517,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-manual",
+        "aspect": "9:16",
+        "image": "busy",
+        "audio": "intense",
+        "lyrics": [
+          "手動固定した文字",
+          "固定したカメラ"
+        ],
+        "manual": true,
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "ba3b6bdaf1d0a13aa9f360e3510172bc7427ee2ab98c9b2f24b9eb0ee9689b80",
+        "imageHash": "2adfbf5c0f24b85d4baff7ba6ed561f61ab11286536829f5eb6541fcdd2acf5d",
+        "lyrics": "[00:00.20]手動固定した文字\n[00:01.20]固定したカメラ",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ],
+        "manualOverrides": {
+          "0": {
+            "lock": true,
+            "layout": "center",
+            "cam": "stillCamera",
+            "enter": "cut",
+            "hold": "still",
+            "decor": []
+          }
+        },
+        "manualTypography": {
+          "font": "embedded_bold",
+          "align": "left",
+          "maxWidth": 0.72
+        }
+      },
+      "baseline": {
+        "videoSHA256": "26b02392877f96567de48980f8965dcb88c04360443e676b1fdbc35d6715e99f",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "FAILED",
+        "failedUnits": [
+          {
+            "unitId": "be3efa6a2d92ff91bbcc7419d73e89831243ff327f8ce301ec6b018cba2ba080",
+            "line": 0,
+            "timeRange": [
+              0.9001,
+              1.2
+            ],
+            "holdRange": [
+              1.008064,
+              1.125025
+            ],
+            "status": "FAILED",
+            "frameCount": 7,
+            "holdFrameCount": 3,
+            "expectedHoldFrames": 3,
+            "readableHoldSeconds": 0.041666666666666664,
+            "minimumContrast": 2,
+            "reason": "NATIVE_OR_DECODED_GLYPH_FAILURE",
+            "phaseCounts": {
+              "entry": 3,
+              "hold": 3,
+              "exit": 1
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": null,
+          "motion": 63,
+          "temporalContrast": null,
+          "hookNovelty": 59,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": null,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": null,
+          "localContrast": 54,
+          "motionRealization": 100,
+          "typographyDiversity": null
+        }
+      },
+      "v5": {
+        "videoSHA256": "e5f041f47359eb661f585803f0e709a8e3881bcef31c174752af09110407c351",
+        "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "5d487140b5d388305a394e9602f23d1106b12e532e31aeb8660a4f52a56a25a1",
+        "inputHash": "9d08d1562589f7383f114e845ac8ed67ded65610d912ab62e30b1060b10bd0dd",
+        "selectedCandidateId": "fb5e66c7c3d2f7a1148623735581d5af6e1305510a0a64d88f599c6027757428",
+        "evidenceId": "d28c157e0c286ea67afab0e112ae92a1f59a24abed341464323af759d535b92b",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            3.9999773242630385
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "6b493ced9db173acf93c8c742eb433665e9f54a56ade11f1f52dc1d731b3f438",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              0.9001
+            ],
+            "holdRange": [
+              0.452036,
+              0.725075
+            ],
+            "status": "MEASURED",
+            "frameCount": 17,
+            "holdFrameCount": 7,
+            "expectedHoldFrames": 7,
+            "readableHoldSeconds": 0.2916666666666667,
+            "minimumContrast": 40,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 6,
+              "hold": 7,
+              "exit": 4
+            }
+          },
+          {
+            "unitId": "17013a5a53cd8c181f069bd192302f64435efca3b5d3a3bb556d7e6d53894797",
+            "line": 0,
+            "timeRange": [
+              0.9001,
+              1.2
+            ],
+            "holdRange": [
+              1.008064,
+              1.125025
+            ],
+            "status": "MEASURED",
+            "frameCount": 7,
+            "holdFrameCount": 3,
+            "expectedHoldFrames": 3,
+            "readableHoldSeconds": 0.125,
+            "minimumContrast": 59,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 3,
+              "hold": 3,
+              "exit": 1
+            }
+          },
+          {
+            "unitId": "1a2ed4f24a9fed8666010a3322f906abac0717684cc5791098238a750761a301",
+            "line": 1,
+            "timeRange": [
+              1.2,
+              3.1900000000000004
+            ],
+            "holdRange": [
+              1.2,
+              3.1900000000000004
+            ],
+            "status": "MEASURED",
+            "frameCount": 48,
+            "holdFrameCount": 48,
+            "expectedHoldFrames": 48,
+            "readableHoldSeconds": 2,
+            "minimumContrast": 76,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 48,
+              "exit": 0
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": null,
+          "motion": 79,
+          "temporalContrast": null,
+          "hookNovelty": 60,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 76,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": null,
+          "localContrast": 52,
+          "motionRealization": 100,
+          "typographyDiversity": 25
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "ACTUAL_PRIMARY_LYRIC_ABSENCE_REPAIRED"
+    },
+    {
+      "fixture": {
+        "seed": 513,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "id": "general-people",
+        "aspect": "9:16",
+        "image": "multi-silhouette",
+        "audio": "variable",
+        "lyrics": [
+          "重なる声",
+          "集まる光"
+        ],
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "ccc58cc0dcb74e5891a1e75a14d06c24b076c597527478c61394ed5896ff16ec",
+        "imageHash": "8f3355890fc5b2424cb7f26818151c1bddd75bd12311a6c0687aa057f7e84447",
+        "lyrics": "[00:00.20]重なる声\n[00:01.20]集まる光",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "ce2101bab07be4d8a3a4bcbbdf63183a91f1befab31bf18b60d0518109808fb5",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": 27,
+          "motion": 52,
+          "temporalContrast": 8,
+          "hookNovelty": 63,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 45.772895510325085,
+          "localContrast": 95,
+          "motionRealization": 100,
+          "typographyDiversity": 22
+        }
+      },
+      "v5": {
+        "videoSHA256": "72c419e267217daa5093d1b4e8899421e7e74aea361c01d0a1289358fb3cf9c4",
+        "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "bc4b4dc1bb743b5aefeec04f62c8223a6601a1d024d25a160e1d4a2e9a008ac2",
+        "inputHash": "fb611a097ac1fb578e75caac019e8d9bb87d521f53ac2d2595fa440bdfbe0d09",
+        "selectedCandidateId": "ddf898008552fc81bff031414d6057ef2127d1615f9e5168e6e0e7e759afe28b",
+        "evidenceId": "a437bb8c8127f104065b683e6a6784f0bef1c73389cb085b7a4cd6f07e281e4a",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            3.9999773242630385
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "195d05485094b7b8778f55ee46104521b0aa38ce61aad0de6fed43f6dabcdcbe",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              1.2
+            ],
+            "holdRange": [
+              0.2,
+              1.2
+            ],
+            "status": "MEASURED",
+            "frameCount": 24,
+            "holdFrameCount": 24,
+            "expectedHoldFrames": 24,
+            "readableHoldSeconds": 1,
+            "minimumContrast": 99,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 24,
+              "exit": 0
+            }
+          },
+          {
+            "unitId": "47876e6bdc83a76609ffba48cdab6915771aae53f630d922ee7a444e293b7dc2",
+            "line": 1,
+            "timeRange": [
+              1.2,
+              2.7
+            ],
+            "holdRange": [
+              1.2,
+              2.7
+            ],
+            "status": "MEASURED",
+            "frameCount": 36,
+            "holdFrameCount": 36,
+            "expectedHoldFrames": 36,
+            "readableHoldSeconds": 1.5,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 36,
+              "exit": 0
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": 27,
+          "motion": 43,
+          "temporalContrast": 3,
+          "hookNovelty": 63,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 46.687125552534454,
+          "localContrast": 95,
+          "motionRealization": 100,
+          "typographyDiversity": 22
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "id": "independent-long",
+        "seed": 613,
+        "aspect": "16:9",
+        "image": "independent-diagonal",
+        "audio": "intense",
+        "lyrics": [
+          "異なる背景で長い日本語と English lyrics を読む",
+          "次の行を確かめる"
+        ],
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "19be703295f82269b9ee0a3ae926415685471b9db56beeb36c545df5b86c95ec",
+        "imageHash": "926ab5862b56e7d54108eb8b3c3792e59c458c7e09ffd3bdf4900be7ed4a25f5",
+        "lyrics": "[00:00.20]異なる背景で長い日本語と English lyrics を読む\n[00:01.20]次の行を確かめる",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "ae674543f233e30e8c84e616f34c42a567e6a823a18a53749e1654724591a895",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": 100,
+          "motion": 83,
+          "temporalContrast": 34,
+          "hookNovelty": 76,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 89,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 62,
+          "motionRealization": 100,
+          "typographyDiversity": 100
+        }
+      },
+      "v5": {
+        "videoSHA256": "4fc1c9a787b95296e3a1f8fcfe9b7343946163dd4aac5910f7a49795b4825350",
+        "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "a4e3562046e3de5bef76ab856f0b95010a810b8fea77abb2aa3426bd0387d2bb",
+        "inputHash": "e4b71607054b66973d394893a2ed597d7fa6ad4ed8c39436aa02fc090866f670",
+        "selectedCandidateId": "b4c97e70b190a165b8f0fc03b41d8d7e1b46a02d63a1f8bf03804134d6e3d301",
+        "evidenceId": "1a008d6ecb044b97fafcfce1f23409b17f9679b1c8b4aa5e84203b2625cbb6f0",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            3.9999773242630385
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "d23bc551ca3c82c8b25e21e2765e7f2b2496c139aef0520e89d85f36ffc81c45",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              1.2
+            ],
+            "holdRange": [
+              0.2,
+              1.2
+            ],
+            "status": "MEASURED",
+            "frameCount": 24,
+            "holdFrameCount": 24,
+            "expectedHoldFrames": 24,
+            "readableHoldSeconds": 1,
+            "minimumContrast": 49,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 24,
+              "exit": 0
+            }
+          },
+          {
+            "unitId": "b213b399c4198d2dcb2f8a9728be7cb305c3bf44fd4125600c06795bf73e1b11",
+            "line": 1,
+            "timeRange": [
+              1.2,
+              3.3600000000000003
+            ],
+            "holdRange": [
+              1.2,
+              3.3600000000000003
+            ],
+            "status": "MEASURED",
+            "frameCount": 52,
+            "holdFrameCount": 52,
+            "expectedHoldFrames": 52,
+            "readableHoldSeconds": 2.1666666666666665,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 52,
+              "exit": 0
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": 100,
+          "motion": 87,
+          "temporalContrast": 49,
+          "hookNovelty": 82,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 97,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 66,
+          "motionRealization": 100,
+          "typographyDiversity": 100
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "id": "independent-panels",
+        "seed": 612,
+        "aspect": "1:1",
+        "image": "multi",
+        "activation": "engine-multi",
+        "audio": "intense",
+        "lyrics": [
+          "二枚の画像",
+          "言葉を守る"
+        ],
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "d3028f9497c1f61a4a085a8ec48ee365238040dd23ec75295b0a76ea49e1057c",
+        "imageHash": "d600581a99b637ce2270a6dce702ca372bb5fb13a8ba057b0275cb7c0bb1a845",
+        "lyrics": "[00:00.20]二枚の画像\n[00:01.20]言葉を守る",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "51048a1f3f05405b897fe7ee0054a55f8429d5265b8d7360bb29ef5edac8df55",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 39,
+          "loopQuality": null,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": null,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": null,
+          "typographyDiversity": null
+        }
+      },
+      "v5": {
+        "videoSHA256": "d6e56b749f0912483e068c8b221334d4bf4d056caf109b028c2b031d4a8cb35b",
+        "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "53d30d88a51d1a1377b19ac25c0c3aa24f954763392696b9c65a6a0aa283e56e",
+        "inputHash": "85a59efaa3fec1318c31a1863058547a7776e215db26db2a20ce84440f8d6545",
+        "selectedCandidateId": "f94045a23ff9ec92366aee0f6da2c175ca41a4d4daea70dc4695c5eb230875d2",
+        "evidenceId": "7b2f3d2db0bacf6b26dfec72ccaf7890b90198a3254c524a9a9ce8c288393e28",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            3.9999773242630385
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "84632be7d14cad0e16fccc69798c7ca01c5a0bcbcdbfedc7e6ef409d89febb0a",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              0.7609756097560976
+            ],
+            "holdRange": [
+              0.27,
+              0.6909756097560975
+            ],
+            "status": "MEASURED",
+            "frameCount": 14,
+            "holdFrameCount": 10,
+            "expectedHoldFrames": 10,
+            "readableHoldSeconds": 0.4166666666666667,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 2,
+              "hold": 10,
+              "exit": 2
+            }
+          },
+          {
+            "unitId": "fb71ae30d487ad38aed4e14a3c11fed0dbe3c2b7e0b02a0b5de108492a586cb7",
+            "line": 0,
+            "timeRange": [
+              0.7609756097560976,
+              1.2
+            ],
+            "holdRange": [
+              0.8309756097560976,
+              1.13
+            ],
+            "status": "MEASURED",
+            "frameCount": 10,
+            "holdFrameCount": 8,
+            "expectedHoldFrames": 8,
+            "readableHoldSeconds": 0.3333333333333333,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 1,
+              "hold": 8,
+              "exit": 1
+            }
+          },
+          {
+            "unitId": "212ee330aaf5a6655dcc6e73cff3e2f1844f5b78a092c282e11bdeaf453802bd",
+            "line": 1,
+            "timeRange": [
+              1.2,
+              2.1
+            ],
+            "holdRange": [
+              1.27,
+              2.0300000000000002
+            ],
+            "status": "MEASURED",
+            "frameCount": 22,
+            "holdFrameCount": 18,
+            "expectedHoldFrames": 18,
+            "readableHoldSeconds": 0.75,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 2,
+              "hold": 18,
+              "exit": 2
+            }
+          },
+          {
+            "unitId": "ecedbbc75b7389fc8ec8e494ce53ceff63d40e12fbcd7fb22bc4f067cc756a91",
+            "line": 1,
+            "timeRange": [
+              2.1,
+              2.85
+            ],
+            "holdRange": [
+              2.17,
+              2.7800000000000002
+            ],
+            "status": "MEASURED",
+            "frameCount": 18,
+            "holdFrameCount": 14,
+            "expectedHoldFrames": 14,
+            "readableHoldSeconds": 0.5833333333333334,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 2,
+              "hold": 14,
+              "exit": 2
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 39,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 61,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 19
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "id": "profile-full-16-9",
+        "seed": 704,
+        "aspect": "16:9",
+        "image": "bright",
+        "audio": "variable",
+        "lyrics": [
+          "光をたどる",
+          "静かな声",
+          "ここから歩く",
+          "響く未来へ"
+        ],
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2
+        ],
+        "duration": 12,
+        "res": 720,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "3c1bae44fe6d3378899be2d69e69dd1dd02150f8eea0db6fec31c7b87d944951",
+        "imageHash": "23abe8ceaaae491be8d0aabaf45dca47480dae04c905e73f0c20555daa1cad93",
+        "lyrics": "[00:00.20]光をたどる\n[00:03.20]静かな声\n[00:06.20]ここから歩く\n[00:09.20]響く未来へ",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          12
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "81503bc4bd11a73331ed7d625372548d8a99ace5789329510f9c2d1aa0bbb610",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": 100,
+          "motion": 59.5,
+          "temporalContrast": 98,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 86,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 76.96772455469858,
+          "localContrast": 7,
+          "motionRealization": 100,
+          "typographyDiversity": 58
+        }
+      },
+      "v5": {
+        "videoSHA256": "77ef595899e370175ca7f76b17ecab11eb1f591f5c99f82f17b4310c265b8f2b",
+        "sourceCommit": "14c93432803984edbb4c8a3591d733d9b32380d7",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "ad02372724eaef8a5ef81701a6f793e7b51732a51946151aa1cf63c5c82d18eb",
+        "inputHash": "4dc8f214c2204ef7d9150d1bd16d6aa0424d1251e846fdd21bb85bf807695191",
+        "selectedCandidateId": "86890b9135fb75217b180c2bd3f008a4ac2c4723ff1926b9a1d2962c2736bccf",
+        "evidenceId": "d695807911d854798a4483751d293d9bc7f39c941b3716e1f721f7cd9d9d1258",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            12
+          ],
+          "loopRequired": false,
+          "resolution": [
+            1280,
+            720
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "b53b9c69f6933589d89f57096989eaf0b8e4db3a82bbbb14dbf7dcd95f1226f4",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              3.2
+            ],
+            "holdRange": [
+              0.2,
+              3.2
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 72,
+            "expectedHoldFrames": 72,
+            "readableHoldSeconds": 3,
+            "minimumContrast": 44,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 72,
+              "exit": 0
+            }
+          },
+          {
+            "unitId": "56b9475c5702ede8b708595d4d0e3f1c8e99d27c5ae1dc241c6984614862eaf6",
+            "line": 1,
+            "timeRange": [
+              3.2,
+              6.2
+            ],
+            "holdRange": [
+              3.2,
+              6.2
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 72,
+            "expectedHoldFrames": 72,
+            "readableHoldSeconds": 3,
+            "minimumContrast": 69,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 72,
+              "exit": 0
+            }
+          },
+          {
+            "unitId": "8a2dcb0d88b6b95dbb6ad5e2623f2909afdb4ed9e42a7ead8c32fb0e4d81d450",
+            "line": 2,
+            "timeRange": [
+              6.2,
+              9.2
+            ],
+            "holdRange": [
+              6.2,
+              9.2
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 72,
+            "expectedHoldFrames": 72,
+            "readableHoldSeconds": 3,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 72,
+              "exit": 0
+            }
+          },
+          {
+            "unitId": "52373f3df70465113b044de497eb7227438e45d22044d78d3ac14d57a093eea4",
+            "line": 3,
+            "timeRange": [
+              9.2,
+              10.85
+            ],
+            "holdRange": [
+              9.2,
+              10.85
+            ],
+            "status": "MEASURED",
+            "frameCount": 40,
+            "holdFrameCount": 40,
+            "expectedHoldFrames": 40,
+            "readableHoldSeconds": 1.6666666666666667,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 40,
+              "exit": 0
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": 100,
+          "motion": 44,
+          "temporalContrast": 100,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 74,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 69.31941642950781,
+          "localContrast": 13,
+          "motionRealization": 100,
+          "typographyDiversity": 30
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "id": "profile-short-9-16",
+        "seed": 705,
+        "aspect": "9:16",
+        "image": "dark",
+        "audio": "variable",
+        "lyrics": [
+          "光をたどる",
+          "静かな声",
+          "ここから歩く",
+          "響く未来へ",
+          "余韻を残す"
+        ],
+        "starts": [
+          0.2,
+          3.2,
+          6.2,
+          9.2,
+          12.2
+        ],
+        "duration": 13,
+        "outputDuration": 12,
+        "short": true,
+        "loop": false,
+        "res": 720,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "c68f06e3fa3eceff87d00e5c2dace894392b8af7bf14582004cf00d3f8b85813",
+        "imageHash": "f8b57eac444fb142474b8b44f53d8a4dbf104429fc36c0bcc659edac6c593632",
+        "lyrics": "[00:00.20]光をたどる\n[00:03.20]静かな声\n[00:06.20]ここから歩く\n[00:09.20]響く未来へ\n[00:12.20]余韻を残す",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0.2,
+          12.2
+        ]
+      },
+      "baseline": {
+        "videoSHA256": "39006e13caf4ff991728071020bb6850d24a06627163e1da14bec0e636021d38",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "MEASURED",
+        "failedUnits": [],
+        "rawMetrics": {
+          "perceptualNovelty": 85,
+          "motion": 66,
+          "temporalContrast": 59,
+          "hookNovelty": 13,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 90,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 65.1270462849738,
+          "localContrast": 37,
+          "motionRealization": 100,
+          "typographyDiversity": 47
+        }
+      },
+      "v5": {
+        "videoSHA256": "ae33adbdd0bac961609646721eee8cc4e8930cc6558b4a7c9c05562a041ec788",
+        "sourceCommit": "14c93432803984edbb4c8a3591d733d9b32380d7",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "607e2837c372c44e3aa00ad16d4639b811db27e0b19370cc2ec6d76243ea5be6",
+        "inputHash": "564f088955a473dbe18199857d92f611684b933a66411b97235eb00e104a2b9c",
+        "selectedCandidateId": "b73c990bbf8fde1cc4fe3e0a4725c82cbb4bc0b40aa094f1550361d9bbc6fb45",
+        "evidenceId": "75f29b065846a5d0fcdf5286262b9e63ad74ebd9f18f2c5bb21ba61386fe174f",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.2,
+            12.2
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "1df9f6a4f92903605914eab210abf3efc82e85ad620b122e0bc7568451d4d381",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              3.2
+            ],
+            "holdRange": [
+              0.2,
+              3.2
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 72,
+            "expectedHoldFrames": 72,
+            "readableHoldSeconds": 3,
+            "minimumContrast": 38,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 0,
+              "hold": 72,
+              "exit": 0
+            }
+          },
+          {
+            "unitId": "28e90ccfb143b6d5c3863a92ca0a0a8207fc61ca0c7bbcd055819e7c0f326b69",
+            "line": 1,
+            "timeRange": [
+              3.2,
+              6.2
+            ],
+            "holdRange": [
+              3.378,
+              5.958333333333333
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 62,
+            "expectedHoldFrames": 61,
+            "readableHoldSeconds": 2.5833333333333335,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 5,
+              "hold": 62,
+              "exit": 5
+            }
+          },
+          {
+            "unitId": "c60195525ca7b1aee1e24f252ddfc7f1a97fe2179a45d513b93545b3c507c309",
+            "line": 2,
+            "timeRange": [
+              6.2,
+              9.2
+            ],
+            "holdRange": [
+              6.382000000000001,
+              8.958333333333334
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 62,
+            "expectedHoldFrames": 61,
+            "readableHoldSeconds": 2.5833333333333335,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 5,
+              "hold": 62,
+              "exit": 5
+            }
+          },
+          {
+            "unitId": "e81946f81af61aeebd7a740201c4638c5ea03dc6fd45cf9aa04d5584878f95bb",
+            "line": 3,
+            "timeRange": [
+              9.2,
+              12.2
+            ],
+            "holdRange": [
+              9.379999999999999,
+              11.84
+            ],
+            "status": "MEASURED",
+            "frameCount": 72,
+            "holdFrameCount": 59,
+            "expectedHoldFrames": 59,
+            "readableHoldSeconds": 2.4583333333333335,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 5,
+              "hold": 59,
+              "exit": 8
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": 63,
+          "motion": 34,
+          "temporalContrast": 73,
+          "hookNovelty": 17,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 73,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 56.08143904396826,
+          "localContrast": 53,
+          "motionRealization": 100,
+          "typographyDiversity": 19
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "NO_IMPROVEMENT_CLAIM_FROM_EQUAL_OR_UNCALIBRATED_SCORES"
+    },
+    {
+      "fixture": {
+        "id": "independent-fixed",
+        "seed": 611,
+        "aspect": "9:16",
+        "image": "independent-gradient",
+        "audio": "steady",
+        "lyrics": [
+          "固定した Long lyric",
+          "自動区間の明るい余白"
+        ],
+        "manual": true,
+        "duration": 4,
+        "res": 360,
+        "fps": 24,
+        "baselineCinema": true
+      },
+      "comparable": true,
+      "input": {
+        "audioHash": "6f7fa0b28001b3530382885978de59bcbbeed485f5f4eda174361c61aabce5dc",
+        "imageHash": "617b31a71877a0cb857a210b4f52524264ec0e3b1cc3eb580288679deafa9d64",
+        "lyrics": "[00:00.20]固定した Long lyric\n[00:01.20]自動区間の明るい余白",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ],
+        "manualOverrides": {
+          "0": {
+            "lock": true,
+            "layout": "center",
+            "cam": "stillCamera",
+            "enter": "cut",
+            "hold": "still",
+            "decor": []
+          }
+        },
+        "manualTypography": {
+          "font": "embedded_bold",
+          "align": "left",
+          "maxWidth": 0.72
+        }
+      },
+      "baseline": {
+        "videoSHA256": "1161ea1af0bdc815073ab8381e322aba97db4b57866e7663c45f17dc6251ffe7",
+        "sourceCommit": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+        "lyricVerification": "FAILED",
+        "failedUnits": [
+          {
+            "unitId": "267eac706387681248310a217a090fa1f046491d5e2e23132f4bfd253ec6a69a",
+            "line": 0,
+            "timeRange": [
+              0.8162790697674418,
+              1.2
+            ],
+            "holdRange": [
+              0.9544186046511627,
+              1.1040697674418605
+            ],
+            "status": "FAILED",
+            "frameCount": 9,
+            "holdFrameCount": 4,
+            "expectedHoldFrames": 4,
+            "readableHoldSeconds": 0.041666666666666664,
+            "minimumContrast": 9,
+            "reason": "NATIVE_OR_DECODED_GLYPH_FAILURE",
+            "phaseCounts": {
+              "entry": 3,
+              "hold": 4,
+              "exit": 2
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": null,
+          "motion": 89,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": null,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": null,
+          "localContrast": 21,
+          "motionRealization": 100,
+          "typographyDiversity": null
+        }
+      },
+      "v5": {
+        "videoSHA256": "95ec8ef0b0c8718709faa9310aaf55988f22c73ed21a85e398dbe3ce45fe1159",
+        "sourceCommit": "14c93432803984edbb4c8a3591d733d9b32380d7",
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "planHash": "331ff8e2c92eb2a77dba705d0d9b1150df0a552e0bb0849dd0501e2bbd7fb7dd",
+        "inputHash": "81cd862213c9867cb8abe08cfb411ccea68c3a51f0bf7a58f6d65ee5a23b9d53",
+        "selectedCandidateId": "f154492ef173aca5adf3ad2482057aaf7d92d170495a14aa03cb9c0c9d059ed4",
+        "evidenceId": "3d62e9b7817b5f7ace1baba21e3a843b6ce81bed2d40a8a027dc8aee9787e68a",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            3.9999773242630385
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "lyricVerification": "MEASURED",
+        "units": [
+          {
+            "unitId": "188f142bf80e4c4a8fa84b25489ea646bdd790c979ac5617b63bc5723e89cf41",
+            "line": 0,
+            "timeRange": [
+              0.2,
+              0.8162790697674418
+            ],
+            "holdRange": [
+              0.42186046511627906,
+              0.6622093023255813
+            ],
+            "status": "MEASURED",
+            "frameCount": 15,
+            "holdFrameCount": 5,
+            "expectedHoldFrames": 5,
+            "readableHoldSeconds": 0.20833333333333334,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 6,
+              "hold": 5,
+              "exit": 4
+            }
+          },
+          {
+            "unitId": "4cd7678c30ee094842debceab5cb94ca11b5c67aa2611e44ae8792e9441c9d40",
+            "line": 0,
+            "timeRange": [
+              0.8162790697674418,
+              1.2
+            ],
+            "holdRange": [
+              0.9544186046511627,
+              1.1040697674418605
+            ],
+            "status": "MEASURED",
+            "frameCount": 9,
+            "holdFrameCount": 4,
+            "expectedHoldFrames": 4,
+            "readableHoldSeconds": 0.16666666666666666,
+            "minimumContrast": 100,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 3,
+              "hold": 4,
+              "exit": 2
+            }
+          },
+          {
+            "unitId": "58b4e155da433060dbe52586dcdae88eb57ab7f4ee76f9600c39313997a75561",
+            "line": 1,
+            "timeRange": [
+              1.2,
+              3.7
+            ],
+            "holdRange": [
+              1.39,
+              3.4583333333333335
+            ],
+            "status": "MEASURED",
+            "frameCount": 60,
+            "holdFrameCount": 49,
+            "expectedHoldFrames": 49,
+            "readableHoldSeconds": 2.0416666666666665,
+            "minimumContrast": 28,
+            "reason": null,
+            "phaseCounts": {
+              "entry": 5,
+              "hold": 49,
+              "exit": 6
+            }
+          }
+        ],
+        "rawMetrics": {
+          "perceptualNovelty": null,
+          "motion": 87,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 81,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": null,
+          "localContrast": 21,
+          "motionRealization": 100,
+          "typographyDiversity": 21
+        },
+        "manualSettingsUnchanged": true
+      },
+      "improvement": "ACTUAL_PRIMARY_LYRIC_ABSENCE_REPAIRED"
+    }
+  ]
+}
