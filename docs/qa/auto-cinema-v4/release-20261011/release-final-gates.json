@@ -30,7 +30,7 @@
     "peak memory UNMEASURED",
     "historical HTTP503 and interrupted local sessions cause UNRESOLVED"
   ],
-  "production": "NOT_YET_DEPLOYED",
+  "production": "AWAITING_MAIN_BUILD_AND_DEPLOY",
   "regression": {
     "pass": 187,
     "fail": 0,
@@ -41,5 +41,7 @@
   "aggregateCI": "SUCCESS",
   "aggregateBrowserUI": "PASS",
   "aggregateH264AACFullDecode": "PASS",
-  "aggregateDeploy": "SKIPPED_EXPECTED_PR"
+  "aggregateDeploy": "SKIPPED_EXPECTED_PR",
+  "mainMergeSHA": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+  "mainTreeIdenticalToApprovedHead": true
 }
