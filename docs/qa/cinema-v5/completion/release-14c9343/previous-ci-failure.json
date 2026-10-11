@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "7fad8cb6f0d62b31dba72c608401a8c577ffc949",
+  "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38159522252",
+  "status": "FAIL",
+  "observedFailures": [
+    "2026-10-11T18:06:23.5842922Z AssertionError [ERR_ASSERTION]: clean test failed; inspect clean_restore logs",
+    "2026-10-11T18:06:23.5887746Z clean_backup_restore_test.js: FAILED",
+    "2026-10-11T18:43:54.0011287Z Sequential MP4 inspection unavailable; using browser seeking TypeError: track.getCodec is not a function",
+    "2026-10-11T18:43:54.0098752Z kamen_sequential_decode_test.cjs: FAILED"
+  ],
+  "fixedReleaseHead": "14c93432803984edbb4c8a3591d733d9b32380d7",
+  "currentCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38178818961",
+  "currentStatus": "IN_PROGRESS",
+  "nestedRestoreFailure": "Requires clean-restore revalidation; previous nested logs not available and no independent claim of its cause"
+}

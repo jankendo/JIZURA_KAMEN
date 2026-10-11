@@ -1,0 +1,15 @@
+route-legacy-no-image v3 FAIL page.evaluate: Error: Readability guard retained a live native ImageBitmap
+    at eval (eval at evaluate (:311:30), <anonymous>:2:3987)
+    at async <anonymous>:337:30
+route-legacy-multi v3 PASS 25593ms
+route-legacy-locked v3 PASS 129077ms
+route-final-verify-cancel v3 PASS 29941ms
+AssertionError [ERR_ASSERTION]: Benchmark contains failures; inspect results.json
+    at /workspace/kamen-v5-final/dev/cinema_v3_matrix_benchmark.cjs:36:33 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
