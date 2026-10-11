@@ -2,6 +2,7 @@
 // Reobserve an existing immutable MP4 with its original runtime and selected plan.
 // This never replans, re-encodes, or replaces the original renderer.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict'),{chromium}=require('playwright-core');
+const {execFileSync}=require('node:child_process');
 const [directory,currentURL,baselineURL]=process.argv.slice(2),root=path.resolve(__dirname,'..'),digest=b=>crypto.createHash('sha256').update(b).digest('hex');
 assert(directory&&currentURL&&baselineURL,'Usage: cinema_v5_reobserve_final.cjs MATRIX_DIR CURRENT_URL BASELINE_URL');
 (async()=>{
@@ -14,6 +15,7 @@ assert(directory&&currentURL&&baselineURL,'Usage: cinema_v5_reobserve_final.cjs 
    const response=await page.goto(row.variant==='baseline'?baselineURL:currentURL,{waitUntil:'load'});assert.equal(digest(await response.body()),row.runtimeHTMLSHA256,'Original renderer runtime changed');
    await page.evaluate(()=>{J.cinemaV5??={version:5,humanStatus:'HUMAN_UNVERIFIED'};});
    for(const file of ['vendor/aac-browser.min.js','src/11zzzzzzzzza_decoded_v5.js','src/11zzzzzzzzzaa_final_artifact_v5.js'])await page.addScriptTag({content:fs.readFileSync(path.join(root,file),'utf8')});
+   await page.evaluate(identity=>J.cinemaV5.finalArtifactVerifierIdentity=identity,{sourceCommit:execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),sourceFileSHA256:digest(fs.readFileSync(path.join(root,'src/11zzzzzzzzzaa_final_artifact_v5.js')))});
    const evidence=await page.evaluate(async({reference,wav,video,validation,provenance,variant})=>{
     const revive=(k,v)=>v?.__qaTypedArray?new window[v.__qaTypedArray](v.data):v?.__qaMap?new Map(v.__qaMap):v?.__qaSet?new Set(v.__qaSet):v;
     if(variant==='baseline'&&!window.KAMEN_BUILD_INFO)window.KAMEN_BUILD_INFO=Object.freeze({sourceCommit:'5ea7d953f1720654521a2cd9d800706d40f40c49',sourceDirty:false,sourceTreeSHA256:null,identityMethod:'Pinned pristine baseline worktree and independently checked runtime HTML SHA-256'});
