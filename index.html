@@ -540,6 +540,9 @@ button:disabled,input:disabled,select:disabled { opacity:.5;cursor:not-allowed; 
 /* Completed files survive the processing panel closing. */
 .kamen-downloads{position:fixed;right:16px;bottom:16px;z-index:10000;width:min(540px,calc(100vw - 32px));max-height:42vh;overflow:auto;padding:16px;background:#101827;color:#f4f7ff;border:1px solid #42639a;border-radius:12px;box-shadow:0 8px 40px #0008;font-size:14px;line-height:1.5}
 .kamen-downloads p{margin:6px 0 12px;color:#c2cee2}.kamen-download-row{display:flex;gap:12px;align-items:center;padding:8px 0;border-top:1px solid #ffffff20}.kamen-download-row a{color:#a6d3ff;overflow-wrap:anywhere}.kamen-download-row a:first-child{flex:1}.kamen-download-row button{flex-shrink:0}.kamen-download-row a:nth-child(2){flex-shrink:0;font-size:14px}
+/* Retained save links must not cover progress, cancellation or retry controls. */
+body:has(.processing-panel:not([hidden])) .kamen-downloads{left:16px;right:auto;width:min(540px,calc(100vw - 408px))}
+@media(max-width:600px){body:has(.processing-panel:not([hidden])) .kamen-downloads{left:8px;right:8px;top:8px;bottom:auto;width:calc(100vw - 16px);max-height:calc(45vh - 32px)}}
 
 </style>
 </head>

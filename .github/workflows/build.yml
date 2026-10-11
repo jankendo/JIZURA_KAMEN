@@ -57,6 +57,7 @@ jobs:
           node --test dev/export_watchdog_test.cjs
           npm run test:cinema-export -- http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa"
           node dev/one_click_browser_contract.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa" "$RUNNER_TEMP/kamen-browser-qa/ui-boundary"
+          node dev/processing_overlay_browser_test.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa/processing-overlays"
       - name: Preserve validation evidence
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
