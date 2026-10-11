@@ -105,12 +105,15 @@ Q.lyricTimingInvariant=(p,cuts)=>{
  }
  return true;
 };
+// Each internal lyric unit needs its own visible actual-time samples. A shared line ID
+// cannot certify later units using observations from the first unit of the phrase.
+Q.decodedLyricCoverage=(cuts,primary)=>cuts.length>0&&cuts.every(c=>primary.some(s=>s.line===c.line&&s.samples?.length&&s.visibleSamples===s.samples.length&&s.samples.every(x=>{const t=x.actualTime;return F(t)&&t>=c.start&&t<c.end;})));
 const final=V.finalEvaluation;
 V.finalEvaluation=async(result,p,args,session)=>{
  const r=await final(result,p,args,session),base={outputProfile:V.outputProfile(p,args.range),profileId:r.profile.profileId,planHash:r.evaluation.planHash,inputHash:session.input.inputHash,rendererVersion:V.version,source:'ENCODED_MP4'},d=p.lastPixelQA?.metrics?.decodedCinema,q=d?.cinemaV5;
  const add=(id,value,meta)=>{r.evaluation.measurements=r.evaluation.measurements.filter(m=>m.id!==id);r.evaluation.measurements.push(V.metric(id,value,{...base,...meta}));};
  for(const [id,key]of Object.entries({temporalContrastV2:'temporalContrast',regionalNoveltyV2:'regionalNovelty',motionRealizationV2:'motionRealization',musicFitV2:'musicSync'})){const m=q?.[key];add(id,m?.value??null,{...(m||{}),unit:'index/1',method:m?.method||'decoded V5 observation unavailable',sampleCount:m?.sampleCount||0,confidence:m?.confidence??0});}
- const primary=d?.layerPresence?.primaryText?.samples||[],cuts=(p.cuts||[]).filter(c=>c.line>=0&&c.start<(args.range?.end??p.duration)&&c.end>(args.range?.start??0)),covered=cuts.length>0&&cuts.every(c=>primary.some(s=>s.line===c.line&&s.samples?.length&&s.visibleSamples===s.samples.length)),original=cuts.every(c=>String(c.lineText??c.text??'')===String(p.lines?.[c.line]?.text??c.lineText??c.text??''));
+ const primary=d?.layerPresence?.primaryText?.samples||[],cuts=(p.cuts||[]).filter(c=>c.line>=0&&c.start<(args.range?.end??p.duration)&&c.end>(args.range?.start??0)),covered=Q.decodedLyricCoverage(cuts,primary),original=cuts.every(c=>String(c.lineText??c.text??'')===String(p.lines?.[c.line]?.text??c.lineText??c.text??''));
  add('lyricIntegrity',covered&&original?100:null,{status:!original?'FAILED':covered?'MEASURED':'UNMEASURED',sampleCount:covered?primary.length:0,method:'input snapshot + original plan strings + decoded registered primary presence; not OCR'});r.profile.requiredMetrics.push('lyricIntegrity');
  const timing=Q.lyricTimingInvariant(p,cuts),clock=q?.clockStatus==='DECODED_TIMESTAMP';add('lyricTiming',timing&&clock&&covered?100:null,{status:!timing?'FAILED':clock&&covered?'MEASURED':'UNMEASURED',sampleCount:clock&&covered?primary.length:0,method:'original phrase onset / valid internal unit times + decoded clock/presence coverage; not sung-syllable synchronization'});r.profile.requiredMetrics.push('lyricTiming');
  const audit=await Q.auditDecodedAudio(result.blob,args.audio,args.range,args.signal);if(audit.status!=='NOT_APPLICABLE'){add('audioIntegrity',audit.value,{...audit,method:audit.method||'decoded AAC unavailable'});r.profile.requiredMetrics.push('audioIntegrity');}
