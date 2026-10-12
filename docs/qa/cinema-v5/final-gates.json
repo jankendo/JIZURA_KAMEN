@@ -4,7 +4,7 @@
   "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "PASS",
   "RELEASE_GO": "PASS",
-  "status": "MERGED_DEPLOYING",
+  "status": "DEPLOYED_VERIFYING_PRODUCTION",
   "currentCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38178818961",
   "previousCIFailure": "Obsolete sequential-decoder fixture and clean-restore test; fixed fixture PASS; current full regression still required",
   "completedEvidence": {
@@ -22,14 +22,13 @@
     "naturalSelectionScope": "Retained original-renderer calm/chant plus current-implementation no-image normal optimizer; benchmark fixed-initial-layout cases excluded"
   },
   "requiredRemaining": [
-    "main Build/Pages artifact/Deploy SUCCESS",
-    "HTTPS content hashes and actual production MP4 E2E"
+    "Actual production browser MP4 generation/save/full decode and source identity"
   ],
   "generationSpeedReleaseGate": false,
   "humanStatus": "HUMAN_UNVERIFIED",
   "artistic100Established": false,
   "mainChanged": true,
-  "productionChanged": false,
+  "productionChanged": true,
   "environmentInterruptedWork": "completion/release-14c9343/environment-interruption-7fad8cb.json",
   "history": "Original final gates preserved in completion/historical-final-gates-9bc1a210.json and Git history",
   "qualityAcceptance": {
@@ -75,11 +74,13 @@
     "total": 195,
     "skipAlternativeBrowserPass": 2
   },
-  "deployment": "MAIN_CI_IN_PROGRESS",
-  "productionE2E": "UNVERIFIED",
+  "deployment": "SUCCESS",
+  "productionE2E": "IN_PROGRESS",
   "mainCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "mainCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38195073095",
   "repairEvidence": "completion/release-14c9343/main-ci-completion-observer-failure.json",
   "repairCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38189609154",
-  "repairCIStatus": "SUCCESS"
+  "repairCIStatus": "SUCCESS",
+  "mainCIStatus": "SUCCESS",
+  "productionDistribution": "PASS: 8/8 files byte SHA256 equal approved main build"
 }
