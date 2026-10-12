@@ -20,3 +20,5 @@ assert.equal(JSON.stringify(steps),before,'selection must not edit measured evid
 assert.equal(J.chooseRegistryStoryboard([{line:0,candidates:[c('unsafe','x',999,B,false)]}]).status,'NO_MEASURED_SAFE_PATH');
 assert(J.chooseRegistryStoryboard([{line:0,role:'intro',energy:.1,candidates:[c('a','statement',1,A)]},{line:1,role:'outro',energy:.1,candidates:[c('a','statement',1,A),c('b','frame',.1,B)]}]).picks.every(x=>x.layout==='a'),'quiet scenes should not be forced into unnecessary effects');
 console.log('Global measured storyboard: deterministic, safe-only, phrase-aware, and non-mutating PASS');
+
+assert.deepEqual(Array.from(J.chooseRegistryStoryboard([{line:0,role:'verse',energy:.7,candidates:[c('a','one',1,A)]},{line:1,role:'verse',energy:.7,candidates:[c('a','one',1,A)]},{line:2,role:'verse',energy:.7,candidates:[c('a','one',1,A),c('label-only','other',.99,A)]}]).picks,x=>x.layout),['a','a','a'],'renaming a family without a real pixel change must not escape fatigue');

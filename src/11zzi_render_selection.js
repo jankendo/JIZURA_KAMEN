@@ -84,7 +84,8 @@ J.chooseRegistryStoryboard=(steps,beamWidth=8)=>{
    const quiet=['intro','outro','break'].includes(step.role)||(Number.isFinite(step.energy)&&step.energy<.25);
    const target=C((quiet?.09:.20)+energyDelta*.36+(boundary?.16:0),.05,.65);
    const pacing=distance===null?0:.18*(1-Math.abs(distance-target));
-   const fatigue=prev?.family===c.family&&state.previous?.family===c.family&&!quiet?-.20:0;
+   const previousDistance=state.previous?J.registryInkDistance(state.previous.signature,c.signature):null;
+   const fatigue=distance!==null&&previousDistance!==null&&distance<.06&&previousDistance<.06&&!quiet?-.20:0;
    const stagnant=distance!==null&&distance<.06&&!quiet&&energyDelta>.15?-.12:0;
    const overload=distance!==null&&distance>.82&&!boundary&&quiet?-.16:0;
    const item={...c,line:step.line,energy:step.energy,role:step.role};
