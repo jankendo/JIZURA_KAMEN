@@ -2,7 +2,8 @@
 const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs'),{J,context}=engine();context.Path2D=require('@napi-rs/canvas').Path2D;
 (async()=>{
  const project=J.defaultProject();Object.assign(project,{lyrics:'[00:00.30]時をつなぐ\n[00:03.20]遠くの灯りを見つめる',res:720,fps:24,style:'paper'});project.customBg.enabled=false;
- const plan=J.plan(project,{duration:7,beats:[],features:{energy:.2}});plan.musicalPhoto=null;
+ const plan=J.plan(project,{duration:7,beats:[],features:{energy:.2}});plan.musicalPhoto=null;const previousMotion=plan.motionDirector7,previousWorld=plan.visualWorld;plan.motionDirector7={};plan.visualWorld={chapters:[{from:0,to:7,photoExit:true,fieldColor:'#0b1020'}]};
+ const requested={text:'時をつなぐ',color:'#111111',size:80};assert.equal(J.adjustLocalReadability({plan,cut:plan.cuts.find(c=>c.line>=0),t:1,pass:'main',H:plan.H},requested).color,'#111111','unrendered photo-exit field cannot override actual non-image foreground color');plan.motionDirector7=previousMotion;plan.visualWorld=previousWorld;
  const cut=plan.cuts.find(c=>c.line>=0);Object.assign(cut,{layout:'huge',inDur:0,outDur:0,enter:'cut',exit:'cut',hold:'still',cam:'stillCamera',params:{...cut.params,font:'embedded_bold'}});
  const original=JSON.stringify(plan.cuts.map(c=>[c.text,c.start,c.end,c.line]));
  const locked=plan.cuts.filter(c=>c.line>=0).at(-1);locked.locked=true;const beforeLock=JSON.stringify(locked);
