@@ -1,0 +1,118 @@
+{
+  "status": "PASS",
+  "productionURL": "https://jankendo.github.io/JIZURA_KAMEN/",
+  "mainCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "runtimeSHA256": "038ffeed1ec7d4c58f728f0c9115b3d9b532e39e6ec1b884911eaf3b22070f16",
+  "videoSHA256": "01cdb6b1b6afbc31f3de95f4789f8a70e40d1758bedd8deb9fb0cf12859e7b46",
+  "checks": [
+    {
+      "name": "startup",
+      "status": "PASS",
+      "version": "2.0.26",
+      "secure": true
+    },
+    {
+      "name": "background upload",
+      "status": "PASS"
+    },
+    {
+      "name": "TXT import",
+      "status": "PASS"
+    },
+    {
+      "name": "LRC import and timing",
+      "status": "PASS"
+    },
+    {
+      "name": "audio upload and analysis",
+      "status": "PASS",
+      "bpm": 120
+    },
+    {
+      "name": "automatic MV generation",
+      "status": "PASS",
+      "cuts": 4,
+      "lines": 4,
+      "duration": 8.999977324263039
+    },
+    {
+      "name": "preview playback",
+      "status": "PASS"
+    },
+    {
+      "name": "project save and reload",
+      "status": "PASS"
+    },
+    {
+      "name": "regenerate after restored audio",
+      "status": "PASS"
+    },
+    {
+      "name": "UI MP4 export and decode",
+      "status": "PASS",
+      "creativeState": "BELOW_TARGET",
+      "oneClick": true,
+      "video": "h264",
+      "audio": "aac",
+      "duration": "9.024000",
+      "progressUpdates": 776,
+      "decodedFrames": 216,
+      "visibleContent": true
+    }
+  ],
+  "codecs": {
+    "video": "h264",
+    "audio": "aac"
+  },
+  "completeFFmpegDecode": "PASS",
+  "actualOutput": {
+    "dimensions": [
+      1280,
+      720
+    ],
+    "fps": "24/1",
+    "decodedFrames": 216,
+    "duration": "9.024000",
+    "videoDuration": "9.000000",
+    "audioDuration": "9.024000"
+  },
+  "fileOutcome": {
+    "fileState": "SAVE_AVAILABLE",
+    "creativeState": "BELOW_TARGET",
+    "initialConfirmedPlanReused": false
+  },
+  "saveMeaning": "UI SAVE_AVAILABLE honestly describes browser download; Playwright downloaded and persisted actual MP4, then ffprobe and complete FFmpeg decode verified local saved bytes. Native OS save picker success is not claimed.",
+  "finalArtifactStatus": "MEASURED",
+  "binding": {
+    "inputHash": "e7af4bd4fde15a81e45eb0987093694e1159460d5f2a3e1421ac63a4a931932b",
+    "planHash": "14edf52fc5b6a4a289e3c06894cbd6a546f20255ed5ee294cf1b10b06dc78f81",
+    "outputProfile": {
+      "purpose": "FULL_MV",
+      "aspect": "16:9",
+      "fps": 24,
+      "range": [
+        0,
+        8.999977324263039
+      ],
+      "loopRequired": false,
+      "resolution": [
+        1280,
+        720
+      ]
+    },
+    "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+    "selectedCandidateId": "bbf41b38ceff1f2dfd185156bf77c47b9e11da095f8a47fa7716a9e2e530cefd",
+    "videoSHA256": "01cdb6b1b6afbc31f3de95f4789f8a70e40d1758bedd8deb9fb0cf12859e7b46",
+    "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+    "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+    "sourceDirty": false
+  },
+  "evidenceId": "79253f403ad3c2868f6eb408abbccb10b863075c2e027861ac0b8238f74a5b26",
+  "primaryLyricUnits": 4,
+  "pageErrors": [],
+  "resourceFailures": [],
+  "archiveBytes": 7320249,
+  "archiveSHA256": "408afe3df14339419f6168cc7f36ab3c675db7472637109de9490832ed7b224a",
+  "traceSHA256": "2c31473ce6195f5f7a1ec29efcd178b8e2f7c6ce76026e97f4da58781f3284bc",
+  "traceRetention": "Retained locally; replayable inputs, movie, QA, screenshot, processing states and response bytes archived to GitHub without duplicate large trace"
+}

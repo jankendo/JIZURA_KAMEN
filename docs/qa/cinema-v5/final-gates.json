@@ -1,12 +1,12 @@
 {
-  "sourceCommit": "14c93432803984edbb4c8a3591d733d9b32380d7",
+  "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "implementationSourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
   "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "PASS",
   "RELEASE_GO": "PASS",
-  "status": "DEPLOYED_VERIFYING_PRODUCTION",
-  "currentCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38178818961",
-  "previousCIFailure": "Obsolete sequential-decoder fixture and clean-restore test; fixed fixture PASS; current full regression still required",
+  "status": "SUCCESS",
+  "currentCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38195073095",
+  "previousCIFailure": "Historical decoder fixture and main UI observer race failures preserved; test-only repairs passed exact final main CI",
   "completedEvidence": {
     "comparisonConditions": 13,
     "comparisonRequired": 13,
@@ -15,15 +15,13 @@
     "routeLyrics": "All four MEASURED; actual cancellation/retry PASS on three image routes",
     "fontBrowserMP4s": 2,
     "fontBrowserDecode": "PASS",
-    "formalCIEnvironmentSkips": "Exact PR #11 CI 193 PASS / 0 FAIL / 2 SKIP; separate real browser alternatives PASS",
+    "formalCIEnvironmentSkips": "Final main official CI 193 PASS / 0 FAIL / 2 SKIP; two alternative real-browser tests separately PASS",
     "normalSelectionIntentSuccesses": 3,
     "normalSelectionIntentMeasured": 3,
-    "normalSelectionPopulation": 8,
-    "naturalSelectionScope": "Retained original-renderer calm/chant plus current-implementation no-image normal optimizer; benchmark fixed-initial-layout cases excluded"
+    "normalSelectionPopulation": 33,
+    "naturalSelectionScope": "All retained normal-shipping natural-direction suite exports plus every additional successful release UI execution. Repeated UI inputs included per real adopted video; fixed-style comparisons, forced controls and cancellation benchmark presets excluded."
   },
-  "requiredRemaining": [
-    "Actual production browser MP4 generation/save/full decode and source identity"
-  ],
+  "requiredRemaining": [],
   "generationSpeedReleaseGate": false,
   "humanStatus": "HUMAN_UNVERIFIED",
   "artistic100Established": false,
@@ -42,13 +40,22 @@
     ],
     "routeExports": "Four current-implementation paths PASS, including Legacy without candidate history and final-verification cancel/retry",
     "naturalDirection": {
-      "selectedPlanPopulation": 13,
-      "exportApplicable": 12,
-      "outsideExportNotApplicable": 1,
+      "allSelectedPlanUnits": 33,
+      "exportApplicablePopulation": 32,
+      "notApplicableOutsideExport": 1,
       "intentMeasured": 3,
       "intentSuccessful": 3,
-      "unmeasuredApplicable": 9,
-      "unmeasuredReasons": "Unsupported explicit motion contract or insufficient partial-reveal observations; retained per unit"
+      "measurableRateOfApplicable": 0.09375,
+      "realizationSuccessRate": 1.0,
+      "unmeasuredApplicable": 29,
+      "originalRepresentativeSuite": {
+        "allSelectedPlanUnits": 13,
+        "exportApplicablePopulation": 12,
+        "intentMeasured": 3,
+        "intentSuccessful": 3,
+        "unmeasuredApplicable": 9
+      },
+      "evidence": "completion/release-14c9343/natural-direction-census-final-main-2e7ed47.json"
     },
     "sameVideoReobservation": "Independent panels: all unit summaries and decoded frame observations exactly equal across two measurements; raw legacy aggregate 0 retained",
     "majorActualRegressionConfirmed": false,
@@ -63,8 +70,9 @@
     "saveCancelErrorBoundary": "PASS, synthetic acceptance with actual validated MP4 reuse; separate from generation proof",
     "overlayFiveViewports": "PASS",
     "fontBrowserAlternatives": "2 PASS distinct from formal environment SKIPs",
-    "acceptedMP4CompleteDecode": 37,
-    "negativeControlNotIncludedInAcceptedCount": true
+    "acceptedMP4CompleteDecode": 43,
+    "negativeControlNotIncludedInAcceptedCount": true,
+    "acceptedCountScope": "All accepted local, CI and HTTPS production outputs including thirteen formal V4 baseline videos; 43 distinct hashes checked again"
   },
   "currentCIStatus": "SUCCESS",
   "regression": {
@@ -75,12 +83,30 @@
     "skipAlternativeBrowserPass": 2
   },
   "deployment": "SUCCESS",
-  "productionE2E": "IN_PROGRESS",
+  "productionE2E": "PASS",
   "mainCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "mainCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38195073095",
   "repairEvidence": "completion/release-14c9343/main-ci-completion-observer-failure.json",
   "repairCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38189609154",
   "repairCIStatus": "SUCCESS",
   "mainCIStatus": "SUCCESS",
-  "productionDistribution": "PASS: 8/8 files byte SHA256 equal approved main build"
+  "productionDistribution": "PASS: 8/8 files byte SHA256 equal approved main build",
+  "qualityComparisonReleaseHead": "14c93432803984edbb4c8a3591d733d9b32380d7",
+  "comparisonReuseReason": "Exact shipped production source tree SHA256 unchanged by test-only fix and merge commits; original per-video HEADs and hashes remain in raw evidence",
+  "productionURL": "https://jankendo.github.io/JIZURA_KAMEN/",
+  "productionVideoSHA256": "01cdb6b1b6afbc31f3de95f4789f8a70e40d1758bedd8deb9fb0cf12859e7b46",
+  "productionRuntimeSHA256": "038ffeed1ec7d4c58f728f0c9115b3d9b532e39e6ec1b884911eaf3b22070f16",
+  "acceptedCompleteDecodeCount": 43,
+  "acceptedCompleteDecodeCensus": "completion/release-14c9343/accepted-mp4-census-final-main-2e7ed47.json",
+  "productionEvidence": "completion/release-14c9343/production-e2e-2e7ed47.json",
+  "unresolved": [
+    "Historical legacy aggregate score discrepancies and mixed typography-diversity diagnostics retained, not numerically certified as universal improvement",
+    "29 natural-intent units UNMEASURED across all retained release UI repetitions; 3/32 applicable measured, 3/3 measured succeeded",
+    "Peak memory UNMEASURED; human aesthetic assessment HUMAN_UNVERIFIED; artistic100 not established"
+  ],
+  "releaseRecovery": {
+    "tag": "kamen-cinema-v5-pre-release-20261011",
+    "baselineMain": "5ea7d953f1720654521a2cd9d800706d40f40c49",
+    "method": "Normal-history revert of merge commits 2e7ed47 and 7ec4323 in reverse order via tested recovery PR; no force push"
+  }
 }
