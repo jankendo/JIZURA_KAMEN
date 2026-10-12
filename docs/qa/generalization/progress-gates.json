@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "sourceCommit": "187ae39d1611e5ad77a235a6b4c729b147aad3ca",
+  "baselineCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "UNVERIFIED",
+  "humanStatus": "HUMAN_UNVERIFIED",
+  "mainUnchanged": true,
+  "completedCurrentPilot": {
+    "fixture": "development-01",
+    "completeDecode": "PASS",
+    "codec": "H.264/AAC",
+    "lyricUnits": 9,
+    "lyricUnitsMeasured": 9,
+    "minimumLocalContrast": 100,
+    "videoSHA256": "7be42a57dc1cc7a80caaee893695101f6ecd4eea1bb3fb73676344a7966c5564"
+  },
+  "pending": [
+    "30-case matched baseline/current comparison",
+    "current-head full registry audit",
+    "current-head full regressions and CI",
+    "formal Browser E2E",
+    "independent holdout improvement and regression assessment"
+  ],
+  "knownFindings": [
+    "Non-image photo-exit foreground was chosen from an unrendered field; current pilot repaired with actual pixel proof",
+    "Historical acoustic proxy scores worsened, while full-frame lyric floor was 89→90; no artistic improvement certified",
+    "Original measured registry layouts can be replaced by physically protected incumbent components; final adoption trace remains UNVERIFIED for the acoustic pilot"
+  ],
+  "uncertainties": [
+    "Synthetic song-equivalent fixtures do not certify real-world genre coverage",
+    "Technique dispatch does not certify encoded survival or aesthetic fitness",
+    "Human artistic 100 remains unverified"
+  ]
+}
