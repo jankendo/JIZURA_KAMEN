@@ -1,0 +1,16 @@
+{
+  "nativeAuditUnbounded": {
+    "exitCode": 137,
+    "sourceCommit": "da84933f08c20c41de0a29d68dd299d540c3ec37",
+    "cgroupMemoryMaxBytes": 8589934592,
+    "oomKillObserved": 1,
+    "scope": "Native QA auditor concurrent with native story test; application/browser crash not observed",
+    "repair": "Sequential isolated workers with at most16 IDs, all profiles and registered IDs retained"
+  },
+  "auditInterruptedBySourceChange": {
+    "status": "INVALIDATED",
+    "scope": "Partially completed c8d71d7 audit rejected by sourceTree identity guard during subsequent code edit",
+    "error": "Mixed sourceTreeSHA256 detected; never counted as completed current-head audit",
+    "rerun": "Frozen final source, output report and capability JSON still pending"
+  }
+}
