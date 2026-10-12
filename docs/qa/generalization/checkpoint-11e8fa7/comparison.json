@@ -1,0 +1,89 @@
+{
+  "scope": "Two completed matched pairs; not the 30-case final assessment",
+  "pairs": [
+    {
+      "fixture": "development-01",
+      "inputEquality": true,
+      "baselineSHA": "a454a3f0e18f25a806c8df71320c013fbc35321806dbfdec9288b469344657ef",
+      "currentSHA": "d864fcedec295f7d6a0ddd2d5e9c71f445f41a8fa90bd1e5c7630fd8955989fb",
+      "metrics": {
+        "baseline": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 73,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 78,
+          "typographyDiversity": 37
+        },
+        "current": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 61,
+          "displayOnsetAccuracy": null,
+          "localContrast": 2,
+          "motionRealization": 100,
+          "typographyDiversity": 29
+        }
+      },
+      "lyricSafety": {
+        "baseline": "FAILED",
+        "current": "MEASURED"
+      },
+      "interpretation": "Actual clipping/readability repair observed; generic creative improvement not certified"
+    },
+    {
+      "fixture": "development-03",
+      "inputEquality": true,
+      "baselineSHA": "46a511e29f8b8a4edc33b1c7f248d77f7e42e1b4624ac09723872741f33fdc3c",
+      "currentSHA": "12c2bac44657284b04ad6024b8cf6a94359a395e8cf4da8400c54988ed5971fe",
+      "metrics": {
+        "baseline": {
+          "perceptualNovelty": 77,
+          "motion": 21,
+          "temporalContrast": 32,
+          "hookNovelty": 50,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 82,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 74.36714837509768,
+          "localContrast": 92,
+          "motionRealization": 100,
+          "typographyDiversity": 100
+        },
+        "current": {
+          "perceptualNovelty": 75,
+          "motion": 20.5,
+          "temporalContrast": 39,
+          "hookNovelty": 50,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 82,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 74.44099968543688,
+          "localContrast": 92,
+          "motionRealization": 100,
+          "typographyDiversity": 90
+        }
+      },
+      "lyricSafety": {
+        "baseline": "MEASURED",
+        "current": "MEASURED"
+      },
+      "interpretation": "CinemaDuo composition restored from superseded regression; typography 100→90 and temporal 32→39 remain recorded"
+    }
+  ],
+  "timingComparability": "UNCOMPARABLE_CPU_CONTENTION",
+  "humanEvaluation": "HUMAN_UNVERIFIED"
+}
