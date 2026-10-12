@@ -53,6 +53,46 @@ J.selectionGlyphEvidence=(env,it)=>{
  ctx.restore();let collisions=0;for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const a=boxes[i],b=boxes[j],intersection=Math.max(0,Math.min(a.x1,b.x1)-Math.max(a.x0,b.x0))*Math.max(0,Math.min(a.y1,b.y1)-Math.max(a.y0,b.y0)),area=Math.min((a.x1-a.x0)*(a.y1-a.y0),(b.x1-b.x0)*(b.y1-b.y0));if(intersection>area*.12)collisions++;}
  const short=J.graphemes(norm(env.cut.grammar?env.cut.lineText:env.cut.text??env.cut.lineText)).length<=4,cap=env.H>env.W?(short?.25:.145):(short?.29:.195);return {collisions,distortion,maxGlyphHeight:maxHeight,minAlpha,readable:!distortion&&!collisions&&maxHeight<=cap&&minAlpha>=.55};
 };
+// Cross-phrase optimization uses actual primary-glyph pixels, not arbitrary technique rotation.
+J.registryInkSignature=(mask,w,h)=>{
+ if(!mask||!w||!h)return null;
+ const cols=20,rows=12,out=[];
+ for(let gy=0;gy<rows;gy++)for(let gx=0;gx<cols;gx++){
+  const x0=Math.floor(gx*w/cols),x1=Math.max(x0+1,Math.floor((gx+1)*w/cols)),y0=Math.floor(gy*h/rows),y1=Math.max(y0+1,Math.floor((gy+1)*h/rows));
+  let n=0;for(let y=y0;y<y1;y++)for(let x=x0;x<x1;x++)n+=mask[(y*w+x)*4+3]>80?1:0;
+  out.push(n/((x1-x0)*(y1-y0)));
+ }
+ return out;
+};
+J.registryInkDistance=(a,b)=>{
+ if(!a||!b||a.length!==b.length)return null;
+ let delta=0,union=0;for(let i=0;i<a.length;i++){delta+=Math.abs(a[i]-b[i]);union+=Math.max(a[i],b[i]);}
+ return union>0?Math.min(1,delta/union):0;
+};
+// Only candidates that passed rendered glyph and safe-area checks enter the beam.
+J.chooseRegistryStoryboard=(steps,beamWidth=8)=>{
+ const cap=Math.max(1,Math.min(32,Math.floor(beamWidth)||8));
+ let beam=[{score:0,picks:[],last:null,previous:null,serial:''}];
+ for(const step of steps){
+  const eligible=(step.candidates||[]).filter(c=>c?.evidence?.eligible&&Number.isFinite(c.score)&&c.signature);
+  if(!eligible.length)return {status:'NO_MEASURED_SAFE_PATH',picks:[],score:null};
+  const next=[];
+  for(const state of beam)for(const c of eligible){
+   const prev=state.last,distance=prev?J.registryInkDistance(prev.signature,c.signature):null;
+   const energyDelta=Math.abs((step.energy??.5)-(prev?.energy??step.energy??.5)),boundary=!!prev&&prev.role!==step.role;
+   const quiet=['intro','outro','break'].includes(step.role)||(step.energy??.5)<.25;
+   const target=C((quiet?.09:.20)+energyDelta*.36+(boundary?.16:0),.05,.65);
+   const pacing=distance===null?0:.18*(1-Math.abs(distance-target));
+   const fatigue=prev?.family===c.family&&state.previous?.family===c.family&&!quiet?-.20:0;
+   const stagnant=distance!==null&&distance<.06&&!quiet&&energyDelta>.15?-.12:0;
+   const overload=distance!==null&&distance>.82&&!boundary&&quiet?-.16:0;
+   const item={...c,line:step.line,energy:step.energy,role:step.role};
+   next.push({score:state.score+c.score+pacing+fatigue+stagnant+overload,picks:[...state.picks,item],last:item,previous:prev,serial:state.serial+'|'+c.layout});
+  }
+  next.sort((a,b)=>b.score-a.score||a.serial.localeCompare(b.serial));beam=next.slice(0,cap);
+ }
+ return {status:'MEASURED_SAFE_SEQUENCE',picks:beam[0].picks,score:beam[0].score,method:'beam-search/rendered-primary-ink-v1',beamWidth:cap};
+};
 J.compareRegistryCandidates=async(project,audio,image,options={})=>{
  const musicProfile=J.songDirectionProfile(audio);
  const initial={...J.proposeDirection(project,audio,image),overrides:JSON.parse(JSON.stringify(project.overrides||{}))},probeProject={...project,style:initial.style,mood:initial.mood,fx:initial.fx,enabled:initial.enabled,seed:initial.seed,overrides:initial.overrides,autoDirection:true};probeProject.artDirection=J.makeArtDirection(probeProject,audio,initial);const p=J.plan(probeProject,audio);
@@ -81,13 +121,13 @@ J.compareRegistryCandidates=async(project,audio,image,options={})=>{
   const motionCut={...candidateCut(sp,representatives[0],'photoStatement',font),style,styleKey:winner.id,start:0,end:2,dur:2},motionPlan={...sp,cuts:[motionCut],duration:2};
   for(const id of Object.keys(J.ENTER)){try{const probes=[0,.025,.06,.11,.2].map(dt=>sample(motionPlan,{...motionCut,enter:id},dt));motionResults.push({group:'enter',id,eligible:probes.every(ev=>ev.eligible&&ev.height<.35),evidence:probes.map(metrics)});}catch(error){motionResults.push({group:'enter',id,eligible:false,reason:error.message});}progress('文字が消えない導入を比較しています');if(motionResults.length%8===0)await yieldUI();}
   for(const id of Object.keys(J.HOLD)){try{const early=sample(motionPlan,{...motionCut,hold:id},.6),late=sample(motionPlan,{...motionCut,hold:id},1.1),delta=J.comparePresentationMasks(early.mask,late.mask,w,h).rasterDifference,controlEarly=sample(motionPlan,{...motionCut,hold:'still'},.6),controlLate=sample(motionPlan,{...motionCut,hold:'still'},1.1),contribution=(J.comparePresentationMasks(early.mask,controlEarly.mask,w,h).rasterDifference+J.comparePresentationMasks(late.mask,controlLate.mask,w,h).rasterDifference)/2;motionResults.push({group:'hold',id,eligible:early.eligible&&late.eligible&&delta<.35,evidence:[metrics(early),metrics(late)],delta,contribution});}catch(error){motionResults.push({group:'hold',id,eligible:false,reason:error.message});}progress('保持中の読みやすさを比較しています');if(motionResults.length%8===0)await yieldUI();}
-  const entries={},history=[],holdHistory=[],seen=new Map(),available=layoutResults.filter(x=>x.status==='ELIGIBLE_FOR_MEASURED_PHRASES');
+  const entries={},history=[],holdHistory=[],seen=new Map(),portfolios=[],available=layoutResults.filter(x=>x.status==='ELIGIBLE_FOR_MEASURED_PHRASES');
   for(const c of unlocked){const text=norm(c.lineText),repeatKey=J.vocaliseGroup?.(c.lineText)||text,rep=seen.get(repeatKey)||0,previous=seen.get(repeatKey+'|choice'),nearest=representatives.slice().sort((a,b)=>Math.abs(norm(a.lineText).length-text.length)-Math.abs(norm(b.lineText).length-text.length))[0],short=text.length<=4,role=p.musicalStructure?.sections?.find(s=>c.start>=s.from&&c.start<s.to)?.role;
    const section=p.musicalStructure?.sections?.find(s=>c.start>=s.from&&c.start<s.to),energy=section?.energy??audio?.features?.energy??.5;
    const ranked=available.map(l=>{const evidence=l.probes.find(v=>v.line===nearest.line),choice=candidateCut(sp,c,l.id,font);if(!evidence?.eligible)return null;const roleFit=short?['hero','condensed','banner','frame'].includes(l.family):rep>0?['phrase','frame','banner','condensed','diagonal'].includes(l.family):['statement','condensed','phrase'].includes(l.family);const chantStage=J.vocaliseGroup?.(c.lineText)?rep%4:null,stageFamilies=[['statement','phrase'],['frame','banner'],['radial','split','depth','perspective'],['hero','condensed','diagonal']],stageFit=chantStage===null?0:stageFamilies[chantStage].includes(l.family)?.42:0;const novelty=previous?.family===l.family?-.45:rep>0?.17:0,streak=history.at(-1)===l.family?-.18:0,graphicPenalty=['banner','frame'].includes(l.family)&&history.slice(-2).some(x=>['banner','frame'].includes(x))?-.12:0;
-    const ev=sample(sp,{...choice,style,styleKey:winner.id},.6);if(!ev.eligible)return null;return {layout:l.id,family:l.family,params:choice.params,score:.20*(ev.contrastFit??0)+.10*C(ev.opaqueInk/Math.max(1,ev.ink))+.12*C(ev.height/(short?.22:.14))+(roleFit?.18:0)+.4*J.songLayoutFit(l.family,musicProfile,energy,role,rep)+stageFit+novelty+streak+graphicPenalty,evidence:metrics(ev)};
+    const ev=sample(sp,{...choice,style,styleKey:winner.id},.6);if(!ev.eligible)return null;return {layout:l.id,family:l.family,params:choice.params,score:.20*(ev.contrastFit??0)+.10*C(ev.opaqueInk/Math.max(1,ev.ink))+.12*C(ev.height/(short?.22:.14))+(roleFit?.18:0)+.4*J.songLayoutFit(l.family,musicProfile,energy,role,rep)+stageFit+novelty+streak+graphicPenalty,evidence:metrics(ev),signature:J.registryInkSignature(ev.mask,w,h)};
    }).filter(Boolean).sort((a,b)=>b.score-a.score||a.layout.localeCompare(b.layout));
-   const choice=ranked[0];if(!choice)throw Error('歌詞を保持できる構成候補がありません');const enters=motionResults.filter(x=>x.group==='enter'&&x.eligible&&!/scramble|glitch|blur|type|fade|spin|scatter|explode|random/i.test(x.id)),preferred=J.STYLES[winner.id].bias?.enter||{},enter=enters.sort((a,b)=>((preferred[b.id]||0)-(b.id===lastEnter?.35:0))-((preferred[a.id]||0)-(a.id===lastEnter?.35:0))||a.id.localeCompare(b.id))[rep%Math.min(3,enters.length)]?.id||'photoSettle';lastEnter=enter;
+   const choice=ranked[0];if(!choice)throw Error('歌詞を保持できる構成候補がありません');portfolios.push({line:c.line,role,energy,candidates:ranked.slice(0,6)});const enters=motionResults.filter(x=>x.group==='enter'&&x.eligible&&!/scramble|glitch|blur|type|fade|spin|scatter|explode|random/i.test(x.id)),preferred=J.STYLES[winner.id].bias?.enter||{},enter=enters.sort((a,b)=>((preferred[b.id]||0)-(b.id===lastEnter?.35:0))-((preferred[a.id]||0)-(a.id===lastEnter?.35:0))||a.id.localeCompare(b.id))[rep%Math.min(3,enters.length)]?.id||'photoSettle';lastEnter=enter;
    const finalEnter=[enter,'photoSettle','cut'].find(id=>[.001,.03,.08,.16].every(dt=>sample(sp,{...candidateCut(sp,c,choice.layout,font,id),style,styleKey:winner.id},dt).eligible))||'cut';
    const holds=motionResults.filter(x=>x.group==='hold'&&x.eligible&&['still','breathe','pulse','float','sway'].includes(x.id)).sort((a,b)=>{const fit=m=>(c.line%4===0||J.vocaliseGroup?.(c.lineText)&&rep===0)?(m.id==='still'?.6:0):musicProfile.mode==='drift'?(m.id==='still'?.3:0):musicProfile.mode==='flow'?(['float','sway','breathe'].includes(m.id)&&m.contribution>.002?.3:0):energy>.4?(['pulse','breathe'].includes(m.id)&&m.contribution>.002&&m.contribution<.2?.3:0):m.id==='still'?.2:0;return fit(b)-fit(a)||a.delta-b.delta||a.id.localeCompare(b.id);});
    const nonRepeated=holds.filter(m=>!(holdHistory.length>=2&&holdHistory.at(-1)===m.id&&holdHistory.at(-2)===m.id));
@@ -97,7 +137,22 @@ J.compareRegistryCandidates=async(project,audio,image,options={})=>{
    if(anchorProbes.length)choice.params.photoAnchor=anchorProbes[0].anchor;
    entries[c.line]={...choice,anchorComparisons:anchorProbes,enter:finalEnter,hold,inDur:.12,role,energy,musicMode:musicProfile.mode,repeat:rep};history.push(choice.family);seen.set(repeatKey,rep+1);seen.set(repeatKey+'|choice',choice);progress('反復フレーズの構成を選択しています');await yieldUI();
   }
-  const selection={version:3,algorithm:'audio-conditioned-readable-render-comparison-v4',audioKey:J.registrySelectionAudioKey(audio),musicProfile,profileWeights:{image:.28,audio:.30,lyrics:.26,direction:.16},style:winner.id,font,backgroundKey:J.registrySelectionBackgroundKey(p),lyricsKey:J.registrySelectionLyricsKey(p),entries,fontComparisons:fontResults,styleComparisons:styles,layoutComparisons:layoutResults.map(l=>({...l,probes:l.probes?.map(({_mask,...v})=>v)})),motionComparisons:motionResults,framesCompared:frames,sampleWidth:w,profileRole:'audio/image/lyric compatibility, then measured readability and phrase continuity',limitations:['Low-resolution render samples are engineering evidence, not artistic or viral certification.','All catalogue fonts are compared; unavailable requested faces are excluded in browsers and the embedded fallback is labelled. Native font results do not establish browser availability.','No inferred word-level singing times. Multi-item layout backing is sampled before the first primary item; final export contrast remains a separate test.'],catalog: J.registrySelectionCatalog()};
+  const globalStoryboard=J.chooseRegistryStoryboard(portfolios,12),storyboardEvidence=[];
+  if(globalStoryboard.status==='MEASURED_SAFE_SEQUENCE')for(const picked of globalStoryboard.picks){
+   const prev=entries[picked.line];if(!prev||prev.layout===picked.layout){storyboardEvidence.push({line:picked.line,decision:'KEEP',layout:prev?.layout});continue;}
+   const c=unlocked.find(x=>x.line===picked.line);
+   if(!c||prev.score-picked.score>.08){storyboardEvidence.push({line:picked.line,decision:'KEEP_LOCAL_FIT',layout:prev.layout});continue;}
+   const alternative={...candidateCut(sp,c,picked.layout,font,prev.enter,prev.hold),style,styleKey:winner.id,
+    params:{...picked.params,...(prev.params?.photoAnchor?{photoAnchor:prev.params.photoAnchor}:{})}};
+   // No visual promotion without a second full-phrase entry/hold/release check.
+   const checks=[.001,.03,.08,.16,.6,Math.max(.2,c.dur-.09)].map(dt=>sample(sp,alternative,dt));
+   if(checks.every(e=>e.eligible)){
+    const {signature,...storable}=picked;
+    entries[picked.line]={...prev,...storable,enter:prev.enter,hold:prev.hold,evidence:metrics(checks[4]),globalStoryboardDecision:'ADOPTED_VERIFIED'};
+    storyboardEvidence.push({line:picked.line,decision:'ADOPTED_VERIFIED',layout:picked.layout});
+   }else storyboardEvidence.push({line:picked.line,decision:'KEEP_UNSAFE_ALTERNATIVE',layout:prev.layout});
+  }
+  const selection={version:3,algorithm:'audio-conditioned-readable-render-comparison-v5',audioKey:J.registrySelectionAudioKey(audio),musicProfile,profileWeights:{image:.28,audio:.30,lyrics:.26,direction:.16},style:winner.id,font,backgroundKey:J.registrySelectionBackgroundKey(p),lyricsKey:J.registrySelectionLyricsKey(p),entries,fontComparisons:fontResults,styleComparisons:styles,globalStoryboard:{method:globalStoryboard.method||'beam-search/rendered-primary-ink-v1',status:globalStoryboard.status,score:globalStoryboard.score,beamWidth:12,decisions:storyboardEvidence},layoutComparisons:layoutResults.map(l=>({...l,probes:l.probes?.map(({_mask,...v})=>v)})),motionComparisons:motionResults,framesCompared:frames,sampleWidth:w,profileRole:'audio/image/lyric compatibility, then measured readability and phrase continuity',limitations:['Low-resolution render samples are engineering evidence, not artistic or viral certification.','All catalogue fonts are compared; unavailable requested faces are excluded in browsers and the embedded fallback is labelled. Native font results do not establish browser availability.','No inferred word-level singing times. Multi-item layout backing is sampled before the first primary item; final export contrast remains a separate test.'],catalog: J.registrySelectionCatalog()};
   const proposal={...initial,style:winner.id,visualDNA:{...initial.visualDNA,style:winner.id,typographyStyle:font,layoutStrategy:'phraseRenderSelection',decorationStrategy:'none'},motionDNA:{...initial.motionDNA,font,fontCategory:J.FONTS[font].kind},debug:{...initial.debug,styleDecision:{...initial.debug.styleDecision,selected:winner.id,renderCompetition:styles.map(({id,rank,eligible})=>({id,rank,eligible}))}},styleSignature:J.styleSignature(winner.id),registrySelection:selection,summary:`${initial.visualDNA.type} · ${style.name} · 歌詞と反復から実描画選択`};
   const resultProject={...probeProject,style:winner.id};resultProject.artDirection=J.makeArtDirection(resultProject,audio,proposal);const finalPlan=J.plan(resultProject,audio);return {recommended:{variant:0,proposal,project:resultProject,plan:finalPlan,score:winner.rank,audit:J.auditDirectionReality(finalPlan),selection},candidates:[{variant:0,proposal,plan:finalPlan,score:winner.rank,selection}]};
  }finally{R.disposeAssets?.();R.customBgBitmap?.close?.();canvas.width=mask.width=1;canvas.height=mask.height=1;}
