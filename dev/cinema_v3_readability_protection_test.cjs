@@ -29,3 +29,11 @@ console.log('240 differential contrast/luma/alpha fixtures; equal-evidence basel
  }finally{J.measureCinemaOutputReadability=originalGuard;J.photoChoreographyLocked=originalLock;}
  console.log('Actual delivery dimensions, design-coordinate separation, profile invalidation and honest unbound legacy guard PASS');
 })().catch(error=>{console.error(error);process.exitCode=1;});
+
+const completeCreative={completed:true,frameCount:10,inputHash:'same-input',rendererVersion:'same-renderer',planHash:'plan-a',profileId:'profile-a',videoSHA256:'video-a',encodedResolution:[640,640],fps:10,outputProfile:{id:'SQUARE_1_1'},lowerTailQuality:40,metrics:{typographyDiversity:70,lyricForegroundNovelty:60,temporalContrast:30,localContrast:90,motionRealization:100}};
+assert.equal(J.cinemaV3.registryCreativeDominates(completeCreative,completeCreative),false,'a readability/creative tie must preserve incumbent');
+assert.equal(J.cinemaV3.registryCreativeDominates({...completeCreative,metrics:{...completeCreative.metrics,typographyDiversity:28}},completeCreative),false,'readability cannot compensate for typography collapse');
+assert.equal(J.cinemaV3.registryCreativeDominates({...completeCreative,metrics:{...completeCreative.metrics,temporalContrast:null}},completeCreative),false,'missing creative observations cannot promote a candidate');
+assert.equal(J.cinemaV3.registryCreativeDominates({...completeCreative,inputHash:'different-input',lowerTailQuality:50},completeCreative),false,'cross-input evidence cannot promote a candidate');
+assert.equal(J.cinemaV3.registryCreativeDominates({...completeCreative,lowerTailQuality:50,planHash:'plan-b',videoSHA256:'video-b'},completeCreative),true,'strict measured Pareto improvement with shared conditions can promote');
+console.log('Registry creative collapse, missing evidence, mismatched identity and strict improvement counterexamples PASS');
