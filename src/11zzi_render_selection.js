@@ -69,6 +69,13 @@ J.registryInkDistance=(a,b)=>{
  let delta=0,union=0;for(let i=0;i<a.length;i++){delta+=Math.abs(a[i]-b[i]);union+=Math.max(a[i],b[i]);}
  return union>0?Math.min(1,delta/union):0;
 };
+// Translation/zoom is a separate axis from primary typography structure.
+J.registryTypographySignature=(mask,w,h)=>{
+ let x0=w,y0=h,x1=-1,y1=-1;for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(mask[(y*w+x)*4+3]>80){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);}
+ if(x1<x0)return null;const W=x1-x0+1,H=y1-y0+1,cut=new Uint8ClampedArray(W*H*4);
+ for(let y=0;y<H;y++)for(let x=0;x<W;x++)cut[(y*W+x)*4+3]=mask[((y+y0)*w+x+x0)*4+3];
+ return J.registryInkSignature(cut,W,H);
+};
 // Only candidates that passed rendered glyph and safe-area checks enter the beam.
 J.chooseRegistryStoryboard=(steps,beamWidth=8)=>{
  if(!steps.length)return {status:'NOT_APPLICABLE_NO_LYRIC_STEPS',picks:[],score:null};
@@ -79,12 +86,12 @@ J.chooseRegistryStoryboard=(steps,beamWidth=8)=>{
   if(!eligible.length)return {status:'NO_MEASURED_SAFE_PATH',picks:[],score:null};
   const next=[];
   for(const state of beam)for(const c of eligible){
-   const prev=state.last,distance=prev?J.registryInkDistance(prev.signature,c.signature):null;
+   const prev=state.last,spatialDistance=prev?J.registryInkDistance(prev.signature,c.signature):null,distance=prev?J.registryInkDistance(prev.typographySignature,c.typographySignature):null;
    const energyDelta=Number.isFinite(step.energy)&&Number.isFinite(prev?.energy)?Math.abs(step.energy-prev.energy):0,boundary=!!prev&&prev.role!==step.role;
    const quiet=['intro','outro','break'].includes(step.role)||(Number.isFinite(step.energy)&&step.energy<.25);
    const target=C((quiet?.09:.20)+energyDelta*.36+(boundary?.16:0),.05,.65);
-   const pacing=distance===null?0:.18*(1-Math.abs(distance-target));
-   const previousDistance=state.previous?J.registryInkDistance(state.previous.signature,c.signature):null;
+   const pacing=(distance===null?0:.12*(1-Math.abs(distance-target)))+(spatialDistance===null?0:.06*(1-Math.abs(spatialDistance-target)));
+   const previousDistance=state.previous?J.registryInkDistance(state.previous.typographySignature,c.typographySignature):null;
    const fatigue=distance!==null&&previousDistance!==null&&distance<.06&&previousDistance<.06&&!quiet?-.20:0;
    const stagnant=distance!==null&&distance<.06&&!quiet&&energyDelta>.15?-.12:0;
    const overload=distance!==null&&distance>.82&&!boundary&&quiet?-.16:0;
@@ -127,7 +134,7 @@ J.compareRegistryCandidates=async(project,audio,image,options={})=>{
   for(const c of unlocked){const text=norm(c.lineText),repeatKey=J.vocaliseGroup?.(c.lineText)||text,rep=seen.get(repeatKey)||0,previous=seen.get(repeatKey+'|choice'),nearest=representatives.slice().sort((a,b)=>Math.abs(norm(a.lineText).length-text.length)-Math.abs(norm(b.lineText).length-text.length))[0],short=text.length<=4,role=p.musicalStructure?.sections?.find(s=>c.start>=s.from&&c.start<s.to)?.role;
    const section=p.musicalStructure?.sections?.find(s=>c.start>=s.from&&c.start<s.to),energy=section?.energy??audio?.features?.energy??.5;
    const ranked=available.map(l=>{const evidence=l.probes.find(v=>v.line===nearest.line),choice=candidateCut(sp,c,l.id,font);if(!evidence?.eligible)return null;const roleFit=short?['hero','condensed','banner','frame'].includes(l.family):rep>0?['phrase','frame','banner','condensed','diagonal'].includes(l.family):['statement','condensed','phrase'].includes(l.family);const chantStage=J.vocaliseGroup?.(c.lineText)?rep%4:null,stageFamilies=[['statement','phrase'],['frame','banner'],['radial','split','depth','perspective'],['hero','condensed','diagonal']],stageFit=chantStage===null?0:stageFamilies[chantStage].includes(l.family)?.42:0;const novelty=previous?.family===l.family?-.45:rep>0?.17:0,streak=history.at(-1)===l.family?-.18:0,graphicPenalty=['banner','frame'].includes(l.family)&&history.slice(-2).some(x=>['banner','frame'].includes(x))?-.12:0;
-    const ev=sample(sp,{...choice,style,styleKey:winner.id},.6);if(!ev.eligible)return null;return {layout:l.id,family:l.family,params:choice.params,score:.20*(ev.contrastFit??0)+.10*C(ev.opaqueInk/Math.max(1,ev.ink))+.12*C(ev.height/(short?.22:.14))+(roleFit?.18:0)+.4*J.songLayoutFit(l.family,musicProfile,energy,role,rep)+stageFit+novelty+streak+graphicPenalty,evidence:metrics(ev),signature:J.registryInkSignature(ev.mask,w,h)};
+    const ev=sample(sp,{...choice,style,styleKey:winner.id},.6);if(!ev.eligible)return null;return {layout:l.id,family:l.family,params:choice.params,score:.20*(ev.contrastFit??0)+.10*C(ev.opaqueInk/Math.max(1,ev.ink))+.12*C(ev.height/(short?.22:.14))+(roleFit?.18:0)+.4*J.songLayoutFit(l.family,musicProfile,energy,role,rep)+stageFit+novelty+streak+graphicPenalty,evidence:metrics(ev),signature:J.registryInkSignature(ev.mask,w,h),typographySignature:J.registryTypographySignature(ev.mask,w,h)};
    }).filter(Boolean).sort((a,b)=>b.score-a.score||a.layout.localeCompare(b.layout));
    const choice=ranked[0];if(!choice)throw Error('歌詞を保持できる構成候補がありません');portfolios.push({line:c.line,role,energy,candidates:ranked.slice(0,6)});const enters=motionResults.filter(x=>x.group==='enter'&&x.eligible&&!/scramble|glitch|blur|type|fade|spin|scatter|explode|random/i.test(x.id)),preferred=J.STYLES[winner.id].bias?.enter||{},enter=enters.sort((a,b)=>((preferred[b.id]||0)-(b.id===lastEnter?.35:0))-((preferred[a.id]||0)-(a.id===lastEnter?.35:0))||a.id.localeCompare(b.id))[rep%Math.min(3,enters.length)]?.id||'photoSettle';lastEnter=enter;
    const finalEnter=[enter,'photoSettle','cut'].find(id=>[.001,.03,.08,.16].every(dt=>sample(sp,{...candidateCut(sp,c,choice.layout,font,id),style,styleKey:winner.id},dt).eligible))||'cut';

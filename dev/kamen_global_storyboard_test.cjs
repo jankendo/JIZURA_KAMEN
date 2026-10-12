@@ -6,7 +6,7 @@ const image=(x)=>{const a=new Uint8ClampedArray(80*48*4);for(let y=10;y<30;y++)f
 const A=image(5),B=image(55);
 assert.equal(J.registryInkDistance(A,A),0);
 assert(J.registryInkDistance(A,B)>.9,'different glyph placement must have a distinct measured signature');
-const c=(layout,family,score,signature,safe=true)=>({layout,family,score,signature,evidence:{eligible:safe}});
+const c=(layout,family,score,signature,safe=true)=>({layout,family,score,signature,typographySignature:signature,evidence:{eligible:safe}});
 const steps=[
  {line:0,role:'verse',energy:.6,candidates:[c('a','statement',1,A),c('unsafe','novelty',100,B,false)]},
  {line:1,role:'verse',energy:.6,candidates:[c('a','statement',1,A)]},
@@ -22,3 +22,5 @@ assert(J.chooseRegistryStoryboard([{line:0,role:'intro',energy:.1,candidates:[c(
 console.log('Global measured storyboard: deterministic, safe-only, phrase-aware, and non-mutating PASS');
 
 assert.deepEqual(Array.from(J.chooseRegistryStoryboard([{line:0,role:'verse',energy:.7,candidates:[c('a','one',1,A)]},{line:1,role:'verse',energy:.7,candidates:[c('a','one',1,A)]},{line:2,role:'verse',energy:.7,candidates:[c('a','one',1,A),c('label-only','other',.99,A)]}]).picks,x=>x.layout),['a','a','a'],'renaming a family without a real pixel change must not escape fatigue');
+
+const translated=J.registryTypographySignature((()=>{const m=new Uint8ClampedArray(80*48*4);for(let y=10;y<30;y++)for(let x=55;x<67;x++)m[(y*80+x)*4+3]=255;return m;})(),80,48),original=J.registryTypographySignature((()=>{const m=new Uint8ClampedArray(80*48*4);for(let y=10;y<30;y++)for(let x=5;x<17;x++)m[(y*80+x)*4+3]=255;return m;})(),80,48);assert.equal(J.registryInkDistance(original,translated),0,'moving an unchanged glyph shape cannot certify typographic novelty');
