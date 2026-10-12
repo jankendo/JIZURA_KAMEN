@@ -1,0 +1,68 @@
+name: Frozen 30-case KAMEN generalization QA
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/generalization-qa.yml]
+permissions:
+  contents: read
+jobs:
+  real-mp4-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 269d8040f7fca2857231c21482924f553f3598d8
+          path: current
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 2e7ed477f88028dbb63aa609e8a11b4052ea8c00
+          path: baseline
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - name: Install media verification
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install and build frozen shipping sources
+        run: |
+          (cd current && npm ci && npm run build)
+          (cd baseline && npm ci && npm run build)
+          test -x /usr/bin/google-chrome
+          mkdir -p results
+          sha256sum qa/docs/qa/generalization/preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/tools-and-preregistration.sha256
+      - name: Complete natural-selection paired MP4 matrix
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/preregistration.json
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+        run: |
+          node current/scripts/serve.mjs current/dist 127.0.0.1 4173 > results/current-server.log 2>&1 &
+          current_server=$!
+          node baseline/scripts/serve.mjs baseline/dist 127.0.0.1 4174 > results/baseline-server.log 2>&1 &
+          baseline_server=$!
+          trap 'kill "$current_server" "$baseline_server" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS -o /dev/null http://127.0.0.1:4173/ && curl -fsS -o /dev/null http://127.0.0.1:4174/; then break; fi
+            sleep 1
+          done
+          node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4174/ results/matrix > results/matrix.log 2>&1
+      - name: Independently replay artifact hashes and full decode
+        if: always()
+        run: |
+          if test -f results/matrix/results.json; then
+            python qa/docs/qa/generalization/tools/verify_artifacts.py results/matrix results/strict-decode.json
+            python qa/docs/qa/generalization/tools/summarize_realization.py results/matrix/results.json results/realization.json
+          fi
+      - name: Preserve every completed artifact and failure
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: frozen-generalization-269d804
+          path: results/
+          retention-days: 14
+          if-no-files-found: error
