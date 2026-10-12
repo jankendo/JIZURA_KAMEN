@@ -43,7 +43,11 @@ const assert=require('node:assert/strict'),{engine}=require('./custom_test_suppo
  V.planHash=hash;V.outputProfile=output;
  const realMain=J.mainDraw,realFx=J.drawFx;let backgroundPaints=0,glyphPaints=0;
  J.drawFx=()=>glyphPaints++;J.mainDraw=(env,it)=>{assert.equal(env.plan._decodedNeutralPrimary,false);backgroundPaints++;return J.drawFx(env,it);};const auditMain=J.mainDraw,auditFx=J.drawFx;
- J.renderCinemaBackgroundAudit({frame(ctx,plan){J.mainDraw({plan,pass:'main'},{});}},null,{},0,{});assert.equal(backgroundPaints,1);assert.equal(glyphPaints,0,'counterfactual keeps background paint and suppresses primary glyphs');assert.equal(J.mainDraw,auditMain);assert.equal(J.drawFx,auditFx);
+ J.renderCinemaBackgroundAudit({frame(ctx,plan){J.mainDraw({plan,pass:'main'},{});}},null,{musicalPhoto:{}},0,{});assert.equal(backgroundPaints,1);assert.equal(glyphPaints,0,'photo counterfactual keeps background paint and suppresses primary glyphs');assert.equal(J.mainDraw,auditMain);assert.equal(J.drawFx,auditFx);
+ const realItem=J.drawItem;let unrelatedPaints=0;J.drawItem=()=>unrelatedPaints++;const auditItem=J.drawItem;
+ const drawCounterfactual=()=>{J.drawItem({cut:{line:0}},{text:'文字'});J.drawItem({cut:{line:-1}},{text:'装飾'});};
+ J.renderCinemaBackgroundAudit({frame:drawCounterfactual},null,{},0,{});assert.equal(unrelatedPaints,1,'non-photo control suppresses primary lyric drawItem including ghost passes and retains unrelated decoration');assert.equal(J.drawItem,auditItem);
+ assert.throws(()=>J.renderCinemaBackgroundAudit({frame(){throw Error('non-photo audit abort');}},null,{},0,{}),/non-photo audit abort/);assert.equal(J.drawItem,auditItem,'non-photo counterfactual restores drawing after failure');J.drawItem=realItem;
  assert.throws(()=>J.renderCinemaBackgroundAudit({frame(){throw Error('audit abort');}},null,{},0,{}),/audit abort/);assert.equal(J.mainDraw,auditMain);assert.equal(J.drawFx,auditFx);J.mainDraw=realMain;J.drawFx=realFx;
  const profile={purpose:'FULL_MV',aspect:'16:9',fps:24,range:[0,4],loopRequired:false},meta={outputProfile:profile,profileId:V.profileId(profile),planHash:'same',inputHash:'input',source:'ENCODED_MP4',method:'unchanged final observer phrase/time',sampleCount:1};
  const candidate=(value)=>({id:'same',planHash:'same',candidateSeed:1,hardFailures:[],measurements:[V.metric('decodedLocalContrast@0:1.01',value,meta)],objectives:{readability:value},lowerTail:null,constraintViolations:0,memoryBudgetBytes:0,timeCostMs:0});
