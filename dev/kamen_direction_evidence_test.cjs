@@ -18,3 +18,5 @@ assert.equal(J.traceGlobalStoryboard(plan).decisions[0].status,'FINAL_CONFIGURAT
 console.log('Dynamic capability coverage, stale identities, unknown music signals and final configuration mismatch counterexamples PASS');
 
 sample.sourceTreeSHA256=build.sourceTreeSHA256;sample.entries=[{group:'font',id:Object.keys(J.FONTS)[0],aspect:'16:9',error:'requested font probe failed'}];assert.equal(J.capabilityCatalog(sample,build).entries.find(e=>e.group==='font').nativeDispatch.status,'FAILED','an actual font probe failure is not unknown');
+
+const originalUnits={lines:[{text:'Alpha Beta'}],cuts:[{line:0,text:'Alpha'},{line:0,text:'Beta'},{line:0,text:'Alpha Beta',recap:true}]};assert(J.cinemaV5.originalUnitTextIntegrity(originalUnits,[0]));originalUnits.cuts[1].text='Bet';assert(!J.cinemaV5.originalUnitTextIntegrity(originalUnits,[0]),'a full recap must not hide an incomplete chunk partition');originalUnits.cuts[1].text='Beta';originalUnits.cuts[2].text='Wrong';assert(!J.cinemaV5.originalUnitTextIntegrity(originalUnits,[0]),'a falsely labelled recap cannot bypass source integrity');

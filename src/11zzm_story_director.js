@@ -40,6 +40,7 @@ J.buildPhotoStory=p=>{
  const f=p.musicalPhoto;f.chapterZooms=sections.map(s=>s.storyRole==='unity'?1.02:s.storyRole==='expansion'?1.15:s.storyRole==='crowd'?1.06:s.storyRole==='release'?1.35:1.06);f.chapterGrades=sections.map(()=>0);f.chapterOffsets=sections.map(()=>({x:0,y:0}));
  const introEnd=p.lines[0]?.start||0,beats=(p.beatHierarchy||[]).filter(b=>b.time>=.5&&b.time<introEnd-.2&&b.beatSalience>=.35);f.storyOpening=[];for(const b of beats){if(!f.storyOpening.length||b.time-f.storyOpening.at(-1).time>=.55)f.storyOpening.push({time:b.time,scale:[1.27,1.08,1.38][f.storyOpening.length],x:[-.025,.025,0][f.storyOpening.length]});if(f.storyOpening.length===3)break;}
  f.cornerFrame=false;f.accentRail=false;f.edgeMatte=false;f.openingShots=false;p.events=p.events.filter(e=>!e.photoShot);f.story={version:1,variant,narrative,search:p.artDirection.registrySelection.storySearch||null,chapterCount:sections.length,source:'audio structure, lyric meaning and grouped vocalise occurrences',limitations:'No fabricated foreground segmentation or audience score'};
+ if(p.artDirection.registrySelection.globalStoryboard&&!p.registryMeasuredCuts)p.registryMeasuredCuts=J.clonePhotoRenderPlan(p.cuts);
  return p;
 };
 const plan=J.plan;J.plan=(project,audio)=>J.buildPhotoStory(plan(project,audio));
