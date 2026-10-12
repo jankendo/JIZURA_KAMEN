@@ -4,24 +4,25 @@
   "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "PASS",
   "RELEASE_GO": "PASS",
-  "status": "MERGED_DEPLOYING",
+  "status": "MERGED_DEPLOY_BLOCKED_BY_TEST_OBSERVER",
   "currentCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38178818961",
   "previousCIFailure": "Obsolete sequential-decoder fixture and clean-restore test; fixed fixture PASS; current full regression still required",
   "completedEvidence": {
     "comparisonConditions": 13,
     "comparisonRequired": 13,
-    "finalArtifactLyrics": "All ten completed V5 conditions MEASURED",
+    "finalArtifactLyrics": "All thirteen completed V5 conditions MEASURED",
     "currentImplementationRouteExports": 4,
     "routeLyrics": "All four MEASURED; actual cancellation/retry PASS on three image routes",
     "fontBrowserMP4s": 2,
     "fontBrowserDecode": "PASS",
-    "formalCIEnvironmentSkips": "Separate real browser_export_e2e_test and variable_font_browser_test PASS; current CI totals pending",
+    "formalCIEnvironmentSkips": "Exact PR #11 CI 193 PASS / 0 FAIL / 2 SKIP; separate real browser alternatives PASS",
     "normalSelectionIntentSuccesses": 3,
     "normalSelectionIntentMeasured": 3,
     "normalSelectionPopulation": 8,
     "naturalSelectionScope": "Retained original-renderer calm/chant plus current-implementation no-image normal optimizer; benchmark fixed-initial-layout cases excluded"
   },
   "requiredRemaining": [
+    "Repair PR #12 exact HEAD CI SUCCESS and safe merge",
     "main Build/Pages artifact/Deploy SUCCESS",
     "HTTPS content hashes and actual production MP4 E2E"
   ],
@@ -64,7 +65,7 @@
     "saveCancelErrorBoundary": "PASS, synthetic acceptance with actual validated MP4 reuse; separate from generation proof",
     "overlayFiveViewports": "PASS",
     "fontBrowserAlternatives": "2 PASS distinct from formal environment SKIPs",
-    "acceptedMP4CompleteDecode": 35,
+    "acceptedMP4CompleteDecode": 37,
     "negativeControlNotIncludedInAcceptedCount": true
   },
   "currentCIStatus": "SUCCESS",
@@ -75,8 +76,9 @@
     "total": 195,
     "skipAlternativeBrowserPass": 2
   },
-  "deployment": "MAIN_CI_IN_PROGRESS",
+  "deployment": "SKIPPED_MAIN_CI_FAILED",
   "productionE2E": "UNVERIFIED",
   "mainCommit": "7ec43236f28caef2dc6552b848caded602488a5e",
-  "mainCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38184028315"
+  "mainCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38184028315",
+  "repairEvidence": "completion/release-14c9343/main-ci-completion-observer-failure.json"
 }

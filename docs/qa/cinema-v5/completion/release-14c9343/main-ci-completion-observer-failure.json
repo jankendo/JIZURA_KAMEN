@@ -1,0 +1,14 @@
+{
+  "status": "MAIN_CI_FAILED_DEPLOY_SKIPPED",
+  "runURL": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38184028315",
+  "mainCommit": "7ec43236f28caef2dc6552b848caded602488a5e",
+  "error": "pages_e2e.cjs:147 observed processing status running instead of completed after saved MP4",
+  "cause": "Test unsubscribed before completion event. It awaited save outcome afterwards, but cached processing observation no longer updated.",
+  "repairPR": "https://github.com/jankendo/JIZURA_KAMEN/pull/12",
+  "repairCommit": "806fe8a5189300c87da78a071abd142cef846bd2",
+  "repair": "Keep subscribed until actual save outcome and completed status, same 30-second bound and mandatory assertion. Application source unchanged.",
+  "logSHA256": "f30bcc4313c2b7289dd93118929df335abb76d91f6b0f1ca116b8cbeef324482",
+  "repairCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38189609154",
+  "repairCIStatus": "IN_PROGRESS",
+  "productionE2E": "UNVERIFIED"
+}
