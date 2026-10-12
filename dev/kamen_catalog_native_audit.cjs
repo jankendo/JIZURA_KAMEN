@@ -1,19 +1,32 @@
 'use strict';
-const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),{execFileSync}=require('node:child_process'),assert=require('node:assert/strict'),{engine,root}=require('./custom_test_support.cjs');
+const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto'),{execFileSync,spawnSync}=require('node:child_process'),assert=require('node:assert/strict'),{engine,root}=require('./custom_test_support.cjs');
 (async()=>{
 const {readSourceOrder,auditBootstrap,auditBoundary}=await import('../scripts/source-order.mjs'),sources=await readSourceOrder(root),js=auditBootstrap+'\n'+sources.map(name=>fs.readFileSync(path.join(root,'src',name),'utf8')+auditBoundary(name)).join('\n');
 const sourceCommit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),sourceDirty=!!execFileSync('git',['status','--porcelain','--','src','scripts','app','assets','vendor','package.json','package-lock.json'],{cwd:root,encoding:'utf8'}).trim(),sourceTreeSHA256=crypto.createHash('sha256').update(js).digest('hex');
 const {J,context,createCanvas}=engine();context.Path2D=require('@napi-rs/canvas').Path2D;
 context.window.KAMEN_APP_INFO={version:require('../package.json').version};context.window.KAMEN_BUILD_INFO={sourceCommit,sourceDirty,sourceTreeSHA256};
+if(process.env.KAMEN_AUDIT_WORKER!=='1'){
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'kamen-native-audit-')),report={version:require('../package.json').version,sourceCommit,sourceDirty,sourceTreeSHA256,auditToolSHA256:crypto.createHash('sha256').update(fs.readFileSync(__filename)).digest('hex'),method:'Isolated Native Canvas workers, at most 16 registered IDs per process; full renderer and same-input default-control pixels. No browser-font, encoded-survival or aesthetic certification.',aspects:['16:9','9:16','1:1','4:5'],entries:[],rendererCalls:0,workerResults:[]};
+ for(const aspect of report.aspects)for(const group of ['style',...J.GROUP_KEYS,'font']){
+  const reg=group==='style'?J.STYLES:group==='font'?J.FONTS:J.registry(group),ids=Object.keys(reg);
+  for(let n=0;n<ids.length;n+=16){const batch=ids.slice(n,n+16),file=path.join(dir,String(report.workerResults.length)+'.json');console.error('AUDIT_WORKER',aspect,group,n,ids.length);
+   const child=spawnSync(process.execPath,[__filename,file],{env:{...process.env,KAMEN_AUDIT_WORKER:'1',KAMEN_AUDIT_ASPECT:aspect,KAMEN_AUDIT_GROUP:group,KAMEN_AUDIT_IDS:JSON.stringify(batch)},encoding:'utf8',timeout:180000,maxBuffer:4*1024*1024});
+   assert(fs.existsSync(file),'Audit worker did not preserve its report: '+String(child.error||child.stderr).slice(-500));const result=JSON.parse(fs.readFileSync(file,'utf8'));assert.equal(result.sourceCommit,sourceCommit);assert.equal(result.sourceTreeSHA256,sourceTreeSHA256);report.entries.push(...result.entries);report.rendererCalls+=result.rendererCalls;report.workerResults.push({aspect,group,ids:batch,exitCode:child.status,reportSHA256:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')});
+  }
+ }
+ report.styles=Object.keys(J.STYLES).length;report.techniques=J.GROUP_KEYS.reduce((n,g)=>n+Object.keys(J.registry(g)).length,0);report.fonts=Object.keys(J.FONTS).map(id=>({id,status:'NATIVE_REQUESTED_FONT_RASTER; EFFECTIVE_FACE_AND_BROWSER_AVAILABILITY_UNMEASURED'}));report.failures=report.entries.filter(e=>e.error||e.warnings?.length);report.expectedEntries=(report.styles+report.techniques+report.fonts.length)*report.aspects.length;assert.equal(report.entries.length,report.expectedEntries);assert.equal(new Set(report.entries.map(e=>e.aspect+'.'+e.group+'.'+e.id)).size,report.expectedEntries);
+ fs.writeFileSync(process.argv[2],JSON.stringify(report,null,2)+'\n');if(process.argv[3])fs.writeFileSync(process.argv[3],JSON.stringify(J.capabilityCatalog(report,context.window.KAMEN_BUILD_INFO),null,2)+'\n');console.log(JSON.stringify({styles:report.styles,techniques:report.techniques,fonts:report.fonts.length,entries:report.entries.length,rendererCalls:report.rendererCalls,workers:report.workerResults.length,failures:report.failures.length}));assert.equal(report.failures.length,0,JSON.stringify(report.failures.slice(0,5)));return;
+}
 const p=J.defaultProject();Object.assign(p,{autoDirection:false,title:'',artist:'',lyrics:'[00:00.000]青黒の歌声を響かせろ\n[00:04.000]We are ガンバ',res:720,fps:30});
 const audio={duration:8,beats:[0,1,2,3,4,5,6,7],features:{energy:.7}};
 const report={version:require('../package.json').version,sourceCommit,sourceDirty,sourceTreeSHA256,method:'Native Canvas full renderer; dynamic registry dispatch and technique-on/off pixels, four aspects and three phases. Not browser font, encoded-survival or aesthetic verification.',aspects:['16:9','9:16','1:1','4:5'],entries:[],rendererCalls:0},warnings=[];
+report.aspects=[process.env.KAMEN_AUDIT_ASPECT];
 const warn=console.warn;console.warn=(...args)=>warnings.push(String(args[0])+':'+String(args.at(-1)));
 for(const aspect of report.aspects){
  const base=J.plan({...p,aspect},audio),cv=createCanvas(256,Math.round(256*base.H/base.W)),mask=createCanvas(cv.width,cv.height),ctx=cv.getContext('2d'),mc=mask.getContext('2d'),R=new J.Renderer();
- for(const group of ['style',...J.GROUP_KEYS,'font']){
+ for(const group of [process.env.KAMEN_AUDIT_GROUP]){
   const reg=group==='style'?J.STYLES:group==='font'?J.FONTS:J.registry(group);
-  for(const [id,def]of Object.entries(reg)){
+  for(const [id,def]of Object.entries(reg).filter(([id])=>JSON.parse(process.env.KAMEN_AUDIT_IDS).includes(id))){
    if(group==='layout'&&['title','interlude'].includes(id)){report.entries.push({group,id,aspect,status:'CREDIT_ONLY'});continue;}
    console.error('AUDIT',aspect,group,id);warnings.length=0;let dispatch=0;const original={};
    for(const key of ['render','draw','apply','get'])if(typeof def[key]==='function'){original[key]=def[key];def[key]=function(...a){dispatch++;return original[key].apply(this,a);};}
