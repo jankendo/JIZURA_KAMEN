@@ -1,0 +1,74 @@
+{
+  "PR": 12,
+  "PRHead": "806fe8a5189300c87da78a071abd142cef846bd2",
+  "runURL": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38189609154",
+  "status": "SUCCESS",
+  "regression": {
+    "passed": 193,
+    "failed": 0,
+    "skipped": 2,
+    "total": 195
+  },
+  "skipAlternativeBrowserPass": 2,
+  "actualUIChecks": 10,
+  "actualUIStatus": "PASS",
+  "finalVerificationStatus": "MEASURED",
+  "finalBinding": {
+    "inputHash": "ebdb4b5bd1494953d84e4acc218c09cce7f8dbdd071f6f032622c15454bac2c1",
+    "planHash": "23a6b3255520c194e912adc82b417322b46efd020f641e5190e1dfba05e7659d",
+    "outputProfile": {
+      "purpose": "FULL_MV",
+      "aspect": "16:9",
+      "fps": 24,
+      "range": [
+        0,
+        8.999977324263039
+      ],
+      "loopRequired": false,
+      "resolution": [
+        1280,
+        720
+      ]
+    },
+    "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+    "selectedCandidateId": "5e5b7134e30fa123c20c55b61eac11968f7b6debdb9f5ba4809f6c37b3924766",
+    "videoSHA256": "b2dfa58b0a515475a9ff10a69441ee7e295a9f04d175014f811271a9ed045e8d",
+    "sourceCommit": "e148c337977a7098010269dceecd7e6eec053f1a",
+    "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+    "sourceDirty": false
+  },
+  "evidenceId": "70ee994369c4fae2f5c7ea9da6fb4fb93ac5393a7f3564ff4720b6dab508c092",
+  "movies": [
+    {
+      "file": "kamen-browser-qa/ui-export.mp4",
+      "videoSHA256": "b2dfa58b0a515475a9ff10a69441ee7e295a9f04d175014f811271a9ed045e8d",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "completeDecode": "PASS",
+      "negativeControl": false,
+      "accepted": true
+    },
+    {
+      "file": "kamen-browser-qa/failed-black-control.mp4",
+      "videoSHA256": "4cd69e788b7ddf5c680e44de5e95c1f7a75c4a1325f636f20401e276dc075ee8",
+      "videoCodec": "h264",
+      "audioCodec": null,
+      "completeDecode": "PASS",
+      "negativeControl": true,
+      "accepted": false
+    },
+    {
+      "file": "kamen-browser-qa/cancellation-retry/general-bright-v3.mp4",
+      "videoSHA256": "f00c5f1c22dbadd1b567682311b452a373fa8d7ceafe83ad97d1ce0785a332a2",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "completeDecode": "PASS",
+      "negativeControl": false,
+      "accepted": true
+    }
+  ],
+  "originalArtifactSHA256": "6cc977aa9dc21cb2a65075f3197eb07823e608571b90bd695b360c347f69334f",
+  "archiveSHA256": "1597e619bcb2bceb35006531a17510eba3f27f205a2eb4157a7dd99df0944621",
+  "archiveBytes": 6426107,
+  "traceRetention": "Original GitHub ZIP retained locally, trace excluded from duplicate permanent archive"
+}

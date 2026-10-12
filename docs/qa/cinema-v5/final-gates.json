@@ -4,7 +4,7 @@
   "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "PASS",
   "RELEASE_GO": "PASS",
-  "status": "MERGED_DEPLOY_BLOCKED_BY_TEST_OBSERVER",
+  "status": "MERGED_DEPLOYING",
   "currentCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38178818961",
   "previousCIFailure": "Obsolete sequential-decoder fixture and clean-restore test; fixed fixture PASS; current full regression still required",
   "completedEvidence": {
@@ -22,7 +22,6 @@
     "naturalSelectionScope": "Retained original-renderer calm/chant plus current-implementation no-image normal optimizer; benchmark fixed-initial-layout cases excluded"
   },
   "requiredRemaining": [
-    "Repair PR #12 exact HEAD CI SUCCESS and safe merge",
     "main Build/Pages artifact/Deploy SUCCESS",
     "HTTPS content hashes and actual production MP4 E2E"
   ],
@@ -76,9 +75,11 @@
     "total": 195,
     "skipAlternativeBrowserPass": 2
   },
-  "deployment": "SKIPPED_MAIN_CI_FAILED",
+  "deployment": "MAIN_CI_IN_PROGRESS",
   "productionE2E": "UNVERIFIED",
-  "mainCommit": "7ec43236f28caef2dc6552b848caded602488a5e",
-  "mainCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38184028315",
-  "repairEvidence": "completion/release-14c9343/main-ci-completion-observer-failure.json"
+  "mainCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "mainCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38195073095",
+  "repairEvidence": "completion/release-14c9343/main-ci-completion-observer-failure.json",
+  "repairCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38189609154",
+  "repairCIStatus": "SUCCESS"
 }
