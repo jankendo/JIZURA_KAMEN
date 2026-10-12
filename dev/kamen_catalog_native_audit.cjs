@@ -1,9 +1,13 @@
 'use strict';
-const fs=require('node:fs'),assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),{execFileSync}=require('node:child_process'),assert=require('node:assert/strict'),{engine,root}=require('./custom_test_support.cjs');
+(async()=>{
+const {readSourceOrder,auditBootstrap,auditBoundary}=await import('../scripts/source-order.mjs'),sources=await readSourceOrder(root),js=auditBootstrap+'\n'+sources.map(name=>fs.readFileSync(path.join(root,'src',name),'utf8')+auditBoundary(name)).join('\n');
+const sourceCommit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),sourceDirty=!!execFileSync('git',['status','--porcelain','--','src','scripts','app','assets','vendor','package.json','package-lock.json'],{cwd:root,encoding:'utf8'}).trim(),sourceTreeSHA256=crypto.createHash('sha256').update(js).digest('hex');
 const {J,context,createCanvas}=engine();context.Path2D=require('@napi-rs/canvas').Path2D;
+context.window.KAMEN_APP_INFO={version:require('../package.json').version};context.window.KAMEN_BUILD_INFO={sourceCommit,sourceDirty,sourceTreeSHA256};
 const p=J.defaultProject();Object.assign(p,{autoDirection:false,title:'',artist:'',lyrics:'[00:00.000]青黒の歌声を響かせろ\n[00:04.000]We are ガンバ',res:720,fps:30});
 const audio={duration:8,beats:[0,1,2,3,4,5,6,7],features:{energy:.7}};
-const report={version:require('../package.json').version,method:'Native Canvas full renderer; isolated registry dispatch, 2 aspects × 3 phases. This is not browser font verification or aesthetic certification.',aspects:['16:9','9:16'],entries:[],rendererCalls:0},warnings=[];
+const report={version:require('../package.json').version,sourceCommit,sourceDirty,sourceTreeSHA256,method:'Native Canvas full renderer; dynamic registry dispatch and technique-on/off pixels, four aspects and three phases. Not browser font, encoded-survival or aesthetic verification.',aspects:['16:9','9:16','1:1','4:5'],entries:[],rendererCalls:0},warnings=[];
 const warn=console.warn;console.warn=(...args)=>warnings.push(String(args[0])+':'+String(args.at(-1)));
 for(const aspect of report.aspects){
  const base=J.plan({...p,aspect},audio),cv=createCanvas(256,Math.round(256*base.H/base.W)),mask=createCanvas(cv.width,cv.height),ctx=cv.getContext('2d'),mc=mask.getContext('2d'),R=new J.Renderer();
@@ -23,10 +27,11 @@ for(const aspect of report.aspects){
      else if(group!=='style'&&group!=='fx'){cut[group]=id;cut[group+'P']=param;}
      return cut;});plan.cuts=cuts;
     if(group==='fx')plan.events=[{t:0,dur:4,type:id,amp:.7,seed:17,manual:true}];
-    let inkFrames=0,clippedFrames=0;
+    let inkFrames=0,clippedFrames=0,pixelSum=0,renderWallMs=0;
     const times=group==='trans'?[4.03,4.12,4.3]:group==='exit'?[3.68,3.85,3.97]:group==='enter'?[.03,.12,.3]:[.3,1.1,2.8];
-    for(const time of times){const items=[];R.frame(ctx,plan,time,{scale:cv.width/plan.W,production:true,lyricAuditCtx:mc,lyricAuditItems:items,noGhost:true});report.rendererCalls++;const data=mc.getImageData(0,0,cv.width,cv.height).data;if(data.some((v,i)=>i%4===3&&v>24))inkFrames++;if(items.some(({bounds:b})=>b&&(b.x0<0||b.x1>plan.W||b.y0<0||b.y1>plan.H)))clippedFrames++;}
-    report.entries.push({group,id,aspect,dispatch:group==='style'?'STYLE_PALETTE_RENDERED':dispatch?'EXECUTED':def.builtin||['cut','none'].includes(id)?'BUILTIN_IDENTITY':'NO_NATIVE_DISPATCH',inkFrames,clippedFrames,warnings:[...new Set(warnings)]});
+    const control={...plan,style:base.style,styleKey:base.styleKey,events:[],cuts:cuts.map(c=>({...c,layout:'center',enter:'cut',hold:'still',exit:'cut',trans:'cut',bg:'none',cam:'push',decor:[],params:{...J.LAYOUTS.center.plan(J.rng(17),c,base.style),font:'gothic_bold'}}))};
+    for(const time of times){const items=[],started=performance.now();R.frame(ctx,plan,time,{scale:cv.width/plan.W,production:true,lyricAuditCtx:mc,lyricAuditItems:items,noGhost:true});renderWallMs+=performance.now()-started;report.rendererCalls++;const actual=new Uint8ClampedArray(ctx.getImageData(0,0,cv.width,cv.height).data),data=mc.getImageData(0,0,cv.width,cv.height).data;if(data.some((v,i)=>i%4===3&&v>24))inkFrames++;if(items.some(({bounds:b})=>b&&(b.x0<0||b.x1>plan.W||b.y0<0||b.y1>plan.H)))clippedFrames++;const observedDispatch=dispatch,warningCount=warnings.length;R.frame(ctx,control,time,{scale:cv.width/plan.W,production:true,noGhost:true});dispatch=observedDispatch;warnings.length=warningCount;report.rendererCalls++;const before=ctx.getImageData(0,0,cv.width,cv.height).data;let diff=0;for(let i=0;i<actual.length;i+=4)for(let j=0;j<3;j++)diff+=Math.abs(actual[i+j]-before[i+j]);pixelSum+=diff/(cv.width*cv.height*3*255);}
+    report.entries.push({group,id,aspect,dispatch:group==='style'?'STYLE_PALETTE_RENDERED':dispatch?'EXECUTED':def.builtin||['cut','none'].includes(id)?'BUILTIN_IDENTITY':'NO_NATIVE_DISPATCH',inkFrames,clippedFrames,pixelContribution:pixelSum/times.length,control:'same source/time/input; center/cut/still/none/push/default-style baseline',renderWallMs,warnings:[...new Set(warnings)]});
    }catch(error){report.entries.push({group,id,aspect,error:error.message});}
    finally{for(const [key,fn]of Object.entries(original))def[key]=fn;J.cameraAt=oldCamera;J.lyricsCameraAt=oldLyricCamera;}
   }
@@ -36,4 +41,6 @@ for(const aspect of report.aspects){
 console.warn=warn;
 report.techniques=J.GROUP_KEYS.reduce((n,g)=>n+Object.keys(J.registry(g)).length,0);report.styles=Object.keys(J.STYLES).length;report.fonts=Object.keys(J.FONTS).map(id=>({id,status:'NATIVE_RENDER_COMPARED_SEPARATELY; BROWSER_AVAILABILITY_UNVERIFIED'}));report.failures=report.entries.filter(e=>e.error||e.warnings?.length);
 fs.writeFileSync(process.argv[2],JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({styles:report.styles,techniques:report.techniques,fonts:report.fonts.length,rendererCalls:report.rendererCalls,failures:report.failures.length,nonDispatch:report.entries.filter(e=>e.dispatch==='NO_NATIVE_DISPATCH').map(e=>e.group+'.'+e.id)}));
+if(process.argv[3])fs.writeFileSync(process.argv[3],JSON.stringify(J.capabilityCatalog(report,context.window.KAMEN_BUILD_INFO),null,2)+'\n');
 assert.equal(report.failures.length,0,JSON.stringify(report.failures.slice(0,5)));
+})().catch(error=>{console.error(error);process.exitCode=1;});

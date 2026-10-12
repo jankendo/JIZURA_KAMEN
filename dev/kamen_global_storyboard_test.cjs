@@ -14,7 +14,7 @@ const steps=[
 ];
 const before=JSON.stringify(steps),one=J.chooseRegistryStoryboard(steps),two=J.chooseRegistryStoryboard(steps);
 assert.equal(one.status,'MEASURED_SAFE_SEQUENCE');
-assert.deepEqual(one.picks.map(x=>x.layout),['a','a','b'],'the global sequence should avoid a third visual duplicate when measured alternatives are nearly tied');
+assert.deepEqual(Array.from(one.picks,x=>x.layout),['a','a','b'],'the global sequence should avoid a third visual duplicate when measured alternatives are nearly tied');
 assert.deepEqual(one.picks,two.picks,'identical inputs must yield deterministic ordering');
 assert.equal(JSON.stringify(steps),before,'selection must not edit measured evidence');
 assert.equal(J.chooseRegistryStoryboard([{line:0,candidates:[c('unsafe','x',999,B,false)]}]).status,'NO_MEASURED_SAFE_PATH');

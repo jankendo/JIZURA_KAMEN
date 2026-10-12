@@ -13,7 +13,12 @@ for(const [group,entries] of Object.entries(stale)){
 }
 context.window.KAMEN_APP_INFO={version:J.registryAudit.version};
 const current=J.registrySelectionCatalog();
-assert(current.style.every(x=>x.nativeDispatch.currentBuildVerified),'exact matching versions may be labelled current');
+assert(current.style.every(x=>!x.nativeDispatch.currentBuildVerified),'matching version alone cannot establish current source');
+context.window.KAMEN_BUILD_INFO={sourceTreeSHA256:'a'.repeat(64),sourceCommit:'b'.repeat(40)};
+Object.assign(J.registryAudit,{sourceTreeSHA256:'a'.repeat(64),sourceCommit:'b'.repeat(40),sourceDirty:false});
+assert(J.registrySelectionCatalog().style.every(x=>x.nativeDispatch.currentBuildVerified),'matching complete current-source identity may be current');
+J.registryAudit.sourceTreeSHA256='c'.repeat(64);
+assert(J.registrySelectionCatalog().style.every(x=>!x.nativeDispatch.currentBuildVerified),'same version with changed renderer source is stale');
 delete context.window.KAMEN_APP_INFO;
 assert(J.registrySelectionCatalog().style.every(x=>!x.nativeDispatch.currentBuildVerified),'unknown runtime version must remain unverified');
 console.log('Registry audit provenance: mismatched, matched, unknown versions PASS');

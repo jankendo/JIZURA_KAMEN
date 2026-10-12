@@ -4,7 +4,7 @@ J.songDirectionProfile=audio=>{
  const f=audio?.features||{},energy=C(f.energy??.5),rhythm=C((f.onsetDensity??f.density??.3)*.45+(f.beatStrength??.4)*.35+C(((audio?.bpm||f.bpm||100)-65)/115)*.2),attack=C(f.percussive??rhythm),smooth=C(f.smoothness??1-attack),brightness=C(f.brightness??.4),dynamics=C(f.sectionContrast??f.dynamics??.3);
  const scores={flow:smooth*.45+(1-rhythm)*.3+brightness*.25,punch:attack*.5+rhythm*.3+energy*.2,drive:energy*.45+rhythm*.35+dynamics*.2,drift:smooth*.3+(1-energy)*.4+(1-brightness)*.3};
  const mode=Object.keys(scores).sort((a,b)=>scores[b]-scores[a]||a.localeCompare(b))[0];
- return {version:1,mode,scores,energy,rhythm,attack,smooth,brightness,dynamics,source:'normalised audio energy, onset density, beat strength, tempo, spectrum and section contrast'};
+ return {version:1,mode,scores,energy,rhythm,attack,smooth,brightness,dynamics,measurementProfile:J.createMusicDirectionProfile?.(audio),source:'normalised audio energy, onset density, beat strength, tempo, spectrum and section contrast'};
 };
 const pcmKeys=new WeakMap();
 J.registrySelectionAudioKey=audio=>{

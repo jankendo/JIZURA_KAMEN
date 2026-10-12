@@ -1,0 +1,18 @@
+'use strict';
+const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs'),{J}=engine();
+const build={sourceCommit:'a'.repeat(40),sourceTreeSHA256:'b'.repeat(64)};
+const empty=J.capabilityCatalog(null,build),expected=Object.keys(J.STYLES).length+Object.keys(J.FONTS).length+J.GROUP_KEYS.reduce((n,g)=>n+Object.keys(J.registry(g)).length,0);
+assert.equal(empty.entries.length,expected);assert.equal(new Set(empty.entries.map(e=>e.group+'.'+e.id)).size,expected);
+assert(empty.entries.every(e=>e.nativeDispatch.status!=='VERIFIED'&&e.encodedSurvival.status==='UNMEASURED'),'registration cannot certify dispatch/MP4/creative suitability');
+const sample={...build,sourceDirty:false,entries:[{group:'style',id:Object.keys(J.STYLES)[0],aspect:'16:9',dispatch:'STYLE_PALETTE_RENDERED',pixelContribution:0,renderWallMs:1}]};
+const verified=J.capabilityCatalog(sample,build);assert.equal(verified.entries.find(e=>e.group==='style').nativeDispatch.status,'VERIFIED');assert(verified.entries.filter(e=>e.group==='font').every(e=>e.nativePixelContribution.status==='UNMEASURED'),'an empty font evidence array must never pass');
+sample.sourceTreeSHA256='c'.repeat(64);assert(J.capabilityCatalog(sample,build).entries.filter(e=>e.group==='style').every(e=>e.nativeDispatch.status==='STALE'));
+const missing=J.createMusicDirectionProfile({duration:4,features:{brightness:.4,energy:.5}});assert.equal(missing.brightness.value,null);assert.equal(missing.normalizedEnergy.status,'UNMEASURED');assert.equal(missing.singingTiming.status,'UNMEASURED');assert.equal(missing.keyChange.value,null);
+const audio={buffer:{getChannelData:()=>new Float32Array(8)},analysisSource:{status:'MEASURED',method:'PCM_AUDIO_FEATURES_V1'},duration:4,bpm:120,tempoConfidence:.7,beats:[0,.5],energyRate:2,energy:[0,.1,.8,.2],rms:[0,.01,.08,.02],onset:[0,.2,.9,0],features:{beatStrength:.8}};
+const music=J.createMusicDirectionProfile(audio,{}, {lines:[{text:'A A',start:0,end:1},{text:'A A',start:1,end:2}],musicalStructure:{sections:[{from:0,to:4,energy:.4,role:'verse'}]}});
+assert.equal(music.bpm.value,120);assert.equal(music.loudness.status,'MEASURED');assert.equal(music.loudness.confidence,null,'uncalibrated measurement confidence stays unknown');assert.equal(music.rests.value.length,1);assert.equal(music.lyricStructure.value[1].previousExactRepetitions[0],0);assert.equal(music.singingTiming.value,null);
+assert.equal(J.chooseRegistryStoryboard([]).status,'NOT_APPLICABLE_NO_LYRIC_STEPS');assert.equal(J.chooseRegistryStoryboard([{candidates:[{score:1,signature:[NaN],evidence:{eligible:true}}]}]).status,'NO_MEASURED_SAFE_PATH');
+const project=J.defaultProject();Object.assign(project,{lyrics:'[00:00]Safe lyric\n[00:02]Next phrase',autoDirection:false,title:'',artist:''});const plan=J.plan(project,audio);assert(plan.musicDirectionProfile);assert.equal(plan.globalStoryboardRealization.status,'NOT_APPLICABLE_NO_GLOBAL_SELECTION');
+plan.artDirection={registrySelection:{globalStoryboard:{decisions:[{line:0,layout:'center'}]},entries:{0:{layout:'center',params:{font:'gothic_bold',photoAnchor:{x:.5,y:.5}}}}}};const units=plan.cuts.filter(c=>c.line===0);for(const c of units){c.registrySelected=true;c.layout='center';c.params={...c.params,font:'gothic_bold',photoAnchor:{x:.5,y:.5}};}const cut=units[0];
+assert.equal(J.traceGlobalStoryboard(plan).decisions[0].status,'FINAL_CONFIGURATION_MATCH');cut.params.photoAnchor={x:.5,y:.4};assert.equal(J.traceGlobalStoryboard(plan).decisions[0].status,'OVERRIDDEN_OR_UNRESOLVED','a changed anchor must invalidate adoption identity');
+console.log('Dynamic capability coverage, stale identities, unknown music signals and final configuration mismatch counterexamples PASS');
