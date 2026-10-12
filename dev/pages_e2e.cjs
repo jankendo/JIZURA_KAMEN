@@ -140,9 +140,10 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
    try{await Promise.race([exported.saveAs(video),new Promise((_,reject)=>{saveTimer=setTimeout(()=>reject(new Error('Export timeout while saving download')),Math.max(1,480000-(Date.now()-started)));})]);}
    catch(error){await exported.cancel().catch(()=>{});throw error;}finally{clearTimeout(saveTimer);downloadSaveWallMs=Date.now()-saveStarted;}
    downloadError=await exported.failure();assert.equal(downloadError,null);console.log('export state: download-completed');
-  }finally{page.off('download',onDownload);await page.evaluate(()=>window.qaUnsubscribe?.()).catch(()=>{});}
+  }finally{page.off('download',onDownload);}
   const video=path.join(out,'ui-export.mp4');
-  await page.waitForFunction(()=>!J.ui.exporting&&['SAVED','SAVE_AVAILABLE'].includes(J.ui.exportOutcome?.fileState),null,{timeout:30000});
+  await page.waitForFunction(()=>!J.ui.exporting&&['SAVED','SAVE_AVAILABLE'].includes(J.ui.exportOutcome?.fileState)&&qaExport.jobs.filter(j=>j.title==='動画を書き出しています').at(-1)?.status==='completed',null,{timeout:30000});
+  await page.evaluate(()=>window.qaUnsubscribe?.());
   const outcome=await page.evaluate(()=>J.ui.exportOutcome);assert.equal(await page.locator('#qualityDraftExport').count(),0);
   const observed=await page.evaluate(()=>qaExport);assert.equal(observed.calls,1);assert.equal(observed.jobs.filter(j=>j.title==='動画を書き出しています').at(-1)?.status,'completed');assert(observed.validation?.certification?.passed);assert.equal(observed.validation.videoCodec,'avc1');assert.equal(observed.validation.audioCodec,'mp4a');assert(observed.progress.length>0);
   const probe=spawnSync('ffprobe',['-v','error','-show_streams','-show_format','-of','json',video],{encoding:'utf8'});assert.equal(probe.status,0,probe.stderr);const media=JSON.parse(probe.stdout),v=media.streams.find(s=>s.codec_type==='video'),a=media.streams.find(s=>s.codec_type==='audio');assert(v&&a);assert.equal(v.codec_name,'h264');assert.equal(a.codec_name,'aac');assert.equal(v.width,1280);assert.equal(v.height,720);assert.equal(v.avg_frame_rate,'24/1');assert(Math.abs(Number(media.format.duration)-seconds)<.15);assert(Math.abs(Number(v.duration)-Number(a.duration))<.15);
