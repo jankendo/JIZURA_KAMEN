@@ -1,0 +1,101 @@
+{
+  "sourceCommit": "187ae39d1611e5ad77a235a6b4c729b147aad3ca",
+  "runtimeSHA256": "3682e874c53b918f2dd010bfb06914edcfa6f051a21b24293e0364158adf3816",
+  "videoSHA256": "162124a29c9909cad6ecae51dc8e5e42246e580b9158a61ed9dc7d35603e0297",
+  "binding": {
+    "inputHash": "ef7cf5c64d9d33aa75718f8976f9f6ecb3c069fb376ad5b55b0c25a5e0ab9d8a",
+    "planHash": "ab9aa5455e826769204b924909dafbed360bb0044b6bf0204b05d53977e33de6",
+    "outputProfile": {
+      "purpose": "FULL_MV",
+      "aspect": "16:9",
+      "fps": 24,
+      "range": [
+        0,
+        8.999977324263039
+      ],
+      "loopRequired": false,
+      "resolution": [
+        1280,
+        720
+      ]
+    },
+    "rendererVersion": "b806f09606c9bcfdd91e15bf29a07b17f32e7a223cb7da249ee4735139fee945",
+    "selectedCandidateId": "a3f67449e104076425ca456197ae63c69a830c20d3839d4b46a97ad54a9ffaa8",
+    "videoSHA256": "162124a29c9909cad6ecae51dc8e5e42246e580b9158a61ed9dc7d35603e0297",
+    "sourceCommit": "187ae39d1611e5ad77a235a6b4c729b147aad3ca",
+    "sourceTreeSHA256": "b806f09606c9bcfdd91e15bf29a07b17f32e7a223cb7da249ee4735139fee945",
+    "sourceDirty": false
+  },
+  "checks": [
+    {
+      "name": "startup",
+      "status": "PASS",
+      "version": "2.0.26",
+      "secure": true
+    },
+    {
+      "name": "background upload",
+      "status": "PASS"
+    },
+    {
+      "name": "TXT import",
+      "status": "PASS"
+    },
+    {
+      "name": "LRC import and timing",
+      "status": "PASS"
+    },
+    {
+      "name": "audio upload and analysis",
+      "status": "PASS",
+      "bpm": 120
+    },
+    {
+      "name": "automatic MV generation",
+      "status": "PASS",
+      "cuts": 4,
+      "lines": 4,
+      "duration": 8.999977324263039
+    },
+    {
+      "name": "preview playback",
+      "status": "PASS"
+    },
+    {
+      "name": "project save and reload",
+      "status": "PASS"
+    },
+    {
+      "name": "regenerate after restored audio",
+      "status": "PASS"
+    },
+    {
+      "name": "UI MP4 export and decode",
+      "status": "PASS",
+      "creativeState": "BELOW_TARGET",
+      "oneClick": true,
+      "video": "h264",
+      "audio": "aac",
+      "duration": "9.024000",
+      "progressUpdates": 944,
+      "decodedFrames": 216,
+      "visibleContent": true
+    }
+  ],
+  "lyricSafety": "MEASURED",
+  "unitMinimumContrast": [
+    37,
+    100,
+    100,
+    100
+  ],
+  "worstFrame": {
+    "actualTimestamp": 1.5,
+    "proxyContrast": 37,
+    "visualInspection": "Frame shows complete, unclipped Japanese lyrics. A low proxy alone is not treated as proven rendering failure. Human aesthetic certification is UNVERIFIED."
+  },
+  "pageErrors": [],
+  "resourceFailures": [],
+  "scope": "Local fixed-head UI; not production verification",
+  "nativePicker": "Headless NotAllowedError recorded separately; supported browser-download route tested"
+}
