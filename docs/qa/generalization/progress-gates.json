@@ -8,7 +8,7 @@
   "RELEASE_GO": "UNVERIFIED",
   "artistic100": "UNVERIFIED",
   "humanStatus": "HUMAN_UNVERIFIED",
-  "completedPairedCases": 2,
+  "completedPairedCases": 3,
   "preregisteredCases": 30,
   "nativeAudit": {
     "entries": 3152,
@@ -29,9 +29,24 @@
   "productionChanged": false,
   "remaining": [
     "Final exact-head CI",
-    "Formal final UI E2E",
     "30-case matched real MP4 comparison and independent holdout",
-    "Natural-intent realization denominator and quality lower tail",
-    "Final cancellation/retry and altered-profile evidence"
-  ]
+    "Natural-intent realization full population and quality lower tail",
+    "Final safety and regression assessment across profiles"
+  ],
+  "formalUIE2E": {
+    "status": "PASS",
+    "checks": 10,
+    "sourceCommit": "269d8040f7fca2857231c21482924f553f3598d8",
+    "actualH264AAC": true,
+    "strictCompleteDecode": true,
+    "creativeState": "BELOW_TARGET",
+    "pageErrors": [],
+    "resourceFailures": []
+  },
+  "cancellationRetry": {
+    "status": "PASS",
+    "nativeObjectsClosed": true,
+    "planQAHashUnchanged": true,
+    "strictCompleteDecode": true
+  }
 }
