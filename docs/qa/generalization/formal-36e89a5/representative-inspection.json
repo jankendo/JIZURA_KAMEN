@@ -1,0 +1,29 @@
+{
+  "sourceCommit": "36e89a514f1342297d94358bc759b2e99d053f89",
+  "method": "AI visual inspection of actual FFmpeg-decoded frames, not a human panel, video OCR or artistic rating",
+  "samples": [
+    {
+      "fixture": "holdout-09",
+      "times": [
+        1.5,
+        4.5,
+        7.5
+      ],
+      "observation": "Corresponding full phrases remain visible in sampled baseline/current frames; layout/scale/background treatment differ. No sampled severe clipping observed.",
+      "limits": "Three frames do not certify an entire interval; full decoded unit evidence remains authoritative."
+    },
+    {
+      "fixture": "development-14",
+      "times": [
+        1.5,
+        12,
+        24,
+        36,
+        43
+      ],
+      "observation": "Corresponding text remains visible in first four samples. Both videos show an empty blue frame at 43 seconds. Ending/aesthetic superiority not certified.",
+      "limits": "The sampled outro is visible evidence, not proof that it is musically preferable."
+    }
+  ],
+  "humanStatus": "HUMAN_UNVERIFIED"
+}
