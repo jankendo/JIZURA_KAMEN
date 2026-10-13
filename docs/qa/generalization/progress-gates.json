@@ -1,7 +1,7 @@
 {
   "sourceCommit": "357a2738bd9aa63177d674b3fadb96ab1d44bcda",
   "measuredRuntimeSource": "357a2738bd9aa63177d674b3fadb96ab1d44bcda",
-  "runtimeSourceTree": "5675afbe0ba0706d470e8276caa2c25b6740ae5175dfe4bad526354884d5d1a3",
+  "runtimeSourceTree": "f068b971bfc29254622f327da3ed77d5c2ff416651583955d4bc232296744a24",
   "runtimeDiff": null,
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
@@ -24,7 +24,10 @@
     "rootCause": "Same obsolete non-photo counterfactual unit test assertion, also in clean nested suite; test corrected, current CI pending"
   },
   "latestCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38329954032",
-  "variableFontActualBrowser": "PASS",
+  "variableFontActualBrowser": {
+    "status": "PASS",
+    "scope": "HISTORICAL_269d804"
+  },
   "mainChanged": false,
   "productionChanged": false,
   "remaining": [
@@ -57,7 +60,8 @@
     "population": 4,
     "measured": 0,
     "status": "UNMEASURED",
-    "reason": "openSky/photoChant/stands do not carry explicit supported motion contracts; not counted as realized musical intent"
+    "reason": "openSky/photoChant/stands do not carry explicit supported motion contracts; not counted as realized musical intent",
+    "scope": "HISTORICAL_269d804"
   },
   "finalHeadMultiImageRepair": {
     "status": "MEASURED",
@@ -72,6 +76,14 @@
     "status": "SUCCESS"
   },
   "finalHeadUIE2E": "IN_PROGRESS",
-  "finalHeadCatalogAudit": "IN_PROGRESS",
-  "historicalLocalComparison": "source-11e8fa7-superseded/"
+  "finalHeadCatalogAudit": {
+    "status": "PASS",
+    "conditions": 3152,
+    "rendererCalls": 18864,
+    "failures": 0,
+    "sourceCommit": "357a2738bd9aa63177d674b3fadb96ab1d44bcda",
+    "sourceTreeSHA256": "f068b971bfc29254622f327da3ed77d5c2ff416651583955d4bc232296744a24"
+  },
+  "historicalLocalComparison": "source-11e8fa7-superseded/",
+  "finalHeadVariableFont": "UNVERIFIED"
 }
