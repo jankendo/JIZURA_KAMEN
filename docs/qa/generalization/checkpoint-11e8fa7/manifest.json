@@ -1,66 +1,13 @@
 {
-  "scope": "Completed artifacts only; technical row PASS does not certify creative quality",
+  "scope": "Completed local corroboration only; Actions formal dataset has a separate environment and must be assessed separately",
+  "currentHead": "269d8040f7fca2857231c21482924f553f3598d8",
+  "measuredRuntimeSource": "11e8fa7a98d419d2b3d154c488b9aeb57d2c9c05",
+  "runtimeDiff": [],
   "entries": [
     {
-      "fixture": {
-        "id": "development-01",
-        "cohort": "development",
-        "category": "quiet-ballad",
-        "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
-        "seed": 12007,
-        "imageSeed": 12007,
-        "aspect": "16:9",
-        "image": "none",
-        "lyrics": [
-          "窓辺に落ちる午後の影",
-          "小さな息で時をつなぐ",
-          "遠くの灯りを待つ"
-        ],
-        "starts": [
-          0.3,
-          3.1999999999999997,
-          6.1
-        ],
-        "duration": 10,
-        "short": false,
-        "loop": false,
-        "res": 720,
-        "fps": 24,
-        "naturalDirection": true,
-        "baselineCinema": true,
-        "manual": false,
-        "fontFailure": false,
-        "synthesis": {
-          "tempo": 68,
-          "notes": [
-            311.1269837220809,
-            123.47082531403103,
-            146.8323839587038,
-            174.61411571650194,
-            207.65234878997256,
-            246.94165062806206,
-            293.6647679174076,
-            116.54094037952248
-          ],
-          "harmonics": [
-            1,
-            0.2,
-            0.07
-          ],
-          "attack": 0.35,
-          "decay": 2,
-          "percussion": 0.04,
-          "energyStages": [
-            0.4,
-            0.6,
-            0.7,
-            0.25
-          ],
-          "silenceUntil": 0
-        }
-      },
+      "fixture": "development-01",
       "variant": "baseline",
-      "sha256": "a454a3f0e18f25a806c8df71320c013fbc35321806dbfdec9288b469344657ef",
+      "videoSHA256": "a454a3f0e18f25a806c8df71320c013fbc35321806dbfdec9288b469344657ef",
       "binding": {
         "inputHash": "e711b09af76ecf0e24c0ab3a531e831ed8b2461f99183dbb4d1d61d2786d0972",
         "planHash": "7ba83a8e8cd3fca0e87edcd80fe8cd4e22c72b16a449f51ede616d5e771e687c",
@@ -86,68 +33,22 @@
         "sourceDirty": false
       },
       "lyricSafety": "FAILED",
-      "status": "PASS"
+      "unitStatuses": [
+        "MEASURED",
+        "MEASURED",
+        "MEASURED",
+        "UNMEASURED",
+        "FAILED",
+        "FAILED",
+        "FAILED",
+        "FAILED",
+        "MEASURED"
+      ]
     },
     {
-      "fixture": {
-        "id": "development-02",
-        "cohort": "development",
-        "category": "acoustic",
-        "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
-        "seed": 12044,
-        "imageSeed": 12044,
-        "aspect": "9:16",
-        "image": "bright",
-        "lyrics": [
-          "木漏れ日の道をたどる",
-          "乾いた弦が風を呼ぶ",
-          "手のひらに季節が残る"
-        ],
-        "starts": [
-          0.3,
-          3.1999999999999997,
-          6.1
-        ],
-        "duration": 10,
-        "short": false,
-        "loop": false,
-        "res": 360,
-        "fps": 24,
-        "naturalDirection": true,
-        "baselineCinema": true,
-        "manual": false,
-        "fontFailure": false,
-        "synthesis": {
-          "tempo": 86,
-          "notes": [
-            293.6647679174076,
-            116.54094037952248,
-            138.59131548843604,
-            164.81377845643496,
-            195.99771799087463,
-            233.08188075904496,
-            277.1826309768721,
-            110
-          ],
-          "harmonics": [
-            1,
-            0.2,
-            0.07
-          ],
-          "attack": 0.35,
-          "decay": 0.2,
-          "percussion": 0.04,
-          "energyStages": [
-            0.4,
-            0.6,
-            0.7,
-            0.25
-          ],
-          "silenceUntil": 0
-        }
-      },
+      "fixture": "development-02",
       "variant": "baseline",
-      "sha256": "6a88cd4b8a2d495483a85a404f87e6e1f55513a627817804c8ba1bcbcce00d9c",
+      "videoSHA256": "6a88cd4b8a2d495483a85a404f87e6e1f55513a627817804c8ba1bcbcce00d9c",
       "binding": {
         "inputHash": "e3f094a01a0076fd544bae1a90c93a002084db0ef978ff4fe706f187bb315874",
         "planHash": "f4a3cf584f54d320a8049f340e6383853b793cd9d811650d232ad8837706d1a1",
@@ -173,69 +74,16 @@
         "sourceDirty": false
       },
       "lyricSafety": "MEASURED",
-      "status": "PASS"
+      "unitStatuses": [
+        "MEASURED",
+        "MEASURED",
+        "MEASURED"
+      ]
     },
     {
-      "fixture": {
-        "id": "development-03",
-        "cohort": "development",
-        "category": "rock",
-        "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
-        "seed": 12081,
-        "imageSeed": 12081,
-        "aspect": "1:1",
-        "image": "dark",
-        "lyrics": [
-          "錆びた扉を押し開く",
-          "鼓動の先へ走り出す",
-          "揺れる地平を越える"
-        ],
-        "starts": [
-          0.3,
-          3.1999999999999997,
-          6.1
-        ],
-        "duration": 10,
-        "short": false,
-        "loop": false,
-        "res": 360,
-        "fps": 24,
-        "naturalDirection": true,
-        "baselineCinema": true,
-        "manual": false,
-        "fontFailure": false,
-        "synthesis": {
-          "tempo": 118,
-          "notes": [
-            277.1826309768721,
-            110,
-            130.8127826502993,
-            155.56349186104046,
-            184.9972113558172,
-            220,
-            261.6255653005986,
-            311.1269837220809
-          ],
-          "harmonics": [
-            1,
-            0.7,
-            0.5,
-            0.25
-          ],
-          "attack": 0.018,
-          "decay": 0.2,
-          "percussion": 0.35,
-          "energyStages": [
-            0.4,
-            0.6,
-            0.7,
-            0.25
-          ],
-          "silenceUntil": 0
-        }
-      },
+      "fixture": "development-03",
       "variant": "baseline",
-      "sha256": "46a511e29f8b8a4edc33b1c7f248d77f7e42e1b4624ac09723872741f33fdc3c",
+      "videoSHA256": "46a511e29f8b8a4edc33b1c7f248d77f7e42e1b4624ac09723872741f33fdc3c",
       "binding": {
         "inputHash": "daf975a72442cd1889792af3474f0683ab3c1d3df1729f0f5300889927f847eb",
         "planHash": "53efafc6169f2b19ae6e98baba6c7ebf815c38f4a8a10372f03c99276b53c49e",
@@ -261,69 +109,16 @@
         "sourceDirty": false
       },
       "lyricSafety": "MEASURED",
-      "status": "PASS"
+      "unitStatuses": [
+        "MEASURED",
+        "MEASURED",
+        "MEASURED"
+      ]
     },
     {
-      "fixture": {
-        "id": "development-04",
-        "cohort": "development",
-        "category": "fast-rock",
-        "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
-        "seed": 12118,
-        "imageSeed": 12118,
-        "aspect": "4:5",
-        "image": "busy",
-        "lyrics": [
-          "火花が夜道を切り裂く",
-          "追いつけない昨日を置く",
-          "まっすぐ光を追う"
-        ],
-        "starts": [
-          0.3,
-          3.1999999999999997,
-          6.1
-        ],
-        "duration": 10,
-        "short": false,
-        "loop": false,
-        "res": 360,
-        "fps": 24,
-        "naturalDirection": true,
-        "baselineCinema": true,
-        "manual": false,
-        "fontFailure": false,
-        "synthesis": {
-          "tempo": 174,
-          "notes": [
-            261.6255653005986,
-            311.1269837220809,
-            123.47082531403103,
-            146.8323839587038,
-            174.61411571650194,
-            207.65234878997256,
-            246.94165062806206,
-            293.6647679174076
-          ],
-          "harmonics": [
-            1,
-            0.7,
-            0.5,
-            0.25
-          ],
-          "attack": 0.018,
-          "decay": 0.2,
-          "percussion": 0.35,
-          "energyStages": [
-            0.4,
-            0.6,
-            0.7,
-            0.25
-          ],
-          "silenceUntil": 0
-        }
-      },
+      "fixture": "development-04",
       "variant": "baseline",
-      "sha256": "f764aea99feb7530c67e2c53eda18d4f16b8fb9d9ae33180cf801d0a40ee3172",
+      "videoSHA256": "f764aea99feb7530c67e2c53eda18d4f16b8fb9d9ae33180cf801d0a40ee3172",
       "binding": {
         "inputHash": "528bf98b9165bfd3edfae7aed1f8e81abdd77283524b4aad505cf3477ed65d55",
         "planHash": "654af9905466d5ab532bbd6e40145c513c87a7b0510237b8f7a1b711908cc33c",
@@ -349,69 +144,16 @@
         "sourceDirty": false
       },
       "lyricSafety": "MEASURED",
-      "status": "PASS"
+      "unitStatuses": [
+        "MEASURED",
+        "MEASURED",
+        "MEASURED"
+      ]
     },
     {
-      "fixture": {
-        "id": "development-03",
-        "cohort": "development",
-        "category": "rock",
-        "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
-        "seed": 12081,
-        "imageSeed": 12081,
-        "aspect": "1:1",
-        "image": "dark",
-        "lyrics": [
-          "錆びた扉を押し開く",
-          "鼓動の先へ走り出す",
-          "揺れる地平を越える"
-        ],
-        "starts": [
-          0.3,
-          3.1999999999999997,
-          6.1
-        ],
-        "duration": 10,
-        "short": false,
-        "loop": false,
-        "res": 360,
-        "fps": 24,
-        "naturalDirection": true,
-        "baselineCinema": true,
-        "manual": false,
-        "fontFailure": false,
-        "synthesis": {
-          "tempo": 118,
-          "notes": [
-            277.1826309768721,
-            110,
-            130.8127826502993,
-            155.56349186104046,
-            184.9972113558172,
-            220,
-            261.6255653005986,
-            311.1269837220809
-          ],
-          "harmonics": [
-            1,
-            0.7,
-            0.5,
-            0.25
-          ],
-          "attack": 0.018,
-          "decay": 0.2,
-          "percussion": 0.35,
-          "energyStages": [
-            0.4,
-            0.6,
-            0.7,
-            0.25
-          ],
-          "silenceUntil": 0
-        }
-      },
+      "fixture": "development-03",
       "variant": "v3",
-      "sha256": "12c2bac44657284b04ad6024b8cf6a94359a395e8cf4da8400c54988ed5971fe",
+      "videoSHA256": "12c2bac44657284b04ad6024b8cf6a94359a395e8cf4da8400c54988ed5971fe",
       "binding": {
         "inputHash": "4c530a6e39adb5ebd428a678b5b93c511d773996a2fad16fc7088223290c9585",
         "planHash": "10849dd5e293c3dbc83a30b45ea7405bb596b973fa0cfd5eca99769d6ba86c77",
@@ -437,68 +179,16 @@
         "sourceDirty": false
       },
       "lyricSafety": "MEASURED",
-      "status": "PASS"
+      "unitStatuses": [
+        "MEASURED",
+        "MEASURED",
+        "MEASURED"
+      ]
     },
     {
-      "fixture": {
-        "id": "development-01",
-        "cohort": "development",
-        "category": "quiet-ballad",
-        "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
-        "seed": 12007,
-        "imageSeed": 12007,
-        "aspect": "16:9",
-        "image": "none",
-        "lyrics": [
-          "窓辺に落ちる午後の影",
-          "小さな息で時をつなぐ",
-          "遠くの灯りを待つ"
-        ],
-        "starts": [
-          0.3,
-          3.1999999999999997,
-          6.1
-        ],
-        "duration": 10,
-        "short": false,
-        "loop": false,
-        "res": 720,
-        "fps": 24,
-        "naturalDirection": true,
-        "baselineCinema": true,
-        "manual": false,
-        "fontFailure": false,
-        "synthesis": {
-          "tempo": 68,
-          "notes": [
-            311.1269837220809,
-            123.47082531403103,
-            146.8323839587038,
-            174.61411571650194,
-            207.65234878997256,
-            246.94165062806206,
-            293.6647679174076,
-            116.54094037952248
-          ],
-          "harmonics": [
-            1,
-            0.2,
-            0.07
-          ],
-          "attack": 0.35,
-          "decay": 2,
-          "percussion": 0.04,
-          "energyStages": [
-            0.4,
-            0.6,
-            0.7,
-            0.25
-          ],
-          "silenceUntil": 0
-        }
-      },
+      "fixture": "development-01",
       "variant": "v3",
-      "sha256": "d864fcedec295f7d6a0ddd2d5e9c71f445f41a8fa90bd1e5c7630fd8955989fb",
+      "videoSHA256": "d864fcedec295f7d6a0ddd2d5e9c71f445f41a8fa90bd1e5c7630fd8955989fb",
       "binding": {
         "inputHash": "e711b09af76ecf0e24c0ab3a531e831ed8b2461f99183dbb4d1d61d2786d0972",
         "planHash": "d2f3f1dbcdaa5f17c59f982a476aae82fbdc04c4f2fb8e631e000a18d3d02670",
@@ -524,16 +214,122 @@
         "sourceDirty": false
       },
       "lyricSafety": "MEASURED",
-      "status": "PASS"
+      "unitStatuses": [
+        "MEASURED",
+        "MEASURED",
+        "MEASURED",
+        "MEASURED",
+        "MEASURED",
+        "MEASURED",
+        "MEASURED",
+        "MEASURED",
+        "MEASURED"
+      ]
+    },
+    {
+      "fixture": "development-02",
+      "variant": "v3",
+      "videoSHA256": "84f51db50bc3ece912f6e0a03d29d7f138f3e58d0787ef7333b353b65ce61ee9",
+      "binding": {
+        "inputHash": "02cad6d81edbc2f3c471973e5d3088242258febcd2b655592579e41d3b8f3c15",
+        "planHash": "0a02e6fbd95aa8baff2091cedc75a5c022d41a0aeaf01f836fbda0b00aa45169",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "5675afbe0ba0706d470e8276caa2c25b6740ae5175dfe4bad526354884d5d1a3",
+        "selectedCandidateId": "46393f6e8cf666424c02ea4eb2cf888aba7bdaee359f5be5b8b267f6a3f8fbbc",
+        "videoSHA256": "84f51db50bc3ece912f6e0a03d29d7f138f3e58d0787ef7333b353b65ce61ee9",
+        "sourceCommit": "11e8fa7a98d419d2b3d154c488b9aeb57d2c9c05",
+        "sourceTreeSHA256": "5675afbe0ba0706d470e8276caa2c25b6740ae5175dfe4bad526354884d5d1a3",
+        "sourceDirty": false
+      },
+      "lyricSafety": "MEASURED",
+      "unitStatuses": [
+        "MEASURED",
+        "MEASURED",
+        "MEASURED"
+      ]
+    },
+    {
+      "fixture": "development-04",
+      "variant": "v3",
+      "videoSHA256": "257e4faea07fffb2b986ef38dd8e214d27f60a015a65dac91211669c46357db7",
+      "binding": {
+        "inputHash": "76f5d990c0d14ebba2194b80228c829ec5373e96617055446c41f1aa12f22b66",
+        "planHash": "2ad53920dadf6b9ddeb20dff001ddfed22adf4740433ac9e044de75d5f579722",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "5675afbe0ba0706d470e8276caa2c25b6740ae5175dfe4bad526354884d5d1a3",
+        "selectedCandidateId": "29c7bed208181a4f286ec184a3f4f999fe64d27645c34887df8fc64edf3f8bc8",
+        "videoSHA256": "257e4faea07fffb2b986ef38dd8e214d27f60a015a65dac91211669c46357db7",
+        "sourceCommit": "11e8fa7a98d419d2b3d154c488b9aeb57d2c9c05",
+        "sourceTreeSHA256": "5675afbe0ba0706d470e8276caa2c25b6740ae5175dfe4bad526354884d5d1a3",
+        "sourceDirty": false
+      },
+      "lyricSafety": "MEASURED",
+      "unitStatuses": [
+        "MEASURED",
+        "MEASURED",
+        "MEASURED"
+      ]
+    },
+    {
+      "fixture": "development-05",
+      "variant": "v3",
+      "videoSHA256": "6647fc23883be141911f7182c09702799c866eef2e953c3107a746f0fb9f8d12",
+      "binding": {
+        "inputHash": "76bee02f7e2e8039744d52cf13bb3cf78b35a4529ebaf941d674e9136717d850",
+        "planHash": "6eff908a43eebbe813247868dc12b6231d322afe511a795c07c61d4452db0ef0",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "5675afbe0ba0706d470e8276caa2c25b6740ae5175dfe4bad526354884d5d1a3",
+        "selectedCandidateId": "6698ac8f400bd3b3f305ebc412471e6697c98fe0b2acf5843301c76169aed6fb",
+        "videoSHA256": "6647fc23883be141911f7182c09702799c866eef2e953c3107a746f0fb9f8d12",
+        "sourceCommit": "11e8fa7a98d419d2b3d154c488b9aeb57d2c9c05",
+        "sourceTreeSHA256": "5675afbe0ba0706d470e8276caa2c25b6740ae5175dfe4bad526354884d5d1a3",
+        "sourceDirty": false
+      },
+      "lyricSafety": "MEASURED",
+      "unitStatuses": [
+        "MEASURED",
+        "MEASURED",
+        "MEASURED"
+      ]
     }
-  ],
-  "runtimeEquivalence": {
-    "measuredSourceCommit": "11e8fa7a98d419d2b3d154c488b9aeb57d2c9c05",
-    "currentCommit": "269d8040f7fca2857231c21482924f553f3598d8",
-    "sourceDiff": [],
-    "changedFiles": [
-      "dev/cinema_v3_final_quality_test.cjs"
-    ],
-    "scope": "Runtime source unchanged. Evidence retains original sourceCommit, not relabelled as a new export."
-  }
+  ]
 }
