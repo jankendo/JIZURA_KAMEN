@@ -1,13 +1,21 @@
-# Next-generation direction validation — progress
+# Frozen Cinema generalization QA — current checkpoint
 
-Source: `187ae39d1611e5ad77a235a6b4c729b147aad3ca`; baseline main: `2e7ed477f88028dbb63aa609e8a11b4052ea8c00`.
+Source PR: https://github.com/jankendo/JIZURA_KAMEN/pull/13 (Draft).
+Current source: `269d8040f7fca2857231c21482924f553f3598d8`.
+Main remains `2e7ed477f88028dbb63aa609e8a11b4052ea8c00`; production is unchanged.
 
-The current non-image pilot completed H.264/AAC export and full FFmpeg decode. All nine internal lyric units have complete decoded hold-frame coverage and contrast 100. Native repair preserved original text, timing and locks. This is a lyric-safety improvement, not artistic 100 certification.
+TECHNICAL_GO and QUALITY_GO remain **UNVERIFIED**. Human aesthetic evaluation and artistic 100 remain **HUMAN_UNVERIFIED / UNVERIFIED**.
 
-`checkpoint-manifest.json` binds each historical/initial video to its source, inputs, profile and SHA-256. Failed and unmeasured lyric proofs remain visible. Historical reports are not current-head certification; `audit-manifest.json` explicitly records this.
+- Actual current-head UI: 10 PASS, including input uploads, natural generation, preview, project save/reload, one-click BELOW_TARGET MP4 save, H.264/AAC and strict complete decode. Actual native cancel/cleanup/retry and variable-font browser raster/export checks PASS. These checks do not certify creative improvement across every material.
+- Exact-runtime catalog: 24 styles, 740 techniques, 24 fonts; 3,152 conditions / 18,864 draws / 224 workers / zero runtime failures. Native dispatch, pixel contribution (including zero), encoded survival and creative fit are separate. Encoded survival / fit of the full catalog remain UNMEASURED.
+- Four local real-MP4 matched pairs are complete. Non-image clipping/readability is repaired; other metrics include both improvements and declines. The independent 30-case final assessment remains pending. Read `progress-gates.json`, `checkpoint-11e8fa7/manifest.json` and compressed raw results; technical row PASS is not creative-quality PASS.
+- The measured local runtime source `11e8fa7` has exactly the same runtime source tree as current HEAD (`5675afbe0ba0706d470e8276caa2c25b6740ae5175dfe4bad526354884d5d1a3`). Evidence keeps its original sourceCommit; it is not relabelled as a new export.
+- Formal UI selected openSky/photoChant/stands have no explicit supported motion contracts: all four are UNMEASURED and are excluded from claimed successful musical realization. Supported intent observations from completed matrix outputs are reported separately with their population and coverage.
 
-Thirty fixtures were preregistered before results. The fixed-head comparison, final registry audit, full regressions and browser/CI validation are running. TECHNICAL_GO, QUALITY_GO and RELEASE_GO remain UNVERIFIED. PR #13 stays Draft; main and production remain unchanged.
+Final exact-head CI: https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38322307956
 
-The acoustic pilot has full-frame lyric contrast floor 89→90, but historical proxy localContrast 78→71, typography 32→30 and motion realization 100→67. The different observations are retained separately; no generalized creative gain is claimed. Its original registry cuts were replaced by incumbent cuts inside the guarded finalist composition. The configuration trace correctly reports that lack of adoption.
+Frozen 30-case Actions comparison, six partitions, unchanged fixtures/budgets/profiles: https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38324945162
 
-Synthetic inputs are generated for this test and contain no borrowed song recording. They are sonic proxies, not verified real-genre or vocal-alignment evidence. HUMAN_UNVERIFIED remains in force.
+The Actions environment is a separate formal experiment. Local pilot results must not be silently pooled with it; compare browser/build/input/profile identities and archive digests before the final assessment. A prior QA-only server-path mistake produced 404 before any MP4 execution and was fixed. The superseded serial QA run was cancelled after partitioning; neither is an application quality failure.
+
+Do not merge or deploy until both gates pass. Speed alone is not a release blocker.
