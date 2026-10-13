@@ -1,0 +1,85 @@
+name: Composition recovery native semantic allocation integration
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/composition-integration.yml]
+permissions:
+  contents: read
+jobs:
+  real-mp4-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - partition: quiet
+            cases: holdout-01
+          - partition: energetic
+            cases: holdout-03
+          - partition: long-form
+            cases: development-14
+          - partition: mixed-language
+            cases: holdout-15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: b6f50600b204a7c762727164bbcef5435033564a
+          path: current
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: b5a46b79ab463fe7f74d0a6d43c90ecbae984a41
+          path: baseline
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - name: Install media verification
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install and build frozen shipping sources
+        run: |
+          (cd current && npm ci && npm run build)
+          (cd baseline && npm ci && npm run build)
+          test -x /usr/bin/google-chrome
+          mkdir -p results
+          sha256sum qa/docs/qa/generalization/final-valid-preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/tools-and-preregistration.sha256
+      - name: Complete natural-selection paired MP4 matrix
+        timeout-minutes: 320
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/final-valid-preregistration.json
+          KAMEN_MATRIX_CASES: ${{ matrix.cases }}
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/current-server.log 2>&1 &
+          current_server=$!
+          node baseline/scripts/serve.mjs dist 127.0.0.1 4174 > results/baseline-server.log 2>&1 &
+          baseline_server=$!
+          trap 'kill "$current_server" "$baseline_server" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS -o /dev/null http://127.0.0.1:4173/ && curl -fsS -o /dev/null http://127.0.0.1:4174/; then break; fi
+            sleep 1
+          done
+          curl -fsS -o /dev/null http://127.0.0.1:4173/
+          curl -fsS -o /dev/null http://127.0.0.1:4174/
+          node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4174/ results/matrix > results/matrix.log 2>&1
+          python -c 'import json; x=json.load(open("results/matrix/results.json")); expected=set(__import__("sys").argv[1].split(",")); assert len(x["rows"])==2*len(expected) and {r["fixture"]["id"] for r in x["rows"]}==expected, "Incomplete partition"' "${{ matrix.cases }}"
+      - name: Independently replay artifact hashes and full decode
+        if: always()
+        run: |
+          if test -f results/matrix/results.json; then
+            python qa/docs/qa/generalization/tools/verify_artifacts.py results/matrix results/strict-decode.json
+            python qa/docs/qa/generalization/tools/summarize_realization.py results/matrix/results.json results/realization.json
+          fi
+      - name: Preserve every completed artifact and failure
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: composition-F-b6f5060-vs-B-b5a46b7-${{ matrix.partition }}
+          path: results/
+          retention-days: 14
+          if-no-files-found: error
