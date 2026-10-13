@@ -12,8 +12,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Full suite includes an isolated restore run; measured locally at 66 minutes.
-    timeout-minutes: 120
+    # The full suite includes an isolated restore run. The 200-test CI run
+    # took nearly 118 minutes before build/browser checks; retain those checks.
+    timeout-minutes: 240
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -67,6 +68,7 @@ jobs:
             ${{ runner.temp }}/kamen-tests.json
             ${{ runner.temp }}/kamen-browser-qa/
             ${{ runner.temp }}/kamen-server.log
+            ${{ github.workspace }}/../clean_restore_*.log
           if-no-files-found: ignore
           retention-days: 7
       - name: Upload Pages artifact
