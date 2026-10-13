@@ -1,0 +1,1891 @@
+{
+  "scope": "Derived contracts only; raw evidence retained and linked, not an independent pixel remeasurement",
+  "entries": [
+    {
+      "fixture": "holdout-06",
+      "variant": "v3",
+      "binding": {
+        "inputHash": "8c04802c0ab1901882b60ee6197bb10948bea496b1f37cfc1386c873092232d1",
+        "planHash": "98620bef57a1454dad7d091afaf38db5cbe5905ffa9b63220eab213d30ae0d73",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+        "selectedCandidateId": "5cbe828f1d58be87a3e3326c6a5fa7bd1e45f3a68a109aac8799eefc24bf277e",
+        "videoSHA256": "484ce5a94c1e113aa1849e7420948d212ac6748da89ed8fd1e4c549595a3625d",
+        "sourceCommit": "36e89a514f1342297d94358bc759b2e99d053f89",
+        "sourceTreeSHA256": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+        "sourceDirty": false
+      },
+      "originalEvidenceId": "91c2e3ea0d6deaca82ec8bb38ce5e405c2417e42d1621fcfe092d5d4ef3399a3",
+      "rawResultsSHA256": "63a53b58156e68d44762d7ca53184cfc7a42d52b97e7b6d169772494275c41be",
+      "referenceSHA256": "f494b3f9c417d7a862a244a1cd7263cc34037b2ad4d467bdad5df2f009051267",
+      "verifierSourceCommit": "0db8c35093ea7a8d93de4c62539e5b7308d90d8e",
+      "method": "Contract reinterpretation of immutable full decoded observations. No new render, encode, decode or pixel measurement. Original native text repetitions interpreted; all pixel, geometry, contrast and audio observations unchanged.",
+      "originalStatus": "FAILED",
+      "status": "FAILED",
+      "sourceTextIntegrity": true,
+      "unitTextIntegrity": true,
+      "failures": [],
+      "units": [
+        {
+          "unitId": "aa8a036ff16c2941328ec27faa4752ad0203ce8dffbe7462aa267def9f81c3ff",
+          "sourceUnitId": "51a18f0e56b8f46829bf48725d9a9dcb6a919f098d129b46c532ae2255394ef3",
+          "fragments": [
+            {
+              "index": 0,
+              "from": 0.3,
+              "to": 3.2,
+              "id": "1cf4b6afd264f205c2a258e5537fb010a453ba401ba498861c5ca5d6b3d8fb0a"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            0.3,
+            3.2
+          ],
+          "holdRange": [
+            0.42,
+            3.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 69,
+          "holdFrameCount": 66,
+          "expectedHoldFrames": 66,
+          "readableHoldSeconds": 2.75,
+          "minimumContrast": 40,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 66,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "98c7cec6ddf1e702ddc70267712daa987bde3921dfce8f55f5f647c1f6337b81",
+          "sourceUnitId": "40625572cc80e597d8d7a865e768bb95058f5645618999adc8bb9434684c2843",
+          "fragments": [
+            {
+              "index": 1,
+              "from": 3.2,
+              "to": 6.1,
+              "id": "c808fdfd39aa25c52b207eedf7cbec10917e097f4736a527a138ae8ddb32cfee"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.1
+          ],
+          "holdRange": [
+            3.3200000000000003,
+            6.1
+          ],
+          "status": "FAILED",
+          "frameCount": 70,
+          "holdFrameCount": 67,
+          "expectedHoldFrames": 67,
+          "readableHoldSeconds": 2.4583333333333335,
+          "minimumContrast": 100,
+          "reason": "NATIVE_OR_DECODED_GLYPH_FAILURE",
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 67,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "60e6e8d16dc91065be8ca15086edd662e60061fe986348a48e0ec4576ef4503e",
+          "sourceUnitId": "291aa544c3f13d3e197642d6a1c64b093f4c158cb901845ade452f532eb07edb",
+          "fragments": [
+            {
+              "index": 2,
+              "from": 6.1,
+              "to": 9.999977324263039,
+              "id": "ba3ab4a99c896cca2f7b0e27786d08fdf9cb9648e52e55787a63030538aa5d4f"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.1,
+            9.999977324263039
+          ],
+          "holdRange": [
+            6.22,
+            9.63997732426304
+          ],
+          "status": "MEASURED",
+          "frameCount": 93,
+          "holdFrameCount": 82,
+          "expectedHoldFrames": 82,
+          "readableHoldSeconds": 3.4166666666666665,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 82,
+            "exit": 8
+          }
+        }
+      ],
+      "notApplicableCuts": [],
+      "evidenceId": "ccf3472d7014ed34f1591d59f27a00a8fa5714541028bce22fd9edeb5da9b6d5"
+    },
+    {
+      "fixture": "holdout-06",
+      "variant": "baseline",
+      "binding": {
+        "inputHash": "d8a6f8180a8bbb0681dbe246bba28affa02f74794dd97993d690b26bf8831a18",
+        "planHash": "89cc8a6c3589e6aedb22324c98601d3e0ead61fa4d1685695acace396fcc68d8",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "8239ac7cb604019151439de499d9c5f43ac06e0f210e44a7362022f3c9b211f1",
+        "videoSHA256": "536a3b286c7d9ecb7bc1885730544ff1fdd79bf47e60a6d93e47ec76c7d588c5",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "originalEvidenceId": "76b8ddba8c81810e8079d5dc5b35787eb55607d9b3ab6c41f5c886a975520d63",
+      "rawResultsSHA256": "63a53b58156e68d44762d7ca53184cfc7a42d52b97e7b6d169772494275c41be",
+      "referenceSHA256": "b3c65c3f557d86ec4663d36cfa45c6c1cb941328b0df1c77232c41a74f943987",
+      "verifierSourceCommit": "0db8c35093ea7a8d93de4c62539e5b7308d90d8e",
+      "method": "Contract reinterpretation of immutable full decoded observations. No new render, encode, decode or pixel measurement. Original native text repetitions interpreted; all pixel, geometry, contrast and audio observations unchanged.",
+      "originalStatus": "FAILED",
+      "status": "FAILED",
+      "sourceTextIntegrity": true,
+      "unitTextIntegrity": true,
+      "failures": [],
+      "units": [
+        {
+          "unitId": "5cbdcf8461ca5ad7f98a14fdcf73f025af117556066b221655118d78c070f0a9",
+          "sourceUnitId": "51a18f0e56b8f46829bf48725d9a9dcb6a919f098d129b46c532ae2255394ef3",
+          "fragments": [
+            {
+              "index": 0,
+              "from": 0.3,
+              "to": 3.2,
+              "id": "162d8e677d599fc799d98bccb038669d8597d54f1ad28942441510e336d9b719"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            0.3,
+            3.2
+          ],
+          "holdRange": [
+            0.42,
+            3.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 69,
+          "holdFrameCount": 66,
+          "expectedHoldFrames": 66,
+          "readableHoldSeconds": 2.75,
+          "minimumContrast": 40,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 66,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "504be23acbad55ecd4a39606ad26572ba540cafaac6413d64c068f5c08cb623f",
+          "sourceUnitId": "40625572cc80e597d8d7a865e768bb95058f5645618999adc8bb9434684c2843",
+          "fragments": [
+            {
+              "index": 1,
+              "from": 3.2,
+              "to": 6.1,
+              "id": "db48aeeb61654285a33e51b6884841bde1a520b251519c9d23fa048c09a8469e"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.1
+          ],
+          "holdRange": [
+            3.4360000000000004,
+            5.8583333333333325
+          ],
+          "status": "FAILED",
+          "frameCount": 70,
+          "holdFrameCount": 58,
+          "expectedHoldFrames": 58,
+          "readableHoldSeconds": 2.25,
+          "minimumContrast": 100,
+          "reason": "NATIVE_OR_DECODED_GLYPH_FAILURE",
+          "phaseCounts": {
+            "entry": 6,
+            "hold": 58,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "e53013d67d1eeb418a91fd9750ca2fd9b69e3875fcf977d1c55bcef87007c32d",
+          "sourceUnitId": "291aa544c3f13d3e197642d6a1c64b093f4c158cb901845ade452f532eb07edb",
+          "fragments": [
+            {
+              "index": 2,
+              "from": 6.1,
+              "to": 9.999977324263039,
+              "id": "ca7e3d6a3ad5f504663eef82e88e71fde9d053a682f632a57af9bc8af8e76034"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.1,
+            9.999977324263039
+          ],
+          "holdRange": [
+            6.314,
+            9.63997732426304
+          ],
+          "status": "MEASURED",
+          "frameCount": 93,
+          "holdFrameCount": 80,
+          "expectedHoldFrames": 80,
+          "readableHoldSeconds": 3.3333333333333335,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 5,
+            "hold": 80,
+            "exit": 8
+          }
+        }
+      ],
+      "notApplicableCuts": [],
+      "evidenceId": "28e16af62d8833cdcd7491b49c25ed2ff997312dcc2110bfe4659a74f6d29016"
+    },
+    {
+      "fixture": "holdout-07",
+      "variant": "baseline",
+      "binding": {
+        "inputHash": "7cb1c571d43a5acbe3d54d9a3f520dc08a70654e4f1a5aa76c8bcf6cb6ac0cb5",
+        "planHash": "ee90cff0c36442543e5abc381c691fbee33f31a7109c721c0b26f474a892bd90",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            900
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "6866fd447cfd736760e0ff57ba25086928a28dba058863b60d84844a067c7fcd",
+        "videoSHA256": "7424a9c33238b21054432330fc659a2df7c8985ce000e843afe502d2989f4936",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "originalEvidenceId": "75cb40c991a86458d1ab423d6ade8d01188970e778c194f7d3a0bdee38aead45",
+      "rawResultsSHA256": "63a53b58156e68d44762d7ca53184cfc7a42d52b97e7b6d169772494275c41be",
+      "referenceSHA256": "232505a0eb61bf58b2f90b447fe699f418a401574164580591dfa50f973f71e0",
+      "verifierSourceCommit": "0db8c35093ea7a8d93de4c62539e5b7308d90d8e",
+      "method": "Contract reinterpretation of immutable full decoded observations. No new render, encode, decode or pixel measurement. Original native text repetitions interpreted; all pixel, geometry, contrast and audio observations unchanged.",
+      "originalStatus": "MEASURED",
+      "status": "MEASURED",
+      "sourceTextIntegrity": true,
+      "unitTextIntegrity": true,
+      "failures": [],
+      "units": [
+        {
+          "unitId": "bda6a025164b83efabcde46b7ddab5160f6f80160c7dc1b3b272fc6342edf845",
+          "sourceUnitId": "627bc49097521027e94b9eecfa9679e66a148ddfcd2ed355512eb7a3f30050a5",
+          "fragments": [
+            {
+              "index": 0,
+              "from": 0.3,
+              "to": 3.2,
+              "id": "3ec2cc34d1c37c5fa4f4bfebec490dce43394e5eb25fa9e061ab18dda2d548fe"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            0.3,
+            3.2
+          ],
+          "holdRange": [
+            0.488,
+            2.9583333333333335
+          ],
+          "status": "MEASURED",
+          "frameCount": 69,
+          "holdFrameCount": 59,
+          "expectedHoldFrames": 59,
+          "readableHoldSeconds": 2.4583333333333335,
+          "minimumContrast": 58,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 4,
+            "hold": 59,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "74493287b549691601e5fca8c3faa43e94824e99085f0fd25d99579f5b861ce1",
+          "sourceUnitId": "72526a593d95f73a24ab1aa22dffe06d4d301d076dd5cf71c8e3a5d12aaaa53c",
+          "fragments": [
+            {
+              "index": 1,
+              "from": 3.2,
+              "to": 6.1,
+              "id": "b59405e6ecf15a153c9c24d644dd2d5575eae45aacb5f6ac210ff7da2b374336"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.1
+          ],
+          "holdRange": [
+            3.3880000000000003,
+            5.8583333333333325
+          ],
+          "status": "MEASURED",
+          "frameCount": 70,
+          "holdFrameCount": 59,
+          "expectedHoldFrames": 59,
+          "readableHoldSeconds": 2.4583333333333335,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 5,
+            "hold": 59,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "a44bce0ddbd241ccac35bacbcffdab200fa31d0471e0191e8e6187104465c6da",
+          "sourceUnitId": "145821036846c9a900d1aad1c943d951387e730d621e043e5e70784e8703dd39",
+          "fragments": [
+            {
+              "index": 2,
+              "from": 6.1,
+              "to": 8.43,
+              "id": "e8811187c72056f355d94fb06c7424ae11c073e3b8c257a24670e5648f1d75f9"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.1,
+            8.43
+          ],
+          "holdRange": [
+            6.287999999999999,
+            8.188333333333334
+          ],
+          "status": "MEASURED",
+          "frameCount": 56,
+          "holdFrameCount": 46,
+          "expectedHoldFrames": 46,
+          "readableHoldSeconds": 1.9166666666666667,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 4,
+            "hold": 46,
+            "exit": 6
+          }
+        }
+      ],
+      "notApplicableCuts": [],
+      "evidenceId": "a8c825964955ae70fb6233bad1ece5903d4b5a0d91062a60ae5ee951f9479c69"
+    },
+    {
+      "fixture": "holdout-07",
+      "variant": "v3",
+      "binding": {
+        "inputHash": "af8247da4f6f72663b19517a9075624c59accdd4e0785d3d7ac54f03bd5075ab",
+        "planHash": "e3f3555f2b956b440f90881411de1de25a517a1999d024f4098435f00d612c64",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            900
+          ]
+        },
+        "rendererVersion": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+        "selectedCandidateId": "ad021fe0e3cb854e5133b964a2e6f23ab6ee879a157d0eec5cfdc54ebce8ef2a",
+        "videoSHA256": "f2e460b6cc54b6fa214cc3fe28c35876befe7fa5038b896d760112229849bf28",
+        "sourceCommit": "36e89a514f1342297d94358bc759b2e99d053f89",
+        "sourceTreeSHA256": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+        "sourceDirty": false
+      },
+      "originalEvidenceId": "4ae4dd23486fa6aacd68c19169125470cec0c1405c70ca4f4efb98d2134414c4",
+      "rawResultsSHA256": "63a53b58156e68d44762d7ca53184cfc7a42d52b97e7b6d169772494275c41be",
+      "referenceSHA256": "0eda651d4e6f2ce4edf1fd22d66385d4d4bb83516c0ce7e09e4837974d4c4592",
+      "verifierSourceCommit": "0db8c35093ea7a8d93de4c62539e5b7308d90d8e",
+      "method": "Contract reinterpretation of immutable full decoded observations. No new render, encode, decode or pixel measurement. Original native text repetitions interpreted; all pixel, geometry, contrast and audio observations unchanged.",
+      "originalStatus": "MEASURED",
+      "status": "MEASURED",
+      "sourceTextIntegrity": true,
+      "unitTextIntegrity": true,
+      "failures": [],
+      "units": [
+        {
+          "unitId": "b1d69134a4e0a1c6a828792f670084aea875df55564dab8fb2a1177d469eb479",
+          "sourceUnitId": "627bc49097521027e94b9eecfa9679e66a148ddfcd2ed355512eb7a3f30050a5",
+          "fragments": [
+            {
+              "index": 0,
+              "from": 0.3,
+              "to": 3.2,
+              "id": "abee41a7e4c528a9e8b4971b3706b71858a282c4322a86ec7b5d151173586b2a"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            0.3,
+            3.2
+          ],
+          "holdRange": [
+            0.488,
+            2.9583333333333335
+          ],
+          "status": "MEASURED",
+          "frameCount": 69,
+          "holdFrameCount": 59,
+          "expectedHoldFrames": 59,
+          "readableHoldSeconds": 2.4583333333333335,
+          "minimumContrast": 58,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 4,
+            "hold": 59,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "c684a2cfde32f302ba782d4b571bed5a533bce8109ee3190f18fb2c4bf696c5f",
+          "sourceUnitId": "72526a593d95f73a24ab1aa22dffe06d4d301d076dd5cf71c8e3a5d12aaaa53c",
+          "fragments": [
+            {
+              "index": 1,
+              "from": 3.2,
+              "to": 6.1,
+              "id": "bb79c4f4d4b7ce764ba91b6cee80a02caed6c4a48bd75703fc2002ebdb21ab65"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.1
+          ],
+          "holdRange": [
+            3.3880000000000003,
+            5.8583333333333325
+          ],
+          "status": "MEASURED",
+          "frameCount": 70,
+          "holdFrameCount": 59,
+          "expectedHoldFrames": 59,
+          "readableHoldSeconds": 2.4583333333333335,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 5,
+            "hold": 59,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "7db318861980b3c4deca6dc5bb1e2cea6ab9e650712088a0181d3b6132913942",
+          "sourceUnitId": "145821036846c9a900d1aad1c943d951387e730d621e043e5e70784e8703dd39",
+          "fragments": [
+            {
+              "index": 2,
+              "from": 6.1,
+              "to": 8.43,
+              "id": "c5f24fe38de4c165fd394a55374887df142057e90e060a3c95e61f9c9a90fbac"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.1,
+            8.43
+          ],
+          "holdRange": [
+            6.287999999999999,
+            8.188333333333334
+          ],
+          "status": "MEASURED",
+          "frameCount": 56,
+          "holdFrameCount": 46,
+          "expectedHoldFrames": 46,
+          "readableHoldSeconds": 1.9166666666666667,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 4,
+            "hold": 46,
+            "exit": 6
+          }
+        }
+      ],
+      "notApplicableCuts": [],
+      "evidenceId": "f531d71533c7549256abc3475c1f1e1ebcbb9be4a270fcee63e97211d8ce7463"
+    },
+    {
+      "fixture": "holdout-08",
+      "variant": "v3",
+      "binding": {
+        "inputHash": "b8b9f4c01271535b7810958e4e19e50a90e78139ed8a595835143dd4e7ed2e85",
+        "planHash": "43fc9f2ef4f0dd6b339ed837180e9dafe628afe800834d01ddf5c4d621b3a23e",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+        "selectedCandidateId": "7e389e36757119fcf13e73d3851a8b12de22cf634ec0f7243df3783a4cbd6854",
+        "videoSHA256": "bb9ca38a1f679e66cbd3002d4515a06050fb768fe331b015bb726a761b575f4f",
+        "sourceCommit": "36e89a514f1342297d94358bc759b2e99d053f89",
+        "sourceTreeSHA256": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+        "sourceDirty": false
+      },
+      "originalEvidenceId": "22aa51a4d97471ffcd91fc6627adf7ebcc174f798e34e5fc3159a6a097d5e076",
+      "rawResultsSHA256": "63a53b58156e68d44762d7ca53184cfc7a42d52b97e7b6d169772494275c41be",
+      "referenceSHA256": "a02df9d698741abeba06bcc856545bfc64ff25791d953801ce038230d4fb87d5",
+      "verifierSourceCommit": "0db8c35093ea7a8d93de4c62539e5b7308d90d8e",
+      "method": "Contract reinterpretation of immutable full decoded observations. No new render, encode, decode or pixel measurement. Original native text repetitions interpreted; all pixel, geometry, contrast and audio observations unchanged.",
+      "originalStatus": "MEASURED",
+      "status": "MEASURED",
+      "sourceTextIntegrity": true,
+      "unitTextIntegrity": true,
+      "failures": [],
+      "units": [
+        {
+          "unitId": "e52bd1f2b4dd1117514fc55e276ce97ff2001d8c180fcaf1d10d1842c2878d48",
+          "sourceUnitId": "c6d8fbb818b5e42532c2632dfe6cb5fd528a1680ca149e5a5eaf61b4fa7cbeb5",
+          "fragments": [
+            {
+              "index": 0,
+              "from": 0.3,
+              "to": 3.2,
+              "id": "b5c8324d98010f4d10cc061007f8aeacff30e7ac4f0c9cb923d318012882a2d5"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            0.3,
+            3.2
+          ],
+          "holdRange": [
+            0.42,
+            3.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 69,
+          "holdFrameCount": 66,
+          "expectedHoldFrames": 66,
+          "readableHoldSeconds": 2.75,
+          "minimumContrast": 71,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 66,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "1102be07d159041d0c3e7714244c38273e73f907489ec8e5d0a0296aedb6446f",
+          "sourceUnitId": "ca90e78b90e9673d686f91e42ef76db9d0f73fb738cfef5405b0f31fe77b1bd7",
+          "fragments": [
+            {
+              "index": 1,
+              "from": 3.2,
+              "to": 6.1,
+              "id": "0417c0e82364b3cf93461a1c338f5a18c47e634e37f3cb5a6818d8ebc4e268be"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.1
+          ],
+          "holdRange": [
+            3.3200000000000003,
+            6.1
+          ],
+          "status": "MEASURED",
+          "frameCount": 70,
+          "holdFrameCount": 67,
+          "expectedHoldFrames": 67,
+          "readableHoldSeconds": 2.7916666666666665,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 67,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "56bac4f3ca27f919051489cebcf78a275d4ca7868577eeec69e4dc23e1db6a94",
+          "sourceUnitId": "6ce5196831765c40b50ec90b264092e2333f6242447c5902452a3b75fc01fb35",
+          "fragments": [
+            {
+              "index": 2,
+              "from": 6.1,
+              "to": 7.75,
+              "id": "23b816fbee7cddaeb333d1590005ff3e54e6db9b72a978ba24a949bd8b1c84ba"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.1,
+            7.75
+          ],
+          "holdRange": [
+            6.22,
+            7.75
+          ],
+          "status": "MEASURED",
+          "frameCount": 39,
+          "holdFrameCount": 36,
+          "expectedHoldFrames": 36,
+          "readableHoldSeconds": 1.5,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 36,
+            "exit": 0
+          }
+        }
+      ],
+      "notApplicableCuts": [],
+      "evidenceId": "17293b20f812f299def4b4d924ff9f6b8a687e7420421efb48685a982af6354d"
+    },
+    {
+      "fixture": "holdout-08",
+      "variant": "baseline",
+      "binding": {
+        "inputHash": "cb6a181c6b8d0d4d7b22c4e6521fa1e0f4b7ebea7914db6a658cd383c98599cc",
+        "planHash": "a31dc6477ef97d3f2b62a5972dc875eb7799a0fa049b1d6c93ad2646b2bbd789",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "ea62ae3f5378fad15519b42f50daf343f8b4148386ea0d885d9452d4a15e3289",
+        "videoSHA256": "3ed8aedc95c2bf5d24f5c5738a4cdee1ed717c12c9ae46819f5a6096de4ac5d5",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "originalEvidenceId": "7298b7915d1d7b6aa8edcae710764d1beec195a546f7c46f3cd576f5da961f40",
+      "rawResultsSHA256": "63a53b58156e68d44762d7ca53184cfc7a42d52b97e7b6d169772494275c41be",
+      "referenceSHA256": "0a8fdf99c0c7fedc59b1e875eb31e5170772a172e4a07d26a09b6b05d435843d",
+      "verifierSourceCommit": "0db8c35093ea7a8d93de4c62539e5b7308d90d8e",
+      "method": "Contract reinterpretation of immutable full decoded observations. No new render, encode, decode or pixel measurement. Original native text repetitions interpreted; all pixel, geometry, contrast and audio observations unchanged.",
+      "originalStatus": "MEASURED",
+      "status": "MEASURED",
+      "sourceTextIntegrity": true,
+      "unitTextIntegrity": true,
+      "failures": [],
+      "units": [
+        {
+          "unitId": "309d37e1305e44959d64503cefadd09d99e535c69ea2e5d7acef18b7eb34dde3",
+          "sourceUnitId": "c6d8fbb818b5e42532c2632dfe6cb5fd528a1680ca149e5a5eaf61b4fa7cbeb5",
+          "fragments": [
+            {
+              "index": 0,
+              "from": 0.3,
+              "to": 3.2,
+              "id": "5ca8fe03758cf95142d3c3902576534264d265a411287d9cc471ff73bc6754ec"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            0.3,
+            3.2
+          ],
+          "holdRange": [
+            0.42,
+            3.2
+          ],
+          "status": "MEASURED",
+          "frameCount": 69,
+          "holdFrameCount": 66,
+          "expectedHoldFrames": 66,
+          "readableHoldSeconds": 2.75,
+          "minimumContrast": 78,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 66,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "2e6bcdf6c238982415881ed889ca3e24d300716252185ec70ddb3a0d818af90b",
+          "sourceUnitId": "ca90e78b90e9673d686f91e42ef76db9d0f73fb738cfef5405b0f31fe77b1bd7",
+          "fragments": [
+            {
+              "index": 1,
+              "from": 3.2,
+              "to": 6.1,
+              "id": "370962f8cd19e7efce5fb0504bbb51f7c3fee915ee1d78254662c55fe927620c"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.1
+          ],
+          "holdRange": [
+            3.3200000000000003,
+            6.1
+          ],
+          "status": "MEASURED",
+          "frameCount": 70,
+          "holdFrameCount": 67,
+          "expectedHoldFrames": 67,
+          "readableHoldSeconds": 2.7916666666666665,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 67,
+            "exit": 0
+          }
+        },
+        {
+          "unitId": "53b6ea53c42fff262bc110474cc22b4873dd1c69b6d3528b3ab1d881f47aabd4",
+          "sourceUnitId": "6ce5196831765c40b50ec90b264092e2333f6242447c5902452a3b75fc01fb35",
+          "fragments": [
+            {
+              "index": 2,
+              "from": 6.1,
+              "to": 7.75,
+              "id": "365f65fd55cef2f4da04cb05afcd6590c1f17638a47e3891c935c0895933a461"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.1,
+            7.75
+          ],
+          "holdRange": [
+            6.22,
+            7.75
+          ],
+          "status": "MEASURED",
+          "frameCount": 39,
+          "holdFrameCount": 36,
+          "expectedHoldFrames": 36,
+          "readableHoldSeconds": 1.5,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 3,
+            "hold": 36,
+            "exit": 0
+          }
+        }
+      ],
+      "notApplicableCuts": [],
+      "evidenceId": "875da2f99679206d40b794d06e9f7e216ea7e713daa5a7786158e2dfa784890b"
+    },
+    {
+      "fixture": "holdout-09",
+      "variant": "baseline",
+      "binding": {
+        "inputHash": "a1ad86a5d9de9b4c6a21b7ddffd987f35e3b458430d8ef1835ae06b063e139cc",
+        "planHash": "78ede9d57f8a2b5c0f8d50c66009cc3b0f5e6223bf8109a73e2e01e9754b06c1",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "945e5d62ee2f20914409af510aa80789b0aba7e81b7ff0b42a0c047f908b1be2",
+        "videoSHA256": "4ce089c5b75cb9548dd22e5abbc722bd143023f1c0157961eec20f9444646a1f",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "originalEvidenceId": "7f690b790e1245daa4f653c25c8b7b239d99fbb227a34dd55dd9665beb05a267",
+      "rawResultsSHA256": "63a53b58156e68d44762d7ca53184cfc7a42d52b97e7b6d169772494275c41be",
+      "referenceSHA256": "fec071e494d62b61a5065b6bf84c5d70619136f52c58ca66026fa34a35725dfe",
+      "verifierSourceCommit": "0db8c35093ea7a8d93de4c62539e5b7308d90d8e",
+      "method": "Contract reinterpretation of immutable full decoded observations. No new render, encode, decode or pixel measurement. Original native text repetitions interpreted; all pixel, geometry, contrast and audio observations unchanged.",
+      "originalStatus": "MEASURED",
+      "status": "MEASURED",
+      "sourceTextIntegrity": true,
+      "unitTextIntegrity": true,
+      "failures": [],
+      "units": [
+        {
+          "unitId": "2d4c0e93f041132789d49622a76284deefb1bd1b992d96911ffa84966438fbd1",
+          "sourceUnitId": "21b7854130d8f6a000a5fe534af623756ecd9eacbd551e474a19855fb9006c00",
+          "fragments": [
+            {
+              "index": 0,
+              "from": 0.3,
+              "to": 3.2,
+              "id": "1992955960c575b065f3f2d9dc951df6e568515f3e0ab6339309671fa39c7ba7"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            0.3,
+            3.2
+          ],
+          "holdRange": [
+            0.488,
+            2.9583333333333335
+          ],
+          "status": "MEASURED",
+          "frameCount": 69,
+          "holdFrameCount": 59,
+          "expectedHoldFrames": 59,
+          "readableHoldSeconds": 2.4583333333333335,
+          "minimumContrast": 89,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 4,
+            "hold": 59,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "262771d13508d9aa2b2f351234c76700193b43ad917796a0aa20d7792e2278bb",
+          "sourceUnitId": "535044e6001fc3d5f3108211d2fa6f7da6eb99732644b4ff967e3542e5be44e3",
+          "fragments": [
+            {
+              "index": 1,
+              "from": 3.2,
+              "to": 6.1,
+              "id": "6e443f8f3aab05f42cf1ac67c25af7b83794c31aa27c46158b74a53f45b476d4"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.1
+          ],
+          "holdRange": [
+            3.386,
+            5.8583333333333325
+          ],
+          "status": "MEASURED",
+          "frameCount": 70,
+          "holdFrameCount": 59,
+          "expectedHoldFrames": 59,
+          "readableHoldSeconds": 2.4583333333333335,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 5,
+            "hold": 59,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "30d9d7d77297b2d1ba0f7282d7f3f28a62d45f710f47f2037ebb49694c4a4117",
+          "sourceUnitId": "0f396bc9f49237b1a7c11a149227a754044d4476d75fb8298bcf8baf4c1cea8e",
+          "fragments": [
+            {
+              "index": 2,
+              "from": 6.1,
+              "to": 8.09,
+              "id": "28c55fca551e7c15aeadf8e80496a4a27201120570795e6a9971e89874ca39fb"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.1,
+            8.09
+          ],
+          "holdRange": [
+            6.284,
+            7.848333333333333
+          ],
+          "status": "MEASURED",
+          "frameCount": 48,
+          "holdFrameCount": 38,
+          "expectedHoldFrames": 38,
+          "readableHoldSeconds": 1.5833333333333333,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 4,
+            "hold": 38,
+            "exit": 6
+          }
+        }
+      ],
+      "notApplicableCuts": [],
+      "evidenceId": "f48e782395226aec6aabe863d524aee3f955ba41673b9faa42ef1329272d9d99"
+    },
+    {
+      "fixture": "holdout-09",
+      "variant": "v3",
+      "binding": {
+        "inputHash": "bc604e35a1d162a60e37ea0b034e6526e96022ee7973274d69e7536f9c0152d2",
+        "planHash": "00acd6ca1ffe8b8fec7da9c6bf3c67482e6729aa0ec74b7af60f2151b46f5cc3",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+        "selectedCandidateId": "0fdb25f3c201ef7532f7824c962b33757c4c6da3543238cf76ff6d2096e5f297",
+        "videoSHA256": "f33d2c6d3ffc1023bf9c491bf63bd30a0f719bd9f0354651517839a8d54ec050",
+        "sourceCommit": "36e89a514f1342297d94358bc759b2e99d053f89",
+        "sourceTreeSHA256": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+        "sourceDirty": false
+      },
+      "originalEvidenceId": "266b98c537e4cfc0952ea7df5edffff28aefd113a3c8445a1fc9ab70458bd5fd",
+      "rawResultsSHA256": "63a53b58156e68d44762d7ca53184cfc7a42d52b97e7b6d169772494275c41be",
+      "referenceSHA256": "f1bff8b7751726a01fc8ad0c98a0934eff9fa5254e413815193fc4f284c7d206",
+      "verifierSourceCommit": "0db8c35093ea7a8d93de4c62539e5b7308d90d8e",
+      "method": "Contract reinterpretation of immutable full decoded observations. No new render, encode, decode or pixel measurement. Original native text repetitions interpreted; all pixel, geometry, contrast and audio observations unchanged.",
+      "originalStatus": "MEASURED",
+      "status": "MEASURED",
+      "sourceTextIntegrity": true,
+      "unitTextIntegrity": true,
+      "failures": [],
+      "units": [
+        {
+          "unitId": "a0d1a1ff16fb2b83c43145937485c93c70eab64011440cfb2b0455eee0156b7d",
+          "sourceUnitId": "21b7854130d8f6a000a5fe534af623756ecd9eacbd551e474a19855fb9006c00",
+          "fragments": [
+            {
+              "index": 0,
+              "from": 0.3,
+              "to": 3.2,
+              "id": "4833cb89b6697de398332efd491a7d546866d50266af49dd02c7f9e139bdcd62"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            0.3,
+            3.2
+          ],
+          "holdRange": [
+            0.488,
+            2.9583333333333335
+          ],
+          "status": "MEASURED",
+          "frameCount": 69,
+          "holdFrameCount": 59,
+          "expectedHoldFrames": 59,
+          "readableHoldSeconds": 2.4583333333333335,
+          "minimumContrast": 98,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 4,
+            "hold": 59,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "fd879cb8dbb2b2cf93b418c25864c320b3d6390b1a25a9b85314a85c6658f862",
+          "sourceUnitId": "535044e6001fc3d5f3108211d2fa6f7da6eb99732644b4ff967e3542e5be44e3",
+          "fragments": [
+            {
+              "index": 1,
+              "from": 3.2,
+              "to": 6.1,
+              "id": "fc0a101d3a65af39cd60f4665196d8deb245cebd0a68294f67e9c6c34f02d459"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.2,
+            6.1
+          ],
+          "holdRange": [
+            3.386,
+            5.8583333333333325
+          ],
+          "status": "MEASURED",
+          "frameCount": 70,
+          "holdFrameCount": 59,
+          "expectedHoldFrames": 59,
+          "readableHoldSeconds": 2.4583333333333335,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 5,
+            "hold": 59,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "227098e6e9a2dfe65e4e3aec3a8d760d279acc04338dec35b015206744462431",
+          "sourceUnitId": "0f396bc9f49237b1a7c11a149227a754044d4476d75fb8298bcf8baf4c1cea8e",
+          "fragments": [
+            {
+              "index": 2,
+              "from": 6.1,
+              "to": 8.09,
+              "id": "c0d8f0f2244fd4646bd574e308872e2c7a97514efd6fa9011f66ae83b4cdaf34"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.1,
+            8.09
+          ],
+          "holdRange": [
+            6.284,
+            7.848333333333333
+          ],
+          "status": "MEASURED",
+          "frameCount": 48,
+          "holdFrameCount": 38,
+          "expectedHoldFrames": 38,
+          "readableHoldSeconds": 1.5833333333333333,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 4,
+            "hold": 38,
+            "exit": 6
+          }
+        }
+      ],
+      "notApplicableCuts": [],
+      "evidenceId": "c9cb7c474b7d675047b794b42eab862d525d3173d988ef4c86f45f3049532adf"
+    },
+    {
+      "fixture": "holdout-10",
+      "variant": "v3",
+      "binding": {
+        "inputHash": "ecc6d773a9f550241f2af7be36f7739e63d61dae142e8d01b0161b4c76bac95e",
+        "planHash": "8ec9bd43b8af51ac170763a5fe5cdb3c1b8cd585adcec53ed44238df599bc664",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+        "selectedCandidateId": "d973a835302e69e120c6f6206724b37333f6aea8f49cc1bb9fc8ee3820133b38",
+        "videoSHA256": "48e88d46a71b4e5edd55f5355a21d66b1760dc3489ede65820dd89473a3a76d3",
+        "sourceCommit": "36e89a514f1342297d94358bc759b2e99d053f89",
+        "sourceTreeSHA256": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+        "sourceDirty": false
+      },
+      "originalEvidenceId": "c04743efec1b282a0346203846967e999df1446ceb0d4fcd15cc79219ac50b78",
+      "rawResultsSHA256": "63a53b58156e68d44762d7ca53184cfc7a42d52b97e7b6d169772494275c41be",
+      "referenceSHA256": "8bc2840786bd288273d4ef56e1175baaf176b2d38361d9e2786cd5a5ae3de8a0",
+      "verifierSourceCommit": "0db8c35093ea7a8d93de4c62539e5b7308d90d8e",
+      "method": "Contract reinterpretation of immutable full decoded observations. No new render, encode, decode or pixel measurement. Original native text repetitions interpreted; all pixel, geometry, contrast and audio observations unchanged.",
+      "originalStatus": "MEASURED",
+      "status": "MEASURED",
+      "sourceTextIntegrity": true,
+      "unitTextIntegrity": true,
+      "failures": [],
+      "units": [
+        {
+          "unitId": "71e4347b7384692feffffb21d8292da29f8dfa6cf11bcfd81768fbb78d70851a",
+          "sourceUnitId": "adcc362226966c99c9a0132b83895350f615478d16e1f31bea3939c9e5e9f543",
+          "fragments": [
+            {
+              "index": 0,
+              "from": 0.3,
+              "to": 1.3935,
+              "id": "5bffd854c6326e9b6295140a558467cbd00f9cf6dbe8aa8e6731fabf1bf5c9d5"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            0.3,
+            1.3935
+          ],
+          "holdRange": [
+            0.6936599999999999,
+            1.1464999999999999
+          ],
+          "status": "MEASURED",
+          "frameCount": 26,
+          "holdFrameCount": 11,
+          "expectedHoldFrames": 11,
+          "readableHoldSeconds": 0.4583333333333333,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 9,
+            "hold": 11,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "f540fc53d02954378ad417e354dcad4dae30dfa8177bab64d4a4f96be49fe5bb",
+          "sourceUnitId": "38394af1f0b633489a43ace544397c923b99ffb85976ee8d8e6fa283e3b3c098",
+          "fragments": [
+            {
+              "index": 1,
+              "from": 1.3935,
+              "to": 2.1578125000000004,
+              "id": "80e312647a6e4be32fd00d56410337eef3fedd86fb4cfcd484c71b11d1777753"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            1.3935,
+            2.1578125000000004
+          ],
+          "holdRange": [
+            1.6686525,
+            1.9667343750000001
+          ],
+          "status": "MEASURED",
+          "frameCount": 18,
+          "holdFrameCount": 7,
+          "expectedHoldFrames": 7,
+          "readableHoldSeconds": 0.2916666666666667,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 7,
+            "hold": 7,
+            "exit": 4
+          }
+        },
+        {
+          "unitId": "53175ad891ea3f98f464a89c1c53587314b80fa54579685dc5b790eb124d1df2",
+          "sourceUnitId": "52ba4ae4acbaa15784219285b1459b7fa111d31421df57aa45bc8f2739830c15",
+          "fragments": [
+            {
+              "index": 2,
+              "from": 2.1578125000000004,
+              "to": 3.2,
+              "id": "80c03fa156651e778813ca7677b3ff59ccb889c9b863e15034b85c132800c058"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            2.1578125000000004,
+            3.2
+          ],
+          "holdRange": [
+            2.5330000000000004,
+            2.9530000000000003
+          ],
+          "status": "MEASURED",
+          "frameCount": 25,
+          "holdFrameCount": 10,
+          "expectedHoldFrames": 10,
+          "readableHoldSeconds": 0.4166666666666667,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 9,
+            "hold": 10,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "cd94ce147c0133c3252586a6dec4c1bfd35b76d89d8d468bf24cce56a10aaa84",
+          "sourceUnitId": "bc2c6e5112d7c22df75d838f9d6c008f7405448bd01a702a151e75b8e13bb696",
+          "fragments": [
+            {
+              "index": 3,
+              "from": 3.2,
+              "to": 3.9054054054054053,
+              "id": "e0ac814924843cae241a9be08d6fae6887a69d099b81b485c498fdda1eba6263"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.2,
+            3.9054054054054053
+          ],
+          "holdRange": [
+            3.27,
+            3.8354054054054054
+          ],
+          "status": "MEASURED",
+          "frameCount": 17,
+          "holdFrameCount": 14,
+          "expectedHoldFrames": 14,
+          "readableHoldSeconds": 0.5833333333333334,
+          "minimumContrast": 99,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 14,
+            "exit": 1
+          }
+        },
+        {
+          "unitId": "323c5f7bb1d4c2bd3c147fcfffb39daa2b89bbd9e636cd0c95567280b975a9c0",
+          "sourceUnitId": "feb493359b11a4127b6e270b3fdc3c74a5bc20db50624efe731c8dab6d9a4ce3",
+          "fragments": [
+            {
+              "index": 4,
+              "from": 3.9054054054054053,
+              "to": 4.9,
+              "id": "e1b56ebc6952e041ae138edfa35db3947f9377e35222fc031274b04ea7648fc6"
+            },
+            {
+              "index": 5,
+              "from": 4.9,
+              "to": 5.1095,
+              "id": "f733b73a923c341ac2551e495a62091b99160b3259f316b7f5b7dcc9f990572e"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.9054054054054053,
+            5.1095
+          ],
+          "holdRange": [
+            3.975405405405405,
+            5.039499999999999
+          ],
+          "status": "MEASURED",
+          "frameCount": 29,
+          "holdFrameCount": 25,
+          "expectedHoldFrames": 25,
+          "readableHoldSeconds": 1.0416666666666667,
+          "minimumContrast": 97,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 25,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "8f39e0ea6c6c5e54cb6da583f00783e93831bde3cc120595cd8830e999c4ce11",
+          "sourceUnitId": "3dcda91ee001a6a1311a32c8b8682e126af51e3e3696e7c67ecabd63286a8067",
+          "fragments": [
+            {
+              "index": 6,
+              "from": 5.1095,
+              "to": 6.1,
+              "id": "c95af61015503a5a817c6436161333a1a605ee49095a8d866507e714c24ece88"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            5.1095,
+            6.1
+          ],
+          "holdRange": [
+            5.1795,
+            6.029999999999999
+          ],
+          "status": "MEASURED",
+          "frameCount": 24,
+          "holdFrameCount": 20,
+          "expectedHoldFrames": 20,
+          "readableHoldSeconds": 0.8333333333333334,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 20,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "9a64e1566361af34ea9fe3fe941b3e46f38747a5dd79abea03a74a8cd0ff0bdf",
+          "sourceUnitId": "a0ae2cbf04c48a72d6d377a6b56ce6cc726db87c7d0381b143fa8db953a2fb38",
+          "fragments": [
+            {
+              "index": 7,
+              "from": 6.1,
+              "to": 6.9675,
+              "id": "369d2abc2785a092e4f780d02aca7dd8f6a3151a573ea381c232ffeb26691055"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.1,
+            6.9675
+          ],
+          "holdRange": [
+            6.17,
+            6.8975
+          ],
+          "status": "MEASURED",
+          "frameCount": 21,
+          "holdFrameCount": 17,
+          "expectedHoldFrames": 17,
+          "readableHoldSeconds": 0.7083333333333334,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 17,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "c47aa4055d937da2ead1c198fc5f713151fbc1c3c0ed5ae8de732f6a82e20da4",
+          "sourceUnitId": "13a1146a2f988840b5a43b65445d27072ae9f8821fbfee56fdd9f83289429160",
+          "fragments": [
+            {
+              "index": 8,
+              "from": 6.9675,
+              "to": 7.4,
+              "id": "751c4b85ef1406e6b1f9efd3db25c8bca5a01d0106ac3c0a8923c3b60e9b4303"
+            },
+            {
+              "index": 9,
+              "from": 7.4,
+              "to": 7.638461538461538,
+              "id": "e5dc9104643b977fcb17add98ab1a5ae3f9cd7ae75cf54d4f219dd90da59ebba"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.9675,
+            7.638461538461538
+          ],
+          "holdRange": [
+            7.0375000000000005,
+            7.568461538461538
+          ],
+          "status": "MEASURED",
+          "frameCount": 16,
+          "holdFrameCount": 13,
+          "expectedHoldFrames": 13,
+          "readableHoldSeconds": 0.5416666666666666,
+          "minimumContrast": 98,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 1,
+            "hold": 13,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "e6a4fdfeb62a08fda74e5dcfa5d58c58c1870381d3b1355fd57b33d514cbdc81",
+          "sourceUnitId": "cfcf3d473ad37246082c6b527cc5abdefe853bbf4035666102eff4544beedc9a",
+          "fragments": [
+            {
+              "index": 10,
+              "from": 7.638461538461538,
+              "to": 8.6,
+              "id": "83c61b867b4b69095fd398e68c2cc99753691b1b7658fab637e37d45addba67b"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            7.638461538461538,
+            8.6
+          ],
+          "holdRange": [
+            7.638461538461538,
+            8.6
+          ],
+          "status": "MEASURED",
+          "frameCount": 23,
+          "holdFrameCount": 23,
+          "expectedHoldFrames": 23,
+          "readableHoldSeconds": 0.9583333333333334,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 0,
+            "hold": 23,
+            "exit": 0
+          }
+        }
+      ],
+      "notApplicableCuts": [],
+      "evidenceId": "a2565f03cc9a2708b3f4fd7214d22376e82cd9c493087096f34ba9f09ea66683"
+    },
+    {
+      "fixture": "holdout-10",
+      "variant": "baseline",
+      "binding": {
+        "inputHash": "ecc6d773a9f550241f2af7be36f7739e63d61dae142e8d01b0161b4c76bac95e",
+        "planHash": "0bc9a7ed0d9a4da7fe0224c50310d5985e67a205d8fd199eee74aa2b991d2f1d",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "9030a43825a34ad34eaf2f26f7c9a4809b7fe7178fa543bb1452a4dad3f89e3c",
+        "videoSHA256": "980f172048803c3a2f031fd7506221962be41eb08866668f512c63c3d445298d",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "originalEvidenceId": "beb1dc3c901feabf59eeece7fc714a4cd3f0fe68ccfa0a3578318b1f2fc89369",
+      "rawResultsSHA256": "63a53b58156e68d44762d7ca53184cfc7a42d52b97e7b6d169772494275c41be",
+      "referenceSHA256": "88709e04c9ebb27374666b0aa43e901f0a15152b409d5f44af27a411e9229b8e",
+      "verifierSourceCommit": "0db8c35093ea7a8d93de4c62539e5b7308d90d8e",
+      "method": "Contract reinterpretation of immutable full decoded observations. No new render, encode, decode or pixel measurement. Original native text repetitions interpreted; all pixel, geometry, contrast and audio observations unchanged.",
+      "originalStatus": "FAILED",
+      "status": "FAILED",
+      "sourceTextIntegrity": true,
+      "unitTextIntegrity": false,
+      "failures": [
+        "ORIGINAL_UNIT_TEXT_INTEGRITY"
+      ],
+      "units": [
+        {
+          "unitId": "ebb0b08bf62622649d6c6fd53ee00cf19c1212d42f49f9060a6604822b833dd5",
+          "sourceUnitId": "adcc362226966c99c9a0132b83895350f615478d16e1f31bea3939c9e5e9f543",
+          "fragments": [
+            {
+              "index": 0,
+              "from": 0.3,
+              "to": 1.3935,
+              "id": "717c86d2bc6f06a822eebf9e69ad41d40ac881047680780cc1eedbb2e2411ba0"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            0.3,
+            1.3935
+          ],
+          "holdRange": [
+            0.6936599999999999,
+            1.1464999999999999
+          ],
+          "status": "MEASURED",
+          "frameCount": 26,
+          "holdFrameCount": 11,
+          "expectedHoldFrames": 11,
+          "readableHoldSeconds": 0.4583333333333333,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 9,
+            "hold": 11,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "d5442cbd16a800384c40c31256e93a7361dde1b88c9801c3fa80c6fe97e66062",
+          "sourceUnitId": "38394af1f0b633489a43ace544397c923b99ffb85976ee8d8e6fa283e3b3c098",
+          "fragments": [
+            {
+              "index": 1,
+              "from": 1.3935,
+              "to": 2.1578125000000004,
+              "id": "33802ddca6545501dafcfa8b50dd554bee817a63f5d70d48942a10cf129e6ad5"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            1.3935,
+            2.1578125000000004
+          ],
+          "holdRange": [
+            1.6686525,
+            1.9667343750000001
+          ],
+          "status": "MEASURED",
+          "frameCount": 18,
+          "holdFrameCount": 7,
+          "expectedHoldFrames": 7,
+          "readableHoldSeconds": 0.2916666666666667,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 7,
+            "hold": 7,
+            "exit": 4
+          }
+        },
+        {
+          "unitId": "c8fac442097a41e41b91c635f4f865f441d3b5169f9d18fd31d0a30efacb0852",
+          "sourceUnitId": "52ba4ae4acbaa15784219285b1459b7fa111d31421df57aa45bc8f2739830c15",
+          "fragments": [
+            {
+              "index": 2,
+              "from": 2.1578125000000004,
+              "to": 3.2,
+              "id": "e07c67babf6f11af0549bc8a5301c9720c2d00577cc75b7a81be1973c5064570"
+            }
+          ],
+          "line": 0,
+          "timeRange": [
+            2.1578125000000004,
+            3.2
+          ],
+          "holdRange": [
+            2.5330000000000004,
+            2.9530000000000003
+          ],
+          "status": "MEASURED",
+          "frameCount": 25,
+          "holdFrameCount": 10,
+          "expectedHoldFrames": 10,
+          "readableHoldSeconds": 0.4166666666666667,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 9,
+            "hold": 10,
+            "exit": 6
+          }
+        },
+        {
+          "unitId": "440723ae0507157909d587a9b68b6e42ee2761afa5d42904e845f911e922bb3b",
+          "sourceUnitId": "bc2c6e5112d7c22df75d838f9d6c008f7405448bd01a702a151e75b8e13bb696",
+          "fragments": [
+            {
+              "index": 3,
+              "from": 3.2,
+              "to": 3.9054054054054053,
+              "id": "8ad6bb1001aa78f133adc202b83dad7c1cd6da6bfef43227986d69efaf42cb09"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.2,
+            3.9054054054054053
+          ],
+          "holdRange": [
+            3.27,
+            3.8354054054054054
+          ],
+          "status": "MEASURED",
+          "frameCount": 17,
+          "holdFrameCount": 14,
+          "expectedHoldFrames": 14,
+          "readableHoldSeconds": 0.5833333333333334,
+          "minimumContrast": 99,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 14,
+            "exit": 1
+          }
+        },
+        {
+          "unitId": "3a22c37b5242a364a1159cfd3e32996206e31c1294362261a332f8d5318995b4",
+          "sourceUnitId": "6396735406ff877b1c604b9ae9f633445aa9f985ae996e54ca44ca3f551f01aa",
+          "fragments": [
+            {
+              "index": 4,
+              "from": 3.9054054054054053,
+              "to": 4.9,
+              "id": "8b01e6991010b3b67255da82772bf2b9bf8664a213bccd4f11ebbb6d710adc33"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            3.9054054054054053,
+            4.9
+          ],
+          "holdRange": [
+            3.975405405405405,
+            4.83
+          ],
+          "status": "MEASURED",
+          "frameCount": 24,
+          "holdFrameCount": 20,
+          "expectedHoldFrames": 20,
+          "readableHoldSeconds": 0.8333333333333334,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 20,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "e21fcde07bb707ad2ca7b413f2cd47b17b4a8253d0f12a730867c8002deb6eda",
+          "sourceUnitId": "c6e0a88a7036b2fd0cf582585cdbf776f14cf8ce584c71faab8d0a9470795e59",
+          "fragments": [
+            {
+              "index": 5,
+              "from": 4.9,
+              "to": 5.1095,
+              "id": "4ab3e734938dba6c62dee33b2210e93f81d90d434a10f098f01355836d1c622b"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            4.9,
+            5.1095
+          ],
+          "holdRange": [
+            4.970000000000001,
+            5.039499999999999
+          ],
+          "status": "UNMEASURED",
+          "frameCount": 5,
+          "holdFrameCount": 1,
+          "expectedHoldFrames": 1,
+          "readableHoldSeconds": 0.041666666666666664,
+          "minimumContrast": 100,
+          "reason": "NO_COMPLETE_HOLD_INTERVAL",
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 1,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "919a3f427759bd88a70fe66f0c424e86f1f15b773bb6389e299134159fc48fff",
+          "sourceUnitId": "3dcda91ee001a6a1311a32c8b8682e126af51e3e3696e7c67ecabd63286a8067",
+          "fragments": [
+            {
+              "index": 6,
+              "from": 5.1095,
+              "to": 6.1,
+              "id": "1f369a7decb3c9d945dac334022c207b9c275f719173c9b64306ec0c90e0a1d7"
+            }
+          ],
+          "line": 1,
+          "timeRange": [
+            5.1095,
+            6.1
+          ],
+          "holdRange": [
+            5.1795,
+            6.029999999999999
+          ],
+          "status": "MEASURED",
+          "frameCount": 24,
+          "holdFrameCount": 20,
+          "expectedHoldFrames": 20,
+          "readableHoldSeconds": 0.8333333333333334,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 20,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "a31aef38df095882f8e1e0f99c93eff4498e9b140af0e08e4bcd42f6a00b07aa",
+          "sourceUnitId": "a0ae2cbf04c48a72d6d377a6b56ce6cc726db87c7d0381b143fa8db953a2fb38",
+          "fragments": [
+            {
+              "index": 7,
+              "from": 6.1,
+              "to": 6.9675,
+              "id": "11d1f3ecfaf2365112c6f7575c95320511181c00e7169fb206f6325168f4461c"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.1,
+            6.9675
+          ],
+          "holdRange": [
+            6.17,
+            6.8975
+          ],
+          "status": "MEASURED",
+          "frameCount": 21,
+          "holdFrameCount": 17,
+          "expectedHoldFrames": 17,
+          "readableHoldSeconds": 0.7083333333333334,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 17,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "9d1041d87a8a42e11f306285ba96961fe01a0c464a1dba130f47a6be52c3050b",
+          "sourceUnitId": "5b42c65e239782486b59538a6f078200d7540df1b5fb2644d074b95cf0522b8e",
+          "fragments": [
+            {
+              "index": 8,
+              "from": 6.9675,
+              "to": 7.4,
+              "id": "996e9b26bdc72730f722c9e436a162bd1b44636663c6ea06b763b8fde05545fb"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            6.9675,
+            7.4
+          ],
+          "holdRange": [
+            7.0375000000000005,
+            7.33
+          ],
+          "status": "MEASURED",
+          "frameCount": 10,
+          "holdFrameCount": 7,
+          "expectedHoldFrames": 7,
+          "readableHoldSeconds": 0.2916666666666667,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 1,
+            "hold": 7,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "645e019642b9754a9e8064c833114f21a0891abe5d9aa721e2a206026119fa81",
+          "sourceUnitId": "67b61fea00707d99dbe44c1a2397e762aec03bc40b8abedb34384ba6f0af5d2a",
+          "fragments": [
+            {
+              "index": 9,
+              "from": 7.4,
+              "to": 7.638461538461538,
+              "id": "225b05abb0399dc2650eac8a41a64d66cce0278ccafa96095168f33eecd5162b"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            7.4,
+            7.638461538461538
+          ],
+          "holdRange": [
+            7.470000000000001,
+            7.568461538461538
+          ],
+          "status": "MEASURED",
+          "frameCount": 6,
+          "holdFrameCount": 2,
+          "expectedHoldFrames": 2,
+          "readableHoldSeconds": 0.08333333333333333,
+          "minimumContrast": 100,
+          "reason": null,
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 2,
+            "exit": 2
+          }
+        },
+        {
+          "unitId": "ce2dce6a86102d1ea9b6b44e5755913cf44d2c9854fde24d8bf1dbf83cbb3089",
+          "sourceUnitId": "cfcf3d473ad37246082c6b527cc5abdefe853bbf4035666102eff4544beedc9a",
+          "fragments": [
+            {
+              "index": 10,
+              "from": 7.638461538461538,
+              "to": 8.6,
+              "id": "3465510232f2000312cdcd8d9ce97331bf1b8b839b89c1aaad3ce31e7c6db49d"
+            }
+          ],
+          "line": 2,
+          "timeRange": [
+            7.638461538461538,
+            8.6
+          ],
+          "holdRange": [
+            7.708461538461538,
+            8.53
+          ],
+          "status": "UNMEASURED",
+          "frameCount": 23,
+          "holdFrameCount": 19,
+          "expectedHoldFrames": 19,
+          "readableHoldSeconds": 0,
+          "minimumContrast": 0,
+          "reason": "INCOMPLETE_ACTUAL_FRAME_COVERAGE",
+          "phaseCounts": {
+            "entry": 2,
+            "hold": 19,
+            "exit": 2
+          }
+        }
+      ],
+      "notApplicableCuts": [],
+      "evidenceId": "1cc3c8ef4030d1796fe5bf693286789b3a2873d4bfda287f5aaf4fa19411cc51"
+    }
+  ]
+}

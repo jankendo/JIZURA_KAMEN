@@ -1,0 +1,34 @@
+{
+  "currentSourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+  "qualityStatus": "UNVERIFIED",
+  "criticalEvidenceGaps": [
+    {
+      "issue": "Final-source full matrix and CI pending",
+      "status": "UNVERIFIED"
+    },
+    {
+      "issue": "holdout-06 unexpected encoded foreground against native background controls",
+      "status": "UNRESOLVED",
+      "actualMissingGlyphConfirmed": false,
+      "baselineAlsoFails": true,
+      "rawFailuresRetained": true
+    },
+    {
+      "issue": "Original short comparison inputs ineligible; prior supplemental harness misconfigured",
+      "status": "PRESERVED_NOT_POOLED",
+      "correctShippingSupplementalInputs": "final-valid-preregistration.json"
+    }
+  ],
+  "fixedGenericCauses": [
+    "Fragment lineage/clock resets at image and SNS boundaries",
+    "Repeated primary copies incorrectly concatenated as extra text",
+    "Initial proposal incorrectly used as shipping incumbent",
+    "Empty post-lyric gaps incorrectly treated as missing lyric units",
+    "Source text not independently compared with canonical raw input",
+    "Frame counts used absolute zero instead of export start",
+    "Decorative full-line labels mixed with primary lyric evidence"
+  ],
+  "aestheticStatus": "HUMAN_UNVERIFIED",
+  "peakApplicationMemory": "UNMEASURED",
+  "speedIsReleaseBlocker": false
+}

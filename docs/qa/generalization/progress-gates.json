@@ -1,7 +1,7 @@
 {
-  "sourceCommit": "36e89a514f1342297d94358bc759b2e99d053f89",
+  "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
   "measuredRuntimeSource": "36e89a514f1342297d94358bc759b2e99d053f89",
-  "runtimeSourceTree": "ff6b4866add7271479ed9429f0119d61d1bea50223770ce1f1e3738b30cb0d8a",
+  "runtimeSourceTree": "PENDING_FINAL_60CF632_AUDIT",
   "runtimeDiff": null,
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
@@ -24,7 +24,7 @@
     "SKIP": 2,
     "rootCause": "Same obsolete non-photo counterfactual unit test assertion, also in clean nested suite; test corrected, current CI pending"
   },
-  "latestCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38364673019",
+  "latestCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38377081879",
   "variableFontActualBrowser": {
     "status": "PASS",
     "scope": "HISTORICAL_269d804"
@@ -137,5 +137,25 @@
     "remaining": null
   },
   "targetedLatestQA": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38363522086",
-  "formalLatestQA": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38364887530"
+  "formalLatestQA": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38377308509",
+  "formal36": {
+    "pairedInputs": 30,
+    "completedMP4": 60,
+    "strictDecode": "PASS_ACTIONS_AND_LOCAL",
+    "rawSafetyCurrent": {
+      "MEASURED": 27,
+      "FAILED": 2,
+      "UNMEASURED": 1
+    },
+    "rawSafetyBaseline": {
+      "MEASURED": 19,
+      "FAILED": 10,
+      "UNMEASURED": 1
+    },
+    "independenceLimits": "Supplemental timing input amendment and exposed original holdout recorded; no new blind certification"
+  },
+  "latestFixes": [
+    "Decorator labels marked auxiliary; cannot certify primary text or contribute to its QA mask",
+    "Expected frame lattice uses exact export start, including fractional SNS ranges"
+  ]
 }
