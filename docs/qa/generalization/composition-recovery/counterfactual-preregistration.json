@@ -1,0 +1,12 @@
+{
+  "registeredAt": "2026-10-13T22:07:18.751581+00:00",
+  "operator": "Aggregate J.cameraAt transform",
+  "treatment": "Frozen final plan re-encode at original full profile. ON/OFF/ON_REPEAT, identical input/audio/range/seed/font conditions, no optimization or repair",
+  "observer": "160px luma at matched actual decoded timestamps; per-phrase20/50/80% original times",
+  "contributionCriterion": "RMS(ON-OFF)>max(1,3*RMS(ON-ON_REPEAT)); diagnostic contribution criterion, not aesthetic score or a relaxed quality threshold",
+  "statuses": "Decoded causal pixel contribution can be observed; per-technique planned semantics and music fit remain UNMEASURED until independently validated",
+  "encodedDomain": "Diagnostic frozen-plan re-encodes linked to original adopted video hash; never count as successful new natural selections",
+  "limitation": "Aggregate camera attribution only. Native transforms sharing the same cameraAt hook cannot be independently credited; list as CONFOUNDED at the individual-technique level.",
+  "rmsUnits": "8-bit luma levels; cinemaReferenceLuma normalized0..1 converted by255 before comparison",
+  "implementationCorrection": "Initial diagnostic process had normalized RMS against a byte-unit threshold. Preserve its raw results; convert RMS units in a separate derived report, no re-encoding or new observation claims."
+}
