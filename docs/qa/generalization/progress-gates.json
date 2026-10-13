@@ -1,14 +1,14 @@
 {
-  "sourceCommit": "269d8040f7fca2857231c21482924f553f3598d8",
-  "measuredRuntimeSource": "11e8fa7a98d419d2b3d154c488b9aeb57d2c9c05",
+  "sourceCommit": "357a2738bd9aa63177d674b3fadb96ab1d44bcda",
+  "measuredRuntimeSource": "357a2738bd9aa63177d674b3fadb96ab1d44bcda",
   "runtimeSourceTree": "5675afbe0ba0706d470e8276caa2c25b6740ae5175dfe4bad526354884d5d1a3",
-  "runtimeDiff": [],
+  "runtimeDiff": null,
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "UNVERIFIED",
   "artistic100": "UNVERIFIED",
   "humanStatus": "HUMAN_UNVERIFIED",
-  "completedPairedCases": 4,
+  "completedPairedCases": 0,
   "preregisteredCases": 30,
   "nativeAudit": {
     "entries": 3152,
@@ -23,7 +23,7 @@
     "SKIP": 2,
     "rootCause": "Same obsolete non-photo counterfactual unit test assertion, also in clean nested suite; test corrected, current CI pending"
   },
-  "latestCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38322307956",
+  "latestCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38329954032",
   "variableFontActualBrowser": "PASS",
   "mainChanged": false,
   "productionChanged": false,
@@ -41,20 +41,37 @@
     "strictCompleteDecode": true,
     "creativeState": "BELOW_TARGET",
     "pageErrors": [],
-    "resourceFailures": []
+    "resourceFailures": [],
+    "scope": "HISTORICAL_269d804_NOT_FINAL_REPAIR_HEAD"
   },
   "cancellationRetry": {
     "status": "PASS",
     "nativeObjectsClosed": true,
     "planQAHashUnchanged": true,
-    "strictCompleteDecode": true
+    "strictCompleteDecode": true,
+    "scope": "HISTORICAL_269d804_NOT_FINAL_REPAIR_HEAD"
   },
-  "formalMatrixRun": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38324945162",
+  "formalMatrixRun": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38331159655",
   "formalMatrixState": "IN_PROGRESS_6_PARTITIONS",
   "formalUIIntentCoverage": {
     "population": 4,
     "measured": 0,
     "status": "UNMEASURED",
     "reason": "openSky/photoChant/stands do not carry explicit supported motion contracts; not counted as realized musical intent"
-  }
+  },
+  "finalHeadMultiImageRepair": {
+    "status": "MEASURED",
+    "units": 10,
+    "allUnitsMeasured": true,
+    "completeDecode": "PASS"
+  },
+  "historicalCI269d804": {
+    "PASS": 198,
+    "FAIL": 0,
+    "SKIP": 2,
+    "status": "SUCCESS"
+  },
+  "finalHeadUIE2E": "IN_PROGRESS",
+  "finalHeadCatalogAudit": "IN_PROGRESS",
+  "historicalLocalComparison": "source-11e8fa7-superseded/"
 }
