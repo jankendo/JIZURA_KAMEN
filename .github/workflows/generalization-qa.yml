@@ -31,7 +31,7 @@ jobs:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 269d8040f7fca2857231c21482924f553f3598d8
+          ref: 15e90694eae643209e2944b140cc3d1d32f65547
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -52,6 +52,7 @@ jobs:
           mkdir -p results
           sha256sum qa/docs/qa/generalization/preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/tools-and-preregistration.sha256
       - name: Complete natural-selection paired MP4 matrix
+        timeout-minutes: 320
         env:
           KAMEN_CHROME: /usr/bin/google-chrome
           KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/preregistration.json
@@ -82,7 +83,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: frozen-generalization-269d804-${{ matrix.partition }}
+          name: frozen-generalization-15e9069-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
