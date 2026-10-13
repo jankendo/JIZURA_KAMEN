@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "registeredAt": "2026-10-13T21:58:19.041642+00:00",
+  "baselineSource": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "priorSource": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+  "newSource": "UNFIXED_IMPLEMENTATION_IN_PROGRESS",
+  "conditions": "Same final-valid-preregistration.json 30 cases; audio/LRC/image/seed/profile/FPS unchanged",
+  "focusedCases": [
+    "holdout-01",
+    "holdout-03",
+    "development-14",
+    "holdout-15"
+  ],
+  "experiments": {
+    "A": "Saved main actual MP4s",
+    "B": "Saved b5 actual MP4s",
+    "C": "Global candidate retention change only",
+    "D": "Story Director change only, if independently isolatable",
+    "E": "Uniform creative protection of final phrase-local composition proposals only",
+    "F": "Combined cause-supported changes"
+  },
+  "causalLimit": "Saved-stage traces identify configuration transitions, not standalone causal quality proof. Isolated completed encodes and common-observer measurements required. Unavailable stage histories explicitly UNMEASURED.",
+  "acceptance": "Unchanged engineering metrics plus decoded actual visual/music-fit comparison; safety 30/30 retained, no important composition/effect regression; weak tail19.33 is diagnostic target, not automatic artistic gate. Important chosen effects require actual decoded ON/OFF evidence.",
+  "freshHoldout": "Must be registered before tuning; old holdouts now exposed, not blind.",
+  "status": "REGISTERED_BEFORE_NEW_EXPERIMENT_RESULTS"
+}
