@@ -25,11 +25,11 @@ J.photoStoryMusicalIntent=(sections,from,to,energy,group,fallback)=>{
 };
 J.buildPhotoStory=p=>{
  if(!p.musicalPhoto||p.directorSections7?.length)return p;
- const lines=p.lines||[],old=p.musicalStructure.sections,variant=p.artDirection.registrySelection.storyVariant||0,groups=new Map(),narrative=[],holdHistory=[];
+ const lines=p.lines||[],old=p.musicalStructure.sections,variant=p.artDirection.registrySelection.storyVariant||0,groups=new Map(),narrative=[],holdHistory=[],measuredEnergy=p.musicalPhoto.songProfile?.measurementProfile?.normalizedEnergy;
  for(const c of p.cuts)if(c.line>=0&&!locked(p,c)){
   const group=J.vocaliseGroup(c.lineText),n=group?(groups.get(group)||0)+1:0;if(group)groups.set(group,n);
   const legacyStage=group?Math.min(4,n):Math.min(3,1+Math.floor(c.line/4)),sequence=group==='oh'?1:0;
-  const energyProfile=p.musicalPhoto.songProfile?.measurementProfile?.normalizedEnergy,observed=energyProfile?.status==='MEASURED'?energyProfile.value.timeline.filter(x=>x.time>=c.start&&x.time<c.end):[],energy=observed.length?observed.reduce((s,x)=>s+x.energy,0)/observed.length:null,purposefulStillness=Number.isFinite(energy)&&energy<.25;
+  const energyProfile=measuredEnergy,observed=energyProfile?.status==='MEASURED'?energyProfile.value.timeline.filter(x=>x.time>=c.start&&x.time<c.end):[],energy=observed.length?observed.reduce((s,x)=>s+x.energy,0)/observed.length:null,purposefulStillness=Number.isFinite(energy)&&energy<.25;
   const legacyRecipe=purposefulStillness?(group?'unity':'gather'):group?['unity','expansion','crowd','release'][legacyStage-1]:['gather','pride','call'][legacyStage-1],musicalIntent=J.photoStoryMusicalIntent(old,c.start,c.end,energy,group,{stage:legacyStage,recipe:legacyRecipe,quiet:purposefulStillness||legacyRecipe==='unity'||legacyRecipe==='gather'}),{stage,recipe}=musicalIntent;
   let holdRepair=null;if(!purposefulStillness&&holdHistory.length>=2&&holdHistory.at(-1)===c.hold&&holdHistory.at(-2)===c.hold){const original=c.hold,alternatives=p.artDirection.registrySelection.motionComparisons?.filter(m=>m.group==='hold'&&m.eligible).map(m=>m.id)||['still','breathe'];c.hold=alternatives.find(id=>id!==original&&J.HOLD[id])||original;holdRepair={from:original,to:c.hold,reason:'automatic hold repetition limit; final raster safety remains required'};}holdHistory.push(c.hold);
   c.story={holdRepair,group,stage,sequence,recipe,variant,musicalIntent,quiet:musicalIntent.quiet,strength:purposefulStillness?.18:group?(.20+stage*.18):(.18+stage*.12),energyEvidence:{value:energy,status:Number.isFinite(energy)?'MEASURED':'UNMEASURED',source:Number.isFinite(energy)?'PCM_NORMALIZED_ENERGY_IN_PHRASE':null}};
@@ -40,12 +40,12 @@ J.buildPhotoStory=p=>{
  const marks=new Set([0,p.duration]);for(const s of old)marks.add(s.from);
  // Musical/LRC boundaries, not arbitrary one-second effect changes. Merge
  // near-identical chant spellings into a development sequence.
- for(const n of narrative)if(n.group&&(n.stage===1||n.stage===3))marks.add(n.from);
- if(lines.length>=8)marks.add(lines[Math.floor(lines.length*.25)].start);
+ if(measuredEnergy?.status!=='MEASURED')for(const n of narrative)if(n.group&&(n.stage===1||n.stage===3))marks.add(n.from);
+ if(measuredEnergy?.status!=='MEASURED'&&lines.length>=8)marks.add(lines[Math.floor(lines.length*.25)].start);
  let boundaries=[...marks].filter(t=>t>=0&&t<=p.duration).sort((a,b)=>a-b);
  // Cap chapters while retaining vocalise stage boundaries and original ends.
  while(boundaries.length>9){const internal=boundaries.slice(1,-1).map((t,i)=>({t,i:i+1,gap:Math.min(t-boundaries[i],boundaries[i+2]-t),vocal:t===lines[0]?.start||narrative.some(n=>n.group&&n.from===t)})).sort((a,b)=>(a.vocal-b.vocal)||a.gap-b.gap);boundaries.splice(internal[0].i,1);}
- const sections=boundaries.slice(0,-1).map((from,i)=>{const parent=old.find(s=>from>=s.from&&from<s.to)||old.at(-1),line=narrative.find(n=>from>=n.from&&from<n.to);return {...parent,id:'story-'+i,from,to:boundaries[i+1],storyRole:!line?.group&&parent.role==='build'?'call':line?.recipe||parent.role};});
+ const sections=boundaries.slice(0,-1).map((from,i)=>{const to=boundaries[i+1],parent=old.find(s=>from>=s.from&&from<s.to)||old.at(-1),line=narrative.find(n=>from>=n.from&&from<n.to),samples=measuredEnergy?.status==='MEASURED'?measuredEnergy.value.timeline.filter(x=>x.time>=from&&x.time<to):[],energy=samples.length?samples.reduce((n,x)=>n+x.energy,0)/samples.length:null,musicalIntent=J.photoStoryMusicalIntent(old,from,to,energy,line?.group,{stage:line?.stage||1,recipe:!line?.group&&parent.role==='build'?'call':line?.recipe||parent.role,quiet:line?.quiet??true});return {...parent,id:'story-'+i,from,to,storyRole:musicalIntent.recipe,musicalStoryIntent:musicalIntent};});
  p.musicalStructure={...p.musicalStructure,sections};const worlds=p.visualWorld.chapters;
  p.visualWorld.chapters=sections.map((s,i)=>({...worlds.find(w=>s.from>=w.from&&s.from<w.to)||worlds[0],...s,index:i,architecture:s.storyRole,storyRecipe:s.storyRole}));
  const f=p.musicalPhoto;f.chapterZooms=sections.map(s=>s.storyRole==='unity'?1.02:s.storyRole==='expansion'?1.15:s.storyRole==='crowd'?1.06:s.storyRole==='release'?1.35:1.06);f.chapterGrades=sections.map(()=>0);f.chapterOffsets=sections.map(()=>({x:0,y:0}));
@@ -55,7 +55,7 @@ J.buildPhotoStory=p=>{
  return p;
 };
 const plan=J.plan;J.plan=(project,audio)=>J.buildPhotoStory(plan(project,audio));
-J.photoStoryAt=(p,t)=>{const s=p.cuts.find(c=>c.line>=0&&t>=c.start&&t<c.end)?.story||{recipe:'gather',stage:0,strength:.18,quiet:true,variant:p.musicalPhoto?.story?.variant||0},chapter=p.musicalStructure?.sections.find(w=>t>=w.from&&t<w.to);return !s.group&&chapter?.storyRole==='call'?{...s,recipe:'call',quiet:false,strength:.65}:s;};
+J.photoStoryAt=(p,t)=>{const s=p.cuts.find(c=>c.line>=0&&t>=c.start&&t<c.end)?.story||{recipe:'gather',stage:0,strength:.18,quiet:true,variant:p.musicalPhoto?.story?.variant||0},chapter=p.musicalStructure?.sections.find(w=>t>=w.from&&t<w.to);const intent=chapter?.musicalStoryIntent;if(intent?.status==='MEASURED_MUSICAL_ROLE')return {...s,...intent,strength:intent.quiet?.18:s.group?(.20+intent.stage*.18):(.18+intent.stage*.12),musicalIntent:intent};return !s.group&&chapter?.storyRole==='call'?{...s,recipe:'call',quiet:false,strength:.65}:s;};
 const camera=J.cameraAt;J.cameraAt=(p,t,range)=>{
  if(!p.musicalPhoto?.story||locked(p,J.cutAt(p,t)))return camera(p,t,range);
  const s=J.photoStoryAt(p,t),c=J.cutAt(p,t),u=C((t-(c?.start||0))/Math.max(.1,c?.dur||1)),smooth=u*u*(3-2*u),base=s.recipe==='call'?1.20:s.recipe==='release'?1.34:s.recipe==='expansion'?1.12:s.recipe==='crowd'?1.06:1.035;
