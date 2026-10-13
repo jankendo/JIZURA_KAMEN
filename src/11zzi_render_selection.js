@@ -39,7 +39,10 @@ const analyze=J.analyzeRenderedFrames;J.analyzeRenderedFrames=async(p,...args)=>
 const fontFor=key=>J.STYLES[key].fonts.display.find(k=>J.FONTS[k])||'gothic_bold';
 const candidateCut=(p,c,id,font,enter='photoSettle',hold='still')=>{const original=p.lines[c.line].text,family=families[id]||id,params={...J.LAYOUTS[id].plan?.(J.rng(c.seed),{...c,text:original,lineText:original,n:[...norm(original)].length,W:p.W,H:p.H,dur:c.dur},p.style),font,align:'center',prompt:false,label:false,readablePhoto:true,readableHero:true,directionAngle:0,composition:family};
  if(id.startsWith('photo'))params.displayText=['phrase','banner','frame'].includes(family)?J.composeLyricPhrase(original):p.H>p.W?J.splitLines(original,10):J.splitLines(original,18);
- return {...c,layout:id,text:original,lineText:original,params,enter,hold,inDur:.12,outDur:0,exit:'cut',trans:'cut',transDur:0,decor:p.registrySignatureProbe&&J.styleSignature(p.styleKey).decor?[{id:J.styleSignature(p.styleKey).decor,photoSignature:true,seed:c.seed,n:1,r:.35,low:true,big:false}]:[],treat:null,photoChoreography:true,registrySelected:true,kineticGrouped:false,architecture:family};};
+ // This candidate replaces the chunk sequence with a complete-line display.
+ // A fragment origin inherited from that sequence no longer owns this unit.
+ const {lyricUnitOrigin,...wholeLine}=c;
+ return {...wholeLine,layout:id,text:original,lineText:original,params,enter,hold,inDur:.12,outDur:0,exit:'cut',trans:'cut',transDur:0,decor:p.registrySignatureProbe&&J.styleSignature(p.styleKey).decor?[{id:J.styleSignature(p.styleKey).decor,photoSignature:true,seed:c.seed,n:1,r:.35,low:true,big:false}]:[],treat:null,photoChoreography:true,registrySelected:true,kineticGrouped:false,architecture:family};};
 J.selectionPixelEvidence=(rgba,mask,w,h,bounds,W,H)=>{let ink=0,near=0,outside=0,inside=0;for(let i=0;i<w*h;i++){const j=i*4;if(mask[j+3]>24){ink++;if(Math.max(rgba[j],rgba[j+1],rgba[j+2])-Math.min(rgba[j],rgba[j+1],rgba[j+2])<55&&rgba[j]>180)near++;}if(mask[j+3]>150)inside++;}
  const b=bounds.length?{x0:Math.min(...bounds.map(b=>b.x0)),x1:Math.max(...bounds.map(b=>b.x1)),y0:Math.min(...bounds.map(b=>b.y0)),y1:Math.max(...bounds.map(b=>b.y1))}:null;
  const safe=!!b&&b.x0>=W*.105&&b.x1<=W*.895&&b.y0>=H*.075&&b.y1<=H*.925,center=b?Math.max(Math.abs((b.x0+b.x1)/2/W-.5),Math.abs((b.y0+b.y1)/2/H-.5)):1;

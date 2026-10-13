@@ -2,6 +2,10 @@
 const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
 const {J,createCanvas,context}=engine(),Q=J.cinemaV5;
 {const env={cut:{layout:'center',params:{sub:true},text:'内部単位',lineText:'原文の内部単位'}};assert(Q.isPrimaryInternalLyric(env,{text:'内部単位'}));assert(!Q.isPrimaryInternalLyric(env,{text:'原文の内部単位'}),'supplementary full-line caption cannot certify a missing primary internal unit');}
+assert(Q.completePrimaryTexts(['応える','応える','応える'],'応える'),'complete repeated render layers do not append source words');
+assert(Q.completePrimaryTexts(['応','える'],'応える'));
+assert(!Q.completePrimaryTexts(['応','応'],'応える'),'duplicated partial ink cannot certify missing characters');
+assert(!Q.completePrimaryTexts(['応える','wrong'],'応える'),'a correct copy cannot hide an incorrect primary layer');
 const unit={id:'immutable-unit-a',line:0,from:0,to:1,hold:[.2,.8]},fps=10;
 assert(Q.originalUnitTextIntegrity({lines:[{text:'原文を守る'}],cuts:[{line:0,text:'原文を'},{line:0,text:'守る'}]},[0]));
 assert(!Q.originalUnitTextIntegrity({lines:[{text:'原文を守る'}],cuts:[{line:0,text:'原文を'}]},[0]),'input hash alone cannot certify an omitted internal text unit');
