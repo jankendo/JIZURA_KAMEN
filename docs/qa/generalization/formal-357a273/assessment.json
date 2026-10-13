@@ -1,0 +1,170 @@
+{
+  "sourceCommit": "357a2738bd9aa63177d674b3fadb96ab1d44bcda",
+  "baselineCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "currentApplicationSource": "c984cd8 (QA and complete-line origin fixes pending actual retest)",
+  "attempts": 60,
+  "completedMP4": 56,
+  "unfinishedExports": 4,
+  "qualityStatus": "UNVERIFIED",
+  "humanStatus": "HUMAN_UNVERIFIED",
+  "variants": {
+    "baseline": {
+      "artifactStatuses": {
+        "MEASURED": 19,
+        "FAILED": 9,
+        "UNEXECUTED": 2
+      },
+      "unitStatuses": {
+        "MEASURED": 108,
+        "UNMEASURED": 19,
+        "FAILED": 19
+      }
+    },
+    "v3": {
+      "artifactStatuses": {
+        "MEASURED": 24,
+        "FAILED": 4,
+        "UNEXECUTED": 2
+      },
+      "unitStatuses": {
+        "MEASURED": 138,
+        "FAILED": 3
+      }
+    }
+  },
+  "metrics": {
+    "typographyDiversity": {
+      "comparablePairs": 28,
+      "baseline": {
+        "count": 28,
+        "worst": 19,
+        "lowerDecileNearestRank": 23,
+        "median": 38.0
+      },
+      "current": {
+        "count": 28,
+        "worst": 3,
+        "lowerDecileNearestRank": 5,
+        "median": 31.0
+      },
+      "improved": 9,
+      "equal": 3,
+      "declined": 16,
+      "limits": "Uncalibrated individual machine signals; neither a pooled aesthetic score nor proof of visible damage."
+    },
+    "lyricForegroundNovelty": {
+      "comparablePairs": 28,
+      "baseline": {
+        "count": 28,
+        "worst": 52,
+        "lowerDecileNearestRank": 56,
+        "median": 72.5
+      },
+      "current": {
+        "count": 28,
+        "worst": 41,
+        "lowerDecileNearestRank": 55,
+        "median": 71.0
+      },
+      "improved": 12,
+      "equal": 3,
+      "declined": 13,
+      "limits": "Uncalibrated individual machine signals; neither a pooled aesthetic score nor proof of visible damage."
+    },
+    "temporalContrast": {
+      "comparablePairs": 19,
+      "baseline": {
+        "count": 19,
+        "worst": 4,
+        "lowerDecileNearestRank": 12,
+        "median": 34
+      },
+      "current": {
+        "count": 19,
+        "worst": 11,
+        "lowerDecileNearestRank": 13,
+        "median": 31
+      },
+      "improved": 8,
+      "equal": 1,
+      "declined": 10,
+      "limits": "Uncalibrated individual machine signals; neither a pooled aesthetic score nor proof of visible damage."
+    },
+    "localContrast": {
+      "comparablePairs": 23,
+      "baseline": {
+        "count": 23,
+        "worst": 0,
+        "lowerDecileNearestRank": 0,
+        "median": 85
+      },
+      "current": {
+        "count": 23,
+        "worst": 0,
+        "lowerDecileNearestRank": 0,
+        "median": 84
+      },
+      "improved": 6,
+      "equal": 8,
+      "declined": 9,
+      "limits": "Uncalibrated individual machine signals; neither a pooled aesthetic score nor proof of visible damage."
+    },
+    "perceptualNovelty": {
+      "comparablePairs": 19,
+      "baseline": {
+        "count": 19,
+        "worst": 42,
+        "lowerDecileNearestRank": 67,
+        "median": 100
+      },
+      "current": {
+        "count": 19,
+        "worst": 61,
+        "lowerDecileNearestRank": 69,
+        "median": 100
+      },
+      "improved": 4,
+      "equal": 12,
+      "declined": 3,
+      "limits": "Uncalibrated individual machine signals; neither a pooled aesthetic score nor proof of visible damage."
+    }
+  },
+  "realization": {
+    "baseline": {
+      "allAutomatic": {
+        "rawFragmentContracts": 143,
+        "logicalUnitPopulation": 143,
+        "logicalUnitsFullyMeasured": 70,
+        "logicalUnitsFullyRealized": 69,
+        "measurableRate": 0.48951048951048953,
+        "realizationRate": 0.9857142857142858
+      },
+      "musicOnly": {
+        "rawFragmentContracts": 143,
+        "logicalUnitPopulation": 143,
+        "logicalUnitsFullyMeasured": 70,
+        "logicalUnitsFullyRealized": 69,
+        "measurableRate": 0.48951048951048953,
+        "realizationRate": 0.9857142857142858
+      }
+    },
+    "v3": {
+      "allAutomatic": {
+        "rawFragmentContracts": 143,
+        "logicalUnitPopulation": 138,
+        "logicalUnitsFullyMeasured": 65,
+        "logicalUnitsFullyRealized": 65,
+        "measurableRate": 0.47101449275362317,
+        "realizationRate": 1.0
+      },
+      "musicOnly": {
+        "rawFragmentContracts": 122,
+        "logicalUnitPopulation": 118,
+        "logicalUnitsFullyMeasured": 65,
+        "logicalUnitsFullyRealized": 65,
+        "measurableRate": 0.5508474576271186,
+        "realizationRate": 1.0
+      }
+    }
+  }
+}
