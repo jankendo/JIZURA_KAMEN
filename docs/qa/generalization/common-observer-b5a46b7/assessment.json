@@ -1,0 +1,1756 @@
+{
+  "observerCommit": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+  "cases": 30,
+  "actualVideoObservations": 60,
+  "newlyEncodedInReobservation": 0,
+  "sameObserverMatchedPairs": 30,
+  "lyricSafety": {
+    "baseline": {
+      "FAILED": 9,
+      "MEASURED": 21
+    },
+    "v3": {
+      "MEASURED": 29,
+      "FAILED": 1
+    }
+  },
+  "metrics": {
+    "typographyDiversity": {
+      "paired": 30,
+      "improved": 11,
+      "equal": 4,
+      "declined": 15,
+      "baselineWorst": 13,
+      "currentWorst": 4,
+      "baselineBottom20PercentMean": 19.333333333333332,
+      "currentBottom20PercentMean": 8.166666666666666,
+      "decliningCases": [
+        {
+          "fixture": "development-01",
+          "baseline": 37,
+          "current": 29
+        },
+        {
+          "fixture": "development-03",
+          "baseline": 100,
+          "current": 85
+        },
+        {
+          "fixture": "development-05",
+          "baseline": 67,
+          "current": 23
+        },
+        {
+          "fixture": "development-06",
+          "baseline": 41,
+          "current": 29
+        },
+        {
+          "fixture": "development-09",
+          "baseline": 64,
+          "current": 47
+        },
+        {
+          "fixture": "development-14",
+          "baseline": 36,
+          "current": 9
+        },
+        {
+          "fixture": "holdout-01",
+          "baseline": 61,
+          "current": 6
+        },
+        {
+          "fixture": "holdout-02",
+          "baseline": 84,
+          "current": 44
+        },
+        {
+          "fixture": "holdout-03",
+          "baseline": 47,
+          "current": 5
+        },
+        {
+          "fixture": "holdout-08",
+          "baseline": 35,
+          "current": 6
+        },
+        {
+          "fixture": "holdout-09",
+          "baseline": 39,
+          "current": 30
+        },
+        {
+          "fixture": "holdout-11",
+          "baseline": 32,
+          "current": 29
+        },
+        {
+          "fixture": "holdout-12",
+          "baseline": 64,
+          "current": 57
+        },
+        {
+          "fixture": "holdout-14",
+          "baseline": 42,
+          "current": 41
+        },
+        {
+          "fixture": "holdout-15",
+          "baseline": 32,
+          "current": 4
+        }
+      ]
+    },
+    "lyricForegroundNovelty": {
+      "paired": 30,
+      "improved": 15,
+      "equal": 3,
+      "declined": 12,
+      "baselineWorst": 5,
+      "currentWorst": 37,
+      "baselineBottom20PercentMean": 35.333333333333336,
+      "currentBottom20PercentMean": 49.833333333333336,
+      "decliningCases": [
+        {
+          "fixture": "development-02",
+          "baseline": 100,
+          "current": 94
+        },
+        {
+          "fixture": "development-05",
+          "baseline": 85,
+          "current": 81
+        },
+        {
+          "fixture": "development-06",
+          "baseline": 60,
+          "current": 56
+        },
+        {
+          "fixture": "development-09",
+          "baseline": 73,
+          "current": 70
+        },
+        {
+          "fixture": "development-14",
+          "baseline": 96,
+          "current": 64
+        },
+        {
+          "fixture": "holdout-01",
+          "baseline": 62,
+          "current": 38
+        },
+        {
+          "fixture": "holdout-02",
+          "baseline": 93,
+          "current": 90
+        },
+        {
+          "fixture": "holdout-03",
+          "baseline": 100,
+          "current": 75
+        },
+        {
+          "fixture": "holdout-08",
+          "baseline": 99,
+          "current": 61
+        },
+        {
+          "fixture": "holdout-12",
+          "baseline": 79,
+          "current": 77
+        },
+        {
+          "fixture": "holdout-15",
+          "baseline": 100,
+          "current": 66
+        },
+        {
+          "fixture": "supplemental-holdout-13",
+          "baseline": 94,
+          "current": 92
+        }
+      ]
+    },
+    "temporalContrast": {
+      "paired": 21,
+      "improved": 11,
+      "equal": 1,
+      "declined": 9,
+      "baselineWorst": 4,
+      "currentWorst": 13,
+      "baselineBottom20PercentMean": 12.25,
+      "currentBottom20PercentMean": 18.25,
+      "decliningCases": [
+        {
+          "fixture": "development-03",
+          "baseline": 34,
+          "current": 26
+        },
+        {
+          "fixture": "development-11",
+          "baseline": 51,
+          "current": 37
+        },
+        {
+          "fixture": "development-14",
+          "baseline": 23,
+          "current": 22
+        },
+        {
+          "fixture": "holdout-01",
+          "baseline": 79,
+          "current": 46
+        },
+        {
+          "fixture": "holdout-02",
+          "baseline": 48,
+          "current": 13
+        },
+        {
+          "fixture": "holdout-03",
+          "baseline": 42,
+          "current": 25
+        },
+        {
+          "fixture": "holdout-06",
+          "baseline": 27,
+          "current": 24
+        },
+        {
+          "fixture": "holdout-07",
+          "baseline": 35,
+          "current": 34
+        },
+        {
+          "fixture": "supplemental-holdout-13",
+          "baseline": 100,
+          "current": 91
+        }
+      ]
+    },
+    "localContrast": {
+      "paired": 22,
+      "improved": 10,
+      "equal": 7,
+      "declined": 5,
+      "baselineWorst": 0,
+      "currentWorst": 0,
+      "baselineBottom20PercentMean": 30.75,
+      "currentBottom20PercentMean": 31.25,
+      "decliningCases": [
+        {
+          "fixture": "development-02",
+          "baseline": 94,
+          "current": 65
+        },
+        {
+          "fixture": "development-04",
+          "baseline": 94,
+          "current": 74
+        },
+        {
+          "fixture": "development-11",
+          "baseline": 71,
+          "current": 60
+        },
+        {
+          "fixture": "holdout-02",
+          "baseline": 96,
+          "current": 86
+        },
+        {
+          "fixture": "holdout-06",
+          "baseline": 1,
+          "current": 0
+        }
+      ]
+    },
+    "perceptualNovelty": {
+      "paired": 21,
+      "improved": 5,
+      "equal": 11,
+      "declined": 5,
+      "baselineWorst": 42,
+      "currentWorst": 42,
+      "baselineBottom20PercentMean": 61,
+      "currentBottom20PercentMean": 56.25,
+      "decliningCases": [
+        {
+          "fixture": "development-09",
+          "baseline": 93,
+          "current": 79
+        },
+        {
+          "fixture": "holdout-01",
+          "baseline": 67,
+          "current": 48
+        },
+        {
+          "fixture": "holdout-08",
+          "baseline": 100,
+          "current": 73
+        },
+        {
+          "fixture": "holdout-15",
+          "baseline": 97,
+          "current": 96
+        },
+        {
+          "fixture": "supplemental-holdout-13",
+          "baseline": 67,
+          "current": 66
+        }
+      ]
+    },
+    "motionRealization": {
+      "paired": 30,
+      "improved": 7,
+      "equal": 16,
+      "declined": 7,
+      "baselineWorst": 0,
+      "currentWorst": 33,
+      "baselineBottom20PercentMean": 44.333333333333336,
+      "currentBottom20PercentMean": 48.833333333333336,
+      "decliningCases": [
+        {
+          "fixture": "development-04",
+          "baseline": 100,
+          "current": 67
+        },
+        {
+          "fixture": "development-05",
+          "baseline": 67,
+          "current": 33
+        },
+        {
+          "fixture": "development-10",
+          "baseline": 67,
+          "current": 33
+        },
+        {
+          "fixture": "development-11",
+          "baseline": 100,
+          "current": 67
+        },
+        {
+          "fixture": "development-15",
+          "baseline": 100,
+          "current": 67
+        },
+        {
+          "fixture": "holdout-03",
+          "baseline": 67,
+          "current": 33
+        },
+        {
+          "fixture": "holdout-14",
+          "baseline": 100,
+          "current": 88
+        }
+      ]
+    },
+    "impactBeatSync": {
+      "paired": 12,
+      "improved": 2,
+      "equal": 8,
+      "declined": 2,
+      "baselineWorst": 50,
+      "currentWorst": 50,
+      "baselineBottom20PercentMean": 50,
+      "currentBottom20PercentMean": 50,
+      "decliningCases": [
+        {
+          "fixture": "development-04",
+          "baseline": 67,
+          "current": 50
+        },
+        {
+          "fixture": "holdout-02",
+          "baseline": 100,
+          "current": 75
+        }
+      ]
+    }
+  },
+  "primaryMotion": {
+    "baseline": {
+      "logicalUnits": 164,
+      "fullyMeasured": 73,
+      "fullyRealized": 72,
+      "measurableRate": 0.4451219512195122,
+      "realizationRate": 0.9863013698630136,
+      "scope": "All natural primary-lyric composite contracts, including automatic safety repairs. Does not certify every component or human aesthetics.",
+      "musicOnly": {
+        "logicalUnits": 164,
+        "fullyMeasured": 73,
+        "fullyRealized": 72,
+        "measurableRate": 0.4451219512195122,
+        "realizationRate": 0.9863013698630136,
+        "forcedSafetyRepairsExcluded": []
+      }
+    },
+    "v3": {
+      "logicalUnits": 150,
+      "fullyMeasured": 74,
+      "fullyRealized": 74,
+      "measurableRate": 0.49333333333333335,
+      "realizationRate": 1.0,
+      "scope": "All natural primary-lyric composite contracts, including automatic safety repairs. Does not certify every component or human aesthetics.",
+      "musicOnly": {
+        "logicalUnits": 129,
+        "fullyMeasured": 74,
+        "fullyRealized": 74,
+        "measurableRate": 0.5736434108527132,
+        "realizationRate": 1.0,
+        "forcedSafetyRepairsExcluded": [
+          {
+            "fixture": "development-01",
+            "unitId": "aab818d718e94ddcde2fb9e81026cdd4b4a7d8ff6c6b803cea2e7b8da1e2138b"
+          },
+          {
+            "fixture": "development-01",
+            "unitId": "69bb4b18aa2b5705b5d77b99b6340152aa238a7d413c229da6861fca62c01782"
+          },
+          {
+            "fixture": "development-01",
+            "unitId": "66776bd2075ffb4803aeaf29e679f7996b5ff6bb7afde77c041ff54fe04ae3b3"
+          },
+          {
+            "fixture": "development-01",
+            "unitId": "5d4b79396b1c0e90b8d5704cbaa11a380fd2f3b1cd9387b7e424997c68fd5928"
+          },
+          {
+            "fixture": "development-06",
+            "unitId": "0344d314daccf5bd21df0e946214dd0f0ca25ba2db77c9c8b2a73550dbbb4173"
+          },
+          {
+            "fixture": "development-06",
+            "unitId": "96ad7a9af8f4ab46555f9aade3f2872e66f942863b1a17ccc06194164ca5b3f2"
+          },
+          {
+            "fixture": "development-06",
+            "unitId": "ec51498eba9a9e5951f6761fc74e2827c8ee87d3669d84d56f322eef6805cef6"
+          },
+          {
+            "fixture": "development-07",
+            "unitId": "98489405c422d3f48dcdaa6fe0802575cb32fc147df19292cc1e3e4c990e24c2"
+          },
+          {
+            "fixture": "development-07",
+            "unitId": "5fe75ce49fe964b23db0d68e7323c717378368adb654d313db4764c1ed515462"
+          },
+          {
+            "fixture": "development-07",
+            "unitId": "7c5407e9734f635c9c7b68a470ad0683ba937560e067d78a9a33aaf8d6459000"
+          },
+          {
+            "fixture": "development-07",
+            "unitId": "56c75ae19acf36329365a389b44078df7ea98d6b74384696a4e857d41eecfd6c"
+          },
+          {
+            "fixture": "development-07",
+            "unitId": "09c981cb22ecbdee29a8f4ab3fcec9ef0999b917ab395f568f755839e9085420"
+          },
+          {
+            "fixture": "development-07",
+            "unitId": "6c36a25537b7fb36062934e79c71bbff279ab03d53c8e1966bda6a801fac06cc"
+          },
+          {
+            "fixture": "development-12",
+            "unitId": "c211f8e37d21f1163e7f9ef389c30605a0e8b38dbfde75749a11a58d9762ffd4"
+          },
+          {
+            "fixture": "development-12",
+            "unitId": "5d2ee067862e412b95ddba19bcadaa53040880eb6acbcf1c77bb6f2caac5b827"
+          },
+          {
+            "fixture": "supplemental-development-13",
+            "unitId": "cc8ec9ab8e5a738cd866b564f57438c51815f844d487a851051c805eee12eba0"
+          },
+          {
+            "fixture": "holdout-04",
+            "unitId": "95c09ca711599dd0288ec34a2253a16742edb936de461eb1835c8547ebb935b9"
+          },
+          {
+            "fixture": "holdout-04",
+            "unitId": "a1f45c7755ac2032cb22682a706bd7d9214772c469898c0a24c78257862290bd"
+          },
+          {
+            "fixture": "holdout-10",
+            "unitId": "e6a4fdfeb62a08fda74e5dcfa5d58c58c1870381d3b1355fd57b33d514cbdc81"
+          },
+          {
+            "fixture": "holdout-11",
+            "unitId": "3721b927ad2cddb383c2514a3abbf6c35fa9b63ce2fc487b669cdcd9f7adce51"
+          },
+          {
+            "fixture": "holdout-11",
+            "unitId": "769318d0a4d434a77147769a92524103296347b880595e16b16d57695ff70235"
+          }
+        ]
+      }
+    }
+  },
+  "pairs": [
+    {
+      "fixture": "development-01",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 53,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 44,
+          "typographyDiversity": 37
+        },
+        "lyricSafety": "FAILED",
+        "videoSHA256": "4192d62643a1d69004c4a6608f0dcca0537be7fe2603081bfd3708326a02da2d"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 61,
+          "displayOnsetAccuracy": null,
+          "localContrast": 2,
+          "motionRealization": 100,
+          "typographyDiversity": 29
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "4daf51f61d416fc1e6e660709d3f2d5630ac31c2bd464e82ffa66909a7e57109"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-02",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 4,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 34
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "b806573d17830b3c6f1ff801d46cf438ed44e3ab9e8713ee2c9fa64b90209ddc"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 48,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 65,
+          "motionRealization": 100,
+          "typographyDiversity": 40
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "b667e78b9740dc32099522bea410ad60a810a0a32de41d9ea09096a9775e6eb9"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-03",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 75,
+          "motion": 21.5,
+          "temporalContrast": 34,
+          "hookNovelty": 44,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 82,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 74.86637635843687,
+          "localContrast": 93,
+          "motionRealization": 100,
+          "typographyDiversity": 100
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "75f6c6651e5812d8ac4cc6428db5dfb8108d405dbfc9cca57192fef0f36bf212"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 98,
+          "motion": 21,
+          "temporalContrast": 26,
+          "hookNovelty": 56,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 98,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 94.62390455205929,
+          "localContrast": 98,
+          "motionRealization": 100,
+          "typographyDiversity": 85
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "4dc668447426573b078937686034b2a23533e6340b80ddcb11e4b8394421a3db"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-04",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 96,
+          "motion": 21,
+          "temporalContrast": 37,
+          "hookNovelty": 67,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 48,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 63.21440491727252,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 13
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "6d75aa090dbeee3127a492fe1a173f1639622d27f721db6457603c38a08589d4"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 61,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 82,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 74,
+          "motionRealization": 67,
+          "typographyDiversity": 47
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "6a2a01bf62aca11b0f46be0d8431237ae5e07515dae1d3aaf652259124f48d1f"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-05",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 20.5,
+          "temporalContrast": 34,
+          "hookNovelty": 43,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 85,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 67,
+          "typographyDiversity": 67
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "f151807669ed0a93589483d301af0999da0d1ca7cd95fc051a42f043c77cb6ab"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 16.5,
+          "temporalContrast": 40,
+          "hookNovelty": 51,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 81,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 33,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "ad12bf4d4906024e3ccf2e4121c1c79165dc7236b0af7cdfa88df3dba3aae101"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-06",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 54,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 82,
+          "typographyDiversity": 41
+        },
+        "lyricSafety": "FAILED",
+        "videoSHA256": "5860b7b0cb897535e1af4261ef9ad308ffd6cf0514e36aefe3634158896b1d02"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 54,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 56,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 82,
+          "typographyDiversity": 29
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "3a74b0a48bc8ebf24dca79ec7675b8e7b47370e3d5734665d7a656e4c6d45971"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-07",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 83,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 67,
+          "typographyDiversity": 30
+        },
+        "lyricSafety": "FAILED",
+        "videoSHA256": "38f5da700681d4b81ef120c5c4a818fd1d73cabaab4c822d7482e9215771db3b"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 83,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 72,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 31
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "cc89cbc1350545310f69cd382bf67778f55f4f81273d5f03e52e06de4a16d954"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-08",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 42,
+          "motion": 60,
+          "temporalContrast": 44,
+          "hookNovelty": 100,
+          "loopQuality": 32,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 20.112231012346996,
+          "localContrast": 85,
+          "motionRealization": 100,
+          "typographyDiversity": 27
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "ace02c0144c3c995f7ac687291c19e8139124cd0d6f539fbbd0b664e9ad64271"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 42,
+          "motion": 60,
+          "temporalContrast": 44,
+          "hookNovelty": 100,
+          "loopQuality": 32,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 20.112231012346996,
+          "localContrast": 85,
+          "motionRealization": 100,
+          "typographyDiversity": 27
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "3f0dcf4830be5d16c3d21bad13354e87099b844e43018223ab1763d00c40e512"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-09",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 93,
+          "motion": 69,
+          "temporalContrast": 14,
+          "hookNovelty": 35,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 73,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 64
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "be46b7e84eb8c2681677914f906245820bab0e45626d72eea4ded0211f1da9a0"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 79,
+          "motion": 49.5,
+          "temporalContrast": 15,
+          "hookNovelty": 44,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 70,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 99.96491741825511,
+          "localContrast": 100,
+          "motionRealization": 100,
+          "typographyDiversity": 47
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "cbbb4150e6bb670f480ffbb89b0a4088c11fa826f2d68a6d80a1944a4b2e1fb0"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-10",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 51,
+          "temporalContrast": 12,
+          "hookNovelty": 46,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 56,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 85,
+          "motionRealization": 67,
+          "typographyDiversity": 25
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "a7a14e10fb1e01f2581477718dcd573229f8d7e8391a7208c1979d9f3decb5b2"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 100,
+          "temporalContrast": 85,
+          "hookNovelty": 78,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 33,
+          "typographyDiversity": 34
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "b255692c3d9835a690f53769dc1c42b71d92164e2b520414dc04dff28374b7a0"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-11",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 87,
+          "motion": null,
+          "temporalContrast": 51,
+          "hookNovelty": 50,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 78,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 71,
+          "motionRealization": 100,
+          "typographyDiversity": 20
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "2560435e193fb41e86637a9d383c3a2255bdff587c6b78824a9b14f0b4d933f2"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": null,
+          "temporalContrast": 37,
+          "hookNovelty": 52,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 93,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 60,
+          "motionRealization": 67,
+          "typographyDiversity": 50
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "268617a1d4f32fac76ce0e16effe2994e652f86e3d17699e66489776e6d651b3"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-12",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 3,
+          "loopQuality": 49,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 54,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 60,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "FAILED",
+        "videoSHA256": "618ad1beef5e4c30348866eae45eb82ebbd6172e5b199389b30cc01f97c0f01e"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 3,
+          "loopQuality": 49,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 55,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 60,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "acc8f789c0d674bae22734d33a3812c5e390944713e022e5b41588e439d3ffb7"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-14",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21.5,
+          "temporalContrast": 23,
+          "hookNovelty": 100,
+          "loopQuality": 41,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 96,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 60,
+          "regionalPerceptualNovelty": 62.23260532227458,
+          "localContrast": 57,
+          "motionRealization": 100,
+          "typographyDiversity": 36
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "8fe02d68e2ae685aad33c3f26016eef799fcd492069ea4ca385a1364b393b350"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 22,
+          "hookNovelty": 100,
+          "loopQuality": 41,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 64,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 60,
+          "regionalPerceptualNovelty": 70.44276622547014,
+          "localContrast": 68,
+          "motionRealization": 100,
+          "typographyDiversity": 9
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "9100facc63f892fb281eafc6f8b493b3a686aec77d2f3039ab6744e00c891938"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "development-15",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 69,
+          "motion": 21,
+          "temporalContrast": 21,
+          "hookNovelty": 58,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 52,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 86,
+          "motionRealization": 100,
+          "typographyDiversity": 54
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "912772a868cf501ceb7b2537e8ae03416aee2424c18b8ef9beb808fd002bcfd2"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 69,
+          "motion": 18,
+          "temporalContrast": 52,
+          "hookNovelty": 59,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 88.1619670257418,
+          "localContrast": 100,
+          "motionRealization": 67,
+          "typographyDiversity": 55
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "fc335127e32d3840323cc108033bc8bd53dce24f4893077a4f67c37347c1ab55"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-01",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 67,
+          "motion": 32,
+          "temporalContrast": 79,
+          "hookNovelty": 41,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 62,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 84.29117193281796,
+          "localContrast": 98,
+          "motionRealization": 100,
+          "typographyDiversity": 61
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "5a3c08d8f49d77e036b5e8d0763c2876b3f3d416dbdcde8162850ce7267da335"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 48,
+          "motion": 32,
+          "temporalContrast": 46,
+          "hookNovelty": 38,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 38,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 73.77021638843698,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 6
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "e61b541001316ab542d4416508b5ab026bd5bf57f3c73b411bd53057d802bb7a"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-02",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 24,
+          "temporalContrast": 48,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 93,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 96,
+          "motionRealization": 100,
+          "typographyDiversity": 84
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "ddafa761e319f5157442f7ccd119ff0a8f61d87e64f22a0ca23a4af1f770bb3a"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 24.5,
+          "temporalContrast": 13,
+          "hookNovelty": 71,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 90,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 75,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 86,
+          "motionRealization": 100,
+          "typographyDiversity": 44
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "a36d5743ac4c45d4365fa530faf8221c5a062faf691defe3dd55148f8a827915"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-03",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 89,
+          "motion": 20,
+          "temporalContrast": 42,
+          "hookNovelty": 40,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 76,
+          "motionRealization": 67,
+          "typographyDiversity": 47
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "3d5c4e2be20a5b917b12d53733fa588ac499aa74f37e2e64487b995578c892bd"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 17,
+          "temporalContrast": 25,
+          "hookNovelty": 42,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 75,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 87,
+          "motionRealization": 33,
+          "typographyDiversity": 5
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "5d50a264d6a7fb2309f68419de697f753dae9175cdc45b1fe9d59d65d3d1ae77"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-04",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 68,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 86,
+          "typographyDiversity": 46
+        },
+        "lyricSafety": "FAILED",
+        "videoSHA256": "b286457db953bd731c3ae2e3dbf98a8019c23fcb1a45287e07673b878e4e4697"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 76,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 60
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "79fa12c6c1087d4526363117e8e84dd79bb728e79aa264496343cdca1e85de7b"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-05",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 26,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 33,
+          "typographyDiversity": 19
+        },
+        "lyricSafety": "FAILED",
+        "videoSHA256": "8dfe458f3207435851146ea2982ec03710fc0738cd057f44de7dc9c1c4c3675b"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 19
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "f744dd5084e78937228b61250bee98adec3490371be0d01457ff77d86f73f602"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-06",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21.5,
+          "temporalContrast": 27,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 1,
+          "motionRealization": 100,
+          "typographyDiversity": 31
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "004ab90d5dea855982cd2f416e1b4b479895458a7938d3c0ae96829bdfbf8a14"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 22.5,
+          "temporalContrast": 24,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 36
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "8e4291ecb48a4735bfd72544cda00d3cb408d766e916c812a96a260aa9f49565"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-07",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 68,
+          "motion": 78.5,
+          "temporalContrast": 35,
+          "hookNovelty": 55,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 66,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 76.95459491407274,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 74
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "7ceba9df635ecf65a0ea868041f55f2845c01bea5b2b359ac7e18e2c95a0728e"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 70,
+          "motion": 79,
+          "temporalContrast": 34,
+          "hookNovelty": 54,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 70,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 77.4067820174322,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 74
+        },
+        "lyricSafety": "FAILED",
+        "videoSHA256": "149d553e017c0e7224d4675caea68dc9258d77b73408242ba59a1fb62b85de6e"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-08",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 54.5,
+          "temporalContrast": 19,
+          "hookNovelty": 41,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 99,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 60,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 73,
+          "motionRealization": 100,
+          "typographyDiversity": 35
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "a853b07a547f8f9b11aa0823d40f47ddbed382f85b6f10f51e2eaf87a269f62f"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 73,
+          "motion": 53.5,
+          "temporalContrast": 23,
+          "hookNovelty": 75,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 61,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 60,
+          "regionalPerceptualNovelty": 23.18447906274345,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 6
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "c151988104843266836cb874d05d56bab55f5b6f735eb0028b35405c84debcbc"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-09",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 40,
+          "temporalContrast": 19,
+          "hookNovelty": 37,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 99,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 65,
+          "motionRealization": 100,
+          "typographyDiversity": 39
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "e50a0b88e84b961d7a4ef5064d75356ec39f1cc62c602cf3985a091336a0eeab"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 47.5,
+          "temporalContrast": 28,
+          "hookNovelty": 51,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 96,
+          "motionRealization": 100,
+          "typographyDiversity": 30
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "767cf9b8cbd42489fb1ab727e6e5e96dd82b768316b8f82c4acefa940e3960b9"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-10",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 87,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 64,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "FAILED",
+        "videoSHA256": "70baf174308d8924e41e143a8af11fb1c996ab77050f6315e8783ad6280491b3"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 87,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 64,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 28
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "d817d1dbbdcb967748cba39183abd6af6d5a6c843ba689e8c54bd14dcb219a6d"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-11",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 1,
+          "loopQuality": 51,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 5,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 0,
+          "typographyDiversity": 32
+        },
+        "lyricSafety": "FAILED",
+        "videoSHA256": "50d806051d1976c61f9cf79b472da6a8ca7e5e656c8360dd7a5b15adf4e9dfd2"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 1,
+          "loopQuality": 51,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 56,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 29
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "fd9c1cd4ea27e971002978a14ecd088f1d4cd8884818431cbc38ff654c9d5557"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-12",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21.5,
+          "temporalContrast": 34,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 79,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 64
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "15a3b25d111b5b97d2d21e7b0ff266146bd7bc249c5c13b4e129874c7de5131e"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 45,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 77,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 57
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "018754e58d1b07b547483832f339dc45f2be6b3e6a2e15fa8eae73a13a80093c"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-14",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 23,
+          "temporalContrast": 49,
+          "hookNovelty": 78,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 72,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 83.14363870799752,
+          "localContrast": 96,
+          "motionRealization": 100,
+          "typographyDiversity": 42
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "70b889368cad1e4771fa2cee9cb1681e71b571a3d03cf51fed721350d96656bb"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 20.5,
+          "temporalContrast": 67,
+          "hookNovelty": 75,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 78,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 94.4777809449685,
+          "localContrast": 99,
+          "motionRealization": 88,
+          "typographyDiversity": 41
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "6f450e46f8183bff1ec8c24e952a37d7e86ecff54870fc2d00bc42603e8b75f2"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "holdout-15",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 97,
+          "motion": 22,
+          "temporalContrast": 32,
+          "hookNovelty": 63,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 80,
+          "motionRealization": 100,
+          "typographyDiversity": 32
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "d23a9b73b882db40dad79914b310ebebe9516d5c7106c87d4c53fbe628ad8f9a"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 96,
+          "motion": 21,
+          "temporalContrast": 34,
+          "hookNovelty": 63,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 66,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 96.3429516608206,
+          "localContrast": 80,
+          "motionRealization": 100,
+          "typographyDiversity": 4
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "a0ee016e4b532c3f60e2559ce753bf75d817f1c6cf718ca4b3d51e8a048120fa"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "supplemental-development-13",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 39,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 28,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 62,
+          "typographyDiversity": 18
+        },
+        "lyricSafety": "FAILED",
+        "videoSHA256": "3f572769edf034c220340978f8fd33ad5dacc376fd31262c733078c9a8dd8c5b"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 40,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 37,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 67,
+          "typographyDiversity": 21
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "85f7073afe972bf0329615deb171a461619af760128e2e2e8ba49dffbf4034b2"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    },
+    {
+      "fixture": "supplemental-holdout-13",
+      "baseline": {
+        "metrics": {
+          "perceptualNovelty": 67,
+          "motion": 19,
+          "temporalContrast": 100,
+          "hookNovelty": 7,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 64.69808224501038,
+          "localContrast": 99,
+          "motionRealization": 67,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "bf903b3e5942ea0794b8c8fbdea3b3b2093945b077ff78db546521e0d78678e6"
+      },
+      "current": {
+        "metrics": {
+          "perceptualNovelty": 66,
+          "motion": 23,
+          "temporalContrast": 91,
+          "hookNovelty": 7,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 92,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 82.73748923301478,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 32
+        },
+        "lyricSafety": "MEASURED",
+        "videoSHA256": "7bf4bd2ee9d4ac97ac9d2c1f69d3521a4ee7028911102049107269da8d3e807c"
+      },
+      "sameObserverHead": true,
+      "plansUnchanged": true
+    }
+  ],
+  "humanStatus": "HUMAN_UNVERIFIED",
+  "wholeEngineComponentRealization": "UNMEASURED",
+  "limits": "Uncalibrated mechanical observations are not aesthetic points. Native reference compatibility is audited, not a new baseline encode. Legacy phase-inclusive contrast proxy is separate from phase-aware full-resolution glyph safety."
+}

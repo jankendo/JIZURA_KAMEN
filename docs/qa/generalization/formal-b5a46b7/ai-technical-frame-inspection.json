@@ -1,0 +1,31 @@
+{
+  "scope": "AI technical inspection of 50 actual FFmpeg decoded samples across six matched pairs; not human beauty scoring or whole-video certification. All frame indices, hashes and source bindings are in actual-frame-inspection-manifest.json.",
+  "humanStatus": "HUMAN_UNVERIFIED",
+  "findings": [
+    {
+      "case": "development-01",
+      "observation": "Baseline sample at7s has oversized text truncated at frame edges; current sample fits complete characters. Current4s sample is more legible against the same pale background."
+    },
+    {
+      "case": "development-03",
+      "observation": "Current4s sample wraps the phrase into a more continuous two-line reading; sampled primary phrases remain visible in both versions."
+    },
+    {
+      "case": "development-06",
+      "observation": "Current9s displays unfold horizontally, while baseline breaks it vertically. The exact7s boundary sample has no current primary word; this isolated sample requires phase interpretation, not a claim of missing the complete Let unit."
+    },
+    {
+      "case": "holdout-03",
+      "observation": "Current samples contain stronger doubled/heavy text effects than baseline. Words remain decipherable in these samples; aesthetic superiority and duration of the effect are not certified."
+    },
+    {
+      "case": "supplemental-development-13",
+      "observation": "Selected words and recap phrases are visible in both versions at matched sample times. This sample set is not independent generic aesthetic improvement."
+    },
+    {
+      "case": "development-14",
+      "observation": "Sampled lyric phases remain readable in both versions. Both have a lyric-free blue ending sample at43.5s; artistic ending quality is UNVERIFIED."
+    }
+  ],
+  "judgment": "No artistic100 claim. Specific legibility and wrapping improvements are visible; whole-film genre fitness and aesthetic superiority remain unverified. Full interval lyric safety is supplied separately by final artifact verification."
+}
