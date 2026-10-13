@@ -1,4 +1,4 @@
-name: Frozen final SNS contract verification
+name: Frozen final KAMEN full matrix
 on:
   push:
     branches: [codex/kamen-generalization-evidence-20261012]
@@ -13,17 +13,25 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - partition: development-sns
-            cases: supplemental-development-13
-          - partition: holdout-sns
-            cases: supplemental-holdout-13
+          - partition: development-a
+            cases: development-01,development-02,development-03,development-04,development-05
+          - partition: development-b
+            cases: development-06,development-07,development-08,development-09,development-10
+          - partition: development-c
+            cases: development-11,development-12,supplemental-development-13,development-14,development-15
+          - partition: holdout-a
+            cases: holdout-01,holdout-02,holdout-03,holdout-04,holdout-05
+          - partition: holdout-b
+            cases: holdout-06,holdout-07,holdout-08,holdout-09,holdout-10
+          - partition: holdout-c
+            cases: holdout-11,holdout-12,supplemental-holdout-13,holdout-14,holdout-15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 0db8c35093ea7a8d93de4c62539e5b7308d90d8e
+          ref: 60cf632f0fce6d032dfd12bf753dcfd4e4095657
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -42,12 +50,12 @@ jobs:
           (cd baseline && npm ci && npm run build)
           test -x /usr/bin/google-chrome
           mkdir -p results
-          sha256sum qa/docs/qa/generalization/supplemental-social-preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/tools-and-preregistration.sha256
+          sha256sum qa/docs/qa/generalization/final-valid-preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/tools-and-preregistration.sha256
       - name: Complete natural-selection paired MP4 matrix
         timeout-minutes: 320
         env:
           KAMEN_CHROME: /usr/bin/google-chrome
-          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/supplemental-social-preregistration.json
+          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/final-valid-preregistration.json
           KAMEN_MATRIX_CASES: ${{ matrix.cases }}
           NODE_PATH: ${{ github.workspace }}/current/node_modules
         run: |
@@ -63,7 +71,7 @@ jobs:
           curl -fsS -o /dev/null http://127.0.0.1:4173/
           curl -fsS -o /dev/null http://127.0.0.1:4174/
           node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4174/ results/matrix > results/matrix.log 2>&1
-          python -c 'import json; x=json.load(open("results/matrix/results.json")); assert len(x["rows"])==2 and len({r["fixture"]["id"] for r in x["rows"]})==1, "Incomplete partition"'
+          python -c 'import json; x=json.load(open("results/matrix/results.json")); assert len(x["rows"])==10 and len({r["fixture"]["id"] for r in x["rows"]})==5, "Incomplete partition"'
       - name: Independently replay artifact hashes and full decode
         if: always()
         run: |
@@ -75,7 +83,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: final-sns-0db8c35-${{ matrix.partition }}
+          name: final-generalization-60cf632-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
