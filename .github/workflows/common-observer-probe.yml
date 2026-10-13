@@ -1,0 +1,50 @@
+name: Frozen common artifact observer probe
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/common-observer-probe.yml]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: b5a46b79ab463fe7f74d0a6d43c90ecbae984a41
+          path: current
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: cd current && npm ci && npm run build
+      - name: Restore exact source-bound immutable probe inputs
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,gzip,shutil
+          root=pathlib.Path('qa/docs/qa/generalization');src=root/'common-observer-probe-input';out=pathlib.Path('inputs');out.mkdir()
+          data=json.loads(gzip.decompress((src/'results.json.gz').read_bytes()));(out/'results.json').write_text(json.dumps(data))
+          for r in data['rows']:
+              stem=r['fixture']['id']+'-'+r['variant'];shutil.copyfile(root/'media'/(r['sha256']+'.mp4'),out/(stem+'.mp4'))
+              ref=r['referenceInputs'];(out/ref['file']).write_bytes(gzip.decompress((src/(ref['file']+'.gz')).read_bytes()));shutil.copyfile(src/ref['audioFile'],out/ref['audioFile'])
+          PY
+      - name: Observe both actual movies with one fixed method
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          python3 -m http.server 4173 --directory current/dist > server.log 2>&1 &
+          for attempt in 1 2 3 4 5; do curl -fsS http://127.0.0.1:4173/ > /dev/null && break || sleep 1; done
+          NODE_PATH="$GITHUB_WORKSPACE/current/node_modules" node qa/docs/qa/generalization/tools/common_artifact_observer.cjs http://127.0.0.1:4173/ inputs results > observer.log 2>&1
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: fixed-common-observer-probe-b5a46b7
+          path: |
+            results
+            observer.log
+            server.log
