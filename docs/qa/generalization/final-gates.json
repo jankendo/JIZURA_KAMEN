@@ -1,0 +1,155 @@
+{
+  "sourceCommit": "ec5dcb1325de96c7c9cbc67a1fca6adfec999978",
+  "sourceTreeSHA256": "f95add2cd39b8d59affc6101e24d522bbd02fc3af0ee34b6f3f02a599d3f1b27",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "UNVERIFIED",
+  "artistic100": "UNVERIFIED",
+  "humanStatus": "HUMAN_UNVERIFIED",
+  "mainChanged": false,
+  "productionChanged": false,
+  "latestCI": {
+    "run": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38406769389",
+    "state": "IN_PROGRESS"
+  },
+  "finalMatrix": {
+    "run": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38406872173",
+    "state": "IN_PROGRESS",
+    "preregisteredMatchedPairs": 30,
+    "completedCollectedPairs": 0
+  },
+  "nativeAudit": {
+    "sourceCommit": "ec5dcb1325de96c7c9cbc67a1fca6adfec999978",
+    "sourceTreeSHA256": "f95add2cd39b8d59affc6101e24d522bbd02fc3af0ee34b6f3f02a599d3f1b27",
+    "counts": {
+      "aspects": {
+        "VERIFIED": 762,
+        "UNMEASURED": 26
+      },
+      "languages": {
+        "UNMEASURED": 788
+      },
+      "characterCounts": {
+        "UNMEASURED": 788
+      },
+      "lineCounts": {
+        "UNMEASURED": 788
+      },
+      "requiredAssets": {
+        "UNMEASURED": 788
+      },
+      "musicalRoles": {
+        "UNMEASURED": 788
+      },
+      "rendererRequirements": {
+        "VERIFIED": 788
+      },
+      "readableTimeRange": {
+        "UNMEASURED": 788
+      },
+      "nativePixelContribution": {
+        "VERIFIED": 786,
+        "UNMEASURED": 2
+      },
+      "encodedSurvival": {
+        "UNMEASURED": 788
+      },
+      "creativeSuitability": {
+        "UNMEASURED": 788
+      },
+      "conflicts": {
+        "UNMEASURED": 788
+      },
+      "drawingCost": {
+        "VERIFIED": 786,
+        "UNMEASURED": 2
+      },
+      "nativeDispatch": {
+        "VERIFIED": 762,
+        "NOT_APPLICABLE": 2,
+        "UNMEASURED": 24
+      }
+    },
+    "registryCounts": {
+      "styles": 24,
+      "techniques": 740,
+      "fonts": 24
+    },
+    "conditions": 3152,
+    "rendererCalls": 18864,
+    "runtimeFailures": 0,
+    "limits": "Native dispatch/pixel samples do not certify encoded survival, creative suitability, effective browser font face or human merit."
+  },
+  "actualVariableFontBrowser": {
+    "status": "PASS",
+    "completeDecode": "PASS",
+    "videoSHA256": "52d14f45c4094e256a4fd8bf41ce7dd19a303b6669338b2ec0dd6bda4400db19",
+    "report": "browser-ec5dcb1/variable-font-report.json.gz",
+    "encodedAxisAnimation": "UNMEASURED"
+  },
+  "priorCompletedEvidence": [
+    {
+      "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+      "pairedCases": 30,
+      "fullyDecodedMovies": 60,
+      "lyricSafety": {
+        "baseline": {
+          "MEASURED": 19,
+          "FAILED": 10,
+          "UNMEASURED": 1
+        },
+        "current": {
+          "MEASURED": 28,
+          "FAILED": 2
+        }
+      },
+      "report": "formal-60cf632/assessment.json",
+      "wholeEngineIntentRealization": "UNMEASURED"
+    },
+    {
+      "sourceCommit": "d0033059b70b340181f943057850ed5a6bb0ae8b",
+      "fullyDecodedMovies": 2,
+      "socialLyricSafety": "MEASURED",
+      "report": "transition-lattice-d003305/"
+    }
+  ],
+  "correctedCIFailures": {
+    "priorSources": [
+      "60cf632",
+      "d003305"
+    ],
+    "counts": {
+      "PASS": 197,
+      "FAIL": 2,
+      "SKIP": 2
+    },
+    "cause": "Square output observed in 160x100 canvas; clean restore repeats same observer error. Exact output profile fixed in ec5dcb1. Prior results remain FAIL."
+  },
+  "remaining": [
+    {
+      "severity": "RELEASE_GATE",
+      "item": "Exact-source full regression, clean restore and formal UI CI pending"
+    },
+    {
+      "severity": "RELEASE_GATE",
+      "item": "Final-source matched matrix pending"
+    },
+    {
+      "severity": "QUALITY_EVIDENCE",
+      "item": "holdout-06 immutable actual Blob reproducibly fails negative-background comparison. Native positive/removed-ink controls behave correctly; cause UNRESOLVED, missing glyphs not established."
+    },
+    {
+      "severity": "QUALITY_EVIDENCE",
+      "item": "Whole-engine component intent realization and generic creative improvement are not certified; prior typography weak tail declined."
+    },
+    {
+      "severity": "DISCLOSURE",
+      "item": "HUMAN_UNVERIFIED; procedural inputs do not certify all real musical genres, singing semantics or artistic100"
+    },
+    {
+      "severity": "DISCLOSURE",
+      "item": "Peak app memory UNMEASURED, encoded variable axis animation UNMEASURED, native OS file picker UNEXERCISED"
+    }
+  ],
+  "releasePolicy": "Only both technical and quality PASS permit merge and live deployment. Speed alone is not a blocker. No threshold relaxation."
+}

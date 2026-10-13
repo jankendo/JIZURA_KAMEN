@@ -1,15 +1,13 @@
-# KAMEN generalization validation
+# Generalization verification checkpoint
 
-Current source: `044f8e1a11e38507f31bdb2b66f8b4909b8aec89` (PR #13, Draft). Main remains `2e7ed477f88028dbb63aa609e8a11b4052ea8c00`.
+Current source: `ec5dcb1325de96c7c9cbc67a1fca6adfec999978`. Technical and quality gates are UNVERIFIED; PR #13 remains Draft, main and production unchanged.
 
-The frozen 357a273 experiment contains all 60 attempts, 56 completed H.264/AAC movies independently fully decoded, 28 paired inputs, and the original four SNS rejections. All six artifact archive digests were checked. Full raw results, input PCM, selected plans, video hashes, per-unit decoded timestamps and comparison metrics are preserved under `formal-357a273/` and content-addressed media/inputs.
+The final-source native registry audit passes all 3,152 conditions (18,864 renderer calls, zero runtime failures). Actual variable-font import/raster/export and strict complete decode pass. These do not certify encoded survival of every technique or artistic quality.
 
-Formal lyric safety: baseline 19 MEASURED / 9 FAILED / 2 unexecuted cases; 357a273 24 MEASURED / 4 FAILED / 2 unexecuted. These counts are not revised with later browser environments. Individual typography, temporal and contrast indicators include declines; their artistic calibration is unknown.
+Both affected `d003305` SNS exports pass lyric safety and full decode. Earlier `60cf632` preserves 30 matched pairs/60 decoded movies; current lyric verification was 28 MEASURED/2 FAILED. Do not relabel those as final-source output. Typography observations were mixed (10 improved, 4 equal, 16 declined).
 
-c984cd8 exact-source CI succeeded: 199 PASS, 0 FAIL, 2 environment SKIP; real browser UI/export, corrupt-MP4 refusal, save/restore and cancel/retry PASS. Three c984cd8 targeted local movies now have MEASURED final lyric safety. These are repair checks rather than blind generalization proof.
+The `holdout-06` Blob reproduces identical failed observations under identical input, plan and browser conditions; native controls pass and removed-ink controls fail. Native/codec negative-background mismatch is unresolved, and missing glyphs have not been established. See `same-blob-60cf632/`.
 
-044f8e1 adds SNS fragment origins, explicit instrumental-gap N/A evidence, missing-entire-line rejection, and protection of source units for manually controlled lines across the legacy SNS director stack. Small counterexample tests passed. Its exact-source CI and targeted real movie comparison are running. Native catalogue audit is running again for the changed source.
+Earlier CI failures were caused by cropping square output into 160×100 during a raster test; the clean-restore child repeated that failure. All 146 layouts × 4 correctly proportioned profiles now produce primary lyric pixels locally. Earlier failures are preserved.
 
-The first supplemental SNS harness omitted the UI portrait project/replan path; its preserved outputs are **NONSHIPPING** counterexamples, excluded from release proof. The updated harness mirrors UI portrait replanning and final export settings. Original input failures remain unchanged. New test inputs are registered separately before their results.
-
-TECHNICAL_GO / QUALITY_GO / RELEASE_GO remain UNVERIFIED for current source. No main merge or production change. Human aesthetics remain HUMAN_UNVERIFIED; artistic 100 is not certified.
+Exact final-source [CI](https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38406769389) and [30-pair matrix](https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38406872173) are in progress. Detailed current gate state is in `final-gates.json`. HUMAN_UNVERIFIED is retained.
