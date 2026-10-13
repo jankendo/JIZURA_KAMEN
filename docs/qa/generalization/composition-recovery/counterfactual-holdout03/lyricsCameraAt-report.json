@@ -1,0 +1,734 @@
+{
+  "schema": 1,
+  "caseId": "holdout-03",
+  "variant": "v3",
+  "originalVideoSHA256": "5d50a264d6a7fb2309f68419de697f753dae9175cdc45b1fe9d59d65d3d1ae77",
+  "referenceSHA256": "884e35aec2dca172d8c09c6fe39b4cc512692d73cde67277406eab6f6e3576d0",
+  "audioWAVSHA256": "536bdac0c8fd09e1bf209cfb68acc7b29e311d260cb824e9f7548677681efbed",
+  "configurationUnchanged": true,
+  "method": "Three full-profile frozen-plan H.264/AAC encodes; One explicitly named camera hook ON/OFF/ON repeat; same input/project/seed/range/profile. No replan, repairs or candidate optimization.",
+  "sourceDomain": "Diagnostic re-encodes separate from adopted shipping MP4; original final hash retained",
+  "status": "UNMEASURED_SEMANTIC_INTENT",
+  "sampleEvidence": [
+    {
+      "actualDecodedTimestamp": 0.875,
+      "requestedTime": 0.875,
+      "cameraContributionRMS": 0,
+      "repeatRMS": 0,
+      "rmsUnits": "8-bit luma levels",
+      "status": "UNMEASURED",
+      "meaning": "Counterfactual camera pixel contribution, not independent per-technique motion or artistic intent certification"
+    },
+    {
+      "actualDecodedTimestamp": 1.75,
+      "requestedTime": 1.75,
+      "cameraContributionRMS": 0,
+      "repeatRMS": 0,
+      "rmsUnits": "8-bit luma levels",
+      "status": "UNMEASURED",
+      "meaning": "Counterfactual camera pixel contribution, not independent per-technique motion or artistic intent certification"
+    },
+    {
+      "actualDecodedTimestamp": 2.625,
+      "requestedTime": 2.625,
+      "cameraContributionRMS": 0,
+      "repeatRMS": 0,
+      "rmsUnits": "8-bit luma levels",
+      "status": "UNMEASURED",
+      "meaning": "Counterfactual camera pixel contribution, not independent per-technique motion or artistic intent certification"
+    },
+    {
+      "actualDecodedTimestamp": 3.7916666666666665,
+      "requestedTime": 3.7916666666666665,
+      "cameraContributionRMS": 0,
+      "repeatRMS": 0,
+      "rmsUnits": "8-bit luma levels",
+      "status": "UNMEASURED",
+      "meaning": "Counterfactual camera pixel contribution, not independent per-technique motion or artistic intent certification"
+    },
+    {
+      "actualDecodedTimestamp": 4.666666666666667,
+      "requestedTime": 4.666666666666667,
+      "cameraContributionRMS": 0,
+      "repeatRMS": 0,
+      "rmsUnits": "8-bit luma levels",
+      "status": "UNMEASURED",
+      "meaning": "Counterfactual camera pixel contribution, not independent per-technique motion or artistic intent certification"
+    },
+    {
+      "actualDecodedTimestamp": 5.5,
+      "requestedTime": 5.5,
+      "cameraContributionRMS": 0,
+      "repeatRMS": 0,
+      "rmsUnits": "8-bit luma levels",
+      "status": "UNMEASURED",
+      "meaning": "Counterfactual camera pixel contribution, not independent per-technique motion or artistic intent certification"
+    },
+    {
+      "actualDecodedTimestamp": 6.583333333333333,
+      "requestedTime": 6.583333333333333,
+      "cameraContributionRMS": 0,
+      "repeatRMS": 0,
+      "rmsUnits": "8-bit luma levels",
+      "status": "UNMEASURED",
+      "meaning": "Counterfactual camera pixel contribution, not independent per-technique motion or artistic intent certification"
+    },
+    {
+      "actualDecodedTimestamp": 7.25,
+      "requestedTime": 7.25,
+      "cameraContributionRMS": 0,
+      "repeatRMS": 0,
+      "rmsUnits": "8-bit luma levels",
+      "status": "UNMEASURED",
+      "meaning": "Counterfactual camera pixel contribution, not independent per-technique motion or artistic intent certification"
+    },
+    {
+      "actualDecodedTimestamp": 7.958333333333333,
+      "requestedTime": 7.958333333333333,
+      "cameraContributionRMS": 0,
+      "repeatRMS": 0,
+      "rmsUnits": "8-bit luma levels",
+      "status": "UNMEASURED",
+      "meaning": "Counterfactual camera pixel contribution, not independent per-technique motion or artistic intent certification"
+    }
+  ],
+  "movies": [
+    {
+      "mode": "ON",
+      "videoSHA256": "6a2f0e96c58b5f8464cea895c759b3596d39aaaa83f357085b09001c6c282efc",
+      "file": "ON.mp4",
+      "fullDecode": "PASS",
+      "ffprobe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+            "profile": "High",
+            "codec_type": "video",
+            "codec_tag_string": "avc1",
+            "codec_tag": "0x31637661",
+            "width": 360,
+            "height": 450,
+            "coded_width": 360,
+            "coded_height": 450,
+            "closed_captions": 0,
+            "film_grain": 0,
+            "has_b_frames": 0,
+            "pix_fmt": "yuv420p",
+            "level": 21,
+            "color_range": "tv",
+            "color_space": "smpte170m",
+            "color_transfer": "smpte170m",
+            "color_primaries": "smpte170m",
+            "chroma_location": "left",
+            "field_order": "progressive",
+            "refs": 1,
+            "is_avc": "true",
+            "nal_length_size": "4",
+            "id": "0x1",
+            "r_frame_rate": "24/1",
+            "avg_frame_rate": "24/1",
+            "time_base": "1/24",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 240,
+            "duration": "10.000000",
+            "bit_rate": "319888",
+            "bits_per_raw_sample": "8",
+            "nb_frames": "240",
+            "extradata_size": 39,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "creation_time": "2026-10-13T22:09:58.000000Z",
+              "language": "und",
+              "handler_name": "mp4-muxer-hdlr",
+              "vendor_id": "[0][0][0][0]"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_long_name": "AAC (Advanced Audio Coding)",
+            "profile": "LC",
+            "codec_type": "audio",
+            "codec_tag_string": "mp4a",
+            "codec_tag": "0x6134706d",
+            "sample_fmt": "fltp",
+            "sample_rate": "48000",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "id": "0x2",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/48000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 481280,
+            "duration": "10.026667",
+            "bit_rate": "192335",
+            "nb_frames": "470",
+            "extradata_size": 5,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "creation_time": "2026-10-13T22:09:58.000000Z",
+              "language": "und",
+              "handler_name": "mp4-muxer-hdlr",
+              "vendor_id": "[0][0][0][0]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "mode": "OFF",
+      "videoSHA256": "18de8905173ea3d8e9b3fe25110ca9a1e627a466e7ddf0166879f4f42bdbaf5a",
+      "file": "OFF.mp4",
+      "fullDecode": "PASS",
+      "ffprobe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+            "profile": "High",
+            "codec_type": "video",
+            "codec_tag_string": "avc1",
+            "codec_tag": "0x31637661",
+            "width": 360,
+            "height": 450,
+            "coded_width": 360,
+            "coded_height": 450,
+            "closed_captions": 0,
+            "film_grain": 0,
+            "has_b_frames": 0,
+            "pix_fmt": "yuv420p",
+            "level": 21,
+            "color_range": "tv",
+            "color_space": "smpte170m",
+            "color_transfer": "smpte170m",
+            "color_primaries": "smpte170m",
+            "chroma_location": "left",
+            "field_order": "progressive",
+            "refs": 1,
+            "is_avc": "true",
+            "nal_length_size": "4",
+            "id": "0x1",
+            "r_frame_rate": "24/1",
+            "avg_frame_rate": "24/1",
+            "time_base": "1/24",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 240,
+            "duration": "10.000000",
+            "bit_rate": "319888",
+            "bits_per_raw_sample": "8",
+            "nb_frames": "240",
+            "extradata_size": 39,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "creation_time": "2026-10-13T22:10:01.000000Z",
+              "language": "und",
+              "handler_name": "mp4-muxer-hdlr",
+              "vendor_id": "[0][0][0][0]"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_long_name": "AAC (Advanced Audio Coding)",
+            "profile": "LC",
+            "codec_type": "audio",
+            "codec_tag_string": "mp4a",
+            "codec_tag": "0x6134706d",
+            "sample_fmt": "fltp",
+            "sample_rate": "48000",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "id": "0x2",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/48000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 481280,
+            "duration": "10.026667",
+            "bit_rate": "192335",
+            "nb_frames": "470",
+            "extradata_size": 5,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "creation_time": "2026-10-13T22:10:01.000000Z",
+              "language": "und",
+              "handler_name": "mp4-muxer-hdlr",
+              "vendor_id": "[0][0][0][0]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "mode": "ON_REPEAT",
+      "videoSHA256": "ab6fbe389de0378a98178b0256b98370a34dd43a3c28ee4d0b0f992e1d8e56b4",
+      "file": "ON_REPEAT.mp4",
+      "fullDecode": "PASS",
+      "ffprobe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+            "profile": "High",
+            "codec_type": "video",
+            "codec_tag_string": "avc1",
+            "codec_tag": "0x31637661",
+            "width": 360,
+            "height": 450,
+            "coded_width": 360,
+            "coded_height": 450,
+            "closed_captions": 0,
+            "film_grain": 0,
+            "has_b_frames": 0,
+            "pix_fmt": "yuv420p",
+            "level": 21,
+            "color_range": "tv",
+            "color_space": "smpte170m",
+            "color_transfer": "smpte170m",
+            "color_primaries": "smpte170m",
+            "chroma_location": "left",
+            "field_order": "progressive",
+            "refs": 1,
+            "is_avc": "true",
+            "nal_length_size": "4",
+            "id": "0x1",
+            "r_frame_rate": "24/1",
+            "avg_frame_rate": "24/1",
+            "time_base": "1/24",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 240,
+            "duration": "10.000000",
+            "bit_rate": "319888",
+            "bits_per_raw_sample": "8",
+            "nb_frames": "240",
+            "extradata_size": 39,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "creation_time": "2026-10-13T22:10:05.000000Z",
+              "language": "und",
+              "handler_name": "mp4-muxer-hdlr",
+              "vendor_id": "[0][0][0][0]"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_long_name": "AAC (Advanced Audio Coding)",
+            "profile": "LC",
+            "codec_type": "audio",
+            "codec_tag_string": "mp4a",
+            "codec_tag": "0x6134706d",
+            "sample_fmt": "fltp",
+            "sample_rate": "48000",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "id": "0x2",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/48000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 481280,
+            "duration": "10.026667",
+            "bit_rate": "192335",
+            "nb_frames": "470",
+            "extradata_size": 5,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "creation_time": "2026-10-13T22:10:05.000000Z",
+              "language": "und",
+              "handler_name": "mp4-muxer-hdlr",
+              "vendor_id": "[0][0][0][0]"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "inputSnapshot": {
+    "audioHash": "34348e4f3a9ead8db88204719d94477d31c9b8c8802ce7b84613ffe763090b3c",
+    "imageHashes": [
+      "9e8593d081b8af4348399eddb0db936e8bfc155bdcebf30c21ec0f84b160e777"
+    ],
+    "lyricsHash": "08f536bed1e8873e77b0b392a24f2b93e7d5e297a31809382ef9ff83ebbf015f",
+    "projectHash": "d3a40bbb96296ef55c7ee997b4e63c04104d0db65b5f99f82bcab46ca519cf2d",
+    "rendererVersion": "5.0.0",
+    "proceduralTextureVersion": "seeded-procedural-texture-v1",
+    "outputProfile": {
+      "purpose": "FULL_MV",
+      "aspect": "4:5",
+      "fps": 24,
+      "range": [
+        0,
+        9.999977324263039
+      ],
+      "loopRequired": false,
+      "resolution": [
+        360,
+        450
+      ]
+    },
+    "userLocks": {
+      "lockedLines": [],
+      "manualTypography": [],
+      "manualCamera": []
+    },
+    "inputHash": "5218b10dcb30b498ba9c0929a7d2022085964d51c31b131596fc7e583267d628"
+  },
+  "planHash": "db61f66213de34e452b2eae9cde7a9c32998823727a0ad3da6b15e1567f7246d",
+  "build": {
+    "sourceCommit": "f7dac212bcdadb736b73357a09e61f3ccaf1a535",
+    "sourceDirty": false,
+    "sourceTreeSHA256": "c3b5a76ca64e9e68672ebc62f7ce43b5710209e5b69c087695b2898f2ebc0323"
+  },
+  "fonts": [
+    [
+      "mono",
+      {
+        "status": "REQUESTED_FACE_UNAVAILABLE",
+        "family": "\"IBM Plex Mono\"",
+        "faces": 0
+      }
+    ],
+    [
+      "gothic_black",
+      {
+        "status": "LOADED",
+        "family": "\"Noto Sans JP\"",
+        "faces": 12
+      }
+    ],
+    [
+      "gothic_med",
+      {
+        "status": "LOADED",
+        "family": "\"Noto Sans JP\"",
+        "faces": 12
+      }
+    ],
+    [
+      "dela",
+      {
+        "status": "LOADED",
+        "family": "\"Dela Gothic One\"",
+        "faces": 12
+      }
+    ],
+    [
+      "zenkaku",
+      {
+        "status": "LOADED",
+        "family": "\"Zen Kaku Gothic New\"",
+        "faces": 12
+      }
+    ],
+    [
+      "mincho_light",
+      {
+        "status": "LOADED",
+        "family": "\"Noto Serif JP\"",
+        "faces": 12
+      }
+    ],
+    [
+      "mincho",
+      {
+        "status": "LOADED",
+        "family": "\"Noto Serif JP\"",
+        "faces": 12
+      }
+    ],
+    [
+      "embedded_bold",
+      {
+        "status": "LOADED",
+        "family": "\"JIZURA Noto CJK JP\"",
+        "faces": 1
+      }
+    ],
+    [
+      "gothic_bold",
+      {
+        "status": "LOADED",
+        "family": "\"Noto Sans JP\"",
+        "faces": 12
+      }
+    ],
+    [
+      "gothic_light",
+      {
+        "status": "LOADED",
+        "family": "\"Noto Sans JP\"",
+        "faces": 12
+      }
+    ],
+    [
+      "mincho_black",
+      {
+        "status": "LOADED",
+        "family": "\"Zen Old Mincho\"",
+        "faces": 12
+      }
+    ],
+    [
+      "mincho_bold",
+      {
+        "status": "LOADED",
+        "family": "\"Noto Serif JP\"",
+        "faces": 12
+      }
+    ],
+    [
+      "tokumin",
+      {
+        "status": "LOADED",
+        "family": "\"Kaisei Tokumin\"",
+        "faces": 12
+      }
+    ],
+    [
+      "round",
+      {
+        "status": "LOADED",
+        "family": "\"M PLUS Rounded 1c\"",
+        "faces": 12
+      }
+    ],
+    [
+      "pop",
+      {
+        "status": "LOADED",
+        "family": "\"Mochiy Pop One\"",
+        "faces": 12
+      }
+    ],
+    [
+      "dot",
+      {
+        "status": "LOADED",
+        "family": "\"DotGothic16\"",
+        "faces": 12
+      }
+    ],
+    [
+      "brush",
+      {
+        "status": "LOADED",
+        "family": "\"Yuji Syuku\"",
+        "faces": 12
+      }
+    ],
+    [
+      "reggae",
+      {
+        "status": "LOADED",
+        "family": "\"Reggae One\"",
+        "faces": 12
+      }
+    ],
+    [
+      "rampart",
+      {
+        "status": "LOADED",
+        "family": "\"Rampart One\"",
+        "faces": 12
+      }
+    ],
+    [
+      "potta",
+      {
+        "status": "LOADED",
+        "family": "\"Potta One\"",
+        "faces": 12
+      }
+    ],
+    [
+      "kiwi",
+      {
+        "status": "LOADED",
+        "family": "\"Kiwi Maru\"",
+        "faces": 12
+      }
+    ],
+    [
+      "klee",
+      {
+        "status": "LOADED",
+        "family": "\"Klee One\"",
+        "faces": 12
+      }
+    ],
+    [
+      "shippori",
+      {
+        "status": "LOADED",
+        "family": "\"Shippori Mincho B1\"",
+        "faces": 12
+      }
+    ],
+    [
+      "sansui",
+      {
+        "status": "LOADED",
+        "family": "\"IBM Plex Sans JP\"",
+        "faces": 12
+      }
+    ]
+  ],
+  "times": [
+    0.875,
+    1.75,
+    2.625,
+    3.7916666666666665,
+    4.666666666666667,
+    5.5,
+    6.583333333333333,
+    7.25,
+    7.958333333333333
+  ],
+  "sampleWidth": 160,
+  "sampleHeight": 200,
+  "expectedOperator": "aggregate lyricsCameraAt transform",
+  "intentScope": "Only lyricsCameraAt jointly disabled. Other camera hooks remain enabled. Individual techniques within that hook and music appropriateness are not established.",
+  "hook": "lyricsCameraAt",
+  "originalArtifactSource": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+  "diagnosticRendererSource": "f7dac212bcdadb736b73357a09e61f3ccaf1a535",
+  "semanticRealization": "UNMEASURED",
+  "individualTechniquesWithinHook": "CONFOUNDED"
+}
