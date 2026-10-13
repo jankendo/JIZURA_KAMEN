@@ -10,8 +10,7 @@
       "MEASURED": 21
     },
     "v3": {
-      "MEASURED": 29,
-      "FAILED": 1
+      "MEASURED": 30
     }
   },
   "metrics": {
@@ -1368,11 +1367,59 @@
           "motionRealization": 100,
           "typographyDiversity": 74
         },
-        "lyricSafety": "FAILED",
+        "lyricSafety": "MEASURED",
         "videoSHA256": "149d553e017c0e7224d4675caea68dc9258d77b73408242ba59a1fb62b85de6e"
       },
       "sameObserverHead": true,
-      "plansUnchanged": true
+      "plansUnchanged": true,
+      "fontMatchedReobservation": {
+        "run": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38424847532",
+        "originalRetainedIn": "holdout-b-observations.json.gz",
+        "reason": "Dela Gothic One unavailable in original common-observer pass; font substitution changes native reference geometry. This repeat requires the requested faces to be LOADED. Same immutable movie/plan/input hashes.",
+        "originalUnmatchedResult": {
+          "fixture": "holdout-07",
+          "baseline": {
+            "metrics": {
+              "perceptualNovelty": 68,
+              "motion": 78.5,
+              "temporalContrast": 35,
+              "hookNovelty": 55,
+              "loopQuality": 0,
+              "foregroundNovelty": null,
+              "lyricForegroundNovelty": 66,
+              "displayOnsetAccuracy": null,
+              "impactBeatSync": null,
+              "regionalPerceptualNovelty": 76.95459491407274,
+              "localContrast": 99,
+              "motionRealization": 100,
+              "typographyDiversity": 74
+            },
+            "lyricSafety": "MEASURED",
+            "videoSHA256": "7ceba9df635ecf65a0ea868041f55f2845c01bea5b2b359ac7e18e2c95a0728e"
+          },
+          "current": {
+            "metrics": {
+              "perceptualNovelty": 70,
+              "motion": 79,
+              "temporalContrast": 34,
+              "hookNovelty": 54,
+              "loopQuality": 0,
+              "foregroundNovelty": null,
+              "lyricForegroundNovelty": 70,
+              "displayOnsetAccuracy": null,
+              "impactBeatSync": null,
+              "regionalPerceptualNovelty": 77.4067820174322,
+              "localContrast": 99,
+              "motionRealization": 100,
+              "typographyDiversity": 74
+            },
+            "lyricSafety": "FAILED",
+            "videoSHA256": "149d553e017c0e7224d4675caea68dc9258d77b73408242ba59a1fb62b85de6e"
+          },
+          "sameObserverHead": true,
+          "plansUnchanged": true
+        }
+      }
     },
     {
       "fixture": "holdout-08",
@@ -1752,5 +1799,6 @@
   ],
   "humanStatus": "HUMAN_UNVERIFIED",
   "wholeEngineComponentRealization": "UNMEASURED",
-  "limits": "Uncalibrated mechanical observations are not aesthetic points. Native reference compatibility is audited, not a new baseline encode. Legacy phase-inclusive contrast proxy is separate from phase-aware full-resolution glyph safety."
+  "limits": "Uncalibrated mechanical observations are not aesthetic points. Native reference compatibility is audited, not a new baseline encode. Legacy phase-inclusive contrast proxy is separate from phase-aware full-resolution glyph safety.",
+  "conditionCorrection": "holdout07 unmatched-font observation retained and replaced only in derived matched summary by successful bounded font-loaded repeat; not relabeled as new encode."
 }

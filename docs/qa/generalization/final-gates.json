@@ -1,26 +1,70 @@
 {
-  "sourceCommit": "ec5dcb1325de96c7c9cbc67a1fca6adfec999978",
-  "sourceTreeSHA256": "f95add2cd39b8d59affc6101e24d522bbd02fc3af0ee34b6f3f02a599d3f1b27",
-  "TECHNICAL_GO": "UNVERIFIED",
+  "sourceCommit": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+  "sourceTreeSHA256": "630315e2fb42efa8fcda1cf69de7ebfa9830ae2612e326fd652e57dad97a7a2d",
+  "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "UNVERIFIED",
-  "RELEASE_GO": "UNVERIFIED",
+  "RELEASE_GO": "NO-GO",
   "artistic100": "UNVERIFIED",
   "humanStatus": "HUMAN_UNVERIFIED",
   "mainChanged": false,
   "productionChanged": false,
-  "latestCI": {
-    "run": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38406769389",
-    "state": "IN_PROGRESS"
+  "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
+  "PRDraft": true,
+  "CI": {
+    "run": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38410872228",
+    "head": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+    "conclusion": "SUCCESS",
+    "regressions": {
+      "PASS": 199,
+      "FAIL": 0,
+      "SKIP": 2
+    },
+    "skipAlternative": "Actual browser UI/encoder and separate actual variable-font import/raster/export PASS; not relabeled CI PASS",
+    "PagesDeploy": "SKIPPED_EXPECTED_PR"
   },
-  "finalMatrix": {
-    "run": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38406872173",
-    "state": "IN_PROGRESS",
-    "preregisteredMatchedPairs": 30,
-    "completedCollectedPairs": 0
+  "actualBrowser": {
+    "oneClickRealExport": "PASS",
+    "qualityBelowTargetOneClick": "PASS",
+    "saveRestore": "PASS",
+    "actualEncoderCancelAndRetry": "PASS",
+    "corruptMP4Rejected": "PASS",
+    "progressUpdates": 716,
+    "nativePicker": "Headless showSaveFilePicker returned AbortError; actual file saved through verified download. No human native picker interaction claimed.",
+    "UIBoundaryQualityStates": "Synthetic acceptance states with validated MP4 reuse; no extra fresh encodes",
+    "overlayViewports": "Real browser clicks with UI task fixture; separate from real native encoder cancellation",
+    "reports": "ci-b5a46b7/"
+  },
+  "finalSourceFormalMatrix": {
+    "cases": 30,
+    "sourceCurrent": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+    "sourceBaseline": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+    "actualCompletedMovies": 60,
+    "strictFullDecode": "60 PASS / 0 FAIL",
+    "currentArtifactLyricSafety": "30 MEASURED / 0 FAILED",
+    "matchedCommonObserver": {
+      "cases": 30,
+      "observerHead": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+      "baseline": {
+        "FAILED": 9,
+        "MEASURED": 21
+      },
+      "current": {
+        "MEASURED": 30
+      },
+      "fontConditionCorrection": "One unavailable-Dela observation preserved and remeasured with required faces LOADED; same immutable video/plan/input hashes."
+    }
+  },
+  "completeDecodedMovieLedger": {
+    "totalUnique": 63,
+    "currentHead": 33,
+    "baselineMain": 30,
+    "breakdown": "Current formal30 + baseline formal30 + real UI1 + real encoder cancel/retry1 + actual variable font1. Common reobservations and synthetic negative controls add zero movie count.",
+    "uniqueSHA256Verified": true
   },
   "nativeAudit": {
-    "sourceCommit": "ec5dcb1325de96c7c9cbc67a1fca6adfec999978",
-    "sourceTreeSHA256": "f95add2cd39b8d59affc6101e24d522bbd02fc3af0ee34b6f3f02a599d3f1b27",
+    "sourceCommit": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+    "sourceTreeSHA256": "630315e2fb42efa8fcda1cf69de7ebfa9830ae2612e326fd652e57dad97a7a2d",
     "counts": {
       "aspects": {
         "VERIFIED": 762,
@@ -78,78 +122,440 @@
     "conditions": 3152,
     "rendererCalls": 18864,
     "runtimeFailures": 0,
-    "limits": "Native dispatch/pixel samples do not certify encoded survival, creative suitability, effective browser font face or human merit."
+    "limits": "Native dispatch/pixel samples do not certify per-technique encoded survival, creative suitability, effective browser font face or human merit."
   },
-  "actualVariableFontBrowser": {
-    "status": "PASS",
-    "completeDecode": "PASS",
-    "videoSHA256": "52d14f45c4094e256a4fd8bf41ce7dd19a303b6669338b2ec0dd6bda4400db19",
-    "report": "browser-ec5dcb1/variable-font-report.json.gz",
-    "encodedAxisAnimation": "UNMEASURED"
-  },
-  "priorCompletedEvidence": [
-    {
-      "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
-      "pairedCases": 30,
-      "fullyDecodedMovies": 60,
-      "lyricSafety": {
-        "baseline": {
-          "MEASURED": 19,
-          "FAILED": 10,
-          "UNMEASURED": 1
-        },
-        "current": {
-          "MEASURED": 28,
-          "FAILED": 2
-        }
-      },
-      "report": "formal-60cf632/assessment.json",
-      "wholeEngineIntentRealization": "UNMEASURED"
-    },
-    {
-      "sourceCommit": "d0033059b70b340181f943057850ed5a6bb0ae8b",
-      "fullyDecodedMovies": 2,
-      "socialLyricSafety": "MEASURED",
-      "report": "transition-lattice-d003305/"
-    }
-  ],
-  "correctedCIFailures": {
-    "priorSources": [
-      "60cf632",
-      "d003305"
+  "qualityEvidence": {
+    "specificPhysicalImprovements": [
+      "Oversized clipped glyphs fit completed output in multiple conditions",
+      "Full original internal-unit lineage across asset and SNS phase boundaries",
+      "More continuous Japanese line wrapping",
+      "Opaque export-matching native references remove demonstrably false edge failures without threshold changes"
     ],
-    "counts": {
-      "PASS": 197,
-      "FAIL": 2,
-      "SKIP": 2
+    "majorConfirmedPixelRegression": "NONE_CONFIRMED; not a human highest-quality certification",
+    "mechanicalMetrics": {
+      "typographyDiversity": {
+        "paired": 30,
+        "improved": 11,
+        "equal": 4,
+        "declined": 15,
+        "baselineWorst": 13,
+        "currentWorst": 4,
+        "baselineBottom20PercentMean": 19.333333333333332,
+        "currentBottom20PercentMean": 8.166666666666666,
+        "decliningCases": [
+          {
+            "fixture": "development-01",
+            "baseline": 37,
+            "current": 29
+          },
+          {
+            "fixture": "development-03",
+            "baseline": 100,
+            "current": 85
+          },
+          {
+            "fixture": "development-05",
+            "baseline": 67,
+            "current": 23
+          },
+          {
+            "fixture": "development-06",
+            "baseline": 41,
+            "current": 29
+          },
+          {
+            "fixture": "development-09",
+            "baseline": 64,
+            "current": 47
+          },
+          {
+            "fixture": "development-14",
+            "baseline": 36,
+            "current": 9
+          },
+          {
+            "fixture": "holdout-01",
+            "baseline": 61,
+            "current": 6
+          },
+          {
+            "fixture": "holdout-02",
+            "baseline": 84,
+            "current": 44
+          },
+          {
+            "fixture": "holdout-03",
+            "baseline": 47,
+            "current": 5
+          },
+          {
+            "fixture": "holdout-08",
+            "baseline": 35,
+            "current": 6
+          },
+          {
+            "fixture": "holdout-09",
+            "baseline": 39,
+            "current": 30
+          },
+          {
+            "fixture": "holdout-11",
+            "baseline": 32,
+            "current": 29
+          },
+          {
+            "fixture": "holdout-12",
+            "baseline": 64,
+            "current": 57
+          },
+          {
+            "fixture": "holdout-14",
+            "baseline": 42,
+            "current": 41
+          },
+          {
+            "fixture": "holdout-15",
+            "baseline": 32,
+            "current": 4
+          }
+        ]
+      },
+      "lyricForegroundNovelty": {
+        "paired": 30,
+        "improved": 15,
+        "equal": 3,
+        "declined": 12,
+        "baselineWorst": 5,
+        "currentWorst": 37,
+        "baselineBottom20PercentMean": 35.333333333333336,
+        "currentBottom20PercentMean": 49.833333333333336,
+        "decliningCases": [
+          {
+            "fixture": "development-02",
+            "baseline": 100,
+            "current": 94
+          },
+          {
+            "fixture": "development-05",
+            "baseline": 85,
+            "current": 81
+          },
+          {
+            "fixture": "development-06",
+            "baseline": 60,
+            "current": 56
+          },
+          {
+            "fixture": "development-09",
+            "baseline": 73,
+            "current": 70
+          },
+          {
+            "fixture": "development-14",
+            "baseline": 96,
+            "current": 64
+          },
+          {
+            "fixture": "holdout-01",
+            "baseline": 62,
+            "current": 38
+          },
+          {
+            "fixture": "holdout-02",
+            "baseline": 93,
+            "current": 90
+          },
+          {
+            "fixture": "holdout-03",
+            "baseline": 100,
+            "current": 75
+          },
+          {
+            "fixture": "holdout-08",
+            "baseline": 99,
+            "current": 61
+          },
+          {
+            "fixture": "holdout-12",
+            "baseline": 79,
+            "current": 77
+          },
+          {
+            "fixture": "holdout-15",
+            "baseline": 100,
+            "current": 66
+          },
+          {
+            "fixture": "supplemental-holdout-13",
+            "baseline": 94,
+            "current": 92
+          }
+        ]
+      },
+      "temporalContrast": {
+        "paired": 21,
+        "improved": 11,
+        "equal": 1,
+        "declined": 9,
+        "baselineWorst": 4,
+        "currentWorst": 13,
+        "baselineBottom20PercentMean": 12.25,
+        "currentBottom20PercentMean": 18.25,
+        "decliningCases": [
+          {
+            "fixture": "development-03",
+            "baseline": 34,
+            "current": 26
+          },
+          {
+            "fixture": "development-11",
+            "baseline": 51,
+            "current": 37
+          },
+          {
+            "fixture": "development-14",
+            "baseline": 23,
+            "current": 22
+          },
+          {
+            "fixture": "holdout-01",
+            "baseline": 79,
+            "current": 46
+          },
+          {
+            "fixture": "holdout-02",
+            "baseline": 48,
+            "current": 13
+          },
+          {
+            "fixture": "holdout-03",
+            "baseline": 42,
+            "current": 25
+          },
+          {
+            "fixture": "holdout-06",
+            "baseline": 27,
+            "current": 24
+          },
+          {
+            "fixture": "holdout-07",
+            "baseline": 35,
+            "current": 34
+          },
+          {
+            "fixture": "supplemental-holdout-13",
+            "baseline": 100,
+            "current": 91
+          }
+        ]
+      },
+      "localContrast": {
+        "paired": 22,
+        "improved": 10,
+        "equal": 7,
+        "declined": 5,
+        "baselineWorst": 0,
+        "currentWorst": 0,
+        "baselineBottom20PercentMean": 30.75,
+        "currentBottom20PercentMean": 31.25,
+        "decliningCases": [
+          {
+            "fixture": "development-02",
+            "baseline": 94,
+            "current": 65
+          },
+          {
+            "fixture": "development-04",
+            "baseline": 94,
+            "current": 74
+          },
+          {
+            "fixture": "development-11",
+            "baseline": 71,
+            "current": 60
+          },
+          {
+            "fixture": "holdout-02",
+            "baseline": 96,
+            "current": 86
+          },
+          {
+            "fixture": "holdout-06",
+            "baseline": 1,
+            "current": 0
+          }
+        ]
+      },
+      "perceptualNovelty": {
+        "paired": 21,
+        "improved": 5,
+        "equal": 11,
+        "declined": 5,
+        "baselineWorst": 42,
+        "currentWorst": 42,
+        "baselineBottom20PercentMean": 61,
+        "currentBottom20PercentMean": 56.25,
+        "decliningCases": [
+          {
+            "fixture": "development-09",
+            "baseline": 93,
+            "current": 79
+          },
+          {
+            "fixture": "holdout-01",
+            "baseline": 67,
+            "current": 48
+          },
+          {
+            "fixture": "holdout-08",
+            "baseline": 100,
+            "current": 73
+          },
+          {
+            "fixture": "holdout-15",
+            "baseline": 97,
+            "current": 96
+          },
+          {
+            "fixture": "supplemental-holdout-13",
+            "baseline": 67,
+            "current": 66
+          }
+        ]
+      },
+      "motionRealization": {
+        "paired": 30,
+        "improved": 7,
+        "equal": 16,
+        "declined": 7,
+        "baselineWorst": 0,
+        "currentWorst": 33,
+        "baselineBottom20PercentMean": 44.333333333333336,
+        "currentBottom20PercentMean": 48.833333333333336,
+        "decliningCases": [
+          {
+            "fixture": "development-04",
+            "baseline": 100,
+            "current": 67
+          },
+          {
+            "fixture": "development-05",
+            "baseline": 67,
+            "current": 33
+          },
+          {
+            "fixture": "development-10",
+            "baseline": 67,
+            "current": 33
+          },
+          {
+            "fixture": "development-11",
+            "baseline": 100,
+            "current": 67
+          },
+          {
+            "fixture": "development-15",
+            "baseline": 100,
+            "current": 67
+          },
+          {
+            "fixture": "holdout-03",
+            "baseline": 67,
+            "current": 33
+          },
+          {
+            "fixture": "holdout-14",
+            "baseline": 100,
+            "current": 88
+          }
+        ]
+      },
+      "impactBeatSync": {
+        "paired": 12,
+        "improved": 2,
+        "equal": 8,
+        "declined": 2,
+        "baselineWorst": 50,
+        "currentWorst": 50,
+        "baselineBottom20PercentMean": 50,
+        "currentBottom20PercentMean": 50,
+        "decliningCases": [
+          {
+            "fixture": "development-04",
+            "baseline": 67,
+            "current": 50
+          },
+          {
+            "fixture": "holdout-02",
+            "baseline": 100,
+            "current": 75
+          }
+        ]
+      }
     },
-    "cause": "Square output observed in 160x100 canvas; clean restore repeats same observer error. Exact output profile fixed in ec5dcb1. Prior results remain FAIL."
+    "primaryMusicOnlyIntent": {
+      "logicalUnits": 129,
+      "fullyMeasured": 74,
+      "fullyRealized": 74,
+      "measurableRate": 0.5736434108527132,
+      "realizationRate": 1.0
+    },
+    "scopeLimit": "Primary glyph composite motion only. Background/camera/FX component intent realization across the full selected population is UNMEASURED. No whole-engine100% claim.",
+    "genericCreativeImprovement": "UNVERIFIED: physical lyric safety improves, but independent typographic composition observations are mixed and weak-tail declines remain; generic professional MV improvement not established.",
+    "unmeasuredClaims": "Real genre/vocal semantics, aesthetic superiority and artistic100 not certified"
   },
-  "remaining": [
+  "blockers": [
     {
-      "severity": "RELEASE_GATE",
-      "item": "Exact-source full regression, clean restore and formal UI CI pending"
+      "severity": "QUALITY_GATE",
+      "item": "Whole-engine naturally selected direction intentions are not adequately observed beyond primary glyph composites."
     },
     {
-      "severity": "RELEASE_GATE",
-      "item": "Final-source matched matrix pending"
-    },
-    {
-      "severity": "QUALITY_EVIDENCE",
-      "item": "holdout-06 immutable actual Blob reproducibly fails negative-background comparison. Native positive/removed-ink controls behave correctly; cause UNRESOLVED, missing glyphs not established."
-    },
-    {
-      "severity": "QUALITY_EVIDENCE",
-      "item": "Whole-engine component intent realization and generic creative improvement are not certified; prior typography weak tail declined."
-    },
-    {
-      "severity": "DISCLOSURE",
-      "item": "HUMAN_UNVERIFIED; procedural inputs do not certify all real musical genres, singing semantics or artistic100"
-    },
-    {
-      "severity": "DISCLOSURE",
-      "item": "Peak app memory UNMEASURED, encoded variable axis animation UNMEASURED, native OS file picker UNEXERCISED"
+      "severity": "QUALITY_GATE",
+      "item": "Generic creative improvement is not established across independent fixtures; typography composition weak tail19.33→8.17 and15/30 declining observations need targeted explanation/improvement. Machine indices alone are not aesthetic defect certification."
     }
   ],
-  "releasePolicy": "Only both technical and quality PASS permit merge and live deployment. Speed alone is not a blocker. No threshold relaxation."
+  "disclosures": [
+    {
+      "item": "HUMAN_UNVERIFIED",
+      "releaseBlockerByItself": false
+    },
+    {
+      "item": "Generation speed P50/P95 and slowest are accepted; all tested cases complete",
+      "releaseBlockerByItself": false
+    },
+    {
+      "item": "App peak memory UNMEASURED",
+      "releaseBlockerByItself": false
+    },
+    {
+      "item": "Past HTTP503/Blob-loss root causes remain historical UNRESOLVED",
+      "releaseBlockerByItself": false
+    },
+    {
+      "item": "Encoded variable-axis animation survival UNMEASURED",
+      "releaseBlockerByItself": false
+    }
+  ],
+  "performance": {
+    "method": "30 fixed matched fixtures, total wall time includes audio/plan, unchanged natural search and completed export plus final QA. Paired same worker per partition; heterogeneous10–45s outputs. Not a release threshold.",
+    "baseline": {
+      "cases": 30,
+      "P50Seconds": 167.9515,
+      "P95SecondsNearestRank": 398.7433999999999,
+      "slowestSeconds": 939.9509,
+      "slowestFixture": "development-14",
+      "completion": "PASS",
+      "appPeakMemory": "UNMEASURED"
+    },
+    "v3": {
+      "cases": 30,
+      "P50Seconds": 243.37654999999998,
+      "P95SecondsNearestRank": 587.1569000000002,
+      "slowestSeconds": 1293.2883000000004,
+      "slowestFixture": "development-14",
+      "completion": "PASS",
+      "appPeakMemory": "UNMEASURED"
+    }
+  },
+  "releaseDecision": "NO-GO due important creative acceptance evidence, not performance, human rating absence, historical503 or peak memory. Main and production unchanged. Normal merge/deploy only after both gates PASS."
 }

@@ -1,13 +1,13 @@
-# Generalization verification checkpoint
+# Final verification checkpoint
 
-Current source: `ec5dcb1325de96c7c9cbc67a1fca6adfec999978`. Technical and quality gates are UNVERIFIED; PR #13 remains Draft, main and production unchanged.
+Source: `b5a46b79ab463fe7f74d0a6d43c90ecbae984a41`. TECHNICAL_GO PASS, QUALITY_GO UNVERIFIED, RELEASE NO-GO. PR #13 stays Draft; main `2e7ed477f88028dbb63aa609e8a11b4052ea8c00` and production are unchanged.
 
-The final-source native registry audit passes all 3,152 conditions (18,864 renderer calls, zero runtime failures). Actual variable-font import/raster/export and strict complete decode pass. These do not certify encoded survival of every technique or artistic quality.
+Exact-head CI succeeds: 199 PASS / 0 FAIL / 2 environment SKIP. The real browser UI, below-target one-click MP4, save/restore, native encoder cancel/retry, invalid MP4 rejection and actual variable-font alternative pass. UI boundary synthetic acceptance/reused MP4 and overlay task fixtures are explicitly separate from fresh native exports.
 
-Both affected `d003305` SNS exports pass lyric safety and full decode. Earlier `60cf632` preserves 30 matched pairs/60 decoded movies; current lyric verification was 28 MEASURED/2 FAILED. Do not relabel those as final-source output. Typography observations were mixed (10 improved, 4 equal, 16 declined).
+Thirty matched fixtures produce60 actual movies. All strictly decode; final current lyric safety is30/30 MEASURED. Fixed-observer remeasurement yields baseline21 MEASURED/9 FAILED, current30 MEASURED. One common observation had an unavailable requested font; it is preserved and corrected only by a bounded same-Blob font-loaded repeat.
 
-The `holdout-06` Blob reproduces identical failed observations under identical input, plan and browser conditions; native controls pass and removed-ink controls fail. Native/codec negative-background mismatch is unresolved, and missing glyphs have not been established. See `same-blob-60cf632/`.
+The final native audit covers24 styles,740 techniques,24 fonts,3,152 conditions and18,864 calls with0 runtime failures. Registration/native execution is distinct from encoded component survival and creative merit.
 
-Earlier CI failures were caused by cropping square output into 160×100 during a raster test; the clean-restore child repeated that failure. All 146 layouts × 4 correctly proportioned profiles now produce primary lyric pixels locally. Earlier failures are preserved.
+Specific clipping, wrapping, unit-clock and reference-profile defects are fixed. Music-only primary intents measure74/129 logical units,74 realized; forced safety holds are excluded. Whole-engine camera/background/FX intent realization remains UNMEASURED. Typography observations still decline in15/30 pairs, with bottom20% mean19.33→8.17. This is not an aesthetic score or a confirmed15-video defect count; generic creative improvement is not established.
 
-Exact final-source [CI](https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38406769389) and [30-pair matrix](https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38406872173) are in progress. Detailed current gate state is in `final-gates.json`. HUMAN_UNVERIFIED is retained.
+The release blocker is important creative evidence, not slowness, missing human ratings or peak memory. Details and hashes are in `final-gates.json`, `formal-b5a46b7/`, `common-observer-b5a46b7/`, and `ci-b5a46b7/`. Next: measure selected component intentions and improve the weak typographic cases without weakening safety/thresholds or fitting fixture IDs.
