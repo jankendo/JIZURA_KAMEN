@@ -1,20 +1,21 @@
 {
-  "sourceCommit": "357a2738bd9aa63177d674b3fadb96ab1d44bcda",
+  "sourceCommit": "c984cd830a35a9346b2160eb5b247516fe8a5378",
   "measuredRuntimeSource": "357a2738bd9aa63177d674b3fadb96ab1d44bcda",
-  "runtimeSourceTree": "f068b971bfc29254622f327da3ed77d5c2ff416651583955d4bc232296744a24",
-  "runtimeDiff": null,
+  "runtimeSourceTree": "894b972538a4763575e4d13c03a657315f10abbb9fcc1634198e1b940adbfb1c",
+  "runtimeDiff": "Whole-line fragment identity and repeated-layer completeness observer fixes; final-source targeted actual movies and CI pending",
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "UNVERIFIED",
   "artistic100": "UNVERIFIED",
   "humanStatus": "HUMAN_UNVERIFIED",
-  "completedPairedCases": 0,
+  "completedPairedCases": 28,
   "preregisteredCases": 30,
   "nativeAudit": {
     "entries": 3152,
     "rendererCalls": 18864,
     "failures": 0,
-    "encodedCatalogCoverage": "UNMEASURED"
+    "encodedCatalogCoverage": "UNMEASURED",
+    "freshness": "STALE_FOR_C984CD8_FULL_SOURCE; actual357a273 proof retained"
   },
   "priorCI": {
     "sourceCommit": "11e8fa7a98d419d2b3d154c488b9aeb57d2c9c05",
@@ -23,7 +24,7 @@
     "SKIP": 2,
     "rootCause": "Same obsolete non-photo counterfactual unit test assertion, also in clean nested suite; test corrected, current CI pending"
   },
-  "latestCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38329954032",
+  "latestCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38338267289",
   "variableFontActualBrowser": {
     "status": "PASS",
     "scope": "HISTORICAL_269d804"
@@ -31,10 +32,10 @@
   "mainChanged": false,
   "productionChanged": false,
   "remaining": [
-    "Final exact-head CI",
-    "30-case matched real MP4 comparison and independent holdout",
-    "Natural-intent realization full population and quality lower tail",
-    "Final safety and regression assessment across profiles"
+    "Current c984cd8 CI and target MP4 revalidation",
+    "Unexpected encoded foreground in holdout-06: no missing glyph visually established, binding-bound raw QA remains FAILED",
+    "General creative improvement and major regression assessment; mixed raw metrics, no artistic certification",
+    "Original two SNS conditions ineligible; separately preregistered supplemental runs pending"
   ],
   "formalUIE2E": {
     "status": "PASS",
@@ -55,7 +56,7 @@
     "scope": "HISTORICAL_269d804_NOT_FINAL_REPAIR_HEAD"
   },
   "formalMatrixRun": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38331159655",
-  "formalMatrixState": "IN_PROGRESS_6_PARTITIONS",
+  "formalMatrixState": "COMPLETED_WITH_FOUR_SNS_EXPORT_REJECTIONS_AND_UNRESOLVED_QUALITY",
   "formalUIIntentCoverage": {
     "population": 4,
     "measured": 0,
@@ -116,5 +117,17 @@
     "framesClosed": true,
     "retryVideoSHA256": "c1a0ad772874bc3dbd60c27a69f16ce2d6485ec7216192a414e91d3190e16084",
     "completeDecode": "PASS"
+  },
+  "formalMatrixAssessment": "formal-357a273/assessment.json",
+  "latestCompletedCI": {
+    "sourceCommit": "357a2738bd9aa63177d674b3fadb96ab1d44bcda",
+    "regression": {
+      "PASS": 199,
+      "FAIL": 0,
+      "SKIP": 2
+    },
+    "browser": "PASS",
+    "overall": "FAIL",
+    "cause": "upload-artifact rejects path containing ../; fixed in 027dd44 and retained in c984cd8"
   }
 }

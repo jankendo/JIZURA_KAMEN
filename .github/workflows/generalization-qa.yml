@@ -1,4 +1,4 @@
-name: Frozen 30-case KAMEN generalization QA
+name: Frozen targeted KAMEN repair QA
 on:
   push:
     branches: [codex/kamen-generalization-evidence-20261012]
@@ -13,25 +13,19 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - partition: development-a
-            cases: development-01,development-02,development-03,development-04,development-05
-          - partition: development-b
-            cases: development-06,development-07,development-08,development-09,development-10
-          - partition: development-c
-            cases: development-11,development-12,development-13,development-14,development-15
-          - partition: holdout-a
-            cases: holdout-01,holdout-02,holdout-03,holdout-04,holdout-05
-          - partition: holdout-b
-            cases: holdout-06,holdout-07,holdout-08,holdout-09,holdout-10
-          - partition: holdout-c
-            cases: holdout-11,holdout-12,holdout-13,holdout-14,holdout-15
+          - partition: normal-a
+            cases: development-10,development-12
+          - partition: normal-b
+            cases: holdout-05,holdout-06
+          - partition: shipping-sns
+            cases: supplemental-development-13,supplemental-holdout-13
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 357a2738bd9aa63177d674b3fadb96ab1d44bcda
+          ref: 044f8e1
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -50,12 +44,12 @@ jobs:
           (cd baseline && npm ci && npm run build)
           test -x /usr/bin/google-chrome
           mkdir -p results
-          sha256sum qa/docs/qa/generalization/preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/tools-and-preregistration.sha256
+          sha256sum qa/docs/qa/generalization/targeted-preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/tools-and-preregistration.sha256
       - name: Complete natural-selection paired MP4 matrix
         timeout-minutes: 320
         env:
           KAMEN_CHROME: /usr/bin/google-chrome
-          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/preregistration.json
+          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/targeted-preregistration.json
           KAMEN_MATRIX_CASES: ${{ matrix.cases }}
           NODE_PATH: ${{ github.workspace }}/current/node_modules
         run: |
@@ -71,7 +65,7 @@ jobs:
           curl -fsS -o /dev/null http://127.0.0.1:4173/
           curl -fsS -o /dev/null http://127.0.0.1:4174/
           node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4174/ results/matrix > results/matrix.log 2>&1
-          python -c 'import json; x=json.load(open("results/matrix/results.json")); assert len(x["rows"])==10 and len({r["fixture"]["id"] for r in x["rows"]})==5, "Incomplete partition"'
+          python -c 'import json; x=json.load(open("results/matrix/results.json")); assert len(x["rows"])==4 and len({r["fixture"]["id"] for r in x["rows"]})==2, "Incomplete partition"'
       - name: Independently replay artifact hashes and full decode
         if: always()
         run: |
@@ -83,7 +77,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: frozen-generalization-357a273-${{ matrix.partition }}
+          name: targeted-repair-044f8e1-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
