@@ -8,10 +8,10 @@ J.cinemaSemanticLyricLayout=(p,c,ctx)=>{
  if(architectureBox){width=architectureBox.width;height=architectureBox.height;}
  if(single){width=W*(c.cinema?.development?.occupancy||.70);height=H*.48;lead=mode==='wave'?1.5:mode==='impact'||mode==='expand'?1.22:1.32;cap=H*(H>W?(mode==='read'?.09:.11):mode==='read'?.135:mode==='expand'?.195:mode==='impact'?.185:.155);}
  try{ctx??=document.createElement('canvas').getContext('2d');}catch{}
- const text=String(c.lineText??c.text??'');let probe=null;if(typeof ctx?.measureText==='function'){const previousFont=ctx.font;ctx.font=J.fontCSS(font,48);try{probe=ctx.measureText('Hgあ').width;}finally{ctx.font=previousFont;}}
- const key=JSON.stringify([text,font,W,H,mode,stage,width,height,lead,cap,probe,!!c.locked,!!J.photoChoreographyLocked?.(p,c)]);
+ const originalSourceText=String(c.lineText??c.text??''),preservedChant=!c.locked&&!J.photoChoreographyLocked?.(p,c)&&stage>0&&!!J.vocaliseGroup?.(originalSourceText),text=preservedChant?J.vocaliseUnits(originalSourceText).join(stage===2&&W>H?' ':'\n'):originalSourceText;let probe=null;if(typeof ctx?.measureText==='function'){const previousFont=ctx.font;ctx.font=J.fontCSS(font,48);try{probe=ctx.measureText('Hgあ').width;}finally{ctx.font=previousFont;}}
+ const key=JSON.stringify([originalSourceText,text,font,W,H,mode,stage,width,height,lead,cap,probe,!!c.locked,!!J.photoChoreographyLocked?.(p,c)]);
  if(cache.has(key))return J.clonePhotoRenderPlan(cache.get(key));
- const result={...J.semanticLyricLayout(text,{font,size:cap,maxWidth:width,maxHeight:height,lead,track:single?(mode==='expand'?.025:.012):.015,ctx,manual:!!c.locked||!!J.photoChoreographyLocked?.(p,c)}),font,lead,compositionBox:architectureBox,track:single?(mode==='expand'?.025:.012):.015};
+ const result={...J.semanticLyricLayout(text,{font,size:cap,maxWidth:width,maxHeight:height,lead,track:single?(mode==='expand'?.025:.012):.015,ctx,manual:!!c.locked||!!J.photoChoreographyLocked?.(p,c)}),font,lead,compositionBox:architectureBox,originalSourceText,layoutBreakSource:preservedChant?'EXISTING_RENDERER_PHONETIC_GROUPS':'SOURCE_TEXT_SEMANTIC_WRAP',track:single?(mode==='expand'?.025:.012):.015};
  if(probe!==null){if(cache.size>=128)cache.clear();cache.set(key,J.clonePhotoRenderPlan(result));}return result;
 };
 const preflight=V.typographyPreflight;
