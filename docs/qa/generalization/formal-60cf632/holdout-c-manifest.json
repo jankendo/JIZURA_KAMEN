@@ -1,0 +1,461 @@
+{
+  "scope": "Exact-source final partition; completed movies retained even when lyric verification fails",
+  "entries": [
+    {
+      "fixture": "holdout-11",
+      "variant": "baseline",
+      "videoSHA256": "820142cb1c11c5c8509d7f6d51745e79d90f790f2554c46fc45bc8691e38f448",
+      "binding": {
+        "inputHash": "adaee1e5759f411974ae1bff8bd7401976538dc25409db4d5a0014665f4dce87",
+        "planHash": "d3c20de9f411f49a7083d0d79d9c45d86734c350de545e1196b980e657a8695e",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "6fa80145fa8c5d1dcef3d8dd6ae62c165db8dfbad37c5d552e374e0b14ba7f26",
+        "videoSHA256": "820142cb1c11c5c8509d7f6d51745e79d90f790f2554c46fc45bc8691e38f448",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "lyricSafetyStatus": "FAILED",
+      "metrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 1,
+        "loopQuality": 51,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 60,
+        "displayOnsetAccuracy": null,
+        "localContrast": 0,
+        "motionRealization": 100,
+        "typographyDiversity": 32
+      },
+      "rawEvidenceId": "9764b9d19c4cc307d0c3f2169d40ec8800f17a3fd1cf72a78a8bb6207fce33e9"
+    },
+    {
+      "fixture": "holdout-11",
+      "variant": "v3",
+      "videoSHA256": "c11cc0b9a7976acc0cbc9dcf78a066ad8378ab014ca239205318e891d5dc4ce0",
+      "binding": {
+        "inputHash": "adaee1e5759f411974ae1bff8bd7401976538dc25409db4d5a0014665f4dce87",
+        "planHash": "f8c185f8e41794027cc6d800efe8dc618dc8ae04650c221dc6065d6addb6c09b",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "selectedCandidateId": "38da4f0adc5a157b65afb195b1a25a186538f27ba49178f5a485e2877cb16ae7",
+        "videoSHA256": "c11cc0b9a7976acc0cbc9dcf78a066ad8378ab014ca239205318e891d5dc4ce0",
+        "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+        "sourceTreeSHA256": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "sourceDirty": false
+      },
+      "lyricSafetyStatus": "MEASURED",
+      "metrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 1,
+        "loopQuality": 51,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 56,
+        "displayOnsetAccuracy": null,
+        "localContrast": 0,
+        "motionRealization": 100,
+        "typographyDiversity": 29
+      },
+      "rawEvidenceId": "460569a3673865a65633f585ae5c4633caa63032d90ca9533c7879c897cf4c45"
+    },
+    {
+      "fixture": "holdout-12",
+      "variant": "v3",
+      "videoSHA256": "67ad24b272981ae0751f430ab6091caf46ee5a6558b46189a926579c0941d68a",
+      "binding": {
+        "inputHash": "8bd411da73579207089c70bfb0f4c355219adcc41c8cac69c3ecfcdda19c50cf",
+        "planHash": "f75b1ce9f5e276a1021a7dbce710c92f292b649de2508725b4a4e8d4f1821cba",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "selectedCandidateId": "91014bd5d5ecf7bd402fb1acce367a9ae7f0672dfd129cf44534a9fbd92aa651",
+        "videoSHA256": "67ad24b272981ae0751f430ab6091caf46ee5a6558b46189a926579c0941d68a",
+        "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+        "sourceTreeSHA256": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "sourceDirty": false
+      },
+      "lyricSafetyStatus": "MEASURED",
+      "metrics": {
+        "perceptualNovelty": 100,
+        "motion": 21,
+        "temporalContrast": 45,
+        "hookNovelty": 100,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 77,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 94,
+        "motionRealization": 100,
+        "typographyDiversity": 57
+      },
+      "rawEvidenceId": "daac620d5e51ae65ba830e5653c157c289705f25b45f778ad240564469da3472"
+    },
+    {
+      "fixture": "holdout-12",
+      "variant": "baseline",
+      "videoSHA256": "966b9fe717d1657dced9481efc83283b41a18cfec9f99372a087e3987d9b9f93",
+      "binding": {
+        "inputHash": "63dffe48a56efe10f15a2e03344e9df625b73a1762982e4b178314674916b378",
+        "planHash": "f7c279cc463f3dc1d895c29bf2ca3b81ffdd68e3ba37df4e074598fe4bc0b529",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "33d5394fb8c6136be8c663c09eaf07dc3cbff94fe32ddfa13fb0f62e361a9e69",
+        "videoSHA256": "966b9fe717d1657dced9481efc83283b41a18cfec9f99372a087e3987d9b9f93",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "lyricSafetyStatus": "MEASURED",
+      "metrics": {
+        "perceptualNovelty": 100,
+        "motion": 21.5,
+        "temporalContrast": 34,
+        "hookNovelty": 100,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 79,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 94,
+        "motionRealization": 100,
+        "typographyDiversity": 64
+      },
+      "rawEvidenceId": "1efcb25f9897701c92d2327580663a3b5a45fbeeb764f22fd531d318189a257e"
+    },
+    {
+      "fixture": "supplemental-holdout-13",
+      "variant": "baseline",
+      "videoSHA256": "de250add44e629dd66013ffffbe8e83a6162b2e4553cdd51acf36a9a1c62f21f",
+      "binding": {
+        "inputHash": "13b7d741ba6a502b20d121a18cf0c197bb6f2179fdf62dc31feaecc526bf75eb",
+        "planHash": "541e57991887182edc7843fdaa4525f58b1ab3179232d8235d044f9611457096",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "1dfb4b3aacc7bb214a5f1282e6164bec8ecc3471b1c33beed5957ea53d7b1f9f",
+        "videoSHA256": "de250add44e629dd66013ffffbe8e83a6162b2e4553cdd51acf36a9a1c62f21f",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "lyricSafetyStatus": "UNMEASURED",
+      "metrics": {
+        "perceptualNovelty": 67,
+        "motion": 19,
+        "temporalContrast": 100,
+        "hookNovelty": 7,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 94,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 64.63448553522498,
+        "localContrast": 99,
+        "motionRealization": 67,
+        "typographyDiversity": 23
+      },
+      "rawEvidenceId": "ed8fb5efd23b228d434dd9203b681cdf4b0af1c72d0a6c644c7052a78ae3c886"
+    },
+    {
+      "fixture": "supplemental-holdout-13",
+      "variant": "v3",
+      "videoSHA256": "186a715f397aed666fbfa4b53347b22ae492d61f1b3d8fdc1c8d891c7941d5c4",
+      "binding": {
+        "inputHash": "62c2c25e8a4010f2adb37034d4a362148b80b40cca8d069200f07ee72edd3a9e",
+        "planHash": "b09b82f8672d7f8afef053f7b6e3a93d2d3e632edf506097c21446c7c958fd3d",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "selectedCandidateId": "afce6ce271f55cfef75899c3f1c11d752bf12e7d0fc8f1cb32abb8a7791b78b1",
+        "videoSHA256": "186a715f397aed666fbfa4b53347b22ae492d61f1b3d8fdc1c8d891c7941d5c4",
+        "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+        "sourceTreeSHA256": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "sourceDirty": false
+      },
+      "lyricSafetyStatus": "MEASURED",
+      "metrics": {
+        "perceptualNovelty": 66,
+        "motion": 24,
+        "temporalContrast": 91,
+        "hookNovelty": 7,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 92,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 82.70514598151453,
+        "localContrast": 99,
+        "motionRealization": 100,
+        "typographyDiversity": 32
+      },
+      "rawEvidenceId": "857096b15667f36099d07a2ad1065f016f36c72b809ef697a28cdba46aa97909"
+    },
+    {
+      "fixture": "holdout-14",
+      "variant": "v3",
+      "videoSHA256": "26d3503736f3e63666b2430d10c474a06b164ea2be8bae066478f4a201c8b055",
+      "binding": {
+        "inputHash": "dd60d035bc9d4f7ca4e51cf68e0aa4fa478a61a4e51fe3b506ed4a064a106e36",
+        "planHash": "e2a4ad4107d2f93b3f25e2cef2b78477bf385e6a5b26d3da1a89d1c96dd99a32",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "selectedCandidateId": "9c7564b20ffef74ccaf1aeabc47ecabc584ddaaaa6be85943e8b6467b21485e4",
+        "videoSHA256": "26d3503736f3e63666b2430d10c474a06b164ea2be8bae066478f4a201c8b055",
+        "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+        "sourceTreeSHA256": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "sourceDirty": false
+      },
+      "lyricSafetyStatus": "MEASURED",
+      "metrics": {
+        "perceptualNovelty": 100,
+        "motion": 20.5,
+        "temporalContrast": 67,
+        "hookNovelty": 75,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 78,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 67,
+        "regionalPerceptualNovelty": 94.4777809449685,
+        "localContrast": 99,
+        "motionRealization": 88,
+        "typographyDiversity": 41
+      },
+      "rawEvidenceId": "39b614f686fd848aa5eac82070c1e3f3a54149566badcc9fdaca90f91cca0dcc"
+    },
+    {
+      "fixture": "holdout-14",
+      "variant": "baseline",
+      "videoSHA256": "0ccf97277bf6e40bb42f2e217a5cd9d85f5a0dab29b3d97eb37e6b20a8fe56b7",
+      "binding": {
+        "inputHash": "412cdf111f5e9eb145a40565edb1cf646114a8b193d2a3f3c2187494e351b057",
+        "planHash": "0bd93982882714e847f366e80d59a514a0e47a8246273249b0da1c8eb609c313",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "88dd30eec671d1e4ab9e48efb5d78ef26fb11c959ea94363ba67b5f184e41abf",
+        "videoSHA256": "0ccf97277bf6e40bb42f2e217a5cd9d85f5a0dab29b3d97eb37e6b20a8fe56b7",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "lyricSafetyStatus": "MEASURED",
+      "metrics": {
+        "perceptualNovelty": 100,
+        "motion": 23,
+        "temporalContrast": 49,
+        "hookNovelty": 78,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 72,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 67,
+        "regionalPerceptualNovelty": 83.14363870799752,
+        "localContrast": 96,
+        "motionRealization": 100,
+        "typographyDiversity": 42
+      },
+      "rawEvidenceId": "4b9549ef5c3b08dc3214e0c1a11c35728a094cb5bafb0980df41294acf25e39d"
+    },
+    {
+      "fixture": "holdout-15",
+      "variant": "baseline",
+      "videoSHA256": "371adb5b0bd8a39f4879db89089a1d7f124fcad34d1f91acf3c374f416802d95",
+      "binding": {
+        "inputHash": "faab9e99ba30ad7d04eaeb749f89e59451492b10b77997a022f04621c91662c8",
+        "planHash": "19a2811aa575c9066047851e23c9a08f6b0be6b9e2ea60e9dd070e86ab395069",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "649268ec1388438a7c591c7869ef09e3208a3f1cc7cdc063735657eacf79c4cc",
+        "videoSHA256": "371adb5b0bd8a39f4879db89089a1d7f124fcad34d1f91acf3c374f416802d95",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "lyricSafetyStatus": "MEASURED",
+      "metrics": {
+        "perceptualNovelty": 97,
+        "motion": 22,
+        "temporalContrast": 32,
+        "hookNovelty": 63,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 100,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 80,
+        "motionRealization": 100,
+        "typographyDiversity": 32
+      },
+      "rawEvidenceId": "106a0a86a7785d1fd8ab0b9b40d7496c2656c0023736e7ff22fce01a41788579"
+    },
+    {
+      "fixture": "holdout-15",
+      "variant": "v3",
+      "videoSHA256": "18de28e60b854cfc4682735952ec5da5159f50b3f8d1027963bcf3509a27bb16",
+      "binding": {
+        "inputHash": "a5ed8a08bdf34aadb48dd90d723b36726e36275733ed793b4d543d3231f4e7cc",
+        "planHash": "5e3571868243aa5d946fffa5e1886eab1514b1c637f181cc9f8b76e2f98d4597",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "selectedCandidateId": "aa082a80aa4c532c716565c6eab7e2dff5784b4ad4e891bb2823306efee6cf49",
+        "videoSHA256": "18de28e60b854cfc4682735952ec5da5159f50b3f8d1027963bcf3509a27bb16",
+        "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+        "sourceTreeSHA256": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "sourceDirty": false
+      },
+      "lyricSafetyStatus": "MEASURED",
+      "metrics": {
+        "perceptualNovelty": 96,
+        "motion": 21,
+        "temporalContrast": 34,
+        "hookNovelty": 63,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 66,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 96.3429516608206,
+        "localContrast": 80,
+        "motionRealization": 100,
+        "typographyDiversity": 4
+      },
+      "rawEvidenceId": "66a3c2b6aa7f7499788efbfbe1a3c4f9c5cd3815e42188d58847abccc276083a"
+    }
+  ]
+}

@@ -13,7 +13,7 @@ const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
  const report=await page.evaluate(async({ref,row,video,wav})=>{
   const J=window.J,Q=J.cinemaV5,revive=v=>{if(!v||typeof v!=='object')return v;if(v.__qaTypedArray)return new window[v.__qaTypedArray](v.data);if(v.__qaMap)return new Map(v.__qaMap.map(([k,x])=>[revive(k),revive(x)]));if(v.__qaSet)return new Set(v.__qaSet.map(revive));if(Array.isArray(v))return v.map(revive);return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,revive(x)]));};
   const bytes=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));const plan=revive(ref.plan),project=revive(ref.project),audio=await J.analyzeAudio(new Blob([bytes(wav)],{type:'audio/wav'}));
-  J.enableSingleBackgroundMode();await J.ensureFonts(plan);if(await J.cinemaV3.planHash(plan)!==ref.planHash)throw Error('RESTORED_PLAN_HASH_MISMATCH');
+  J.enableSingleBackgroundMode();await J.ensureFonts(plan.lines.map(l=>l.text).join(""),J.fontsOfPlan(plan));if(await J.cinemaV3.planHash(plan)!==ref.planHash)throw Error('RESTORED_PLAN_HASH_MISMATCH');
   const args={plan,project,audio,range:ref.range};const input=await J.cinemaV3.snapshot(project,audio,plan,ref.range);if(input.inputHash!==ref.inputSnapshot.inputHash)throw Error('RESTORED_INPUT_HASH_MISMATCH');
   const result={blob:new Blob([bytes(video)],{type:'video/mp4'}),validation:row.validation,provenance:row.provenance};
   return {inputHash:input.inputHash,result:await Q.verifyFinalArtifact(result,args,input)};
