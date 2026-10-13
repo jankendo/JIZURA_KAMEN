@@ -1,7 +1,7 @@
 /* Phrase-level direction: one composition, developed across repeated lyrics. */
 (()=>{'use strict';const J=window.J;
 const normalized=t=>String(t||'').replace(/\s/g,'');
-const locked=(p,c)=>!!(Object.keys(p.directionOverrides7?.[c.line]||{}).length||p.directorLyricDirectives7?.some(d=>d.line===c.line)||c.assetScene?.locked||c.semanticIntent||p.directorSections7?.some(s=>c.start>=s.from&&c.start<s.to&&(s.typographyIntent||s.motionIntent)));
+const locked=(p,c)=>!!(c.locked||Object.keys(p.directionOverrides7?.[c.line]||{}).length||p.directorLyricDirectives7?.some(d=>d.line===c.line)||c.assetScene?.locked||c.semanticIntent||p.directorSections7?.some(s=>c.start>=s.from&&c.start<s.to&&(s.typographyIntent||s.motionIntent)));
 J.photoChoreographyLocked=locked;
 // Prefer real word/script boundaries. Never split a Latin word, small kana,
 // closing punctuation or an emoji sequence merely to balance the rows.
@@ -38,7 +38,7 @@ J.applyPhotoChoreography=p=>{
   if(c0.line<0||locked(p,c0)||c0.photoExit){cuts.push(c0);continue;}
   const previous=cuts.at(-1),text=p.lines?.[c0.line]?.text||c0.lineText||c0.text;
   if(previous?.photoChoreography&&previous.line===c0.line&&Math.abs(previous.end-c0.start)<.002){previous.end=c0.end;previous.dur=previous.end-previous.start;continue;}
-  const c={...c0,params:{...c0.params}},n=lineOccurrences.get(c.line)||0,role=p.musicalStructure?.sections?.find(s=>c.start>=s.from&&c.start<s.to)?.role,count=[...normalized(text)].length;
+  const {lyricUnitOrigin,...wholeLine}=c0;const c={...wholeLine,params:{...c0.params}},n=lineOccurrences.get(c.line)||0,role=p.musicalStructure?.sections?.find(s=>c.start>=s.from&&c.start<s.to)?.role,count=[...normalized(text)].length;
   const mode=count<=4?'chant':n>0||['climax','build','hook'].includes(role)||(/[A-Za-z]{2}/.test(text)&&/[^\x00-\x7f]/.test(text))?'phrase':'statement';
   c.layout=mode==='chant'?'photoChant':mode==='phrase'?'photoPhrase':'photoStatement';c.text=text;c.lineText=text;c.photoChoreography=true;c.kineticGrouped=false;c.treat=null;c.decor=[];c.hold='still';c.enter=mode==='phrase'?'photoResolve':'photoSettle';c.exit='cut';c.inDur=Math.min(.12,c.dur*.15);c.outDur=0;c.stagger=0;c.trans='cut';c.transDur=0;
   const displayText=mode==='phrase'?J.composeLyricPhrase(text):p.H>p.W?J.splitLines(text,10):J.splitLines(text,18);

@@ -4,6 +4,15 @@ J.LAYOUTS.globalReadableUnit={name:'読みやすさを保つ歌詞',special:true
  const {W,H,cut}=env,font=cut.params?.font||'embedded_bold',text=cut.text??cut.lineText,short=J.graphemes(plain(text)).length<=4,cap=H>W?(short?.15:.09):(short?.18:.12),size=Math.min(H*cap,J.fitSize(text,font,W*.72,H*.3,{track:.02,lead:1.2}));
  return J.mainDraw(env,{text,font,size,x:W/2,y:H/2,track:.02,lead:1.2,color:cut.params?.unitSafetyColor||env.sc.fg,noHold:true});
 }};
+// SNS reediting runs through several legacy directors. Preserve every source
+// unit of a user-controlled line after the complete stack, before any export.
+const makeSocial=J.createSocialHookPlan;
+if(makeSocial)J.createSocialHookPlan=(source,candidate)=>{
+ const lines=new Set((source.cuts||[]).filter(c=>c.locked||J.photoChoreographyLocked(source,c)).map(c=>c.line));
+ const originals=J.clonePhotoRenderPlan(source).cuts.filter(c=>lines.has(c.line)),p=makeSocial(source,candidate);
+ if(lines.size){p.cuts=[...p.cuts.filter(c=>!lines.has(c.line)),...originals].sort((a,b)=>a.start-b.start);p.cuts.forEach((c,i)=>c.index=i);p.socialLockProtection={status:'SOURCE_UNITS_RESTORED',lines:[...lines],unitCount:originals.length,indexPolicy:'Only renderer array indices reassigned; source text, times and manual render properties preserved'};}
+ return p;
+};
 J.prepareAutomaticUnitSafety=async args=>{
  const p=args.plan;if(p.musicalPhoto)return;
  const cuts=p.cuts.filter(c=>c.line>=0&&!c.grammar&&!c.locked&&!J.photoChoreographyLocked(p,c));if(!cuts.length)return;
