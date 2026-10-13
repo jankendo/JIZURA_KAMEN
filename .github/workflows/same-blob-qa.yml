@@ -1,4 +1,4 @@
-name: Immutable final Blob reobservation native reference canvas profile experiment
+name: Immutable Blob repaired opaque-verifier diagnostic
 on:
   push:
     branches: [codex/kamen-generalization-evidence-20261012]
@@ -15,7 +15,7 @@ jobs:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 60cf632f0fce6d032dfd12bf753dcfd4e4095657
+          ref: b5a46b79ab463fe7f74d0a6d43c90ecbae984a41
           path: current
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         if: always()
         with:
-          name: same-blob-60cf632
+          name: repaired-opaque-verifier-b5a46b7
           path: |
             results
             server.log
