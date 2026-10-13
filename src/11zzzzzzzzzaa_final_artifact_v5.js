@@ -23,7 +23,9 @@ Q.originalUnitTextIntegrity=(p,lineIds)=>lineIds.every(line=>{
  if(!raw||!texts.length||texts.some(t=>!t))return false;if(texts.every(t=>t===raw))return true;
  let cursor=0;for(const text of texts){while(raw[cursor]===' ')cursor++;if(raw.slice(cursor,cursor+text.length)!==text)return false;cursor+=text.length;}return raw.slice(cursor).trim()==='';
 });
-Q.isPrimaryInternalLyric=(env,it)=>!(env.cut.layout==='center'&&env.cut.params?.sub&&clean(env.cut.text)!==clean(env.cut.lineText)&&clean(it.text)===clean(env.cut.lineText));
+J.decorativeLyricContexts=new WeakMap();
+for(const definition of Object.values(J.DECOR)){if(typeof definition.draw!=='function')continue;const draw=definition.draw;definition.draw=function(env,...args){const prior=J.decorativeLyricContexts.get(env.ctx);J.decorativeLyricContexts.set(env.ctx,true);try{return draw.call(this,env,...args);}finally{if(prior===undefined)J.decorativeLyricContexts.delete(env.ctx);else J.decorativeLyricContexts.set(env.ctx,prior);}};}
+Q.isPrimaryInternalLyric=(env,it)=>it.lyricRole!=='decorative'&&it.lyricRole!=='supplemental'&&!J.decorativeLyricContexts.get(env.ctx)&&!(env.cut.layout==='center'&&env.cut.params?.sub&&clean(env.cut.text)!==clean(env.cut.lineText)&&clean(it.text)===clean(env.cut.lineText));
 Q.completePrimaryTexts=(texts,source)=>{const expected=clean(source),observed=texts.map(clean);return !!expected&&observed.length>0&&(observed.every(text=>text===expected)||observed.join('')===expected);};
 Q.nativeGlyphSafety=(env,it)=>{
  const g=J.selectionGlyphEvidence(env,it),text=env.cut.grammar?env.cut.lineText:env.cut.text??env.cut.lineText,short=(J.graphemes?J.graphemes(clean(text)):typeof Intl.Segmenter==='function'?[...new Intl.Segmenter('ja',{granularity:'grapheme'}).segment(clean(text))]:Array.from(clean(text))).length<=4,cap=env.H>env.W?(short?.25:.145):(short?.29:.195);
@@ -60,7 +62,7 @@ Q.finalArtifactUnits=async(p,range,planHash)=>{
   const loop=p.musicalPhoto?.cinema?.loop,window=J.cinemaLoopWindow?.(p,end)??0,closureStart=end-window;
   if(loop&&loop.mode!=='background-only-text-cut'&&window>0&&!(p.cuts||[]).some(k=>(k.locked||J.photoChoreographyLocked?.(p,k))&&k.start<end&&k.end>closureStart))exit=Math.min(exit,closureStart);
   if(c.grammar?.temporal&&/^cinemaGrammar/.test(c.layout||'')&&!c.locked&&!J.photoChoreographyLocked?.(p,c))exit=Math.min(exit,end-(J.cinemaTypographyClosingWindow?.(p,c,end)??0));
-  out.push({id:await hash({planHash,index,line:c.line,start:c.start,end:c.end,text:c.lineText??c.text}),index,line:c.line,text:String(c.grammar?c.lineText??c.text:c.text??c.lineText??''),from,to,hold:[entry,exit],locked:!!c.locked||!!J.photoChoreographyLocked?.(p,c)});
+  out.push({id:await hash({planHash,index,line:c.line,start:c.start,end:c.end,text:c.lineText??c.text}),index,line:c.line,text:String(c.grammar?c.lineText??c.text:c.text??c.lineText??''),frameOrigin:start,from,to,hold:[entry,exit],locked:!!c.locked||!!J.photoChoreographyLocked?.(p,c)});
  }
  const groups=J.logicalLyricGroups(p.cuts||[]),merged=[];
  for(const group of groups){const parts=group.cuts.map(({index})=>out.find(u=>u.index===index)).filter(Boolean);if(!parts.length)continue;
@@ -69,7 +71,7 @@ Q.finalArtifactUnits=async(p,range,planHash)=>{
  }for(const u of merged){const o=u.sourceUnitOrigin||p.cuts[u.index];u.sourceUnitId=await hash({line:u.line,text:u.text,start:o.start,end:o.end});for(const f of u.fragments)f.id=await hash({planHash,sourceUnitId:u.sourceUnitId,index:f.index,from:f.from,to:f.to});}return merged;
 };
 Q.finalUnitSummary=(unit,frames,fps)=>{
- const own=frames.filter(f=>f.unitId===unit.id&&F(f.actualDecodedTimestamp)&&f.actualDecodedTimestamp>=unit.from&&f.actualDecodedTimestamp<unit.to),hold=own.filter(f=>f.phase==='hold'),expected=Math.max(0,Math.ceil(unit.hold[1]*fps-1e-7)-Math.ceil(unit.hold[0]*fps-1e-7));
+ const own=frames.filter(f=>f.unitId===unit.id&&F(f.actualDecodedTimestamp)&&f.actualDecodedTimestamp>=unit.from&&f.actualDecodedTimestamp<unit.to),hold=own.filter(f=>f.phase==='hold'),expected=Math.max(0,Math.ceil((unit.hold[1]-(unit.frameOrigin??0))*fps-1e-7)-Math.ceil((unit.hold[0]-(unit.frameOrigin??0))*fps-1e-7));
  const full=own.length>1&&own.every((f,i)=>!i||f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp>=.99/fps&&f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp<=1.01/fps),complete=expected>1&&hold.length>=expected&&hold.every(f=>f.nativeComplete&&f.safeArea&&f.pixelPresence);
  const failed=hold.some(f=>f.nativeComplete===false||f.safeArea===false||f.pixelPresence===false);
  return {unitId:unit.id,sourceUnitId:unit.sourceUnitId??null,fragments:unit.fragments??null,line:unit.line,timeRange:[unit.from,unit.to],holdRange:unit.hold,status:failed?'FAILED':full&&complete?'MEASURED':'UNMEASURED',frameCount:own.length,holdFrameCount:hold.length,expectedHoldFrames:expected,readableHoldSeconds:hold.filter(f=>f.nativeComplete&&f.safeArea&&f.pixelPresence).length/fps,minimumContrast:hold.length&&hold.every(f=>F(f.localContrast))?Math.min(...hold.map(f=>f.localContrast)):null,reason:failed?'NATIVE_OR_DECODED_GLYPH_FAILURE':full&&complete?null:expected<=1?'NO_COMPLETE_HOLD_INTERVAL':'INCOMPLETE_ACTUAL_FRAME_COVERAGE',phaseCounts:Object.fromEntries(['entry','hold','exit'].map(k=>[k,own.filter(f=>f.phase===k).length]))};
