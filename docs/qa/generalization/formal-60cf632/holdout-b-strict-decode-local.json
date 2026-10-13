@@ -1,0 +1,347 @@
+{
+  "scope": "Only completed, hash-bound listed artifacts; failed exports remain failures, not decoded PASS",
+  "count": 10,
+  "entries": [
+    {
+      "fixture": "holdout-06",
+      "variant": "v3",
+      "videoSHA256": "d6ac2b6805ac5ecd4a2b3a080b8d3a88d70fa56c3527534566bf8d7a63a9ac18",
+      "binding": {
+        "inputHash": "6ff243c76b9dce6b19a6c9007ed3f3a6b856870de68b00ca502095e6365d8869",
+        "planHash": "3710b05e82715b3a2ef77fd65c28480e8afed3bdc947ec465cc848f92a7741d2",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "selectedCandidateId": "c247c721261e089e3a05f5419b0841e79bb7f04ca34c25fc98bcb381e8abe5b5",
+        "videoSHA256": "d6ac2b6805ac5ecd4a2b3a080b8d3a88d70fa56c3527534566bf8d7a63a9ac18",
+        "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+        "sourceTreeSHA256": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "sourceDirty": false
+      },
+      "frames": 240,
+      "codec": "H.264/AAC",
+      "completeDecode": "PASS",
+      "stderr": "",
+      "lyricSafety": "FAILED"
+    },
+    {
+      "fixture": "holdout-06",
+      "variant": "baseline",
+      "videoSHA256": "609b74b8ae4fbc306d9930f66c8a37f30aa8da36cbc7ae3445a59f9c3332ec75",
+      "binding": {
+        "inputHash": "d8a6f8180a8bbb0681dbe246bba28affa02f74794dd97993d690b26bf8831a18",
+        "planHash": "6855ef683b4a2f46176b53803a886974c08f10c147d3c65b03aae29ec31fbb63",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "b8e060e7f1caa79aa3a85be07c658a7a861450c0bafb19f5deeeac3fadc207da",
+        "videoSHA256": "609b74b8ae4fbc306d9930f66c8a37f30aa8da36cbc7ae3445a59f9c3332ec75",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "frames": 240,
+      "codec": "H.264/AAC",
+      "completeDecode": "PASS",
+      "stderr": "",
+      "lyricSafety": "FAILED"
+    },
+    {
+      "fixture": "holdout-07",
+      "variant": "baseline",
+      "videoSHA256": "7099253fea6037b817ae97591cf2e261eb5b7d273093d152eddf506b5ad22733",
+      "binding": {
+        "inputHash": "7cb1c571d43a5acbe3d54d9a3f520dc08a70654e4f1a5aa76c8bcf6cb6ac0cb5",
+        "planHash": "ff86978eb4cd00cb095df6f2241a419b8450a338e6b568829e1625f079e1c83d",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            900
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "64412f2a363d9bd9975c27923b9a8b8935523fae4bf4007471b4f0171ba6a465",
+        "videoSHA256": "7099253fea6037b817ae97591cf2e261eb5b7d273093d152eddf506b5ad22733",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "frames": 240,
+      "codec": "H.264/AAC",
+      "completeDecode": "PASS",
+      "stderr": "",
+      "lyricSafety": "MEASURED"
+    },
+    {
+      "fixture": "holdout-07",
+      "variant": "v3",
+      "videoSHA256": "1e5098a62d5aedaae7c58a80636f2094904ba2ce6a0d53db47ab562cab10ec7f",
+      "binding": {
+        "inputHash": "6471c7cc04d71e566283c59ad690f6e2d71114ac3ab08c0a558ca3b2a8b702dc",
+        "planHash": "5fd414cba5a473f7d9777a47de54bf67a8784abe6901d56f6c114da87f6c8a48",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            900
+          ]
+        },
+        "rendererVersion": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "selectedCandidateId": "3d283a7c6b61c2dfdaaceafd4649e4a79ef912a60ed9c122843c857389d64ff9",
+        "videoSHA256": "1e5098a62d5aedaae7c58a80636f2094904ba2ce6a0d53db47ab562cab10ec7f",
+        "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+        "sourceTreeSHA256": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "sourceDirty": false
+      },
+      "frames": 240,
+      "codec": "H.264/AAC",
+      "completeDecode": "PASS",
+      "stderr": "",
+      "lyricSafety": "MEASURED"
+    },
+    {
+      "fixture": "holdout-08",
+      "variant": "v3",
+      "videoSHA256": "c54f237bd3845530827031fc10335dc94a48ca976ddf8bac3f0c2d2cee1d692e",
+      "binding": {
+        "inputHash": "ba328537f4edb6a998d648d19c1d8ce0dc20c8de5bca2a5dbd937a571552834e",
+        "planHash": "58da074e0e8f0af230e82e2c2f91be708b2ab41db96a0a179c95471d9e7794f9",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "selectedCandidateId": "905de89746c39ad28eb2a7ac8fe29b356d6700489ae267e1d7e87b433aa28c4e",
+        "videoSHA256": "c54f237bd3845530827031fc10335dc94a48ca976ddf8bac3f0c2d2cee1d692e",
+        "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+        "sourceTreeSHA256": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "sourceDirty": false
+      },
+      "frames": 240,
+      "codec": "H.264/AAC",
+      "completeDecode": "PASS",
+      "stderr": "",
+      "lyricSafety": "MEASURED"
+    },
+    {
+      "fixture": "holdout-08",
+      "variant": "baseline",
+      "videoSHA256": "424a6c9e8a3d6a5cd83cfa0ff5a360646ff7b27291d567624de48cf11f053da5",
+      "binding": {
+        "inputHash": "c7c10e5687b70583e77a7260397e3a070b8bd722e36d8a35625d10b5662266a1",
+        "planHash": "f892c1cbda7049250789cb1371c465111cbede89bdad0431a697b14a02c5a5de",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "959738dab9b30c369d3459b962ef96cf857a617e9e12b6b36eb295dea94db17a",
+        "videoSHA256": "424a6c9e8a3d6a5cd83cfa0ff5a360646ff7b27291d567624de48cf11f053da5",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "frames": 240,
+      "codec": "H.264/AAC",
+      "completeDecode": "PASS",
+      "stderr": "",
+      "lyricSafety": "MEASURED"
+    },
+    {
+      "fixture": "holdout-09",
+      "variant": "baseline",
+      "videoSHA256": "af81f6484901def053d018f236c480d85d1eaee9c3940a4c80ff5d553959f40d",
+      "binding": {
+        "inputHash": "a1ad86a5d9de9b4c6a21b7ddffd987f35e3b458430d8ef1835ae06b063e139cc",
+        "planHash": "d90794abc8aa7415a86fb373008847ba6ba47fcaeb61786a69c42fd557e786fa",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "b36b2e12d58f8dd5b6d3149b00a5dafb47409356c0f9529faf11be7e86151f35",
+        "videoSHA256": "af81f6484901def053d018f236c480d85d1eaee9c3940a4c80ff5d553959f40d",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "frames": 240,
+      "codec": "H.264/AAC",
+      "completeDecode": "PASS",
+      "stderr": "",
+      "lyricSafety": "MEASURED"
+    },
+    {
+      "fixture": "holdout-09",
+      "variant": "v3",
+      "videoSHA256": "39bf1de7ee5367e0a5da9532f9da298e2208fe842af69a07023b51a5ce85f921",
+      "binding": {
+        "inputHash": "707bf18a175944bc29177aba83fa3433f40f5e7df46968f38f7ee50d1eac3f52",
+        "planHash": "dd9686d22d9f881d27135c7c4889b4d2d504ba613dbf81c5e5deb87d5b2a3bc8",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "selectedCandidateId": "87bc7a049deb6a7c623df08f27058830383e5e4252d8a036fdb5430fad7b0189",
+        "videoSHA256": "39bf1de7ee5367e0a5da9532f9da298e2208fe842af69a07023b51a5ce85f921",
+        "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+        "sourceTreeSHA256": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "sourceDirty": false
+      },
+      "frames": 240,
+      "codec": "H.264/AAC",
+      "completeDecode": "PASS",
+      "stderr": "",
+      "lyricSafety": "MEASURED"
+    },
+    {
+      "fixture": "holdout-10",
+      "variant": "v3",
+      "videoSHA256": "6c4c50c94f7b5e7e77a8443e844a5afb801ca2b4ac2f5ca4dceafaeab0f8f0e6",
+      "binding": {
+        "inputHash": "ecc6d773a9f550241f2af7be36f7739e63d61dae142e8d01b0161b4c76bac95e",
+        "planHash": "8ec9bd43b8af51ac170763a5fe5cdb3c1b8cd585adcec53ed44238df599bc664",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "selectedCandidateId": "2543d7c084edeff80ee6bbb9dc0b887d26ed9c8846f8486c0459f2adbf16d37a",
+        "videoSHA256": "6c4c50c94f7b5e7e77a8443e844a5afb801ca2b4ac2f5ca4dceafaeab0f8f0e6",
+        "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+        "sourceTreeSHA256": "51f77d436f226f461d7a863f0a21975b2f1e48977790bde3de92ce3a98345358",
+        "sourceDirty": false
+      },
+      "frames": 240,
+      "codec": "H.264/AAC",
+      "completeDecode": "PASS",
+      "stderr": "",
+      "lyricSafety": "MEASURED"
+    },
+    {
+      "fixture": "holdout-10",
+      "variant": "baseline",
+      "videoSHA256": "90278d17ad2ba92c567819f0c5dd705541e792f48e0fa9534322a7e3522cf0b4",
+      "binding": {
+        "inputHash": "ecc6d773a9f550241f2af7be36f7739e63d61dae142e8d01b0161b4c76bac95e",
+        "planHash": "0bc9a7ed0d9a4da7fe0224c50310d5985e67a205d8fd199eee74aa2b991d2f1d",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "selectedCandidateId": "0a5114741f9157463149221ddb1242318c5c5f1c6e15bfb6c0077c6e7ec4eeac",
+        "videoSHA256": "90278d17ad2ba92c567819f0c5dd705541e792f48e0fa9534322a7e3522cf0b4",
+        "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+        "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+        "sourceDirty": false
+      },
+      "frames": 240,
+      "codec": "H.264/AAC",
+      "completeDecode": "PASS",
+      "stderr": "",
+      "lyricSafety": "FAILED"
+    }
+  ],
+  "unfinished": []
+}
