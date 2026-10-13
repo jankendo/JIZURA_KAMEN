@@ -12,16 +12,27 @@ const center=J.centerPhotoLyricItem;J.centerPhotoLyricItem=(env,item)=>{
  const dx=Math.max(env.W*.11-box.x0,Math.min(env.W*.89-box.x1,(a.x-.5)*env.W)),dy=Math.max(env.H*.08-box.y0,Math.min(env.H*.92-box.y1,(a.y-.5)*env.H)),m=env.ctx.getTransform(),det=m.a*m.d-m.b*m.c,k=env.scale||1;
  if(Math.abs(det)>1e-9){it.x+=(m.d*dx-m.c*dy)*k/det;it.y+=(-m.b*dx+m.a*dy)*k/det;}it._lay=null;it._m=null;return it;
 };
+// Musical roles, not line count or a four-phrase cycle, drive measured stories.
+// The old recipe is only a labelled fallback when PCM/section evidence is absent.
+J.photoStoryMusicalIntent=(sections,from,to,energy,group,fallback)=>{
+ const overlap=s=>Math.max(0,Math.min(to,s.to)-Math.max(from,s.from));
+ const section=(sections||[]).filter(s=>overlap(s)>0).sort((a,b)=>overlap(b)-overlap(a)||a.from-b.from)[0];
+ if(!Number.isFinite(energy)||!section?.role)return {...fallback,status:'UNMEASURED_LEGACY_RECIPE',reason:'PCM_PHRASE_ENERGY_OR_MUSICAL_SECTION_UNAVAILABLE',section:null};
+ const role=section.role,quiet=energy<.25||['intro','break','outro','finale'].includes(role);
+ const stage=quiet?1:role==='climax'?4:role==='build'?2:role==='hook'?2:3;
+ const recipe=quiet?(group?'unity':'gather'):role==='climax'?(group?'release':'call'):role==='build'?(group?'expansion':'pride'):role==='hook'?(group?'expansion':'pride'):(group?'crowd':'pride');
+ return {stage,recipe,quiet,status:'MEASURED_MUSICAL_ROLE',reason:energy<.25?'LOW_MEASURED_PHRASE_ENERGY':['intro','break','outro','finale'].includes(role)?'MUSICAL_RESOLUTION_OR_REST':role==='climax'?'MUSICAL_CLIMAX':'MEASURED_SECTION_DEVELOPMENT',section:{role,from:section.from,to:section.to,overlap:overlap(section)},energy};
+};
 J.buildPhotoStory=p=>{
  if(!p.musicalPhoto||p.directorSections7?.length)return p;
  const lines=p.lines||[],old=p.musicalStructure.sections,variant=p.artDirection.registrySelection.storyVariant||0,groups=new Map(),narrative=[],holdHistory=[];
  for(const c of p.cuts)if(c.line>=0&&!locked(p,c)){
   const group=J.vocaliseGroup(c.lineText),n=group?(groups.get(group)||0)+1:0;if(group)groups.set(group,n);
-  const stage=group?Math.min(4,n):Math.min(3,1+Math.floor(c.line/4)),sequence=group==='oh'?1:0;
+  const legacyStage=group?Math.min(4,n):Math.min(3,1+Math.floor(c.line/4)),sequence=group==='oh'?1:0;
   const energyProfile=p.musicalPhoto.songProfile?.measurementProfile?.normalizedEnergy,observed=energyProfile?.status==='MEASURED'?energyProfile.value.timeline.filter(x=>x.time>=c.start&&x.time<c.end):[],energy=observed.length?observed.reduce((s,x)=>s+x.energy,0)/observed.length:null,purposefulStillness=Number.isFinite(energy)&&energy<.25;
-  const recipe=purposefulStillness?(group?'unity':'gather'):group?['unity','expansion','crowd','release'][stage-1]:['gather','pride','call'][stage-1];
+  const legacyRecipe=purposefulStillness?(group?'unity':'gather'):group?['unity','expansion','crowd','release'][legacyStage-1]:['gather','pride','call'][legacyStage-1],musicalIntent=J.photoStoryMusicalIntent(old,c.start,c.end,energy,group,{stage:legacyStage,recipe:legacyRecipe,quiet:purposefulStillness||legacyRecipe==='unity'||legacyRecipe==='gather'}),{stage,recipe}=musicalIntent;
   let holdRepair=null;if(!purposefulStillness&&holdHistory.length>=2&&holdHistory.at(-1)===c.hold&&holdHistory.at(-2)===c.hold){const original=c.hold,alternatives=p.artDirection.registrySelection.motionComparisons?.filter(m=>m.group==='hold'&&m.eligible).map(m=>m.id)||['still','breathe'];c.hold=alternatives.find(id=>id!==original&&J.HOLD[id])||original;holdRepair={from:original,to:c.hold,reason:'automatic hold repetition limit; final raster safety remains required'};}holdHistory.push(c.hold);
-  c.story={holdRepair,group,stage,sequence,recipe,variant,quiet:purposefulStillness||recipe==='unity'||recipe==='gather',strength:purposefulStillness?.18:group?(.20+stage*.18):(.18+stage*.12),energyEvidence:{value:energy,status:Number.isFinite(energy)?'MEASURED':'UNMEASURED',source:Number.isFinite(energy)?'PCM_NORMALIZED_ENERGY_IN_PHRASE':null}};
+  c.story={holdRepair,group,stage,sequence,recipe,variant,musicalIntent,quiet:musicalIntent.quiet,strength:purposefulStillness?.18:group?(.20+stage*.18):(.18+stage*.12),energyEvidence:{value:energy,status:Number.isFinite(energy)?'MEASURED':'UNMEASURED',source:Number.isFinite(energy)?'PCM_NORMALIZED_ENERGY_IN_PHRASE':null}};
   // An authored decoration is never touched. Automatic quotation ornaments are
   // deliberately omitted from body lyrics; title/end are separate compositions.
   c.decor=[];c.params={...c.params,story:true};narrative.push({line:c.line,from:c.start,to:c.end,...c.story});
@@ -39,7 +50,7 @@ J.buildPhotoStory=p=>{
  p.visualWorld.chapters=sections.map((s,i)=>({...worlds.find(w=>s.from>=w.from&&s.from<w.to)||worlds[0],...s,index:i,architecture:s.storyRole,storyRecipe:s.storyRole}));
  const f=p.musicalPhoto;f.chapterZooms=sections.map(s=>s.storyRole==='unity'?1.02:s.storyRole==='expansion'?1.15:s.storyRole==='crowd'?1.06:s.storyRole==='release'?1.35:1.06);f.chapterGrades=sections.map(()=>0);f.chapterOffsets=sections.map(()=>({x:0,y:0}));
  const introEnd=p.lines[0]?.start||0,beats=(p.beatHierarchy||[]).filter(b=>b.time>=.5&&b.time<introEnd-.2&&b.beatSalience>=.35);f.storyOpening=[];for(const b of beats){if(!f.storyOpening.length||b.time-f.storyOpening.at(-1).time>=.55)f.storyOpening.push({time:b.time,scale:[1.27,1.08,1.38][f.storyOpening.length],x:[-.025,.025,0][f.storyOpening.length]});if(f.storyOpening.length===3)break;}
- f.cornerFrame=false;f.accentRail=false;f.edgeMatte=false;f.openingShots=false;p.events=p.events.filter(e=>!e.photoShot);f.story={version:1,variant,narrative,search:p.artDirection.registrySelection.storySearch||null,chapterCount:sections.length,source:'audio structure, lyric meaning and grouped vocalise occurrences',limitations:'No fabricated foreground segmentation or audience score'};
+ f.cornerFrame=false;f.accentRail=false;f.edgeMatte=false;f.openingShots=false;p.events=p.events.filter(e=>!e.photoShot);f.story={version:1,variant,narrative,search:p.artDirection.registrySelection.storySearch||null,chapterCount:sections.length,source:'measured PCM phrase energy and musical section roles; lyric groups only condition a recipe, never musical semantics',limitations:'No fabricated foreground segmentation or audience score'};
  if(p.artDirection.registrySelection.globalStoryboard&&!p.registryMeasuredCuts)p.registryMeasuredCuts=J.clonePhotoRenderPlan(p.cuts);
  return p;
 };
