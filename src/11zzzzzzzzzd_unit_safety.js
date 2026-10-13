@@ -15,7 +15,7 @@ if(makeSocial)J.createSocialHookPlan=(source,candidate)=>{
 };
 J.prepareAutomaticUnitSafety=async args=>{
  const p=args.plan;if(p.musicalPhoto)return;
- const cuts=p.cuts.filter(c=>c.line>=0&&!c.grammar&&!c.locked&&!J.photoChoreographyLocked(p,c));if(!cuts.length)return;
+ const cuts=p.cuts.filter(c=>c.line>=0&&!J.cinemaV5.isInstrumentalGap(c,p)&&!c.grammar&&!c.locked&&!J.photoChoreographyLocked(p,c));if(!cuts.length)return;
  const R=new J.Renderer(),cv=document.createElement('canvas'),mask=document.createElement('canvas');cv.width=mask.width=p.cinemaDelivery?.width||p.W;cv.height=mask.height=p.cinemaDelivery?.height||p.H;const ctx=cv.getContext('2d'),mc=mask.getContext('2d'),bg=document.createElement('canvas');bg.width=cv.width;bg.height=cv.height;const bx=bg.getContext('2d'),decisions=[];
  const holdRange=c=>J.validLyricUnitOrigin(c)?[Math.max(c.start,c.lyricUnitOrigin.start+c.lyricUnitOrigin.inDur,c.lyricUnitOrigin.start+c.lyricUnitOrigin.transition),Math.min(c.end,c.lyricUnitOrigin.end-c.lyricUnitOrigin.outDur)]:[c.start+(c.inDur||0),c.end-(c.outDur||0)];
  const observe=c=>{const [from,to]=holdRange(c),span=Math.max(.01,to-from),times=[.2,.5,.8].map(u=>Math.min(c.end-.001,from+span*u));

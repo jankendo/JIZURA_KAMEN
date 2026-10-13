@@ -2,10 +2,18 @@
 (()=>{'use strict';const J=window.J,Q=J.cinemaV5,V=J.cinemaV3,F=Number.isFinite;
 const hash=x=>J.sha256(J.canonicalJSON(x)),clean=s=>String(s??'').replace(/\s/gu,'');
 Q.sameFinalInput=(a,b)=>['audioHash','imageHashes','lyricsHash','projectHash','userLocks','rendererVersion'].every(k=>J.canonicalJSON(a[k])===J.canonicalJSON(b[k]));
-Q.isInstrumentalGap=c=>c.layout==='interlude'&&!String(c.text??'').trim()&&!c.grammar;
+Q.isInstrumentalGap=(c,p)=>{
+ if(c.grammar||String(c.text??'').trim())return false;
+ if(c.layout==='interlude')return true;
+ const line=p?.lines?.[c.line],next=p?.lines?.[c.line+1]?.start??p?.duration;
+ // Legacy SNS directors rename the layout of an explicit empty interlude.
+ // Only its original post-lyric timing interval can establish non-applicability.
+ return !!line&&F(line.visEnd)&&F(next)&&F(c.start)&&F(c.end)&&c.start>=line.visEnd-1e-7&&c.end<=next+1e-7;
+};
+Q.originalSourceLineIntegrity=(p,project)=>{if(typeof project?.lyrics!=='string')return null;const source=J.parseLyrics(project.lyrics).lines;return source.length===(p.lines||[]).length&&source.every((line,i)=>line.text===p.lines[i].text);};
 Q.expectedFinalLyricLines=(p,range)=>{const from=range?.start??p.socialHook?.start??0,to=range?.end??p.socialHook?.end??p.duration;return (p.lines||[]).flatMap((l,i)=>String(l.text??'').trim()&&l.start<to&&(l.visEnd??l.end)>from?[i]:[]);};
 Q.originalUnitTextIntegrity=(p,lineIds)=>lineIds.every(line=>{
- const normalize=s=>String(s??'').replace(/\s+/gu,' ').trim(),raw=normalize(p.lines?.[line]?.text),cuts=(p.cuts||[]).filter(c=>c.line===line&&!Q.isInstrumentalGap(c));
+ const normalize=s=>String(s??'').replace(/\s+/gu,' ').trim(),raw=normalize(p.lines?.[line]?.text),cuts=(p.cuts||[]).filter(c=>c.line===line&&!Q.isInstrumentalGap(c,p));
  // The original planner explicitly emits a complete-line recap after its chunks.
  // It is a separate display unit (still independently pixel-verified), not an
  // extra source word. Reject malformed recaps and incomplete chunk partitions.
@@ -46,7 +54,7 @@ Q.finalGlyphPresence=(on,off,actual,alpha,w,h,bounds,scale)=>{
 };
 Q.finalArtifactUnits=async(p,range,planHash)=>{
  const start=range?.start??p.socialHook?.start??0,end=range?.end??p.socialHook?.end??p.duration,out=[];
- for(const [index,c]of (p.cuts||[]).entries())if(c.line>=0&&!Q.isInstrumentalGap(c)&&c.start<end&&c.end>start){
+ for(const [index,c]of (p.cuts||[]).entries())if(c.line>=0&&!Q.isInstrumentalGap(c,p)&&c.start<end&&c.end>start){
   const from=Math.max(start,c.start),to=Math.min(end,J.cinemaActiveCutEnd(p,c,end));if(to<=from)continue;
   const transition=c.trans?(F(c.transDur)?Math.max(0,c.transDur):.35):0,phases=c.grammar?.scenePhases,entry=Math.max(from,c.start+(c.inDur||0),c.start+transition,phases?.SETTLE?.[1]??from);let exit=Math.min(to,c.end-(c.outDur||0),phases?.RELEASE?.[0]??to);
   const loop=p.musicalPhoto?.cinema?.loop,window=J.cinemaLoopWindow?.(p,end)??0,closureStart=end-window;
@@ -115,8 +123,9 @@ Q.verifyFinalArtifact=async(result,args,input)=>{
  if(validation.certification?.passed===false)failures.push('MP4_CERTIFICATION_FAILED');
  const contract={status:'MEASURED',method:'Immutable input snapshot and selected renderer plan contract; not decoded OCR',inputHash:input.inputHash,lyricsHash:input.lyricsHash,unitTexts:units.map(u=>({unitId:u.id,line:u.line,text:u.text,sourceUnitOrigin:u.sourceUnitOrigin??null,fragments:u.fragments})),timingStatus:Q.lyricTimingInvariant(p,units.flatMap(u=>u.fragments.map(f=>p.cuts[f.index])))?'MEASURED':'FAILED'};
  if(contract.timingStatus==='FAILED')failures.push('LRC_UNIT_TIMING');
+ const sourceText=Q.originalSourceLineIntegrity(p,args.project);contract.originalSourceLineTextStatus=sourceText===null?'UNMEASURED':sourceText?'MEASURED':'FAILED';contract.originalSourceLineTextMethod='Canonical input-format parsing compared with every selected-plan source line; input contract, not decoded OCR';if(sourceText===false)failures.push('SOURCE_LYRIC_LINE_INTEGRITY');
  contract.originalUnitTextStatus=Q.originalUnitTextIntegrity(p,[...new Set([...Q.expectedFinalLyricLines(p,args.range),...units.map(u=>u.line)])])?'MEASURED':'FAILED';if(contract.originalUnitTextStatus==='FAILED')failures.push('ORIGINAL_UNIT_TEXT_INTEGRITY');
- let unavailable=null;const decoder=window.JIZURAMedia?.sampleMP4;
+ let unavailable=sourceText===null?'SOURCE_LYRIC_FORMAT_UNAVAILABLE':null;const decoder=window.JIZURAMedia?.sampleMP4;
  if(!decoder||typeof document==='undefined')unavailable='NATIVE_DECODER_OR_CANVAS_UNAVAILABLE';
  else {
   const width=validation.width??p.W,height=validation.height??p.H,rangeStart=profile.range[0],rangeEnd=profile.range[1],R=new J.Renderer(),cv=document.createElement('canvas'),bg=document.createElement('canvas'),mask=document.createElement('canvas');
@@ -151,7 +160,7 @@ Q.verifyFinalArtifact=async(result,args,input)=>{
  if(audio.status==='FAILED')failures.push('AAC_SOURCE_MISMATCH');
  await V.assertSnapshot(input,args.project,args.audio,p,args.range);if(await V.planHash(p)!==planHash)throw Error('FINAL_VERIFICATION_MUTATED_PLAN');
  const status=failures.length||summaries.some(s=>s.status==='FAILED')?'FAILED':!unavailable&&validation.certification?.passed===true&&['MEASURED','NOT_APPLICABLE'].includes(audio.status)&&summaries.length&&summaries.every(s=>s.status==='MEASURED')?'MEASURED':'UNMEASURED';
- const notApplicableCuts=(p.cuts||[]).flatMap((c,index)=>Q.isInstrumentalGap(c)?[{index,line:c.line,timeRange:[c.start,c.end],status:'NOT_APPLICABLE',reason:'Explicit empty instrumental-gap layout; not a primary lyric unit'}]:[]);
+ const notApplicableCuts=(p.cuts||[]).flatMap((c,index)=>Q.isInstrumentalGap(c,p)?[{index,line:c.line,timeRange:[c.start,c.end],status:'NOT_APPLICABLE',reason:'Explicit empty instrumental-gap layout; not a primary lyric unit'}]:[]);
  const payload={notApplicableCuts,version:'final-artifact-v1',verifierVersion:Q.version,verifierIdentity:Q.finalArtifactVerifierIdentity??{sourceCommit:build.sourceCommit??null,sourceTreeSHA256:build.sourceTreeSHA256??null},binding,status,inputContract:contract,units:summaries,frames,motionObservations,motionSummary,audioEvidence:audio,failures,unavailable,limits:'Native expected glyph geometry and actual decoded compositing/contrast; no OCR, sung syllable recognition or aesthetic certification. Entry/exit effects are separately observed and do not certify hold readability. Every nonspace native glyph box requires decoded contrast-bearing ink, with actual pixel presence recorded separately from raw fill contrast. Expected glyph projection is not independent OCR.',perGlyphDecodedIdentity:'REGISTERED_LOCAL_CONTRAST_AND_NEGATIVE_CONTROLS_NOT_OCR',humanStatus:Q.humanStatus};
  return V.freezeMetadata({...payload,evidenceId:await hash(payload)});
 };
