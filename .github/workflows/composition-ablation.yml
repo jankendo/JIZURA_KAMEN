@@ -27,7 +27,7 @@ jobs:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: f7dac212bcdadb736b73357a09e61f3ccaf1a535
+          ref: 132b9af13b4230674508d8e22ec099748401fdcd
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -67,7 +67,7 @@ jobs:
           curl -fsS -o /dev/null http://127.0.0.1:4173/
           curl -fsS -o /dev/null http://127.0.0.1:4174/
           node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4174/ results/matrix > results/matrix.log 2>&1
-          python -c 'import json; x=json.load(open("results/matrix/results.json")); assert len(x["rows"])==10 and len({r["fixture"]["id"] for r in x["rows"]})==5, "Incomplete partition"'
+          python -c 'import json; x=json.load(open("results/matrix/results.json")); expected=set(__import__("sys").argv[1].split(",")); assert len(x["rows"])==2*len(expected) and {r["fixture"]["id"] for r in x["rows"]}==expected, "Incomplete partition"' "${{ matrix.cases }}"
       - name: Independently replay artifact hashes and full decode
         if: always()
         run: |
@@ -79,7 +79,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: final-generalization-b5a46b7-${{ matrix.partition }}
+          name: composition-132b9af-vs-b5a46b7-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
