@@ -134,7 +134,9 @@ Q.verifyFinalArtifact=async(result,args,input)=>{
  if(!decoder||typeof document==='undefined')unavailable='NATIVE_DECODER_OR_CANVAS_UNAVAILABLE';
  else {
   const width=validation.width??p.W,height=validation.height??p.H,rangeStart=profile.range[0],rangeEnd=profile.range[1],R=new J.Renderer(),cv=document.createElement('canvas'),bg=document.createElement('canvas'),mask=document.createElement('canvas');
-  cv.width=bg.width=mask.width=width;cv.height=bg.height=mask.height=height;const x=cv.getContext('2d',{willReadFrequently:true}),bx=bg.getContext('2d',{willReadFrequently:true}),mx=mask.getContext('2d',{willReadFrequently:true});
+  cv.width=bg.width=mask.width=width;cv.height=bg.height=mask.height=height;// Match the opaque production export surface; transparent reference compositing
+  // changes antialiased edge pixels. The primary glyph mask must retain alpha.
+  const x=cv.getContext('2d',{alpha:false,willReadFrequently:true}),bx=bg.getContext('2d',{alpha:false,willReadFrequently:true}),mx=mask.getContext('2d',{willReadFrequently:true});
   const previousGlyphResolution=J.glyphs.maxRes;J.glyphs.maxRes=height>=1000?768:512;
   const renderPlan=J.clonePhotoRenderPlan(p),times=Array.from({length:validation.videoSamples??Math.max(0,Math.ceil((rangeEnd-rangeStart)*p.fps))},(_,i)=>i/p.fps);
   try {
