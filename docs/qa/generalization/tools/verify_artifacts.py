@@ -7,8 +7,12 @@ parser.add_argument('output', type=Path)
 args = parser.parse_args()
 rows = json.loads((args.results_directory/'results.json').read_text())['rows']
 verified = []
+unfinished = []
 for row in rows:
     fixture = row['fixture']
+    if row.get('status') != 'PASS':
+        unfinished.append({'fixture':fixture['id'],'variant':row['variant'],'status':row.get('status'),'error':row.get('error'),'completeDecode':'UNEXECUTED'})
+        continue
     video = args.results_directory/(fixture['id']+'-'+row['variant']+'.mp4')
     digest = hashlib.sha256(video.read_bytes()).hexdigest()
     assert digest == row['sha256'], 'Video changed after observation'
@@ -28,5 +32,5 @@ for row in rows:
     decode = subprocess.run(['ffmpeg','-v','error','-xerror','-i',str(video),'-map','0:v:0','-map','0:a:0','-f','null','-'],capture_output=True,text=True)
     assert decode.returncode==0 and not decode.stderr.strip(), decode.stderr
     verified.append({'fixture':fixture['id'],'variant':row['variant'],'videoSHA256':digest,'binding':binding,'frames':expected,'codec':'H.264/AAC','completeDecode':'PASS','stderr':'','lyricSafety':row['provenance']['finalArtifactVerification']['status']})
-args.output.write_text(json.dumps({'scope':'Only completed, hash-bound listed artifacts; not pending fixtures or artistic quality','count':len(verified),'entries':verified},ensure_ascii=False,indent=2)+'\n')
-print(json.dumps({'completeDecode':len(verified),'failures':0}))
+args.output.write_text(json.dumps({'scope':'Only completed, hash-bound listed artifacts; failed exports remain failures, not decoded PASS','count':len(verified),'entries':verified,'unfinished':unfinished},ensure_ascii=False,indent=2)+'\n')
+print(json.dumps({'completeDecode':len(verified),'unfinished':len(unfinished)}))
