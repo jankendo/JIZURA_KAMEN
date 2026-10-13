@@ -31,7 +31,7 @@ jobs:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 60cf632f0fce6d032dfd12bf753dcfd4e4095657
+          ref: ec5dcb1325de96c7c9cbc67a1fca6adfec999978
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -83,7 +83,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: final-generalization-60cf632-${{ matrix.partition }}
+          name: final-generalization-ec5dcb1-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error

@@ -1,0 +1,1673 @@
+{
+  "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+  "baselineCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "sourceScope": "Completed prior-source corpus; later verifier-only d003305 is not represented as newly encoded here",
+  "cases": 30,
+  "completedVideos": 60,
+  "comparablePairs": 30,
+  "lyricSafety": {
+    "baseline": {
+      "FAILED": 10,
+      "MEASURED": 19,
+      "UNMEASURED": 1
+    },
+    "v3": {
+      "MEASURED": 28,
+      "FAILED": 2
+    }
+  },
+  "metrics": {
+    "typographyDiversity": {
+      "paired": 30,
+      "improved": 10,
+      "equal": 4,
+      "declined": 16,
+      "baselineWorst": 13,
+      "currentWorst": 4,
+      "baselineBottom20PercentMean": 20.166666666666668,
+      "currentBottom20PercentMean": 8.166666666666666,
+      "interpretation": "Uncalibrated machine observations; not aesthetic points. Missing observations remain excluded and explicit."
+    },
+    "lyricForegroundNovelty": {
+      "paired": 30,
+      "improved": 12,
+      "equal": 4,
+      "declined": 14,
+      "baselineWorst": 32,
+      "currentWorst": 37,
+      "baselineBottom20PercentMean": 49.833333333333336,
+      "currentBottom20PercentMean": 50,
+      "interpretation": "Uncalibrated machine observations; not aesthetic points. Missing observations remain excluded and explicit."
+    },
+    "temporalContrast": {
+      "paired": 21,
+      "improved": 11,
+      "equal": 2,
+      "declined": 8,
+      "baselineWorst": 4,
+      "currentWorst": 13,
+      "baselineBottom20PercentMean": 12.25,
+      "currentBottom20PercentMean": 18.25,
+      "interpretation": "Uncalibrated machine observations; not aesthetic points. Missing observations remain excluded and explicit."
+    },
+    "localContrast": {
+      "paired": 24,
+      "improved": 10,
+      "equal": 9,
+      "declined": 5,
+      "baselineWorst": 0,
+      "currentWorst": 0,
+      "baselineBottom20PercentMean": 0.25,
+      "currentBottom20PercentMean": 0,
+      "interpretation": "Uncalibrated machine observations; not aesthetic points. Missing observations remain excluded and explicit."
+    },
+    "perceptualNovelty": {
+      "paired": 21,
+      "improved": 4,
+      "equal": 12,
+      "declined": 5,
+      "baselineWorst": 42,
+      "currentWorst": 42,
+      "baselineBottom20PercentMean": 61,
+      "currentBottom20PercentMean": 56.25,
+      "interpretation": "Uncalibrated machine observations; not aesthetic points. Missing observations remain excluded and explicit."
+    },
+    "motionRealization": {
+      "paired": 30,
+      "improved": 5,
+      "equal": 18,
+      "declined": 7,
+      "baselineWorst": 60,
+      "currentWorst": 33,
+      "baselineBottom20PercentMean": 65,
+      "currentBottom20PercentMean": 48.833333333333336,
+      "interpretation": "Uncalibrated machine observations; not aesthetic points. Missing observations remain excluded and explicit."
+    }
+  },
+  "pairs": [
+    {
+      "fixture": "development-01",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "7aa90d8b16eebc62814bcf435dc8bc5495161427e15c1474ff2112dd7fea3cd7",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 73,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 78,
+          "typographyDiversity": 37
+        },
+        "lyricSafety": "FAILED"
+      },
+      "current": {
+        "videoSHA256": "0dd36991849a159d73be00c0b9502c120f9d2e8659d2e438cdf3bb6b10c8ef27",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 61,
+          "displayOnsetAccuracy": null,
+          "localContrast": 2,
+          "motionRealization": 100,
+          "typographyDiversity": 29
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-02",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "395672046eb01ea0d32e0799876061acf2edc8d9d732d950ef59265ef3320421",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 4,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 34
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "1ca5e45ff846d5e15a6b71c02159b3cb8dc95ca78bc1729d63e1431ba70cc2f6",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 48,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 65,
+          "motionRealization": 100,
+          "typographyDiversity": 40
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-03",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "6a903f2c2469f00ce5198ddf8422f76fdb6307074cb69dad5ed2bb548113e619",
+        "metrics": {
+          "perceptualNovelty": 75,
+          "motion": 21.5,
+          "temporalContrast": 34,
+          "hookNovelty": 44,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 82,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 74.86637635843687,
+          "localContrast": 93,
+          "motionRealization": 100,
+          "typographyDiversity": 100
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "437afe293aafb8d21588e77808439db4ad3d04966ebd8cb78179c31610b8d2dc",
+        "metrics": {
+          "perceptualNovelty": 98,
+          "motion": 21,
+          "temporalContrast": 26,
+          "hookNovelty": 56,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 98,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 94.62390455205929,
+          "localContrast": 98,
+          "motionRealization": 100,
+          "typographyDiversity": 85
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-04",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "07c5d3497a95d3d201a8726141b176715dfc90e45813c5a8f7bdcbd4cda88a3b",
+        "metrics": {
+          "perceptualNovelty": 96,
+          "motion": 21,
+          "temporalContrast": 37,
+          "hookNovelty": 67,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 48,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 63.21440491727252,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 13
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "402d0b89a105d68febabdebf13e65b0bc891370d112b015fe5aa53a16ae70f77",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 61,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 82,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 74,
+          "motionRealization": 67,
+          "typographyDiversity": 47
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-05",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "1e9fe061194432bf971cc35c7863f320ca257b736d13e29a2ead2b51291bcf1b",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 20.5,
+          "temporalContrast": 34,
+          "hookNovelty": 43,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 85,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 67,
+          "typographyDiversity": 67
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "90f96c598c1988e35be12d487af509418c52264a52e5cfbeb5e41eb540f155dd",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 16.5,
+          "temporalContrast": 40,
+          "hookNovelty": 51,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 81,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 33,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-06",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "cc806b0ebdde201083f133c3c2140ee0917ba9fd4493d31ce46186602ac5f903",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 54,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 82,
+          "typographyDiversity": 41
+        },
+        "lyricSafety": "FAILED"
+      },
+      "current": {
+        "videoSHA256": "92c0da4843af38a89f9e1c2a0e5d00689e50b332c7a93f5802fdfceb78ced0fb",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 54,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 82,
+          "typographyDiversity": 30
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-07",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "87b19d377a16d8f93f8d66f8aeff5cc583bb73f2acba2eae2b7cadb69ffb719d",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 83,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 63,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 67,
+          "typographyDiversity": 29
+        },
+        "lyricSafety": "FAILED"
+      },
+      "current": {
+        "videoSHA256": "f6481deb8770a976cd0ae6cae0173e29280c65bc9af59c817d7206494c19c283",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 83,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 72,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 31
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-08",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "e012dc4c74473909ee7d95c04c7679e2a3a166ec28bbd9448bd49f9d723e3d1c",
+        "metrics": {
+          "perceptualNovelty": 42,
+          "motion": 60,
+          "temporalContrast": 44,
+          "hookNovelty": 100,
+          "loopQuality": 32,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 20.112231012346996,
+          "localContrast": 85,
+          "motionRealization": 100,
+          "typographyDiversity": 27
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "0be04f7edc09f3ed2bc6407f4c8bb190e4e2c14a0be1f5f69d12df500368386c",
+        "metrics": {
+          "perceptualNovelty": 42,
+          "motion": 60,
+          "temporalContrast": 44,
+          "hookNovelty": 100,
+          "loopQuality": 32,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 20.112231012346996,
+          "localContrast": 85,
+          "motionRealization": 100,
+          "typographyDiversity": 27
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-09",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "0360378e6f3a1341a86e9b827e9384edf57c47732d659847ddecf8b6029709ee",
+        "metrics": {
+          "perceptualNovelty": 93,
+          "motion": 69,
+          "temporalContrast": 14,
+          "hookNovelty": 35,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 73,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 64
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "70d07bd963adb36ebeaa9a9366877ea0988d987e52460e95df8e9fa808c5fce7",
+        "metrics": {
+          "perceptualNovelty": 79,
+          "motion": 49.5,
+          "temporalContrast": 15,
+          "hookNovelty": 44,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 70,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 99.96491741825511,
+          "localContrast": 100,
+          "motionRealization": 100,
+          "typographyDiversity": 47
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-10",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "d05e03b6b1c94e1811bb12b2ece299a060c5e96b70d1e4cceaebc3cf5fc02b36",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 51,
+          "temporalContrast": 12,
+          "hookNovelty": 46,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 56,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 85,
+          "motionRealization": 67,
+          "typographyDiversity": 25
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "4d81f1f08ac576df72be86e44676793e856e9ebdf7be21faecaa655b31555a6c",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 100,
+          "temporalContrast": 85,
+          "hookNovelty": 78,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 33,
+          "typographyDiversity": 34
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-11",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "b0a7dc9e4921542888a81ede92472837e251f338cecbedd3eb96ff2cfdb4cb66",
+        "metrics": {
+          "perceptualNovelty": 87,
+          "motion": null,
+          "temporalContrast": 51,
+          "hookNovelty": 50,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 78,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 71,
+          "motionRealization": 100,
+          "typographyDiversity": 20
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "fe7d01030f8f3c1d1cdffe0745745c89121a7bc7a183b4c027480157f2b514e2",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": null,
+          "temporalContrast": 37,
+          "hookNovelty": 52,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 93,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 60,
+          "motionRealization": 67,
+          "typographyDiversity": 50
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-12",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "57590d2c68598cfd1d4a9913bc19725660779938ce5063ac755359efa33f7a06",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 3,
+          "loopQuality": 49,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 54,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 60,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "FAILED"
+      },
+      "current": {
+        "videoSHA256": "269e25746fd4f25d9ab39a2f419f6776bdbed060504158aa7079023db276a49c",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 3,
+          "loopQuality": 49,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 55,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 60,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-14",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "de656c0d35bfabe940c0cc4f69688bad135f0d581a8a04ba9ff1e7ea6fe90017",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21.5,
+          "temporalContrast": 23,
+          "hookNovelty": 100,
+          "loopQuality": 41,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 96,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 60,
+          "regionalPerceptualNovelty": 62.23260532227458,
+          "localContrast": 57,
+          "motionRealization": 100,
+          "typographyDiversity": 36
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "ba499f13e77997d2887d2da4339181fabb78998ee42408db4018ca6437fd0f83",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 22,
+          "hookNovelty": 100,
+          "loopQuality": 41,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 64,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 60,
+          "regionalPerceptualNovelty": 70.44276622547014,
+          "localContrast": 68,
+          "motionRealization": 100,
+          "typographyDiversity": 9
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "development-15",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "046dc0c27a93248504743b950da31dd48ffb850cb54643a276020d60b1db7944",
+        "metrics": {
+          "perceptualNovelty": 69,
+          "motion": 21,
+          "temporalContrast": 21,
+          "hookNovelty": 58,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 52,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 86,
+          "motionRealization": 100,
+          "typographyDiversity": 54
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "69165b7d03ea446c2697888b191c117fd2e6e2c49cdb07ae46fe62748c1be025",
+        "metrics": {
+          "perceptualNovelty": 69,
+          "motion": 18,
+          "temporalContrast": 52,
+          "hookNovelty": 59,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 88.1619670257418,
+          "localContrast": 100,
+          "motionRealization": 67,
+          "typographyDiversity": 55
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-01",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "2137bd7ec7bcebca90001af70afd594997aa4867e77b808539bb299e376c7b65",
+        "metrics": {
+          "perceptualNovelty": 67,
+          "motion": 32,
+          "temporalContrast": 79,
+          "hookNovelty": 41,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 62,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 84.27901686307409,
+          "localContrast": 98,
+          "motionRealization": 100,
+          "typographyDiversity": 61
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "7b79ec9f565bf3a706ac351e01dd61b6a76702baad7cb5634a004ade7cfd7f5c",
+        "metrics": {
+          "perceptualNovelty": 48,
+          "motion": 32,
+          "temporalContrast": 46,
+          "hookNovelty": 38,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 38,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 73.62620973593602,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 6
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-02",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "fbd2c2277063a1bd8d72bfbadd243eb6d28487ca3e239cac3a1557466211e72f",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 24,
+          "temporalContrast": 48,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 93,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 96,
+          "motionRealization": 100,
+          "typographyDiversity": 84
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "e33e0789878cf00bf2b106474b32b536e6858916d36b309ba4c47a5e66924286",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 24.5,
+          "temporalContrast": 13,
+          "hookNovelty": 71,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 90,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 75,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 86,
+          "motionRealization": 100,
+          "typographyDiversity": 44
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-03",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "b9df8f3e04a37f609fe15069fb8188635fbc599cae248535674ab987b6a1ee77",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21.5,
+          "temporalContrast": 66,
+          "hookNovelty": 37,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 97,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 76,
+          "motionRealization": 67,
+          "typographyDiversity": 47
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "dad71343fad444f6d85c53dc6d344e228fdc82d6c2a6389bbaa962507473a927",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 17,
+          "temporalContrast": 25,
+          "hookNovelty": 42,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 75,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 87,
+          "motionRealization": 33,
+          "typographyDiversity": 5
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-04",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "73731d6cab31d36306ce5b0317b111e2d2904be14f3b245222abed6fe0107fac",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 68,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 86,
+          "typographyDiversity": 46
+        },
+        "lyricSafety": "FAILED"
+      },
+      "current": {
+        "videoSHA256": "220f7e0efc03ea16123a22233ff4f49fafd8b0b20ba9966811f20d68b6a9a9fd",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 76,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 60
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-05",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "9a428f47b88034633df3c566eb9786821f69d51c7cbc8653ac70931a4ca88365",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 19
+        },
+        "lyricSafety": "FAILED"
+      },
+      "current": {
+        "videoSHA256": "c2a29c4a7cc7154860bca07aab1c24366a22c4c81e17c1171953e4eb3eb190db",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 19
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-06",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "609b74b8ae4fbc306d9930f66c8a37f30aa8da36cbc7ae3445a59f9c3332ec75",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21.5,
+          "temporalContrast": 27,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 1,
+          "motionRealization": 100,
+          "typographyDiversity": 31
+        },
+        "lyricSafety": "FAILED"
+      },
+      "current": {
+        "videoSHA256": "d6ac2b6805ac5ecd4a2b3a080b8d3a88d70fa56c3527534566bf8d7a63a9ac18",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 22.5,
+          "temporalContrast": 24,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 36
+        },
+        "lyricSafety": "FAILED"
+      }
+    },
+    {
+      "fixture": "holdout-07",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "7099253fea6037b817ae97591cf2e261eb5b7d273093d152eddf506b5ad22733",
+        "metrics": {
+          "perceptualNovelty": 68,
+          "motion": 79,
+          "temporalContrast": 34,
+          "hookNovelty": 55,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 66,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 76.9425099535039,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 74
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "1e5098a62d5aedaae7c58a80636f2094904ba2ce6a0d53db47ab562cab10ec7f",
+        "metrics": {
+          "perceptualNovelty": 70,
+          "motion": 79,
+          "temporalContrast": 34,
+          "hookNovelty": 54,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 70,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 77.40560136476739,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 74
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-08",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "424a6c9e8a3d6a5cd83cfa0ff5a360646ff7b27291d567624de48cf11f053da5",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 54.5,
+          "temporalContrast": 19,
+          "hookNovelty": 41,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 99,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 60,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 73,
+          "motionRealization": 100,
+          "typographyDiversity": 35
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "c54f237bd3845530827031fc10335dc94a48ca976ddf8bac3f0c2d2cee1d692e",
+        "metrics": {
+          "perceptualNovelty": 73,
+          "motion": 53.5,
+          "temporalContrast": 23,
+          "hookNovelty": 75,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 61,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 60,
+          "regionalPerceptualNovelty": 23.18447906274345,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 6
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-09",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "af81f6484901def053d018f236c480d85d1eaee9c3940a4c80ff5d553959f40d",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 40,
+          "temporalContrast": 19,
+          "hookNovelty": 37,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 99,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 65,
+          "motionRealization": 100,
+          "typographyDiversity": 39
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "39bf1de7ee5367e0a5da9532f9da298e2208fe842af69a07023b51a5ce85f921",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 47.5,
+          "temporalContrast": 28,
+          "hookNovelty": 51,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 96,
+          "motionRealization": 100,
+          "typographyDiversity": 30
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-10",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "90278d17ad2ba92c567819f0c5dd705541e792f48e0fa9534322a7e3522cf0b4",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 87,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 64,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "FAILED"
+      },
+      "current": {
+        "videoSHA256": "6c4c50c94f7b5e7e77a8443e844a5afb801ca2b4ac2f5ca4dceafaeab0f8f0e6",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 87,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 64,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 28
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-11",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "820142cb1c11c5c8509d7f6d51745e79d90f790f2554c46fc45bc8691e38f448",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 1,
+          "loopQuality": 51,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 32
+        },
+        "lyricSafety": "FAILED"
+      },
+      "current": {
+        "videoSHA256": "c11cc0b9a7976acc0cbc9dcf78a066ad8378ab014ca239205318e891d5dc4ce0",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 1,
+          "loopQuality": 51,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 56,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 29
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-12",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "966b9fe717d1657dced9481efc83283b41a18cfec9f99372a087e3987d9b9f93",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21.5,
+          "temporalContrast": 34,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 79,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 64
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "67ad24b272981ae0751f430ab6091caf46ee5a6558b46189a926579c0941d68a",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 45,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 77,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 57
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-14",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "0ccf97277bf6e40bb42f2e217a5cd9d85f5a0dab29b3d97eb37e6b20a8fe56b7",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 23,
+          "temporalContrast": 49,
+          "hookNovelty": 78,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 72,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 83.14363870799752,
+          "localContrast": 96,
+          "motionRealization": 100,
+          "typographyDiversity": 42
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "26d3503736f3e63666b2430d10c474a06b164ea2be8bae066478f4a201c8b055",
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 20.5,
+          "temporalContrast": 67,
+          "hookNovelty": 75,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 78,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 94.4777809449685,
+          "localContrast": 99,
+          "motionRealization": 88,
+          "typographyDiversity": 41
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "holdout-15",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "371adb5b0bd8a39f4879db89089a1d7f124fcad34d1f91acf3c374f416802d95",
+        "metrics": {
+          "perceptualNovelty": 97,
+          "motion": 22,
+          "temporalContrast": 32,
+          "hookNovelty": 63,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 80,
+          "motionRealization": 100,
+          "typographyDiversity": 32
+        },
+        "lyricSafety": "MEASURED"
+      },
+      "current": {
+        "videoSHA256": "18de28e60b854cfc4682735952ec5da5159f50b3f8d1027963bcf3509a27bb16",
+        "metrics": {
+          "perceptualNovelty": 96,
+          "motion": 21,
+          "temporalContrast": 34,
+          "hookNovelty": 63,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 66,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 96.3429516608206,
+          "localContrast": 80,
+          "motionRealization": 100,
+          "typographyDiversity": 4
+        },
+        "lyricSafety": "MEASURED"
+      }
+    },
+    {
+      "fixture": "supplemental-development-13",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "b14419679ebf81ccdbaf07be95487545bb5cc3313276089a4d84cf1d85f45e41",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 39,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 32,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 62,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "FAILED"
+      },
+      "current": {
+        "videoSHA256": "8e2694cc981b843c25c501c0210effde5e6f57bdce26a8aed90caa985e302813",
+        "metrics": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 40,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 37,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 67,
+          "typographyDiversity": 21
+        },
+        "lyricSafety": "FAILED"
+      }
+    },
+    {
+      "fixture": "supplemental-holdout-13",
+      "matchedConditions": {
+        "audioHash": true,
+        "imageHash": true,
+        "lyrics": true,
+        "aspect": true,
+        "fps": true,
+        "range": true,
+        "fixture": true,
+        "outputProfile": true
+      },
+      "comparable": true,
+      "baseline": {
+        "videoSHA256": "de250add44e629dd66013ffffbe8e83a6162b2e4553cdd51acf36a9a1c62f21f",
+        "metrics": {
+          "perceptualNovelty": 67,
+          "motion": 19,
+          "temporalContrast": 100,
+          "hookNovelty": 7,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 64.63448553522498,
+          "localContrast": 99,
+          "motionRealization": 67,
+          "typographyDiversity": 23
+        },
+        "lyricSafety": "UNMEASURED"
+      },
+      "current": {
+        "videoSHA256": "186a715f397aed666fbfa4b53347b22ae492d61f1b3d8fdc1c8d891c7941d5c4",
+        "metrics": {
+          "perceptualNovelty": 66,
+          "motion": 24,
+          "temporalContrast": 91,
+          "hookNovelty": 7,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 92,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 82.70514598151453,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 32
+        },
+        "lyricSafety": "MEASURED"
+      }
+    }
+  ],
+  "environments": [
+    {
+      "partition": "development-a",
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.21.0",
+        "os": "linux",
+        "release": "6.17.0-1022-azure"
+      }
+    },
+    {
+      "partition": "development-b",
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.21.0",
+        "os": "linux",
+        "release": "6.17.0-1022-azure"
+      }
+    },
+    {
+      "partition": "development-c",
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.21.0",
+        "os": "linux",
+        "release": "6.17.0-1022-azure"
+      }
+    },
+    {
+      "partition": "holdout-a",
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.21.0",
+        "os": "linux",
+        "release": "6.17.0-1022-azure"
+      }
+    },
+    {
+      "partition": "holdout-b",
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.21.0",
+        "os": "linux",
+        "release": "6.17.0-1022-azure"
+      }
+    },
+    {
+      "partition": "holdout-c",
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.21.0",
+        "os": "linux",
+        "release": "6.17.0-1022-azure"
+      }
+    }
+  ],
+  "humanStatus": "HUMAN_UNVERIFIED",
+  "holdoutStatus": "EXPOSED_FOR_GENERIC_FAILURE_DIAGNOSIS; not newly blind",
+  "musicalGenreStatus": "Owned procedural PCM covers specified musical properties, not real genre or vocal/lyric semantic certification",
+  "wholeEngineRealization": "UNMEASURED"
+}
