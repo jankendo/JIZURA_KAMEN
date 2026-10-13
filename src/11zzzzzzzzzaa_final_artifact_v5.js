@@ -62,17 +62,20 @@ Q.finalArtifactUnits=async(p,range,planHash)=>{
   const loop=p.musicalPhoto?.cinema?.loop,window=J.cinemaLoopWindow?.(p,end)??0,closureStart=end-window;
   if(loop&&loop.mode!=='background-only-text-cut'&&window>0&&!(p.cuts||[]).some(k=>(k.locked||J.photoChoreographyLocked?.(p,k))&&k.start<end&&k.end>closureStart))exit=Math.min(exit,closureStart);
   if(c.grammar?.temporal&&/^cinemaGrammar/.test(c.layout||'')&&!c.locked&&!J.photoChoreographyLocked?.(p,c))exit=Math.min(exit,end-(J.cinemaTypographyClosingWindow?.(p,c,end)??0));
-  out.push({id:await hash({planHash,index,line:c.line,start:c.start,end:c.end,text:c.lineText??c.text}),index,line:c.line,text:String(c.grammar?c.lineText??c.text:c.text??c.lineText??''),frameOrigin:start,from,to,hold:[entry,exit],locked:!!c.locked||!!J.photoChoreographyLocked?.(p,c)});
+  out.push({id:await hash({planHash,index,line:c.line,start:c.start,end:c.end,text:c.lineText??c.text}),index,line:c.line,text:String(c.grammar?c.lineText??c.text:c.text??c.lineText??''),frameOrigin:start,outputFrameCount:Math.max(1,Math.round((end-start)*p.fps)),from,to,hold:[entry,exit],locked:!!c.locked||!!J.photoChoreographyLocked?.(p,c)});
  }
  const groups=J.logicalLyricGroups(p.cuts||[]),merged=[];
  for(const group of groups){const parts=group.cuts.map(({index})=>out.find(u=>u.index===index)).filter(Boolean);if(!parts.length)continue;
-  if(group.invalid||!group.origin||group.cuts.length===1){merged.push(...parts.map(u=>({...u,fragments:[{index:u.index,from:u.from,to:u.to}]})));continue;}
-  const first=parts[0],last=parts.at(-1);merged.push({...first,id:await hash({planHash,sourceUnitOrigin:group.origin}),from:first.from,to:last.to,hold:[first.hold[0],last.hold[1]],locked:parts.some(u=>u.locked),sourceUnitOrigin:group.origin,fragments:parts.map(u=>({index:u.index,from:u.from,to:u.to}))});
+  if(group.invalid||!group.origin||group.cuts.length===1){merged.push(...parts.map(u=>({...u,fragments:[{index:u.index,from:u.from,to:u.to,hold:u.hold}]})));continue;}
+  const first=parts[0],last=parts.at(-1);merged.push({...first,id:await hash({planHash,sourceUnitOrigin:group.origin}),from:first.from,to:last.to,hold:[first.hold[0],last.hold[1]],locked:parts.some(u=>u.locked),sourceUnitOrigin:group.origin,fragments:parts.map(u=>({index:u.index,from:u.from,to:u.to,hold:u.hold}))});
  }for(const u of merged){const o=u.sourceUnitOrigin||p.cuts[u.index];u.sourceUnitId=await hash({line:u.line,text:u.text,start:o.start,end:o.end});for(const f of u.fragments)f.id=await hash({planHash,sourceUnitId:u.sourceUnitId,index:f.index,from:f.from,to:f.to});}return merged;
 };
 Q.finalUnitSummary=(unit,frames,fps)=>{
- const own=frames.filter(f=>f.unitId===unit.id&&F(f.actualDecodedTimestamp)&&f.actualDecodedTimestamp>=unit.from&&f.actualDecodedTimestamp<unit.to),hold=own.filter(f=>f.phase==='hold'),expected=Math.max(0,Math.ceil((unit.hold[1]-(unit.frameOrigin??0))*fps-1e-7)-Math.ceil((unit.hold[0]-(unit.frameOrigin??0))*fps-1e-7));
- const full=own.length>1&&own.every((f,i)=>!i||f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp>=.99/fps&&f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp<=1.01/fps),complete=expected>1&&hold.length>=expected&&hold.every(f=>f.nativeComplete&&f.safeArea&&f.pixelPresence);
+ const origin=unit.frameOrigin??0,limit=unit.outputFrameCount??Infinity,holdRanges=unit.fragments?.every(f=>Array.isArray(f.hold))?unit.fragments.map(f=>f.hold):[unit.hold];
+ const expected=holdRanges.reduce((n,[start,end])=>n+Math.max(0,Math.min(limit,Math.ceil((end-origin)*fps-1e-7))-Math.max(0,Math.ceil((start-origin)*fps-1e-7))),0);
+ const own=frames.filter(f=>f.unitId===unit.id&&F(f.actualDecodedTimestamp)&&f.actualDecodedTimestamp>=unit.from&&f.actualDecodedTimestamp<unit.to),hold=own.filter(f=>f.phase==='hold');
+ const expectedOwn=Math.max(0,Math.min(limit,Math.ceil((unit.to-origin)*fps-1e-7))-Math.max(0,Math.ceil((unit.from-origin)*fps-1e-7)));
+ const full=own.length>1&&own.length===expectedOwn&&own.every((f,i)=>!i||f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp>=.99/fps&&f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp<=1.01/fps),complete=expected>1&&hold.length>=expected&&hold.every(f=>f.nativeComplete&&f.safeArea&&f.pixelPresence);
  const failed=hold.some(f=>f.nativeComplete===false||f.safeArea===false||f.pixelPresence===false);
  return {unitId:unit.id,sourceUnitId:unit.sourceUnitId??null,fragments:unit.fragments??null,line:unit.line,timeRange:[unit.from,unit.to],holdRange:unit.hold,status:failed?'FAILED':full&&complete?'MEASURED':'UNMEASURED',frameCount:own.length,holdFrameCount:hold.length,expectedHoldFrames:expected,readableHoldSeconds:hold.filter(f=>f.nativeComplete&&f.safeArea&&f.pixelPresence).length/fps,minimumContrast:hold.length&&hold.every(f=>F(f.localContrast))?Math.min(...hold.map(f=>f.localContrast)):null,reason:failed?'NATIVE_OR_DECODED_GLYPH_FAILURE':full&&complete?null:expected<=1?'NO_COMPLETE_HOLD_INTERVAL':'INCOMPLETE_ACTUAL_FRAME_COVERAGE',phaseCounts:Object.fromEntries(['entry','hold','exit'].map(k=>[k,own.filter(f=>f.phase===k).length]))};
 };
@@ -144,8 +147,8 @@ Q.verifyFinalArtifact=async(result,args,input)=>{
     const unit=units.find(u=>actual>=u.from&&actual<u.to);if(!unit)return;
     const fragment=unit.fragments.find(f=>actual>=f.from&&actual<f.to);if(!fragment){failures.push('LOGICAL_UNIT_FRAME_GAP');return;}const c=renderPlan.cuts[fragment.index],records=[],draw=J.drawItem;
     J.drawItem=(env,it)=>{if(env.ctx===mx&&env.pass==='main'&&env.cut?.line===unit.line&&env.cut.start===c.start&&env.cut.end===c.end&&Q.isPrimaryInternalLyric(env,it)){const lay=J.layoutText(it),text=lay.filter(g=>!it.charFn?.(g.i,g,lay.N)?.hide).map(g=>it.charFn?.(g.i,g,lay.N)?.ch??g.ch).join('');const glyphBounds=lay.filter(g=>g.ch.trim()).map(g=>({index:g.i,row:g.li,character:it.charFn?.(g.i,g,lay.N)?.ch??g.ch,bounds:J.measureLyricItemBounds(env,{...it,charFn:(i,a,n)=>({...it.charFn?.(i,a,n),hide:i!==g.i||!!it.charFn?.(i,a,n)?.hide})})}));records.push({text,bounds:J.measureLyricItemBounds(env,it),glyph:Q.nativeGlyphSafety(env,it),glyphBounds});}return draw(env,it);};
-    const phase=actual<unit.hold[0]?'entry':actual>=unit.hold[1]?'exit':'hold';
-    try{R.frame(x,renderPlan,actual,{scale:width/p.W,production:true,range:args.range,lyricAuditCtx:mx,noTrans:phase==='hold'});}finally{J.drawItem=draw;}
+    const activeHold=fragment.hold??unit.hold,phase=actual<activeHold[0]?'entry':actual>=activeHold[1]?'exit':'hold';
+    try{R.frame(x,renderPlan,actual,{scale:width/p.W,production:true,range:args.range,lyricAuditCtx:mx});}finally{J.drawItem=draw;}
     J.renderCinemaBackgroundAudit(R,bx,renderPlan,actual,{scale:width/p.W,production:true,range:args.range});
     const on=J.cinemaReferenceLuma(x.getImageData(0,0,width,height).data),off=J.cinemaReferenceLuma(bx.getImageData(0,0,width,height).data),alpha=J.cinemaPrimaryAlpha(mx.getImageData(0,0,width,height).data),actualLuma=J.cinemaReferenceLuma(pixels);
     let expected=0,present=0;for(let i=0;i<alpha.length;i++)if(alpha[i]>.5&&Math.abs(on[i]-off[i])>=.25){expected++;if((actualLuma[i]-off[i])/(on[i]-off[i])>.30&&(actualLuma[i]-off[i])/(on[i]-off[i])<1.8)present++;}
