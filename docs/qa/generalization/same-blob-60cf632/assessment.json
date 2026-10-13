@@ -1,0 +1,49 @@
+{
+  "run": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38384867208",
+  "sourceCommit": "60cf632f0fce6d032dfd12bf753dcfd4e4095657",
+  "videoSHA256": "d6ac2b6805ac5ecd4a2b3a080b8d3a88d70fa56c3527534566bf8d7a63a9ac18",
+  "originalEnvironment": {
+    "browser": "154.0.8037.97",
+    "node": "v24.21.0",
+    "os": "linux",
+    "release": "6.17.0-1022-azure"
+  },
+  "reports": [
+    {
+      "repeat": 0,
+      "status": "FAILED",
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.21.0",
+        "os": "linux",
+        "release": "6.17.0-1022-azure"
+      },
+      "bindingMatchesOriginal": true,
+      "framesExactlyMatchOriginal": true,
+      "unitSummaryMatchesOriginal": true,
+      "failedGlyphObservations": 9,
+      "evidenceId": "72c5fb58e77e8226845ba075c1ffa1f38cafeb858c92f9c776daececeac95fb4",
+      "rawReportSHA256": "89e6ee5c7e7172e26f84187c94e18ebd9eb08743b1e4908542709f4890d5b96b"
+    },
+    {
+      "repeat": 1,
+      "status": "FAILED",
+      "environment": {
+        "browser": "154.0.8037.97",
+        "node": "v24.21.0",
+        "os": "linux",
+        "release": "6.17.0-1022-azure"
+      },
+      "bindingMatchesOriginal": true,
+      "framesExactlyMatchOriginal": true,
+      "unitSummaryMatchesOriginal": true,
+      "failedGlyphObservations": 9,
+      "evidenceId": "72c5fb58e77e8226845ba075c1ffa1f38cafeb858c92f9c776daececeac95fb4",
+      "rawReportSHA256": "2f8c716f5c7d3ed4322f49c8acf4151737b0f7272afc23b2da516daf899658ce"
+    }
+  ],
+  "conclusion": "FAIL is reproducible on the same immutable video, input and restored plan. Not dismissed as observation fluctuation. Encoding/negative-control mismatch cause remains UNRESOLVED; missing glyphs are not established. Quality certification remains withheld.",
+  "reencoding": false,
+  "thresholdChanges": false,
+  "setupAttemptFailure": "Earlier QA helper called ensureFonts with a plan rather than required text; failed before reobservation. Corrected to shipping font-loading contract; no app source defect assigned."
+}
