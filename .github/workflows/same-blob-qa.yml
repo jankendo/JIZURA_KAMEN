@@ -1,0 +1,39 @@
+name: Immutable final Blob reobservation
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/same-blob-qa.yml]
+permissions:
+  contents: read
+jobs:
+  reobserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 60cf632f0fce6d032dfd12bf753dcfd4e4095657
+          path: current
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: cd current && npm ci && npm run build
+      - name: Reobserve identical Blob, input and plan without reencoding
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          python3 -m http.server 4173 --directory current/dist > server.log 2>&1 &
+          for attempt in 1 2 3 4 5; do curl -fsS http://127.0.0.1:4173/ > /dev/null && break || sleep 1; done
+          NODE_PATH="$GITHUB_WORKSPACE/current/node_modules" node qa/docs/qa/generalization/tools/reobserve_final_blob.cjs http://127.0.0.1:4173/ qa/docs/qa/generalization/same-blob-60cf632 results
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: same-blob-60cf632
+          path: |
+            results
+            server.log
