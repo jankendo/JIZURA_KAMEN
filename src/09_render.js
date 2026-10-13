@@ -416,6 +416,11 @@ class Renderer {
   }
 
   makeEnv(ctx, plan, cut, sc, o) {
+    if (J.validLyricUnitOrigin?.(cut)) {
+      const origin=cut.lyricUnitOrigin,offset=cut.start-origin.start;
+      o={...o,lt:o.lt+offset,ltb:Number.isFinite(o.ltb)?o.ltb+offset:o.ltb};
+      cut={...cut,dur:origin.end-origin.start};
+    }
     const W = plan.W, H = plan.H;
     const env = Object.assign({ ctx, W, H, sc, st: cut?.style||plan.style, fx: plan.fx, fps: plan.fps, cut, plan, production:this._productionFrame===true,lyricAuditCtx:this.lyricAuditCtx,lyricAuditItems:this.lyricAuditItems }, o);
     if (cut) {

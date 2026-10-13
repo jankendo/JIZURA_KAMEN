@@ -1,0 +1,17 @@
+'use strict';
+const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
+(async()=>{
+ const {J,createCanvas}=engine(),Q=J.cinemaV5,cut={index:0,line:0,text:'Let',lineText:'Let the pulse unfold',start:6.1,end:7.0272,dur:.9272,inDur:.07,outDur:.07,enter:'fade',exit:'fade',hold:'still',params:{font:'embedded_bold'},trans:'push',transDur:.1};
+ const tail=['the','pulse','unfold'].map((text,i)=>({index:i+1,line:0,text,lineText:cut.lineText,start:[7.0272,7.75,8.9][i],end:[7.75,8.9,10][i],dur:[.7228,1.15,1.1][i],params:{}}));
+ const scene=(from,to,assetId)=>({from,to,assetId,variant:'WIDE',crop:{x:50,y:50,zoom:1},textAnchor:{x:.5,y:.5}});
+ const p={W:640,H:360,fps:24,duration:10,style:{},cuts:[cut,...tail],lines:[{text:cut.lineText,start:6.1,end:10}],storyboard:[scene(0,7,'a'),scene(7,10,'b')],visualWorld:{chapters:[{from:0,to:7},{from:7,to:10}]}};
+ J.applyAssetStoryboard(p);assert.equal(p.cuts.length,5);assert.equal(p.cuts[0].text,p.cuts[1].text);assert.equal(p.cuts[1].dur,.02719999999999967);assert.equal(p.cuts[1].visualAssetId,'b','background switch retains its exact boundary');assert.equal(p.cuts[1].trans,null,'continuation does not replay the original incoming transition');
+ assert(Q.originalUnitTextIntegrity(p,[0]),'declared continuous fragments count once in source text');
+ const units=await Q.finalArtifactUnits(p,null,'plan');assert.equal(units.length,4);assert.equal(units[0].fragments.length,2);assert.deepEqual([units[0].from,units[0].to],[6.1,7.0272]);assert.notEqual(units[0].id,units[1].id,'same line cannot borrow evidence');
+ const R=new J.Renderer(),ctx=createCanvas(640,360).getContext('2d'),env=R.makeEnv(ctx,p,p.cuts[1],{}, {lt:0,ltb:0,t:7});assert(Math.abs(env.lt-.9)<1e-9);assert(Math.abs(env.cut.dur-.9272)<1e-9);assert(Math.abs(env.pOut-(.9-(.9272-.07))/.07)<1e-9,'exit follows the original unit lifecycle, not a 27ms new unit');R.disposeAssets();
+ for(const mutation of [x=>x.cuts.splice(1,1),x=>x.cuts[1].start+=.01,x=>x.cuts[1].text='wrong',x=>x.cuts[1].lyricUnitOrigin.line=1]){const bad=structuredClone(p);mutation(bad);assert(!Q.originalUnitTextIntegrity(bad,[0]),'missing/gapped/changed/swapped fragment origin cannot certify text');}
+ const repeated={lines:[{text:'Let Let the'}],cuts:[{index:0,line:0,text:'Let',start:0,end:1},{index:1,line:0,text:'Let',start:1,end:2},{index:2,line:0,text:'the',start:2,end:3}]};for(const c of repeated.cuts)c.lyricUnitOrigin=J.lyricUnitOrigin(c);assert(Q.originalUnitTextIntegrity(repeated,[0]));assert.equal(J.logicalLyricGroups(repeated.cuts).length,3,'real repeated source words are distinct units');
+ const fps=24,u=units[0],frames=Array.from({length:23},(_,i)=>({unitId:u.id,actualDecodedTimestamp:6.125+i/fps,phase:6.125+i/fps<u.hold[0]?'entry':6.125+i/fps>=u.hold[1]?'exit':'hold',nativeComplete:true,safeArea:true,pixelPresence:true,localContrast:100})).filter(f=>f.actualDecodedTimestamp<u.to);
+ assert.equal(Q.finalUnitSummary(u,frames,fps).status,'MEASURED');assert.equal(Q.finalUnitSummary(u,frames.filter((_,i)=>i!==8),fps).status,'UNMEASURED');assert.equal(Q.finalUnitSummary(u,frames.map((f,i)=>i===8?{...f,pixelPresence:false}:f),fps).status,'FAILED');
+ console.log('Declared lyric fragment identity, exact asset boundary, continuous animation clock, repeat/gap/tamper and actual-clock coverage contracts PASS (unit proof, not MP4)');
+})().catch(e=>{console.error(e);process.exitCode=1;});
