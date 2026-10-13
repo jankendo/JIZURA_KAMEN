@@ -59,6 +59,14 @@ jobs:
           npm run test:cinema-export -- http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa"
           node dev/one_click_browser_contract.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa" "$RUNNER_TEMP/kamen-browser-qa/ui-boundary"
           node dev/processing_overlay_browser_test.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa/processing-overlays"
+      - name: Collect isolated restore logs
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/kamen-restore-logs"
+          shopt -s nullglob
+          logs=("$(dirname "$GITHUB_WORKSPACE")"/clean_restore_*.log)
+          if ((${#logs[@]})); then cp "${logs[@]}" "$RUNNER_TEMP/kamen-restore-logs/"; fi
       - name: Preserve validation evidence
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
@@ -68,7 +76,7 @@ jobs:
             ${{ runner.temp }}/kamen-tests.json
             ${{ runner.temp }}/kamen-browser-qa/
             ${{ runner.temp }}/kamen-server.log
-            ${{ github.workspace }}/../clean_restore_*.log
+            ${{ runner.temp }}/kamen-restore-logs/
           if-no-files-found: ignore
           retention-days: 7
       - name: Upload Pages artifact
