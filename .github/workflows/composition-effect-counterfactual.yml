@@ -1,0 +1,60 @@
+name: Adopted KAMEN Cinema encoded effect counterfactual
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/composition-effect-counterfactual.yml]
+permissions:
+  contents: read
+jobs:
+  counterfactual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        hook: [temporalCinemaFocus, paintCinemaGrammarForeground]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: b5a46b79ab463fe7f74d0a6d43c90ecbae984a41
+          path: current
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Restore adopted immutable artifact and inputs
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,gzip,shutil
+          root=pathlib.Path('qa/docs/qa/generalization');src=root/'formal-b5a46b7';out=pathlib.Path('inputs');out.mkdir()
+          data=json.loads(gzip.decompress((src/'holdout-a-results.json.gz').read_bytes()));rows=[r for r in data['rows'] if r['fixture']['id']=='holdout-03' and r['variant']=='v3'];assert len(rows)==1
+          (out/'results.json').write_text(json.dumps({'rows':rows}))
+          for r in rows:
+              shutil.copyfile(root/'media'/(r['sha256']+'.mp4'),out/'holdout-03-v3.mp4')
+              ref=r['referenceInputs'];(out/ref['file']).write_bytes(gzip.decompress((src/(ref['file']+'.gz')).read_bytes()));shutil.copyfile(root/'inputs'/(ref['audioSHA256']+'.wav'),out/ref['audioFile'])
+          PY
+      - name: Decode isolated full-profile ON OFF and repeated ON
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_COUNTERFACTUAL_HOOK: ${{ matrix.hook }}
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > server.log 2>&1 &
+          for n in 1 2 3 4 5; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/encoded_camera_counterfactual.cjs http://127.0.0.1:4173/ inputs holdout-03 v3 current results > counterfactual.log 2>&1
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: adopted-b5a46b7-${{ matrix.hook }}-counterfactual
+          path: |
+            results
+            counterfactual.log
+            server.log
+          retention-days: 14
+          if-no-files-found: error
