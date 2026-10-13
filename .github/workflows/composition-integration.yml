@@ -27,7 +27,7 @@ jobs:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: b6f50600b204a7c762727164bbcef5435033564a
+          ref: 507a49912cc26cfe77780433ee16917c9225e220
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -79,7 +79,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: composition-F-b6f5060-vs-B-b5a46b7-${{ matrix.partition }}
+          name: composition-F2-507a499-vs-B-b5a46b7-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error

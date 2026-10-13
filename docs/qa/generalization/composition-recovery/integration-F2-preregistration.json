@@ -1,0 +1,16 @@
+{
+  "registeredAt": "2026-10-13T23:25:27.348203+00:00",
+  "source": "507a49912cc26cfe77780433ee16917c9225e220",
+  "prior": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+  "experiment": "F2: connect final Architecture special renderer to shared semantic layout; selected allocated box used for actual text/size/leading/track. Manual formatting retains original path; existing phonetic grouping preserved and labelled separately from raw source.",
+  "causalFinding": "D labels and F1 QA fitting could change without completed-movie improvement because final Architecture renderer replaced earlier layouts and bypassed shared fitting",
+  "focusedCases": [
+    "holdout-01",
+    "holdout-03",
+    "development-14",
+    "holdout-15"
+  ],
+  "criteria": "Original preregistered matched input/seed/profile, full MP4, independent decode and unchanged quality metrics; visual/music-fit evidence and major-effect verification remain required. No thresholds or weights changed.",
+  "intermediateFailure": "826 integration test duplicate const was syntax FAIL, corrected507 and integration/planner PASS. Old CI not accepted as final.",
+  "status": "REGISTERED_BEFORE_F2_ENCODINGS"
+}
