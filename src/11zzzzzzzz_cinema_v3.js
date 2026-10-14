@@ -274,7 +274,8 @@ V.visualComparisonBindingMatches=(next,prior)=>!next?.completed||!prior?.complet
 V.registryCreativeDominates=(next,prior)=>{
  if(!V.visualComparisonBindingMatches(next,prior))return false;
  const axes=['typographyDiversity','lyricForegroundNovelty','temporalContrast','localContrast','motionRealization'],a=[next.lowerTailQuality,...axes.map(k=>next.metrics?.[k])],b=[prior.lowerTailQuality,...axes.map(k=>prior.metrics?.[k])];
- return a.every(Number.isFinite)&&b.every(Number.isFinite)&&a.every((v,i)=>v>=b[i])&&a.some((v,i)=>v>b[i]);
+ const otherMeasured=['perceptualNovelty','regionalPerceptualNovelty','hookNovelty','impactBeatSync','motion'];
+ return a.every(Number.isFinite)&&b.every(Number.isFinite)&&a.every((v,i)=>v>=b[i])&&a.some((v,i)=>v>b[i])&&otherMeasured.every(k=>!Number.isFinite(prior.metrics?.[k])||Number.isFinite(next.metrics?.[k])&&next.metrics[k]>=prior.metrics[k]);
 };
 // Preregistered music-conditioned Pareto alternative. The original strict
 // rule remains intact. No metric coefficients/thresholds are rewritten.
