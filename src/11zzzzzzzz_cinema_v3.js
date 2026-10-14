@@ -270,6 +270,7 @@ V.repairReadabilityPreview=async(p,range,signal,options={})=>{
 V.captureLegacyGrammar=p=>{if(!V.enabled||p.cinemaCandidateMode==='legacy')return;for(const c of p.cuts||[])if(c.grammar&&!J.photoChoreographyLocked(p,c)){const g=V.clone(c.grammar);delete g.scenePhases;delete g.directionPolicy;delete g.intentionalHold;c.cinemaV3LegacyCandidateGrammar=g;}};
 V.readabilityDominates=(next,prior)=>{for(const key of ['outputResolution','observerResolution','fps'])if((next?.[key]!==undefined||prior?.[key]!==undefined)&&J.canonicalJSON(next?.[key]??null)!==J.canonicalJSON(prior?.[key]??null))return false;if(!Number.isFinite(next?.score)||!Number.isFinite(prior?.score)||next.score<prior.score)return false;const map=new Map(next.samples.map(s=>[s.time,s.contrast?.score]));const aligned=new Map(next.samples.map(s=>[s.time,s.alignedContrast?.score]));const clocks=new Map(next.samples.map(s=>[s.time,s.actualTime]));return prior.samples.every(s=>(!Number.isFinite(s.actualTime)||Number.isFinite(clocks.get(s.time))&&Math.abs(clocks.get(s.time)-s.actualTime)<1e-7)&&(!Number.isFinite(s.contrast?.score)||Number.isFinite(map.get(s.time))&&map.get(s.time)>=s.contrast.score)&&(!Number.isFinite(s.alignedContrast?.score)||Number.isFinite(aligned.get(s.time))&&aligned.get(s.time)>=s.alignedContrast.score));};
 // New registry compositions need actual creative evidence, not a readability tie.
+V.encodedCompositionComparisonAvailable=()=>typeof VideoEncoder==='function'&&typeof Mp4Muxer!=='undefined'&&typeof window.JIZURAMedia?.sampleMP4==='function';
 V.musicObservationPopulationMatches=(next,prior)=>{
  const keys=e=>{if(!Array.isArray(e?.samples)||!e.samples.length)return null;const values=e.samples.map(s=>Number.isFinite(s.line)&&Number.isFinite(s.from)&&Number.isFinite(s.to)&&s.to>s.from?J.canonicalJSON([s.line,s.from,s.to]):null);return values.some(v=>v===null)||new Set(values).size!==values.length?null:values.sort();},a=keys(next),b=keys(prior);
  return !!a&&!!b&&J.canonicalJSON(a)===J.canonicalJSON(b);
@@ -352,7 +353,7 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  // Isolated unit substitutions preserve every other shipping cut and expose
  // musical development that the previous greedy contrast-only merge erased.
  const shipping=proposals.find(x=>x.root==='INCUMBENT'&&x.legacyProtected&&x.incumbentProtected)?.plan??components[0].plan,unitAlternativeTrace=[],identities=new Set([await V.planHash(shipping)]),unitAlternatives=[];
- for(let index=0;index<shipping.cuts.length;index++){
+ for(let index=0;V.encodedCompositionComparisonAvailable()&&index<shipping.cuts.length;index++){
   const target=shipping.cuts[index];if(target.line<0||J.photoChoreographyLocked(shipping,target))continue;
   for(const component of components){
    const source=component.plan.cuts.find(c=>c.line===target.line&&c.start===target.start&&c.end===target.end);
@@ -366,10 +367,15 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
    unitAlternatives.push({index,component,plan,identity});
   }
  }
+ // Without an encoded observer no changed unit can pass the promotion guard.
+ // Avoid only those provably inadmissible extra native proposals; browser
+ // candidate count and every shipping/legacy physical floor remain intact.
+ if(!V.encodedCompositionComparisonAvailable())unitAlternativeTrace.push({reason:'NOT_APPLICABLE_NO_ENCODED_COMPARISON_CAPABILITY',additionalBudget:32,changedUnitPromotionPossible:false});
  // Round-robin across actual unit ordinals: no lyric ID/seed/material branches,
  // and no forced rotation. The existing32-search scale bounds added work.
  unitAlternatives.sort((a,b)=>a.index-b.index||String(a.component.id).localeCompare(String(b.component.id)));
- for(const alternative of unitAlternatives.slice(0,32)){
+ const queues=[...new Map(unitAlternatives.map(a=>[a.index,unitAlternatives.filter(b=>b.index===a.index)])).values()],scheduled=[];for(let offset=0;scheduled.length<32&&queues.some(q=>q.length>offset);offset++)for(const q of queues)if(q[offset]&&scheduled.length<32)scheduled.push(q[offset]);
+ for(const alternative of scheduled){
   if(signal?.aborted)throw new DOMException('Aborted','AbortError');
   const {plan,index,component,identity}=alternative,raw=await J.measureCinemaOutputReadability(plan,range,signal,measurementOptions),repair=V.physicalReadabilityDominates(raw,legacyReadability)&&V.physicalReadabilityDominates(raw,incumbent)?null:await V.repairReadabilityPreview(plan,range,signal,{...measurementOptions,cached:raw}),readability=repair?.after||raw;
   proposals.push({root:'MEASURED_UNIT_'+index+'_FROM_'+component.id,plan,lines:[{line:plan.cuts[index].line,unitIndex:index,component:component.id}],readability,repair,legacyProtected:V.physicalReadabilityDominates(readability,legacyReadability),incumbentProtected:V.physicalReadabilityDominates(readability,incumbent)});

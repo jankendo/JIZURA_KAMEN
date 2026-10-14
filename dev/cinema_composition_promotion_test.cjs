@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),{engine}=require('./custom_test_support.cjs');
-const {J}=engine(),V=J.cinemaV3;
+const {J,context}=engine(),V=J.cinemaV3;
 const prior={completed:true,samples:[{line:0,from:0,to:10}],frameCount:10,inputHash:'input',rendererVersion:'renderer',planHash:'incumbent',profileId:'profile',videoSHA256:'prior-video',encodedResolution:[640,360],fps:24,outputProfile:{range:[0,10]},lowerTailQuality:40,metrics:{typographyDiversity:61,lyricForegroundNovelty:60,temporalContrast:30,localContrast:95,motionRealization:100}};
 (async()=>{
  for(const root of ['MEASURED_REGISTRY_BASELINE','LEGACY_FINALIST','INCUMBENT']){
@@ -32,3 +32,5 @@ const quiet={...common,samples:[{...common.samples[0],quiet:true,targetMotion:0,
 assert.equal(J.cinemaCandidateFrameCount({duration:16,fps:24},{start:.3,end:12.72},true),298,'delivery frame rounding must match actual shipping short export');assert.equal(J.cinemaCandidateFrameCount({duration:16,fps:24},{start:.3,end:12.72},false),125,'historical exploratory proxy rounding is unchanged');console.log('Shipping delivery frame clock and historical proxy contract PASS');
 
 {const prior={samples:[{line:0,from:0,to:1},{line:0,from:1,to:2}]};assert(V.musicObservationPopulationMatches(prior,prior));assert(!V.musicObservationPopulationMatches({samples:[prior.samples[0]]},prior),'dropping a weak internal unit cannot create comparable improved averages');assert(!V.musicObservationPopulationMatches({samples:[prior.samples[0],prior.samples[0]]},prior),'duplicate line/unit interval cannot substitute for another unit');assert(!V.musicObservationPopulationMatches({samples:[]},{samples:[]}),'unknown observations are not comparable creative evidence');console.log('Complete actual unit-population comparison and missing/duplicate counterexamples PASS');}
+
+assert.equal(V.encodedCompositionComparisonAvailable(),false,'native-only context cannot certify changed encoded compositions');context.VideoEncoder=function(){};context.Mp4Muxer={};context.window.JIZURAMedia={sampleMP4(){}};assert.equal(V.encodedCompositionComparisonAvailable(),true,'shipping browser with encoder and observer retains full search');delete context.VideoEncoder;delete context.Mp4Muxer;delete context.window.JIZURAMedia;console.log('Only provably unpromotable encoder-absent extra work skipped PASS');
