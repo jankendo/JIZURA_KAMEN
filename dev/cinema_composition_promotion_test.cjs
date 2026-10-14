@@ -17,3 +17,8 @@ const prior={completed:true,frameCount:10,inputHash:'input',rendererVersion:'ren
  const competitor=await V.guardCompositionPromotion('LEGACY_FINALIST','new-hybrid','repaired-shipping',async()=>({next:{...prior,planHash:'new-hybrid',metrics:{...prior.metrics,localContrast:100,typographyDiversity:4}},prior:{...prior,planHash:'repaired-shipping'}}));assert(!competitor.allowed);
  console.log('All composition roots: contrast/typography tradeoff, missing evidence, changed input rejected; measured improvement and unchanged incumbent accepted PASS');
 })().catch(e=>{console.error(e);process.exitCode=1;});
+
+{const p={W:1920,H:1080,fps:24,cinemaDelivery:{width:640,height:360,videoBitrate:0}},delivery=J.cinemaCandidateVideoProfile(p,true),proxy=J.cinemaCandidateVideoProfile(p,false);
+assert.equal(delivery.width,640);assert.equal(delivery.height,360);assert.equal(delivery.fps,24);assert.equal(delivery.bitrate,Math.round(640*360*24*.28));assert.equal(proxy.fps,10);assert.equal(proxy.bitrate,1800000);
+assert.equal(J.cinemaCandidateVideoProfile({...p,cinemaDelivery:{width:360,height:640,videoBitrate:7000000}},true).bitrate,7000000);assert.equal(J.cinemaCandidateVideoProfile({...p,fps:12},true).fps,12);
+console.log('Delivery visual comparison uses export dimensions/FPS and explicit bitrate; historical10fps proxy unchanged PASS');}

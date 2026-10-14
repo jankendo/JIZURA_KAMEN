@@ -28,7 +28,7 @@ V.captureLegacyPlan=p=>{if(p.cinemaCandidateMode!=='legacy'&&!V.legacyPlanningSt
 // Freeze only owned JSON metadata; never freeze PCM buffers, DOM or codec objects.
 V.freezeMetadata=value=>{if(value&&typeof value==='object'){Object.values(value).forEach(V.freezeMetadata);Object.freeze(value);}return value;};
 // The design canvas (e.g. 1920×1080) is not the requested delivery raster.
-V.bindDelivery=(p,project)=>{const [width,height]=J.outputSize(project);if(p.cinemaDelivery?.width!==width||p.cinemaDelivery?.height!==height){delete p.musicalPhoto?.cinema?.architectureSearch;delete p.musicalPhoto?.preparation;}p.cinemaDelivery={width,height};return p;};
+V.bindDelivery=(p,project)=>{const [width,height]=J.outputSize(project);if(p.cinemaDelivery?.width!==width||p.cinemaDelivery?.height!==height){delete p.musicalPhoto?.cinema?.architectureSearch;delete p.musicalPhoto?.preparation;}p.cinemaDelivery={width,height,videoBitrate:Number(project.exportSettings?.videoBitrate)||0};return p;};
 const deliveryPlan=J.plan;J.plan=(project,...args)=>V.bindDelivery(deliveryPlan(project,...args),project);
 V.outputProfile=(p,range=null)=>{const loop=p.exportSettings?.loopRequired===true,short=!!p.socialHook,aspect=(()=>{const gcd=(a,b)=>b?gcd(b,a%b):a,d=gcd(p.W,p.H);return p.W/d+':'+p.H/d;})();return V.validateProfile({purpose:loop?'LOOP_SHORT':short?'SHORT':aspect==='1:1'?'SQUARE':'FULL_MV',aspect,fps:p.fps,range:[range?.start??p.socialHook?.start??0,range?.end??p.socialHook?.end??p.duration],loopRequired:loop,...(p.cinemaDelivery?{resolution:[p.cinemaDelivery.width,p.cinemaDelivery.height]}:{})});};
 V.validateProfile=p=>{if(!profile(p))throw new TypeError('Invalid Cinema V3 output profile');return p;};
