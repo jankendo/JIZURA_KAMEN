@@ -1,0 +1,103 @@
+{
+  "sourceCommit": "b85bbeefd4f51e156da0c0ff515f32b99975df8a",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
+  "humanEvaluation": "HUMAN_UNVERIFIED",
+  "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "pr": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
+  "draft": true,
+  "currentTests": {
+    "targetedContracts": "3 files PASS",
+    "singleImageNativeRegression": "PASS",
+    "cameraCounterexamples": "PASS",
+    "processingOverlayRealBrowser": "PASS across5 viewports, cancel/retry and retained downloads; UI test, no new MP4 claimed",
+    "buildAndLicenseHashes": "PASS"
+  },
+  "officialCI": {
+    "run": 38649392970,
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38649392970",
+    "status": "RUNNING"
+  },
+  "focalMP4": {
+    "run": 38649462905,
+    "completedCurrentCases": [
+      "development-05"
+    ],
+    "pending": [
+      "holdout-01",
+      "holdout-12",
+      "fresh-confirmation-02"
+    ],
+    "currentFullDecodeCount": 1,
+    "binding": {
+      "inputHash": "fa3ace29a352282e4b5f71a1c2a90ee95e8e66476e16a59f9cf5cd90a43b80b1",
+      "planHash": "37238e026780cc765252a09575ada7d137c0fa7588136bdb6ca7116b83cc91bb",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rendererVersion": "9a25f838f50896d11bd9355de78d56e5e88ad653f2eb34d4f717cd174faa49df",
+      "selectedCandidateId": "1c9747653d8d43c0a45acb3058b5be838c41777d16da959fa0795e45f0e28163",
+      "videoSHA256": "ec4c8d54d0aeda3c8ef497d80acaf4ef066d27e55568d8255f397c9cd771d471",
+      "sourceCommit": "b85bbeefd4f51e156da0c0ff515f32b99975df8a",
+      "sourceTreeSHA256": "9a25f838f50896d11bd9355de78d56e5e88ad653f2eb34d4f717cd174faa49df",
+      "sourceDirty": false
+    },
+    "lyricSafety": "MEASURED",
+    "primaryCompositeIntent": {
+      "population": 3,
+      "measured": 3,
+      "rendererAgreementSuccess": 3,
+      "measurableRate": 1,
+      "rendererAgreementRate": 1,
+      "intentRealizationSuccessRate": 1,
+      "manualExcluded": 0,
+      "nonAutomaticExcluded": 0,
+      "intentMeasured": 3,
+      "intentMeasurableRate": 1,
+      "intentSuccessful": 3
+    },
+    "metrics": {
+      "perceptualNovelty": 100,
+      "motion": 25,
+      "temporalContrast": 20,
+      "hookNovelty": 38,
+      "loopQuality": 0,
+      "foregroundNovelty": null,
+      "lyricForegroundNovelty": 86,
+      "displayOnsetAccuracy": null,
+      "impactBeatSync": null,
+      "regionalPerceptualNovelty": 100,
+      "localContrast": 83,
+      "motionRealization": 100,
+      "typographyDiversity": 42
+    },
+    "minDecodedHoldContrast": 57,
+    "wholeFilmQuality": "UNVERIFIED"
+  },
+  "independentConfirmation": {
+    "run": 38650361647,
+    "status": "RUNNING",
+    "fixtureSpecificationSHA256": "ea80c2614e4d8012d0db7c1a9990b72f3d1b2e126f581ccb6bdeae99a3c2c1e8",
+    "versions": [
+      "main",
+      "previous5e",
+      "currentb85"
+    ],
+    "conditions": 4
+  },
+  "historicalEvidenceReuse": "Never certify b85 with old5e or dff source. Preserve failed5e CI and missing-camera artifacts. Formal30 inputs match focal three exactly; native adoption proof still needed for final controls.",
+  "release": "NO-GO_PENDING_REQUIRED_CURRENT_SOURCE_EVIDENCE",
+  "productionChanged": false
+}
