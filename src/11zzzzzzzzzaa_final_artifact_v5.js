@@ -70,11 +70,19 @@ Q.finalArtifactUnits=async(p,range,planHash)=>{
   const first=parts[0],last=parts.at(-1);merged.push({...first,id:await hash({planHash,sourceUnitOrigin:group.origin}),from:first.from,to:last.to,hold:[first.hold[0],last.hold[1]],locked:parts.some(u=>u.locked),sourceUnitOrigin:group.origin,fragments:parts.map(u=>({index:u.index,from:u.from,to:u.to,hold:u.hold}))});
  }for(const u of merged){const o=u.sourceUnitOrigin||p.cuts[u.index];u.sourceUnitId=await hash({line:u.line,text:u.text,start:o.start,end:o.end});for(const f of u.fragments)f.id=await hash({planHash,sourceUnitId:u.sourceUnitId,index:f.index,from:f.from,to:f.to});}return merged;
 };
+Q.firstFrameAtOrAfter=(time,origin,fps,limit=Infinity)=>{
+ let index=Math.max(0,Math.min(limit,Math.ceil((time-origin)*fps)));
+ // Correct multiplication rounding using the SAME actual-frame ownership
+ // comparison as the renderer. No epsilon can assign a boundary frame twice.
+ while(index>0&&origin+(index-1)/fps>=time)index--;
+ while(index<limit&&origin+index/fps<time)index++;
+ return index;
+};
 Q.finalUnitSummary=(unit,frames,fps)=>{
  const origin=unit.frameOrigin??0,limit=unit.outputFrameCount??Infinity,holdRanges=unit.fragments?.every(f=>Array.isArray(f.hold))?unit.fragments.map(f=>f.hold):[unit.hold];
- const expected=holdRanges.reduce((n,[start,end])=>n+Math.max(0,Math.min(limit,Math.ceil((end-origin)*fps-1e-7))-Math.max(0,Math.ceil((start-origin)*fps-1e-7))),0);
+ const expected=holdRanges.reduce((n,[start,end])=>n+Math.max(0,Q.firstFrameAtOrAfter(end,origin,fps,limit)-Q.firstFrameAtOrAfter(start,origin,fps,limit)),0);
  const own=frames.filter(f=>f.unitId===unit.id&&F(f.actualDecodedTimestamp)&&f.actualDecodedTimestamp>=unit.from&&f.actualDecodedTimestamp<unit.to),hold=own.filter(f=>f.phase==='hold');
- const expectedOwn=Math.max(0,Math.min(limit,Math.ceil((unit.to-origin)*fps-1e-7))-Math.max(0,Math.ceil((unit.from-origin)*fps-1e-7)));
+ const expectedOwn=Math.max(0,Q.firstFrameAtOrAfter(unit.to,origin,fps,limit)-Q.firstFrameAtOrAfter(unit.from,origin,fps,limit));
  const full=own.length>1&&own.length===expectedOwn&&own.every((f,i)=>!i||f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp>=.99/fps&&f.actualDecodedTimestamp-own[i-1].actualDecodedTimestamp<=1.01/fps),complete=expected>1&&hold.length>=expected&&hold.every(f=>f.nativeComplete&&f.safeArea&&f.pixelPresence);
  const failed=hold.some(f=>f.nativeComplete===false||f.safeArea===false||f.pixelPresence===false);
  return {unitId:unit.id,sourceUnitId:unit.sourceUnitId??null,fragments:unit.fragments??null,line:unit.line,timeRange:[unit.from,unit.to],holdRange:unit.hold,status:failed?'FAILED':full&&complete?'MEASURED':'UNMEASURED',frameCount:own.length,holdFrameCount:hold.length,expectedHoldFrames:expected,readableHoldSeconds:hold.filter(f=>f.nativeComplete&&f.safeArea&&f.pixelPresence).length/fps,minimumContrast:hold.length&&hold.every(f=>F(f.localContrast))?Math.min(...hold.map(f=>f.localContrast)):null,reason:failed?'NATIVE_OR_DECODED_GLYPH_FAILURE':full&&complete?null:expected<=1?'NO_COMPLETE_HOLD_INTERVAL':'INCOMPLETE_ACTUAL_FRAME_COVERAGE',phaseCounts:Object.fromEntries(['entry','hold','exit'].map(k=>[k,own.filter(f=>f.phase===k).length]))};
