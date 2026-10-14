@@ -181,20 +181,30 @@ J.compareRegistryCandidates=async(project,audio,image,options={})=>{
     await yieldUI();
     const probes=(J.photoAnchorCandidates?.(R.customBgBitmap)||[{x:.5,y:.5}]).map(anchor=>{
      const cut={...candidateCut(sp,c,candidate.layout,font,finalEnter,hold),params:{...J.clonePhotoRenderPlan(candidate.params),photoAnchor:J.clonePhotoRenderPlan(anchor)},style,styleKey:winner.id};
-     const ev=sample(sp,cut,.6);return {cut,ev,rank:(ev.contrastFit??0)*.5+(1-(anchor.saliency??.5))*.35+(Math.abs(anchor.y-.5)>.1?.08:0)};
-    }).filter(v=>v.ev.eligible).sort((a,b)=>b.rank-a.rank);
+     // The local winner's motion may be unsafe on another geometry. Each
+     // anchor owns its temporal operators; retain existing cut/still fallback.
+     let ev=null,checks=null;
+     for(const entry of [...new Set([finalEnter,'photoSettle','cut'])]){
+      for(const holding of [...new Set([hold,'still'])]){
+       const trial={...cut,enter:entry,hold:holding},phases=[.001,.03,.08,.16,.6,Math.max(.2,c.dur-.09)].map(dt=>sample(sp,trial,dt));
+       if(phases.every(e=>e.eligible)){Object.assign(cut,trial);checks=phases;ev=phases[4];break;}
+      }if(ev)break;
+     }
+     return {cut,ev,checks,rank:ev?(ev.contrastFit??0)*.5+(1-(anchor.saliency??.5))*.35+(Math.abs(anchor.y-.5)>.1?.08:0):-Infinity};
+    }).filter(v=>v.ev?.eligible).sort((a,b)=>b.rank-a.rank);
     const probe=probes[0];if(!probe){exclusions.push({layout:candidate.layout,reason:'COMPLETE_CANDIDATE_ANCHOR_UNSAFE'});continue;}
-    const checks=[.001,.03,.08,.16,.6,Math.max(.2,c.dur-.09)].map(dt=>sample(sp,probe.cut,dt));
+    const checks=probe.checks;
     if(!checks.every(e=>e.eligible)){exclusions.push({layout:candidate.layout,reason:'COMPLETE_CANDIDATE_TEMPORAL_UNSAFE'});continue;}
     const renderScore=e=>.20*(e.contrastFit??0)+.10*C(e.opaqueInk/Math.max(1,e.ink))+.12*C(e.height/(short?.22:.14));
     const score=candidate.score-renderScore(candidate.evidence)+renderScore(probe.ev);
     completed.push({...candidate,score,params:J.clonePhotoRenderPlan(probe.cut.params),cut:J.clonePhotoRenderPlan(probe.cut),evidence:metrics(probe.ev),signature:J.registryInkSignature(probe.ev.mask,w,h),typographySignature:J.registryTypographySignature(probe.ev.mask,w,h),phaseEvidence:checks.map(metrics)});
    }
    completed.sort((a,b)=>b.score-a.score||a.layout.localeCompare(b.layout));
-   const portfolio=J.registryCompositionPortfolio(completed);if(!portfolio.candidates.length)throw Error('全時間区間で安全な構成候補がありません');
-   portfolios.push({line:c.line,role,energy,candidates:portfolio.candidates});
+   const portfolio=J.registryCompositionPortfolio(completed);
+   if(portfolio.candidates.length)portfolios.push({line:c.line,role,energy,candidates:portfolio.candidates});
+   else {if(anchorProbes.length)choice.params.photoAnchor=anchorProbes[0].anchor;exclusions.push({reason:'KEEP_SHIPPING_LOCAL_CANDIDATE_NO_COMPLETE_ALTERNATIVE'});}
    phraseCandidateTraces.push(J.registryCandidateTrace(c,winner.id,font,role,energy,completed,exclusions,portfolio));
-   Object.assign(choice,completed.find(x=>x.layout===choice.layout)||completed[0]);
+   if(completed.length)Object.assign(choice,completed.find(x=>x.layout===choice.layout)||completed[0]);
    entries[c.line]={...choice,anchorComparisons:anchorProbes,enter:finalEnter,hold,inDur:.12,role,energy,musicMode:musicProfile.mode,repeat:rep};history.push(choice.family);seen.set(repeatKey,rep+1);seen.set(repeatKey+'|choice',choice);progress('反復フレーズの構成を選択しています');await yieldUI();
   }
   const globalStoryboard=J.chooseRegistryStoryboard(portfolios,12),storyboardEvidence=[];
