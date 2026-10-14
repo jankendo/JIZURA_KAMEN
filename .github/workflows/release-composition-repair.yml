@@ -17,13 +17,17 @@ jobs:
             cases: holdout-12
           - partition: weak-portrait
             cases: fresh-confirmation-02
+          - partition: punch
+            cases: holdout-01
+          - partition: density
+            cases: development-05
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 1a8ade9c301eb7e42a29cdb64117b369fc216155
+          ref: 5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -76,7 +80,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: composition-protected1a8ade9-${{ matrix.partition }}
+          name: composition-registry5ede0f1-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
