@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-10-14T10:11:40.292901+00:00",
+  "policyId": "music-conditioned-composition-pareto-v1",
+  "status": "PREREGISTERED_NOT_RELEASE_CERTIFIED",
+  "tuningCase": "holdout-12 already observed; cannot claim independent validation on it",
+  "unchanged": [
+    "All metric formulas and existing weights/thresholds",
+    "Absolute lyric/audio/timing/profile/manual-lock constraints",
+    "Existing strict promotion path retained and its failures recorded"
+  ],
+  "newSecondaryAcceptanceRequirements": [
+    "Only same-source/input/delivery-profile decoded movies; native physical floors must already pass",
+    "Typographic structure AND registered lyric foreground novelty strictly improve; contrast, perceptual/regional novelty, hook/beat realization and lower-tail never regress",
+    "For EVERY matched lyric-unit interval, absolute error between measured visual energy and unchanged existing targetMotion never increases; at least one non-quiet interval strictly improves",
+    "Quiet intervals cannot gain unwanted motion; no previously nonstagnant interval becomes stagnant",
+    "Legacy temporalContrast decline bounded by the PREEXISTING V5 creativeSlack2 score points; raw V5 temporal modulation index decline explicitly reported rather than relabelled as nonregression",
+    "Unknown observations cannot meet requirements; independent previously unused inputs must validate before source promotion"
+  ],
+  "reason": "Holdout12 unit1 retains targetMotion0.001164740436; measured energy0.000534287→0.000672701 reduces gap0.000630453→0.000492040, removes observed stagnation, improves structure33→58 and foreground53→76; modulation index0.8603→0.7659 decreases and must remain disclosed as a tradeoff, not falsely called improvement.",
+  "human": "HUMAN_UNVERIFIED",
+  "doNotAutomaticallyPassRelease": true
+}
