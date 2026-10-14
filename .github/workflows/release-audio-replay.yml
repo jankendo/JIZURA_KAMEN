@@ -1,0 +1,53 @@
+name: Replay exact rejected AAC with integer delay and anti-alias sampling
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/release-audio-replay.yml]
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: a7e98d0b397bfddd7099c8482cc120ad1a4bbdd2
+          path: current
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: cd current && npm ci && npm run build
+      - name: Restore exact failed inputs and videos
+        run: |
+          python - <<'PY'
+          import pathlib,json,gzip,shutil,hashlib
+          root=pathlib.Path('qa/docs/qa/generalization');base=root/'composition-recovery/multiple-audio-rejection';out=pathlib.Path('inputs');out.mkdir();m=json.loads((base/'manifest.json').read_text());(out/'manifest.json').write_text(json.dumps(m))
+          for r in m['rows']:
+              v=r['variant'];(out/(v+'-reference.json')).write_bytes(gzip.decompress((base/r['reference']).read_bytes()));(out/(v+'-failure.json')).write_bytes(gzip.decompress((base/('release-unseen-03-'+v+'-guard-failure.json.gz')).read_bytes()))
+              for suffix,key,folder in [('mp4','videoSHA256','media'),('wav','audioWAVSHA256','inputs')]:
+                  p=root/folder/(r[key]+'.'+suffix);assert hashlib.sha256(p.read_bytes()).hexdigest()==r[key];shutil.copyfile(p,out/(v+'.'+suffix))
+          PY
+      - name: Replay existing completed MP4s without re-encoding
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          mkdir -p results
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in 1 2 3 4 5; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/replay_rejected_audio.cjs http://127.0.0.1:4173/ inputs results > results/replay.log 2>&1
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: corrected-audio-alignment-a7e98d0
+          path: results
+          retention-days: 14
+          if-no-files-found: error
