@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recordedAt": "2026-10-14T06:06:21.500808+00:00",
+  "recordedAt": "2026-10-14T06:20:49.313115+00:00",
   "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
   "sourceBranch": "audit/global-storyboard-20261012",
   "pr": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
@@ -153,21 +153,25 @@
   },
   "releaseBlockers": [
     {
-      "id": "ALL_EFFECT_INTENT",
-      "cause": "Final selections include legacy aliases and aggregate hooks. Existing whole-film ON/OFF isolates only camera focus and derived foreground in one case; 1540 automatic configuration entries have no independently verified per-operator intent or encoded timing. Native dispatch does not close this gate.",
-      "next": "For actual dispatched operators, separate expected target/motion/time contracts, verify same-condition frozen-plan ON/OFF contribution with exact final-film reproduction; label aliases, confounding and gaps honestly."
+      "id": "COMPOSITION_REGRESSION",
+      "input": "holdout-12; seed/input/profile unchanged; 9–12.33s and12.33–15.67s",
+      "confirmedCause": "Candidate2/5 both retained, equal local physical candidates resolve by Stage-C order; b5 left→right composition becomes5e left→left. No automatic fixed rotation or music timing alteration applied.",
+      "measured": "typography main64/b5 57/5e33; foreground novelty79/77/53; 926 beam still selects2→2 and unchanged incumbent.",
+      "remaining": "A music-conditioned safe candidate that recovers meaningful structural development without local contrast/time/foreground regression, proved on finished MP4 and independent conditions."
     },
     {
-      "id": "QUALITY_GENERALIZATION",
-      "cause": "Formal507 typography improved13/tied9/declined8 againstprior. Independent energetic fixture has contrast94→84, temporal32→19, novelty67→57 and proxy motion100→67; no named semantic motion failure established, but overall benefit cannot be certified. Current staged correction not yet fully compared.",
-      "next": "Collect fixed5e matrix, review weak actual frames/intervals under identical conditions and isolate any actual regression. No score/threshold/fixture changes."
+      "id": "WEAK_INTERVAL_CONTRAST",
+      "input": "fresh-confirmation-02 first lyric0.3–3.2s,9:16 busy background",
+      "confirmed": "Full-output complete-unit HOLD contrast proxy100→90, all66 HOLD frames glyph-complete; historical observer94→84 retained separately. Readable duration improved2.4583→2.75s; not verified missing lyrics or named semantic motion failure.",
+      "remaining": "Composition-preserving general repair demonstrably improves this weak interval without sacrificing typography, timing or music fit; latest four-focus experiment does not establish gain."
+    },
+    {
+      "id": "IMPORTANT_EFFECT_EVIDENCE",
+      "confirmed": "35 prior grouped controls plus8 role-branch controls completed.4 new group contributions verified against matching original. Two continuity controls have unmatched original decoded video; group contributions alone do not certify intended target/timing.",
+      "remaining": "Reproduce continuity adopted original and identify native-versus-encode difference; close important actual operator intent/time evidence, keeping unused aliases/static/locks honestly separate."
     }
   ],
-  "runningIsolatedComparisons": {
-    "C": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38506753269",
-    "D": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38506753151",
-    "E": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38506753174"
-  },
+  "runningIsolatedComparisons": [],
   "cancelledObsoleteHarnessRuns": {
     "runs": [
       38506736034,
@@ -200,11 +204,22 @@
   "latestExperimentalSource": "926ebca71badbd3ed106a422d24938d05c272779",
   "experimentBranch": "audit/contrast-preserves-composition-20261014",
   "experimentsNotAdopted": {
-    "17df74f": "4 technicalPASS; no holdout12 composition recovery; holdout03 contrast improved",
-    "4f7a836": "Technically valid but holdout12 perceptual98→27/temporal38→9; rejected",
-    "5c81698": "Retained actual shipping baseline and avoided prior prototype regression; four focal comparisons technicallyPASS, no substantial composition gain"
+    "latestWorkflow": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38519657750",
+    "status": "SUCCESS_TECHNICAL_ONLY",
+    "focusCases": 4,
+    "creativeImprovementCertified": false,
+    "failedTrialPreserved": "4f7 hold12 perceptual98→27, temporal38→9",
+    "actualShippingBaselineRetained": "5c/926"
   },
   "operatorReproduction": "Original same-source full-unit verificationPASS; repeated raw RGBA frames identical. Exact decoded SHA mismatch retained for2 cases, with measured H264 repeat variation.",
   "completedCDE": "All30 per isolated algorithm collected, exact source/input/profile/full decode matched; no unconditional adoption of mixed-resultD",
-  "importantRoleBranchAudit": "IN_PROGRESS"
+  "importantRoleBranchAudit": {
+    "workflow": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38520113617",
+    "status": "SUCCESS",
+    "controls": 8,
+    "diagnosticDecodeMovies": 24,
+    "exactOriginalDecodedMatches": 6,
+    "groupContributionVerified": 4,
+    "continuityOriginalMismatchControls": 2
+  }
 }
