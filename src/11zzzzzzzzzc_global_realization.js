@@ -18,11 +18,12 @@ J.registryGeometryAlternativeCuts=p=>{
   const live=p.cuts.find(c=>c.line===target.line&&c.start===target.start&&c.end===target.end);if(J.photoChoreographyLocked(p,live||target)){trace.push({sourceUnitKey:pick.sourceUnitKey,status:'NOT_APPLICABLE_MANUAL_LOCK'});continue;}
   if(String(state.text??state.lineText)!==String(target.text??target.lineText)){trace.push({sourceUnitKey:pick.sourceUnitKey,status:'STALE_TEXT_CONTRACT'});continue;}
   // Preserve input/unit identity while carrying every measured rendering field.
+  const finalScene=live?.grammar?{grammar:J.clonePhotoRenderPlan(live.grammar),cinema:J.clonePhotoRenderPlan(live.cinema),story:J.clonePhotoRenderPlan(live.story)}:{};
   const identity={line:target.line,index:target.index,start:target.start,end:target.end,dur:target.dur,text:target.text,lineText:target.lineText,lyricUnitOrigin:target.lyricUnitOrigin};
-  for(const key of Object.keys(target))delete target[key];Object.assign(target,J.clonePhotoRenderPlan(state),identity,{registrySelected:true});
+  for(const key of Object.keys(target))delete target[key];Object.assign(target,J.clonePhotoRenderPlan(state),identity,finalScene,{registrySelected:true,cinemaV3LegacyFinalist:true});
   const selection=p.artDirection.registrySelection,contextChanged=proposal.style!==selection.style||proposal.font!==selection.font;
   if(contextChanged){target.styleKey=p.styleKey;target.style=p.style;target.params={...target.params,font:selection.font};}
-  trace.push({sourceUnitKey:pick.sourceUnitKey,status:contextChanged?'STALE_STYLE_FONT_REQUIRES_FRESH_NATIVE_AND_ENCODED_EVALUATION':'FULL_STATE_RETAINED_AS_ALTERNATIVE',layout:target.layout,font:target.params?.font,anchor:target.params?.photoAnchor,earlierPhaseEvidenceReusable:!contextChanged});
+  trace.push({sourceUnitKey:pick.sourceUnitKey,status:contextChanged?'STALE_STYLE_FONT_REQUIRES_FRESH_NATIVE_AND_ENCODED_EVALUATION':'FULL_STATE_RETAINED_AS_ALTERNATIVE',layout:target.layout,font:target.params?.font,anchor:target.params?.photoAnchor,earlierPhaseEvidenceReusable:!contextChanged&&!live?.grammar,finalSceneReevaluationRequired:!!live?.grammar});
  }
  return {cuts,trace,scope:'Separate candidate after directors; native and encoded reevaluation mandatory'};
 };
