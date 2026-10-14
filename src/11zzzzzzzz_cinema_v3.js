@@ -359,7 +359,7 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  // hybrid, including its readability repair. Do not roll it back to raw p.
  const shippingBaseline=readable.find(x=>x.root==='INCUMBENT')?.plan||components[0].plan;
  const incumbentIdentity=await V.planHash(shippingBaseline);
- let priorEncoded=null;
+ let priorEncoded=null,priorDeliveryEncoded=null;
  for(const candidate of readable){
   const identity=await V.planHash(candidate.plan);
   const guard=await V.guardCompositionPromotion(candidate.root,identity,incumbentIdentity,async()=>{
@@ -373,7 +373,7 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
   const axes=['typographyDiversity','lyricForegroundNovelty','temporalContrast','localContrast','motionRealization'];
   let deliveryGuard=null;
   if(!guard.allowed&&guard.next?.completed&&guard.prior?.completed&&axes.some(k=>Number.isFinite(guard.next.metrics?.[k])&&Number.isFinite(guard.prior.metrics?.[k])&&guard.next.metrics[k]>guard.prior.metrics[k])){
-   const deliveryPrior=await J.measureCinemaEncodedProxy(shippingBaseline,range,signal,{scope:rasterScope,inputHash,deliveryProfile:true}),deliveryNext=await J.measureCinemaEncodedProxy(candidate.plan,range,signal,{scope:rasterScope,inputHash,deliveryProfile:true});
+   const deliveryPrior=priorDeliveryEncoded??=await J.measureCinemaEncodedProxy(shippingBaseline,range,signal,{scope:rasterScope,inputHash,deliveryProfile:true}),deliveryNext=await J.measureCinemaEncodedProxy(candidate.plan,range,signal,{scope:rasterScope,inputHash,deliveryProfile:true});
    deliveryGuard=await V.guardCompositionPromotion(candidate.root,identity,incumbentIdentity,async()=>({next:deliveryNext,prior:deliveryPrior}));
    deliveryGuard.phase='ACTUAL_DELIVERY_DIMENSIONS_FPS';candidate.encoded=deliveryNext;
   }
