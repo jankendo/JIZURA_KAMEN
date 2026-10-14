@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "preregisteredBeforeResults": true,
-  "candidateCommit": "b85bbeefd4f51e156da0c0ff515f32b99975df8a",
+  "candidateCommit": "1aa31cd632955894daef8e8849728a9a0ef608c8",
   "baselineCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "previousCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
   "fixtureSpecificationSHA256": "ea80c2614e4d8012d0db7c1a9990b72f3d1b2e126f581ccb6bdeae99a3c2c1e8",
@@ -244,5 +244,11 @@
     "Important selected effects need source/hash-bound actual-frame and isolated counterfactual evidence; proxy scores alone cannot establish quality GO"
   ],
   "humanEvaluation": "HUMAN_UNVERIFIED",
-  "metricsThresholdsWeightsChanged": false
+  "metricsThresholdsWeightsChanged": false,
+  "protocolAmendment": {
+    "priorCandidateCommit": "b85bbeefd4f51e156da0c0ff515f32b99975df8a",
+    "candidateCommit": "1aa31cd632955894daef8e8849728a9a0ef608c8",
+    "reason": "Observed development/holdout entry-anchor feasibility defect; untouched independent confirmation outcomes have not been inspected. Fix is frozen before current-source independent observations. Fixture definitions, measurement methods, criteria and weights are unchanged.",
+    "historicalBaselineReuse": "Reuse independently completed main and previous5e movies only after original WAV/image/LRC/seed/profile hashes match exactly; no current source certification from b85 movies."
+  }
 }
