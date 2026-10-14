@@ -12,9 +12,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # The full suite includes an isolated restore run. The 200-test CI run
-    # took nearly 118 minutes before build/browser checks; retain those checks.
-    timeout-minutes: 240
+    # Frozen dff full regression reached the 240-minute job limit.
+    # Keep every check and allow the measured workload to finish.
+    timeout-minutes: 360
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
