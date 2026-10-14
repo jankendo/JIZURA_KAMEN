@@ -83,7 +83,7 @@ J.registryTypographySignature=(mask,w,h)=>{
 // Retain all distinct safe candidates inside the existing local-fit tolerance;
 // this is an alternate portfolio, not a replacement for shipping entries.
 J.registryGeometryRepresentatives=(ranked,localTolerance=.08)=>{
- const safe=ranked.filter(c=>c?.evidence?.eligible&&Number.isFinite(c.score)&&c.signature?.length&&c.typographySignature?.length),best=safe[0]?.score,seen=new Set(),kept=[],excluded=[];
+ const safe=ranked.filter(c=>c?.evidence?.eligible&&Number.isFinite(c.score)&&c.signature?.length&&c.typographySignature?.length&&Array.from(c.signature).every(Number.isFinite)&&Array.from(c.typographySignature).every(Number.isFinite)),best=safe[0]?.score,seen=new Set(),kept=[],excluded=[];
  for(const c of safe){const key=JSON.stringify([Array.from(c.signature),Array.from(c.typographySignature)]);if(c.score<best-localTolerance){excluded.push({layout:c.layout,reason:'EXISTING_LOCAL_FIT_TOLERANCE'});continue;}if(seen.has(key)){excluded.push({layout:c.layout,reason:'EXACT_RENDERED_GEOMETRY_DUPLICATE'});continue;}seen.add(key);kept.push(c);}
  return {candidates:kept,excluded,method:'All exact-distinct safe measured geometry inside existing.08 fit tolerance; candidate count adapts to actual render evidence'};
 };
