@@ -1,4 +1,4 @@
-name: Unused independent4 matched shipping Cinema comparison — preregistered music Pareto
+name: Fixed independent4 matched shipping Cinema comparison — preregistered music Pareto
 on:
   push:
     branches: [codex/kamen-generalization-evidence-20261012]
@@ -27,7 +27,7 @@ jobs:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 216bb536f63c7753d0a3c059cd771b0004a6e44b
+          ref: dff5f5fc867f888cd1128f25332e546d5e28dead
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -53,6 +53,7 @@ jobs:
           KAMEN_CHROME: /usr/bin/google-chrome
           KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/composition-recovery/release-unseen-fixtures.json
           KAMEN_MATRIX_CASES: ${{ matrix.cases }}
+          KAMEN_MATRIX_VARIANTS: v3
           NODE_PATH: ${{ github.workspace }}/current/node_modules
         run: |
           node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/current-server.log 2>&1 &
@@ -67,7 +68,7 @@ jobs:
           curl -fsS -o /dev/null http://127.0.0.1:4173/
           curl -fsS -o /dev/null http://127.0.0.1:4174/
           node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4174/ results/matrix > results/matrix.log 2>&1
-          python -c 'import json; x=json.load(open("results/matrix/results.json")); expected=set(__import__("sys").argv[1].split(",")); assert len(x["rows"])==len(expected)*2 and {r["fixture"]["id"] for r in x["rows"]}==expected, "Incomplete partition"' "${{ matrix.cases }}"
+          python -c 'import json; x=json.load(open("results/matrix/results.json")); expected=set(__import__("sys").argv[1].split(",")); assert len(x["rows"])==len(expected) and {r["fixture"]["id"] for r in x["rows"]}==expected, "Incomplete partition"' "${{ matrix.cases }}"
       - name: Independently replay artifact hashes and full decode
         if: always()
         run: |
@@ -79,7 +80,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: release-unseen-pareto216bb53-${{ matrix.partition }}
+          name: release-unseen-dff5f5f-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error

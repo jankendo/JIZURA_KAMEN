@@ -15,7 +15,7 @@ jobs:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: a7e98d0b397bfddd7099c8482cc120ad1a4bbdd2
+          ref: dff5f5fc867f888cd1128f25332e546d5e28dead
           path: current
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
@@ -47,7 +47,7 @@ jobs:
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         if: always()
         with:
-          name: corrected-audio-alignment-a7e98d0
+          name: corrected-audio-boundaries-dff5f5f
           path: results
           retention-days: 14
           if-no-files-found: error
