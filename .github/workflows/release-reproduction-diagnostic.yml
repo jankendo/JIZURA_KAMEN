@@ -1,0 +1,68 @@
+name: Fixed5e raw-frame and original-artifact reproduction diagnostic
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/release-reproduction-diagnostic.yml]
+permissions:
+  contents: read
+jobs:
+  effects:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      matrix:
+        hook: [temporalCinemaFocus]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 5e14682249ce690337874214f2ec76fc8e68fa26
+          path: current
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Restore completed immutable movies and plans
+        run: |
+          python - <<'PY'
+          import pathlib,gzip,json,shutil
+          root=pathlib.Path('qa/docs/qa/generalization');cases=['holdout-01','development-01']
+          for case in cases:
+              matches=[]
+              for f in list((root/'composition-recovery/final5e').glob('*/results.json.gz'))+list((root/'composition-recovery/fresh5e').glob('*/results.json.gz')):
+                  matches += [(f.parent,r) for r in json.loads(gzip.decompress(f.read_bytes()))['rows'] if r['fixture']['id']==case and r['variant']=='v3']
+              assert len(matches)==1
+              folder,row=matches[0];assert row['provenance']['finalArtifactVerification']['binding']['sourceCommit']=='5e14682249ce690337874214f2ec76fc8e68fa26';out=pathlib.Path('inputs')/case;out.mkdir(parents=True)
+              (out/'results.json').write_text(json.dumps({'rows':[row]}));shutil.copyfile(root/'media'/(row['sha256']+'.mp4'),out/(case+'-v3.mp4'));ref=row['referenceInputs'];(out/ref['file']).write_bytes(gzip.decompress((folder/(ref['file']+'.gz')).read_bytes()));shutil.copyfile(root/'inputs'/(ref['audioSHA256']+'.wav'),out/ref['audioFile'])
+          PY
+      - name: Full-profile ON OFF ON-repeat completed MP4 comparisons
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_COUNTERFACTUAL_HOOK: ${{ matrix.hook }}
+          KAMEN_COUNTERFACTUAL_PHASES: 1
+          KAMEN_COUNTERFACTUAL_NATIVE_HASHES: 1
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in 1 2 3 4 5; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          for case in holdout-01 development-01; do
+            mkdir -p "results/$case"
+            node qa/docs/qa/generalization/tools/encoded_camera_counterfactual.cjs http://127.0.0.1:4173/ "inputs/$case" "$case" v3 current "results/$case" > "results/$case/run.log" 2>&1
+          done
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: release5e-native-reproduction
+          path: |
+            results
+            server.log
+          retention-days: 14
+          if-no-files-found: error
