@@ -1,0 +1,98 @@
+name: Independent frozen-source three-version completed MP4 confirmation
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/release-independent-confirmation.yml]
+permissions:
+  contents: read
+jobs:
+  real-mp4-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - partition: confirmation-01
+            cases: release-confirmation-01
+          - partition: confirmation-02
+            cases: release-confirmation-02
+          - partition: confirmation-03
+            cases: release-confirmation-03
+          - partition: confirmation-04
+            cases: release-confirmation-04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: b85bbeefd4f51e156da0c0ff515f32b99975df8a
+          path: current
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 2e7ed477f88028dbb63aa609e8a11b4052ea8c00
+          path: baseline
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 5e14682249ce690337874214f2ec76fc8e68fa26
+          path: previous
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - name: Install media verification
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install and build frozen shipping sources
+        run: |
+          (cd current && npm ci && npm run build)
+          (cd baseline && npm ci && npm run build)
+          (cd previous && npm ci && npm run build)
+          test -x /usr/bin/google-chrome
+          mkdir -p results
+          sha256sum qa/docs/qa/generalization/composition-recovery/release-independent-preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/tools-and-preregistration.sha256
+      - name: Complete natural-selection paired MP4 matrix
+        timeout-minutes: 320
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/composition-recovery/release-independent-preregistration.json
+          KAMEN_MATRIX_CASES: ${{ matrix.cases }}
+          KAMEN_MATRIX_VARIANTS: v3,baseline
+          KAMEN_MATRIX_NATIVE_HASHES: 1
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/current-server.log 2>&1 &
+          current_server=$!
+          node baseline/scripts/serve.mjs dist 127.0.0.1 4174 > results/baseline-server.log 2>&1 &
+          baseline_server=$!
+          node previous/scripts/serve.mjs dist 127.0.0.1 4175 > results/previous-server.log 2>&1 &
+          previous_server=$!
+          trap 'kill "$current_server" "$baseline_server" "$previous_server" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS -o /dev/null http://127.0.0.1:4173/ && curl -fsS -o /dev/null http://127.0.0.1:4174/; then break; fi
+            sleep 1
+          done
+          curl -fsS -o /dev/null http://127.0.0.1:4173/
+          curl -fsS -o /dev/null http://127.0.0.1:4174/
+          node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4174/ results/matrix > results/matrix.log 2>&1
+          KAMEN_MATRIX_VARIANTS=v3 node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4175/ http://127.0.0.1:4175/ results/previous > results/previous.log 2>&1
+          python -c 'import json; x=json.load(open("results/matrix/results.json")); expected=set(__import__("sys").argv[1].split(",")); assert len(x["rows"])==2*len(expected) and {r["fixture"]["id"] for r in x["rows"]}==expected, "Incomplete partition"' "${{ matrix.cases }}"
+      - name: Independently replay artifact hashes and full decode
+        if: always()
+        run: |
+          if test -f results/matrix/results.json; then
+            python qa/docs/qa/generalization/tools/verify_artifacts.py results/matrix results/strict-decode.json
+            python qa/docs/qa/generalization/tools/summarize_realization.py results/matrix/results.json results/realization.json
+          fi
+          if test -f results/previous/results.json; then
+            python qa/docs/qa/generalization/tools/verify_artifacts.py results/previous results/previous-strict-decode.json
+          fi
+      - name: Preserve every completed artifact and failure
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: release-independent-b85bbee-${{ matrix.partition }}
+          path: results/
+          retention-days: 14
+          if-no-files-found: error
