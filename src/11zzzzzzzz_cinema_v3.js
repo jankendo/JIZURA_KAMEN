@@ -335,7 +335,7 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
    const source=component.plan.cuts.find(c=>c.line===target.line&&c.start===target.start&&c.end===target.end);
    if(!source||String(source.lineText)!==String(target.lineText))continue;
    const perUnit=m=>({...m,samples:m.samples.filter(s=>s.line===target.line&&s.time>=target.start&&s.time<target.end)}),required=perUnit(incumbent),observed=perUnit(component.readability);
-   if(!V.physicalReadabilityDominates(observed,required)){unitAlternativeTrace.push({index,line:target.line,component:component.id,reason:'ACTUAL_UNIT_PHYSICAL_FLOOR'});continue;}
+   if(!required.samples.length||!observed.samples.length||!V.physicalReadabilityDominates(observed,required)){unitAlternativeTrace.push({index,line:target.line,component:component.id,reason:'ACTUAL_UNIT_PHYSICAL_FLOOR'});continue;}
    const plan=V.clone(shipping);plan.cuts[index]=V.clone(source);
    if(component.plan.cinemaCandidateMode==='legacy'&&plan.cinemaCandidateMode!=='legacy')plan.cuts[index].cinemaV3Legacy=true;
    plan.cuts[index].cinemaV3LegacyFinalist=true;J.rebuildCinemaBeatIntent(plan);
@@ -345,7 +345,7 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  }
  // Round-robin across actual unit ordinals: no lyric ID/seed/material branches,
  // and no forced rotation. The existing32-search scale bounds added work.
- unitAlternatives.sort((a,b)=>String(a.component.id).localeCompare(String(b.component.id))||a.index-b.index);
+ unitAlternatives.sort((a,b)=>a.index-b.index||String(a.component.id).localeCompare(String(b.component.id)));
  for(const alternative of unitAlternatives.slice(0,32)){
   if(signal?.aborted)throw new DOMException('Aborted','AbortError');
   const {plan,index,component,identity}=alternative,raw=await J.measureCinemaOutputReadability(plan,range,signal,measurementOptions),repair=V.physicalReadabilityDominates(raw,legacyReadability)&&V.physicalReadabilityDominates(raw,incumbent)?null:await V.repairReadabilityPreview(plan,range,signal,{...measurementOptions,cached:raw}),readability=repair?.after||raw;
