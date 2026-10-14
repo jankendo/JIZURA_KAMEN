@@ -367,7 +367,17 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
    candidate.encoded=await J.measureCinemaEncodedProxy(candidate.plan,range,signal,{scope:rasterScope,inputHash});
    return {next:candidate.encoded,prior:priorEncoded};
   });
-  candidate.creativeProtected=guard.allowed;creativeGuards.push(guard);
+  // A10fps proxy is not the requested film. Promising safe geometry is
+  // compared again at the actual delivery dimensions/FPS, with the SAME
+  // nonregression rule; proxy losses and the second decision are retained.
+  const axes=['typographyDiversity','lyricForegroundNovelty','temporalContrast','localContrast','motionRealization'];
+  let deliveryGuard=null;
+  if(!guard.allowed&&guard.next?.completed&&guard.prior?.completed&&axes.some(k=>Number.isFinite(guard.next.metrics?.[k])&&Number.isFinite(guard.prior.metrics?.[k])&&guard.next.metrics[k]>guard.prior.metrics[k])){
+   const deliveryPrior=await J.measureCinemaEncodedProxy(shippingBaseline,range,signal,{scope:rasterScope,inputHash,deliveryProfile:true}),deliveryNext=await J.measureCinemaEncodedProxy(candidate.plan,range,signal,{scope:rasterScope,inputHash,deliveryProfile:true});
+   deliveryGuard=await V.guardCompositionPromotion(candidate.root,identity,incumbentIdentity,async()=>({next:deliveryNext,prior:deliveryPrior}));
+   deliveryGuard.phase='ACTUAL_DELIVERY_DIMENSIONS_FPS';candidate.encoded=deliveryNext;
+  }
+  candidate.creativeProtected=deliveryGuard?.allowed??guard.allowed;creativeGuards.push({...guard,phase:'10FPS_EXPLORATORY_PROXY'},...deliveryGuard?[deliveryGuard]:[]);
  }
  const creativeGuard=creativeGuards.find(x=>x.root==='MEASURED_REGISTRY_BASELINE')??null;
  const viable=readable.filter(x=>x.creativeProtected).sort((a,b)=>V.compareRanks(vector(a.readability),vector(b.readability))||String(a.root).localeCompare(String(b.root))),proposal=viable[0],plan=proposal?.plan||p,readability=proposal?.readability||incumbent,lines=proposal?.lines||[],raster=proposal?await J.measureCinemaSequence(plan,range,{scope:rasterScope}):null,encoded=proposal?(proposal.encoded||(!legacyTrial.accepted&&!lines.length&&stages.chosen.encoded&&selectedProxyPlanHash===await V.planHash(plan)?stages.chosen.encoded:await J.measureCinemaEncodedProxy(plan,range,signal,{scope:rasterScope}))):null,safe=!!encoded?.completed&&raster.samples.every(s=>s.safe)&&!(encoded.layerPresence?.primaryText?.samples||[]).some(s=>s.visibleSamples<s.samples.length),accepted=!!proposal&&safe;
