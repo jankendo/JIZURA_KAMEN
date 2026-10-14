@@ -419,4 +419,31 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  return evidence;
  }finally{rasterScope.renderer.customBgBitmap?.close?.();rasterScope.renderer.disposeAssets?.();}
 };
+const repairWithShippingBaseline=J.repairCinemaSequence,stableComparisonCache=new WeakMap();
+J.repairCinemaSequence=async(p,range,telemetry={})=>{
+ const before=V.clone(p),baselineResult=await repairWithShippingBaseline(p,range,telemetry);
+ if(!V.encodedCompositionComparisonAvailable()||p.cinemaCandidateMode==='legacy'||!p.musicalPhoto?.cinema||p.cuts.every(c=>c.line<0||J.photoChoreographyLocked(p,c)))return baselineResult;
+ let uploadedIdentity=null;try{uploadedIdentity=JSON.parse(before.artDirection?.registrySelection?.audioKey||'null')?.sourceFileSHA256;}catch{}
+ if(!/^[0-9a-f]{64}$/.test(uploadedIdentity||''))return baselineResult;
+ const baselineIdentity=await V.planHash(p);if(stableComparisonCache.get(p)===baselineIdentity)return baselineResult;
+ const trial=V.clone(before),stableSeed=J.cinemaImmutableContentSeed(trial);
+ if(stableSeed===J.cinemaContentSeed(before))return baselineResult;
+ trial.cinemaStableExplorationSeed=stableSeed;
+ const candidate=J.cinemaArchitectureCandidates(trial)[0];if(!candidate)return baselineResult;
+ J.applyCinemaArchitecture(trial,candidate);delete trial.musicalPhoto.cinema.architectureSearch;delete trial.compositionSearch;
+ const signal=telemetry.signal;let record;
+ try{
+  if(signal?.aborted)throw new DOMException('Aborted','AbortError');
+  await repairWithShippingBaseline(trial,range,telemetry);
+  if(V.lockSignature(p)!==V.lockSignature(trial))throw Error('STABLE_SEARCH_LOCK_CHANGED');
+  const times=[...new Set([...p.cuts,...trial.cuts].filter(c=>c.line>=0).flatMap(c=>[c.start+.04,c.start+c.dur*.25,c.start+c.dur*.5,c.start+c.dur*.75,c.end-.2,c.grammar?.temporal?.hit]).filter(Number.isFinite))],options={backgroundConsistency:true,physicalOnly:true,additionalTimes:times};
+  const prior=await J.measureCinemaOutputReadability(p,range,signal,options),next=await J.measureCinemaOutputReadability(trial,range,signal,{...options,inputHash:prior.cacheIdentity?.inputHash});
+  const physical=V.physicalReadabilityDominates(next,prior);let creative=null;
+  if(physical&&prior.cacheIdentity?.inputHash){const opts={deliveryProfile:true,inputHash:prior.cacheIdentity.inputHash},a=await J.measureCinemaEncodedProxy(p,range,signal,opts),b=await J.measureCinemaEncodedProxy(trial,range,signal,opts);creative=await V.guardCompositionPromotion('IMMUTABLE_SEED_SEARCH',await V.planHash(trial),await V.planHash(p),async()=>({next:b,prior:a}));}
+  const accepted=physical&&creative?.allowed===true;record={status:accepted?'ACCEPTED':'KEPT_SHIPPING_BASELINE',stableSeed,shippingSeed:J.cinemaContentSeed(before),physicalProtected:physical,creative,method:'Whole original32 search baseline retained; whole immutable32 search competes under unchanged physical and complete-unit delivery guards; final adopted MP4 QA still required'};
+  if(accepted)V.restorePlan(p,trial,Object.getOwnPropertyDescriptor(trial,'_provenancePlanHash')?.value);
+ }catch(error){if(signal?.aborted)throw error;record={status:'KEPT_SHIPPING_BASELINE_FAILED_TRIAL',stableSeed,error:String(error.message)};}
+ p.musicalPhoto.cinema.immutableSeedComparison=record;stableComparisonCache.set(p,await V.planHash(p));return baselineResult;
+};
+
 })();

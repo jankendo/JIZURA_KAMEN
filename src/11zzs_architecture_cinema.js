@@ -1,11 +1,18 @@
 /* Content-seeded composition tournament. Only visible raster improvements survive. */
 (()=>{'use strict';const J=window.J,C=J.clamp,ease=u=>{u=C(u);return u*u*(3-2*u);},active=p=>!!p.musicalPhoto?.cinema,locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c);
 const hash=s=>{let h=2166136261;for(const ch of String(s)){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;};
-J.cinemaContentSeed=p=>{
+J.cinemaImmutableContentSeed=p=>{
  let audioIdentity=null;try{audioIdentity=JSON.parse(p.artDirection?.registrySelection?.audioKey||'null')?.sourceFileSHA256??null;}catch{}
  // Unknown uploaded identity stays explicit; floating analysis and resampled
  // PCM never seed geometry. Musical scoring and intentional holds are intact.
  return hash(JSON.stringify(['immutable-content-seed-v2',p.seed,audioIdentity,p.artDirection?.registrySelection?.backgroundKey,p.lines?.map(l=>[l.start,l.text]),p.W,p.H]));
+};
+// The shipping baseline retains its original seed semantics. A stable seed
+// is an explicit competing search, never an unverified replacement baseline.
+J.cinemaContentSeed=p=>{
+ if(Number.isInteger(p.cinemaStableExplorationSeed))return p.cinemaStableExplorationSeed;
+ let audioKey=p.artDirection?.registrySelection?.audioKey;try{const key=JSON.parse(audioKey);delete key.sourceFileSHA256;audioKey=JSON.stringify(key);}catch{}
+ return hash(JSON.stringify([audioKey,p.artDirection?.registrySelection?.backgroundKey,p.lines?.map(l=>[l.start,l.text]),p.musicalPhoto?.songProfile,p.musicalPhoto?.cinema?.pool,p.styleKey]));
 };
 const fields=['hero','window','asymmetric','band','graphic','arena'],safeLayers=['frame','rails','grid','contour'];
 J.cinemaArchitectureCandidates=p=>{const seed=J.cinemaContentSeed(p),quiet=['flow','drift'].includes(p.musicalPhoto.songProfile.mode);return Array.from({length:12},(_,id)=>({id,seed,quiet,rotation:hash(seed+':'+id)%6,direction:hash('side'+seed+id)%2,opening:hash('open'+seed+id)%3}));};
