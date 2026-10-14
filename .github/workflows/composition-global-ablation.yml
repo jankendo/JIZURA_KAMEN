@@ -57,6 +57,7 @@ jobs:
           KAMEN_CHROME: /usr/bin/google-chrome
           KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/final-valid-preregistration.json
           KAMEN_MATRIX_CASES: ${{ matrix.cases }}
+          KAMEN_MATRIX_VARIANTS: v3
           NODE_PATH: ${{ github.workspace }}/current/node_modules
         run: |
           node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/current-server.log 2>&1 &
