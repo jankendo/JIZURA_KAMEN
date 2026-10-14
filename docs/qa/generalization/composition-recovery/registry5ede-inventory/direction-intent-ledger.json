@@ -1,0 +1,3465 @@
+{
+  "schema": 1,
+  "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+  "states": [
+    "VERIFIED",
+    "FAILED",
+    "NOT_APPLICABLE",
+    "UNMEASURED",
+    "CONFOUNDED",
+    "STALE"
+  ],
+  "items": [
+    {
+      "evidenceId": "1ea39e98d69e6f88a3755a0f6ae0e0533299cf92505cbbf094ea14c157f4aad3",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cinemaGrammarsolo",
+      "target": "layout",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        9,
+        12.33
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "layout",
+        "selectedId": "cinemaGrammarsolo",
+        "timeRange": [
+          9,
+          12.33
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "b33a5beaf98fd26b66e4ad1deb9dc2c62248165fbfc90d25d363312af664ab07",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "enter",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        9,
+        12.33
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "enter",
+        "selectedId": "cut",
+        "timeRange": [
+          9,
+          12.33
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "3124983eaacd3673eecf9f56ccb3ae55dd963704f02c62e16a2e221b1942f0a0",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "still",
+      "target": "hold",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        9,
+        12.33
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "hold",
+        "selectedId": "still",
+        "timeRange": [
+          9,
+          12.33
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "98deeee8634695e6594a75a3ba215d2115dcd255e7983abdbc890d696451463e",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "exit",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        9,
+        12.33
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "exit",
+        "selectedId": "cut",
+        "timeRange": [
+          9,
+          12.33
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "d14b586b14167de0849826b7df618106ebdb3488a9c2934fa41c48736fa49a6c",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "beatPunch",
+      "target": "cam",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        9,
+        12.33
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "cam",
+        "selectedId": "beatPunch",
+        "timeRange": [
+          9,
+          12.33
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "e7eaefadd343d8559b858fa4b07e6bcb67d8cfc70080aec61500ea731f3d81d7",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "trans",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        9,
+        12.33
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "trans",
+        "selectedId": "cut",
+        "timeRange": [
+          9,
+          12.33
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "219bd2e79fe21b848642382fc8ce431b856bed68de723ea797105ea9620e2abf",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "none",
+      "target": "bg",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        9,
+        12.33
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "bg",
+        "selectedId": "none",
+        "timeRange": [
+          9,
+          12.33
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "39547af5276ff2ae221fedd2cba945a5ef74a0d653663ed042a93ed1d4fe96f2",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "WIDE",
+      "target": "virtualShot",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        9,
+        12.33
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "No independent same-condition ON/OFF decoded per-operator evidence. Composite primary agreement cannot substitute.",
+      "selection": {
+        "cutIndex": 0,
+        "group": "virtualShot",
+        "selectedId": "WIDE",
+        "selected": {
+          "id": "WIDE",
+          "x": 0.545,
+          "y": 0.455,
+          "zoom": 1.03,
+          "edgeDensity": 10.206,
+          "sourceWidth": 640,
+          "sourceHeight": 360,
+          "evidence": "local edge density around geometric region; not object recognition",
+          "semanticIntent": "read",
+          "role": "READ",
+          "source": "same supplied image"
+        },
+        "line": 0,
+        "timeRange": [
+          9,
+          12.33
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "8ff49645b66a0e78ee3325bf579ef9986b6527757e1e3be966b7e3586ac5610d",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cinemaGrammarsolo",
+      "target": "layout",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        12.33,
+        15.67
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "layout",
+        "selectedId": "cinemaGrammarsolo",
+        "timeRange": [
+          12.33,
+          15.67
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "69b10c999d426adf02014618bded8ab916b0be45aa8424c17dfb7ff9e19d04cf",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "enter",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        12.33,
+        15.67
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "enter",
+        "selectedId": "cut",
+        "timeRange": [
+          12.33,
+          15.67
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "a6e3aaf1f12024e517cded6d6743cf8f42001c73cea70664e75ea2576a00af19",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "still",
+      "target": "hold",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        12.33,
+        15.67
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "hold",
+        "selectedId": "still",
+        "timeRange": [
+          12.33,
+          15.67
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "0aa87542e3a7fd67ee4d03dc31b5556c8dcaa1f146b6b4601b8ea84d0b6c4a66",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "exit",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        12.33,
+        15.67
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "exit",
+        "selectedId": "cut",
+        "timeRange": [
+          12.33,
+          15.67
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "704445439466b2574dd41a780e55a903578b1bc877761dc6dc2ba82d518d1ba1",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "beatPunch",
+      "target": "cam",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        12.33,
+        15.67
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "cam",
+        "selectedId": "beatPunch",
+        "timeRange": [
+          12.33,
+          15.67
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "518a70ec04e5706e00e94b541efa326ade16834f4bfe46de3f1b4b6c46afb25a",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "trans",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        12.33,
+        15.67
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "trans",
+        "selectedId": "cut",
+        "timeRange": [
+          12.33,
+          15.67
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "0eaa99bdb9c2f1e625f7a3fcf378e16c20fe462503632fc7e1d69bfe328eee90",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "none",
+      "target": "bg",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        12.33,
+        15.67
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "bg",
+        "selectedId": "none",
+        "timeRange": [
+          12.33,
+          15.67
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "41ed764f4b41b3182914b8fe1dfcd9079b33cac3dc7ef19dd186c60e0fbdf5a8",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "MEDIUM",
+      "target": "virtualShot",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        12.33,
+        15.67
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "No independent same-condition ON/OFF decoded per-operator evidence. Composite primary agreement cannot substitute.",
+      "selection": {
+        "cutIndex": 1,
+        "group": "virtualShot",
+        "selectedId": "MEDIUM",
+        "selected": {
+          "id": "MEDIUM",
+          "x": 0.545,
+          "y": 0.48500000000000004,
+          "zoom": 1.4,
+          "edgeDensity": 9.37,
+          "sourceWidth": 640,
+          "sourceHeight": 360,
+          "evidence": "local edge density around geometric region; not object recognition",
+          "semanticIntent": "read",
+          "role": "READ",
+          "source": "same supplied image"
+        },
+        "line": 1,
+        "timeRange": [
+          12.33,
+          15.67
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "38093851464b45db02777b95e12c3c38ccd2c9078b658a7504c705001fe045d5",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cinemaGrammarsolo",
+      "target": "layout",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        15.67,
+        17.66
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "layout",
+        "selectedId": "cinemaGrammarsolo",
+        "timeRange": [
+          15.67,
+          17.66
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "d909fdcca07001012a855c16258dc2be8e88d4dedef46255285d10d6537f6a54",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "enter",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        15.67,
+        17.66
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "enter",
+        "selectedId": "cut",
+        "timeRange": [
+          15.67,
+          17.66
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "9da8b921f93a9510a330d402cf6f462db85d74a69e33b3c950c2c0677b52d6a8",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "still",
+      "target": "hold",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        15.67,
+        17.66
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "hold",
+        "selectedId": "still",
+        "timeRange": [
+          15.67,
+          17.66
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "df88e00e464c6b4b9e746658919a8707f418909e3b020e28352855eeaa3f1eee",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "exit",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        15.67,
+        17.66
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "exit",
+        "selectedId": "cut",
+        "timeRange": [
+          15.67,
+          17.66
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "e2cc746db1842557e55e4827e17c733401760de6e5283077b67ac10012ef9e4e",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "stillCamera",
+      "target": "cam",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        15.67,
+        17.66
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "cam",
+        "selectedId": "stillCamera",
+        "timeRange": [
+          15.67,
+          17.66
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "a21e85613917055f6963baa5dd7ae066492b95f8db8c5d25e07ba86e816854c5",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "trans",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        15.67,
+        17.66
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "trans",
+        "selectedId": "cut",
+        "timeRange": [
+          15.67,
+          17.66
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "f2d26c066438e5f4bc00f163c4497b120c588623e603172013c82fe481fde2cc",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "none",
+      "target": "bg",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        15.67,
+        17.66
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "bg",
+        "selectedId": "none",
+        "timeRange": [
+          15.67,
+          17.66
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "8102f2a6fb7f378c505a67608ba361e429f5f870a162cf8b4dc668d5b435a3e0",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "WIDE",
+      "target": "virtualShot",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        15.67,
+        17.66
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "No independent same-condition ON/OFF decoded per-operator evidence. Composite primary agreement cannot substitute.",
+      "selection": {
+        "cutIndex": 2,
+        "group": "virtualShot",
+        "selectedId": "WIDE",
+        "selected": {
+          "id": "WIDE",
+          "x": 0.545,
+          "y": 0.455,
+          "zoom": 1.03,
+          "edgeDensity": 10.206,
+          "sourceWidth": 640,
+          "sourceHeight": 360,
+          "evidence": "local edge density around geometric region; not object recognition",
+          "semanticIntent": "read",
+          "role": "READ",
+          "source": "same supplied image"
+        },
+        "line": 2,
+        "timeRange": [
+          15.67,
+          17.66
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "8feb2a64766fc72c495d7d805e7cc8140df36b6f2614047df7d9e2a34e796a9e",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "zoom",
+      "target": "events",
+      "unitIndex": 0,
+      "line": null,
+      "timeRange": [
+        9,
+        9.12
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "No independent event-target correspondence in the current full-resolution glyph audit",
+      "selection": {
+        "group": "events",
+        "index": 0,
+        "selectedId": "zoom",
+        "timeRange": [
+          9,
+          9.12
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "No independent event-target correspondence in the current full-resolution glyph audit"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "095b0cc249159af0233ef7d29d7e5c96ac694315f6c0d7435a0b8fc91bf1cc63",
+      "finalArtifactEvidenceId": "99b3ac17b688d3bb949960ae1ac2c3dde562f3f77a5ffb89670e2fc679ed8594",
+      "naturalSelection": true,
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "cce741fabe7f5b26a6c05a67fe3f59b2572d1cc6dec4820e5cbf9abde9ed04e1",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "zoom",
+      "target": "events",
+      "unitIndex": 1,
+      "line": null,
+      "timeRange": [
+        9.9144,
+        10.0344
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "No independent event-target correspondence in the current full-resolution glyph audit",
+      "selection": {
+        "group": "events",
+        "index": 1,
+        "selectedId": "zoom",
+        "timeRange": [
+          9.9144,
+          10.0344
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "No independent event-target correspondence in the current full-resolution glyph audit"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "4d1f7c87d1b01d6be466a2873f4c6a28a3602f25dbcf83581a3eae8635b641b4",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cinemaGrammarsolo",
+      "target": "layout",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        0.3,
+        3.2
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "layout",
+        "selectedId": "cinemaGrammarsolo",
+        "timeRange": [
+          0.3,
+          3.2
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "878d7defeb4c861c92a12d9f0ef64bf72c3924d133d2671e5ab60c0682a942f8",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "enter",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        0.3,
+        3.2
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "enter",
+        "selectedId": "cut",
+        "timeRange": [
+          0.3,
+          3.2
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "d5b220b2aaf4da625394d10d80d571369e5733e349a3b9abfa2b2f552d1cd84e",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "still",
+      "target": "hold",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        0.3,
+        3.2
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "hold",
+        "selectedId": "still",
+        "timeRange": [
+          0.3,
+          3.2
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "6772eef9237938dd1d543886f4cf46202e60f28a7fc10ada4b01ec635ff26e19",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "exit",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        0.3,
+        3.2
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "exit",
+        "selectedId": "cut",
+        "timeRange": [
+          0.3,
+          3.2
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "88da4b41285908ddc9c4877fc807a7a33e206d3ef7af7f6b64700c4e7839dd5e",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "driftDiag",
+      "target": "cam",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        0.3,
+        3.2
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "cam",
+        "selectedId": "driftDiag",
+        "timeRange": [
+          0.3,
+          3.2
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "6e84c79532e5eff3b77302d7d5f31aa1722a0d7a178c0052015d198b28662e8e",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "trans",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        0.3,
+        3.2
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "trans",
+        "selectedId": "cut",
+        "timeRange": [
+          0.3,
+          3.2
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "0edc5a31cddc98bcb871b2a4b85efbfe275e4749634c58228c0a12bf9f88c577",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "none",
+      "target": "bg",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        0.3,
+        3.2
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 0,
+        "line": 0,
+        "group": "bg",
+        "selectedId": "none",
+        "timeRange": [
+          0.3,
+          3.2
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "394168f421110a84eb3a3c00d540d5dc2d3862ba8089021ad902e8b2f0f0c126",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cinemaBlueprint",
+      "target": "decor",
+      "unitIndex": 0,
+      "line": null,
+      "timeRange": [
+        0.3,
+        3.2
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Decorative elements excluded from primary glyph certification",
+      "selection": {
+        "cutIndex": 0,
+        "group": "decor",
+        "selectedId": "cinemaBlueprint",
+        "timeRange": [
+          0.3,
+          3.2
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Decorative elements excluded from primary glyph certification"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "61618882ad5d488ab7997abddfa5de13f7f929643650090597464290e1476fe6",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "WIDE",
+      "target": "virtualShot",
+      "unitIndex": 0,
+      "line": 0,
+      "timeRange": [
+        0.3,
+        3.2
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "No independent same-condition ON/OFF decoded per-operator evidence. Composite primary agreement cannot substitute.",
+      "selection": {
+        "cutIndex": 0,
+        "group": "virtualShot",
+        "selectedId": "WIDE",
+        "selected": {
+          "id": "WIDE",
+          "x": 0.455,
+          "y": 0.545,
+          "zoom": 1.03,
+          "edgeDensity": 17.256,
+          "sourceWidth": 640,
+          "sourceHeight": 360,
+          "evidence": "local edge density around geometric region; not object recognition",
+          "semanticIntent": "read",
+          "role": "READ",
+          "source": "same supplied image"
+        },
+        "line": 0,
+        "timeRange": [
+          0.3,
+          3.2
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "5dbc8fd27355d0f441920a8eeeae49c0e18254de3c93b5e47be51b8321d93f07",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cinemaGrammarsolo",
+      "target": "layout",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        3.2,
+        6.1
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "layout",
+        "selectedId": "cinemaGrammarsolo",
+        "timeRange": [
+          3.2,
+          6.1
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "a7ce27c0df26b5ba3f19a60fc7d0e4395aa28032c1478fae22a5e37f4544287e",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "photoResolve",
+      "target": "enter",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        3.2,
+        6.1
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "enter",
+        "selectedId": "photoResolve",
+        "timeRange": [
+          3.2,
+          6.1
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "0d08a50f4b1e02b89596d5f2c3ec8964eddf208a02afd6a94609b102f4793e72",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "focusRack",
+      "target": "hold",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        3.2,
+        6.1
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "hold",
+        "selectedId": "focusRack",
+        "timeRange": [
+          3.2,
+          6.1
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "3d72c0e51d556bdb3f1a21d9d8625714a184d8a2a8a834e463c0c030ca898632",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "exit",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        3.2,
+        6.1
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "exit",
+        "selectedId": "cut",
+        "timeRange": [
+          3.2,
+          6.1
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "96d64e1595ca58c7206eff1a0502ebd826a9b145ed8952e1df95891109f15466",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "beatPunch",
+      "target": "cam",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        3.2,
+        6.1
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "cam",
+        "selectedId": "beatPunch",
+        "timeRange": [
+          3.2,
+          6.1
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "0da344f7d7e8e98f5f91908864de8afaa4e3f1826d06be9b16286bfdf960c60e",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "trans",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        3.2,
+        6.1
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "trans",
+        "selectedId": "cut",
+        "timeRange": [
+          3.2,
+          6.1
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "75bb70614f8c2e47c6818a43d06a980b6e99b2e12b56f3516f57aea5464e0a8f",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "none",
+      "target": "bg",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        3.2,
+        6.1
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 1,
+        "line": 1,
+        "group": "bg",
+        "selectedId": "none",
+        "timeRange": [
+          3.2,
+          6.1
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "f864a8e6b4c1ee10416a639866e43f2de40a97c42b2cf98afab3d8ba16f8d8d3",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cinemaBlueprint",
+      "target": "decor",
+      "unitIndex": 1,
+      "line": null,
+      "timeRange": [
+        3.2,
+        6.1
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Decorative elements excluded from primary glyph certification",
+      "selection": {
+        "cutIndex": 1,
+        "group": "decor",
+        "selectedId": "cinemaBlueprint",
+        "timeRange": [
+          3.2,
+          6.1
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Decorative elements excluded from primary glyph certification"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "75f34f02bb611633a3e5e50872f55b484a9d5b0564e79612b0b601c2dc164c2e",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "MEDIUM",
+      "target": "virtualShot",
+      "unitIndex": 1,
+      "line": 1,
+      "timeRange": [
+        3.2,
+        6.1
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "No independent same-condition ON/OFF decoded per-operator evidence. Composite primary agreement cannot substitute.",
+      "selection": {
+        "cutIndex": 1,
+        "group": "virtualShot",
+        "selectedId": "MEDIUM",
+        "selected": {
+          "id": "MEDIUM",
+          "x": 0.5,
+          "y": 0.5750000000000001,
+          "zoom": 1.4,
+          "edgeDensity": 18.428,
+          "sourceWidth": 640,
+          "sourceHeight": 360,
+          "evidence": "local edge density around geometric region; not object recognition",
+          "semanticIntent": "read",
+          "role": "READ",
+          "source": "same supplied image"
+        },
+        "line": 1,
+        "timeRange": [
+          3.2,
+          6.1
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "dec95b2e0ebfcc873f86b1c831aa3dd5900a6479a84e6ac6da71ddcc2f40ed8f",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cinemaGrammarsolo",
+      "target": "layout",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        6.1,
+        9.11
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "layout",
+        "selectedId": "cinemaGrammarsolo",
+        "timeRange": [
+          6.1,
+          9.11
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "7a066c9efc97657af0232c1028fd9cbb5b8a40136c3224099200318d9786c8c0",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "enter",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        6.1,
+        9.11
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "enter",
+        "selectedId": "cut",
+        "timeRange": [
+          6.1,
+          9.11
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "7d488fda832ba4f23c17ab26924f10e0c287954625fa39f2b6ccb3133dc23417",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "focusRack",
+      "target": "hold",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        6.1,
+        9.11
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "hold",
+        "selectedId": "focusRack",
+        "timeRange": [
+          6.1,
+          9.11
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "d3665a70d601068e1ffcafb1bfed6e92c79d9170c464ce3d0ca9667d53153a12",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "exit",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        6.1,
+        9.11
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "exit",
+        "selectedId": "cut",
+        "timeRange": [
+          6.1,
+          9.11
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "524e4f9500b5c028f45c9275d7e9da19e39ce11accb836cba062787357a19333",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "beatPunch",
+      "target": "cam",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        6.1,
+        9.11
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "cam",
+        "selectedId": "beatPunch",
+        "timeRange": [
+          6.1,
+          9.11
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "48dc450432e4593782c85ca7af090f57ab5707afbede356802bf7508f5139ceb",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cut",
+      "target": "trans",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        6.1,
+        9.11
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "trans",
+        "selectedId": "cut",
+        "timeRange": [
+          6.1,
+          9.11
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "dc7b278b335659c57eb857fd3ebfec9517e6551f11c11a2f171efd116be07d3a",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "none",
+      "target": "bg",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        6.1,
+        9.11
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Component survival is not isolated by composite glyph-motion observations",
+      "selection": {
+        "cutIndex": 2,
+        "line": 2,
+        "group": "bg",
+        "selectedId": "none",
+        "timeRange": [
+          6.1,
+          9.11
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Component survival is not isolated by composite glyph-motion observations"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "2ae063989b68dc62fd98f2187ee84b614207149882a2b4cfab11135a9e97b6ed",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "cinemaBlueprint",
+      "target": "decor",
+      "unitIndex": 2,
+      "line": null,
+      "timeRange": [
+        6.1,
+        9.11
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "Decorative elements excluded from primary glyph certification",
+      "selection": {
+        "cutIndex": 2,
+        "group": "decor",
+        "selectedId": "cinemaBlueprint",
+        "timeRange": [
+          6.1,
+          9.11
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "Decorative elements excluded from primary glyph certification"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "4045e361edd14c83dae1ccf794478fb0e649c5a0b3f92b14800241b2bf2e918b",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "WIDE",
+      "target": "virtualShot",
+      "unitIndex": 2,
+      "line": 2,
+      "timeRange": [
+        6.1,
+        9.11
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "No independent same-condition ON/OFF decoded per-operator evidence. Composite primary agreement cannot substitute.",
+      "selection": {
+        "cutIndex": 2,
+        "group": "virtualShot",
+        "selectedId": "WIDE",
+        "selected": {
+          "id": "WIDE",
+          "x": 0.455,
+          "y": 0.545,
+          "zoom": 1.03,
+          "edgeDensity": 17.256,
+          "sourceWidth": 640,
+          "sourceHeight": 360,
+          "evidence": "local edge density around geometric region; not object recognition",
+          "semanticIntent": "read",
+          "role": "READ",
+          "source": "same supplied image"
+        },
+        "line": 2,
+        "timeRange": [
+          6.1,
+          9.11
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "259e12f33306eae7a3dcd2c45ff4e92eb7d9fa5c1b3b639b274c5649cb678013",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "zoom",
+      "target": "events",
+      "unitIndex": 0,
+      "line": null,
+      "timeRange": [
+        0.3,
+        0.42
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "No independent event-target correspondence in the current full-resolution glyph audit",
+      "selection": {
+        "group": "events",
+        "index": 0,
+        "selectedId": "zoom",
+        "timeRange": [
+          0.3,
+          0.42
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "No independent event-target correspondence in the current full-resolution glyph audit"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    },
+    {
+      "evidenceId": "6dd533c12064be1403ef7b92418421baefbffad85920b927c66f5e7946742844",
+      "finalArtifactEvidenceId": "9927a9dcf5a8bb2415abc657f5b92a6873003b97819752c1a9df5267b548acfb",
+      "naturalSelection": true,
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "sourceInventorySHA256": "73007c428ae299718951a656c13d719e32dde036523cf7550114925b5f1fd29b",
+      "intent": "SEMANTIC_INTENT_NOT_RETAINED",
+      "operator": "zoom",
+      "target": "events",
+      "unitIndex": 1,
+      "line": null,
+      "timeRange": [
+        1.0504,
+        1.1703999999999999
+      ],
+      "expectedMotion": "NOT_RETAINED_AS_INDEPENDENT_CONTRACT",
+      "confidence": null,
+      "measurable": null,
+      "observed": null,
+      "realization": "UNMEASURED",
+      "failureReason": "No independent event-target correspondence in the current full-resolution glyph audit",
+      "selection": {
+        "group": "events",
+        "index": 1,
+        "selectedId": "zoom",
+        "timeRange": [
+          1.0504,
+          1.1703999999999999
+        ],
+        "natural": true,
+        "isolatedEncodedRealization": "UNMEASURED",
+        "reason": "No independent event-target correspondence in the current full-resolution glyph audit"
+      },
+      "scope": "Actual hash-bound adopted artifact; component selection alone is not realization proof"
+    }
+  ],
+  "compositeContracts": [
+    {
+      "case": "holdout-12",
+      "binding": {
+        "inputHash": "a52307345eea46cb9cce014b0c8f53d6126d04c00c7838bb31c765779aba1c12",
+        "planHash": "a602c81f762488a9fe475b72ce43b48d1af1e41552eba4a4ee6ab925475d8779",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "143d0e1f0c301634919d8381a0d0dc752b0c10a4e4a5512a3915215aae109f34",
+        "videoSHA256": "66b04f4206fc214cc03054fec82932e0102caaebf943a062f21c48eebc43524b",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "compositePrimaryMotion": {
+        "population": 3,
+        "measured": 3,
+        "rendererAgreementSuccess": 3,
+        "measurableRate": 1,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": 1,
+        "manualExcluded": 0,
+        "nonAutomaticExcluded": 0,
+        "intentMeasured": 3,
+        "intentMeasurableRate": 1,
+        "intentSuccessful": 3
+      },
+      "scope": "Composite unit contracts separate from individual component contribution; never pooled"
+    },
+    {
+      "case": "fresh-confirmation-02",
+      "binding": {
+        "inputHash": "9f315a904e7ca0b3f3ab8767f05a9e1d99653332478a25075ea706c623db9ef3",
+        "planHash": "201592b768d13fa1d789b15d21306ff7ac1394f928662e049953e7da00860916",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "selectedCandidateId": "2116f88a7df71b1867cc8a80faf89affe8e07d787d7327eaf884ce6241c118c1",
+        "videoSHA256": "85615275481cd0a213561874d918dc51295a03bfcaf64e8cf6e492b9946e7f3f",
+        "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+        "sourceTreeSHA256": "f5034b74dae0783d488558aa2d5e120ddf166ca284cdbae13ac770330f924400",
+        "sourceDirty": false
+      },
+      "compositePrimaryMotion": {
+        "population": 3,
+        "measured": 3,
+        "rendererAgreementSuccess": 3,
+        "measurableRate": 1,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": 1,
+        "manualExcluded": 0,
+        "nonAutomaticExcluded": 0,
+        "intentMeasured": 3,
+        "intentMeasurableRate": 1,
+        "intentSuccessful": 3
+      },
+      "scope": "Composite unit contracts separate from individual component contribution; never pooled"
+    }
+  ],
+  "humanEvaluation": "HUMAN_UNVERIFIED",
+  "ledgerSHA256": "857903a88a7c5b535aed931affc22f5e66409c682bc17aa0da45ff1a528a1c45"
+}
