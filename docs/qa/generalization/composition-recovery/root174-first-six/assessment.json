@@ -1,0 +1,132 @@
+{
+  "rows": [
+    {
+      "case": "development-05",
+      "status": "PASS",
+      "sourceCommit": "174055f938ee736d3d1ec1a52be3a4a678751453",
+      "metrics": {
+        "perceptualNovelty": 100,
+        "motion": 32.5,
+        "temporalContrast": 9,
+        "hookNovelty": 86,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 87,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 100,
+        "motionRealization": 67,
+        "typographyDiversity": 37
+      },
+      "errors": [],
+      "videoSHA256": "2e8eda4dc77ab542b59a55f02a2bb5fc9ec464f906c0da0e2fedac9f31b50404",
+      "adopted": false
+    },
+    {
+      "case": "fresh-confirmation-02",
+      "status": "PASS",
+      "sourceCommit": "174055f938ee736d3d1ec1a52be3a4a678751453",
+      "metrics": {
+        "perceptualNovelty": 100,
+        "motion": 23.5,
+        "temporalContrast": 19,
+        "hookNovelty": 74,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 57,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 84,
+        "motionRealization": 67,
+        "typographyDiversity": 37
+      },
+      "errors": [],
+      "videoSHA256": "d7488e219dda5d9baab591be8bb363f5011fe0462c89d1f688b17535c37e783d",
+      "adopted": false
+    },
+    {
+      "case": "holdout-01",
+      "status": "PASS",
+      "sourceCommit": "174055f938ee736d3d1ec1a52be3a4a678751453",
+      "metrics": {
+        "perceptualNovelty": 61,
+        "motion": 29.5,
+        "temporalContrast": 37,
+        "hookNovelty": 52,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 50,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 73.63216683560229,
+        "localContrast": 98,
+        "motionRealization": 100,
+        "typographyDiversity": 6
+      },
+      "errors": [],
+      "videoSHA256": "340338fdb19c01515b0e99a33f8aabff02482e3464f05081ad002c234fdb72ea",
+      "adopted": false
+    },
+    {
+      "case": "development-03",
+      "status": "PASS",
+      "sourceCommit": "174055f938ee736d3d1ec1a52be3a4a678751453",
+      "metrics": {
+        "perceptualNovelty": 93,
+        "motion": 20,
+        "temporalContrast": 33,
+        "hookNovelty": 51,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 93,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 92.60290282984191,
+        "localContrast": 100,
+        "motionRealization": 100,
+        "typographyDiversity": 72
+      },
+      "errors": [],
+      "videoSHA256": "06073dab29bbf96720856acc7173efaf708a2bdc542e7fd2cb9df0a68a3a8a5a",
+      "adopted": false
+    },
+    {
+      "case": "holdout-03",
+      "status": "PASS",
+      "sourceCommit": "174055f938ee736d3d1ec1a52be3a4a678751453",
+      "metrics": {
+        "perceptualNovelty": 95,
+        "motion": 22,
+        "temporalContrast": 16,
+        "hookNovelty": 45,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 70,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 91,
+        "motionRealization": 100,
+        "typographyDiversity": 42
+      },
+      "errors": [],
+      "videoSHA256": "8c464352cae2182cfabe81c6b7d15517c64a8da231cf177e4280390a8a68668a",
+      "adopted": false
+    },
+    {
+      "case": "holdout-12",
+      "status": "FAIL",
+      "sourceCommit": "174055f938ee736d3d1ec1a52be3a4a678751453",
+      "metrics": null,
+      "errors": [],
+      "videoSHA256": null,
+      "adopted": false
+    }
+  ],
+  "completedMovies": 5,
+  "failedBeforeExport": 1,
+  "notAdopted": true,
+  "failureCause": "All-phase anchor check used winner temporal operators on other geometry; per-candidate temporal check and shipping fallback fixed at56fe90c; failed source result retained."
+}
