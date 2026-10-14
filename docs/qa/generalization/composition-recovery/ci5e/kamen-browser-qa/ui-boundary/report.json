@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "evidence": "BROWSER_UI_BOUNDARY_WITH_SYNTHETIC_ACCEPTANCE_AND_VALIDATED_MP4_REUSE",
+  "freshEncodes": 0,
+  "sourceVideoHash": "4c694e3308fc927e413e5f1b2be7dc5ec410e00cce21896dc82432174f7b106c",
+  "browser": "154.0.8037.97",
+  "cases": [
+    {
+      "state": "TARGET_MET",
+      "outcome": {
+        "fileState": "SAVE_AVAILABLE",
+        "creativeState": "TARGET_MET",
+        "initialConfirmedPlanReused": false
+      },
+      "calls": 1,
+      "draft": false,
+      "job": {
+        "status": "completed",
+        "error": ""
+      }
+    },
+    {
+      "state": "BELOW_TARGET",
+      "outcome": {
+        "fileState": "SAVE_AVAILABLE",
+        "creativeState": "BELOW_TARGET",
+        "initialConfirmedPlanReused": false
+      },
+      "calls": 2,
+      "draft": false,
+      "job": {
+        "status": "completed",
+        "error": ""
+      }
+    },
+    {
+      "state": "UNMEASURED",
+      "outcome": {
+        "fileState": "SAVE_AVAILABLE",
+        "creativeState": "UNMEASURED",
+        "initialConfirmedPlanReused": false
+      },
+      "calls": 3,
+      "draft": false,
+      "job": {
+        "status": "completed",
+        "error": ""
+      }
+    },
+    {
+      "state": "INVALID_MP4",
+      "outcome": {
+        "fileState": "FAILED_TECHNICAL",
+        "creativeState": "UNMEASURED",
+        "initialConfirmedPlanReused": false
+      }
+    },
+    {
+      "state": "PICKER_CANCEL",
+      "outcome": {
+        "fileState": "CANCELLED",
+        "creativeState": "UNMEASURED"
+      }
+    }
+  ],
+  "pageErrors": []
+}
