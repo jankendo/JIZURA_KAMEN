@@ -246,7 +246,7 @@ V.repairReadabilityPreview=async(p,range,signal,options={})=>{
  const originalRepairs=p.cuts.map(c=>c.params?.cinemaReadabilityRepair),scope=options.scope||{renderer:new J.Renderer(),ready:false};
  try{
   const cached=await V.reuseReadabilityEvidence(p,range,options.inputHash,options.cached,options),measureOptions={scope,physicalOnly:options.physicalOnly,inputHash:options.inputHash,backgroundConsistency:options.backgroundConsistency,additionalTimes:options.additionalTimes},before=cached||await J.measureCinemaOutputReadability(p,range,signal,measureOptions),physical=!!options.backgroundConsistency;
-  const value=s=>physical?s.backgroundConsistentAlignedContrast?.score:s.contrast?.score,weakValue=s=>physical?s.backgroundConsistentAlignedContrast?.score:s.alignedContrast?.score,weak=new Set(before.samples.filter(s=>Number.isFinite(weakValue(s))&&weakValue(s)<90).map(s=>s.line)),cuts=p.cuts.filter(c=>weak.has(c.line)&&!c.locked&&!J.photoChoreographyLocked(p,c)),trials=[];
+  const value=s=>physical?s.backgroundConsistentAlignedContrast?.score:s.contrast?.score,weakValue=s=>physical?s.backgroundConsistentAlignedContrast?.score:s.alignedContrast?.score,weak=new Set([...before.samples.filter(s=>Number.isFinite(weakValue(s))&&weakValue(s)<90).map(s=>s.line),...(options.preserveCompositionLines||[])]),cuts=p.cuts.filter(c=>weak.has(c.line)&&!c.locked&&!J.photoChoreographyLocked(p,c)),trials=[];
   let current=before,accepted=false;const protectedTimes=new Set(before.samples.filter(s=>Number.isFinite(value(s))).map(s=>s.time)),vector=r=>r.samples.filter(s=>protectedTimes.has(s.time)).map(value).filter(Number.isFinite).sort((a,b)=>a-b);
   for(const cut of cuts){const original=cut.params.cinemaReadabilityRepair;let keep=false,best=current,chosen=original;
    try{for(const amount of [2,{shadow:2},{scrim:.24}]){
@@ -281,6 +281,14 @@ V.guardCompositionPromotion=async(root,planHash,incumbentPlanHash,measure)=>{
  if(planHash&&planHash===incumbentPlanHash)return {root,allowed:true,status:'UNCHANGED_INCUMBENT',planHash,incumbentPlanHash,encodedCreativeEvidence:'NOT_APPLICABLE_NO_CHANGE'};
  const evidence=await measure(),allowed=V.registryCreativeDominates(evidence.next,evidence.prior);
  return {root,allowed,status:allowed?'MEASURED_NONREGRESSING_IMPROVEMENT':'NOT_PROMOTED_UNMEASURED_OR_NO_CREATIVE_IMPROVEMENT',planHash,incumbentPlanHash,...evidence,comparison:'Same input, profile and renderer; unchanged strict creative axes for every changed root; final MP4 QA required'};
+};
+// Try existing measured contrast treatments before replacing an entire composition.
+// This adds repair candidates; no readability threshold or creative axis changes.
+V.tryCompositionPreservingReadability=async(plan,target,required,current,range,signal,options)=>{
+ const index=plan.cuts.indexOf(target);if(index<0||!target.grammar||target.locked||J.photoChoreographyLocked(plan,target))return {accepted:false,reason:'LOCKED_OR_NO_GRAMMAR'};
+ const candidate=V.clone(plan),trial=await V.repairReadabilityPreview(candidate,range,signal,{...options,preserveCompositionLines:[target.line]}),own={...trial.after,samples:trial.after.samples.filter(s=>s.line===target.line)};
+ const repaired=candidate.cuts[index],sameComposition=J.canonicalJSON({...repaired,params:{...repaired.params,cinemaReadabilityRepair:target.params.cinemaReadabilityRepair}})===J.canonicalJSON(target),accepted=sameComposition&&V.lockSignature(candidate)===V.lockSignature(plan)&&trial.accepted&&V.physicalReadabilityDominates(own,required)&&V.physicalReadabilityDominates(own,current);
+ return {accepted,reason:accepted?'MEASURED_CONTRAST_WITH_ORIGINAL_COMPOSITION':'EXISTING_REPAIR_CANNOT_PROTECT_REQUIRED_PIXELS',cut:accepted?candidate.cuts[index]:null,readability:own,trials:trial.trials};
 };
 V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  if(!Number.isFinite(incumbent?.score))return {status:'UNMEASURED',reason:'INCUMBENT_DELIVERY_READABILITY_UNMEASURED'};
@@ -320,7 +328,13 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  for(const root of [...components.filter(c=>c.id==='MEASURED_REGISTRY_BASELINE'),components[1],components[0]]){
   const plan=V.clone(root.plan),lines=[];
   for(const target of plan.cuts){if(J.photoChoreographyLocked(plan,target))continue;let current=perLine(root.readability,target.line);
-   for(const component of components){const source=component.plan.cuts.find(c=>c.line===target.line&&c.start===target.start&&c.end===target.end);if(!source)continue;const next=perLine(component.readability,target.line);if(!V.physicalReadabilityDominates(next,current)||!improves(next,current))continue;for(const key of Object.keys(target))delete target[key];Object.assign(target,V.clone(source));if(component.plan.cinemaCandidateMode==='legacy'&&plan.cinemaCandidateMode!=='legacy')target.cinemaV3Legacy=true;target.cinemaV3LegacyFinalist=true;current=next;lines.push({line:target.line,component:component.id});}
+   for(const component of components){const source=component.plan.cuts.find(c=>c.line===target.line&&c.start===target.start&&c.end===target.end);if(!source)continue;const next=perLine(component.readability,target.line);if(!V.physicalReadabilityDominates(next,current)||!improves(next,current))continue;
+    const beforeComposition={layout:target.layout,grammar:target.grammar,cam:target.cam,font:target.params?.font,anchor:target.params?.photoAnchor},afterComposition={layout:source.layout,grammar:source.grammar,cam:source.cam,font:source.params?.font,anchor:source.params?.photoAnchor};
+    if(J.canonicalJSON(beforeComposition)!==J.canonicalJSON(afterComposition)){
+     const preserved=await V.tryCompositionPreservingReadability(plan,target,next,current,range,signal,measurementOptions);
+     if(preserved.accepted){target.params=preserved.cut.params;current=preserved.readability;lines.push({line:target.line,component:'ORIGINAL_COMPOSITION_WITH_EXISTING_CONTRAST_REPAIR',borrowedCandidate:component.id,beforeComposition,afterComposition:beforeComposition,repair:target.params.cinemaReadabilityRepair,selectionEvidence:preserved.reason});continue;}
+    }
+    for(const key of Object.keys(target))delete target[key];Object.assign(target,V.clone(source));if(component.plan.cinemaCandidateMode==='legacy'&&plan.cinemaCandidateMode!=='legacy')target.cinemaV3Legacy=true;target.cinemaV3LegacyFinalist=true;current=next;lines.push({line:target.line,component:component.id});}
   }
   J.rebuildCinemaBeatIntent(plan);const raw=await J.measureCinemaOutputReadability(plan,range,signal,measurementOptions),repair=V.physicalReadabilityDominates(raw,legacyReadability)&&V.physicalReadabilityDominates(raw,incumbent)?null:await V.repairReadabilityPreview(plan,range,signal,{...measurementOptions,cached:raw}),readability=repair?.after||raw,legacyProtected=V.physicalReadabilityDominates(readability,legacyReadability),incumbentProtected=V.physicalReadabilityDominates(readability,incumbent);
   proposals.push({root:root.id,plan,lines,readability,repair,legacyProtected,incumbentProtected});
