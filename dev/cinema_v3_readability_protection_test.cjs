@@ -30,7 +30,7 @@ console.log('240 differential contrast/luma/alpha fixtures; equal-evidence basel
  console.log('Actual delivery dimensions, design-coordinate separation, profile invalidation and honest unbound legacy guard PASS');
 })().catch(error=>{console.error(error);process.exitCode=1;});
 
-const completeCreative={completed:true,frameCount:10,inputHash:'same-input',rendererVersion:'same-renderer',planHash:'plan-a',profileId:'profile-a',videoSHA256:'video-a',encodedResolution:[640,640],fps:10,outputProfile:{id:'SQUARE_1_1'},lowerTailQuality:40,metrics:{typographyDiversity:70,lyricForegroundNovelty:60,temporalContrast:30,localContrast:90,motionRealization:100}};
+const completeCreative={samples:[{line:0,from:0,to:2}],completed:true,frameCount:10,inputHash:'same-input',rendererVersion:'same-renderer',planHash:'plan-a',profileId:'profile-a',videoSHA256:'video-a',encodedResolution:[640,640],fps:10,outputProfile:{id:'SQUARE_1_1'},lowerTailQuality:40,metrics:{typographyDiversity:70,lyricForegroundNovelty:60,temporalContrast:30,localContrast:90,motionRealization:100}};
 assert.equal(J.cinemaV3.registryCreativeDominates(completeCreative,completeCreative),false,'a readability/creative tie must preserve incumbent');
 assert.equal(J.cinemaV3.registryCreativeDominates({...completeCreative,metrics:{...completeCreative.metrics,typographyDiversity:28}},completeCreative),false,'readability cannot compensate for typography collapse');
 assert.equal(J.cinemaV3.registryCreativeDominates({...completeCreative,metrics:{...completeCreative.metrics,temporalContrast:null}},completeCreative),false,'missing creative observations cannot promote a candidate');
