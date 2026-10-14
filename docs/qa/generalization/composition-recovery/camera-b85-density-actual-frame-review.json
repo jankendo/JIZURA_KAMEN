@@ -1,0 +1,58 @@
+{
+  "case": "development-05",
+  "sourceCommit": "b85bbeefd4f51e156da0c0ff515f32b99975df8a",
+  "comparisonSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "inputConditions": {
+    "originalWAVSHA256Equal": true,
+    "fixtureEqual": true,
+    "outputProfileEqual": true
+  },
+  "videos": {
+    "current": "ec4c8d54d0aeda3c8ef497d80acaf4ef066d27e55568d8255f397c9cd771d471",
+    "main": "f151807669ed0a93589483d301af0999da0d1ca7cd95fc051a42f043c77cb6ab"
+  },
+  "metrics": {
+    "current": {
+      "perceptualNovelty": 100,
+      "motion": 25,
+      "temporalContrast": 20,
+      "hookNovelty": 38,
+      "loopQuality": 0,
+      "foregroundNovelty": null,
+      "lyricForegroundNovelty": 86,
+      "displayOnsetAccuracy": null,
+      "impactBeatSync": null,
+      "regionalPerceptualNovelty": 100,
+      "localContrast": 83,
+      "motionRealization": 100,
+      "typographyDiversity": 42
+    },
+    "main": {
+      "perceptualNovelty": 100,
+      "motion": 20.5,
+      "temporalContrast": 34,
+      "hookNovelty": 43,
+      "loopQuality": 0,
+      "foregroundNovelty": null,
+      "lyricForegroundNovelty": 85,
+      "displayOnsetAccuracy": null,
+      "impactBeatSync": 50,
+      "regionalPerceptualNovelty": 100,
+      "localContrast": 99,
+      "motionRealization": 67,
+      "typographyDiversity": 67
+    }
+  },
+  "actualSnapshot": {
+    "timestamp": 1.2916666666666667,
+    "currentLocalContrast": 57,
+    "nativeExpectedContrast": 57,
+    "finding": "Current completed frame has large two-line primary text, with no obvious character clipping in this snapshot. Main corresponding frame has visibly overlapping/offset letter copies. This single snapshot does not certify whole-film superiority, intentional motion or human aesthetic quality."
+  },
+  "wholeFilmQuality": "UNVERIFIED",
+  "scoreThresholdsChanged": false,
+  "frameFiles": {
+    "camera-b85-density-worst.png": "dad65187b109a623ce566fa2c5266245d9b71c1a708b347726ee0d68ffad7c5f",
+    "main-density-corresponding.png": "aafd8386d180e4610564d0495636e740fc4b75861d9322859e06af84eb630bcd"
+  }
+}
