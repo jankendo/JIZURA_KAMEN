@@ -1,0 +1,39 @@
+{
+  "operation": "Lossless relocation of verified redundant local raw results to separate filesystem; original paths remain valid symlinks. No evidence/result content deleted. Canonical gzip already Git-tracked and pushed.",
+  "records": [
+    {
+      "originalPath": "/workspace/kamen-next-results/final-dff-holdout-a/matrix/results.json",
+      "relocatedExactBytes": "/tmp/kamen-preserved-results/c09f5d4cb5b259b2fd25bc7df533f3ae0fd217dbe1e9d8ba0e4575ed2c73891c.json",
+      "SHA256": "c09f5d4cb5b259b2fd25bc7df533f3ae0fd217dbe1e9d8ba0e4575ed2c73891c",
+      "bytes": 187686167,
+      "gitPreservedLosslessGzip": "docs/qa/generalization/composition-recovery/final-dff-holdout-a/matrix/results.json.gz",
+      "contentAndPathPreserved": true
+    },
+    {
+      "originalPath": "/workspace/kamen-next-results/final-dff-holdout-b/matrix/results.json",
+      "relocatedExactBytes": "/tmp/kamen-preserved-results/08ae87b2de46631d7d8da7101d4ae2f6e89fc88f508ba63a131b9f5576fc3f8d.json",
+      "SHA256": "08ae87b2de46631d7d8da7101d4ae2f6e89fc88f508ba63a131b9f5576fc3f8d",
+      "bytes": 182278075,
+      "gitPreservedLosslessGzip": "docs/qa/generalization/composition-recovery/final-dff-holdout-b/matrix/results.json.gz",
+      "contentAndPathPreserved": true
+    },
+    {
+      "originalPath": "/workspace/kamen-next-results/final-dff-development-b/matrix/results.json",
+      "relocatedExactBytes": "/tmp/kamen-preserved-results/bcd7565d70ea90aa319bd73f7be83707c5b3f41383deee06c570233a84542cb5.json",
+      "SHA256": "bcd7565d70ea90aa319bd73f7be83707c5b3f41383deee06c570233a84542cb5",
+      "bytes": 160886217,
+      "gitPreservedLosslessGzip": "docs/qa/generalization/composition-recovery/final-dff-development-b/matrix/results.json.gz",
+      "contentAndPathPreserved": true
+    },
+    {
+      "originalPath": "/workspace/kamen-next-results/final-dff-development-a/matrix/results.json",
+      "relocatedExactBytes": "/tmp/kamen-preserved-results/3dbc480fe3fcafd08e1358ac88654bce48a9f71b9ec379d308366ea7a5245744.json",
+      "SHA256": "3dbc480fe3fcafd08e1358ac88654bce48a9f71b9ec379d308366ea7a5245744",
+      "bytes": 142397223,
+      "gitPreservedLosslessGzip": "docs/qa/generalization/composition-recovery/final-dff-development-a/matrix/results.json.gz",
+      "contentAndPathPreserved": true
+    }
+  ],
+  "recoverAfterTemporaryFilesystemLoss": "Reconstruct original local JSON by decompressing its listed gitPreservedLosslessGzip and verify SHA256; restore the symlink target or materialize original path.",
+  "timeUTC": "2026-10-14T23:16:10.298715+00:00"
+}
