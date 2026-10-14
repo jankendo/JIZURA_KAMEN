@@ -13,14 +13,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - partition: quiet
-            cases: holdout-01
-          - partition: energetic
-            cases: holdout-03
-          - partition: long-form
-            cases: development-14
-          - partition: mixed-language
-            cases: holdout-15
+          - partition: development-a
+            cases: development-01,development-02,development-03,development-04,development-05
+          - partition: development-b
+            cases: development-06,development-07,development-08,development-09,development-10
+          - partition: development-c
+            cases: development-11,development-12,supplemental-development-13,development-15
+          - partition: holdout-a
+            cases: holdout-02,holdout-04,holdout-05
+          - partition: holdout-b
+            cases: holdout-06,holdout-07,holdout-08,holdout-09,holdout-10
+          - partition: holdout-c
+            cases: holdout-11,holdout-12,supplemental-holdout-13,holdout-14
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -47,7 +51,7 @@ jobs:
           test -x /usr/bin/google-chrome
           mkdir -p results
           sha256sum qa/docs/qa/generalization/final-valid-preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/tools-and-preregistration.sha256
-      - name: Complete natural-selection paired MP4 matrix
+      - name: Complete remaining26 natural-selection MP4 ablation
         timeout-minutes: 320
         env:
           KAMEN_CHROME: /usr/bin/google-chrome
@@ -67,7 +71,7 @@ jobs:
           curl -fsS -o /dev/null http://127.0.0.1:4173/
           curl -fsS -o /dev/null http://127.0.0.1:4174/
           node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4174/ results/matrix > results/matrix.log 2>&1
-          python -c 'import json; x=json.load(open("results/matrix/results.json")); expected=set(__import__("sys").argv[1].split(",")); assert len(x["rows"])==2*len(expected) and {r["fixture"]["id"] for r in x["rows"]}==expected, "Incomplete partition"' "${{ matrix.cases }}"
+          python -c 'import json; x=json.load(open("results/matrix/results.json")); expected=set(__import__("sys").argv[1].split(",")); assert len(x["rows"])==len(expected) and {r["fixture"]["id"] for r in x["rows"]}==expected, "Incomplete partition"' "${{ matrix.cases }}"
       - name: Independently replay artifact hashes and full decode
         if: always()
         run: |
