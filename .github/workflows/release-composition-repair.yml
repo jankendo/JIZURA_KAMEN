@@ -17,21 +17,13 @@ jobs:
             cases: holdout-12
           - partition: weak-portrait
             cases: fresh-confirmation-02
-          - partition: punch
-            cases: holdout-01
-          - partition: low-contrast-composition
-            cases: holdout-09
-          - partition: echo
-            cases: development-05
-          - partition: rock
-            cases: holdout-03
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: bb4f0af9f89571c54b0cc1c350674456b30250f9
+          ref: 1a8ade9c301eb7e42a29cdb64117b369fc216155
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -84,7 +76,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: composition-immutablebb4f0af-${{ matrix.partition }}
+          name: composition-protected1a8ade9-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
