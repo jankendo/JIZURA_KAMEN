@@ -166,7 +166,7 @@ J.compareRegistryCandidates=async(project,audio,image,options={})=>{
    for(const candidate of (J.cinemaV3?.encodedCompositionComparisonAvailable?.()?geometryRepresentatives.candidates:[])){
     const cut={...candidateCut(sp,c,candidate.layout,font,finalEnter,hold),style,styleKey:winner.id,params:J.clonePhotoRenderPlan(candidate.params)};
     const phases=[.001,.03,.08,.16,.6,Math.max(.2,c.dur-.09)],checks=phases.map(dt=>sample(sp,cut,dt));
-    if(!checks.every(e=>e.eligible))continue;
+    if(!checks.every(e=>e.eligible)){geometryRepresentatives.excluded.push({layout:candidate.layout,reason:'ACTUAL_FULL_STATE_PHASE_NOT_ELIGIBLE',phaseEvidence:checks.map(metrics)});continue;}
     const actual=checks[4];fullStates.push({...candidate,params:J.clonePhotoRenderPlan(cut.params),fullState:J.clonePhotoRenderPlan(cut),signature:J.registryInkSignature(actual.mask,w,h),typographySignature:J.registryTypographySignature(actual.mask,w,h),evidence:metrics(actual),phaseEvidence:checks.map(metrics),sourceUnitKey:JSON.stringify([c.line,c.start,c.end,c.text??c.lineText])});
    }
    fullStatePortfolios.push({line:c.line,start:c.start,end:c.end,role,energy,candidates:fullStates,excluded:geometryRepresentatives.excluded});
