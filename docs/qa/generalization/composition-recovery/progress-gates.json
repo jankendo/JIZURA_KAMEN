@@ -1,6 +1,6 @@
 {
   "recordedAt": "2026-10-13T23:34:49.741461+00:00",
-  "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+  "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
@@ -35,5 +35,50 @@
   ],
   "mainUnchanged": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "speedIsNotReleaseBlocker": true,
-  "productionChanged": false
+  "productionChanged": false,
+  "technicalGo": "UNVERIFIED",
+  "qualityGo": "UNVERIFIED",
+  "currentCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38505354079",
+  "previous507CI": "SUCCESS",
+  "newChanges": {
+    "temporalStage": "Previously bypassed shared semantic layout; counterexample reproduced and actual wrapper corrected; manual path unchanged",
+    "testRegistration": "Three recovery tests explicitly added to standard regression suite"
+  },
+  "previous507Matrix": {
+    "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+    "count": 30,
+    "lyricSafetyMeasured": 30,
+    "statistics": {
+      "mainMetrics": {
+        "worst": 13,
+        "bottom20Mean": 19.333333333333332,
+        "mean": 41.36666666666667
+      },
+      "priorMetrics": {
+        "worst": 4,
+        "bottom20Mean": 8.166666666666666,
+        "mean": 34.03333333333333
+      },
+      "newMetrics": {
+        "worst": 6,
+        "bottom20Mean": 18.5,
+        "mean": 41.9
+      },
+      "newVsmainMetrics": {
+        "improved": 12,
+        "same": 3,
+        "declined": 15
+      },
+      "newVspriorMetrics": {
+        "improved": 13,
+        "same": 9,
+        "declined": 8
+      }
+    },
+    "qualityGo": "UNVERIFIED",
+    "limits": [
+      "Typography is an uncalibrated engineering proxy",
+      "Independent energetic fixture losses and all-effect intent evidence remain unresolved"
+    ]
+  }
 }

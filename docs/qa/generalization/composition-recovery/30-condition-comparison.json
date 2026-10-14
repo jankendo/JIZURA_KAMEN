@@ -34,10 +34,47 @@
       },
       "mainVideoSHA256": "4192d62643a1d69004c4a6608f0dcca0537be7fe2603081bfd3708326a02da2d",
       "priorVideoSHA256": "4daf51f61d416fc1e6e660709d3f2d5630ac31c2bd464e82ffa66909a7e57109",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 100,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 61,
+        "displayOnsetAccuracy": null,
+        "localContrast": 2,
+        "motionRealization": 100,
+        "typographyDiversity": 29
+      },
+      "newVideoSHA256": "f2f24a2cb69a676d6a733e38b96bb964f976a0d2ac82f4da9a75bd2e1cf18915",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "c14d6161a101d4d11b09f1e9606c477e65795a4bf3edce542ad3177328393ecf",
+        "planHash": "c27500c1f3bc65fe05a7bca79f50d9342db6a3be8f64c7326630ea5b855447cb",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            1280,
+            720
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "549b838664cd770e7002bf85cc25ca6b768dd98fb81ae74c2bb4a374254561c2",
+        "videoSHA256": "f2f24a2cb69a676d6a733e38b96bb964f976a0d2ac82f4da9a75bd2e1cf18915",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-02",
@@ -76,10 +113,49 @@
       },
       "mainVideoSHA256": "b806573d17830b3c6f1ff801d46cf438ed44e3ab9e8713ee2c9fa64b90209ddc",
       "priorVideoSHA256": "b667e78b9740dc32099522bea410ad60a810a0a32de41d9ea09096a9775e6eb9",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 20.5,
+        "temporalContrast": 16,
+        "hookNovelty": 100,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 89,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 51,
+        "motionRealization": 100,
+        "typographyDiversity": 51
+      },
+      "newVideoSHA256": "9cef153d72d67674a5e7cc1c1b2fbe784cd64591e8865519485160539ea724fe",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "f6cc1be0f268f2f0b547aadfdf82ed9872e3cc965750955b18221a2ac244a20e",
+        "planHash": "9866a1e075a8c188dfb1b5cd9864b794c121298ca3b1b98b7c8afdada957af7f",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "8aee4f4136f47e18c69b9a01a96ae682580f32221c9452bad745a8fd7c53ddf0",
+        "videoSHA256": "9cef153d72d67674a5e7cc1c1b2fbe784cd64591e8865519485160539ea724fe",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-03",
@@ -118,10 +194,49 @@
       },
       "mainVideoSHA256": "75f6c6651e5812d8ac4cc6428db5dfb8108d405dbfc9cca57192fef0f36bf212",
       "priorVideoSHA256": "4dc668447426573b078937686034b2a23533e6340b80ddcb11e4b8394421a3db",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 93,
+        "motion": 20,
+        "temporalContrast": 33,
+        "hookNovelty": 51,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 93,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 92.60290282984191,
+        "localContrast": 100,
+        "motionRealization": 100,
+        "typographyDiversity": 72
+      },
+      "newVideoSHA256": "0e941e2185e0ea50d4827291ef4119d1f7df59172f0175541f5c939bbcc915de",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "558854ab3e3b6cefb92fcbd6a42472b61ef6f12b51a48bc95bee7706a3c7f708",
+        "planHash": "6e36101e87f76517324c4489f9b224649a2f51650e0ae4c5253aa618dac0571a",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "4dd389d27e4ab176978ad08f068a3f15597c795b1828fdd95d1568e1a69d5e40",
+        "videoSHA256": "0e941e2185e0ea50d4827291ef4119d1f7df59172f0175541f5c939bbcc915de",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-04",
@@ -160,10 +275,49 @@
       },
       "mainVideoSHA256": "6d75aa090dbeee3127a492fe1a173f1639622d27f721db6457603c38a08589d4",
       "priorVideoSHA256": "6a2a01bf62aca11b0f46be0d8431237ae5e07515dae1d3aaf652259124f48d1f",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 38.5,
+        "temporalContrast": 37,
+        "hookNovelty": 84,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 90,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 86,
+        "motionRealization": 100,
+        "typographyDiversity": 78
+      },
+      "newVideoSHA256": "e0820c9ac2b3f858e32f403f15dccb18e1b15ee9edfdedf062f2b2794d703b12",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "fae3b06051ca06038e225d5bca7117dd088b9a60f2945afbbb2ebe09346a383a",
+        "planHash": "a8611be2194b6401814f03bd7adb3e3918d47771e2ebdaf1a95f9c5c2701d9bc",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "25f529d11bcdb13aa0b49ea6b58a10b301b40b58616a84dd6c3796d20999ccab",
+        "videoSHA256": "e0820c9ac2b3f858e32f403f15dccb18e1b15ee9edfdedf062f2b2794d703b12",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-05",
@@ -202,10 +356,49 @@
       },
       "mainVideoSHA256": "f151807669ed0a93589483d301af0999da0d1ca7cd95fc051a42f043c77cb6ab",
       "priorVideoSHA256": "ad12bf4d4906024e3ccf2e4121c1c79165dc7236b0af7cdfa88df3dba3aae101",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 32.5,
+        "temporalContrast": 9,
+        "hookNovelty": 86,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 87,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 100,
+        "motionRealization": 67,
+        "typographyDiversity": 37
+      },
+      "newVideoSHA256": "ad28b79b3f0c69da0e66eb9c3a6441224815d0e89177fdc739fb09b74b78976a",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "ec5a8bdfdceebba0565e477149cb194c2a57152ace1580066472cdfc29929466",
+        "planHash": "bb06413de0265819b4e5196a3695e30eb0b1ac2e928a2ac755b0d4fe93112198",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "9ae689a97427710009e2f470b58e95d8e3f87960360ded65409b0c7c57bf0172",
+        "videoSHA256": "ad28b79b3f0c69da0e66eb9c3a6441224815d0e89177fdc739fb09b74b78976a",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-06",
@@ -240,10 +433,47 @@
       },
       "mainVideoSHA256": "5860b7b0cb897535e1af4261ef9ad308ffd6cf0514e36aefe3634158896b1d02",
       "priorVideoSHA256": "3a74b0a48bc8ebf24dca79ec7675b8e7b47370e3d5734665d7a656e4c6d45971",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 54,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 57,
+        "displayOnsetAccuracy": null,
+        "localContrast": null,
+        "motionRealization": 82,
+        "typographyDiversity": 30
+      },
+      "newVideoSHA256": "f8705a3521d1744ffee9b554c635e6093dcc238ddfe9bf11ef6d4a881b91a04b",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "a87693b3a08337ccdcbd892f8b2d90ed182bbf56bd41ad54b42e181ef7b48f1f",
+        "planHash": "470f6ab59333ff6dcec36b9706844aa3769af83ea605eb69e5af56e9a079da7a",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "9cf0bfda2f70ae1a04ee4175fffa366361dca56bbb87e9418721de078653a1f4",
+        "videoSHA256": "f8705a3521d1744ffee9b554c635e6093dcc238ddfe9bf11ef6d4a881b91a04b",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-07",
@@ -278,10 +508,47 @@
       },
       "mainVideoSHA256": "38f5da700681d4b81ef120c5c4a818fd1d73cabaab4c822d7482e9215771db3b",
       "priorVideoSHA256": "cc89cbc1350545310f69cd382bf67778f55f4f81273d5f03e52e06de4a16d954",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 83,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 72,
+        "displayOnsetAccuracy": null,
+        "localContrast": 0,
+        "motionRealization": 100,
+        "typographyDiversity": 31
+      },
+      "newVideoSHA256": "290367cc3195ec94e41a6fbc154f64ff26226981d0658c2fb3145ca3060191cb",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "d2f7f02c986ee44a7232ddd9bdd571e91b5a3367d40dc36949aa8962e029e54c",
+        "planHash": "a54c1dae4cddc900e51940b24811f606b2f6b6d79bfe7bc282f1dfc98b932b30",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            720
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "da24a61531b5bdd5f4c5d93dfea5dd20bf65eade58975d354e4ff61276c11a24",
+        "videoSHA256": "290367cc3195ec94e41a6fbc154f64ff26226981d0658c2fb3145ca3060191cb",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-08",
@@ -320,10 +587,49 @@
       },
       "mainVideoSHA256": "ace02c0144c3c995f7ac687291c19e8139124cd0d6f539fbbd0b664e9ad64271",
       "priorVideoSHA256": "3f0dcf4830be5d16c3d21bad13354e87099b844e43018223ab1763d00c40e512",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 42,
+        "motion": 59.5,
+        "temporalContrast": 41,
+        "hookNovelty": 100,
+        "loopQuality": 32,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 60,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 21.255312960453953,
+        "localContrast": 81,
+        "motionRealization": 100,
+        "typographyDiversity": 25
+      },
+      "newVideoSHA256": "0b7662710ee3df5e28c248da711fe36bc5ef43e212c9d08855d56bb63a6b87a6",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "95a0ea6a3befdf2e36b68c900f64591a661ee77c182350860f112a2f2e59b3a8",
+        "planHash": "950857d2e69f146c9c8e140dbcdf27415b49cccf3498c0b57bef824bd4c9f50f",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "7cb3c20d1784745161966338ff5ebb0d4002a94174a6a635de11f097a247d62e",
+        "videoSHA256": "0b7662710ee3df5e28c248da711fe36bc5ef43e212c9d08855d56bb63a6b87a6",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-09",
@@ -362,10 +668,49 @@
       },
       "mainVideoSHA256": "be46b7e84eb8c2681677914f906245820bab0e45626d72eea4ded0211f1da9a0",
       "priorVideoSHA256": "cbbb4150e6bb670f480ffbb89b0a4088c11fa826f2d68a6d80a1944a4b2e1fb0",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 57,
+        "temporalContrast": 9,
+        "hookNovelty": 64,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 81,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 99,
+        "motionRealization": 100,
+        "typographyDiversity": 51
+      },
+      "newVideoSHA256": "58b79e59276b6db4ec57456d2ec0a7bbec30f763bbea9e9f30b355d86cf6bddc",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "ee17376c8d3a2abcfcd8fa9c1247f5c4e107e1a7fee1eb50bb1e1a06e71ad721",
+        "planHash": "f7c8e411c3833eae531f147a9a4e86040e9c88244956074b9b3e0d7ec77ff1f5",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "b0612d01c979eeaab6b1a5afbf9d91ba2f43a4772070eceed3e7030871a26803",
+        "videoSHA256": "58b79e59276b6db4ec57456d2ec0a7bbec30f763bbea9e9f30b355d86cf6bddc",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-10",
@@ -404,10 +749,49 @@
       },
       "mainVideoSHA256": "a7a14e10fb1e01f2581477718dcd573229f8d7e8391a7208c1979d9f3decb5b2",
       "priorVideoSHA256": "b255692c3d9835a690f53769dc1c42b71d92164e2b520414dc04dff28374b7a0",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 100,
+        "temporalContrast": 34,
+        "hookNovelty": 84,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 87,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 80,
+        "motionRealization": 100,
+        "typographyDiversity": 67
+      },
+      "newVideoSHA256": "893cc5e6da0f2e97183449a933013ccb010f1e01a63c7ccae9923216908fa52e",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "aef9485e6d79f719d33c39da5d6f19b76cb58e991e04a8a8dc534f63d7ac6b30",
+        "planHash": "5797db759a323b034a0970ad8b415417059616a9911c9b1a62fd92de54724b87",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "33443b7795679b032c388e93275e34c4988b93f32548852a511993c80c71bb7a",
+        "videoSHA256": "893cc5e6da0f2e97183449a933013ccb010f1e01a63c7ccae9923216908fa52e",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-11",
@@ -446,10 +830,49 @@
       },
       "mainVideoSHA256": "2560435e193fb41e86637a9d383c3a2255bdff587c6b78824a9b14f0b4d933f2",
       "priorVideoSHA256": "268617a1d4f32fac76ce0e16effe2994e652f86e3d17699e66489776e6d651b3",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 89,
+        "motion": null,
+        "temporalContrast": 58,
+        "hookNovelty": 50,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 70,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 77.42025548513656,
+        "localContrast": 98,
+        "motionRealization": 100,
+        "typographyDiversity": 17
+      },
+      "newVideoSHA256": "3e6fe685a5ff521ffa8b49cd5ae2d17be55f8edbec4ecfe3aee9cd694978373f",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "70bc00f4b7518b9297e5b023e3a55a7e19d6bcc737146242fe7915332b4e70c8",
+        "planHash": "ba9848b1f22d5ecf4ea5ad03ccd7c522eb789abc7a0bafdb27b5c38d1c016185",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "c603586ac915ae6f7dbe4c43689e215fae9ca7538efa4b6c70f0df8326810e74",
+        "videoSHA256": "3e6fe685a5ff521ffa8b49cd5ae2d17be55f8edbec4ecfe3aee9cd694978373f",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-12",
@@ -484,10 +907,47 @@
       },
       "mainVideoSHA256": "618ad1beef5e4c30348866eae45eb82ebbd6172e5b199389b30cc01f97c0f01e",
       "priorVideoSHA256": "acc8f789c0d674bae22734d33a3812c5e390944713e022e5b41588e439d3ffb7",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 3,
+        "loopQuality": 49,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 55,
+        "displayOnsetAccuracy": null,
+        "localContrast": null,
+        "motionRealization": 60,
+        "typographyDiversity": 23
+      },
+      "newVideoSHA256": "c3da0f8311166a896fc0934434405b4798e66f14e406e409a88a447d585d60c6",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "fb1192cb05d0778488e63b646897819213bb540fe1b2643d4d42d6b5761c8c85",
+        "planHash": "fe0c2c22061331f11bbc06ac418fb3ab14faf6ddd2f58dcf7deed92bf39f1193",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "c44d99fc5adf7bf508b9241cedc4b9ccadaaade03f654722e09c38831555894c",
+        "videoSHA256": "c3da0f8311166a896fc0934434405b4798e66f14e406e409a88a447d585d60c6",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-14",
@@ -526,10 +986,49 @@
       },
       "mainVideoSHA256": "8fe02d68e2ae685aad33c3f26016eef799fcd492069ea4ca385a1364b393b350",
       "priorVideoSHA256": "9100facc63f892fb281eafc6f8b493b3a686aec77d2f3039ab6744e00c891938",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 20,
+        "temporalContrast": 43,
+        "hookNovelty": 100,
+        "loopQuality": 41,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 75,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 95.49113334712875,
+        "localContrast": 57,
+        "motionRealization": 100,
+        "typographyDiversity": 49
+      },
+      "newVideoSHA256": "97155030fa78d9ee3b70bc5e04a1bed03e1f9c1092fe387f2129dffa1cdbcc76",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "6bc2b214e2a13da099bca65652510c6c5b9787cedf35fd54843b9025eb327d16",
+        "planHash": "ffc1677894e12c8abe3409a6f560c0c1ee1cc71c9e201e7968878272e09613e5",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "59e6c1344aed52042d40b6d893399e6304a9372f57b6db75ba3fb44cd72ad052",
+        "videoSHA256": "97155030fa78d9ee3b70bc5e04a1bed03e1f9c1092fe387f2129dffa1cdbcc76",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "development-15",
@@ -568,10 +1067,49 @@
       },
       "mainVideoSHA256": "912772a868cf501ceb7b2537e8ae03416aee2424c18b8ef9beb808fd002bcfd2",
       "priorVideoSHA256": "fc335127e32d3840323cc108033bc8bd53dce24f4893077a4f67c37347c1ab55",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 85,
+        "motion": 21.5,
+        "temporalContrast": 59,
+        "hookNovelty": 50,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 67,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 91,
+        "motionRealization": 67,
+        "typographyDiversity": 49
+      },
+      "newVideoSHA256": "0c358547d60ee0a574505204da5cd86f760f285940268bf333e2e68a2b59b95a",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "580b96d7a450f5f62a32c15bc4999cfc8862325e3a6439aea75290260b662d9b",
+        "planHash": "ad554e27995ebc7736537f37b4f4d715e395b216420e93c69050c09ccc551b3a",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "844a4c6136a4cd2810f63dbde80aa3a4ddb629f8694098b4ad3bf5997e4064a2",
+        "videoSHA256": "0c358547d60ee0a574505204da5cd86f760f285940268bf333e2e68a2b59b95a",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-01",
@@ -610,10 +1148,49 @@
       },
       "mainVideoSHA256": "5a3c08d8f49d77e036b5e8d0763c2876b3f3d416dbdcde8162850ce7267da335",
       "priorVideoSHA256": "e61b541001316ab542d4416508b5ab026bd5bf57f3c73b411bd53057d802bb7a",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 61,
+        "motion": 29,
+        "temporalContrast": 37,
+        "hookNovelty": 52,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 50,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 73.56199893892106,
+        "localContrast": 98,
+        "motionRealization": 100,
+        "typographyDiversity": 6
+      },
+      "newVideoSHA256": "7e478de8e068cd1d61af9f7492854c8b56440121e34a890c599da51cfbee78a2",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "50a16f749606edb710ea2ff620d032801dfc0ffe4ce2c4d48e3acf746e4010fc",
+        "planHash": "1d45fc25262e10320d80ec274e4fdfbe2134746c4843d52a027ed962f10b0d86",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "2fcf196b730b95f7d33bf219da9c4c6dbe4331913a53a6838f1d317fb2278856",
+        "videoSHA256": "7e478de8e068cd1d61af9f7492854c8b56440121e34a890c599da51cfbee78a2",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-02",
@@ -652,10 +1229,49 @@
       },
       "mainVideoSHA256": "ddafa761e319f5157442f7ccd119ff0a8f61d87e64f22a0ca23a4af1f770bb3a",
       "priorVideoSHA256": "a36d5743ac4c45d4365fa530faf8221c5a062faf691defe3dd55148f8a827915",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 22,
+        "temporalContrast": 47,
+        "hookNovelty": 67,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 95,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 78,
+        "motionRealization": 100,
+        "typographyDiversity": 79
+      },
+      "newVideoSHA256": "37a1cc0c765f3806a15f98cb1016a727e1a6ccc8640ab033a458663ef7c999c5",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "d238329bf1d779af333866173833b8d687a7fb491bdd71a8fa4ed583dd430dbf",
+        "planHash": "5e88b8885de08245cea4498f31c6c83e431cf6c1652f461d899c5bfeca43b9c0",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "4f575052644d6aaf99f4cf0b89ff2d83d0b055cfbc8043cccfc1ac24b8fe12e7",
+        "videoSHA256": "37a1cc0c765f3806a15f98cb1016a727e1a6ccc8640ab033a458663ef7c999c5",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-03",
@@ -694,10 +1310,49 @@
       },
       "mainVideoSHA256": "3d5c4e2be20a5b917b12d53733fa588ac499aa74f37e2e64487b995578c892bd",
       "priorVideoSHA256": "5d50a264d6a7fb2309f68419de697f753dae9175cdc45b1fe9d59d65d3d1ae77",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 95,
+        "motion": 22,
+        "temporalContrast": 16,
+        "hookNovelty": 45,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 70,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 91,
+        "motionRealization": 100,
+        "typographyDiversity": 42
+      },
+      "newVideoSHA256": "d620845679ce89a899c362dcd3034b01885bc9434541ce9c5f80560867965b54",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "be3466e3019b358ff4f9d50fe7213537888293c8669f355402961f95dc8b0395",
+        "planHash": "8e96ea3340aff0240dac06c14f58d79f2cbaa72b757390d2821dc1a95b824a39",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "e216903a886cf3d3b3fd09d56c25301dbb98e4aa75df170db077ed6368f15d27",
+        "videoSHA256": "d620845679ce89a899c362dcd3034b01885bc9434541ce9c5f80560867965b54",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-04",
@@ -732,10 +1387,47 @@
       },
       "mainVideoSHA256": "b286457db953bd731c3ae2e3dbf98a8019c23fcb1a45287e07673b878e4e4697",
       "priorVideoSHA256": "79fa12c6c1087d4526363117e8e84dd79bb728e79aa264496343cdca1e85de7b",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 100,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 76,
+        "displayOnsetAccuracy": null,
+        "localContrast": 0,
+        "motionRealization": 100,
+        "typographyDiversity": 60
+      },
+      "newVideoSHA256": "117f999ccc175f9681163ebbbfb4dfe85c7ead2806f68fc570ba21595f7c0745",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "74bbb226288e2ff20559d4a34158baec6ec84d3032973915b2c2fbed89bac0df",
+        "planHash": "180ed420b62d7464af0b2a5868998ed31a4972d99902b9602c46e460b7f57010",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "2cfbbd89cebe34b9dd953c7d7d538c1bc6c512cecb3876a95467febb1e88434d",
+        "videoSHA256": "117f999ccc175f9681163ebbbfb4dfe85c7ead2806f68fc570ba21595f7c0745",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-05",
@@ -770,10 +1462,47 @@
       },
       "mainVideoSHA256": "8dfe458f3207435851146ea2982ec03710fc0738cd057f44de7dc9c1c4c3675b",
       "priorVideoSHA256": "f744dd5084e78937228b61250bee98adec3490371be0d01457ff77d86f73f602",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 57,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 57,
+        "displayOnsetAccuracy": null,
+        "localContrast": 0,
+        "motionRealization": 100,
+        "typographyDiversity": 19
+      },
+      "newVideoSHA256": "9cfe28f817326c59909fd4d52991181d0daaf2fa7481bb8cf2f95efa3f395ace",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "c6b6220463d485d9d2a1565e20ebc38ad2729d9dbf181c810ec8e45c02a3f400",
+        "planHash": "0e04f8635a3b393df1b956b01a12fb1add9c944f056bea43a95cdafaabf8ab90",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "dbe5f00015edfca0c977c94f16a1f010a6ac7a14a235a8bcefb959620137c04c",
+        "videoSHA256": "9cfe28f817326c59909fd4d52991181d0daaf2fa7481bb8cf2f95efa3f395ace",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-06",
@@ -812,10 +1541,49 @@
       },
       "mainVideoSHA256": "004ab90d5dea855982cd2f416e1b4b479895458a7938d3c0ae96829bdfbf8a14",
       "priorVideoSHA256": "8e4291ecb48a4735bfd72544cda00d3cb408d766e916c812a96a260aa9f49565",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 20.5,
+        "temporalContrast": 24,
+        "hookNovelty": 100,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 100,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 33,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 0,
+        "motionRealization": 100,
+        "typographyDiversity": 31
+      },
+      "newVideoSHA256": "ee9307128032d08ab60aa90a342025c1081322c247d04fdf7e8afb7bb38868e4",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "f1f798c1bac4f1f0110079a2e467fb0d4831694999249cd18d5d59bcbc0e4bc8",
+        "planHash": "0f95717e254f44d37ffa3bf8471b72a27959d50698e8a0e095858aff4de21b67",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "46dc51e629cb3cb452f240545bff514f27eaecf663756fc4dcc9103edb9ac3a8",
+        "videoSHA256": "ee9307128032d08ab60aa90a342025c1081322c247d04fdf7e8afb7bb38868e4",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-07",
@@ -854,10 +1622,49 @@
       },
       "mainVideoSHA256": "7ceba9df635ecf65a0ea868041f55f2845c01bea5b2b359ac7e18e2c95a0728e",
       "priorVideoSHA256": "149d553e017c0e7224d4675caea68dc9258d77b73408242ba59a1fb62b85de6e",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 70,
+        "motion": 83.5,
+        "temporalContrast": 42,
+        "hookNovelty": 57,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 66,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 87.02353529898338,
+        "localContrast": 99,
+        "motionRealization": 100,
+        "typographyDiversity": 69
+      },
+      "newVideoSHA256": "125d67224ea3a2c0d105faf284a063d1eb7728fa143c4e7d25d8728c37677fc5",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "01555a4d44789194e26b05a0d06a4636e2a0d105305a1864d782258301b3ce3f",
+        "planHash": "472ae1bfd1d455df082d8a146b573fe5e846de775af90ae8e7b1d1f9deb54fc5",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            900
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "2aff9101ba12980066c5ce95cc39f4ff2cf6851ce443f107496ad0419f5a9d20",
+        "videoSHA256": "125d67224ea3a2c0d105faf284a063d1eb7728fa143c4e7d25d8728c37677fc5",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-08",
@@ -896,10 +1703,49 @@
       },
       "mainVideoSHA256": "a853b07a547f8f9b11aa0823d40f47ddbed382f85b6f10f51e2eaf87a269f62f",
       "priorVideoSHA256": "c151988104843266836cb874d05d56bab55f5b6f735eb0028b35405c84debcbc",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 41,
+        "temporalContrast": 37,
+        "hookNovelty": 57,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 100,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 80,
+        "motionRealization": 100,
+        "typographyDiversity": 43
+      },
+      "newVideoSHA256": "2b68f7b020a2667a257dc01229ff20e839c1877df48480469cb7f4dc2c5036c3",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "ab6849b2522a2288c1ef542e616d5e7da550dae8cc1205aa502bfdacec02333a",
+        "planHash": "af8e3ea5b1d25cab65890fb5978e829ad3718fdd1221d466c10e351882e3f09b",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "44d9bb4ab999bf0e8d888122b9e6deb7c6a631ac4f89bb6f75f30fcd8a31262d",
+        "videoSHA256": "2b68f7b020a2667a257dc01229ff20e839c1877df48480469cb7f4dc2c5036c3",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-09",
@@ -938,10 +1784,49 @@
       },
       "mainVideoSHA256": "e50a0b88e84b961d7a4ef5064d75356ec39f1cc62c602cf3985a091336a0eeab",
       "priorVideoSHA256": "767cf9b8cbd42489fb1ab727e6e5e96dd82b768316b8f82c4acefa940e3960b9",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 76,
+        "motion": 55.5,
+        "temporalContrast": 23,
+        "hookNovelty": 47,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 94,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 29,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 88,
+        "motionRealization": 100,
+        "typographyDiversity": 77
+      },
+      "newVideoSHA256": "86da60a30057c48f268230b5526e1b2586843d57a6b414cd8f5af9ca998f5a6b",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "4d5b81ff2538484d87765ce6dddb6bf892ffa87d7fe096d87b6f64ab65a66bf2",
+        "planHash": "937eabbeb90cfbc9fd005d44d87d39f5b371d56b3f6af037f48213afe773bbbb",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "9e8adfc5ae10418ead53bf7ac7851a7f599b09a3c665e135e3db48f7abf64a13",
+        "videoSHA256": "86da60a30057c48f268230b5526e1b2586843d57a6b414cd8f5af9ca998f5a6b",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-10",
@@ -976,10 +1861,47 @@
       },
       "mainVideoSHA256": "70baf174308d8924e41e143a8af11fb1c996ab77050f6315e8783ad6280491b3",
       "priorVideoSHA256": "d817d1dbbdcb967748cba39183abd6af6d5a6c843ba689e8c54bd14dcb219a6d",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 87,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 64,
+        "displayOnsetAccuracy": null,
+        "localContrast": 0,
+        "motionRealization": 100,
+        "typographyDiversity": 28
+      },
+      "newVideoSHA256": "b7fc7483a9ac87bf55de087cd2cbc234bb2a1808c6b55cf9febb9b588450972b",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "ecc6d773a9f550241f2af7be36f7739e63d61dae142e8d01b0161b4c76bac95e",
+        "planHash": "b1cbe567e91fcdb27079cf9033a64b8496af6b19e58c8769d2890e0c14df45d6",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "ff6459dd34397586a0d52fc4855e17c6d1356d99361961082e7789a9f7eb6098",
+        "videoSHA256": "b7fc7483a9ac87bf55de087cd2cbc234bb2a1808c6b55cf9febb9b588450972b",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-11",
@@ -1014,10 +1936,47 @@
       },
       "mainVideoSHA256": "50d806051d1976c61f9cf79b472da6a8ca7e5e656c8360dd7a5b15adf4e9dfd2",
       "priorVideoSHA256": "fd9c1cd4ea27e971002978a14ecd088f1d4cd8884818431cbc38ff654c9d5557",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 1,
+        "loopQuality": 51,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 56,
+        "displayOnsetAccuracy": null,
+        "localContrast": 0,
+        "motionRealization": 100,
+        "typographyDiversity": 29
+      },
+      "newVideoSHA256": "74c54c2a697e4d1b110095f13ee3764b95cfb8bd76c44624f6c36a7f8d421879",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "adaee1e5759f411974ae1bff8bd7401976538dc25409db4d5a0014665f4dce87",
+        "planHash": "e720ed4d7994d45825c1f613f0248c17a4ef100102b7cd52255a480414c0fee9",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "9ecee96353fb2a586a8c29801cf03511153b151ea874eee1f0f122be93320143",
+        "videoSHA256": "74c54c2a697e4d1b110095f13ee3764b95cfb8bd76c44624f6c36a7f8d421879",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-12",
@@ -1056,10 +2015,49 @@
       },
       "mainVideoSHA256": "15a3b25d111b5b97d2d21e7b0ff266146bd7bc249c5c13b4e129874c7de5131e",
       "priorVideoSHA256": "018754e58d1b07b547483832f339dc45f2be6b3e6a2e15fa8eae73a13a80093c",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 98,
+        "motion": 25,
+        "temporalContrast": 38,
+        "hookNovelty": 100,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 53,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 62.74804429604384,
+        "localContrast": 94,
+        "motionRealization": 100,
+        "typographyDiversity": 33
+      },
+      "newVideoSHA256": "6df0b99add927c41c343cfb78b1857194c233ca73cc40d729a34792ceb094c1f",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "b67f78f163d07be427fc4baa1111b63cb9879669003e4d54d8c54298e85ec3d7",
+        "planHash": "e895ad5fb4a4b88f7337da97bae25f4f423bb9c5425446bef883bf6a85dc044f",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "fa94a524f22fc61b8625baafb4040460ff416fb5d0cdd2cdb9fa575256053796",
+        "videoSHA256": "6df0b99add927c41c343cfb78b1857194c233ca73cc40d729a34792ceb094c1f",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-14",
@@ -1098,10 +2096,49 @@
       },
       "mainVideoSHA256": "70b889368cad1e4771fa2cee9cb1681e71b571a3d03cf51fed721350d96656bb",
       "priorVideoSHA256": "6f450e46f8183bff1ec8c24e952a37d7e86ecff54870fc2d00bc42603e8b75f2",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 20,
+        "temporalContrast": 92,
+        "hookNovelty": 59,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 80,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 88.35278666694346,
+        "localContrast": 75,
+        "motionRealization": 100,
+        "typographyDiversity": 39
+      },
+      "newVideoSHA256": "eb19d7ff1ff462a69220f83755b50936fde1fd9e15295b65056a0344a3d3e4fd",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "dc630831fba4f3590c7fb3d3724ca74b948836983349d32ab66a2bb225082bb6",
+        "planHash": "4a5df586c29728d39de4f3d6714540a0a29d19a045229a99301c78f33ffc23df",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "68d02bdb7bdc0e3dbaa1fb0628fef89b2b605bd22b5f48dd05adad9be7e558dd",
+        "videoSHA256": "eb19d7ff1ff462a69220f83755b50936fde1fd9e15295b65056a0344a3d3e4fd",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "holdout-15",
@@ -1140,10 +2177,49 @@
       },
       "mainVideoSHA256": "d23a9b73b882db40dad79914b310ebebe9516d5c7106c87d4c53fbe628ad8f9a",
       "priorVideoSHA256": "a0ee016e4b532c3f60e2559ce753bf75d817f1c6cf718ca4b3d51e8a048120fa",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 21,
+        "temporalContrast": 39,
+        "hookNovelty": 63,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 75,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 89,
+        "motionRealization": 100,
+        "typographyDiversity": 36
+      },
+      "newVideoSHA256": "d42c8844ded1f9af99a18687d1d94f6e187299f9f7850ac29f81f5a7e54facfe",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "3f08f157b265f5e6a9e5773814c97eee9391c2e2e1ddad1468da33c723600170",
+        "planHash": "951e52045b48a61e62b6c23e2bdc10968c2c702fdd614506924ec2bfc72926f5",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "14ac11e3ad8b22dca74ca06e12549edd7273ba2f41651a1a3f52bf5e35644691",
+        "videoSHA256": "d42c8844ded1f9af99a18687d1d94f6e187299f9f7850ac29f81f5a7e54facfe",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "supplemental-development-13",
@@ -1178,10 +2254,47 @@
       },
       "mainVideoSHA256": "3f572769edf034c220340978f8fd33ad5dacc376fd31262c733078c9a8dd8c5b",
       "priorVideoSHA256": "85f7073afe972bf0329615deb171a461619af760128e2e2e8ba49dffbf4034b2",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": null,
+        "motion": null,
+        "temporalContrast": null,
+        "hookNovelty": 40,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 37,
+        "displayOnsetAccuracy": null,
+        "localContrast": null,
+        "motionRealization": 67,
+        "typographyDiversity": 21
+      },
+      "newVideoSHA256": "564ae4fe91f61b5b3ebdf442fa8f69363becaf218a6f56080c0d3b8d7fcaa58b",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "409f1744a48baa34fedec0e47fa2fbdcfca632f29f55506d075356278c21e783",
+        "planHash": "80bca2929447956eacda552be26307bedbbfd5e10099465f61808d7a02e6ff96",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "289fa21afc313ff9e3fe5d9d39dda1adabe575df7d899c00cf44689753219ed0",
+        "videoSHA256": "564ae4fe91f61b5b3ebdf442fa8f69363becaf218a6f56080c0d3b8d7fcaa58b",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     },
     {
       "fixture": "supplemental-holdout-13",
@@ -1220,13 +2333,52 @@
       },
       "mainVideoSHA256": "bf903b3e5942ea0794b8c8fbdea3b3b2093945b077ff78db546521e0d78678e6",
       "priorVideoSHA256": "7bf4bd2ee9d4ac97ac9d2c1f69d3521a4ee7028911102049107269da8d3e807c",
-      "newMetrics": null,
-      "newVideoSHA256": null,
-      "newStatus": "UNVERIFIED_NOT_EXECUTED_ALL30",
-      "observer": "Prior canonical corrected common observer b5; historical values not relabelled as new-source results"
+      "newMetrics": {
+        "perceptualNovelty": 100,
+        "motion": 12,
+        "temporalContrast": 100,
+        "hookNovelty": 10,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 97,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 99.19029750841258,
+        "localContrast": 99,
+        "motionRealization": 33,
+        "typographyDiversity": 36
+      },
+      "newVideoSHA256": "7523aa29b477e373cd6df1699396d4ccbc807fd4d9ab694ee286d157653fdb31",
+      "newStatus": "PASS",
+      "observer": "Historical corrected main/b5 observer versus new source-qualified identical metric definitions; native geometry changed so old movies must retain own renderer references. Source-specific observations, not aesthetic scores.",
+      "newBinding": {
+        "inputHash": "d0007db3aa4f250172ed713ef1723bc44c416339cc968da58372307055f13752",
+        "planHash": "a95f8fab118f4308b4ab8bb25291d6e4a6d5cfa9df3558dc1623c3c3e3b1274b",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "selectedCandidateId": "ee26f6379a1bf35eacf0c83de9ce96d7d622a453ebd74e6dbda888fa43c8081e",
+        "videoSHA256": "7523aa29b477e373cd6df1699396d4ccbc807fd4d9ab694ee286d157653fdb31",
+        "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+        "sourceTreeSHA256": "f86b7707f6abd383335d08e177c64917b8dfda68a81c7ad8c365bb1e4a485ced",
+        "sourceDirty": false
+      },
+      "newLyricSafety": "MEASURED"
     }
   ],
-  "whole30NewStatus": "UNVERIFIED",
-  "newSourceEffectsStatus": "UNVERIFIED",
+  "whole30NewStatus": "30_PASS_FULL_DECODE",
+  "newSourceEffectsStatus": "UNVERIFIED_INDIVIDUAL_INTENTS",
   "human": "HUMAN_UNVERIFIED"
 }

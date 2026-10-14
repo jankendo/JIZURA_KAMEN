@@ -1,4 +1,4 @@
-name: Frozen507 final KAMEN completed MP4 matrix
+name: Frozen5e14682 final KAMEN completed MP4 matrix
 on:
   push:
     branches: [codex/kamen-generalization-evidence-20261012]
@@ -31,7 +31,7 @@ jobs:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 507a49912cc26cfe77780433ee16917c9225e220
+          ref: 5e14682249ce690337874214f2ec76fc8e68fa26
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -84,7 +84,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: final-composition-507a499-${{ matrix.partition }}
+          name: final-composition-5e14682-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
