@@ -1,0 +1,29 @@
+{
+  "sourceCommit": "b85bbeefd4f51e156da0c0ff515f32b99975df8a",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "previousCI": {
+    "sourceCommit": "5ede0f14549e3195ea4ab9f7e9f1e3d8fde7659c",
+    "run": 38600370668,
+    "result": "FAIL",
+    "directFailures": [
+      "cinema_v3_readability_protection_test: missing complete music observation population in synthetic positive fixture",
+      "cinema_v5_final_artifact_test: missing complete music observation population in synthetic positive fixture"
+    ],
+    "derivedFailure": "clean restore repeated same two failures"
+  },
+  "runtimeFailures": {
+    "run": 38600321109,
+    "cases": [
+      "holdout-01",
+      "development-05"
+    ],
+    "cause": "geometry state predates director virtualShot assignment; QA dereferenced missing shot.id",
+    "repair": "retain final director camera when alternative has no camera, preserve explicitly selected alternative camera; missing QA contract stays UNMEASURED instead of throwing"
+  },
+  "targetedTests": "3 PASS; previous registry integration PASS",
+  "pr": 13,
+  "mainUnchanged": true,
+  "humanEvaluation": "HUMAN_UNVERIFIED",
+  "currentFocalVerification": "PENDING"
+}
