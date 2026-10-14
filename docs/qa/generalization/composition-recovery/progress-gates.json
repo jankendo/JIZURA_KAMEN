@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "recordedAt": "2026-10-14T03:49:43.708827+00:00",
+  "recordedAt": "2026-10-14T06:06:21.501763+00:00",
   "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
   "sourceBranch": "audit/global-storyboard-20261012",
   "pr": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "overall": "PARTIAL",
-  "TECHNICAL_GO": "UNVERIFIED",
+  "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "UNVERIFIED",
   "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
   "human": "HUMAN_UNVERIFIED",
@@ -30,15 +30,60 @@
   },
   "ci": {
     "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38505354079",
-    "status": "IN_PROGRESS_NOT_PASS",
-    "expectedSourceHead": "5e14682249ce690337874214f2ec76fc8e68fa26"
+    "status": "SUCCESS",
+    "expectedSourceHead": "5e14682249ce690337874214f2ec76fc8e68fa26",
+    "tests": {
+      "total": 204,
+      "passed": 202,
+      "failed": 0,
+      "skipped": 2
+    },
+    "prMergeCheckout": "5d4f0a6999e3df78c3ba06d0d41e21ac84013e72",
+    "identicalGitTree": "a0fc68b67ede83b07cec93f962c74ec27cf6fea6"
   },
   "full30Current": {
     "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38505466561",
-    "status": "25_HASH_BOUND_FULL_DECODE_5_PENDING",
-    "completed": 25,
-    "pending": 5,
-    "collectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+    "status": "30_PASS_MATCHED_FULL_DECODE",
+    "completed": 30,
+    "pending": 0,
+    "collectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+    "statistics": {
+      "mainMetrics": {
+        "mean": 41.36666666666667,
+        "worst": 13,
+        "bottom20Mean": 19.333333333333332
+      },
+      "priorMetrics": {
+        "mean": 34.03333333333333,
+        "worst": 4,
+        "bottom20Mean": 8.166666666666666
+      },
+      "newMetrics": {
+        "mean": 41.9,
+        "worst": 6,
+        "bottom20Mean": 18.5
+      },
+      "latestMetrics": {
+        "mean": 41.9,
+        "worst": 6,
+        "bottom20Mean": 18.5
+      },
+      "latestVsmainMetrics": {
+        "improved": 12,
+        "same": 3,
+        "declined": 15
+      },
+      "latestVspriorMetrics": {
+        "improved": 13,
+        "same": 9,
+        "declined": 8
+      },
+      "latestVsnewMetrics": {
+        "improved": 0,
+        "same": 30,
+        "declined": 0
+      }
+    }
   },
   "previous507Evidence": {
     "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
@@ -116,16 +161,6 @@
       "id": "QUALITY_GENERALIZATION",
       "cause": "Formal507 typography improved13/tied9/declined8 againstprior. Independent energetic fixture has contrast94→84, temporal32→19, novelty67→57 and proxy motion100→67; no named semantic motion failure established, but overall benefit cannot be certified. Current staged correction not yet fully compared.",
       "next": "Collect fixed5e matrix, review weak actual frames/intervals under identical conditions and isolate any actual regression. No score/threshold/fixture changes."
-    },
-    {
-      "id": "CAUSAL_FULL30",
-      "cause": "C/D/E isolated completed focus4 each. Full30 is not yet complete.",
-      "next": "Remaining26 fixed-input new-only encodes launched; reuse saved valid b5 baseline movies after input/WAV/profile matching."
-    },
-    {
-      "id": "LATEST_CI",
-      "cause": "Registered recovery tests and staged correction changed source; old507 CI is not current-head success.",
-      "next": "Collect exact5e full regression/build/browser/restore/one-click/decode evidence after CI completes."
     }
   ],
   "runningIsolatedComparisons": {
@@ -159,7 +194,17 @@
   },
   "speedIsReleaseBlocker": false,
   "historicalGateFile": "composition-recovery/historical-b5-final-gates.json",
-  "currentCompletedMovies": 29,
-  "currentDecodeCountMeaning": "25 formal current-head movies plus4 independent current-head movies; prior paired movies counted separately",
-  "additionalIntentCounterexample": "holdout01-intent-application-counterexample.json"
+  "currentCompletedMovies": 34,
+  "currentDecodeCountMeaning": "30 formal plus4 independent current-head movies. Controlled diagnostic encodes are separately counted.",
+  "additionalIntentCounterexample": "holdout01-intent-application-counterexample.json",
+  "latestExperimentalSource": "926ebca71badbd3ed106a422d24938d05c272779",
+  "experimentBranch": "audit/contrast-preserves-composition-20261014",
+  "experimentsNotAdopted": {
+    "17df74f": "4 technicalPASS; no holdout12 composition recovery; holdout03 contrast improved",
+    "4f7a836": "Technically valid but holdout12 perceptual98→27/temporal38→9; rejected",
+    "5c81698": "Retained actual shipping baseline and avoided prior prototype regression; four focal comparisons technicallyPASS, no substantial composition gain"
+  },
+  "operatorReproduction": "Original same-source full-unit verificationPASS; repeated raw RGBA frames identical. Exact decoded SHA mismatch retained for2 cases, with measured H264 repeat variation.",
+  "completedCDE": "All30 per isolated algorithm collected, exact source/input/profile/full decode matched; no unconditional adoption of mixed-resultD",
+  "importantRoleBranchAudit": "IN_PROGRESS"
 }
