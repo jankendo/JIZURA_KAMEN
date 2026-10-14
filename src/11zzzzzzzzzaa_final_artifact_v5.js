@@ -171,5 +171,18 @@ Q.verifyFinalArtifact=async(result,args,input)=>{
  const payload={notApplicableCuts,version:'final-artifact-v1',verifierVersion:Q.version,verifierIdentity:Q.finalArtifactVerifierIdentity??{sourceCommit:build.sourceCommit??null,sourceTreeSHA256:build.sourceTreeSHA256??null},binding,status,inputContract:contract,units:summaries,frames,motionObservations,motionSummary,audioEvidence:audio,failures,unavailable,limits:'Native expected glyph geometry and actual decoded compositing/contrast; no OCR, sung syllable recognition or aesthetic certification. Entry/exit effects are separately observed and do not certify hold readability. Every nonspace native glyph box requires decoded contrast-bearing ink, with actual pixel presence recorded separately from raw fill contrast. Expected glyph projection is not independent OCR.',perGlyphDecodedIdentity:'REGISTERED_LOCAL_CONTRAST_AND_NEGATIVE_CONTROLS_NOT_OCR',humanStatus:Q.humanStatus};
  return V.freezeMetadata({...payload,evidenceId:await hash(payload)});
 };
+// A legacy/no-history export still has its own final-Blob evaluation. Only
+// the actual verified ledger supplies observations; absent creative domains
+// remain absent, and diversity/displacement are never relabelled as quality.
+Q.finalArtifactEvaluation=async(artifact,videoHash)=>{
+ if(!artifact)return null;
+ const {evidenceId,...payload}=artifact;
+ if(await hash(payload)!==evidenceId||artifact.binding.videoSHA256!==videoHash)throw Error('FINAL_ARTIFACT_EVALUATION_BINDING_MISMATCH');
+ const b=artifact.binding,base={...b,profileId:V.profileId(b.outputProfile),source:'ENCODED_MP4',affectedLineIds:[...new Set(artifact.units.map(u=>u.line))],evidenceId,sampleCount:0};
+ const complete=artifact.status==='MEASURED'&&artifact.units.length&&artifact.units.every(u=>u.status==='MEASURED'),holds=artifact.frames.filter(f=>f.phase==='hold'),contrast=complete&&artifact.units.every(u=>F(u.minimumContrast))?Math.min(...artifact.units.map(u=>u.minimumContrast)):null;
+ const metric=(id,value,samples,method)=>V.metric(id,value,{...base,sampleCount:samples,method});
+ const measurements=[metric('frameAlignedOutputReadability',contrast,F(contrast)?holds.length:0,'All actual decoded HOLD frames / registered local primary contrast; not OCR or aesthetic quality'),metric('lyricIntegrity',complete&&artifact.inputContract.originalUnitTextStatus==='MEASURED'&&artifact.inputContract.originalSourceLineTextStatus==='MEASURED'?100:null,complete?artifact.units.length:0,'Original input/renderer contract plus final registered per-unit glyph presence; not decoded OCR'),metric('lyricTiming',complete&&artifact.inputContract.timingStatus==='MEASURED'?100:null,complete?artifact.units.length:0,'Original LRC contract and final per-unit actual timestamp coverage; not sung-syllable recognition')];
+ return V.freezeMetadata({id:videoHash,planHash:b.planHash,measurements,hardFailures:[...artifact.failures],basis:'INDEPENDENT_FINAL_ARTIFACT_WITHOUT_CANDIDATE_HISTORY',finalArtifactEvidenceId:evidenceId,humanStatus:Q.humanStatus});
+};
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>{const result=await provenance(...args),p=args[0].plan;return {...result,plannedOperatorContracts:{planHash:await V.planHash(p),sourceCommit:window.KAMEN_BUILD_INFO?.sourceCommit??null,method:'Selected renderer plan contract recorded before final artifact observation',units:(p.cuts||[]).filter(c=>c.line>=0).map((c,index)=>({index,line:c.line,start:c.start,end:c.end,...Q.selectedMotionContract(p,c,args[0].project?.autoDirection===true)}))}};};
 })();

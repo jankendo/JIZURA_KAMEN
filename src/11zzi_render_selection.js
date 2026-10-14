@@ -177,6 +177,8 @@ J.compareRegistryCandidates=async(project,audio,image,options={})=>{
    // These masks describe the exact cut that the global search may apply.
    const completed=[];
    for(const candidate of ranked){
+    if(options.signal?.aborted)throw new DOMException('Aborted','AbortError');
+    await yieldUI();
     const probes=(J.photoAnchorCandidates?.(R.customBgBitmap)||[{x:.5,y:.5}]).map(anchor=>{
      const cut={...candidateCut(sp,c,candidate.layout,font,finalEnter,hold),params:{...J.clonePhotoRenderPlan(candidate.params),photoAnchor:J.clonePhotoRenderPlan(anchor)},style,styleKey:winner.id};
      const ev=sample(sp,cut,.6);return {cut,ev,rank:(ev.contrastFit??0)*.5+(1-(anchor.saliency??.5))*.35+(Math.abs(anchor.y-.5)>.1?.08:0)};
