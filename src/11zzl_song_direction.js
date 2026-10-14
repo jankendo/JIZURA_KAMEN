@@ -6,12 +6,14 @@ J.songDirectionProfile=audio=>{
  const mode=Object.keys(scores).sort((a,b)=>scores[b]-scores[a]||a.localeCompare(b))[0];
  return {version:1,mode,scores,energy,rhythm,attack,smooth,brightness,dynamics,measurementProfile:J.createMusicDirectionProfile?.(audio),source:'normalised audio energy, onset density, beat strength, tempo, spectrum and section contrast'};
 };
+// Preserve analysis values; uploaded bytes identify content across resamplers.
+const analyzeAudio=J.analyzeAudio;if(analyzeAudio)J.analyzeAudio=async(source,...args)=>{const audio=await analyzeAudio(source,...args);if(audio&&typeof source?.arrayBuffer==='function')audio.sourceFileSHA256=await J.sha256(await source.arrayBuffer());return audio;};
 const pcmKeys=new WeakMap();
 J.registrySelectionAudioKey=audio=>{
  if(!audio)return null;const f=audio.features||{},b=audio.buffer;let pcm=null;
  if(b?.getChannelData){pcm=pcmKeys.get(b);if(!pcm){let hash=2166136261;for(let c=0;c<b.numberOfChannels;c++){const d=b.getChannelData(c);for(let i=0;i<512&&d.length;i++){const v=Math.round(d[Math.floor(i*(d.length-1)/511)]*1e6);hash=Math.imul(hash^v,16777619)>>>0;}}pcm=[b.length,b.sampleRate,b.numberOfChannels,hash];pcmKeys.set(b,pcm);}}
  const keys=['energy','bpm','onsetDensity','beatStrength','brightness','bass','high','percussive','smoothness','sectionContrast','dynamics'];
- return JSON.stringify({duration:audio.duration,bpm:audio.bpm,pcm,features:Object.fromEntries(keys.map(k=>[k,f[k]??null])),beats:(audio.beats||[]).slice(0,256),timeline:f.detailedTimeline||f.timeline||[],sections:f.sections||[]});
+ return JSON.stringify({sourceFileSHA256:audio.sourceFileSHA256??null,duration:audio.duration,bpm:audio.bpm,pcm,features:Object.fromEntries(keys.map(k=>[k,f[k]??null])),beats:(audio.beats||[]).slice(0,256),timeline:f.detailedTimeline||f.timeline||[],sections:f.sections||[]});
 };
 J.songLayoutFit=(family,profile,energy,role,repeat)=>{
  const affinities={flow:{phrase:1,radial:.85,perspective:.8,statement:.65,reveal:.6,frame:.5},drift:{statement:1,shadow:.85,frame:.8,phrase:.65,reveal:.65},punch:{hero:1,banner:.95,condensed:.9,split:.85,depth:.8,frame:.5},drive:{condensed:1,diagonal:.95,depth:.9,hero:.85,banner:.8,phrase:.5}};

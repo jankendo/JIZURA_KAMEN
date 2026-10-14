@@ -391,13 +391,13 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
   // nonregression rule; proxy losses and the second decision are retained.
   const axes=['typographyDiversity','lyricForegroundNovelty','temporalContrast','localContrast','motionRealization'];
   let deliveryGuard=null;
-  if(!guard.allowed&&guard.next?.completed&&guard.prior?.completed&&axes.some(k=>Number.isFinite(guard.next.metrics?.[k])&&Number.isFinite(guard.prior.metrics?.[k])&&guard.next.metrics[k]>guard.prior.metrics[k])){
+  if(identity!==incumbentIdentity&&guard.next?.completed&&guard.prior?.completed&&(guard.allowed||axes.some(k=>Number.isFinite(guard.next.metrics?.[k])&&Number.isFinite(guard.prior.metrics?.[k])&&guard.next.metrics[k]>guard.prior.metrics[k]))){
    const deliveryPrior=priorDeliveryEncoded??=await J.measureCinemaEncodedProxy(shippingBaseline,range,signal,{scope:rasterScope,inputHash,deliveryProfile:true}),deliveryNext=await J.measureCinemaEncodedProxy(candidate.plan,range,signal,{scope:rasterScope,inputHash,deliveryProfile:true});
    deliveryGuard=await V.guardCompositionPromotion(candidate.root,identity,incumbentIdentity,async()=>({next:deliveryNext,prior:deliveryPrior}));
    deliveryGuard.phase='ACTUAL_DELIVERY_DIMENSIONS_FPS';candidate.encoded=deliveryNext;
    if(!deliveryGuard.allowed){const musicTradeoff=V.musicConditionedCompositionTradeoff(deliveryNext,deliveryPrior);deliveryGuard.musicTradeoff=musicTradeoff;if(musicTradeoff.allowed){deliveryGuard.allowed=true;deliveryGuard.status='MUSIC_CONDITIONED_COMPOSITION_TRADEOFF_ACCEPTED';}}
   }
-  candidate.creativeProtected=deliveryGuard?.allowed??guard.allowed;candidate.measuredCompositionGain=candidate.creativeProtected&&identity!==incumbentIdentity;creativeGuards.push({...guard,phase:'10FPS_EXPLORATORY_PROXY'},...deliveryGuard?[deliveryGuard]:[]);
+  candidate.creativeProtected=identity===incumbentIdentity?guard.allowed:deliveryGuard?.allowed===true;candidate.measuredCompositionGain=candidate.creativeProtected&&identity!==incumbentIdentity;creativeGuards.push({...guard,phase:'10FPS_EXPLORATORY_PROXY'},...deliveryGuard?[deliveryGuard]:[]);
  }
  const creativeGuard=creativeGuards.find(x=>x.root==='MEASURED_REGISTRY_BASELINE')??null;
  const viable=readable.filter(x=>x.creativeProtected).sort((a,b)=>Number(!!b.measuredCompositionGain)-Number(!!a.measuredCompositionGain)||V.compareRanks(vector(a.readability),vector(b.readability))||String(a.root).localeCompare(String(b.root))),proposal=viable[0],plan=proposal?.plan||p,readability=proposal?.readability||incumbent,lines=proposal?.lines||[],raster=proposal?await J.measureCinemaSequence(plan,range,{scope:rasterScope}):null,encoded=proposal?(proposal.encoded||(!legacyTrial.accepted&&!lines.length&&stages.chosen.encoded&&selectedProxyPlanHash===await V.planHash(plan)?stages.chosen.encoded:await J.measureCinemaEncodedProxy(plan,range,signal,{scope:rasterScope}))):null,safe=!!encoded?.completed&&raster.samples.every(s=>s.safe)&&!(encoded.layerPresence?.primaryText?.samples||[]).some(s=>s.visibleSamples<s.samples.length),accepted=!!proposal&&safe;

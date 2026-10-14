@@ -1,7 +1,12 @@
 /* Content-seeded composition tournament. Only visible raster improvements survive. */
 (()=>{'use strict';const J=window.J,C=J.clamp,ease=u=>{u=C(u);return u*u*(3-2*u);},active=p=>!!p.musicalPhoto?.cinema,locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c);
 const hash=s=>{let h=2166136261;for(const ch of String(s)){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;};
-J.cinemaContentSeed=p=>hash(JSON.stringify([p.artDirection?.registrySelection?.audioKey,p.artDirection?.registrySelection?.backgroundKey,p.lines?.map(l=>[l.start,l.text]),p.musicalPhoto?.songProfile,p.musicalPhoto?.cinema?.pool,p.styleKey]));
+J.cinemaContentSeed=p=>{
+ let audioIdentity=null;try{audioIdentity=JSON.parse(p.artDirection?.registrySelection?.audioKey||'null')?.sourceFileSHA256??null;}catch{}
+ // Unknown uploaded identity stays explicit; floating analysis and resampled
+ // PCM never seed geometry. Musical scoring and intentional holds are intact.
+ return hash(JSON.stringify(['immutable-content-seed-v2',p.seed,audioIdentity,p.artDirection?.registrySelection?.backgroundKey,p.lines?.map(l=>[l.start,l.text]),p.W,p.H]));
+};
 const fields=['hero','window','asymmetric','band','graphic','arena'],safeLayers=['frame','rails','grid','contour'];
 J.cinemaArchitectureCandidates=p=>{const seed=J.cinemaContentSeed(p),quiet=['flow','drift'].includes(p.musicalPhoto.songProfile.mode);return Array.from({length:12},(_,id)=>({id,seed,quiet,rotation:hash(seed+':'+id)%6,direction:hash('side'+seed+id)%2,opening:hash('open'+seed+id)%3}));};
 const sync=p=>{const f=p.musicalPhoto.cinema;if(f.visualDNA){f.visualDNA.master={...f.visualDNA.master,seed:f.architecture.seed};f.visualDNA.worlds=p.cuts.filter(c=>c.grammar).map(c=>({line:c.line,world:c.grammar.subWorld,role:c.grammar.temporal?.role,energy:p.musicalPhoto.localMusic?.find(x=>x.line===c.line)?.energy??c.grammar.temporal?.level}));}f.grammar.shots=p.cuts.filter(c=>c.grammar).map(c=>({line:c.line,from:c.start,to:c.end,...c.grammar}));for(const s of p.storyboard||[]){const c=p.cuts.find(c=>c.start===s.from&&c.grammar);if(c&&!s.locked)s.shotGrammar={...c.grammar};}};
