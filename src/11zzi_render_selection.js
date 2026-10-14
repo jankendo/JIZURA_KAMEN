@@ -89,9 +89,17 @@ J.registryGeometryRepresentatives=(ranked,localTolerance=.08)=>{
 };
 // Only candidates that passed rendered glyph and safe-area checks enter the beam.
 J.registryPhaseSafeAnchorState=(cut,phases,anchors,sample)=>{
- const attempts=[],seen=new Set(),evaluate=state=>{const key=JSON.stringify(state.params.photoAnchor??null);if(seen.has(key))return null;seen.add(key);const checks=phases.map(dt=>sample(state,dt)),safe=checks.every(e=>e.eligible),hold=checks[phases.indexOf(.6)];attempts.push({anchor:state.params.photoAnchor??null,eligible:safe,phaseEvidence:checks.map(({mask,...e})=>e)});return safe?{cut:state,checks,rank:(hold.contrastFit??0)*.5+(1-(state.params.photoAnchor?.saliency??.5))*.35+(Math.abs((state.params.photoAnchor?.y??.5)-.5)>.1?.08:0)}:null;};
+ const attempts=[],seen=new Set(),evaluate=state=>{const key=JSON.stringify([state.params.photoAnchor??null,state.params.cinemaReadabilityRepair??null]);if(seen.has(key))return null;seen.add(key);const checks=phases.map(dt=>sample(state,dt)),safe=checks.every(e=>e.eligible),hold=checks[phases.indexOf(.6)];attempts.push({anchor:state.params.photoAnchor??null,readabilityTreatment:state.params.cinemaReadabilityRepair??null,eligible:safe,phaseEvidence:checks.map(({mask,...e})=>e)});return safe?{cut:state,checks,rank:(hold.contrastFit??0)*.5+(1-(state.params.photoAnchor?.saliency??.5))*.35+(Math.abs((state.params.photoAnchor?.y??.5)-.5)>.1?.08:0)}:null;};
  const original=evaluate(cut);if(original)return {...original,attempts,changed:false};
- const safe=anchors.map(anchor=>evaluate({...cut,params:{...cut.params,photoAnchor:J.clonePhotoRenderPlan(anchor)}})).filter(Boolean).sort((a,b)=>b.rank-a.rank);
+ let safe=anchors.map(anchor=>evaluate({...cut,params:{...cut.params,photoAnchor:J.clonePhotoRenderPlan(anchor)}})).filter(Boolean).sort((a,b)=>b.rank-a.rank);
+ // Existing local repair must be evaluated before an empty phase portfolio
+ // prevents the downstream repair stage from ever seeing this composition.
+ // Numeric repairs include a stroke; do not silently replace their semantics.
+ const repair=cut.params.cinemaReadabilityRepair;
+ if(!safe.length&&typeof repair!=='number'){
+  const treatment={...(repair||{}),scrim:Math.max(repair?.scrim||0,.24)};
+  safe=[cut.params.photoAnchor??null,...anchors].map(anchor=>evaluate({...cut,params:{...cut.params,...(anchor?{photoAnchor:J.clonePhotoRenderPlan(anchor)}:{}),cinemaReadabilityRepair:treatment}})).filter(Boolean).sort((a,b)=>b.rank-a.rank);
+ }
  return safe.length?{...safe[0],attempts,changed:true}:{cut:null,checks:null,attempts,changed:false};
 };
 J.chooseRegistryStoryboard=(steps,beamWidth=8)=>{
