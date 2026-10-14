@@ -84,7 +84,44 @@ Q.guardExport=async(result,args)=>{
  result.sidecar=new Blob([JSON.stringify(result.provenance,null,2)],{type:'application/json'});return result;
 };
 const creativeState=J.creativeExportState;J.creativeExportState=acceptance=>{const state=creativeState(acceptance);return state==='TARGET_MET'&&acceptance?.v5EvidenceComplete===false?'UNMEASURED':state;};
-Q.runVerifiedExport=async(exportMP4,args)=>{const original=args.plan?V.clone(args.plan):null,provenanceHash=args.plan?Object.getOwnPropertyDescriptor(args.plan,'_provenancePlanHash')?.value:undefined,guarded=args.plan&&args.project?{...args,_finalArtifactInput:await V.snapshot(args.project,args.audio,args.plan,args.range)}:args;try{return await Q.guardExport(await exportMP4(guarded),guarded);}catch(e){if(args.signal?.aborted&&original)V.restorePlan(args.plan,original,provenanceHash);throw e;}};
+Q.proposeFinalContrastRepair=async(plan,project,artifact)=>{
+ if(project?.autoDirection!==true||artifact?.status!=='MEASURED')return null;
+ await Q.finalArtifactEvaluation(artifact,artifact.binding.videoSHA256);
+ if(await V.planHash(plan)!==artifact.binding.planHash)throw Error('FINAL_REPAIR_PLAN_BINDING_MISMATCH');
+ const indices=[...new Set(artifact.frames.filter(f=>f.phase==='hold'&&f.nativeComplete&&f.safeArea&&f.pixelPresence===true&&Number.isFinite(f.nativeExpectedContrast)&&f.nativeExpectedContrast<90).map(f=>f.fragmentIndex))].filter(i=>{
+  const c=plan.cuts[i],r=c?.params?.cinemaReadabilityRepair;return c&&!J.photoChoreographyLocked(plan,c)&&!(typeof r==='number'?r>=2:r?.shadow>=2);
+ });
+ if(!indices.length)return null;
+ const candidate=V.clone(plan);
+ for(const i of indices){const c=candidate.cuts[i],old=c.params.cinemaReadabilityRepair;c.params.cinemaReadabilityRepair={...(typeof old==='object'?old:{}),shadow:2};}
+ if(V.lockSignature(plan)!==V.lockSignature(candidate))throw Error('FINAL_REPAIR_LOCK_CHANGED');
+ return {plan:candidate,indices,treatment:'EXISTING_LOCAL_SHADOW_2',trigger:'Full-output same-clock native HOLD contrast below the existing90 threshold; actual glyph presence already verified'};
+};
+Q.finalRepairDominates=(before,after)=>{
+ const a=before.provenance?.finalArtifactVerification,b=after.provenance?.finalArtifactVerification;if(a?.status!=='MEASURED'||b?.status!=='MEASURED')return false;
+ const key=f=>J.canonicalJSON([f.fragmentIndex,f.actualDecodedTimestamp]),frames=new Map(b.frames.filter(f=>f.phase==='hold').map(f=>[key(f),f]));let gain=false;
+ for(const old of a.frames.filter(f=>f.phase==='hold')){const next=frames.get(key(old));if(!next||!next.nativeComplete||!next.safeArea||next.pixelPresence!==true||!Number.isFinite(next.localContrast)||!Number.isFinite(old.localContrast)||next.localContrast<old.localContrast)return false;if(next.localContrast>old.localContrast)gain=true;}
+ const observed=r=>{const f=r.provenance.finalArtifactVerification,d=r.provenance.decodedCinema;return {...d,...f.binding,profileId:V.profileId(f.binding.outputProfile),encodedResolution:f.binding.outputProfile.resolution,fps:f.binding.outputProfile.fps,frameCount:f.frames.length};};
+ if(!gain||!V.registryCreativeDominates(observed(after),observed(before)))return false;
+ // Preserve every other measured engineering axis as well as the unchanged
+ // strict composition guard. Unknown values do not become invented scores.
+ const x=before.provenance.decodedCinema.metrics,y=after.provenance.decodedCinema.metrics;
+ return Object.keys(x).every(k=>!Number.isFinite(x[k])||Number.isFinite(y[k])&&y[k]>=x[k]);
+};
+Q.runVerifiedExport=async(exportMP4,args)=>{
+ const original=args.plan?V.clone(args.plan):null,provenanceHash=args.plan?Object.getOwnPropertyDescriptor(args.plan,'_provenancePlanHash')?.value:undefined,guarded=args.plan&&args.project?{...args,_finalArtifactInput:await V.snapshot(args.project,args.audio,args.plan,args.range)}:args;
+ try{
+  const first=await Q.guardExport(await exportMP4(guarded),guarded),repair=args.plan?await Q.proposeFinalContrastRepair(args.plan,args.project,first.provenance.finalArtifactVerification):null;
+  if(!repair)return first;
+  args.onProgress?.(.995,'完成映像の弱い歌詞区間を局所的に再検証しています',{stage:'verify',indeterminate:true});
+  const trialArgs={...guarded,plan:repair.plan,onProgress:(_,label)=>args.onProgress?.(.995,label||'局所再検証中',{stage:'verify',indeterminate:true})};V.invalidate(repair.plan);let trial,accepted=false,error=null;
+  try{trial=await Q.guardExport(await exportMP4(trialArgs),trialArgs);accepted=Q.finalRepairDominates(first,trial);}catch(e){if(args.signal?.aborted)throw e;error=String(e.message);}
+  const chosen=accepted?trial:first,record={status:accepted?'ACCEPTED':error?'KEPT_ORIGINAL_FAILED_TRIAL':'KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT',indices:repair.indices,treatment:repair.treatment,trigger:repair.trigger,beforeVideoSHA256:first.provenance.finalArtifactVerification.binding.videoSHA256,trialVideoSHA256:trial?.provenance.finalArtifactVerification?.binding.videoSHA256??null,error};
+  if(accepted)V.restorePlan(args.plan,repair.plan,Object.getOwnPropertyDescriptor(repair.plan,'_provenancePlanHash')?.value);
+  if(trial&&!accepted)J.lastFinalContrastTrial={blob:trial.blob,provenance:trial.provenance,record};
+  chosen.provenance.finalContrastRepair=record;chosen.sidecar=new Blob([JSON.stringify(chosen.provenance,null,2)],{type:'application/json'});return chosen;
+ }catch(e){if(args.signal?.aborted&&original)V.restorePlan(args.plan,original,provenanceHash);throw e;}
+};
 const exportMP4=J.exportMP4;J.exportMP4=args=>Q.runVerifiedExport(exportMP4,args);
 
 })();
