@@ -58,3 +58,7 @@ assert.equal(Q.selectedMotionContract({}, {line:0,locked:true,layout:'cinemaExpa
  assert(Q.finalRepairDominates(before,after));let bad=V.clone(after);bad.provenance.decodedCinema.metrics.hookNovelty=79;assert(!Q.finalRepairDominates(before,bad),'contrast cannot trade away another measured engineering axis');bad=V.clone(after);bad.provenance.finalArtifactVerification.frames[0].localContrast=99;assert(!Q.finalRepairDominates(before,bad),'every original HOLD contrast frame protected');bad=V.clone(after);bad.provenance.finalArtifactVerification.frames[1].fragmentIndex=0;assert(!Q.finalRepairDominates(before,bad),'same line cannot reuse another internal unit frame');
  console.log('Final contrast repair: full-clock89 native trigger, internal ordinals, immutable evidence, locks/manual protection, every-HOLD and all-metric nonregression PASS');
 })().catch(e=>{console.error(e);process.exitCode=1;});
+
+assert.equal(Q.selectedMotionContract({},{line:0,start:0,end:2,grammar:{mode:'solo',temporal:{motionPrinciple:'reveal-and-settle'}}},true).operator,'settle','an explicit moving temporal grammar cannot be mislabeled as still HOLD');
+assert.equal(Q.selectedMotionContract({},{line:0,start:0,end:2,grammar:{mode:'solo'}},true).operator,'hold','unmodified static contract remains hold');
+assert.equal(Q.selectedMotionContract({},{line:0,start:0,end:2,locked:true,grammar:{mode:'solo',temporal:{motionPrinciple:'reveal-and-settle'}}},true).naturalSelection,false);

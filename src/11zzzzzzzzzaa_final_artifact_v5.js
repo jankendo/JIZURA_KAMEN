@@ -86,8 +86,12 @@ Q.validateFinalArtifactBinding=async(e,binding)=>{
 };
 Q.selectedMotionContract=(p,c,automatic=true)=>{
  const manual=!!c.locked||!!J.photoChoreographyLocked?.(p,c),mode=c.grammar?.mode??c.cinema?.mode??c.layout;
- const operator=manual?null:c.grammar?({gather:'converge',duo:c.grammar.stage===2?null:'settle',stadium:'expand',voice:'expand',ground:'hold',solo:'hold'})[mode]??null:({converge:'converge',expand:'expand',read:'hold',response:'settle',type:'reveal'})[mode]??(['wipe','assemble','type'].includes(c.enter)?'reveal':null);
- return {intent:c.cinemaV5Direction?.intention??'existing selected renderer motion',operator:operator??mode,target:'registered primary glyph identities',expectedMotion:operator??null,timeRange:[c.start,c.end],confidence:c.cinemaV5Direction?.confidence??null,measurable:!!operator,naturalSelection:!manual&&automatic,source:manual?'USER_LOCK':automatic?'SHIPPING_RENDERER_CONTRACT':'PROJECT_NOT_AUTOMATIC_DIRECTION',mode,failureReason:manual?'USER_LOCK_NOT_AUTOMATIC_SELECTION':!automatic?'PROJECT_NOT_AUTOMATIC_DIRECTION':operator?null:'NO_EXPLICIT_SUPPORTED_MOTION_CONTRACT'};
+ const layoutOperator=manual?null:c.grammar?({gather:'converge',duo:c.grammar.stage===2?null:'settle',stadium:'expand',voice:'expand',ground:'hold',solo:'hold'})[mode]??null:({converge:'converge',expand:'expand',read:'hold',response:'settle',type:'reveal'})[mode]??(['wipe','assemble','type'].includes(c.enter)?'reveal':null);
+ const temporalPrinciple=c.grammar?.temporal?.motionPrinciple??null;
+ // A static layout ID does not override the selected temporal grammar. The
+ // observed camera/grammar composite remains distinct from isolated HOLD.
+ const operator=manual?null:temporalPrinciple==='reveal-and-settle'?'settle':layoutOperator;
+ return {temporalPrinciple,layoutOperator,attribution:temporalPrinciple==='reveal-and-settle'?'TEMPORAL_GRAMMAR_COMPOSITE_NOT_ISOLATED_HOLD':'LAYOUT_OR_EXPLICIT_OPERATOR',intent:c.cinemaV5Direction?.intention??'existing selected renderer motion',operator:operator??mode,target:'registered primary glyph identities',expectedMotion:operator??null,timeRange:[c.start,c.end],confidence:c.cinemaV5Direction?.confidence??null,measurable:!!operator,naturalSelection:!manual&&automatic,source:manual?'USER_LOCK':automatic?'SHIPPING_RENDERER_CONTRACT':'PROJECT_NOT_AUTOMATIC_DIRECTION',mode,failureReason:manual?'USER_LOCK_NOT_AUTOMATIC_SELECTION':!automatic?'PROJECT_NOT_AUTOMATIC_DIRECTION':operator?null:'NO_EXPLICIT_SUPPORTED_MOTION_CONTRACT'};
 };
 Q.measureFinalOperatorIntent=(contract,frames)=>{
  if(!contract.naturalSelection)return {status:'NOT_APPLICABLE',realization:null,failureReason:contract.failureReason??'USER_LOCK_NOT_AUTOMATIC_SELECTION'};
