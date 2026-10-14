@@ -1,0 +1,4075 @@
+{
+  "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+  "recordedAt": "2026-10-14T06:56:34.739160+00:00",
+  "executionChain": [
+    "Registry",
+    "Global Storyboard",
+    "Story Director",
+    "Cinema V3 A/B/C",
+    "Cinema V5",
+    "Repair",
+    "Renderer",
+    "MP4",
+    "Final QA",
+    "Q.guardExport",
+    "release final-gates.json"
+  ],
+  "directReleaseStop": "Release final-gates.json independently records observed structural regression/contrast weak interval/important operator gaps. No runtime creativeState directly writes or authorizes QUALITY_GO.",
+  "runtimeCreativeStop": {
+    "source": "src/11zzzzzzzzzb_planner_v5.js Q.guardExport / J.creativeExportState",
+    "cause": "Incomplete Q.creativeEvidence ten-domain coverage converts TARGET_MET to UNMEASURED; technically valid MP4 remains saveable.",
+    "notReleaseGateIdentity": true
+  },
+  "confirmedIndirectBlocks": [
+    {
+      "source": "src/11zzi_render_selection.js",
+      "cause": "local ranked.slice(0,6) restricts global search; previous photoAnchor overwrites picked anchor after measurement; selected hold/enter borrowed from local candidate",
+      "proofLevel": "SOURCE_PATH_CONFIRMED; MP4 causal benefit of new correction pending"
+    },
+    {
+      "source": "StageC legacy finalist",
+      "cause": "equal-safe physical candidates2/5 resolve by processing order",
+      "proofLevel": "MATCHED_PLAN_AND_ENCODED_POSE_CONFIRMED hold12"
+    }
+  ],
+  "domainCounts": {
+    "readability": {
+      "MEASURED": 21,
+      "UNMEASURED": 9
+    },
+    "lowerTail": {
+      "MEASURED": 21,
+      "UNMEASURED": 9
+    },
+    "musicFit": {
+      "MEASURED": 14,
+      "UNMEASURED": 16
+    },
+    "visualCoherence": {
+      "UNMEASURED": 30
+    },
+    "contextualVariation": {
+      "UNMEASURED": 30
+    },
+    "typographyQuality": {
+      "UNMEASURED": 30
+    },
+    "structuralDevelopment": {
+      "UNMEASURED": 30
+    },
+    "motionRealization": {
+      "UNMEASURED": 30
+    },
+    "regionalNovelty": {
+      "MEASURED": 21,
+      "UNMEASURED": 9
+    },
+    "temporalContrast": {
+      "MEASURED": 21,
+      "UNMEASURED": 9
+    }
+  },
+  "rows": [
+    {
+      "case": "holdout-06",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "0f95717e254f44d37ffa3bf8471b72a27959d50698e8a0e095858aff4de21b67",
+      "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "f1f798c1bac4f1f0110079a2e467fb0d4831694999249cd18d5d59bcbc0e4bc8",
+          "planHash": "0f95717e254f44d37ffa3bf8471b72a27959d50698e8a0e095858aff4de21b67",
+          "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "f1f798c1bac4f1f0110079a2e467fb0d4831694999249cd18d5d59bcbc0e4bc8",
+          "planHash": "0f95717e254f44d37ffa3bf8471b72a27959d50698e8a0e095858aff4de21b67",
+          "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "impactBeatSync",
+          "inputHash": "f1f798c1bac4f1f0110079a2e467fb0d4831694999249cd18d5d59bcbc0e4bc8",
+          "planHash": "0f95717e254f44d37ffa3bf8471b72a27959d50698e8a0e095858aff4de21b67",
+          "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "f1f798c1bac4f1f0110079a2e467fb0d4831694999249cd18d5d59bcbc0e4bc8",
+          "planHash": "0f95717e254f44d37ffa3bf8471b72a27959d50698e8a0e095858aff4de21b67",
+          "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "f1f798c1bac4f1f0110079a2e467fb0d4831694999249cd18d5d59bcbc0e4bc8",
+          "planHash": "0f95717e254f44d37ffa3bf8471b72a27959d50698e8a0e095858aff4de21b67",
+          "videoSHA256": "35ec1c7eaad8842f67524d1b50088ed39dff8c0a9d8ec4cc5ffca2835e1e3af0",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-07",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "6861d3b2a0656b9bbfdde9bb2f44330f879ad99ee65c80249f2dd96eab288f14",
+      "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "d1ee5512bab5b68c9690d173105aafa55d447552165ba53f4c3eb6024729589a",
+          "planHash": "6861d3b2a0656b9bbfdde9bb2f44330f879ad99ee65c80249f2dd96eab288f14",
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "d1ee5512bab5b68c9690d173105aafa55d447552165ba53f4c3eb6024729589a",
+          "planHash": "6861d3b2a0656b9bbfdde9bb2f44330f879ad99ee65c80249f2dd96eab288f14",
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "d1ee5512bab5b68c9690d173105aafa55d447552165ba53f4c3eb6024729589a",
+          "planHash": "6861d3b2a0656b9bbfdde9bb2f44330f879ad99ee65c80249f2dd96eab288f14",
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "d1ee5512bab5b68c9690d173105aafa55d447552165ba53f4c3eb6024729589a",
+          "planHash": "6861d3b2a0656b9bbfdde9bb2f44330f879ad99ee65c80249f2dd96eab288f14",
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-08",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "3e13cca95b495efbfc9d9050d7427d1db112e5329187797580ed0dceb39f7784",
+      "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "ab6849b2522a2288c1ef542e616d5e7da550dae8cc1205aa502bfdacec02333a",
+          "planHash": "3e13cca95b495efbfc9d9050d7427d1db112e5329187797580ed0dceb39f7784",
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "ab6849b2522a2288c1ef542e616d5e7da550dae8cc1205aa502bfdacec02333a",
+          "planHash": "3e13cca95b495efbfc9d9050d7427d1db112e5329187797580ed0dceb39f7784",
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "impactBeatSync",
+          "inputHash": "ab6849b2522a2288c1ef542e616d5e7da550dae8cc1205aa502bfdacec02333a",
+          "planHash": "3e13cca95b495efbfc9d9050d7427d1db112e5329187797580ed0dceb39f7784",
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "ab6849b2522a2288c1ef542e616d5e7da550dae8cc1205aa502bfdacec02333a",
+          "planHash": "3e13cca95b495efbfc9d9050d7427d1db112e5329187797580ed0dceb39f7784",
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "ab6849b2522a2288c1ef542e616d5e7da550dae8cc1205aa502bfdacec02333a",
+          "planHash": "3e13cca95b495efbfc9d9050d7427d1db112e5329187797580ed0dceb39f7784",
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-09",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "77059ba46146817eff2c4136fd2b8cf9bae996a3249060b4add5dbb8c9beceba",
+      "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "4d5b81ff2538484d87765ce6dddb6bf892ffa87d7fe096d87b6f64ab65a66bf2",
+          "planHash": "77059ba46146817eff2c4136fd2b8cf9bae996a3249060b4add5dbb8c9beceba",
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "4d5b81ff2538484d87765ce6dddb6bf892ffa87d7fe096d87b6f64ab65a66bf2",
+          "planHash": "77059ba46146817eff2c4136fd2b8cf9bae996a3249060b4add5dbb8c9beceba",
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "musicFitV2",
+          "inputHash": "4d5b81ff2538484d87765ce6dddb6bf892ffa87d7fe096d87b6f64ab65a66bf2",
+          "planHash": "77059ba46146817eff2c4136fd2b8cf9bae996a3249060b4add5dbb8c9beceba",
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "method": "actual frame peak vs confidence-qualified beat precision/recall F1",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "4d5b81ff2538484d87765ce6dddb6bf892ffa87d7fe096d87b6f64ab65a66bf2",
+          "planHash": "77059ba46146817eff2c4136fd2b8cf9bae996a3249060b4add5dbb8c9beceba",
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "4d5b81ff2538484d87765ce6dddb6bf892ffa87d7fe096d87b6f64ab65a66bf2",
+          "planHash": "77059ba46146817eff2c4136fd2b8cf9bae996a3249060b4add5dbb8c9beceba",
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-10",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "b1cbe567e91fcdb27079cf9033a64b8496af6b19e58c8769d2890e0c14df45d6",
+      "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "method": null,
+          "source": null
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "method": null,
+          "source": null
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "method": null,
+          "source": null
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "method": null,
+          "source": null
+        }
+      }
+    },
+    {
+      "case": "development-01",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "c27500c1f3bc65fe05a7bca79f50d9342db6a3be8f64c7326630ea5b855447cb",
+      "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+          "method": null,
+          "source": null
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+          "method": null,
+          "source": null
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+          "method": null,
+          "source": null
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "e6cf523c3402cb1b27585fbc3f68b2c16558683c0f859247f5e3246a2c2286ba",
+          "method": null,
+          "source": null
+        }
+      }
+    },
+    {
+      "case": "development-02",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "456b445a3383a0bf6d9c9a206453e540cca2e12aa61041a9a5b69b41f7ba540c",
+      "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "f6cc1be0f268f2f0b547aadfdf82ed9872e3cc965750955b18221a2ac244a20e",
+          "planHash": "456b445a3383a0bf6d9c9a206453e540cca2e12aa61041a9a5b69b41f7ba540c",
+          "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "f6cc1be0f268f2f0b547aadfdf82ed9872e3cc965750955b18221a2ac244a20e",
+          "planHash": "456b445a3383a0bf6d9c9a206453e540cca2e12aa61041a9a5b69b41f7ba540c",
+          "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "musicFitV2",
+          "inputHash": "f6cc1be0f268f2f0b547aadfdf82ed9872e3cc965750955b18221a2ac244a20e",
+          "planHash": "456b445a3383a0bf6d9c9a206453e540cca2e12aa61041a9a5b69b41f7ba540c",
+          "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+          "method": "actual frame peak vs confidence-qualified beat precision/recall F1",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "f6cc1be0f268f2f0b547aadfdf82ed9872e3cc965750955b18221a2ac244a20e",
+          "planHash": "456b445a3383a0bf6d9c9a206453e540cca2e12aa61041a9a5b69b41f7ba540c",
+          "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "f6cc1be0f268f2f0b547aadfdf82ed9872e3cc965750955b18221a2ac244a20e",
+          "planHash": "456b445a3383a0bf6d9c9a206453e540cca2e12aa61041a9a5b69b41f7ba540c",
+          "videoSHA256": "ffa05c53bfb8587c2bdfd6039436aa9d332266a73764a8b55e8d157b8e9b5f52",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "development-03",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "354292afb052415ff95fa7d053d1bf67f8541997d195b68b347e848c9b4948c2",
+      "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "558854ab3e3b6cefb92fcbd6a42472b61ef6f12b51a48bc95bee7706a3c7f708",
+          "planHash": "354292afb052415ff95fa7d053d1bf67f8541997d195b68b347e848c9b4948c2",
+          "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "558854ab3e3b6cefb92fcbd6a42472b61ef6f12b51a48bc95bee7706a3c7f708",
+          "planHash": "354292afb052415ff95fa7d053d1bf67f8541997d195b68b347e848c9b4948c2",
+          "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "impactBeatSync",
+          "inputHash": "558854ab3e3b6cefb92fcbd6a42472b61ef6f12b51a48bc95bee7706a3c7f708",
+          "planHash": "354292afb052415ff95fa7d053d1bf67f8541997d195b68b347e848c9b4948c2",
+          "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "558854ab3e3b6cefb92fcbd6a42472b61ef6f12b51a48bc95bee7706a3c7f708",
+          "planHash": "354292afb052415ff95fa7d053d1bf67f8541997d195b68b347e848c9b4948c2",
+          "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "558854ab3e3b6cefb92fcbd6a42472b61ef6f12b51a48bc95bee7706a3c7f708",
+          "planHash": "354292afb052415ff95fa7d053d1bf67f8541997d195b68b347e848c9b4948c2",
+          "videoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "development-04",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "0291f0ed1d065e7ded15f6de68769841196fc76071660490023935e880ac1af4",
+      "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "fae3b06051ca06038e225d5bca7117dd088b9a60f2945afbbb2ebe09346a383a",
+          "planHash": "0291f0ed1d065e7ded15f6de68769841196fc76071660490023935e880ac1af4",
+          "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "fae3b06051ca06038e225d5bca7117dd088b9a60f2945afbbb2ebe09346a383a",
+          "planHash": "0291f0ed1d065e7ded15f6de68769841196fc76071660490023935e880ac1af4",
+          "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "impactBeatSync",
+          "inputHash": "fae3b06051ca06038e225d5bca7117dd088b9a60f2945afbbb2ebe09346a383a",
+          "planHash": "0291f0ed1d065e7ded15f6de68769841196fc76071660490023935e880ac1af4",
+          "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "fae3b06051ca06038e225d5bca7117dd088b9a60f2945afbbb2ebe09346a383a",
+          "planHash": "0291f0ed1d065e7ded15f6de68769841196fc76071660490023935e880ac1af4",
+          "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "fae3b06051ca06038e225d5bca7117dd088b9a60f2945afbbb2ebe09346a383a",
+          "planHash": "0291f0ed1d065e7ded15f6de68769841196fc76071660490023935e880ac1af4",
+          "videoSHA256": "b375a6a7e70948519105abea71ec8649b5ae74a3d7f5562104d0beadc8ef72e3",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "development-05",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "6ad69a2898d5d97fe5dd48bf27e4928c6f69d9e99309cd990b67ff17236ce372",
+      "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "f741436186aa144fc578f891a65775b0c388106c2791f8bf73d68b87463ac52f",
+          "planHash": "6ad69a2898d5d97fe5dd48bf27e4928c6f69d9e99309cd990b67ff17236ce372",
+          "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "f741436186aa144fc578f891a65775b0c388106c2791f8bf73d68b87463ac52f",
+          "planHash": "6ad69a2898d5d97fe5dd48bf27e4928c6f69d9e99309cd990b67ff17236ce372",
+          "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "impactBeatSync",
+          "inputHash": "f741436186aa144fc578f891a65775b0c388106c2791f8bf73d68b87463ac52f",
+          "planHash": "6ad69a2898d5d97fe5dd48bf27e4928c6f69d9e99309cd990b67ff17236ce372",
+          "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "f741436186aa144fc578f891a65775b0c388106c2791f8bf73d68b87463ac52f",
+          "planHash": "6ad69a2898d5d97fe5dd48bf27e4928c6f69d9e99309cd990b67ff17236ce372",
+          "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "f741436186aa144fc578f891a65775b0c388106c2791f8bf73d68b87463ac52f",
+          "planHash": "6ad69a2898d5d97fe5dd48bf27e4928c6f69d9e99309cd990b67ff17236ce372",
+          "videoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-01",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "66ce63fb435c5f7c201338e672a6b5dd140cacf13853f73877136d39140afcf8",
+      "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "0222a31e591516ceb33d0fce827392154d47672a6d2cb92d9298c4510f060211",
+          "planHash": "66ce63fb435c5f7c201338e672a6b5dd140cacf13853f73877136d39140afcf8",
+          "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "0222a31e591516ceb33d0fce827392154d47672a6d2cb92d9298c4510f060211",
+          "planHash": "66ce63fb435c5f7c201338e672a6b5dd140cacf13853f73877136d39140afcf8",
+          "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "musicFitV2",
+          "inputHash": "0222a31e591516ceb33d0fce827392154d47672a6d2cb92d9298c4510f060211",
+          "planHash": "66ce63fb435c5f7c201338e672a6b5dd140cacf13853f73877136d39140afcf8",
+          "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+          "method": "actual frame peak vs confidence-qualified beat precision/recall F1",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "0222a31e591516ceb33d0fce827392154d47672a6d2cb92d9298c4510f060211",
+          "planHash": "66ce63fb435c5f7c201338e672a6b5dd140cacf13853f73877136d39140afcf8",
+          "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "0222a31e591516ceb33d0fce827392154d47672a6d2cb92d9298c4510f060211",
+          "planHash": "66ce63fb435c5f7c201338e672a6b5dd140cacf13853f73877136d39140afcf8",
+          "videoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-02",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "e5a15cf98e0e280188663ccc4b4f5ee4261fde4b534c3f43c0eb370936630714",
+      "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "92a154fb2cd013512a6b059f08505bd0f6124b7d40c78e08d64f0cc4bfcaf68e",
+          "planHash": "e5a15cf98e0e280188663ccc4b4f5ee4261fde4b534c3f43c0eb370936630714",
+          "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "92a154fb2cd013512a6b059f08505bd0f6124b7d40c78e08d64f0cc4bfcaf68e",
+          "planHash": "e5a15cf98e0e280188663ccc4b4f5ee4261fde4b534c3f43c0eb370936630714",
+          "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "impactBeatSync",
+          "inputHash": "92a154fb2cd013512a6b059f08505bd0f6124b7d40c78e08d64f0cc4bfcaf68e",
+          "planHash": "e5a15cf98e0e280188663ccc4b4f5ee4261fde4b534c3f43c0eb370936630714",
+          "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "92a154fb2cd013512a6b059f08505bd0f6124b7d40c78e08d64f0cc4bfcaf68e",
+          "planHash": "e5a15cf98e0e280188663ccc4b4f5ee4261fde4b534c3f43c0eb370936630714",
+          "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "92a154fb2cd013512a6b059f08505bd0f6124b7d40c78e08d64f0cc4bfcaf68e",
+          "planHash": "e5a15cf98e0e280188663ccc4b4f5ee4261fde4b534c3f43c0eb370936630714",
+          "videoSHA256": "722b1ada7d1bdd2d74811bfb0554a716dd4a399e5cb0b4cd9788f79be143e437",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-03",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "c6eee438bbcad72d491ff5b15e552bfc9ad3c56aef6ae6535afd28e577d93704",
+      "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "be3466e3019b358ff4f9d50fe7213537888293c8669f355402961f95dc8b0395",
+          "planHash": "c6eee438bbcad72d491ff5b15e552bfc9ad3c56aef6ae6535afd28e577d93704",
+          "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "be3466e3019b358ff4f9d50fe7213537888293c8669f355402961f95dc8b0395",
+          "planHash": "c6eee438bbcad72d491ff5b15e552bfc9ad3c56aef6ae6535afd28e577d93704",
+          "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "impactBeatSync",
+          "inputHash": "be3466e3019b358ff4f9d50fe7213537888293c8669f355402961f95dc8b0395",
+          "planHash": "c6eee438bbcad72d491ff5b15e552bfc9ad3c56aef6ae6535afd28e577d93704",
+          "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "be3466e3019b358ff4f9d50fe7213537888293c8669f355402961f95dc8b0395",
+          "planHash": "c6eee438bbcad72d491ff5b15e552bfc9ad3c56aef6ae6535afd28e577d93704",
+          "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "be3466e3019b358ff4f9d50fe7213537888293c8669f355402961f95dc8b0395",
+          "planHash": "c6eee438bbcad72d491ff5b15e552bfc9ad3c56aef6ae6535afd28e577d93704",
+          "videoSHA256": "7135676d6dfb4374412e787ed68059d121599ab5a99d1275f14cf4af507f6750",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-04",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "180ed420b62d7464af0b2a5868998ed31a4972d99902b9602c46e460b7f57010",
+      "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+          "method": null,
+          "source": null
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+          "method": null,
+          "source": null
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+          "method": null,
+          "source": null
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "4eabd4d62d09d0b65de218709e5f65f2e24d514e5d2472a4343c5bb22afb6473",
+          "method": null,
+          "source": null
+        }
+      }
+    },
+    {
+      "case": "holdout-05",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "0e04f8635a3b393df1b956b01a12fb1add9c944f056bea43a95cdafaabf8ab90",
+      "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+          "method": null,
+          "source": null
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+          "method": null,
+          "source": null
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+          "method": null,
+          "source": null
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "b3e99448952a58dfe2774d251db56de20e4b16e8de095834e0c77d1c73deaf79",
+          "method": null,
+          "source": null
+        }
+      }
+    },
+    {
+      "case": "development-06",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "470f6ab59333ff6dcec36b9706844aa3769af83ea605eb69e5af56e9a079da7a",
+      "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+          "method": null,
+          "source": null
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+          "method": null,
+          "source": null
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+          "method": null,
+          "source": null
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c04d05c4f34563f010a4e8a294eaf9533465f4ab2ef0a9324895942af836c06b",
+          "method": null,
+          "source": null
+        }
+      }
+    },
+    {
+      "case": "development-07",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "a54c1dae4cddc900e51940b24811f606b2f6b6d79bfe7bc282f1dfc98b932b30",
+      "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "method": null,
+          "source": null
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "method": null,
+          "source": null
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "method": null,
+          "source": null
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "method": null,
+          "source": null
+        }
+      }
+    },
+    {
+      "case": "development-08",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "07c8a42aeb1b50f9d420c84b309f4e44b771c75e30c2dfca6e16034eb10b1b0a",
+      "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "95a0ea6a3befdf2e36b68c900f64591a661ee77c182350860f112a2f2e59b3a8",
+          "planHash": "07c8a42aeb1b50f9d420c84b309f4e44b771c75e30c2dfca6e16034eb10b1b0a",
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "95a0ea6a3befdf2e36b68c900f64591a661ee77c182350860f112a2f2e59b3a8",
+          "planHash": "07c8a42aeb1b50f9d420c84b309f4e44b771c75e30c2dfca6e16034eb10b1b0a",
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "95a0ea6a3befdf2e36b68c900f64591a661ee77c182350860f112a2f2e59b3a8",
+          "planHash": "07c8a42aeb1b50f9d420c84b309f4e44b771c75e30c2dfca6e16034eb10b1b0a",
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "95a0ea6a3befdf2e36b68c900f64591a661ee77c182350860f112a2f2e59b3a8",
+          "planHash": "07c8a42aeb1b50f9d420c84b309f4e44b771c75e30c2dfca6e16034eb10b1b0a",
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "development-09",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "b61358bff0082518bb67c694dd31a3a26d99e2e96450b96a58b1f693e8f35782",
+      "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "ee17376c8d3a2abcfcd8fa9c1247f5c4e107e1a7fee1eb50bb1e1a06e71ad721",
+          "planHash": "b61358bff0082518bb67c694dd31a3a26d99e2e96450b96a58b1f693e8f35782",
+          "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "ee17376c8d3a2abcfcd8fa9c1247f5c4e107e1a7fee1eb50bb1e1a06e71ad721",
+          "planHash": "b61358bff0082518bb67c694dd31a3a26d99e2e96450b96a58b1f693e8f35782",
+          "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "musicFitV2",
+          "inputHash": "ee17376c8d3a2abcfcd8fa9c1247f5c4e107e1a7fee1eb50bb1e1a06e71ad721",
+          "planHash": "b61358bff0082518bb67c694dd31a3a26d99e2e96450b96a58b1f693e8f35782",
+          "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+          "method": "actual frame peak vs confidence-qualified beat precision/recall F1",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "ee17376c8d3a2abcfcd8fa9c1247f5c4e107e1a7fee1eb50bb1e1a06e71ad721",
+          "planHash": "b61358bff0082518bb67c694dd31a3a26d99e2e96450b96a58b1f693e8f35782",
+          "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "ee17376c8d3a2abcfcd8fa9c1247f5c4e107e1a7fee1eb50bb1e1a06e71ad721",
+          "planHash": "b61358bff0082518bb67c694dd31a3a26d99e2e96450b96a58b1f693e8f35782",
+          "videoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "development-10",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "b103e1ddf3c09efb89ce020be2ea63404b03fb39c40b27f51091553b3634f760",
+      "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "aef9485e6d79f719d33c39da5d6f19b76cb58e991e04a8a8dc534f63d7ac6b30",
+          "planHash": "b103e1ddf3c09efb89ce020be2ea63404b03fb39c40b27f51091553b3634f760",
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "aef9485e6d79f719d33c39da5d6f19b76cb58e991e04a8a8dc534f63d7ac6b30",
+          "planHash": "b103e1ddf3c09efb89ce020be2ea63404b03fb39c40b27f51091553b3634f760",
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "aef9485e6d79f719d33c39da5d6f19b76cb58e991e04a8a8dc534f63d7ac6b30",
+          "planHash": "b103e1ddf3c09efb89ce020be2ea63404b03fb39c40b27f51091553b3634f760",
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "aef9485e6d79f719d33c39da5d6f19b76cb58e991e04a8a8dc534f63d7ac6b30",
+          "planHash": "b103e1ddf3c09efb89ce020be2ea63404b03fb39c40b27f51091553b3634f760",
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "development-11",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "137c1813c4b31d4287ddea156ca3bafbd3cf73e885b383e1a9a0819665652150",
+      "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "70bc00f4b7518b9297e5b023e3a55a7e19d6bcc737146242fe7915332b4e70c8",
+          "planHash": "137c1813c4b31d4287ddea156ca3bafbd3cf73e885b383e1a9a0819665652150",
+          "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "70bc00f4b7518b9297e5b023e3a55a7e19d6bcc737146242fe7915332b4e70c8",
+          "planHash": "137c1813c4b31d4287ddea156ca3bafbd3cf73e885b383e1a9a0819665652150",
+          "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "70bc00f4b7518b9297e5b023e3a55a7e19d6bcc737146242fe7915332b4e70c8",
+          "planHash": "137c1813c4b31d4287ddea156ca3bafbd3cf73e885b383e1a9a0819665652150",
+          "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "70bc00f4b7518b9297e5b023e3a55a7e19d6bcc737146242fe7915332b4e70c8",
+          "planHash": "137c1813c4b31d4287ddea156ca3bafbd3cf73e885b383e1a9a0819665652150",
+          "videoSHA256": "20c1d97b521290361074fcf62f1f7ec7cca1014881e3eefcd8633f1ae7f3c5bf",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "development-12",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "fe0c2c22061331f11bbc06ac418fb3ab14faf6ddd2f58dcf7deed92bf39f1193",
+      "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+          "method": null,
+          "source": null
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+          "method": null,
+          "source": null
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+          "method": null,
+          "source": null
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "396d6a6e875357ce8a1c7eccd652edcf0c3ed5ad5c987532990c37fdbd8a0e46",
+          "method": null,
+          "source": null
+        }
+      }
+    },
+    {
+      "case": "supplemental-development-13",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "80bca2929447956eacda552be26307bedbbfd5e10099465f61808d7a02e6ff96",
+      "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+          "method": null,
+          "source": null
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+          "method": null,
+          "source": null
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+          "method": null,
+          "source": null
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "5d1a48d275bde04d7f531f6dea2fb4b8b977f689253023c1079be4d182ff2d0f",
+          "method": null,
+          "source": null
+        }
+      }
+    },
+    {
+      "case": "development-14",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "7a51d2396b029a5f33786f328dd6694f87591d5742c5ee9563093874545bfb6b",
+      "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "647bf7ec63702634a514ca902e32f7187f3d12b905ada2d856ae1701d5a07e76",
+          "planHash": "7a51d2396b029a5f33786f328dd6694f87591d5742c5ee9563093874545bfb6b",
+          "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "647bf7ec63702634a514ca902e32f7187f3d12b905ada2d856ae1701d5a07e76",
+          "planHash": "7a51d2396b029a5f33786f328dd6694f87591d5742c5ee9563093874545bfb6b",
+          "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "impactBeatSync",
+          "inputHash": "647bf7ec63702634a514ca902e32f7187f3d12b905ada2d856ae1701d5a07e76",
+          "planHash": "7a51d2396b029a5f33786f328dd6694f87591d5742c5ee9563093874545bfb6b",
+          "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "647bf7ec63702634a514ca902e32f7187f3d12b905ada2d856ae1701d5a07e76",
+          "planHash": "7a51d2396b029a5f33786f328dd6694f87591d5742c5ee9563093874545bfb6b",
+          "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "647bf7ec63702634a514ca902e32f7187f3d12b905ada2d856ae1701d5a07e76",
+          "planHash": "7a51d2396b029a5f33786f328dd6694f87591d5742c5ee9563093874545bfb6b",
+          "videoSHA256": "a6104b7c0dea79fcd0b2736fbbe8ae85a26401af6f316e7340c123a93925f16f",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "development-15",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "3f47f06917ae8aa24cf4dfc9914c44faff53277f258d0675b8142440cd8de10f",
+      "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "580b96d7a450f5f62a32c15bc4999cfc8862325e3a6439aea75290260b662d9b",
+          "planHash": "3f47f06917ae8aa24cf4dfc9914c44faff53277f258d0675b8142440cd8de10f",
+          "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "580b96d7a450f5f62a32c15bc4999cfc8862325e3a6439aea75290260b662d9b",
+          "planHash": "3f47f06917ae8aa24cf4dfc9914c44faff53277f258d0675b8142440cd8de10f",
+          "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "impactBeatSync",
+          "inputHash": "580b96d7a450f5f62a32c15bc4999cfc8862325e3a6439aea75290260b662d9b",
+          "planHash": "3f47f06917ae8aa24cf4dfc9914c44faff53277f258d0675b8142440cd8de10f",
+          "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "580b96d7a450f5f62a32c15bc4999cfc8862325e3a6439aea75290260b662d9b",
+          "planHash": "3f47f06917ae8aa24cf4dfc9914c44faff53277f258d0675b8142440cd8de10f",
+          "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "580b96d7a450f5f62a32c15bc4999cfc8862325e3a6439aea75290260b662d9b",
+          "planHash": "3f47f06917ae8aa24cf4dfc9914c44faff53277f258d0675b8142440cd8de10f",
+          "videoSHA256": "c6971794222aa8520027eca518c097ef56495e1f275aab475236d07e43fb7507",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-11",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "e720ed4d7994d45825c1f613f0248c17a4ef100102b7cd52255a480414c0fee9",
+      "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+          "method": null,
+          "source": null
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+          "method": null,
+          "source": null
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+          "method": null,
+          "source": null
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "668fde8292477e0fabc5f8745e22affb4aa43dfbfc178bdb383aac4a9230d6fd",
+          "method": null,
+          "source": null
+        }
+      }
+    },
+    {
+      "case": "holdout-12",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "48fec402eda0c1c90f4a7ee84d92ddfd77802dae70904d281050dcee7b50b1c7",
+      "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "fb8a9a9038ead15ec3861a2a3daa2b469d3b52bc78a10032c4cb4025a476d88c",
+          "planHash": "48fec402eda0c1c90f4a7ee84d92ddfd77802dae70904d281050dcee7b50b1c7",
+          "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "fb8a9a9038ead15ec3861a2a3daa2b469d3b52bc78a10032c4cb4025a476d88c",
+          "planHash": "48fec402eda0c1c90f4a7ee84d92ddfd77802dae70904d281050dcee7b50b1c7",
+          "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "MEASURED",
+          "metricID": "impactBeatSync",
+          "inputHash": "fb8a9a9038ead15ec3861a2a3daa2b469d3b52bc78a10032c4cb4025a476d88c",
+          "planHash": "48fec402eda0c1c90f4a7ee84d92ddfd77802dae70904d281050dcee7b50b1c7",
+          "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "fb8a9a9038ead15ec3861a2a3daa2b469d3b52bc78a10032c4cb4025a476d88c",
+          "planHash": "48fec402eda0c1c90f4a7ee84d92ddfd77802dae70904d281050dcee7b50b1c7",
+          "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "fb8a9a9038ead15ec3861a2a3daa2b469d3b52bc78a10032c4cb4025a476d88c",
+          "planHash": "48fec402eda0c1c90f4a7ee84d92ddfd77802dae70904d281050dcee7b50b1c7",
+          "videoSHA256": "fffc0488fb25c0b7a1af521980934b13959af332bf07f31fc30d48872521d6ae",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "supplemental-holdout-13",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "105c06050eb7af2de1c523296350dec7746da80beba342edec931820faf0f4de",
+      "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "d0007db3aa4f250172ed713ef1723bc44c416339cc968da58372307055f13752",
+          "planHash": "105c06050eb7af2de1c523296350dec7746da80beba342edec931820faf0f4de",
+          "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "d0007db3aa4f250172ed713ef1723bc44c416339cc968da58372307055f13752",
+          "planHash": "105c06050eb7af2de1c523296350dec7746da80beba342edec931820faf0f4de",
+          "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "d0007db3aa4f250172ed713ef1723bc44c416339cc968da58372307055f13752",
+          "planHash": "105c06050eb7af2de1c523296350dec7746da80beba342edec931820faf0f4de",
+          "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "d0007db3aa4f250172ed713ef1723bc44c416339cc968da58372307055f13752",
+          "planHash": "105c06050eb7af2de1c523296350dec7746da80beba342edec931820faf0f4de",
+          "videoSHA256": "cf8ed722717c73b7a52afc84269d660857db6de0a636c67eb8dc0c6fec3505b6",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-14",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "dc57442b2fcdb9c275702b773b151199c01e37162a4670914f9b8a080572590e",
+      "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "dc630831fba4f3590c7fb3d3724ca74b948836983349d32ab66a2bb225082bb6",
+          "planHash": "dc57442b2fcdb9c275702b773b151199c01e37162a4670914f9b8a080572590e",
+          "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "dc630831fba4f3590c7fb3d3724ca74b948836983349d32ab66a2bb225082bb6",
+          "planHash": "dc57442b2fcdb9c275702b773b151199c01e37162a4670914f9b8a080572590e",
+          "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "dc630831fba4f3590c7fb3d3724ca74b948836983349d32ab66a2bb225082bb6",
+          "planHash": "dc57442b2fcdb9c275702b773b151199c01e37162a4670914f9b8a080572590e",
+          "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "dc630831fba4f3590c7fb3d3724ca74b948836983349d32ab66a2bb225082bb6",
+          "planHash": "dc57442b2fcdb9c275702b773b151199c01e37162a4670914f9b8a080572590e",
+          "videoSHA256": "56ea619464c5454ed1febe83257723283259e197680cba3874e023c852a74ac8",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    },
+    {
+      "case": "holdout-15",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "planHash": "a4ca77224740783c46713fa01a76d753f6c9cd97f82a2fca8f0ce52b793af5b3",
+      "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+      "creativeState": "BELOW_TARGET",
+      "domains": {
+        "readability": {
+          "requiredMetricIDs": [
+            "frameAlignedOutputReadability",
+            "localContrast",
+            "outputReadability"
+          ],
+          "status": "MEASURED",
+          "metricID": "localContrast",
+          "inputHash": "3f08f157b265f5e6a9e5773814c97eee9391c2e2e1ddad1468da33c723600170",
+          "planHash": "a4ca77224740783c46713fa01a76d753f6c9cd97f82a2fca8f0ce52b793af5b3",
+          "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "lowerTail": {
+          "requiredMetricIDs": [
+            "lowerTail",
+            "holdMotion"
+          ],
+          "status": "MEASURED",
+          "metricID": "lowerTail",
+          "inputHash": "3f08f157b265f5e6a9e5773814c97eee9391c2e2e1ddad1468da33c723600170",
+          "planHash": "a4ca77224740783c46713fa01a76d753f6c9cd97f82a2fca8f0ce52b793af5b3",
+          "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+          "method": "final-resolution MP4 independent decode",
+          "source": "ENCODED_MP4"
+        },
+        "musicFit": {
+          "requiredMetricIDs": [
+            "musicFitV2",
+            "impactBeatSync"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+          "method": null,
+          "source": null
+        },
+        "visualCoherence": {
+          "requiredMetricIDs": [
+            "visualCoherence"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+          "method": null,
+          "source": null
+        },
+        "contextualVariation": {
+          "requiredMetricIDs": [
+            "contextualVariation"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+          "method": null,
+          "source": null
+        },
+        "typographyQuality": {
+          "requiredMetricIDs": [
+            "typographyQuality"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+          "method": null,
+          "source": null
+        },
+        "structuralDevelopment": {
+          "requiredMetricIDs": [
+            "structuralDevelopment"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+          "method": null,
+          "source": null
+        },
+        "motionRealization": {
+          "requiredMetricIDs": [
+            "motionRealizationV2"
+          ],
+          "status": "UNMEASURED",
+          "metricID": null,
+          "inputHash": null,
+          "planHash": null,
+          "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+          "method": null,
+          "source": null
+        },
+        "regionalNovelty": {
+          "requiredMetricIDs": [
+            "regionalNoveltyV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "regionalNoveltyV2",
+          "inputHash": "3f08f157b265f5e6a9e5773814c97eee9391c2e2e1ddad1468da33c723600170",
+          "planHash": "a4ca77224740783c46713fa01a76d753f6c9cd97f82a2fca8f0ce52b793af5b3",
+          "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+          "method": "decoded background structure excluding union primary glyph tiles; minimized over small translation/zoom and existing compositions",
+          "source": "ENCODED_MP4"
+        },
+        "temporalContrast": {
+          "requiredMetricIDs": [
+            "temporalContrastV2"
+          ],
+          "status": "MEASURED",
+          "metricID": "temporalContrastV2",
+          "inputHash": "3f08f157b265f5e6a9e5773814c97eee9391c2e2e1ddad1468da33c723600170",
+          "planHash": "a4ca77224740783c46713fa01a76d753f6c9cd97f82a2fca8f0ce52b793af5b3",
+          "videoSHA256": "ac56d2ecaa3a5168453f924cab5c07606eaceda4a62374b2ab478f8a1f3b283e",
+          "method": "decoded normalized regional-energy distribution; repeated modulation, brightness-flash penalty",
+          "source": "ENCODED_MP4"
+        }
+      }
+    }
+  ],
+  "prohibitedAliases": {
+    "typographyDiversity": "Not equivalent to typographyQuality; diversity alone is not quality.",
+    "regionalPerceptualNovelty": "Not equivalent to V5 stabilized regionalNoveltyV2.",
+    "motionRealization": "Legacy displacement proxy is not named operator realizationV2.",
+    "impactBeatSync": "Existing musicFit fallback does not prove all musical semantics."
+  },
+  "unknowns": [
+    "visualCoherence/contextualVariation/typographyQuality/structuralDevelopment have no produced metric under the requested IDs; cannot fill with0/100 or rename unrelated proxies.",
+    "Unsupported named operators remain explicitly UNMEASURED."
+  ],
+  "human": "HUMAN_UNVERIFIED"
+}

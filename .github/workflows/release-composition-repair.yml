@@ -1,4 +1,4 @@
-name: Existing contrast repair preserves music composition — focal completed MP4s
+name: Complete measured composition candidates — preregistered focal MP4s
 on:
   push:
     branches: [codex/kamen-generalization-evidence-20261012]
@@ -21,13 +21,17 @@ jobs:
             cases: holdout-12
           - partition: mixed-language
             cases: fresh-confirmation-02
+          - partition: development-three
+            cases: development-03
+          - partition: development-five
+            cases: development-05
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 926ebca71badbd3ed106a422d24938d05c272779
+          ref: 174055f
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -80,7 +84,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: composition-repair926ebca-${{ matrix.partition }}
+          name: composition-root174055f-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
