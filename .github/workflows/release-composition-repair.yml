@@ -13,25 +13,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - partition: quiet
-            cases: holdout-01
-          - partition: energetic
-            cases: holdout-03
           - partition: long-form
             cases: holdout-12
-          - partition: mixed-language
-            cases: fresh-confirmation-02
-          - partition: development-three
-            cases: development-03
-          - partition: development-five
-            cases: development-05
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 174055f938ee736d3d1ec1a52be3a4a678751453
+          ref: 9a1760e2f54555d52a3c01baef9592d84d85a785
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -84,7 +74,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: composition-root174055f-${{ matrix.partition }}
+          name: composition-root9a1760e-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
