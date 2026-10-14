@@ -1,0 +1,109 @@
+{
+  "case": "development-05",
+  "sources": {
+    "previous": "b85bbeefd4f51e156da0c0ff515f32b99975df8a",
+    "current": "1aa31cd632955894daef8e8849728a9a0ef608c8"
+  },
+  "matchedConditions": {
+    "originalWAVSHA256": true,
+    "fixture": true,
+    "profile": true
+  },
+  "runtimeAudioObservation": {
+    "previousPCMKey": [
+      440999,
+      44100,
+      2,
+      165297997
+    ],
+    "currentPCMKey": [
+      440999,
+      44100,
+      2,
+      3875623509
+    ],
+    "maximumNumericFeatureDifference": 1.7881393432617188e-07,
+    "previousArchitectureSeed": 3177760782,
+    "currentArchitectureSeed": 1252928443,
+    "previousFont": "gothic_black",
+    "currentFont": "dela"
+  },
+  "metrics": {
+    "previous": {
+      "perceptualNovelty": 100,
+      "motion": 25,
+      "temporalContrast": 20,
+      "hookNovelty": 38,
+      "loopQuality": 0,
+      "foregroundNovelty": null,
+      "lyricForegroundNovelty": 86,
+      "displayOnsetAccuracy": null,
+      "impactBeatSync": null,
+      "regionalPerceptualNovelty": 100,
+      "localContrast": 83,
+      "motionRealization": 100,
+      "typographyDiversity": 42
+    },
+    "current": {
+      "perceptualNovelty": 100,
+      "motion": 32.5,
+      "temporalContrast": 9,
+      "hookNovelty": 86,
+      "loopQuality": 0,
+      "foregroundNovelty": null,
+      "lyricForegroundNovelty": 87,
+      "displayOnsetAccuracy": null,
+      "impactBeatSync": 50,
+      "regionalPerceptualNovelty": 100,
+      "localContrast": 100,
+      "motionRealization": 67,
+      "typographyDiversity": 37
+    }
+  },
+  "causalAlgorithmComparison": "CONFOUNDED_BY_DIFFERENT_DECODED_PCM_AND_ANALYSIS_SEED",
+  "currentCompletedArtifactVerification": {
+    "status": "PASS",
+    "binding": {
+      "inputHash": "01599c49d9169a3c2802d6b2895d447f8e97e59b8bae14d7e82319dcc65273ac",
+      "planHash": "633dc9b341562bad35147e61d0628b5a817193faf44013dd1acd29254b376ff2",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rendererVersion": "2b237ea92489c4ab4c10109b27ce00c1fbc7a220f24aecb2f6d37c1f4774d012",
+      "selectedCandidateId": "a3f6805d594e9435ea5ade9e4c7114ec6f43572e6873737d26d5499b4e0661c1",
+      "videoSHA256": "e72e18c32e30f2662ba1bc0318e882529f8327af540c0b61e5c28171ea656608",
+      "sourceCommit": "1aa31cd632955894daef8e8849728a9a0ef608c8",
+      "sourceTreeSHA256": "2b237ea92489c4ab4c10109b27ce00c1fbc7a220f24aecb2f6d37c1f4774d012",
+      "sourceDirty": false
+    },
+    "lyricSafety": "MEASURED",
+    "compositePrimaryIntent": {
+      "population": 3,
+      "measured": 3,
+      "rendererAgreementSuccess": 3,
+      "measurableRate": 1,
+      "rendererAgreementRate": 1,
+      "intentRealizationSuccessRate": 1,
+      "manualExcluded": 0,
+      "nonAutomaticExcluded": 0,
+      "intentMeasured": 3,
+      "intentMeasurableRate": 1,
+      "intentSuccessful": 3
+    },
+    "nativeAdoptedProofPresent": true
+  },
+  "interpretation": "Same uploaded source file/profile, different observed PCM/feature values changed the architecture seed and font. Do not attribute the raw score difference to the anchor algorithm. Controlled native anchor-feasibility ablation uses one shared actual AudioBuffer/features; final independent shipping movies remain required.",
+  "weightsAndThresholdsChanged": false,
+  "humanEvaluation": "HUMAN_UNVERIFIED"
+}
