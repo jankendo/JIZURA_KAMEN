@@ -246,7 +246,7 @@ V.repairReadabilityPreview=async(p,range,signal,options={})=>{
  const originalRepairs=p.cuts.map(c=>c.params?.cinemaReadabilityRepair),scope=options.scope||{renderer:new J.Renderer(),ready:false};
  try{
   const cached=await V.reuseReadabilityEvidence(p,range,options.inputHash,options.cached,options),measureOptions={scope,physicalOnly:options.physicalOnly,inputHash:options.inputHash,backgroundConsistency:options.backgroundConsistency,additionalTimes:options.additionalTimes},before=cached||await J.measureCinemaOutputReadability(p,range,signal,measureOptions),physical=!!options.backgroundConsistency;
-  const value=s=>physical?s.backgroundConsistentAlignedContrast?.score:s.contrast?.score,weakValue=s=>physical?s.backgroundConsistentAlignedContrast?.score:s.alignedContrast?.score,weak=new Set([...before.samples.filter(s=>Number.isFinite(weakValue(s))&&weakValue(s)<90).map(s=>s.line),...(options.preserveCompositionLines||[])]),cuts=p.cuts.filter(c=>weak.has(c.line)&&!c.locked&&!J.photoChoreographyLocked(p,c)),trials=[];
+  const value=s=>physical?s.backgroundConsistentAlignedContrast?.score:s.contrast?.score,weakValue=s=>physical?s.backgroundConsistentAlignedContrast?.score:s.alignedContrast?.score,weak=new Set([...before.samples.filter(s=>Number.isFinite(weakValue(s))&&weakValue(s)<90).map(s=>s.line),...(options.preserveCompositionLines||[])]),cuts=p.cuts.filter((c,i)=>weak.has(c.line)&&(!options.preserveCompositionUnitIndices||options.preserveCompositionUnitIndices.includes(i))&&!c.locked&&!J.photoChoreographyLocked(p,c)),trials=[];
   let current=before,accepted=false;const protectedTimes=new Set(before.samples.filter(s=>Number.isFinite(value(s))).map(s=>s.time)),vector=r=>r.samples.filter(s=>protectedTimes.has(s.time)).map(value).filter(Number.isFinite).sort((a,b)=>a-b);
   for(const cut of cuts){const original=cut.params.cinemaReadabilityRepair;let keep=false,best=current,chosen=original;
    try{for(const amount of [2,{shadow:2},{scrim:.24}]){
@@ -286,7 +286,7 @@ V.guardCompositionPromotion=async(root,planHash,incumbentPlanHash,measure)=>{
 // This adds repair candidates; no readability threshold or creative axis changes.
 V.tryCompositionPreservingReadability=async(plan,target,required,current,range,signal,options)=>{
  const index=plan.cuts.indexOf(target);if(index<0||!target.grammar||target.locked||J.photoChoreographyLocked(plan,target))return {accepted:false,reason:'LOCKED_OR_NO_GRAMMAR'};
- const candidate=V.clone(plan),trial=await V.repairReadabilityPreview(candidate,range,signal,{...options,preserveCompositionLines:[target.line]}),own={...trial.after,samples:trial.after.samples.filter(s=>s.line===target.line)};
+ const candidate=V.clone(plan),trial=await V.repairReadabilityPreview(candidate,range,signal,{...options,preserveCompositionLines:[target.line],preserveCompositionUnitIndices:[index]}),own={...trial.after,samples:trial.after.samples.filter(s=>s.line===target.line)};
  const repaired=candidate.cuts[index],sameComposition=J.canonicalJSON({...repaired,params:{...repaired.params,cinemaReadabilityRepair:target.params.cinemaReadabilityRepair}})===J.canonicalJSON(target),accepted=sameComposition&&V.lockSignature(candidate)===V.lockSignature(plan)&&trial.accepted&&V.physicalReadabilityDominates(own,required)&&V.physicalReadabilityDominates(own,current);
  return {accepted,reason:accepted?'MEASURED_CONTRAST_WITH_ORIGINAL_COMPOSITION':'EXISTING_REPAIR_CANNOT_PROTECT_REQUIRED_PIXELS',cut:accepted?candidate.cuts[index]:null,readability:own,trials:trial.trials};
 };
