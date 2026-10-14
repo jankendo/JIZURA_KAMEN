@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "recordedAt": "2026-10-14T03:36:49.129555+00:00",
+  "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+  "sourceBranch": "audit/global-storyboard-20261012",
+  "pr": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
+  "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "overall": "PARTIAL",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED",
+  "RELEASE_GO": "NO_GO",
+  "productionChanged": false,
+  "currentSourceLocalChecks": [
+    "cinema_architecture_semantic_box_test.cjs PASS incl temporal stage counterexample",
+    "cinema_composition_promotion_test.cjs PASS",
+    "cinema_candidate_trace_test.cjs PASS",
+    "cinema_v5_planner_test.cjs PASS"
+  ],
+  "currentSourceIndependentMovies": {
+    "completedCurrent": 4,
+    "completedPaired": 8,
+    "status": "HASH_BOUND_H264_AAC_FULL_DECODE_PASS",
+    "remaining": "NONE; all4 completed; unresolved energetic quality differences retained",
+    "notBlindAgain": "The independent4 fixtures were exposed at507 before temporal stage correction; do not claim fresh blind confirmation",
+    "workflow": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38505466572",
+    "workflowStatus": "SUCCESS"
+  },
+  "ci": {
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38505354079",
+    "status": "IN_PROGRESS_NOT_PASS",
+    "expectedSourceHead": "5e14682249ce690337874214f2ec76fc8e68fa26"
+  },
+  "full30Current": {
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38505466561",
+    "status": "IN_PROGRESS"
+  },
+  "previous507Evidence": {
+    "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+    "CI": "SUCCESS",
+    "registeredTests": {
+      "PASS": 199,
+      "FAIL": 0,
+      "SKIP": 2
+    },
+    "skipAlternatives": "Separate browser reports PASS, not CI unskip",
+    "completeDecodedFormalMP4": 30,
+    "lyricSafetyMeasured": "30/30",
+    "nativeFrameAudit": {
+      "cases": 30,
+      "frames": 9956,
+      "exceptions": 0,
+      "meaning": "Native dispatch only; not encoded intent realization"
+    },
+    "typographyStatistics": {
+      "mainMetrics": {
+        "worst": 13,
+        "bottom20Mean": 19.333333333333332,
+        "mean": 41.36666666666667
+      },
+      "priorMetrics": {
+        "worst": 4,
+        "bottom20Mean": 8.166666666666666,
+        "mean": 34.03333333333333
+      },
+      "newMetrics": {
+        "worst": 6,
+        "bottom20Mean": 18.5,
+        "mean": 41.9
+      },
+      "newVsmainMetrics": {
+        "improved": 12,
+        "same": 3,
+        "declined": 15
+      },
+      "newVspriorMetrics": {
+        "improved": 13,
+        "same": 9,
+        "declined": 8
+      }
+    },
+    "effectInventory": {
+      "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
+      "applicable": 1540,
+      "measured": 0,
+      "successful": 0,
+      "statuses": {
+        "VERIFIED": 0,
+        "FAILED": 0,
+        "NOT_APPLICABLE": 30,
+        "UNMEASURED": 1540,
+        "CONFOUNDED": 0,
+        "STALE": 0
+      },
+      "qualityGo": "UNVERIFIED",
+      "aggregateEncodedOperatorsSeparatelyMeasured": {
+        "case": "holdout-03",
+        "cameraContributingSamples": "16/27",
+        "derivedForegroundContributingSamples": "18/27",
+        "semanticIntent": "UNMEASURED"
+      }
+    }
+  },
+  "releaseBlockers": [
+    {
+      "id": "ALL_EFFECT_INTENT",
+      "cause": "Final selections include legacy aliases and aggregate hooks. Existing whole-film ON/OFF isolates only camera focus and derived foreground in one case; 1540 automatic configuration entries have no independently verified per-operator intent or encoded timing. Native dispatch does not close this gate.",
+      "next": "For actual dispatched operators, separate expected target/motion/time contracts, verify same-condition frozen-plan ON/OFF contribution with exact final-film reproduction; label aliases, confounding and gaps honestly."
+    },
+    {
+      "id": "QUALITY_GENERALIZATION",
+      "cause": "Formal507 typography improved13/tied9/declined8 againstprior. Independent energetic fixture has contrast94→84, temporal32→19, novelty67→57 and proxy motion100→67; no named semantic motion failure established, but overall benefit cannot be certified. Current staged correction not yet fully compared.",
+      "next": "Collect fixed5e matrix, review weak actual frames/intervals under identical conditions and isolate any actual regression. No score/threshold/fixture changes."
+    },
+    {
+      "id": "CAUSAL_FULL30",
+      "cause": "C/D/E isolated completed focus4 each. Full30 is not yet complete.",
+      "next": "Remaining26 fixed-input new-only encodes launched; reuse saved valid b5 baseline movies after input/WAV/profile matching."
+    },
+    {
+      "id": "LATEST_CI",
+      "cause": "Registered recovery tests and staged correction changed source; old507 CI is not current-head success.",
+      "next": "Collect exact5e full regression/build/browser/restore/one-click/decode evidence after CI completes."
+    }
+  ],
+  "runningIsolatedComparisons": {
+    "C": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38506753269",
+    "D": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38506753151",
+    "E": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38506753174"
+  },
+  "cancelledObsoleteHarnessRuns": {
+    "runs": [
+      38506736034,
+      38506735970,
+      38506735963
+    ],
+    "reason": "Variant env default would re-encode baseline despite new-only partition count. Explicitv3 repaired before the corrected jobs. Cancellation is not a rendering failure; original workflow commits retained."
+  },
+  "UNMEASURED": [
+    "Whole-engine individual encoded intent realization",
+    "Independent human aesthetic excellence",
+    "Peak memory during final MP4 generation",
+    "Actual fallback font face for unavailable requests in local diagnostic",
+    "Historic network/Blob root causes remain unresolved"
+  ],
+  "deployment": {
+    "workflow": ".github/workflows/build.yml",
+    "mode": "Existingmain-onlyGitHubPages",
+    "PRDeploySkip": "EXPECTED",
+    "mainMerge": "UNEXECUTED",
+    "productionE2E": "UNEXECUTED",
+    "url": "https://jankendo.github.io/JIZURA_KAMEN/",
+    "urlMeaning": "Existing requested production URL; not a new deployment success"
+  },
+  "speedIsReleaseBlocker": false,
+  "historicalGateFile": "composition-recovery/historical-b5-final-gates.json"
+}
