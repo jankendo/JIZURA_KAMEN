@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recordedAt": "2026-10-14T03:36:49.128287+00:00",
+  "recordedAt": "2026-10-14T03:45:52.134900+00:00",
   "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
   "sourceBranch": "audit/global-storyboard-20261012",
   "pr": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
@@ -25,7 +25,8 @@
     "remaining": "NONE; all4 completed; unresolved energetic quality differences retained",
     "notBlindAgain": "The independent4 fixtures were exposed at507 before temporal stage correction; do not claim fresh blind confirmation",
     "workflow": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38505466572",
-    "workflowStatus": "SUCCESS"
+    "workflowStatus": "SUCCESS",
+    "fullResolutionContrastComparison": "Energetic first unit baseline100/current90; other units100/100, every expected HOLD frame measured. Historical observer94→84 retained separately; no verified missing lyric or semantic operator failure inferred."
   },
   "ci": {
     "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38505354079",
@@ -34,7 +35,10 @@
   },
   "full30Current": {
     "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38505466561",
-    "status": "IN_PROGRESS"
+    "status": "10_HASH_BOUND_FULL_DECODE_20_PENDING",
+    "completed": 10,
+    "pending": 20,
+    "collectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
   },
   "previous507Evidence": {
     "sourceCommit": "507a49912cc26cfe77780433ee16917c9225e220",
@@ -154,5 +158,8 @@
     "urlMeaning": "Existing requested production URL; not a new deployment success"
   },
   "speedIsReleaseBlocker": false,
-  "historicalGateFile": "composition-recovery/historical-b5-final-gates.json"
+  "historicalGateFile": "composition-recovery/historical-b5-final-gates.json",
+  "currentCompletedMovies": 14,
+  "currentDecodeCountMeaning": "10 formal current-head movies plus4 independent current-head movies; paired old movies counted separately, not added to current-head total",
+  "additionalIntentCounterexample": "holdout01-intent-application-counterexample.json"
 }
