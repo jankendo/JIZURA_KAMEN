@@ -27,7 +27,7 @@ jobs:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: b85bbeefd4f51e156da0c0ff515f32b99975df8a
+          ref: 1aa31cd632955894daef8e8849728a9a0ef608c8
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -54,6 +54,7 @@ jobs:
           KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/composition-recovery/repair-fixtures-preregistration.json
           KAMEN_MATRIX_CASES: ${{ matrix.cases }}
           KAMEN_MATRIX_VARIANTS: v3
+          KAMEN_MATRIX_NATIVE_HASHES: 1
           NODE_PATH: ${{ github.workspace }}/current/node_modules
         run: |
           node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/current-server.log 2>&1 &
@@ -80,7 +81,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: composition-camerab85bbee-${{ matrix.partition }}
+          name: composition-phase1aa31cd-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
