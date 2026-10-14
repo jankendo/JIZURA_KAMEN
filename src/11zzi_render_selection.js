@@ -105,10 +105,31 @@ J.chooseRegistryStoryboard=(steps,beamWidth=8)=>{
  }
  return {status:'MEASURED_SAFE_SEQUENCE',picks:beam[0].picks,score:beam[0].score,method:'beam-search/rendered-primary-ink-v1',beamWidth:cap};
 };
-J.registryCandidateTrace=(c,style,font,role,energy,ranked,exclusions)=>({
+// Preserve distinct measured compositions before sequence search. Exact raster
+// duplicates share a representative; overflow uses farthest measured geometry,
+// retaining the best local candidate, rather than an early local-score slice.
+J.registryCompositionPortfolio=(ranked,budget=32)=>{
+ const unique=[],duplicates=[];
+ for(const c of ranked){const same=unique.find(x=>J.registryInkDistance(x.signature,c.signature)===0&&J.registryInkDistance(x.typographySignature,c.typographySignature)===0);
+  if(same)duplicates.push({layout:c.layout,representative:same.layout,reason:'IDENTICAL_MEASURED_PRIMARY_COMPOSITION'});else unique.push(c);}
+ const cap=Math.max(1,Math.min(32,budget)),selected=unique.slice(0,1),remaining=unique.slice(1);
+ while(selected.length<cap&&remaining.length){let best=0,distance=-1;
+  for(let i=0;i<remaining.length;i++){const d=Math.min(...selected.map(x=>Math.max(J.registryInkDistance(x.signature,remaining[i].signature)??0,J.registryInkDistance(x.typographySignature,remaining[i].typographySignature)??0)));if(d>distance){best=i;distance=d;}}
+  selected.push(remaining.splice(best,1)[0]);}
+ return {candidates:selected,duplicates,omitted:remaining.map(c=>({layout:c.layout,reason:'MEASURED_REPRESENTATIVE_BUDGET'})),generated:ranked.length,distinct:unique.length,budget:cap};
+};
+// Selection owns a complete immutable cut. Applying it cannot borrow the
+// previous candidate's anchor or temporal operators after raster evaluation.
+J.registryApplyMeasuredCandidate=(original,candidate)=>{
+ if(!candidate.cut)return {...original,layout:candidate.layout,params:J.clonePhotoRenderPlan(candidate.params)};
+ const cut=J.clonePhotoRenderPlan(candidate.cut);
+ if(cut.line!==original.line||cut.start!==original.start||cut.end!==original.end||cut.lineText!==original.lineText)throw Error('REGISTRY_UNIT_IDENTITY_CHANGED');
+ return cut;
+};
+J.registryCandidateTrace=(c,style,font,role,energy,ranked,exclusions,portfolio=J.registryCompositionPortfolio(ranked))=>({
  unitKey:JSON.stringify([c.line,c.start,c.end,c.text??c.lineText]),line:c.line,start:c.start,end:c.end,sourceText:c.lineText,style,font,
  fontLoadEvidence:J.clonePhotoRenderPlan(J.fontLoadEvidence?.get(font)||{status:'UNMEASURED'}),role,energy,stage:'ACTUAL_PHRASE_BEFORE_GLOBAL_SEQUENCE',
- candidates:ranked.map((r,index)=>({layout:r.layout,family:r.family,score:r.score,rank:index,retainedForGlobal:index<6,exclusionReason:index<6?null:'LOCAL_TOP_SIX_LIMIT',spatialSignature:Array.from(r.signature),typographySignature:Array.from(r.typographySignature),params:J.clonePhotoRenderPlan(r.params)})),
+ candidates:ranked.map((r,index)=>({layout:r.layout,family:r.family,score:r.score,rank:index,retainedForGlobal:portfolio.candidates.includes(r),exclusionReason:portfolio.candidates.includes(r)?null:portfolio.duplicates.find(x=>x.layout===r.layout)?.reason??'MEASURED_REPRESENTATIVE_BUDGET',spatialSignature:Array.from(r.signature),typographySignature:Array.from(r.typographySignature),params:J.clonePhotoRenderPlan(r.params)})),
  exclusions:J.clonePhotoRenderPlan(exclusions),measurement:'Pre-encode native primary ink; decoded realization remains independent'
 });
 J.compareRegistryCandidates=async(project,audio,image,options={})=>{
@@ -145,15 +166,33 @@ J.compareRegistryCandidates=async(project,audio,image,options={})=>{
    const exclusions=[];const ranked=available.map(l=>{const evidence=l.probes.find(v=>v.line===nearest.line),choice=candidateCut(sp,c,l.id,font);if(!evidence?.eligible){exclusions.push({layout:l.id,reason:'REPRESENTATIVE_GLYPH_PROBE_NOT_ELIGIBLE'});return null;}const roleFit=short?['hero','condensed','banner','frame'].includes(l.family):rep>0?['phrase','frame','banner','condensed','diagonal'].includes(l.family):['statement','condensed','phrase'].includes(l.family);const chantStage=J.vocaliseGroup?.(c.lineText)?rep%4:null,stageFamilies=[['statement','phrase'],['frame','banner'],['radial','split','depth','perspective'],['hero','condensed','diagonal']],stageFit=chantStage===null?0:stageFamilies[chantStage].includes(l.family)?.42:0;const novelty=previous?.family===l.family?-.45:rep>0?.17:0,streak=history.at(-1)===l.family?-.18:0,graphicPenalty=['banner','frame'].includes(l.family)&&history.slice(-2).some(x=>['banner','frame'].includes(x))?-.12:0;
     const ev=sample(sp,{...choice,style,styleKey:winner.id},.6);if(!ev.eligible){exclusions.push({layout:l.id,reason:'ACTUAL_PHRASE_RASTER_NOT_ELIGIBLE',complete:ev.full,safe:ev.safe,extra:ev.extra,unstable:ev.unstable,contrast:ev.contrast,geometry:ev.geometry});return null;}return {layout:l.id,family:l.family,params:choice.params,score:.20*(ev.contrastFit??0)+.10*C(ev.opaqueInk/Math.max(1,ev.ink))+.12*C(ev.height/(short?.22:.14))+(roleFit?.18:0)+.4*J.songLayoutFit(l.family,musicProfile,energy,role,rep)+stageFit+novelty+streak+graphicPenalty,evidence:metrics(ev),signature:J.registryInkSignature(ev.mask,w,h),typographySignature:J.registryTypographySignature(ev.mask,w,h)};
    }).filter(Boolean).sort((a,b)=>b.score-a.score||a.layout.localeCompare(b.layout));
-   phraseCandidateTraces.push(J.registryCandidateTrace(c,winner.id,font,role,energy,ranked,exclusions));
-   const choice=ranked[0];if(!choice)throw Error('歌詞を保持できる構成候補がありません');portfolios.push({line:c.line,role,energy,candidates:ranked.slice(0,6)});const enters=motionResults.filter(x=>x.group==='enter'&&x.eligible&&!/scramble|glitch|blur|type|fade|spin|scatter|explode|random/i.test(x.id)),preferred=J.STYLES[winner.id].bias?.enter||{},enter=enters.sort((a,b)=>((preferred[b.id]||0)-(b.id===lastEnter?.35:0))-((preferred[a.id]||0)-(a.id===lastEnter?.35:0))||a.id.localeCompare(b.id))[rep%Math.min(3,enters.length)]?.id||'photoSettle';lastEnter=enter;
+   const choice=ranked[0];if(!choice)throw Error('歌詞を保持できる構成候補がありません');const enters=motionResults.filter(x=>x.group==='enter'&&x.eligible&&!/scramble|glitch|blur|type|fade|spin|scatter|explode|random/i.test(x.id)),preferred=J.STYLES[winner.id].bias?.enter||{},enter=enters.sort((a,b)=>((preferred[b.id]||0)-(b.id===lastEnter?.35:0))-((preferred[a.id]||0)-(a.id===lastEnter?.35:0))||a.id.localeCompare(b.id))[rep%Math.min(3,enters.length)]?.id||'photoSettle';lastEnter=enter;
    const finalEnter=[enter,'photoSettle','cut'].find(id=>[.001,.03,.08,.16].every(dt=>sample(sp,{...candidateCut(sp,c,choice.layout,font,id),style,styleKey:winner.id},dt).eligible))||'cut';
    const holds=motionResults.filter(x=>x.group==='hold'&&x.eligible).sort((a,b)=>{const fit=m=>(c.line%4===0||J.vocaliseGroup?.(c.lineText)&&rep===0)?(m.id==='still'?.6:0):musicProfile.mode==='drift'?(m.id==='still'?.3:0):musicProfile.mode==='flow'?(['float','sway','breathe'].includes(m.id)&&m.contribution>.002?.3:0):energy>.4?(['pulse','breathe'].includes(m.id)&&m.contribution>.002&&m.contribution<.2?.3:0):m.id==='still'?.2:0;return fit(b)-fit(a)||a.delta-b.delta||a.id.localeCompare(b.id);});
    const nonRepeated=holds.filter(m=>!(holdHistory.length>=2&&holdHistory.at(-1)===m.id&&holdHistory.at(-2)===m.id));
    const hold=nonRepeated.find(m=>[.2,.6,Math.max(.2,c.dur-.08)].every(dt=>sample(sp,{...candidateCut(sp,c,choice.layout,font,finalEnter,m.id),style,styleKey:winner.id},dt).eligible))?.id||'still';
    holdHistory.push(hold);
    const anchorProbes=(J.photoAnchorCandidates?.(R.customBgBitmap)||[{x:.5,y:.5}]).map(anchor=>{const cut={...candidateCut(sp,c,choice.layout,font,finalEnter,hold),params:{...choice.params,photoAnchor:anchor},style,styleKey:winner.id},ev=sample(sp,cut,.6);return {anchor,evidence:metrics(ev),eligible:ev.eligible,rank:(ev.contrastFit??0)*.5+(1-(anchor.saliency??.5))*.35+(Math.abs(anchor.y-.5)>.1?.08:0)};}).filter(v=>v.eligible).sort((a,b)=>b.rank-a.rank);
-   if(anchorProbes.length)choice.params.photoAnchor=anchorProbes[0].anchor;
+   // Evaluate anchors and all temporal phases for every retained safe layout.
+   // These masks describe the exact cut that the global search may apply.
+   const completed=[];
+   for(const candidate of ranked){
+    const probes=(J.photoAnchorCandidates?.(R.customBgBitmap)||[{x:.5,y:.5}]).map(anchor=>{
+     const cut={...candidateCut(sp,c,candidate.layout,font,finalEnter,hold),params:{...J.clonePhotoRenderPlan(candidate.params),photoAnchor:J.clonePhotoRenderPlan(anchor)},style,styleKey:winner.id};
+     const ev=sample(sp,cut,.6);return {cut,ev,rank:(ev.contrastFit??0)*.5+(1-(anchor.saliency??.5))*.35+(Math.abs(anchor.y-.5)>.1?.08:0)};
+    }).filter(v=>v.ev.eligible).sort((a,b)=>b.rank-a.rank);
+    const probe=probes[0];if(!probe){exclusions.push({layout:candidate.layout,reason:'COMPLETE_CANDIDATE_ANCHOR_UNSAFE'});continue;}
+    const checks=[.001,.03,.08,.16,.6,Math.max(.2,c.dur-.09)].map(dt=>sample(sp,probe.cut,dt));
+    if(!checks.every(e=>e.eligible)){exclusions.push({layout:candidate.layout,reason:'COMPLETE_CANDIDATE_TEMPORAL_UNSAFE'});continue;}
+    const renderScore=e=>.20*(e.contrastFit??0)+.10*C(e.opaqueInk/Math.max(1,e.ink))+.12*C(e.height/(short?.22:.14));
+    const score=candidate.score-renderScore(candidate.evidence)+renderScore(probe.ev);
+    completed.push({...candidate,score,params:J.clonePhotoRenderPlan(probe.cut.params),cut:J.clonePhotoRenderPlan(probe.cut),evidence:metrics(probe.ev),signature:J.registryInkSignature(probe.ev.mask,w,h),typographySignature:J.registryTypographySignature(probe.ev.mask,w,h),phaseEvidence:checks.map(metrics)});
+   }
+   completed.sort((a,b)=>b.score-a.score||a.layout.localeCompare(b.layout));
+   const portfolio=J.registryCompositionPortfolio(completed);if(!portfolio.candidates.length)throw Error('全時間区間で安全な構成候補がありません');
+   portfolios.push({line:c.line,role,energy,candidates:portfolio.candidates});
+   phraseCandidateTraces.push(J.registryCandidateTrace(c,winner.id,font,role,energy,completed,exclusions,portfolio));
+   Object.assign(choice,completed.find(x=>x.layout===choice.layout)||completed[0]);
    entries[c.line]={...choice,anchorComparisons:anchorProbes,enter:finalEnter,hold,inDur:.12,role,energy,musicMode:musicProfile.mode,repeat:rep};history.push(choice.family);seen.set(repeatKey,rep+1);seen.set(repeatKey+'|choice',choice);progress('反復フレーズの構成を選択しています');await yieldUI();
   }
   const globalStoryboard=J.chooseRegistryStoryboard(portfolios,12),storyboardEvidence=[];
@@ -161,13 +200,12 @@ J.compareRegistryCandidates=async(project,audio,image,options={})=>{
    const prev=entries[picked.line];if(!prev||prev.layout===picked.layout){storyboardEvidence.push({line:picked.line,decision:'KEEP',layout:prev?.layout});continue;}
    const c=unlocked.find(x=>x.line===picked.line);
    if(!c||prev.score-picked.score>.08){storyboardEvidence.push({line:picked.line,decision:'KEEP_LOCAL_FIT',layout:prev.layout});continue;}
-   const alternative={...candidateCut(sp,c,picked.layout,font,prev.enter,prev.hold),style,styleKey:winner.id,
-    params:{...picked.params,...(prev.params?.photoAnchor?{photoAnchor:prev.params.photoAnchor}:{})}};
+   const alternative=J.registryApplyMeasuredCandidate(c,picked);
    // No visual promotion without a second full-phrase entry/hold/release check.
    const checks=[.001,.03,.08,.16,.6,Math.max(.2,c.dur-.09)].map(dt=>sample(sp,alternative,dt));
    if(checks.every(e=>e.eligible)){
     const {signature,...storable}=picked;
-    entries[picked.line]={...prev,...storable,params:alternative.params,enter:prev.enter,hold:prev.hold,evidence:metrics(checks[4]),globalStoryboardDecision:'ADOPTED_VERIFIED'};
+    entries[picked.line]={...prev,...storable,params:alternative.params,enter:alternative.enter,hold:alternative.hold,exit:alternative.exit,camera:alternative.camera,background:alternative.bg,fx:alternative.fx,cut:J.clonePhotoRenderPlan(alternative),evidence:metrics(checks[4]),globalStoryboardDecision:'ADOPTED_VERIFIED'};
     storyboardEvidence.push({line:picked.line,decision:'ADOPTED_VERIFIED',layout:picked.layout});
    }else storyboardEvidence.push({line:picked.line,decision:'KEEP_UNSAFE_ALTERNATIVE',layout:prev.layout});
   }
