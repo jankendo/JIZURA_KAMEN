@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        hook: [temporalCinemaFocus]
+        hook: [temporalCinemaFocus, drawCinemaAccent]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -32,7 +32,7 @@ jobs:
         run: |
           python - <<'PY'
           import pathlib,gzip,json,shutil
-          root=pathlib.Path('qa/docs/qa/generalization');cases=['holdout-01','development-01']
+          root=pathlib.Path('qa/docs/qa/generalization');cases=['supplemental-holdout-13']
           for case in cases:
               matches=[]
               for f in list((root/'composition-recovery/final5e').glob('*/results.json.gz'))+list((root/'composition-recovery/fresh5e').glob('*/results.json.gz')):
@@ -53,14 +53,14 @@ jobs:
           server_pid=$!
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           for n in 1 2 3 4 5; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
-          for case in holdout-01 development-01; do
+          for case in supplemental-holdout-13; do
             mkdir -p "results/$case"
             node qa/docs/qa/generalization/tools/encoded_camera_counterfactual.cjs http://127.0.0.1:4173/ "inputs/$case" "$case" v3 current "results/$case" > "results/$case/run.log" 2>&1
           done
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         if: always()
         with:
-          name: release5e-native-reproduction
+          name: release5e-continuity-${{ matrix.hook }}
           path: |
             results
             server.log
