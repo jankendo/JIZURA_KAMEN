@@ -1,4 +1,5 @@
 name: Preserve exact local evidence history after cloud reconnect
+# Import the shallow base explicitly before validating original child commits.
 on:
   push:
     branches: [backup/kamen-preserve-b002-20261015]

@@ -9,6 +9,7 @@ class SafeRedirect(urllib.request.HTTPRedirectHandler):
 opener=urllib.request.build_opener(SafeRedirect())
 def git(*args,input=None):return subprocess.check_output(['git',*args],input=input)
 def sha(b):return hashlib.sha256(b).hexdigest()
+git('fetch','--no-tags','--depth=1','--filter=blob:none','origin',spec['expectedRemoteBase'])
 archives={}
 for aid,expected in spec['archiveSources'].items():
  p=temp/(aid+'.zip');req=urllib.request.Request(f'https://api.github.com/repos/{repo}/actions/artifacts/{aid}/zip',headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'})
