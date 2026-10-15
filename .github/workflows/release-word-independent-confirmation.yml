@@ -1,0 +1,103 @@
+name: Independent post-freeze word-integrity shipping confirmation
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/release-word-independent-confirmation.yml]
+permissions:
+  contents: read
+jobs:
+  real-mp4-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - partition: release-word-integrity-holdout-01
+            cases: release-word-integrity-holdout-01
+          - partition: release-word-integrity-holdout-02
+            cases: release-word-integrity-holdout-02
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: b002cdd75845d189221312a82456c33a131f5e8d
+          path: current
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: c043c8922efe6999e995c8853da6cfc8b790e1b3
+          path: baseline
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - name: Install media verification
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install and build frozen shipping sources
+        run: |
+          (cd current && npm ci && npm run build)
+          (cd baseline && npm ci && npm run build)
+          test -x /usr/bin/google-chrome
+          mkdir -p results
+          sha256sum qa/docs/qa/generalization/composition-recovery/climax-word-fix-independent-preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/tools-and-preregistration.sha256
+      - name: Complete natural-selection paired MP4 matrix
+        timeout-minutes: 120
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/composition-recovery/climax-word-fix-independent-preregistration.json
+          KAMEN_MATRIX_CASES: ${{ matrix.cases }}
+          KAMEN_MATRIX_VARIANTS: baseline,v3
+          KAMEN_MATRIX_NATIVE_HASHES: 1
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/current-server.log 2>&1 &
+          current_server=$!
+          node baseline/scripts/serve.mjs dist 127.0.0.1 4174 > results/baseline-server.log 2>&1 &
+          baseline_server=$!
+          trap 'kill "$current_server" "$baseline_server" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS -o /dev/null http://127.0.0.1:4173/ && curl -fsS -o /dev/null http://127.0.0.1:4174/; then break; fi
+            sleep 1
+          done
+          curl -fsS -o /dev/null http://127.0.0.1:4173/
+          curl -fsS -o /dev/null http://127.0.0.1:4174/
+          node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4174/ results/matrix > results/matrix.log 2>&1
+          python -c 'import json; x=json.load(open("results/matrix/results.json")); assert len(x["rows"])==2 and len({r["fixture"]["id"] for r in x["rows"]})==1, "Incomplete partition"'
+      - name: Independently replay artifact hashes and full decode
+        if: always()
+        run: |
+          if test -f results/matrix/results.json; then
+            python qa/docs/qa/generalization/tools/verify_artifacts.py results/matrix results/strict-decode.json
+            python qa/docs/qa/generalization/tools/summarize_realization.py results/matrix/results.json results/realization.json
+          fi
+      - name: Enforce unchanged input, seed, profile and PCM
+        if: always()
+        run: python qa/docs/qa/generalization/composition-recovery/quality-comparison-tools/verify_pcm_matched_replay.py results c043c8922efe6999e995c8853da6cfc8b790e1b3 b002cdd75845d189221312a82456c33a131f5e8d
+      - name: Bind actual final item text to each original full Native output
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/native-current-server.log 2>&1 &
+          current_server=$!
+          node baseline/scripts/serve.mjs dist 127.0.0.1 4174 > results/native-before-server.log 2>&1 &
+          baseline_server=$!
+          trap 'kill "$current_server" "$baseline_server" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS -o /dev/null http://127.0.0.1:4173/ && curl -fsS -o /dev/null http://127.0.0.1:4174/; then break; fi
+            sleep 1
+          done
+          node qa/docs/qa/generalization/tools/verify_frozen_native_source_continuity.cjs http://127.0.0.1:4173/ results/matrix '${{ matrix.cases }}' v3 results/native-after b002cdd75845d189221312a82456c33a131f5e8d
+          node qa/docs/qa/generalization/tools/verify_frozen_native_source_continuity.cjs http://127.0.0.1:4174/ results/matrix '${{ matrix.cases }}' baseline results/native-before c043c8922efe6999e995c8853da6cfc8b790e1b3
+          node qa/docs/qa/generalization/tools/verify_climax_word_contract.cjs current results/matrix results/native-before results/native-after results/word-integrity.json
+      - name: Preserve every completed artifact and failure
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: independent-word-integrity-${{ matrix.partition }}
+          path: results/
+          retention-days: 14
+          if-no-files-found: error

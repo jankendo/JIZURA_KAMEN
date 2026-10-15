@@ -1,13 +1,10 @@
 {
   "scope": "Input/profile/seed/PCM-matched actual shipping MP4 comparisons; scores remain descriptive engineering observations, not calibrated artistic quality. Original trials and failed attempts are untouched. Observer-code differences and aesthetic tradeoffs are not silently resolved.",
   "expectedReplayConditions": 18,
-  "completedReplayConditions": 16,
-  "pendingReplayConditions": [
-    "development-14",
-    "supplemental-holdout-13"
-  ],
-  "matchedTotalConditions": 28,
-  "verifiedCanonicalMembers": 384,
+  "completedReplayConditions": 18,
+  "pendingReplayConditions": [],
+  "matchedTotalConditions": 30,
+  "verifiedCanonicalMembers": 432,
   "replayed": [
     {
       "fixture": "development-01",
@@ -1081,6 +1078,161 @@
       },
       "archiveManifest": "pcm-paired-development-12/archive-manifest.json",
       "archiveManifestSHA256": "fe0bb1a46d410dafacb4c30b4a9345ac9006a925552876e6755eb0a3324980fc"
+    },
+    {
+      "fixture": "development-14",
+      "comparisonOrigin": "NEW_SAME_RUNNER_THREE_VERSION_TRIAL",
+      "PCMCorrespondence": "MATCHED",
+      "sameConditions": {
+        "threeCompletedSources": true,
+        "fixture": true,
+        "input": true,
+        "audioWAVSHA256": true,
+        "pcmHash": true,
+        "outputProfile": true
+      },
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "10c72edf8a5be0993988efc24fa2f5fd9ed093ad82f7e791be0e7cc9b64a9147",
+          "binding": {
+            "inputHash": "73e5f6b827f3f2710954a75e058e955fe3810867af67a2c28dae384f6b9a13ea",
+            "planHash": "0f18fee90c37f97ba0befee8126802db81f4ed260e440fc12ef61a429ecce216",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                44.999977324263035
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "e1dd1442623cb49a8885cc6f9ec765013cc3d6aabcc3c97252189d69b0115148",
+            "videoSHA256": "10c72edf8a5be0993988efc24fa2f5fd9ed093ad82f7e791be0e7cc9b64a9147",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 21.5,
+            "temporalContrast": 23,
+            "hookNovelty": 100,
+            "loopQuality": 41,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 96,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 60,
+            "regionalPerceptualNovelty": 62.23260532227458,
+            "localContrast": 57,
+            "motionRealization": 100,
+            "typographyDiversity": 36
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 1080
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "f049db09e2655626f51acaf9c98703edcf97201df3278b9f302b77ca13104aea",
+          "binding": {
+            "inputHash": "a0ad9067ea3de5f6d92100788ebdea25565d5e6364c624d5ae50f57a6c3b399e",
+            "planHash": "65be6602c9337a8e3d70f700ec2c1eaf6ed80a96ed7ef795803b57f2165b0b0a",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                44.999977324263035
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "fa5bd010720688a5325e381d7aff8e0227cf3a5eadcc74da13ae48c53d8ee6fc",
+            "videoSHA256": "f049db09e2655626f51acaf9c98703edcf97201df3278b9f302b77ca13104aea",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20,
+            "temporalContrast": 46,
+            "hookNovelty": 100,
+            "loopQuality": 41,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 79,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 95.49113334712875,
+            "localContrast": 64,
+            "motionRealization": 100,
+            "typographyDiversity": 68
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 1080
+        },
+        "previous5e": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "dacd7a380736a14d18a7cfcd263ae90a2e223f03a9de972fc2940a0483403bff",
+          "binding": {
+            "inputHash": "cf296ad0db7000fedcdcd88c60869fe30fd57991577281ffc833ebe88e8c49dc",
+            "planHash": "5b66c224c2f364eeeca2e91e6ba814b8ac9c3800638f351beb83fcba93f3469e",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                44.999977324263035
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "f505565c4f1a4f7f7eb4e2093f83a5e3301d93ef93c839b1bdb7019070f39615",
+            "videoSHA256": "dacd7a380736a14d18a7cfcd263ae90a2e223f03a9de972fc2940a0483403bff",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20,
+            "temporalContrast": 43,
+            "hookNovelty": 100,
+            "loopQuality": 41,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 75,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 95.49113334712875,
+            "localContrast": 57,
+            "motionRealization": 100,
+            "typographyDiversity": 49
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 1080
+        }
+      },
+      "archiveManifest": "pcm-paired-development-14/archive-manifest.json",
+      "archiveManifestSHA256": "513fc880a2844b0c84111cb9b075fd7123916c71011416ca0cb19544bc4877a6"
     },
     {
       "fixture": "development-15",
@@ -2452,6 +2604,161 @@
       },
       "archiveManifest": "pcm-paired-supplemental-development-13/archive-manifest.json",
       "archiveManifestSHA256": "8bd9b54f3b73c3a4f2191be89d55798ea2fca4e786e7e0a7a851e5f91df3d1da"
+    },
+    {
+      "fixture": "supplemental-holdout-13",
+      "comparisonOrigin": "NEW_SAME_RUNNER_THREE_VERSION_TRIAL",
+      "PCMCorrespondence": "MATCHED",
+      "sameConditions": {
+        "threeCompletedSources": true,
+        "fixture": true,
+        "input": true,
+        "audioWAVSHA256": true,
+        "pcmHash": true,
+        "outputProfile": true
+      },
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "5285db7b11854ae2fac44297b2708542b5b4dc80ae2165a6ed76acb3406167eb",
+          "binding": {
+            "inputHash": "cdd7db35938a9e1577ae0b5c7b7bdf99e4cd57c6e6051f7e5a15b4e8b0d2e2b0",
+            "planHash": "ee236495b6bd028d888fdbe6ecf4ce9291f37f232523a0ecfbcd6fa8bcfaaa94",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "4db89e090493d0281f2ae36b3ed4c02f851af79d8503a3a06c6a6f7f3cdef153",
+            "videoSHA256": "5285db7b11854ae2fac44297b2708542b5b4dc80ae2165a6ed76acb3406167eb",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 74,
+            "motion": 20.5,
+            "temporalContrast": 100,
+            "hookNovelty": 5,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 94,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 75.07193735914906,
+            "localContrast": 99,
+            "motionRealization": 67,
+            "typographyDiversity": 23
+          },
+          "lyricSafety": "UNMEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "2efd7fa3b9dc1f671ff0f7039141c2da706211a57e0bd81e27c153d9da5ad386",
+          "binding": {
+            "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+            "planHash": "cbb6adda84daabe62d8684b0efb5e28e954becbd0372c672e7c22d9bb3f6028b",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "86463a2e6da7a690509dd05fe1b5475ee4d99b280dd2b0e21320ffa87d12e096",
+            "videoSHA256": "2efd7fa3b9dc1f671ff0f7039141c2da706211a57e0bd81e27c153d9da5ad386",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20.5,
+            "temporalContrast": 100,
+            "hookNovelty": 35,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 95,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 0,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 96,
+            "motionRealization": 100,
+            "typographyDiversity": 83
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        },
+        "previous5e": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "f2b593188419c6bbbe9f4c556c1af906b3cda7209a3616d45b7ad5803587eb9b",
+          "binding": {
+            "inputHash": "c17ba3fdcdc9f8ebb300d0a288f69fd9726ae3ba8c27a5a5c690ceaa6a5effae",
+            "planHash": "dfb34d1cde9c4f621a4a94313ccf81fa67fdad511c7dc374b7a9b021cdedfc2e",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "e50d9fa37abd4678b35eee4063574b5981ddc9e2280128589f7ac0ceb8466491",
+            "videoSHA256": "f2b593188419c6bbbe9f4c556c1af906b3cda7209a3616d45b7ad5803587eb9b",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 98,
+            "motion": 21,
+            "temporalContrast": 100,
+            "hookNovelty": 35,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 94,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 88.9153679818406,
+            "localContrast": 96,
+            "motionRealization": 100,
+            "typographyDiversity": 83
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        }
+      },
+      "archiveManifest": "pcm-paired-supplemental-holdout-13/archive-manifest.json",
+      "archiveManifestSHA256": "1941815c6c908f1b0ddf103fadbab842d8f4ed109f8100d7dc71911a2817433b"
     }
   ],
   "all30": [
@@ -4663,6 +4970,161 @@
       "archiveManifestSHA256": "fe0bb1a46d410dafacb4c30b4a9345ac9006a925552876e6755eb0a3324980fc"
     },
     {
+      "fixture": "development-14",
+      "comparisonOrigin": "NEW_SAME_RUNNER_THREE_VERSION_TRIAL",
+      "PCMCorrespondence": "MATCHED",
+      "sameConditions": {
+        "threeCompletedSources": true,
+        "fixture": true,
+        "input": true,
+        "audioWAVSHA256": true,
+        "pcmHash": true,
+        "outputProfile": true
+      },
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "10c72edf8a5be0993988efc24fa2f5fd9ed093ad82f7e791be0e7cc9b64a9147",
+          "binding": {
+            "inputHash": "73e5f6b827f3f2710954a75e058e955fe3810867af67a2c28dae384f6b9a13ea",
+            "planHash": "0f18fee90c37f97ba0befee8126802db81f4ed260e440fc12ef61a429ecce216",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                44.999977324263035
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "e1dd1442623cb49a8885cc6f9ec765013cc3d6aabcc3c97252189d69b0115148",
+            "videoSHA256": "10c72edf8a5be0993988efc24fa2f5fd9ed093ad82f7e791be0e7cc9b64a9147",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 21.5,
+            "temporalContrast": 23,
+            "hookNovelty": 100,
+            "loopQuality": 41,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 96,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 60,
+            "regionalPerceptualNovelty": 62.23260532227458,
+            "localContrast": 57,
+            "motionRealization": 100,
+            "typographyDiversity": 36
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 1080
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "f049db09e2655626f51acaf9c98703edcf97201df3278b9f302b77ca13104aea",
+          "binding": {
+            "inputHash": "a0ad9067ea3de5f6d92100788ebdea25565d5e6364c624d5ae50f57a6c3b399e",
+            "planHash": "65be6602c9337a8e3d70f700ec2c1eaf6ed80a96ed7ef795803b57f2165b0b0a",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                44.999977324263035
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "fa5bd010720688a5325e381d7aff8e0227cf3a5eadcc74da13ae48c53d8ee6fc",
+            "videoSHA256": "f049db09e2655626f51acaf9c98703edcf97201df3278b9f302b77ca13104aea",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20,
+            "temporalContrast": 46,
+            "hookNovelty": 100,
+            "loopQuality": 41,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 79,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 95.49113334712875,
+            "localContrast": 64,
+            "motionRealization": 100,
+            "typographyDiversity": 68
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 1080
+        },
+        "previous5e": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "dacd7a380736a14d18a7cfcd263ae90a2e223f03a9de972fc2940a0483403bff",
+          "binding": {
+            "inputHash": "cf296ad0db7000fedcdcd88c60869fe30fd57991577281ffc833ebe88e8c49dc",
+            "planHash": "5b66c224c2f364eeeca2e91e6ba814b8ac9c3800638f351beb83fcba93f3469e",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                44.999977324263035
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "f505565c4f1a4f7f7eb4e2093f83a5e3301d93ef93c839b1bdb7019070f39615",
+            "videoSHA256": "dacd7a380736a14d18a7cfcd263ae90a2e223f03a9de972fc2940a0483403bff",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20,
+            "temporalContrast": 43,
+            "hookNovelty": 100,
+            "loopQuality": 41,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 75,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 95.49113334712875,
+            "localContrast": 57,
+            "motionRealization": 100,
+            "typographyDiversity": 49
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 1080
+        }
+      },
+      "archiveManifest": "pcm-paired-development-14/archive-manifest.json",
+      "archiveManifestSHA256": "513fc880a2844b0c84111cb9b075fd7123916c71011416ca0cb19544bc4877a6"
+    },
+    {
       "fixture": "development-15",
       "comparisonOrigin": "NEW_SAME_RUNNER_THREE_VERSION_TRIAL",
       "PCMCorrespondence": "MATCHED",
@@ -6032,168 +6494,323 @@
       },
       "archiveManifest": "pcm-paired-supplemental-development-13/archive-manifest.json",
       "archiveManifestSHA256": "8bd9b54f3b73c3a4f2191be89d55798ea2fca4e786e7e0a7a851e5f91df3d1da"
+    },
+    {
+      "fixture": "supplemental-holdout-13",
+      "comparisonOrigin": "NEW_SAME_RUNNER_THREE_VERSION_TRIAL",
+      "PCMCorrespondence": "MATCHED",
+      "sameConditions": {
+        "threeCompletedSources": true,
+        "fixture": true,
+        "input": true,
+        "audioWAVSHA256": true,
+        "pcmHash": true,
+        "outputProfile": true
+      },
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "5285db7b11854ae2fac44297b2708542b5b4dc80ae2165a6ed76acb3406167eb",
+          "binding": {
+            "inputHash": "cdd7db35938a9e1577ae0b5c7b7bdf99e4cd57c6e6051f7e5a15b4e8b0d2e2b0",
+            "planHash": "ee236495b6bd028d888fdbe6ecf4ce9291f37f232523a0ecfbcd6fa8bcfaaa94",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "4db89e090493d0281f2ae36b3ed4c02f851af79d8503a3a06c6a6f7f3cdef153",
+            "videoSHA256": "5285db7b11854ae2fac44297b2708542b5b4dc80ae2165a6ed76acb3406167eb",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 74,
+            "motion": 20.5,
+            "temporalContrast": 100,
+            "hookNovelty": 5,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 94,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 75.07193735914906,
+            "localContrast": 99,
+            "motionRealization": 67,
+            "typographyDiversity": 23
+          },
+          "lyricSafety": "UNMEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "2efd7fa3b9dc1f671ff0f7039141c2da706211a57e0bd81e27c153d9da5ad386",
+          "binding": {
+            "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+            "planHash": "cbb6adda84daabe62d8684b0efb5e28e954becbd0372c672e7c22d9bb3f6028b",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "86463a2e6da7a690509dd05fe1b5475ee4d99b280dd2b0e21320ffa87d12e096",
+            "videoSHA256": "2efd7fa3b9dc1f671ff0f7039141c2da706211a57e0bd81e27c153d9da5ad386",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20.5,
+            "temporalContrast": 100,
+            "hookNovelty": 35,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 95,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 0,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 96,
+            "motionRealization": 100,
+            "typographyDiversity": 83
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        },
+        "previous5e": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "f2b593188419c6bbbe9f4c556c1af906b3cda7209a3616d45b7ad5803587eb9b",
+          "binding": {
+            "inputHash": "c17ba3fdcdc9f8ebb300d0a288f69fd9726ae3ba8c27a5a5c690ceaa6a5effae",
+            "planHash": "dfb34d1cde9c4f621a4a94313ccf81fa67fdad511c7dc374b7a9b021cdedfc2e",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "e50d9fa37abd4678b35eee4063574b5981ddc9e2280128589f7ac0ceb8466491",
+            "videoSHA256": "f2b593188419c6bbbe9f4c556c1af906b3cda7209a3616d45b7ad5803587eb9b",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 98,
+            "motion": 21,
+            "temporalContrast": 100,
+            "hookNovelty": 35,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 94,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 88.9153679818406,
+            "localContrast": 96,
+            "motionRealization": 100,
+            "typographyDiversity": 83
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        }
+      },
+      "archiveManifest": "pcm-paired-supplemental-holdout-13/archive-manifest.json",
+      "archiveManifestSHA256": "1941815c6c908f1b0ddf103fadbab842d8f4ed109f8100d7dc71911a2817433b"
     }
   ],
   "statistics": {
     "typographyDiversity": {
       "main": {
-        "n": 28,
-        "mean": 40.32142857142857,
+        "n": 30,
+        "mean": 39.6,
         "worst": 13,
         "lower20Mean": 19.666666666666668
       },
       "previous": {
-        "n": 28,
-        "mean": 42.642857142857146,
+        "n": 30,
+        "mean": 44.2,
         "worst": 6,
         "lower20Mean": 16.666666666666668
       },
       "current": {
-        "n": 28,
-        "mean": 47.785714285714285,
+        "n": 30,
+        "mean": 49.63333333333333,
         "worst": 19,
         "lower20Mean": 24.166666666666668
       },
-      "improved": 5,
-      "same": 22,
+      "improved": 6,
+      "same": 23,
       "lower": 1
     },
     "lyricForegroundNovelty": {
       "main": {
-        "n": 28,
-        "mean": 73.85714285714286,
+        "n": 30,
+        "mean": 75.26666666666667,
         "worst": 32,
         "lower20Mean": 51.166666666666664
       },
       "previous": {
-        "n": 28,
-        "mean": 74,
+        "n": 30,
+        "mean": 74.7,
         "worst": 37,
         "lower20Mean": 48.666666666666664
       },
       "current": {
-        "n": 28,
-        "mean": 77.82142857142857,
+        "n": 30,
+        "mean": 78.43333333333334,
         "worst": 37,
         "lower20Mean": 53.666666666666664
       },
-      "improved": 6,
+      "improved": 8,
       "same": 20,
       "lower": 2
     },
     "temporalContrast": {
       "main": {
-        "n": 19,
-        "mean": 33.421052631578945,
+        "n": 21,
+        "mean": 36.095238095238095,
         "worst": 4,
-        "lower20Mean": 12.25
+        "lower20Mean": 13.6
       },
       "previous": {
-        "n": 19,
-        "mean": 34.31578947368421,
+        "n": 21,
+        "mean": 37.857142857142854,
         "worst": 9,
-        "lower20Mean": 17
+        "lower20Mean": 18.2
       },
       "current": {
-        "n": 19,
-        "mean": 40.10526315789474,
+        "n": 21,
+        "mean": 43.23809523809524,
         "worst": 16,
-        "lower20Mean": 19.75
+        "lower20Mean": 20.4
       },
-      "improved": 9,
-      "same": 8,
+      "improved": 10,
+      "same": 9,
       "lower": 2
     },
     "localContrast": {
       "main": {
-        "n": 22,
-        "mean": 70,
+        "n": 24,
+        "mean": 70.66666666666667,
         "worst": 0,
-        "lower20Mean": 12.2
+        "lower20Mean": 11.6
       },
       "previous": {
-        "n": 25,
-        "mean": 61.84,
+        "n": 27,
+        "mean": 62.925925925925924,
         "worst": 0,
         "lower20Mean": 0
       },
       "current": {
-        "n": 25,
-        "mean": 63.6,
+        "n": 27,
+        "mean": 64.81481481481481,
         "worst": 0,
         "lower20Mean": 0
       },
-      "improved": 4,
-      "same": 20,
+      "improved": 5,
+      "same": 21,
       "lower": 1
     },
     "motionRealization": {
       "main": {
-        "n": 28,
-        "mean": 89.35714285714286,
+        "n": 30,
+        "mean": 88.96666666666667,
         "worst": 33,
         "lower20Mean": 59.333333333333336
       },
       "previous": {
-        "n": 28,
-        "mean": 96.75,
+        "n": 30,
+        "mean": 96.96666666666667,
         "worst": 60,
         "lower20Mean": 84.83333333333333
       },
       "current": {
-        "n": 28,
-        "mean": 96.75,
+        "n": 30,
+        "mean": 96.96666666666667,
         "worst": 60,
         "lower20Mean": 84.83333333333333
       },
       "improved": 0,
-      "same": 28,
+      "same": 30,
       "lower": 0
     },
     "perceptualNovelty": {
       "main": {
-        "n": 19,
-        "mean": 91.57894736842105,
+        "n": 21,
+        "mean": 91.14285714285714,
         "worst": 42,
-        "lower20Mean": 65.5
+        "lower20Mean": 67.2
       },
       "previous": {
-        "n": 19,
-        "mean": 88.26315789473684,
+        "n": 21,
+        "mean": 89.28571428571429,
         "worst": 42,
-        "lower20Mean": 54.5
+        "lower20Mean": 58.8
       },
       "current": {
-        "n": 19,
-        "mean": 90.78947368421052,
+        "n": 21,
+        "mean": 91.66666666666667,
         "worst": 42,
-        "lower20Mean": 65.5
+        "lower20Mean": 68.6
       },
-      "improved": 3,
-      "same": 15,
+      "improved": 4,
+      "same": 16,
       "lower": 1
     },
     "hookNovelty": {
       "main": {
-        "n": 28,
-        "mean": 61.642857142857146,
+        "n": 30,
+        "mean": 61.03333333333333,
         "worst": 1,
-        "lower20Mean": 25.333333333333332
+        "lower20Mean": 19.666666666666668
       },
       "previous": {
-        "n": 28,
-        "mean": 64.32142857142857,
+        "n": 30,
+        "mean": 64.53333333333333,
         "worst": 1,
-        "lower20Mean": 29.333333333333332
+        "lower20Mean": 27.333333333333332
       },
       "current": {
-        "n": 28,
-        "mean": 64.82142857142857,
+        "n": 30,
+        "mean": 65,
         "worst": 1,
-        "lower20Mean": 27.833333333333332
+        "lower20Mean": 25.833333333333332
       },
       "improved": 3,
-      "same": 24,
+      "same": 26,
       "lower": 1
     }
   },

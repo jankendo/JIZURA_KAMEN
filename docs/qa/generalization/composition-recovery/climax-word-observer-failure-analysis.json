@@ -1,0 +1,9 @@
+{
+  "run": 38735376742,
+  "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "failure": "Native unit identity mismatch",
+  "cause": "Actual renderer passes a copied env.cut object. Object indexOf against the frozen plan returns -1 even though stable cut index and source line remain exact. Both full-output Native replays independently passed all 240 RGBA/time comparisons before the observer asserted.",
+  "fix": "Resolve a unique frozen cut by BOTH stable cut index and line; reject missing/ambiguous matches, contradictory nonnegative ordinal, nonoutput times and missing exact frozen unit dispatch witness. Preserve original failure and reanalyze the same hash-verified actual artifacts; do not regenerate MP4 to hide failed observer.",
+  "applicationCodeChanged": false,
+  "status": "OBSERVER_FIXED_WITH_SEVEN_COUNTEREXAMPLES_REANALYSIS_COMPLETE"
+}
