@@ -1,0 +1,82 @@
+{
+  "sourceCommit": "987b0793dedbd424e900da6ed63f4bcad29c9fd3",
+  "run": 38678201061,
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "startup",
+      "status": "PASS",
+      "version": "2.0.26",
+      "secure": true
+    },
+    {
+      "name": "background upload",
+      "status": "PASS"
+    },
+    {
+      "name": "TXT import",
+      "status": "PASS"
+    },
+    {
+      "name": "LRC import and timing",
+      "status": "PASS"
+    },
+    {
+      "name": "audio upload and analysis",
+      "status": "PASS",
+      "bpm": 120
+    },
+    {
+      "name": "automatic MV generation",
+      "status": "PASS",
+      "cuts": 4,
+      "lines": 4,
+      "duration": 8.999977324263039
+    },
+    {
+      "name": "preview playback",
+      "status": "PASS"
+    },
+    {
+      "name": "project save and reload",
+      "status": "PASS"
+    },
+    {
+      "name": "regenerate after restored audio",
+      "status": "PASS"
+    },
+    {
+      "name": "UI MP4 export and decode",
+      "status": "PASS",
+      "creativeState": "BELOW_TARGET",
+      "oneClick": true,
+      "video": "h264",
+      "audio": "aac",
+      "duration": "9.024000",
+      "progressUpdates": 1882,
+      "decodedFrames": 216,
+      "visibleContent": true
+    }
+  ],
+  "pageErrors": [],
+  "saveTiming": {
+    "downloadSaveWallMs": 12,
+    "method": "Playwright download.saveAs wall time; includes browser transfer and test-host persistence; native File System Access picker timing UNMEASURED"
+  },
+  "oneClick": true,
+  "codecs": [
+    [
+      "h264",
+      1280,
+      720
+    ],
+    [
+      "aac",
+      null,
+      null
+    ]
+  ],
+  "videoSHA256": "5f52560ccd832d82e5708027883473c07450635feb9207b3f759d1042f808670",
+  "finalArtifactStatus": "MEASURED",
+  "limits": "This PASS certifies987b079, not later9f805e2 until exact final CI. Saved native continuity source correspondence is separate."
+}
