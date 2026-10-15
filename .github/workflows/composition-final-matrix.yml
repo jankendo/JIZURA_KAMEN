@@ -1,4 +1,4 @@
-name: Frozen dff5f5f final KAMEN completed MP4 matrix
+name: Frozen 5c92e27 final KAMEN completed MP4 matrix
 on:
   push:
     branches: [codex/kamen-generalization-evidence-20261012]
@@ -31,7 +31,7 @@ jobs:
           path: qa
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: dff5f5fc867f888cd1128f25332e546d5e28dead
+          ref: 5c92e27e6216962d09ec73927fd0df6ce50d0560
           path: current
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -58,6 +58,7 @@ jobs:
           KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/final-valid-preregistration.json
           KAMEN_MATRIX_CASES: ${{ matrix.cases }}
           KAMEN_MATRIX_VARIANTS: v3
+          KAMEN_MATRIX_NATIVE_HASHES: 1
           NODE_PATH: ${{ github.workspace }}/current/node_modules
         run: |
           node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/current-server.log 2>&1 &
@@ -84,7 +85,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         with:
-          name: final-composition-5e14682-${{ matrix.partition }}
+          name: final-composition-5c92e27-${{ matrix.partition }}
           path: results/
           retention-days: 14
           if-no-files-found: error
