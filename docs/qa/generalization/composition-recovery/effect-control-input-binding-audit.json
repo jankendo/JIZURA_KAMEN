@@ -478,11 +478,35 @@
       "originalRawConfigurationUnchangedClaim": true,
       "classification": "VISUAL_ONLY_FROZEN_NATIVE_EQUIVALENT_PCM_MISMATCH",
       "originalBlobRecertificationScope": "NOT_A_NEW_AUDIO_INPUT_CERTIFICATE"
+    },
+    {
+      "report": "original-failed-duo-component/duoSettle/effect-counterfactual-report.json.gz",
+      "reportStoredSHA256": "d37188602863695a54138ef91e6510575c45a9d2ed99903c67b10a673b8ab40e",
+      "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "originalVideoSHA256": "31a5ba557032181129a4ac34fab952c5031d40c2a9d7c622535a814d6f12b439",
+      "planHash": "9dbc46b4e50fa9bdaca19ff4bd88718b562563e15f6c69c9f72d64bedd5e3bb9",
+      "referenceSHA256": "822d929aec33503823cbff154fe9101697a9c79bf8b66b05f9754add36020eca",
+      "originalInputHash": "a194ecd1d58b7a6d2cf156343ee2e56146c914924c563dc309dace1bc9933ee8",
+      "controlInputHash": "61a9c1bf521495331a7fc9832ceff38afdc6fad2d8ce90db856ab068e7bc9ea1",
+      "originalAudioHash": "46f2d671ea9285702354e2193a34231ae05f951ef0a39f81e6251b33692ef55d",
+      "controlAudioHash": "afcbbfe6e7005559df447e5d2bf03e4649f55bbb6cc02b973c4db7e7fc2421f9",
+      "differingImmutableFields": [
+        "audioHash",
+        "inputHash"
+      ],
+      "fullOutputNativeFrameCount": 298,
+      "actualOriginalNativeEquality": true,
+      "actualONRepeatNativeEquality": true,
+      "allControlH264AACFullDecode": true,
+      "referenceEvidence": "composition-recovery/final5c92-holdout-c/matrix/supplemental-holdout-13-v3-reference.json.gz",
+      "originalRawConfigurationUnchangedClaim": true,
+      "classification": "VISUAL_ONLY_FROZEN_NATIVE_EQUIVALENT_PCM_MISMATCH",
+      "originalBlobRecertificationScope": "NOT_A_NEW_AUDIO_INPUT_CERTIFICATE"
     }
   ],
   "counts": {
     "STRICT_ORIGINAL_INPUT_MATCHED": 17,
-    "VISUAL_ONLY_FROZEN_NATIVE_EQUIVALENT_PCM_MISMATCH": 5
+    "VISUAL_ONLY_FROZEN_NATIVE_EQUIVALENT_PCM_MISMATCH": 6
   },
   "QUALITY_GO": "UNVERIFIED",
   "human": "HUMAN_UNVERIFIED"

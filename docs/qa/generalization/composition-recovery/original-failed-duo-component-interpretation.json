@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "originalVideoSHA256": "31a5ba557032181129a4ac34fab952c5031d40c2a9d7c622535a814d6f12b439",
+  "originalPlanHash": "9dbc46b4e50fa9bdaca19ff4bd88718b562563e15f6c69c9f72d64bedd5e3bb9",
+  "measurementSHA256": "c183f93dfbd449cd1bd16c3d7ed684f698561d64f349695a642541a2a7f757f9",
+  "originalWholeIntervalFailure": "RETAINED; expected deceleration of the composite is not equivalent to one local summand",
+  "independentComponent": {
+    "unitId": "2442ceba05ce88363882ad7b31e50798f79f8ffd0f23de2fa4650e3593398915",
+    "fragmentRange": [
+      10.9,
+      12.72
+    ],
+    "actionRange": [
+      10.9,
+      11.506666666666668
+    ],
+    "status": "VERIFIED_INDEPENDENT_DUO_SETTLE_CONTRIBUTION",
+    "registeredPoints": 84,
+    "matched": 84,
+    "agreement": 1
+  },
+  "actualFinding": "All 84 registered ON-minus-OFF glyph displacement points in the action range agree with the exact existing local duo settling component, using unchanged tolerances. All three selected duo units match their controls. The local component is present after H264 encoding, while complete multi-layer motion can keep moving.",
+  "limitations": [
+    "This does not overwrite the earlier whole-interval FAILED result.",
+    "Independent local contribution does not prove full global stillness/deceleration, all important effects, music synchronization, artistic quality or QUALITY_GO.",
+    "Original WAV matches, but regenerated analysis audioHash/inputHash differ from original; Native ON and ON_REPEAT match the original full output exactly. Interpret as visual-only control, not a new original-PCM certificate."
+  ],
+  "QUALITY_GO": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED"
+}

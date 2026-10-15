@@ -1,0 +1,3794 @@
+{
+  "schema": 1,
+  "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "declaredConditions": 30,
+  "availableConditions": 23,
+  "freshConditionsPending": [
+    "development-06",
+    "development-09",
+    "holdout-06",
+    "holdout-14",
+    "holdout-15",
+    "development-11",
+    "development-15"
+  ],
+  "observationStates": {
+    "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY": 23
+  },
+  "sourceDiffPlanningEquivalenceReview": "UNVERIFIED",
+  "rows": [
+    {
+      "fixture": "development-07",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 83,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 63,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 67,
+            "typographyDiversity": 29
+          },
+          "videoSHA256": "38f5da700681d4b81ef120c5c4a818fd1d73cabaab4c822d7482e9215771db3b",
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        "previous": {
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 83,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 72,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 31
+          },
+          "videoSHA256": "74277f54d5e83854cbf2a370910ad4418d191b541fc4d0b6bb7e1d64e799b792",
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        "current": {
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 83,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 72,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 31
+          },
+          "videoSHA256": "3a5ebac09c7c89a1f5078c71e3492265841e458d04afef4eb39ad19ce866c4a9",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560"
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "development-07",
+        "archive": "final5c92-dev-b",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "d2f7f02c986ee44a7232ddd9bdd571e91b5a3367d40dc36949aa8962e029e54c",
+          "planHash": "39edb02d0d1df176a68f27afc0d6b8471a8cf3b7582961caa2ef27063e14c813",
+          "outputProfile": {
+            "purpose": "SQUARE",
+            "aspect": "1:1",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              720,
+              720
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "b95cedd5b250b7285214c1559aae677d66fdeb771ff5e0ca4a78e1f98555a570",
+          "videoSHA256": "3a5ebac09c7c89a1f5078c71e3492265841e458d04afef4eb39ad19ce866c4a9",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "f49642d63056dd320a3089d1abff955e61913f89ada198420eaa8431d2f6f550",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "9be2123c0fab08ca2aba0524619d8187f6ab882c661d6478d5b94f82ab9c3981",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "development-08",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "metrics": {
+            "perceptualNovelty": 42,
+            "motion": 60,
+            "temporalContrast": 44,
+            "hookNovelty": 100,
+            "loopQuality": 32,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 60,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 20.112231012346996,
+            "localContrast": 85,
+            "motionRealization": 100,
+            "typographyDiversity": 27
+          },
+          "videoSHA256": "ace02c0144c3c995f7ac687291c19e8139124cd0d6f539fbbd0b664e9ad64271",
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        "previous": {
+          "metrics": {
+            "perceptualNovelty": 42,
+            "motion": 59.5,
+            "temporalContrast": 41,
+            "hookNovelty": 100,
+            "loopQuality": 32,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 60,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 21.255312960453953,
+            "localContrast": 81,
+            "motionRealization": 100,
+            "typographyDiversity": 25
+          },
+          "videoSHA256": "0b81da35383ac2dbc146368bdbe5c2b54e79798453f84e3c915bcb71258a28ff",
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        "current": {
+          "metrics": {
+            "perceptualNovelty": 42,
+            "motion": 59.5,
+            "temporalContrast": 41,
+            "hookNovelty": 100,
+            "loopQuality": 32,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 60,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 21.255312960453953,
+            "localContrast": 81,
+            "motionRealization": 100,
+            "typographyDiversity": 25
+          },
+          "videoSHA256": "7ac8317ba8a7678621992665e41c57877f7696d0e6316b0a41746f92ac0fd739",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560"
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "development-08",
+        "archive": "final5c92-dev-b",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "f5a93edeab6e66cef99688e09f25f323161acdffd34d897e21711979bfa34a0c",
+          "planHash": "63ced0e351a0b858875223f57bcf73bcc009629cfe5a11fca4afca42dcdfd0fb",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "4:5",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              450
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "919d98ca9819ccffbae31ba50e9b269e71f26205180a3d45fb3e730d077b3a06",
+          "videoSHA256": "7ac8317ba8a7678621992665e41c57877f7696d0e6316b0a41746f92ac0fd739",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "ba873f081fb4f290a8edf1d523a2c41a0acaf7fe8fefdbfe6da7726b35425eb9",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "1059f6d29331b61da2276fa50e3656629227c43184f6496140b534c1444e982e",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "development-10",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 51,
+            "temporalContrast": 12,
+            "hookNovelty": 46,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 56,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 85,
+            "motionRealization": 67,
+            "typographyDiversity": 25
+          },
+          "videoSHA256": "a7a14e10fb1e01f2581477718dcd573229f8d7e8391a7208c1979d9f3decb5b2",
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        "previous": {
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 100,
+            "temporalContrast": 34,
+            "hookNovelty": 84,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 87,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 80,
+            "motionRealization": 100,
+            "typographyDiversity": 67
+          },
+          "videoSHA256": "fbd7240d74f0c943fd66cf051a6bdb4729f3fbcb8efb697e95c1782c0d5647cf",
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        "current": {
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 100,
+            "temporalContrast": 36,
+            "hookNovelty": 84,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 87,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 86,
+            "motionRealization": 100,
+            "typographyDiversity": 67
+          },
+          "videoSHA256": "41ca9d2385be792a3cbb8e072e7cfc9ae4da0dc5c819006edd05b0054f5d7420",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560"
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "development-10",
+        "archive": "final5c92-dev-b",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "e48980b808ea1018e9cfa0e9a99324c66ee6e875b3357d187edaf1d9008c80dd",
+          "planHash": "bf13c34d33214ef2cb0ffe286ab5352c392b0d774cc0d03c81c85833ff966e5b",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "9:16",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              640
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "5badd7fde671ef22f6d2cbb7e49a8905e97422216004f3ee777e208af544726e",
+          "videoSHA256": "41ca9d2385be792a3cbb8e072e7cfc9ae4da0dc5c819006edd05b0054f5d7420",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "501dcd9345ef60ec6e6a495cb4c6859feec424cac7141643fc3fe83d8675d164",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "9ca551a38f6e07f5c5d61542053f3f9c92caec4249e684fbb70dcac8deda03d1",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-07",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "metrics": {
+            "perceptualNovelty": 68,
+            "motion": 78.5,
+            "temporalContrast": 35,
+            "hookNovelty": 55,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 66,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 76.95459491407274,
+            "localContrast": 99,
+            "motionRealization": 100,
+            "typographyDiversity": 74
+          },
+          "videoSHA256": "7ceba9df635ecf65a0ea868041f55f2845c01bea5b2b359ac7e18e2c95a0728e",
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        "previous": {
+          "metrics": {
+            "perceptualNovelty": 70,
+            "motion": 84,
+            "temporalContrast": 42,
+            "hookNovelty": 57,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 66,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 87.02259885170928,
+            "localContrast": 99,
+            "motionRealization": 100,
+            "typographyDiversity": 69
+          },
+          "videoSHA256": "d803d55ffde9f735d0fa2eca7b18efc797b1f5663342ec8860f32f640556b30f",
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        "current": {
+          "metrics": {
+            "perceptualNovelty": 70,
+            "motion": 84.5,
+            "temporalContrast": 42,
+            "hookNovelty": 57,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 66,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 87.02031703783346,
+            "localContrast": 99,
+            "motionRealization": 100,
+            "typographyDiversity": 69
+          },
+          "videoSHA256": "8f9441244786daf43e021c3129dc96d24e4883fb718e9c96640ef9c9061ec653",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560"
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-07",
+        "archive": "final5c92-holdout-b",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "e5fdd50b209aed531b55081331cb3ae5b1862237495c2edd8d8bd6b81166d4be",
+          "planHash": "a7f49848ee328e34c8643e577ff60af2bd1a2d49c24e105cb52c9b2c92562742",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "4:5",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              720,
+              900
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "6f1849e2aedbb92401c5aae50f3f3f0bbd2916e05fce689ed3e01e51a9df25e6",
+          "videoSHA256": "8f9441244786daf43e021c3129dc96d24e4883fb718e9c96640ef9c9061ec653",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "7b47293214e8775516f0633422d5585846cbcf58470f116152d99339e983c01b",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "4409e459d733b1c37ece3c1b16782ede592077df21b03e4a0ae8300c7f2b71db",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-08",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 54.5,
+            "temporalContrast": 19,
+            "hookNovelty": 41,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 99,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 60,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 73,
+            "motionRealization": 100,
+            "typographyDiversity": 35
+          },
+          "videoSHA256": "a853b07a547f8f9b11aa0823d40f47ddbed382f85b6f10f51e2eaf87a269f62f",
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        "previous": {
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 41,
+            "temporalContrast": 37,
+            "hookNovelty": 57,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 100,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 50,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 80,
+            "motionRealization": 100,
+            "typographyDiversity": 43
+          },
+          "videoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        "current": {
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 25.5,
+            "temporalContrast": 16,
+            "hookNovelty": 68,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 97,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 50,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 99,
+            "motionRealization": 100,
+            "typographyDiversity": 43
+          },
+          "videoSHA256": "4b0368994af5893e4a7522853c7fd203cb41807ab807319942b8bd3d3777deb8",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560"
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-08",
+        "archive": "final5c92-holdout-b",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "017e838c45d2f10646867a0c90b3f8fbac107f64faa494603e35450dc8527dbd",
+          "planHash": "e44d46b87d44e6a0c4a1270f016a2f16051b8ca7a0aad15184f1841c3d1e4fef",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              640,
+              360
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "5ab3d9b74513ffe6893a6f69b1d76eb4d1ee8910ca61b6d1225024e49d670fc8",
+          "videoSHA256": "4b0368994af5893e4a7522853c7fd203cb41807ab807319942b8bd3d3777deb8",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "70b7404f0bf6775dd813067b7435c820d879f379b584c9d94a4b3718e5504ba8",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "0d2d3d5dc3891bcbf6ea4346bd19c34e8a163656439847fd1b0071f504b19594",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-09",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 40,
+            "temporalContrast": 19,
+            "hookNovelty": 37,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 99,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 50,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 65,
+            "motionRealization": 100,
+            "typographyDiversity": 39
+          },
+          "videoSHA256": "e50a0b88e84b961d7a4ef5064d75356ec39f1cc62c602cf3985a091336a0eeab",
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        "previous": {
+          "metrics": {
+            "perceptualNovelty": 76,
+            "motion": 55.5,
+            "temporalContrast": 23,
+            "hookNovelty": 47,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 94,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 29,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 88,
+            "motionRealization": 100,
+            "typographyDiversity": 77
+          },
+          "videoSHA256": "1befb4b45e25cbb2aa32dc1b5d5c72c80bfff0213abd875d5f7855a62298b68c",
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        "current": {
+          "metrics": {
+            "perceptualNovelty": 76,
+            "motion": 57,
+            "temporalContrast": 23,
+            "hookNovelty": 47,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 94,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 29,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 88,
+            "motionRealization": 100,
+            "typographyDiversity": 77
+          },
+          "videoSHA256": "e62bf195728b48bad7052fc280203900245bcd725d13cd6f270098c89dcc553a",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560"
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-09",
+        "archive": "final5c92-holdout-b",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "cbd727548832f3426ac062ab50123d3eb5969b11780ce36a72acf419120ac81b",
+          "planHash": "2aebbcae189e37b0348e9aae98277a506f94e6cdf178a94a5d3a4086f0f4bc4f",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "9:16",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              640
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "2dcbad3f1429d243008b6b05c66274e29812aaeca595231144f29c800781e8ed",
+          "videoSHA256": "e62bf195728b48bad7052fc280203900245bcd725d13cd6f270098c89dcc553a",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "4d1152665c28b1c26fdce8a3aec9d0aafa8746103912959ffd2b30a6321ad0e1",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "52ffe17b65fc1ab9121ef7e74aaa04b0ac3c32c1300dcd6a0e46f8b066ee0e5b",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-10",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 87,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 64,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 23
+          },
+          "videoSHA256": "70baf174308d8924e41e143a8af11fb1c996ab77050f6315e8783ad6280491b3",
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        "previous": {
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 87,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 64,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 28
+          },
+          "videoSHA256": "b343a45a0b5c9f1b736c5008a93e3859821a06bd324eb4520ae3d01ee26bfbfb",
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        "current": {
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 87,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 64,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 28
+          },
+          "videoSHA256": "c131949e38e70b519e9f34e2867b8033c0d59861deca547342ff7997a9c7f011",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560"
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-10",
+        "archive": "final5c92-holdout-b",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "ecc6d773a9f550241f2af7be36f7739e63d61dae142e8d01b0161b4c76bac95e",
+          "planHash": "10eabe7247663abc1c29c5ed3f568b023ce5ca4ef532deb13337b2aed2dd6f16",
+          "outputProfile": {
+            "purpose": "SQUARE",
+            "aspect": "1:1",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              360
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "9e9a194ac2c8d42e934f74abd6e16574321b1702ec81db9fc14044dfa515cc53",
+          "videoSHA256": "c131949e38e70b519e9f34e2867b8033c0d59861deca547342ff7997a9c7f011",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "65c002497eb7ebe6d22e41e0274cf6a282df601857a6a2681d4d2ce771efd168",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "ec9eaff4fb5e5a7146323cdd5d4042eb02bbe0a09da2d3e70c61260ab3afdb66",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "development-01",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "07696377c15bec14dee9f7066369cbe2479407e2130462a32f184912155d6571",
+          "binding": {
+            "inputHash": "c14d6161a101d4d11b09f1e9606c477e65795a4bf3edce542ad3177328393ecf",
+            "planHash": "0ea12501b15d175c6ab0299bdc2a8a7b76bd046aa1fa68bcd214b8825a90d25f",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                1280,
+                720
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "121a40f9a1eb78271537d8dc38cb073dbfb7a224455c746478c9056ba9b47236",
+            "videoSHA256": "07696377c15bec14dee9f7066369cbe2479407e2130462a32f184912155d6571",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 73,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 78,
+            "typographyDiversity": 37
+          },
+          "lyricSafety": "FAILED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "31a1dc822adac9803c53900df793d44b61dd30e909980b66026056663400b00e",
+          "binding": {
+            "inputHash": "c14d6161a101d4d11b09f1e9606c477e65795a4bf3edce542ad3177328393ecf",
+            "planHash": "c27500c1f3bc65fe05a7bca79f50d9342db6a3be8f64c7326630ea5b855447cb",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                1280,
+                720
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "4236c014e08497411fd1784f0c2da919e64841963bd91e133401ae7d2a8948ce",
+            "videoSHA256": "31a1dc822adac9803c53900df793d44b61dd30e909980b66026056663400b00e",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 61,
+            "displayOnsetAccuracy": null,
+            "localContrast": 2,
+            "motionRealization": 100,
+            "typographyDiversity": 29
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "10d62f958e209438fa583866c8df2ba28df1ae399a51c93d57acb8831bc3611b",
+          "binding": {
+            "inputHash": "c14d6161a101d4d11b09f1e9606c477e65795a4bf3edce542ad3177328393ecf",
+            "planHash": "25334c1224aab202a0569879ba36d5848c638f246de915013601e28843011232",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                1280,
+                720
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "f244b929617df5e80f4c9bfc8ead70b93b39807e6179345a27a4144a8ca28c15",
+            "videoSHA256": "10d62f958e209438fa583866c8df2ba28df1ae399a51c93d57acb8831bc3611b",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 61,
+            "displayOnsetAccuracy": null,
+            "localContrast": 2,
+            "motionRealization": 100,
+            "typographyDiversity": 29
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "development-01",
+        "archive": "pcm-paired-development-01",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "c14d6161a101d4d11b09f1e9606c477e65795a4bf3edce542ad3177328393ecf",
+          "planHash": "25334c1224aab202a0569879ba36d5848c638f246de915013601e28843011232",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              1280,
+              720
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "f244b929617df5e80f4c9bfc8ead70b93b39807e6179345a27a4144a8ca28c15",
+          "videoSHA256": "10d62f958e209438fa583866c8df2ba28df1ae399a51c93d57acb8831bc3611b",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "0a1894c867dedb5b58efc83b2a2383f6974983446fab3666a7a8d5bb2aee5d94",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "54526222bc3d8d49ca09ca7f184f188256bbdb595e0f61adfcc9e126bae930ac",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "development-02",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "49056b45ef61025d6b5365f438d8d91fd11347b950df519ed14eb5d1eded44c5",
+          "binding": {
+            "inputHash": "61ec2c1d810ec26a7aab80bdc1999b7a0232aaf55878b4613065dd25b493d092",
+            "planHash": "d1a496afd9548449256397d412ec71dfdb988e73b95c1b3a368c4fad378eaee8",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "69632f3cd516e6d0e76c55118cc6dcbafcb13be1812ee272d18a131d35a6801b",
+            "videoSHA256": "49056b45ef61025d6b5365f438d8d91fd11347b950df519ed14eb5d1eded44c5",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 21,
+            "temporalContrast": 4,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 92,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 62,
+            "motionRealization": 100,
+            "typographyDiversity": 33
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "2f5799db6683e776a1f9a22b140363d4c8bc1ba5dbe684d23a3e5e52ee09ea0c",
+          "binding": {
+            "inputHash": "909c97ab44d20c76d063baa9eb14fddc46ea4c1e91ef9a722c0c37bfb4844ab3",
+            "planHash": "1eab1d158a085d0e24eae3aac7a05d349695a76e9894b31b11b9853fa44ffa76",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "e49432c72f01d3625957fb91bdd11b6f5a5e59410858397baa0714640202c3b5",
+            "videoSHA256": "2f5799db6683e776a1f9a22b140363d4c8bc1ba5dbe684d23a3e5e52ee09ea0c",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20,
+            "temporalContrast": 16,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 94,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 51,
+            "motionRealization": 100,
+            "typographyDiversity": 37
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "afd1671db3466806d9e61b818b6ef85903dc9517561b0c94b8a6606c36aed75b",
+          "binding": {
+            "inputHash": "6d93562a9721b271c3dc958b7b524a08670b208490656f3424ae324ff0b5cc64",
+            "planHash": "799b353461c6e23748027723f831bf99405e06c6c44e8dcca24bd6853b9bb6b6",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "63798acc65a1063c478d72b9d6b637a02309e0fa9aa7717ad6fdbb79e39175dd",
+            "videoSHA256": "afd1671db3466806d9e61b818b6ef85903dc9517561b0c94b8a6606c36aed75b",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20,
+            "temporalContrast": 69,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 100,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 45,
+            "motionRealization": 100,
+            "typographyDiversity": 37
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "development-02",
+        "archive": "pcm-paired-development-02",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "6d93562a9721b271c3dc958b7b524a08670b208490656f3424ae324ff0b5cc64",
+          "planHash": "799b353461c6e23748027723f831bf99405e06c6c44e8dcca24bd6853b9bb6b6",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "9:16",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              640
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "63798acc65a1063c478d72b9d6b637a02309e0fa9aa7717ad6fdbb79e39175dd",
+          "videoSHA256": "afd1671db3466806d9e61b818b6ef85903dc9517561b0c94b8a6606c36aed75b",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "e5ced949deb019f82b8891dbab960fa122343450e1e05eec270d3e88df088f9c",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "3a047706d67176a6e42e7c038456452edbfa65aa51b44852b2cd7f8e08b1b271",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "development-03",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "e7eab4391908a2476699db0fed8df2124ac74565cd2d788671a1b72cd635c0e0",
+          "binding": {
+            "inputHash": "58e54bc5b7f672a61dbe42d14394a731b6c722d8278f85cf6e0be0aa86f6351e",
+            "planHash": "e18f876af4044aae58bc5b4dd5ece7a047dd545bc3c36bb2de0b0e0e736d1b38",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "1ff9d3ec69cc247444d6bb331a0f421453704ad47bccec91cfba2f48c1a0a347",
+            "videoSHA256": "e7eab4391908a2476699db0fed8df2124ac74565cd2d788671a1b72cd635c0e0",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 75,
+            "motion": 21.5,
+            "temporalContrast": 34,
+            "hookNovelty": 44,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 82,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 74.86637635843687,
+            "localContrast": 93,
+            "motionRealization": 100,
+            "typographyDiversity": 100
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "ab4e78767d2ee3ed321fb95a6d81976660f32dd70a7e1db867183dacd11e112e",
+          "binding": {
+            "inputHash": "558854ab3e3b6cefb92fcbd6a42472b61ef6f12b51a48bc95bee7706a3c7f708",
+            "planHash": "d2586b1003bc1128b920bee022e7225c2305f8f690be297480e829d4e705d9dd",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "aeae4b01268d4d2c024547f48ca1ee61fe8eb405821db26feffd753fddbe58c6",
+            "videoSHA256": "ab4e78767d2ee3ed321fb95a6d81976660f32dd70a7e1db867183dacd11e112e",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 93,
+            "motion": 20,
+            "temporalContrast": 33,
+            "hookNovelty": 51,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 93,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 50,
+            "regionalPerceptualNovelty": 92.60290282984191,
+            "localContrast": 100,
+            "motionRealization": 100,
+            "typographyDiversity": 72
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "fe6601c028af35208afcaf318885b4e3635ca7919dc3d94cb13bc7b06039bc36",
+          "binding": {
+            "inputHash": "82f313abc49ddb07f2c778ed0d234646f67d4a7a56912b3443ed7327d32d40c3",
+            "planHash": "3638d992340f762f7800281b0bc24715093dbbd524a30b905721ca30c0e22233",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "f4b5a06d7d6f6b0468c49bcc4384e3256ab3579d2fb6d2c804a997444c5e2719",
+            "videoSHA256": "fe6601c028af35208afcaf318885b4e3635ca7919dc3d94cb13bc7b06039bc36",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 93,
+            "motion": 20,
+            "temporalContrast": 33,
+            "hookNovelty": 51,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 93,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 50,
+            "regionalPerceptualNovelty": 92.60290282984191,
+            "localContrast": 100,
+            "motionRealization": 100,
+            "typographyDiversity": 72
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "development-03",
+        "archive": "pcm-paired-development-03",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "82f313abc49ddb07f2c778ed0d234646f67d4a7a56912b3443ed7327d32d40c3",
+          "planHash": "3638d992340f762f7800281b0bc24715093dbbd524a30b905721ca30c0e22233",
+          "outputProfile": {
+            "purpose": "SQUARE",
+            "aspect": "1:1",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              360
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "f4b5a06d7d6f6b0468c49bcc4384e3256ab3579d2fb6d2c804a997444c5e2719",
+          "videoSHA256": "fe6601c028af35208afcaf318885b4e3635ca7919dc3d94cb13bc7b06039bc36",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "3b6b0ed6864ce7b3e57400a0e3e56db9932187458bd64cda22eda733dd5a6ee6",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "008466120f267be3c5f275a3fa4f5e17a7bd7e6edf86f2104ef7c57d59eb20f4",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "development-04",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "fd97065caf9ed73890d61f0d8272305f0b7620a5f5642e049e0a62935a6b98ba",
+          "binding": {
+            "inputHash": "9f5b1fa133b22ac748c192b8f211615528e878fe04cb086b3d2b1960d59bfa8d",
+            "planHash": "dc8297787dd2bae3204b8f8d826719bd536acb414d9cd8ac7b1d76339d96f11b",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "c64b5f73432a0139ba7fc9bdbfd225ca0c1d8a3bc6dc61f2f0c3030ae51851c6",
+            "videoSHA256": "fd97065caf9ed73890d61f0d8272305f0b7620a5f5642e049e0a62935a6b98ba",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 96,
+            "motion": 21,
+            "temporalContrast": 37,
+            "hookNovelty": 67,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 48,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 67,
+            "regionalPerceptualNovelty": 63.21440491727252,
+            "localContrast": 94,
+            "motionRealization": 100,
+            "typographyDiversity": 13
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "d6c53343430d46970ac629a63cc866c452c707b2e0c5555491a58d92fed1017f",
+          "binding": {
+            "inputHash": "fae3b06051ca06038e225d5bca7117dd088b9a60f2945afbbb2ebe09346a383a",
+            "planHash": "d0fc58063543879a1e70ac69b062f17947c44cc0c9a9805d080bb5bd1c0264d4",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "e92d8efb2d34490c29a0edbed95a3a1f0aaca9bc0fbe41a8dec7c048a1126a74",
+            "videoSHA256": "d6c53343430d46970ac629a63cc866c452c707b2e0c5555491a58d92fed1017f",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 38.5,
+            "temporalContrast": 37,
+            "hookNovelty": 84,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 90,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 86,
+            "motionRealization": 100,
+            "typographyDiversity": 78
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "0db6e8a1783dae5fa304c66db24edee209a32b223c37049b18bdce214447a72d",
+          "binding": {
+            "inputHash": "704e99096e0ce239569a90f6a08c3acdee9babb0990269448411d8ec510b4f53",
+            "planHash": "1cbf73685f40d298b52dec4a86e54b5aa8e13c08a9305fb2e2bf46871e547c8e",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "9cb414c20afa0e9f0d1109e28427f5129d0a1ecf2cd1e0d10bdf36f76e6c489f",
+            "videoSHA256": "0db6e8a1783dae5fa304c66db24edee209a32b223c37049b18bdce214447a72d",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 38.5,
+            "temporalContrast": 39,
+            "hookNovelty": 84,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 90,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 86,
+            "motionRealization": 100,
+            "typographyDiversity": 78
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "development-04",
+        "archive": "pcm-paired-development-04",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "704e99096e0ce239569a90f6a08c3acdee9babb0990269448411d8ec510b4f53",
+          "planHash": "1cbf73685f40d298b52dec4a86e54b5aa8e13c08a9305fb2e2bf46871e547c8e",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "4:5",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              450
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "9cb414c20afa0e9f0d1109e28427f5129d0a1ecf2cd1e0d10bdf36f76e6c489f",
+          "videoSHA256": "0db6e8a1783dae5fa304c66db24edee209a32b223c37049b18bdce214447a72d",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "3a9ad3f10b22e992579b39a9eaa7e5e0c5e56f96f5480d0b9de204a9c511aeee",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "9efd00190f438142ef3f618a9725521b49b40f289d6969d6ea69331bce8eb017",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "development-05",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "cfff7f10b5df06e2aae82afbb8eaef3ba49c816e4a4a70233b6917e2b68fc311",
+          "binding": {
+            "inputHash": "e27a8e096b4fd57f023e4126f1e87efe82aa716e8bef8ffec1137f6fec4d2c52",
+            "planHash": "4f143e116b8f72cc6d04fa8f25472e3dfaa67b0c7eb012c5214ece713a8d906a",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "9bdf830126246938961df3b5d8352b8e87b0c39e8116753c74a70408f02b73cd",
+            "videoSHA256": "cfff7f10b5df06e2aae82afbb8eaef3ba49c816e4a4a70233b6917e2b68fc311",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 23,
+            "temporalContrast": 49,
+            "hookNovelty": 49,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 79,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 0,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 87,
+            "motionRealization": 100,
+            "typographyDiversity": 32
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "e0fd7ca88f14938d0927d4858ecd2c1bd55d44c9a404d1b5c5aaf38cd51089d0",
+          "binding": {
+            "inputHash": "6e2f38e070a8b58f29ecb8f0d76da32443741955a697e63f76cd094e8948616e",
+            "planHash": "a7fd633d0614d1d1097552a671e3b62c9baaf0b49f2a49aa6e2576e32f2670c3",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "2fa549914b8ccca089d84c84dc37a67ab66fa329e09bc10ad9ad9d6814c128cb",
+            "videoSHA256": "e0fd7ca88f14938d0927d4858ecd2c1bd55d44c9a404d1b5c5aaf38cd51089d0",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 25,
+            "temporalContrast": 20,
+            "hookNovelty": 38,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 86,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 83,
+            "motionRealization": 100,
+            "typographyDiversity": 42
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "89f186d8fdb5d3db34da7369fb4cb9c14ed30bbc56af7231d8a8351a6376f200",
+          "binding": {
+            "inputHash": "5922f5e7278b671b8560a4906bec0f93bd3f4806c4d2814b7ed1a7c6c0baeeb6",
+            "planHash": "eeea8a68ca75115766e0f235774d224f2745f042a290fa6870bbc9579e20dfc0",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "dd8b65609302ec9a649b902a89b1e213589295e273c8e987c6fc5e0ebf8e0f5c",
+            "videoSHA256": "89f186d8fdb5d3db34da7369fb4cb9c14ed30bbc56af7231d8a8351a6376f200",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 25,
+            "temporalContrast": 20,
+            "hookNovelty": 38,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 86,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 83,
+            "motionRealization": 100,
+            "typographyDiversity": 42
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "development-05",
+        "archive": "pcm-paired-development-05",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "5922f5e7278b671b8560a4906bec0f93bd3f4806c4d2814b7ed1a7c6c0baeeb6",
+          "planHash": "eeea8a68ca75115766e0f235774d224f2745f042a290fa6870bbc9579e20dfc0",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              640,
+              360
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "dd8b65609302ec9a649b902a89b1e213589295e273c8e987c6fc5e0ebf8e0f5c",
+          "videoSHA256": "89f186d8fdb5d3db34da7369fb4cb9c14ed30bbc56af7231d8a8351a6376f200",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "1197a7b56358aae09263b3447fa619a133bdfe6dcb6342596f86388f29811222",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "a3e8635957a69e1c68ae1165f8a75e2b3d24b2b13a17a5c16452e3bb4bf4a4f5",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "development-12",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "bbe7fe671cfe64fd17c081e5954609702d6457c5c696b5ef6d23bcce128cda7f",
+          "binding": {
+            "inputHash": "0b3a84171727aed08d271187ffb0229414f6cf1c1208f3f634d0bd6e0b791922",
+            "planHash": "d7d7aee523c360e10b7e814e0b19a0106ce16d20ea505df9809d80338c30a9e3",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "b36911b7c59cbedb24effec8a52bc332e646ce7b35b4e1f52489a40dae4c99a0",
+            "videoSHA256": "bbe7fe671cfe64fd17c081e5954609702d6457c5c696b5ef6d23bcce128cda7f",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 3,
+            "loopQuality": 49,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 54,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 60,
+            "typographyDiversity": 23
+          },
+          "lyricSafety": "FAILED",
+          "decode": "PASS",
+          "decodeFrames": 480
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "d1e1f54957e77b2672ecd4ba5b255b6b173f45b03a6f44d52ec6f2822c14aaae",
+          "binding": {
+            "inputHash": "0b3a84171727aed08d271187ffb0229414f6cf1c1208f3f634d0bd6e0b791922",
+            "planHash": "2e55e5f38625f8e09e2fc1cdc55ad4db02157900328e5d1c5d3454055a2ee5ee",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "fe9d0707fbf6d1f1d6e6ad69b06e0f6b134136f73ea44d39e92dad8c98c8a96a",
+            "videoSHA256": "d1e1f54957e77b2672ecd4ba5b255b6b173f45b03a6f44d52ec6f2822c14aaae",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 3,
+            "loopQuality": 49,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 55,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 60,
+            "typographyDiversity": 23
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 480
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "2b668087a4fc91b83927975cc3f2fa77ce0f8ce3e32391babf7df37ba11b65e9",
+          "binding": {
+            "inputHash": "0b3a84171727aed08d271187ffb0229414f6cf1c1208f3f634d0bd6e0b791922",
+            "planHash": "443362f9779d7c3e1e2410003b51b13faecb9fc797d8b266720d0f4d79f44b41",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "7675846ef3f4eca5632b32c8d78d3b474301936400cb66e706d6cc311d0cf4c9",
+            "videoSHA256": "2b668087a4fc91b83927975cc3f2fa77ce0f8ce3e32391babf7df37ba11b65e9",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 3,
+            "loopQuality": 49,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 55,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 60,
+            "typographyDiversity": 23
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 480
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "development-12",
+        "archive": "pcm-paired-development-12",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "0b3a84171727aed08d271187ffb0229414f6cf1c1208f3f634d0bd6e0b791922",
+          "planHash": "443362f9779d7c3e1e2410003b51b13faecb9fc797d8b266720d0f4d79f44b41",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "4:5",
+            "fps": 24,
+            "range": [
+              0,
+              19.99997732426304
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              450
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "7675846ef3f4eca5632b32c8d78d3b474301936400cb66e706d6cc311d0cf4c9",
+          "videoSHA256": "2b668087a4fc91b83927975cc3f2fa77ce0f8ce3e32391babf7df37ba11b65e9",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "b56c9dd87c3428f335d05c2d39f9ff83dfcf41cc4cc10df70215e0192367a652",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "fa6cc23133dcb0b63a82dd2b3e867b262b451bd4dafc6e0d88be90979cc83530",
+        "expectedFrames": 480,
+        "actualFrames": 480,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "development-14",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "10c72edf8a5be0993988efc24fa2f5fd9ed093ad82f7e791be0e7cc9b64a9147",
+          "binding": {
+            "inputHash": "73e5f6b827f3f2710954a75e058e955fe3810867af67a2c28dae384f6b9a13ea",
+            "planHash": "0f18fee90c37f97ba0befee8126802db81f4ed260e440fc12ef61a429ecce216",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                44.999977324263035
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "e1dd1442623cb49a8885cc6f9ec765013cc3d6aabcc3c97252189d69b0115148",
+            "videoSHA256": "10c72edf8a5be0993988efc24fa2f5fd9ed093ad82f7e791be0e7cc9b64a9147",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 21.5,
+            "temporalContrast": 23,
+            "hookNovelty": 100,
+            "loopQuality": 41,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 96,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 60,
+            "regionalPerceptualNovelty": 62.23260532227458,
+            "localContrast": 57,
+            "motionRealization": 100,
+            "typographyDiversity": 36
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 1080
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "dacd7a380736a14d18a7cfcd263ae90a2e223f03a9de972fc2940a0483403bff",
+          "binding": {
+            "inputHash": "cf296ad0db7000fedcdcd88c60869fe30fd57991577281ffc833ebe88e8c49dc",
+            "planHash": "5b66c224c2f364eeeca2e91e6ba814b8ac9c3800638f351beb83fcba93f3469e",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                44.999977324263035
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "f505565c4f1a4f7f7eb4e2093f83a5e3301d93ef93c839b1bdb7019070f39615",
+            "videoSHA256": "dacd7a380736a14d18a7cfcd263ae90a2e223f03a9de972fc2940a0483403bff",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20,
+            "temporalContrast": 43,
+            "hookNovelty": 100,
+            "loopQuality": 41,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 75,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 95.49113334712875,
+            "localContrast": 57,
+            "motionRealization": 100,
+            "typographyDiversity": 49
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 1080
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "f049db09e2655626f51acaf9c98703edcf97201df3278b9f302b77ca13104aea",
+          "binding": {
+            "inputHash": "a0ad9067ea3de5f6d92100788ebdea25565d5e6364c624d5ae50f57a6c3b399e",
+            "planHash": "65be6602c9337a8e3d70f700ec2c1eaf6ed80a96ed7ef795803b57f2165b0b0a",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                44.999977324263035
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "fa5bd010720688a5325e381d7aff8e0227cf3a5eadcc74da13ae48c53d8ee6fc",
+            "videoSHA256": "f049db09e2655626f51acaf9c98703edcf97201df3278b9f302b77ca13104aea",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20,
+            "temporalContrast": 46,
+            "hookNovelty": 100,
+            "loopQuality": 41,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 79,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 95.49113334712875,
+            "localContrast": 64,
+            "motionRealization": 100,
+            "typographyDiversity": 68
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 1080
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "development-14",
+        "archive": "pcm-paired-development-14",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "a0ad9067ea3de5f6d92100788ebdea25565d5e6364c624d5ae50f57a6c3b399e",
+          "planHash": "65be6602c9337a8e3d70f700ec2c1eaf6ed80a96ed7ef795803b57f2165b0b0a",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "9:16",
+            "fps": 24,
+            "range": [
+              0,
+              44.999977324263035
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              640
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "fa5bd010720688a5325e381d7aff8e0227cf3a5eadcc74da13ae48c53d8ee6fc",
+          "videoSHA256": "f049db09e2655626f51acaf9c98703edcf97201df3278b9f302b77ca13104aea",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "30a26b2f921e24274182e4958da61ece1c4d267c5dc78f0da8f6d17be77cf1ab",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "dd59520541dc3398edce31e49ea144108b234ab147fa67d13610359348d31fb1",
+        "expectedFrames": 1080,
+        "actualFrames": 1080,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-01",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "4eff41ecbf70f6554719ca3267cc7ecefb9b1b6df672ad7c675449eb2591fdcf",
+          "binding": {
+            "inputHash": "cd86b13a270a89e2b42550dcabaa5edc796b59c3da728f937ae1c4649da53b62",
+            "planHash": "b81869b62edde6d10bff9a585b5265d06f068426ee64143b813ff6252b321c60",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "a7f469809b87f9d2364fd140aa86d885ebcbdb54823a2c2c70d14f419e3b8866",
+            "videoSHA256": "4eff41ecbf70f6554719ca3267cc7ecefb9b1b6df672ad7c675449eb2591fdcf",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 77,
+            "motion": 22,
+            "temporalContrast": 85,
+            "hookNovelty": 37,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 66,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 90.94781702242295,
+            "localContrast": 99,
+            "motionRealization": 100,
+            "typographyDiversity": 62
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "daa77a1509a5bf73a8bac4c89a95903bee54d22bfad168a7af6defa360609949",
+          "binding": {
+            "inputHash": "99926ce8524eb30e8105f78bd0fdd75da55dd2256521c266d703c5c2c1e99a08",
+            "planHash": "5404a804e542a73c1621b60290d83c22f517575c588003906848c22881cf4d0c",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "bbfb12ca5e05a540f1eef31e3cf0be8a076d859460361285e69ef1c7bd2e710f",
+            "videoSHA256": "daa77a1509a5bf73a8bac4c89a95903bee54d22bfad168a7af6defa360609949",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 61,
+            "motion": 26.5,
+            "temporalContrast": 38,
+            "hookNovelty": 47,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 53,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 73.61887745815497,
+            "localContrast": 95,
+            "motionRealization": 100,
+            "typographyDiversity": 6
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "755d9a923bec458f0fe802820a2c692391f25a66b7c3464fc73570b3f47b9ed5",
+          "binding": {
+            "inputHash": "de9e1242b30e4f1917152a20eea84f77c679490bce4f9bb962154658ff517574",
+            "planHash": "9b63d7d1df1df7ec580a0f589207e50cf75f6e6c364f9cac1f354a8dea9ce69f",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "8219c25c6eb4cffa44df8c7cae44b6d6a324babcd3d73ccab908106104587489",
+            "videoSHA256": "755d9a923bec458f0fe802820a2c692391f25a66b7c3464fc73570b3f47b9ed5",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 74,
+            "motion": 26.5,
+            "temporalContrast": 75,
+            "hookNovelty": 52,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 62,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 94.21972526756132,
+            "localContrast": 98,
+            "motionRealization": 100,
+            "typographyDiversity": 63
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-01",
+        "archive": "pcm-paired-holdout-01",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "de9e1242b30e4f1917152a20eea84f77c679490bce4f9bb962154658ff517574",
+          "planHash": "9b63d7d1df1df7ec580a0f589207e50cf75f6e6c364f9cac1f354a8dea9ce69f",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "9:16",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              720,
+              1280
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "8219c25c6eb4cffa44df8c7cae44b6d6a324babcd3d73ccab908106104587489",
+          "videoSHA256": "755d9a923bec458f0fe802820a2c692391f25a66b7c3464fc73570b3f47b9ed5",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "cdeb39db4ab093f5e07c6496e3a259ec7e0ae494b41335bc6038562ce43b431c",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "6e42b49edef27c0eaf196373560323ec8f777868447d60e8ff8f68dd90b9d1cf",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-02",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "b31b11b4d5fe9583f2263bce7bffd283e271b445526b58b32ef4b732e3bf15e9",
+          "binding": {
+            "inputHash": "9647f418f7d2027259a85a2739e8f31eb6dc080052b383a45471c172de0f5589",
+            "planHash": "b125e99166fe5e079dd9d9d060e965e7780cc7dbdd775f9ade86391f88d0baba",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "00bc082353abc15affb26188cd33309a699e27085c8fdfb572b3f382535f58a9",
+            "videoSHA256": "b31b11b4d5fe9583f2263bce7bffd283e271b445526b58b32ef4b732e3bf15e9",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 24,
+            "temporalContrast": 48,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 93,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 96,
+            "motionRealization": 100,
+            "typographyDiversity": 84
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "84d164fe66e91e6b99649c3d79fe836f2a38b1348538cd53b94ac826c8512192",
+          "binding": {
+            "inputHash": "9a02e023419a91f48c082b62bb7e29d66b2cd288cc65b36bf5b8473738bcfc68",
+            "planHash": "06069f652e7a4738515b5a52ff3ae9f22e132e337a6dd00a6a03bfe273e2a142",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "290ba850d889ca3d63e394a4c83e2874881d2a2f56734ea08fcf4d86d1691ca1",
+            "videoSHA256": "84d164fe66e91e6b99649c3d79fe836f2a38b1348538cd53b94ac826c8512192",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 22,
+            "temporalContrast": 47,
+            "hookNovelty": 67,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 95,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 78,
+            "motionRealization": 100,
+            "typographyDiversity": 79
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "7fd93972d9a171a8872492a603b998a3e640ff126d5c1bf7fe1bc04b4bd5643f",
+          "binding": {
+            "inputHash": "7193f54079eadcf3352397bd19d54693b7280876dde8ad70e4526d335e289ff6",
+            "planHash": "97acd19f5a331709e5d86d410b873b246a229089ed3c7107dd4c22e3c57a9129",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "5770742d24e7957b85dcde62c9546e1ad46f428f49a9d98801119ee85b156dea",
+            "videoSHA256": "7fd93972d9a171a8872492a603b998a3e640ff126d5c1bf7fe1bc04b4bd5643f",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 22,
+            "temporalContrast": 47,
+            "hookNovelty": 67,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 95,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 78,
+            "motionRealization": 100,
+            "typographyDiversity": 79
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-02",
+        "archive": "pcm-paired-holdout-02",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "7193f54079eadcf3352397bd19d54693b7280876dde8ad70e4526d335e289ff6",
+          "planHash": "97acd19f5a331709e5d86d410b873b246a229089ed3c7107dd4c22e3c57a9129",
+          "outputProfile": {
+            "purpose": "SQUARE",
+            "aspect": "1:1",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              360
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "5770742d24e7957b85dcde62c9546e1ad46f428f49a9d98801119ee85b156dea",
+          "videoSHA256": "7fd93972d9a171a8872492a603b998a3e640ff126d5c1bf7fe1bc04b4bd5643f",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "13a12787994eb48bc5a9a8adaed9046470c4290950a5c6867a0c400217102a16",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "b9c8dc45affd4fb3e600c8ea2e1c07d86c9bfeb167ec422479de669cd84775e3",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-03",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "f6140c22171fcfc10277ede456b4afe59c0541dbd410577b9ca3acf64ce4907f",
+          "binding": {
+            "inputHash": "238b675c45756b3296714a059d7d0d29105312d5da1ceedec8366a9aaebc272c",
+            "planHash": "af7fc150f56c9b2cac7fc39da1b8e4c80d4ecfb245e8ec5bf3ee0a076ccea0b7",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "e4ef3edd893553edf6f5b048fe1dd34be3d9b96def3a5066245b728e3cabcf3a",
+            "videoSHA256": "f6140c22171fcfc10277ede456b4afe59c0541dbd410577b9ca3acf64ce4907f",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 92,
+            "motion": 18.5,
+            "temporalContrast": 23,
+            "hookNovelty": 50,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 100,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 86,
+            "motionRealization": 33,
+            "typographyDiversity": 41
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "d292be6bba257bccd1b75aef09afa775a12fe15c53919ef567b14972bc931eaa",
+          "binding": {
+            "inputHash": "bd3d6909b3be5a69caf16ad8b0ae5e85769ef185a19f3347c64f2d5847232c75",
+            "planHash": "6103e28e4026ea4ce6255af68b649b6864ba1d0fbaa9ad12db807dccb74cad18",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "68cd8308f0713968bf53d33d6be52c744dea0bfb97dfcd2a9f816c92aebfc15f",
+            "videoSHA256": "d292be6bba257bccd1b75aef09afa775a12fe15c53919ef567b14972bc931eaa",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 92,
+            "motion": 23.5,
+            "temporalContrast": 23,
+            "hookNovelty": 57,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 100,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 91,
+            "motionRealization": 100,
+            "typographyDiversity": 61
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "db360c1c2a59c16c3e63651b9d721e9f1214292d2cf428e29eaf0d8ab6f20e38",
+          "binding": {
+            "inputHash": "ff4d08d94ed1fbdaee55e1cf5c8cbeb8fb67e6651eab2a6a36793247677037eb",
+            "planHash": "5783498b86334e8c698db613c247956c3872c7e41a16e1ca04cef49c29c716c7",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "d4d6c5a6bdf8d5aca23b31c0bcc95b667e16843312ea9384cd7cf34295901611",
+            "videoSHA256": "db360c1c2a59c16c3e63651b9d721e9f1214292d2cf428e29eaf0d8ab6f20e38",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 92,
+            "motion": 23.5,
+            "temporalContrast": 23,
+            "hookNovelty": 57,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 100,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 91,
+            "motionRealization": 100,
+            "typographyDiversity": 61
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-03",
+        "archive": "pcm-paired-holdout-03",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "ff4d08d94ed1fbdaee55e1cf5c8cbeb8fb67e6651eab2a6a36793247677037eb",
+          "planHash": "5783498b86334e8c698db613c247956c3872c7e41a16e1ca04cef49c29c716c7",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "4:5",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              450
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "d4d6c5a6bdf8d5aca23b31c0bcc95b667e16843312ea9384cd7cf34295901611",
+          "videoSHA256": "db360c1c2a59c16c3e63651b9d721e9f1214292d2cf428e29eaf0d8ab6f20e38",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "72b0198364b15db81e5db24e77210947c7c198914aa9c36006b9f2b8bfe97263",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "d4b05e6937fcf42848b9760ddd58642516df39ac9beb67269d49101ca65f09ed",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-04",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "5ddfe75caf89c358efd1ddf39da34e54b54857ea03ac60442a1ba193656a0e92",
+          "binding": {
+            "inputHash": "74bbb226288e2ff20559d4a34158baec6ec84d3032973915b2c2fbed89bac0df",
+            "planHash": "b8c989213421ba8d2994597df45e592f1bf3fd1e26d8faa0dce3ebdb8079c864",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "926d43db23e54461719e129ccc5985184762c551ea4ee00def4fc64a3a0b9cbc",
+            "videoSHA256": "5ddfe75caf89c358efd1ddf39da34e54b54857ea03ac60442a1ba193656a0e92",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 68,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 86,
+            "typographyDiversity": 46
+          },
+          "lyricSafety": "FAILED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "b8caf729fc3cd79534645d0f2c1e7d044775ac909393118d3d348cf7ceed4466",
+          "binding": {
+            "inputHash": "74bbb226288e2ff20559d4a34158baec6ec84d3032973915b2c2fbed89bac0df",
+            "planHash": "180ed420b62d7464af0b2a5868998ed31a4972d99902b9602c46e460b7f57010",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "998c4617243d04993514a7e0e582b06f98c2bd8f9af75fdfc3c93a6c95b5e317",
+            "videoSHA256": "b8caf729fc3cd79534645d0f2c1e7d044775ac909393118d3d348cf7ceed4466",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 76,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 60
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "467ce90899ff493e017971f87068b6850594e1d7fc736ea8b4179267a57a66a0",
+          "binding": {
+            "inputHash": "74bbb226288e2ff20559d4a34158baec6ec84d3032973915b2c2fbed89bac0df",
+            "planHash": "cd4c3dd975974e877b9ba1a9461903e1494c0ad9e0dd7d4f5c908fbd89778486",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "118648071ca9781a42188a9628ee39aee5334693478af2239d24689bf5555e1e",
+            "videoSHA256": "467ce90899ff493e017971f87068b6850594e1d7fc736ea8b4179267a57a66a0",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 76,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 60
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-04",
+        "archive": "pcm-paired-holdout-04",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "74bbb226288e2ff20559d4a34158baec6ec84d3032973915b2c2fbed89bac0df",
+          "planHash": "cd4c3dd975974e877b9ba1a9461903e1494c0ad9e0dd7d4f5c908fbd89778486",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              640,
+              360
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "118648071ca9781a42188a9628ee39aee5334693478af2239d24689bf5555e1e",
+          "videoSHA256": "467ce90899ff493e017971f87068b6850594e1d7fc736ea8b4179267a57a66a0",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "bbdff1f6b9542b2365d4fc7f78c42b84aaa083d785df8c085ad94bf496adb2e1",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "aab8a1be6b1202fdb48add2d2ad95f33fd9fabe1233434e2af75167bb4552e92",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-05",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "b3a5c7d771d66e3da21060c1a088909dac51862d503275492caaded0b7079179",
+          "binding": {
+            "inputHash": "c6b6220463d485d9d2a1565e20ebc38ad2729d9dbf181c810ec8e45c02a3f400",
+            "planHash": "5fa290ffbebe22e544e3a4580c9a2407d9ad865e480cdca970de198cd1936263",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "c59b4d6b283675a3c90f57fd403ef63cb05f47f1da5974f27a8c6c560de89d7b",
+            "videoSHA256": "b3a5c7d771d66e3da21060c1a088909dac51862d503275492caaded0b7079179",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 57,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 57,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 19
+          },
+          "lyricSafety": "FAILED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "17d188ddf59ba7b7a9ff9a82c5ea2acea514491d0f37d9e882079d6e1f332262",
+          "binding": {
+            "inputHash": "c6b6220463d485d9d2a1565e20ebc38ad2729d9dbf181c810ec8e45c02a3f400",
+            "planHash": "0e04f8635a3b393df1b956b01a12fb1add9c944f056bea43a95cdafaabf8ab90",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "424a21e27774f294402b46cc544e70f4ffc93cf723ac33c58e5c2fb989aee898",
+            "videoSHA256": "17d188ddf59ba7b7a9ff9a82c5ea2acea514491d0f37d9e882079d6e1f332262",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 57,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 57,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 19
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "7e0203a1a063f00928ea42df21cb6dc6c5d8bd225affc4e3f396e67746ec8306",
+          "binding": {
+            "inputHash": "c6b6220463d485d9d2a1565e20ebc38ad2729d9dbf181c810ec8e45c02a3f400",
+            "planHash": "1e03f8d46ed1ccff8e32860bc24917316156a418aead873be6f497d44b57c4b2",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "e4762efb3b6d0e8009696ceb2935b91ccb3c533d597d1bdf489706f915523b34",
+            "videoSHA256": "7e0203a1a063f00928ea42df21cb6dc6c5d8bd225affc4e3f396e67746ec8306",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 57,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 57,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 19
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 240
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-05",
+        "archive": "pcm-paired-holdout-05",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "c6b6220463d485d9d2a1565e20ebc38ad2729d9dbf181c810ec8e45c02a3f400",
+          "planHash": "1e03f8d46ed1ccff8e32860bc24917316156a418aead873be6f497d44b57c4b2",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "9:16",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              640
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "e4762efb3b6d0e8009696ceb2935b91ccb3c533d597d1bdf489706f915523b34",
+          "videoSHA256": "7e0203a1a063f00928ea42df21cb6dc6c5d8bd225affc4e3f396e67746ec8306",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "eb069af96b13dcac205bec23823580eac1548e5c24c9e64394cd08b05ada77e0",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "6bf50116de246199605a086c298044c6ac2933ef1ef1470e66adccdcd4f840db",
+        "expectedFrames": 240,
+        "actualFrames": 240,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-11",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "204ea6e4c4c27f531623a6d89aea8c290a643931508805a71c358dd3b6d945cf",
+          "binding": {
+            "inputHash": "adaee1e5759f411974ae1bff8bd7401976538dc25409db4d5a0014665f4dce87",
+            "planHash": "d3c20de9f411f49a7083d0d79d9c45d86734c350de545e1196b980e657a8695e",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "0771fc11317bd7facb981c8d8f589634c4785c3699b4a27ecd731fd2f0f94b1d",
+            "videoSHA256": "204ea6e4c4c27f531623a6d89aea8c290a643931508805a71c358dd3b6d945cf",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 1,
+            "loopQuality": 51,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 60,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 32
+          },
+          "lyricSafety": "FAILED",
+          "decode": "PASS",
+          "decodeFrames": 480
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "5a048906130ec8f25cf8a8ac671ad72c74ebca1706fcac8d0d4e91c7331a35fe",
+          "binding": {
+            "inputHash": "adaee1e5759f411974ae1bff8bd7401976538dc25409db4d5a0014665f4dce87",
+            "planHash": "e720ed4d7994d45825c1f613f0248c17a4ef100102b7cd52255a480414c0fee9",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "d076ff27ef942c40f4bd5c59b154a3f7454f1f1391b910630c63f203cab25d03",
+            "videoSHA256": "5a048906130ec8f25cf8a8ac671ad72c74ebca1706fcac8d0d4e91c7331a35fe",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 1,
+            "loopQuality": 51,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 56,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 29
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 480
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "1270ea51896bf8d845ab7f804a4ade16efb983f986054e97eb5504ab1491697e",
+          "binding": {
+            "inputHash": "adaee1e5759f411974ae1bff8bd7401976538dc25409db4d5a0014665f4dce87",
+            "planHash": "ba3412d3d98bd8f08266b970531e6438365e58f2a214b628d88cc100633a3a98",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "e39fe270f3c6bcd5333b412ce047fb9b8a890164b4fcfcfd4c903bb2b6f927f0",
+            "videoSHA256": "1270ea51896bf8d845ab7f804a4ade16efb983f986054e97eb5504ab1491697e",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 1,
+            "loopQuality": 51,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 56,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 29
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 480
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-11",
+        "archive": "pcm-paired-holdout-11",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "adaee1e5759f411974ae1bff8bd7401976538dc25409db4d5a0014665f4dce87",
+          "planHash": "ba3412d3d98bd8f08266b970531e6438365e58f2a214b628d88cc100633a3a98",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "4:5",
+            "fps": 24,
+            "range": [
+              0,
+              19.99997732426304
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              450
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "e39fe270f3c6bcd5333b412ce047fb9b8a890164b4fcfcfd4c903bb2b6f927f0",
+          "videoSHA256": "1270ea51896bf8d845ab7f804a4ade16efb983f986054e97eb5504ab1491697e",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "a94a35be39e76843c26c577aaee80e14b9be327d7775e3bfe345a776c8caca25",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "2cdfd6e0d0603d695eef280ae0899aba0637b564fecfb18f31c28e7497545b2b",
+        "expectedFrames": 480,
+        "actualFrames": 480,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "holdout-12",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "b90b33891a0a0a909255492ef7fc725adbf8492959d637f2f80d0f5cce65ef49",
+          "binding": {
+            "inputHash": "63dffe48a56efe10f15a2e03344e9df625b73a1762982e4b178314674916b378",
+            "planHash": "f7c279cc463f3dc1d895c29bf2ca3b81ffdd68e3ba37df4e074598fe4bc0b529",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "8f956c153f7a63794a4ee405d8ab584ee6f0456be2ff355d9eb8eaaedec86156",
+            "videoSHA256": "b90b33891a0a0a909255492ef7fc725adbf8492959d637f2f80d0f5cce65ef49",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 21.5,
+            "temporalContrast": 34,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 79,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 94,
+            "motionRealization": 100,
+            "typographyDiversity": 64
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 480
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "345466c8a3b8ca803586e5dbac0895f08069b039d1404030f9079cfcf6677b31",
+          "binding": {
+            "inputHash": "b67f78f163d07be427fc4baa1111b63cb9879669003e4d54d8c54298e85ec3d7",
+            "planHash": "771129e030b0987763d334921607e9a0b745740810dca64265cf03fca4372f3a",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "6a2389ac485a6aafda4f589ec77916d44edfa3f127700bdaef0d7b80333433fb",
+            "videoSHA256": "345466c8a3b8ca803586e5dbac0895f08069b039d1404030f9079cfcf6677b31",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 98,
+            "motion": 25,
+            "temporalContrast": 38,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 53,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 62.74804429604384,
+            "localContrast": 94,
+            "motionRealization": 100,
+            "typographyDiversity": 33
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 480
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "c00f87b6d6ce0e38ed0885bb9302e5b0d801b178025226a14675c01798d85351",
+          "binding": {
+            "inputHash": "0c65e3b041c943de7efa119557501c9c23ec7c37a777af8b333a4b5c48429110",
+            "planHash": "27d127333f375488d82fbca7f5ee91385e475eea7ea55de686de0b3aa2a0c197",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "5fdac30f4e78a7106b1998848e06d7051fcdc8a476260f53bea68468ba290256",
+            "videoSHA256": "c00f87b6d6ce0e38ed0885bb9302e5b0d801b178025226a14675c01798d85351",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 23,
+            "temporalContrast": 66,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 80,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 94,
+            "motionRealization": 100,
+            "typographyDiversity": 58
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 480
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "holdout-12",
+        "archive": "pcm-paired-holdout-12",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "0c65e3b041c943de7efa119557501c9c23ec7c37a777af8b333a4b5c48429110",
+          "planHash": "27d127333f375488d82fbca7f5ee91385e475eea7ea55de686de0b3aa2a0c197",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "16:9",
+            "fps": 24,
+            "range": [
+              0,
+              19.99997732426304
+            ],
+            "loopRequired": false,
+            "resolution": [
+              640,
+              360
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "5fdac30f4e78a7106b1998848e06d7051fcdc8a476260f53bea68468ba290256",
+          "videoSHA256": "c00f87b6d6ce0e38ed0885bb9302e5b0d801b178025226a14675c01798d85351",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "4c36a003cd0def183e6a1d010ec2e9febf721486d91458168f8e12f7e925fd37",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "5205101eae4c0dc1e45cd373d8f92ce4fd6e28909230134bf8f03823e6f79fa0",
+        "expectedFrames": 480,
+        "actualFrames": 480,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "supplemental-development-13",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "17ff0dd2add96acd8c40ee6d78518bbcaed9d2505c8ddf672877bd974488fa60",
+          "binding": {
+            "inputHash": "409f1744a48baa34fedec0e47fa2fbdcfca632f29f55506d075356278c21e783",
+            "planHash": "3bb743807091f3480c78d1def862a2bb4f111711a06cad9c2bc6ddd131a2c4dc",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "b0d9eb0b0e1a0fbc4965dd0107ee38c8d9f6fec51e31885825ffebaf91566b8f",
+            "videoSHA256": "17ff0dd2add96acd8c40ee6d78518bbcaed9d2505c8ddf672877bd974488fa60",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 39,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 32,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 62,
+            "typographyDiversity": 23
+          },
+          "lyricSafety": "FAILED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "e4aec7915148a988d9fd6e1fc6d93ba144643dd111ec5268c664b8ea8e333151",
+          "binding": {
+            "inputHash": "409f1744a48baa34fedec0e47fa2fbdcfca632f29f55506d075356278c21e783",
+            "planHash": "80bca2929447956eacda552be26307bedbbfd5e10099465f61808d7a02e6ff96",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "2e0878fb9fac772d8ef26202b0850e5bdeac8a7cdf3218055981a87181cfb553",
+            "videoSHA256": "e4aec7915148a988d9fd6e1fc6d93ba144643dd111ec5268c664b8ea8e333151",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 40,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 37,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 67,
+            "typographyDiversity": 21
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "e85a9e31f976eb23dc5291ad0bc90c0cbcc8f5cda01ca2784ab502fc08111f54",
+          "binding": {
+            "inputHash": "409f1744a48baa34fedec0e47fa2fbdcfca632f29f55506d075356278c21e783",
+            "planHash": "fc627693f8f1db50e90a3af0b541450f667500cc7a5bf3284d3949384b6a1071",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "b5b8400afe1bf060881960df10bda2244632155b79327fd1a1e80b0a078d629f",
+            "videoSHA256": "e85a9e31f976eb23dc5291ad0bc90c0cbcc8f5cda01ca2784ab502fc08111f54",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 40,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 37,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 67,
+            "typographyDiversity": 21
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "supplemental-development-13",
+        "archive": "pcm-paired-supplemental-development-13",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "409f1744a48baa34fedec0e47fa2fbdcfca632f29f55506d075356278c21e783",
+          "planHash": "fc627693f8f1db50e90a3af0b541450f667500cc7a5bf3284d3949384b6a1071",
+          "outputProfile": {
+            "purpose": "SHORT",
+            "aspect": "9:16",
+            "fps": 24,
+            "range": [
+              0.3,
+              12.72
+            ],
+            "loopRequired": false,
+            "resolution": [
+              720,
+              1280
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "b5b8400afe1bf060881960df10bda2244632155b79327fd1a1e80b0a078d629f",
+          "videoSHA256": "e85a9e31f976eb23dc5291ad0bc90c0cbcc8f5cda01ca2784ab502fc08111f54",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "87c9975add5844d7b51462a7ebc0dd5f6b87c828abbcf600155272db4782157a",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "3680082cc4952ddcb86085e03d45f23130ae0725db74af819fa4fab1289bb938",
+        "expectedFrames": 298,
+        "actualFrames": 298,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    },
+    {
+      "fixture": "supplemental-holdout-13",
+      "observationStatus": "ORIGINAL_PAIRED_MOVIES_WITH_INPUT_SCOPED_FINAL_RENDER_IDENTITY",
+      "versions": {
+        "main": {
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "videoSHA256": "5285db7b11854ae2fac44297b2708542b5b4dc80ae2165a6ed76acb3406167eb",
+          "binding": {
+            "inputHash": "cdd7db35938a9e1577ae0b5c7b7bdf99e4cd57c6e6051f7e5a15b4e8b0d2e2b0",
+            "planHash": "ee236495b6bd028d888fdbe6ecf4ce9291f37f232523a0ecfbcd6fa8bcfaaa94",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "4db89e090493d0281f2ae36b3ed4c02f851af79d8503a3a06c6a6f7f3cdef153",
+            "videoSHA256": "5285db7b11854ae2fac44297b2708542b5b4dc80ae2165a6ed76acb3406167eb",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 74,
+            "motion": 20.5,
+            "temporalContrast": 100,
+            "hookNovelty": 5,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 94,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 75.07193735914906,
+            "localContrast": 99,
+            "motionRealization": 67,
+            "typographyDiversity": 23
+          },
+          "lyricSafety": "UNMEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        },
+        "previous": {
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "videoSHA256": "f2b593188419c6bbbe9f4c556c1af906b3cda7209a3616d45b7ad5803587eb9b",
+          "binding": {
+            "inputHash": "c17ba3fdcdc9f8ebb300d0a288f69fd9726ae3ba8c27a5a5c690ceaa6a5effae",
+            "planHash": "dfb34d1cde9c4f621a4a94313ccf81fa67fdad511c7dc374b7a9b021cdedfc2e",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "e50d9fa37abd4678b35eee4063574b5981ddc9e2280128589f7ac0ceb8466491",
+            "videoSHA256": "f2b593188419c6bbbe9f4c556c1af906b3cda7209a3616d45b7ad5803587eb9b",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 98,
+            "motion": 21,
+            "temporalContrast": 100,
+            "hookNovelty": 35,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 94,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 88.9153679818406,
+            "localContrast": 96,
+            "motionRealization": 100,
+            "typographyDiversity": 83
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        },
+        "current": {
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "videoSHA256": "2efd7fa3b9dc1f671ff0f7039141c2da706211a57e0bd81e27c153d9da5ad386",
+          "binding": {
+            "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+            "planHash": "cbb6adda84daabe62d8684b0efb5e28e954becbd0372c672e7c22d9bb3f6028b",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "86463a2e6da7a690509dd05fe1b5475ee4d99b280dd2b0e21320ffa87d12e096",
+            "videoSHA256": "2efd7fa3b9dc1f671ff0f7039141c2da706211a57e0bd81e27c153d9da5ad386",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 20.5,
+            "temporalContrast": 100,
+            "hookNovelty": 35,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 95,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 0,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 96,
+            "motionRealization": 100,
+            "typographyDiversity": 83
+          },
+          "lyricSafety": "MEASURED",
+          "decode": "PASS",
+          "decodeFrames": 298
+        }
+      },
+      "finalSourceQualification": {
+        "fixture": "supplemental-holdout-13",
+        "archive": "pcm-paired-supplemental-holdout-13",
+        "originalEncodedArtifactBinding": {
+          "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+          "planHash": "cbb6adda84daabe62d8684b0efb5e28e954becbd0372c672e7c22d9bb3f6028b",
+          "outputProfile": {
+            "purpose": "SHORT",
+            "aspect": "9:16",
+            "fps": 24,
+            "range": [
+              0.3,
+              12.72
+            ],
+            "loopRequired": false,
+            "resolution": [
+              720,
+              1280
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "86463a2e6da7a690509dd05fe1b5475ee4d99b280dd2b0e21320ffa87d12e096",
+          "videoSHA256": "2efd7fa3b9dc1f671ff0f7039141c2da706211a57e0bd81e27c153d9da5ad386",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "inputScopeObservationSHA256": "83aebdc065be1fc0d709dde18b975e67e46e3a2cf8641fcca53a502e7cb19ef2",
+        "scopeGuardPassed": true,
+        "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+        "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+        "nativeObservationSHA256": "7c0bef672736767e8db7016b72f41064625e98a80378348df0430ca5d8a6de7d",
+        "expectedFrames": 298,
+        "actualFrames": 298,
+        "mismatches": 0
+      },
+      "PCM": "MATCHED",
+      "limitation": "Actual encoded source fields unchanged. Frozen renderer identity and conservative all-split branch proof do not independently prove planning/candidate/UI equivalence; full source-diff review remains required."
+    }
+  ],
+  "statistics": {
+    "typographyDiversity": {
+      "main": {
+        "n": 23,
+        "mean": 40,
+        "worst": 13,
+        "lower20Mean": 20.2
+      },
+      "previous": {
+        "n": 23,
+        "mean": 46.130434782608695,
+        "worst": 6,
+        "lower20Mean": 18.8
+      },
+      "current": {
+        "n": 23,
+        "mean": 50.52173913043478,
+        "worst": 19,
+        "lower20Mean": 23.2
+      },
+      "versusPrevious": {
+        "improved": 3,
+        "same": 20,
+        "lower": 0
+      }
+    },
+    "lyricForegroundNovelty": {
+      "main": {
+        "n": 23,
+        "mean": 73.04347826086956,
+        "worst": 32,
+        "lower20Mean": 49.4
+      },
+      "previous": {
+        "n": 23,
+        "mean": 74.69565217391305,
+        "worst": 37,
+        "lower20Mean": 50.8
+      },
+      "current": {
+        "n": 23,
+        "mean": 76.6086956521739,
+        "worst": 37,
+        "lower20Mean": 53
+      },
+      "versusPrevious": {
+        "improved": 5,
+        "same": 17,
+        "lower": 1
+      }
+    },
+    "temporalContrast": {
+      "main": {
+        "n": 15,
+        "mean": 37.733333333333334,
+        "worst": 4,
+        "lower20Mean": 11.666666666666666
+      },
+      "previous": {
+        "n": 15,
+        "mean": 38.13333333333333,
+        "worst": 16,
+        "lower20Mean": 19.666666666666668
+      },
+      "current": {
+        "n": 15,
+        "mean": 45.06666666666667,
+        "worst": 16,
+        "lower20Mean": 19.666666666666668
+      },
+      "versusPrevious": {
+        "improved": 6,
+        "same": 8,
+        "lower": 1
+      }
+    },
+    "localContrast": {
+      "main": {
+        "n": 18,
+        "mean": 70.77777777777777,
+        "worst": 0,
+        "lower20Mean": 14.25
+      },
+      "previous": {
+        "n": 21,
+        "mean": 60.04761904761905,
+        "worst": 0,
+        "lower20Mean": 0
+      },
+      "current": {
+        "n": 21,
+        "mean": 61.42857142857143,
+        "worst": 0,
+        "lower20Mean": 0
+      },
+      "versusPrevious": {
+        "improved": 4,
+        "same": 16,
+        "lower": 1
+      }
+    },
+    "motionRealization": {
+      "main": {
+        "n": 23,
+        "mean": 87.82608695652173,
+        "worst": 33,
+        "lower20Mean": 57.8
+      },
+      "previous": {
+        "n": 23,
+        "mean": 96.82608695652173,
+        "worst": 60,
+        "lower20Mean": 85.4
+      },
+      "current": {
+        "n": 23,
+        "mean": 96.82608695652173,
+        "worst": 60,
+        "lower20Mean": 85.4
+      },
+      "versusPrevious": {
+        "improved": 0,
+        "same": 23,
+        "lower": 0
+      }
+    },
+    "perceptualNovelty": {
+      "main": {
+        "n": 15,
+        "mean": 88.26666666666667,
+        "worst": 42,
+        "lower20Mean": 61.333333333333336
+      },
+      "previous": {
+        "n": 15,
+        "mean": 88.66666666666667,
+        "worst": 42,
+        "lower20Mean": 57.666666666666664
+      },
+      "current": {
+        "n": 15,
+        "mean": 89.8,
+        "worst": 42,
+        "lower20Mean": 62
+      },
+      "versusPrevious": {
+        "improved": 3,
+        "same": 12,
+        "lower": 0
+      }
+    },
+    "hookNovelty": {
+      "main": {
+        "n": 23,
+        "mean": 60.91304347826087,
+        "worst": 1,
+        "lower20Mean": 16.6
+      },
+      "previous": {
+        "n": 23,
+        "mean": 65,
+        "worst": 1,
+        "lower20Mean": 23.4
+      },
+      "current": {
+        "n": 23,
+        "mean": 65.69565217391305,
+        "worst": 1,
+        "lower20Mean": 23.4
+      },
+      "versusPrevious": {
+        "improved": 2,
+        "same": 21,
+        "lower": 0
+      }
+    }
+  },
+  "QUALITY_GO": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED"
+}
