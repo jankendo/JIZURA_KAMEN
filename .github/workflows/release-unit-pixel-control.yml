@@ -1,0 +1,74 @@
+name: Selected-unit decoded reveal attribution diagnostic
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/release-unit-pixel-control.yml]
+permissions:
+  contents: read
+jobs:
+  target-unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - case: development-06
+            archive: word-source-refresh-development-06
+            unitId: bbdffacab6cb2deed256dc4bc83abdb803ff4d90047d5a314041c1a273c90ea5
+            fragmentIndex: 3
+          - case: holdout-10
+            archive: final5c92-holdout-b
+            unitId: 1fe47f66edc9b07d6119b56564cd9fadd19c1348191e8ea5150313879f86aa42
+            fragmentIndex: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/unit-pixel-control-preregistration.json
+            /docs/qa/generalization/composition-recovery/final5c92-holdout-b/
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-06/
+            /docs/qa/generalization/media/06dadd28346e70126abb7dfc4ed88cad959e1d0c82ffaada040d3ddbf54896a2.wav
+            /docs/qa/generalization/media/c131949e38e70b519e9f34e2867b8033c0d59861deca547342ff7997a9c7f011.mp4
+            /docs/qa/generalization/media/c67947425b27b3704880dc32a1f06f00be31abf96761a2fbcc0d5ee4f63921fd.mp4
+            /docs/qa/generalization/media/ca183f107fae7b4ccbda2757dfd63bddf58f04048480134ce98b23b9c384189b.wav
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: b002cdd75845d189221312a82456c33a131f5e8d
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Unit targeting and paint-state counterexamples
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+        run: node qa/docs/qa/generalization/tools/unit_pixel_control_test.cjs
+      - name: Restore only the exact selected unit artifact
+        run: |
+          python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization '${{ matrix.archive }}' restored --prefix 'matrix/${{ matrix.case }}-v3'
+          python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization '${{ matrix.archive }}' restored --prefix matrix/results.json
+      - name: Exact-unit ON OFF ON_REPEAT, submitted Native frames and full H264 AAC decode
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          mkdir -p results
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/encoded_unit_pixel_control.cjs http://127.0.0.1:4173/ restored/matrix '${{ matrix.case }}' current '${{ matrix.unitId }}' '${{ matrix.fragmentIndex }}' results > results/control.log 2>&1
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: selected-unit-pixel-control-${{ matrix.case }}
+          path: results/
+          retention-days: 14

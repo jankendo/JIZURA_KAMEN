@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "registeredUTC": "2026-10-15T22:22:01.433152+00:00",
+  "releaseRenderer": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "targets": [
+    {
+      "case": "development-06",
+      "archive": "word-source-refresh-development-06",
+      "unitId": "bbdffacab6cb2deed256dc4bc83abdb803ff4d90047d5a314041c1a273c90ea5",
+      "fragmentIndex": 3,
+      "videoSHA256": "c67947425b27b3704880dc32a1f06f00be31abf96761a2fbcc0d5ee4f63921fd",
+      "binding": {
+        "inputHash": "748da416232a94c19da4f9148a30d01d7b13a54fd3fc8e88548a8b1aa8cfd584",
+        "planHash": "2cc0bca214974feac55c5099cf678242e2843f3957b60328697e47f2c2f7c9dc",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "dfa13c54c1704f44d9427752efb7432dd2b5306bc0f868eff6da37af56f06516",
+        "videoSHA256": "c67947425b27b3704880dc32a1f06f00be31abf96761a2fbcc0d5ee4f63921fd",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "originalReason": "NO_MEASURED_PARTIAL_REVEAL_GLYPHS"
+    },
+    {
+      "case": "holdout-10",
+      "archive": "final5c92-holdout-b",
+      "unitId": "1fe47f66edc9b07d6119b56564cd9fadd19c1348191e8ea5150313879f86aa42",
+      "fragmentIndex": 5,
+      "videoSHA256": "c131949e38e70b519e9f34e2867b8033c0d59861deca547342ff7997a9c7f011",
+      "binding": {
+        "inputHash": "ecc6d773a9f550241f2af7be36f7739e63d61dae142e8d01b0161b4c76bac95e",
+        "planHash": "10eabe7247663abc1c29c5ed3f568b023ce5ca4ef532deb13337b2aed2dd6f16",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "9e9a194ac2c8d42e934f74abd6e16574321b1702ec81db9fc14044dfa515cc53",
+        "videoSHA256": "c131949e38e70b519e9f34e2867b8033c0d59861deca547342ff7997a9c7f011",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "originalReason": "NO_MEASURED_PARTIAL_REVEAL_GLYPHS"
+    }
+  ],
+  "operatorScope": "Only exact selected source-unit/fragment paint. Source timing, font, style, operator and all other layers unchanged. Not forced direction.",
+  "counterfactual": "Call the original draw callback and preserve its geometry result, current path and post-call Canvas state; OFF applies an empty Path2D clip only during target paint. Cloned cut objects resolved by a unique stable index/line/start/end/source-text tuple; ambiguous identities rejected.",
+  "actualSourceFrames": "Capture canvas data only when the real VideoFrame constructor submits that rendered canvas to the original encoder. All output frame clocks/RGBA hashes for ON and ON_REPEAT must exactly match the original selected shipping artifact. No deduplication or pixel tolerance.",
+  "nativeWindow": "Full target fragment with one actual output frame before/after, clamped to actual output range. Store raw RGBA + actual native time, actual submitted timestamp and SHA256. Missing pre-entry frames remain missing.",
+  "analysisPolicy": [
+    "This collector is diagnostic and always leaves encoded semantic realization UNMEASURED until an independently validated target-layer decoder analysis is executed.",
+    "Actual decoded ON/OFF/ON_REPEAT frames and original-vs-ON noise must be distinguished. No Native masks alone can certify encoded motion.",
+    "Any later reveal growth analysis retains existing >.02 native growth, >=.9 realization and >=3 actual frame requirements. Per-frame timing and independent target ownership must also be validated; do not tune against these outcomes.",
+    "Partial planned wipes and hidden source glyphs are not automatically missing lyrics; source/hold safety remains the original hash-bound FAV domain.",
+    "Different original/control PCM must be reported as visual-only. Isolated control modes themselves use the same audio object/plan/profile."
+  ],
+  "counterexamplesBeforeCollection": {
+    "pass": 8,
+    "fail": 0,
+    "initialPortableTestFailure": "Node Canvas returns color name blue rather than normalized #0000ff. Corrected the test to compare the actual post-set value; no production or sensor threshold change."
+  },
+  "QUALITY_GO": "UNVERIFIED",
+  "HUMAN": "HUMAN_UNVERIFIED"
+}
