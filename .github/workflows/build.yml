@@ -43,7 +43,9 @@ jobs:
           test -f dist/licenses/FFmpeg-LGPL-2.1.txt
           ! grep -q 'jizura-custom-background.jankendo14.chatgpt.site' dist/index.html
       - name: Browser UI and MP4 smoke test
-        timeout-minutes: 12
+        # Two bounded full generation passes, MP4 encoding and UI boundary checks.
+        # Runtime watchdogs still reject stopped jobs and stalled progress.
+        timeout-minutes: 145
         env:
           KAMEN_CHROME: /usr/bin/google-chrome
         run: |
