@@ -1,0 +1,88 @@
+{
+  "sourceCommit": "c043c8922efe6999e995c8853da6cfc8b790e1b3",
+  "fromCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+  "toCommit": "c043c8922efe6999e995c8853da6cfc8b790e1b3",
+  "gitDiffSHA256": "2ac5b4d749246a3e8e7c8e2bebe35c81ff75b9ca0af0e2308445e1ce6085437e",
+  "paths": [
+    {
+      "path": ".github/workflows/build.yml",
+      "classification": "CI_ONLY",
+      "reason": "CI step budget/instrumentation; existing main-only Pages deployment retained.",
+      "diffHunkSHA256": "9a0fc9406821cef4db0a9ffae8e0f2d7d64bef9894fee85fff23b65018e6fbdf"
+    },
+    {
+      "path": "dev/cinema_nested_progress_test.cjs",
+      "classification": "TELEMETRY_ONLY",
+      "reason": "Contract regression for nested progress forwarding, not a shipped renderer.",
+      "diffHunkSHA256": "4030bdded725c543452f9a3e141b7f7ddcb42819f4742aa4d18090324f7b5b70"
+    },
+    {
+      "path": "dev/export_watchdog.cjs",
+      "classification": "QA_ONLY",
+      "reason": "Known non-shipping QA harness/evidence path; Native comparison is still required for the separate runtime telemetry changes.",
+      "diffHunkSHA256": "22b00a8347e9e5e97e37811bf5dbcf70f962dac0a3fbb55f5b4899c718bc7822"
+    },
+    {
+      "path": "dev/export_watchdog_test.cjs",
+      "classification": "QA_ONLY",
+      "reason": "Known non-shipping QA harness/evidence path; Native comparison is still required for the separate runtime telemetry changes.",
+      "diffHunkSHA256": "198b33ebe35112177d7d7ab755cdbb9f20331988113570a532f7b26292652737"
+    },
+    {
+      "path": "dev/generation_profile.cjs",
+      "classification": "TELEMETRY_ONLY",
+      "reason": "Optional test-host profiling instrumentation, not a shipped rendering input.",
+      "diffHunkSHA256": "1af3950779f42147513a8933d3716245782995034a683048eea225c7242a658f"
+    },
+    {
+      "path": "dev/pages_e2e.cjs",
+      "classification": "QA_ONLY",
+      "reason": "Known non-shipping QA harness/evidence path; Native comparison is still required for the separate runtime telemetry changes.",
+      "diffHunkSHA256": "c47f2b5436bae90999d2a672df32c9af237a76037fa688c33cffae46d39c4ce9"
+    },
+    {
+      "path": "dev/release_gates.cjs",
+      "classification": "QA_ONLY",
+      "reason": "Known non-shipping QA harness/evidence path; Native comparison is still required for the separate runtime telemetry changes.",
+      "diffHunkSHA256": "cee441f4582e7e12ceb7abea33047be256ed01d4d10d5e39cba73f9815bd4c01"
+    },
+    {
+      "path": "dev/release_gates_test.cjs",
+      "classification": "QA_ONLY",
+      "reason": "Known non-shipping QA harness/evidence path; Native comparison is still required for the separate runtime telemetry changes.",
+      "diffHunkSHA256": "df572207a2a9c1a05ae35de6c457a2703727588040a276b90ba65fb58f08c2da"
+    },
+    {
+      "path": "docs/qa/generalization/composition-recovery/ci9f-export-phase-budget-cause.json",
+      "classification": "QA_ONLY",
+      "reason": "Known non-shipping QA harness/evidence path; Native comparison is still required for the separate runtime telemetry changes.",
+      "diffHunkSHA256": "d963c397dbf7ede706edb17235b6a49350216dd70fd781ee103b49813ee965d4"
+    },
+    {
+      "path": "scripts/run-tests.mjs",
+      "classification": "TELEMETRY_ONLY",
+      "reason": "Register additional QA contract tests; production build algorithm unchanged.",
+      "diffHunkSHA256": "5ce2f9765d5bac389cec79b39c75d79b4b6c760d27287484a81f8cfe1f8157ef"
+    },
+    {
+      "path": "src/11zzm_story_director.js",
+      "classification": "TELEMETRY_ONLY",
+      "reason": "Forward real raster progress for unchanged fallback/baseline checks; candidate generation, ranks and rendering calls remain intact.",
+      "diffHunkSHA256": "b0eb9aa33a1f1dcb8784d080c94da5cc1dc506c5c5ba227dee9d4952b1f6e3d2"
+    },
+    {
+      "path": "src/11zzzzzz_video_search.js",
+      "classification": "TELEMETRY_ONLY",
+      "reason": "Forward real nested candidate progress without changing search candidates or scores.",
+      "diffHunkSHA256": "67c38216e0251958e20f5d056cb82a8185e327e5cdfcabda9e21f281a75ce5cd"
+    },
+    {
+      "path": "src/11zzzzzzzz_cinema_v3.js",
+      "classification": "TELEMETRY_ONLY",
+      "reason": "Forward telemetry through nested legacy proxy/readability work and report actual candidate work events; no changed rendering, candidate eligibility, selection score or threshold.",
+      "diffHunkSHA256": "ee4e99459590452f48b4e5c429df8cd7158ba889006270c37dcdae6d557b9af9"
+    }
+  ],
+  "classificationNote": "Legacy TELEMETRY_ONLY also covers explicitly listed non-shipping profiler/test registration; these do not use the QA-only tree bypass. Actual complete Native equality remains mandatory.",
+  "limits": "Native equality is only observed for the two frozen adopted plans. Telemetry-only runtime assessment must be reviewed independently; it is not inferred from those two plans alone."
+}
