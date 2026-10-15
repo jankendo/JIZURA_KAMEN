@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "sourceCommit": "eba3bbd6bc76525d27132519d1e2302ee76e5829",
+  "functionSHA256": "49b488c94b580f101cde08834ab99c4b4e3248ca7a2ebb8f84b5ea2c232318d3",
+  "status": "COUNTEREXAMPLE_OBSERVED",
+  "method": "Existing unmodified finalGlyphPresence, exact stationary glyph alpha and exact native/decoded images; only the non-primary background brightness left/right changes. Black glyph has minimum local contrast (0.15+0.05)/0.05=4, exceeding ratio3. No threshold changed.",
+  "glyphAlphaAndGeometryConstant": true,
+  "decodedExactlyNative": true,
+  "minimumAnalyticContrastRatio": 4,
+  "frames": [
+    {
+      "side": 0,
+      "status": "MEASURED",
+      "expectedInkPixels": 80,
+      "nativeInkPixels": 80,
+      "decodedInkPixels": 80,
+      "decodedInkFraction": 1,
+      "backgroundSamplePixels": 120,
+      "decodedBackgroundAgreement": 1,
+      "nativeInkBounds": {
+        "x0": 8,
+        "y0": 5,
+        "x1": 15,
+        "y1": 14
+      },
+      "decodedInkBounds": {
+        "x0": 8,
+        "y0": 5,
+        "x1": 15,
+        "y1": 14
+      },
+      "nativeCentroid": [
+        11.5,
+        9.5
+      ],
+      "decodedCentroid": [
+        11.5,
+        9.5
+      ],
+      "reason": null,
+      "method": "Registered per-glyph local contrast pairs, positive ink and negative composite-background controls; actual foreground geometry measured without clipping to expected ink; not OCR"
+    },
+    {
+      "side": 1,
+      "status": "MEASURED",
+      "expectedInkPixels": 80,
+      "nativeInkPixels": 80,
+      "decodedInkPixels": 80,
+      "decodedInkFraction": 1,
+      "backgroundSamplePixels": 120,
+      "decodedBackgroundAgreement": 1,
+      "nativeInkBounds": {
+        "x0": 16,
+        "y0": 5,
+        "x1": 23,
+        "y1": 14
+      },
+      "decodedInkBounds": {
+        "x0": 16,
+        "y0": 5,
+        "x1": 23,
+        "y1": 14
+      },
+      "nativeCentroid": [
+        19.5,
+        9.5
+      ],
+      "decodedCentroid": [
+        19.5,
+        9.5
+      ],
+      "reason": null,
+      "method": "Registered per-glyph local contrast pairs, positive ink and negative composite-background controls; actual foreground geometry measured without clipping to expected ink; not OCR"
+    }
+  ],
+  "reportedNativeCentroidDrift": 8,
+  "reportedDecodedCentroidDrift": 8,
+  "conclusion": "Contrast-selected ink centroid can move although the glyph mask and geometry are perfectly static. This falsifies treating a >1px composite centroid drift alone as proof of a moving glyph. It does not establish that the real fallback HOLD cases have this cause or certify their intent.",
+  "actualShippingCases": "UNMEASURED_PENDING_ALPHA_GEOMETRY_AND_DECODED_REGISTRATION",
+  "human": "HUMAN_UNVERIFIED"
+}

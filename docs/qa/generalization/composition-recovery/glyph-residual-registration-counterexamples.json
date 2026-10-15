@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "purpose": "Diagnostic counterexamples only; not actual-MP4 results or production QA",
+  "tests": {
+    "static": {
+      "status": "DIAGNOSTIC_ONLY_UNIQUE_NUMERIC_OPTIMUM",
+      "semanticStatus": "UNMEASURED",
+      "bestIntegerTranslation": {
+        "dx": 0,
+        "dy": 0,
+        "squaredResidualError": 0.0
+      },
+      "secondBestSquaredError": 3.0,
+      "numericalSeparation": 3.0,
+      "nativeResidualEnergy": 9.0,
+      "relativeSquaredResidualError": 0.0,
+      "searchRadius": 4,
+      "existingHoldStillnessThresholdPixels": 1,
+      "geometricDisplacementPixels": 0.0,
+      "limits": [
+        "No calibrated registration reliability, contrast, occlusion, or fit-error acceptance threshold exists here. Unique numeric optimum is not certification.",
+        "Decoded compression, imperfect counterfactual backgrounds, nontranslation deformation and overlapping glyphs can invalidate this model.",
+        "Same stable unit/glyph identity, output raster and actual decoded PTS must be bound externally.",
+        "No change to existing 1px stillness threshold; no PASS or release result is emitted."
+      ]
+    },
+    "actual2PixelTranslation": {
+      "status": "DIAGNOSTIC_ONLY_UNIQUE_NUMERIC_OPTIMUM",
+      "semanticStatus": "UNMEASURED",
+      "bestIntegerTranslation": {
+        "dx": 2,
+        "dy": 0,
+        "squaredResidualError": 0.0
+      },
+      "secondBestSquaredError": 3.0,
+      "numericalSeparation": 3.0,
+      "nativeResidualEnergy": 9.0,
+      "relativeSquaredResidualError": 0.0,
+      "searchRadius": 4,
+      "existingHoldStillnessThresholdPixels": 1,
+      "geometricDisplacementPixels": 2.0,
+      "limits": [
+        "No calibrated registration reliability, contrast, occlusion, or fit-error acceptance threshold exists here. Unique numeric optimum is not certification.",
+        "Decoded compression, imperfect counterfactual backgrounds, nontranslation deformation and overlapping glyphs can invalidate this model.",
+        "Same stable unit/glyph identity, output raster and actual decoded PTS must be bound externally.",
+        "No change to existing 1px stillness threshold; no PASS or release result is emitted."
+      ]
+    },
+    "varyingBackgroundStaticGlyph": {
+      "status": "DIAGNOSTIC_ONLY_UNIQUE_NUMERIC_OPTIMUM",
+      "semanticStatus": "UNMEASURED",
+      "bestIntegerTranslation": {
+        "dx": 0,
+        "dy": 0,
+        "squaredResidualError": 0.0
+      },
+      "secondBestSquaredError": 1.2948755092802169,
+      "numericalSeparation": 1.2948755092802169,
+      "nativeResidualEnergy": 3.9033272974196462,
+      "relativeSquaredResidualError": 0.0,
+      "searchRadius": 4,
+      "existingHoldStillnessThresholdPixels": 1,
+      "geometricDisplacementPixels": 0.0,
+      "limits": [
+        "No calibrated registration reliability, contrast, occlusion, or fit-error acceptance threshold exists here. Unique numeric optimum is not certification.",
+        "Decoded compression, imperfect counterfactual backgrounds, nontranslation deformation and overlapping glyphs can invalidate this model.",
+        "Same stable unit/glyph identity, output raster and actual decoded PTS must be bound externally.",
+        "No change to existing 1px stillness threshold; no PASS or release result is emitted."
+      ]
+    },
+    "nearZeroContrast": {
+      "status": "DIAGNOSTIC_ONLY_UNIQUE_NUMERIC_OPTIMUM",
+      "semanticStatus": "UNMEASURED",
+      "bestIntegerTranslation": {
+        "dx": 0,
+        "dy": 0,
+        "squaredResidualError": 0.0
+      },
+      "secondBestSquaredError": 1.199999998736746e-15,
+      "numericalSeparation": 1.199999998736746e-15,
+      "nativeResidualEnergy": 3.599999996210238e-15,
+      "relativeSquaredResidualError": 0.0,
+      "searchRadius": 4,
+      "existingHoldStillnessThresholdPixels": 1,
+      "geometricDisplacementPixels": 0.0,
+      "limits": [
+        "No calibrated registration reliability, contrast, occlusion, or fit-error acceptance threshold exists here. Unique numeric optimum is not certification.",
+        "Decoded compression, imperfect counterfactual backgrounds, nontranslation deformation and overlapping glyphs can invalidate this model.",
+        "Same stable unit/glyph identity, output raster and actual decoded PTS must be bound externally.",
+        "No change to existing 1px stillness threshold; no PASS or release result is emitted."
+      ]
+    },
+    "partialMissingGlyph": {
+      "status": "DIAGNOSTIC_ONLY_UNIQUE_NUMERIC_OPTIMUM",
+      "semanticStatus": "UNMEASURED",
+      "bestIntegerTranslation": {
+        "dx": 0,
+        "dy": 0,
+        "squaredResidualError": 5.0
+      },
+      "secondBestSquaredError": 6.0,
+      "numericalSeparation": 1.0,
+      "nativeResidualEnergy": 9.0,
+      "relativeSquaredResidualError": 0.5555555555555556,
+      "searchRadius": 4,
+      "existingHoldStillnessThresholdPixels": 1,
+      "geometricDisplacementPixels": 0.0,
+      "limits": [
+        "No calibrated registration reliability, contrast, occlusion, or fit-error acceptance threshold exists here. Unique numeric optimum is not certification.",
+        "Decoded compression, imperfect counterfactual backgrounds, nontranslation deformation and overlapping glyphs can invalidate this model.",
+        "Same stable unit/glyph identity, output raster and actual decoded PTS must be bound externally.",
+        "No change to existing 1px stillness threshold; no PASS or release result is emitted."
+      ]
+    },
+    "zeroContrast": {
+      "status": "UNMEASURED",
+      "reason": "NO_RESOLVED_NATIVE_FOREGROUND_RESIDUAL",
+      "nativeResidualEnergy": 0.0
+    },
+    "duplicateGlyphAmbiguity": {
+      "status": "UNMEASURED",
+      "reason": "NON_UNIQUE_INTEGER_TRANSLATION_OPTIMUM",
+      "optima": [
+        {
+          "dx": -2,
+          "dy": 0,
+          "squaredResidualError": 0.25
+        },
+        {
+          "dx": 2,
+          "dy": 0,
+          "squaredResidualError": 0.25
+        }
+      ],
+      "nativeResidualEnergy": 0.25
+    }
+  },
+  "PASS": 7,
+  "FAIL": 0,
+  "productionReleaseGate": "UNCHANGED_UNMEASURED",
+  "human": "HUMAN_UNVERIFIED"
+}

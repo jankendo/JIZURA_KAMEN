@@ -1,0 +1,102 @@
+{
+  "sourceCommit": "987b0793dedbd424e900da6ed63f4bcad29c9fd3",
+  "sourceRole": "HISTORICAL_NOT_CURRENT_RELEASE_PROOF",
+  "testCounts": {
+    "total": 206,
+    "passed": 204,
+    "failed": 0,
+    "skipped": 2
+  },
+  "perTestRaw": {
+    "path": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/ci987-validation/kamen-tests.json.gz",
+    "sha256": "663f1ab2e3e46213e62a3a8dd4c3445ef8d437e06d1328f3563284ea7f066fbc",
+    "uncompressedSHA256": "6c02a8d1d41e8e582dae71fb6fd2fb7c3307d3ad74ca40c43dd3251a3b66dc41",
+    "archiveMember": "kamen-tests.json"
+  },
+  "browserRaw": {
+    "path": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/ci987-validation/kamen-browser-qa/report.json.gz",
+    "sha256": "5b9539f7eaf1904d94e34d2e91048631526b6486143d85f6706dac4edeb5a154",
+    "uncompressedSHA256": "935ad7cb7b5e16657fa6c78bba4368a5c838360a25503ce5fd4b01eb6fc5c274",
+    "archiveMember": "kamen-browser-qa/report.json"
+  },
+  "browserStatus": "PASS",
+  "browserChecks": [
+    {
+      "name": "startup",
+      "status": "PASS",
+      "version": "2.0.26",
+      "secure": true
+    },
+    {
+      "name": "background upload",
+      "status": "PASS"
+    },
+    {
+      "name": "TXT import",
+      "status": "PASS"
+    },
+    {
+      "name": "LRC import and timing",
+      "status": "PASS"
+    },
+    {
+      "name": "audio upload and analysis",
+      "status": "PASS",
+      "bpm": 120
+    },
+    {
+      "name": "automatic MV generation",
+      "status": "PASS",
+      "cuts": 4,
+      "lines": 4,
+      "duration": 8.999977324263039
+    },
+    {
+      "name": "preview playback",
+      "status": "PASS"
+    },
+    {
+      "name": "project save and reload",
+      "status": "PASS"
+    },
+    {
+      "name": "regenerate after restored audio",
+      "status": "PASS"
+    },
+    {
+      "name": "UI MP4 export and decode",
+      "status": "PASS",
+      "creativeState": "BELOW_TARGET",
+      "oneClick": true,
+      "video": "h264",
+      "audio": "aac",
+      "duration": "9.024000",
+      "progressUpdates": 1882,
+      "decodedFrames": 216,
+      "visibleContent": true
+    }
+  ],
+  "oneClick": true,
+  "pageErrors": [],
+  "cancellationRetryRaw": {
+    "path": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/ci987-validation/kamen-browser-qa/cancellation-retry/probe-summary.json.gz",
+    "sha256": "c7162e85a9945a4b7ed3067819642ce4f0b6954187ed28bc7d17a1162e326922",
+    "uncompressedSHA256": "7d96f790041446591c93b474fcfce0142f1d1361a311db997a2ec877f7b04b97",
+    "archiveMember": "kamen-browser-qa/cancellation-retry/probe-summary.json"
+  },
+  "cancellationRetryStatus": "PASS",
+  "retryFullDecode": "PASS",
+  "uiBoundaryRaw": {
+    "path": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/ci987-validation/kamen-browser-qa/ui-boundary/report.json.gz",
+    "sha256": "ed5bd06534bee6a054718ab05c668a155535d0723a17807941defa83858026b1",
+    "uncompressedSHA256": "339b751ccc18a2c838118f8f3b9c37a0326182dee1e911fca72b6dce4fd27d25",
+    "archiveMember": "kamen-browser-qa/ui-boundary/report.json"
+  },
+  "uiBoundaryStatus": "PASS",
+  "uiBoundaryScope": "BROWSER_UI_BOUNDARY_WITH_SYNTHETIC_ACCEPTANCE_AND_VALIDATED_MP4_REUSE",
+  "traceParts": [],
+  "limitations": [
+    "No source correspondence from historical987 to release9f has been established here.",
+    "Synthetic UI boundary acceptance is separate from actual completed UI export."
+  ]
+}

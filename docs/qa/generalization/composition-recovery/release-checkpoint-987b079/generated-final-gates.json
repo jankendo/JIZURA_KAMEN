@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "releaseSourceCommit": "987b0793dedbd424e900da6ed63f4bcad29c9fd3",
+  "manifestSHA256": "45b2c58229fddcfe37f75edbcabccb85ebf04d95144bda05a0ef0011ff25f174",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "UNVERIFIED",
+  "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED",
+  "checks": {
+    "technical": [
+      {
+        "name": "ci",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "regression/build",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "browser",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "finished artifacts",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      }
+    ],
+    "quality": [
+      {
+        "name": "comparison coverage",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "important semantic operators",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "regressions and correspondence",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "domain": "technical",
+      "name": "ci",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "technical",
+      "name": "regression/build",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "technical",
+      "name": "browser",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "technical",
+      "name": "finished artifacts",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "quality",
+      "name": "comparison coverage",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "quality",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "quality",
+      "name": "regressions and correspondence",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    }
+  ],
+  "limitations": [
+    "Hash binding establishes file consistency, not runner authenticity. Adapters must preserve raw observations; no artistic score is inferred.",
+    "No deployment or production verification is implied by RELEASE_GO."
+  ]
+}

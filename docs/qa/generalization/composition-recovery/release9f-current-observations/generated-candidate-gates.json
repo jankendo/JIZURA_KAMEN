@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "releaseSourceCommit": "9f805e269e1e34ffb232117a5cb19a699ae0b94d",
+  "manifestSHA256": "a348fa94ecc2d0f3b705f49b7d9bfdbce406b0e2e7376f03a78923962e19101a",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "UNVERIFIED",
+  "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED",
+  "checks": {
+    "technical": [
+      {
+        "name": "ci",
+        "state": "UNVERIFIED",
+        "reason": "CI not completed successfully"
+      },
+      {
+        "name": "regression/build",
+        "state": "UNVERIFIED",
+        "reason": "per-test observations absent"
+      },
+      {
+        "name": "browser",
+        "state": "UNVERIFIED",
+        "reason": "actual browser observations absent"
+      },
+      {
+        "name": "finished artifacts",
+        "state": "UNVERIFIED",
+        "reason": "movie observations absent"
+      }
+    ],
+    "quality": [
+      {
+        "name": "comparison coverage",
+        "state": "UNVERIFIED",
+        "reason": "missing/duplicate comparison condition"
+      },
+      {
+        "name": "important semantic operators",
+        "state": "UNVERIFIED",
+        "reason": "important intent population missing"
+      },
+      {
+        "name": "regressions and correspondence",
+        "state": "UNVERIFIED",
+        "reason": "safety/path-source correspondence unverified"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "domain": "technical",
+      "name": "ci",
+      "state": "UNVERIFIED",
+      "reason": "CI not completed successfully"
+    },
+    {
+      "domain": "technical",
+      "name": "regression/build",
+      "state": "UNVERIFIED",
+      "reason": "per-test observations absent"
+    },
+    {
+      "domain": "technical",
+      "name": "browser",
+      "state": "UNVERIFIED",
+      "reason": "actual browser observations absent"
+    },
+    {
+      "domain": "technical",
+      "name": "finished artifacts",
+      "state": "UNVERIFIED",
+      "reason": "movie observations absent"
+    },
+    {
+      "domain": "quality",
+      "name": "comparison coverage",
+      "state": "UNVERIFIED",
+      "reason": "missing/duplicate comparison condition"
+    },
+    {
+      "domain": "quality",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "important intent population missing"
+    },
+    {
+      "domain": "quality",
+      "name": "regressions and correspondence",
+      "state": "UNVERIFIED",
+      "reason": "safety/path-source correspondence unverified"
+    }
+  ],
+  "limitations": [
+    "Hash binding establishes file consistency, not runner authenticity. Adapters must preserve raw observations; no artistic score is inferred.",
+    "No deployment or production verification is implied by RELEASE_GO."
+  ]
+}

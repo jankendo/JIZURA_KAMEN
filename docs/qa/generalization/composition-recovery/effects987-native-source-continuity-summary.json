@@ -1,0 +1,190 @@
+{
+  "schema": 1,
+  "records": [
+    {
+      "artifact": "effects987-native-01",
+      "caseId": "release-supplement-01",
+      "artifactBinding": {
+        "inputHash": "03c043e5d4d7a2863ec57e2a7e2dc0810298e5839107c6bd2c9c00eb721f029f",
+        "planHash": "822e14f1ba3e79d02a5a60129a02a9310bff4fcb6bada8122ff7ef617fcf04ad",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "b90cc291a5bd24a72f54446b6dcc81a11c819f9bad9f759a10e9632c6adcbca2",
+        "videoSHA256": "fa1167cc840bad23de79334521711b07faf09db443cdf09a60deae2b70a0ac3f",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "currentBuild": {
+        "sourceCommit": "987b0793dedbd424e900da6ed63f4bcad29c9fd3",
+        "sourceDirty": false,
+        "sourceTreeSHA256": "390114a85ecf624bf93935150a762105d542b8af8ba928a0360e5d70a66f4433"
+      },
+      "sourceContinuity": {
+        "status": "EXACT_NATIVE_RGBA_ALL_OUTPUT_FRAMES",
+        "originalSourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "currentSourceCommit": "987b0793dedbd424e900da6ed63f4bcad29c9fd3",
+        "expectedFullFrames": 240,
+        "actualFullFrames": 240,
+        "selectedPlanHash": "822e14f1ba3e79d02a5a60129a02a9310bff4fcb6bada8122ff7ef617fcf04ad",
+        "comparison": "Exact time and untouched opaque production RGBA SHA256 per full output frame; no encoding-noise tolerance",
+        "mismatches": [],
+        "scope": "Frozen adopted plan only. Does not prove unchanged planning, selection, QA/UI, or new-source H264/AAC encoding."
+      },
+      "groups": {
+        "CAMERA_HOOK:lyricsCameraAt": {
+          "dispatchCalls": 199,
+          "selectedUnitIntervals": 9
+        },
+        "DECOR:bars": {
+          "dispatchCalls": 112,
+          "selectedUnitIntervals": 5
+        },
+        "LAYOUTS:type": {
+          "dispatchCalls": 84,
+          "selectedUnitIntervals": 3
+        },
+        "TREAT:none": {
+          "dispatchCalls": 199,
+          "selectedUnitIntervals": 9
+        },
+        "ENTER:wipe": {
+          "dispatchCalls": 9,
+          "selectedUnitIntervals": 5
+        },
+        "DECOR:bracketsJP": {
+          "dispatchCalls": 97,
+          "selectedUnitIntervals": 4
+        },
+        "HOLD:still": {
+          "dispatchCalls": 103,
+          "selectedUnitIntervals": 5
+        },
+        "EXIT:wipe": {
+          "dispatchCalls": 14,
+          "selectedUnitIntervals": 5
+        },
+        "TRANS:wipe": {
+          "dispatchCalls": 8,
+          "selectedUnitIntervals": 4
+        },
+        "LAYOUTS:diag": {
+          "dispatchCalls": 28,
+          "selectedUnitIntervals": 2
+        },
+        "LAYOUTS:globalReadableUnit": {
+          "dispatchCalls": 87,
+          "selectedUnitIntervals": 4
+        }
+      },
+      "independentEncodedSemantics": "UNMEASURED",
+      "scope": "Native implementation reachability only; not a denominator of independent effects."
+    },
+    {
+      "artifact": "effects987-native-02",
+      "caseId": "release-supplement-02",
+      "artifactBinding": {
+        "inputHash": "d11d5d37f97ac55d4b45ea02e2a3f01cfaf6274507f99002076bdbf63a9d9a3a",
+        "planHash": "54b175e540e05effe9c6560e94d43008beaf48a595cdc41f46a1a10cb88d82c7",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "bd2a3762610a152687576f217e66e91f128f5d5b3bb13542aca21360b18c5303",
+        "videoSHA256": "87bdba4eaccaaf3f6dcb045a9c753e07b969ea461f2a4d3feb797ea9d093f320",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "currentBuild": {
+        "sourceCommit": "987b0793dedbd424e900da6ed63f4bcad29c9fd3",
+        "sourceDirty": false,
+        "sourceTreeSHA256": "390114a85ecf624bf93935150a762105d542b8af8ba928a0360e5d70a66f4433"
+      },
+      "sourceContinuity": {
+        "status": "EXACT_NATIVE_RGBA_ALL_OUTPUT_FRAMES",
+        "originalSourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "currentSourceCommit": "987b0793dedbd424e900da6ed63f4bcad29c9fd3",
+        "expectedFullFrames": 240,
+        "actualFullFrames": 240,
+        "selectedPlanHash": "54b175e540e05effe9c6560e94d43008beaf48a595cdc41f46a1a10cb88d82c7",
+        "comparison": "Exact time and untouched opaque production RGBA SHA256 per full output frame; no encoding-noise tolerance",
+        "mismatches": [],
+        "scope": "Frozen adopted plan only. Does not prove unchanged planning, selection, QA/UI, or new-source H264/AAC encoding."
+      },
+      "groups": {
+        "CAMERA_HOOK:cameraAt": {
+          "dispatchCalls": 108,
+          "selectedUnitIntervals": 6
+        },
+        "CAMERA_HOOK:lyricsCameraAt": {
+          "dispatchCalls": 209,
+          "selectedUnitIntervals": 10
+        },
+        "LAYOUTS:portraitStack": {
+          "dispatchCalls": 177,
+          "selectedUnitIntervals": 8
+        },
+        "TREAT:none": {
+          "dispatchCalls": 337,
+          "selectedUnitIntervals": 10
+        },
+        "ENTER:wipe": {
+          "dispatchCalls": 53,
+          "selectedUnitIntervals": 9
+        },
+        "DECOR:rings": {
+          "dispatchCalls": 209,
+          "selectedUnitIntervals": 10
+        },
+        "DECOR:bracketsJP": {
+          "dispatchCalls": 194,
+          "selectedUnitIntervals": 9
+        },
+        "HOLD:still": {
+          "dispatchCalls": 287,
+          "selectedUnitIntervals": 10
+        },
+        "EXIT:wipe": {
+          "dispatchCalls": 49,
+          "selectedUnitIntervals": 9
+        },
+        "TRANS:wipe": {
+          "dispatchCalls": 14,
+          "selectedUnitIntervals": 8
+        },
+        "LAYOUTS:vcols": {
+          "dispatchCalls": 32,
+          "selectedUnitIntervals": 2
+        }
+      },
+      "independentEncodedSemantics": "UNMEASURED",
+      "scope": "Native implementation reachability only; not a denominator of independent effects."
+    }
+  ],
+  "human": "HUMAN_UNVERIFIED"
+}

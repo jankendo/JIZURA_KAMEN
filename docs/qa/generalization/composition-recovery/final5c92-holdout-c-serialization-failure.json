@@ -1,0 +1,18 @@
+{
+  "fixture": "holdout-14",
+  "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+  "videoSHA256": "addb6bb598d5e06aaf1c40eb0611fc90efcdc8baffa806d54b06cd52c2d2b4f6",
+  "archiveSHA256Matches": true,
+  "status": "APP_EXPORT_PASS_HARNESS_SERIALIZATION_FAILURE",
+  "codecs": [
+    "h264",
+    "aac"
+  ],
+  "completeDecode": "PASS",
+  "decodeStderr": "",
+  "benchmarkLog": "holdout-14 v3 PASS 7000880ms",
+  "evaluation": "UNVERIFIED_LOST_IN_UNSERIALIZED_RESULT",
+  "sourceOfFailure": "RangeError: Invalid string length at JSON.stringify matrix.cjs:38:1870",
+  "remaining": "Only holdout-14 evidence replay and holdout-15 unexecuted case; do not rerun successful other 28 rows",
+  "fix": "Streaming atomic output plus durable independent per-case rows; thresholds, fixtures, source app unchanged"
+}

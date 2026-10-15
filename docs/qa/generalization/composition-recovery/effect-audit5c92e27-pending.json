@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "checkedAt": "2026-10-15T03:39:39.664560+00:00",
+  "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+  "runs": [
+    38675427985,
+    38675521547
+  ],
+  "status": "UNMEASURED_RUNS_IN_PROGRESS",
+  "scope": {
+    "fixture": "supplemental-holdout-13",
+    "variant": "v3",
+    "automaticSelection": true,
+    "hookGroups": [
+      "temporalCinemaFocus",
+      "drawCinemaAccent",
+      "cameraAt",
+      "lyricsCameraAt",
+      "paintCinemaGrammarForeground",
+      "backgroundComposite",
+      "decorations",
+      "transitions"
+    ],
+    "denominator": "Named group controls on one adopted movie; neither all registered techniques nor all selected effects across the 30-condition matrix."
+  },
+  "requiredIdentityChecks": [
+    "Actual final video SHA-256 and frozen reference/audio SHA-256",
+    "Actual selected plan hash and full output frame count; exclude preview groups",
+    "Native original/ON whole RGBA hashes at same timestamps, dimensions and FPS",
+    "Native ON/ON_REPEAT equality",
+    "Exact decoded PTS correspondence for original, ON, OFF, ON_REPEAT",
+    "Original-vs-ON encoding variance and ON-repeat encoding variance both used, no noise threshold relaxation"
+  ],
+  "classificationRules": {
+    "VERIFIED_COMPOSITE_CONTRIBUTION": "Named hook contributes beyond max(1,3*max(original-vs-ON noise,ON-repeat noise)); does not certify operator semantics.",
+    "VERIFIED_INTENT": "Requires existing measurable intent target, sign/direction and execution interval matched to actual decoded artifact, separate from contribution.",
+    "NOT_APPLICABLE": "Requires selected-plan and executed-branch evidence of no applicable intent; global dispatch/equal frames alone insufficient.",
+    "CONFOUNDED": "Effect visible but independent intended target/direction not identified, or another coupled component is disabled with the hook.",
+    "UNMEASURED": "Missing target/phase/independent semantic observation or unfinished controls.",
+    "STALE": "Source/plan/video/profile/native actual identity mismatch.",
+    "FAILED": "Applicable measurable intent demonstrably absent/wrong in decoded final movie; not mere small/no group pixel difference."
+  },
+  "knownControlLimits": [
+    "backgroundComposite removes nested grammar/camera/accent background dependencies and is a composite treatment, not isolated attribution to each nested effect.",
+    "cameraAt control can have no visual contribution when adopted grammar path uses its own focus; inspect actual execution before declaring selected camera failed.",
+    "No hook invocation counter is currently recorded except temporal parameterTrace; selection and Native ON/OFF equality cannot establish execution of every branch.",
+    "One case cannot supply all-matrix selected-intent coverage."
+  ],
+  "human": "HUMAN_UNVERIFIED"
+}

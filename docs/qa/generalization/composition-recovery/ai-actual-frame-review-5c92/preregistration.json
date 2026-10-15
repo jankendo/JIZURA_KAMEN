@@ -1,0 +1,499 @@
+{
+  "registeredAtUTC": "2026-10-15T06:47:57.299569+00:00",
+  "reviewType": "AI actual decoded frame inspection; no independent human or external expert participation",
+  "selection": "Parent preselected five cases using existing aggregate metrics; not a blind sample",
+  "fixedFrameTimes": {
+    "fractionsOfVideoDuration": [
+      0.16666666666666666,
+      0.5,
+      0.8333333333333334
+    ],
+    "temporalNeighborsSeconds": [
+      -0.125,
+      0,
+      0.125
+    ],
+    "resolution": "preserve aspect ratio; contact sheet thumbs <=320x240, original sampled PNG available"
+  },
+  "criteria": [
+    "glyph integrity and visible clipping",
+    "unintended overlapping text vs intentional motion copies",
+    "margins and composition",
+    "local readability against background",
+    "motion over fixed 0.25s windows",
+    "music/section alignment only where corresponding source metadata is available; otherwise UNMEASURED"
+  ],
+  "decisionRules": [
+    "Do not equate machine score changes with visible defects",
+    "PCM confounded comparisons cannot establish algorithm causality",
+    "A sampled frame review cannot certify whole-video beauty or rule out every unsampled defect",
+    "No release gates changed by this review"
+  ],
+  "cases": [
+    {
+      "fixture": "development-03",
+      "conditionMatch": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": false,
+          "outputProfile": true
+        },
+        "status": "NONMATCHED_OR_CONFOUNDED"
+      },
+      "mainConditionMatch": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": false,
+          "outputProfile": true
+        },
+        "status": "NONMATCHED_OR_CONFOUNDED"
+      },
+      "mainVideoSHA256": "75f6c6651e5812d8ac4cc6428db5dfb8108d405dbfc9cca57192fef0f36bf212",
+      "previousVideoSHA256": "073adf67f892c5d3c02cb6ae5206a68206dea5ab96a6431b6b6eb5b75fc555fe",
+      "currentVideoSHA256": "6a67ab34285721ecdd4a84af285579e44ffce5d1a2f172d2bd638e9aeb39f636",
+      "currentSourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+      "main": {
+        "perceptualNovelty": 75,
+        "motion": 21.5,
+        "temporalContrast": 34,
+        "hookNovelty": 44,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 82,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 74.86637635843687,
+        "localContrast": 93,
+        "motionRealization": 100,
+        "typographyDiversity": 100
+      },
+      "previous5e": {
+        "perceptualNovelty": 93,
+        "motion": 20,
+        "temporalContrast": 33,
+        "hookNovelty": 51,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 93,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 92.60290282984191,
+        "localContrast": 100,
+        "motionRealization": 100,
+        "typographyDiversity": 72
+      },
+      "current": {
+        "perceptualNovelty": 75,
+        "motion": 20,
+        "temporalContrast": 22,
+        "hookNovelty": 57,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 74,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 100,
+        "motionRealization": 100,
+        "typographyDiversity": 24
+      },
+      "lyricSafety": "MEASURED",
+      "holdMinimumContrasts": [
+        100,
+        100,
+        100
+      ],
+      "motionSummary": {
+        "population": 3,
+        "measured": 2,
+        "rendererAgreementSuccess": 2,
+        "measurableRate": 0.6666666666666666,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": 1,
+        "manualExcluded": 0,
+        "nonAutomaticExcluded": 0,
+        "intentConfounded": 0,
+        "intentUnmeasured": 1,
+        "intentMeasured": 2,
+        "intentMeasurableRate": 0.6666666666666666,
+        "intentSuccessful": 2
+      }
+    },
+    {
+      "fixture": "development-05",
+      "conditionMatch": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": false,
+          "outputProfile": true
+        },
+        "status": "NONMATCHED_OR_CONFOUNDED"
+      },
+      "mainConditionMatch": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": false,
+          "outputProfile": true
+        },
+        "status": "NONMATCHED_OR_CONFOUNDED"
+      },
+      "mainVideoSHA256": "f151807669ed0a93589483d301af0999da0d1ca7cd95fc051a42f043c77cb6ab",
+      "previousVideoSHA256": "a02bcb3973c3a162b9b787975b75960ca994429c87d8cc97f05f050cf41579eb",
+      "currentVideoSHA256": "a9cd71743ee356a22ae52c15cadf409a7a81fc590ab81add1005129ec319cc0e",
+      "currentSourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+      "main": {
+        "perceptualNovelty": 100,
+        "motion": 20.5,
+        "temporalContrast": 34,
+        "hookNovelty": 43,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 85,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 99,
+        "motionRealization": 67,
+        "typographyDiversity": 67
+      },
+      "previous5e": {
+        "perceptualNovelty": 100,
+        "motion": 32.5,
+        "temporalContrast": 9,
+        "hookNovelty": 86,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 87,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 100,
+        "motionRealization": 67,
+        "typographyDiversity": 37
+      },
+      "current": {
+        "perceptualNovelty": 100,
+        "motion": 25,
+        "temporalContrast": 20,
+        "hookNovelty": 38,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 86,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 83,
+        "motionRealization": 100,
+        "typographyDiversity": 42
+      },
+      "lyricSafety": "MEASURED",
+      "holdMinimumContrasts": [
+        57,
+        100,
+        100
+      ],
+      "motionSummary": {
+        "population": 3,
+        "measured": 3,
+        "rendererAgreementSuccess": 3,
+        "measurableRate": 1,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": 1,
+        "manualExcluded": 0,
+        "nonAutomaticExcluded": 0,
+        "intentConfounded": 0,
+        "intentUnmeasured": 0,
+        "intentMeasured": 3,
+        "intentMeasurableRate": 1,
+        "intentSuccessful": 3
+      }
+    },
+    {
+      "fixture": "development-09",
+      "conditionMatch": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": true,
+          "outputProfile": true
+        },
+        "status": "MATCHED"
+      },
+      "mainConditionMatch": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": true,
+          "outputProfile": true
+        },
+        "status": "MATCHED"
+      },
+      "mainVideoSHA256": "be46b7e84eb8c2681677914f906245820bab0e45626d72eea4ded0211f1da9a0",
+      "previousVideoSHA256": "11963fe61db66ade7103ba4e429dba757b382ebbed16de8258b3a969ef2ce5dc",
+      "currentVideoSHA256": "3e7a9cea096c16ec52c8dfa776fab276dced60b14cb0471c4b4bf317485deeb4",
+      "currentSourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+      "main": {
+        "perceptualNovelty": 93,
+        "motion": 69,
+        "temporalContrast": 14,
+        "hookNovelty": 35,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 73,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 99,
+        "motionRealization": 100,
+        "typographyDiversity": 64
+      },
+      "previous5e": {
+        "perceptualNovelty": 100,
+        "motion": 57,
+        "temporalContrast": 9,
+        "hookNovelty": 64,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 81,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 99,
+        "motionRealization": 100,
+        "typographyDiversity": 51
+      },
+      "current": {
+        "perceptualNovelty": 97,
+        "motion": 57,
+        "temporalContrast": 20,
+        "hookNovelty": 38,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 89,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": null,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 99,
+        "motionRealization": 100,
+        "typographyDiversity": 57
+      },
+      "lyricSafety": "MEASURED",
+      "holdMinimumContrasts": [
+        51,
+        100,
+        100
+      ],
+      "motionSummary": {
+        "population": 3,
+        "measured": 2,
+        "rendererAgreementSuccess": 2,
+        "measurableRate": 0.6666666666666666,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": 1,
+        "manualExcluded": 0,
+        "nonAutomaticExcluded": 0,
+        "intentConfounded": 0,
+        "intentUnmeasured": 1,
+        "intentMeasured": 2,
+        "intentMeasurableRate": 0.6666666666666666,
+        "intentSuccessful": 2
+      }
+    },
+    {
+      "fixture": "holdout-01",
+      "conditionMatch": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": false,
+          "outputProfile": true
+        },
+        "status": "NONMATCHED_OR_CONFOUNDED"
+      },
+      "mainConditionMatch": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": false,
+          "outputProfile": true
+        },
+        "status": "NONMATCHED_OR_CONFOUNDED"
+      },
+      "mainVideoSHA256": "5a3c08d8f49d77e036b5e8d0763c2876b3f3d416dbdcde8162850ce7267da335",
+      "previousVideoSHA256": "db063e5bb95a3ae79bb64d75f323bbd6c3be251176da731b116611c7d4ae843a",
+      "currentVideoSHA256": "5b95108e72f0651145a2cd776d303150fc04901b0d12d30c97cf2a5976f2b9de",
+      "currentSourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+      "main": {
+        "perceptualNovelty": 67,
+        "motion": 32,
+        "temporalContrast": 79,
+        "hookNovelty": 41,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 62,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 84.29117193281796,
+        "localContrast": 98,
+        "motionRealization": 100,
+        "typographyDiversity": 61
+      },
+      "previous5e": {
+        "perceptualNovelty": 61,
+        "motion": 29,
+        "temporalContrast": 37,
+        "hookNovelty": 52,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 50,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 73.82348045493283,
+        "localContrast": 98,
+        "motionRealization": 100,
+        "typographyDiversity": 6
+      },
+      "current": {
+        "perceptualNovelty": 74,
+        "motion": 26.5,
+        "temporalContrast": 75,
+        "hookNovelty": 52,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 62,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 100,
+        "regionalPerceptualNovelty": 94.24107236706134,
+        "localContrast": 98,
+        "motionRealization": 100,
+        "typographyDiversity": 63
+      },
+      "lyricSafety": "MEASURED",
+      "holdMinimumContrasts": [
+        54,
+        100,
+        100
+      ],
+      "motionSummary": {
+        "population": 3,
+        "measured": 3,
+        "rendererAgreementSuccess": 3,
+        "measurableRate": 1,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": 1,
+        "manualExcluded": 0,
+        "nonAutomaticExcluded": 0,
+        "intentConfounded": 2,
+        "intentUnmeasured": 0,
+        "intentMeasured": 1,
+        "intentMeasurableRate": 0.3333333333333333,
+        "intentSuccessful": 1
+      }
+    },
+    {
+      "fixture": "holdout-08",
+      "conditionMatch": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": true,
+          "outputProfile": true
+        },
+        "status": "MATCHED"
+      },
+      "mainConditionMatch": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": true,
+          "outputProfile": true
+        },
+        "status": "MATCHED"
+      },
+      "mainVideoSHA256": "a853b07a547f8f9b11aa0823d40f47ddbed382f85b6f10f51e2eaf87a269f62f",
+      "previousVideoSHA256": "c6c1c71fb60150b709addd0b6507eb3a19a7ad8391626b61ab05380b25541d74",
+      "currentVideoSHA256": "4b0368994af5893e4a7522853c7fd203cb41807ab807319942b8bd3d3777deb8",
+      "currentSourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+      "main": {
+        "perceptualNovelty": 100,
+        "motion": 54.5,
+        "temporalContrast": 19,
+        "hookNovelty": 41,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 99,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 60,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 73,
+        "motionRealization": 100,
+        "typographyDiversity": 35
+      },
+      "previous5e": {
+        "perceptualNovelty": 100,
+        "motion": 41,
+        "temporalContrast": 37,
+        "hookNovelty": 57,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 100,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 80,
+        "motionRealization": 100,
+        "typographyDiversity": 43
+      },
+      "current": {
+        "perceptualNovelty": 100,
+        "motion": 25.5,
+        "temporalContrast": 16,
+        "hookNovelty": 68,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 97,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 50,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 99,
+        "motionRealization": 100,
+        "typographyDiversity": 43
+      },
+      "lyricSafety": "MEASURED",
+      "holdMinimumContrasts": [
+        81,
+        100,
+        100
+      ],
+      "motionSummary": {
+        "population": 3,
+        "measured": 3,
+        "rendererAgreementSuccess": 3,
+        "measurableRate": 1,
+        "rendererAgreementRate": 1,
+        "intentRealizationSuccessRate": 1,
+        "manualExcluded": 0,
+        "nonAutomaticExcluded": 0,
+        "intentConfounded": 0,
+        "intentUnmeasured": 0,
+        "intentMeasured": 3,
+        "intentMeasurableRate": 1,
+        "intentSuccessful": 3
+      }
+    }
+  ]
+}

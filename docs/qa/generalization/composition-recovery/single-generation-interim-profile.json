@@ -1,0 +1,154 @@
+{
+  "status": "INTERIM_NOT_COMPLETION",
+  "sourceBuilt": "023ba53",
+  "externalProfilerCommit": "f76d3e6",
+  "concurrency": "single Chromium heavy trial, prior concurrent Native process ended",
+  "samePlanGroups": [
+    {
+      "planHash": "bfb27a750a48b9aac32e8f824af61fc9d42e02909a40574acfef1bf0eb5aeaeb",
+      "calls": [
+        {
+          "id": 41,
+          "options": {
+            "inputHash": "c759186767ec88fbebf9fac4ecee91e94370c89d07a1a1dd00fe113fa91ac7f4",
+            "physicalOnly": false,
+            "backgroundConsistency": false,
+            "times": null,
+            "additionalTimes": [],
+            "lines": [
+              0
+            ]
+          },
+          "reuse": null,
+          "elapsedMs": 690.6999999880791
+        },
+        {
+          "id": 57,
+          "options": {
+            "inputHash": "c759186767ec88fbebf9fac4ecee91e94370c89d07a1a1dd00fe113fa91ac7f4",
+            "physicalOnly": true,
+            "backgroundConsistency": true,
+            "times": null,
+            "additionalTimes": [
+              0.54,
+              0.8400000000000001,
+              1,
+              1.5,
+              2,
+              2.3,
+              2.54,
+              2.84,
+              3,
+              3.5,
+              4,
+              4.3,
+              4.54,
+              4.84,
+              5,
+              5.5,
+              6,
+              6.3,
+              6.54,
+              6.84,
+              6.9975000000000005,
+              7.495,
+              7.9925,
+              8.290000000000001
+            ],
+            "lines": null
+          },
+          "reuse": null,
+          "elapsedMs": 2275.9000000059605
+        }
+      ]
+    },
+    {
+      "planHash": "ba1fe886f08dbc5115b0332d59c2c25066c99e1f9672279683f145b6c26a1187",
+      "calls": [
+        {
+          "id": 63,
+          "options": {
+            "inputHash": "c759186767ec88fbebf9fac4ecee91e94370c89d07a1a1dd00fe113fa91ac7f4",
+            "physicalOnly": true,
+            "backgroundConsistency": true,
+            "times": null,
+            "additionalTimes": [
+              0.54,
+              0.8400000000000001,
+              1,
+              1.5,
+              2,
+              2.3,
+              2.54,
+              2.84,
+              3,
+              3.5,
+              4,
+              4.3,
+              4.54,
+              4.84,
+              5,
+              5.5,
+              6,
+              6.3,
+              6.54,
+              6.84,
+              6.9975000000000005,
+              7.495,
+              7.9925,
+              8.290000000000001
+            ],
+            "lines": null
+          },
+          "reuse": null,
+          "elapsedMs": 1113.1000000089407
+        },
+        {
+          "id": 73,
+          "options": {
+            "inputHash": "c759186767ec88fbebf9fac4ecee91e94370c89d07a1a1dd00fe113fa91ac7f4",
+            "physicalOnly": true,
+            "backgroundConsistency": true,
+            "times": null,
+            "additionalTimes": [
+              0.54,
+              0.8400000000000001,
+              1,
+              1.5,
+              2,
+              2.3,
+              2.54,
+              2.84,
+              3,
+              3.5,
+              4,
+              4.3,
+              4.54,
+              4.84,
+              5,
+              5.5,
+              6,
+              6.3,
+              6.54,
+              6.84,
+              6.9975000000000005,
+              7.495,
+              7.9925,
+              8.290000000000001
+            ],
+            "lines": null
+          },
+          "reuse": {
+            "status": "REUSED_IDENTICAL_PLAN_INPUT_PROFILE_SAMPLES",
+            "freshNativeRenders": 0
+          },
+          "elapsedMs": 118.30000001192093
+        }
+      ]
+    }
+  ],
+  "conclusion": "Repeated plan hash alone does not establish duplicate measurement. One repeated contract used existing cache with zero fresh renders; another has different physical/reference/time/line conditions. No evidence supports removing these checks.",
+  "cgroupMemoryEvents": "low 0\nhigh 0\nmax 115898\noom 33\noom_kill 3\noom_group_kill 0\n",
+  "heapPeakSampledBytes": 533855846,
+  "memoryLimits": "Sampled JS heap only, not total process/GPU peak"
+}

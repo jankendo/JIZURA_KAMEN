@@ -1,0 +1,22 @@
+{
+  "sourceFileSHA256": "698831dbfdf1c2ac231039c643592a4105bd5ce44b3a34da80e4666189dbe388",
+  "functionBody": "(i,g)=>mode==='gather'?{dx:(g.li%2?1:-1)*env.W*.035*settle}:mode==='duo'?{dx:(g.li%2?1:-1)*env.W*(.035*settle+(stage===2?.013*Math.sin(u*Math.PI*4):0))}:mode==='openSky'?{dy:-env.H*.013*ease(u)}:mode==='fracture'?{dx:env.W*.003*Math.sin(env.t*37+(stage?i:g.li)),dy:env.H*.004*Math.sin(env.t*41+(stage?i:g.li)*.7),rot:-2*force}:mode==='voice'?{s:.96+.04*ease(u*2)+.007*Math.sin(u*Math.PI*2),dx:env.W*.006*Math.sin(u*Math.PI*2+(stage?i:g.li)*.05)}:mode==='stadium'?{s:1+.035*ease(u),dy:env.H*.008*Math.sin(u*Math.PI)}:mode==='stands'?{dx:(g.li%2?1:-1)*env.W*.012*Math.sin(u*Math.PI*2),dy:env.H*.007*Math.sin(u*Math.PI*2+g.li)}:{}",
+  "functionSHA256": "764ad62cec9a2c08d032736648150f2533e10fc837445b7475488377a1e605b7",
+  "schema": 1,
+  "registeredAt": "2026-10-15T06:54:37.965420+00:00",
+  "status": "REGISTERED_BEFORE_ACTUAL_DUO_COMPONENT_OUTCOMES",
+  "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+  "sourcePath": "src/11zzp_shot_grammar.js",
+  "target": "existing row-alternating primary duo dx settle summand; not background stable-travel",
+  "operator": "dx=(rowOdd?1:-1)*W*.035*(1-ease(clamp(localTime/duration)*3))",
+  "actionRange": "[cut.start, cut.start+cut.dur/3] from actual existing formula",
+  "counterfactual": "At exact trusted function push, wrap only dx result by subtracting the summand in OFF. Preserve original result object in ON, stage2 sine, other charFns, subsequent maps/clamps and upstream/downstream typography modifiers. Unknown function => rejection.",
+  "requirements": [
+    "Original adopted Native exact at all output timestamps, ON_REPEAT exact",
+    "Each mode independent final artifact Native/decoded glyph evidence under that mode hook state",
+    "Same glyph identities and actual decoded timestamps, selected unit and action range",
+    "ON-OFF decoded displacement vs ON-OFF Native target difference <=max(.5,.1*expected) per glyph; existing >=.9 agreement",
+    "Keep original whole-interval settle FAILED; separate independent component result only"
+  ],
+  "human": "HUMAN_UNVERIFIED"
+}

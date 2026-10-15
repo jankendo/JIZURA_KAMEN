@@ -1,0 +1,101 @@
+{
+  "reviewer": "AI assistant inspection of decoded actual MP4 frames; not external experts or independent humans",
+  "preregistration": "preregistration.json",
+  "sampleCount": 90,
+  "videos": 10,
+  "fixedWindowsPerVideo": 3,
+  "framesPerWindow": 3,
+  "result": "No major missing glyph, clipping, or unintended text overlap identified in the sampled frames. This is not a whole-film absence proof or a release gate PASS.",
+  "observations": [
+    {
+      "fixture": "development-09",
+      "comparability": "MATCHED",
+      "observed": [
+        "1.542–1.792s: previous two-line centered phrase becomes a single line with a leftward composition; full phrase remains visible within the sampled image.",
+        "4.875–5.125s: both retain the same centered two-line phrase, with slightly different scale/background bar positions.",
+        "8.250–8.500s: neither contains lyrics; current reference last cut ends 8.09s, so this is consistent with planned tail rather than sampled evidence of missing active lyrics."
+      ],
+      "reading": "Sampled first/middle contrast is preserved. A lower hook/perceptual score does not identify a concrete glyph defect in these frames; the samples cannot establish improved musical timing or overall artistic quality.",
+      "concerns": [
+        "Current first phrase is closer to the left edge; no visible clipping in these samples.",
+        "Fixed windows do not cover section transitions or all beat events."
+      ],
+      "classification": "VISIBLE_COMPOSITION_CHANGE_NO_MAJOR_DEFECT_OBSERVED_IN_SAMPLES"
+    },
+    {
+      "fixture": "holdout-08",
+      "comparability": "MATCHED",
+      "observed": [
+        "1.542–1.792s: thin serif-like lettering becomes heavier block lettering, placed against a right-side grid while background bars remain visible.",
+        "4.875–5.125s: lyric appears below a wide image band in both; current band is cropped differently. Text remains distinct from the band.",
+        "8.250–8.500s: background-only tail in both; current reference final lyric ends at 7.75s."
+      ],
+      "reading": "There is still a visible first-to-second phrase composition change. Lower temporal/motion score is not itself evidence of a broken or absent effect. Local text/background separation is visibly strong in the sampled current frames.",
+      "concerns": [
+        "These short HOLD windows are near-static in both versions and cannot validate complete motion trajectories or beat synchronization.",
+        "Heavier type and more grid decoration are a creative tradeoff; no claim that they are artistically superior."
+      ],
+      "classification": "READABLE_COMPOSITION_TRADEOFF_NO_MAJOR_DEFECT_OBSERVED_IN_SAMPLES"
+    },
+    {
+      "fixture": "development-03",
+      "comparability": "PCM_CONFOUNDED",
+      "observed": [
+        "Current uses a much heavier display type than previous; current first/second phrases have more consistent scale/position.",
+        "At 8.250/8.375s current final phrase is one narrow line near upper-middle, while previous is two larger lines near lower-middle; at 8.500s both are background-only.",
+        "Current reference final cut ends at 8.43s, consistent with disappearance by the 8.500s sample."
+      ],
+      "reading": "The diversity score reduction corresponds to a real typographic/composition difference, rather than proving a sampling-only score artifact. However the different decoded PCM and changed font mean this is not an isolated causal test of the code change. The one-line final phrase is smaller and less prominent at thumbnail scale.",
+      "concerns": [
+        "A genuine legibility/composition tradeoff remains; cannot declare the 72→24 difference resolved or harmless over the full movie.",
+        "No sampled missing glyph or major clipping was found, but frame samples cannot certify reading-time sufficiency."
+      ],
+      "classification": "NONCAUSAL_COMPARISON_WITH_VISIBLE_SCALE_AND_FONT_TRADEOFF"
+    },
+    {
+      "fixture": "holdout-01",
+      "comparability": "PCM_CONFOUNDED",
+      "observed": [
+        "First sampled phrase remains centered in three lines, with similar white-on-dark visual hierarchy.",
+        "Second phrase changes from two lines to three and shifts lower, providing a different first-to-second phrase composition.",
+        "Both versions have background-only tail frames after the last planned lyric interval."
+      ],
+      "reading": "A visible composition change accompanies the higher current diversity score, but confounded PCM prevents assigning that improvement to the algorithm alone. Neither sample set establishes full-film creative improvement.",
+      "concerns": [
+        "Three-line presentation is a stylistic change; no independent human preference is available."
+      ],
+      "classification": "VISIBLE_VARIATION_NONCAUSAL_COMPARISON"
+    },
+    {
+      "fixture": "development-05",
+      "comparability": "PCM_CONFOUNDED",
+      "observed": [
+        "First phrase moves from below the framed image to over the image; its two lines remain visible.",
+        "Second phrase moves from centered over the image to a black band below the image.",
+        "Final phrase changes from 途切れない / 声を刻む to 途切れ / ない声 / を刻む in the sampled frame. All characters remain visible; the lexical unit 途切れない is split across lines."
+      ],
+      "reading": "The change is a real layout variation with a word-internal line break. It is not proof of missing source text or a technical glyph defect, but the final break is less natural for Japanese reading in this AI inspection and should not be described as an unqualified quality improvement.",
+      "concerns": [
+        "Word-internal wrapping is a specific creative/readability tradeoff requiring honest disclosure; no human verdict or full-film acceptability certification.",
+        "PCM mismatch prevents isolated causal comparison."
+      ],
+      "classification": "VISIBLE_WORD_INTERNAL_WRAP_TRADEOFF_NONCAUSAL_COMPARISON"
+    }
+  ],
+  "musicAlignment": {
+    "status": "UNMEASURED_BY_THIS_REVIEW",
+    "reason": "Current automatic PCM/section/BPM metadata is recorded separately; fixed near-HOLD windows and visual frames alone cannot verify musical appropriateness or independently isolate camera/FX. BPM confidence is metadata, not human perception."
+  },
+  "effectRealization": {
+    "status": "UNMEASURED_BY_THIS_REVIEW",
+    "reason": "No ON/OFF counterfactuals in this sample review; no independent attribution of concurrent effects."
+  },
+  "humanEvaluation": "HUMAN_UNVERIFIED",
+  "artistic100": "UNVERIFIED",
+  "sourceLimitations": [
+    "Only current reference plan metadata attached; prior plan metadata not yet independently extracted here.",
+    "3/5 case comparisons have decoded PCM mismatch and remain confounded.",
+    "Machine score tradeoffs retained unchanged; no gate or threshold changed.",
+    "Near-tail empty frames correspond to current planned lyric end; prior timing is not proven solely from current plan."
+  ]
+}

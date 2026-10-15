@@ -1,0 +1,2778 @@
+{
+  "schema": 1,
+  "sourceDirectory": "/workspace/kamen-next",
+  "sourceCommit": "987b0793dedbd424e900da6ed63f4bcad29c9fd3",
+  "inputSHA256": "9767dc8bca207777180fc95697f1090079edf9a52237d162f109f862c4a8157b",
+  "scope": "Selected settings inventory and existing primary composite intent evidence; not a count of independent effects or a release verdict.",
+  "classificationCounts": {
+    "NATURAL_PLANNED_AWAITING_DISPATCH": 73,
+    "STATIC_CONTRACT": 14,
+    "INACTIVE_BY_EXPLICIT_CONTRACT": 12
+  },
+  "primaryCompositeIntents": 9,
+  "verifiedPrimaryCompositeIntents": 4,
+  "records": [
+    {
+      "staticImplementationSourceCommit": "987b0793dedbd424e900da6ed63f4bcad29c9fd3",
+      "staticImplementationBinding": "STALE_STATIC_IMPLEMENTATION_DO_NOT_CERTIFY",
+      "fixture": "release-supplement-01",
+      "variant": "v3",
+      "videoSHA256": "fa1167cc840bad23de79334521711b07faf09db443cdf09a60deae2b70a0ac3f",
+      "referenceSHA256": "2254d6ee1b1323cc5440ea5963424e4b1d3715065e9b2669775bb5526f49d4f9",
+      "binding": {
+        "inputHash": "03c043e5d4d7a2863ec57e2a7e2dc0810298e5839107c6bd2c9c00eb721f029f",
+        "planHash": "822e14f1ba3e79d02a5a60129a02a9310bff4fcb6bada8122ff7ef617fcf04ad",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "b90cc291a5bd24a72f54446b6dcc81a11c819f9bad9f759a10e9632c6adcbca2",
+        "videoSHA256": "fa1167cc840bad23de79334521711b07faf09db443cdf09a60deae2b70a0ac3f",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "selections": [
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "layout",
+          "selectedId": "type",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "b02adb0f7f9fa5c3dbe2217708357adf9c680e8b83bc4098a965ce7184e62091",
+            "aliasKey": "layout:FUNCTION_ID_13",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "type"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "enter",
+          "selectedId": "wipe",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "75061495e4b3885f67bbe5d4d5b630f4db2d6fbd322bb22d65ecb3ab48807938",
+            "aliasKey": "enter:FUNCTION_ID_178",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "hold",
+          "selectedId": "still",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "hold:FUNCTION_ID_273",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "still"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "exit",
+          "selectedId": "wipe",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "53405e38e834aacc8347457b0f3eb3a9233d6c9d1255d7939113dc0d91fb0441",
+            "aliasKey": "exit:FUNCTION_ID_316",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "cam",
+          "selectedId": "driftDiag",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "45c19f93d29f40a8c01c86276b28f4f23a91dc98bea71466ee3c7cf68fedd7f5",
+            "aliasKey": "cam:FUNCTION_ID_422",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "driftDiag"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "trans",
+          "selectedId": "wipe",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "6c6c224d4485967e101c48448e995ccf07eeed46e771ec9ccec2cf8b85790c73",
+            "aliasKey": "trans:FUNCTION_ID_426",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "bg",
+          "selectedId": "none",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "ca0045c160ff9800661ecf6409a3decb06ea898b0559d7b68ea392b3065909dd",
+            "aliasKey": "bg:FUNCTION_ID_446",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "treat",
+          "selectedId": "none",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "treat:FUNCTION_ID_508",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "decor",
+          "selectedId": "bars",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "40f834bdd38a974329dd9e6e0775bbb0a7d161b8b94eb288d838309c82d50b0d",
+            "aliasKey": "decor:FUNCTION_ID_563",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "bars"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "decor",
+          "selectedId": "bracketsJP",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "40f834bdd38a974329dd9e6e0775bbb0a7d161b8b94eb288d838309c82d50b0d",
+            "aliasKey": "decor:FUNCTION_ID_618",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "bracketsJP"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "font",
+          "selectedId": "mincho_black",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "plannedValue": "mincho_black"
+        },
+        {
+          "cutOrdinal": 0,
+          "cutIndex": 0,
+          "line": 0,
+          "unitKey": "[0,0,0,0.3,1.2013513513513514,\"窓辺に\"]",
+          "group": "globalTypographyModifiers",
+          "selectedId": "applyTypography5",
+          "timeRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "compositeImplementation": "Shared wrapper chain called by mainDraw even when it.noHold=true",
+          "enabledDirectorStages": [
+            5,
+            6,
+            7
+          ],
+          "localHoldContract": "still",
+          "semanticIntents": [
+            "music-conditioned beat scale/width/weight/tracking",
+            "continuous baseline drift",
+            "motif rotation/skew",
+            "music-event amplification",
+            "semantic composition and motif motion",
+            "negative-space type scaling"
+          ],
+          "independentStageAttribution": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "layout",
+          "selectedId": "type",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "b02adb0f7f9fa5c3dbe2217708357adf9c680e8b83bc4098a965ce7184e62091",
+            "aliasKey": "layout:FUNCTION_ID_13",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "type"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "enter",
+          "selectedId": "wipe",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "75061495e4b3885f67bbe5d4d5b630f4db2d6fbd322bb22d65ecb3ab48807938",
+            "aliasKey": "enter:FUNCTION_ID_178",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "hold",
+          "selectedId": "still",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "hold:FUNCTION_ID_273",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "still"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "exit",
+          "selectedId": "wipe",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "53405e38e834aacc8347457b0f3eb3a9233d6c9d1255d7939113dc0d91fb0441",
+            "aliasKey": "exit:FUNCTION_ID_316",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "cam",
+          "selectedId": "driftDiag",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "45c19f93d29f40a8c01c86276b28f4f23a91dc98bea71466ee3c7cf68fedd7f5",
+            "aliasKey": "cam:FUNCTION_ID_422",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "driftDiag"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "trans",
+          "selectedId": "wipe",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "6c6c224d4485967e101c48448e995ccf07eeed46e771ec9ccec2cf8b85790c73",
+            "aliasKey": "trans:FUNCTION_ID_426",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "bg",
+          "selectedId": "none",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "ca0045c160ff9800661ecf6409a3decb06ea898b0559d7b68ea392b3065909dd",
+            "aliasKey": "bg:FUNCTION_ID_446",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "treat",
+          "selectedId": "none",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "treat:FUNCTION_ID_508",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "decor",
+          "selectedId": "bars",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "40f834bdd38a974329dd9e6e0775bbb0a7d161b8b94eb288d838309c82d50b0d",
+            "aliasKey": "decor:FUNCTION_ID_563",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "bars"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "decor",
+          "selectedId": "bracketsJP",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "40f834bdd38a974329dd9e6e0775bbb0a7d161b8b94eb288d838309c82d50b0d",
+            "aliasKey": "decor:FUNCTION_ID_618",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "bracketsJP"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "font",
+          "selectedId": "mincho_black",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "plannedValue": "mincho_black"
+        },
+        {
+          "cutOrdinal": 1,
+          "cutIndex": 1,
+          "line": 0,
+          "unitKey": "[1,1,0,1.2013513513513514,2.734,\"落ちる午後の\"]",
+          "group": "globalTypographyModifiers",
+          "selectedId": "applyTypography5",
+          "timeRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "compositeImplementation": "Shared wrapper chain called by mainDraw even when it.noHold=true",
+          "enabledDirectorStages": [
+            5,
+            6,
+            7
+          ],
+          "localHoldContract": "still",
+          "semanticIntents": [
+            "music-conditioned beat scale/width/weight/tracking",
+            "continuous baseline drift",
+            "motif rotation/skew",
+            "music-event amplification",
+            "semantic composition and motif motion",
+            "negative-space type scaling"
+          ],
+          "independentStageAttribution": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "layout",
+          "selectedId": "diag",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "6b4560df58acb73be45ed8934c4789d0e62c297fe6827fe1790b02ff7f38bb6b",
+            "aliasKey": "layout:FUNCTION_ID_14",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "diag"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "enter",
+          "selectedId": "wipe",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "75061495e4b3885f67bbe5d4d5b630f4db2d6fbd322bb22d65ecb3ab48807938",
+            "aliasKey": "enter:FUNCTION_ID_178",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "hold",
+          "selectedId": "still",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "hold:FUNCTION_ID_273",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "still"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "exit",
+          "selectedId": "wipe",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "53405e38e834aacc8347457b0f3eb3a9233d6c9d1255d7939113dc0d91fb0441",
+            "aliasKey": "exit:FUNCTION_ID_316",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "cam",
+          "selectedId": "driftDiag",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "45c19f93d29f40a8c01c86276b28f4f23a91dc98bea71466ee3c7cf68fedd7f5",
+            "aliasKey": "cam:FUNCTION_ID_422",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "driftDiag"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "trans",
+          "selectedId": "wipe",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "6c6c224d4485967e101c48448e995ccf07eeed46e771ec9ccec2cf8b85790c73",
+            "aliasKey": "trans:FUNCTION_ID_426",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "bg",
+          "selectedId": "none",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "ca0045c160ff9800661ecf6409a3decb06ea898b0559d7b68ea392b3065909dd",
+            "aliasKey": "bg:FUNCTION_ID_446",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "treat",
+          "selectedId": "none",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "treat:FUNCTION_ID_508",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "decor",
+          "selectedId": "bars",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "40f834bdd38a974329dd9e6e0775bbb0a7d161b8b94eb288d838309c82d50b0d",
+            "aliasKey": "decor:FUNCTION_ID_563",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "bars"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "decor",
+          "selectedId": "bracketsJP",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "40f834bdd38a974329dd9e6e0775bbb0a7d161b8b94eb288d838309c82d50b0d",
+            "aliasKey": "decor:FUNCTION_ID_618",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "bracketsJP"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "font",
+          "selectedId": "mincho_black",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "plannedValue": "mincho_black"
+        },
+        {
+          "cutOrdinal": 2,
+          "cutIndex": 2,
+          "line": 0,
+          "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+          "group": "globalTypographyModifiers",
+          "selectedId": "applyTypography5",
+          "timeRange": [
+            2.734,
+            3.2
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "compositeImplementation": "Shared wrapper chain called by mainDraw even when it.noHold=true",
+          "enabledDirectorStages": [
+            5,
+            6,
+            7
+          ],
+          "localHoldContract": "still",
+          "semanticIntents": [
+            "music-conditioned beat scale/width/weight/tracking",
+            "continuous baseline drift",
+            "motif rotation/skew",
+            "music-event amplification",
+            "semantic composition and motif motion",
+            "negative-space type scaling"
+          ],
+          "independentStageAttribution": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "layout",
+          "selectedId": "type",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "b02adb0f7f9fa5c3dbe2217708357adf9c680e8b83bc4098a965ce7184e62091",
+            "aliasKey": "layout:FUNCTION_ID_13",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "type"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "enter",
+          "selectedId": "wipe",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "75061495e4b3885f67bbe5d4d5b630f4db2d6fbd322bb22d65ecb3ab48807938",
+            "aliasKey": "enter:FUNCTION_ID_178",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "hold",
+          "selectedId": "still",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "hold:FUNCTION_ID_273",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "still"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "exit",
+          "selectedId": "wipe",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "53405e38e834aacc8347457b0f3eb3a9233d6c9d1255d7939113dc0d91fb0441",
+            "aliasKey": "exit:FUNCTION_ID_316",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "cam",
+          "selectedId": "driftDiag",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "45c19f93d29f40a8c01c86276b28f4f23a91dc98bea71466ee3c7cf68fedd7f5",
+            "aliasKey": "cam:FUNCTION_ID_422",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "driftDiag"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "trans",
+          "selectedId": "wipe",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "6c6c224d4485967e101c48448e995ccf07eeed46e771ec9ccec2cf8b85790c73",
+            "aliasKey": "trans:FUNCTION_ID_426",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "bg",
+          "selectedId": "none",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "ca0045c160ff9800661ecf6409a3decb06ea898b0559d7b68ea392b3065909dd",
+            "aliasKey": "bg:FUNCTION_ID_446",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "treat",
+          "selectedId": "none",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "treat:FUNCTION_ID_508",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "decor",
+          "selectedId": "bars",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "40f834bdd38a974329dd9e6e0775bbb0a7d161b8b94eb288d838309c82d50b0d",
+            "aliasKey": "decor:FUNCTION_ID_563",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "bars"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "decor",
+          "selectedId": "bracketsJP",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "40f834bdd38a974329dd9e6e0775bbb0a7d161b8b94eb288d838309c82d50b0d",
+            "aliasKey": "decor:FUNCTION_ID_618",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "bracketsJP"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "font",
+          "selectedId": "mincho_black",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "plannedValue": "mincho_black"
+        },
+        {
+          "cutOrdinal": 3,
+          "cutIndex": 3,
+          "line": 1,
+          "unitKey": "[3,3,1,3.2,4.092307692307692,\"小さな息で\"]",
+          "group": "globalTypographyModifiers",
+          "selectedId": "applyTypography5",
+          "timeRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "compositeImplementation": "Shared wrapper chain called by mainDraw even when it.noHold=true",
+          "enabledDirectorStages": [
+            5,
+            6,
+            7
+          ],
+          "localHoldContract": "still",
+          "semanticIntents": [
+            "music-conditioned beat scale/width/weight/tracking",
+            "continuous baseline drift",
+            "motif rotation/skew",
+            "music-event amplification",
+            "semantic composition and motif motion",
+            "negative-space type scaling"
+          ],
+          "independentStageAttribution": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 4,
+          "cutIndex": 4,
+          "line": 1,
+          "unitKey": "[4,4,1,4.092307692307692,4.984615384615385,\"時をつなぐ\"]",
+          "group": "layout",
+          "selectedId": "globalReadableUnit",
+          "timeRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "d4e8f72757bfc94d6fe4319afe5783e6e6403405805dc2462a2e12f654ea0f5d",
+            "aliasKey": "layout:FUNCTION_ID_170",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "globalReadableUnit"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 4,
+          "cutIndex": 4,
+          "line": 1,
+          "unitKey": "[4,4,1,4.092307692307692,4.984615384615385,\"時をつなぐ\"]",
+          "group": "enter",
+          "selectedId": "cut",
+          "timeRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "enter:FUNCTION_ID_171",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "cut"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 4,
+          "cutIndex": 4,
+          "line": 1,
+          "unitKey": "[4,4,1,4.092307692307692,4.984615384615385,\"時をつなぐ\"]",
+          "group": "hold",
+          "selectedId": "still",
+          "timeRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "hold:FUNCTION_ID_273",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "still"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 4,
+          "cutIndex": 4,
+          "line": 1,
+          "unitKey": "[4,4,1,4.092307692307692,4.984615384615385,\"時をつなぐ\"]",
+          "group": "exit",
+          "selectedId": "cut",
+          "timeRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "exit:FUNCTION_ID_311",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "cut"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 4,
+          "cutIndex": 4,
+          "line": 1,
+          "unitKey": "[4,4,1,4.092307692307692,4.984615384615385,\"時をつなぐ\"]",
+          "group": "cam",
+          "selectedId": "stillCamera",
+          "timeRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "d3a63129b65aed00ae18632b426020bfea8d9a107477eacaad812cad7d5d804d",
+            "aliasKey": "cam:FUNCTION_ID_398",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "stillCamera"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 4,
+          "cutIndex": 4,
+          "line": 1,
+          "unitKey": "[4,4,1,4.092307692307692,4.984615384615385,\"時をつなぐ\"]",
+          "group": "trans",
+          "selectedId": "cut",
+          "timeRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 4,
+          "cutIndex": 4,
+          "line": 1,
+          "unitKey": "[4,4,1,4.092307692307692,4.984615384615385,\"時をつなぐ\"]",
+          "group": "bg",
+          "selectedId": "none",
+          "timeRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "ca0045c160ff9800661ecf6409a3decb06ea898b0559d7b68ea392b3065909dd",
+            "aliasKey": "bg:FUNCTION_ID_446",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 4,
+          "cutIndex": 4,
+          "line": 1,
+          "unitKey": "[4,4,1,4.092307692307692,4.984615384615385,\"時をつなぐ\"]",
+          "group": "treat",
+          "selectedId": "none",
+          "timeRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "treat:FUNCTION_ID_508",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 4,
+          "cutIndex": 4,
+          "line": 1,
+          "unitKey": "[4,4,1,4.092307692307692,4.984615384615385,\"時をつなぐ\"]",
+          "group": "font",
+          "selectedId": "mincho_black",
+          "timeRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "plannedValue": "mincho_black"
+        },
+        {
+          "cutOrdinal": 4,
+          "cutIndex": 4,
+          "line": 1,
+          "unitKey": "[4,4,1,4.092307692307692,4.984615384615385,\"時をつなぐ\"]",
+          "group": "globalTypographyModifiers",
+          "selectedId": "applyTypography5",
+          "timeRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "compositeImplementation": "Shared wrapper chain called by mainDraw even when it.noHold=true",
+          "enabledDirectorStages": [
+            5,
+            6,
+            7
+          ],
+          "localHoldContract": "still",
+          "semanticIntents": [
+            "music-conditioned beat scale/width/weight/tracking",
+            "continuous baseline drift",
+            "motif rotation/skew",
+            "music-event amplification",
+            "semantic composition and motif motion",
+            "negative-space type scaling"
+          ],
+          "independentStageAttribution": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 5,
+          "cutIndex": 5,
+          "line": 1,
+          "unitKey": "[5,5,1,4.984615384615385,6.1,\"小さな息で時をつなぐ\"]",
+          "group": "layout",
+          "selectedId": "globalReadableUnit",
+          "timeRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "d4e8f72757bfc94d6fe4319afe5783e6e6403405805dc2462a2e12f654ea0f5d",
+            "aliasKey": "layout:FUNCTION_ID_170",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "globalReadableUnit"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 5,
+          "cutIndex": 5,
+          "line": 1,
+          "unitKey": "[5,5,1,4.984615384615385,6.1,\"小さな息で時をつなぐ\"]",
+          "group": "enter",
+          "selectedId": "cut",
+          "timeRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "enter:FUNCTION_ID_171",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "cut"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 5,
+          "cutIndex": 5,
+          "line": 1,
+          "unitKey": "[5,5,1,4.984615384615385,6.1,\"小さな息で時をつなぐ\"]",
+          "group": "hold",
+          "selectedId": "still",
+          "timeRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "hold:FUNCTION_ID_273",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "still"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 5,
+          "cutIndex": 5,
+          "line": 1,
+          "unitKey": "[5,5,1,4.984615384615385,6.1,\"小さな息で時をつなぐ\"]",
+          "group": "exit",
+          "selectedId": "cut",
+          "timeRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "exit:FUNCTION_ID_311",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "cut"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 5,
+          "cutIndex": 5,
+          "line": 1,
+          "unitKey": "[5,5,1,4.984615384615385,6.1,\"小さな息で時をつなぐ\"]",
+          "group": "cam",
+          "selectedId": "stillCamera",
+          "timeRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "d3a63129b65aed00ae18632b426020bfea8d9a107477eacaad812cad7d5d804d",
+            "aliasKey": "cam:FUNCTION_ID_398",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "stillCamera"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 5,
+          "cutIndex": 5,
+          "line": 1,
+          "unitKey": "[5,5,1,4.984615384615385,6.1,\"小さな息で時をつなぐ\"]",
+          "group": "trans",
+          "selectedId": "cut",
+          "timeRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 5,
+          "cutIndex": 5,
+          "line": 1,
+          "unitKey": "[5,5,1,4.984615384615385,6.1,\"小さな息で時をつなぐ\"]",
+          "group": "bg",
+          "selectedId": "none",
+          "timeRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "ca0045c160ff9800661ecf6409a3decb06ea898b0559d7b68ea392b3065909dd",
+            "aliasKey": "bg:FUNCTION_ID_446",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 5,
+          "cutIndex": 5,
+          "line": 1,
+          "unitKey": "[5,5,1,4.984615384615385,6.1,\"小さな息で時をつなぐ\"]",
+          "group": "treat",
+          "selectedId": "none",
+          "timeRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "treat:FUNCTION_ID_508",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 5,
+          "cutIndex": 5,
+          "line": 1,
+          "unitKey": "[5,5,1,4.984615384615385,6.1,\"小さな息で時をつなぐ\"]",
+          "group": "font",
+          "selectedId": "mincho_black",
+          "timeRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "plannedValue": "mincho_black"
+        },
+        {
+          "cutOrdinal": 5,
+          "cutIndex": 5,
+          "line": 1,
+          "unitKey": "[5,5,1,4.984615384615385,6.1,\"小さな息で時をつなぐ\"]",
+          "group": "globalTypographyModifiers",
+          "selectedId": "applyTypography5",
+          "timeRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "compositeImplementation": "Shared wrapper chain called by mainDraw even when it.noHold=true",
+          "enabledDirectorStages": [
+            5,
+            6,
+            7
+          ],
+          "localHoldContract": "still",
+          "semanticIntents": [
+            "music-conditioned beat scale/width/weight/tracking",
+            "continuous baseline drift",
+            "motif rotation/skew",
+            "music-event amplification",
+            "semantic composition and motif motion",
+            "negative-space type scaling"
+          ],
+          "independentStageAttribution": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 6,
+          "cutIndex": 6,
+          "line": 2,
+          "unitKey": "[6,6,2,6.1,6.87625,\"遠くの\"]",
+          "group": "layout",
+          "selectedId": "globalReadableUnit",
+          "timeRange": [
+            6.1,
+            6.87625
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "d4e8f72757bfc94d6fe4319afe5783e6e6403405805dc2462a2e12f654ea0f5d",
+            "aliasKey": "layout:FUNCTION_ID_170",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "globalReadableUnit"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 6,
+          "cutIndex": 6,
+          "line": 2,
+          "unitKey": "[6,6,2,6.1,6.87625,\"遠くの\"]",
+          "group": "enter",
+          "selectedId": "cut",
+          "timeRange": [
+            6.1,
+            6.87625
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "enter:FUNCTION_ID_171",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "cut"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 6,
+          "cutIndex": 6,
+          "line": 2,
+          "unitKey": "[6,6,2,6.1,6.87625,\"遠くの\"]",
+          "group": "hold",
+          "selectedId": "still",
+          "timeRange": [
+            6.1,
+            6.87625
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "hold:FUNCTION_ID_273",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "still"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 6,
+          "cutIndex": 6,
+          "line": 2,
+          "unitKey": "[6,6,2,6.1,6.87625,\"遠くの\"]",
+          "group": "exit",
+          "selectedId": "cut",
+          "timeRange": [
+            6.1,
+            6.87625
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "exit:FUNCTION_ID_311",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "cut"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 6,
+          "cutIndex": 6,
+          "line": 2,
+          "unitKey": "[6,6,2,6.1,6.87625,\"遠くの\"]",
+          "group": "cam",
+          "selectedId": "stillCamera",
+          "timeRange": [
+            6.1,
+            6.87625
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "d3a63129b65aed00ae18632b426020bfea8d9a107477eacaad812cad7d5d804d",
+            "aliasKey": "cam:FUNCTION_ID_398",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "stillCamera"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 6,
+          "cutIndex": 6,
+          "line": 2,
+          "unitKey": "[6,6,2,6.1,6.87625,\"遠くの\"]",
+          "group": "trans",
+          "selectedId": "cut",
+          "timeRange": [
+            6.1,
+            6.87625
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 6,
+          "cutIndex": 6,
+          "line": 2,
+          "unitKey": "[6,6,2,6.1,6.87625,\"遠くの\"]",
+          "group": "bg",
+          "selectedId": "none",
+          "timeRange": [
+            6.1,
+            6.87625
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "ca0045c160ff9800661ecf6409a3decb06ea898b0559d7b68ea392b3065909dd",
+            "aliasKey": "bg:FUNCTION_ID_446",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 6,
+          "cutIndex": 6,
+          "line": 2,
+          "unitKey": "[6,6,2,6.1,6.87625,\"遠くの\"]",
+          "group": "treat",
+          "selectedId": "none",
+          "timeRange": [
+            6.1,
+            6.87625
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "treat:FUNCTION_ID_508",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 6,
+          "cutIndex": 6,
+          "line": 2,
+          "unitKey": "[6,6,2,6.1,6.87625,\"遠くの\"]",
+          "group": "font",
+          "selectedId": "mincho_black",
+          "timeRange": [
+            6.1,
+            6.87625
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "plannedValue": "mincho_black"
+        },
+        {
+          "cutOrdinal": 6,
+          "cutIndex": 6,
+          "line": 2,
+          "unitKey": "[6,6,2,6.1,6.87625,\"遠くの\"]",
+          "group": "globalTypographyModifiers",
+          "selectedId": "applyTypography5",
+          "timeRange": [
+            6.1,
+            6.87625
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "compositeImplementation": "Shared wrapper chain called by mainDraw even when it.noHold=true",
+          "enabledDirectorStages": [
+            5,
+            6,
+            7
+          ],
+          "localHoldContract": "still",
+          "semanticIntents": [
+            "music-conditioned beat scale/width/weight/tracking",
+            "continuous baseline drift",
+            "motif rotation/skew",
+            "music-event amplification",
+            "semantic composition and motif motion",
+            "negative-space type scaling"
+          ],
+          "independentStageAttribution": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 7,
+          "cutIndex": 7,
+          "line": 2,
+          "unitKey": "[7,7,2,6.87625,7.6525,\"灯りを\"]",
+          "group": "layout",
+          "selectedId": "globalReadableUnit",
+          "timeRange": [
+            6.87625,
+            7.6525
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "d4e8f72757bfc94d6fe4319afe5783e6e6403405805dc2462a2e12f654ea0f5d",
+            "aliasKey": "layout:FUNCTION_ID_170",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "globalReadableUnit"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 7,
+          "cutIndex": 7,
+          "line": 2,
+          "unitKey": "[7,7,2,6.87625,7.6525,\"灯りを\"]",
+          "group": "enter",
+          "selectedId": "cut",
+          "timeRange": [
+            6.87625,
+            7.6525
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "enter:FUNCTION_ID_171",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "cut"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 7,
+          "cutIndex": 7,
+          "line": 2,
+          "unitKey": "[7,7,2,6.87625,7.6525,\"灯りを\"]",
+          "group": "hold",
+          "selectedId": "still",
+          "timeRange": [
+            6.87625,
+            7.6525
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "hold:FUNCTION_ID_273",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "still"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 7,
+          "cutIndex": 7,
+          "line": 2,
+          "unitKey": "[7,7,2,6.87625,7.6525,\"灯りを\"]",
+          "group": "exit",
+          "selectedId": "cut",
+          "timeRange": [
+            6.87625,
+            7.6525
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "exit:FUNCTION_ID_311",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "cut"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 7,
+          "cutIndex": 7,
+          "line": 2,
+          "unitKey": "[7,7,2,6.87625,7.6525,\"灯りを\"]",
+          "group": "cam",
+          "selectedId": "stillCamera",
+          "timeRange": [
+            6.87625,
+            7.6525
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "d3a63129b65aed00ae18632b426020bfea8d9a107477eacaad812cad7d5d804d",
+            "aliasKey": "cam:FUNCTION_ID_398",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "stillCamera"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 7,
+          "cutIndex": 7,
+          "line": 2,
+          "unitKey": "[7,7,2,6.87625,7.6525,\"灯りを\"]",
+          "group": "trans",
+          "selectedId": "cut",
+          "timeRange": [
+            6.87625,
+            7.6525
+          ],
+          "classification": "INACTIVE_BY_EXPLICIT_CONTRACT",
+          "reason": "Explicit zero duration/cut contract; require dispatch trace to exclude later wrappers",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 7,
+          "cutIndex": 7,
+          "line": 2,
+          "unitKey": "[7,7,2,6.87625,7.6525,\"灯りを\"]",
+          "group": "bg",
+          "selectedId": "none",
+          "timeRange": [
+            6.87625,
+            7.6525
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "ca0045c160ff9800661ecf6409a3decb06ea898b0559d7b68ea392b3065909dd",
+            "aliasKey": "bg:FUNCTION_ID_446",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 7,
+          "cutIndex": 7,
+          "line": 2,
+          "unitKey": "[7,7,2,6.87625,7.6525,\"灯りを\"]",
+          "group": "treat",
+          "selectedId": "none",
+          "timeRange": [
+            6.87625,
+            7.6525
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "treat:FUNCTION_ID_508",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 7,
+          "cutIndex": 7,
+          "line": 2,
+          "unitKey": "[7,7,2,6.87625,7.6525,\"灯りを\"]",
+          "group": "font",
+          "selectedId": "mincho_black",
+          "timeRange": [
+            6.87625,
+            7.6525
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "plannedValue": "mincho_black"
+        },
+        {
+          "cutOrdinal": 7,
+          "cutIndex": 7,
+          "line": 2,
+          "unitKey": "[7,7,2,6.87625,7.6525,\"灯りを\"]",
+          "group": "globalTypographyModifiers",
+          "selectedId": "applyTypography5",
+          "timeRange": [
+            6.87625,
+            7.6525
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "compositeImplementation": "Shared wrapper chain called by mainDraw even when it.noHold=true",
+          "enabledDirectorStages": [
+            5,
+            6,
+            7
+          ],
+          "localHoldContract": "still",
+          "semanticIntents": [
+            "music-conditioned beat scale/width/weight/tracking",
+            "continuous baseline drift",
+            "motif rotation/skew",
+            "music-event amplification",
+            "semantic composition and motif motion",
+            "negative-space type scaling"
+          ],
+          "independentStageAttribution": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "layout",
+          "selectedId": "diag",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "6b4560df58acb73be45ed8934c4789d0e62c297fe6827fe1790b02ff7f38bb6b",
+            "aliasKey": "layout:FUNCTION_ID_14",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "diag"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "enter",
+          "selectedId": "wipe",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "75061495e4b3885f67bbe5d4d5b630f4db2d6fbd322bb22d65ecb3ab48807938",
+            "aliasKey": "enter:FUNCTION_ID_178",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "hold",
+          "selectedId": "still",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "hold:FUNCTION_ID_273",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "still"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "exit",
+          "selectedId": "wipe",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "53405e38e834aacc8347457b0f3eb3a9233d6c9d1255d7939113dc0d91fb0441",
+            "aliasKey": "exit:FUNCTION_ID_316",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "cam",
+          "selectedId": "stillCamera",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "STATIC_CONTRACT",
+          "reason": "Intentional identity/still setting; stillness requires decoded temporal evidence",
+          "implementation": {
+            "functionSHA256": "d3a63129b65aed00ae18632b426020bfea8d9a107477eacaad812cad7d5d804d",
+            "aliasKey": "cam:FUNCTION_ID_398",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "stillCamera"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "trans",
+          "selectedId": "wipe",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "6c6c224d4485967e101c48448e995ccf07eeed46e771ec9ccec2cf8b85790c73",
+            "aliasKey": "trans:FUNCTION_ID_426",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "wipe"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "bg",
+          "selectedId": "none",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "ca0045c160ff9800661ecf6409a3decb06ea898b0559d7b68ea392b3065909dd",
+            "aliasKey": "bg:FUNCTION_ID_446",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "treat",
+          "selectedId": "none",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669",
+            "aliasKey": "treat:FUNCTION_ID_508",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "none"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "decor",
+          "selectedId": "bars",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": {
+            "functionSHA256": "40f834bdd38a974329dd9e6e0775bbb0a7d161b8b94eb288d838309c82d50b0d",
+            "aliasKey": "decor:FUNCTION_ID_563",
+            "aliasMethod": "Same runtime function object, not merely same toString or closure text",
+            "exactImplementationAliases": [
+              "bars"
+            ]
+          },
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "font",
+          "selectedId": "mincho_black",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "plannedValue": "mincho_black"
+        },
+        {
+          "cutOrdinal": 8,
+          "cutIndex": 8,
+          "line": 2,
+          "unitKey": "[8,8,2,7.6525,8.26,\"待つ\"]",
+          "group": "globalTypographyModifiers",
+          "selectedId": "applyTypography5",
+          "timeRange": [
+            7.6525,
+            8.26
+          ],
+          "classification": "NATURAL_PLANNED_AWAITING_DISPATCH",
+          "reason": "Selected field, not independent execution proof",
+          "implementation": null,
+          "dispatchStatus": "UNMEASURED",
+          "encodedIndependentStatus": "UNMEASURED",
+          "compositeImplementation": "Shared wrapper chain called by mainDraw even when it.noHold=true",
+          "enabledDirectorStages": [
+            5,
+            6,
+            7
+          ],
+          "localHoldContract": "still",
+          "semanticIntents": [
+            "music-conditioned beat scale/width/weight/tracking",
+            "continuous baseline drift",
+            "motif rotation/skew",
+            "music-event amplification",
+            "semantic composition and motif motion",
+            "negative-space type scaling"
+          ],
+          "independentStageAttribution": "UNMEASURED"
+        }
+      ],
+      "primaryCompositeIntents": [
+        {
+          "cutOrdinal": 0,
+          "unitId": "83f1c98d8e7c22e36a744ed94f3135cf37547d2d20282821e4f0633f18695489",
+          "fragmentRange": [
+            0.3,
+            1.2013513513513514
+          ],
+          "operator": "reveal",
+          "intent": "phrase-continuity",
+          "target": "registered primary glyph identities",
+          "expectedMotion": "reveal",
+          "naturalSelection": true,
+          "rendererAgreement": true,
+          "semanticStatus": "VERIFIED_PRIMARY_COMPOSITE_INTENT",
+          "actualDecodedTimestamps": [
+            0.375,
+            0.4166666666666667,
+            0.4583333333333333,
+            0.5,
+            0.5416666666666666,
+            0.5833333333333334,
+            0.625,
+            0.6666666666666666,
+            0.7083333333333334,
+            0.75,
+            0.7916666666666666,
+            0.8333333333333334,
+            0.875,
+            0.9166666666666666,
+            0.9583333333333334,
+            1,
+            1.0416666666666667,
+            1.0833333333333333,
+            1.125
+          ],
+          "reason": null,
+          "scope": "Primary registered glyph composite only; not all nested motion, camera, background or FX"
+        },
+        {
+          "cutOrdinal": 1,
+          "unitId": "1e165ce09f85891ec374bfa2e5d29d4373b2a736e24fdb87a4c03e75030aa44c",
+          "fragmentRange": [
+            1.2013513513513514,
+            2.734
+          ],
+          "operator": "reveal",
+          "intent": "phrase-continuity",
+          "target": "registered primary glyph identities",
+          "expectedMotion": "reveal",
+          "naturalSelection": true,
+          "rendererAgreement": true,
+          "semanticStatus": "VERIFIED_PRIMARY_COMPOSITE_INTENT",
+          "actualDecodedTimestamps": [
+            1.2916666666666667,
+            1.3333333333333333,
+            1.375,
+            1.4166666666666667,
+            1.4583333333333333,
+            1.5,
+            1.5416666666666667,
+            1.5833333333333333,
+            1.625,
+            1.6666666666666667,
+            1.7083333333333333,
+            1.75,
+            1.7916666666666667,
+            1.8333333333333333,
+            1.875,
+            1.9166666666666667,
+            1.9583333333333333,
+            2,
+            2.0416666666666665,
+            2.0833333333333335,
+            2.125,
+            2.1666666666666665,
+            2.2083333333333335,
+            2.25,
+            2.2916666666666665,
+            2.3333333333333335,
+            2.375,
+            2.4166666666666665,
+            2.4583333333333335,
+            2.5,
+            2.5416666666666665,
+            2.5833333333333335,
+            2.625
+          ],
+          "reason": null,
+          "scope": "Primary registered glyph composite only; not all nested motion, camera, background or FX"
+        },
+        {
+          "cutOrdinal": 2,
+          "unitId": "d4cb0d56d3071b54e78ee59311fe04a1a54788afaea6eada5d6156e715733267",
+          "fragmentRange": [
+            2.734,
+            3.2
+          ],
+          "operator": "reveal",
+          "intent": "phrase-continuity",
+          "target": "registered primary glyph identities",
+          "expectedMotion": "reveal",
+          "naturalSelection": true,
+          "rendererAgreement": true,
+          "semanticStatus": "VERIFIED_PRIMARY_COMPOSITE_INTENT",
+          "actualDecodedTimestamps": [
+            2.7916666666666665,
+            2.8333333333333335,
+            2.875,
+            2.9166666666666665,
+            2.9583333333333335,
+            3,
+            3.0416666666666665,
+            3.0833333333333335,
+            3.125
+          ],
+          "reason": null,
+          "scope": "Primary registered glyph composite only; not all nested motion, camera, background or FX"
+        },
+        {
+          "cutOrdinal": 3,
+          "unitId": "993e5e3a8553351d512f6e64f38be256eedaf7810ea38ad7a835b4ba798a34f6",
+          "fragmentRange": [
+            3.2,
+            4.092307692307692
+          ],
+          "operator": "reveal",
+          "intent": "phrase-continuity",
+          "target": "registered primary glyph identities",
+          "expectedMotion": "reveal",
+          "naturalSelection": true,
+          "rendererAgreement": true,
+          "semanticStatus": "VERIFIED_PRIMARY_COMPOSITE_INTENT",
+          "actualDecodedTimestamps": [
+            3.2916666666666665,
+            3.3333333333333335,
+            3.375,
+            3.4166666666666665,
+            3.4583333333333335,
+            3.5,
+            3.5416666666666665,
+            3.5833333333333335,
+            3.625,
+            3.6666666666666665,
+            3.7083333333333335,
+            3.75,
+            3.7916666666666665,
+            3.8333333333333335,
+            3.875,
+            3.9166666666666665,
+            3.9583333333333335,
+            4
+          ],
+          "reason": null,
+          "scope": "Primary registered glyph composite only; not all nested motion, camera, background or FX"
+        },
+        {
+          "cutOrdinal": 4,
+          "unitId": "fde4f5eb39d088d939be1dc25d8d7f468b2c8069d5d2eee6d51748e7e74c635c",
+          "fragmentRange": [
+            4.092307692307692,
+            4.984615384615385
+          ],
+          "operator": "hold",
+          "intent": "preserve-complete-readable-unit",
+          "target": "registered primary glyph identities",
+          "expectedMotion": "hold",
+          "naturalSelection": true,
+          "rendererAgreement": true,
+          "semanticStatus": "CONFOUNDED",
+          "actualDecodedTimestamps": [
+            4.125,
+            4.166666666666667,
+            4.208333333333333,
+            4.25,
+            4.291666666666667,
+            4.333333333333333,
+            4.375,
+            4.416666666666667,
+            4.458333333333333,
+            4.5,
+            4.541666666666667,
+            4.583333333333333,
+            4.625,
+            4.666666666666667,
+            4.708333333333333,
+            4.75,
+            4.791666666666667,
+            4.833333333333333,
+            4.875,
+            4.916666666666667,
+            4.958333333333333
+          ],
+          "reason": "COMPOSITE_NATIVE_MOTION_PREVENTS_ISOLATED_HOLD_CERTIFICATION",
+          "scope": "Primary registered glyph composite only; not all nested motion, camera, background or FX"
+        },
+        {
+          "cutOrdinal": 5,
+          "unitId": "66581cd60fc4258ae7705b603ef31d942cf00df63342afe943026b5878e2abe9",
+          "fragmentRange": [
+            4.984615384615385,
+            6.1
+          ],
+          "operator": "hold",
+          "intent": "preserve-complete-readable-unit",
+          "target": "registered primary glyph identities",
+          "expectedMotion": "hold",
+          "naturalSelection": true,
+          "rendererAgreement": true,
+          "semanticStatus": "CONFOUNDED",
+          "actualDecodedTimestamps": [
+            5,
+            5.041666666666667,
+            5.083333333333333,
+            5.125,
+            5.166666666666667,
+            5.208333333333333,
+            5.25,
+            5.291666666666667,
+            5.333333333333333,
+            5.375,
+            5.416666666666667,
+            5.458333333333333,
+            5.5,
+            5.541666666666667,
+            5.583333333333333,
+            5.625,
+            5.666666666666667,
+            5.708333333333333,
+            5.75,
+            5.791666666666667,
+            5.833333333333333,
+            5.875,
+            5.916666666666667,
+            5.958333333333333,
+            6,
+            6.041666666666667,
+            6.083333333333333
+          ],
+          "reason": "COMPOSITE_NATIVE_MOTION_PREVENTS_ISOLATED_HOLD_CERTIFICATION",
+          "scope": "Primary registered glyph composite only; not all nested motion, camera, background or FX"
+        },
+        {
+          "cutOrdinal": 6,
+          "unitId": "07fb43244ca45b577145ab3b9abd503143a81d310b307be35f9f98e796629d23",
+          "fragmentRange": [
+            6.1,
+            6.87625
+          ],
+          "operator": "hold",
+          "intent": "preserve-complete-readable-unit",
+          "target": "registered primary glyph identities",
+          "expectedMotion": "hold",
+          "naturalSelection": true,
+          "rendererAgreement": true,
+          "semanticStatus": "CONFOUNDED",
+          "actualDecodedTimestamps": [
+            6.125,
+            6.166666666666667,
+            6.208333333333333,
+            6.25,
+            6.291666666666667,
+            6.333333333333333,
+            6.375,
+            6.416666666666667,
+            6.458333333333333,
+            6.5,
+            6.541666666666667,
+            6.583333333333333,
+            6.625,
+            6.666666666666667,
+            6.708333333333333,
+            6.75,
+            6.791666666666667,
+            6.833333333333333,
+            6.875
+          ],
+          "reason": "COMPOSITE_NATIVE_MOTION_PREVENTS_ISOLATED_HOLD_CERTIFICATION",
+          "scope": "Primary registered glyph composite only; not all nested motion, camera, background or FX"
+        },
+        {
+          "cutOrdinal": 7,
+          "unitId": "df037dc535fb5763a0f42bc8f4214f6e04ec799efb71ffae2df4f7964a050bf5",
+          "fragmentRange": [
+            6.87625,
+            7.6525
+          ],
+          "operator": "hold",
+          "intent": "preserve-complete-readable-unit",
+          "target": "registered primary glyph identities",
+          "expectedMotion": "hold",
+          "naturalSelection": true,
+          "rendererAgreement": true,
+          "semanticStatus": "CONFOUNDED",
+          "actualDecodedTimestamps": [
+            6.916666666666667,
+            6.958333333333333,
+            7,
+            7.041666666666667,
+            7.083333333333333,
+            7.125,
+            7.166666666666667,
+            7.208333333333333,
+            7.25,
+            7.291666666666667,
+            7.333333333333333,
+            7.375,
+            7.416666666666667,
+            7.458333333333333,
+            7.5,
+            7.541666666666667,
+            7.583333333333333,
+            7.625
+          ],
+          "reason": "COMPOSITE_NATIVE_MOTION_PREVENTS_ISOLATED_HOLD_CERTIFICATION",
+          "scope": "Primary registered glyph composite only; not all nested motion, camera, background or FX"
+        },
+        {
+          "cutOrdinal": 8,
+          "unitId": "957ac9b2c3c209b656b3ecf9dd6fa9b6a1f662a6f88fa4fd2983a61125446e15",
+          "fragmentRange": [
+            7.6525,
+            8.26
+          ],
+          "operator": "reveal",
+          "intent": "space-after-energy",
+          "target": "registered primary glyph identities",
+          "expectedMotion": "reveal",
+          "naturalSelection": true,
+          "rendererAgreement": false,
+          "semanticStatus": "UNMEASURED",
+          "actualDecodedTimestamps": [],
+          "reason": "NO_RESOLVED_EXPECTED_REVEAL_GROWTH",
+          "scope": "Primary registered glyph composite only; not all nested motion, camera, background or FX"
+        }
+      ],
+      "groupsAlreadyControlledOnSupplemental13": [
+        "temporalCinemaFocus",
+        "drawCinemaAccent",
+        "cameraAt",
+        "lyricsCameraAt",
+        "paintCinemaGrammarForeground",
+        "backgroundComposite",
+        "decorations",
+        "transitions"
+      ],
+      "limits": [
+        "Aliases are only identical runtime function objects. Equal function-body SHA with distinct closure instances is not merged. Even shared functions may use different parameters, so shared implementation does not prove semantic equivalence or permit dropping selected intents.",
+        "Native registry engine provides static implementation identity only, not browser font or rendering evidence.",
+        "Plans and primary FAV alone do not provide executed branch population.",
+        "Important non-primary intents remain UNMEASURED until Native dispatch plus final encoded semantic correspondence exist."
+      ]
+    }
+  ],
+  "human": "HUMAN_UNVERIFIED"
+}

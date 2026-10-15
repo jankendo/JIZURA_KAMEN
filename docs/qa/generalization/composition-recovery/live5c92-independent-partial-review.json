@@ -1,5 +1,5 @@
 {
-  "generatedUTC": "2026-10-15T03:38:19.477078+00:00",
+  "generatedUTC": "2026-10-15T03:54:44.513835+00:00",
   "scope": "Partial observation only. No QUALITY_GO certification. No current fixed30 summary until all30 complete. Raw metrics are not artistic scores.",
   "runs": [
     {
@@ -258,6 +258,130 @@
                   "sourceDirty": false
                 },
                 "frames": 240,
+                "codec": "H.264/AAC",
+                "completeDecode": "PASS",
+                "stderr": "",
+                "lyricSafety": "MEASURED"
+              }
+            ],
+            "unfinished": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "supplement5c92-03",
+      "manifest": "supplement5c92-03/archive-manifest.json",
+      "rows": [
+        {
+          "fixture": "release-supplement-03",
+          "variant": "v3",
+          "status": "PASS",
+          "videoSHA256": "4c71224fa5cc7f3ff68b6465cb60839a1b301df46d0063ea32c89ff73f24a680",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "binding": {
+            "inputHash": "74452bacfe0c88b17914295392a0e30451c49181d3818a5caf07a22ab2405e6d",
+            "planHash": "7ab22406f343217b558d9efa5746cfdb45321fd987a226b36eb5e496ea37babb",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "5225f3310d25ca850fdb80ed76d3d324540386b63e10f062c65495e9219038bf",
+            "videoSHA256": "4c71224fa5cc7f3ff68b6465cb60839a1b301df46d0063ea32c89ff73f24a680",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 23.5,
+            "temporalContrast": 100,
+            "hookNovelty": 15,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 98,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 0,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 54,
+            "motionRealization": 100,
+            "typographyDiversity": 58
+          },
+          "FAV": {
+            "status": "MEASURED",
+            "unitCount": 3,
+            "minimumHoldContrast": 99,
+            "failures": [],
+            "unavailable": null,
+            "motion": {
+              "population": 3,
+              "measured": 3,
+              "rendererAgreementSuccess": 3,
+              "measurableRate": 1,
+              "rendererAgreementRate": 1,
+              "intentRealizationSuccessRate": 1,
+              "manualExcluded": 0,
+              "nonAutomaticExcluded": 0,
+              "intentConfounded": 1,
+              "intentUnmeasured": 0,
+              "intentMeasured": 2,
+              "intentMeasurableRate": 0.6666666666666666,
+              "intentSuccessful": 2
+            }
+          },
+          "referenceAudioSHA256": "d15e7791144076693ddd4c6a28e9df068dddf6f83ee783939960c1acd52b6621",
+          "inputPCMHash": "9f4f2a412f7877f6bdecff60ca69f3a622c1bfae12bdcc7615e6b063e00dac8e",
+          "errors": [],
+          "partition": "matrix/results.json.gz"
+        }
+      ],
+      "strictDecode": [
+        {
+          "partition": "strict-decode.json.gz",
+          "data": {
+            "scope": "Only completed, hash-bound listed artifacts; failed exports remain failures, not decoded PASS",
+            "count": 1,
+            "entries": [
+              {
+                "fixture": "release-supplement-03",
+                "variant": "v3",
+                "videoSHA256": "4c71224fa5cc7f3ff68b6465cb60839a1b301df46d0063ea32c89ff73f24a680",
+                "binding": {
+                  "inputHash": "74452bacfe0c88b17914295392a0e30451c49181d3818a5caf07a22ab2405e6d",
+                  "planHash": "7ab22406f343217b558d9efa5746cfdb45321fd987a226b36eb5e496ea37babb",
+                  "outputProfile": {
+                    "purpose": "SHORT",
+                    "aspect": "9:16",
+                    "fps": 24,
+                    "range": [
+                      0.3,
+                      12.72
+                    ],
+                    "loopRequired": false,
+                    "resolution": [
+                      360,
+                      640
+                    ]
+                  },
+                  "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+                  "selectedCandidateId": "5225f3310d25ca850fdb80ed76d3d324540386b63e10f062c65495e9219038bf",
+                  "videoSHA256": "4c71224fa5cc7f3ff68b6465cb60839a1b301df46d0063ea32c89ff73f24a680",
+                  "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+                  "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+                  "sourceDirty": false
+                },
+                "frames": 298,
                 "codec": "H.264/AAC",
                 "completeDecode": "PASS",
                 "stderr": "",
@@ -944,6 +1068,348 @@
           }
         }
       ]
+    },
+    {
+      "name": "unseen5c92-03",
+      "manifest": "unseen5c92-03/archive-manifest.json",
+      "rows": [
+        {
+          "fixture": "release-final-unseen-03",
+          "variant": "v3",
+          "status": "PASS",
+          "videoSHA256": "a2c11d416f8828004bf09679207050ad6ea8ef77f7333b6b532a99706cf621eb",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "binding": {
+            "inputHash": "92a7b4bd25fb63e9b7f0208893acad902ef86957d96db79f87f481854b9fec61",
+            "planHash": "9e0da19dce02f32f6e78124caede15078e1c5e0169dbdc03df3fece424bcff31",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "selectedCandidateId": "fd21a7a154746ccccd0394fcca41a53ae8ad44abacf0f354f70ec9ce8701d0fd",
+            "videoSHA256": "a2c11d416f8828004bf09679207050ad6ea8ef77f7333b6b532a99706cf621eb",
+            "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+            "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 44,
+            "temporalContrast": 91,
+            "hookNovelty": 45,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 71,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 54,
+            "motionRealization": 100,
+            "typographyDiversity": 21
+          },
+          "FAV": {
+            "status": "MEASURED",
+            "unitCount": 3,
+            "minimumHoldContrast": 98,
+            "failures": [],
+            "unavailable": null,
+            "motion": {
+              "population": 3,
+              "measured": 3,
+              "rendererAgreementSuccess": 3,
+              "measurableRate": 1,
+              "rendererAgreementRate": 1,
+              "intentRealizationSuccessRate": 0.6666666666666666,
+              "manualExcluded": 0,
+              "nonAutomaticExcluded": 0,
+              "intentConfounded": 0,
+              "intentUnmeasured": 0,
+              "intentMeasured": 3,
+              "intentMeasurableRate": 1,
+              "intentSuccessful": 2
+            }
+          },
+          "referenceAudioSHA256": "5d2211d51e350056d748d4949a51d2f8acb61b672c6a4b895a1e54c83c389846",
+          "inputPCMHash": "3cf58bb4b1c4dc02e0a2acbeadda2a290e20d8a7f3ffdf5602850ea734659edd",
+          "errors": [],
+          "partition": "matrix/results.json.gz"
+        },
+        {
+          "fixture": "release-final-unseen-03",
+          "variant": "baseline",
+          "status": "PASS",
+          "videoSHA256": "104386492acf05799e24cd7cd143d99aaa08c22263dfd3565b1b35569fdc2835",
+          "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+          "binding": {
+            "inputHash": "91099bda8217ba5c700a2f0d66ee93cc42ea7a6d311ac6ec79abaa0ec34e6179",
+            "planHash": "342025257870e03702a92bebdf1cc79da9286aae34c67a6f480cb019586580c1",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "47ec129fbe80c2a6854990aaa23c26d70cdc8e52e30dd0d673b51606f7802eb0",
+            "videoSHA256": "104386492acf05799e24cd7cd143d99aaa08c22263dfd3565b1b35569fdc2835",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 31,
+            "temporalContrast": 100,
+            "hookNovelty": 11,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 100,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 0,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 63,
+            "motionRealization": 100,
+            "typographyDiversity": 40
+          },
+          "FAV": {
+            "status": "UNMEASURED",
+            "unitCount": 3,
+            "minimumHoldContrast": 98,
+            "failures": [],
+            "unavailable": null,
+            "motion": {
+              "population": 3,
+              "measured": 3,
+              "rendererAgreementSuccess": 2,
+              "measurableRate": 1,
+              "rendererAgreementRate": 0.6666666666666666,
+              "intentRealizationSuccessRate": null,
+              "manualExcluded": 0,
+              "nonAutomaticExcluded": 0,
+              "intentMeasured": 0,
+              "intentMeasurableRate": 0,
+              "intentSuccessful": 0
+            }
+          },
+          "referenceAudioSHA256": "5d2211d51e350056d748d4949a51d2f8acb61b672c6a4b895a1e54c83c389846",
+          "inputPCMHash": "3cf58bb4b1c4dc02e0a2acbeadda2a290e20d8a7f3ffdf5602850ea734659edd",
+          "errors": [],
+          "partition": "matrix/results.json.gz"
+        },
+        {
+          "fixture": "release-final-unseen-03",
+          "variant": "v3",
+          "status": "PASS",
+          "videoSHA256": "788257922ebaa918a769eaae3cf40ca90aa297c11d3a5ec2cf3c459e921f2f9e",
+          "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+          "binding": {
+            "inputHash": "ce855c47da3913319029fc9eea9826674529ec95e598980cbb96859b04e6e23d",
+            "planHash": "5d75e9d701333118afc94e2205e82948e9ad4f7ecc470f26ecc93c9a82e72724",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                640
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "b993b29cc16836e0007519de931bf7134ebcd96aa95f1048637a1dfa284ae17f",
+            "videoSHA256": "788257922ebaa918a769eaae3cf40ca90aa297c11d3a5ec2cf3c459e921f2f9e",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 44,
+            "temporalContrast": 87,
+            "hookNovelty": 45,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 65,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 0,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 54,
+            "motionRealization": 100,
+            "typographyDiversity": 21
+          },
+          "FAV": {
+            "status": "MEASURED",
+            "unitCount": 3,
+            "minimumHoldContrast": 98,
+            "failures": [],
+            "unavailable": null,
+            "motion": {
+              "population": 3,
+              "measured": 3,
+              "rendererAgreementSuccess": 3,
+              "measurableRate": 1,
+              "rendererAgreementRate": 1,
+              "intentRealizationSuccessRate": 0.6666666666666666,
+              "manualExcluded": 0,
+              "nonAutomaticExcluded": 0,
+              "intentMeasured": 3,
+              "intentMeasurableRate": 1,
+              "intentSuccessful": 2
+            }
+          },
+          "referenceAudioSHA256": "5d2211d51e350056d748d4949a51d2f8acb61b672c6a4b895a1e54c83c389846",
+          "inputPCMHash": "3cf58bb4b1c4dc02e0a2acbeadda2a290e20d8a7f3ffdf5602850ea734659edd",
+          "errors": [],
+          "partition": "previous/results.json.gz"
+        }
+      ],
+      "strictDecode": [
+        {
+          "partition": "strict-decode.json.gz",
+          "data": {
+            "scope": "Only completed, hash-bound listed artifacts; failed exports remain failures, not decoded PASS",
+            "count": 2,
+            "entries": [
+              {
+                "fixture": "release-final-unseen-03",
+                "variant": "v3",
+                "videoSHA256": "a2c11d416f8828004bf09679207050ad6ea8ef77f7333b6b532a99706cf621eb",
+                "binding": {
+                  "inputHash": "92a7b4bd25fb63e9b7f0208893acad902ef86957d96db79f87f481854b9fec61",
+                  "planHash": "9e0da19dce02f32f6e78124caede15078e1c5e0169dbdc03df3fece424bcff31",
+                  "outputProfile": {
+                    "purpose": "SHORT",
+                    "aspect": "9:16",
+                    "fps": 24,
+                    "range": [
+                      0.3,
+                      12.72
+                    ],
+                    "loopRequired": false,
+                    "resolution": [
+                      360,
+                      640
+                    ]
+                  },
+                  "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+                  "selectedCandidateId": "fd21a7a154746ccccd0394fcca41a53ae8ad44abacf0f354f70ec9ce8701d0fd",
+                  "videoSHA256": "a2c11d416f8828004bf09679207050ad6ea8ef77f7333b6b532a99706cf621eb",
+                  "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+                  "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+                  "sourceDirty": false
+                },
+                "frames": 298,
+                "codec": "H.264/AAC",
+                "completeDecode": "PASS",
+                "stderr": "",
+                "lyricSafety": "MEASURED"
+              },
+              {
+                "fixture": "release-final-unseen-03",
+                "variant": "baseline",
+                "videoSHA256": "104386492acf05799e24cd7cd143d99aaa08c22263dfd3565b1b35569fdc2835",
+                "binding": {
+                  "inputHash": "91099bda8217ba5c700a2f0d66ee93cc42ea7a6d311ac6ec79abaa0ec34e6179",
+                  "planHash": "342025257870e03702a92bebdf1cc79da9286aae34c67a6f480cb019586580c1",
+                  "outputProfile": {
+                    "purpose": "SHORT",
+                    "aspect": "9:16",
+                    "fps": 24,
+                    "range": [
+                      0.3,
+                      12.72
+                    ],
+                    "loopRequired": false,
+                    "resolution": [
+                      360,
+                      640
+                    ]
+                  },
+                  "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+                  "selectedCandidateId": "47ec129fbe80c2a6854990aaa23c26d70cdc8e52e30dd0d673b51606f7802eb0",
+                  "videoSHA256": "104386492acf05799e24cd7cd143d99aaa08c22263dfd3565b1b35569fdc2835",
+                  "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+                  "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+                  "sourceDirty": false
+                },
+                "frames": 298,
+                "codec": "H.264/AAC",
+                "completeDecode": "PASS",
+                "stderr": "",
+                "lyricSafety": "UNMEASURED"
+              }
+            ],
+            "unfinished": []
+          }
+        },
+        {
+          "partition": "previous-strict-decode.json.gz",
+          "data": {
+            "scope": "Only completed, hash-bound listed artifacts; failed exports remain failures, not decoded PASS",
+            "count": 1,
+            "entries": [
+              {
+                "fixture": "release-final-unseen-03",
+                "variant": "v3",
+                "videoSHA256": "788257922ebaa918a769eaae3cf40ca90aa297c11d3a5ec2cf3c459e921f2f9e",
+                "binding": {
+                  "inputHash": "ce855c47da3913319029fc9eea9826674529ec95e598980cbb96859b04e6e23d",
+                  "planHash": "5d75e9d701333118afc94e2205e82948e9ad4f7ecc470f26ecc93c9a82e72724",
+                  "outputProfile": {
+                    "purpose": "SHORT",
+                    "aspect": "9:16",
+                    "fps": 24,
+                    "range": [
+                      0.3,
+                      12.72
+                    ],
+                    "loopRequired": false,
+                    "resolution": [
+                      360,
+                      640
+                    ]
+                  },
+                  "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+                  "selectedCandidateId": "b993b29cc16836e0007519de931bf7134ebcd96aa95f1048637a1dfa284ae17f",
+                  "videoSHA256": "788257922ebaa918a769eaae3cf40ca90aa297c11d3a5ec2cf3c459e921f2f9e",
+                  "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+                  "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+                  "sourceDirty": false
+                },
+                "frames": 298,
+                "codec": "H.264/AAC",
+                "completeDecode": "PASS",
+                "stderr": "",
+                "lyricSafety": "MEASURED"
+              }
+            ],
+            "unfinished": []
+          }
+        }
+      ]
     }
   ],
   "comparisons": [
@@ -1020,6 +1486,44 @@
       "foreground": [
         65,
         65
+      ],
+      "interpretation": "Metrics unchanged vs previous is not evidence of new improvement. Lower metrics vs main require real-frame diagnosis; safe HOLD does not establish creative improvement."
+    },
+    {
+      "fixture": "release-final-unseen-03",
+      "against": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+      "conditionsEqual": {
+        "referenceAudioSHA256": true,
+        "inputPCMHash": true,
+        "inputHash": false,
+        "outputProfile": true
+      },
+      "typography": [
+        40,
+        21
+      ],
+      "foreground": [
+        100,
+        71
+      ],
+      "interpretation": "Metrics unchanged vs previous is not evidence of new improvement. Lower metrics vs main require real-frame diagnosis; safe HOLD does not establish creative improvement."
+    },
+    {
+      "fixture": "release-final-unseen-03",
+      "against": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "conditionsEqual": {
+        "referenceAudioSHA256": true,
+        "inputPCMHash": true,
+        "inputHash": false,
+        "outputProfile": true
+      },
+      "typography": [
+        21,
+        21
+      ],
+      "foreground": [
+        65,
+        71
       ],
       "interpretation": "Metrics unchanged vs previous is not evidence of new improvement. Lower metrics vs main require real-frame diagnosis; safe HOLD does not establish creative improvement."
     }

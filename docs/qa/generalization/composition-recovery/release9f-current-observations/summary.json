@@ -1,0 +1,70 @@
+{
+  "releaseSourceCommit": "9f805e269e1e34ffb232117a5cb19a699ae0b94d",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "UNVERIFIED",
+  "normalizedMovieCountsByOriginalSource": {
+    "5c92e27e6216962d09ec73927fd0df6ce50d0560": {
+      "movies": 34,
+      "completeDecode": 34,
+      "codecsH264AAC": 34
+    },
+    "2e7ed477f88028dbb63aa609e8a11b4052ea8c00": {
+      "movies": 3,
+      "completeDecode": 3,
+      "codecsH264AAC": 3
+    },
+    "5e14682249ce690337874214f2ec76fc8e68fa26": {
+      "movies": 3,
+      "completeDecode": 3,
+      "codecsH264AAC": 3
+    }
+  },
+  "incompleteAttempts": 0,
+  "currentSourceEquivalentMovieCount": 0,
+  "gateIssues": [
+    {
+      "domain": "technical",
+      "name": "ci",
+      "state": "UNVERIFIED",
+      "reason": "CI not completed successfully"
+    },
+    {
+      "domain": "technical",
+      "name": "regression/build",
+      "state": "UNVERIFIED",
+      "reason": "per-test observations absent"
+    },
+    {
+      "domain": "technical",
+      "name": "browser",
+      "state": "UNVERIFIED",
+      "reason": "actual browser observations absent"
+    },
+    {
+      "domain": "technical",
+      "name": "finished artifacts",
+      "state": "UNVERIFIED",
+      "reason": "movie observations absent"
+    },
+    {
+      "domain": "quality",
+      "name": "comparison coverage",
+      "state": "UNVERIFIED",
+      "reason": "missing/duplicate comparison condition"
+    },
+    {
+      "domain": "quality",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "important intent population missing"
+    },
+    {
+      "domain": "quality",
+      "name": "regressions and correspondence",
+      "state": "UNVERIFIED",
+      "reason": "safety/path-source correspondence unverified"
+    }
+  ],
+  "normalizationPolicy": "Original sourceCommit and original raw rows retained. No inferred quality PASS, no silent source equivalence."
+}

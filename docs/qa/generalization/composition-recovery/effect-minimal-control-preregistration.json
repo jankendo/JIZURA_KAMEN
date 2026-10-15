@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "registeredAt": "2026-10-15T03:41:50.329720+00:00",
+  "status": "PROPOSED_BEFORE_NEW_CONTROL_OUTCOMES",
+  "sourcePolicy": "Freeze exact final renderer source before executing new controls; old-source outcomes remain historical.",
+  "populationPolicy": "Selected semantic targets per unit/interval, not 1540 settings. Remove only proven aliases, identity contracts, zero-duration actions and branches established inapplicable by plan plus exact native dispatch. Retain manual selections as compatibility evidence outside natural-selection rate.",
+  "existingControls": {
+    "case": "supplemental-holdout-13",
+    "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+    "hooks": [
+      "temporalCinemaFocus",
+      "drawCinemaAccent",
+      "cameraAt",
+      "lyricsCameraAt",
+      "paintCinemaGrammarForeground",
+      "backgroundComposite",
+      "decorations",
+      "transitions"
+    ],
+    "status": "IN_PROGRESS_NO_OUTCOMES"
+  },
+  "minimalAdditionalControlProposals": [
+    {
+      "case": "release-supplement-01",
+      "reasons": [
+        "No-image renderer path absent from existing photo controls.",
+        "Natural driftDiag camera, bars/bracketsJP decoration and explicit 0.07s wipe transitions selected.",
+        "Static globalReadableUnit fallback must be checked for actual stillness, not excused as an intended hold if decoded glyphs move."
+      ],
+      "nativeFirst": true,
+      "eligibleHooks": [
+        "cameraAt",
+        "decorations",
+        "transitions"
+      ],
+      "conditionalExecution": "Run encoded control only for actually dispatched nonidentity action; lyricsCameraAt may be identity and should not require a separate three-encode control.",
+      "semanticTargets": [
+        "camera pose/scene motion direction over same interval",
+        "decor own target region independent of primary glyphs",
+        "wipe boundary spatial progression within explicit transition time",
+        "fallback primary stillness or identify coupled motion and retain CONFOUNDED"
+      ]
+    },
+    {
+      "case": "release-supplement-02",
+      "reasons": [
+        "Multiple-image asset-deck path absent from photo-only control.",
+        "portraitStack/vcols units, driftDiag/beatPunch and rings/bracketsJP exist."
+      ],
+      "nativeFirst": true,
+      "eligibleHooks": [
+        "cameraAt",
+        "decorations",
+        "transitions",
+        "backgroundComposite"
+      ],
+      "conditionalExecution": "Deduplicate only exact implementation+equivalent branch contract; run asset/deck switch comparison for actually executed deck boundary, preserve photo path as different implementation.",
+      "semanticTargets": [
+        "asset change at actual decoded boundary",
+        "beatPunch peak near actual musical event with stated tolerance from existing contract",
+        "ring or bracket target contribution rather than whole-frame change"
+      ]
+    }
+  ],
+  "mandatoryNativeDispatch": "Use existing native_dispatch_trace.cjs on each adopted final reference at exact final source; native dispatch is population evidence only, not encoded success.",
+  "measurementRules": [
+    "Hash-bound original, ON, OFF, ON_REPEAT; exact full native RGBA and actual PTS match required.",
+    "At least one independent repeated ON establishes encoder variation; include original-vs-ON variance.",
+    "Hook output differences are composite contribution evidence; semantic intent requires existing target/time/direction contract.",
+    "Counterfactual suppressing background also suppresses nested camera/grammar/accent; retain CONFOUNDED for their independent attribution.",
+    "No retuned floor, weights, quality threshold or sampling policy.",
+    "If observed dispatch selects another important action not in this plan, append explicit preregistered coverage gap before executing its new control; do not relabel it inactive."
+  ],
+  "human": "HUMAN_UNVERIFIED"
+}

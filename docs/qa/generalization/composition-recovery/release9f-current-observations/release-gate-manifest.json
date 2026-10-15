@@ -1,0 +1,229 @@
+{
+  "releaseSourceCommit": "9f805e269e1e34ffb232117a5cb19a699ae0b94d",
+  "evidence": {
+    "ci": {
+      "path": "current-ci.json",
+      "sha256": "74ac3d1426fbcef8fc5671f7ba02f1c9297dc21a81ed2041eb523cb8e5755be4"
+    },
+    "tests": {
+      "path": "current-tests.json",
+      "sha256": "71c40e233dc56af3fc96270ea02b461921d0e28685515421227860aab66da351"
+    },
+    "browser": {
+      "path": "current-browser.json",
+      "sha256": "6b4c0191f51e42f34834aa61bbbb89aa9ac3e67e7c140ba524d6288061880c17"
+    },
+    "artifacts": {
+      "path": "current-artifacts.json",
+      "sha256": "c1dccf4fb04356ba26c0f260d7916fb0449f1a4b9c6a172edbd1d663fc5b6de5"
+    },
+    "comparisons": {
+      "path": "current-comparisons.json",
+      "sha256": "ba50b44d35ebcbb47fb9db3dec28cc312e6e5f0158c25e2dfa7130521d2bd61c"
+    },
+    "operators": {
+      "path": "current-operators.json",
+      "sha256": "dae29486a98382c0eba38887bc17c2da0511b2a7522e65288b9766a2affc948c"
+    },
+    "safety": {
+      "path": "current-safety.json",
+      "sha256": "0808aec6aa03181eefcbda8d0faecaeb4a2a0195be6d64ec4f3f2aea2d0590d1"
+    }
+  },
+  "observationGroupsByOriginalSourceCommit": {
+    "5c92e27e6216962d09ec73927fd0df6ce50d0560": {
+      "path": "artifacts-5c92e27e6216962d09ec73927fd0df6ce50d0560.json",
+      "sha256": "4881a91dace68b5f9a8e5b3cb23198ebd5aa49b6f7580a019231fef4595a0ae6"
+    },
+    "2e7ed477f88028dbb63aa609e8a11b4052ea8c00": {
+      "path": "artifacts-2e7ed477f88028dbb63aa609e8a11b4052ea8c00.json",
+      "sha256": "803564361770e3b2ee8b8709c5e4b0fc74e3b26164117a6a37d93a214a4527d8"
+    },
+    "5e14682249ce690337874214f2ec76fc8e68fa26": {
+      "path": "artifacts-5e14682249ce690337874214f2ec76fc8e68fa26.json",
+      "sha256": "63a0a575566575d8b9b4b1622db07d22334cd1ed90a56abf42b5a30b301332d0"
+    }
+  },
+  "unverified": [
+    "CI final HEAD",
+    "full regression/build",
+    "actual browser UI",
+    "fixed30 + unused independent comparisons",
+    "important semantic isolated encoded controls",
+    "significant regressions and all-path source correspondence"
+  ],
+  "failedOrIncompleteAttempts": [],
+  "archiveInventory": [
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/final5c92-dev-a/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json"
+      ],
+      "decodeMembers": [
+        "strict-decode.json"
+      ],
+      "observedRows": 5,
+      "decodeEntries": 5
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/final5c92-dev-b/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json"
+      ],
+      "decodeMembers": [
+        "strict-decode.json"
+      ],
+      "observedRows": 5,
+      "decodeEntries": 5
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/final5c92-dev-c/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json"
+      ],
+      "decodeMembers": [
+        "strict-decode.json"
+      ],
+      "observedRows": 5,
+      "decodeEntries": 5
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/final5c92-holdout-a/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json"
+      ],
+      "decodeMembers": [
+        "strict-decode.json"
+      ],
+      "observedRows": 5,
+      "decodeEntries": 5
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/final5c92-holdout-b/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json"
+      ],
+      "decodeMembers": [
+        "strict-decode.json"
+      ],
+      "observedRows": 5,
+      "decodeEntries": 5
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/final5c92-holdout-c/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json"
+      ],
+      "decodeMembers": [
+        "strict-decode.json"
+      ],
+      "observedRows": 3,
+      "decodeEntries": 3
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/supplement5c92-01/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json"
+      ],
+      "decodeMembers": [
+        "strict-decode.json"
+      ],
+      "observedRows": 1,
+      "decodeEntries": 1
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/supplement5c92-02/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json"
+      ],
+      "decodeMembers": [
+        "strict-decode.json"
+      ],
+      "observedRows": 1,
+      "decodeEntries": 1
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/supplement5c92-03/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json"
+      ],
+      "decodeMembers": [
+        "strict-decode.json"
+      ],
+      "observedRows": 1,
+      "decodeEntries": 1
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/unseen5c92-01/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json",
+        "previous/results.json"
+      ],
+      "decodeMembers": [
+        "previous-strict-decode.json",
+        "strict-decode.json"
+      ],
+      "observedRows": 3,
+      "decodeEntries": 3
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/unseen5c92-02/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json",
+        "previous/results.json"
+      ],
+      "decodeMembers": [
+        "previous-strict-decode.json",
+        "strict-decode.json"
+      ],
+      "observedRows": 3,
+      "decodeEntries": 3
+    },
+    {
+      "archive": "/workspace/kamen-next-evidence/docs/qa/generalization/composition-recovery/unseen5c92-03/archive-manifest.json",
+      "status": "EXTRACTED",
+      "resultMembers": [
+        "matrix/results.json",
+        "previous/results.json"
+      ],
+      "decodeMembers": [
+        "previous-strict-decode.json",
+        "strict-decode.json"
+      ],
+      "observedRows": 3,
+      "decodeEntries": 3
+    }
+  ],
+  "normalizationPolicy": "Original sourceCommit and original raw rows retained. No inferred quality PASS, no silent source equivalence.",
+  "gitRepository": "/workspace/kamen-quality-root",
+  "historicalObservationRefs": [
+    {
+      "path": "historical-ci987.json",
+      "sha256": "7b7167fdf655982b961c7db35e624c549796df88e69049ae925663edc7010ed9"
+    },
+    {
+      "path": "historical-ci987-observations.json",
+      "sha256": "56287797ef5cb6fc44a071e11d6a5de0fff87500c9f42e1e0a943571fa980b74"
+    },
+    {
+      "path": "current-coverage-context.json",
+      "sha256": "de389aeb0ce38532806b1cbf5e578c5fff31ef7e097e305d62266dcb50b025a1"
+    },
+    {
+      "path": "interrupted-matrix-recovery.json",
+      "sha256": "abd6e54306e3bd71a2b2fdae02a91547a9be2a61429a06e5836287f7dd5bd1cc"
+    }
+  ],
+  "sourceCorrespondence": []
+}

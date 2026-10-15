@@ -1,0 +1,72 @@
+{
+  "status": "UNRESOLVED_OBSERVER_METHOD_OR_REMEASUREMENT_DIFFERENCE",
+  "scope": "Do not claim source algorithm changed when exact videoSHA is equal. Values preserved without retuning. Exact current comparison requires same observer and decoding/sample rules.",
+  "entries": [
+    {
+      "fixture": "development-07",
+      "videoSHA256": "38f5da700681d4b81ef120c5c4a818fd1d73cabaab4c822d7482e9215771db3b",
+      "historicalVideoSHA256": "38f5da700681d4b81ef120c5c4a818fd1d73cabaab4c822d7482e9215771db3b",
+      "sameVideo": true,
+      "rawFormalTypography": 29,
+      "laterHistoricalTypography": 30
+    },
+    {
+      "fixture": "supplemental-development-13",
+      "videoSHA256": "3f572769edf034c220340978f8fd33ad5dacc376fd31262c733078c9a8dd8c5b",
+      "historicalVideoSHA256": "3f572769edf034c220340978f8fd33ad5dacc376fd31262c733078c9a8dd8c5b",
+      "sameVideo": true,
+      "rawFormalTypography": 23,
+      "laterHistoricalTypography": 18
+    }
+  ],
+  "lower20": {
+    "rawFormalMain": 20.166666666666668,
+    "laterHistoricalMain": 19.333333333333332
+  },
+  "correctedObserverEvidence": [
+    {
+      "fixture": "development-07",
+      "observerBuild": {
+        "sourceCommit": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+        "sourceDirty": false,
+        "sourceTreeSHA256": "630315e2fb42efa8fcda1cf69de7ebfa9830ae2612e326fd652e57dad97a7a2d"
+      },
+      "videoSHA256": "38f5da700681d4b81ef120c5c4a818fd1d73cabaab4c822d7482e9215771db3b",
+      "referenceSHA256": "96b4d54990ad1e7b61cf62b60519756993dc6e490680c579c895e5bd544929b8",
+      "typographyDiversity": 30,
+      "resolution": [
+        96,
+        96
+      ],
+      "frameCount": 100,
+      "browser": "154.0.8037.97",
+      "sourceFile": "common-observer-b5a46b7/development-b-observations.json.gz"
+    },
+    {
+      "fixture": "supplemental-development-13",
+      "observerBuild": {
+        "sourceCommit": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+        "sourceDirty": false,
+        "sourceTreeSHA256": "630315e2fb42efa8fcda1cf69de7ebfa9830ae2612e326fd652e57dad97a7a2d"
+      },
+      "videoSHA256": "3f572769edf034c220340978f8fd33ad5dacc376fd31262c733078c9a8dd8c5b",
+      "referenceSHA256": "237d5f93eec3da5c89ec6e79ca970a30c65e1304d95a4cb8f1f6dc05b1dcf0ec",
+      "typographyDiversity": 18,
+      "resolution": [
+        96,
+        171
+      ],
+      "frameCount": 125,
+      "browser": "154.0.8037.97",
+      "sourceFile": "common-observer-b5a46b7/development-c-observations.json.gz"
+    }
+  ],
+  "causeEvidence": {
+    "status": "CONFIRMED_DIFFERENT_OBSERVER_IMPLEMENTATION; PIXEL_LEVEL_SUBCAUSE_NOT_ISOLATED",
+    "rawObserverSource": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+    "correctedObserverSource": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
+    "relevantChange": "src/11zzt_decoded_cinema.js renderCinemaBackgroundAudit adds primary-internal-lyric exclusion for nonphoto plans. Same media, different reference background/foreground segmentation can affect typography vectors.",
+    "script": "docs/qa/generalization/tools/common_artifact_observer.cjs",
+    "requires": "Use one fixed observer and reference renderer on both immutable videos, preserving raw original observations; verify source-specific plan compatibility first. No reencode needed."
+  }
+}

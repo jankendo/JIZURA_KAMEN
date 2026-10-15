@@ -1,0 +1,784 @@
+{
+  "schema": 1,
+  "videoSHA256": "a2c11d416f8828004bf09679207050ad6ea8ef77f7333b6b532a99706cf621eb",
+  "binding": {
+    "inputHash": "92a7b4bd25fb63e9b7f0208893acad902ef86957d96db79f87f481854b9fec61",
+    "planHash": "9e0da19dce02f32f6e78124caede15078e1c5e0169dbdc03df3fece424bcff31",
+    "outputProfile": {
+      "purpose": "SHORT",
+      "aspect": "9:16",
+      "fps": 24,
+      "range": [
+        0.3,
+        12.72
+      ],
+      "loopRequired": false,
+      "resolution": [
+        360,
+        640
+      ]
+    },
+    "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+    "selectedCandidateId": "fd21a7a154746ccccd0394fcca41a53ae8ad44abacf0f354f70ec9ce8701d0fd",
+    "videoSHA256": "a2c11d416f8828004bf09679207050ad6ea8ef77f7333b6b532a99706cf621eb",
+    "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+    "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+    "sourceDirty": false
+  },
+  "referenceSHA256": "c2e9485b018298603139546bc5ce683f3f010c2854701d143c6795a33281fdbb",
+  "failedObservation": {
+    "unitId": "ce717fd39dd497811c77786052d50234696341a88da7bec7db2b468794997b5d",
+    "fragmentIndex": 2,
+    "fragmentRange": [
+      10.9,
+      12.72
+    ],
+    "selectionOrigin": "PLANNED_DIRECTION",
+    "originalPlannerIntent": null,
+    "temporalPrinciple": "stable-travel",
+    "layoutOperator": "settle",
+    "attribution": "LAYOUT_OR_EXPLICIT_OPERATOR",
+    "intent": "existing selected renderer motion",
+    "operator": "settle",
+    "target": "registered primary glyph identities",
+    "expectedMotion": "settle",
+    "timeRange": [
+      10.9,
+      12.72
+    ],
+    "confidence": null,
+    "measurable": true,
+    "naturalSelection": true,
+    "source": "SHIPPING_RENDERER_CONTRACT",
+    "mode": "duo",
+    "failureReason": null,
+    "status": "MEASURED",
+    "observed": {
+      "sampleCount": 72,
+      "matched": 72,
+      "meanExpectedPixels": 6.94968553188408,
+      "meanObservedPixels": 6.947277864630599,
+      "actualDecodedTimestamps": [
+        11.05,
+        11.091666666666667,
+        11.133333333333335,
+        11.175,
+        11.216666666666667,
+        11.258333333333335,
+        11.3,
+        11.341666666666667,
+        11.383333333333335,
+        11.425,
+        11.466666666666667,
+        11.508333333333335,
+        11.55,
+        11.591666666666667,
+        11.633333333333335,
+        11.675,
+        11.716666666666667,
+        11.758333333333335,
+        11.8,
+        11.841666666666667,
+        11.883333333333335,
+        11.925,
+        11.966666666666667,
+        12.008333333333335,
+        12.05,
+        12.091666666666667,
+        12.133333333333335,
+        12.175,
+        12.216666666666667,
+        12.258333333333335,
+        12.3,
+        12.341666666666667
+      ]
+    },
+    "realization": 1,
+    "passed": true,
+    "intentRealization": "UNMEASURED",
+    "limits": "Registered trajectory proves renderer agreement only. Operator-specific expansion, convergence distance or musical-event realization must also be measured before intent is certified.",
+    "intentObservation": {
+      "status": "MEASURED",
+      "realization": 0,
+      "passed": false,
+      "expected": -3.0758558665607163,
+      "observed": -3.0765278549662822,
+      "contractExpansionPeak": null,
+      "failureReason": "SELECTED_OPERATOR_PHYSICAL_INTENT_NOT_REALIZED",
+      "actualDecodedTimestamps": [
+        10.925,
+        10.966666666666667,
+        11.008333333333335,
+        11.05,
+        11.091666666666667,
+        11.133333333333335,
+        11.175,
+        11.216666666666667,
+        11.258333333333335,
+        11.3,
+        11.341666666666667,
+        11.383333333333335,
+        11.425,
+        11.466666666666667,
+        11.508333333333335,
+        11.55,
+        11.591666666666667,
+        11.633333333333335,
+        11.675,
+        11.716666666666667,
+        11.758333333333335,
+        11.8,
+        11.841666666666667,
+        11.883333333333335,
+        11.925,
+        11.966666666666667,
+        12.008333333333335,
+        12.05,
+        12.091666666666667,
+        12.133333333333335,
+        12.175,
+        12.216666666666667,
+        12.258333333333335,
+        12.3,
+        12.341666666666667
+      ],
+      "method": "Operator-specific decoded registered glyph ink geometry; native target retained separately; no aesthetic score"
+    }
+  },
+  "actualSelectedTemporalContract": {
+    "version": 1,
+    "role": "continuity",
+    "level": 0.7,
+    "hit": 11.2116,
+    "entry": 0.32,
+    "exit": 0.14560000000000003,
+    "motionPrinciple": "stable-travel",
+    "climax": true,
+    "source": "lyric role + section energy + percussion profile + actual beat hierarchy; complete lyric visible at onset"
+  },
+  "actualLayout": "cinemaGrammarduo",
+  "actualHold": "pulse",
+  "diagnosis": "MULTIPLE_TARGETS_AND_TEMPORAL_SCOPES_CONFIRMED: background image continuity/stable-travel coexists with primary duo settling (11zzp_shot_grammar.js applyTypography5: row-alternating .035W*(1-ease(u*3))). Upper temporal continuity/climax/closing modifiers also affect primary glyphs. Whole-interval composite acceleration is not an isolated measurement of either the image travel or the primary duo settle component. Original measured failure remains unchanged.",
+  "nativeDecodedObservation": "Expected settle deceleration -3.0758558665607163 vs decoded -3.0765278549662822; renderer agreement already measured true. No contrast-centroid or isolated-HOLD hypothesis needed.",
+  "status": "REQUIRES_TARGET_AND_PHASE_SPECIFIC_COMPONENT_OBSERVATION",
+  "visualQuality": "Not certified by this trace; full MP4 and decoded frames remain available.",
+  "frames": [
+    {
+      "actualDecodedTimestamp": 10.925,
+      "phase": "entry",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        112.2678058602905,
+        350.4352669719299
+      ],
+      "decodedCentroidMean": [
+        112.26288762690926,
+        350.43971540716916
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 10.966666666666667,
+      "phase": "entry",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        114.49267178561827,
+        350.62007388808684
+      ],
+      "decodedCentroidMean": [
+        114.4816301355026,
+        350.6021619076762
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.008333333333335,
+      "phase": "entry",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        115.22646381316378,
+        350.72644792978804
+      ],
+      "decodedCentroidMean": [
+        115.22352450279804,
+        350.72100744623094
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.05,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        115.26798388600544,
+        350.22014772853345
+      ],
+      "decodedCentroidMean": [
+        115.26550463440553,
+        350.21407159318215
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.091666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        114.66259962885829,
+        350.51088853930224
+      ],
+      "decodedCentroidMean": [
+        114.66932142144513,
+        350.5109014552002
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.133333333333335,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        113.91512295203505,
+        350.50661394828194
+      ],
+      "decodedCentroidMean": [
+        113.91940647078808,
+        350.50420312749276
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.175,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        113.05261365697946,
+        350.54586674636795
+      ],
+      "decodedCentroidMean": [
+        113.0500644964145,
+        350.5410280207471
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.216666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        112.24714665336312,
+        350.496189792937
+      ],
+      "decodedCentroidMean": [
+        112.24796190872024,
+        350.4932301502786
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.258333333333335,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        112.61302209490366,
+        350.21084842793425
+      ],
+      "decodedCentroidMean": [
+        112.6022432377655,
+        350.2133636121928
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.3,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        111.20591132381334,
+        350.51262889375676
+      ],
+      "decodedCentroidMean": [
+        111.20289754838153,
+        350.5046707008651
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.341666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        110.00684556253965,
+        350.3963467527426
+      ],
+      "decodedCentroidMean": [
+        110.01433071713465,
+        350.39504006419764
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.383333333333335,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        109.3107514310392,
+        350.4326801782581
+      ],
+      "decodedCentroidMean": [
+        109.31621900653748,
+        350.4286165313654
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.425,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.65892674826512,
+        350.40441230285705
+      ],
+      "decodedCentroidMean": [
+        108.65970633767397,
+        350.39406769562333
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.466666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.57468144263487,
+        350.4615990657437
+      ],
+      "decodedCentroidMean": [
+        108.56468272003924,
+        350.4293808746579
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.508333333333335,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.55,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.591666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.633333333333335,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.675,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.716666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.758333333333335,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.8,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.841666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.883333333333335,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.925,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 11.966666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.008333333333335,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.05,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.63889896835535,
+        350.53886354217315
+      ],
+      "decodedCentroidMean": [
+        108.63573200809469,
+        350.5421787369462
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.091666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        108.66203796999388,
+        350.2529255526022
+      ],
+      "decodedCentroidMean": [
+        108.67622504565088,
+        350.25865014943867
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.133333333333335,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        109.09452675847467,
+        346.06267672973695
+      ],
+      "decodedCentroidMean": [
+        109.10161639538619,
+        346.0776479581393
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.175,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        110.01748613748954,
+        338.3110810862509
+      ],
+      "decodedCentroidMean": [
+        110.01931947854183,
+        338.3118914334656
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.216666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        111.13134539928244,
+        326.83726225522713
+      ],
+      "decodedCentroidMean": [
+        111.11830339278669,
+        326.83680898006656
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.258333333333335,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        112.60542160997817,
+        312.0698405546109
+      ],
+      "decodedCentroidMean": [
+        112.60593309809515,
+        312.0706797363817
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.3,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        114.56702001196017,
+        295.3789467289637
+      ],
+      "decodedCentroidMean": [
+        114.56354974504193,
+        295.37772594174845
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.341666666666667,
+      "phase": "hold",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        116.0497567259635,
+        277.2844163659941
+      ],
+      "decodedCentroidMean": [
+        116.04766104290336,
+        277.2931983649757
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.383333333333335,
+      "phase": "exit",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        118.03820972050903,
+        257.7722217685311
+      ],
+      "decodedCentroidMean": [
+        118.03081511443914,
+        257.7832562119383
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.425,
+      "phase": "exit",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        120.28325418180684,
+        238.24515990849991
+      ],
+      "decodedCentroidMean": [
+        120.27012189712883,
+        238.23815679194863
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.466666666666667,
+      "phase": "exit",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        122.01455835073396,
+        218.89820705741909
+      ],
+      "decodedCentroidMean": [
+        122.01455835073396,
+        218.89820705741909
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.508333333333335,
+      "phase": "exit",
+      "pixelPresence": true,
+      "nativeComplete": true,
+      "nativeCentroidMean": [
+        123.82765700705818,
+        200.68039915126894
+      ],
+      "decodedCentroidMean": [
+        123.83534247166693,
+        200.6901731977198
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.55,
+      "phase": "exit",
+      "pixelPresence": true,
+      "nativeComplete": false,
+      "nativeCentroidMean": [
+        125.63939250099463,
+        184.2389970161628
+      ],
+      "decodedCentroidMean": [
+        125.64222230285999,
+        184.25922240967978
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.591666666666667,
+      "phase": "exit",
+      "pixelPresence": true,
+      "nativeComplete": false,
+      "nativeCentroidMean": [
+        121.7137200093175,
+        205.13358956440717
+      ],
+      "decodedCentroidMean": [
+        121.73402094077198,
+        205.14478824816376
+      ]
+    },
+    {
+      "actualDecodedTimestamp": 12.633333333333335,
+      "phase": "exit",
+      "pixelPresence": null,
+      "nativeComplete": false,
+      "nativeCentroidMean": null,
+      "decodedCentroidMean": null
+    },
+    {
+      "actualDecodedTimestamp": 12.675,
+      "phase": "exit",
+      "pixelPresence": null,
+      "nativeComplete": false,
+      "nativeCentroidMean": null,
+      "decodedCentroidMean": null
+    }
+  ],
+  "human": "HUMAN_UNVERIFIED",
+  "sourceEvidence": [
+    {
+      "path": "src/11zzp_shot_grammar.js",
+      "lines": [
+        27,
+        30
+      ],
+      "finding": "Duo primary dx settling term reaches zero at u=1/3, independent of background focus operator."
+    },
+    {
+      "path": "src/11zzu_temporal_direction.js",
+      "lines": [
+        17,
+        18
+      ],
+      "finding": "Image focus x and zoom travel."
+    },
+    {
+      "path": "src/11zzu_temporal_direction.js",
+      "lines": [
+        29,
+        33
+      ],
+      "finding": "Primary continuity dy/scale, climax impact and terminal alpha closing coexist."
+    }
+  ]
+}
