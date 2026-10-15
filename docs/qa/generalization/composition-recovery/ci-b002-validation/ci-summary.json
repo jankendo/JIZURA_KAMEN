@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "workflowRun": 38734651609,
+  "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38734651609",
+  "workflowStatus": "SUCCESS",
+  "expectedPRSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "actualPRMergeCheckout": "599f48a0b8529417bf96248455228d929f158c3c",
+  "githubGitTreeExactMatch": {
+    "mergeTree": "41651d8bdd3492fc9ffa956b933a8ae41f31485e",
+    "sourceTree": "41651d8bdd3492fc9ffa956b933a8ae41f31485e",
+    "status": "EXACT"
+  },
+  "tests": {
+    "total": 207,
+    "passed": 205,
+    "failed": 0,
+    "skipped": 2
+  },
+  "skips": [
+    {
+      "name": "variable_font_browser_test.js",
+      "status": "SKIP"
+    },
+    {
+      "name": "browser_export_e2e_test.js",
+      "status": "SKIP"
+    }
+  ],
+  "browser": {
+    "status": "PASS",
+    "oneClick": true,
+    "checks": [
+      {
+        "name": "startup",
+        "status": "PASS",
+        "version": "2.0.26",
+        "secure": true
+      },
+      {
+        "name": "background upload",
+        "status": "PASS"
+      },
+      {
+        "name": "TXT import",
+        "status": "PASS"
+      },
+      {
+        "name": "LRC import and timing",
+        "status": "PASS"
+      },
+      {
+        "name": "audio upload and analysis",
+        "status": "PASS",
+        "bpm": 120
+      },
+      {
+        "name": "automatic MV generation",
+        "status": "PASS",
+        "cuts": 4,
+        "lines": 4,
+        "duration": 8.999977324263039
+      },
+      {
+        "name": "preview playback",
+        "status": "PASS"
+      },
+      {
+        "name": "project save and reload",
+        "status": "PASS"
+      },
+      {
+        "name": "regenerate after restored audio",
+        "status": "PASS"
+      },
+      {
+        "name": "UI MP4 export and decode",
+        "status": "PASS",
+        "creativeState": "BELOW_TARGET",
+        "oneClick": true,
+        "video": "h264",
+        "audio": "aac",
+        "duration": "9.024000",
+        "progressUpdates": 1943,
+        "decodedFrames": 216,
+        "visibleContent": true
+      }
+    ],
+    "pageErrors": [],
+    "resourceFailures": [],
+    "artifactBinding": {
+      "inputHash": "eb13583ccff4a37b3b3a86cba7249b775b745a6c218710ba83423a298dc92c32",
+      "planHash": "5cd82af1d0769feee76d1699ff5945d0cdb15559525bdc38d42324c8cb941897",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          8.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+      "selectedCandidateId": "e163fbda3e6ed9cba99fc0f968d3a19b972f32566f667be4cb4a6d1896175af7",
+      "videoSHA256": "f456f2d24878c4b5e4cf5c9bdc76d794c2c1f26a9862a41b384c9f4f90047f7a",
+      "sourceCommit": "599f48a0b8529417bf96248455228d929f158c3c",
+      "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+      "sourceDirty": false
+    },
+    "creativeState": "BELOW_TARGET",
+    "fileState": "SAVE_AVAILABLE"
+  },
+  "overlayReportStatus": "PASS",
+  "uiBoundaryReportStatus": "PASS",
+  "scope": "Actual shipping browser UI export, save/reload, preview, below-target one-click and H264/AAC decode. UI boundary reuse/synthetic acceptance remains separately identified in raw report; no production test implied.",
+  "productionChanged": false,
+  "traceProtection": "Whole trace is preserved in SHA-verified 64MiB raw chunks; durable only after all chunks are committed and pushed."
+}
