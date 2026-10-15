@@ -11,7 +11,10 @@ class ExportWatchdog {
     // Verification includes decoded-frame QA and bounded candidate repair, not
     // just encoding. Give that actual phase its own budget; repeated callbacks,
     // elapsed clocks and callback timestamps cannot renew either deadline.
-    if(this.verificationStarted===null&&p?.stage?.stage==='verify')this.verificationStarted=now;
+    if(this.verificationStarted===null&&p?.stage?.stage==='verify'){
+      if(now-this.started>this.maximumMs)return 'timeout';
+      this.verificationStarted=now;
+    }
     const signature=JSON.stringify({
       calls:state.calls, completed:state.completed,
       progress:p&&{fraction:p.fraction,label:p.label,stage:p.stage}, failures:state.failures,
