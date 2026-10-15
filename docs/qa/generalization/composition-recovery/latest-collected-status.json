@@ -1,0 +1,37 @@
+{
+  "PRHead": "1aa31cd632955894daef8e8849728a9a0ef608c8",
+  "ci": {
+    "run": 38651753161,
+    "status": "FAIL",
+    "regressionsPass": 202,
+    "regressionsSkip": 2,
+    "failedStep": "Browser UI and MP4 smoke test",
+    "reason": "generation wait exceeded 600 seconds; not yet classified as stall",
+    "pageExceptions": []
+  },
+  "preflight307": {
+    "sourceCommit": "30734a1c127116eb7904f3c649bd737e3e72cdca",
+    "fixture": "holdout-12",
+    "status": "PASS",
+    "fullDecode": "PASS",
+    "videoSHA256": "bf8c694a69ef8f6441da55aecf39a1e8f3d535e5e583ad70ef2b4bef8ca16c37",
+    "geometryPortfolio": "MEASURED_SAFE_SEQUENCE",
+    "comparison1aa": {
+      "typographyDiversity": [
+        57,
+        58
+      ],
+      "temporalContrast": [
+        29,
+        66
+      ],
+      "localContrast": [
+        90,
+        94
+      ]
+    },
+    "scope": "one condition only; final HEAD and independent generalization remain UNVERIFIED"
+  },
+  "release": "NO_GO_PENDING_CURRENT_TECHNICAL_AND_QUALITY_EVIDENCE",
+  "mainChanged": false
+}
