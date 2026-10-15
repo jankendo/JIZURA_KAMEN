@@ -1,0 +1,76 @@
+name: Final source natural selection for 23 previously scoped movies
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/release-current23-final-source.yml]
+permissions:
+  contents: read
+jobs:
+  final-current:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        partition: [0, 1, 2, 3, 4, 5]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/final-source-current23-preregistration.json
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: b002cdd75845d189221312a82456c33a131f5e8d
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Strict identity verifier counterexamples
+        run: python qa/docs/qa/generalization/tools/verify_current23_inputs_test.py
+      - name: Frozen case partition
+        env:
+          PARTITION: ${{ matrix.partition }}
+        run: |
+          mkdir -p results
+          python - <<'PY'
+          import json,os
+          p='qa/docs/qa/generalization/composition-recovery/final-source-current23-preregistration.json'
+          d=json.load(open(p));assert len(d['fixtures'])==23
+          cases=[f['id'] for i,f in enumerate(d['fixtures']) if i%6==int(os.environ['PARTITION'])]
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('KAMEN_MATRIX_CASES='+','.join(cases)+'\n')
+          PY
+          sha256sum qa/docs/qa/generalization/composition-recovery/final-source-current23-preregistration.json qa/docs/qa/generalization/tools/matrix.cjs > results/preregistered-tools.sha256
+      - name: Complete unchanged shipping natural selection and MP4
+        timeout-minutes: 330
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/composition-recovery/final-source-current23-preregistration.json
+          KAMEN_MATRIX_VARIANTS: v3
+          KAMEN_MATRIX_NATIVE_HASHES: 1
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4173/ results/matrix > results/matrix.log 2>&1
+      - name: Full decode, final FAV and strict original input correspondence
+        if: always()
+        run: |
+          python qa/docs/qa/generalization/tools/verify_artifacts.py results/matrix results/strict-decode.json
+          python qa/docs/qa/generalization/tools/verify_current23_inputs.py results qa/docs/qa/generalization/composition-recovery/final-source-current23-preregistration.json "$KAMEN_MATRIX_CASES"
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: final-source-current23-${{ matrix.partition }}
+          path: results/
+          retention-days: 14
