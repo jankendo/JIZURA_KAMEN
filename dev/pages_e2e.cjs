@@ -51,6 +51,7 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
   const target=new URL(url);target.searchParams.set('kamen_qa',String(Date.now()));
   const response=await page.goto(target.toString(),{waitUntil:'load',timeout:60000});assert.equal(response.status(),200);environment.runtimeSHA256=createHash('sha256').update(await response.body()).digest('hex');
   await page.waitForFunction(()=>window.J?.ui?.project&&document.querySelector('#studioExport'));
+  if(process.env.KAMEN_PROFILE_GENERATION==='1')await require('./generation_profile.cjs').install(page,out);
   assert((await page.title()).includes('KAMEN'));assert.equal(await page.evaluate(()=>KAMEN_APP_INFO.version),'2.0.26');
   check('startup',{version:'2.0.26',secure:await page.evaluate(()=>isSecureContext)});
   await page.locator('[data-bg-file]').first().setInputFiles(path.join(out,'background.webp'));

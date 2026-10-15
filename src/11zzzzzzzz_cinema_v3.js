@@ -306,7 +306,8 @@ V.guardCompositionPromotion=async(root,planHash,incumbentPlanHash,measure)=>{
  const evidence=await measure(),allowed=V.registryCreativeDominates(evidence.next,evidence.prior);
  return {root,allowed,status:allowed?'MEASURED_NONREGRESSING_IMPROVEMENT':'NOT_PROMOTED_UNMEASURED_OR_NO_CREATIVE_IMPROVEMENT',planHash,incumbentPlanHash,...evidence,comparison:'Same input, profile and renderer; unchanged strict creative axes for every changed root; final MP4 QA required'};
 };
-V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
+V.compareLegacyFinalist=async(p,range,signal,shared,incumbent,telemetry={})=>{
+ let measuredWork=0;const measuredProgress=label=>telemetry.onProgress?.({label,current:++measuredWork,total:null});
  if(!Number.isFinite(incumbent?.score))return {status:'UNMEASURED',reason:'INCUMBENT_DELIVERY_READABILITY_UNMEASURED'};
 
  const rasterScope={renderer:new J.Renderer(),ready:false};try{
@@ -332,14 +333,14 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  if(p.registryMeasuredCuts?.length){
   const registryPlan=V.clone(p);registryPlan.cuts=V.clone(p.registryMeasuredCuts);
   for(const c of registryPlan.cuts){const live=p.cuts.find(x=>x.line===c.line&&x.start===c.start&&x.end===c.end);if(live&&J.photoChoreographyLocked(p,live)){for(const key of Object.keys(c))delete c[key];Object.assign(c,V.clone(live));}}
-  const registryReadability=await J.measureCinemaOutputReadability(registryPlan,range,signal,measurementOptions);
+  const registryReadability=await J.measureCinemaOutputReadability(registryPlan,range,signal,measurementOptions);measuredProgress('元の構図候補の実画素検査が完了');
   components.push({id:'MEASURED_REGISTRY_BASELINE',plan:registryPlan,readability:registryReadability});
   finalistComparisons.push({candidate:'MEASURED_REGISTRY_BASELINE',planHash:await V.planHash(registryPlan),readability:registryReadability,creativeLowerTail:null,source:'Original measured registry layouts retained as a real renderer candidate; Cinema remains enabled; final MP4 verification required'});
  }
  if(p.registryGeometryAlternativeCuts?.length){
   const geometryPlan=V.clone(p);geometryPlan.cuts=V.clone(p.registryGeometryAlternativeCuts);
   for(const c of geometryPlan.cuts){const live=p.cuts.find(x=>x.line===c.line&&x.start===c.start&&x.end===c.end);if(live&&J.photoChoreographyLocked(p,live)){for(const key of Object.keys(c))delete c[key];Object.assign(c,V.clone(live));}}
-  const geometryReadability=await J.measureCinemaOutputReadability(geometryPlan,range,signal,measurementOptions);components.push({id:'MEASURED_REGISTRY_GEOMETRY',plan:geometryPlan,readability:geometryReadability});finalistComparisons.push({candidate:'MEASURED_REGISTRY_GEOMETRY',planHash:await V.planHash(geometryPlan),readability:geometryReadability,creativeLowerTail:null,source:'Complete post-director geometry alternative, phase-reverified with its own anchor/font/layout; final artifact comparison required',upstreamTrace:p.registryGeometryAlternativeTrace??null,earlierPhaseEvidenceReusable:!p.registryGeometryAlternativeTrace?.some(t=>String(t.status).startsWith('STALE_'))});
+  const geometryReadability=await J.measureCinemaOutputReadability(geometryPlan,range,signal,measurementOptions);measuredProgress('安全な構図候補の実画素検査が完了');components.push({id:'MEASURED_REGISTRY_GEOMETRY',plan:geometryPlan,readability:geometryReadability});finalistComparisons.push({candidate:'MEASURED_REGISTRY_GEOMETRY',planHash:await V.planHash(geometryPlan),readability:geometryReadability,creativeLowerTail:null,source:'Complete post-director geometry alternative, phase-reverified with its own anchor/font/layout; final artifact comparison required',upstreamTrace:p.registryGeometryAlternativeTrace??null,earlierPhaseEvidenceReusable:!p.registryGeometryAlternativeTrace?.some(t=>String(t.status).startsWith('STALE_'))});
  }
  for(const finalist of stages.stageC){
   if(finalist.id===selected.id||!finalist.encoded?.completed||finalist.raster.samples.some(s=>!s.safe))continue;
@@ -352,7 +353,7 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
    for(const component of components){const source=component.plan.cuts.find(c=>c.line===target.line&&c.start===target.start&&c.end===target.end);if(!source)continue;const next=perLine(component.readability,target.line);if(!V.physicalReadabilityDominates(next,current)||!improves(next,current))continue;for(const key of Object.keys(target))delete target[key];Object.assign(target,V.clone(source));if(component.plan.cinemaCandidateMode==='legacy'&&plan.cinemaCandidateMode!=='legacy')target.cinemaV3Legacy=true;target.cinemaV3LegacyFinalist=true;current=next;lines.push({line:target.line,component:component.id});}
   }
   J.rebuildCinemaBeatIntent(plan);const raw=await J.measureCinemaOutputReadability(plan,range,signal,measurementOptions),repair=V.physicalReadabilityDominates(raw,legacyReadability)&&V.physicalReadabilityDominates(raw,incumbent)?null:await V.repairReadabilityPreview(plan,range,signal,{...measurementOptions,cached:raw}),readability=repair?.after||raw,legacyProtected=V.physicalReadabilityDominates(readability,legacyReadability),incumbentProtected=V.physicalReadabilityDominates(readability,incumbent);
-  proposals.push({root:root.id,plan,lines,readability,repair,legacyProtected,incumbentProtected});
+  proposals.push({root:root.id,plan,lines,readability,repair,legacyProtected,incumbentProtected});measuredProgress('候補 '+root.id+' の全歌詞検査が完了');
  }
  // Equal physical candidates must reach the encoded composition comparison.
  // Isolated unit substitutions preserve every other shipping cut and expose
@@ -381,6 +382,7 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  unitAlternatives.sort((a,b)=>a.index-b.index||String(a.component.id).localeCompare(String(b.component.id)));
  const queues=[...new Map(unitAlternatives.map(a=>[a.index,unitAlternatives.filter(b=>b.index===a.index)])).values()],scheduled=[];for(let offset=0;scheduled.length<32&&queues.some(q=>q.length>offset);offset++)for(const q of queues)if(q[offset]&&scheduled.length<32)scheduled.push(q[offset]);
  for(const alternative of scheduled){
+  measuredProgress('構図変更区間の検査 '+(scheduled.indexOf(alternative)+1)+'/'+scheduled.length);
   if(signal?.aborted)throw new DOMException('Aborted','AbortError');
   const {plan,index,component,identity}=alternative,raw=await J.measureCinemaOutputReadability(plan,range,signal,measurementOptions),repair=V.physicalReadabilityDominates(raw,legacyReadability)&&V.physicalReadabilityDominates(raw,incumbent)?null:await V.repairReadabilityPreview(plan,range,signal,{...measurementOptions,cached:raw}),readability=repair?.after||raw;
   proposals.push({root:'MEASURED_UNIT_'+index+'_FROM_'+component.id,plan,lines:[{line:plan.cuts[index].line,unitIndex:index,component:component.id}],readability,repair,legacyProtected:V.physicalReadabilityDominates(readability,legacyReadability),incumbentProtected:V.physicalReadabilityDominates(readability,incumbent)});
@@ -395,6 +397,7 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  const incumbentIdentity=await V.planHash(shippingBaseline);
  let priorEncoded=null,priorDeliveryEncoded=null;
  for(const candidate of readable){
+  measuredProgress('完成プロファイルの候補比較 '+(readable.indexOf(candidate)+1)+'/'+readable.length);
   const identity=await V.planHash(candidate.plan);
   const guard=await V.guardCompositionPromotion(candidate.root,identity,incumbentIdentity,async()=>{
    priorEncoded??=await J.measureCinemaEncodedProxy(shippingBaseline,range,signal,{scope:rasterScope,inputHash});
