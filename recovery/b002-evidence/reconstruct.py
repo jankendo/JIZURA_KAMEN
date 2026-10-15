@@ -33,7 +33,10 @@ for item in spec['blobs']:
  else:data=cached
  header=('blob '+str(len(data))+'\0').encode();assert hashlib.sha1(header+data).hexdigest()==item['gitBlobSHA1'],'RECONSTRUCTED_GIT_BLOB_DIFFERS: '+item['path']
  assert git('hash-object','-w','--stdin',input=data).decode().strip()==item['gitBlobSHA1'];restored.append({'path':item['path'],'gitBlobSHA1':item['gitBlobSHA1']})
-pack=(root/'metadata.pack').read_bytes();assert len(pack)==spec['packBytes'] and sha(pack)==spec['packSHA256'];git('index-pack','--stdin',input=pack)
+pack=b''
+for part in spec['packParts']:
+ data=(root/part['file']).read_bytes();assert len(data)==part['bytes'] and sha(data)==part['SHA256'];pack+=data
+assert len(pack)==spec['packBytes'] and sha(pack)==spec['packSHA256'];git('index-pack','--stdin',input=pack)
 checks=git('cat-file','--batch-check',input=('\n'.join(spec['objectInventory'])+'\n').encode()).decode().splitlines()
 assert len(checks)==spec['gitObjectsTotal'] and all(' missing' not in line for line in checks),'MISSING_NEW_GIT_OBJECT'
 assert [line.split()[0] for line in checks]==spec['objectInventory'],'NEW_OBJECT_INVENTORY_DIFFERS'
