@@ -34,6 +34,7 @@ tests.push('kamen_social_choreography_test.cjs','kamen_social_range_test.cjs','k
 tests.push('cinema_v3_final_quality_test.cjs','cinema_v3_readability_protection_test.cjs','cinema_v3_contract_test.cjs','cinema_v3_immutability_test.cjs','cinema_v3_metric_calibration_test.cjs','cinema_v3_state_machine_test.cjs','cinema_v3_grammar_adaptation_test.cjs');
 tests.push('cinema_composition_promotion_test.cjs','cinema_candidate_trace_test.cjs','cinema_architecture_semantic_box_test.cjs');
 tests.push('cinema_v5_selection_test.cjs','cinema_v5_layout_test.cjs','cinema_v5_physical_evidence_test.cjs','cinema_v5_planner_test.cjs','cinema_v5_repair_audio_test.cjs','cinema_v5_final_artifact_test.cjs');
+tests.push('cinema_nested_progress_test.cjs','release_gates_test.cjs');
 const testResults=[];let failures = 0, skipped = 0;
 for (const test of tests) {
   console.log(`\n> ${test}`);
