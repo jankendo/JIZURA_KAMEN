@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "reviewer": "Codex AI visual inspection; no independent human expert participated",
+  "frameManifestSHA256": "0d28d25be7e112eba8f81cd6de2039287dfa2abbfad5afc063a741796dc8b51d",
+  "decodedMovies": 18,
+  "extractedFrameSamples": 162,
+  "visuallyInspectedCentralContactFrames": 54,
+  "offsetFrameSamplesNotVisuallyInspected": 108,
+  "sampling": "Fixed preregistered central times; adjacent offset frames extracted and hashed separately.",
+  "samples": [
+    {
+      "fixture": "development-03",
+      "observation": "Previous and current match at the three central sampled frames. Main has a narrower mid-phrase word split; current preserves a clearer two-row phrase. Earlier PCM-confounded apparent 72-to-24 regression is not confirmed by this matched trial.",
+      "limits": "No whole-film or musical superiority claim."
+    },
+    {
+      "fixture": "development-05",
+      "observation": "Previous and current match at the three central sampled frames. Relative to main, middle phrase grouping improves, while final Japanese phrase uses an awkward three-row break. This existing tradeoff is preserved, not called resolved.",
+      "limits": "Japanese phrase quality remains an aesthetic/linguistic limitation; no missing source glyph observed in these samples."
+    },
+    {
+      "fixture": "holdout-01",
+      "observation": "Current returns to a framed blue composition with phrase-dependent position and scale. Previous has a flatter centered composition. Source lyrics are legible in the first two anchors; all versions are in the post-lyric background at the final anchor.",
+      "limits": "Observed composition change is real; appropriateness to music and artistic superiority are not certified."
+    },
+    {
+      "fixture": "holdout-03",
+      "observation": "Previous and current match at the three central sampled frames; line groups differ from main. No sampled missing/clipped glyph observed.",
+      "limits": "No current-over-previous creative improvement is claimed for these equal samples."
+    },
+    {
+      "fixture": "holdout-08",
+      "observation": "Previous uses a serif face and framed image; current uses bold text and a different image arrangement. First-to-middle composition contrast exists in both. Motion-score decrease alone is not a demonstrated visual defect.",
+      "limits": "No preferred aesthetic or whole-film motion verdict inferred from still frames."
+    },
+    {
+      "fixture": "holdout-15",
+      "observation": "All three historical versions visibly break the Latin word song across rows at the final anchor. This is an existing renderer/semantic-layout mismatch, confirmed separately by actual draw-item tracing.",
+      "limits": "New b002 repair requires new completed MP4 and decoded-frame validation; old sampled videos are not repair evidence."
+    }
+  ],
+  "observedMajorGlyphLossOrClippingInViewedFrames": false,
+  "knownWordLayoutDefectBeforeNewFix": true,
+  "wholeFilmQuality": "UNVERIFIED",
+  "musicSuitability": "UNMEASURED",
+  "allEffectRealization": "UNVERIFIED",
+  "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED",
+  "releaseVerdict": "NO_RELEASE_VERDICT_FROM_THIS_REVIEW"
+}

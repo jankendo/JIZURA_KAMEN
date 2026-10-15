@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "method": "Run complete source stacks separately; capture actual final drawItem text after all layout/motion/readability wrappers. Embedded Node fonts are diagnostic only; no browser encoding, decoded OCR or release quality is certified.",
+  "referenceSHA256": "4f3e905689d77b479db6a011f087f4c0fa8f3eb19edf922f48095c58a3c41232",
+  "planHash": "08720451c0e1c18d35e3100f389d6edfa87d0ced62556788e38b694f4284f020",
+  "observations": [
+    {
+      "name": "before",
+      "sourceDirectory": "/tmp/kamen-before-word-c043",
+      "rendererFileSHA256": "313c620bb30e8633ee2eef2a560a39500fd13965f85da296022dc069cfbfc127",
+      "sourceText": "Our song 深い海へ",
+      "semanticText": "Our song\n 深い海へ",
+      "semanticSize": 189,
+      "actualDrawItems": [
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "text": "Our son\ng 深い海へ",
+          "font": "dela",
+          "size": 189
+        }
+      ],
+      "sampleNativeTime": 8.333333333333334,
+      "manualLocked": false
+    },
+    {
+      "name": "after",
+      "sourceDirectory": "/workspace/kamen-next",
+      "rendererFileSHA256": "c6926ae346f25254f43fd01e172af22f23f83152bd5628bfe2d90e582fb5643b",
+      "sourceText": "Our song 深い海へ",
+      "semanticText": "Our song\n 深い海へ",
+      "semanticSize": 189,
+      "actualDrawItems": [
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "text": "Our song\n 深い海へ",
+          "font": "dela",
+          "size": 189
+        }
+      ],
+      "sampleNativeTime": 8.333333333333334,
+      "manualLocked": false
+    }
+  ],
+  "human": "HUMAN_UNVERIFIED"
+}
