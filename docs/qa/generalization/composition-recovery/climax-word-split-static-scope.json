@@ -1,0 +1,36 @@
+{
+  "status": "STATIC_CAUSE_AND_SCOPE_NOT_A_RENDER_OR_RELEASE_CERTIFICATE",
+  "criterion": "Existing climax renderer splits Unicode code points equally across rows; detect inserted breaks inside Latin alphanumeric words; no fixture condition is used in production logic",
+  "records": [
+    {
+      "reference": "final5c92-dev-c/matrix/development-15-v3-reference.json.gz",
+      "referenceSHA256": "9ab0ac814d5436520ad0175ff7bd6e42e3f188520741cfce180fbd5e80aff463",
+      "planHash": "3c7a1e6a14b001da9e6d074e1dbac6237f9dbca7e2d9b745c7e9fb85c331753f",
+      "affectedCuts": [
+        {
+          "line": 1,
+          "source": "歩幅は moving with the rain",
+          "legacyRenderedText": "歩幅は moving w\nith the rain",
+          "unsafeBreakNumbers": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "reference": "recovery5c92-holdout15/matrix/holdout-15-v3-reference.json.gz",
+      "referenceSHA256": "4f3e905689d77b479db6a011f087f4c0fa8f3eb19edf922f48095c58a3c41232",
+      "planHash": "08720451c0e1c18d35e3100f389d6edfa87d0ced62556788e38b694f4284f020",
+      "affectedCuts": [
+        {
+          "line": 2,
+          "source": "Our song 深い海へ",
+          "legacyRenderedText": "Our son\ng 深い海へ",
+          "unsafeBreakNumbers": [
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}
