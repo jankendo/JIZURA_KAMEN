@@ -141,12 +141,12 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
     assert.equal(lastState.draft,false,'one-click export must not request Draft approval');
     const terminal=lastState.jobs.filter(j=>j.title==='動画を書き出しています').sort((a,b)=>a.id-b.id).at(-1);
     if(terminal&&['error','cancelled'].includes(terminal.status))throw new Error('Application export stopped: '+terminal.error);
-    if(deadline==='timeout')throw new Error('Export timeout: maximum 8 minutes exceeded');
+    if(deadline==='timeout')throw new Error('Export timeout: encoding or final verification exceeded its bounded 8-minute phase budget');
     if(deadline==='stalled')throw new Error('Export stalled: no state or progress change for 90 seconds');
     if(!exported)await page.waitForTimeout(5000);
    }
    const video=path.join(out,'ui-export.mp4');console.log('export state: saving download');const saveStarted=Date.now();let saveTimer;
-   try{await Promise.race([exported.saveAs(video),new Promise((_,reject)=>{saveTimer=setTimeout(()=>reject(new Error('Export timeout while saving download')),Math.max(1,480000-(Date.now()-started)));})]);}
+   try{await Promise.race([exported.saveAs(video),new Promise((_,reject)=>{saveTimer=setTimeout(()=>reject(new Error('Export timeout while saving download')),90000);})]);}
    catch(error){await exported.cancel().catch(()=>{});throw error;}finally{clearTimeout(saveTimer);downloadSaveWallMs=Date.now()-saveStarted;}
    downloadError=await exported.failure();assert.equal(downloadError,null);console.log('export state: download-completed');
   }finally{page.off('download',onDownload);}
