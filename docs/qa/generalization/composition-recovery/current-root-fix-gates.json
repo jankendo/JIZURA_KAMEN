@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "1aa31cd632955894daef8e8849728a9a0ef608c8",
+  "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
@@ -7,44 +7,45 @@
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "pr": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "draft": true,
-  "currentTests": {
-    "targetedContractFiles": "3 PASS",
-    "build": "PASS",
-    "browserUIExactCurrentHead": "PENDING_CI",
-    "historicalB85UI": "PASS; not 1aa current-source browser result"
-  },
   "officialCI": {
-    "run": 38651753161,
-    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38651753161",
+    "run": 38675364283,
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38675364283",
     "status": "RUNNING"
   },
-  "focalMP4": {
-    "run": 38651658923,
-    "currentFullDecodeCount": 0,
+  "fixed30MP4": {
+    "run": 38675390891,
     "status": "RUNNING",
-    "nativeAdoptedHashes": true
+    "currentCompletedCertifiedCount": 0
   },
   "independentConfirmation": {
-    "currentRun": 38651823545,
-    "historicalThreeVersionRun": 38650361647,
+    "run": 38675427984,
     "status": "RUNNING",
-    "fixtureSpecificationSHA256": "ea80c2614e4d8012d0db7c1a9990b72f3d1b2e126f581ccb6bdeae99a3c2c1e8"
-  },
-  "historicalEvidenceReuse": "Never certify b85 with old5e or dff source. Preserve failed5e CI and missing-camera artifacts. Formal30 inputs match focal three exactly; native adoption proof still needed for final controls.",
-  "release": "NO-GO_PENDING_REQUIRED_CURRENT_SOURCE_EVIDENCE",
-  "productionChanged": false,
-  "historicalB85": {
-    "run": 38649462905,
-    "completedCollectedCases": [
-      "development-05",
-      "holdout-12"
-    ],
-    "fullDecodeCount": 2,
-    "notCurrentSourceCertification": true
+    "scope": "unchanged additional positive4; old main and previous MP4 retained separately"
   },
   "importantContinuityReplay": {
-    "sourceCommit": "1aa31cd632955894daef8e8849728a9a0ef608c8",
-    "status": "QUEUED",
-    "scope": "supplemental-holdout-13 adopted original /ON/ON-repeat/OFF temporalCinemaFocus and drawCinemaAccent; Native output and decoded clocks bound"
-  }
+    "run": 38675427985,
+    "status": "RUNNING"
+  },
+  "currentTests": {
+    "build": "PASS",
+    "targetedCompositionContracts": "PASS",
+    "targetedFinalArtifactContracts": "PASS",
+    "unitSafetyCounterexamples": "PASS",
+    "watchdogTests": "4 PASS",
+    "browserUIExactCurrentHead": "RUNNING_LOCAL_AND_CI"
+  },
+  "historical1aaCI": {
+    "run": 38651753161,
+    "status": "FAIL",
+    "regressions": "202 PASS / 0 FAIL / 2 SKIP",
+    "failedStep": "browser generation wait600s; all evidence retained"
+  },
+  "knownLimits": [
+    "Native-only in-place safety proposal is not shipping adoption or completed-MP4 improvement evidence",
+    "One-condition307 completed MP4 gains are not independent generalization proof",
+    "Important per-operator semantic realization and 30-condition comparison remain pending",
+    "No independent human artistic evaluation"
+  ],
+  "release": "NO_GO_PENDING_REQUIRED_CURRENT_SOURCE_EVIDENCE",
+  "productionChanged": false
 }
