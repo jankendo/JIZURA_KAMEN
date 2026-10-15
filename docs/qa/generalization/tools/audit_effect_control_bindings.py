@@ -10,7 +10,7 @@ for mf in BASE.rglob('archive-manifest.json'):
     for f in m.get('files',[]):
         if f.get('member','').endswith('-reference.json') and 'preserved' in f:refs.setdefault(f['SHA256'],ROOT/f['preserved'])
 rows=[]
-for folder in sorted([*BASE.glob('effects5c92-*'),BASE/'original-failed-duo-component']):
+for folder in sorted([*BASE.glob('effects5c92-*'),BASE/'original-failed-duo-component',BASE/'current-matched-duo-component']):
     for file in folder.rglob('effect-counterfactual-report.json.gz'):
         d=read(file);row={'report':str(file.relative_to(BASE)),'reportStoredSHA256':sha(file),'sourceCommit':d.get('build',{}).get('sourceCommit'),'originalVideoSHA256':d.get('originalVideoSHA256'),'planHash':d.get('planHash'),'referenceSHA256':d.get('referenceSHA256')}
         try:

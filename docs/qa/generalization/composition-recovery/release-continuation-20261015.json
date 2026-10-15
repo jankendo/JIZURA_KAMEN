@@ -1,0 +1,33 @@
+{
+  "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "technicalEvidence": "CI 38734651609: 205 PASS,0 FAIL,2 SKIP; separate browser font and export alternatives run38815235715 PASS",
+  "quality": "UNVERIFIED",
+  "aiDecodedVisualReview": {
+    "development-06": "Signals is a single intact word in the actual original hold frame. No portraitStack word-break bug established.",
+    "holdout-10": "真ん中へ and auxiliary > visible. v1 isolation removes both, so not lyric-only proof.",
+    "human": "HUMAN_UNVERIFIED"
+  },
+  "sensorCalibration": {
+    "finalPass": 12,
+    "finalFail": 0,
+    "initialTrialRetained": true
+  },
+  "v1ActualSensor": {
+    "development-06": {
+      "status": "CONFOUNDED",
+      "reason": "One independently registered encoded frame ratio .898891 is below fixed .9 threshold; temporal growth .904859895 alone is insufficient."
+    },
+    "holdout-10": {
+      "status": "UNMEASURED",
+      "reason": "No gradual Native reveal growth. Source inDur0 and no ENTER dispatch; continuous reveal is inactive, separate discrete onset verification still required."
+    }
+  },
+  "remainingReleaseBlockers": [
+    "Complete important nonprimary semantic effect audit, including source-to-final encoded ON/OFF attribution.",
+    "Resolve or explain primary composite-motion FAILED and remaining UNMEASURED/CONFOUNDED with immutable artifact bindings.",
+    "Final-source planning equivalence for reused 23 old-source movies remains UNVERIFIED; exact frozen Native rendering alone is not planning equivalence.",
+    "Complete independent comparison, preserve original failed SNS fixture separately from full-profile companion."
+  ],
+  "mainChanged": false,
+  "deployed": false
+}

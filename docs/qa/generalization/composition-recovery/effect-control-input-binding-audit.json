@@ -3,6 +3,27 @@
   "scope": "Audit of existing raw reports, not replacement data. A raw configurationUnchanged:true must not be interpreted as strict immutable-input equality when the old PCM hash differs. Full visual Native identity may support visual-only interpretation, but never a new audio/source-input certificate or full matched quality comparison. Old raw reports and failures remain untouched.",
   "reports": [
     {
+      "report": "current-matched-duo-component/duoSettle/effect-counterfactual-report.json.gz",
+      "reportStoredSHA256": "e22b0acf360026eee952ff4d80ae26f811183a5ffe65522a3c65b7875427b598",
+      "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "originalVideoSHA256": "2efd7fa3b9dc1f671ff0f7039141c2da706211a57e0bd81e27c153d9da5ad386",
+      "planHash": "cbb6adda84daabe62d8684b0efb5e28e954becbd0372c672e7c22d9bb3f6028b",
+      "referenceSHA256": "b9bc097fdbd0378abcd1b22e8ba77438673571bbe40a28d6846d323a0d0d3bb6",
+      "originalInputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+      "controlInputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+      "originalAudioHash": "46f2d671ea9285702354e2193a34231ae05f951ef0a39f81e6251b33692ef55d",
+      "controlAudioHash": "46f2d671ea9285702354e2193a34231ae05f951ef0a39f81e6251b33692ef55d",
+      "differingImmutableFields": [],
+      "fullOutputNativeFrameCount": 298,
+      "actualOriginalNativeEquality": true,
+      "actualONRepeatNativeEquality": true,
+      "allControlH264AACFullDecode": true,
+      "referenceEvidence": "composition-recovery/pcm-paired-supplemental-holdout-13/matrix/supplemental-holdout-13-v3-reference.json.gz",
+      "originalRawConfigurationUnchangedClaim": true,
+      "classification": "STRICT_ORIGINAL_INPUT_MATCHED",
+      "originalBlobRecertificationScope": "Original immutable input matches; semantic interpretation still separate"
+    },
+    {
       "report": "effects5c92-continuity/results/drawCinemaAccent/effect-counterfactual-report.json.gz",
       "reportStoredSHA256": "dc8b60c39a3325f5eb9eea76b925fcc14c56a25b67e392fff4beae791402fc0a",
       "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
@@ -505,7 +526,7 @@
     }
   ],
   "counts": {
-    "STRICT_ORIGINAL_INPUT_MATCHED": 17,
+    "STRICT_ORIGINAL_INPUT_MATCHED": 18,
     "VISUAL_ONLY_FROZEN_NATIVE_EQUIVALENT_PCM_MISMATCH": 6
   },
   "QUALITY_GO": "UNVERIFIED",
