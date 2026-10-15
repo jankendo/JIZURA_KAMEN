@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "positive",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "result": "PASS",
+      "originalReferenceSHA256": "4f19a886b2b3553c677ea6f7facabd37f3fe8475700c0e9d87a7558150ba3add",
+      "sourceVideoSHA256": "c00f87b6d6ce0e38ed0885bb9302e5b0d801b178025226a14675c01798d85351",
+      "purpose": "Input-specific reuse must reject even a valid rendering when the new branch could apply; identity/hash ambiguity must also reject",
+      "logSHA256": "cad15ec537484157b521a617ef2fc0917a68416a89e235461fc9f4d3f427b3fe"
+    },
+    {
+      "case": "latin-reject",
+      "expectedExit": 1,
+      "actualExit": 1,
+      "result": "PASS",
+      "originalReferenceSHA256": "4f3e905689d77b479db6a011f087f4c0fa8f3eb19edf922f48095c58a3c41232",
+      "sourceVideoSHA256": "f1a2b37ce27af5de46e167dde05981b32aa691afb21c26bed69877182dd8b066",
+      "purpose": "Input-specific reuse must reject even a valid rendering when the new branch could apply; identity/hash ambiguity must also reject",
+      "logSHA256": "da7a27400a6f364c2e67a12c9a53f9a65b5d27bd6abdf9c40bd76e15cb9a8820"
+    },
+    {
+      "case": "tamper-reject",
+      "expectedExit": 1,
+      "actualExit": 1,
+      "result": "PASS",
+      "originalReferenceSHA256": "4f19a886b2b3553c677ea6f7facabd37f3fe8475700c0e9d87a7558150ba3add",
+      "sourceVideoSHA256": "c00f87b6d6ce0e38ed0885bb9302e5b0d801b178025226a14675c01798d85351",
+      "purpose": "Input-specific reuse must reject even a valid rendering when the new branch could apply; identity/hash ambiguity must also reject",
+      "logSHA256": "ec5824e863187a7cc3eea3e06c55f9ebafcd329460ec4e0170d7c999d6677e83"
+    },
+    {
+      "case": "duplicate-reject",
+      "expectedExit": 1,
+      "actualExit": 1,
+      "result": "PASS",
+      "originalReferenceSHA256": "4f19a886b2b3553c677ea6f7facabd37f3fe8475700c0e9d87a7558150ba3add",
+      "sourceVideoSHA256": "c00f87b6d6ce0e38ed0885bb9302e5b0d801b178025226a14675c01798d85351",
+      "purpose": "Input-specific reuse must reject even a valid rendering when the new branch could apply; identity/hash ambiguity must also reject",
+      "logSHA256": "0c955f4f1fa8ebe0033dc398aaeb27ee259d473bd819ed9cf638f6e60c8332c1"
+    }
+  ],
+  "scope": "Qualification contract counterexamples only, never counted as rendered MP4 or artistic evidence"
+}

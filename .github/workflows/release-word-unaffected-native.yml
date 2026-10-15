@@ -1,0 +1,69 @@
+name: Final word-fix input-scoped full Native equality
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/release-word-unaffected-native.yml]
+permissions:
+  contents: read
+jobs:
+  native-scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        partition: [p0, p1, p2, p3, p4, p5]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: b002cdd75845d189221312a82456c33a131f5e8d
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: cd current && npm ci && npm run build
+      - name: Verify input guard and every original output Native RGBA
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          PARTITION: ${{ matrix.partition }}
+        shell: bash
+        run: |
+          mkdir -p results
+          python - <<'PYCONFIG' > results/cases.tsv
+          import json,os,re
+          p='qa/docs/qa/generalization/composition-recovery/climax-unaffected-input-scope-preregistration.json'
+          data=json.load(open(p));assert data['releaseSourceCommit']=='b002cdd75845d189221312a82456c33a131f5e8d'
+          for c in data['cases']:
+            if c['partition']!=os.environ['PARTITION']:continue
+            assert not c['artifactPending'] and re.fullmatch('[A-Za-z0-9_-]+',c['fixtureId']) and re.fullmatch('[A-Za-z0-9_-]+',c['archive'])
+            print(c['archive'],c['fixtureId'],sep='\t')
+          PYCONFIG
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          failures=0
+          while IFS=$'\t' read -r archive case_id; do
+            mkdir -p "results/$case_id"
+            if ! test -f "restored/$archive/.verified-complete"; then
+              python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization "$archive" "restored/$archive" > "results/$case_id/restore.log" 2>&1
+              touch "restored/$archive/.verified-complete"
+            fi
+            if ! node qa/docs/qa/generalization/tools/verify_word_guard_input_scope.cjs current "restored/$archive/matrix" "$case_id" v3 "results/$case_id/input-scope.json" > "results/$case_id/input-scope.log" 2>&1; then failures=1; continue; fi
+            if ! node qa/docs/qa/generalization/tools/verify_frozen_native_source_continuity.cjs http://127.0.0.1:4173/ "restored/$archive/matrix" "$case_id" v3 "results/$case_id" b002cdd75845d189221312a82456c33a131f5e8d > "results/$case_id/native.log" 2>&1; then failures=1; fi
+          done < results/cases.tsv
+          exit "$failures"
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: final-word-fix-native-scope-${{ matrix.partition }}
+          path: results/
+          retention-days: 14
+          if-no-files-found: error
