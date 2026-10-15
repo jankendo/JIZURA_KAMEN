@@ -1,0 +1,50 @@
+name: Preserve exact local evidence history after cloud reconnect
+on:
+  push:
+    branches: [backup/kamen-preserve-b002-20261015]
+    paths: [.github/workflows/preserve-b002-evidence.yml]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /recovery/b002-evidence/
+            /.github/workflows/preserve-b002-evidence.yml
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12.14'
+      - name: Build the exact original compression library
+        shell: bash
+        run: |
+          curl --fail --silent --show-error https://zlib.net/zlib-1.3.2.tar.gz -o "$RUNNER_TEMP/zlib.tar.gz"
+          python - <<'PY'
+          import pathlib,hashlib,os
+          p=pathlib.Path(os.environ['RUNNER_TEMP'])/'zlib.tar.gz'
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16'
+          PY
+          tar -xzf "$RUNNER_TEMP/zlib.tar.gz" -C "$RUNNER_TEMP"
+          cd "$RUNNER_TEMP/zlib-1.3.2"
+          ./configure --prefix="$RUNNER_TEMP/exact-zlib"
+          make -j2 && make install
+      - name: Verify original Git objects and fast-forward evidence only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          export LD_LIBRARY_PATH="$RUNNER_TEMP/exact-zlib/lib:${LD_LIBRARY_PATH:-}"
+          python -c "import zlib; assert zlib.ZLIB_RUNTIME_VERSION=='1.3.2'"
+          python recovery/b002-evidence/reconstruct.py
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: exact-local-history-preservation-result
+          path: recovery/b002-evidence/result.json
+          retention-days: 14
