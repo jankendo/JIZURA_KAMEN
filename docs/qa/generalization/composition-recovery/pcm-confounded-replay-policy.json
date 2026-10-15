@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "registeredUTC": "2026-10-15T23:21:25.107217+00:00",
+  "sources": {
+    "main": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+    "previous": "5e14682249ce690337874214f2ec76fc8e68fa26",
+    "current": "b002cdd75845d189221312a82456c33a131f5e8d"
+  },
+  "cases": [
+    "development-07",
+    "holdout-10",
+    "holdout-05"
+  ],
+  "inputDefinitions": "final-source-current23-preregistration.json, exact frozen fixture dictionaries; no fixture edits or threshold changes",
+  "reason": "Historical final-source current-only rerender differs only in decoded PCM hash on these3 cases. Preserve the strict comparison rejection. Same-runner3-source completion restores valid comparison without injecting old PCM values.",
+  "criterion": "Original existing verify_pcm_matched_replay.py requires actual input/WAV/PCM/profile equality and all3 sources complete. Current FAV must be MEASURED; all3 movies H264AAC complete FFmpeg decode. Old failed FAVs remain factual old-source quality outcomes. No forced effects or Legacy bypass.",
+  "unresolvedCause": "Historical PCM mismatch root cause remains UNRESOLVED; future reports record PCM format and browser metadata without altering audio.",
+  "QUALITY_GO": "UNVERIFIED"
+}
