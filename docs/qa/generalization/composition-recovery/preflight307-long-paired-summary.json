@@ -1,0 +1,130 @@
+{
+  "pairs": [
+    {
+      "evidence": "phase1aa-long",
+      "videoSHA256": "c94158c1c2f9c4a093ddd67295d72cfe8e8e83ed742323a0f325d8ee9610f63c",
+      "sourceCommit": "1aa31cd632955894daef8e8849728a9a0ef608c8",
+      "profile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "inputWAVSHA256": "c3aa5e7d1f00c7e91b41e7fc73e8428070e3a78053bccacca9f45d4231212229",
+      "seed": 13423,
+      "style": "paper",
+      "font": "tokumin",
+      "scores": {
+        "typographyDiversity": 57,
+        "lyricForegroundNovelty": 80,
+        "temporalContrast": 29,
+        "localContrast": 90,
+        "motionRealization": 100,
+        "impactBeatSync": 100
+      },
+      "units": [
+        {
+          "line": 0,
+          "minimumContrast": 64,
+          "readableHoldSeconds": 3.2083333333333335,
+          "holdRange": [
+            9.12,
+            12.33
+          ]
+        },
+        {
+          "line": 1,
+          "minimumContrast": 100,
+          "readableHoldSeconds": 3.25,
+          "holdRange": [
+            12.45,
+            15.67
+          ]
+        },
+        {
+          "line": 2,
+          "minimumContrast": 100,
+          "readableHoldSeconds": 1.875,
+          "holdRange": [
+            15.79,
+            17.66
+          ]
+        }
+      ]
+    },
+    {
+      "evidence": "preflight307-long",
+      "videoSHA256": "bf8c694a69ef8f6441da55aecf39a1e8f3d535e5e583ad70ef2b4bef8ca16c37",
+      "sourceCommit": "30734a1c127116eb7904f3c649bd737e3e72cdca",
+      "profile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "inputWAVSHA256": "c3aa5e7d1f00c7e91b41e7fc73e8428070e3a78053bccacca9f45d4231212229",
+      "seed": 13423,
+      "style": "paper",
+      "font": "tokumin",
+      "scores": {
+        "typographyDiversity": 58,
+        "lyricForegroundNovelty": 80,
+        "temporalContrast": 66,
+        "localContrast": 94,
+        "motionRealization": 100,
+        "impactBeatSync": 100
+      },
+      "units": [
+        {
+          "line": 0,
+          "minimumContrast": 73,
+          "readableHoldSeconds": 3.2083333333333335,
+          "holdRange": [
+            9.12,
+            12.33
+          ]
+        },
+        {
+          "line": 1,
+          "minimumContrast": 100,
+          "readableHoldSeconds": 3.25,
+          "holdRange": [
+            12.45,
+            15.67
+          ]
+        },
+        {
+          "line": 2,
+          "minimumContrast": 100,
+          "readableHoldSeconds": 1.5833333333333333,
+          "holdRange": [
+            15.854,
+            17.418333333333333
+          ]
+        }
+      ]
+    }
+  ],
+  "scope": "One-condition completed MP4 observation, no generalization certification",
+  "remainingDifferences": [
+    "Unit2 readableHoldSeconds decreased; intended hold ranges and per-unit complete-frame evidence must be compared before accepting creative improvement",
+    "Exact source WAV/profile/seed/style/font checked; decoded audio-analysis feature identity not yet compared"
+  ],
+  "releaseStatus": "UNVERIFIED"
+}
