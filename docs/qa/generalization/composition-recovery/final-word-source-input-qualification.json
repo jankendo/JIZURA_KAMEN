@@ -1,0 +1,1081 @@
+{
+  "schema": 1,
+  "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "preregistrationSHA256": "c86cc2b5be0cf6ba30693a1896b80c71fd56611a69d48a93f3482c53456f32da",
+  "caseCount": 28,
+  "observed": 28,
+  "statuses": {
+    "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY": 23,
+    "FRESH_FINAL_SOURCE_MP4_REQUIRED": 5
+  },
+  "cases": [
+    {
+      "fixture": "development-05",
+      "archive": "pcm-paired-development-05",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "5922f5e7278b671b8560a4906bec0f93bd3f4806c4d2814b7ed1a7c6c0baeeb6",
+        "planHash": "eeea8a68ca75115766e0f235774d224f2745f042a290fa6870bbc9579e20dfc0",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "dd8b65609302ec9a649b902a89b1e213589295e273c8e987c6fc5e0ebf8e0f5c",
+        "videoSHA256": "89f186d8fdb5d3db34da7369fb4cb9c14ed30bbc56af7231d8a8351a6376f200",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "1197a7b56358aae09263b3447fa619a133bdfe6dcb6342596f86388f29811222",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "a3e8635957a69e1c68ae1165f8a75e2b3d24b2b13a17a5c16452e3bb4bf4a4f5",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "development-11",
+      "archive": "pcm-paired-development-11",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "d607d1e02209793961caa3ce4c0345a580e45de9f920f9d18fb34d8ab33fcc9f",
+        "planHash": "3ae371d924647f7191fb37233c889d1f115f9c396f625fd55f36892297ebf0ca",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "c5599713ce23a30b6c8f1aa446f1f7fe5b1b324c5fab3f38228868dccea2fba3",
+        "videoSHA256": "608e08a818921cbf8559f4f6900c5484122b3df9c29bfa05cc7cd218b834e68c",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "e0b49f93fcdbf6dc0d346cf6fcc708172a02f3d7fab9f05eddf7b053345c68dd",
+      "scopeGuardPassed": true,
+      "status": "FRESH_FINAL_SOURCE_MP4_REQUIRED",
+      "reason": "One or more actual output RGBA hashes differ; no tolerance allowed and no new-source qualification.",
+      "nativeObservationSHA256": "65389c71d2c38276b89a846aa3f39c9f9c19fedb76a8b2a5b2ba774cbfd6aa3a",
+      "expectedFrames": 480,
+      "actualFrames": 480,
+      "mismatches": 182
+    },
+    {
+      "fixture": "holdout-04",
+      "archive": "pcm-paired-holdout-04",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "74bbb226288e2ff20559d4a34158baec6ec84d3032973915b2c2fbed89bac0df",
+        "planHash": "cd4c3dd975974e877b9ba1a9461903e1494c0ad9e0dd7d4f5c908fbd89778486",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "118648071ca9781a42188a9628ee39aee5334693478af2239d24689bf5555e1e",
+        "videoSHA256": "467ce90899ff493e017971f87068b6850594e1d7fc736ea8b4179267a57a66a0",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "bbdff1f6b9542b2365d4fc7f78c42b84aaa083d785df8c085ad94bf496adb2e1",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "aab8a1be6b1202fdb48add2d2ad95f33fd9fabe1233434e2af75167bb4552e92",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "holdout-10",
+      "archive": "final5c92-holdout-b",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "ecc6d773a9f550241f2af7be36f7739e63d61dae142e8d01b0161b4c76bac95e",
+        "planHash": "10eabe7247663abc1c29c5ed3f568b023ce5ca4ef532deb13337b2aed2dd6f16",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "9e9a194ac2c8d42e934f74abd6e16574321b1702ec81db9fc14044dfa515cc53",
+        "videoSHA256": "c131949e38e70b519e9f34e2867b8033c0d59861deca547342ff7997a9c7f011",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "65c002497eb7ebe6d22e41e0274cf6a282df601857a6a2681d4d2ce771efd168",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "ec9eaff4fb5e5a7146323cdd5d4042eb02bbe0a09da2d3e70c61260ab3afdb66",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "development-01",
+      "archive": "pcm-paired-development-01",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "c14d6161a101d4d11b09f1e9606c477e65795a4bf3edce542ad3177328393ecf",
+        "planHash": "25334c1224aab202a0569879ba36d5848c638f246de915013601e28843011232",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            1280,
+            720
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "f244b929617df5e80f4c9bfc8ead70b93b39807e6179345a27a4144a8ca28c15",
+        "videoSHA256": "10d62f958e209438fa583866c8df2ba28df1ae399a51c93d57acb8831bc3611b",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "0a1894c867dedb5b58efc83b2a2383f6974983446fab3666a7a8d5bb2aee5d94",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "54526222bc3d8d49ca09ca7f184f188256bbdb595e0f61adfcc9e126bae930ac",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "development-07",
+      "archive": "final5c92-dev-b",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "d2f7f02c986ee44a7232ddd9bdd571e91b5a3367d40dc36949aa8962e029e54c",
+        "planHash": "39edb02d0d1df176a68f27afc0d6b8471a8cf3b7582961caa2ef27063e14c813",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            720
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "b95cedd5b250b7285214c1559aae677d66fdeb771ff5e0ca4a78e1f98555a570",
+        "videoSHA256": "3a5ebac09c7c89a1f5078c71e3492265841e458d04afef4eb39ad19ce866c4a9",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "f49642d63056dd320a3089d1abff955e61913f89ada198420eaa8431d2f6f550",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "9be2123c0fab08ca2aba0524619d8187f6ab882c661d6478d5b94f82ab9c3981",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "development-14",
+      "archive": "pcm-paired-development-14",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "a0ad9067ea3de5f6d92100788ebdea25565d5e6364c624d5ae50f57a6c3b399e",
+        "planHash": "65be6602c9337a8e3d70f700ec2c1eaf6ed80a96ed7ef795803b57f2165b0b0a",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "fa5bd010720688a5325e381d7aff8e0227cf3a5eadcc74da13ae48c53d8ee6fc",
+        "videoSHA256": "f049db09e2655626f51acaf9c98703edcf97201df3278b9f302b77ca13104aea",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "30a26b2f921e24274182e4958da61ece1c4d267c5dc78f0da8f6d17be77cf1ab",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "dd59520541dc3398edce31e49ea144108b234ab147fa67d13610359348d31fb1",
+      "expectedFrames": 1080,
+      "actualFrames": 1080,
+      "mismatches": 0
+    },
+    {
+      "fixture": "holdout-06",
+      "archive": "final5c92-holdout-b",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "77e7005cae61ad97e5698d332b8bb4c692a0dac7a38c7624dda03a895938dfec",
+        "planHash": "ed479dc02f42bfe6ca62443ab6c1255df7b3516abe5848643e4b39b156f13eb9",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "4465122cc58b450b21688ab8ca995fb11c4848e119b983b9e7918f8a4ce41590",
+        "videoSHA256": "a0e63e1745334f9ca19571903e656904ff63579bf5d16c2b2be44e93c926a6ac",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "6c2f5b917b771b7fe4ddb53e8a8f8e462c6e02c327e2e962d8a2e175065fc5ac",
+      "scopeGuardPassed": false,
+      "status": "FRESH_FINAL_SOURCE_MP4_REQUIRED",
+      "reason": "Protected word/grapheme branch may apply; reuse rejected even if selected old split might be safe."
+    },
+    {
+      "fixture": "holdout-12",
+      "archive": "pcm-paired-holdout-12",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "0c65e3b041c943de7efa119557501c9c23ec7c37a777af8b333a4b5c48429110",
+        "planHash": "27d127333f375488d82fbca7f5ee91385e475eea7ea55de686de0b3aa2a0c197",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "5fdac30f4e78a7106b1998848e06d7051fcdc8a476260f53bea68468ba290256",
+        "videoSHA256": "c00f87b6d6ce0e38ed0885bb9302e5b0d801b178025226a14675c01798d85351",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "4c36a003cd0def183e6a1d010ec2e9febf721486d91458168f8e12f7e925fd37",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "5205101eae4c0dc1e45cd373d8f92ce4fd6e28909230134bf8f03823e6f79fa0",
+      "expectedFrames": 480,
+      "actualFrames": 480,
+      "mismatches": 0
+    },
+    {
+      "fixture": "development-02",
+      "archive": "pcm-paired-development-02",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "6d93562a9721b271c3dc958b7b524a08670b208490656f3424ae324ff0b5cc64",
+        "planHash": "799b353461c6e23748027723f831bf99405e06c6c44e8dcca24bd6853b9bb6b6",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "63798acc65a1063c478d72b9d6b637a02309e0fa9aa7717ad6fdbb79e39175dd",
+        "videoSHA256": "afd1671db3466806d9e61b818b6ef85903dc9517561b0c94b8a6606c36aed75b",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "e5ced949deb019f82b8891dbab960fa122343450e1e05eec270d3e88df088f9c",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "3a047706d67176a6e42e7c038456452edbfa65aa51b44852b2cd7f8e08b1b271",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "development-08",
+      "archive": "final5c92-dev-b",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "f5a93edeab6e66cef99688e09f25f323161acdffd34d897e21711979bfa34a0c",
+        "planHash": "63ced0e351a0b858875223f57bcf73bcc009629cfe5a11fca4afca42dcdfd0fb",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "919d98ca9819ccffbae31ba50e9b269e71f26205180a3d45fb3e730d077b3a06",
+        "videoSHA256": "7ac8317ba8a7678621992665e41c57877f7696d0e6316b0a41746f92ac0fd739",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "ba873f081fb4f290a8edf1d523a2c41a0acaf7fe8fefdbfe6da7726b35425eb9",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "1059f6d29331b61da2276fa50e3656629227c43184f6496140b534c1444e982e",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "holdout-01",
+      "archive": "pcm-paired-holdout-01",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "de9e1242b30e4f1917152a20eea84f77c679490bce4f9bb962154658ff517574",
+        "planHash": "9b63d7d1df1df7ec580a0f589207e50cf75f6e6c364f9cac1f354a8dea9ce69f",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "8219c25c6eb4cffa44df8c7cae44b6d6a324babcd3d73ccab908106104587489",
+        "videoSHA256": "755d9a923bec458f0fe802820a2c692391f25a66b7c3464fc73570b3f47b9ed5",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "cdeb39db4ab093f5e07c6496e3a259ec7e0ae494b41335bc6038562ce43b431c",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "6e42b49edef27c0eaf196373560323ec8f777868447d60e8ff8f68dd90b9d1cf",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "holdout-07",
+      "archive": "final5c92-holdout-b",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "e5fdd50b209aed531b55081331cb3ae5b1862237495c2edd8d8bd6b81166d4be",
+        "planHash": "a7f49848ee328e34c8643e577ff60af2bd1a2d49c24e105cb52c9b2c92562742",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            900
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "6f1849e2aedbb92401c5aae50f3f3f0bbd2916e05fce689ed3e01e51a9df25e6",
+        "videoSHA256": "8f9441244786daf43e021c3129dc96d24e4883fb718e9c96640ef9c9061ec653",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "7b47293214e8775516f0633422d5585846cbcf58470f116152d99339e983c01b",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "4409e459d733b1c37ece3c1b16782ede592077df21b03e4a0ae8300c7f2b71db",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "holdout-14",
+      "archive": "recovery5c92-holdout14",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "ba2da3668ce2e4704dce742bf5d8270bdef355b02b68fbdf3a802e12ee716b77",
+        "planHash": "d2ae2018ea751a101e7f825b99d4f77b9e526ed82aeef19f5286730c737d3cde",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "1db9e82942bd31757754ad9d50ef1c9bfda180c66855589da0c0bb265a155f30",
+        "videoSHA256": "f151dd4007589ab24e926662824a14bb1960ea59ba51cd336c80b9ccb38f3f51",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "7e1ee8662cef75e8b3d1a1ffc6aa482071bc8b9e6c8e88409638da45972d93ec",
+      "scopeGuardPassed": true,
+      "status": "FRESH_FINAL_SOURCE_MP4_REQUIRED",
+      "reason": "One or more actual output RGBA hashes differ; no tolerance allowed and no new-source qualification.",
+      "nativeObservationSHA256": "9c7bc597b73b64e59fa37ada68342bcd39060e2f54e82e753dae5360649f1114",
+      "expectedFrames": 1080,
+      "actualFrames": 1080,
+      "mismatches": 262
+    },
+    {
+      "fixture": "development-03",
+      "archive": "pcm-paired-development-03",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "82f313abc49ddb07f2c778ed0d234646f67d4a7a56912b3443ed7327d32d40c3",
+        "planHash": "3638d992340f762f7800281b0bc24715093dbbd524a30b905721ca30c0e22233",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "f4b5a06d7d6f6b0468c49bcc4384e3256ab3579d2fb6d2c804a997444c5e2719",
+        "videoSHA256": "fe6601c028af35208afcaf318885b4e3635ca7919dc3d94cb13bc7b06039bc36",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "3b6b0ed6864ce7b3e57400a0e3e56db9932187458bd64cda22eda733dd5a6ee6",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "008466120f267be3c5f275a3fa4f5e17a7bd7e6edf86f2104ef7c57d59eb20f4",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "development-09",
+      "archive": "final5c92-dev-b",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "68571f583740ff0aed17be5dfc63a5c02bde1f41e7631e3cd79a022eaeb29ce3",
+        "planHash": "5e6d9e63a909882d7bdac2f47eb78c21f4a8f42c51b80420cf0163b163eb0cfb",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "ecd3d6bbd6287b3f6c2bf704398a56c3dd16f21dbacf915a363af4514d19ab0e",
+        "videoSHA256": "3e7a9cea096c16ec52c8dfa776fab276dced60b14cb0471c4b4bf317485deeb4",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "c577f757030cff4becce1ff675a81476674fe97b2349c44eceba1f06dc703bd4",
+      "scopeGuardPassed": true,
+      "status": "FRESH_FINAL_SOURCE_MP4_REQUIRED",
+      "reason": "One or more actual output RGBA hashes differ; no tolerance allowed and no new-source qualification.",
+      "nativeObservationSHA256": "278e1cf8ea529abdca91fc68ad7b517dd020cff9acaa6f14dd67f900ec2c182f",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 69
+    },
+    {
+      "fixture": "holdout-02",
+      "archive": "pcm-paired-holdout-02",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "7193f54079eadcf3352397bd19d54693b7280876dde8ad70e4526d335e289ff6",
+        "planHash": "97acd19f5a331709e5d86d410b873b246a229089ed3c7107dd4c22e3c57a9129",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "5770742d24e7957b85dcde62c9546e1ad46f428f49a9d98801119ee85b156dea",
+        "videoSHA256": "7fd93972d9a171a8872492a603b998a3e640ff126d5c1bf7fe1bc04b4bd5643f",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "13a12787994eb48bc5a9a8adaed9046470c4290950a5c6867a0c400217102a16",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "b9c8dc45affd4fb3e600c8ea2e1c07d86c9bfeb167ec422479de669cd84775e3",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "holdout-08",
+      "archive": "final5c92-holdout-b",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "017e838c45d2f10646867a0c90b3f8fbac107f64faa494603e35450dc8527dbd",
+        "planHash": "e44d46b87d44e6a0c4a1270f016a2f16051b8ca7a0aad15184f1841c3d1e4fef",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "5ab3d9b74513ffe6893a6f69b1d76eb4d1ee8910ca61b6d1225024e49d670fc8",
+        "videoSHA256": "4b0368994af5893e4a7522853c7fd203cb41807ab807319942b8bd3d3777deb8",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "70b7404f0bf6775dd813067b7435c820d879f379b584c9d94a4b3718e5504ba8",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "0d2d3d5dc3891bcbf6ea4346bd19c34e8a163656439847fd1b0071f504b19594",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "supplemental-development-13",
+      "archive": "pcm-paired-supplemental-development-13",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "409f1744a48baa34fedec0e47fa2fbdcfca632f29f55506d075356278c21e783",
+        "planHash": "fc627693f8f1db50e90a3af0b541450f667500cc7a5bf3284d3949384b6a1071",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "b5b8400afe1bf060881960df10bda2244632155b79327fd1a1e80b0a078d629f",
+        "videoSHA256": "e85a9e31f976eb23dc5291ad0bc90c0cbcc8f5cda01ca2784ab502fc08111f54",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "87c9975add5844d7b51462a7ebc0dd5f6b87c828abbcf600155272db4782157a",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "3680082cc4952ddcb86085e03d45f23130ae0725db74af819fa4fab1289bb938",
+      "expectedFrames": 298,
+      "actualFrames": 298,
+      "mismatches": 0
+    },
+    {
+      "fixture": "development-06",
+      "archive": "final5c92-dev-b",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "a87693b3a08337ccdcbd892f8b2d90ed182bbf56bd41ad54b42e181ef7b48f1f",
+        "planHash": "8ce5775544afba88dd32e544668f04f1d8a4623f7f1340a192b70e6b07e8d84e",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "ce0676fcdac0f409cb5ec135bb5773052da396e4c57ec7587b084396fffef0e1",
+        "videoSHA256": "fbeaa2222719ae0b5a047ef7f4e65013f6ce345752d06a0797777de92f7c1cd7",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "111c0ca6078a4b39b99290ae1fcf9f43f5a99f7e49c144b0df4c26f9d73830fc",
+      "scopeGuardPassed": false,
+      "status": "FRESH_FINAL_SOURCE_MP4_REQUIRED",
+      "reason": "Protected word/grapheme branch may apply; reuse rejected even if selected old split might be safe."
+    },
+    {
+      "fixture": "development-12",
+      "archive": "pcm-paired-development-12",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "0b3a84171727aed08d271187ffb0229414f6cf1c1208f3f634d0bd6e0b791922",
+        "planHash": "443362f9779d7c3e1e2410003b51b13faecb9fc797d8b266720d0f4d79f44b41",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "7675846ef3f4eca5632b32c8d78d3b474301936400cb66e706d6cc311d0cf4c9",
+        "videoSHA256": "2b668087a4fc91b83927975cc3f2fa77ce0f8ce3e32391babf7df37ba11b65e9",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "b56c9dd87c3428f335d05c2d39f9ff83dfcf41cc4cc10df70215e0192367a652",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "fa6cc23133dcb0b63a82dd2b3e867b262b451bd4dafc6e0d88be90979cc83530",
+      "expectedFrames": 480,
+      "actualFrames": 480,
+      "mismatches": 0
+    },
+    {
+      "fixture": "holdout-05",
+      "archive": "pcm-paired-holdout-05",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "c6b6220463d485d9d2a1565e20ebc38ad2729d9dbf181c810ec8e45c02a3f400",
+        "planHash": "1e03f8d46ed1ccff8e32860bc24917316156a418aead873be6f497d44b57c4b2",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "e4762efb3b6d0e8009696ceb2935b91ccb3c533d597d1bdf489706f915523b34",
+        "videoSHA256": "7e0203a1a063f00928ea42df21cb6dc6c5d8bd225affc4e3f396e67746ec8306",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "eb069af96b13dcac205bec23823580eac1548e5c24c9e64394cd08b05ada77e0",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "6bf50116de246199605a086c298044c6ac2933ef1ef1470e66adccdcd4f840db",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "holdout-11",
+      "archive": "pcm-paired-holdout-11",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "adaee1e5759f411974ae1bff8bd7401976538dc25409db4d5a0014665f4dce87",
+        "planHash": "ba3412d3d98bd8f08266b970531e6438365e58f2a214b628d88cc100633a3a98",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "e39fe270f3c6bcd5333b412ce047fb9b8a890164b4fcfcfd4c903bb2b6f927f0",
+        "videoSHA256": "1270ea51896bf8d845ab7f804a4ade16efb983f986054e97eb5504ab1491697e",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "a94a35be39e76843c26c577aaee80e14b9be327d7775e3bfe345a776c8caca25",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "2cdfd6e0d0603d695eef280ae0899aba0637b564fecfb18f31c28e7497545b2b",
+      "expectedFrames": 480,
+      "actualFrames": 480,
+      "mismatches": 0
+    },
+    {
+      "fixture": "development-04",
+      "archive": "pcm-paired-development-04",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "704e99096e0ce239569a90f6a08c3acdee9babb0990269448411d8ec510b4f53",
+        "planHash": "1cbf73685f40d298b52dec4a86e54b5aa8e13c08a9305fb2e2bf46871e547c8e",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "9cb414c20afa0e9f0d1109e28427f5129d0a1ecf2cd1e0d10bdf36f76e6c489f",
+        "videoSHA256": "0db6e8a1783dae5fa304c66db24edee209a32b223c37049b18bdce214447a72d",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "3a9ad3f10b22e992579b39a9eaa7e5e0c5e56f96f5480d0b9de204a9c511aeee",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "9efd00190f438142ef3f618a9725521b49b40f289d6969d6ea69331bce8eb017",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "development-10",
+      "archive": "final5c92-dev-b",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "e48980b808ea1018e9cfa0e9a99324c66ee6e875b3357d187edaf1d9008c80dd",
+        "planHash": "bf13c34d33214ef2cb0ffe286ab5352c392b0d774cc0d03c81c85833ff966e5b",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "5badd7fde671ef22f6d2cbb7e49a8905e97422216004f3ee777e208af544726e",
+        "videoSHA256": "41ca9d2385be792a3cbb8e072e7cfc9ae4da0dc5c819006edd05b0054f5d7420",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "501dcd9345ef60ec6e6a495cb4c6859feec424cac7141643fc3fe83d8675d164",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "9ca551a38f6e07f5c5d61542053f3f9c92caec4249e684fbb70dcac8deda03d1",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "holdout-03",
+      "archive": "pcm-paired-holdout-03",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "ff4d08d94ed1fbdaee55e1cf5c8cbeb8fb67e6651eab2a6a36793247677037eb",
+        "planHash": "5783498b86334e8c698db613c247956c3872c7e41a16e1ca04cef49c29c716c7",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "d4d6c5a6bdf8d5aca23b31c0bcc95b667e16843312ea9384cd7cf34295901611",
+        "videoSHA256": "db360c1c2a59c16c3e63651b9d721e9f1214292d2cf428e29eaf0d8ab6f20e38",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "72b0198364b15db81e5db24e77210947c7c198914aa9c36006b9f2b8bfe97263",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "d4b05e6937fcf42848b9760ddd58642516df39ac9beb67269d49101ca65f09ed",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "holdout-09",
+      "archive": "final5c92-holdout-b",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "cbd727548832f3426ac062ab50123d3eb5969b11780ce36a72acf419120ac81b",
+        "planHash": "2aebbcae189e37b0348e9aae98277a506f94e6cdf178a94a5d3a4086f0f4bc4f",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "2dcbad3f1429d243008b6b05c66274e29812aaeca595231144f29c800781e8ed",
+        "videoSHA256": "e62bf195728b48bad7052fc280203900245bcd725d13cd6f270098c89dcc553a",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "4d1152665c28b1c26fdce8a3aec9d0aafa8746103912959ffd2b30a6321ad0e1",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "52ffe17b65fc1ab9121ef7e74aaa04b0ac3c32c1300dcd6a0e46f8b066ee0e5b",
+      "expectedFrames": 240,
+      "actualFrames": 240,
+      "mismatches": 0
+    },
+    {
+      "fixture": "supplemental-holdout-13",
+      "archive": "pcm-paired-supplemental-holdout-13",
+      "originalEncodedArtifactBinding": {
+        "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+        "planHash": "cbb6adda84daabe62d8684b0efb5e28e954becbd0372c672e7c22d9bb3f6028b",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "selectedCandidateId": "86463a2e6da7a690509dd05fe1b5475ee4d99b280dd2b0e21320ffa87d12e096",
+        "videoSHA256": "2efd7fa3b9dc1f671ff0f7039141c2da706211a57e0bd81e27c153d9da5ad386",
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+        "sourceDirty": false
+      },
+      "finalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "inputScopeObservationSHA256": "83aebdc065be1fc0d709dde18b975e67e46e3a2cf8641fcca53a502e7cb19ef2",
+      "scopeGuardPassed": true,
+      "status": "INPUT_BRANCH_FALSE_AND_EXACT_FROZEN_NATIVE_IDENTITY",
+      "reason": "Narrow rendering input qualification only. Original encoded source/video/input/profile retained unchanged. Planning, source-diff assessment, fresh final encoding and whole-effect semantics are separate.",
+      "nativeObservationSHA256": "7c0bef672736767e8db7016b72f41064625e98a80378348df0430ca5d8a6de7d",
+      "expectedFrames": 298,
+      "actualFrames": 298,
+      "mismatches": 0
+    }
+  ],
+  "unobserved": [],
+  "archives": [
+    {
+      "path": "composition-recovery/word-scope-11976581133/archive-manifest.json",
+      "SHA256": "bbb4ce7149bc94e6703f170862caeee4b7bade19b7480064e734ae0801b069a1",
+      "artifactId": 11976581133
+    },
+    {
+      "path": "composition-recovery/word-scope-11976681123/archive-manifest.json",
+      "SHA256": "e7a93decde379c07aac3cabb26146e5b455dfe5d1da12574974e4033c7a76363",
+      "artifactId": 11976681123
+    },
+    {
+      "path": "composition-recovery/word-scope-11977076334/archive-manifest.json",
+      "SHA256": "f680d32381615e985d2d80fdaf485eaaf98534955349dfe64b7f366b815b81ce",
+      "artifactId": 11977076334
+    },
+    {
+      "path": "composition-recovery/word-scope-11977275922/archive-manifest.json",
+      "SHA256": "dfa046f6a24f02964e1ae43cc34b9e08cbbc31cd6e8b16973fb3c890a75fd52d",
+      "artifactId": 11977275922
+    },
+    {
+      "path": "composition-recovery/word-scope-11977545536/archive-manifest.json",
+      "SHA256": "102d794244c02638249b54e516ba1e8a213841ba3bc9c88b6627f910ac423e94",
+      "artifactId": 11977545536
+    },
+    {
+      "path": "composition-recovery/word-scope-11977755558/archive-manifest.json",
+      "SHA256": "aabebda2fab5135fd26469d6931ef26e17a06e9f40946fe5b55636877684ab2b",
+      "artifactId": 11977755558
+    }
+  ],
+  "extraWordTargetCases": [
+    "development-15",
+    "holdout-15"
+  ],
+  "historicalEncodedSourcePolicy": "Never overwrite actual sourceCommit in old evidence. This is input-scoped frozen-plan rendering proof only, not whole-program equivalence or artistic certification. All rejection evidence remains.",
+  "QUALITY_GO": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED"
+}

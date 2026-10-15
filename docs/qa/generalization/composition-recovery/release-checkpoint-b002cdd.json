@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "recordedUTC": "2026-10-15T13:38:03.299594+00:00",
+  "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "NO_GO",
+  "human": "HUMAN_UNVERIFIED",
+  "productionChanged": false,
+  "CI": {
+    "run": 38734651609,
+    "status": "IN_PROGRESS",
+    "olderCIOnly": "c043 SUCCESS does not certify final b002"
+  },
+  "actualWordRepair": {
+    "selectedArtifact": "wordfix-holdout-15",
+    "originalUnsafeNativeDrawSamples": 72,
+    "finalUnsafeNativeDrawSamples": 0,
+    "actualDecodedFramesInspected": 12,
+    "pairedCompletedMP4s": 4,
+    "fullDecode": "PASS",
+    "PCM": "MATCHED",
+    "observerFailure": "Preserved original mismatch failure; fixed unique stable cut ID plus dispatch witness; 7 counterexamples PASS. Reanalysis is from the same immutable actual movies."
+  },
+  "olderMatched30": {
+    "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+    "matchedCases": 30,
+    "currentLower20Typo": 24.166666666666668,
+    "previousLower20Typo": 16.666666666666668,
+    "mainLower20Typo": 19.666666666666668,
+    "versusPrevious": {
+      "improved": 6,
+      "same": 23,
+      "lower": 1
+    },
+    "limitation": "Engineering descriptors on old source, not a final-source or artistic certificate"
+  },
+  "finalSourceNativeScope": {
+    "attempted": 28,
+    "exactAndGuardFalse": 23,
+    "rejected": 5,
+    "refreshConditions": [
+      "development-06",
+      "development-09",
+      "development-11",
+      "development-15",
+      "holdout-06",
+      "holdout-14",
+      "holdout-15"
+    ],
+    "run": 38744023462
+  },
+  "independentPostFreezeConfirmation": {
+    "run": 38743485262,
+    "conditions": 2,
+    "status": "IN_PROGRESS_NOT_YET_OBSERVED"
+  },
+  "originalFailedDuoComponent": {
+    "run": 38743652861,
+    "originalVideoSHA256": "31a5ba557032181129a4ac34fab952c5031d40c2a9d7c622535a814d6f12b439",
+    "status": "IN_PROGRESS_LOCAL_COMPONENT_ONLY"
+  },
+  "remainingBlockingEvidence": [
+    "Exact final-source CI completion and browser checks",
+    "Seven fresh same-host final-source three-version comparisons plus scoped source-diff qualification for 23 proven-unchanged frozen outputs",
+    "Fresh independent confirmation on two unexposed inputs",
+    "Important selected semantic effects still UNMEASURED/CONFOUNDED; contribution and registry drawing are not semantic realization",
+    "Final quality decision, followed only on true GO by normal merge, existing main Pages Actions, served-asset/source hashes and real production MP4/save/decode/restore/cancel/retry"
+  ]
+}
