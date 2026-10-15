@@ -1,0 +1,41 @@
+{
+  "reviewType": "Internal engineering review using six perspectives; no external experts participated",
+  "sourceCandidate": "eba3bbd",
+  "decisions": [
+    {
+      "perspective": "JavaScript/async",
+      "finding": "525b forwarded missing fallback and baseline analysis telemetry, but post-StageC candidate work still had no progress notifications",
+      "change": "Pass existing telemetry to legacy-finalist comparison and report actual completed candidate checks",
+      "counterexample": "Elapsed clocks and heartbeat timestamps remain excluded by GenerationWatchdog",
+      "risk": "Unknown Promise stall remains possible until full UI completion"
+    },
+    {
+      "perspective": "Rendering/encoding",
+      "finding": "First diagnostic sampled8 proxy encodes total14.31sec; enclosing encoded observations43.27sec,49 output-readability calls133.08sec",
+      "limits": "Overlapping nested times, concurrent local load, sampledJS heap not total peak RSS",
+      "decision": "Do not weaken profiles, decode checks or output QA"
+    },
+    {
+      "perspective": "MV/typography",
+      "finding": "Some main typography values exceed safe current outputs while main final glyph safety fails",
+      "decision": "Compare actual full glyph safety and film composition independently; neither a diversity score nor safety alone certifies creative improvement"
+    },
+    {
+      "perspective": "Search/optimization",
+      "finding": "Same PlanHash appeared twice for some output-readability calls; identity of sampling/physical/reference options not yet established",
+      "decision": "Record complete measurement contract before adding new cache; preserve existing safe reuse"
+    },
+    {
+      "perspective": "CI/DevOps",
+      "finding": "Existing main-only Pages deployment remains valid; oldbrowser timeout failure does not imply deployment mechanism defect",
+      "decision": "No deployment redesign; exact finalHEAD CI mandatory before normalPR merge"
+    },
+    {
+      "perspective": "QA/release",
+      "finding": "Current30 and independent/operator jobs are separate source-bound populations",
+      "decision": "Do not pool renderer agreement, semantic intent, creativeState or releaseQUALITY_GO; preserve failures and measurement disagreements"
+    }
+  ],
+  "gates": "UNVERIFIED_PENDING_OBSERVATIONS",
+  "thresholdsChanged": false
+}
