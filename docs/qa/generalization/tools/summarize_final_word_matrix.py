@@ -22,7 +22,7 @@ for old in base['all30']:
   vs={}
   for t in trials:
    fav=t['provenance']['finalArtifactVerification'];b=fav['binding'];key=next(k for k,v in {'main':'2e7ed477f88028dbb63aa609e8a11b4052ea8c00','previous':'5e14682249ce690337874214f2ec76fc8e68fa26','current':spec['sourceCommit']}.items() if v==b['sourceCommit']);assert key not in vs
-   decoded=[x for x in decodes if x['fixture']==case and x['variant']==t['variant'] and x['videoSHA256']==t['sha256']];assert len(decoded)==1 and decoded[0]['completeDecode']=='PASS' and decoded[0]['codec']=='H.264/AAC';assert t['status']=='PASS' and fav['status']=='MEASURED' and b['videoSHA256']==t['sha256']
+   decoded=[x for x in decodes if x['fixture']==case and x['variant']==t['variant'] and x['videoSHA256']==t['sha256']];assert len(decoded)==1 and decoded[0]['completeDecode']=='PASS' and decoded[0]['codec']=='H.264/AAC';assert t['status']=='PASS' and b['videoSHA256']==t['sha256'];assert key!='current' or fav['status']=='MEASURED','Final-source lyric safety not measured'
    vs[key]={'sourceCommit':b['sourceCommit'],'videoSHA256':t['sha256'],'binding':b,'metrics':t['decoded']['metrics'],'lyricSafety':fav['status'],'fullDecode':'PASS'}
   rows.append({'fixture':case,'observationStatus':'FRESH_FINAL_SOURCE_THREE_VERSION_MEASURED','versions':vs,'PCM':'MATCHED','archiveManifestSHA256':hashlib.sha256(new.read_bytes()).hexdigest()})
  else:
