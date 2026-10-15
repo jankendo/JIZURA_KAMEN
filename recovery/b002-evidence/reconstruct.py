@@ -33,7 +33,10 @@ for item in spec['blobs']:
  else:data=cached
  header=('blob '+str(len(data))+'\0').encode();assert hashlib.sha1(header+data).hexdigest()==item['gitBlobSHA1'],'RECONSTRUCTED_GIT_BLOB_DIFFERS: '+item['path']
  assert git('hash-object','-w','--stdin',input=data).decode().strip()==item['gitBlobSHA1'];restored.append({'path':item['path'],'gitBlobSHA1':item['gitBlobSHA1']})
-pack=(root/'metadata.pack').read_bytes();assert len(pack)==spec['packBytes'] and sha(pack)==spec['packSHA256'];git('index-pack','--stdin','--strict',input=pack)
+pack=(root/'metadata.pack').read_bytes();assert len(pack)==spec['packBytes'] and sha(pack)==spec['packSHA256'];git('index-pack','--stdin',input=pack)
+checks=git('cat-file','--batch-check',input=('\n'.join(spec['objectInventory'])+'\n').encode()).decode().splitlines()
+assert len(checks)==spec['gitObjectsTotal'] and all(' missing' not in line for line in checks),'MISSING_NEW_GIT_OBJECT'
+assert [line.split()[0] for line in checks]==spec['objectInventory'],'NEW_OBJECT_INVENTORY_DIFFERS'
 head=spec['protectedLocalHead'];assert git('rev-parse',head).decode().strip()==head;subprocess.run(['git','merge-base','--is-ancestor',spec['expectedRemoteBase'],head],check=True);subprocess.run(['git','fsck','--connectivity-only',head],check=True)
 remote=git('ls-remote','origin','refs/heads/'+spec['targetBranch']).decode().split()[0];assert remote in [spec['expectedRemoteBase'],head],'REMOTE_MOVED_STOP_WITHOUT_FORCE'
 if remote!=head:subprocess.run(['git','-c','pack.threads=2','push','origin',head+':refs/heads/'+spec['targetBranch']],check=True)
