@@ -1,0 +1,12 @@
+{
+  "scope": "Local concurrent Native StoryDirector and two Chromium generation trials",
+  "cgroupMemoryLimitBytes": 8589934592,
+  "memoryEvents": "low 0\nhigh 0\nmax 115898\noom 33\noom_kill 3\noom_group_kill 0\n",
+  "observedFailures": [
+    "Native node process killed",
+    "023b Chromium Page crashed",
+    "525b generation progress stalled after StageC"
+  ],
+  "causalStatus": "CONCURRENT_RESOURCE_PRESSURE_SUSPECTED_SINGLE_BROWSER_REPRO_REQUIRED",
+  "technicalGate": "UNVERIFIED_NOT_PASS"
+}
