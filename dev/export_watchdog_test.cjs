@@ -23,3 +23,10 @@ test('continuous progress cannot extend the absolute export limit',()=>{
   current.progressCount++;
   assert.equal(watchdog.observe(current,480001),'timeout');
 });
+
+const {GenerationWatchdog}=require('./export_watchdog.cjs');
+test('generation progress survives ten minutes but elapsed heartbeats cannot conceal a stall',()=>{
+ const w=new GenerationWatchdog(0),j=[{id:1,title:'MVを作成しています',status:'running',index:4,detail:'candidate 1',stages:[{id:'encode',status:'running',fraction:.1}]}];
+ assert.equal(w.observe(j,0),null);for(let t=120000;t<=720000;t+=120000){j[0].stages[0].fraction+=.1;assert.equal(w.observe(j,t),null);}
+ j[0].lastEvent=901000;assert.equal(w.observe(j,901000),'stalled');j[0].detail='candidate 2';assert.equal(w.observe(j,3600001),'timeout');
+});
