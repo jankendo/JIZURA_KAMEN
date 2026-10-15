@@ -4,6 +4,12 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const HASH=/^[a-f0-9]{64}$/, COMMIT=/^[a-f0-9]{40}$/;
+// Build.mjs reads these shipped inputs. This exact QA allowlist must never
+// expand implicitly to arbitrary dev/ scripts or runtime paths.
+const QA_PATHS=['dev/pages_e2e.cjs','dev/export_watchdog.cjs','dev/export_watchdog_test.cjs','dev/release_gates.cjs','dev/release_gates_test.cjs'];
+const QA_PREFIXES=['.github/workflows/','docs/qa/'];
+const SHIPPING_PATHS=['src','scripts','app','assets','vendor','package.json','package-lock.json'];
+const qaPath=p=>QA_PATHS.includes(p)||p.startsWith('docs/qa/');
 function evaluate(manifest,root=process.cwd()) {
  const issues=[], checks={technical:[],quality:[]}, commit=manifest.releaseSourceCommit;
  const record=(domain,name,state,reason)=>{checks[domain].push({name,state,reason});if(state!=='PASS')issues.push({domain,name,state,reason});};
@@ -20,7 +26,24 @@ function evaluate(manifest,root=process.cwd()) {
   if(sha(diff)!==c.gitDiffSHA256||JSON.stringify(paths)!==JSON.stringify([...(c.changedPaths||[])].sort()))throw Error('actual Git diff/path correspondence mismatch');
   const assessment=read(c.runtimeAssessment);
   if(assessment.sourceCommit!==commit||assessment.fromCommit!==from||assessment.toCommit!==commit||assessment.gitDiffSHA256!==c.gitDiffSHA256||!Array.isArray(assessment.paths)||assessment.paths.length!==paths.length)throw Error('runtime assessment binding missing');
-  for(const p of paths){const a=assessment.paths.filter(x=>x.path===p);if(a.length!==1||!['CI_ONLY','TELEMETRY_ONLY'].includes(a[0].classification)||typeof a[0].reason!=='string'||!a[0].reason.trim()||!HASH.test(a[0].diffHunkSHA256||''))throw Error('runtime-impact assessment incomplete');const d=run('git',['-C',repo,'diff','--no-ext-diff','--no-renames','--binary',from,commit,'--',p]);if(sha(d)!==a[0].diffHunkSHA256)throw Error('per-path diff mismatch');if(a[0].classification==='CI_ONLY'&&!p.startsWith('.github/workflows/'))throw Error('non-workflow path claimed CI-only');}
+  for(const p of paths){const a=assessment.paths.filter(x=>x.path===p);if(a.length!==1||!['CI_ONLY','QA_ONLY','TELEMETRY_ONLY'].includes(a[0].classification)||typeof a[0].reason!=='string'||!a[0].reason.trim()||!HASH.test(a[0].diffHunkSHA256||''))throw Error('runtime-impact assessment incomplete');const d=run('git',['-C',repo,'diff','--no-ext-diff','--no-renames','--binary',from,commit,'--',p]);if(sha(d)!==a[0].diffHunkSHA256)throw Error('per-path diff mismatch');if(a[0].classification==='CI_ONLY'&&!p.startsWith('.github/workflows/'))throw Error('non-workflow path claimed CI-only');if(a[0].classification==='QA_ONLY'&&!qaPath(p))throw Error('path outside exact QA-only allowlist');}
+  if(assessment.paths.some(p=>p.classification==='QA_ONLY')&&assessment.paths.every(p=>['CI_ONLY','QA_ONLY'].includes(p.classification))){
+   // QA-only changes may reuse observations only when every other Git input,
+   // including build scripts, dependencies, fonts and all renderer sources, is
+   // byte-identical. Original observation sourceCommit remains unchanged.
+   const proof=read(c.runtimeTreeProof),tree=(rev)=>{
+    const rows=run('git',['-C',repo,'ls-tree','-r','-z',rev]).toString().split('\0').filter(Boolean).filter(line=>{const p=line.split('\t')[1];return !QA_PATHS.includes(p)&&!QA_PREFIXES.some(prefix=>p.startsWith(prefix));});
+    return sha(Buffer.from(rows.join('\0')));
+   };
+   const before=tree(from),after=tree(commit);
+   if(proof.sourceCommit!==commit||proof.fromCommit!==from||proof.toCommit!==commit||before!==after||proof.beforeRuntimeTreeSHA256!==before||proof.afterRuntimeTreeSHA256!==after||JSON.stringify(proof.excludedPrefixes)!==JSON.stringify(QA_PREFIXES)||JSON.stringify(proof.excludedExactPaths)!==JSON.stringify(QA_PATHS))throw Error('QA-only shipped tree proof mismatch');
+   if(!Array.isArray(proof.shippingInputs)||proof.shippingInputs.length!==SHIPPING_PATHS.length)throw Error('QA-only shipped input proof missing');
+   for(const p of SHIPPING_PATHS){
+    const rows=proof.shippingInputs.filter(x=>x.path===p),beforeObject=run('git',['-C',repo,'rev-parse',from+':'+p]).toString().trim(),afterObject=run('git',['-C',repo,'rev-parse',commit+':'+p]).toString().trim();
+    if(rows.length!==1||beforeObject!==afterObject||rows[0].beforeGitObject!==beforeObject||rows[0].afterGitObject!==afterObject)throw Error('QA-only shipped input differs');
+   }
+   corresponded.add(from);return true;
+  }
   if(assessment.paths.every(p=>p.classification==='CI_ONLY')&&c.runtimeTreeProof){
    // A CI-only Git diff proves all shipped inputs identical. Native replay is
    // unnecessary here; telemetry changes still require actual Native proof.
