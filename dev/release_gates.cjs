@@ -21,6 +21,14 @@ function evaluate(manifest,root=process.cwd()) {
   const assessment=read(c.runtimeAssessment);
   if(assessment.sourceCommit!==commit||assessment.fromCommit!==from||assessment.toCommit!==commit||assessment.gitDiffSHA256!==c.gitDiffSHA256||!Array.isArray(assessment.paths)||assessment.paths.length!==paths.length)throw Error('runtime assessment binding missing');
   for(const p of paths){const a=assessment.paths.filter(x=>x.path===p);if(a.length!==1||!['CI_ONLY','TELEMETRY_ONLY'].includes(a[0].classification)||typeof a[0].reason!=='string'||!a[0].reason.trim()||!HASH.test(a[0].diffHunkSHA256||''))throw Error('runtime-impact assessment incomplete');const d=run('git',['-C',repo,'diff','--no-ext-diff','--no-renames','--binary',from,commit,'--',p]);if(sha(d)!==a[0].diffHunkSHA256)throw Error('per-path diff mismatch');if(a[0].classification==='CI_ONLY'&&!p.startsWith('.github/workflows/'))throw Error('non-workflow path claimed CI-only');}
+  if(assessment.paths.every(p=>p.classification==='CI_ONLY')&&c.runtimeTreeProof){
+   // A CI-only Git diff proves all shipped inputs identical. Native replay is
+   // unnecessary here; telemetry changes still require actual Native proof.
+   const proof=read(c.runtimeTreeProof),tree=(rev)=>{const rows=run('git',['-C',repo,'ls-tree','-r','-z',rev]).toString().split('\0').filter(Boolean).filter(line=>!line.split('\t')[1].startsWith('.github/workflows/'));return sha(Buffer.from(rows.join('\0')));};
+   const before=tree(from),after=tree(commit);
+   if(proof.sourceCommit!==commit||proof.fromCommit!==from||proof.toCommit!==commit||before!==after||proof.beforeRuntimeTreeSHA256!==before||proof.afterRuntimeTreeSHA256!==after||JSON.stringify(proof.excludedPrefixes)!==JSON.stringify(['.github/workflows/']))throw Error('CI-only shipped tree proof mismatch');
+   corresponded.add(from);return true;
+  }
   const native=read(c.nativeComparison);
   if(native.sourceCommit!==commit||native.fromCommit!==from||native.toCommit!==commit||native.actualNativeFrames!==true||native.completeOutputFramePopulation!==true||!Array.isArray(native.frames)||!native.frames.length||native.expectedFrameCount!==native.frames.length||new Set(native.frames.map(f=>f.frameIndex)).size!==native.frames.length)throw Error('native source-equivalence population missing');
   if(!HASH.test(native.inputHash||'')||!native.outputProfile||!native.rendererVersion)throw Error('native source-equivalence conditions missing');
