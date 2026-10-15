@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "registeredAt": "2026-10-15T06:41:11.369620+00:00",
+  "status": "REGISTERED_BEFORE_NEW_CONTROL_OUTCOME",
+  "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+  "artifact": "unseen5c92-03",
+  "fixture": "release-final-unseen-03",
+  "videoSHA256": "a2c11d416f8828004bf09679207050ad6ea8ef77f7333b6b532a99706cf621eb",
+  "hook": "temporalCinemaFocus",
+  "modes": [
+    "ON",
+    "OFF",
+    "ON_REPEAT"
+  ],
+  "targetUnitRange": [
+    10.9,
+    12.72
+  ],
+  "selectedIntent": {
+    "role": "continuity",
+    "motionPrinciple": "stable-travel",
+    "target": "background image focus, not isolated primary glyph settling",
+    "source": "src/11zzu_temporal_direction.js:J.temporalCinemaFocus",
+    "parameters": "focus.x += .025*travel; focus.zoom *= 1 + .06*level*travel + climax impact term; focus.y unchanged"
+  },
+  "requiredBinding": "Unique adopted complete Native group, exact output PTS and RGBA ON/ON_REPEAT; all input/plan/source/video/profile hashes retained",
+  "measurementPlan": [
+    "Keep historical primary settle FAILED unchanged; source contracts are not changed by this diagnostic.",
+    "Record per-output-time base/transformed focus and actual cinema field boxes plus primary decoded glyph bounds.",
+    "Check continuous travel parameter against existing cinemaTemporalState travel; document clipping, transient impact and intentionalHold separately.",
+    "Independent full decode of original/ON/OFF/ON_REPEAT at same actual PTS; existing contribution floor max(1,3*max(original/ON noise,ON/ON_REPEAT noise)).",
+    "Restrict image motion observations to selected field box, excluding all registered primary glyph bounding boxes. Camera/background pixels must not be attributed to glyphs.",
+    "Report translation/scale correspondence as raw diagnostics with ambiguity; absent texture, overlapping fields, clipping, foreground or insufficient independent feature support => UNMEASURED/CONFOUNDED.",
+    "A mere ON/OFF pixel difference never certifies stable-travel direction, beat alignment or aesthetic quality. No new pass threshold, weights or score relaxation."
+  ],
+  "releaseDecision": "Diagnostic only; correct-target semantic evidence required before resolving the mismatch.",
+  "human": "HUMAN_UNVERIFIED"
+}

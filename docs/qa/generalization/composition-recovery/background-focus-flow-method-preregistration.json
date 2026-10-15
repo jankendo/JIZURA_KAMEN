@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "registeredBeforeSensorAndActualOutcomes": true,
+  "source": "Existing image-tile geometry in 11zzp_shot_grammar.js and temporalCinemaFocus in 11zzu_temporal_direction.js",
+  "scope": "Matched OFF/ON decoded image features within the selected cinema field box at identical actual PTS, not whole-frame change or primary glyph drift",
+  "featureDetector": {"method":"cv2.goodFeaturesToTrack","maxCorners":200,"qualityLevel":0.01,"minDistance":5,"blockSize":5},
+  "tracker": {"method":"pyramidal Lucas-Kanade forward/backward","winSize":[21,21],"maxLevel":3,"terminationIterations":30,"terminationEpsilon":0.01},
+  "support": "At least 6 forward/backward-valid tracks occupying at least 2 x bins and 2 y bins of a 2x2 selected field region; forward/back error <=0.5 pixel. Insufficient support is UNMEASURED, never PASS.",
+  "expectedTransform": "Compute source crop sx/sy/cw/ch from exact Native input/output focus, same source dimensions, tile amount*sin(t*1.7), box and push factors. Map OFF feature position to ON position through the source crop equation. Fit a flow model only as a diagnostic, not as ground truth.",
+  "existingErrorCriterion": "Per feature error <= max(0.5 pixel, 0.1 * expected feature displacement), identical to existing finalMotionObservation renderer agreement. Require >=0.9 agreement, existing renderer agreement requirement; no new aesthetic score.",
+  "mask": "Selected field box intersect both image domains; remove registered primary glyph native+decoded bounds at current actual timestamp from OFF and ON feature support. Overlays/unknown target occlusion remain CONFOUNDED.",
+  "encodeNoise": "Require ON_REPEAT control and original/ON compatibility; preserve independent RMS contribution test max(1,3*max(original-vs-ON noise, ON-vs-ON_REPEAT noise)). Noise cannot be ignored or attributed to camera intent.",
+  "mandatorySensorTestsBeforeActual": ["known translation", "known zoom+translation", "same H264 encode noise", "excluded primary glyph region", "fully occluded target", "static background brightness flicker with expected movement", "opposite direction", "textureless target"],
+  "limits": "Target feature agreement proves this image crop transform at sampled actual times, not aesthetic merit, all camera semantics, synchronization, all scenes or release QUALITY_GO. Insufficient feature support or unmodeled layers remains UNMEASURED/CONFOUNDED. Keep historical primary settle FAILED unchanged.",
+  "human": "HUMAN_UNVERIFIED"
+}
