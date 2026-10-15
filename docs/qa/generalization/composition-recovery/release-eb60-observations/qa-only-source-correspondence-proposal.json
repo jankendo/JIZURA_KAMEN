@@ -1,0 +1,59 @@
+{
+  "sourceCommit": "eb60d3f2e55fcee6995ad3d5cdb5f11c1acb544f",
+  "fromCommit": "9f805e269e1e34ffb232117a5cb19a699ae0b94d",
+  "toCommit": "eb60d3f2e55fcee6995ad3d5cdb5f11c1acb544f",
+  "gitDiffSHA256": "ca277d41d99e632e88eb9ebb2b844585cc42d08aaec0f1b7e3d8b6fc8e5c15e5",
+  "changedPaths": [
+    {
+      "path": "dev/export_watchdog.cjs",
+      "classification": "TEST_HARNESS_ONLY",
+      "diffHunkSHA256": "aadd942b41b830c6aa77910488413c6abe5f4cbe5885650552b08b627512e4d3"
+    },
+    {
+      "path": "dev/export_watchdog_test.cjs",
+      "classification": "TEST_HARNESS_ONLY",
+      "diffHunkSHA256": "60550dccc2629f9fa125b8418b4b37cefdf27ab6b8467cf00f934f6137783cfd"
+    },
+    {
+      "path": "dev/pages_e2e.cjs",
+      "classification": "TEST_HARNESS_ONLY",
+      "diffHunkSHA256": "342e09324b956cd510ab98229048b828a37ca81438e2ac0cfa0266cc68e518c3"
+    },
+    {
+      "path": "docs/qa/generalization/composition-recovery/ci9f-export-phase-budget-cause.json",
+      "classification": "QA_DOCUMENTATION_ONLY",
+      "diffHunkSHA256": "d963c397dbf7ede706edb17235b6a49350216dd70fd781ee103b49813ee965d4"
+    }
+  ],
+  "excludedExactPaths": [
+    "dev/export_watchdog.cjs",
+    "dev/export_watchdog_test.cjs",
+    "dev/pages_e2e.cjs",
+    "docs/qa/generalization/composition-recovery/ci9f-export-phase-budget-cause.json"
+  ],
+  "beforeRemainingGitTreeSHA256": "01b934f9bd1c2c4f410e1974093851ea79c63efb1e31784faa08c421d9dc9a2c",
+  "afterRemainingGitTreeSHA256": "01b934f9bd1c2c4f410e1974093851ea79c63efb1e31784faa08c421d9dc9a2c",
+  "remainingGitTreeIdentical": true,
+  "shippingPathChecks": {
+    "src": true,
+    "scripts": true,
+    "app": true,
+    "assets": true,
+    "vendor": true,
+    "package.json": true,
+    "package-lock.json": true
+  },
+  "currentAuditWorktreeCommit": "8d9031fd8e6421a44b57c305083b5b2f7bf53eb0",
+  "auditWorktreeTreeMatchesRelease": true,
+  "gateEligibility": "UNVERIFIED_UNSUPPORTED_QA_ONLY_CORRESPONDENCE",
+  "limitations": [
+    "Existing release gate accepts CI_ONLY only under.github/workflows; these changes are dev harness/docs and must not be mislabeled.",
+    "The proof concerns unchanged shipped inputs, not successful final-source CI/browser completion or unchanged build metadata.",
+    "Historical9f Native evidence retains originalsource; it is not an eb60 execution."
+  ],
+  "proposal": [
+    "Add explicit narrowly audited TEST_HARNESS_ONLY/QA_DOCUMENTATION_ONLY classifications in a separately reviewed gate change, with complete changedpath diffSHA checks and exact shipped-input-tree identity proof.",
+    "Require finaleb60CI regression/build/actualbrowser observations independently; no reuse of failed9fCI.",
+    "Retain sourceCommit in each movie and require fullsourcechain evidence from5c92 to9f before current equivalence."
+  ]
+}

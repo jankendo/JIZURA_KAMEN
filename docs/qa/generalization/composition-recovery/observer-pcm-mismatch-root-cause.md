@@ -1,0 +1,9 @@
+# Immutable-video observer PCM mismatch
+
+Run38693109557 development-07 failed twice before video observation because re-decoding the SHA-256-identical source WAV changed the PCM hash. All non-audio snapshot fields matched: plan, image, lyrics, project, renderer, profile and manual locks. Sample rate44100 and length440999 also matched. The exact reason for floating PCM variation remains UNRESOLVED; it is not evidence of a broken MP4.
+
+The strict original failure logs remain in `observer-failure-dev07/`. The diagnostic tool now separates input correspondence from visual observation. Exact PCM match retains the full final-artifact verification. Only a mismatch confined to audioHash/inputHash permits visual-only observation of the unchanged, independently hash-checked MP4 with the unchanged reference plan. Its new FAV status stays UNVERIFIED. All non-audio mismatches and incomplete contracts reject. No input hash is substituted, no source audio is injected, and no historical quality result is overwritten.
+
+19 contract tests cover exact match, the narrow visual-only branch and all missing/non-audio mismatch counterexamples. The repeat summary includes the correspondence status alongside observer results; workflow success certifies diagnostic execution, not QUALITY_GO, source-input identity or audio verification.
+
+A separate preregistered replay will regenerate only the18 PCM-confounded fixed30 conditions on one runner per case using all three unmodified shipping versions, at most6 concurrent jobs. The original30 and strict matched12 remain preserved. Actual resulting PCM hashes must match before causal comparison; otherwise the new attempt also remains CONFOUNDED. Historical per-case timing predicts the largest three-version job at167.55min (230min with25% margin and20min setup), below the360min job limit. Timing is an estimate, not a promise or release criterion.

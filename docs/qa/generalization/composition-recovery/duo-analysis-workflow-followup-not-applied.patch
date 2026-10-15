@@ -1,0 +1,12 @@
+diff --git a/.github/workflows/release-duo-settle-component-control.yml b/.github/workflows/release-duo-settle-component-control.yml
+index 70a0445..c2f3af6 100644
+--- a/.github/workflows/release-duo-settle-component-control.yml
++++ b/.github/workflows/release-duo-settle-component-control.yml
+@@ -42,6 +42,7 @@ jobs:
+             mkdir -p "results/$hook"
+             KAMEN_COUNTERFACTUAL_HOOK="$hook" node qa/docs/qa/generalization/tools/encoded_duo_settle_counterfactual.cjs http://127.0.0.1:4173/ restored/matrix release-final-unseen-03 v3 current "results/$hook" > "results/$hook/run.log" 2>&1
+           done
++          node qa/docs/qa/generalization/tools/analyze_duo_settle_component.cjs results/duoSettle/effect-counterfactual-report.json results/duo-settle-component-analysis.json
+       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+         if: always()
+         with:

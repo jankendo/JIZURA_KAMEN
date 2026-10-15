@@ -1,0 +1,1999 @@
+{
+  "schema": 1,
+  "reports": [
+    {
+      "caseId": "release-supplement-02",
+      "hook": "cameraAt",
+      "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+      "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+      "originalVideoSHA256": "87bdba4eaccaaf3f6dcb045a9c753e07b969ea461f2a4d3feb797ea9d093f320",
+      "planHash": "54b175e540e05effe9c6560e94d43008beaf48a595cdc41f46a1a10cb88d82c7",
+      "referenceSHA256": "04fc863c91903e4ba8566bf69ce7939204eb7ee7d8f4fc09e72d7a29f2045454",
+      "inputSnapshot": {
+        "audioHash": "ac2924d64c0c0484655ed0ad7a0604bcdbec1f7d12aa2f71792f7c55a56a7def",
+        "imageHashes": [
+          "a46a682c4fc8131491fa81305424c2dd9d71677a76374c13c1b063c9cf7222a6",
+          "a46a682c4fc8131491fa81305424c2dd9d71677a76374c13c1b063c9cf7222a6",
+          "c92f8cb7410e78fede0c7cb587e9eb19e46626bb1640a4a1370477c810c8f55f"
+        ],
+        "lyricsHash": "51ff98dd89baf57d820b57b92d699743e0e0fcb33b0c83d1e7bec2e962868b1f",
+        "projectHash": "2f37682f8de57b1c58c5624fcc71a07f190b764eabddb58a0e77876f2a6964b2",
+        "rendererVersion": "5.0.0",
+        "proceduralTextureVersion": "seeded-procedural-texture-v1",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "userLocks": {
+          "lockedLines": [],
+          "manualTypography": [],
+          "manualCamera": []
+        },
+        "inputHash": "d11d5d37f97ac55d4b45ea02e2a3f01cfaf6274507f99002076bdbf63a9d9a3a"
+      },
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "nativeOutputFrames": 240,
+      "nativeOutputExact": true,
+      "nativeONRepeatExact": true,
+      "nonOutputNativeCallsExcluded": {
+        "ON": 14,
+        "OFF": 14,
+        "ON_REPEAT": 14
+      },
+      "exclusionRule": "Only exact original output times; no tolerance or duplicate output frame removal. All raw capture retained.",
+      "nativeONOFFEqual": false,
+      "originalDecodedONExact": true,
+      "contributionFrames": 98,
+      "status": "VERIFIED_COMPOSITE_CONTRIBUTION",
+      "semanticIntentStatus": "UNMEASURED",
+      "method": "Existing RMS floor max(1,3*noise), strengthened with maximum original-vs-ON and ON-vs-ON_REPEAT noise; all identical actual PTS decoded independently with FFmpeg.",
+      "scope": "Composite hook only; no independent operator semantics, aesthetic certification or release QUALITY_GO.",
+      "frames": [
+        {
+          "actualDecodedTimestamp": 0.0,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 0.041667,
+          "originalVsOFFRMS": 0.3742247521877289,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 0.083333,
+          "originalVsOFFRMS": 0.6823627352714539,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 0.125,
+          "originalVsOFFRMS": 1.0736416578292847,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.166667,
+          "originalVsOFFRMS": 1.47525954246521,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.208333,
+          "originalVsOFFRMS": 1.7795991897583008,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.25,
+          "originalVsOFFRMS": 2.0165932178497314,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.291667,
+          "originalVsOFFRMS": 2.343043804168701,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.333333,
+          "originalVsOFFRMS": 3.0380666255950928,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.375,
+          "originalVsOFFRMS": 3.4630234241485596,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.416667,
+          "originalVsOFFRMS": 3.8060781955718994,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.458333,
+          "originalVsOFFRMS": 4.207995891571045,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.5,
+          "originalVsOFFRMS": 4.634448051452637,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.541667,
+          "originalVsOFFRMS": 4.940710067749023,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.583333,
+          "originalVsOFFRMS": 5.3041839599609375,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.625,
+          "originalVsOFFRMS": 5.598584175109863,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.666667,
+          "originalVsOFFRMS": 5.915321350097656,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.708333,
+          "originalVsOFFRMS": 6.156165599822998,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.75,
+          "originalVsOFFRMS": 6.448729515075684,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.791667,
+          "originalVsOFFRMS": 6.707396507263184,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.833333,
+          "originalVsOFFRMS": 6.9514265060424805,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.875,
+          "originalVsOFFRMS": 7.1701765060424805,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.916667,
+          "originalVsOFFRMS": 7.375649929046631,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 0.958333,
+          "originalVsOFFRMS": 7.605973243713379,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.0,
+          "originalVsOFFRMS": 7.817071437835693,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.041667,
+          "originalVsOFFRMS": 7.995284080505371,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.083333,
+          "originalVsOFFRMS": 8.109951972961426,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.125,
+          "originalVsOFFRMS": 8.286873817443848,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.166667,
+          "originalVsOFFRMS": 8.480828285217285,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.208333,
+          "originalVsOFFRMS": 8.609840393066406,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.25,
+          "originalVsOFFRMS": 8.8455171585083,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.291667,
+          "originalVsOFFRMS": 8.066786766052246,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.333333,
+          "originalVsOFFRMS": 9.18197250366211,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.375,
+          "originalVsOFFRMS": 9.410994529724121,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.416667,
+          "originalVsOFFRMS": 9.627735137939453,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.458333,
+          "originalVsOFFRMS": 9.783256530761719,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.5,
+          "originalVsOFFRMS": 9.96009349822998,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.541667,
+          "originalVsOFFRMS": 10.1294584274292,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.583333,
+          "originalVsOFFRMS": 10.261857032775879,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.625,
+          "originalVsOFFRMS": 10.447808265686035,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.666667,
+          "originalVsOFFRMS": 10.583453178405762,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.708333,
+          "originalVsOFFRMS": 10.76113510131836,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.75,
+          "originalVsOFFRMS": 10.764092445373535,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.791667,
+          "originalVsOFFRMS": 10.890957832336426,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.833333,
+          "originalVsOFFRMS": 11.02045726776123,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.875,
+          "originalVsOFFRMS": 11.078536033630371,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.916667,
+          "originalVsOFFRMS": 11.167367935180664,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 1.958333,
+          "originalVsOFFRMS": 11.283829689025879,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.0,
+          "originalVsOFFRMS": 11.3693265914917,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.041667,
+          "originalVsOFFRMS": 11.368833541870117,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.083333,
+          "originalVsOFFRMS": 11.483546257019043,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.125,
+          "originalVsOFFRMS": 11.489364624023438,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.166667,
+          "originalVsOFFRMS": 11.511255264282227,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.208333,
+          "originalVsOFFRMS": 11.549739837646484,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.25,
+          "originalVsOFFRMS": 11.575859069824219,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.291667,
+          "originalVsOFFRMS": 11.5652494430542,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.333333,
+          "originalVsOFFRMS": 11.556364059448242,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.375,
+          "originalVsOFFRMS": 11.532536506652832,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.416667,
+          "originalVsOFFRMS": 11.463386535644531,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.458333,
+          "originalVsOFFRMS": 11.44291877746582,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.5,
+          "originalVsOFFRMS": 11.351326942443848,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.541667,
+          "originalVsOFFRMS": 11.328021049499512,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.583333,
+          "originalVsOFFRMS": 11.305192947387695,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.625,
+          "originalVsOFFRMS": 11.21624755859375,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.666667,
+          "originalVsOFFRMS": 11.181763648986816,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.708333,
+          "originalVsOFFRMS": 11.114026069641113,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.75,
+          "originalVsOFFRMS": 10.98647403717041,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.791667,
+          "originalVsOFFRMS": 10.93371295928955,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.833333,
+          "originalVsOFFRMS": 10.851298332214355,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.875,
+          "originalVsOFFRMS": 10.74963665008545,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.916667,
+          "originalVsOFFRMS": 10.63853645324707,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 2.958333,
+          "originalVsOFFRMS": 10.583271026611328,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.0,
+          "originalVsOFFRMS": 10.504364967346191,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.041667,
+          "originalVsOFFRMS": 10.420486450195312,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.083333,
+          "originalVsOFFRMS": 10.316033363342285,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.125,
+          "originalVsOFFRMS": 10.24178409576416,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.166667,
+          "originalVsOFFRMS": 10.183321952819824,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.208333,
+          "originalVsOFFRMS": 10.091668128967285,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.25,
+          "originalVsOFFRMS": 9.962075233459473,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.291667,
+          "originalVsOFFRMS": 9.914474487304688,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.333333,
+          "originalVsOFFRMS": 9.832375526428223,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.375,
+          "originalVsOFFRMS": 9.766974449157715,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.416667,
+          "originalVsOFFRMS": 9.671493530273438,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.458333,
+          "originalVsOFFRMS": 9.558095932006836,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.5,
+          "originalVsOFFRMS": 9.446246147155762,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.541667,
+          "originalVsOFFRMS": 9.333135604858398,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.583333,
+          "originalVsOFFRMS": 9.062435150146484,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.625,
+          "originalVsOFFRMS": 8.431377410888672,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.666667,
+          "originalVsOFFRMS": 7.51716947555542,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.708333,
+          "originalVsOFFRMS": 6.291610240936279,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.75,
+          "originalVsOFFRMS": 4.768404006958008,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.791667,
+          "originalVsOFFRMS": 3.0535926818847656,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.833333,
+          "originalVsOFFRMS": 1.947412371635437,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.875,
+          "originalVsOFFRMS": 1.567901372909546,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.916667,
+          "originalVsOFFRMS": 1.872708797454834,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 3.958333,
+          "originalVsOFFRMS": 2.8075499534606934,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 4.0,
+          "originalVsOFFRMS": 4.165095329284668,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 4.041667,
+          "originalVsOFFRMS": 5.384801387786865,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 4.083333,
+          "originalVsOFFRMS": 6.129490375518799,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 4.125,
+          "originalVsOFFRMS": 6.257709980010986,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 4.166667,
+          "originalVsOFFRMS": 6.759870529174805,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": true
+        },
+        {
+          "actualDecodedTimestamp": 4.208333,
+          "originalVsOFFRMS": 0.1321895718574524,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.25,
+          "originalVsOFFRMS": 0.1317557692527771,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.291667,
+          "originalVsOFFRMS": 0.14300020039081573,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.333333,
+          "originalVsOFFRMS": 0.13458602130413055,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.375,
+          "originalVsOFFRMS": 0.15516695380210876,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.416667,
+          "originalVsOFFRMS": 0.15319062769412994,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.458333,
+          "originalVsOFFRMS": 0.10665412992238998,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.5,
+          "originalVsOFFRMS": 0.10329991579055786,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.541667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.583333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.625,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.666667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.708333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.75,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.791667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.833333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.875,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.916667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 4.958333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.0,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.041667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.083333,
+          "originalVsOFFRMS": 0.10292977094650269,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.125,
+          "originalVsOFFRMS": 0.10292977094650269,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.166667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.208333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.25,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.291667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.333333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.375,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.416667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.458333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.5,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.541667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.583333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.625,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.666667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.708333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.75,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.791667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.833333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.875,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.916667,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 5.958333,
+          "originalVsOFFRMS": 0.10255158692598343,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.0,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.041667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.083333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.125,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.166667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.208333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.25,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.291667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.333333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.375,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.416667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.458333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.5,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.541667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.583333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.625,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.666667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.708333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.75,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.791667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.833333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.875,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.916667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 6.958333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.0,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.041667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.083333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.125,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.166667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.208333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.25,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.291667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.333333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.375,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.416667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.458333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.5,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.541667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.583333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.625,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.666667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.708333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.75,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.791667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.833333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.875,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.916667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 7.958333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.0,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.041667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.083333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.125,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.166667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.208333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.25,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.291667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.333333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.375,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.416667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.458333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.5,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.541667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.583333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.625,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.666667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.708333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.75,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.791667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.833333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.875,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.916667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 8.958333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.0,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.041667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.083333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.125,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.166667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.208333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.25,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.291667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.333333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.375,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.416667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.458333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.5,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.541667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.583333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.625,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.666667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.708333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.75,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.791667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.833333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.875,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.916667,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        },
+        {
+          "actualDecodedTimestamp": 9.958333,
+          "originalVsOFFRMS": 0.0,
+          "originalVsONNoiseRMS": 0.0,
+          "ONRepeatNoiseRMS": 0.0,
+          "requiredContributionRMS": 1.0,
+          "contribution": false
+        }
+      ]
+    }
+  ],
+  "human": "HUMAN_UNVERIFIED"
+}

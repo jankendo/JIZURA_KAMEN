@@ -1,8 +1,8 @@
 {
   "scope": "Raw engineering metrics, not artistic certification. Missing or nonmatched conditions are not silently pooled. Main bindings require independent verification.",
-  "complete30": false,
+  "complete30": true,
   "expected": 30,
-  "collected": 28,
+  "collected": 30,
   "rows": [
     {
       "fixture": "development-01",
@@ -12140,8 +12140,178 @@
         "failures": [],
         "unavailable": null
       },
-      "mainEligibility": "UNVERIFIED_CURRENT_NOT_AVAILABLE",
-      "current": null
+      "mainEligibility": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": true,
+          "outputProfile": true
+        },
+        "status": "MATCHED"
+      },
+      "current": {
+        "fixture": {
+          "id": "holdout-14",
+          "cohort": "holdout",
+          "category": "long-multisection",
+          "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
+          "seed": 13497,
+          "imageSeed": 13497,
+          "aspect": "1:1",
+          "image": "busy",
+          "lyrics": [
+            "誰もいない駅に着く",
+            "湿った階段を降りる",
+            "崖の上から眺める",
+            "夜明けの海を渡る",
+            "銀色の魚を探す",
+            "森の泉に触れる",
+            "遠くの船を迎える",
+            "静かな港へ帰る"
+          ],
+          "starts": [
+            0.3,
+            5.7625,
+            11.225000000000001,
+            16.687500000000004,
+            22.150000000000002,
+            27.6125,
+            33.075,
+            38.5375
+          ],
+          "duration": 45,
+          "short": false,
+          "loop": false,
+          "res": 360,
+          "fps": 24,
+          "naturalDirection": true,
+          "baselineCinema": true,
+          "manual": false,
+          "fontFailure": false,
+          "synthesis": {
+            "tempo": 111,
+            "notes": [
+              164.81377845643496,
+              220,
+              293.6647679174076,
+              130.8127826502993,
+              174.61411571650194,
+              233.08188075904496,
+              311.1269837220809,
+              138.59131548843604
+            ],
+            "harmonics": [
+              1,
+              0.2,
+              0.07
+            ],
+            "attack": 0.018,
+            "decay": 0.2,
+            "percussion": 0.04,
+            "energyStages": [
+              0.2,
+              0.4,
+              0.7,
+              0.3
+            ],
+            "silenceUntil": 0
+          }
+        },
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "status": "PASS",
+        "videoSHA256": "f151dd4007589ab24e926662824a14bb1960ea59ba51cd336c80b9ccb38f3f51",
+        "input": {
+          "audioHash": "1a44c1b2c486d9a0f852e6d87d7558fa8b552597fde378e6d923296ab5cca4f7",
+          "imageHash": "55f33cf8f174472d3a0eb050a844a3a8e6df302dce07aaa5f56ca0331d19818b",
+          "lyrics": "[00:00.30]誰もいない駅に着く\n[00:05.76]湿った階段を降りる\n[00:11.23]崖の上から眺める\n[00:16.69]夜明けの海を渡る\n[00:22.15]銀色の魚を探す\n[00:27.61]森の泉に触れる\n[00:33.08]遠くの船を迎える\n[00:38.54]静かな港へ帰る",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ]
+        },
+        "audioWAVSHA256": "1a44c1b2c486d9a0f852e6d87d7558fa8b552597fde378e6d923296ab5cca4f7",
+        "pcmHash": "ded8a670d3a1aa61372b8afcf4d9ff59e3f9286f4b3e973398e4a6790234ee9f",
+        "binding": {
+          "inputHash": "ba2da3668ce2e4704dce742bf5d8270bdef355b02b68fbdf3a802e12ee716b77",
+          "planHash": "d2ae2018ea751a101e7f825b99d4f77b9e526ed82aeef19f5286730c737d3cde",
+          "outputProfile": {
+            "purpose": "SQUARE",
+            "aspect": "1:1",
+            "fps": 24,
+            "range": [
+              0,
+              44.999977324263035
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              360
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "1db9e82942bd31757754ad9d50ef1c9bfda180c66855589da0c0bb265a155f30",
+          "videoSHA256": "f151dd4007589ab24e926662824a14bb1960ea59ba51cd336c80b9ccb38f3f51",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 84,
+          "hookNovelty": 83,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 76,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 93.11801130450442,
+          "localContrast": 97,
+          "motionRealization": 100,
+          "typographyDiversity": 38
+        },
+        "lyricSafety": "MEASURED",
+        "holdMinimumContrasts": [
+          98,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "motionSummary": {
+          "population": 8,
+          "measured": 8,
+          "rendererAgreementSuccess": 8,
+          "measurableRate": 1,
+          "rendererAgreementRate": 1,
+          "intentRealizationSuccessRate": 1,
+          "manualExcluded": 0,
+          "nonAutomaticExcluded": 0,
+          "intentConfounded": 0,
+          "intentUnmeasured": 1,
+          "intentMeasured": 7,
+          "intentMeasurableRate": 0.875,
+          "intentSuccessful": 7
+        },
+        "failures": [],
+        "unavailable": null
+      },
+      "comparisonEligibility": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": true,
+          "outputProfile": true
+        },
+        "status": "MATCHED"
+      }
     },
     {
       "fixture": "holdout-15",
@@ -12431,8 +12601,163 @@
         "failures": [],
         "unavailable": null
       },
-      "mainEligibility": "UNVERIFIED_CURRENT_NOT_AVAILABLE",
-      "current": null
+      "mainEligibility": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": true,
+          "outputProfile": true
+        },
+        "status": "MATCHED"
+      },
+      "current": {
+        "fixture": {
+          "id": "holdout-15",
+          "cohort": "holdout",
+          "category": "mixed-language",
+          "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
+          "seed": 13534,
+          "imageSeed": 13534,
+          "aspect": "4:5",
+          "image": "single-silhouette",
+          "lyrics": [
+            "旅路は under open stars",
+            "呼吸は dancing in the snow",
+            "Our song 深い海へ"
+          ],
+          "starts": [
+            0.3,
+            3.1999999999999997,
+            6.1
+          ],
+          "duration": 10,
+          "short": false,
+          "loop": false,
+          "res": 360,
+          "fps": 24,
+          "naturalDirection": true,
+          "baselineCinema": true,
+          "manual": false,
+          "fontFailure": false,
+          "synthesis": {
+            "tempo": 123,
+            "notes": [
+              155.56349186104046,
+              207.65234878997256,
+              277.1826309768721,
+              123.47082531403103,
+              164.81377845643496,
+              220,
+              293.6647679174076,
+              130.8127826502993
+            ],
+            "harmonics": [
+              1,
+              0.2,
+              0.07
+            ],
+            "attack": 0.018,
+            "decay": 0.2,
+            "percussion": 0.04,
+            "energyStages": [
+              0.4,
+              0.6,
+              0.7,
+              0.25
+            ],
+            "silenceUntil": 0
+          }
+        },
+        "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+        "status": "PASS",
+        "videoSHA256": "f1a2b37ce27af5de46e167dde05981b32aa691afb21c26bed69877182dd8b066",
+        "input": {
+          "audioHash": "b0f628a49ec8e6b548ca012033f4621e057172691174e0ddae6dae073b739c9d",
+          "imageHash": "5d8ada921d4d875a54fed2d8867fe5341bfbb05565b48593c19fabda7c06c69f",
+          "lyrics": "[00:00.30]旅路は under open stars\n[00:03.20]呼吸は dancing in the snow\n[00:06.10]Our song 深い海へ",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ]
+        },
+        "audioWAVSHA256": "b0f628a49ec8e6b548ca012033f4621e057172691174e0ddae6dae073b739c9d",
+        "pcmHash": "074968396a6edabfb45c5f3f694f95a9381a35e46eced2081bb43ece880afbae",
+        "binding": {
+          "inputHash": "bde438b686ee858c704cdefcfc43d5cef32daabc7843bdaa2fc79320a379007b",
+          "planHash": "08720451c0e1c18d35e3100f389d6edfa87d0ced62556788e38b694f4284f020",
+          "outputProfile": {
+            "purpose": "FULL_MV",
+            "aspect": "4:5",
+            "fps": 24,
+            "range": [
+              0,
+              9.999977324263039
+            ],
+            "loopRequired": false,
+            "resolution": [
+              360,
+              450
+            ]
+          },
+          "rendererVersion": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "selectedCandidateId": "8252850e8db005928412c7df22fac6140f0fca4dddd78755ae59ccf45e8b3c81",
+          "videoSHA256": "f1a2b37ce27af5de46e167dde05981b32aa691afb21c26bed69877182dd8b066",
+          "sourceCommit": "5c92e27e6216962d09ec73927fd0df6ce50d0560",
+          "sourceTreeSHA256": "30ad87e00b2437b8fcdc970d0bf5ce2ab18f33777b6a1811581e999ace17df34",
+          "sourceDirty": false
+        },
+        "metrics": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 39,
+          "hookNovelty": 63,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 98,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 89,
+          "motionRealization": 100,
+          "typographyDiversity": 70
+        },
+        "lyricSafety": "MEASURED",
+        "holdMinimumContrasts": [
+          99,
+          100,
+          100
+        ],
+        "motionSummary": {
+          "population": 3,
+          "measured": 3,
+          "rendererAgreementSuccess": 3,
+          "measurableRate": 1,
+          "rendererAgreementRate": 1,
+          "intentRealizationSuccessRate": 1,
+          "manualExcluded": 0,
+          "nonAutomaticExcluded": 0,
+          "intentConfounded": 0,
+          "intentUnmeasured": 0,
+          "intentMeasured": 3,
+          "intentMeasurableRate": 1,
+          "intentSuccessful": 3
+        },
+        "failures": [],
+        "unavailable": null
+      },
+      "comparisonEligibility": {
+        "checks": {
+          "fixture": true,
+          "input": true,
+          "audioWAVSHA256": true,
+          "pcmHash": true,
+          "outputProfile": true
+        },
+        "status": "MATCHED"
+      }
     },
     {
       "fixture": "supplemental-development-13",
@@ -13357,5 +13682,101 @@
       }
     }
   ],
-  "statistics": {}
+  "statistics": {
+    "typographyDiversity": {
+      "previous5e": {
+        "measuredCount": 30,
+        "mean": 41.9,
+        "worst": 6,
+        "lower20Mean": 18.5
+      },
+      "current": {
+        "measuredCount": 30,
+        "mean": 48.2,
+        "worst": 19,
+        "lower20Mean": 23.333333333333332
+      },
+      "improved": 11,
+      "same": 15,
+      "lower": 4,
+      "pairedCount": 30,
+      "allPairsConditionsMatched": false
+    },
+    "lyricForegroundNovelty": {
+      "previous5e": {
+        "measuredCount": 30,
+        "mean": 73.8,
+        "worst": 37,
+        "lower20Mean": 51.333333333333336
+      },
+      "current": {
+        "measuredCount": 30,
+        "mean": 77.66666666666667,
+        "worst": 37,
+        "lower20Mean": 53.666666666666664
+      },
+      "improved": 9,
+      "same": 15,
+      "lower": 6,
+      "pairedCount": 30,
+      "allPairsConditionsMatched": false
+    },
+    "temporalContrast": {
+      "previous5e": {
+        "measuredCount": 21,
+        "mean": 39.714285714285715,
+        "worst": 9,
+        "lower20Mean": 14.6
+      },
+      "current": {
+        "measuredCount": 21,
+        "mean": 42.285714285714285,
+        "worst": 16,
+        "lower20Mean": 20.2
+      },
+      "improved": 10,
+      "same": 5,
+      "lower": 6,
+      "pairedCount": 21,
+      "allPairsConditionsMatched": false
+    },
+    "localContrast": {
+      "previous5e": {
+        "measuredCount": 27,
+        "mean": 64.29629629629629,
+        "worst": 0,
+        "lower20Mean": 0
+      },
+      "current": {
+        "measuredCount": 27,
+        "mean": 65.81481481481481,
+        "worst": 0,
+        "lower20Mean": 0
+      },
+      "improved": 6,
+      "same": 16,
+      "lower": 5,
+      "pairedCount": 27,
+      "allPairsConditionsMatched": false
+    },
+    "motionRealization": {
+      "previous5e": {
+        "measuredCount": 30,
+        "mean": 92.53333333333333,
+        "worst": 33,
+        "lower20Mean": 62.666666666666664
+      },
+      "current": {
+        "measuredCount": 30,
+        "mean": 96.96666666666667,
+        "worst": 60,
+        "lower20Mean": 84.83333333333333
+      },
+      "improved": 3,
+      "same": 27,
+      "lower": 0,
+      "pairedCount": 30,
+      "allPairsConditionsMatched": false
+    }
+  }
 }

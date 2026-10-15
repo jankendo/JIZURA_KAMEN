@@ -1,0 +1,135 @@
+{
+  "releaseSourceCommit": "eb60d3f2e55fcee6995ad3d5cdb5f11c1acb544f",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "UNVERIFIED",
+  "normalizedMovieCountsByOriginalSource": {
+    "5c92e27e6216962d09ec73927fd0df6ce50d0560": {
+      "movies": 38,
+      "fullDecodedH264AAC": 38
+    },
+    "2e7ed477f88028dbb63aa609e8a11b4052ea8c00": {
+      "movies": 4,
+      "fullDecodedH264AAC": 4
+    },
+    "5e14682249ce690337874214f2ec76fc8e68fa26": {
+      "movies": 4,
+      "fullDecodedH264AAC": 4
+    }
+  },
+  "fixtureCounts": {
+    "5c92e27e6216962d09ec73927fd0df6ce50d0560": {
+      "fixedConditionIds": [
+        "development-01",
+        "development-02",
+        "development-03",
+        "development-04",
+        "development-05",
+        "development-06",
+        "development-07",
+        "development-08",
+        "development-09",
+        "development-10",
+        "development-11",
+        "development-12",
+        "development-14",
+        "development-15",
+        "holdout-01",
+        "holdout-02",
+        "holdout-03",
+        "holdout-04",
+        "holdout-05",
+        "holdout-06",
+        "holdout-07",
+        "holdout-08",
+        "holdout-09",
+        "holdout-10",
+        "holdout-11",
+        "holdout-12",
+        "holdout-14",
+        "holdout-15",
+        "supplemental-development-13",
+        "supplemental-holdout-13"
+      ],
+      "fixedConditionCount": 30,
+      "otherConditionIds": [
+        "release-final-unseen-01",
+        "release-final-unseen-02",
+        "release-final-unseen-03",
+        "release-final-unseen-04",
+        "release-supplement-01",
+        "release-supplement-02",
+        "release-supplement-03",
+        "release-supplement-04"
+      ]
+    },
+    "2e7ed477f88028dbb63aa609e8a11b4052ea8c00": {
+      "fixedConditionIds": [],
+      "fixedConditionCount": 0,
+      "otherConditionIds": [
+        "release-final-unseen-01",
+        "release-final-unseen-02",
+        "release-final-unseen-03",
+        "release-final-unseen-04"
+      ]
+    },
+    "5e14682249ce690337874214f2ec76fc8e68fa26": {
+      "fixedConditionIds": [],
+      "fixedConditionCount": 0,
+      "otherConditionIds": [
+        "release-final-unseen-01",
+        "release-final-unseen-02",
+        "release-final-unseen-03",
+        "release-final-unseen-04"
+      ]
+    }
+  },
+  "incompleteAttempts": 0,
+  "currentEquivalentMovieCount": 0,
+  "issues": [
+    {
+      "domain": "technical",
+      "name": "ci",
+      "state": "UNVERIFIED",
+      "reason": "CI not completed successfully"
+    },
+    {
+      "domain": "technical",
+      "name": "regression/build",
+      "state": "UNVERIFIED",
+      "reason": "per-test observations absent"
+    },
+    {
+      "domain": "technical",
+      "name": "browser",
+      "state": "UNVERIFIED",
+      "reason": "actual browser observations absent"
+    },
+    {
+      "domain": "technical",
+      "name": "finished artifacts",
+      "state": "UNVERIFIED",
+      "reason": "movie observations absent"
+    },
+    {
+      "domain": "quality",
+      "name": "comparison coverage",
+      "state": "UNVERIFIED",
+      "reason": "missing/duplicate comparison condition"
+    },
+    {
+      "domain": "quality",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "important intent population missing"
+    },
+    {
+      "domain": "quality",
+      "name": "regressions and correspondence",
+      "state": "UNVERIFIED",
+      "reason": "safety/path-source correspondence unverified"
+    }
+  ],
+  "sourceCorrespondence": "UNVERIFIED_QA_ONLY_PROPOSAL_NOT_ACCEPTED_OR_SILENTLY_RECLASSIFIED",
+  "human": "HUMAN_UNVERIFIED"
+}
