@@ -307,7 +307,7 @@ V.guardCompositionPromotion=async(root,planHash,incumbentPlanHash,measure)=>{
  return {root,allowed,status:allowed?'MEASURED_NONREGRESSING_IMPROVEMENT':'NOT_PROMOTED_UNMEASURED_OR_NO_CREATIVE_IMPROVEMENT',planHash,incumbentPlanHash,...evidence,comparison:'Same input, profile and renderer; unchanged strict creative axes for every changed root; final MP4 QA required'};
 };
 V.compareLegacyFinalist=async(p,range,signal,shared,incumbent,telemetry={})=>{
- let measuredWork=0;const measuredProgress=label=>telemetry.onProgress?.({label,current:++measuredWork,total:null});
+ let measuredWork=0;const measuredProgress=label=>telemetry.onProgress?.({label,candidateWorkEvents:++measuredWork});
  if(!Number.isFinite(incumbent?.score))return {status:'UNMEASURED',reason:'INCUMBENT_DELIVERY_READABILITY_UNMEASURED'};
 
  const rasterScope={renderer:new J.Renderer(),ready:false};try{
