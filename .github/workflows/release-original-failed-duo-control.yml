@@ -1,0 +1,53 @@
+name: Exact original failed settle interval component attribution
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/release-original-failed-duo-control.yml]
+permissions:
+  contents: read
+jobs:
+  typography:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: b002cdd75845d189221312a82456c33a131f5e8d
+          path: current
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Restore exact adopted artifact without planning
+        run: python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization final5c92-holdout-c restored
+      - name: Frozen adopted typography ON OFF ON_REPEAT
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_COUNTERFACTUAL_PHASES: 1
+          KAMEN_COUNTERFACTUAL_NATIVE_HASHES: 1
+        run: |
+          mkdir -p results
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in 1 2 3 4 5; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          for hook in duoSettle; do
+            mkdir -p "results/$hook"
+            KAMEN_COUNTERFACTUAL_HOOK="$hook" node qa/docs/qa/generalization/tools/encoded_duo_settle_counterfactual.cjs http://127.0.0.1:4173/ restored/matrix supplemental-holdout-13 v3 current "results/$hook" > "results/$hook/run.log" 2>&1
+          done
+      - name: Measure exact existing settle component against decoded ON OFF controls
+        run: node qa/docs/qa/generalization/tools/analyze_duo_settle_component.cjs results/duoSettle/effect-counterfactual-report.json results/duo-settle-component-analysis.json
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: original-supplement13-duo-settle-component-control
+          path: results
+          retention-days: 14
+          if-no-files-found: error
