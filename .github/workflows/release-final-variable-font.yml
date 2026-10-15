@@ -1,0 +1,56 @@
+name: Final source actual variable-font browser export and skip alternatives
+on:
+  push:
+    branches: [codex/kamen-generalization-evidence-20261012]
+    paths: [.github/workflows/release-final-variable-font.yml]
+permissions:
+  contents: read
+jobs:
+  variable-font:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: b002cdd75845d189221312a82456c33a131f5e8d
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Restore immutable actual CI project and audio; pin licensed font
+        run: |
+          python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization ci-b002-validation restored --prefix kamen-browser-qa/saved-project.json
+          python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization ci-b002-validation restored --prefix kamen-browser-qa/audio.wav
+          python - <<'PY'
+          import urllib.request,json,hashlib,pathlib
+          d=json.load(open('qa/docs/qa/generalization/composition-recovery/variable-font-source-b002.json'))
+          for key,target in [('font','VariableJP.ttf'),('license','OFL.txt')]:
+            b=urllib.request.urlopen(d[key+'URL']).read();assert hashlib.sha256(b).hexdigest()==d[key+'SHA256'];pathlib.Path(target).write_bytes(b)
+          PY
+      - name: Actual browser upload, raster, Cinema MP4 and independent full decode
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          mkdir -p results
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/final_variable_font_probe.cjs http://127.0.0.1:4173/ restored/kamen-browser-qa/saved-project.json restored/kamen-browser-qa/audio.wav VariableJP.ttf results > results/probe.log 2>&1
+          JIZURA_BROWSER_QA_REPORT="$PWD/results/report.json" node current/dev/variable_font_browser_test.js > results/variable-font-wrapper.log 2>&1
+          JIZURA_BROWSER_QA_REPORT="$PWD/results/report.json" node current/dev/browser_export_e2e_test.js > results/browser-export-wrapper.log 2>&1
+          cp OFL.txt results/font-OFL.txt
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: final-b002-variable-font-browser
+          path: results/
+          retention-days: 14

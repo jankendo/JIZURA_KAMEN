@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "frozenUTC": "2026-10-15T21:59:40.497855+00:00",
+  "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "sources": [
+    "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+    "5e14682249ce690337874214f2ec76fc8e68fa26",
+    "b002cdd75845d189221312a82456c33a131f5e8d"
+  ],
+  "fixtures": [
+    {
+      "id": "release-word-integrity-holdout-02",
+      "cohort": "postfreeze-word-integrity-holdout",
+      "category": "independent-mixed-language",
+      "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
+      "seed": 826037,
+      "imageSeed": 826037,
+      "aspect": "1:1",
+      "image": "bright",
+      "lyrics": [
+        "遠くで青い風が鳴る",
+        "Between the branches 光を待つ",
+        "One bright signal guides us home"
+      ],
+      "starts": [
+        0.35,
+        4.2,
+        8.35
+      ],
+      "duration": 13,
+      "short": false,
+      "loop": false,
+      "res": 360,
+      "fps": 24,
+      "naturalDirection": true,
+      "baselineCinema": true,
+      "manual": false,
+      "fontFailure": false,
+      "synthesis": {
+        "tempo": 98,
+        "notes": [
+          138.59131548843604,
+          164.81377845643496,
+          195.99771799087463,
+          233.08188075904496,
+          277.1826309768721,
+          110,
+          130.8127826502993,
+          155.56349186104046
+        ],
+        "harmonics": [
+          1,
+          0.2,
+          0.07
+        ],
+        "attack": 0.018,
+        "decay": 0.2,
+        "percussion": 0.04,
+        "energyStages": [
+          0.35,
+          0.65,
+          0.9,
+          0.4
+        ],
+        "silenceUntil": 0
+      }
+    },
+    {
+      "id": "release-word-integrity-holdout-01-full-companion",
+      "cohort": "original-failed-short-full-companion",
+      "category": "independent-mixed-language",
+      "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
+      "seed": 724611,
+      "imageSeed": 724611,
+      "aspect": "9:16",
+      "image": "busy",
+      "lyrics": [
+        "雨の駅から歩き出す",
+        "窓辺で listening to rain",
+        "Silver echoes cross the night"
+      ],
+      "starts": [
+        0.35,
+        4.2,
+        8.35
+      ],
+      "duration": 13,
+      "short": false,
+      "loop": false,
+      "res": 360,
+      "fps": 24,
+      "naturalDirection": true,
+      "baselineCinema": true,
+      "manual": false,
+      "fontFailure": false,
+      "synthesis": {
+        "tempo": 132,
+        "notes": [
+          138.59131548843604,
+          164.81377845643496,
+          195.99771799087463,
+          233.08188075904496,
+          277.1826309768721,
+          110,
+          130.8127826502993,
+          155.56349186104046
+        ],
+        "harmonics": [
+          1,
+          0.2,
+          0.07
+        ],
+        "attack": 0.018,
+        "decay": 0.2,
+        "percussion": 0.04,
+        "energyStages": [
+          0.3,
+          0.6,
+          0.95,
+          0.25
+        ],
+        "silenceUntil": 0
+      }
+    },
+    {
+      "id": "release-word-integrity-fresh-sns-03",
+      "cohort": "postfreeze-unexposed-sns-confirmation",
+      "category": "independent-mixed-language",
+      "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
+      "seed": 913017,
+      "imageSeed": 913017,
+      "aspect": "9:16",
+      "image": "busy",
+      "lyrics": [
+        "幾つもの朝を越えて",
+        "Every river carries light",
+        "遠い窓に声が届く"
+      ],
+      "starts": [
+        0.2,
+        6.8,
+        13.4
+      ],
+      "duration": 20,
+      "short": true,
+      "loop": false,
+      "res": 360,
+      "fps": 24,
+      "naturalDirection": true,
+      "baselineCinema": true,
+      "manual": false,
+      "fontFailure": false,
+      "synthesis": {
+        "tempo": 132,
+        "notes": [
+          138.59131548843604,
+          164.81377845643496,
+          195.99771799087463,
+          233.08188075904496,
+          277.1826309768721,
+          110,
+          130.8127826502993,
+          155.56349186104046
+        ],
+        "harmonics": [
+          1,
+          0.2,
+          0.07
+        ],
+        "attack": 0.018,
+        "decay": 0.2,
+        "percussion": 0.04,
+        "energyStages": [
+          0.3,
+          0.6,
+          0.95,
+          0.25
+        ],
+        "silenceUntil": 0
+      }
+    }
+  ],
+  "interpretation": [
+    "Original SNS holdout-01 failure stays failed: no completed MP4 and no fabricated range. Original lyrics/audio/timestamps unchanged.",
+    "Full companion is a different output profile, cannot count as original SNS success or a newly blind input.",
+    "Holdout-02 is repeated three-version confirmation of an input that was unused at b002 source freeze; now exposed and no longer blind. Code has not been adjusted using its outcomes.",
+    "Fresh SNS input is preregistered before its first outcome. If no safe 12–15s lyric-complete interval exists, preserve failure; never change source times or fixture afterward."
+  ],
+  "criteria": "All three shipping Cinema versions, same input/seed/profile/WAV/PCM per case; real completed H264/AAC MP4 and full decode; final-source FAV measured; no quality threshold/weight/sampling changes. Actual composition and protected words reviewed separately from descriptors. Major regression or missing important effect evidence blocks release.",
+  "HUMAN": "HUMAN_UNVERIFIED"
+}
