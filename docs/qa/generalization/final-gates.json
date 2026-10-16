@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "releaseSourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
-  "manifestSHA256": "771cb6fc5abd58c064c57466c4a177cd1fc91dd83e2740542de62a09ea2594c8",
+  "manifestSHA256": "62f3d5cc39a4131a6ae9231743231d2947d509169970ddd88b671aabc8001fd9",
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "UNVERIFIED",
@@ -91,7 +91,7 @@
     "No deployment or production verification is implied by RELEASE_GO."
   ],
   "sourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
-  "recordedUTC": "2026-10-16T22:47:20.762614+00:00",
+  "recordedUTC": "2026-10-16T22:51:00.941082+00:00",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "overall": "PARTIAL",
@@ -121,8 +121,9 @@
     "focusedSyntheticRepairHistoryChecks": 105,
     "anchorChecks": 540,
     "climaxChecks": 40,
-    "realMP4": "PASS_FOCUSED_TWO_DISTINCT_MOVIES",
-    "officialCI": "PENDING",
+    "realMP4": "PASS",
+    "realMP4Scope": "Only the hash-bound listed movies, not all target export paths",
+    "officialCI": "UNVERIFIED",
     "expectedConditions": [
       "Exact-head official npm ci/test/build/UI CI and independent full decode",
       "Current-head selected MP4/history integrity and protected manual/no-target paths",
