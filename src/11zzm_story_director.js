@@ -8,7 +8,7 @@ J.photoAnchorCandidates=image=>{
  const anchors=[{x:.5,y:.5},{x:.5,y:.28},{x:.5,y:.72},{x:.35,y:.56},{x:.65,y:.56}].map(a=>{let sum=0,n=0;for(let y=Math.max(1,Math.floor(a.y*36)-4);y<Math.min(35,a.y*36+4);y++)for(let x=Math.max(1,Math.floor(a.x*64)-17);x<Math.min(63,a.x*64+17);x++){sum+=Math.abs(lum(y*64+x)-lum(y*64+x-1))+Math.abs(lum(y*64+x)-lum((y-1)*64+x));n++;}return {...a,saliency:C(sum/Math.max(1,n)/65),source:'local edge density; not face or subject recognition'};});cv.width=cv.height=1;anchorCache.set(image,anchors);return anchors;
 };
 const center=J.centerPhotoLyricItem;J.centerPhotoLyricItem=(env,item)=>{
- const a=env.cut.params?.photoAnchor;if(!a||locked(env.plan,env.cut))return center(env,item);const it=center(env,item),box=J.measureLyricItemBounds(env,it);if(!box)return it;
+ const a=env.cut.params?.photoAnchor;if(!a||locked(env.plan,env.cut))return center(env,item);const it=center(env,item),box=J.photoAnchorBounds(env,it);if(!box)return it;
  const dx=Math.max(env.W*.11-box.x0,Math.min(env.W*.89-box.x1,(a.x-.5)*env.W)),dy=Math.max(env.H*.08-box.y0,Math.min(env.H*.92-box.y1,(a.y-.5)*env.H)),m=env.ctx.getTransform(),det=m.a*m.d-m.b*m.c,k=env.scale||1;
  if(Math.abs(det)>1e-9){it.x+=(m.d*dx-m.c*dy)*k/det;it.y+=(-m.b*dx+m.a*dy)*k/det;}it._lay=null;it._m=null;return it;
 };
