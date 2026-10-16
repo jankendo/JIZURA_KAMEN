@@ -1,0 +1,5020 @@
+{
+  "schema": 1,
+  "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "conditions": 30,
+  "nativeFrameCount": 9956,
+  "bindingStatuses": {
+    "EXACT_ADOPTED_NATIVE": 29,
+    "STALE_OR_ENVIRONMENT_MISMATCH": 1
+  },
+  "scope": "Executed runtime dispatch at every output clock; exact adopted Native RGBA identity required. This is not independent encoded semantic realization or a count of independent effects.",
+  "rows": [
+    {
+      "fixture": "development-01",
+      "binding": {
+        "inputHash": "46df5a27be058d0b36ddbb0aaa7c6e8c992c35a249c3ec1b6428507be5f85634",
+        "planHash": "9c5c4b9f489329bdb2fab1199995518ae71effc46c2cddc5a246f952586bf479",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            1280,
+            720
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "d6e31647d67c048badaa120c2b077ea7eff70f14a1f9b1355a0a40e230e4b2e5",
+        "videoSHA256": "6f54dfe36d4be771a98fdcfd90891ea2f1b949b4a6d6f7715dc10b6dd2c1c80e",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "3d347e141144ba67974a074d934da3222cb2cf341ceec64da0eec4675ac6d161",
+      "path": "composition-recovery/current30-bound-native-population-0/development-01/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "CAMERA_HOOK": 9,
+        "DECOR": 9,
+        "LAYOUTS": 9,
+        "TREAT": 9,
+        "ENTER": 5,
+        "HOLD": 5,
+        "EXIT": 5,
+        "TRANS": 4
+      },
+      "executedOperatorKeys": 55,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 23,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 1.25
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "mono",
+          "calls": 39,
+          "face": {
+            "label": "IBM Plex Mono",
+            "family": "\"IBM Plex Mono\"",
+            "weight": 500,
+            "kind": "mono",
+            "fb": "\"IBM Plex Sans JP\",\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "IBM+Plex+Mono:wght@500;600"
+          },
+          "loading": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"IBM Plex Mono\"",
+            "faces": 0
+          },
+          "firstTime": 1.2083333333333333,
+          "lastTime": 2.7916666666666665
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 39,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 1.2083333333333333,
+          "lastTime": 2.7916666666666665
+        },
+        {
+          "cutIndex": 2,
+          "line": 0,
+          "fontId": "mincho",
+          "calls": 13,
+          "face": {
+            "label": "Noto Serif JP Medium",
+            "family": "\"Noto Serif JP\"",
+            "weight": 500,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 11
+          },
+          "firstTime": 2.75,
+          "lastTime": 3.25
+        },
+        {
+          "cutIndex": 2,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 13,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 2.75,
+          "lastTime": 3.25
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "mono",
+          "calls": 22,
+          "face": {
+            "label": "IBM Plex Mono",
+            "family": "\"IBM Plex Mono\"",
+            "weight": 500,
+            "kind": "mono",
+            "fb": "\"IBM Plex Sans JP\",\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "IBM+Plex+Mono:wght@500;600"
+          },
+          "loading": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"IBM Plex Mono\"",
+            "faces": 0
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 4.083333333333333
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 22,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 4.083333333333333
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 21,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 4.125,
+          "lastTime": 4.958333333333333
+        },
+        {
+          "cutIndex": 5,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 27,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 5,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 6,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 19,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 6.125,
+          "lastTime": 6.875
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 20,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 6.916666666666667,
+          "lastTime": 7.708333333333333
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "mincho",
+          "calls": 15,
+          "face": {
+            "label": "Noto Serif JP Medium",
+            "family": "\"Noto Serif JP\"",
+            "weight": 500,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 11
+          },
+          "firstTime": 7.666666666666667,
+          "lastTime": 8.25
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 15,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 7.666666666666667,
+          "lastTime": 8.25
+        }
+      ]
+    },
+    {
+      "fixture": "development-07",
+      "binding": {
+        "inputHash": "131ba290eef52b79e27a19ac4bf39eb0093135189a5af09b89066fb4026956de",
+        "planHash": "be12cc58ba4f8f1bc856fbe70d8796a914a0dd5f7cccb7b2d68d973e40895168",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            720
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "d997e9704b8def31a3b5fb8c84c82e12a54904b5b680482079f10a33986bd124",
+        "videoSHA256": "8ba2751bc120f48d0d1e556a65c62a072121c1d22ce444c3df9a7b0d3e88fa65",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "6070fbac3ccfc09a3008e65bb0d6c6a28fea9b377810617ac81e096c21bbd9ee",
+      "path": "composition-recovery/current30-bound-native-population-0/development-07/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "CAMERA_HOOK": 9,
+        "DECOR": 6,
+        "LAYOUTS": 9,
+        "TREAT": 9,
+        "ENTER": 3,
+        "HOLD": 3,
+        "EXIT": 3,
+        "TRANS": 2
+      },
+      "executedOperatorKeys": 44,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "mono",
+          "calls": 15,
+          "face": {
+            "label": "IBM Plex Mono",
+            "family": "\"IBM Plex Mono\"",
+            "weight": 500,
+            "kind": "mono",
+            "fb": "\"IBM Plex Sans JP\",\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "IBM+Plex+Mono:wght@500;600"
+          },
+          "loading": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"IBM Plex Mono\"",
+            "faces": 0
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 0.9166666666666666
+        },
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 15,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 0.9166666666666666
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 31,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 0.9166666666666666,
+          "lastTime": 2.1666666666666665
+        },
+        {
+          "cutIndex": 2,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 26,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 2.125,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 23,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 4.125
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 11,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 4.166666666666667,
+          "lastTime": 4.583333333333333
+        },
+        {
+          "cutIndex": 5,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 15,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 4.625,
+          "lastTime": 5.208333333333333
+        },
+        {
+          "cutIndex": 6,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 21,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 5.25,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 21,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 6.125,
+          "lastTime": 6.958333333333333
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 27,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 11
+          },
+          "firstTime": 7,
+          "lastTime": 8.083333333333334
+        }
+      ]
+    },
+    {
+      "fixture": "development-14",
+      "binding": {
+        "inputHash": "228bf5f94f5f223586d0bd4ccd3b8c1a47b06e917a408d0254155d97e8572bc3",
+        "planHash": "782ac493a1f9de9143d52ff5e68f93fe52aea9b1e166c274d94c816d35f3dab3",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "f9080a2ce36ed8720214a7fbb95c22a24d9d2f4022d0153af4f30c92c907ff74",
+        "videoSHA256": "aa2928691e8e85fb04c04ccc91bee86c819a8fc03fe7ba4e5a705001124f3776",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 1080,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "d7cf68fc0cd3e552eb21ca19ac94e8f3dea50b48edbddfe40bb700a4d2451d14",
+      "path": "composition-recovery/current30-bound-native-population-0/development-14/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 27,
+        "CAMERA_HOOK": 18,
+        "LAYOUTS": 8,
+        "ENTER": 4,
+        "DECOR": 1,
+        "HOLD": 1
+      },
+      "executedOperatorKeys": 59,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "zenkaku",
+          "calls": 112,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 23
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 4.958333333333333
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "zenkaku",
+          "calls": 113,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 23
+          },
+          "firstTime": 5.791666666666667,
+          "lastTime": 10.458333333333334
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "zenkaku",
+          "calls": 125,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 23
+          },
+          "firstTime": 11.25,
+          "lastTime": 16.416666666666668
+        },
+        {
+          "cutIndex": 10,
+          "line": 3,
+          "fontId": "zenkaku",
+          "calls": 113,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 23
+          },
+          "firstTime": 16.708333333333332,
+          "lastTime": 21.375
+        },
+        {
+          "cutIndex": 14,
+          "line": 4,
+          "fontId": "zenkaku",
+          "calls": 125,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 23
+          },
+          "firstTime": 22.166666666666668,
+          "lastTime": 27.333333333333332
+        },
+        {
+          "cutIndex": 18,
+          "line": 5,
+          "fontId": "zenkaku",
+          "calls": 113,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 23
+          },
+          "firstTime": 27.625,
+          "lastTime": 32.291666666666664
+        },
+        {
+          "cutIndex": 23,
+          "line": 6,
+          "fontId": "zenkaku",
+          "calls": 113,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 23
+          },
+          "firstTime": 33.083333333333336,
+          "lastTime": 37.75
+        },
+        {
+          "cutIndex": 27,
+          "line": 7,
+          "fontId": "zenkaku",
+          "calls": 52,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 23
+          },
+          "firstTime": 38.541666666666664,
+          "lastTime": 40.666666666666664
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-05",
+      "binding": {
+        "inputHash": "b41669a9cd0ec9488970a784d9261c53f74e668c04c4c0b3ee6178e44abfc2cb",
+        "planHash": "56fb0238f514416d7b14f16ec4013137af7e025cafeb1114a8b2af68bee2208b",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "b0f74cbf1204445fe8e80484c3f457deb4cde20deb5cb472b77469e0639059f2",
+        "videoSHA256": "ccd32d6bc6c980f9c99b369b14bde1d87c08d170ed5bd64ad2c16edbc572c031",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "b35193ded10c07f432887e9390cc9a2479d3a63dc2b988ddac0fc2e87680cdf5",
+      "path": "composition-recovery/current30-bound-native-population-0/holdout-05/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "CAMERA_HOOK": 9,
+        "DECOR": 17,
+        "LAYOUTS": 9,
+        "TREAT": 9,
+        "ENTER": 9,
+        "HOLD": 9,
+        "EXIT": 9,
+        "TRANS": 8
+      },
+      "executedOperatorKeys": 79,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 23,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 18
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 1.25
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 30,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 18
+          },
+          "firstTime": 1.25,
+          "lastTime": 2.4583333333333335
+        },
+        {
+          "cutIndex": 2,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 20,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 18
+          },
+          "firstTime": 2.4583333333333335,
+          "lastTime": 3.25
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 26,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 18
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 4.25
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 27,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 18
+          },
+          "firstTime": 4.208333333333333,
+          "lastTime": 5.291666666666667
+        },
+        {
+          "cutIndex": 5,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 23,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 18
+          },
+          "firstTime": 5.25,
+          "lastTime": 6.166666666666667
+        },
+        {
+          "cutIndex": 6,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 19,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 18
+          },
+          "firstTime": 6.125,
+          "lastTime": 6.875
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 21,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 18
+          },
+          "firstTime": 6.875,
+          "lastTime": 7.708333333333333
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 53,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 18
+          },
+          "firstTime": 7.666666666666667,
+          "lastTime": 8.416666666666666
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-11",
+      "binding": {
+        "inputHash": "77aa12b7642ced13f2a67ce4335304b103f14d9bf845d6850349a7bb71767181",
+        "planHash": "3822906973b6dc579b952c34505d4b032ff8ad63142e83c63d764d9d08af992d",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "f0b48462d2286497feec7160b4989fa440af11a6b502ee7603691c5c2aa7b19c",
+        "videoSHA256": "3b19d79d3854c326797f296700f6c7815c30ffe9bc4ff419d591416699564ec3",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 480,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "453e43f8d133d4e0a8685b8a52426eabecdf6f0445220948b1cfc4384ffb6c17",
+      "path": "composition-recovery/current30-bound-native-population-0/holdout-11/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "CAMERA_HOOK": 10,
+        "DECOR": 8,
+        "LAYOUTS": 10,
+        "TREAT": 10,
+        "ENTER": 8,
+        "HOLD": 8,
+        "EXIT": 8,
+        "TRANS": 7
+      },
+      "executedOperatorKeys": 69,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 17,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 8
+          },
+          "firstTime": 8,
+          "lastTime": 8.666666666666666
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 27,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 8
+          },
+          "firstTime": 8.666666666666666,
+          "lastTime": 9.75
+        },
+        {
+          "cutIndex": 2,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 23,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 8
+          },
+          "firstTime": 9.708333333333334,
+          "lastTime": 10.625
+        },
+        {
+          "cutIndex": 3,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 27,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 8
+          },
+          "firstTime": 10.625,
+          "lastTime": 11.708333333333334
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 27,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 8
+          },
+          "firstTime": 11.708333333333334,
+          "lastTime": 12.791666666666666
+        },
+        {
+          "cutIndex": 5,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 20,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 8
+          },
+          "firstTime": 12.75,
+          "lastTime": 13.541666666666666
+        },
+        {
+          "cutIndex": 6,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 21,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 8
+          },
+          "firstTime": 13.5,
+          "lastTime": 14.333333333333334
+        },
+        {
+          "cutIndex": 7,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 24,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 8
+          },
+          "firstTime": 14.333333333333334,
+          "lastTime": 15.291666666666666
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 31,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 8
+          },
+          "firstTime": 15.333333333333334,
+          "lastTime": 16.583333333333332
+        },
+        {
+          "cutIndex": 9,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 21,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 8
+          },
+          "firstTime": 16.625,
+          "lastTime": 17.458333333333332
+        }
+      ]
+    },
+    {
+      "fixture": "development-02",
+      "binding": {
+        "inputHash": "6d93562a9721b271c3dc958b7b524a08670b208490656f3424ae324ff0b5cc64",
+        "planHash": "3a6cf9c148ec693407844a2205e2b5564e66d5482d1e78be0fe854b9713b3542",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "c97fbf74dad8fb8f0975bdc8c2714d07fa36443117158af1c396629c4551c885",
+        "videoSHA256": "a854ca93b16d2db7cbc4a616c11eee6aff9fe32574dbf3d8c3acfac1b6bc1178",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "3a4f1c0ccedd413ec47f4aa7a2508c58938a4fc0ba43c69c752132519892e0f1",
+      "path": "composition-recovery/current30-bound-native-population-1/development-02/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "DECOR": 1,
+        "LAYOUTS": 3,
+        "HOLD": 1,
+        "ENTER": 1
+      },
+      "executedOperatorKeys": 26,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "tokumin",
+          "calls": 69,
+          "face": {
+            "label": "Kaisei Tokumin",
+            "family": "\"Kaisei Tokumin\"",
+            "weight": 800,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Kaisei+Tokumin:wght@800"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Kaisei Tokumin\"",
+            "faces": 12
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "tokumin",
+          "calls": 70,
+          "face": {
+            "label": "Kaisei Tokumin",
+            "family": "\"Kaisei Tokumin\"",
+            "weight": 800,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Kaisei+Tokumin:wght@800"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Kaisei Tokumin\"",
+            "faces": 12
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "tokumin",
+          "calls": 60,
+          "face": {
+            "label": "Kaisei Tokumin",
+            "family": "\"Kaisei Tokumin\"",
+            "weight": 800,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Kaisei+Tokumin:wght@800"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Kaisei Tokumin\"",
+            "faces": 12
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.583333333333334
+        }
+      ]
+    },
+    {
+      "fixture": "development-08",
+      "binding": {
+        "inputHash": "4c0848d90bded9f293c41670ad2597d055b5a1e9d6f468c6789c59c1a553dcd6",
+        "planHash": "d36f63a7e0aceff36d2ccdac73fef49c1e7576a85944968845ae26ef31a1032e",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "0a4ca859028d836397614e9de960817580926cc32dad172c5387bf7bc45733d2",
+        "videoSHA256": "c6f3bbf6ab5e6d778c6708fbdbb4619412068c310fa29306a048da7e3a259a00",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "ee99257f4583c85090cd1d92b1c9c7f369cb8409a7c0771cd11b480c469cf909",
+      "path": "composition-recovery/current30-bound-native-population-1/development-08/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 2
+      },
+      "executedOperatorKeys": 25,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 69,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 3
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 1,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 70,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 3
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 3,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 39,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 3
+          },
+          "firstTime": 6.125,
+          "lastTime": 7.708333333333333
+        }
+      ]
+    },
+    {
+      "fixture": "development-15",
+      "binding": {
+        "inputHash": "588e47f39ba22fbda85b6ed4674d2b5e5b9c68e352a17236dab423be275ced16",
+        "planHash": "ae8b529c3491764bcecca6119f5d26a18b5d6f4101815ab17fb4f29b7da9b543",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "19a6fbe7ca2c3787af511de61b74eb35fe8bfb5906a769a8f34793209ae45f11",
+        "videoSHA256": "a0ef7492cffef198eafd366859e789dc96578c20f08838e56e723b87e24c72c2",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "4425d7915199aa6aa8265aa74d4317b321a372103b97b74dc173f44fcbeb6ce1",
+      "path": "composition-recovery/current30-bound-native-population-1/development-15/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1,
+        "DECOR": 1,
+        "HOLD": 1
+      },
+      "executedOperatorKeys": 26,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 69,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 70,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 72,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 6.125,
+          "lastTime": 9.083333333333334
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-06",
+      "binding": {
+        "inputHash": "7d9ed445737c014b3933d6de6ae35cb3231b731889bcad9c7fadb279ff52a9a0",
+        "planHash": "32db5b66907e321d9827acc2d8e6f44d66e8ab42db2c34e6cd4eb7a690e3556c",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "313a049945379ae33cb078f13179a9b5c09de0a54e5b138b196bf7fe78b67951",
+        "videoSHA256": "dc583cf13bb1b40d3b1fc507b38e6f5a27857e3e95aa705ce3f11dedcdc0ee25",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "c80778b1e9dde5a03ca69d637fa71a51d1381c91de6e402d9bb5b6eb0f31277a",
+      "path": "composition-recovery/current30-bound-native-population-1/holdout-06/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 9,
+        "LAYOUTS": 3,
+        "ENTER": 1
+      },
+      "executedOperatorKeys": 25,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "tokumin",
+          "calls": 69,
+          "face": {
+            "label": "Kaisei Tokumin",
+            "family": "\"Kaisei Tokumin\"",
+            "weight": 800,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Kaisei+Tokumin:wght@800"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Kaisei Tokumin\"",
+            "faces": 3
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "tokumin",
+          "calls": 70,
+          "face": {
+            "label": "Kaisei Tokumin",
+            "family": "\"Kaisei Tokumin\"",
+            "weight": 800,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Kaisei+Tokumin:wght@800"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Kaisei Tokumin\"",
+            "faces": 3
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "tokumin",
+          "calls": 93,
+          "face": {
+            "label": "Kaisei Tokumin",
+            "family": "\"Kaisei Tokumin\"",
+            "weight": 800,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Kaisei+Tokumin:wght@800"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Kaisei Tokumin\"",
+            "faces": 3
+          },
+          "firstTime": 6.125,
+          "lastTime": 9.958333333333334
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-12",
+      "binding": {
+        "inputHash": "2ee75c72e75a65bf735216b847ee169c6308d7eec514e111833519560e246308",
+        "planHash": "88d27d8bcbab95cc80b98719be7afa20dd2026b1e986c60a394b0beeb7e3491c",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "3fc4c559bda41ff074821c2df397c9687c207bbd26a07829b68ba17e3b59c0b8",
+        "videoSHA256": "1cbb866ec5085ef66a0e8d66a87a763bc03500387cec76df405abcfc83d2eb3c",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 480,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "f8a35d520e4c52eb07e3780195cf607f5e50cb209634c8bd3860165c95e5a0d2",
+      "path": "composition-recovery/current30-bound-native-population-1/holdout-12/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "DECOR": 1,
+        "HOLD": 1
+      },
+      "executedOperatorKeys": 25,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "tokumin",
+          "calls": 80,
+          "face": {
+            "label": "Kaisei Tokumin",
+            "family": "\"Kaisei Tokumin\"",
+            "weight": 800,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Kaisei+Tokumin:wght@800"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Kaisei Tokumin\"",
+            "faces": 12
+          },
+          "firstTime": 9,
+          "lastTime": 12.291666666666666
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "tokumin",
+          "calls": 81,
+          "face": {
+            "label": "Kaisei Tokumin",
+            "family": "\"Kaisei Tokumin\"",
+            "weight": 800,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Kaisei+Tokumin:wght@800"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Kaisei Tokumin\"",
+            "faces": 12
+          },
+          "firstTime": 12.333333333333334,
+          "lastTime": 15.666666666666666
+        },
+        {
+          "cutIndex": 9,
+          "line": 2,
+          "fontId": "tokumin",
+          "calls": 47,
+          "face": {
+            "label": "Kaisei Tokumin",
+            "family": "\"Kaisei Tokumin\"",
+            "weight": 800,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Kaisei+Tokumin:wght@800"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Kaisei Tokumin\"",
+            "faces": 12
+          },
+          "firstTime": 15.708333333333334,
+          "lastTime": 17.625
+        }
+      ]
+    },
+    {
+      "fixture": "development-03",
+      "binding": {
+        "inputHash": "7f15fddabdd4bafceedfb90230843a253f24de1cbbd70e64c5a1a825fea41663",
+        "planHash": "7fe0bdcf3300ec6611b7606d1590b7376cab9bfcf5d410ee8ef8932cff329b27",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "bac0045dd85da352e2a74409a80de7c129f46175718fc41656d61963f9bfe9b1",
+        "videoSHA256": "60fac3c81917e4e851d91106ae2a7900268e1d4ea5e740c975bc55555485706b",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "f523cabe6ea31e46db193116f5f97657701909bf4009f1f72907ce28444a37f4",
+      "path": "composition-recovery/current30-bound-native-population-2/development-03/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 11,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1,
+        "HOLD": 1
+      },
+      "executedOperatorKeys": 24,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "dela",
+          "calls": 69,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 11
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "dela",
+          "calls": 70,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 11
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "dela",
+          "calls": 56,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 11
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.416666666666666
+        }
+      ]
+    },
+    {
+      "fixture": "development-09",
+      "binding": {
+        "inputHash": "358ab3946f2b38d41cfe7feadcbeccaa8a2b78d65702c29fff51019fea5830da",
+        "planHash": "3c241610b88d6d469bc30d004e61daba5c7ed0176020a30ae3a59e446ad1a359",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "b5fd4e976f390595533d0be9021ebac39ded7696149542c59292e8900e0f6a3a",
+        "videoSHA256": "c598f926258b8e4f4f0b1822e6b91cebdd688d0714a1d59d79651134de902654",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "STALE_OR_ENVIRONMENT_MISMATCH",
+      "rawSHA256": "17aada9818534ebb5df5374ab94d263375930f3e855e5eda1ae7d550053a1dc6",
+      "path": "composition-recovery/current30-bound-native-population-2/development-09/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 11,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "HOLD": 2,
+        "ENTER": 1,
+        "DECOR": 1
+      },
+      "executedOperatorKeys": 26,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "dela",
+          "calls": 69,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 10
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "dela",
+          "calls": 70,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 10
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "dela",
+          "calls": 48,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 10
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.083333333333334
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-01",
+      "binding": {
+        "inputHash": "de9e1242b30e4f1917152a20eea84f77c679490bce4f9bb962154658ff517574",
+        "planHash": "8e3e2e8c7764d8761626d9bef588872ea0cac119f5b3205431370388d7460958",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "08c709e0a7a360e5f71e741c9fda15770249c6c61b80a5805534cb6bd855fa4f",
+        "videoSHA256": "dc5ef7a2de37e12384a85bf1cf932b81299a102e93be9aa5d2bb253fc2a1cd6c",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "b22bac0cac5f4067f0de7fbadb0a7accf973ea00cfa248c3113abc5c22b3ab4c",
+      "path": "composition-recovery/current30-bound-native-population-2/holdout-01/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1
+      },
+      "executedOperatorKeys": 24,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 69,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 12
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 70,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 12
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 48,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 12
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.083333333333334
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-07",
+      "binding": {
+        "inputHash": "0e3cbcb5abee2941045f13997149888ebb6c93922b7100d1c9cc634b9c9db49e",
+        "planHash": "02d40fbb11eae006a6605402f132e77f2b8ff88bfb0272f4de48e5f13829cf95",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            900
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "94bf1c223bb2e93f96316ac550183899040b634602153a5889e2b781e9f90d60",
+        "videoSHA256": "8e70cff1785a48925ba7c7084e0fb819f8bb41821aa25652e5a5f02d957a7c65",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "2798478fb9c34cec5e62ddb74705cba8d7b497d9074e0a2de00a761c51efd156",
+      "path": "composition-recovery/current30-bound-native-population-2/holdout-07/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1
+      },
+      "executedOperatorKeys": 24,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "dela",
+          "calls": 69,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 12
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "dela",
+          "calls": 70,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 12
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "dela",
+          "calls": 56,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 12
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.416666666666666
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-14",
+      "binding": {
+        "inputHash": "6b97623096f6fe1c094853650d92a916be26a18adb80bcb3326002ff75b66043",
+        "planHash": "46645bda97182548434012dd04dfc12a7dc7cbd81b42dce0d5a367390ee330b4",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "3bf79ac11e8ac1a402914d124dc88129ab31e987ea4971650cedcba191fe9d6c",
+        "videoSHA256": "b72ea0958221b01c5b06945fddd365b7dd7b7b21208289986802ebb87160e7a1",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 1080,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "074c487b20a372173bde3292cb77ff0797edf09d535a1b1e346a6dc80b207ea9",
+      "path": "composition-recovery/current30-bound-native-population-2/holdout-14/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 27,
+        "CAMERA_HOOK": 18,
+        "LAYOUTS": 8,
+        "ENTER": 4
+      },
+      "executedOperatorKeys": 57,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "zenkaku",
+          "calls": 131,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 19
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 5.75
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "zenkaku",
+          "calls": 131,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 19
+          },
+          "firstTime": 5.791666666666667,
+          "lastTime": 11.208333333333334
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "zenkaku",
+          "calls": 125,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 19
+          },
+          "firstTime": 11.25,
+          "lastTime": 16.416666666666668
+        },
+        {
+          "cutIndex": 13,
+          "line": 3,
+          "fontId": "zenkaku",
+          "calls": 125,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 19
+          },
+          "firstTime": 16.708333333333332,
+          "lastTime": 21.875
+        },
+        {
+          "cutIndex": 17,
+          "line": 4,
+          "fontId": "zenkaku",
+          "calls": 113,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 19
+          },
+          "firstTime": 22.166666666666668,
+          "lastTime": 26.833333333333332
+        },
+        {
+          "cutIndex": 21,
+          "line": 5,
+          "fontId": "zenkaku",
+          "calls": 113,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 19
+          },
+          "firstTime": 27.625,
+          "lastTime": 32.291666666666664
+        },
+        {
+          "cutIndex": 25,
+          "line": 6,
+          "fontId": "zenkaku",
+          "calls": 125,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 19
+          },
+          "firstTime": 33.083333333333336,
+          "lastTime": 38.25
+        },
+        {
+          "cutIndex": 29,
+          "line": 7,
+          "fontId": "zenkaku",
+          "calls": 48,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 19
+          },
+          "firstTime": 38.541666666666664,
+          "lastTime": 40.5
+        }
+      ]
+    },
+    {
+      "fixture": "development-04",
+      "binding": {
+        "inputHash": "9869f2b17bd601d890432174d6acacaf45e218ef73b3f0d0a1ba8fabab14e576",
+        "planHash": "987fb24a8f96904fb9583ed2cfaac7124377dfb2cad87b8f46345400a89b24c8",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "af54eeab276f8690f84e03390ef8da03e6b74cdffa818ccbe607e6034c202045",
+        "videoSHA256": "8c58092b2366f91b8f85e09697fc5b298beb0128a5926e1cc3fce58e0cfe991e",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "143bace5cfc5df6c96efde53721f43cc78162aba099dd31fd06e0c81ef642ed8",
+      "path": "composition-recovery/current30-bound-native-population-3/development-04/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1
+      },
+      "executedOperatorKeys": 24,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 69,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 10
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 5,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 70,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 10
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 9,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 52,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 10
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.25
+        }
+      ]
+    },
+    {
+      "fixture": "development-10",
+      "binding": {
+        "inputHash": "1fd219e72c6c878c4c2d9798c193cd7652995416b906d338dab432de8dfb4c7c",
+        "planHash": "dd2667fb31677fa0d0a2b4c889ce0bf830a8df5873ae26e23aaad76db36d14a1",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "bf6ba32b777336352ab0e070065bbdbc721dc3a03abeadba91f186b8bbe31f1c",
+        "videoSHA256": "230bb1d9e963f8d05fce15a72d1acc16f2caca87a4a08d930b452c6ea1dc6251",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "8e2309abbdda489250aca91b4211dfec5c5fc95e951010fff3fb3e214662ee45",
+      "path": "composition-recovery/current30-bound-native-population-3/development-10/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1
+      },
+      "executedOperatorKeys": 24,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "zenkaku",
+          "calls": 69,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 12
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "zenkaku",
+          "calls": 70,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 12
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "zenkaku",
+          "calls": 56,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 12
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.416666666666666
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-02",
+      "binding": {
+        "inputHash": "59ce83d1a699f4d43d3911c37123447b89ea3b0da19b9c11a50f90b320c0cddd",
+        "planHash": "650fb8a188fa03bcd24528a17831ca80240389bbaea4bb76f2c3569e73c86359",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "b1ebcc36080fb56818c3c862fb38a1a50ab8c39d3be4b6d5e29437de3496c72d",
+        "videoSHA256": "a6ed654ce79fe703a396ed04cfe3d3d0be287a7e63c8cda42e0fd848bd5558a1",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "1c0d01a9b47a9620c238ddbdb38ae9eaecfb9f40751d80d6cfaac8bcb3a4c0e8",
+      "path": "composition-recovery/current30-bound-native-population-3/holdout-02/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1,
+        "DECOR": 1,
+        "HOLD": 1
+      },
+      "executedOperatorKeys": 26,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 69,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 13
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 70,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 13
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 52,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 13
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.25
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-08",
+      "binding": {
+        "inputHash": "4321e42c35a439616558844d7064e08dd61c90a478162ad3bb767e9253556a7d",
+        "planHash": "77371d609c3e6d6f180b96dbc4991a9163ae7787f1c3d024e78a80c155a23483",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "17b1f76fad8f21e7f0f4356dc314000538703902db266d97af02b8fcd15f7578",
+        "videoSHA256": "dd73f0b423466f5028dc36ada1b3fb57553ae9fdfc8a7af44ba102b5b1ee585e",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "2e045032599e6cd54849a46b65fb3ed4c34bbd5ca8dcb0153aca4bc614a65cec",
+      "path": "composition-recovery/current30-bound-native-population-3/holdout-08/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 3
+      },
+      "executedOperatorKeys": 26,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 69,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 3
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 1,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 70,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 3
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 3,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 39,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 3
+          },
+          "firstTime": 6.125,
+          "lastTime": 7.708333333333333
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-15",
+      "binding": {
+        "inputHash": "5097b6a32f761d7da2e61ec1d30593bf8e24cc66a52893d6594b57025e731291",
+        "planHash": "2e7039c3227a2529f42b488159d6dab75bfd8b5bc1e676778d701e2aa3f9dcfd",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "fa17a048da0b03d3f5a04064eda91196a4c99fe89fa351760e1a47638cc2c346",
+        "videoSHA256": "dfc2eb2dbe65588ddaf9c24a534af84af34119b8a5795cc4c21728334e1c3aa5",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "ed9d4d332fd2c75501f00a6142acfa51332b121517b5184c54e67b75078f09e3",
+      "path": "composition-recovery/current30-bound-native-population-3/holdout-15/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1,
+        "DECOR": 1,
+        "HOLD": 1
+      },
+      "executedOperatorKeys": 26,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "dela",
+          "calls": 69,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 9
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "dela",
+          "calls": 70,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 9
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "dela",
+          "calls": 90,
+          "face": {
+            "label": "Dela Gothic One",
+            "family": "\"Dela Gothic One\"",
+            "weight": 400,
+            "kind": "display",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Dela+Gothic+One"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Dela Gothic One\"",
+            "faces": 9
+          },
+          "firstTime": 6.125,
+          "lastTime": 9.083333333333334
+        }
+      ]
+    },
+    {
+      "fixture": "development-05",
+      "binding": {
+        "inputHash": "5922f5e7278b671b8560a4906bec0f93bd3f4806c4d2814b7ed1a7c6c0baeeb6",
+        "planHash": "96b8315c3058610b47730156cca24d2286fee540a5781df47a0e255d7288f73b",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "1099d0d0b2ee5cc4da402e4c934465b0f0b2e53517b41b764ea814e6ef46f2ed",
+        "videoSHA256": "61b0de2d7473d88f3beb41b1a0cdf0f652a3d59ac660c399df8ed375f89af896",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "fa194291476dd8b556b9c19fb004491aa38421b30c4d5a238025b6b718f87e00",
+      "path": "composition-recovery/current30-bound-native-population-4/development-05/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1
+      },
+      "executedOperatorKeys": 24,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 69,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 16
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 70,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 16
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 56,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 16
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.416666666666666
+        }
+      ]
+    },
+    {
+      "fixture": "development-11",
+      "binding": {
+        "inputHash": "ef573319f546ac5e0938752425ac7d8437d0cc68861e5e76db3e3e526bdf7c6d",
+        "planHash": "db2e8df73425a0c99110b5b22548df3e14c46cd6e89ec6c0dbd89805606fa5e6",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "31eb9130d4247eb79a81150332264cd0333ff98a83e26dc14498c56b9051fadc",
+        "videoSHA256": "223414ae3e930b51507fed93a8079411fa95b98503a6b9dc029d1f28b195b0e4",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 480,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "8658368cd6905b4c849e78e9300d37cf7f052cd14c3892859363bde004349ded",
+      "path": "composition-recovery/current30-bound-native-population-4/development-11/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1
+      },
+      "executedOperatorKeys": 24,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "zenkaku",
+          "calls": 89,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 9
+          },
+          "firstTime": 8,
+          "lastTime": 11.666666666666666
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "zenkaku",
+          "calls": 87,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 9
+          },
+          "firstTime": 11.708333333333334,
+          "lastTime": 15.291666666666666
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "zenkaku",
+          "calls": 56,
+          "face": {
+            "label": "Zen Kaku Gothic New Black",
+            "family": "\"Zen Kaku Gothic New\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Zen+Kaku+Gothic+New:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Kaku Gothic New\"",
+            "faces": 9
+          },
+          "firstTime": 15.333333333333334,
+          "lastTime": 17.625
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-03",
+      "binding": {
+        "inputHash": "4aafe0e5dc520c70acbac0ce89240de967d265b77cc8e99905b9f6871bd88e5b",
+        "planHash": "60357848f46fd7ba46dbf6fa1e14c60380cdd3922c6091e6e86d1014e348593a",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "e7589e534e64412c006aefccba2d55dc264259768a8ee0b69f984d49e46a3227",
+        "videoSHA256": "0ba18d2dc7551606b3adad55928f43c5f6df67c1e3355115925f44bc622d8e81",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "84773282ec16c9b3819a89b0cebe88ab617f22204c56484e4736fcd77006b56f",
+      "path": "composition-recovery/current30-bound-native-population-4/holdout-03/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1
+      },
+      "executedOperatorKeys": 24,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 69,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 12
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 70,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 12
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 56,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 12
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.416666666666666
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-09",
+      "binding": {
+        "inputHash": "0b937bac0d4ff3b694374c06087d8dab537d2aafa5eda0ac9f18be34264001d6",
+        "planHash": "0211f1a8895f05cdc348a42860ce0e19d00885585b61dde23fabf5a396916611",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "3db24922d9cb89bcf9a7ba1a3a0e45862080d6919787bc170ace44d6a65aaa72",
+        "videoSHA256": "4eaca39d776c258e8825fa5941b9a3eb2b0e9833016e6f2363d0a81f0fbf7757",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "3ff104618941f49eeb8da0eae32d1c101430db06a0741b9af4ee51b225fe4374",
+      "path": "composition-recovery/current30-bound-native-population-4/holdout-09/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 12,
+        "CAMERA_HOOK": 8,
+        "LAYOUTS": 3,
+        "ENTER": 1,
+        "DECOR": 1,
+        "HOLD": 1
+      },
+      "executedOperatorKeys": 26,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "embedded_bold",
+          "calls": 69,
+          "face": {
+            "label": "Noto CJK JP（内蔵 Bold）",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "weight": 700,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "faces": 1
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 3.1666666666666665
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "embedded_bold",
+          "calls": 70,
+          "face": {
+            "label": "Noto CJK JP（内蔵 Bold）",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "weight": 700,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "faces": 1
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 9,
+          "line": 2,
+          "fontId": "embedded_bold",
+          "calls": 48,
+          "face": {
+            "label": "Noto CJK JP（内蔵 Bold）",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "weight": 700,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "faces": 1
+          },
+          "firstTime": 6.125,
+          "lastTime": 8.083333333333334
+        }
+      ]
+    },
+    {
+      "fixture": "supplemental-development-13",
+      "binding": {
+        "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+        "planHash": "f9e18b247d038685d598489ed7befa2a3a38bac71a754837242b5a2413265cb0",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "4ef5fb21848da3a696a7b19abc861a3a8a4096ece4c1de76310d8caf72526590",
+        "videoSHA256": "1ec75c2819c1c874c926789f39dae349f6baed20823f8f2022a10f091847a01a",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 298,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "1d2abe2befb795bf905bd6c57f9335b31d11e3462c15412fe2067da98ef2fba1",
+      "path": "composition-recovery/current30-bound-native-population-4/supplemental-development-13/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "CAMERA_HOOK": 21,
+        "LAYOUTS": 21,
+        "TREAT": 21,
+        "DECOR": 25,
+        "HOLD": 20,
+        "TRANS": 12
+      },
+      "executedOperatorKeys": 120,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 10,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 0.3,
+          "lastTime": 0.675
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 10,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 0.7166666666666667,
+          "lastTime": 1.0916666666666666
+        },
+        {
+          "cutIndex": 2,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 4,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 1.1333333333333333,
+          "lastTime": 1.2583333333333333
+        },
+        {
+          "cutIndex": 3,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 3,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 1.2583333333333333,
+          "lastTime": 1.3416666666666668
+        },
+        {
+          "cutIndex": 4,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 32,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 1.3,
+          "lastTime": 2.5916666666666663
+        },
+        {
+          "cutIndex": 5,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 4,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 2.6333333333333333,
+          "lastTime": 2.7583333333333333
+        },
+        {
+          "cutIndex": 6,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 14,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 2.8,
+          "lastTime": 3.3416666666666663
+        },
+        {
+          "cutIndex": 7,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 11,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 3.3,
+          "lastTime": 3.7166666666666663
+        },
+        {
+          "cutIndex": 8,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 31,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 3.7166666666666663,
+          "lastTime": 4.966666666666667
+        },
+        {
+          "cutIndex": 9,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 12,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 5.633333333333333,
+          "lastTime": 6.091666666666667
+        },
+        {
+          "cutIndex": 10,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 5,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 6.133333333333333,
+          "lastTime": 6.3
+        },
+        {
+          "cutIndex": 11,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 17,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 6.3,
+          "lastTime": 6.966666666666667
+        },
+        {
+          "cutIndex": 12,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 25,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 6.925,
+          "lastTime": 7.925
+        },
+        {
+          "cutIndex": 13,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 36,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 7.883333333333333,
+          "lastTime": 9.341666666666667
+        },
+        {
+          "cutIndex": 14,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 3,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 9.3,
+          "lastTime": 9.383333333333335
+        },
+        {
+          "cutIndex": 15,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 4,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 9.425,
+          "lastTime": 9.55
+        },
+        {
+          "cutIndex": 16,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 36,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 9.508333333333335,
+          "lastTime": 10.966666666666667
+        },
+        {
+          "cutIndex": 17,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 24,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 10.925,
+          "lastTime": 11.883333333333335
+        },
+        {
+          "cutIndex": 18,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 1,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 11.883333333333335,
+          "lastTime": 11.883333333333335
+        },
+        {
+          "cutIndex": 19,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 4,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 11.925,
+          "lastTime": 12.05
+        },
+        {
+          "cutIndex": 20,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 17,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 7
+          },
+          "firstTime": 12.008333333333335,
+          "lastTime": 12.675
+        }
+      ]
+    },
+    {
+      "fixture": "development-06",
+      "binding": {
+        "inputHash": "748da416232a94c19da4f9148a30d01d7b13a54fd3fc8e88548a8b1aa8cfd584",
+        "planHash": "2cc0bca214974feac55c5099cf678242e2843f3957b60328697e47f2c2f7c9dc",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "dfa13c54c1704f44d9427752efb7432dd2b5306bc0f868eff6da37af56f06516",
+        "videoSHA256": "c67947425b27b3704880dc32a1f06f00be31abf96761a2fbcc0d5ee4f63921fd",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "df683e3fc32d1b448a794062b5e8c1d8c7ebe8801b5d4edd10351b08ffa8f49b",
+      "path": "composition-recovery/current30-bound-native-population-5/development-06/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "CAMERA_HOOK": 16,
+        "DECOR": 16,
+        "LAYOUTS": 11,
+        "TREAT": 11,
+        "ENTER": 7,
+        "HOLD": 8,
+        "EXIT": 8,
+        "TRANS": 6
+      },
+      "executedOperatorKeys": 83,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "mincho_bold",
+          "calls": 28,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 1.4583333333333333
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "mincho_bold",
+          "calls": 30,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 1.4166666666666667,
+          "lastTime": 2.625
+        },
+        {
+          "cutIndex": 2,
+          "line": 0,
+          "fontId": "mincho_bold",
+          "calls": 17,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 2.5833333333333335,
+          "lastTime": 3.25
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "mincho_bold",
+          "calls": 20,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 4
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "mincho_bold",
+          "calls": 22,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 4,
+          "lastTime": 4.875
+        },
+        {
+          "cutIndex": 5,
+          "line": 1,
+          "fontId": "mincho_bold",
+          "calls": 33,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 4.833333333333333,
+          "lastTime": 6.166666666666667
+        },
+        {
+          "cutIndex": 6,
+          "line": 2,
+          "fontId": "mincho_bold",
+          "calls": 21,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 6.125,
+          "lastTime": 6.958333333333333
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "mincho_bold",
+          "calls": 1,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 7,
+          "lastTime": 7
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "mincho_bold",
+          "calls": 18,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 7.041666666666667,
+          "lastTime": 7.75
+        },
+        {
+          "cutIndex": 9,
+          "line": 2,
+          "fontId": "mincho_bold",
+          "calls": 27,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 7.791666666666667,
+          "lastTime": 8.875
+        },
+        {
+          "cutIndex": 10,
+          "line": 2,
+          "fontId": "mincho_bold",
+          "calls": 26,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 4
+          },
+          "firstTime": 8.916666666666666,
+          "lastTime": 9.958333333333334
+        }
+      ]
+    },
+    {
+      "fixture": "development-12",
+      "binding": {
+        "inputHash": "0b3a84171727aed08d271187ffb0229414f6cf1c1208f3f634d0bd6e0b791922",
+        "planHash": "443362f9779d7c3e1e2410003b51b13faecb9fc797d8b266720d0f4d79f44b41",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "9beb67b6c2650d2b9a8289a41a31b0beb24e8483dacc849108b913c16d503399",
+        "videoSHA256": "81e38f29b307cc0142ff0635b9b84149e6a60b7bd62e4171fd3a96eb7546bd1d",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 480,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "c96a90e07942bc3245c76513f95212f12a4f53ea6cb57c00405b59b7be5e6657",
+      "path": "composition-recovery/current30-bound-native-population-5/development-12/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "CAMERA_HOOK": 11,
+        "LAYOUTS": 10,
+        "TREAT": 10,
+        "ENTER": 7,
+        "DECOR": 8,
+        "HOLD": 8,
+        "EXIT": 8,
+        "TRANS": 6
+      },
+      "executedOperatorKeys": 68,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 26,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 9,
+          "lastTime": 10.041666666666666
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 26,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 10.041666666666666,
+          "lastTime": 11.083333333333334
+        },
+        {
+          "cutIndex": 2,
+          "line": 0,
+          "fontId": "mincho_black",
+          "calls": 32,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 11.083333333333334,
+          "lastTime": 12.375
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 21,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 12.333333333333334,
+          "lastTime": 13.166666666666666
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 24,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 13.166666666666666,
+          "lastTime": 14.125
+        },
+        {
+          "cutIndex": 5,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 21,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 14.125,
+          "lastTime": 14.958333333333334
+        },
+        {
+          "cutIndex": 6,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 1,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 15,
+          "lastTime": 15
+        },
+        {
+          "cutIndex": 7,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 17,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 15.041666666666666,
+          "lastTime": 15.708333333333334
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 113,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 15.708333333333334,
+          "lastTime": 17.291666666666668
+        },
+        {
+          "cutIndex": 9,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 21,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 17.333333333333332,
+          "lastTime": 18.166666666666668
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-04",
+      "binding": {
+        "inputHash": "0c665f5898d61e4da17b28bd2159fe4311f4e35f6f7cca190751b2384309dac7",
+        "planHash": "30a5a3eb86b1eb90c9cfc208b12025bde7d98e334d63830d8f140c98cade61b5",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "513c39f8e5668a68f1b638e405988db0ece345fa52e7c53f435abae2a45443a0",
+        "videoSHA256": "5b0ef9c42a757d6d7076fc52eced601ae614e802656944467cf5b3081834b15c",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "e2ce24f426c2a3976253f6ccd6e502985e45fdf0b97c3a1f5e28fbef676798e8",
+      "path": "composition-recovery/current30-bound-native-population-5/holdout-04/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "CAMERA_HOOK": 11,
+        "DECOR": 10,
+        "LAYOUTS": 7,
+        "TREAT": 7,
+        "ENTER": 4,
+        "HOLD": 5,
+        "EXIT": 5,
+        "TRANS": 3
+      },
+      "executedOperatorKeys": 52,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "mincho_bold",
+          "calls": 30,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 11
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 1.5416666666666667
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "mono",
+          "calls": 18,
+          "face": {
+            "label": "IBM Plex Mono",
+            "family": "\"IBM Plex Mono\"",
+            "weight": 500,
+            "kind": "mono",
+            "fb": "\"IBM Plex Sans JP\",\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "IBM+Plex+Mono:wght@500;600"
+          },
+          "loading": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"IBM Plex Mono\"",
+            "faces": 0
+          },
+          "firstTime": 1.5,
+          "lastTime": 2.2083333333333335
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "mincho_bold",
+          "calls": 18,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 11
+          },
+          "firstTime": 1.5,
+          "lastTime": 2.2083333333333335
+        },
+        {
+          "cutIndex": 2,
+          "line": 0,
+          "fontId": "mincho_bold",
+          "calls": 10,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 11
+          },
+          "firstTime": 2.25,
+          "lastTime": 2.625
+        },
+        {
+          "cutIndex": 3,
+          "line": 0,
+          "fontId": "mincho_bold",
+          "calls": 15,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 11
+          },
+          "firstTime": 2.6666666666666665,
+          "lastTime": 3.25
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "mincho_bold",
+          "calls": 70,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 11
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 6.083333333333333
+        },
+        {
+          "cutIndex": 5,
+          "line": 2,
+          "fontId": "mincho_bold",
+          "calls": 30,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 11
+          },
+          "firstTime": 6.125,
+          "lastTime": 7.333333333333333
+        },
+        {
+          "cutIndex": 6,
+          "line": 2,
+          "fontId": "mincho_bold",
+          "calls": 23,
+          "face": {
+            "label": "Noto Serif JP Bold",
+            "family": "\"Noto Serif JP\"",
+            "weight": 700,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Noto+Serif+JP:wght@300;500;700"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Serif JP\"",
+            "faces": 11
+          },
+          "firstTime": 7.333333333333333,
+          "lastTime": 8.25
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-10",
+      "binding": {
+        "inputHash": "2f436bdd9b26642f8f5ccb51711d570fa39f7f2677844594c69b585cd8ecbbba",
+        "planHash": "52ed92cfa4f93bda4f8433891cbe51bdde58418f70bebc203e5c4eee0d32c408",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "5ab22243598ff31444deff25f509667e29f0e303f1af34fa7aa4eadae332b5e6",
+        "videoSHA256": "11ddda797ea3e46f0e375fef7967bf55cade50a59ea885bf4d141a9946fa6a72",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 240,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "7e0178a1095eff6a4467ed9f2f24ad2dc356f61620f085a93cee5cad63444b97",
+      "path": "composition-recovery/current30-bound-native-population-5/holdout-10/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "CAMERA_HOOK": 17,
+        "CAMERA": 3,
+        "LAYOUTS": 11,
+        "TREAT": 11,
+        "DECOR": 20,
+        "HOLD": 10,
+        "EXIT": 8,
+        "ENTER": 5,
+        "TRANS": 5
+      },
+      "executedOperatorKeys": 90,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "embedded_bold",
+          "calls": 26,
+          "face": {
+            "label": "Noto CJK JP（内蔵 Bold）",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "weight": 700,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "faces": 1
+          },
+          "firstTime": 0.3333333333333333,
+          "lastTime": 1.375
+        },
+        {
+          "cutIndex": 1,
+          "line": 0,
+          "fontId": "embedded_bold",
+          "calls": 18,
+          "face": {
+            "label": "Noto CJK JP（内蔵 Bold）",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "weight": 700,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "faces": 1
+          },
+          "firstTime": 1.4166666666666667,
+          "lastTime": 2.125
+        },
+        {
+          "cutIndex": 2,
+          "line": 0,
+          "fontId": "embedded_bold",
+          "calls": 27,
+          "face": {
+            "label": "Noto CJK JP（内蔵 Bold）",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "weight": 700,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"JIZURA Noto CJK JP\"",
+            "faces": 1
+          },
+          "firstTime": 2.1666666666666665,
+          "lastTime": 3.25
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "mono",
+          "calls": 19,
+          "face": {
+            "label": "IBM Plex Mono",
+            "family": "\"IBM Plex Mono\"",
+            "weight": 500,
+            "kind": "mono",
+            "fb": "\"IBM Plex Sans JP\",\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "IBM+Plex+Mono:wght@500;600"
+          },
+          "loading": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"IBM Plex Mono\"",
+            "faces": 0
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 3.9583333333333335
+        },
+        {
+          "cutIndex": 3,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 19,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 3.2083333333333335,
+          "lastTime": 3.9583333333333335
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "mono",
+          "calls": 24,
+          "face": {
+            "label": "IBM Plex Mono",
+            "family": "\"IBM Plex Mono\"",
+            "weight": 500,
+            "kind": "mono",
+            "fb": "\"IBM Plex Sans JP\",\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "IBM+Plex+Mono:wght@500;600"
+          },
+          "loading": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"IBM Plex Mono\"",
+            "faces": 0
+          },
+          "firstTime": 3.9166666666666665,
+          "lastTime": 4.875
+        },
+        {
+          "cutIndex": 4,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 24,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 3.9166666666666665,
+          "lastTime": 4.875
+        },
+        {
+          "cutIndex": 5,
+          "line": 1,
+          "fontId": "mono",
+          "calls": 7,
+          "face": {
+            "label": "IBM Plex Mono",
+            "family": "\"IBM Plex Mono\"",
+            "weight": 500,
+            "kind": "mono",
+            "fb": "\"IBM Plex Sans JP\",\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "IBM+Plex+Mono:wght@500;600"
+          },
+          "loading": {
+            "status": "REQUESTED_FACE_UNAVAILABLE",
+            "family": "\"IBM Plex Mono\"",
+            "faces": 0
+          },
+          "firstTime": 4.916666666666667,
+          "lastTime": 5.166666666666667
+        },
+        {
+          "cutIndex": 5,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 7,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 4.916666666666667,
+          "lastTime": 5.166666666666667
+        },
+        {
+          "cutIndex": 6,
+          "line": 1,
+          "fontId": "mincho_black",
+          "calls": 26,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 5.125,
+          "lastTime": 6.166666666666667
+        },
+        {
+          "cutIndex": 7,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 22,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 6.125,
+          "lastTime": 7
+        },
+        {
+          "cutIndex": 8,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 10,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 7,
+          "lastTime": 7.375
+        },
+        {
+          "cutIndex": 9,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 6,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 7.416666666666667,
+          "lastTime": 7.625
+        },
+        {
+          "cutIndex": 10,
+          "line": 2,
+          "fontId": "mincho_black",
+          "calls": 23,
+          "face": {
+            "label": "Zen Old Mincho Black",
+            "family": "\"Zen Old Mincho\"",
+            "weight": 900,
+            "kind": "mincho",
+            "fb": "\"Noto Serif JP\",\"Noto Serif CJK JP\",\"JIZURA Noto CJK JP\",\"Hiragino Mincho ProN\",\"Yu Mincho\",serif",
+            "gf": "Zen+Old+Mincho:wght@900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Zen Old Mincho\"",
+            "faces": 12
+          },
+          "firstTime": 7.666666666666667,
+          "lastTime": 8.583333333333334
+        }
+      ]
+    },
+    {
+      "fixture": "supplemental-holdout-13",
+      "binding": {
+        "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+        "planHash": "fb34ab6ca605b90d8aeace8db7db3aa3463da90dc406987d98bfe4412f5283ad",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "selectedCandidateId": "e3ce91fad174645da588fde1089c4ce8009ccb0bfdcb5dbdb22943ecf25aaff0",
+        "videoSHA256": "a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b",
+        "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+        "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+        "sourceDirty": false
+      },
+      "nativeFrames": 298,
+      "status": "EXACT_ADOPTED_NATIVE",
+      "rawSHA256": "b15d7d169769cbdf7676a40b91bbf8afefa1b7da290e501aeeca082bedeecb34",
+      "path": "composition-recovery/current30-bound-native-population-5/supplemental-holdout-13/native-dispatch-trace.json.gz",
+      "dispatchGroups": {
+        "COMPOSITE_HOOK": 11,
+        "CAMERA_HOOK": 9,
+        "LAYOUTS": 3,
+        "HOLD": 1,
+        "ENTER": 1
+      },
+      "executedOperatorKeys": 25,
+      "fonts": [
+        {
+          "cutIndex": 0,
+          "line": 0,
+          "fontId": "gothic_black",
+          "calls": 113,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 8
+          },
+          "firstTime": 0.3,
+          "lastTime": 4.966666666666667
+        },
+        {
+          "cutIndex": 6,
+          "line": 1,
+          "fontId": "gothic_black",
+          "calls": 113,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 8
+          },
+          "firstTime": 5.633333333333333,
+          "lastTime": 10.3
+        },
+        {
+          "cutIndex": 11,
+          "line": 2,
+          "fontId": "gothic_black",
+          "calls": 43,
+          "face": {
+            "label": "Noto Sans JP Black",
+            "family": "\"Noto Sans JP\"",
+            "weight": 900,
+            "kind": "gothic",
+            "fb": "\"JIZURA Noto CJK JP\",\"Noto Sans JP\",\"Noto Sans CJK JP\",\"Hiragino Sans\",\"Yu Gothic\",\"Meiryo\",sans-serif",
+            "gf": "Noto+Sans+JP:wght@300;500;700;900"
+          },
+          "loading": {
+            "status": "LOADED",
+            "family": "\"Noto Sans JP\"",
+            "faces": 8
+          },
+          "firstTime": 10.925,
+          "lastTime": 12.675
+        }
+      ]
+    }
+  ],
+  "encodedIndependentRealization": "UNMEASURED_UNLESS_SEPARATE_HASH_MATCHED_CONTROLS",
+  "human": "HUMAN_UNVERIFIED"
+}

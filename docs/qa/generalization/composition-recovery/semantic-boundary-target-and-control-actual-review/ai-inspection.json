@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "human": "HUMAN_UNVERIFIED",
+  "scope": "AI inspection of actual decoded corresponding frames, not whole-film artistic rating. Frame PTS/RGB/video/source SHA bindings are in manifest.json.",
+  "observations": [
+    {
+      "fixture": "development-11",
+      "actualTimes": [
+        8,
+        9,
+        12
+      ],
+      "old": "At 8/9s: 何も言わ / ず朝を待つ, serif font.",
+      "candidate": "At 8/9s: 何も言わず / 朝を待つ, heavier sans font. At12s both show 最初の / 光に気づく; panel outline/font differ.",
+      "interpretation": "Linguistic boundary improvement is visible, but typeface and selected framing also changed; not isolated same-layout improvement. Whole paired descriptor tradeoffs retained."
+    },
+    {
+      "fixture": "semantic-boundary-latin-control-03",
+      "actualTimes": [
+        1,
+        6,
+        10
+      ],
+      "observations": "Both display complete Afterglow at1s and Overture at6/10s. Background full-bleed vs inset framing and serif/sans appearance, decorations differ.",
+      "interpretation": "Unbreakable word control still changed whole natural selection. Cannot attribute whole-film metric changes solely to word wrapping from one pair; runner/selection variability and algorithm influence need isolation."
+    }
+  ],
+  "decision": "Neither semantic-boundary nor direct semantic-travel prototype is unconditionally adopted."
+}

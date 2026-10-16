@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "recordedUTC": "2026-10-16T11:21:12.036533+00:00",
+  "recordedUTC": "2026-10-16T11:38:52.050208+00:00",
   "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
@@ -459,6 +459,14 @@
     "late-semantic-travel-preregistration.json": {
       "SHA256": "e436c61d5051ed34a5c49382a2b322fbfd8590463e26ffebc429e4202343aa4a",
       "bytes": 1425
+    },
+    "current30-bound-native-population-summary.json": {
+      "SHA256": "d2de02c3582fcaae2dba4d2dff4da9aaa55929911dc312e68f62c5dffefd01dc",
+      "bytes": 170361
+    },
+    "fresh30-background-focus-flow-diagnostic.json": {
+      "SHA256": "d74e3c54eabc12be08b19acc6e4373050acc09cd845ca7591c163bee3c579ef7",
+      "bytes": 316643
     }
   },
   "localContrastZeroDiagnostic": {
@@ -728,9 +736,51 @@
       "tests": "540 anchor contracts,63 final repair contracts,existing37 release-gate scenarios passed locally; full exact-source CI and real movies pending."
     },
     "realMovieValidation": "PENDING",
+    "correctedSourceCommit": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+    "buildFailure": {
+      "run": 38893096483,
+      "cause": "Explicit source manifest missing new module; fixed in 1088c3d, local build PASS."
+    },
     "unitEvidenceOnly": {
       "anchorChecks": 540,
       "repairChecks": 63
     }
+  },
+  "executedNativePopulation": {
+    "schema": 1,
+    "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+    "conditions": 30,
+    "nativeFrameCount": 9956,
+    "bindingStatuses": {
+      "EXACT_ADOPTED_NATIVE": 29,
+      "STALE_OR_ENVIRONMENT_MISMATCH": 1
+    },
+    "scope": "Executed runtime dispatch at every output clock; exact adopted Native RGBA identity required. This is not independent encoded semantic realization or a count of independent effects.",
+    "encodedIndependentRealization": "UNMEASURED_UNLESS_SEPARATE_HASH_MATCHED_CONTROLS",
+    "human": "HUMAN_UNVERIFIED"
+  },
+  "backgroundImageCropDiagnostic": {
+    "knownLayerContext": {
+      "backgroundOpeningReturnStarts": 12.447000000000001,
+      "source": "src/11zzp_shot_grammar.js:64-67",
+      "finding": "Intentional opening-background return adds another image layer. Raw feature outcomes retained; layer context is interpretation, not a sensor threshold change."
+    },
+    "scopeCounts": {
+      "CONFOUNDED": 10,
+      "VERIFIED_IMAGE_CROP_CORRESPONDENCE_ONLY": 33
+    },
+    "counts": {
+      "FAILED_TARGET_CORRESPONDENCE": 7,
+      "VERIFIED_TARGET_CORRESPONDENCE": 36
+    },
+    "provenance": {
+      "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "videoSHA256": "a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b",
+      "artifactId": 12043296020,
+      "fullNativeIdentity": true,
+      "nativeONRepeatIdentical": true,
+      "controlMoviesFullyDecoded": 3
+    },
+    "interpretation": "33 image-crop correspondences outside opening return match unchanged preregistered sensor; 10 samples remain CONFOUNDED (including 7 raw feature failures). This is not full global effect or release certification; raw statuses retained."
   }
 }
