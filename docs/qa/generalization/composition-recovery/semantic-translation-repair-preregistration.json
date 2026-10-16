@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "registeredUTC": "2026-10-16T04:26:37.806356+00:00",
+  "status": "REGISTERED_BEFORE_REPAIRED_SOURCE_CONTROL_OUTCOMES",
+  "sourceCommit": "274274721d855cf1fd068ea7516a0b2b52c2bfd5",
+  "sourcePath": "src/11zzu_temporal_direction.js",
+  "sourceFileSHA256": "b153a54854ac3466026d64767060b5bf1902f776c8e7a8eed9ec9f74eb4e1abf",
+  "functionBody": "(i,glyph)=>{const row=glyph.li||0,read=['echo','grounding','continuity'].includes(s.role),pressure=s.level,base=(s.climax?.075:s.role==='identity'?.04:.018)*s.impact,entry=s.entry,dx=s.role==='gathering'?(row%2?1:-1)*env.W*.025*entry:s.role==='participation'?((g.phraseMotion==='call'?-1:g.phraseMotion==='response'?1:row%2?1:-1)*env.W*.023*entry):0,dy=s.role==='light'?-env.H*.018*s.travel:s.role==='echo'?env.H*.008*Math.sin(s.u*Math.PI*2-row*.65):s.role==='continuity'?env.H*.002*Math.sin(s.u*Math.PI):s.role==='participation'?env.H*.009*pressure*Math.sin(s.u*Math.PI*2-row*.7):0;\n return {dx,dy,s:1+base+(read?.004:.008)*Math.sin(s.u*Math.PI)*pressure,sx:s.role==='impact'?1-.04*s.impact:1,sy:s.role==='impact'?1+.035*s.impact:1};}",
+  "functionSHA256": "ba152ea39ac81419c2861116129e8ccca348367627024e487ccd759cbf84c209",
+  "originalBinding": {
+    "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+    "planHash": "fb34ab6ca605b90d8aeace8db7db3aa3463da90dc406987d98bfe4412f5283ad",
+    "outputProfile": {
+      "purpose": "SHORT",
+      "aspect": "9:16",
+      "fps": 24,
+      "range": [
+        0.3,
+        12.72
+      ],
+      "loopRequired": false,
+      "resolution": [
+        720,
+        1280
+      ]
+    },
+    "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+    "selectedCandidateId": "e3ce91fad174645da588fde1089c4ce8009ccb0bfdcb5dbdb22943ecf25aaff0",
+    "videoSHA256": "a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b",
+    "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+    "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+    "sourceDirty": false
+  },
+  "referenceSHA256": "44e1e8a0197028ff956673d9b2f17f916e12f7694d8ac746de375b64b8def91f",
+  "target": "Existing primary glyph local dy of explicit continuity temporal role; not local duo dx, background-image focus, camera, scale, impact or artistic quality.",
+  "operator": "dy=H*.002*sin(clamp((t-cut.start)/max(.1,cut.duration))*PI)",
+  "counterfactual": "Exact trusted charFn result only: subtract existing dy summand in OFF; preserve every other return key and original ON/ON_REPEAT result. Same plan/input and all other effects. Unknown trusted function is rejection.",
+  "window": "Original authoritative FAV hold interval, excluding source-owned final global typography fade: end-(min(.36,max(0,end-cut.start-.55))). Retain unobserved entry/exit separately; do not certify those phases.",
+  "requirements": [
+    "All original output Native RGBA/time and ON_REPEAT exact; actual original/control PCM differences reported.",
+    "Actual H264AAC controls fully decoded, same actual decoded frame clocks and stable glyph identities.",
+    "Expected Native displacement >=.5px, >=3 distinct actual decoded frames; retain subpixel samples but do not count them as positive effect.",
+    "Per-glyph decoded ONminusOFF matches Native ONminusOFF within existing max(.5,.1*expected) pixels; >=.9 agreement. ONrepeat decoded error must also satisfy that tolerance.",
+    "Missing matching glyph/clock or no resolvable positive displacement is UNMEASURED, never PASS. Preserve original whole-interval FAILED; no whole-composite, background or release certification."
+  ],
+  "counterexamples": {
+    "PASS": 14,
+    "FAIL": 0
+  },
+  "QUALITY_GO": "UNVERIFIED",
+  "HUMAN": "HUMAN_UNVERIFIED",
+  "originalNativeMatchingMode": "OFF",
+  "candidateNaturalShippingCertificate": false,
+  "method": "Frozen old selected plan. New source ON/OFF/ON_REPEAT. OFF removes exact existing continuity dy and its newly explicit anchor-reference metadata. New OFF must match EVERY old original selected Native frame; new ON must match ON_REPEAT. No thresholds or amplitudes changed. This is a causal component diagnostic, not natural generation adoption proof."
+}
