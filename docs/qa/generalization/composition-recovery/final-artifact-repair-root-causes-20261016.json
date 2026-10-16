@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
+  "status": "PARTIAL",
+  "changes": [
+    {
+      "problem": "LOCK_CHANGED during post-final CandidateEvaluation due to absent session locks",
+      "fix": "Capture existing V.lockSignature before async snapshot; supply to unchanged real finalEvaluation",
+      "counterexample": "Real finalEvaluation rejects a locked cut mutated during asynchronous snapshot",
+      "actualProof": "composition-recovery/final-semantic-history-lock-contract-actual/archive-manifest.json",
+      "actualProofSource": "aee6739efb9d5a10200d77cfd2fb127a3a8cb4b9"
+    },
+    {
+      "problem": "Artifact unitId includes planHash, preventing fixed-plan policy-only ON/OFF correspondence",
+      "fix": "Bijection through stable sourceUnitId, original text/origin, line, exact unit and fragment intervals, index, hold window; validate every frame ownership. Artifact IDs remain unchanged.",
+      "counterexamples": [
+        "same source line distinct internal units",
+        "changed source unit",
+        "changed source text/origin",
+        "changed fragment range/index",
+        "wrong frame owner",
+        "duplicate units"
+      ],
+      "currentEncodedProof": "PENDING: Actions38977028594"
+    }
+  ],
+  "focusedTests": {
+    "semanticRepairChecks": 105,
+    "actualAnchorChecks": 540,
+    "existingGateScenarios": 37
+  },
+  "officialCI": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38976985604",
+  "QUALITY_GO": "UNVERIFIED",
+  "releaseBlockingEvidence": [
+    "Final-source full CI and real MP4 integration must complete",
+    "Important non-primary adopted effects still lack isolated encoded realization evidence",
+    "development09 exact Native correspondence remains STALE",
+    "Independent multi-condition improvement on final adopted output not yet certified"
+  ],
+  "mainUnchanged": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "HUMAN_UNVERIFIED": true
+}

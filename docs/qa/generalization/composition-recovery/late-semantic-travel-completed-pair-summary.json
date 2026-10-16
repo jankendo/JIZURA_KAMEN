@@ -1,0 +1,379 @@
+{
+  "schema": 1,
+  "scope": "Completed preregistered experiments on source1088; not relabeled as final-source proof. Trial movement observation can improve while strict existing composition metrics reject adoption.",
+  "currentReleaseSource": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
+  "pairs": 9,
+  "inputMatched": 9,
+  "rows": [
+    {
+      "fixture": "development-03",
+      "cohort": "development",
+      "artifact": "composition-recovery/late-semantic-travel-coverage-development-03/archive-manifest.json",
+      "artifactSHA256": "4ebf9f6b818b7ed2ca34e688c963ab208f96c6e889d22c9305ff469fa7fa8d9a",
+      "oldSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "candidateSource": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+      "inputComparison": "MATCHED",
+      "baselineStatus": "PASS",
+      "candidateStatus": "PASS",
+      "lyricSafety": "MEASURED",
+      "manualLockUnchanged": true,
+      "baselineVideoSHA256": "79af3ce732dd2d0da1f2de582ce5265f3e066cd49e1454a8824a9a9c7dcbff88",
+      "candidateVideoSHA256": "1c461b67486de75b59cf7b39edfca8bcd8a9cc3882f864b9ddd8c859fb86e4b3",
+      "selectedMetricDifferences": {},
+      "repair": {},
+      "trials": []
+    },
+    {
+      "fixture": "development-11",
+      "cohort": "development",
+      "artifact": "composition-recovery/late-semantic-travel-coverage-development-11/archive-manifest.json",
+      "artifactSHA256": "49ba0faed748c23d61930144af543dba6b75ca2e66fe8f0e16f05d8b27f947a2",
+      "oldSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "candidateSource": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+      "inputComparison": "MATCHED",
+      "baselineStatus": "PASS",
+      "candidateStatus": "PASS",
+      "lyricSafety": "MEASURED",
+      "manualLockUnchanged": true,
+      "baselineVideoSHA256": "a7ae11d5a5b1694f071f6c164566ad41ed09be4121b5624845a880d861280272",
+      "candidateVideoSHA256": "1b0fa2e659d22deffe8eaf9bf77bed287cc8763685dbe46879db6b5225ace9e4",
+      "selectedMetricDifferences": {},
+      "repair": {
+        "status": "KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT",
+        "frozenSelectedPlan": true,
+        "replannedTrial": false,
+        "error": null
+      },
+      "trials": [
+        {
+          "videoSHA256": "0744ef1d60dae444e9e811a4ec4988c0fd180fb57c48be26ba9f056907420529",
+          "selected": false,
+          "fullDecode": {
+            "status": 0,
+            "stderr": ""
+          },
+          "status": "KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT",
+          "error": null,
+          "observationStatus": "UNMEASURED",
+          "reobservation": "composition-recovery/late-semantic-travel-coverage-development-11/source-unit-correspondence-reobservation.json"
+        }
+      ]
+    },
+    {
+      "fixture": "development-15",
+      "cohort": "development",
+      "artifact": "composition-recovery/late-semantic-travel-coverage-development-15/archive-manifest.json",
+      "artifactSHA256": "c23240925229ddc76e26ecfe5ca442bed0b0e40ade2322ac7957cd6720108737",
+      "oldSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "candidateSource": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+      "inputComparison": "MATCHED",
+      "baselineStatus": "PASS",
+      "candidateStatus": "PASS",
+      "lyricSafety": "MEASURED",
+      "manualLockUnchanged": true,
+      "baselineVideoSHA256": "84bcb0dcf592dd2ecbcdb1013e3c80e623de1f2a6454638d03f1dfb9dd97851b",
+      "candidateVideoSHA256": "03db1399e7248da4579d323bfa238097b5cd8230cdcbb2bdc93627b6f3cb771d",
+      "selectedMetricDifferences": {},
+      "repair": {
+        "status": "KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT",
+        "frozenSelectedPlan": true,
+        "replannedTrial": false,
+        "error": null
+      },
+      "trials": [
+        {
+          "videoSHA256": "dee05d3f6705cfef2c0b05b2773e66ed5b23611425b34dfefe14697319a237a7",
+          "selected": false,
+          "fullDecode": {
+            "status": 0,
+            "stderr": ""
+          },
+          "status": "KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT",
+          "error": null,
+          "observationStatus": "UNMEASURED",
+          "reobservation": "composition-recovery/late-semantic-travel-coverage-development-15/source-unit-correspondence-reobservation.json"
+        }
+      ]
+    },
+    {
+      "fixture": "holdout-10",
+      "cohort": "holdout",
+      "artifact": "composition-recovery/late-semantic-travel-coverage-holdout-10/archive-manifest.json",
+      "artifactSHA256": "7a573a060599db01652049f27124ff7e8a2e897028401328782deda4dbcc4e78",
+      "oldSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "candidateSource": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+      "inputComparison": "MATCHED",
+      "baselineStatus": "PASS",
+      "candidateStatus": "PASS",
+      "lyricSafety": "MEASURED",
+      "manualLockUnchanged": true,
+      "baselineVideoSHA256": "44dff8523019f7c116a4a7200d658585f6a309c77b29a7e82064120e9353eab9",
+      "candidateVideoSHA256": "c6978e060dc4694792b960e1ca4e7292ea117eb94a2fda4c9060b7c7c26f8c63",
+      "selectedMetricDifferences": {},
+      "repair": {},
+      "trials": []
+    },
+    {
+      "fixture": "development-04",
+      "cohort": "development",
+      "artifact": "composition-recovery/late-semantic-travel-pair-development-04-complete/archive-manifest.json",
+      "artifactSHA256": "3baa1ac83871577f06890fa3c9c0c8fc153d87d1554a4178f88cd10e87227144",
+      "oldSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "candidateSource": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+      "inputComparison": "MATCHED",
+      "baselineStatus": "PASS",
+      "candidateStatus": "PASS",
+      "lyricSafety": "MEASURED",
+      "manualLockUnchanged": true,
+      "baselineVideoSHA256": "b6e1e9505b13a3c95151e1780545e5e8d18e551c2dedf55cf5754a67b9cba2e5",
+      "candidateVideoSHA256": "a79b3d5948148ad0634e1825c9406d787cfd140eba624d9d82163747dd138147",
+      "selectedMetricDifferences": {},
+      "repair": {
+        "status": "KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT",
+        "frozenSelectedPlan": true,
+        "replannedTrial": false,
+        "error": null
+      },
+      "trials": [
+        {
+          "videoSHA256": "5f458b6bbee571ab6810c4b276b5bf7514d10928c69f55d3ff4af1823b15eef7",
+          "selected": false,
+          "fullDecode": {
+            "status": 0,
+            "stderr": ""
+          },
+          "status": "KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT",
+          "error": null,
+          "observationStatus": "UNMEASURED",
+          "reobservation": "composition-recovery/late-semantic-travel-pair-development-04-complete/source-unit-correspondence-reobservation.json"
+        }
+      ]
+    },
+    {
+      "fixture": "supplemental-holdout-13",
+      "cohort": "holdout",
+      "artifact": "composition-recovery/late-semantic-travel-pair-supplemental-holdout-13-complete/archive-manifest.json",
+      "artifactSHA256": "c79dd66b5e8b5397bf7f45f1fbc425d1f69874429b877151bb16a8ca57bffed6",
+      "oldSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "candidateSource": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+      "inputComparison": "MATCHED",
+      "baselineStatus": "PASS",
+      "candidateStatus": "PASS",
+      "lyricSafety": "MEASURED",
+      "manualLockUnchanged": true,
+      "baselineVideoSHA256": "586f0841f3dfcf74a7b354fcb6eb3e7f4193c0b7efff8e617a8aca5bb495bf4a",
+      "candidateVideoSHA256": "62b5bb0d432c30bc089167d51309d4fb139054f4160a78be88048e2bdf7dcf24",
+      "selectedMetricDifferences": {},
+      "repair": {
+        "status": "KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT",
+        "frozenSelectedPlan": true,
+        "replannedTrial": false,
+        "error": null
+      },
+      "trials": [
+        {
+          "videoSHA256": "d3fd7c52c46e9324be7702a61ccc0a15ef601e5b2356192368fa3d433aa59af2",
+          "selected": false,
+          "fullDecode": {
+            "status": 0,
+            "stderr": ""
+          },
+          "status": "KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT",
+          "error": null,
+          "observationStatus": "UNMEASURED",
+          "reobservation": "composition-recovery/late-semantic-travel-pair-supplemental-holdout-13-complete/source-unit-correspondence-reobservation.json"
+        }
+      ]
+    },
+    {
+      "fixture": "late-unseen-chant-9x16",
+      "cohort": "unused-release-confirmation-20261016",
+      "artifact": "composition-recovery/late-semantic-travel-unseen-late-unseen-chant-9x16/archive-manifest.json",
+      "artifactSHA256": "6656b51ea84bb3213ac7b54dab3581d2cfda840b1bbdf8ccc14a9d581e3b40d9",
+      "oldSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "candidateSource": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+      "inputComparison": "MATCHED",
+      "baselineStatus": "PASS",
+      "candidateStatus": "PASS",
+      "lyricSafety": "MEASURED",
+      "manualLockUnchanged": true,
+      "baselineVideoSHA256": "e80abb195cc634ab68543a8b9468ed6f853bfaf57275b2ab989607a1698c6487",
+      "candidateVideoSHA256": "0fecc1d8ce2afc7a2aaa67bf455988414d2bda93cdd511a7ccfaea231991c15c",
+      "selectedMetricDifferences": {},
+      "repair": {},
+      "trials": []
+    },
+    {
+      "fixture": "late-unseen-mixed-square",
+      "cohort": "unused-release-confirmation-20261016",
+      "artifact": "composition-recovery/late-semantic-travel-unseen-late-unseen-mixed-square/archive-manifest.json",
+      "artifactSHA256": "f2230070e5f597d00bced4ea43e0455a0ee67085ecffb4f0a565d8a372f9f045",
+      "oldSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "candidateSource": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+      "inputComparison": "MATCHED",
+      "baselineStatus": "PASS",
+      "candidateStatus": "PASS",
+      "lyricSafety": "MEASURED",
+      "manualLockUnchanged": true,
+      "baselineVideoSHA256": "ea7683da693d593d937718a2da5f19a37513cb7ed94f61fad59e39c9ce6ccacb",
+      "candidateVideoSHA256": "516563ed56454de4f049e833cc8bc85a57fe3fd1e4629cbe76b30c48a511f758",
+      "selectedMetricDifferences": {},
+      "repair": {},
+      "trials": []
+    },
+    {
+      "fixture": "late-unseen-quiet-16x9",
+      "cohort": "unused-release-confirmation-20261016",
+      "artifact": "composition-recovery/late-semantic-travel-unseen-late-unseen-quiet-16x9/archive-manifest.json",
+      "artifactSHA256": "69260f064f29fd3b565074d62b1d3bf15d4aa216689925efdf6f50403eb5109b",
+      "oldSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "candidateSource": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+      "inputComparison": "MATCHED",
+      "baselineStatus": "PASS",
+      "candidateStatus": "PASS",
+      "lyricSafety": "MEASURED",
+      "manualLockUnchanged": true,
+      "baselineVideoSHA256": "07ae25a30569a5bef591f8f0a1264ede64f3c95c23842dc4e8ad9c2b8eaa5a18",
+      "candidateVideoSHA256": "daa5ac0f18796791a003e492a112aec3a83dd2f12c8137cd47ab1936aec0ace9",
+      "selectedMetricDifferences": {},
+      "repair": {
+        "status": "KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT",
+        "frozenSelectedPlan": true,
+        "replannedTrial": false,
+        "error": null
+      },
+      "trials": [
+        {
+          "videoSHA256": "61c376a18d71c78ae1738e190bf23e0e3ac9764122cd97ed607a3150c66fa904",
+          "selected": false,
+          "fullDecode": {
+            "status": 0,
+            "stderr": ""
+          },
+          "status": "KEPT_ORIGINAL_NO_STRICT_IMPROVEMENT",
+          "error": null,
+          "observationStatus": "UNMEASURED",
+          "reobservation": null
+        }
+      ]
+    }
+  ],
+  "distinctCompletedVideoCount": 23,
+  "movies": {
+    "1c461b67486de75b59cf7b39edfca8bcd8a9cc3882f864b9ddd8c859fb86e4b3": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "79af3ce732dd2d0da1f2de582ce5265f3e066cd49e1454a8824a9a9c7dcbff88": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "0744ef1d60dae444e9e811a4ec4988c0fd180fb57c48be26ba9f056907420529": {
+      "scope": "unselected trial",
+      "fullDecode": {
+        "status": 0,
+        "stderr": ""
+      }
+    },
+    "1b0fa2e659d22deffe8eaf9bf77bed287cc8763685dbe46879db6b5225ace9e4": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "a7ae11d5a5b1694f071f6c164566ad41ed09be4121b5624845a880d861280272": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "dee05d3f6705cfef2c0b05b2773e66ed5b23611425b34dfefe14697319a237a7": {
+      "scope": "unselected trial",
+      "fullDecode": {
+        "status": 0,
+        "stderr": ""
+      }
+    },
+    "03db1399e7248da4579d323bfa238097b5cd8230cdcbb2bdc93627b6f3cb771d": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "84bcb0dcf592dd2ecbcdb1013e3c80e623de1f2a6454638d03f1dfb9dd97851b": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "c6978e060dc4694792b960e1ca4e7292ea117eb94a2fda4c9060b7c7c26f8c63": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "44dff8523019f7c116a4a7200d658585f6a309c77b29a7e82064120e9353eab9": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "5f458b6bbee571ab6810c4b276b5bf7514d10928c69f55d3ff4af1823b15eef7": {
+      "scope": "unselected trial",
+      "fullDecode": {
+        "status": 0,
+        "stderr": ""
+      }
+    },
+    "a79b3d5948148ad0634e1825c9406d787cfd140eba624d9d82163747dd138147": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "b6e1e9505b13a3c95151e1780545e5e8d18e551c2dedf55cf5754a67b9cba2e5": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "d3fd7c52c46e9324be7702a61ccc0a15ef601e5b2356192368fa3d433aa59af2": {
+      "scope": "unselected trial",
+      "fullDecode": {
+        "status": 0,
+        "stderr": ""
+      }
+    },
+    "62b5bb0d432c30bc089167d51309d4fb139054f4160a78be88048e2bdf7dcf24": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "586f0841f3dfcf74a7b354fcb6eb3e7f4193c0b7efff8e617a8aca5bb495bf4a": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "0fecc1d8ce2afc7a2aaa67bf455988414d2bda93cdd511a7ccfaea231991c15c": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "e80abb195cc634ab68543a8b9468ed6f853bfaf57275b2ab989607a1698c6487": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "516563ed56454de4f049e833cc8bc85a57fe3fd1e4629cbe76b30c48a511f758": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "ea7683da693d593d937718a2da5f19a37513cb7ed94f61fad59e39c9ce6ccacb": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "61c376a18d71c78ae1738e190bf23e0e3ac9764122cd97ed607a3150c66fa904": {
+      "scope": "unselected trial",
+      "fullDecode": {
+        "status": 0,
+        "stderr": ""
+      }
+    },
+    "daa5ac0f18796791a003e492a112aec3a83dd2f12c8137cd47ab1936aec0ace9": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    },
+    "07ae25a30569a5bef591f8f0a1264ede64f3c95c23842dc4e8ad9c2b8eaa5a18": {
+      "scope": "paired selected artifact",
+      "fullDecode": "PASS"
+    }
+  },
+  "HUMAN": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "remaining": [
+    "Current source exact-head encode and full CI",
+    "Important non-primary effects lack complete independently encoded realization evidence",
+    "development09 exact adopted Native correspondence remains STALE",
+    "No independent multi-condition improvement certified for final adopted source"
+  ]
+}
