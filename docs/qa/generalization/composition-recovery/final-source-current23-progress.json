@@ -2107,6 +2107,474 @@
   ],
   "strictSameRunnerReplays": [
     {
+      "fixture": "development-01",
+      "archive": "final-pcm-replay-development-01",
+      "PCM": "MATCHED",
+      "versions": {
+        "current": {
+          "binding": {
+            "inputHash": "46df5a27be058d0b36ddbb0aaa7c6e8c992c35a249c3ec1b6428507be5f85634",
+            "planHash": "9c5c4b9f489329bdb2fab1199995518ae71effc46c2cddc5a246f952586bf479",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                1280,
+                720
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "d6e31647d67c048badaa120c2b077ea7eff70f14a1f9b1355a0a40e230e4b2e5",
+            "videoSHA256": "6f54dfe36d4be771a98fdcfd90891ea2f1b949b4a6d6f7715dc10b6dd2c1c80e",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 61,
+            "displayOnsetAccuracy": null,
+            "localContrast": 2,
+            "motionRealization": 100,
+            "typographyDiversity": 29
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "main": {
+          "binding": {
+            "inputHash": "46df5a27be058d0b36ddbb0aaa7c6e8c992c35a249c3ec1b6428507be5f85634",
+            "planHash": "0d0c022399cdb02e43644b956b92d23b019a6a6a219f2b5141b8f2249534ecf8",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                1280,
+                720
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "91a322119f59def9194aa4651ffe8acc49b0bbb33e7af00c11e61f97975f37b6",
+            "videoSHA256": "f36626a4fddbbf0bb8b818e78c396a4d86f812ee06856ed641f37e7cf00c5a13",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "FAILED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 73,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 78,
+            "typographyDiversity": 37
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "previous": {
+          "binding": {
+            "inputHash": "46df5a27be058d0b36ddbb0aaa7c6e8c992c35a249c3ec1b6428507be5f85634",
+            "planHash": "ad424bfbeab977e94cd50e882f2112ff063728106de30683b0c214d586a7e964",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                1280,
+                720
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "168eada7aa18ffb4bc62952a961456dcadd2bce239c42fb2902c94bc0b7f79b2",
+            "videoSHA256": "075fa948156c0cc6317571f7d6ed08ce5af07cf1a7bdadf492d9be9cd985e3e5",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 61,
+            "displayOnsetAccuracy": null,
+            "localContrast": 2,
+            "motionRealization": 100,
+            "typographyDiversity": 29
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        }
+      },
+      "supersedesHistoricalCorrespondenceRejectionOnly": true
+    },
+    {
+      "fixture": "development-03",
+      "archive": "final-pcm-replay-development-03",
+      "PCM": "MATCHED",
+      "versions": {
+        "current": {
+          "binding": {
+            "inputHash": "7f15fddabdd4bafceedfb90230843a253f24de1cbbd70e64c5a1a825fea41663",
+            "planHash": "7fe0bdcf3300ec6611b7606d1590b7376cab9bfcf5d410ee8ef8932cff329b27",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "bac0045dd85da352e2a74409a80de7c129f46175718fc41656d61963f9bfe9b1",
+            "videoSHA256": "60fac3c81917e4e851d91106ae2a7900268e1d4ea5e740c975bc55555485706b",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 75,
+            "motion": 20,
+            "temporalContrast": 22,
+            "hookNovelty": 57,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 74,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 50,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 100,
+            "motionRealization": 100,
+            "typographyDiversity": 24
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "main": {
+          "binding": {
+            "inputHash": "c4e5dae3c13ee67293e884b5b12354893d33446ef8ea93f1b36f4397387cecfa",
+            "planHash": "8e23f1ecc335682944ac3eee378f475c83428022ab6008074c55b336cb70d292",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "152487f43b228b3a297591ef57fcce116b1f2826bfa356905fe0d96551ff1f15",
+            "videoSHA256": "61a17366e95aeb7da6614fd2afd5d84645b4c6f517b997bda8429751e1039b83",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 57,
+            "motion": 21,
+            "temporalContrast": 31,
+            "hookNovelty": 59,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 62,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 53.95311966030595,
+            "localContrast": 90,
+            "motionRealization": 100,
+            "typographyDiversity": 72
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "previous": {
+          "binding": {
+            "inputHash": "8a0137a7cc554c2c449531a50ef74b88d1ac99f565887c5d2e057d176c77721a",
+            "planHash": "ea08b65a8b5f26acea27348d2db94a9e4a8d3ed1a468e9ff37a88c90d74622b3",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "567ecd971f0a238b1887eb82092e88b81cf4276d044ac33b4172a0a2f3dd4018",
+            "videoSHA256": "9ea00b1aca617fbbd33861d1e450ce9e9a4d64eacaa98f7328810f6ff8ae890e",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 75,
+            "motion": 20,
+            "temporalContrast": 22,
+            "hookNovelty": 57,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 74,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 50,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 100,
+            "motionRealization": 100,
+            "typographyDiversity": 24
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        }
+      },
+      "supersedesHistoricalCorrespondenceRejectionOnly": true
+    },
+    {
+      "fixture": "development-04",
+      "archive": "final-pcm-replay-development-04",
+      "PCM": "MATCHED",
+      "versions": {
+        "main": {
+          "binding": {
+            "inputHash": "d3a80e17dfd2597c55cb8f58d52628159aea113f613a7f95e3e998ca29fcfac6",
+            "planHash": "a38377d69f6ec22b8c343337dafce101d7b5cce593b6f82e69e995c8e0a3de79",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "7fbf9267ddd86796d43db8e602740a35f2844091ed7998ee57b2e6fb8396ae4d",
+            "videoSHA256": "4307ae432e82e0e2f588877f2a066234d30842d28e0dee7a233847c7a61950f9",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 26,
+            "temporalContrast": 90,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 98,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 50,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 82,
+            "motionRealization": 67,
+            "typographyDiversity": 72
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "current": {
+          "binding": {
+            "inputHash": "9869f2b17bd601d890432174d6acacaf45e218ef73b3f0d0a1ba8fabab14e576",
+            "planHash": "987fb24a8f96904fb9583ed2cfaac7124377dfb2cad87b8f46345400a89b24c8",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "af54eeab276f8690f84e03390ef8da03e6b74cdffa818ccbe607e6034c202045",
+            "videoSHA256": "8c58092b2366f91b8f85e09697fc5b298beb0128a5926e1cc3fce58e0cfe991e",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 35.5,
+            "temporalContrast": 41,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 95,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 88,
+            "motionRealization": 100,
+            "typographyDiversity": 79
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "previous": {
+          "binding": {
+            "inputHash": "e680e32bd81b12e8a368a0d7b5c7cd282c1a93adee029eca0558a06157798838",
+            "planHash": "7d9fe2c137422dfe7cadbdd2769329d52550d394c821499df0f697533d92bb06",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "ad345fe696d0489e3f8c50d58fd2080cf170a0c099ad6e3f8e690784e41f0913",
+            "videoSHA256": "a94f24b35d94ad26545acee0d5fafe6649118879a4b8e8c86a1b3d5017a62912",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 35.5,
+            "temporalContrast": 32,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 95,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 88,
+            "motionRealization": 100,
+            "typographyDiversity": 79
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        }
+      },
+      "supersedesHistoricalCorrespondenceRejectionOnly": true
+    },
+    {
       "fixture": "development-07",
       "archive": "final-pcm-replay-development-07",
       "PCM": "MATCHED",
@@ -2246,6 +2714,474 @@
             "localContrast": 0,
             "motionRealization": 100,
             "typographyDiversity": 31
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        }
+      },
+      "supersedesHistoricalCorrespondenceRejectionOnly": true
+    },
+    {
+      "fixture": "development-08",
+      "archive": "final-pcm-replay-development-08",
+      "PCM": "MATCHED",
+      "versions": {
+        "main": {
+          "binding": {
+            "inputHash": "a82cca3ba654891d5dd57d1b58bef100266e07ba3afb03599be88c6379513101",
+            "planHash": "85572cf2f0a6aa3c5a893bbb584ae3567e95493f05745309e2cf47f8960ee99f",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "7c86a81db32809c36b08991a09c2cc64a79fc24fab64e93f6e19256688f20f20",
+            "videoSHA256": "9df3b338d28be8c47cf6952a06048b50f6aab3ea7883568d3ca9e9a425fb1e4c",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 42,
+            "motion": 60,
+            "temporalContrast": 44,
+            "hookNovelty": 100,
+            "loopQuality": 32,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 60,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 20.112231012346996,
+            "localContrast": 85,
+            "motionRealization": 100,
+            "typographyDiversity": 27
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "current": {
+          "binding": {
+            "inputHash": "4c0848d90bded9f293c41670ad2597d055b5a1e9d6f468c6789c59c1a553dcd6",
+            "planHash": "d36f63a7e0aceff36d2ccdac73fef49c1e7576a85944968845ae26ef31a1032e",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "0a4ca859028d836397614e9de960817580926cc32dad172c5387bf7bc45733d2",
+            "videoSHA256": "c6f3bbf6ab5e6d778c6708fbdbb4619412068c310fa29306a048da7e3a259a00",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 42,
+            "motion": 59,
+            "temporalContrast": 41,
+            "hookNovelty": 100,
+            "loopQuality": 32,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 60,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 21.3014126621492,
+            "localContrast": 81,
+            "motionRealization": 100,
+            "typographyDiversity": 25
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "previous": {
+          "binding": {
+            "inputHash": "34d5fedd232239bd7948c1ac07b0ecbb5729d344ac56e3ea2dc1983ed4a866cf",
+            "planHash": "68794794ce8604558d6f432dc81abd71f4eb1f699446342c0c3f70d93be8ca09",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "a5c8aa786adc67dcce2f3ec76964a866337be2870a9f2b0c031b5bad098d0d56",
+            "videoSHA256": "d37b66831ad326e98fe4a4ab939c1f5409e1147652212d09a729126f8bfca2ce",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 42,
+            "motion": 59,
+            "temporalContrast": 41,
+            "hookNovelty": 100,
+            "loopQuality": 32,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 60,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 21.3014126621492,
+            "localContrast": 81,
+            "motionRealization": 100,
+            "typographyDiversity": 25
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        }
+      },
+      "supersedesHistoricalCorrespondenceRejectionOnly": true
+    },
+    {
+      "fixture": "holdout-02",
+      "archive": "final-pcm-replay-holdout-02",
+      "PCM": "MATCHED",
+      "versions": {
+        "current": {
+          "binding": {
+            "inputHash": "59ce83d1a699f4d43d3911c37123447b89ea3b0da19b9c11a50f90b320c0cddd",
+            "planHash": "650fb8a188fa03bcd24528a17831ca80240389bbaea4bb76f2c3569e73c86359",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "b1ebcc36080fb56818c3c862fb38a1a50ab8c39d3be4b6d5e29437de3496c72d",
+            "videoSHA256": "a6ed654ce79fe703a396ed04cfe3d3d0be287a7e63c8cda42e0fd848bd5558a1",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 30.5,
+            "temporalContrast": 44,
+            "hookNovelty": 76,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 87,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 78,
+            "motionRealization": 100,
+            "typographyDiversity": 99
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "main": {
+          "binding": {
+            "inputHash": "ad70998155c1e6dce8ebcce4bd08531f609867c1c5a529794e7a7fb4ac5807cc",
+            "planHash": "e31fdcea0a7c1518d0d87e197042f79d5fd6a48d10451d7196146eb659b0b801",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "c25d83094255ad99b1b8e767defbd5eb32df4c7db96b6d545689ac71b9b7e312",
+            "videoSHA256": "5539f9db7660904ca2c45696a636c2140f5512d04e256dd16aa5656dd899d328",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 24,
+            "temporalContrast": 41,
+            "hookNovelty": 84,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 93,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 94,
+            "motionRealization": 100,
+            "typographyDiversity": 84
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "previous": {
+          "binding": {
+            "inputHash": "380f147d1cf968305d78eb4a8da49d7706cfebe360eaaf9a90d4bfec5bc0dcfd",
+            "planHash": "ae87f415db378854090e27ed049949cb35b69f49d3c99b13b32a4a0d8f93ddaa",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "85e86e766cfebc1c0fb98a9525f9ad1725345f0315529fae136685b946231bd7",
+            "videoSHA256": "5bac00591255c81565ca6195518846e815091dd094a60882d82355406e38aef2",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 76,
+            "motion": 29,
+            "temporalContrast": 2,
+            "hookNovelty": 68,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 64,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 100,
+            "regionalPerceptualNovelty": 59.1699869337853,
+            "localContrast": 86,
+            "motionRealization": 100,
+            "typographyDiversity": 21
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        }
+      },
+      "supersedesHistoricalCorrespondenceRejectionOnly": true
+    },
+    {
+      "fixture": "holdout-04",
+      "archive": "final-pcm-replay-holdout-04",
+      "PCM": "MATCHED",
+      "versions": {
+        "current": {
+          "binding": {
+            "inputHash": "0c665f5898d61e4da17b28bd2159fe4311f4e35f6f7cca190751b2384309dac7",
+            "planHash": "30a5a3eb86b1eb90c9cfc208b12025bde7d98e334d63830d8f140c98cade61b5",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "513c39f8e5668a68f1b638e405988db0ece345fa52e7c53f435abae2a45443a0",
+            "videoSHA256": "5b0ef9c42a757d6d7076fc52eced601ae614e802656944467cf5b3081834b15c",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 76,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 60
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "main": {
+          "binding": {
+            "inputHash": "0c665f5898d61e4da17b28bd2159fe4311f4e35f6f7cca190751b2384309dac7",
+            "planHash": "47e734c3bbc4acbe24818e04b779a08f94974487bfe2cb2921feaa6eaa990a89",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "704f3594ed692ff67f2f1285040bf0c31f9faa6715c8a35a51451d54253fcd57",
+            "videoSHA256": "8ec73d0b32be00ffe30040b8fb300859f4e712a9017ba9e61e2f1d1c13628004",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "FAILED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 68,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 86,
+            "typographyDiversity": 46
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "previous": {
+          "binding": {
+            "inputHash": "0c665f5898d61e4da17b28bd2159fe4311f4e35f6f7cca190751b2384309dac7",
+            "planHash": "9adbf19aa88daf6981e266b1e0b481d17a71b53cff269ab18da9efc2dc1ba728",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "534d457f0a904a213999dbb355e69e50056ce39f9da3d893e7dcfa0398222f46",
+            "videoSHA256": "c81211535c8d721d7c328a4b920687d97afa007923404f555acbdcfea0eb2539",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 100,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 76,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 60
           },
           "pcmFormat": {
             "sampleRate": 44100,
@@ -2411,6 +3347,164 @@
       "supersedesHistoricalCorrespondenceRejectionOnly": true
     },
     {
+      "fixture": "holdout-08",
+      "archive": "final-pcm-replay-holdout-08",
+      "PCM": "MATCHED",
+      "versions": {
+        "current": {
+          "binding": {
+            "inputHash": "4321e42c35a439616558844d7064e08dd61c90a478162ad3bb767e9253556a7d",
+            "planHash": "77371d609c3e6d6f180b96dbc4991a9163ae7787f1c3d024e78a80c155a23483",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "17b1f76fad8f21e7f0f4356dc314000538703902db266d97af02b8fcd15f7578",
+            "videoSHA256": "dd73f0b423466f5028dc36ada1b3fb57553ae9fdfc8a7af44ba102b5b1ee585e",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 70,
+            "temporalContrast": 35,
+            "hookNovelty": 71,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 100,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 43,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 83,
+            "motionRealization": 100,
+            "typographyDiversity": 30
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "main": {
+          "binding": {
+            "inputHash": "d3daa36f4af10f651ead6362300d9d7e851bc40fc8021644753bafd9b41a8b6a",
+            "planHash": "bb77b1c30d1681135ca7265b05be9011067ae216739980d633533ae1994bdd62",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "e08e764e7dcd5d3e0eefcbc2295b52de0b36879e539b54f17aadd24e94271ce1",
+            "videoSHA256": "4ece3e6ea3cbcdcbf527f4db2627dee7830241363d058bafa50bf44c7b6f4f8a",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 67.5,
+            "temporalContrast": 27,
+            "hookNovelty": 41,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 99,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 60,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 73,
+            "motionRealization": 100,
+            "typographyDiversity": 35
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "previous": {
+          "binding": {
+            "inputHash": "f8b8cb561c917852f4991b668e1ae7272a86f371d223cb8d76bee41ef70db297",
+            "planHash": "13a004edc5c3906cf4444ab76031c8fb2d57e61ba6a26e717f5849f4be735717",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "16:9",
+              "fps": 24,
+              "range": [
+                0,
+                9.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                640,
+                360
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "73221b8ad47d8084ad66fef48be8489d13cf699782a55d570f9590ad004486c8",
+            "videoSHA256": "c0d51d411e5d91f8fb10a0dc0e49b1c6793473b6a58252d2c7879aef78a9ded5",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 70,
+            "temporalContrast": 35,
+            "hookNovelty": 71,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 100,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 43,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 83,
+            "motionRealization": 100,
+            "typographyDiversity": 30
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 440999,
+            "duration": 9.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        }
+      },
+      "supersedesHistoricalCorrespondenceRejectionOnly": true
+    },
+    {
       "fixture": "holdout-10",
       "archive": "final-pcm-replay-holdout-10",
       "PCM": "MATCHED",
@@ -2561,10 +3655,314 @@
         }
       },
       "supersedesHistoricalCorrespondenceRejectionOnly": true
+    },
+    {
+      "fixture": "holdout-11",
+      "archive": "final-pcm-replay-holdout-11",
+      "PCM": "MATCHED",
+      "versions": {
+        "main": {
+          "binding": {
+            "inputHash": "77aa12b7642ced13f2a67ce4335304b103f14d9bf845d6850349a7bb71767181",
+            "planHash": "d11d1541f04fdb2eb93234048d32f658c1a0371b3c810cc9e5e0c52d801ac087",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "6c2492717e853c608ed17a6b8595c8430de1f13c290f4ba5fc7c6d690342c02c",
+            "videoSHA256": "a6726da8ddf4258cfa5097bf60a230bac16b119ad1a0a3bedc20b623dbb3c935",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "FAILED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 1,
+            "loopQuality": 51,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 60,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 32
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 881999,
+            "duration": 19.99997732426304,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "current": {
+          "binding": {
+            "inputHash": "77aa12b7642ced13f2a67ce4335304b103f14d9bf845d6850349a7bb71767181",
+            "planHash": "3822906973b6dc579b952c34505d4b032ff8ad63142e83c63d764d9d08af992d",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "f0b48462d2286497feec7160b4989fa440af11a6b502ee7603691c5c2aa7b19c",
+            "videoSHA256": "3b19d79d3854c326797f296700f6c7815c30ffe9bc4ff419d591416699564ec3",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 1,
+            "loopQuality": 51,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 56,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 29
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 881999,
+            "duration": 19.99997732426304,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "previous": {
+          "binding": {
+            "inputHash": "77aa12b7642ced13f2a67ce4335304b103f14d9bf845d6850349a7bb71767181",
+            "planHash": "4515f8852b4decf5f0b1ca23f723622faeea09fa9d320597a373813e04661962",
+            "outputProfile": {
+              "purpose": "FULL_MV",
+              "aspect": "4:5",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                450
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "467d97d93f0204248d14b009f1ce5b79dcfb2dbf677954f064f2dbb612d830ce",
+            "videoSHA256": "35c3ef292afdc068af3cf22a650d6c36b37bfc9e1bb6a5eb65a390fe0716fac4",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 1,
+            "loopQuality": 51,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 56,
+            "displayOnsetAccuracy": null,
+            "localContrast": 0,
+            "motionRealization": 100,
+            "typographyDiversity": 29
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 881999,
+            "duration": 19.99997732426304,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        }
+      },
+      "supersedesHistoricalCorrespondenceRejectionOnly": true
+    },
+    {
+      "fixture": "supplemental-development-13",
+      "archive": "final-pcm-replay-supplemental-development-13",
+      "PCM": "MATCHED",
+      "versions": {
+        "current": {
+          "binding": {
+            "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+            "planHash": "f9e18b247d038685d598489ed7befa2a3a38bac71a754837242b5a2413265cb0",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "4ef5fb21848da3a696a7b19abc861a3a8a4096ece4c1de76310d8caf72526590",
+            "videoSHA256": "1ec75c2819c1c874c926789f39dae349f6baed20823f8f2022a10f091847a01a",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 40,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 37,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 67,
+            "typographyDiversity": 21
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 705599,
+            "duration": 15.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "main": {
+          "binding": {
+            "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+            "planHash": "d40dc9e16434d3391ae45e562a23eda0e1aa9873e74e20021c662b450c3cbfea",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "selectedCandidateId": "9459eae680acb8a7eded44465fe33796d6f41af97fb1e17af23118650b7dc90d",
+            "videoSHA256": "70175261cc650c9835dbba2599991bcaeea75cff74cc2c565967135f4c545b24",
+            "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+            "sourceTreeSHA256": "beab33240f428dd4fc2f4404111c79304b5745fcdff2a4945229a62240214e11",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "FAILED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 39,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 32,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 62,
+            "typographyDiversity": 23
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 705599,
+            "duration": 15.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        },
+        "previous": {
+          "binding": {
+            "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+            "planHash": "2c640b8c9e8615822bad21de62d9c1c6f1cde0cc12cbc90acac83699fc2d2d62",
+            "outputProfile": {
+              "purpose": "SHORT",
+              "aspect": "9:16",
+              "fps": 24,
+              "range": [
+                0.3,
+                12.72
+              ],
+              "loopRequired": false,
+              "resolution": [
+                720,
+                1280
+              ]
+            },
+            "rendererVersion": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "selectedCandidateId": "9e6ac7bd3bdaed4c966b7d4ac52f0eb76e97883bbb4ac3cc8f5e10042161dc3e",
+            "videoSHA256": "b08749c86d13c4be9533858ce5fbe62cc0c7a325b686139ea9a6e52ab4c405c4",
+            "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+            "sourceTreeSHA256": "460e370255e057ff7b6a357a83d786b3bdde45c575ce5a6ae6de942653f95b73",
+            "sourceDirty": false
+          },
+          "fullDecode": "PASS",
+          "lyricSafety": "MEASURED",
+          "metrics": {
+            "perceptualNovelty": null,
+            "motion": null,
+            "temporalContrast": null,
+            "hookNovelty": 40,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 37,
+            "displayOnsetAccuracy": null,
+            "localContrast": null,
+            "motionRealization": 67,
+            "typographyDiversity": 21
+          },
+          "pcmFormat": {
+            "sampleRate": 44100,
+            "channels": 2,
+            "length": 705599,
+            "duration": 15.999977324263039,
+            "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+          }
+        }
+      },
+      "supersedesHistoricalCorrespondenceRejectionOnly": true
     }
   ],
   "freshFinalSourceConditionCount": 30,
-  "matchedComparisonConditionCount": 16,
+  "matchedComparisonConditionCount": 25,
   "pendingFinalSourceConditions": [],
   "scope": "Current-only movie success and matched cross-version comparison are separate. A rejected historical PCM binding never becomes matched by ignoring audio; it requires an actual same-runner replay. Metrics do not confer artistic or important-effect certification.",
   "TECHNICAL_GO": "PASS_EXISTING_EXACT_SOURCE_CI",

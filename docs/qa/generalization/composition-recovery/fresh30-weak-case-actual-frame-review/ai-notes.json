@@ -1,0 +1,18 @@
+{
+  "sourceRenderCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "reviewer": "AI assistant, not independent human",
+  "sample": "Six fixed decoded progress anchors of each lowest-six typography descriptor fixture; exact selection and full RGB hashes in manifest. No new acceptance sampling or metric change.",
+  "observations": {
+    "development-11": "Long lyric-free intro and final outro are visible; lyric/image composition changes after entry. At sourcePTS8 the Japanese phrase breaks as何も言わ/ず朝を待つ. This is a linguistic boundary preference defect, not missing glyphs.",
+    "holdout-05": "Centered two-row bracketed phrases dominate, with a later vertical unit. Consistent layout may support dense text; low diversity alone does not establish failure.",
+    "supplemental-development-13": "No-image short uses small annotated lyric chunks, borders and repeated decorative lines; several anchors are lyric-free. No whole-film artistic verdict from sparse anchors.",
+    "development-12": "Long lyric-free lead-in, then centered phrase and a vertical later line; low aggregate diversity includes intentional empty portions.",
+    "development-03": "Strong typographic weight, two main phrase arrangements, then a small upper unit. Requires matched old/new contextual assessment; no new score threshold.",
+    "development-08": "Repeated chant is presented similarly across first four anchors; later anchors have a blue field with no lyric at those instants. Source unit/timing evidence must distinguish intended outro from actual omission; do not infer missing lyrics from a sparse sample."
+  },
+  "rootCauseEvidence": "06z_semantic_layout.js computed linguistic boundary costs for generation/pruning but discarded them in final candidate ranking. Node counterexample cost2 split is selected over fitting same-size/same-row-count cost1 split.",
+  "isolatedCandidate": "c4c679ce624fc2be512592b1d820649c64b3b36e, branch audit/semantic-boundary-ranking-20261016; not PR13 HEAD",
+  "fixScope": "Carry existing boundary cost and refine only within original winner size,row-count,fit,overflow equivalence class; no quality score weights or thresholds changed.128 new contract checks and relevant existing tests passed; completed candidate MP4 comparison not yet available.",
+  "HUMAN": "HUMAN_UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED"
+}

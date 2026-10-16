@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "binding": {
+    "inputHash": "4c0848d90bded9f293c41670ad2597d055b5a1e9d6f468c6789c59c1a553dcd6",
+    "planHash": "1bb3bed153ea167c90172e2d6e639495f62fa289bc2de049257ffa74569c75ed",
+    "outputProfile": {
+      "purpose": "FULL_MV",
+      "aspect": "4:5",
+      "fps": 24,
+      "range": [
+        0,
+        9.999977324263039
+      ],
+      "loopRequired": false,
+      "resolution": [
+        360,
+        450
+      ]
+    },
+    "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+    "selectedCandidateId": "adc3c7466bfd6087f0a6556de073ed52c8df8aa8beca0a3a419fd1856642a579",
+    "videoSHA256": "1518162f239c3fbf37b878f0d0545ba3e7ce095da67bb1011152aaa9ab49f44f",
+    "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+    "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+    "sourceDirty": false
+  },
+  "referenceSHA256": "1c0d865a0b10b7276a3fbdbeada3b5a045a99542605fc85268789848a9ef9b55",
+  "sourceLines": [
+    {
+      "index": 0,
+      "text": "響け 響け",
+      "start": 0.3,
+      "end": 3.2,
+      "visEnd": 3.2,
+      "note": null,
+      "impact": false,
+      "emph": [],
+      "repeated": false,
+      "repetitionIndex": 0,
+      "wordTimes": [],
+      "chunks": [
+        "響け",
+        "響け"
+      ],
+      "seed": 1822945007
+    },
+    {
+      "index": 1,
+      "text": "響け 響け",
+      "start": 3.2,
+      "end": 6.1,
+      "visEnd": 6.1,
+      "note": null,
+      "impact": false,
+      "emph": [],
+      "repeated": true,
+      "repetitionIndex": 1,
+      "wordTimes": [],
+      "chunks": [
+        "響け",
+        "響け"
+      ],
+      "seed": 1929727272
+    },
+    {
+      "index": 2,
+      "text": "響け 響け",
+      "start": 6.1,
+      "end": 7.75,
+      "visEnd": 7.75,
+      "note": null,
+      "impact": false,
+      "emph": [],
+      "repeated": true,
+      "repetitionIndex": 2,
+      "wordTimes": [],
+      "chunks": [
+        "響け",
+        "響け"
+      ],
+      "seed": 1763663917
+    }
+  ],
+  "cutIntervals": [
+    {
+      "index": 0,
+      "line": 0,
+      "start": 0.3,
+      "end": 3.2,
+      "lineText": "響け 響け"
+    },
+    {
+      "index": 1,
+      "line": 1,
+      "start": 3.2,
+      "end": 6.1,
+      "lineText": "響け 響け"
+    },
+    {
+      "index": 3,
+      "line": 2,
+      "start": 6.1,
+      "end": 7.75,
+      "lineText": "響け 響け"
+    }
+  ],
+  "reviewedDecodedSourceTimestamps": [
+    8,
+    9.5
+  ],
+  "activeLyricCutsAtReviewedTimes": {
+    "8": [],
+    "9.5": []
+  },
+  "finding": "The two no-lyric contact-sheet anchors occur after the last source plan display interval ends at 7.75s. They do not demonstrate a missing active lyric. This is a timing-contract check, not a human aesthetic or whole-video certificate."
+}
