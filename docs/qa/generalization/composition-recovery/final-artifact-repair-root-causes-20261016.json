@@ -20,7 +20,7 @@
         "wrong frame owner",
         "duplicate units"
       ],
-      "currentEncodedProof": "PENDING: Actions38977028594"
+      "currentEncodedProof": "composition-recovery/final-semantic-history-source-unit-actual/summary.json"
     }
   ],
   "focusedTests": {
@@ -37,5 +37,24 @@
     "Independent multi-condition improvement on final adopted output not yet certified"
   ],
   "mainUnchanged": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
-  "HUMAN_UNVERIFIED": true
+  "HUMAN_UNVERIFIED": true,
+  "focusedActualMP4": {
+    "runId": 38977028594,
+    "status": "PASS",
+    "repair": "ACCEPTED",
+    "distinctMovies": 2,
+    "completeDecode": "PASS",
+    "lyricUnitsMeasured": 3,
+    "lyricUnitsTotal": 3,
+    "positiveDisplacementPoints": 188,
+    "matched": 188,
+    "actualFrames": 32
+  },
+  "remainingLayoutCause": {
+    "fixture": "development-15",
+    "source": "1088c3ddfb239a5bf517863256f6d5ac507937f1",
+    "layout": "photoCondensed",
+    "finding": "Registered actual Native displacement is zero under ON/OFF. This layout calls mainDraw without grammarMode, while applyTypography5 installs temporal charFns only for grammarMode. No production renderer change made without quality evidence.",
+    "status": "UNRESOLVED_LAYOUT_IMPLEMENTATION"
+  }
 }

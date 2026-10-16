@@ -1,0 +1,273 @@
+{
+  "source": {
+    "sourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
+    "sourceDirty": false,
+    "sourceTreeSHA256": "95b156aa6e9ee49a60e3d273526ca4448e20196cc3c48827a245718ba2a3a619"
+  },
+  "status": "PASS",
+  "scope": "Actual final-source normal analysis/export starting from an immutable previously naturally selected plan. Analysis changes are recorded; the optional final repair itself must preserve its selected plan. No forced operator. This is integration evidence, not fresh optimizeDirectionCandidatesRendered proof.",
+  "manualLocksUnchanged": true,
+  "analysisChangedPlan": false,
+  "contractErrors": [],
+  "errors": [],
+  "repair": {
+    "version": "final-semantic-travel-v1",
+    "status": "ACCEPTED",
+    "targets": [
+      "[11,2,10.9,12.72,\"その先へ続く\"]"
+    ],
+    "trigger": "Existing selected light/continuity uniform translation was cancelled by animated-bounds anchoring; trial the same selected composition only.",
+    "frozenSelectedPlan": true,
+    "replannedTrial": false,
+    "additionalCompletedEncodes": 1,
+    "beforeVideoSHA256": "fde6000ab81567587ab8345ebcc180be8f269c055a90a06f01cc66ab1df0f190",
+    "trialVideoSHA256": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+    "error": null
+  },
+  "motion": {
+    "status": "VERIFIED",
+    "targets": [
+      {
+        "cutIdentity": "[11,2,10.9,12.72,\"その先へ続く\"]",
+        "role": "continuity",
+        "motionPrinciple": "stable-travel",
+        "registeredPoints": 192,
+        "positiveDisplacementPoints": 188,
+        "actualFrames": 32,
+        "matched": 188,
+        "agreement": 1,
+        "status": "VERIFIED"
+      }
+    ]
+  },
+  "movies": [
+    {
+      "kind": "chosen",
+      "videoSHA256": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "binding": {
+        "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+        "planHash": "a2a59a8801e7494dc0cb9a383079795d886e5010961d355405d6a359d2bbb8fb",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "95b156aa6e9ee49a60e3d273526ca4448e20196cc3c48827a245718ba2a3a619",
+        "selectedCandidateId": "4f431d2759c1e2acd9c100bdcaa43297776fc9081a8787224fd9e4cbce566f9f",
+        "videoSHA256": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+        "sourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
+        "sourceTreeSHA256": "95b156aa6e9ee49a60e3d273526ca4448e20196cc3c48827a245718ba2a3a619",
+        "sourceDirty": false
+      },
+      "measuredUnits": 3,
+      "unitCount": 3,
+      "metrics": {
+        "perceptualNovelty": 100,
+        "motion": 21,
+        "temporalContrast": 100,
+        "hookNovelty": 35,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 95,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 0,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 96,
+        "motionRealization": 100,
+        "typographyDiversity": 83
+      },
+      "lowerTailQuality": 21,
+      "selectedHistoryDiagnostic": {
+        "videoHash": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+        "planHash": "a2a59a8801e7494dc0cb9a383079795d886e5010961d355405d6a359d2bbb8fb",
+        "evidenceId": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+        "evidencePlanHash": "a2a59a8801e7494dc0cb9a383079795d886e5010961d355405d6a359d2bbb8fb",
+        "history": [
+          {
+            "videoHash": "fde6000ab81567587ab8345ebcc180be8f269c055a90a06f01cc66ab1df0f190",
+            "planHash": "fb34ab6ca605b90d8aeace8db7db3aa3463da90dc406987d98bfe4412f5283ad",
+            "states": [
+              "CREATED",
+              "PROXY_MEASURED",
+              "SELECTED",
+              "FULL_ENCODED",
+              "DECODED_QA",
+              "UNREPAIRABLE"
+            ]
+          },
+          {
+            "videoHash": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+            "planHash": "a2a59a8801e7494dc0cb9a383079795d886e5010961d355405d6a359d2bbb8fb",
+            "states": [
+              "FINAL_PARENT_SELECTED",
+              "FULL_ENCODED",
+              "DECODED_QA"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "baseline",
+      "videoSHA256": "fde6000ab81567587ab8345ebcc180be8f269c055a90a06f01cc66ab1df0f190",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "binding": {
+        "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+        "planHash": "fb34ab6ca605b90d8aeace8db7db3aa3463da90dc406987d98bfe4412f5283ad",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "95b156aa6e9ee49a60e3d273526ca4448e20196cc3c48827a245718ba2a3a619",
+        "selectedCandidateId": "17d635b48fa05d0473e253e527ea11a1e396fdd6f8d1b0e43ddff723ad305d18",
+        "videoSHA256": "fde6000ab81567587ab8345ebcc180be8f269c055a90a06f01cc66ab1df0f190",
+        "sourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
+        "sourceTreeSHA256": "95b156aa6e9ee49a60e3d273526ca4448e20196cc3c48827a245718ba2a3a619",
+        "sourceDirty": false
+      },
+      "measuredUnits": 3,
+      "unitCount": 3,
+      "metrics": {
+        "perceptualNovelty": 100,
+        "motion": 21,
+        "temporalContrast": 100,
+        "hookNovelty": 35,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 95,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 0,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 96,
+        "motionRealization": 100,
+        "typographyDiversity": 83
+      },
+      "lowerTailQuality": 21,
+      "selectedHistoryDiagnostic": {
+        "videoHash": "fde6000ab81567587ab8345ebcc180be8f269c055a90a06f01cc66ab1df0f190",
+        "planHash": "fb34ab6ca605b90d8aeace8db7db3aa3463da90dc406987d98bfe4412f5283ad",
+        "evidenceId": "fde6000ab81567587ab8345ebcc180be8f269c055a90a06f01cc66ab1df0f190",
+        "evidencePlanHash": "fb34ab6ca605b90d8aeace8db7db3aa3463da90dc406987d98bfe4412f5283ad",
+        "history": [
+          {
+            "videoHash": "fde6000ab81567587ab8345ebcc180be8f269c055a90a06f01cc66ab1df0f190",
+            "planHash": "fb34ab6ca605b90d8aeace8db7db3aa3463da90dc406987d98bfe4412f5283ad",
+            "states": [
+              "CREATED",
+              "PROXY_MEASURED",
+              "SELECTED",
+              "FULL_ENCODED",
+              "DECODED_QA",
+              "UNREPAIRABLE"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "trial",
+      "videoSHA256": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+      "fullDecode": "PASS",
+      "finalArtifactStatus": "MEASURED",
+      "binding": {
+        "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+        "planHash": "a2a59a8801e7494dc0cb9a383079795d886e5010961d355405d6a359d2bbb8fb",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "95b156aa6e9ee49a60e3d273526ca4448e20196cc3c48827a245718ba2a3a619",
+        "selectedCandidateId": "4f431d2759c1e2acd9c100bdcaa43297776fc9081a8787224fd9e4cbce566f9f",
+        "videoSHA256": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+        "sourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
+        "sourceTreeSHA256": "95b156aa6e9ee49a60e3d273526ca4448e20196cc3c48827a245718ba2a3a619",
+        "sourceDirty": false
+      },
+      "measuredUnits": 3,
+      "unitCount": 3,
+      "metrics": {
+        "perceptualNovelty": 100,
+        "motion": 21,
+        "temporalContrast": 100,
+        "hookNovelty": 35,
+        "loopQuality": 0,
+        "foregroundNovelty": null,
+        "lyricForegroundNovelty": 95,
+        "displayOnsetAccuracy": null,
+        "impactBeatSync": 0,
+        "regionalPerceptualNovelty": 100,
+        "localContrast": 96,
+        "motionRealization": 100,
+        "typographyDiversity": 83
+      },
+      "lowerTailQuality": 21,
+      "selectedHistoryDiagnostic": {
+        "videoHash": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+        "planHash": "a2a59a8801e7494dc0cb9a383079795d886e5010961d355405d6a359d2bbb8fb",
+        "evidenceId": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+        "evidencePlanHash": "a2a59a8801e7494dc0cb9a383079795d886e5010961d355405d6a359d2bbb8fb",
+        "history": [
+          {
+            "videoHash": "fde6000ab81567587ab8345ebcc180be8f269c055a90a06f01cc66ab1df0f190",
+            "planHash": "fb34ab6ca605b90d8aeace8db7db3aa3463da90dc406987d98bfe4412f5283ad",
+            "states": [
+              "CREATED",
+              "PROXY_MEASURED",
+              "SELECTED",
+              "FULL_ENCODED",
+              "DECODED_QA",
+              "UNREPAIRABLE"
+            ]
+          },
+          {
+            "videoHash": "5e532837a0749728b40543ae3bdb837c235d6bdffe4a95010e2e3941916ed7b3",
+            "planHash": "a2a59a8801e7494dc0cb9a383079795d886e5010961d355405d6a359d2bbb8fb",
+            "states": [
+              "FINAL_PARENT_SELECTED",
+              "FULL_ENCODED",
+              "DECODED_QA"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "distinctVideoCount": 2,
+  "limitations": [
+    "Focused normal analysis/export of restored naturally selected plan; not a fresh full search",
+    "Only the selected continuity unit is an independent ON/OFF contribution here",
+    "Not whole-engine quality or human artistic certification"
+  ]
+}
