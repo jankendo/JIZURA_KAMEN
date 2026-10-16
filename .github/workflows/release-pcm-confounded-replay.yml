@@ -1,4 +1,4 @@
-name: Strict same-runner replay for rejected historical PCM correspondence
+name: Strict same-runner replay for remaining14 historical PCM mismatches
 on:
   push:
     branches: [codex/kamen-generalization-evidence-20261012]
@@ -14,12 +14,34 @@ jobs:
       max-parallel: 6
       matrix:
         include:
-          - partition: development-07
-            cases: development-07
-          - partition: holdout-10
-            cases: holdout-10
-          - partition: holdout-05
-            cases: holdout-05
+          - partition: development-01
+            cases: development-01
+          - partition: development-03
+            cases: development-03
+          - partition: development-04
+            cases: development-04
+          - partition: development-08
+            cases: development-08
+          - partition: development-10
+            cases: development-10
+          - partition: development-14
+            cases: development-14
+          - partition: holdout-02
+            cases: holdout-02
+          - partition: holdout-04
+            cases: holdout-04
+          - partition: holdout-07
+            cases: holdout-07
+          - partition: holdout-08
+            cases: holdout-08
+          - partition: holdout-09
+            cases: holdout-09
+          - partition: holdout-11
+            cases: holdout-11
+          - partition: holdout-12
+            cases: holdout-12
+          - partition: supplemental-development-13
+            cases: supplemental-development-13
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:

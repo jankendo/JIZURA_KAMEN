@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "registeredUTC": "2026-10-16T03:30:44.392299+00:00",
+  "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "fixture": "supplemental-holdout-13",
+  "archive": "final-source-current23-4",
+  "binding": {
+    "inputHash": "130b84bf036fa175958a58d206a63b0915063ee7c9ec577cf4f14ec42a128e6e",
+    "planHash": "fb34ab6ca605b90d8aeace8db7db3aa3463da90dc406987d98bfe4412f5283ad",
+    "outputProfile": {
+      "purpose": "SHORT",
+      "aspect": "9:16",
+      "fps": 24,
+      "range": [
+        0.3,
+        12.72
+      ],
+      "loopRequired": false,
+      "resolution": [
+        720,
+        1280
+      ]
+    },
+    "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+    "selectedCandidateId": "e3ce91fad174645da588fde1089c4ce8009ccb0bfdcb5dbdb22943ecf25aaff0",
+    "videoSHA256": "a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b",
+    "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+    "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+    "sourceDirty": false
+  },
+  "originalArtifactEvidenceId": "f7715c4afdf2e81dbfdb6e19752086179b2f5ec0f52809c78a523178e5b1ed42",
+  "originalRowSHA256": "d2125cc72f4e56bf905ddf623c7f2f3d280a1a23a16fcf0c033936ab69885ff3",
+  "referenceSHA256": "44e1e8a0197028ff956673d9b2f17f916e12f7694d8ac746de375b64b8def91f",
+  "unitId": "155e466ad7d1fdb34c993ae710b0fec5f41f31fe09e3ae1b5308b069522ba434",
+  "fragmentRange": [
+    10.9,
+    12.72
+  ],
+  "oldComponentEvidence": "STALE_FOR_THIS_NEW_VIDEO_PLAN_UNIT; retain prior2efd7fa3 report separately.",
+  "methodology": "Existing predeclared duo-settle-component-preregistration.json and original controller/analyzer unchanged; no new threshold or operator change. Independently re-encode ON/OFF/ON_REPEAT from this exact frozen selected plan and compare actual decoded glyph displacements. No replan or forced effect.",
+  "target": "Existing local row-alternating horizontal settling summand, not whole-interval camera/image continuity or global stillness.",
+  "requirements": [
+    "Actual original720x1280/24fps output; full original NativeRGBA/time identity and ONrepeat identity.",
+    "Every control H264AAC complete decode. Exact original artifact hash and frozen reference hash.",
+    "Record actual original/control immutable input differences; PCM mismatch cannot be called strict sameinput.",
+    "Preserve actual whole-interval FAILED and all missing/failed independent component observations. Local component success alone cannot grant QUALITY_GO."
+  ],
+  "QUALITY_GO": "UNVERIFIED",
+  "HUMAN": "HUMAN_UNVERIFIED"
+}

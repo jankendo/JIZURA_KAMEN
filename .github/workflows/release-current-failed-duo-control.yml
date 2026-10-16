@@ -1,4 +1,4 @@
-name: Current matched selected movie settle component attribution
+name: Fresh final-source selected movie settle component attribution
 on:
   push:
     branches: [codex/kamen-generalization-evidence-20261012]
@@ -13,6 +13,14 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/duo-settle-component-preregistration.json
+            /docs/qa/generalization/composition-recovery/final-source-current23-4/
+            /docs/qa/generalization/media/4eed413aec8318204067f15b792fce1696019210d3661e3c96ac5dff95f2892d.wav
+            /docs/qa/generalization/media/a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b.mp4
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: b002cdd75845d189221312a82456c33a131f5e8d
@@ -25,7 +33,9 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - run: cd current && npm ci && npm run build
       - name: Restore exact adopted artifact without planning
-        run: python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization pcm-paired-supplemental-holdout-13 restored
+        run: |
+          python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization final-source-current23-4 restored --prefix matrix/supplemental-holdout-13-v3
+          python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization final-source-current23-4 restored --prefix matrix/results.json
       - name: Frozen adopted typography ON OFF ON_REPEAT
         env:
           NODE_PATH: ${{ github.workspace }}/current/node_modules
@@ -47,7 +57,7 @@ jobs:
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         if: always()
         with:
-          name: current-matched-supplement13-duo-settle-component-control
+          name: fresh30-selected-supplement13-duo-settle-component-control
           path: results
           retention-days: 14
           if-no-files-found: error
