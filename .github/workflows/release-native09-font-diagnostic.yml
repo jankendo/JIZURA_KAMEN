@@ -1,0 +1,214 @@
+name: Development09 native mismatch and font response diagnostic
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-native09-font-diagnostic.yml]
+permissions:
+  contents: read
+jobs:
+  trace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        chunk: [2]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: audit
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/native_dispatch_font_diagnostic.cjs
+            /docs/qa/generalization/tools/prepare_bound_native_population.py
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: e4f058b4497e65a2a3e218dd030048bf364b186e
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/composition-recovery/final-fresh30-selected-artifacts.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-01/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-01/matrix/development-01-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-01/matrix/development-01-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-03/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-03/matrix/development-03-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-03/matrix/development-03-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-04/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-04/matrix/development-04-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-04/matrix/development-04-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-07/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-07/matrix/development-07-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-07/matrix/development-07-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-08/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-08/matrix/development-08-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-08/matrix/development-08-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-10/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-10/matrix/development-10-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-10/matrix/development-10-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-14/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-14/matrix/development-14-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-development-14/matrix/development-14-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-02/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-02/matrix/holdout-02-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-02/matrix/holdout-02-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-04/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-04/matrix/holdout-04-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-04/matrix/holdout-04-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-05/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-05/matrix/holdout-05-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-05/matrix/holdout-05-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-07/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-07/matrix/holdout-07-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-07/matrix/holdout-07-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-08/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-08/matrix/holdout-08-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-08/matrix/holdout-08-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-09/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-09/matrix/holdout-09-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-09/matrix/holdout-09-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-10/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-10/matrix/holdout-10-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-10/matrix/holdout-10-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-11/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-11/matrix/holdout-11-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-11/matrix/holdout-11-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-12/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-12/matrix/holdout-12-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-holdout-12/matrix/holdout-12-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-supplemental-development-13/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-supplemental-development-13/matrix/supplemental-development-13-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-pcm-replay-supplemental-development-13/matrix/supplemental-development-13-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-0/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-source-current23-0/matrix/development-12-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-0/matrix/development-12-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-2/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-source-current23-2/matrix/development-02-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-2/matrix/development-02-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-2/matrix/holdout-01-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-2/matrix/holdout-01-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-4/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-source-current23-4/matrix/holdout-03-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-4/matrix/holdout-03-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-4/matrix/supplemental-holdout-13-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-4/matrix/supplemental-holdout-13-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-5/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/final-source-current23-5/matrix/development-05-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/final-source-current23-5/matrix/development-05-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-06/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-06/matrix/development-06-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-06/matrix/development-06-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-09/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-09/matrix/development-09-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-09/matrix/development-09-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-11/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-11/matrix/development-11-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-11/matrix/development-11-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-15/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-15/matrix/development-15-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-development-15/matrix/development-15-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-holdout-06/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/word-source-refresh-holdout-06/matrix/holdout-06-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-holdout-06/matrix/holdout-06-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-holdout-14/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/word-source-refresh-holdout-14/matrix/holdout-14-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-holdout-14/matrix/holdout-14-v3-row.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-holdout-15/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/word-source-refresh-holdout-15/matrix/holdout-15-v3-reference.json.gz
+            /docs/qa/generalization/composition-recovery/word-source-refresh-holdout-15/matrix/holdout-15-v3-row.json.gz
+            /docs/qa/generalization/media/022e5cdea237c7470677707c24d18ee6231f2b5ba4e92818f6dd377b4ccdc4ee.wav
+            /docs/qa/generalization/media/06dadd28346e70126abb7dfc4ed88cad959e1d0c82ffaada040d3ddbf54896a2.wav
+            /docs/qa/generalization/media/0ba18d2dc7551606b3adad55928f43c5f6df67c1e3355115925f44bc622d8e81.mp4
+            /docs/qa/generalization/media/0eeb271d70fc22aa37e78d6860f2452bcc36558dce4945f0530049214abc9a7f.wav
+            /docs/qa/generalization/media/11ddda797ea3e46f0e375fef7967bf55cade50a59ea885bf4d141a9946fa6a72.mp4
+            /docs/qa/generalization/media/1847e96b6e73719acfc5d7e168a0bfc50c2f74a86dc96e5915d21c6e81e3829a.wav
+            /docs/qa/generalization/media/1a44c1b2c486d9a0f852e6d87d7558fa8b552597fde378e6d923296ab5cca4f7.wav
+            /docs/qa/generalization/media/1cbb866ec5085ef66a0e8d66a87a763bc03500387cec76df405abcfc83d2eb3c.mp4
+            /docs/qa/generalization/media/1e85497a2e97c2f1b39dc5f0c60acf434c5356527742cf677a4f5f4798b69857.wav
+            /docs/qa/generalization/media/1ec75c2819c1c874c926789f39dae349f6baed20823f8f2022a10f091847a01a.mp4
+            /docs/qa/generalization/media/223414ae3e930b51507fed93a8079411fa95b98503a6b9dc029d1f28b195b0e4.mp4
+            /docs/qa/generalization/media/230bb1d9e963f8d05fce15a72d1acc16f2caca87a4a08d930b452c6ea1dc6251.mp4
+            /docs/qa/generalization/media/37a2f7871b583d76c877ac82e5acbc694d9340909710d3ce3488bdef6282e040.wav
+            /docs/qa/generalization/media/38843b80a35bcc9618c7184ef2c0cbeb06e88368ed54294e04e387ff79569e6d.wav
+            /docs/qa/generalization/media/3b19d79d3854c326797f296700f6c7815c30ffe9bc4ff419d591416699564ec3.mp4
+            /docs/qa/generalization/media/3be2bd3b13145576f98251828e00c24c2f1e3cc701c56995a94338667dbbd455.wav
+            /docs/qa/generalization/media/48d6732634add42f9c67a77ab6899f848c8bb61120b9f6fff5216f227305df7f.wav
+            /docs/qa/generalization/media/4eaca39d776c258e8825fa5941b9a3eb2b0e9833016e6f2363d0a81f0fbf7757.mp4
+            /docs/qa/generalization/media/4eed413aec8318204067f15b792fce1696019210d3661e3c96ac5dff95f2892d.wav
+            /docs/qa/generalization/media/536bdac0c8fd09e1bf209cfb68acc7b29e311d260cb824e9f7548677681efbed.wav
+            /docs/qa/generalization/media/5b0ef9c42a757d6d7076fc52eced601ae614e802656944467cf5b3081834b15c.mp4
+            /docs/qa/generalization/media/60fac3c81917e4e851d91106ae2a7900268e1d4ea5e740c975bc55555485706b.mp4
+            /docs/qa/generalization/media/61b0de2d7473d88f3beb41b1a0cdf0f652a3d59ac660c399df8ed375f89af896.mp4
+            /docs/qa/generalization/media/6c15a8b6f5505c720d496c74aa8a695cd0b41522c71e713f1cecff4d4e9f8068.wav
+            /docs/qa/generalization/media/6e2192c718dee0b0378282906f5b8f18b773a8b9d2c84af3ccede596be8761cc.wav
+            /docs/qa/generalization/media/6f54dfe36d4be771a98fdcfd90891ea2f1b949b4a6d6f7715dc10b6dd2c1c80e.mp4
+            /docs/qa/generalization/media/7d89dbcbbcec279d55d22c0f7d110fd25e71a2ae50b1124c18632e125580eb1c.wav
+            /docs/qa/generalization/media/81e38f29b307cc0142ff0635b9b84149e6a60b7bd62e4171fd3a96eb7546bd1d.mp4
+            /docs/qa/generalization/media/89c0e3c867f415eed6ead6b267d7e9a229eeee4ed904aa221dfb423674f5885a.wav
+            /docs/qa/generalization/media/8ba2751bc120f48d0d1e556a65c62a072121c1d22ce444c3df9a7b0d3e88fa65.mp4
+            /docs/qa/generalization/media/8c58092b2366f91b8f85e09697fc5b298beb0128a5926e1cc3fce58e0cfe991e.mp4
+            /docs/qa/generalization/media/8e70cff1785a48925ba7c7084e0fb819f8bb41821aa25652e5a5f02d957a7c65.mp4
+            /docs/qa/generalization/media/a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b.mp4
+            /docs/qa/generalization/media/a0ef7492cffef198eafd366859e789dc96578c20f08838e56e723b87e24c72c2.mp4
+            /docs/qa/generalization/media/a6ed654ce79fe703a396ed04cfe3d3d0be287a7e63c8cda42e0fd848bd5558a1.mp4
+            /docs/qa/generalization/media/a854ca93b16d2db7cbc4a616c11eee6aff9fe32574dbf3d8c3acfac1b6bc1178.mp4
+            /docs/qa/generalization/media/aa2928691e8e85fb04c04ccc91bee86c819a8fc03fe7ba4e5a705001124f3776.mp4
+            /docs/qa/generalization/media/ac66a22df0450cdd987242785cd5251af1a90e2be1e2992b620d9324951a28fa.wav
+            /docs/qa/generalization/media/b0f628a49ec8e6b548ca012033f4621e057172691174e0ddae6dae073b739c9d.wav
+            /docs/qa/generalization/media/b72ea0958221b01c5b06945fddd365b7dd7b7b21208289986802ebb87160e7a1.mp4
+            /docs/qa/generalization/media/bb5ae58ee02ebfb9bd4afb0059a37ed8ecdfcb162e6a91e95177a338c16838f0.wav
+            /docs/qa/generalization/media/bbb99d381bc2e0e511714eb92a53277adb8ecd0fd59eeb3aaef86b82368a53eb.wav
+            /docs/qa/generalization/media/bee30b003651dc24b587605d07cc503dde2a4046e0237689d1ee4efd7543ce51.wav
+            /docs/qa/generalization/media/c3aa5e7d1f00c7e91b41e7fc73e8428070e3a78053bccacca9f45d4231212229.wav
+            /docs/qa/generalization/media/c598f926258b8e4f4f0b1822e6b91cebdd688d0714a1d59d79651134de902654.mp4
+            /docs/qa/generalization/media/c67947425b27b3704880dc32a1f06f00be31abf96761a2fbcc0d5ee4f63921fd.mp4
+            /docs/qa/generalization/media/c6f3bbf6ab5e6d778c6708fbdbb4619412068c310fa29306a048da7e3a259a00.mp4
+            /docs/qa/generalization/media/ca183f107fae7b4ccbda2757dfd63bddf58f04048480134ce98b23b9c384189b.wav
+            /docs/qa/generalization/media/ccd32d6bc6c980f9c99b369b14bde1d87c08d170ed5bd64ad2c16edbc572c031.mp4
+            /docs/qa/generalization/media/cd7c273653c9d77d8e6ca05264c3b267099f6d574ac7371a563082dad9b48b5b.wav
+            /docs/qa/generalization/media/cf536dc487609c2d5f572b8f061b4c3a6aeffd0a9acf7a6654b7410de3881847.wav
+            /docs/qa/generalization/media/d39cee2d8faae38bb359560cf900d4fa4f4e9c727605cc97cf4938109c23a5da.wav
+            /docs/qa/generalization/media/d4250115b72933aad317ff0e0514698a243966f94f6700c9fe286b57e0973d0a.wav
+            /docs/qa/generalization/media/dc583cf13bb1b40d3b1fc507b38e6f5a27857e3e95aa705ce3f11dedcdc0ee25.mp4
+            /docs/qa/generalization/media/dc5ef7a2de37e12384a85bf1cf932b81299a102e93be9aa5d2bb253fc2a1cd6c.mp4
+            /docs/qa/generalization/media/dd73f0b423466f5028dc36ada1b3fb57553ae9fdfc8a7af44ba102b5b1ee585e.mp4
+            /docs/qa/generalization/media/dfc2eb2dbe65588ddaf9c24a534af84af34119b8a5795cc4c21728334e1c3aa5.mp4
+            /docs/qa/generalization/media/e724cffd0e243d4a3128d288dae6dbb57f8bb3d2bcb2097ac995eb68b07627e0.wav
+            /docs/qa/generalization/media/fea4ad2ba075dba25d98dc814c84da7e58815112cd9cb8c4d47c004421683024.wav
+            /docs/qa/generalization/media/ff21b8ebbc332a420ff134bd4e23c17c77b79a1cd86ea5c7726302b2a6777588.wav
+            /docs/qa/generalization/tools/restore_canonical_artifact.py
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: b002cdd75845d189221312a82456c33a131f5e8d
+          path: current
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: cd current && npm ci && npm run build
+      - name: Restore hash-bound selected inputs and trace every native frame
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          mkdir -p results
+          python audit/docs/qa/generalization/tools/prepare_bound_native_population.py qa/docs/qa/generalization ${{ matrix.chunk }} results
+          echo development-09 > results/fixtures.txt
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in 1 2 3 4 5; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          while read -r fixture; do
+            node audit/docs/qa/generalization/tools/native_dispatch_font_diagnostic.cjs http://127.0.0.1:4173/ "results/inputs/$fixture/matrix" "$fixture" v3 "results/traces/$fixture" > "results/$fixture.log" 2>&1
+          done < results/fixtures.txt
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: development09-bound-native-font-diagnostic
+          path: results/traces
+          retention-days: 14
+          if-no-files-found: error
