@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "method": "Independent direct full-rank image affine registration using OpenCV ECC; separate from historical LK observer, not a replacement or score adjustment.",
+  "frozenSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "videoSHA256": "a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b",
+  "timeRange": [
+    10.9,
+    12.72
+  ],
+  "samplePolicy": "All43 actual output frame clocks from existing matched controls, no omission of failed/low-support timestamps. Exact actual PTS/control bindings retained.",
+  "geometry": "Existing source image crop affine OFF-to-ON is expected geometry. Observed affine independently fitted from final decoded OFF/ON image pixels, initialized with that expected transform; no fitted result is ground truth.",
+  "ownership": "Same field-box and registered Native/decoded primary glyph exclusion; erode by2 output pixels for one 3x3 derivative and bilinear interpolation support. No pyramids or21px LK support are used by this observer.",
+  "identifiability": "Require full numerical rank6 of affine gradient Jacobian. Textureless/occluded/nonconvergent/unresolved displacement stays UNMEASURED.",
+  "fixedSolver": {
+    "motion": "AFFINE",
+    "iterations": 100,
+    "epsilon": 1e-06,
+    "gaussianFilterSize": 1
+  },
+  "acceptance": "Existing per-pixel geometric error <= max(0.5px,10% expected displacement) with >=90% agreement. Require resolved median expected displacement>=0.5px and alignment improvement > max(1 luma,3*max(ON_REPEAT noise,original-vs-ON noise)). No artistic score.",
+  "layering": "Existing opening background return remains CONFOUNDED independent of geometric fit. No whole-interval/camera intent claim from blended layers.",
+  "counterexamples": {
+    "path": "background-crop-ecc-sensor-counterexamples.json",
+    "SHA256": "70300c25b0ee06a669f177d401de8e064b107991e9ba2b55da761cdecc0b2c40",
+    "cases": 9,
+    "actualMVExamined": false
+  },
+  "sensorSHA256": "cc9dbae188ff788042ec510ac1157f8445b330841b31ad5964990598a3b29fb8",
+  "registeredBeforeActualObservation": true,
+  "thresholdChanges": false
+}

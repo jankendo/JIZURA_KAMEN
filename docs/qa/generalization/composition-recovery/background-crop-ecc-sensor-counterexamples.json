@@ -1,0 +1,314 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "opencvVersion": "5.0.0",
+  "actualMVExamined": false,
+  "cases": [
+    {
+      "case": "translation",
+      "status": "VERIFIED_IMAGE_TRANSFORM",
+      "reason": null,
+      "normalRank": 6,
+      "ownedPixels": 167024,
+      "expectedAffine": [
+        [
+          1.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          1.0,
+          -3.0
+        ]
+      ],
+      "observedAffine": [
+        [
+          1.0,
+          -4.92837812660768e-13,
+          4.0
+        ],
+        [
+          5.811597405570856e-14,
+          1.0,
+          -3.0
+        ]
+      ],
+      "correlation": 0.9999999102517301,
+      "agreement": 1.0,
+      "medianGeometricErrorPixels": 9.091284376116009e-11,
+      "maximumGeometricErrorPixels": 1.6400370571944666e-10,
+      "medianExpectedPixels": 5.0,
+      "rawRMS": 39.24253966659937,
+      "alignedResidualRMS": 0.0,
+      "alignmentGainRMS": 39.24253966659937,
+      "encodingNoiseRMS": 0.0,
+      "noiseCriterion": 1,
+      "scope": "Full-rank image-only affine correspondence plus independent gain above existing encoding-noise floor; not aesthetics."
+    },
+    {
+      "case": "zoom_translation",
+      "status": "VERIFIED_IMAGE_TRANSFORM",
+      "reason": null,
+      "normalRank": 6,
+      "ownedPixels": 167024,
+      "expectedAffine": [
+        [
+          1.024999976158142,
+          0.0,
+          -4.0
+        ],
+        [
+          0.0,
+          1.024999976158142,
+          -3.0
+        ]
+      ],
+      "observedAffine": [
+        [
+          1.024997353553772,
+          -6.613727805415692e-07,
+          -3.9993836879730225
+        ],
+        [
+          -1.6559638993385306e-07,
+          1.024999737739563,
+          -2.999998092651367
+        ]
+      ],
+      "correlation": 0.9756673684546285,
+      "agreement": 1.0,
+      "medianGeometricErrorPixels": 0.0003893038635752853,
+      "maximumGeometricErrorPixels": 0.001198270592800076,
+      "medianExpectedPixels": 5.04237332979249,
+      "rawRMS": 35.68364939078174,
+      "alignedResidualRMS": 7.4477920642817095,
+      "alignmentGainRMS": 28.235857326500028,
+      "encodingNoiseRMS": 0.0,
+      "noiseCriterion": 1,
+      "scope": "Full-rank image-only affine correspondence plus independent gain above existing encoding-noise floor; not aesthetics."
+    },
+    {
+      "case": "excluded_static_foreground_with_kernel_halo",
+      "status": "VERIFIED_IMAGE_TRANSFORM",
+      "reason": null,
+      "normalRank": 6,
+      "ownedPixels": 149728,
+      "expectedAffine": [
+        [
+          1.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          1.0,
+          -3.0
+        ]
+      ],
+      "observedAffine": [
+        [
+          0.9999991655349731,
+          1.99367968889419e-06,
+          3.9996838569641113
+        ],
+        [
+          -4.217983132548397e-06,
+          1.000005841255188,
+          -3.00112247467041
+        ]
+      ],
+      "correlation": 0.9770693466002016,
+      "agreement": 1.0,
+      "medianGeometricErrorPixels": 0.0014476252739757962,
+      "maximumGeometricErrorPixels": 0.0035564272382784447,
+      "medianExpectedPixels": 5.0,
+      "rawRMS": 39.2990245362931,
+      "alignedResidualRMS": 6.37342929227654,
+      "alignmentGainRMS": 32.92559524401656,
+      "encodingNoiseRMS": 0.0,
+      "noiseCriterion": 1,
+      "scope": "Full-rank image-only affine correspondence plus independent gain above existing encoding-noise floor; not aesthetics."
+    },
+    {
+      "case": "actual_h264_quantization",
+      "status": "VERIFIED_IMAGE_TRANSFORM",
+      "reason": null,
+      "normalRank": 6,
+      "ownedPixels": 167024,
+      "expectedAffine": [
+        [
+          1.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          1.0,
+          -3.0
+        ]
+      ],
+      "observedAffine": [
+        [
+          0.9999991655349731,
+          1.7928970237335307e-06,
+          4.002525806427002
+        ],
+        [
+          -3.4743243304546922e-06,
+          1.0000299215316772,
+          -3.002828359603882
+        ]
+      ],
+      "correlation": 0.9325073859274009,
+      "agreement": 1.0,
+      "medianGeometricErrorPixels": 0.003323129226743952,
+      "maximumGeometricErrorPixels": 0.007445039451317714,
+      "medianExpectedPixels": 5.0,
+      "rawRMS": 38.79129506417659,
+      "alignedResidualRMS": 10.093743763781383,
+      "alignmentGainRMS": 28.697551300395205,
+      "encodingNoiseRMS": 0.0,
+      "noiseCriterion": 1,
+      "scope": "Full-rank image-only affine correspondence plus independent gain above existing encoding-noise floor; not aesthetics."
+    },
+    {
+      "case": "opposite_direction",
+      "status": "FAILED_IMAGE_TRANSFORM",
+      "reason": "ACTUAL_TRANSFORM_DISAGREES",
+      "normalRank": 6,
+      "ownedPixels": 167024,
+      "expectedAffine": [
+        [
+          1.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          1.0,
+          -3.0
+        ]
+      ],
+      "observedAffine": [
+        [
+          0.9936685562133789,
+          0.002184554934501648,
+          5.464449405670166
+        ],
+        [
+          0.0019607660360634327,
+          1.005504846572876,
+          -5.691526412963867
+        ]
+      ],
+      "correlation": 0.017546933759805355,
+      "agreement": 0.028133681387106046,
+      "medianGeometricErrorPixels": 1.5859592377424476,
+      "maximumGeometricErrorPixels": 2.7737868316481427,
+      "medianExpectedPixels": 5.0,
+      "rawRMS": 39.25334344054803,
+      "alignedResidualRMS": 36.86269150890789,
+      "alignmentGainRMS": 2.390651931640136,
+      "encodingNoiseRMS": 0.0,
+      "noiseCriterion": 1,
+      "scope": "Full-rank image-only affine correspondence plus independent gain above existing encoding-noise floor; not aesthetics."
+    },
+    {
+      "case": "stationary",
+      "status": "UNMEASURED",
+      "reason": "NO_INDEPENDENT_GAIN_ABOVE_ENCODING_NOISE",
+      "normalRank": 6,
+      "ownedPixels": 167024,
+      "expectedAffine": [
+        [
+          1.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          1.0,
+          -3.0
+        ]
+      ],
+      "observedAffine": [
+        [
+          1.0,
+          -8.803309192728648e-09,
+          1.893852868306567e-06
+        ],
+        [
+          -4.920001295261045e-09,
+          1.0,
+          2.4202149688790087e-06
+        ]
+      ],
+      "correlation": 1.0000001106510674,
+      "agreement": 0.0,
+      "medianGeometricErrorPixels": 5.000000258037796,
+      "maximumGeometricErrorPixels": 5.000002125539187,
+      "medianExpectedPixels": 5.0,
+      "rawRMS": 0.0,
+      "alignedResidualRMS": 2.2049259191148113e-05,
+      "alignmentGainRMS": -2.2049259191148113e-05,
+      "encodingNoiseRMS": 0.0,
+      "noiseCriterion": 1,
+      "scope": "Full-rank image-only affine correspondence plus independent gain above existing encoding-noise floor; not aesthetics."
+    },
+    {
+      "case": "brightness_only",
+      "status": "UNMEASURED",
+      "reason": "NO_INDEPENDENT_GAIN_ABOVE_ENCODING_NOISE",
+      "normalRank": 6,
+      "ownedPixels": 167024,
+      "expectedAffine": [
+        [
+          1.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          1.0,
+          -3.0
+        ]
+      ],
+      "observedAffine": [
+        [
+          1.0000001192092896,
+          2.6686106480156013e-07,
+          -5.5639749916736037e-05
+        ],
+        [
+          3.0106286885711597e-07,
+          1.0000003576278687,
+          -0.00013960844080429524
+        ]
+      ],
+      "correlation": 0.9999190356935248,
+      "agreement": 0.0,
+      "medianGeometricErrorPixels": 4.999988186225238,
+      "maximumGeometricErrorPixels": 5.0000126923879655,
+      "medianExpectedPixels": 5.0,
+      "rawRMS": 7.809055639808876,
+      "alignedResidualRMS": 7.80949345014593,
+      "alignmentGainRMS": -0.0004378103370541453,
+      "encodingNoiseRMS": 0.0,
+      "noiseCriterion": 1,
+      "scope": "Full-rank image-only affine correspondence plus independent gain above existing encoding-noise floor; not aesthetics."
+    },
+    {
+      "case": "occluded",
+      "status": "UNMEASURED",
+      "reason": "NO_OWNED_PIXEL_SUPPORT"
+    },
+    {
+      "case": "textureless",
+      "status": "UNMEASURED",
+      "reason": "AFFINE_NOT_IDENTIFIABLE",
+      "normalRank": 0
+    }
+  ],
+  "method": "Direct known-transform-initialized affine ECC, full-rank geometry, all owned pixels, fixed existing0.5px/10%/90% agreement and max(1,3noise) signal floor. No scoring change."
+}
