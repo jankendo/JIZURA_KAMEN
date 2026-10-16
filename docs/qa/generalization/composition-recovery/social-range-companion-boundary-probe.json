@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "sourceKernelSHA256": "3c4249d628677afd1bb4ffd721016dc40b82c53f67791f4a75597f58bf62c6a7",
+  "referenceSHA256": "03cc88dc916bbb2af74ec52de7903ae00f0a35842be41e8c43dc7dc00551fa30",
+  "inputPlanHash": "6c778ad6cf5ba6eadab21eb0d5b8c277ba494605c07602aa5701a9308dae5d09",
+  "scope": "Exact final shipping FULL-profile companion plan, same authored fixture input as the original failed short fixture. Export profile differs; this is not a captured original pre-short-selection plan.",
+  "planDuration": 13.75,
+  "lines": [
+    {
+      "index": 0,
+      "text": "雨の駅から歩き出す",
+      "start": 0.35,
+      "end": 4.2,
+      "displayEnd": 4.2
+    },
+    {
+      "index": 1,
+      "text": "窓辺で listening to rain",
+      "start": 4.2,
+      "end": 8.35,
+      "displayEnd": 8.35
+    },
+    {
+      "index": 2,
+      "text": "Silver echoes cross the night",
+      "start": 8.35,
+      "end": 13.55,
+      "displayEnd": 13.55
+    }
+  ],
+  "tests": [
+    {
+      "audioDuration": 13,
+      "candidates": [],
+      "error": "表示中の歌詞を途中で切らずに12〜15秒へ収める区間がありません。歌詞時刻を変更せず、曲全体をご利用ください"
+    },
+    {
+      "audioDuration": 12.999977324263039,
+      "candidates": [],
+      "error": "表示中の歌詞を途中で切らずに12〜15秒へ収める区間がありません。歌詞時刻を変更せず、曲全体をご利用ください"
+    },
+    {
+      "audioDuration": 12.999979166666666,
+      "candidates": [],
+      "error": "表示中の歌詞を途中で切らずに12〜15秒へ収める区間がありません。歌詞時刻を変更せず、曲全体をご利用ください"
+    },
+    {
+      "audioDuration": 12.9,
+      "candidates": [],
+      "error": "表示中の歌詞を途中で切らずに12〜15秒へ収める区間がありません。歌詞時刻を変更せず、曲全体をご利用ください"
+    }
+  ],
+  "mathematicalFinding": "Only all3 phrases together reach12seconds:0.35 to13.55 =13.2s. That endpoint exceeds nominal13s source audio. Every subset is shorter than12s. The planned final hold extends0.55s after nominal audio, so the existing original-audio-interval selector correctly has no candidate for this observed plan.",
+  "roundingOnlyHypothesis": "REFUTED_FOR_THIS_OBSERVED_PLAN: exact13s also rejects; an audio-sample epsilon does not account for0.55s tail.",
+  "originalFailedRunCause": "UNRESOLVED_ORIGINAL_PRESELECTION_STATE_WAS_NOT_CAPTURED",
+  "failurePreservation": "Original short failure remains unchanged; full companion is not counted as a successful original short-profile trial.",
+  "appChanged": false,
+  "QUALITY_GO": "UNVERIFIED",
+  "HUMAN": "HUMAN_UNVERIFIED"
+}
