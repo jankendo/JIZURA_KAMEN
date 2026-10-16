@@ -1,0 +1,19 @@
+{
+  "schema": 2,
+  "sourceCommit": "2bbdd4da69ea45be35bbb2f60c4d5bb5a559d5fd",
+  "baselineSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "purpose": "Normal shipping analysis of immutable input plan, then export; final policy-only trial skips fresh candidate search, uses core certification/decoded observer plus independent FAV. Post-final history records actual FULL_ENCODED/DECODED_QA and explicitly claims no fresh pre-encode proxy. No proxy completion is synthesized.",
+  "conditions": [
+    {
+      "id": "supplemental-holdout-13",
+      "archive": "final-source-current23-4",
+      "reference": "matrix/supplemental-holdout-13-v3-reference.json",
+      "audio": "matrix/supplemental-holdout-13-v3-input.wav"
+    }
+  ],
+  "acceptance": "All chosen/baseline/trial MP4s must independently pass FAV/self-hash/selected Cinema plan+video history and full H.264/AAC decode. Keep original unless existing strict repair criteria pass. No thresholds changed.",
+  "registeredBeforeOutcomes": true,
+  "analysisChanges": "Record restored and analyzed plan hashes; do not claim immutable selected composition across preparatory analysis. The final optional trial must differ from its own selected baseline by policy only.",
+  "retention": "Serialize/save every completed chosen/baseline/trial movie and provenance before failing a selected-history assertion. Preserve every contract error.",
+  "priorFailedProbe": "final-semantic-history-integration-failure; chosen-history assertion failed but old harness discarded in-memory completed blobs before saving; exact subcondition/root UNRESOLVED. Do not claim full decode or recover those bytes. New harness records per-field diagnostics."
+}
