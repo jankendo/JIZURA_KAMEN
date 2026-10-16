@@ -1,0 +1,79 @@
+name: Late semantic travel remaining eligible and protected control pairs
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-late-semantic-travel-coverage.yml]
+permissions:
+  contents: read
+jobs:
+  paired-movies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        fixture: [development-11, development-15, development-03, holdout-10]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/late-semantic-travel-coverage-preregistration.json
+            /docs/qa/generalization/composition-recovery/quality-comparison-tools/
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 1088c3ddfb239a5bf517863256f6d5ac507937f1
+          path: candidate
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: b002cdd75845d189221312a82456c33a131f5e8d
+          path: previous
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: candidate/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install and build exact clean sources
+        run: |
+          (cd candidate && npm ci && npm run build)
+          (cd previous && npm ci && npm run build)
+          mkdir -p results
+          sha256sum qa/docs/qa/generalization/composition-recovery/late-semantic-travel-coverage-preregistration.json > results/preregistration.sha256
+      - name: Natural completed MP4 pairs with identical authored inputs
+        env:
+          NODE_PATH: ${{ github.workspace }}/candidate/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/composition-recovery/late-semantic-travel-coverage-preregistration.json
+          KAMEN_MATRIX_CASES: ${{ matrix.fixture }}
+          KAMEN_MATRIX_VARIANTS: v3
+          KAMEN_MATRIX_NATIVE_HASHES: 1
+        run: |
+          node candidate/scripts/serve.mjs dist 127.0.0.1 4173 > results/candidate-server.log 2>&1 &
+          candidate_pid=$!
+          node previous/scripts/serve.mjs dist 127.0.0.1 4174 > results/previous-server.log 2>&1 &
+          previous_pid=$!
+          trap 'kill "$candidate_pid" "$previous_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do
+            if curl -fsS -o /dev/null http://127.0.0.1:4173/ && curl -fsS -o /dev/null http://127.0.0.1:4174/; then break; fi
+            sleep 1
+          done
+          node qa/docs/qa/generalization/tools/matrix_late_semantic_travel.cjs http://127.0.0.1:4174/ http://127.0.0.1:4174/ results/previous > results/previous.log 2>&1
+          node qa/docs/qa/generalization/tools/matrix_late_semantic_travel.cjs http://127.0.0.1:4173/ http://127.0.0.1:4173/ results/matrix > results/matrix.log 2>&1
+      - name: Exact actual input PCM and full decode verification
+        if: always()
+        run: |
+          python qa/docs/qa/generalization/tools/verify_artifacts.py results/previous results/previous-strict-decode.json
+          python qa/docs/qa/generalization/tools/verify_artifacts.py results/matrix results/strict-decode.json
+          python qa/docs/qa/generalization/composition-recovery/quality-comparison-tools/verify_pcm_matched_replay.py results b002cdd75845d189221312a82456c33a131f5e8d 1088c3ddfb239a5bf517863256f6d5ac507937f1
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: late-semantic-travel-coverage-${{ matrix.fixture }}
+          path: results
+          retention-days: 14
+          if-no-files-found: error
