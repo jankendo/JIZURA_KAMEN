@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: current
-          ref: aee6739efb9d5a10200d77cfd2fb127a3a8cb4b9
+          ref: 9a1d1bd235e89d34f6b1e9336d661e3e27eb739d
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: 24
@@ -42,7 +42,7 @@ jobs:
           server_pid=$!
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
-          node qa/docs/qa/generalization/tools/frozen_final_semantic_repair_probe.cjs http://127.0.0.1:4173/ restored/matrix/supplemental-holdout-13-v3-reference.json restored/matrix/supplemental-holdout-13-v3-input.wav results/export aee6739efb9d5a10200d77cfd2fb127a3a8cb4b9 > results/probe.log 2>&1
+          node qa/docs/qa/generalization/tools/frozen_final_semantic_repair_probe.cjs http://127.0.0.1:4173/ restored/matrix/supplemental-holdout-13-v3-reference.json restored/matrix/supplemental-holdout-13-v3-input.wav results/export 9a1d1bd235e89d34f6b1e9336d661e3e27eb739d > results/probe.log 2>&1
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         if: always()
         with:
