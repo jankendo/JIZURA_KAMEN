@@ -1,7 +1,7 @@
 name: Final source actual variable-font browser export and skip alternatives
 on:
   push:
-    branches: [codex/kamen-generalization-evidence-20261012]
+    branches: [audit/late-travel-evidence-20261016]
     paths: [.github/workflows/release-final-variable-font.yml]
 permissions:
   contents: read
@@ -13,10 +13,18 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/variable-font-source-b002.json
+            /docs/qa/generalization/composition-recovery/ci-b002-validation/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/ci-b002-validation/kamen-browser-qa/saved-project.json.gz
+            /docs/qa/generalization/media/ad9f01eb3a4c884a6f516f7f709e58ae740e91e2c7febe4017e5515444665309.wav
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: current
-          ref: b002cdd75845d189221312a82456c33a131f5e8d
+          ref: 9a1d1bd235e89d34f6b1e9336d661e3e27eb739d
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: 24
@@ -51,6 +59,6 @@ jobs:
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         if: always()
         with:
-          name: final-b002-variable-font-browser
+          name: final-9a1d1bd-variable-font-browser
           path: results/
           retention-days: 14
