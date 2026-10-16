@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "sourceCommit": "5e604110e2665d3822ceb54f31d517b02f774b48",
+  "baselineSource": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "purpose": "Post-generation shipping integration of normal single-encode candidate history, no replan. Old1088 natural paired movies remain separate source evidence.",
+  "conditions": [
+    {
+      "id": "supplemental-holdout-13",
+      "archive": "final-source-current23-4",
+      "reference": "matrix/supplemental-holdout-13-v3-reference.json",
+      "audio": "matrix/supplemental-holdout-13-v3-input.wav"
+    }
+  ],
+  "acceptance": "All chosen/baseline/trial MP4s must independently pass FAV/self-hash/selected Cinema plan+video history and full H.264/AAC decode. Keep original unless existing strict repair criteria pass. No thresholds changed.",
+  "registeredBeforeOutcomes": true
+}
