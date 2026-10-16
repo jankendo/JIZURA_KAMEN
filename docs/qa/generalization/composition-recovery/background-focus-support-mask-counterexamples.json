@@ -1,0 +1,6736 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "opencvVersion": "5.0.0",
+  "supportRadius": 102,
+  "radiusDerivation": "(half-window+interpolation)*2^pyramidLevel + 5-tap pyramid radii; fixed existing LK parameters",
+  "cases": {
+    "everyAllowedPointHasOwnedFullSupport": true,
+    "knownTranslationWithStaticForeground": {
+      "status": "VERIFIED_TARGET_CORRESPONDENCE",
+      "detected": 200,
+      "valid": 197,
+      "agreement": 1.0,
+      "medianErrorPixels": 0.00021579186437577745,
+      "maximumErrorPixels": 0.0012343596445408133,
+      "medianObservedDisplacement": [
+        4.0,
+        -3.0000152587890625
+      ],
+      "medianExpectedDisplacement": [
+        4.0,
+        -3.0
+      ],
+      "features": [
+        {
+          "offPoint": [
+            543.0,
+            196.0
+          ],
+          "observedOnPoint": [
+            547.0,
+            192.9999237060547
+          ],
+          "expectedOnPoint": [
+            547.0,
+            193.0
+          ],
+          "pixelError": 7.62939453125e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            254.0,
+            450.0
+          ],
+          "observedOnPoint": [
+            257.9993591308594,
+            447.0003662109375
+          ],
+          "expectedOnPoint": [
+            258.0,
+            447.0
+          ],
+          "pixelError": 0.0007381217420927627,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            591.0,
+            573.0
+          ],
+          "observedOnPoint": [
+            595.0001831054688,
+            569.9998779296875
+          ],
+          "expectedOnPoint": [
+            595.0,
+            570.0
+          ],
+          "pixelError": 0.00022006538546533137,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            825.0,
+            474.0
+          ],
+          "observedOnPoint": [
+            828.9998779296875,
+            471.0
+          ],
+          "expectedOnPoint": [
+            829.0,
+            471.0
+          ],
+          "pixelError": 0.0001220703125,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            716.0,
+            194.0
+          ],
+          "observedOnPoint": [
+            719.9998779296875,
+            190.99993896484375
+          ],
+          "expectedOnPoint": [
+            720.0,
+            191.0
+          ],
+          "pixelError": 0.00013647875839232116,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            269.0,
+            244.0
+          ],
+          "observedOnPoint": [
+            272.9999084472656,
+            240.99972534179688
+          ],
+          "expectedOnPoint": [
+            273.0,
+            241.0
+          ],
+          "pixelError": 0.00028951516664139215,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            802.0,
+            596.0
+          ],
+          "observedOnPoint": [
+            806.0004272460938,
+            593.0004272460938
+          ],
+          "expectedOnPoint": [
+            806.0,
+            593.0
+          ],
+          "pixelError": 0.0006042172202521768,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            505.0,
+            174.0
+          ],
+          "observedOnPoint": [
+            508.99932861328125,
+            170.99951171875
+          ],
+          "expectedOnPoint": [
+            509.0,
+            171.0
+          ],
+          "pixelError": 0.0008301678777304348,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            823.0,
+            150.0
+          ],
+          "observedOnPoint": [
+            827.0000610351562,
+            147.0001678466797
+          ],
+          "expectedOnPoint": [
+            827.0,
+            147.0
+          ],
+          "pixelError": 0.00017859954697753335,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            668.0,
+            168.0
+          ],
+          "observedOnPoint": [
+            672.0001831054688,
+            165.0
+          ],
+          "expectedOnPoint": [
+            672.0,
+            165.0
+          ],
+          "pixelError": 0.00018310546875,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            715.0,
+            241.0
+          ],
+          "observedOnPoint": [
+            718.9998168945312,
+            237.99996948242188
+          ],
+          "expectedOnPoint": [
+            719.0,
+            238.0
+          ],
+          "pixelError": 0.0001856311807341986,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            845.0,
+            258.0
+          ],
+          "observedOnPoint": [
+            849.0,
+            255.00013732910156
+          ],
+          "expectedOnPoint": [
+            849.0,
+            255.0
+          ],
+          "pixelError": 0.0001373291015625,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            209.0,
+            469.0
+          ],
+          "observedOnPoint": [
+            212.99990844726562,
+            466.00018310546875
+          ],
+          "expectedOnPoint": [
+            213.0,
+            466.0
+          ],
+          "pixelError": 0.00020471813758848173,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            285.0,
+            131.0
+          ],
+          "observedOnPoint": [
+            289.0000305175781,
+            128.00015258789062
+          ],
+          "expectedOnPoint": [
+            289.0,
+            128.0
+          ],
+          "pixelError": 0.0001556097263669673,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            456.0,
+            555.0
+          ],
+          "observedOnPoint": [
+            460.0001525878906,
+            551.9993896484375
+          ],
+          "expectedOnPoint": [
+            460.0,
+            552.0
+          ],
+          "pixelError": 0.0006291359902370698,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            385.0,
+            116.0
+          ],
+          "observedOnPoint": [
+            389.0001220703125,
+            112.99992370605469
+          ],
+          "expectedOnPoint": [
+            389.0,
+            113.0
+          ],
+          "pixelError": 0.00014395112811365666,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            235.0,
+            118.0
+          ],
+          "observedOnPoint": [
+            239.00003051757812,
+            115.00008392333984
+          ],
+          "expectedOnPoint": [
+            239.0,
+            115.0
+          ],
+          "pixelError": 8.929977348876668e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            697.0,
+            400.0
+          ],
+          "observedOnPoint": [
+            701.0,
+            396.99981689453125
+          ],
+          "expectedOnPoint": [
+            701.0,
+            397.0
+          ],
+          "pixelError": 0.00018310546875,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            758.0,
+            425.0
+          ],
+          "observedOnPoint": [
+            762.000244140625,
+            421.9998779296875
+          ],
+          "expectedOnPoint": [
+            762.0,
+            422.0
+          ],
+          "pixelError": 0.0002729575167846423,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            652.0,
+            603.0
+          ],
+          "observedOnPoint": [
+            656.0,
+            599.9996948242188
+          ],
+          "expectedOnPoint": [
+            656.0,
+            600.0
+          ],
+          "pixelError": 0.00030517578125,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            592.0,
+            160.0
+          ],
+          "observedOnPoint": [
+            596.0000610351562,
+            157.0
+          ],
+          "expectedOnPoint": [
+            596.0,
+            157.0
+          ],
+          "pixelError": 6.103515625e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            579.0,
+            183.0
+          ],
+          "observedOnPoint": [
+            583.0001220703125,
+            179.99996948242188
+          ],
+          "expectedOnPoint": [
+            583.0,
+            180.0
+          ],
+          "pixelError": 0.00012582719804741396,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            698.0,
+            555.0
+          ],
+          "observedOnPoint": [
+            701.9999389648438,
+            551.9998168945312
+          ],
+          "expectedOnPoint": [
+            702.0,
+            552.0
+          ],
+          "pixelError": 0.00019301011109426145,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            815.0,
+            454.0
+          ],
+          "observedOnPoint": [
+            818.9989624023438,
+            451.0003967285156
+          ],
+          "expectedOnPoint": [
+            819.0,
+            451.0
+          ],
+          "pixelError": 0.0011108566115235166,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            674.0,
+            329.0
+          ],
+          "observedOnPoint": [
+            678.0000610351562,
+            326.0001220703125
+          ],
+          "expectedOnPoint": [
+            678.0,
+            326.0
+          ],
+          "pixelError": 0.00013647875839232116,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            780.0,
+            221.0
+          ],
+          "observedOnPoint": [
+            783.9999389648438,
+            218.0002899169922
+          ],
+          "expectedOnPoint": [
+            784.0,
+            218.0
+          ],
+          "pixelError": 0.0002962720922690979,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            728.0,
+            317.0
+          ],
+          "observedOnPoint": [
+            731.9998779296875,
+            313.9998779296875
+          ],
+          "expectedOnPoint": [
+            732.0,
+            314.0
+          ],
+          "pixelError": 0.00017263349150062197,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            617.0,
+            568.0
+          ],
+          "observedOnPoint": [
+            621.000732421875,
+            565.0003662109375
+          ],
+          "expectedOnPoint": [
+            621.0,
+            565.0
+          ],
+          "pixelError": 0.0008188725503539269,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            544.0,
+            609.0
+          ],
+          "observedOnPoint": [
+            547.9999389648438,
+            605.9998779296875
+          ],
+          "expectedOnPoint": [
+            548.0,
+            606.0
+          ],
+          "pixelError": 0.00013647875839232116,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            702.0,
+            165.0
+          ],
+          "observedOnPoint": [
+            706.0000610351562,
+            161.99998474121094
+          ],
+          "expectedOnPoint": [
+            706.0,
+            162.0
+          ],
+          "pixelError": 6.291359902370698e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            123.0,
+            567.0
+          ],
+          "observedOnPoint": [
+            126.99964141845703,
+            564.0004272460938
+          ],
+          "expectedOnPoint": [
+            127.0,
+            564.0
+          ],
+          "pixelError": 0.0005577812721690137,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            802.0,
+            602.0
+          ],
+          "observedOnPoint": [
+            806.0000610351562,
+            599.0001220703125
+          ],
+          "expectedOnPoint": [
+            806.0,
+            599.0
+          ],
+          "pixelError": 0.00013647875839232116,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            762.0,
+            229.0
+          ],
+          "observedOnPoint": [
+            766.0001220703125,
+            225.999755859375
+          ],
+          "expectedOnPoint": [
+            766.0,
+            226.0
+          ],
+          "pixelError": 0.0002729575167846423,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            514.0,
+            174.0
+          ],
+          "observedOnPoint": [
+            518.0,
+            170.9999237060547
+          ],
+          "expectedOnPoint": [
+            518.0,
+            171.0
+          ],
+          "pixelError": 7.62939453125e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            603.0,
+            197.0
+          ],
+          "observedOnPoint": [
+            607.0001220703125,
+            193.99998474121094
+          ],
+          "expectedOnPoint": [
+            607.0,
+            194.0
+          ],
+          "pixelError": 0.00012302029034879378,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            226.0,
+            487.0
+          ],
+          "observedOnPoint": [
+            230.00001525878906,
+            484.0000305175781
+          ],
+          "expectedOnPoint": [
+            230.0,
+            484.0
+          ],
+          "pixelError": 3.411968959808029e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            441.0,
+            206.0
+          ],
+          "observedOnPoint": [
+            445.0000305175781,
+            202.99984741210938
+          ],
+          "expectedOnPoint": [
+            445.0,
+            203.0
+          ],
+          "pixelError": 0.0001556097263669673,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            792.0,
+            506.0
+          ],
+          "observedOnPoint": [
+            796.0,
+            503.0001525878906
+          ],
+          "expectedOnPoint": [
+            796.0,
+            503.0
+          ],
+          "pixelError": 0.000152587890625,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            390.0,
+            168.0
+          ],
+          "observedOnPoint": [
+            393.99981689453125,
+            164.99986267089844
+          ],
+          "expectedOnPoint": [
+            394.0,
+            165.0
+          ],
+          "pixelError": 0.0002288818359375,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            816.0,
+            372.0
+          ],
+          "observedOnPoint": [
+            819.9998168945312,
+            368.99957275390625
+          ],
+          "expectedOnPoint": [
+            820.0,
+            369.0
+          ],
+          "pixelError": 0.00046482990148095146,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            834.0,
+            446.0
+          ],
+          "observedOnPoint": [
+            837.9994506835938,
+            442.9996032714844
+          ],
+          "expectedOnPoint": [
+            838.0,
+            443.0
+          ],
+          "pixelError": 0.000677600198705277,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            556.0,
+            573.0
+          ],
+          "observedOnPoint": [
+            560.0,
+            569.9998779296875
+          ],
+          "expectedOnPoint": [
+            560.0,
+            570.0
+          ],
+          "pixelError": 0.0001220703125,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            628.0,
+            193.0
+          ],
+          "observedOnPoint": [
+            631.9999389648438,
+            189.9998016357422
+          ],
+          "expectedOnPoint": [
+            632.0,
+            190.0
+          ],
+          "pixelError": 0.0002075419694326087,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            463.0,
+            211.0
+          ],
+          "observedOnPoint": [
+            467.0005798339844,
+            208.0003662109375
+          ],
+          "expectedOnPoint": [
+            467.0,
+            208.0
+          ],
+          "pixelError": 0.0006857972733839182,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            193.0,
+            379.0
+          ],
+          "observedOnPoint": [
+            196.9999542236328,
+            376.0000915527344
+          ],
+          "expectedOnPoint": [
+            197.0,
+            376.0
+          ],
+          "pixelError": 0.00010235906879424087,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            114.0,
+            184.0
+          ],
+          "observedOnPoint": [
+            117.99993896484375,
+            180.9999542236328
+          ],
+          "expectedOnPoint": [
+            118.0,
+            181.0
+          ],
+          "pixelError": 7.62939453125e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            220.0,
+            238.0
+          ],
+          "observedOnPoint": [
+            223.9998321533203,
+            235.00013732910156
+          ],
+          "expectedOnPoint": [
+            224.0,
+            235.0
+          ],
+          "pixelError": 0.00021686813970263512,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            267.0,
+            290.0
+          ],
+          "observedOnPoint": [
+            271.0,
+            287.00018310546875
+          ],
+          "expectedOnPoint": [
+            271.0,
+            287.0
+          ],
+          "pixelError": 0.00018310546875,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            491.0,
+            581.0
+          ],
+          "observedOnPoint": [
+            495.00018310546875,
+            578.0001220703125
+          ],
+          "expectedOnPoint": [
+            495.0,
+            578.0
+          ],
+          "pixelError": 0.00022006538546533137,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            338.0,
+            189.0
+          ],
+          "observedOnPoint": [
+            341.99908447265625,
+            185.99990844726562
+          ],
+          "expectedOnPoint": [
+            342.0,
+            186.0
+          ],
+          "pixelError": 0.000920093593242269,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            492.0,
+            198.0
+          ],
+          "observedOnPoint": [
+            495.99993896484375,
+            194.9998016357422
+          ],
+          "expectedOnPoint": [
+            496.0,
+            195.0
+          ],
+          "pixelError": 0.0002075419694326087,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            244.0,
+            426.0
+          ],
+          "observedOnPoint": [
+            247.99972534179688,
+            423.00048828125
+          ],
+          "expectedOnPoint": [
+            248.0,
+            423.0
+          ],
+          "pixelError": 0.00056022826387591,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            254.0,
+            267.0
+          ],
+          "observedOnPoint": [
+            257.9993896484375,
+            264.0003662109375
+          ],
+          "expectedOnPoint": [
+            258.0,
+            264.0
+          ],
+          "pixelError": 0.000711786119976233,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            257.0,
+            226.0
+          ],
+          "observedOnPoint": [
+            261.0000305175781,
+            223.00048828125
+          ],
+          "expectedOnPoint": [
+            261.0,
+            223.0
+          ],
+          "pixelError": 0.0004892339948083923,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            754.0,
+            327.0
+          ],
+          "observedOnPoint": [
+            758.0001220703125,
+            323.9997863769531
+          ],
+          "expectedOnPoint": [
+            758.0,
+            324.0
+          ],
+          "pixelError": 0.00024604058069758756,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            693.0,
+            549.0
+          ],
+          "observedOnPoint": [
+            696.99951171875,
+            546.0009155273438
+          ],
+          "expectedOnPoint": [
+            697.0,
+            546.0
+          ],
+          "pixelError": 0.00103759765625,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            188.0,
+            598.0
+          ],
+          "observedOnPoint": [
+            191.9998779296875,
+            594.9996337890625
+          ],
+          "expectedOnPoint": [
+            192.0,
+            595.0
+          ],
+          "pixelError": 0.0003860202221885229,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            264.0,
+            467.0
+          ],
+          "observedOnPoint": [
+            267.999755859375,
+            463.99951171875
+          ],
+          "expectedOnPoint": [
+            268.0,
+            464.0
+          ],
+          "pixelError": 0.0005459150335692846,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            223.0,
+            438.0
+          ],
+          "observedOnPoint": [
+            226.9998321533203,
+            434.99945068359375
+          ],
+          "expectedOnPoint": [
+            227.0,
+            435.0
+          ],
+          "pixelError": 0.000574387519064902,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            399.0,
+            586.0
+          ],
+          "observedOnPoint": [
+            403.00091552734375,
+            582.9998168945312
+          ],
+          "expectedOnPoint": [
+            403.0,
+            583.0
+          ],
+          "pixelError": 0.0009336583582018039,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            245.0,
+            372.0
+          ],
+          "observedOnPoint": [
+            249.00006103515625,
+            368.9999084472656
+          ],
+          "expectedOnPoint": [
+            249.0,
+            369.0
+          ],
+          "pixelError": 0.00011003269273266568,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            235.0,
+            174.0
+          ],
+          "observedOnPoint": [
+            239.00027465820312,
+            171.00013732910156
+          ],
+          "expectedOnPoint": [
+            239.0,
+            171.0
+          ],
+          "pixelError": 0.0003070772063827226,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            280.0,
+            568.0
+          ],
+          "observedOnPoint": [
+            283.9999694824219,
+            564.9999389648438
+          ],
+          "expectedOnPoint": [
+            284.0,
+            565.0
+          ],
+          "pixelError": 6.823937919616058e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            271.0,
+            370.0
+          ],
+          "observedOnPoint": [
+            274.99993896484375,
+            367.0001525878906
+          ],
+          "expectedOnPoint": [
+            275.0,
+            367.0
+          ],
+          "pixelError": 0.00016434218771772778,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            125.0,
+            257.0
+          ],
+          "observedOnPoint": [
+            129.00018310546875,
+            254.0000762939453
+          ],
+          "expectedOnPoint": [
+            129.0,
+            254.0
+          ],
+          "pixelError": 0.0001983642578125,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            778.0,
+            310.0
+          ],
+          "observedOnPoint": [
+            781.9996337890625,
+            307.0003356933594
+          ],
+          "expectedOnPoint": [
+            782.0,
+            307.0
+          ],
+          "pixelError": 0.0004967901793243319,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            159.0,
+            225.0
+          ],
+          "observedOnPoint": [
+            162.9998321533203,
+            221.99990844726562
+          ],
+          "expectedOnPoint": [
+            163.0,
+            222.0
+          ],
+          "pixelError": 0.0001911920789511363,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            738.0,
+            200.0
+          ],
+          "observedOnPoint": [
+            742.0,
+            196.99993896484375
+          ],
+          "expectedOnPoint": [
+            742.0,
+            197.0
+          ],
+          "pixelError": 6.103515625e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            796.0,
+            592.0
+          ],
+          "observedOnPoint": [
+            799.9996948242188,
+            589.0006103515625
+          ],
+          "expectedOnPoint": [
+            800.0,
+            589.0
+          ],
+          "pixelError": 0.0006823937919616058,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            274.0,
+            486.0
+          ],
+          "observedOnPoint": [
+            277.99993896484375,
+            482.99981689453125
+          ],
+          "expectedOnPoint": [
+            278.0,
+            483.0
+          ],
+          "pixelError": 0.00019301011109426145,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            225.0,
+            209.0
+          ],
+          "observedOnPoint": [
+            229.0003662109375,
+            205.9999237060547
+          ],
+          "expectedOnPoint": [
+            229.0,
+            206.0
+          ],
+          "pixelError": 0.00037407381201572457,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            192.0,
+            324.0
+          ],
+          "observedOnPoint": [
+            195.99996948242188,
+            321.0
+          ],
+          "expectedOnPoint": [
+            196.0,
+            321.0
+          ],
+          "pixelError": 3.0517578125e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            526.0,
+            149.0
+          ],
+          "observedOnPoint": [
+            530.0001220703125,
+            145.99984741210938
+          ],
+          "expectedOnPoint": [
+            530.0,
+            146.0
+          ],
+          "pixelError": 0.000195407844159938,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            379.0,
+            207.0
+          ],
+          "observedOnPoint": [
+            383.0000915527344,
+            203.99935913085938
+          ],
+          "expectedOnPoint": [
+            383.0,
+            204.0
+          ],
+          "pixelError": 0.0006473755931273324,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            756.0,
+            139.0
+          ],
+          "observedOnPoint": [
+            759.9998779296875,
+            135.99981689453125
+          ],
+          "expectedOnPoint": [
+            760.0,
+            136.0
+          ],
+          "pixelError": 0.00022006538546533137,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            244.0,
+            363.0
+          ],
+          "observedOnPoint": [
+            247.9998016357422,
+            359.99993896484375
+          ],
+          "expectedOnPoint": [
+            248.0,
+            360.0
+          ],
+          "pixelError": 0.0002075419694326087,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            702.0,
+            183.0
+          ],
+          "observedOnPoint": [
+            705.9999389648438,
+            179.99990844726562
+          ],
+          "expectedOnPoint": [
+            706.0,
+            180.0
+          ],
+          "pixelError": 0.00011003269273266568,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            228.0,
+            356.0
+          ],
+          "observedOnPoint": [
+            231.99996948242188,
+            352.9998779296875
+          ],
+          "expectedOnPoint": [
+            232.0,
+            353.0
+          ],
+          "pixelError": 0.00012582719804741396,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            260.0,
+            364.0
+          ],
+          "observedOnPoint": [
+            263.9998474121094,
+            360.99993896484375
+          ],
+          "expectedOnPoint": [
+            264.0,
+            361.0
+          ],
+          "pixelError": 0.00016434218771772778,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            160.0,
+            303.0
+          ],
+          "observedOnPoint": [
+            163.9999237060547,
+            300.0001220703125
+          ],
+          "expectedOnPoint": [
+            164.0,
+            300.0
+          ],
+          "pixelError": 0.00014395112811365666,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            110.0,
+            538.0
+          ],
+          "observedOnPoint": [
+            114.00016784667969,
+            535.0000610351562
+          ],
+          "expectedOnPoint": [
+            114.0,
+            535.0
+          ],
+          "pixelError": 0.00017859954697753335,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            345.0,
+            187.0
+          ],
+          "observedOnPoint": [
+            348.9999084472656,
+            183.9999542236328
+          ],
+          "expectedOnPoint": [
+            349.0,
+            184.0
+          ],
+          "pixelError": 0.00010235906879424087,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            812.0,
+            431.0
+          ],
+          "observedOnPoint": [
+            815.9994506835938,
+            428.00048828125
+          ],
+          "expectedOnPoint": [
+            816.0,
+            428.0
+          ],
+          "pixelError": 0.0007349606066157407,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            633.0,
+            604.0
+          ],
+          "observedOnPoint": [
+            637.0003051757812,
+            600.9996948242188
+          ],
+          "expectedOnPoint": [
+            637.0,
+            601.0
+          ],
+          "pixelError": 0.0004315837287515549,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            544.0,
+            220.0
+          ],
+          "observedOnPoint": [
+            548.0001220703125,
+            217.00001525878906
+          ],
+          "expectedOnPoint": [
+            548.0,
+            217.0
+          ],
+          "pixelError": 0.00012302029034879378,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            221.0,
+            205.0
+          ],
+          "observedOnPoint": [
+            224.99981689453125,
+            201.9993133544922
+          ],
+          "expectedOnPoint": [
+            225.0,
+            202.0
+          ],
+          "pixelError": 0.0007106403211788951,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            136.0,
+            402.0
+          ],
+          "observedOnPoint": [
+            140.0000457763672,
+            399.00006103515625
+          ],
+          "expectedOnPoint": [
+            140.0,
+            399.0
+          ],
+          "pixelError": 7.62939453125e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            845.0,
+            238.0
+          ],
+          "observedOnPoint": [
+            849.0000610351562,
+            235.00009155273438
+          ],
+          "expectedOnPoint": [
+            849.0,
+            235.0
+          ],
+          "pixelError": 0.00011003269273266568,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            695.0,
+            606.0
+          ],
+          "observedOnPoint": [
+            698.9999389648438,
+            602.9998168945312
+          ],
+          "expectedOnPoint": [
+            699.0,
+            603.0
+          ],
+          "pixelError": 0.00019301011109426145,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            808.0,
+            569.0
+          ],
+          "observedOnPoint": [
+            812.0001220703125,
+            565.9995727539062
+          ],
+          "expectedOnPoint": [
+            812.0,
+            566.0
+          ],
+          "pixelError": 0.0004443426446094066,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            733.0,
+            327.0
+          ],
+          "observedOnPoint": [
+            737.0,
+            324.0
+          ],
+          "expectedOnPoint": [
+            737.0,
+            324.0
+          ],
+          "pixelError": 0.0,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            220.0,
+            384.0
+          ],
+          "observedOnPoint": [
+            224.00027465820312,
+            380.999755859375
+          ],
+          "expectedOnPoint": [
+            224.0,
+            381.0
+          ],
+          "pixelError": 0.00036748030330787035,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            131.0,
+            272.0
+          ],
+          "observedOnPoint": [
+            134.99981689453125,
+            268.99993896484375
+          ],
+          "expectedOnPoint": [
+            135.0,
+            269.0
+          ],
+          "pixelError": 0.00019301011109426145,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            276.0,
+            430.0
+          ],
+          "observedOnPoint": [
+            280.0010070800781,
+            426.9998779296875
+          ],
+          "expectedOnPoint": [
+            280.0,
+            427.0
+          ],
+          "pixelError": 0.0010144513024044593,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            132.0,
+            465.0
+          ],
+          "observedOnPoint": [
+            136.0008544921875,
+            462.0001220703125
+          ],
+          "expectedOnPoint": [
+            136.0,
+            462.0
+          ],
+          "pixelError": 0.0008631674575031098,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            140.0,
+            239.0
+          ],
+          "observedOnPoint": [
+            143.99974060058594,
+            236.00001525878906
+          ],
+          "expectedOnPoint": [
+            144.0,
+            236.0
+          ],
+          "pixelError": 0.0002598478144214844,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            125.0,
+            530.0
+          ],
+          "observedOnPoint": [
+            129.00010681152344,
+            527.0001831054688
+          ],
+          "expectedOnPoint": [
+            129.0,
+            527.0
+          ],
+          "pixelError": 0.00021198187239761053,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            205.0,
+            219.0
+          ],
+          "observedOnPoint": [
+            209.0000457763672,
+            216.00009155273438
+          ],
+          "expectedOnPoint": [
+            209.0,
+            216.0
+          ],
+          "pixelError": 0.00010235906879424087,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            745.0,
+            279.0
+          ],
+          "observedOnPoint": [
+            749.0,
+            275.9996032714844
+          ],
+          "expectedOnPoint": [
+            749.0,
+            276.0
+          ],
+          "pixelError": 0.000396728515625,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            705.0,
+            113.0
+          ],
+          "observedOnPoint": [
+            709.0001831054688,
+            109.99908447265625
+          ],
+          "expectedOnPoint": [
+            709.0,
+            110.0
+          ],
+          "pixelError": 0.0009336583582018039,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            807.0,
+            360.0
+          ],
+          "observedOnPoint": [
+            811.0,
+            356.99981689453125
+          ],
+          "expectedOnPoint": [
+            811.0,
+            357.0
+          ],
+          "pixelError": 0.00018310546875,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            187.0,
+            524.0
+          ],
+          "observedOnPoint": [
+            191.00013732910156,
+            520.9999389648438
+          ],
+          "expectedOnPoint": [
+            191.0,
+            521.0
+          ],
+          "pixelError": 0.00015028164370416418,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            798.0,
+            406.0
+          ],
+          "observedOnPoint": [
+            802.0003662109375,
+            403.0
+          ],
+          "expectedOnPoint": [
+            802.0,
+            403.0
+          ],
+          "pixelError": 0.0003662109375,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            155.0,
+            577.0
+          ],
+          "observedOnPoint": [
+            158.99993896484375,
+            573.9998168945312
+          ],
+          "expectedOnPoint": [
+            159.0,
+            574.0
+          ],
+          "pixelError": 0.00019301011109426145,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            692.0,
+            383.0
+          ],
+          "observedOnPoint": [
+            696.0001220703125,
+            379.9998779296875
+          ],
+          "expectedOnPoint": [
+            696.0,
+            380.0
+          ],
+          "pixelError": 0.00017263349150062197,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            385.0,
+            130.0
+          ],
+          "observedOnPoint": [
+            388.9993591308594,
+            127.00020599365234
+          ],
+          "expectedOnPoint": [
+            389.0,
+            127.0
+          ],
+          "pixelError": 0.0006731616746453587,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            275.0,
+            205.0
+          ],
+          "observedOnPoint": [
+            278.9997863769531,
+            201.9999542236328
+          ],
+          "expectedOnPoint": [
+            279.0,
+            202.0
+          ],
+          "pixelError": 0.00021847261143915334,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            787.0,
+            381.0
+          ],
+          "observedOnPoint": [
+            791.0001831054688,
+            378.0002136230469
+          ],
+          "expectedOnPoint": [
+            791.0,
+            378.0
+          ],
+          "pixelError": 0.0002813581682523464,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            396.0,
+            581.0
+          ],
+          "observedOnPoint": [
+            400.0000305175781,
+            577.9995727539062
+          ],
+          "expectedOnPoint": [
+            400.0,
+            578.0
+          ],
+          "pixelError": 0.0004283346205938171,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            757.0,
+            192.0
+          ],
+          "observedOnPoint": [
+            760.9993286132812,
+            188.99996948242188
+          ],
+          "expectedOnPoint": [
+            761.0,
+            189.0
+          ],
+          "pixelError": 0.0006720799421858288,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            273.0,
+            388.0
+          ],
+          "observedOnPoint": [
+            277.0000305175781,
+            385.0008239746094
+          ],
+          "expectedOnPoint": [
+            277.0,
+            385.0
+          ],
+          "pixelError": 0.0008245395560367612,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            815.0,
+            323.0
+          ],
+          "observedOnPoint": [
+            819.0001831054688,
+            319.9998779296875
+          ],
+          "expectedOnPoint": [
+            819.0,
+            320.0
+          ],
+          "pixelError": 0.00022006538546533137,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            196.0,
+            187.0
+          ],
+          "observedOnPoint": [
+            200.0001220703125,
+            184.00001525878906
+          ],
+          "expectedOnPoint": [
+            200.0,
+            184.0
+          ],
+          "pixelError": 0.00012302029034879378,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            286.0,
+            199.0
+          ],
+          "observedOnPoint": [
+            289.99969482421875,
+            195.99954223632812
+          ],
+          "expectedOnPoint": [
+            290.0,
+            196.0
+          ],
+          "pixelError": 0.0005501634636633284,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            229.0,
+            227.0
+          ],
+          "observedOnPoint": [
+            233.000732421875,
+            224.00027465820312
+          ],
+          "expectedOnPoint": [
+            233.0,
+            224.0
+          ],
+          "pixelError": 0.0007822269053940611,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            367.0,
+            600.0
+          ],
+          "observedOnPoint": [
+            370.99969482421875,
+            597.0005493164062
+          ],
+          "expectedOnPoint": [
+            371.0,
+            597.0
+          ],
+          "pixelError": 0.0006283953943473511,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            799.0,
+            115.0
+          ],
+          "observedOnPoint": [
+            802.9998779296875,
+            112.0001220703125
+          ],
+          "expectedOnPoint": [
+            803.0,
+            112.0
+          ],
+          "pixelError": 0.00017263349150062197,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            728.0,
+            546.0
+          ],
+          "observedOnPoint": [
+            731.9998168945312,
+            543.0
+          ],
+          "expectedOnPoint": [
+            732.0,
+            543.0
+          ],
+          "pixelError": 0.00018310546875,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            249.0,
+            331.0
+          ],
+          "observedOnPoint": [
+            252.99989318847656,
+            327.999755859375
+          ],
+          "expectedOnPoint": [
+            253.0,
+            328.0
+          ],
+          "pixelError": 0.0002664832946254422,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            179.0,
+            254.0
+          ],
+          "observedOnPoint": [
+            183.0001678466797,
+            250.9999542236328
+          ],
+          "expectedOnPoint": [
+            183.0,
+            251.0
+          ],
+          "pixelError": 0.00017397696305834014,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            294.0,
+            227.0
+          ],
+          "observedOnPoint": [
+            298.000244140625,
+            223.99989318847656
+          ],
+          "expectedOnPoint": [
+            298.0,
+            224.0
+          ],
+          "pixelError": 0.0002664832946254422,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            163.0,
+            407.0
+          ],
+          "observedOnPoint": [
+            167.00042724609375,
+            403.9995422363281
+          ],
+          "expectedOnPoint": [
+            167.0,
+            404.0
+          ],
+          "pixelError": 0.0006261683510950681,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            735.0,
+            294.0
+          ],
+          "observedOnPoint": [
+            738.9998168945312,
+            291.0005187988281
+          ],
+          "expectedOnPoint": [
+            739.0,
+            291.0
+          ],
+          "pixelError": 0.0005501634636633284,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            562.0,
+            122.0
+          ],
+          "observedOnPoint": [
+            565.9999389648438,
+            119.00027465820312
+          ],
+          "expectedOnPoint": [
+            566.0,
+            119.0
+          ],
+          "pixelError": 0.0002813581682523464,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            291.0,
+            570.0
+          ],
+          "observedOnPoint": [
+            294.999755859375,
+            567.0000610351562
+          ],
+          "expectedOnPoint": [
+            295.0,
+            567.0
+          ],
+          "pixelError": 0.0002516543960948279,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            288.0,
+            478.0
+          ],
+          "observedOnPoint": [
+            291.99993896484375,
+            475.0002136230469
+          ],
+          "expectedOnPoint": [
+            292.0,
+            475.0
+          ],
+          "pixelError": 0.0002221713223047033,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            146.0,
+            529.0
+          ],
+          "observedOnPoint": [
+            150.00001525878906,
+            525.9998168945312
+          ],
+          "expectedOnPoint": [
+            150.0,
+            526.0
+          ],
+          "pixelError": 0.00018374015165393518,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            309.0,
+            137.0
+          ],
+          "observedOnPoint": [
+            312.9999084472656,
+            134.0001220703125
+          ],
+          "expectedOnPoint": [
+            313.0,
+            134.0
+          ],
+          "pixelError": 0.000152587890625,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            274.0,
+            164.0
+          ],
+          "observedOnPoint": [
+            277.9996032714844,
+            160.99961853027344
+          ],
+          "expectedOnPoint": [
+            278.0,
+            161.0
+          ],
+          "pixelError": 0.0005503750243185862,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            133.0,
+            278.0
+          ],
+          "observedOnPoint": [
+            136.99993896484375,
+            275.0000915527344
+          ],
+          "expectedOnPoint": [
+            137.0,
+            275.0
+          ],
+          "pixelError": 0.00011003269273266568,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            373.0,
+            218.0
+          ],
+          "observedOnPoint": [
+            376.99981689453125,
+            214.9993896484375
+          ],
+          "expectedOnPoint": [
+            377.0,
+            215.0
+          ],
+          "pixelError": 0.0006372257390692475,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            440.0,
+            561.0
+          ],
+          "observedOnPoint": [
+            443.999755859375,
+            558.00048828125
+          ],
+          "expectedOnPoint": [
+            444.0,
+            558.0
+          ],
+          "pixelError": 0.0005459150335692846,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            292.0,
+            552.0
+          ],
+          "observedOnPoint": [
+            295.9998779296875,
+            549.0
+          ],
+          "expectedOnPoint": [
+            296.0,
+            549.0
+          ],
+          "pixelError": 0.0001220703125,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            686.0,
+            550.0
+          ],
+          "observedOnPoint": [
+            690.0001220703125,
+            547.0003051757812
+          ],
+          "expectedOnPoint": [
+            690.0,
+            547.0
+          ],
+          "pixelError": 0.00032868437543545555,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            232.0,
+            473.0
+          ],
+          "observedOnPoint": [
+            236.0003204345703,
+            470.00006103515625
+          ],
+          "expectedOnPoint": [
+            236.0,
+            470.0
+          ],
+          "pixelError": 0.0003261956531743156,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            676.0,
+            451.0
+          ],
+          "observedOnPoint": [
+            680.0001220703125,
+            448.0001220703125
+          ],
+          "expectedOnPoint": [
+            680.0,
+            448.0
+          ],
+          "pixelError": 0.00017263349150062197,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            286.0,
+            392.0
+          ],
+          "observedOnPoint": [
+            289.999755859375,
+            389.0000915527344
+          ],
+          "expectedOnPoint": [
+            290.0,
+            389.0
+          ],
+          "pixelError": 0.00026074230179802034,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            470.0,
+            202.0
+          ],
+          "observedOnPoint": [
+            474.0,
+            198.9998016357422
+          ],
+          "expectedOnPoint": [
+            474.0,
+            199.0
+          ],
+          "pixelError": 0.0001983642578125,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            267.0,
+            278.0
+          ],
+          "observedOnPoint": [
+            271.0000305175781,
+            274.9997863769531
+          ],
+          "expectedOnPoint": [
+            271.0,
+            275.0
+          ],
+          "pixelError": 0.00021579186437577745,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            751.0,
+            216.0
+          ],
+          "observedOnPoint": [
+            754.9999389648438,
+            213.0006103515625
+          ],
+          "expectedOnPoint": [
+            755.0,
+            213.0
+          ],
+          "pixelError": 0.0006133957288281793,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            268.0,
+            236.0
+          ],
+          "observedOnPoint": [
+            272.000244140625,
+            233.00010681152344
+          ],
+          "expectedOnPoint": [
+            272.0,
+            233.0
+          ],
+          "pixelError": 0.0002664832946254422,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            161.0,
+            297.0
+          ],
+          "observedOnPoint": [
+            164.99989318847656,
+            294.00006103515625
+          ],
+          "expectedOnPoint": [
+            165.0,
+            294.0
+          ],
+          "pixelError": 0.00012302029034879378,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            824.0,
+            587.0
+          ],
+          "observedOnPoint": [
+            828.0,
+            583.9998168945312
+          ],
+          "expectedOnPoint": [
+            828.0,
+            584.0
+          ],
+          "pixelError": 0.00018310546875,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            594.0,
+            597.0
+          ],
+          "observedOnPoint": [
+            597.9998779296875,
+            593.9999389648438
+          ],
+          "expectedOnPoint": [
+            598.0,
+            594.0
+          ],
+          "pixelError": 0.00013647875839232116,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            244.0,
+            282.0
+          ],
+          "observedOnPoint": [
+            248.00009155273438,
+            279.0008850097656
+          ],
+          "expectedOnPoint": [
+            248.0,
+            279.0
+          ],
+          "pixelError": 0.0008897326499702912,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            260.0,
+            130.0
+          ],
+          "observedOnPoint": [
+            263.99993896484375,
+            127.00016784667969
+          ],
+          "expectedOnPoint": [
+            264.0,
+            127.0
+          ],
+          "pixelError": 0.00017859954697753335,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            799.0,
+            476.0
+          ],
+          "observedOnPoint": [
+            803.0003051757812,
+            472.99896240234375
+          ],
+          "expectedOnPoint": [
+            803.0,
+            473.0
+          ],
+          "pixelError": 0.001081545724284018,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            176.0,
+            376.0
+          ],
+          "observedOnPoint": [
+            180.0003662109375,
+            373.00042724609375
+          ],
+          "expectedOnPoint": [
+            180.0,
+            373.0
+          ],
+          "pixelError": 0.0005627163365046928,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            506.0,
+            194.0
+          ],
+          "observedOnPoint": [
+            509.9998474121094,
+            191.0
+          ],
+          "expectedOnPoint": [
+            510.0,
+            191.0
+          ],
+          "pixelError": 0.000152587890625,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            200.0,
+            220.0
+          ],
+          "observedOnPoint": [
+            204.00010681152344,
+            216.99986267089844
+          ],
+          "expectedOnPoint": [
+            204.0,
+            217.0
+          ],
+          "pixelError": 0.00017397696305834014,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            131.0,
+            339.0
+          ],
+          "observedOnPoint": [
+            134.99998474121094,
+            335.9997253417969
+          ],
+          "expectedOnPoint": [
+            135.0,
+            336.0
+          ],
+          "pixelError": 0.0002750817318316642,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            123.0,
+            401.0
+          ],
+          "observedOnPoint": [
+            127.00004577636719,
+            397.9994201660156
+          ],
+          "expectedOnPoint": [
+            127.0,
+            398.0
+          ],
+          "pixelError": 0.000581638139420957,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            738.0,
+            314.0
+          ],
+          "observedOnPoint": [
+            742.0006713867188,
+            311.0000915527344
+          ],
+          "expectedOnPoint": [
+            742.0,
+            311.0
+          ],
+          "pixelError": 0.000677600198705277,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            184.0,
+            186.0
+          ],
+          "observedOnPoint": [
+            188.00027465820312,
+            183.00001525878906
+          ],
+          "expectedOnPoint": [
+            188.0,
+            183.0
+          ],
+          "pixelError": 0.0002750817318316642,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            258.0,
+            586.0
+          ],
+          "observedOnPoint": [
+            261.9997253417969,
+            583.0
+          ],
+          "expectedOnPoint": [
+            262.0,
+            583.0
+          ],
+          "pixelError": 0.000274658203125,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            752.0,
+            498.0
+          ],
+          "observedOnPoint": [
+            755.9999389648438,
+            495.00006103515625
+          ],
+          "expectedOnPoint": [
+            756.0,
+            495.0
+          ],
+          "pixelError": 8.631674575031098e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            280.0,
+            513.0
+          ],
+          "observedOnPoint": [
+            284.00018310546875,
+            510.0000305175781
+          ],
+          "expectedOnPoint": [
+            284.0,
+            510.0
+          ],
+          "pixelError": 0.0001856311807341986,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            155.0,
+            526.0
+          ],
+          "observedOnPoint": [
+            158.99984741210938,
+            522.9998168945312
+          ],
+          "expectedOnPoint": [
+            159.0,
+            523.0
+          ],
+          "pixelError": 0.00023834990466023724,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            776.0,
+            299.0
+          ],
+          "observedOnPoint": [
+            779.9998779296875,
+            295.9999694824219
+          ],
+          "expectedOnPoint": [
+            780.0,
+            296.0
+          ],
+          "pixelError": 0.00012582719804741396,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            665.0,
+            252.0
+          ],
+          "observedOnPoint": [
+            668.9998779296875,
+            249.00025939941406
+          ],
+          "expectedOnPoint": [
+            669.0,
+            249.0
+          ],
+          "pixelError": 0.0002866866184700918,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            726.0,
+            507.0
+          ],
+          "observedOnPoint": [
+            730.0000610351562,
+            503.99981689453125
+          ],
+          "expectedOnPoint": [
+            730.0,
+            504.0
+          ],
+          "pixelError": 0.00019301011109426145,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            224.0,
+            538.0
+          ],
+          "observedOnPoint": [
+            227.9998016357422,
+            534.9999389648438
+          ],
+          "expectedOnPoint": [
+            228.0,
+            535.0
+          ],
+          "pixelError": 0.0002075419694326087,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            229.0,
+            305.0
+          ],
+          "observedOnPoint": [
+            233.00013732910156,
+            301.9998779296875
+          ],
+          "expectedOnPoint": [
+            233.0,
+            302.0
+          ],
+          "pixelError": 0.00018374015165393518,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            273.0,
+            587.0
+          ],
+          "observedOnPoint": [
+            277.00006103515625,
+            583.999755859375
+          ],
+          "expectedOnPoint": [
+            277.0,
+            584.0
+          ],
+          "pixelError": 0.0002516543960948279,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            245.0,
+            299.0
+          ],
+          "observedOnPoint": [
+            248.9998779296875,
+            296.0
+          ],
+          "expectedOnPoint": [
+            249.0,
+            296.0
+          ],
+          "pixelError": 0.0001220703125,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            734.0,
+            197.0
+          ],
+          "observedOnPoint": [
+            738.0001831054688,
+            194.00018310546875
+          ],
+          "expectedOnPoint": [
+            738.0,
+            194.0
+          ],
+          "pixelError": 0.0002589502372509329,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            689.0,
+            421.0
+          ],
+          "observedOnPoint": [
+            693.0003662109375,
+            417.9998474121094
+          ],
+          "expectedOnPoint": [
+            693.0,
+            418.0
+          ],
+          "pixelError": 0.000396728515625,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            614.0,
+            171.0
+          ],
+          "observedOnPoint": [
+            617.999755859375,
+            167.99990844726562
+          ],
+          "expectedOnPoint": [
+            618.0,
+            168.0
+          ],
+          "pixelError": 0.00026074230179802034,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            272.0,
+            179.0
+          ],
+          "observedOnPoint": [
+            276.00006103515625,
+            176.00003051757812
+          ],
+          "expectedOnPoint": [
+            276.0,
+            176.0
+          ],
+          "pixelError": 6.823937919616058e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            697.0,
+            578.0
+          ],
+          "observedOnPoint": [
+            701.0,
+            575.0001831054688
+          ],
+          "expectedOnPoint": [
+            701.0,
+            575.0
+          ],
+          "pixelError": 0.00018310546875,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            807.0,
+            477.0
+          ],
+          "observedOnPoint": [
+            811.0009765625,
+            473.99969482421875
+          ],
+          "expectedOnPoint": [
+            811.0,
+            474.0
+          ],
+          "pixelError": 0.0010231356576074348,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            167.0,
+            129.0
+          ],
+          "observedOnPoint": [
+            170.9999237060547,
+            125.99967956542969
+          ],
+          "expectedOnPoint": [
+            171.0,
+            126.0
+          ],
+          "pixelError": 0.00032939198524357456,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            293.0,
+            594.0
+          ],
+          "observedOnPoint": [
+            297.0000305175781,
+            590.9996948242188
+          ],
+          "expectedOnPoint": [
+            297.0,
+            591.0
+          ],
+          "pixelError": 0.00030669786441408966,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            599.0,
+            132.0
+          ],
+          "observedOnPoint": [
+            603.0001220703125,
+            129.00045776367188
+          ],
+          "expectedOnPoint": [
+            603.0,
+            129.0
+          ],
+          "pixelError": 0.00047376021411926343,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            729.0,
+            350.0
+          ],
+          "observedOnPoint": [
+            733.0003662109375,
+            347.00018310546875
+          ],
+          "expectedOnPoint": [
+            733.0,
+            347.0
+          ],
+          "pixelError": 0.00040943627517696347,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            277.0,
+            416.0
+          ],
+          "observedOnPoint": [
+            281.0001525878906,
+            413.0005187988281
+          ],
+          "expectedOnPoint": [
+            281.0,
+            413.0
+          ],
+          "pixelError": 0.000540772862142009,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            308.0,
+            164.0
+          ],
+          "observedOnPoint": [
+            312.0003662109375,
+            161.0001678466797
+          ],
+          "expectedOnPoint": [
+            312.0,
+            161.0
+          ],
+          "pixelError": 0.00040284359077282975,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            479.0,
+            123.0
+          ],
+          "observedOnPoint": [
+            483.0002136230469,
+            120.00000762939453
+          ],
+          "expectedOnPoint": [
+            483.0,
+            120.0
+          ],
+          "pixelError": 0.00021375924264712372,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            293.0,
+            458.0
+          ],
+          "observedOnPoint": [
+            297.0004577636719,
+            454.9999084472656
+          ],
+          "expectedOnPoint": [
+            297.0,
+            455.0
+          ],
+          "pixelError": 0.00046682917910090195,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            207.0,
+            493.0
+          ],
+          "observedOnPoint": [
+            210.99940490722656,
+            490.0007629394531
+          ],
+          "expectedOnPoint": [
+            211.0,
+            490.0
+          ],
+          "pixelError": 0.0009675804969780084,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            791.0,
+            332.0
+          ],
+          "observedOnPoint": [
+            795.0,
+            329.0000915527344
+          ],
+          "expectedOnPoint": [
+            795.0,
+            329.0
+          ],
+          "pixelError": 9.1552734375e-05,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            544.0,
+            113.0
+          ],
+          "observedOnPoint": [
+            548.0000610351562,
+            109.99991607666016
+          ],
+          "expectedOnPoint": [
+            548.0,
+            110.0
+          ],
+          "pixelError": 0.00010377098471630435,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            811.0,
+            396.0
+          ],
+          "observedOnPoint": [
+            814.9998779296875,
+            393.0000305175781
+          ],
+          "expectedOnPoint": [
+            815.0,
+            393.0
+          ],
+          "pixelError": 0.00012582719804741396,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            292.0,
+            133.0
+          ],
+          "observedOnPoint": [
+            295.9998779296875,
+            129.99984741210938
+          ],
+          "expectedOnPoint": [
+            296.0,
+            130.0
+          ],
+          "pixelError": 0.000195407844159938,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            237.0,
+            493.0
+          ],
+          "observedOnPoint": [
+            240.9998779296875,
+            489.9999694824219
+          ],
+          "expectedOnPoint": [
+            241.0,
+            490.0
+          ],
+          "pixelError": 0.00012582719804741396,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            129.0,
+            597.0
+          ],
+          "observedOnPoint": [
+            133.00050354003906,
+            594.0005493164062
+          ],
+          "expectedOnPoint": [
+            133.0,
+            594.0
+          ],
+          "pixelError": 0.0007451852689864978,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            199.0,
+            191.0
+          ],
+          "observedOnPoint": [
+            202.99989318847656,
+            187.99989318847656
+          ],
+          "expectedOnPoint": [
+            203.0,
+            188.0
+          ],
+          "pixelError": 0.0001510543050630442,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            554.0,
+            220.0
+          ],
+          "observedOnPoint": [
+            558.0001220703125,
+            217.00009155273438
+          ],
+          "expectedOnPoint": [
+            558.0,
+            217.0
+          ],
+          "pixelError": 0.000152587890625,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            541.0,
+            127.0
+          ],
+          "observedOnPoint": [
+            544.9998779296875,
+            124.00020599365234
+          ],
+          "expectedOnPoint": [
+            545.0,
+            124.0
+          ],
+          "pixelError": 0.0002394463321910891,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            537.0,
+            134.0
+          ],
+          "observedOnPoint": [
+            541.0,
+            131.0001220703125
+          ],
+          "expectedOnPoint": [
+            541.0,
+            131.0
+          ],
+          "pixelError": 0.0001220703125,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            671.0,
+            422.0
+          ],
+          "observedOnPoint": [
+            674.9998168945312,
+            418.998779296875
+          ],
+          "expectedOnPoint": [
+            675.0,
+            419.0
+          ],
+          "pixelError": 0.0012343596445408133,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            224.0,
+            165.0
+          ],
+          "observedOnPoint": [
+            227.99996948242188,
+            162.0001983642578
+          ],
+          "expectedOnPoint": [
+            228.0,
+            162.0
+          ],
+          "pixelError": 0.0002006980352472825,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            349.0,
+            596.0
+          ],
+          "observedOnPoint": [
+            353.0001525878906,
+            592.9999389648438
+          ],
+          "expectedOnPoint": [
+            353.0,
+            593.0
+          ],
+          "pixelError": 0.00016434218771772778,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            290.0,
+            488.0
+          ],
+          "observedOnPoint": [
+            293.99993896484375,
+            485.0001525878906
+          ],
+          "expectedOnPoint": [
+            294.0,
+            485.0
+          ],
+          "pixelError": 0.00016434218771772778,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            662.0,
+            240.0
+          ],
+          "observedOnPoint": [
+            666.0,
+            236.9998779296875
+          ],
+          "expectedOnPoint": [
+            666.0,
+            237.0
+          ],
+          "pixelError": 0.0001220703125,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            131.0,
+            535.0
+          ],
+          "observedOnPoint": [
+            135.00009155273438,
+            532.0001831054688
+          ],
+          "expectedOnPoint": [
+            135.0,
+            532.0
+          ],
+          "pixelError": 0.00020471813758848173,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            762.0,
+            307.0
+          ],
+          "observedOnPoint": [
+            766.0001831054688,
+            303.9992370605469
+          ],
+          "expectedOnPoint": [
+            766.0,
+            304.0
+          ],
+          "pixelError": 0.000784604500255276,
+          "existingTolerancePixels": 0.5,
+          "matched": true
+        }
+      ],
+      "scope": "Image crop transform correspondence, not artistic quality or release gate"
+    },
+    "oppositeDirection": {
+      "status": "FAILED_TARGET_CORRESPONDENCE",
+      "detected": 200,
+      "valid": 196,
+      "agreement": 0.0,
+      "medianErrorPixels": 10.000007630375212,
+      "maximumErrorPixels": 10.00106507158938,
+      "medianObservedDisplacement": [
+        -4.0,
+        3.0
+      ],
+      "medianExpectedDisplacement": [
+        4.0,
+        -3.0
+      ],
+      "features": [
+        {
+          "offPoint": [
+            543.0,
+            196.0
+          ],
+          "observedOnPoint": [
+            539.0000610351562,
+            198.99984741210938
+          ],
+          "expectedOnPoint": [
+            547.0,
+            193.0
+          ],
+          "pixelError": 9.999859619505708,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            254.0,
+            450.0
+          ],
+          "observedOnPoint": [
+            250.0000457763672,
+            452.9999084472656
+          ],
+          "expectedOnPoint": [
+            258.0,
+            447.0
+          ],
+          "pixelError": 9.9999084473704,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            591.0,
+            573.0
+          ],
+          "observedOnPoint": [
+            587.0000610351562,
+            575.9999389648438
+          ],
+          "expectedOnPoint": [
+            595.0,
+            570.0
+          ],
+          "pixelError": 9.9999145507887,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            825.0,
+            474.0
+          ],
+          "observedOnPoint": [
+            820.9998779296875,
+            477.0000305175781
+          ],
+          "expectedOnPoint": [
+            829.0,
+            471.0
+          ],
+          "pixelError": 10.000115966916082,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            716.0,
+            194.0
+          ],
+          "observedOnPoint": [
+            711.9998779296875,
+            197.00013732910156
+          ],
+          "expectedOnPoint": [
+            720.0,
+            191.0
+          ],
+          "pixelError": 10.000180053777992,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            269.0,
+            244.0
+          ],
+          "observedOnPoint": [
+            264.9999694824219,
+            246.99989318847656
+          ],
+          "expectedOnPoint": [
+            273.0,
+            241.0
+          ],
+          "pixelError": 9.999960327686743,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            802.0,
+            596.0
+          ],
+          "observedOnPoint": [
+            798.0003662109375,
+            598.9996337890625
+          ],
+          "expectedOnPoint": [
+            806.0,
+            593.0
+          ],
+          "pixelError": 9.999487304955734,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            505.0,
+            174.0
+          ],
+          "observedOnPoint": [
+            500.99951171875,
+            177.00033569335938
+          ],
+          "expectedOnPoint": [
+            509.0,
+            171.0
+          ],
+          "pixelError": 10.000592041045426,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            823.0,
+            150.0
+          ],
+          "observedOnPoint": [
+            819.0001220703125,
+            152.9994354248047
+          ],
+          "expectedOnPoint": [
+            827.0,
+            147.0
+          ],
+          "pixelError": 9.999563605793133,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            668.0,
+            168.0
+          ],
+          "observedOnPoint": [
+            664.0001831054688,
+            171.0000762939453
+          ],
+          "expectedOnPoint": [
+            672.0,
+            165.0
+          ],
+          "pixelError": 9.999899293452517,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            715.0,
+            241.0
+          ],
+          "observedOnPoint": [
+            710.9998168945312,
+            243.99996948242188
+          ],
+          "expectedOnPoint": [
+            719.0,
+            238.0
+          ],
+          "pixelError": 10.000128174729634,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            845.0,
+            258.0
+          ],
+          "observedOnPoint": [
+            841.0,
+            261.0001220703125
+          ],
+          "expectedOnPoint": [
+            849.0,
+            255.0
+          ],
+          "pixelError": 10.000073242664334,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            209.0,
+            469.0
+          ],
+          "observedOnPoint": [
+            204.99989318847656,
+            472.0001525878906
+          ],
+          "expectedOnPoint": [
+            213.0,
+            466.0
+          ],
+          "pixelError": 10.000177002121227,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            285.0,
+            131.0
+          ],
+          "observedOnPoint": [
+            281.0009765625,
+            134.0000762939453
+          ],
+          "expectedOnPoint": [
+            289.0,
+            128.0
+          ],
+          "pixelError": 9.999264547297408,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            456.0,
+            555.0
+          ],
+          "observedOnPoint": [
+            452.000244140625,
+            558.000244140625
+          ],
+          "expectedOnPoint": [
+            460.0,
+            552.0
+          ],
+          "pixelError": 9.999951177716284,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            385.0,
+            116.0
+          ],
+          "observedOnPoint": [
+            381.0001220703125,
+            118.99988555908203
+          ],
+          "expectedOnPoint": [
+            389.0,
+            113.0
+          ],
+          "pixelError": 9.999833679215984,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            235.0,
+            118.0
+          ],
+          "observedOnPoint": [
+            231.00003051757812,
+            121.00015258789062
+          ],
+          "expectedOnPoint": [
+            239.0,
+            115.0
+          ],
+          "pixelError": 10.000067139657208,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            697.0,
+            400.0
+          ],
+          "observedOnPoint": [
+            693.0005493164062,
+            403.0000915527344
+          ],
+          "expectedOnPoint": [
+            701.0,
+            397.0
+          ],
+          "pixelError": 9.999615486629619,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            758.0,
+            425.0
+          ],
+          "observedOnPoint": [
+            754.000244140625,
+            427.99993896484375
+          ],
+          "expectedOnPoint": [
+            762.0,
+            422.0
+          ],
+          "pixelError": 9.999768066883098,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            652.0,
+            603.0
+          ],
+          "observedOnPoint": [
+            648.0000610351562,
+            605.9998168945312
+          ],
+          "expectedOnPoint": [
+            656.0,
+            600.0
+          ],
+          "pixelError": 9.999841309197256,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            592.0,
+            160.0
+          ],
+          "observedOnPoint": [
+            588.0001220703125,
+            163.00001525878906
+          ],
+          "expectedOnPoint": [
+            596.0,
+            157.0
+          ],
+          "pixelError": 9.999911499388519,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            579.0,
+            183.0
+          ],
+          "observedOnPoint": [
+            575.0001220703125,
+            185.99996948242188
+          ],
+          "expectedOnPoint": [
+            583.0,
+            180.0
+          ],
+          "pixelError": 9.999884033322335,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            698.0,
+            555.0
+          ],
+          "observedOnPoint": [
+            693.9998168945312,
+            558.0
+          ],
+          "expectedOnPoint": [
+            702.0,
+            552.0
+          ],
+          "pixelError": 10.000146484978488,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            815.0,
+            454.0
+          ],
+          "observedOnPoint": [
+            810.9993286132812,
+            457.0002136230469
+          ],
+          "expectedOnPoint": [
+            819.0,
+            451.0
+          ],
+          "pixelError": 10.000665285892605,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            674.0,
+            329.0
+          ],
+          "observedOnPoint": [
+            670.0001220703125,
+            332.0002136230469
+          ],
+          "expectedOnPoint": [
+            678.0,
+            326.0
+          ],
+          "pixelError": 10.000030520558347,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            780.0,
+            221.0
+          ],
+          "observedOnPoint": [
+            775.9999389648438,
+            224.0003204345703
+          ],
+          "expectedOnPoint": [
+            784.0,
+            218.0
+          ],
+          "pixelError": 10.000241091281117,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            728.0,
+            317.0
+          ],
+          "observedOnPoint": [
+            723.9998779296875,
+            319.9999694824219
+          ],
+          "expectedOnPoint": [
+            732.0,
+            314.0
+          ],
+          "pixelError": 10.000079346179959,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            617.0,
+            568.0
+          ],
+          "observedOnPoint": [
+            612.999755859375,
+            571.0
+          ],
+          "expectedOnPoint": [
+            621.0,
+            565.0
+          ],
+          "pixelError": 10.000195313572863,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            702.0,
+            165.0
+          ],
+          "observedOnPoint": [
+            697.9993286132812,
+            167.99996948242188
+          ],
+          "expectedOnPoint": [
+            706.0,
+            162.0
+          ],
+          "pixelError": 10.000518807954613,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            123.0,
+            567.0
+          ],
+          "observedOnPoint": [
+            118.99943542480469,
+            570.0006103515625
+          ],
+          "expectedOnPoint": [
+            127.0,
+            564.0
+          ],
+          "pixelError": 10.00081787221171,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            802.0,
+            602.0
+          ],
+          "observedOnPoint": [
+            797.9993896484375,
+            604.999755859375
+          ],
+          "expectedOnPoint": [
+            806.0,
+            599.0
+          ],
+          "pixelError": 10.00034181263989,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            762.0,
+            229.0
+          ],
+          "observedOnPoint": [
+            758.0001220703125,
+            231.9998779296875
+          ],
+          "expectedOnPoint": [
+            766.0,
+            226.0
+          ],
+          "pixelError": 9.999829101592303,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            514.0,
+            174.0
+          ],
+          "observedOnPoint": [
+            510.00006103515625,
+            176.99996948242188
+          ],
+          "expectedOnPoint": [
+            518.0,
+            171.0
+          ],
+          "pixelError": 9.999932861335576,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            603.0,
+            197.0
+          ],
+          "observedOnPoint": [
+            599.0001220703125,
+            199.9999237060547
+          ],
+          "expectedOnPoint": [
+            607.0,
+            194.0
+          ],
+          "pixelError": 9.999856567390264,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            226.0,
+            487.0
+          ],
+          "observedOnPoint": [
+            222.0000762939453,
+            490.00018310546875
+          ],
+          "expectedOnPoint": [
+            230.0,
+            484.0
+          ],
+          "pixelError": 10.0000488299732,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            441.0,
+            206.0
+          ],
+          "observedOnPoint": [
+            437.0000305175781,
+            208.9998779296875
+          ],
+          "expectedOnPoint": [
+            445.0,
+            203.0
+          ],
+          "pixelError": 9.99990234406479,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            792.0,
+            506.0
+          ],
+          "observedOnPoint": [
+            787.9998779296875,
+            509.00006103515625
+          ],
+          "expectedOnPoint": [
+            796.0,
+            503.0
+          ],
+          "pixelError": 10.000134277373553,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            390.0,
+            168.0
+          ],
+          "observedOnPoint": [
+            385.9998474121094,
+            170.99989318847656
+          ],
+          "expectedOnPoint": [
+            394.0,
+            165.0
+          ],
+          "pixelError": 10.000057984964913,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            816.0,
+            372.0
+          ],
+          "observedOnPoint": [
+            811.999755859375,
+            374.9996032714844
+          ],
+          "expectedOnPoint": [
+            820.0,
+            369.0
+          ],
+          "pixelError": 9.999957286149309,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            834.0,
+            446.0
+          ],
+          "observedOnPoint": [
+            829.9996337890625,
+            449.00054931640625
+          ],
+          "expectedOnPoint": [
+            838.0,
+            443.0
+          ],
+          "pixelError": 10.000622561007587,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            556.0,
+            573.0
+          ],
+          "observedOnPoint": [
+            552.0000610351562,
+            575.9998168945312
+          ],
+          "expectedOnPoint": [
+            560.0,
+            570.0
+          ],
+          "pixelError": 9.999841309197256,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            628.0,
+            193.0
+          ],
+          "observedOnPoint": [
+            624.0,
+            195.9998779296875
+          ],
+          "expectedOnPoint": [
+            632.0,
+            190.0
+          ],
+          "pixelError": 9.999926758289341,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            463.0,
+            211.0
+          ],
+          "observedOnPoint": [
+            458.9998779296875,
+            213.9999542236328
+          ],
+          "expectedOnPoint": [
+            467.0,
+            208.0
+          ],
+          "pixelError": 10.00007019103318,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            193.0,
+            379.0
+          ],
+          "observedOnPoint": [
+            189.0,
+            382.00006103515625
+          ],
+          "expectedOnPoint": [
+            197.0,
+            376.0
+          ],
+          "pixelError": 10.000036621212958,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            114.0,
+            184.0
+          ],
+          "observedOnPoint": [
+            109.99996948242188,
+            187.00003051757812
+          ],
+          "expectedOnPoint": [
+            118.0,
+            181.0
+          ],
+          "pixelError": 10.000042724611237,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            220.0,
+            238.0
+          ],
+          "observedOnPoint": [
+            216.00076293945312,
+            240.9995880126953
+          ],
+          "expectedOnPoint": [
+            224.0,
+            235.0
+          ],
+          "pixelError": 9.999142456876184,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            267.0,
+            290.0
+          ],
+          "observedOnPoint": [
+            263.0000305175781,
+            293.000244140625
+          ],
+          "expectedOnPoint": [
+            271.0,
+            287.0
+          ],
+          "pixelError": 10.000122072594213,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            491.0,
+            581.0
+          ],
+          "observedOnPoint": [
+            486.9995422363281,
+            583.9994506835938
+          ],
+          "expectedOnPoint": [
+            495.0,
+            578.0
+          ],
+          "pixelError": 10.000036646591406,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            338.0,
+            189.0
+          ],
+          "observedOnPoint": [
+            333.99908447265625,
+            192.00018310546875
+          ],
+          "expectedOnPoint": [
+            342.0,
+            186.0
+          ],
+          "pixelError": 10.00084229326925,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            492.0,
+            198.0
+          ],
+          "observedOnPoint": [
+            488.00030517578125,
+            201.00088500976562
+          ],
+          "expectedOnPoint": [
+            496.0,
+            195.0
+          ],
+          "pixelError": 10.00028690493738,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            244.0,
+            426.0
+          ],
+          "observedOnPoint": [
+            240.0000762939453,
+            428.9998474121094
+          ],
+          "expectedOnPoint": [
+            248.0,
+            423.0
+          ],
+          "pixelError": 9.999847412400419,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            254.0,
+            267.0
+          ],
+          "observedOnPoint": [
+            249.99966430664062,
+            269.9994201660156
+          ],
+          "expectedOnPoint": [
+            258.0,
+            264.0
+          ],
+          "pixelError": 9.999920676427138,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            257.0,
+            226.0
+          ],
+          "observedOnPoint": [
+            253.0001983642578,
+            229.0008544921875
+          ],
+          "expectedOnPoint": [
+            261.0,
+            223.0
+          ],
+          "pixelError": 10.000354036114436,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            754.0,
+            327.0
+          ],
+          "observedOnPoint": [
+            750.0001831054688,
+            329.9998779296875
+          ],
+          "expectedOnPoint": [
+            758.0,
+            324.0
+          ],
+          "pixelError": 9.999780273444951,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            693.0,
+            549.0
+          ],
+          "observedOnPoint": [
+            688.9996948242188,
+            552.0009765625
+          ],
+          "expectedOnPoint": [
+            697.0,
+            546.0
+          ],
+          "pixelError": 10.00083009601236,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            188.0,
+            598.0
+          ],
+          "observedOnPoint": [
+            183.99984741210938,
+            600.9995727539062
+          ],
+          "expectedOnPoint": [
+            192.0,
+            595.0
+          ],
+          "pixelError": 9.99986573204597,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            264.0,
+            467.0
+          ],
+          "observedOnPoint": [
+            259.9997253417969,
+            469.9997253417969
+          ],
+          "expectedOnPoint": [
+            268.0,
+            464.0
+          ],
+          "pixelError": 10.000054939033422,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            223.0,
+            438.0
+          ],
+          "observedOnPoint": [
+            218.99957275390625,
+            441.0003356933594
+          ],
+          "expectedOnPoint": [
+            227.0,
+            435.0
+          ],
+          "pixelError": 10.000543212898075,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            574.0,
+            110.0
+          ],
+          "observedOnPoint": [
+            569.9996337890625,
+            112.99966430664062
+          ],
+          "expectedOnPoint": [
+            578.0,
+            107.0
+          ],
+          "pixelError": 10.000091564655195,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            399.0,
+            586.0
+          ],
+          "observedOnPoint": [
+            394.99993896484375,
+            589.0001220703125
+          ],
+          "expectedOnPoint": [
+            403.0,
+            583.0
+          ],
+          "pixelError": 10.000122070498762,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            245.0,
+            372.0
+          ],
+          "observedOnPoint": [
+            241.00003051757812,
+            374.9999084472656
+          ],
+          "expectedOnPoint": [
+            249.0,
+            369.0
+          ],
+          "pixelError": 9.99992065444775,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            235.0,
+            174.0
+          ],
+          "observedOnPoint": [
+            231.00021362304688,
+            176.9999542236328
+          ],
+          "expectedOnPoint": [
+            239.0,
+            171.0
+          ],
+          "pixelError": 9.99980163616129,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            280.0,
+            568.0
+          ],
+          "observedOnPoint": [
+            275.9999084472656,
+            571.0000610351562
+          ],
+          "expectedOnPoint": [
+            284.0,
+            565.0
+          ],
+          "pixelError": 10.000109863283113,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            271.0,
+            370.0
+          ],
+          "observedOnPoint": [
+            267.0002136230469,
+            372.9993896484375
+          ],
+          "expectedOnPoint": [
+            275.0,
+            367.0
+          ],
+          "pixelError": 9.999462897109217,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            125.0,
+            257.0
+          ],
+          "observedOnPoint": [
+            121.00022888183594,
+            260.00006103515625
+          ],
+          "expectedOnPoint": [
+            129.0,
+            254.0
+          ],
+          "pixelError": 9.999853517357751,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            778.0,
+            310.0
+          ],
+          "observedOnPoint": [
+            773.9994506835938,
+            312.999755859375
+          ],
+          "expectedOnPoint": [
+            782.0,
+            307.0
+          ],
+          "pixelError": 10.00029298252572,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            159.0,
+            225.0
+          ],
+          "observedOnPoint": [
+            154.9998321533203,
+            227.99981689453125
+          ],
+          "expectedOnPoint": [
+            163.0,
+            222.0
+          ],
+          "pixelError": 10.000024417117697,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            738.0,
+            200.0
+          ],
+          "observedOnPoint": [
+            733.9999389648438,
+            202.9999237060547
+          ],
+          "expectedOnPoint": [
+            742.0,
+            197.0
+          ],
+          "pixelError": 10.00000305223465,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            796.0,
+            592.0
+          ],
+          "observedOnPoint": [
+            791.9998168945312,
+            594.999755859375
+          ],
+          "expectedOnPoint": [
+            800.0,
+            589.0
+          ],
+          "pixelError": 10.000000004656613,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            274.0,
+            486.0
+          ],
+          "observedOnPoint": [
+            270.0000305175781,
+            488.9998474121094
+          ],
+          "expectedOnPoint": [
+            278.0,
+            483.0
+          ],
+          "pixelError": 9.999884033741436,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            225.0,
+            209.0
+          ],
+          "observedOnPoint": [
+            221.00039672851562,
+            211.99989318847656
+          ],
+          "expectedOnPoint": [
+            229.0,
+            206.0
+          ],
+          "pixelError": 9.999618531437635,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            192.0,
+            324.0
+          ],
+          "observedOnPoint": [
+            187.99993896484375,
+            327.00018310546875
+          ],
+          "expectedOnPoint": [
+            196.0,
+            321.0
+          ],
+          "pixelError": 10.000158692009737,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            526.0,
+            149.0
+          ],
+          "observedOnPoint": [
+            522.0001831054688,
+            151.99981689453125
+          ],
+          "expectedOnPoint": [
+            530.0,
+            146.0
+          ],
+          "pixelError": 9.999743652410807,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            379.0,
+            207.0
+          ],
+          "observedOnPoint": [
+            374.9989929199219,
+            209.9998321533203
+          ],
+          "expectedOnPoint": [
+            383.0,
+            204.0
+          ],
+          "pixelError": 10.000704983323752,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            756.0,
+            139.0
+          ],
+          "observedOnPoint": [
+            751.9999389648438,
+            141.9998779296875
+          ],
+          "expectedOnPoint": [
+            760.0,
+            136.0
+          ],
+          "pixelError": 9.999975586839023,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            244.0,
+            363.0
+          ],
+          "observedOnPoint": [
+            239.9998321533203,
+            366.0000305175781
+          ],
+          "expectedOnPoint": [
+            248.0,
+            360.0
+          ],
+          "pixelError": 10.00015258818166,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            702.0,
+            183.0
+          ],
+          "observedOnPoint": [
+            697.9998779296875,
+            185.99996948242188
+          ],
+          "expectedOnPoint": [
+            706.0,
+            180.0
+          ],
+          "pixelError": 10.000079346179959,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            228.0,
+            356.0
+          ],
+          "observedOnPoint": [
+            223.9996337890625,
+            358.9993896484375
+          ],
+          "expectedOnPoint": [
+            232.0,
+            353.0
+          ],
+          "pixelError": 9.999926782876436,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            260.0,
+            364.0
+          ],
+          "observedOnPoint": [
+            255.99990844726562,
+            366.9998779296875
+          ],
+          "expectedOnPoint": [
+            264.0,
+            361.0
+          ],
+          "pixelError": 10.000000001164153,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            160.0,
+            303.0
+          ],
+          "observedOnPoint": [
+            155.9998779296875,
+            306.00006103515625
+          ],
+          "expectedOnPoint": [
+            164.0,
+            300.0
+          ],
+          "pixelError": 10.000134277373553,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            345.0,
+            187.0
+          ],
+          "observedOnPoint": [
+            340.9999694824219,
+            189.99989318847656
+          ],
+          "expectedOnPoint": [
+            349.0,
+            184.0
+          ],
+          "pixelError": 9.999960327686743,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            812.0,
+            431.0
+          ],
+          "observedOnPoint": [
+            807.9993896484375,
+            433.99951171875
+          ],
+          "expectedOnPoint": [
+            816.0,
+            428.0
+          ],
+          "pixelError": 10.000195341139472,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            633.0,
+            604.0
+          ],
+          "observedOnPoint": [
+            628.9999389648438,
+            607.0001220703125
+          ],
+          "expectedOnPoint": [
+            637.0,
+            601.0
+          ],
+          "pixelError": 10.000122070498762,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            544.0,
+            220.0
+          ],
+          "observedOnPoint": [
+            540.0000610351562,
+            223.00010681152344
+          ],
+          "expectedOnPoint": [
+            548.0,
+            217.0
+          ],
+          "pixelError": 10.00001525953412,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            221.0,
+            205.0
+          ],
+          "observedOnPoint": [
+            216.99981689453125,
+            207.9991912841797
+          ],
+          "expectedOnPoint": [
+            225.0,
+            202.0
+          ],
+          "pixelError": 9.999661283523814,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            136.0,
+            402.0
+          ],
+          "observedOnPoint": [
+            132.00009155273438,
+            405.0
+          ],
+          "expectedOnPoint": [
+            140.0,
+            399.0
+          ],
+          "pixelError": 9.999926757963376,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            845.0,
+            238.0
+          ],
+          "observedOnPoint": [
+            841.0000610351562,
+            241.00013732910156
+          ],
+          "expectedOnPoint": [
+            849.0,
+            235.0
+          ],
+          "pixelError": 10.000033570408817,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            695.0,
+            606.0
+          ],
+          "observedOnPoint": [
+            691.0004272460938,
+            609.00048828125
+          ],
+          "expectedOnPoint": [
+            699.0,
+            603.0
+          ],
+          "pixelError": 9.999951192803783,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            808.0,
+            569.0
+          ],
+          "observedOnPoint": [
+            804.0001220703125,
+            571.999755859375
+          ],
+          "expectedOnPoint": [
+            812.0,
+            566.0
+          ],
+          "pixelError": 9.999755860120077,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            733.0,
+            327.0
+          ],
+          "observedOnPoint": [
+            729.0,
+            329.99993896484375
+          ],
+          "expectedOnPoint": [
+            737.0,
+            324.0
+          ],
+          "pixelError": 9.99996337902546,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            220.0,
+            384.0
+          ],
+          "observedOnPoint": [
+            216.00021362304688,
+            386.9997253417969
+          ],
+          "expectedOnPoint": [
+            224.0,
+            381.0
+          ],
+          "pixelError": 9.999664307059735,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            131.0,
+            272.0
+          ],
+          "observedOnPoint": [
+            127.00080871582031,
+            274.9996032714844
+          ],
+          "expectedOnPoint": [
+            135.0,
+            269.0
+          ],
+          "pixelError": 9.999114991643125,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            276.0,
+            430.0
+          ],
+          "observedOnPoint": [
+            271.9998474121094,
+            433.00006103515625
+          ],
+          "expectedOnPoint": [
+            280.0,
+            427.0
+          ],
+          "pixelError": 10.000158691497518,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            132.0,
+            465.0
+          ],
+          "observedOnPoint": [
+            127.99987030029297,
+            468.0000305175781
+          ],
+          "expectedOnPoint": [
+            136.0,
+            462.0
+          ],
+          "pixelError": 10.000122070455108,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            140.0,
+            239.0
+          ],
+          "observedOnPoint": [
+            135.9998321533203,
+            242.00013732910156
+          ],
+          "expectedOnPoint": [
+            144.0,
+            236.0
+          ],
+          "pixelError": 10.000216674808879,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            125.0,
+            530.0
+          ],
+          "observedOnPoint": [
+            121.000244140625,
+            533.0
+          ],
+          "expectedOnPoint": [
+            129.0,
+            527.0
+          ],
+          "pixelError": 9.999804688572905,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            205.0,
+            219.0
+          ],
+          "observedOnPoint": [
+            201.00013732910156,
+            222.00009155273438
+          ],
+          "expectedOnPoint": [
+            209.0,
+            216.0
+          ],
+          "pixelError": 9.999945069570567,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            745.0,
+            279.0
+          ],
+          "observedOnPoint": [
+            741.0,
+            281.999755859375
+          ],
+          "expectedOnPoint": [
+            749.0,
+            276.0
+          ],
+          "pixelError": 9.999853517532376,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            705.0,
+            113.0
+          ],
+          "observedOnPoint": [
+            701.0001220703125,
+            115.99988555908203
+          ],
+          "expectedOnPoint": [
+            709.0,
+            110.0
+          ],
+          "pixelError": 9.999833679215984,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            807.0,
+            360.0
+          ],
+          "observedOnPoint": [
+            802.9996337890625,
+            363.0003967285156
+          ],
+          "expectedOnPoint": [
+            811.0,
+            357.0
+          ],
+          "pixelError": 10.000531006336187,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            187.0,
+            524.0
+          ],
+          "observedOnPoint": [
+            183.0001220703125,
+            527.0
+          ],
+          "expectedOnPoint": [
+            191.0,
+            521.0
+          ],
+          "pixelError": 9.999902344018224,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            798.0,
+            406.0
+          ],
+          "observedOnPoint": [
+            794.0003662109375,
+            409.0000915527344
+          ],
+          "expectedOnPoint": [
+            802.0,
+            403.0
+          ],
+          "pixelError": 9.99976196718226,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            155.0,
+            577.0
+          ],
+          "observedOnPoint": [
+            151.00006103515625,
+            579.9998779296875
+          ],
+          "expectedOnPoint": [
+            159.0,
+            574.0
+          ],
+          "pixelError": 9.999877929873767,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            692.0,
+            383.0
+          ],
+          "observedOnPoint": [
+            687.9993286132812,
+            386.00018310546875
+          ],
+          "expectedOnPoint": [
+            696.0,
+            380.0
+          ],
+          "pixelError": 10.000646975941743,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            385.0,
+            130.0
+          ],
+          "observedOnPoint": [
+            381.0001220703125,
+            132.99993896484375
+          ],
+          "expectedOnPoint": [
+            389.0,
+            127.0
+          ],
+          "pixelError": 9.999865722686053,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            275.0,
+            205.0
+          ],
+          "observedOnPoint": [
+            270.9998474121094,
+            207.9998779296875
+          ],
+          "expectedOnPoint": [
+            279.0,
+            202.0
+          ],
+          "pixelError": 10.000048829914993,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            787.0,
+            381.0
+          ],
+          "observedOnPoint": [
+            783.0000610351562,
+            384.00018310546875
+          ],
+          "expectedOnPoint": [
+            791.0,
+            378.0
+          ],
+          "pixelError": 10.000061036832621,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            396.0,
+            581.0
+          ],
+          "observedOnPoint": [
+            392.0,
+            584.0001220703125
+          ],
+          "expectedOnPoint": [
+            400.0,
+            578.0
+          ],
+          "pixelError": 10.000073242664334,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            757.0,
+            192.0
+          ],
+          "observedOnPoint": [
+            752.9993896484375,
+            195.00096130371094
+          ],
+          "expectedOnPoint": [
+            761.0,
+            189.0
+          ],
+          "pixelError": 10.00106507158938,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            273.0,
+            388.0
+          ],
+          "observedOnPoint": [
+            269.0000305175781,
+            391.0002746582031
+          ],
+          "expectedOnPoint": [
+            277.0,
+            385.0
+          ],
+          "pixelError": 10.000140383692418,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            815.0,
+            323.0
+          ],
+          "observedOnPoint": [
+            811.0001220703125,
+            325.99981689453125
+          ],
+          "expectedOnPoint": [
+            819.0,
+            320.0
+          ],
+          "pixelError": 9.999792480736977,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            196.0,
+            187.0
+          ],
+          "observedOnPoint": [
+            192.00009155273438,
+            190.00013732910156
+          ],
+          "expectedOnPoint": [
+            200.0,
+            184.0
+          ],
+          "pixelError": 10.000009156631304,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            286.0,
+            199.0
+          ],
+          "observedOnPoint": [
+            281.9996337890625,
+            201.9998321533203
+          ],
+          "expectedOnPoint": [
+            290.0,
+            196.0
+          ],
+          "pixelError": 10.000192267008005,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            229.0,
+            227.0
+          ],
+          "observedOnPoint": [
+            224.99996948242188,
+            230.00051879882812
+          ],
+          "expectedOnPoint": [
+            233.0,
+            224.0
+          ],
+          "pixelError": 10.000335701228787,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            367.0,
+            600.0
+          ],
+          "observedOnPoint": [
+            363.0000915527344,
+            602.9998779296875
+          ],
+          "expectedOnPoint": [
+            371.0,
+            597.0
+          ],
+          "pixelError": 9.999853515716271,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            799.0,
+            115.0
+          ],
+          "observedOnPoint": [
+            794.9998779296875,
+            118.00008392333984
+          ],
+          "expectedOnPoint": [
+            803.0,
+            112.0
+          ],
+          "pixelError": 10.000148010255769,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            728.0,
+            546.0
+          ],
+          "observedOnPoint": [
+            723.9998779296875,
+            549.0001220703125
+          ],
+          "expectedOnPoint": [
+            732.0,
+            543.0
+          ],
+          "pixelError": 10.000170898467301,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            249.0,
+            331.0
+          ],
+          "observedOnPoint": [
+            244.99984741210938,
+            333.999755859375
+          ],
+          "expectedOnPoint": [
+            253.0,
+            328.0
+          ],
+          "pixelError": 9.999975590052093,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            179.0,
+            254.0
+          ],
+          "observedOnPoint": [
+            174.9993438720703,
+            256.99969482421875
+          ],
+          "expectedOnPoint": [
+            183.0,
+            251.0
+          ],
+          "pixelError": 10.000341817214855,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            294.0,
+            227.0
+          ],
+          "observedOnPoint": [
+            290.0003662109375,
+            229.99986267089844
+          ],
+          "expectedOnPoint": [
+            298.0,
+            224.0
+          ],
+          "pixelError": 9.999624634392582,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            163.0,
+            407.0
+          ],
+          "observedOnPoint": [
+            158.99989318847656,
+            410.0
+          ],
+          "expectedOnPoint": [
+            167.0,
+            404.0
+          ],
+          "pixelError": 10.000085449424105,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            735.0,
+            294.0
+          ],
+          "observedOnPoint": [
+            730.9998779296875,
+            297.0002136230469
+          ],
+          "expectedOnPoint": [
+            739.0,
+            291.0
+          ],
+          "pixelError": 10.000225830554951,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            562.0,
+            122.0
+          ],
+          "observedOnPoint": [
+            557.9999389648438,
+            125.00028228759766
+          ],
+          "expectedOnPoint": [
+            566.0,
+            119.0
+          ],
+          "pixelError": 10.000218202473556,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            291.0,
+            570.0
+          ],
+          "observedOnPoint": [
+            286.9998474121094,
+            573.0
+          ],
+          "expectedOnPoint": [
+            295.0,
+            567.0
+          ],
+          "pixelError": 10.00012207073159,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            288.0,
+            478.0
+          ],
+          "observedOnPoint": [
+            283.99993896484375,
+            481.0002136230469
+          ],
+          "expectedOnPoint": [
+            292.0,
+            475.0
+          ],
+          "pixelError": 10.00017700285463,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            146.0,
+            529.0
+          ],
+          "observedOnPoint": [
+            141.99984741210938,
+            532.0001831054688
+          ],
+          "expectedOnPoint": [
+            150.0,
+            526.0
+          ],
+          "pixelError": 10.00023193374462,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            847.0,
+            132.0
+          ],
+          "observedOnPoint": [
+            843.00048828125,
+            134.99920654296875
+          ],
+          "expectedOnPoint": [
+            851.0,
+            129.0
+          ],
+          "pixelError": 9.999133306623012,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            309.0,
+            137.0
+          ],
+          "observedOnPoint": [
+            304.9998779296875,
+            140.00006103515625
+          ],
+          "expectedOnPoint": [
+            313.0,
+            134.0
+          ],
+          "pixelError": 10.000134277373553,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            274.0,
+            164.0
+          ],
+          "observedOnPoint": [
+            269.9996337890625,
+            166.9996337890625
+          ],
+          "expectedOnPoint": [
+            278.0,
+            161.0
+          ],
+          "pixelError": 10.000073255330229,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            133.0,
+            278.0
+          ],
+          "observedOnPoint": [
+            128.9998779296875,
+            281.0000305175781
+          ],
+          "expectedOnPoint": [
+            137.0,
+            275.0
+          ],
+          "pixelError": 10.000115966916082,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            373.0,
+            218.0
+          ],
+          "observedOnPoint": [
+            369.00006103515625,
+            221.0001220703125
+          ],
+          "expectedOnPoint": [
+            377.0,
+            215.0
+          ],
+          "pixelError": 10.000024414964019,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            440.0,
+            561.0
+          ],
+          "observedOnPoint": [
+            436.00006103515625,
+            563.9998168945312
+          ],
+          "expectedOnPoint": [
+            444.0,
+            558.0
+          ],
+          "pixelError": 9.999841309197256,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            292.0,
+            552.0
+          ],
+          "observedOnPoint": [
+            287.9998779296875,
+            555.0000610351562
+          ],
+          "expectedOnPoint": [
+            296.0,
+            549.0
+          ],
+          "pixelError": 10.000134277373553,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            686.0,
+            550.0
+          ],
+          "observedOnPoint": [
+            682.0000610351562,
+            553.0001220703125
+          ],
+          "expectedOnPoint": [
+            690.0,
+            547.0
+          ],
+          "pixelError": 10.000024414964019,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            232.0,
+            473.0
+          ],
+          "observedOnPoint": [
+            228.0003204345703,
+            476.0002136230469
+          ],
+          "expectedOnPoint": [
+            236.0,
+            470.0
+          ],
+          "pixelError": 9.999871832766189,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            676.0,
+            451.0
+          ],
+          "observedOnPoint": [
+            672.0001220703125,
+            454.0001220703125
+          ],
+          "expectedOnPoint": [
+            680.0,
+            448.0
+          ],
+          "pixelError": 9.999975587397817,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            286.0,
+            392.0
+          ],
+          "observedOnPoint": [
+            281.9997253417969,
+            395.0001525878906
+          ],
+          "expectedOnPoint": [
+            290.0,
+            389.0
+          ],
+          "pixelError": 10.000311279388141,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            470.0,
+            202.0
+          ],
+          "observedOnPoint": [
+            466.00018310546875,
+            205.00021362304688
+          ],
+          "expectedOnPoint": [
+            474.0,
+            199.0
+          ],
+          "pixelError": 9.999981693394489,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            267.0,
+            278.0
+          ],
+          "observedOnPoint": [
+            262.99993896484375,
+            280.999755859375
+          ],
+          "expectedOnPoint": [
+            271.0,
+            275.0
+          ],
+          "pixelError": 9.999902346439686,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            751.0,
+            216.0
+          ],
+          "observedOnPoint": [
+            747.000244140625,
+            218.99972534179688
+          ],
+          "expectedOnPoint": [
+            755.0,
+            213.0
+          ],
+          "pixelError": 9.999639892846355,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            268.0,
+            236.0
+          ],
+          "observedOnPoint": [
+            264.0001220703125,
+            239.0000457763672
+          ],
+          "expectedOnPoint": [
+            272.0,
+            233.0
+          ],
+          "pixelError": 9.999929810173814,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            161.0,
+            297.0
+          ],
+          "observedOnPoint": [
+            157.00021362304688,
+            299.9994201660156
+          ],
+          "expectedOnPoint": [
+            165.0,
+            294.0
+          ],
+          "pixelError": 9.999481206806669,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            824.0,
+            587.0
+          ],
+          "observedOnPoint": [
+            820.0004272460938,
+            590.0003662109375
+          ],
+          "expectedOnPoint": [
+            828.0,
+            584.0
+          ],
+          "pixelError": 9.99987794477511,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            594.0,
+            597.0
+          ],
+          "observedOnPoint": [
+            590.0006103515625,
+            600.000244140625
+          ],
+          "expectedOnPoint": [
+            598.0,
+            594.0
+          ],
+          "pixelError": 9.999658218890968,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            244.0,
+            282.0
+          ],
+          "observedOnPoint": [
+            240.00022888183594,
+            285.00018310546875
+          ],
+          "expectedOnPoint": [
+            248.0,
+            279.0
+          ],
+          "pixelError": 9.999926761840033,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            260.0,
+            130.0
+          ],
+          "observedOnPoint": [
+            256.0001220703125,
+            132.99974060058594
+          ],
+          "expectedOnPoint": [
+            264.0,
+            127.0
+          ],
+          "pixelError": 9.999746705003105,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            799.0,
+            476.0
+          ],
+          "observedOnPoint": [
+            795.000244140625,
+            479.000244140625
+          ],
+          "expectedOnPoint": [
+            803.0,
+            473.0
+          ],
+          "pixelError": 9.999951177716284,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            176.0,
+            376.0
+          ],
+          "observedOnPoint": [
+            171.99993896484375,
+            378.99981689453125
+          ],
+          "expectedOnPoint": [
+            180.0,
+            373.0
+          ],
+          "pixelError": 9.99993896652014,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            506.0,
+            194.0
+          ],
+          "observedOnPoint": [
+            501.9998474121094,
+            196.99989318847656
+          ],
+          "expectedOnPoint": [
+            510.0,
+            191.0
+          ],
+          "pixelError": 10.000057984964913,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            200.0,
+            220.0
+          ],
+          "observedOnPoint": [
+            195.99935913085938,
+            223.00030517578125
+          ],
+          "expectedOnPoint": [
+            204.0,
+            217.0
+          ],
+          "pixelError": 10.00069580176652,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            131.0,
+            339.0
+          ],
+          "observedOnPoint": [
+            126.99996185302734,
+            341.9998779296875
+          ],
+          "expectedOnPoint": [
+            135.0,
+            336.0
+          ],
+          "pixelError": 9.999957276117176,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            123.0,
+            401.0
+          ],
+          "observedOnPoint": [
+            119.00004577636719,
+            403.99932861328125
+          ],
+          "expectedOnPoint": [
+            127.0,
+            398.0
+          ],
+          "pixelError": 9.999560559862399,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            738.0,
+            314.0
+          ],
+          "observedOnPoint": [
+            734.0004272460938,
+            316.9993896484375
+          ],
+          "expectedOnPoint": [
+            742.0,
+            311.0
+          ],
+          "pixelError": 9.99929199487735,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            184.0,
+            186.0
+          ],
+          "observedOnPoint": [
+            180.00015258789062,
+            188.99998474121094
+          ],
+          "expectedOnPoint": [
+            188.0,
+            183.0
+          ],
+          "pixelError": 9.999868774728853,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            258.0,
+            586.0
+          ],
+          "observedOnPoint": [
+            253.9997100830078,
+            589.0004272460938
+          ],
+          "expectedOnPoint": [
+            262.0,
+            583.0
+          ],
+          "pixelError": 10.000488282658557,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            752.0,
+            498.0
+          ],
+          "observedOnPoint": [
+            748.000244140625,
+            501.0
+          ],
+          "expectedOnPoint": [
+            756.0,
+            495.0
+          ],
+          "pixelError": 9.999804688572905,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            280.0,
+            513.0
+          ],
+          "observedOnPoint": [
+            276.0002136230469,
+            516.0001220703125
+          ],
+          "expectedOnPoint": [
+            284.0,
+            510.0
+          ],
+          "pixelError": 9.999902346299987,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            155.0,
+            526.0
+          ],
+          "observedOnPoint": [
+            150.99984741210938,
+            528.9998168945312
+          ],
+          "expectedOnPoint": [
+            159.0,
+            523.0
+          ],
+          "pixelError": 10.00001220986433,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            776.0,
+            299.0
+          ],
+          "observedOnPoint": [
+            771.9998779296875,
+            302.0000305175781
+          ],
+          "expectedOnPoint": [
+            780.0,
+            296.0
+          ],
+          "pixelError": 10.000115966916082,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            726.0,
+            507.0
+          ],
+          "observedOnPoint": [
+            721.9993896484375,
+            510.0001525878906
+          ],
+          "expectedOnPoint": [
+            730.0,
+            504.0
+          ],
+          "pixelError": 10.000579836964434,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            224.0,
+            538.0
+          ],
+          "observedOnPoint": [
+            219.9999237060547,
+            540.9998779296875
+          ],
+          "expectedOnPoint": [
+            228.0,
+            535.0
+          ],
+          "pixelError": 9.999987793997397,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            229.0,
+            305.0
+          ],
+          "observedOnPoint": [
+            224.9993896484375,
+            307.9999084472656
+          ],
+          "expectedOnPoint": [
+            233.0,
+            302.0
+          ],
+          "pixelError": 10.000433359264909,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            273.0,
+            587.0
+          ],
+          "observedOnPoint": [
+            269.00006103515625,
+            589.999755859375
+          ],
+          "expectedOnPoint": [
+            277.0,
+            584.0
+          ],
+          "pixelError": 9.999804688759173,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            245.0,
+            299.0
+          ],
+          "observedOnPoint": [
+            241.0004425048828,
+            301.99993896484375
+          ],
+          "expectedOnPoint": [
+            249.0,
+            296.0
+          ],
+          "pixelError": 9.99960937734749,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            734.0,
+            197.0
+          ],
+          "observedOnPoint": [
+            730.0001831054688,
+            200.0001983642578
+          ],
+          "expectedOnPoint": [
+            738.0,
+            194.0
+          ],
+          "pixelError": 9.999972537785778,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            689.0,
+            421.0
+          ],
+          "observedOnPoint": [
+            685.0003662109375,
+            423.9997253417969
+          ],
+          "expectedOnPoint": [
+            693.0,
+            418.0
+          ],
+          "pixelError": 9.999542236328125,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            614.0,
+            171.0
+          ],
+          "observedOnPoint": [
+            609.999755859375,
+            174.0001678466797
+          ],
+          "expectedOnPoint": [
+            618.0,
+            168.0
+          ],
+          "pixelError": 10.000296020515263,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            272.0,
+            179.0
+          ],
+          "observedOnPoint": [
+            268.0001220703125,
+            181.99989318847656
+          ],
+          "expectedOnPoint": [
+            276.0,
+            176.0
+          ],
+          "pixelError": 9.999838256843388,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            697.0,
+            578.0
+          ],
+          "observedOnPoint": [
+            692.9999389648438,
+            581.0001831054688
+          ],
+          "expectedOnPoint": [
+            701.0,
+            575.0
+          ],
+          "pixelError": 10.000158692009737,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            807.0,
+            477.0
+          ],
+          "observedOnPoint": [
+            802.9996948242188,
+            480.0005187988281
+          ],
+          "expectedOnPoint": [
+            811.0,
+            474.0
+          ],
+          "pixelError": 10.000555422611384,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            167.0,
+            129.0
+          ],
+          "observedOnPoint": [
+            162.99996948242188,
+            131.999755859375
+          ],
+          "expectedOnPoint": [
+            171.0,
+            126.0
+          ],
+          "pixelError": 9.999877931969268,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            293.0,
+            594.0
+          ],
+          "observedOnPoint": [
+            289.00006103515625,
+            596.9998168945312
+          ],
+          "expectedOnPoint": [
+            297.0,
+            591.0
+          ],
+          "pixelError": 9.999841309197256,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            599.0,
+            132.0
+          ],
+          "observedOnPoint": [
+            595.0,
+            134.9996337890625
+          ],
+          "expectedOnPoint": [
+            603.0,
+            129.0
+          ],
+          "pixelError": 9.999780277729128,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            729.0,
+            350.0
+          ],
+          "observedOnPoint": [
+            725.0006713867188,
+            352.9998474121094
+          ],
+          "expectedOnPoint": [
+            733.0,
+            347.0
+          ],
+          "pixelError": 9.99937134183223,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            277.0,
+            416.0
+          ],
+          "observedOnPoint": [
+            273.0000305175781,
+            419.0000915527344
+          ],
+          "expectedOnPoint": [
+            281.0,
+            413.0
+          ],
+          "pixelError": 10.000030517997219,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            308.0,
+            164.0
+          ],
+          "observedOnPoint": [
+            304.0003356933594,
+            167.00021362304688
+          ],
+          "expectedOnPoint": [
+            312.0,
+            161.0
+          ],
+          "pixelError": 9.999859626071625,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            479.0,
+            123.0
+          ],
+          "observedOnPoint": [
+            474.9989929199219,
+            126.0001449584961
+          ],
+          "expectedOnPoint": [
+            483.0,
+            120.0
+          ],
+          "pixelError": 10.00089265108002,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            293.0,
+            458.0
+          ],
+          "observedOnPoint": [
+            289.0,
+            460.9999694824219
+          ],
+          "expectedOnPoint": [
+            297.0,
+            455.0
+          ],
+          "pixelError": 9.999981689482928,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            207.0,
+            493.0
+          ],
+          "observedOnPoint": [
+            203.00009155273438,
+            495.9999084472656
+          ],
+          "expectedOnPoint": [
+            211.0,
+            490.0
+          ],
+          "pixelError": 9.99987182618864,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            791.0,
+            332.0
+          ],
+          "observedOnPoint": [
+            787.0000610351562,
+            335.0000915527344
+          ],
+          "expectedOnPoint": [
+            795.0,
+            329.0
+          ],
+          "pixelError": 10.000006104119121,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            544.0,
+            113.0
+          ],
+          "observedOnPoint": [
+            539.9991455078125,
+            116.00001525878906
+          ],
+          "expectedOnPoint": [
+            548.0,
+            110.0
+          ],
+          "pixelError": 10.000692761546995,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            811.0,
+            396.0
+          ],
+          "observedOnPoint": [
+            806.9999389648438,
+            399.00006103515625
+          ],
+          "expectedOnPoint": [
+            815.0,
+            393.0
+          ],
+          "pixelError": 10.0000854492262,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            292.0,
+            133.0
+          ],
+          "observedOnPoint": [
+            287.9998779296875,
+            135.99996948242188
+          ],
+          "expectedOnPoint": [
+            296.0,
+            130.0
+          ],
+          "pixelError": 10.000079346179959,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            237.0,
+            493.0
+          ],
+          "observedOnPoint": [
+            232.9998321533203,
+            495.99993896484375
+          ],
+          "expectedOnPoint": [
+            241.0,
+            490.0
+          ],
+          "pixelError": 10.000097657368041,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            129.0,
+            597.0
+          ],
+          "observedOnPoint": [
+            124.9998550415039,
+            599.9999389648438
+          ],
+          "expectedOnPoint": [
+            133.0,
+            594.0
+          ],
+          "pixelError": 10.000079346625244,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            652.0,
+            111.0
+          ],
+          "observedOnPoint": [
+            648.0000610351562,
+            114.00032806396484
+          ],
+          "expectedOnPoint": [
+            656.0,
+            108.0
+          ],
+          "pixelError": 10.00014801472605,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            199.0,
+            191.0
+          ],
+          "observedOnPoint": [
+            194.99981689453125,
+            193.99989318847656
+          ],
+          "expectedOnPoint": [
+            203.0,
+            188.0
+          ],
+          "pixelError": 10.00008239936827,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            554.0,
+            220.0
+          ],
+          "observedOnPoint": [
+            550.0001220703125,
+            223.00013732910156
+          ],
+          "expectedOnPoint": [
+            558.0,
+            217.0
+          ],
+          "pixelError": 9.999984742887321,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            541.0,
+            127.0
+          ],
+          "observedOnPoint": [
+            536.9998779296875,
+            130.000244140625
+          ],
+          "expectedOnPoint": [
+            545.0,
+            124.0
+          ],
+          "pixelError": 10.00024414137004,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            537.0,
+            134.0
+          ],
+          "observedOnPoint": [
+            532.9998779296875,
+            137.00018310546875
+          ],
+          "expectedOnPoint": [
+            541.0,
+            131.0
+          ],
+          "pixelError": 10.000207519799465,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            671.0,
+            422.0
+          ],
+          "observedOnPoint": [
+            666.99951171875,
+            424.99993896484375
+          ],
+          "expectedOnPoint": [
+            675.0,
+            419.0
+          ],
+          "pixelError": 10.000354009747298,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            224.0,
+            165.0
+          ],
+          "observedOnPoint": [
+            219.99996948242188,
+            168.0001678466797
+          ],
+          "expectedOnPoint": [
+            228.0,
+            162.0
+          ],
+          "pixelError": 10.00012512274272,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            349.0,
+            596.0
+          ],
+          "observedOnPoint": [
+            345.0000915527344,
+            598.9998779296875
+          ],
+          "expectedOnPoint": [
+            353.0,
+            593.0
+          ],
+          "pixelError": 9.999853515716271,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            290.0,
+            488.0
+          ],
+          "observedOnPoint": [
+            286.0005798339844,
+            490.9996643066406
+          ],
+          "expectedOnPoint": [
+            294.0,
+            485.0
+          ],
+          "pixelError": 9.999334717111683,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            131.0,
+            535.0
+          ],
+          "observedOnPoint": [
+            127.0001449584961,
+            538.0001220703125
+          ],
+          "expectedOnPoint": [
+            135.0,
+            532.0
+          ],
+          "pixelError": 9.999957277095069,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            762.0,
+            307.0
+          ],
+          "observedOnPoint": [
+            758.0,
+            310.0001220703125
+          ],
+          "expectedOnPoint": [
+            766.0,
+            304.0
+          ],
+          "pixelError": 10.000073242664334,
+          "existingTolerancePixels": 0.5,
+          "matched": false
+        }
+      ],
+      "scope": "Image crop transform correspondence, not artistic quality or release gate"
+    },
+    "fullyOccluded": {
+      "status": "UNMEASURED",
+      "reason": "NO_INDEPENDENT_IMAGE_FEATURES",
+      "detected": 0
+    }
+  },
+  "actualMVExamined": false,
+  "thresholdsChanged": false
+}
