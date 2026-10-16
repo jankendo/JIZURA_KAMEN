@@ -16,14 +16,14 @@ jobs:
           filter: blob:none
           sparse-checkout-cone-mode: false
           sparse-checkout: |
+            /docs/qa/generalization/media/a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b.mp4
             /docs/qa/generalization/tools/
             /docs/qa/generalization/composition-recovery/final-source-current23-4/
             /docs/qa/generalization/media/4eed413aec8318204067f15b792fce1696019210d3661e3c96ac5dff95f2892d.wav
-            /docs/qa/generalization/media/a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b.mp4
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: current
-          ref: 2bbdd4da69ea45be35bbb2f60c4d5bb5a559d5fd
+          ref: aee6739efb9d5a10200d77cfd2fb127a3a8cb4b9
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: 24
@@ -37,13 +37,12 @@ jobs:
           KAMEN_CHROME: /usr/bin/google-chrome
         run: |
           mkdir -p results
-          git -C current rev-parse HEAD > results/source-head.txt
           python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization final-source-current23-4 restored --prefix matrix/supplemental-holdout-13-v3
           node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
-          node qa/docs/qa/generalization/tools/frozen_final_semantic_repair_probe.cjs http://127.0.0.1:4173/ restored/matrix/supplemental-holdout-13-v3-reference.json restored/matrix/supplemental-holdout-13-v3-input.wav results/export 2bbdd4da69ea45be35bbb2f60c4d5bb5a559d5fd > results/probe.log 2>&1
+          node qa/docs/qa/generalization/tools/frozen_final_semantic_repair_probe.cjs http://127.0.0.1:4173/ restored/matrix/supplemental-holdout-13-v3-reference.json restored/matrix/supplemental-holdout-13-v3-input.wav results/export aee6739efb9d5a10200d77cfd2fb127a3a8cb4b9 > results/probe.log 2>&1
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         if: always()
         with:
