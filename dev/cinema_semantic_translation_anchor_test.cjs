@@ -19,8 +19,9 @@ for(const ratio of [1,2/3])for(const angle of [0,13])for(const skew of [0,7])for
 }
 // The shipped typography path declares exactly the same uniform translation
 // it actually adds; neutral/manual/non-grammar paths must not gain metadata.
-for(const role of ['continuity','light','echo','grounding','gathering','participation'])for(const t of [1,2,3.9])for(const mode of ['auto','locked','neutral','noGrammar']){
- const ctx=createCanvas(1080,1920).getContext('2d'),plan={duration:20,fps:24,W:1080,H:1920,cinemaSemanticNeutral:mode==='neutral'},cut={start:1,end:4,dur:3,line:0,locked:mode==='locked',params:{},grammar:{temporal:{role,level:.3,hit:1.3,entry:.2,exit:.2}}},env={ctx,plan,cut,t,lt:t-1,H:1920,W:1080,pass:'main'},item={text:'光の先へ',font:'embedded_bold',size:62,x:540,y:960,grammarMode:mode==='noGrammar'?null:'voice',charFns:[]};
+for(const role of ['continuity','light','echo','grounding','gathering','participation'])for(const t of [1,2,3.9])for(const mode of ['auto','locked','neutral','noGrammar','unselected']){
+ const ctx=createCanvas(1080,1920).getContext('2d'),plan={duration:20,fps:24,W:1080,H:1920,cinemaSemanticNeutral:mode==='neutral'},cut={index:0,start:1,end:4,dur:3,line:0,locked:mode==='locked',params:{},grammar:{temporal:{role,level:.3,hit:1.3,entry:.2,exit:.2}}},env={ctx,plan,cut,t,lt:t-1,H:1920,W:1080,pass:'main'},item={text:'光の先へ',font:'embedded_bold',size:62,x:540,y:960,grammarMode:mode==='noGrammar'?null:'voice',charFns:[]};
+ if(mode!=='unselected')plan.cinemaFinalSemanticTravel={version:'final-semantic-travel-v1',targets:[J.canonicalJSON([cut.index,cut.line,cut.start,cut.end,String(cut.lineText??cut.text??'')])]};
  J.applyTypography5(env,item);
  const eligible=mode==='auto'&&['continuity','light'].includes(role);
  assert.equal(!!item.cinemaAnchorMotion,eligible,'metadata limited to explicitly uniform automatic roles');checks++;
