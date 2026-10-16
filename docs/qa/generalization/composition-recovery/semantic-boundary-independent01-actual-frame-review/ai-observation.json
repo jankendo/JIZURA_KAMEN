@@ -1,0 +1,36 @@
+{
+  "reviewer": "AI sparse actual-frame review; no independent human expert evaluation",
+  "HUMAN": "HUMAN_UNVERIFIED",
+  "oldStyle": "mono",
+  "newStyle": "synth80",
+  "observedTradeoffs": [
+    "Both versions show the same intended lyric source in six anchors. The first two phrases use different font weight and scale, and different panel framing.",
+    "The third phrase has the line break 消える足 / 音が風に / まぎれる in both sampled versions; this breaks the compound 足音 and was not repaired by this candidate.",
+    "The sampled new version uses a bold/slanted font with similar phrasing density between sections, while the old version has stronger size/placement contrast between first and second phrases. Sparse anchors alone do not determine aesthetic preference or all motion."
+  ],
+  "unchangedSourceContract": "No lyric or audio timing modification demonstrated. Full FAV is MEASURED in both completed movies.",
+  "measuredDescriptorTradeoffs": {
+    "typographyDiversity": [
+      63,
+      45
+    ],
+    "temporalContrast": [
+      54,
+      37
+    ],
+    "lyricForegroundNovelty": [
+      86,
+      66
+    ],
+    "perceptualNovelty": [
+      78,
+      100
+    ],
+    "localContrast": [
+      99,
+      100
+    ]
+  },
+  "adoptionDecision": "UNVERIFIED_NOT_ADOPTED",
+  "reason": "This independent condition does not demonstrate an unqualified creative improvement. Preserve tradeoffs and compound-word break limitation; do not raise or retune scores."
+}

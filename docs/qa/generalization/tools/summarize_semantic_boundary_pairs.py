@@ -1,0 +1,16 @@
+"""Preserve fixed-pair successes and tradeoffs; no score-only adoption verdict."""
+import pathlib,json,gzip,hashlib
+Q=pathlib.Path(__file__).resolve().parents[1];R=Q/'composition-recovery';spec=json.loads((R/'semantic-boundary-ranking-preregistration.json').read_text());expected={x['id'] for x in spec['fixtures']};sources={'previous':'b002cdd75845d189221312a82456c33a131f5e8d','matrix':'c4c679ce624fc2be512592b1d820649c64b3b36e'};rows=[]
+for folder in sorted(R.glob('semantic-boundary-pair-*')):
+ if not (folder/'archive-manifest.json').exists():continue
+ m=json.loads((folder/'archive-manifest.json').read_text());files={x['member']:x for x in m['files']}
+ def load(name):
+  f=files[name];p=Q/f['preserved'];b=gzip.decompress(p.read_bytes())if p.suffix=='.gz'else p.read_bytes();assert hashlib.sha256(b).hexdigest()==f['SHA256'];return json.loads(b)
+ corr=load('pcm-correspondence.json');assert corr['status']=='MATCHED' and all(corr['checks'].values());versions={}
+ for version in sources:
+  rs=load(version+'/results.json')['rows'];assert len(rs)==1;r=rs[0];binding=r['provenance']['finalArtifactVerification']['binding'];assert binding['sourceCommit']==sources[version]and binding['sourceDirty']is False and binding['videoSHA256']==r['sha256'] and r['status']=='PASS';assert r['fixture']['id']in expected
+  video=Q/'media'/(r['sha256']+'.mp4');assert hashlib.sha256(video.read_bytes()).hexdigest()==r['sha256'];dec=load('previous-strict-decode.json'if version=='previous'else'strict-decode.json')['entries'];a=[x for x in dec if x['videoSHA256']==r['sha256']];assert len(a)==1 and a[0]['completeDecode']=='PASS'and a[0]['codec']=='H.264/AAC'
+  versions[version]={'binding':binding,'FAV':r['provenance']['finalArtifactVerification']['status'],'fullDecode':'PASS','metrics':r['decoded']['metrics'],'rowSHA256':files[version+'/results.json']['SHA256']}
+ delta={k:versions['matrix']['metrics'][k]-v for k,v in versions['previous']['metrics'].items()if isinstance(v,(int,float))and isinstance(versions['matrix']['metrics'].get(k),(int,float))};p=folder/'decoded-pixel-identity.json';pixelIdentity=json.loads(p.read_text())['identical']if p.exists()else None
+ rows.append({'fixture':r['fixture']['id'],'archive':folder.name,'PCM':'MATCHED','versions':versions,'newMinusPreviousEngineeringDescriptors':delta,'wholeDecodedRGB24Identity':pixelIdentity,'qualityInterpretation':'Pixel identity is no regression, not improvement. Descriptor changes are retained as tradeoffs, not artistic grades or automatic adoption.'})
+assert len({r['fixture']for r in rows})==len(rows);d={'schema':1,'candidateSourceCommit':sources['matrix'],'adopted':False,'fixedConditionCount':len(expected),'completedConditions':len(rows),'fullyDecodedMovies':len(rows)*2,'pendingConditions':sorted(expected-{r['fixture']for r in rows}),'rows':rows,'QUALITY_GO':'UNVERIFIED','HUMAN':'HUMAN_UNVERIFIED','scope':'Prospectively fixed actual-MP4 pairs, equal authored fixture/input/WAV/PCM/profile; renderer-bound immutable hashes preserved separately. No source-mixed or metric-only certification.'};(R/'semantic-boundary-paired-progress.json').write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n');print({'completed':len(rows),'movies':len(rows)*2,'pending':d['pendingConditions']})
