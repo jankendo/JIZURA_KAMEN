@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "videoSHA256": "a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b",
+  "selectedTarget": "background image crop / temporalCinemaFocus / stable-travel",
+  "matchedOriginalNative": true,
+  "isolatedONOFFONRepeat": true,
+  "controlDecodeCount": 3,
+  "observations": 43,
+  "rawStates": {
+    "FAILED_IMAGE_TRANSFORM": 1,
+    "UNMEASURED": 5,
+    "VERIFIED_IMAGE_TRANSFORM": 37
+  },
+  "scopeStates": {
+    "CONFOUNDED": 9,
+    "VERIFIED_IMAGE_CROP_CORRESPONDENCE_ONLY": 34
+  },
+  "preReturnIndependentVerified": 34,
+  "unresolvedInitialSubpixelObservations": 3,
+  "openingReturnCompositeConfoundedObservations": 6,
+  "rawFailuresRetained": 1,
+  "interpretation": "Direct fitted decoded image transform agrees with the declared source crop before the intentional opening-background return at34 resolved frame times. Three early displacements are below existing0.5px resolution. Six return-composite times remain CONFOUNDED including one raw fitted-transform failure. This supports the selected image travel, not an all-effect or whole-engine PASS.",
+  "HUMAN": "HUMAN_UNVERIFIED"
+}

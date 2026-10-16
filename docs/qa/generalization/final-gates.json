@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "recordedUTC": "2026-10-16T11:38:52.050208+00:00",
+  "recordedUTC": "2026-10-16T12:25:30.671729+00:00",
   "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
@@ -467,6 +467,18 @@
     "fresh30-background-focus-flow-diagnostic.json": {
       "SHA256": "d74e3c54eabc12be08b19acc6e4373050acc09cd845ca7591c163bee3c579ef7",
       "bytes": 316643
+    },
+    "background-focus-support-mask-v2-interpretation.json": {
+      "SHA256": "b43d3c3b66549cbe7a302b69cf655372ae74fba1c5842154d7deb866577c8c5a",
+      "bytes": 750
+    },
+    "background-crop-independent-observation-summary.json": {
+      "SHA256": "35a7df959e55bf5ef037b254e14ec35cde2b5f7364422ea19a5382edf5264ec9",
+      "bytes": 1171
+    },
+    "final-semantic-history-integration-failure/limitations.json": {
+      "SHA256": "a2abed6232da3de72541a732c7f466db6586eafa109def031f9e84cf3b6655d4",
+      "bytes": 1163
     }
   },
   "localContrastZeroDiagnostic": {
@@ -744,7 +756,12 @@
     "unitEvidenceOnly": {
       "anchorChecks": 540,
       "repairChecks": 63
-    }
+    },
+    "latestExperimentalSourceCommit": "2bbdd4da69ea45be35bbb2f60c4d5bb5a559d5fd",
+    "candidateAdopted": false,
+    "focusedContractChecks": 84,
+    "realFinalSourceMP4": "PENDING",
+    "historyPolicy": "Independent post-final FAV history; record actual encode/decode, never invent a pre-encode proxy stage. Preserve all previous candidates. Latest source has not passed full CI or real UI yet."
   },
   "executedNativePopulation": {
     "schema": 1,
@@ -782,5 +799,64 @@
       "controlMoviesFullyDecoded": 3
     },
     "interpretation": "33 image-crop correspondences outside opening return match unchanged preregistered sensor; 10 samples remain CONFOUNDED (including 7 raw feature failures). This is not full global effect or release certification; raw statuses retained."
+  },
+  "backgroundOwnershipCorrection": {
+    "schema": 1,
+    "originalDiagnosticRetained": "fresh30-background-focus-flow-diagnostic.json",
+    "correctedObserver": "fresh30-background-focus-flow-v2.json",
+    "counts": {
+      "FAILED_TARGET_CORRESPONDENCE": 2,
+      "UNMEASURED": 41
+    },
+    "semanticCounts": {
+      "CONFOUNDED": 43
+    },
+    "finding": "With complete LK ownership support, this selected synthetic background does not provide enough independent image landmarks at41 sampled times. Two remaining raw mismatches occur in the intentional second-image opening return. No independent whole-interval semantic PASS is established; sparse/occluded support is not a demonstrated rendering failure.",
+    "releaseEffectCredit": false,
+    "thresholdsChanged": false,
+    "HUMAN": "HUMAN_UNVERIFIED"
+  },
+  "independentBackgroundImageTravel": {
+    "schema": 1,
+    "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+    "videoSHA256": "a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b",
+    "selectedTarget": "background image crop / temporalCinemaFocus / stable-travel",
+    "matchedOriginalNative": true,
+    "isolatedONOFFONRepeat": true,
+    "controlDecodeCount": 3,
+    "observations": 43,
+    "rawStates": {
+      "FAILED_IMAGE_TRANSFORM": 1,
+      "UNMEASURED": 5,
+      "VERIFIED_IMAGE_TRANSFORM": 37
+    },
+    "scopeStates": {
+      "CONFOUNDED": 9,
+      "VERIFIED_IMAGE_CROP_CORRESPONDENCE_ONLY": 34
+    },
+    "preReturnIndependentVerified": 34,
+    "unresolvedInitialSubpixelObservations": 3,
+    "openingReturnCompositeConfoundedObservations": 6,
+    "rawFailuresRetained": 1,
+    "interpretation": "Direct fitted decoded image transform agrees with the declared source crop before the intentional opening-background return at34 resolved frame times. Three early displacements are below existing0.5px resolution. Six return-composite times remain CONFOUNDED including one raw fitted-transform failure. This supports the selected image travel, not an all-effect or whole-engine PASS.",
+    "HUMAN": "HUMAN_UNVERIFIED"
+  },
+  "failedIntegrationProbeLimitations": {
+    "schema": 1,
+    "run": 38898897844,
+    "sourceCommit": "5e604110e2665d3822ceb54f31d517b02f774b48",
+    "actualError": "CINEMA_SELECTED_HISTORY_MISMATCH:chosen",
+    "assertionSubcondition": "UNRESOLVED; initial harness did not retain per-field values",
+    "knownHarnessDefects": [
+      "Restored reference intentionally excludes lastPixelQA; first probe did not perform normal native analysis before requesting the one-encode observed pipeline.",
+      "A thrown contract assertion occurred before blob serialization, then finally closed the browser. Completed in-memory movies were not retained."
+    ],
+    "lostProbeMovieBytes": "UNRECOVERABLE_FROM_THIS_ATTEMPT",
+    "independentFFmpegDecode": "UNEXECUTED",
+    "doesNotProveApplicationRenderFailure": true,
+    "correctedHarness": "Save every completed chosen/baseline/trial movie and provenance before failing contract checks; perform normal analysis, record changed plan hashes and per-field selected-history diagnostics.",
+    "newSource": "2bbdd4da69ea45be35bbb2f60c4d5bb5a559d5fd",
+    "newHistory": "Truthful separate post-final artifact history; no unperformed proxy measurement claimed.",
+    "productionChanged": false
   }
 }

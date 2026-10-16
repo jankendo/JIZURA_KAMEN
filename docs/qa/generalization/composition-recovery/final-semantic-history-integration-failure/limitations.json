@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "run": 38898897844,
+  "sourceCommit": "5e604110e2665d3822ceb54f31d517b02f774b48",
+  "actualError": "CINEMA_SELECTED_HISTORY_MISMATCH:chosen",
+  "assertionSubcondition": "UNRESOLVED; initial harness did not retain per-field values",
+  "knownHarnessDefects": [
+    "Restored reference intentionally excludes lastPixelQA; first probe did not perform normal native analysis before requesting the one-encode observed pipeline.",
+    "A thrown contract assertion occurred before blob serialization, then finally closed the browser. Completed in-memory movies were not retained."
+  ],
+  "lostProbeMovieBytes": "UNRECOVERABLE_FROM_THIS_ATTEMPT",
+  "independentFFmpegDecode": "UNEXECUTED",
+  "doesNotProveApplicationRenderFailure": true,
+  "correctedHarness": "Save every completed chosen/baseline/trial movie and provenance before failing contract checks; perform normal analysis, record changed plan hashes and per-field selected-history diagnostics.",
+  "newSource": "2bbdd4da69ea45be35bbb2f60c4d5bb5a559d5fd",
+  "newHistory": "Truthful separate post-final artifact history; no unperformed proxy measurement claimed.",
+  "productionChanged": false
+}

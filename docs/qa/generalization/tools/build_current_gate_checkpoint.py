@@ -19,5 +19,9 @@ gate['naturalTranslationCandidate']=read('natural-semantic-travel-paired-progres
 gate['lateFixedPlanCandidate']={'sourceCommit':'da434cce2b69f34f3a4c302e69098d91950adccb','adopted':False,'protocol':read('late-semantic-travel-preregistration.json'),'realMovieValidation':'PENDING','correctedSourceCommit':'1088c3ddfb239a5bf517863256f6d5ac507937f1','buildFailure':{'run':38893096483,'cause':'Explicit source manifest missing new module; fixed in 1088c3d, local build PASS.'},'unitEvidenceOnly':{'anchorChecks':540,'repairChecks':63}}
 gate['executedNativePopulation']={k:v for k,v in read('current30-bound-native-population-summary.json').items()if k!='rows'}
 gate['backgroundImageCropDiagnostic']={k:v for k,v in read('fresh30-background-focus-flow-diagnostic.json').items()if k in ['provenance','counts','scopeCounts','interpretation','knownLayerContext']}
+gate['backgroundOwnershipCorrection']=read('background-focus-support-mask-v2-interpretation.json')
+gate['independentBackgroundImageTravel']=read('background-crop-independent-observation-summary.json')
+gate['lateFixedPlanCandidate'].update(latestExperimentalSourceCommit='2bbdd4da69ea45be35bbb2f60c4d5bb5a559d5fd',candidateAdopted=False,focusedContractChecks=84,realFinalSourceMP4='PENDING',historyPolicy='Independent post-final FAV history; record actual encode/decode, never invent a pre-encode proxy stage. Preserve all previous candidates. Latest source has not passed full CI or real UI yet.')
+gate['failedIntegrationProbeLimitations']=read('final-semantic-history-integration-failure/limitations.json')
 (Q/'final-gates.json').write_text(json.dumps(gate,ensure_ascii=False,indent=2)+'\n');assert json.loads((Q/'final-gates.json').read_text())==gate
 print({k:gate[k]for k in ['sourceCommit','TECHNICAL_GO','QUALITY_GO','RELEASE_GO']},'matched',comparison['matchedConditionCount'])

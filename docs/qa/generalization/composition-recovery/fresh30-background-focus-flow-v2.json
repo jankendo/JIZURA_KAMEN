@@ -1,0 +1,4566 @@
+{
+  "knownLayerContext": {
+    "backgroundOpeningReturnStarts": 12.447000000000001,
+    "source": "src/11zzp_shot_grammar.js:64-67",
+    "finding": "Intentional opening-background return adds another image layer. Raw feature outcomes retained; layer context is interpretation, not a sensor threshold change."
+  },
+  "scopeCounts": {
+    "CONFOUNDED": 43
+  },
+  "schema": 1,
+  "caseId": "supplemental-holdout-13",
+  "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "originalVideoSHA256": "a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b",
+  "planHash": "fb34ab6ca605b90d8aeace8db7db3aa3463da90dc406987d98bfe4412f5283ad",
+  "timeRange": [
+    10.9,
+    12.72
+  ],
+  "methodPreregistration": "background-focus-support-mask-v2-preregistration.json",
+  "supportMaskRadius": 102,
+  "sensorValidation": "background-focus-flow-sensor-counterexamples.json",
+  "rows": [
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 10.925,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0784120879120884,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5450140217793015,
+        "y": 0.395,
+        "zoom": 2.078461048211887,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          0.9999081825681609,
+          0,
+          0.012864500854451436
+        ],
+        [
+          0,
+          0.9999081825681609,
+          0.023211446768880192
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.11013623980981212,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 10.966666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0790989010989014,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5450981745336292,
+        "y": 0.395,
+        "zoom": 2.0794418135680752,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          0.9998572848211676,
+          0,
+          -0.10570604622609069
+        ],
+        [
+          0,
+          0.9998572848211676,
+          0.036078397208854036
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.11991388692631799,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.008333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.079785714285715,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5452551863999568,
+        "y": 0.395,
+        "zoom": 2.0806773457746197,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          0.9999287487775386,
+          0,
+          -0.3924607164806434
+        ],
+        [
+          0,
+          0.9999287487775387,
+          0.018012309038258158
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.14394989121411503,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.05,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0804725274725278,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5454814576197864,
+        "y": 0.395,
+        "zoom": 2.082155315182389,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0001164604824455,
+          0,
+          -0.8396068825481445
+        ],
+        [
+          0,
+          1.0001164604824455,
+          -0.029441209962231707
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.1524147359546022,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.091666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.081159340659341,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5457733884346198,
+        "y": 0.395,
+        "zoom": 2.083863375527981,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0004143106799444,
+          0,
+          -1.439429761986869
+        ],
+        [
+          0,
+          1.0004143106799444,
+          -0.10473773988993815
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.15971165423975797,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.133333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.081846153846154,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.546127379085959,
+        "y": 0.395,
+        "zoom": 2.0857891639337254,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0008161948084637,
+          0,
+          -2.184271505416655
+        ],
+        [
+          0,
+          1.0008161948084637,
+          -0.2063340475796715
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.16209216985338243,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.175,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0825329670329675,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5465398298153061,
+        "y": 0.395,
+        "zoom": 2.087920300907679,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0013160129962957,
+          0,
+          -3.0665114518759182
+        ],
+        [
+          0,
+          1.0013160129962957,
+          -0.3326880854635611
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.16393265364336526,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.216666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0832197802197805,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.547007140864163,
+        "y": 0.395,
+        "zoom": 2.15337779705965,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0321691288213564,
+          0,
+          -16.123802020562202
+        ],
+        [
+          0,
+          1.0321691288213564,
+          -8.13235576603885
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.1803106645872309,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.258333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.083906593406594,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5475257124740317,
+        "y": 0.395,
+        "zoom": 2.123850218009859,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0174849020501857,
+          0,
+          -11.166003031902862
+        ],
+        [
+          0,
+          1.0174849020501857,
+          -4.420183238286921
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.18698424436002326,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.3,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.084593406593407,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5480919448864142,
+        "y": 0.395,
+        "zoom": 2.1107430365823943,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.010678367444866,
+          0,
+          -9.404656596004694
+        ],
+        [
+          0,
+          1.010678367444866,
+          -2.6994912900621286
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.18512383242935884,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.341666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0852802197802203,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5487022383428124,
+        "y": 0.395,
+        "zoom": 2.1057978310654017,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0077849277614035,
+          0,
+          -9.272619394948485
+        ],
+        [
+          0,
+          1.0077849277614035,
+          -1.9680297380828111
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.20601312154811888,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.383333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0859670329670332,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5493529930847284,
+        "y": 0.395,
+        "zoom": 2.104939950215005,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0068494531851506,
+          0,
+          -9.992079588766579
+        ],
+        [
+          0,
+          1.0068494531851508,
+          -1.731541765206127
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.21041408826803082,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.425,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0866538461538466,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5500406093536642,
+        "y": 0.395,
+        "zoom": 2.106155772047093,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0069062170791954,
+          0,
+          -11.174856199911272
+        ],
+        [
+          0,
+          1.0069062170791954,
+          -1.7458916776206375
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.2213486518920873,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.466666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0873406593406596,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5507614873911215,
+        "y": 0.395,
+        "zoom": 2.108446984400494,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0074766473022267,
+          0,
+          -12.625145972917517
+        ],
+        [
+          0,
+          1.0074766473022267,
+          -1.8900964380028995
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.23042740330621367,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.508333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.088027472527473,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5515120274386026,
+        "y": 0.395,
+        "zoom": 2.1113154354608366,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0083220341886576,
+          0,
+          -14.242138477095605
+        ],
+        [
+          0,
+          1.0083220341886576,
+          -2.1038102428926617
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.23409473984312895,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.55,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.088714285714286,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5522886297376094,
+        "y": 0.395,
+        "zoom": 2.1145093573225147,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0093217714517757,
+          0,
+          -15.97191758458123
+        ],
+        [
+          0,
+          1.0093217714517757,
+          -2.35654382300885
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.22568376043087865,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.591666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0894010989010994,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5530876945296438,
+        "y": 0.395,
+        "zoom": 2.1178983489276644,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.010413405690788,
+          0,
+          -17.783696279387076
+        ],
+        [
+          0,
+          1.010413405690788,
+          -2.632508958631209
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.22722186141644812,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.633333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0900879120879123,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5539056220562077,
+        "y": 0.395,
+        "zoom": 2.1214117893248217,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0115631185808953,
+          0,
+          -19.658069818561973
+        ],
+        [
+          0,
+          1.0115631185808953,
+          -2.9231563772503644
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.227240962110952,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.675,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0907747252747257,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5547388125588034,
+        "y": 0.395,
+        "zoom": 2.125008498399507,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0127511931945739,
+          0,
+          -21.58120710817929
+        ],
+        [
+          0,
+          1.012751193194574,
+          -3.223501639588276
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.2251711347632186,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.716666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0914615384615387,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5555836662789326,
+        "y": 0.395,
+        "zoom": 2.128661790943508,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0139648580554215,
+          0,
+          -23.541977324830913
+        ],
+        [
+          0,
+          1.0139648580554212,
+          -3.5303161164105026
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.22935598240871474,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.758333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.092148351648352,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5564365834580973,
+        "y": 0.395,
+        "zoom": 2.132352113892861,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.01519476376428,
+          0,
+          -25.530528121252846
+        ],
+        [
+          0,
+          1.01519476376428,
+          -3.841236279610019
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.23003858749373138,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.8,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.092835164835165,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5572939643377997,
+        "y": 0.395,
+        "zoom": 2.1360634192363155,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0164332481941158,
+          0,
+          -27.53758216187146
+        ],
+        [
+          0,
+          1.0164332481941158,
+          -4.154325143472488
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.22935834786663228,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.841666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0935219780219785,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5581522091595414,
+        "y": 0.395,
+        "zoom": 2.139781377214201,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0176734823220939,
+          0,
+          -29.554089493595264
+        ],
+        [
+          0,
+          1.0176734823220939,
+          -4.467856331025365
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.23072387597395386,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.883333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0942087912087914,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5590077181648249,
+        "y": 0.395,
+        "zoom": 2.143492496093064,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0189090496608224,
+          0,
+          -31.57105649683654
+        ],
+        [
+          0,
+          1.0189090496608224,
+          -4.780207754255909
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.23016826574390215,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.925,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.094895604395605,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5598568915951516,
+        "y": 0.395,
+        "zoom": 2.14718368854349,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0201337391807357,
+          0,
+          -33.57946274872834
+        ],
+        [
+          0,
+          1.0201337391807357,
+          -5.089809264889977
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.22960422243141204,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 11.966666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.095582417582418,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.560696129692024,
+        "y": 0.395,
+        "zoom": 2.1508420580264245,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0213414433490802,
+          0,
+          -35.57022192448345
+        ],
+        [
+          0,
+          1.0213414433490802,
+          -5.395116878647461
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.22901747037313794,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 12.008333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.096269230769231,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5615218326969437,
+        "y": 0.395,
+        "zoom": 2.154454793561483,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0225261079251458,
+          0,
+          -37.534165017643936
+        ],
+        [
+          0,
+          1.0225261079251455,
+          -5.694600083476854
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.23826175352843446,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 12.05,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.096956043956044,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5623304008514128,
+        "y": 0.395,
+        "zoom": 2.1580091178870586,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0236817072387183,
+          0,
+          -39.46203511983489
+        ],
+        [
+          0,
+          1.0236817072387183,
+          -5.986735589948063
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.23865535864156356,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 12.091666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0976428571428576,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5631182343969334,
+        "y": 0.395,
+        "zoom": 2.161492261922646,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.024802232015705,
+          0,
+          -41.34448842337607
+        ],
+        [
+          0,
+          1.024802232015705,
+          -6.270004253570242
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.23144229992472085,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 4,
+      "valid": 4,
+      "actualDecodedTimestamp": 12.133333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.0983296703296705,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5638817335750074,
+        "y": 0.395,
+        "zoom": 2.1648914521883116,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0258816833816113,
+          0,
+          -43.1720987938158
+        ],
+        [
+          0,
+          1.0258816833816111,
+          -6.542889558871325
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.22683472629991105,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 3,
+      "valid": 3,
+      "actualDecodedTimestamp": 12.175,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.099016483516484,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5646172986271367,
+        "y": 0.395,
+        "zoom": 2.1681939046072,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.026914069906808,
+          0,
+          -44.9353645879965
+        ],
+        [
+          0,
+          1.026914069906808,
+          -6.803876872441129
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.22779418555402642,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 3,
+      "valid": 3,
+      "actualDecodedTimestamp": 12.216666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.099703296703297,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5653213297948234,
+        "y": 0.395,
+        "zoom": 2.171386821452485,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0278934061494929,
+          0,
+          -46.62471705135258
+        ],
+        [
+          0,
+          1.0278934061494926,
+          -7.051453074591754
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.22983095010246118,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 3,
+      "valid": 3,
+      "actualDecodedTimestamp": 12.258333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.1003901098901103,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5659902273195694,
+        "y": 0.395,
+        "zoom": 2.1744573898433646,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0288137119360643,
+          0,
+          -48.23052995454954
+        ],
+        [
+          0,
+          1.0288137119360643,
+          -7.284106377437034
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.22479012202126084,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 3,
+      "valid": 3,
+      "actualDecodedTimestamp": 12.3,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.1010769230769233,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5666203914428767,
+        "y": 0.395,
+        "zoom": 2.17739278100414,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0296690120045864,
+          0,
+          -49.74313029193708
+        ],
+        [
+          0,
+          1.0296690120045862,
+          -7.500326234759393
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.19454083672272457,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 3,
+      "valid": 3,
+      "actualDecodedTimestamp": 12.341666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.1017637362637367,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5672082224062472,
+        "y": 0.395,
+        "zoom": 2.1801801498992304,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0304533358270296,
+          0,
+          -51.15280994556599
+        ],
+        [
+          0,
+          1.0304533358270298,
+          -7.698603297073141
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.3446563178451188,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 1,
+      "valid": 1,
+      "actualDecodedTimestamp": 12.383333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.1024505494505497,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5677501204511832,
+        "y": 0.395,
+        "zoom": 2.1828066350533586,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0311607175195319,
+          0,
+          -52.44983825977787
+        ],
+        [
+          0,
+          1.0311607175195319,
+          -7.877429388937615
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.28314370185963483,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 1,
+      "valid": 1,
+      "actualDecodedTimestamp": 12.425,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.103137362637363,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5682424858191862,
+        "y": 0.395,
+        "zoom": 2.1852593584629836,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0317851957960091,
+          0,
+          -53.62447549294822
+        ],
+        [
+          0,
+          1.0317851957960091,
+          -8.035297497231094
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.15427572156333896,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "SINGLE_CROP_MODEL_WITH_UNRESOLVED_LAYER_FEATURE_OWNERSHIP",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 1,
+      "valid": 1,
+      "actualDecodedTimestamp": 12.466666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.103824175824176,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5686817187517587,
+        "y": 0.395,
+        "zoom": 2.187525425552658,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0323208139431084,
+          0,
+          -54.66698712482991
+        ],
+        [
+          0,
+          1.0323208139431084,
+          -8.170701764817805
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.1448403695068778,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "CONFOUNDED_OPENING_BACKGROUND_RETURN_LAYER",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 3,
+      "valid": 1,
+      "actualDecodedTimestamp": 12.508333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.1045109890109894,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5690642194904022,
+        "y": 0.395,
+        "zoom": 2.1895919251535374,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0327616198056702,
+          0,
+          -55.56765900515867
+        ],
+        [
+          0,
+          1.0327616198056702,
+          -8.282137486873381
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.14560249587680685,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "CONFOUNDED_OPENING_BACKGROUND_RETURN_LAYER",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 3,
+      "valid": 2,
+      "actualDecodedTimestamp": 12.55,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.1051978021978024,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5693863882766189,
+        "y": 0.395,
+        "zoom": 2.191445929492787,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.033101665777371,
+          0,
+          -56.316813334100026
+        ],
+        [
+          0,
+          1.033101665777371,
+          -8.368101108519463
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.1288217841955829,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "CONFOUNDED_OPENING_BACKGROUND_RETURN_LAYER",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_INDEPENDENT_TRACK_SUPPORT",
+      "detected": 3,
+      "valid": 1,
+      "actualDecodedTimestamp": 12.591666666666667,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.105884615384616,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5696446253519108,
+        "y": 0.395,
+        "zoom": 2.193074494188368,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.033335008793918,
+          0,
+          -56.90482546900401
+        ],
+        [
+          0,
+          1.033335008793918,
+          -8.427090223102493
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.09340794079080096,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "CONFOUNDED_OPENING_BACKGROUND_RETURN_LAYER",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "FAILED_TARGET_CORRESPONDENCE",
+      "detected": 91,
+      "valid": 64,
+      "agreement": 0.03125,
+      "medianErrorPixels": 47.50789780693205,
+      "maximumErrorPixels": 52.56850016342939,
+      "medianObservedDisplacement": [
+        -1.52587890625e-05,
+        0.0
+      ],
+      "medianExpectedDisplacement": [
+        -47.38579558804469,
+        3.5529964367808873
+      ],
+      "features": [
+        {
+          "offPoint": [
+            330.0,
+            355.0
+          ],
+          "observedOnPoint": [
+            330.0001220703125,
+            354.9998474121094
+          ],
+          "expectedOnPoint": [
+            283.7182428527629,
+            358.4191735954709
+          ],
+          "pixelError": 46.40801800827171,
+          "existingTolerancePixels": 4.640788502735067,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            314.0,
+            355.0
+          ],
+          "observedOnPoint": [
+            313.99993896484375,
+            354.99993896484375
+          ],
+          "expectedOnPoint": [
+            267.18295148752287,
+            358.4191735954709
+          ],
+          "pixelError": 46.94168171157591,
+          "existingTolerancePixels": 4.694173813884189,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            158.0,
+            347.0
+          ],
+          "observedOnPoint": [
+            157.9998321533203,
+            346.9999084472656
+          ],
+          "expectedOnPoint": [
+            105.96386067643243,
+            350.1515279128509
+          ],
+          "pixelError": 52.131324870938634,
+          "existingTolerancePixels": 5.2131486875852815,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            321.0,
+            365.0
+          ],
+          "observedOnPoint": [
+            320.99993896484375,
+            364.9999694824219
+          ],
+          "expectedOnPoint": [
+            274.4171414598154,
+            368.7537306987459
+          ],
+          "pixelError": 46.73379662154203,
+          "existingTolerancePixels": 4.673385500826522,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            159.0,
+            358.0
+          ],
+          "observedOnPoint": [
+            159.00009155273438,
+            358.00006103515625
+          ],
+          "expectedOnPoint": [
+            106.99731638675993,
+            361.5195407264534
+          ],
+          "pixelError": 52.121735986633645,
+          "existingTolerancePixels": 5.2121648764250645,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            297.0,
+            363.0
+          ],
+          "observedOnPoint": [
+            297.00018310546875,
+            362.99957275390625
+          ],
+          "expectedOnPoint": [
+            249.6142044119553,
+            366.6868192780909
+          ],
+          "pixelError": 47.529220103765866,
+          "existingTolerancePixels": 4.7529004406796265,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            168.0,
+            358.0
+          ],
+          "observedOnPoint": [
+            167.99993896484375,
+            358.0
+          ],
+          "expectedOnPoint": [
+            116.29841777970748,
+            361.5195407264534
+          ],
+          "pixelError": 51.82117771512202,
+          "existingTolerancePixels": 5.182123860934658,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            180.0,
+            361.0
+          ],
+          "observedOnPoint": [
+            180.0001220703125,
+            360.9998779296875
+          ],
+          "expectedOnPoint": [
+            128.6998863036375,
+            364.6199078574359
+          ],
+          "pixelError": 51.42780188180548,
+          "existingTolerancePixels": 5.142767152181835,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            310.0,
+            351.0
+          ],
+          "observedOnPoint": [
+            310.0,
+            350.9999694824219
+          ],
+          "expectedOnPoint": [
+            263.04912864621286,
+            354.2853507541609
+          ],
+          "pixelError": 47.06567805716352,
+          "existingTolerancePixels": 4.706567592691871,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            168.0,
+            347.0
+          ],
+          "observedOnPoint": [
+            167.99996948242188,
+            346.9998474121094
+          ],
+          "expectedOnPoint": [
+            116.29841777970748,
+            350.1515279128509
+          ],
+          "pixelError": 51.79752444323188,
+          "existingTolerancePixels": 5.179754562010778,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            331.0,
+            373.0
+          ],
+          "observedOnPoint": [
+            330.9999084472656,
+            373.0008850097656
+          ],
+          "expectedOnPoint": [
+            284.75169856309043,
+            377.02137638136594
+          ],
+          "pixelError": 46.422637455877414,
+          "existingTolerancePixels": 4.642280532022876,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            153.0,
+            367.0
+          ],
+          "observedOnPoint": [
+            152.9999542236328,
+            366.9999694824219
+          ],
+          "expectedOnPoint": [
+            100.79658212479492,
+            370.82064211940093
+          ],
+          "pixelError": 52.342999511765534,
+          "existingTolerancePixels": 5.234304293846339,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            147.0,
+            361.0
+          ],
+          "observedOnPoint": [
+            147.0000762939453,
+            360.9998474121094
+          ],
+          "expectedOnPoint": [
+            94.59584786282991,
+            364.6199078574359
+          ],
+          "pixelError": 52.52911568919033,
+          "existingTolerancePixels": 5.252902906119619,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            147.0,
+            377.0
+          ],
+          "observedOnPoint": [
+            146.99986267089844,
+            376.9999084472656
+          ],
+          "expectedOnPoint": [
+            94.59584786282991,
+            381.15519922267595
+          ],
+          "pixelError": 52.56850016342939,
+          "existingTolerancePixels": 5.256862982612154,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            173.0,
+            367.0
+          ],
+          "observedOnPoint": [
+            173.00003051757812,
+            367.00006103515625
+          ],
+          "expectedOnPoint": [
+            121.46569633134499,
+            370.82064211940093
+          ],
+          "pixelError": 51.67576259562742,
+          "existingTolerancePixels": 5.167573667416548,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            178.0,
+            373.0
+          ],
+          "observedOnPoint": [
+            177.99996948242188,
+            372.9997863769531
+          ],
+          "expectedOnPoint": [
+            126.6329748829825,
+            377.02137638136594
+          ],
+          "pixelError": 51.524181898817446,
+          "existingTolerancePixels": 5.152419564993631,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            332.0,
+            349.0
+          ],
+          "observedOnPoint": [
+            331.9999694824219,
+            348.99993896484375
+          ],
+          "expectedOnPoint": [
+            285.7851542734179,
+            352.2184393335059
+          ],
+          "pixelError": 46.326751336840616,
+          "existingTolerancePixels": 4.632677754037337,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            163.0,
+            367.0
+          ],
+          "observedOnPoint": [
+            162.99998474121094,
+            367.0000305175781
+          ],
+          "expectedOnPoint": [
+            111.13113922806994,
+            370.82064211940093
+          ],
+          "pixelError": 52.0093665398654,
+          "existingTolerancePixels": 5.200938399925927,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            232.0,
+            275.0
+          ],
+          "observedOnPoint": [
+            231.85047912597656,
+            275.0312805175781
+          ],
+          "expectedOnPoint": [
+            182.43958324066764,
+            275.74271676927066
+          ],
+          "pixelError": 49.41601738028936,
+          "existingTolerancePixels": 4.956598165635447,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            303.0,
+            380.0
+          ],
+          "observedOnPoint": [
+            302.9998779296875,
+            379.9999694824219
+          ],
+          "expectedOnPoint": [
+            255.81493867392032,
+            384.2555663536585
+          ],
+          "pixelError": 47.37645614966275,
+          "existingTolerancePixels": 4.737657498528455,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            226.0,
+            369.0
+          ],
+          "observedOnPoint": [
+            226.00010681152344,
+            368.99993896484375
+          ],
+          "expectedOnPoint": [
+            176.23884897870263,
+            372.88755354005593
+          ],
+          "pixelError": 49.912887395840684,
+          "existingTolerancePixels": 4.991277615492015,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            308.0,
+            377.0
+          ],
+          "observedOnPoint": [
+            307.9997253417969,
+            377.00006103515625
+          ],
+          "expectedOnPoint": [
+            260.98221722555786,
+            381.15519922267595
+          ],
+          "pixelError": 47.20075468483513,
+          "existingTolerancePixels": 4.720103364974919,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            177.0,
+            350.0
+          ],
+          "observedOnPoint": [
+            177.00025939941406,
+            350.0000915527344
+          ],
+          "expectedOnPoint": [
+            125.599519172655,
+            353.2518950438334
+          ],
+          "pixelError": 51.503498151130394,
+          "existingTolerancePixels": 5.150324504978662,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            329.0,
+            368.0
+          ],
+          "observedOnPoint": [
+            329.0001220703125,
+            368.0002136230469
+          ],
+          "expectedOnPoint": [
+            282.6847871424354,
+            371.85409782972846
+          ],
+          "pixelError": 46.47539857774153,
+          "existingTolerancePixels": 4.647529464266615,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            398.0,
+            349.0
+          ],
+          "observedOnPoint": [
+            397.9998474121094,
+            349.0001220703125
+          ],
+          "expectedOnPoint": [
+            353.99323115503313,
+            352.2184393335059
+          ],
+          "pixelError": 44.12414124268184,
+          "existingTolerancePixels": 4.412430232783069,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            297.0,
+            376.0
+          ],
+          "observedOnPoint": [
+            297.0,
+            376.00018310546875
+          ],
+          "expectedOnPoint": [
+            249.6142044119553,
+            380.1217435123485
+          ],
+          "pixelError": 47.56470207727064,
+          "existingTolerancePixels": 4.756471794401332,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            224.0,
+            270.0
+          ],
+          "observedOnPoint": [
+            223.15907287597656,
+            270.2453308105469
+          ],
+          "expectedOnPoint": [
+            174.17193755804763,
+            270.5754382176331
+          ],
+          "pixelError": 48.98824754527654,
+          "existingTolerancePixels": 4.98313850485958,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            314.0,
+            368.0
+          ],
+          "observedOnPoint": [
+            313.9999084472656,
+            368.00018310546875
+          ],
+          "expectedOnPoint": [
+            267.18295148752287,
+            371.85409782972846
+          ],
+          "pixelError": 46.975313917761866,
+          "existingTolerancePixels": 4.697542018439808,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            303.0,
+            346.0
+          ],
+          "observedOnPoint": [
+            302.9997253417969,
+            345.99932861328125
+          ],
+          "expectedOnPoint": [
+            255.81493867392032,
+            349.11807220252336
+          ],
+          "pixelError": 47.287743173770295,
+          "existingTolerancePixels": 4.728797295936937,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            399.0,
+            376.0
+          ],
+          "observedOnPoint": [
+            399.00006103515625,
+            376.00006103515625
+          ],
+          "expectedOnPoint": [
+            355.0266868653606,
+            380.1217435123485
+          ],
+          "pixelError": 44.166117129759606,
+          "existingTolerancePixels": 4.416606205695315,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            149.0,
+            356.0
+          ],
+          "observedOnPoint": [
+            148.9999237060547,
+            355.99981689453125
+          ],
+          "expectedOnPoint": [
+            96.66275928348492,
+            359.4526293057984
+          ],
+          "pixelError": 52.45093605782935,
+          "existingTolerancePixels": 5.245100013290216,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            387.0,
+            362.0
+          ],
+          "observedOnPoint": [
+            386.9999084472656,
+            362.0000915527344
+          ],
+          "expectedOnPoint": [
+            342.6252183414306,
+            365.6533635677634
+          ],
+          "pixelError": 44.52481912826473,
+          "existingTolerancePixels": 4.45249178843035,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            308.0,
+            356.0
+          ],
+          "observedOnPoint": [
+            307.9999694824219,
+            355.9999694824219
+          ],
+          "expectedOnPoint": [
+            260.98221722555786,
+            359.4526293057984
+          ],
+          "pixelError": 47.14435159320573,
+          "existingTolerancePixels": 4.714437979386181,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            298.0,
+            369.0
+          ],
+          "observedOnPoint": [
+            298.0000915527344,
+            369.0004577636719
+          ],
+          "expectedOnPoint": [
+            250.64766012228284,
+            372.88755354005593
+          ],
+          "pixelError": 47.51170672529452,
+          "existingTolerancePixels": 4.751165293295577,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            253.0,
+            375.0
+          ],
+          "observedOnPoint": [
+            252.9999237060547,
+            374.9998474121094
+          ],
+          "expectedOnPoint": [
+            204.14215315754518,
+            379.08828780202094
+          ],
+          "pixelError": 49.02853340446421,
+          "existingTolerancePixels": 4.9028596708787475,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            222.0,
+            365.0
+          ],
+          "observedOnPoint": [
+            222.0001983642578,
+            365.0002136230469
+          ],
+          "expectedOnPoint": [
+            172.10502613739263,
+            368.7537306987459
+          ],
+          "pixelError": 50.03615794589052,
+          "existingTolerancePixels": 5.003597616624443,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            236.0,
+            360.0
+          ],
+          "observedOnPoint": [
+            236.0001983642578,
+            360.00006103515625
+          ],
+          "expectedOnPoint": [
+            186.57340608197765,
+            363.5864521471084
+          ],
+          "pixelError": 49.556735127766025,
+          "existingTolerancePixels": 4.95565417007743,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            153.0,
+            346.0
+          ],
+          "observedOnPoint": [
+            152.99998474121094,
+            346.0000915527344
+          ],
+          "expectedOnPoint": [
+            100.79658212479492,
+            349.11807220252336
+          ],
+          "pixelError": 52.29643437237465,
+          "existingTolerancePixels": 5.229645506258938,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            530.0,
+            221.0
+          ],
+          "observedOnPoint": [
+            530.000244140625,
+            220.99244689941406
+          ],
+          "expectedOnPoint": [
+            490.4093849182635,
+            219.93610841158545
+          ],
+          "pixelError": 39.60494899587314,
+          "existingTolerancePixels": 3.9604907118463473,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            331.0,
+            361.0
+          ],
+          "observedOnPoint": [
+            331.0000915527344,
+            361.0000915527344
+          ],
+          "expectedOnPoint": [
+            284.75169856309043,
+            364.6199078574359
+          ],
+          "pixelError": 46.389836432179095,
+          "existingTolerancePixels": 4.638975230258918,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            413.0,
+            221.0
+          ],
+          "observedOnPoint": [
+            412.9990234375,
+            220.9918975830078
+          ],
+          "expectedOnPoint": [
+            369.4950668099457,
+            219.93610841158545
+          ],
+          "pixelError": 43.51676611406941,
+          "existingTolerancePixels": 4.351793971666155,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            154.0,
+            358.0
+          ],
+          "observedOnPoint": [
+            153.9999542236328,
+            357.9999694824219
+          ],
+          "expectedOnPoint": [
+            101.83003783512243,
+            361.5195407264534
+          ],
+          "pixelError": 52.288503112309286,
+          "existingTolerancePixels": 5.228854673071266,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            395.0,
+            380.0
+          ],
+          "observedOnPoint": [
+            394.9999084472656,
+            380.0000915527344
+          ],
+          "expectedOnPoint": [
+            350.8928640240506,
+            384.2555663536585
+          ],
+          "pixelError": 44.31185432288706,
+          "existingTolerancePixels": 4.43119542447778,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            324.0,
+            379.0
+          ],
+          "observedOnPoint": [
+            324.0001220703125,
+            378.999755859375
+          ],
+          "expectedOnPoint": [
+            277.5175085907979,
+            383.22211064333095
+          ],
+          "pixelError": 46.67399314187237,
+          "existingTolerancePixels": 4.667384948652807,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            297.0,
+            353.0
+          ],
+          "observedOnPoint": [
+            296.9998474121094,
+            352.999755859375
+          ],
+          "expectedOnPoint": [
+            249.6142044119553,
+            356.3522621748159
+          ],
+          "pixelError": 47.504088888569584,
+          "existingTolerancePixels": 4.7504223866943205,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            317.0,
+            345.0
+          ],
+          "observedOnPoint": [
+            317.0,
+            344.9999694824219
+          ],
+          "expectedOnPoint": [
+            270.2833186185054,
+            348.0846164921959
+          ],
+          "pixelError": 46.81840841458616,
+          "existingTolerancePixels": 4.681840640393488,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            323.0,
+            345.0
+          ],
+          "observedOnPoint": [
+            322.9999084472656,
+            345.0
+          ],
+          "expectedOnPoint": [
+            276.4840528804704,
+            348.0846164921959
+          ],
+          "pixelError": 46.61801881263166,
+          "existingTolerancePixels": 4.661811016472889,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            331.0,
+            379.0
+          ],
+          "observedOnPoint": [
+            331.00006103515625,
+            378.9997863769531
+          ],
+          "expectedOnPoint": [
+            284.75169856309043,
+            383.22211064333095
+          ],
+          "pixelError": 46.44070470565697,
+          "existingTolerancePixels": 4.644062450144033,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            240.0,
+            279.0
+          ],
+          "observedOnPoint": [
+            240.13442993164062,
+            279.5585021972656
+          ],
+          "expectedOnPoint": [
+            190.70722892328766,
+            279.87653961058066
+          ],
+          "pixelError": 49.428224197480496,
+          "existingTolerancePixels": 4.930056391269866,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            168.0,
+            378.0
+          ],
+          "observedOnPoint": [
+            168.00001525878906,
+            378.0001525878906
+          ],
+          "expectedOnPoint": [
+            116.29841777970748,
+            382.1886549330035
+          ],
+          "pixelError": 51.870981615774255,
+          "existingTolerancePixels": 5.187097872827775,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            242.0,
+            266.0
+          ],
+          "observedOnPoint": [
+            242.21275329589844,
+            266.19317626953125
+          ],
+          "expectedOnPoint": [
+            192.77414034394266,
+            266.4416153763231
+          ],
+          "pixelError": 49.439237176589536,
+          "existingTolerancePixels": 4.922784052767761,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            378.0,
+            362.0
+          ],
+          "observedOnPoint": [
+            377.99993896484375,
+            362.0001525878906
+          ],
+          "expectedOnPoint": [
+            333.32411694848304,
+            365.6533635677634
+          ],
+          "pixelError": 44.82493751586279,
+          "existingTolerancePixels": 4.482501078405984,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            179.0,
+            379.0
+          ],
+          "observedOnPoint": [
+            179.00006103515625,
+            378.99993896484375
+          ],
+          "expectedOnPoint": [
+            127.66643059331,
+            383.22211064333095
+          ],
+          "pixelError": 51.50697378047621,
+          "existingTolerancePixels": 5.15069079475364,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            318.0,
+            351.0
+          ],
+          "observedOnPoint": [
+            318.00006103515625,
+            350.9998779296875
+          ],
+          "expectedOnPoint": [
+            271.3167743288329,
+            354.2853507541609
+          ],
+          "pixelError": 46.79875628032375,
+          "existingTolerancePixels": 4.679868682605296,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            324.0,
+            351.0
+          ],
+          "observedOnPoint": [
+            323.9998779296875,
+            351.000244140625
+          ],
+          "expectedOnPoint": [
+            277.5175085907979,
+            354.2853507541609
+          ],
+          "pixelError": 46.59831096530477,
+          "existingTolerancePixels": 4.659844994401009,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            320.0,
+            376.0
+          ],
+          "observedOnPoint": [
+            320.0000915527344,
+            376.0
+          ],
+          "expectedOnPoint": [
+            273.3836857494879,
+            380.1217435123485
+          ],
+          "pixelError": 46.79826983548153,
+          "existingTolerancePixels": 4.679817863853343,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            236.0,
+            352.0
+          ],
+          "observedOnPoint": [
+            236.00003051757812,
+            352.000244140625
+          ],
+          "expectedOnPoint": [
+            186.57340608197765,
+            355.3188064644884
+          ],
+          "pixelError": 49.537905274600206,
+          "existingTolerancePixels": 4.953789118125451,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            590.0,
+            446.0
+          ],
+          "observedOnPoint": [
+            552.3728637695312,
+            452.500244140625
+          ],
+          "expectedOnPoint": [
+            552.4167275379136,
+            452.46364323527365
+          ],
+          "pixelError": 0.05712842067869119,
+          "existingTolerancePixels": 3.8135037076582456,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            303.0,
+            353.0
+          ],
+          "observedOnPoint": [
+            303.0,
+            352.99981689453125
+          ],
+          "expectedOnPoint": [
+            255.81493867392032,
+            356.3522621748159
+          ],
+          "pixelError": 47.3040051338489,
+          "existingTolerancePixels": 4.730399215747653,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            277.0,
+            329.0
+          ],
+          "observedOnPoint": [
+            228.9383544921875,
+            331.4770812988281
+          ],
+          "expectedOnPoint": [
+            228.94509020540528,
+            331.5493251269558
+          ],
+          "pixelError": 0.07255715357629637,
+          "existingTolerancePixels": 4.812248345596436,
+          "matched": true
+        },
+        {
+          "offPoint": [
+            229.0,
+            267.0
+          ],
+          "observedOnPoint": [
+            228.33778381347656,
+            267.2840881347656
+          ],
+          "expectedOnPoint": [
+            179.33921610968514,
+            267.47507108665064
+          ],
+          "pixelError": 48.99893990190954,
+          "existingTolerancePixels": 4.966305618000092,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            155.0,
+            377.0
+          ],
+          "observedOnPoint": [
+            154.99998474121094,
+            377.00006103515625
+          ],
+          "expectedOnPoint": [
+            102.86349354544993,
+            381.15519922267595
+          ],
+          "pixelError": 52.30180577726786,
+          "existingTolerancePixels": 5.230182583682398,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            328.0,
+            282.0
+          ],
+          "observedOnPoint": [
+            328.0022277832031,
+            281.9873962402344
+          ],
+          "expectedOnPoint": [
+            281.6513314321079,
+            282.9769067415632
+          ],
+          "pixelError": 46.36145730649774,
+          "existingTolerancePixels": 4.635896272349092,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            242.0,
+            354.0
+          ],
+          "observedOnPoint": [
+            242.00001525878906,
+            354.0000305175781
+          ],
+          "expectedOnPoint": [
+            192.77414034394266,
+            357.3857178851434
+          ],
+          "pixelError": 49.342168984378816,
+          "existingTolerancePixels": 4.9342155855572765,
+          "matched": false
+        }
+      ],
+      "scope": "Image crop transform correspondence, not artistic quality or release gate",
+      "actualDecodedTimestamp": 12.633333333333335,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.1065714285714288,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5698353309577799,
+        "y": 0.395,
+        "zoom": 2.194464658246468,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.0334557103275028,
+          0,
+          -57.322141555313
+        ],
+        [
+          0,
+          1.033455710327503,
+          -8.457603570792712
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.11346996971788517,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "CONFOUNDED_OPENING_BACKGROUND_RETURN_LAYER",
+      "semanticStatus": "CONFOUNDED"
+    },
+    {
+      "status": "FAILED_TARGET_CORRESPONDENCE",
+      "detected": 67,
+      "valid": 57,
+      "agreement": 0.0,
+      "medianErrorPixels": 50.02477909940935,
+      "maximumErrorPixels": 52.90640371359786,
+      "medianObservedDisplacement": [
+        0.00018310546875,
+        -0.00091552734375
+      ],
+      "medianExpectedDisplacement": [
+        -49.59633192377498,
+        3.017896841645154
+      ],
+      "features": [
+        {
+          "offPoint": [
+            530.0,
+            221.0
+          ],
+          "observedOnPoint": [
+            529.9998779296875,
+            221.0001220703125
+          ],
+          "expectedOnPoint": [
+            490.1733562997325,
+            219.93604080305641
+          ],
+          "pixelError": 39.84073410574405,
+          "existingTolerancePixels": 3.984085287240745,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            413.0,
+            221.0
+          ],
+          "observedOnPoint": [
+            413.0000305175781,
+            221.00001525878906
+          ],
+          "expectedOnPoint": [
+            369.25878944305316,
+            219.93604080305641
+          ],
+          "pixelError": 43.75417937045742,
+          "existingTolerancePixels": 4.375414849085648,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            238.0,
+            269.0
+          ],
+          "observedOnPoint": [
+            238.97032165527344,
+            269.3112487792969
+          ],
+          "expectedOnPoint": [
+            188.40366807622502,
+            269.5420169493864
+          ],
+          "pixelError": 50.567180148114026,
+          "existingTolerancePixels": 4.959929357023832,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            143.0,
+            346.0
+          ],
+          "observedOnPoint": [
+            143.01907348632812,
+            346.0042419433594
+          ],
+          "expectedOnPoint": [
+            90.2251736199469,
+            349.11827035079074
+          ],
+          "pixelError": 52.88566002257868,
+          "existingTolerancePixels": 5.2866869676815265,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            172.0,
+            346.0
+          ],
+          "observedOnPoint": [
+            172.0003662109375,
+            346.00048828125
+          ],
+          "expectedOnPoint": [
+            120.1954508750213,
+            349.11827035079074
+          ],
+          "pixelError": 51.89864948141325,
+          "existingTolerancePixels": 5.18983132676097,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            310.0,
+            348.0
+          ],
+          "observedOnPoint": [
+            310.0076599121094,
+            347.982177734375
+          ],
+          "expectedOnPoint": [
+            262.81263229572005,
+            351.1851860235545
+          ],
+          "pixelError": 47.303592821394695,
+          "existingTolerancePixels": 4.729474686329941,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            299.0,
+            336.0
+          ],
+          "observedOnPoint": [
+            298.9386291503906,
+            335.9412536621094
+          ],
+          "expectedOnPoint": [
+            251.44459609551942,
+            338.78369198697203
+          ],
+          "pixelError": 47.57901461198884,
+          "existingTolerancePixels": 4.763680700463267,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            153.0,
+            332.0
+          ],
+          "observedOnPoint": [
+            153.0004425048828,
+            332.0003356933594
+          ],
+          "expectedOnPoint": [
+            100.55975198376566,
+            334.6498606414445
+          ],
+          "pixelError": 52.50758045065599,
+          "existingTolerancePixels": 5.250715544974081,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            224.0,
+            260.0
+          ],
+          "observedOnPoint": [
+            224.3072509765625,
+            259.9637451171875
+          ],
+          "expectedOnPoint": [
+            173.93525836687877,
+            260.2408964219495
+          ],
+          "pixelError": 50.37275505981148,
+          "existingTolerancePixels": 5.006532119019402,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            243.0,
+            255.0
+          ],
+          "observedOnPoint": [
+            244.3247833251953,
+            254.97364807128906
+          ],
+          "expectedOnPoint": [
+            193.5709572581344,
+            255.07360724004013
+          ],
+          "pixelError": 50.7539245012727,
+          "existingTolerancePixels": 4.9429097547931855,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            161.0,
+            341.0
+          ],
+          "observedOnPoint": [
+            160.99937438964844,
+            341.0003967285156
+          ],
+          "expectedOnPoint": [
+            108.82741467482066,
+            343.95098116888136
+          ],
+          "pixelError": 52.255328235743974,
+          "existingTolerancePixels": 5.225597525041717,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            217.0,
+            257.0
+          ],
+          "observedOnPoint": [
+            216.9729766845703,
+            256.97125244140625
+          ],
+          "expectedOnPoint": [
+            166.70105351220565,
+            257.14052291280393
+          ],
+          "pixelError": 50.272208146655174,
+          "existingTolerancePixels": 5.029914278067792,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            169.0,
+            336.0
+          ],
+          "observedOnPoint": [
+            169.00033569335938,
+            336.0002746582031
+          ],
+          "expectedOnPoint": [
+            117.09507736587565,
+            338.78369198697203
+          ],
+          "pixelError": 51.979835071582414,
+          "existingTolerancePixels": 5.197951456807544,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            158.0,
+            350.0
+          ],
+          "observedOnPoint": [
+            158.01658630371094,
+            350.0106506347656
+          ],
+          "expectedOnPoint": [
+            105.72704116567502,
+            353.2521016963183
+          ],
+          "pixelError": 52.3899182641769,
+          "existingTolerancePixels": 5.237402400750042,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            165.0,
+            350.0
+          ],
+          "observedOnPoint": [
+            165.0044708251953,
+            350.0010070800781
+          ],
+          "expectedOnPoint": [
+            112.96124602034814,
+            353.2521016963183
+          ],
+          "pixelError": 52.14467244399571,
+          "existingTolerancePixels": 5.2140273121627665,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            153.0,
+            341.0
+          ],
+          "observedOnPoint": [
+            152.9998016357422,
+            341.0002746582031
+          ],
+          "expectedOnPoint": [
+            100.55975198376566,
+            343.95098116888136
+          ],
+          "pixelError": 52.52299949939952,
+          "existingTolerancePixels": 5.252321298115017,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            148.0,
+            350.0
+          ],
+          "observedOnPoint": [
+            148.0135955810547,
+            350.0060119628906
+          ],
+          "expectedOnPoint": [
+            95.39246280185628,
+            353.2521016963183
+          ],
+          "pixelError": 52.72116001686129,
+          "existingTolerancePixels": 5.270796083607553,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            171.0,
+            356.0
+          ],
+          "observedOnPoint": [
+            171.00314331054688,
+            355.9857177734375
+          ],
+          "expectedOnPoint": [
+            119.1619930386394,
+            359.4528487146095
+          ],
+          "pixelError": 51.956961597823685,
+          "existingTolerancePixels": 5.195287412619297,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            319.0,
+            343.0
+          ],
+          "observedOnPoint": [
+            319.0384521484375,
+            342.98968505859375
+          ],
+          "expectedOnPoint": [
+            272.1137528231569,
+            346.01789684164515
+          ],
+          "pixelError": 47.022308252264686,
+          "existingTolerancePixels": 4.6983272296369885,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            303.0,
+            351.0
+          ],
+          "observedOnPoint": [
+            302.9949645996094,
+            350.9823303222656
+          ],
+          "expectedOnPoint": [
+            255.5784274410469,
+            354.2855595327001
+          ],
+          "pixelError": 47.53145610357423,
+          "existingTolerancePixels": 4.753525476324883,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            299.0,
+            356.0
+          ],
+          "observedOnPoint": [
+            298.9932861328125,
+            355.99591064453125
+          ],
+          "expectedOnPoint": [
+            251.44459609551942,
+            359.4528487146095
+          ],
+          "pixelError": 47.674189506303414,
+          "existingTolerancePixels": 4.7680589391955595,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            289.0,
+            351.0
+          ],
+          "observedOnPoint": [
+            288.98516845703125,
+            351.0040588378906
+          ],
+          "expectedOnPoint": [
+            241.11001773170065,
+            354.2855595327001
+          ],
+          "pixelError": 47.987480698440066,
+          "existingTolerancePixels": 4.800255517262538,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            301.0,
+            341.0
+          ],
+          "observedOnPoint": [
+            300.96759033203125,
+            340.945556640625
+          ],
+          "expectedOnPoint": [
+            253.51151176828316,
+            343.95098116888136
+          ],
+          "pixelError": 47.55115108221542,
+          "existingTolerancePixels": 4.758008831846576,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            146.0,
+            341.0
+          ],
+          "observedOnPoint": [
+            145.99966430664062,
+            341.0000915527344
+          ],
+          "expectedOnPoint": [
+            93.32554712909254,
+            343.95098116888136
+          ],
+          "pixelError": 52.7567092412022,
+          "existingTolerancePixels": 5.275704952997792,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            148.0,
+            331.0
+          ],
+          "observedOnPoint": [
+            148.00003051757812,
+            331.0000305175781
+          ],
+          "expectedOnPoint": [
+            95.39246280185628,
+            333.61640280506265
+          ],
+          "pixelError": 52.672588553354544,
+          "existingTolerancePixels": 5.26725595893385,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            166.0,
+            356.0
+          ],
+          "observedOnPoint": [
+            166.0058135986328,
+            355.9872131347656
+          ],
+          "expectedOnPoint": [
+            113.99470385673004,
+            359.4528487146095
+          ],
+          "pixelError": 52.12644402370579,
+          "existingTolerancePixels": 5.211979461965665,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            319.0,
+            348.0
+          ],
+          "observedOnPoint": [
+            319.0016784667969,
+            347.9880676269531
+          ],
+          "expectedOnPoint": [
+            272.1137528231569,
+            351.1851860235545
+          ],
+          "pixelError": 46.99679922298323,
+          "existingTolerancePixels": 4.699431438304716,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            294.0,
+            361.0
+          ],
+          "observedOnPoint": [
+            293.9954833984375,
+            361.0029602050781
+          ],
+          "expectedOnPoint": [
+            246.27730691361003,
+            364.6201378965189
+          ],
+          "pixelError": 47.85507644428748,
+          "existingTolerancePixels": 4.785980394660623,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            289.0,
+            343.0
+          ],
+          "observedOnPoint": [
+            288.9816589355469,
+            342.9808349609375
+          ],
+          "expectedOnPoint": [
+            241.11001773170065,
+            346.01789684164515
+          ],
+          "pixelError": 47.96788275937385,
+          "existingTolerancePixels": 4.798497788896894,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            318.0,
+            356.0
+          ],
+          "observedOnPoint": [
+            317.99993896484375,
+            356.0007019042969
+          ],
+          "expectedOnPoint": [
+            271.080294986775,
+            359.4528487146095
+          ],
+          "pixelError": 47.04646967232157,
+          "existingTolerancePixels": 4.704658205198366,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            319.0,
+            333.0
+          ],
+          "observedOnPoint": [
+            319.2024841308594,
+            332.9466857910156
+          ],
+          "expectedOnPoint": [
+            272.1137528231569,
+            335.6833184778264
+          ],
+          "pixelError": 47.16818604347128,
+          "existingTolerancePixels": 4.69629680959527,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            289.0,
+            358.0
+          ],
+          "observedOnPoint": [
+            288.9867248535156,
+            357.99609375
+          ],
+          "expectedOnPoint": [
+            241.11001773170065,
+            361.51976438737324
+          ],
+          "pixelError": 48.00620105349657,
+          "existingTolerancePixels": 4.801915391800075,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            219.0,
+            352.0
+          ],
+          "observedOnPoint": [
+            219.00018310546875,
+            351.999267578125
+          ],
+          "expectedOnPoint": [
+            168.76796918496942,
+            355.319017369082
+          ],
+          "pixelError": 50.34179232039088,
+          "existingTolerancePixels": 5.034156131963381,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            384.0,
+            358.0
+          ],
+          "observedOnPoint": [
+            384.0120849609375,
+            358.0216064453125
+          ],
+          "expectedOnPoint": [
+            339.28851218797877,
+            361.51976438737324
+          ],
+          "pixelError": 44.860172431297435,
+          "existingTolerancePixels": 4.484981475666476,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            143.0,
+            360.0
+          ],
+          "observedOnPoint": [
+            143.01246643066406,
+            360.0385437011719
+          ],
+          "expectedOnPoint": [
+            90.2251736199469,
+            363.586680060137
+          ],
+          "pixelError": 52.90640371359786,
+          "existingTolerancePixels": 5.289656485348111,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            373.0,
+            346.0
+          ],
+          "observedOnPoint": [
+            372.9903259277344,
+            345.98944091796875
+          ],
+          "expectedOnPoint": [
+            327.9204759877781,
+            349.11827035079074
+          ],
+          "pixelError": 45.17832386476804,
+          "existingTolerancePixels": 4.518724482803871,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            293.0,
+            331.0
+          ],
+          "observedOnPoint": [
+            292.9279479980469,
+            331.0347900390625
+          ],
+          "expectedOnPoint": [
+            245.24384907722813,
+            333.61640280506265
+          ],
+          "pixelError": 47.75393192569594,
+          "existingTolerancePixels": 4.782776928309436,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            298.0,
+            351.0
+          ],
+          "observedOnPoint": [
+            297.9952392578125,
+            350.989013671875
+          ],
+          "expectedOnPoint": [
+            250.41113825913752,
+            354.2855595327001
+          ],
+          "pixelError": 47.698153868515966,
+          "existingTolerancePixels": 4.770214526867573,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            161.0,
+            332.0
+          ],
+          "observedOnPoint": [
+            160.999755859375,
+            332.00054931640625
+          ],
+          "expectedOnPoint": [
+            108.82741467482066,
+            334.6498606414445
+          ],
+          "pixelError": 52.23956388767541,
+          "existingTolerancePixels": 5.22398355752791,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            384.0,
+            334.0
+          ],
+          "observedOnPoint": [
+            383.89447021484375,
+            333.9886474609375
+          ],
+          "expectedOnPoint": [
+            339.28851218797877,
+            336.71677631420823
+          ],
+          "pixelError": 44.689307205801356,
+          "existingTolerancePixels": 4.479395066195844,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            245.0,
+            354.0
+          ],
+          "observedOnPoint": [
+            244.98805236816406,
+            353.99346923828125
+          ],
+          "expectedOnPoint": [
+            195.63787293089814,
+            357.38593304184576
+          ],
+          "pixelError": 49.46664554170658,
+          "existingTolerancePixels": 4.9478117702172355,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            233.0,
+            252.0
+          ],
+          "observedOnPoint": [
+            233.484375,
+            251.9400177001953
+          ],
+          "expectedOnPoint": [
+            183.23637889431566,
+            251.97323373089455
+          ],
+          "pixelError": 50.24800708427712,
+          "existingTolerancePixels": 4.976362830404626,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            228.0,
+            344.0
+          ],
+          "observedOnPoint": [
+            228.00070190429688,
+            343.99969482421875
+          ],
+          "expectedOnPoint": [
+            178.06908971240628,
+            347.051354678027
+          ],
+          "pixelError": 50.02477909940935,
+          "existingTolerancePixels": 5.002405988640716,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            216.0,
+            348.0
+          ],
+          "observedOnPoint": [
+            216.00003051757812,
+            347.9992370605469
+          ],
+          "expectedOnPoint": [
+            165.66759567582378,
+            351.1851860235545
+          ],
+          "pixelError": 50.43316634809217,
+          "existingTolerancePixels": 5.043308770100241,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            288.0,
+            338.0
+          ],
+          "observedOnPoint": [
+            287.9488220214844,
+            338.103271484375
+          ],
+          "expectedOnPoint": [
+            240.07655989531875,
+            340.8506076597358
+          ],
+          "pixelError": 47.95103061600196,
+          "existingTolerancePixels": 4.8008145928547545,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            231.0,
+            264.0
+          ],
+          "observedOnPoint": [
+            231.49183654785156,
+            264.34088134765625
+          ],
+          "expectedOnPoint": [
+            181.1694632215519,
+            264.37472776747705
+          ],
+          "pixelError": 50.32238470871199,
+          "existingTolerancePixels": 4.983194574294674,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            366.0,
+            346.0
+          ],
+          "observedOnPoint": [
+            365.99896240234375,
+            346.0001220703125
+          ],
+          "expectedOnPoint": [
+            320.68627113310504,
+            349.11827035079074
+          ],
+          "pixelError": 45.419850712660775,
+          "existingTolerancePixels": 4.542089424266204,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            313.0,
+            361.0
+          ],
+          "observedOnPoint": [
+            312.99853515625,
+            360.9920959472656
+          ],
+          "expectedOnPoint": [
+            265.91300580486563,
+            364.6201378965189
+          ],
+          "pixelError": 47.22509674617534,
+          "existingTolerancePixels": 4.722595071274299,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            310.0,
+            330.0
+          ],
+          "observedOnPoint": [
+            310.00006103515625,
+            329.8497314453125
+          ],
+          "expectedOnPoint": [
+            262.81263229572005,
+            332.58294496868075
+          ],
+          "pixelError": 47.26651972806643,
+          "existingTolerancePixels": 4.725800752856764,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            162.0,
+            361.0
+          ],
+          "observedOnPoint": [
+            162.03138732910156,
+            360.9930725097656
+          ],
+          "expectedOnPoint": [
+            109.86087251120253,
+            364.6201378965189
+          ],
+          "pixelError": 52.296445574096204,
+          "existingTolerancePixels": 5.226465357852177,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            228.0,
+            336.0
+          ],
+          "observedOnPoint": [
+            228.00413513183594,
+            335.99908447265625
+          ],
+          "expectedOnPoint": [
+            178.06908971240628,
+            338.78369198697203
+          ],
+          "pixelError": 50.01262640623152,
+          "existingTolerancePixels": 5.0008446718790065,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            313.0,
+            337.0
+          ],
+          "observedOnPoint": [
+            313.0750427246094,
+            336.89813232421875
+          ],
+          "expectedOnPoint": [
+            265.91300580486563,
+            339.8171498233539
+          ],
+          "pixelError": 47.25228449058869,
+          "existingTolerancePixels": 4.7171192008044915,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            170.0,
+            361.0
+          ],
+          "observedOnPoint": [
+            170.00376892089844,
+            360.9820861816406
+          ],
+          "expectedOnPoint": [
+            118.12853520225752,
+            364.6201378965189
+          ],
+          "pixelError": 52.00264698689623,
+          "existingTolerancePixels": 5.199763704874722,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            309.0,
+            357.0
+          ],
+          "observedOnPoint": [
+            309.00048828125,
+            356.99493408203125
+          ],
+          "expectedOnPoint": [
+            261.77917445933815,
+            360.4863065509914
+          ],
+          "pixelError": 47.350207610785574,
+          "existingTolerancePixels": 4.734934738841822,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            148.0,
+            336.0
+          ],
+          "observedOnPoint": [
+            148.00013732910156,
+            336.0002746582031
+          ],
+          "expectedOnPoint": [
+            95.39246280185628,
+            338.78369198697203
+          ],
+          "pixelError": 52.68125692493168,
+          "existingTolerancePixels": 5.268113429997885,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            238.0,
+            250.0
+          ],
+          "observedOnPoint": [
+            238.8467559814453,
+            249.80287170410156
+          ],
+          "expectedOnPoint": [
+            188.40366807622502,
+            249.9063180581308
+          ],
+          "pixelError": 50.4431939766104,
+          "existingTolerancePixels": 4.959642040106821,
+          "matched": false
+        },
+        {
+          "offPoint": [
+            233.0,
+            259.0
+          ],
+          "observedOnPoint": [
+            233.4852294921875,
+            258.83837890625
+          ],
+          "expectedOnPoint": [
+            183.23637889431566,
+            259.2074385855677
+          ],
+          "pixelError": 50.25020588469407,
+          "existingTolerancePixels": 4.976405345545009,
+          "matched": false
+        }
+      ],
+      "scope": "Image crop transform correspondence, not artistic quality or release gate",
+      "actualDecodedTimestamp": 12.675,
+      "target": "selected image crop in cinema field, registered primary glyph bounds excluded",
+      "selectedMotionPrinciple": "stable-travel",
+      "focusInput": {
+        "id": "HERO",
+        "x": 0.545,
+        "y": 0.395,
+        "zoom": 2.107258241758242,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0.0084
+      },
+      "focusOutput": {
+        "id": "HERO",
+        "x": 0.5699549053357282,
+        "y": 0.395,
+        "zoom": 2.1956034440602314,
+        "edgeDensity": 21.531,
+        "sourceWidth": 640,
+        "sourceHeight": 360,
+        "evidence": "local edge density around geometric region; not object recognition",
+        "start": 10.9,
+        "duration": 1.8200000000000003,
+        "push": 0
+      },
+      "nativeExpectedAffineOFFtoON": [
+        [
+          1.033457836381875,
+          0,
+          -57.55929698266121
+        ],
+        [
+          0,
+          1.0334578363818747,
+          -8.458141037337901
+        ]
+      ],
+      "fieldBoxOutputPixels": [
+        0.0,
+        0.0,
+        720.0,
+        640.0
+      ],
+      "rawONRepeatDifferenceRMS": 0.11049525505146766,
+      "semanticCaveat": "Feature ownership beyond registered glyph exclusion can remain confounded by layered foreground. A mismatch here does not by itself establish a rendering defect.",
+      "scopeContext": "CONFOUNDED_OPENING_BACKGROUND_RETURN_LAYER",
+      "semanticStatus": "CONFOUNDED"
+    }
+  ],
+  "counts": {
+    "FAILED_TARGET_CORRESPONDENCE": 2,
+    "UNMEASURED": 41
+  },
+  "semanticStatus": "DIAGNOSTIC_ONLY_REQUIRES_FEATURE_OWNERSHIP_AND_NOISE_ATTRIBUTION",
+  "limits": "Reports strict renderer-equation feature correspondences. Not an aesthetic score, whole-film intent realization or release verdict. Historical primary settle failure remains separate.",
+  "human": "HUMAN_UNVERIFIED",
+  "scope": "Separate conservative ownership correction; original43 observations and all raw failures retained. No release certification."
+}

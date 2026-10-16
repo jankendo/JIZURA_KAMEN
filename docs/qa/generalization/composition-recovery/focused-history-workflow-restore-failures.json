@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "attempts": [
+    {
+      "run": 38898685449,
+      "stage": "CANONICAL_INPUT_RESTORE",
+      "cause": "Required original MP4 absent from sparse checkout; no app export started.",
+      "fixedIn": "1b192556ef1f00314272c08594cd49fbe5a58932"
+    },
+    {
+      "commit": "7dcece51bdc375b0f9f6b7e9d7cb2f535d53d192",
+      "stage": "WORKFLOW_DEFINITION",
+      "cause": "Failed local git-show output was used without exit-code validation. Preserve erroneous commit; no app result claimed.",
+      "fixedIn": "3ae60310fbe001dc4ef87a3fb6d40f7ab0f4bcd4",
+      "fix": "Reconstructed workflow from known valid local source; check exit status and structural YAML before API publication."
+    }
+  ],
+  "sourceCodeUnaffectedByHarnessFailures": true,
+  "mainChanged": false
+}
