@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "registeredUTC": "2026-10-16T03:19:17.935013+00:00",
+  "selectionRule": "Every remaining historical PCM mismatch, excluding3 already recovered by strict same-runner3-source comparisons. Selection does not depend on quality metrics.",
+  "sources": {
+    "main": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+    "previous": "5e14682249ce690337874214f2ec76fc8e68fa26",
+    "current": "b002cdd75845d189221312a82456c33a131f5e8d"
+  },
+  "cases": [
+    "development-01",
+    "development-03",
+    "development-04",
+    "development-08",
+    "development-10",
+    "development-14",
+    "holdout-02",
+    "holdout-04",
+    "holdout-07",
+    "holdout-08",
+    "holdout-09",
+    "holdout-11",
+    "holdout-12",
+    "supplemental-development-13"
+  ],
+  "caseCount": 14,
+  "inputDefinitions": "Exact unchanged fixtures in final-source-current23-preregistration.json",
+  "method": "One fixture per runner; all3 shipping sources fully generate and encode actual movies; unchanged existing input/WAV/PCM/profile correspondence, H264AAC complete decode and actual final-source FAV requirements. Retain old-source FAV failures as baseline results.",
+  "thresholdChanges": false,
+  "historicalPCMCause": "UNRESOLVED",
+  "QUALITY_GO": "UNVERIFIED"
+}
