@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "source": "da434cce2b69f34f3a4c302e69098d91950adccb",
+  "baseline": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "fixtures": [
+    "development-04",
+    "supplemental-holdout-13"
+  ],
+  "fixtureManifestSHA256": "d024ec6e4bdd99f6e1a5f951b341d2ddf24f931fcdbbd0240054fbda024a4fda",
+  "naturalSelection": true,
+  "forcedOperators": false,
+  "sourceAdopted": false,
+  "comparison": "Same authored fixture, seed, PCM, output profile; original selection first with policy absent. At most one policy-only fixed-plan trial after complete first movie. Keep original when trial fails or any preexisting measured score, HOLD contrast or readable duration regresses. Missing measurements remain missing.",
+  "strictImprovement": "Actual registered decoded displacement agrees with original declared uniform motion, existing >=0.5px / max(0.5px,10%) error, >=3 frames / >=90% agreement. Not global camera or artistic certification.",
+  "control": "Stripping policy from trial must reproduce selected original plan hash exactly. Final artifact verification/certification remains enabled; _photoRefining prevents only replanning on frozen trial.",
+  "diagnostics": "Retain trial even rejected, baseline if accepted, full decode and raw QA; no deleted failures.",
+  "tests": "540 anchor contracts,63 final repair contracts,existing37 release-gate scenarios passed locally; full exact-source CI and real movies pending."
+}
