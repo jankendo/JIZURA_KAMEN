@@ -52,7 +52,7 @@ Q.finalSemanticTravelDominates=(before,after,plan,observation)=>{
 Q.recordFinalSemanticTravelHistory=async(before,after,args)=>{
  if(!before.provenance.cinemaV3?.selectedEvidence)return;
  const f=after.provenance.finalArtifactVerification;if(f?.status!=='MEASURED'||!f.evidenceId||!before.provenance.finalArtifactVerification.evidenceId||after.validation?.certification?.passed!==true)throw Error('FINAL_REPAIR_VERIFIED_ARTIFACT_REQUIRED');
- const input=await V.snapshot(args.project,args.audio,args.plan,args.range),old=before.provenance.cinemaV3,budgetPolicy=old.budgetPolicy??V.budgetPolicy(args.project.exportSettings),evidence=await V.finalEvaluation(after,args.plan,args,{input,budgetPolicy});
+ const locks=V.lockSignature(args.plan),input=await V.snapshot(args.project,args.audio,args.plan,args.range),old=before.provenance.cinemaV3,budgetPolicy=old.budgetPolicy??V.budgetPolicy(args.project.exportSettings),evidence=await V.finalEvaluation(after,args.plan,args,{input,budgetPolicy,locks});
  if(input.inputHash!==f.binding.inputHash||evidence.videoHash!==f.binding.videoSHA256||evidence.evaluation.planHash!==f.binding.planHash||evidence.evaluation.id!==f.binding.videoSHA256)throw Error('FINAL_REPAIR_HISTORY_BINDING_MISMATCH');
  // This is a post-selection final-artifact refinement, not a new proxy search.
  // Encode, decoder and FAV stages actually completed; no PROXY_MEASURED is claimed.
