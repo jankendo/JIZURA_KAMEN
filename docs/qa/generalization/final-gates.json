@@ -1,11 +1,17 @@
 {
   "schema": 2,
-  "recordedUTC": "2026-10-16T04:49:49.785708+00:00",
+  "recordedUTC": "2026-10-16T11:21:12.036533+00:00",
   "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "overall": "PARTIAL",
   "TECHNICAL_GO": "PASS",
+  "technicalEvaluation": {
+    "status": "PASS",
+    "failures": [],
+    "missing": [],
+    "scope": "Evaluates source-bound CI/browser/final movie summaries; original SHA-bound raw evidence remains mandatory and independently preserved."
+  },
   "technicalScope": "Exact current PR source only; not any experimental branch. CI used a Git-tree-identical PR merge checkout.",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "NO_GO",
@@ -35,10 +41,250 @@
     "selectionRule": "Strict same-runner comparison current movie, then fresh final-source current-only movie, then initial seven final-source comparison movies. No score-based choice. Original alternate observations/failures retained."
   },
   "threeVersionComparison": {
-    "matched": 29,
+    "matched": 30,
     "required": 30,
-    "all30Comparable": false,
-    "statistics": null,
+    "all30Comparable": true,
+    "statistics": {
+      "displayOnsetAccuracy": {
+        "measuredCounts": {
+          "main": 0,
+          "previous": 0,
+          "current": 0
+        },
+        "status": "UNMEASURED_OR_INCOMPLETE"
+      },
+      "foregroundNovelty": {
+        "measuredCounts": {
+          "main": 0,
+          "previous": 0,
+          "current": 0
+        },
+        "status": "UNMEASURED_OR_INCOMPLETE"
+      },
+      "hookNovelty": {
+        "measuredCounts": {
+          "main": 30,
+          "previous": 30,
+          "current": 30
+        },
+        "status": "MEASURED",
+        "versions": {
+          "main": {
+            "mean": 62.266666666666666,
+            "worst": 1,
+            "lower20Mean": 21
+          },
+          "previous": {
+            "mean": 66.36666666666666,
+            "worst": 1,
+            "lower20Mean": 27.333333333333332
+          },
+          "current": {
+            "mean": 65.73333333333333,
+            "worst": 1,
+            "lower20Mean": 26.666666666666668
+          }
+        },
+        "currentVsMain": {
+          "improved": 8,
+          "equal": 16,
+          "declined": 6
+        },
+        "currentVsPrevious": {
+          "improved": 2,
+          "equal": 25,
+          "declined": 3
+        }
+      },
+      "impactBeatSync": {
+        "measuredCounts": {
+          "main": 12,
+          "previous": 11,
+          "current": 13
+        },
+        "status": "UNMEASURED_OR_INCOMPLETE"
+      },
+      "localContrast": {
+        "measuredCounts": {
+          "main": 24,
+          "previous": 27,
+          "current": 27
+        },
+        "status": "UNMEASURED_OR_INCOMPLETE"
+      },
+      "loopQuality": {
+        "measuredCounts": {
+          "main": 30,
+          "previous": 30,
+          "current": 30
+        },
+        "status": "MEASURED",
+        "versions": {
+          "main": {
+            "mean": 5.766666666666667,
+            "worst": 0,
+            "lower20Mean": 0
+          },
+          "previous": {
+            "mean": 5.766666666666667,
+            "worst": 0,
+            "lower20Mean": 0
+          },
+          "current": {
+            "mean": 5.766666666666667,
+            "worst": 0,
+            "lower20Mean": 0
+          }
+        },
+        "currentVsMain": {
+          "improved": 0,
+          "equal": 30,
+          "declined": 0
+        },
+        "currentVsPrevious": {
+          "improved": 0,
+          "equal": 30,
+          "declined": 0
+        }
+      },
+      "lyricForegroundNovelty": {
+        "measuredCounts": {
+          "main": 30,
+          "previous": 30,
+          "current": 30
+        },
+        "status": "MEASURED",
+        "versions": {
+          "main": {
+            "mean": 76.83333333333333,
+            "worst": 32,
+            "lower20Mean": 53.5
+          },
+          "previous": {
+            "mean": 70.73333333333333,
+            "worst": 37,
+            "lower20Mean": 48.833333333333336
+          },
+          "current": {
+            "mean": 73.96666666666667,
+            "worst": 37,
+            "lower20Mean": 53.666666666666664
+          }
+        },
+        "currentVsMain": {
+          "improved": 11,
+          "equal": 4,
+          "declined": 15
+        },
+        "currentVsPrevious": {
+          "improved": 10,
+          "equal": 19,
+          "declined": 1
+        }
+      },
+      "motion": {
+        "measuredCounts": {
+          "main": 20,
+          "previous": 20,
+          "current": 20
+        },
+        "status": "UNMEASURED_OR_INCOMPLETE"
+      },
+      "motionRealization": {
+        "measuredCounts": {
+          "main": 30,
+          "previous": 30,
+          "current": 30
+        },
+        "status": "MEASURED",
+        "versions": {
+          "main": {
+            "mean": 87.46666666666667,
+            "worst": 33,
+            "lower20Mean": 59.333333333333336
+          },
+          "previous": {
+            "mean": 96.96666666666667,
+            "worst": 60,
+            "lower20Mean": 84.83333333333333
+          },
+          "current": {
+            "mean": 95.86666666666666,
+            "worst": 60,
+            "lower20Mean": 79.33333333333333
+          }
+        },
+        "currentVsMain": {
+          "improved": 10,
+          "equal": 19,
+          "declined": 1
+        },
+        "currentVsPrevious": {
+          "improved": 0,
+          "equal": 29,
+          "declined": 1
+        }
+      },
+      "perceptualNovelty": {
+        "measuredCounts": {
+          "main": 21,
+          "previous": 21,
+          "current": 21
+        },
+        "status": "UNMEASURED_OR_INCOMPLETE"
+      },
+      "regionalPerceptualNovelty": {
+        "measuredCounts": {
+          "main": 21,
+          "previous": 21,
+          "current": 21
+        },
+        "status": "UNMEASURED_OR_INCOMPLETE"
+      },
+      "temporalContrast": {
+        "measuredCounts": {
+          "main": 21,
+          "previous": 21,
+          "current": 21
+        },
+        "status": "UNMEASURED_OR_INCOMPLETE"
+      },
+      "typographyDiversity": {
+        "measuredCounts": {
+          "main": 30,
+          "previous": 30,
+          "current": 30
+        },
+        "status": "MEASURED",
+        "versions": {
+          "main": {
+            "mean": 40.86666666666667,
+            "worst": 19,
+            "lower20Mean": 21.833333333333332
+          },
+          "previous": {
+            "mean": 38.56666666666667,
+            "worst": 6,
+            "lower20Mean": 15
+          },
+          "current": {
+            "mean": 46.266666666666666,
+            "worst": 17,
+            "lower20Mean": 21.5
+          }
+        },
+        "currentVsMain": {
+          "improved": 16,
+          "equal": 2,
+          "declined": 12
+        },
+        "currentVsPrevious": {
+          "improved": 8,
+          "equal": 22,
+          "declined": 0
+        }
+      }
+    },
     "rule": "No cross-version aggregate for an incomplete population. The immutable inputHash contains semantic renderer version; actual authored fixture/input/WAV/PCM/profile equality is independently checked and the version-bound hashes are retained."
   },
   "currentOnlyTypographyDescriptor": {
@@ -82,7 +328,7 @@
       "naturallyGeneratedNewSourceMovie": false
     },
     "candidateAdopted": false,
-    "newNaturalShippingEvidence": "PENDING_SEPARATE_PAIRED_EXPERIMENT",
+    "newNaturalShippingEvidence": "COMPLETED_TWO_PAIRED_CONDITIONS_TRADEOFFS_RETAINED",
     "unitContractChecks": 522
   },
   "semanticBoundaryCandidate": {
@@ -92,14 +338,25 @@
     "change": "Refine only the original winner geometry class using existing costs; preserve font size, row count, fits and readability cost.",
     "contractChecks": 128,
     "completedIndependentCondition": "semantic-boundary-independent-02",
-    "completedIndependentResult": "Whole decoded RGB24 identity; no regression, not improvement. Other preregistered conditions pending.",
-    "completedPairs": 2,
-    "completedH264AACDecodes": 4,
-    "pendingCases": [
-      "development-11",
-      "semantic-boundary-latin-control-03"
-    ],
+    "completedIndependentResult": "All four preregistered pairs completed. One dense independent pair has whole RGB24 identity; other pairs retain descriptor tradeoffs. Not adopted.",
+    "completedPairs": 4,
+    "completedH264AACDecodes": 8,
+    "pendingCases": [],
     "independentDescriptorTradeoffs": [
+      {
+        "fixture": "development-11",
+        "newMinusPrevious": {
+          "perceptualNovelty": 0,
+          "temporalContrast": 8,
+          "hookNovelty": 0,
+          "loopQuality": 0,
+          "lyricForegroundNovelty": 1,
+          "regionalPerceptualNovelty": 23.28627111351966,
+          "localContrast": 17,
+          "motionRealization": 0,
+          "typographyDiversity": -6
+        }
+      },
       {
         "fixture": "semantic-boundary-independent-01",
         "newMinusPrevious": {
@@ -126,14 +383,28 @@
           "motionRealization": 0,
           "typographyDiversity": 0
         }
+      },
+      {
+        "fixture": "semantic-boundary-latin-control-03",
+        "newMinusPrevious": {
+          "perceptualNovelty": 0,
+          "motion": -11,
+          "temporalContrast": -70,
+          "hookNovelty": 33,
+          "loopQuality": 0,
+          "lyricForegroundNovelty": 0,
+          "regionalPerceptualNovelty": 0,
+          "localContrast": -4,
+          "motionRealization": -33,
+          "typographyDiversity": 13
+        }
       }
     ],
     "adoptionReason": "Unqualified creative improvement not yet established; retain independent tradeoffs and uncorrected compound-word break."
   },
   "releaseBlockers": [
-    "Complete all fixed source/input/profile-matched comparisons; do not reuse source-mixed aggregate scores.",
     "Important selected nonprimary effects still lack independent encoded-intent verification. Retain UNMEASURED/CONFOUNDED and the original primary failure.",
-    "Finish natural source candidate MP4 validation before adoption; then validate exact adopted final source with regression/build/browser/affected MP4 checks."
+    "Direct renderer repair changed natural selection and introduced descriptor tradeoffs. Late fixed-plan repair is preregistered; real final-source validation is required before adoption."
   ],
   "deployment": {
     "merged": false,
@@ -150,20 +421,20 @@
       "bytes": 3579
     },
     "final-fresh30-selected-artifacts.json": {
-      "SHA256": "2cbbe7cf4878aae7277ea944b39d1bc1c907c38fceb502c1a9087a9db832b4b5",
-      "bytes": 60955
+      "SHA256": "2adbea897273eda4ee432a52b370a46ccb3d0e3fb06ca40e99fb13979ab88850",
+      "bytes": 60962
     },
     "final-fresh30-primary-population.json": {
-      "SHA256": "c3652c89ce448b91318f4a186890d04903905ce14259c7570847d0e956d1d26e",
+      "SHA256": "d82bdb9c2519e5eae73dd0e8373f5fb34360c327c43c3524e303a31cf4969461",
       "bytes": 488422
     },
     "final-source-current23-progress.json": {
-      "SHA256": "ce1d876646dc5e3cde15b28d3872b7855ab838b0e7e6e1a223f15a6f6b3bb82c",
-      "bytes": 169971
+      "SHA256": "ad87c9c8bd1e7e6ba8ae0841a27fb03a2a9fd8b29d2904bea0377b54a042162e",
+      "bytes": 176232
     },
     "final-source-three-version-comparison.json": {
-      "SHA256": "754826da91ba69df621b2b4d61252f92a63604fdba4e6fef3a44772da613812f",
-      "bytes": 196516
+      "SHA256": "fb3d47c1aabbf7ab04a9303dc8c07c72455af37b14a21878ef1ae943813c5f76",
+      "bytes": 207761
     },
     "continuity-photo-centering-root-cause.json": {
       "SHA256": "eba512deb52a08fcb25b7edfb5690c8ea0e5529eabf2a7767962a845f4067ec2",
@@ -174,12 +445,20 @@
       "bytes": 1659
     },
     "semantic-boundary-paired-progress.json": {
-      "SHA256": "f1c68338ff8f2030fee4c7ead19355d4c66fdf9253536d0a3925fc4f4da22f42",
-      "bytes": 9000
+      "SHA256": "48679a077a3ea713728e2a2b8ca76f2321fcc987a4566787073cf790c1706d2a",
+      "bytes": 17562
     },
     "semantic-boundary-pair-semantic-boundary-independent-02/zero-contrast-phase-diagnostic.json": {
       "SHA256": "78fe9e217401c2602d07607b06a550dc8d032fe314ddcd2c747d1dad537406a2",
       "bytes": 7892
+    },
+    "natural-semantic-travel-paired-progress.json": {
+      "SHA256": "0a75b6ead6be02f20dc11fd4f0f8780acd103c20a1f053fc0134195cca03e34b",
+      "bytes": 9142
+    },
+    "late-semantic-travel-preregistration.json": {
+      "SHA256": "e436c61d5051ed34a5c49382a2b322fbfd8590463e26ffebc429e4202343aa4a",
+      "bytes": 1425
     }
   },
   "localContrastZeroDiagnostic": {
@@ -192,5 +471,266 @@
     },
     "actualMovieSHA256": "1818d75aea22d80e1f878b3723db66e762a7e6d7363a1c2ee78132a740586614",
     "observation": "Eight zero-score samples are in authored wipe ENTER, none in HOLD. Three actual entry/first-hold frame pairs were visually inspected by AI. Do not generalize to other movies or claim human evaluation."
+  },
+  "naturalTranslationCandidate": {
+    "schema": 1,
+    "candidateSourceCommit": "274274721d855cf1fd068ea7516a0b2b52c2bfd5",
+    "adopted": false,
+    "fixedConditionCount": 2,
+    "completedConditions": 2,
+    "fullyDecodedMovies": 4,
+    "pendingConditions": [],
+    "rows": [
+      {
+        "fixture": "development-04",
+        "archive": "natural-semantic-travel-pair-development-04",
+        "PCM": "MATCHED",
+        "versions": {
+          "previous": {
+            "binding": {
+              "inputHash": "9869f2b17bd601d890432174d6acacaf45e218ef73b3f0d0a1ba8fabab14e576",
+              "planHash": "9e1ebeefd084c5ee7d5d0fab0a4f3f8ce2fcff2e328f597ccf79175d02416434",
+              "outputProfile": {
+                "purpose": "FULL_MV",
+                "aspect": "4:5",
+                "fps": 24,
+                "range": [
+                  0,
+                  9.999977324263039
+                ],
+                "loopRequired": false,
+                "resolution": [
+                  360,
+                  450
+                ]
+              },
+              "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+              "selectedCandidateId": "5a6b26d71e824e9afa8f5bb3f1d28bd9281b970b4a6dbd979bf214ac34d276d0",
+              "videoSHA256": "c7074fccfbdbd3f8971cb2f8542f8d03b625bee070103b0e175defb98add9107",
+              "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+              "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+              "sourceDirty": false
+            },
+            "FAV": "MEASURED",
+            "fullDecode": "PASS",
+            "metrics": {
+              "perceptualNovelty": 100,
+              "motion": 35.5,
+              "temporalContrast": 41,
+              "hookNovelty": 100,
+              "loopQuality": 0,
+              "foregroundNovelty": null,
+              "lyricForegroundNovelty": 95,
+              "displayOnsetAccuracy": null,
+              "impactBeatSync": 100,
+              "regionalPerceptualNovelty": 100,
+              "localContrast": 88,
+              "motionRealization": 100,
+              "typographyDiversity": 79
+            },
+            "rowSHA256": "af1bb9fd0c35bdf03cd26abf86615af157947eb04d99b1e255dba2d3ac107212"
+          },
+          "matrix": {
+            "binding": {
+              "inputHash": "dea01a20ec545a4aa00f5f35e216526b15508ad1249f6bf4ef1918cd284f4f87",
+              "planHash": "630abecea716e3cce252d840a4d182529e86a5a66071c3224d8e90a5c17c7487",
+              "outputProfile": {
+                "purpose": "FULL_MV",
+                "aspect": "4:5",
+                "fps": 24,
+                "range": [
+                  0,
+                  9.999977324263039
+                ],
+                "loopRequired": false,
+                "resolution": [
+                  360,
+                  450
+                ]
+              },
+              "rendererVersion": "80c400458e5b5fa5843b22f80a520ae8d54aae63c0f303e847388d99e2dbffe6",
+              "selectedCandidateId": "da924d4f5f235861cda2c4eec7ab3cb25b825560dea1cfb2a52ad5b40746003b",
+              "videoSHA256": "44f0abcc99707880a1d9f3bc7eadeb5ea551c832458556d870e13dc24118a221",
+              "sourceCommit": "274274721d855cf1fd068ea7516a0b2b52c2bfd5",
+              "sourceTreeSHA256": "80c400458e5b5fa5843b22f80a520ae8d54aae63c0f303e847388d99e2dbffe6",
+              "sourceDirty": false
+            },
+            "FAV": "MEASURED",
+            "fullDecode": "PASS",
+            "metrics": {
+              "perceptualNovelty": 100,
+              "motion": 21.5,
+              "temporalContrast": 90,
+              "hookNovelty": 70,
+              "loopQuality": 0,
+              "foregroundNovelty": null,
+              "lyricForegroundNovelty": 75,
+              "displayOnsetAccuracy": null,
+              "impactBeatSync": 40,
+              "regionalPerceptualNovelty": 100,
+              "localContrast": 85,
+              "motionRealization": 100,
+              "typographyDiversity": 30
+            },
+            "rowSHA256": "e3ccf4182d74f80951a9d05985580a358784a0bfc035f2ca18c6c261654db702"
+          }
+        },
+        "newMinusPreviousEngineeringDescriptors": {
+          "perceptualNovelty": 0,
+          "motion": -14.0,
+          "temporalContrast": 49,
+          "hookNovelty": -30,
+          "loopQuality": 0,
+          "lyricForegroundNovelty": -20,
+          "impactBeatSync": -60,
+          "regionalPerceptualNovelty": 0,
+          "localContrast": -3,
+          "motionRealization": 0,
+          "typographyDiversity": -49
+        },
+        "wholeDecodedRGB24Identity": null,
+        "qualityInterpretation": "Pixel identity is no regression, not improvement. Descriptor changes are retained as tradeoffs, not artistic grades or automatic adoption."
+      },
+      {
+        "fixture": "supplemental-holdout-13",
+        "archive": "natural-semantic-travel-pair-supplemental-holdout-13",
+        "PCM": "MATCHED",
+        "versions": {
+          "previous": {
+            "binding": {
+              "inputHash": "a194ecd1d58b7a6d2cf156343ee2e56146c914924c563dc309dace1bc9933ee8",
+              "planHash": "0bf2aa565e77a24fb5816d2d59e98a5d3a3d13f3204d6c747171b33d396c0bca",
+              "outputProfile": {
+                "purpose": "SHORT",
+                "aspect": "9:16",
+                "fps": 24,
+                "range": [
+                  0.3,
+                  12.72
+                ],
+                "loopRequired": false,
+                "resolution": [
+                  720,
+                  1280
+                ]
+              },
+              "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+              "selectedCandidateId": "7890656c6f2b52d9272848bb6268ba52175a88f4cd0c4c65d83d4dcee32ba791",
+              "videoSHA256": "2bbf4036c8e50b2e75fab2d49a2c822a8c50d8f2717f37c915a537366fe38996",
+              "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+              "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+              "sourceDirty": false
+            },
+            "FAV": "MEASURED",
+            "fullDecode": "PASS",
+            "metrics": {
+              "perceptualNovelty": 100,
+              "motion": 21,
+              "temporalContrast": 100,
+              "hookNovelty": 35,
+              "loopQuality": 0,
+              "foregroundNovelty": null,
+              "lyricForegroundNovelty": 95,
+              "displayOnsetAccuracy": null,
+              "impactBeatSync": 0,
+              "regionalPerceptualNovelty": 100,
+              "localContrast": 96,
+              "motionRealization": 100,
+              "typographyDiversity": 83
+            },
+            "rowSHA256": "e51100743c99776e9dd4208fb77cae7dd6792101876f4a03c4ca0db7906478d7"
+          },
+          "matrix": {
+            "binding": {
+              "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+              "planHash": "f5a4699a037eeb6a59ae9c344f00c1b1ccee463bfa6f9d26eb6cdee4e2133886",
+              "outputProfile": {
+                "purpose": "SHORT",
+                "aspect": "9:16",
+                "fps": 24,
+                "range": [
+                  0.3,
+                  12.72
+                ],
+                "loopRequired": false,
+                "resolution": [
+                  720,
+                  1280
+                ]
+              },
+              "rendererVersion": "80c400458e5b5fa5843b22f80a520ae8d54aae63c0f303e847388d99e2dbffe6",
+              "selectedCandidateId": "e1330d75fb27feac25f829b0775d886b0836b62c0b6bbb1b5ae08d500233a58f",
+              "videoSHA256": "228a42a224aa2050ba75a15f1c8e4662b4530bdfb95328d948ddaeee48f738d4",
+              "sourceCommit": "274274721d855cf1fd068ea7516a0b2b52c2bfd5",
+              "sourceTreeSHA256": "80c400458e5b5fa5843b22f80a520ae8d54aae63c0f303e847388d99e2dbffe6",
+              "sourceDirty": false
+            },
+            "FAV": "MEASURED",
+            "fullDecode": "PASS",
+            "metrics": {
+              "perceptualNovelty": 100,
+              "motion": 21,
+              "temporalContrast": 100,
+              "hookNovelty": 35,
+              "loopQuality": 0,
+              "foregroundNovelty": null,
+              "lyricForegroundNovelty": 95,
+              "displayOnsetAccuracy": null,
+              "impactBeatSync": 0,
+              "regionalPerceptualNovelty": 100,
+              "localContrast": 96,
+              "motionRealization": 100,
+              "typographyDiversity": 83
+            },
+            "rowSHA256": "5de9551616bcf0f7962e036576016453efcec9cbe89cd2a96385ab5a016c656b"
+          }
+        },
+        "newMinusPreviousEngineeringDescriptors": {
+          "perceptualNovelty": 0,
+          "motion": 0,
+          "temporalContrast": 0,
+          "hookNovelty": 0,
+          "loopQuality": 0,
+          "lyricForegroundNovelty": 0,
+          "impactBeatSync": 0,
+          "regionalPerceptualNovelty": 0,
+          "localContrast": 0,
+          "motionRealization": 0,
+          "typographyDiversity": 0
+        },
+        "wholeDecodedRGB24Identity": null,
+        "qualityInterpretation": "Pixel identity is no regression, not improvement. Descriptor changes are retained as tradeoffs, not artistic grades or automatic adoption."
+      }
+    ],
+    "QUALITY_GO": "UNVERIFIED",
+    "HUMAN": "HUMAN_UNVERIFIED",
+    "scope": "Prospectively fixed actual-MP4 pairs, equal authored fixture/input/WAV/PCM/profile; renderer-bound immutable hashes preserved separately. No source-mixed or metric-only certification."
+  },
+  "lateFixedPlanCandidate": {
+    "sourceCommit": "da434cce2b69f34f3a4c302e69098d91950adccb",
+    "adopted": false,
+    "protocol": {
+      "schema": 1,
+      "source": "da434cce2b69f34f3a4c302e69098d91950adccb",
+      "baseline": "b002cdd75845d189221312a82456c33a131f5e8d",
+      "fixtures": [
+        "development-04",
+        "supplemental-holdout-13"
+      ],
+      "fixtureManifestSHA256": "d024ec6e4bdd99f6e1a5f951b341d2ddf24f931fcdbbd0240054fbda024a4fda",
+      "naturalSelection": true,
+      "forcedOperators": false,
+      "sourceAdopted": false,
+      "comparison": "Same authored fixture, seed, PCM, output profile; original selection first with policy absent. At most one policy-only fixed-plan trial after complete first movie. Keep original when trial fails or any preexisting measured score, HOLD contrast or readable duration regresses. Missing measurements remain missing.",
+      "strictImprovement": "Actual registered decoded displacement agrees with original declared uniform motion, existing >=0.5px / max(0.5px,10%) error, >=3 frames / >=90% agreement. Not global camera or artistic certification.",
+      "control": "Stripping policy from trial must reproduce selected original plan hash exactly. Final artifact verification/certification remains enabled; _photoRefining prevents only replanning on frozen trial.",
+      "diagnostics": "Retain trial even rejected, baseline if accepted, full decode and raw QA; no deleted failures.",
+      "tests": "540 anchor contracts,63 final repair contracts,existing37 release-gate scenarios passed locally; full exact-source CI and real movies pending."
+    },
+    "realMovieValidation": "PENDING",
+    "unitEvidenceOnly": {
+      "anchorChecks": 540,
+      "repairChecks": 63
+    }
   }
 }

@@ -3,13 +3,118 @@
   "candidateSourceCommit": "c4c679ce624fc2be512592b1d820649c64b3b36e",
   "adopted": false,
   "fixedConditionCount": 4,
-  "completedConditions": 2,
-  "fullyDecodedMovies": 4,
-  "pendingConditions": [
-    "development-11",
-    "semantic-boundary-latin-control-03"
-  ],
+  "completedConditions": 4,
+  "fullyDecodedMovies": 8,
+  "pendingConditions": [],
   "rows": [
+    {
+      "fixture": "development-11",
+      "archive": "semantic-boundary-pair-development-11",
+      "PCM": "MATCHED",
+      "versions": {
+        "previous": {
+          "binding": {
+            "inputHash": "d607d1e02209793961caa3ce4c0345a580e45de9f920f9d18fb34d8ab33fcc9f",
+            "planHash": "cfbc6b63436dee4be49bf41e535fc18ce70d79dbd54c5c2858d361504ab33641",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "cf0bc4046ac91419a7e4ce194180fae415b0b7fdc79370ed8041ab226079724c",
+            "videoSHA256": "19262debf2f0366f4c94db930f2e539f8e6ac9921c32d70fa92ac72569f20fd3",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "FAV": "MEASURED",
+          "fullDecode": "PASS",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": null,
+            "temporalContrast": 37,
+            "hookNovelty": 52,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 92,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 76.71372888648034,
+            "localContrast": 81,
+            "motionRealization": 100,
+            "typographyDiversity": 72
+          },
+          "rowSHA256": "ded2f1e2c124644e3ebb58ec0e0a4b69f1a1ba4c350e17c874f48498754e51e9"
+        },
+        "matrix": {
+          "binding": {
+            "inputHash": "b1e08f8fa540fcfbb65dd158dd42ea0ff66e289fdde4e9ca2dfe4e287921baf9",
+            "planHash": "3afb6645fed17d5e670ac0001688caa8001bc573a9794a4ecfbbaf2ba2cb8725",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                19.99997732426304
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "29fb40b13fcc0ca4f6e4ee54d75d474f4683dc8d8a6813c3a982f53cec812353",
+            "selectedCandidateId": "2c98b5cd751c2cc0c92627862391187795a267d29684cdeefded5b7533c18efb",
+            "videoSHA256": "b01b518bfd594b545ae43d8a70c3a767b5711bfcfcf2775aa7d8354cf34955d8",
+            "sourceCommit": "c4c679ce624fc2be512592b1d820649c64b3b36e",
+            "sourceTreeSHA256": "29fb40b13fcc0ca4f6e4ee54d75d474f4683dc8d8a6813c3a982f53cec812353",
+            "sourceDirty": false
+          },
+          "FAV": "MEASURED",
+          "fullDecode": "PASS",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": null,
+            "temporalContrast": 45,
+            "hookNovelty": 52,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 93,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 98,
+            "motionRealization": 100,
+            "typographyDiversity": 66
+          },
+          "rowSHA256": "d763098212a671495768cf9a5f552b2816aeb47caea7ae85fe59f987c71d9c37"
+        }
+      },
+      "newMinusPreviousEngineeringDescriptors": {
+        "perceptualNovelty": 0,
+        "temporalContrast": 8,
+        "hookNovelty": 0,
+        "loopQuality": 0,
+        "lyricForegroundNovelty": 1,
+        "regionalPerceptualNovelty": 23.28627111351966,
+        "localContrast": 17,
+        "motionRealization": 0,
+        "typographyDiversity": -6
+      },
+      "wholeDecodedRGB24Identity": null,
+      "qualityInterpretation": "Pixel identity is no regression, not improvement. Descriptor changes are retained as tradeoffs, not artistic grades or automatic adoption."
+    },
     {
       "fixture": "semantic-boundary-independent-01",
       "archive": "semantic-boundary-pair-semantic-boundary-independent-01",
@@ -219,6 +324,115 @@
         "typographyDiversity": 0
       },
       "wholeDecodedRGB24Identity": true,
+      "qualityInterpretation": "Pixel identity is no regression, not improvement. Descriptor changes are retained as tradeoffs, not artistic grades or automatic adoption."
+    },
+    {
+      "fixture": "semantic-boundary-latin-control-03",
+      "archive": "semantic-boundary-pair-semantic-boundary-latin-control-03",
+      "PCM": "MATCHED",
+      "versions": {
+        "previous": {
+          "binding": {
+            "inputHash": "21b5b48a40508753f309edea958c2ef08f97170c65c02215d660bc6c0d841180",
+            "planHash": "109aecc613a3735b27bb08aeed21712faf8c5f94356abafe70c3e47c97404054",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                15.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "selectedCandidateId": "0ea90ce5d1c1455d0127db9d252089fd81b7c9413793ab40e9854ba995e7ba7b",
+            "videoSHA256": "367d3a6dbbdd9b39340f1a4c4a0e048a590d3d75865d64721bc74a6a7cd4e2b5",
+            "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+            "sourceTreeSHA256": "ff5053ba766f1bee1b6a03f13860991c5d509e6bd9f9f9e16ab80094d9bc81b3",
+            "sourceDirty": false
+          },
+          "FAV": "MEASURED",
+          "fullDecode": "PASS",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 22,
+            "temporalContrast": 79,
+            "hookNovelty": 62,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 100,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": null,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 36,
+            "motionRealization": 100,
+            "typographyDiversity": 42
+          },
+          "rowSHA256": "12d54b2b346de03aa9419ee427e29cf23bf145c22a09e34133dc42d9ab665b65"
+        },
+        "matrix": {
+          "binding": {
+            "inputHash": "586bd3739e1134217418305f1855d7080f25ff298ff158f0f518fc11ef29fad1",
+            "planHash": "a8696a0a38e8045dc3ee72c4107d852820d47428cbcd8548563fa8724c263603",
+            "outputProfile": {
+              "purpose": "SQUARE",
+              "aspect": "1:1",
+              "fps": 24,
+              "range": [
+                0,
+                15.999977324263039
+              ],
+              "loopRequired": false,
+              "resolution": [
+                360,
+                360
+              ]
+            },
+            "rendererVersion": "29fb40b13fcc0ca4f6e4ee54d75d474f4683dc8d8a6813c3a982f53cec812353",
+            "selectedCandidateId": "8c9dcf7b89887426eb9eefbe744446bbe2e6b35d905de31840f90a50ffbe3299",
+            "videoSHA256": "207f966f057b3a75c372f3e436c99dd3e236e01ca61742acd4f7fc9b9e5c312d",
+            "sourceCommit": "c4c679ce624fc2be512592b1d820649c64b3b36e",
+            "sourceTreeSHA256": "29fb40b13fcc0ca4f6e4ee54d75d474f4683dc8d8a6813c3a982f53cec812353",
+            "sourceDirty": false
+          },
+          "FAV": "MEASURED",
+          "fullDecode": "PASS",
+          "metrics": {
+            "perceptualNovelty": 100,
+            "motion": 11,
+            "temporalContrast": 9,
+            "hookNovelty": 95,
+            "loopQuality": 0,
+            "foregroundNovelty": null,
+            "lyricForegroundNovelty": 100,
+            "displayOnsetAccuracy": null,
+            "impactBeatSync": 50,
+            "regionalPerceptualNovelty": 100,
+            "localContrast": 32,
+            "motionRealization": 67,
+            "typographyDiversity": 55
+          },
+          "rowSHA256": "bbfc1b713f23c3c56954e9e34b34072a7b965886f3396756b5db45a6c16360e8"
+        }
+      },
+      "newMinusPreviousEngineeringDescriptors": {
+        "perceptualNovelty": 0,
+        "motion": -11,
+        "temporalContrast": -70,
+        "hookNovelty": 33,
+        "loopQuality": 0,
+        "lyricForegroundNovelty": 0,
+        "regionalPerceptualNovelty": 0,
+        "localContrast": -4,
+        "motionRealization": -33,
+        "typographyDiversity": 13
+      },
+      "wholeDecodedRGB24Identity": null,
       "qualityInterpretation": "Pixel identity is no regression, not improvement. Descriptor changes are retained as tradeoffs, not artistic grades or automatic adoption."
     }
   ],
