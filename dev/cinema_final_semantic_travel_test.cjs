@@ -12,6 +12,17 @@ for(const mutate of [b=>b.provenance.decodedCinema.metrics.temporalContrast--,b=
 {const o=clone(positive);o.fixedPlanCorrespondence.strippedTrialPlanHash=hash('f');assert(!Q.finalSemanticTravelDominates(before,after,p,o));checks++;}
 {const a=clone(before),b=clone(after),attach=r=>{const f=r.provenance.finalArtifactVerification.binding;r.provenance.cinemaV3={videoHash:f.videoSHA256,planHash:f.planHash,selectedEvidence:{id:f.videoSHA256,planHash:f.planHash},history:[{videoHash:f.videoSHA256,planHash:f.planHash,stateHistory:[{state:'FULL_ENCODED'},{state:'DECODED_QA'}]}]};};attach(a);attach(b);assert(Q.finalSemanticTravelDominates(a,b,p,observation(a,b,p)));checks++;
  for(const mutate of [r=>delete r.provenance.cinemaV3,r=>r.provenance.cinemaV3.videoHash=hash('f'),r=>r.provenance.cinemaV3.selectedEvidence.planHash=hash('f'),r=>r.provenance.cinemaV3.history[0].stateHistory.pop()]){const v=clone(b);mutate(v);assert(!Q.finalSemanticTravelDominates(a,v,p,observation(a,v,p)));checks++;}}
+// Final artifact IDs may change with planHash; source contracts must not.
+{
+ const a=clone(before),b=clone(after);
+ for(const [r,id]of [[a,'artifact-A'],[b,'artifact-B']]){const u=r.provenance.finalArtifactVerification.units[0];Object.assign(u,{unitId:id,sourceUnitId:'source-A',line:0,timeRange:[0,1],holdRange:[.1,.9],fragments:[{index:0,from:0,to:1,hold:[.1,.9],id:'artifact-specific-'+id}]});const f=r.provenance.finalArtifactVerification;f.inputContract={unitTexts:[{unitId:id,text:'歩き続く',sourceUnitOrigin:null}]};for(const frame of f.frames){frame.unitId=id;frame.sourceUnitId='source-A';}}
+ const o=observation(a,b,p);assert.equal(o.status,'VERIFIED');assert(Q.finalSemanticTravelDominates(a,b,p,o));checks+=2;
+ for(const mutate of [f=>f.units[0].sourceUnitId='other-source',f=>f.units[0].fragments[0].from=.01,f=>f.units[0].fragments[0].index=1,f=>f.inputContract.unitTexts[0].text='different',f=>f.inputContract.unitTexts[0].sourceUnitOrigin={start:.1},f=>f.frames[0].sourceUnitId='other-source',f=>f.units.push(clone(f.units[0]))]){const v=clone(b);mutate(v.provenance.finalArtifactVerification);const q=observation(a,v,p);assert.notEqual(q.status,'VERIFIED');assert(!Q.finalSemanticTravelDominates(a,v,p,q));checks+=2;}
+ // Distinct internal units sharing a source line retain separate fragment IDs.
+ for(const r of [a,b]){const f=r.provenance.finalArtifactVerification,u=clone(f.units[0]);u.unitId+='-second';u.sourceUnitId='source-B';u.fragments[0].index=1;u.timeRange=[1,2];f.units.push(u);f.inputContract.unitTexts.push({unitId:u.unitId,text:'次の語',sourceUnitOrigin:null});}
+ assert.equal(Q.finalSemanticTravelUnitMap(a.provenance.finalArtifactVerification,b.provenance.finalArtifactVerification).size,2);checks++;
+ const altered=clone(b);altered.provenance.finalArtifactVerification.units[1].sourceUnitId='source-A';assert.equal(Q.finalSemanticTravelUnitMap(a.provenance.finalArtifactVerification,altered.provenance.finalArtifactVerification),null);checks++;
+}
 (async()=>{
  const s={guard:Q.guardExport,contrast:Q.proposeFinalContrastRepair,snapshot:V.snapshot,evaluation:V.finalEvaluation,assertSnapshot:V.assertSnapshot};Q.guardExport=async r=>r;Q.proposeFinalContrastRepair=async()=>null;V.snapshot=async()=>({inputHash:hash('a')});
  try{for(const mode of ['accept','lower-score','mutated-cut','technical-error','cancel','manual','no-target']){

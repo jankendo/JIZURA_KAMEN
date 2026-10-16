@@ -10,15 +10,35 @@ Q.proposeFinalSemanticTravel=async(p,project,artifact)=>{
  if(V.lockSignature(plan)!==V.lockSignature(p))throw Error('SEMANTIC_TRAVEL_LOCK_CHANGED');
  return {plan,targets,trigger:'Existing selected light/continuity uniform translation was cancelled by animated-bounds anchoring; trial the same selected composition only.'};
 };
+// Artifact-scoped unit IDs intentionally include planHash. Join different final
+// artifacts only through a bijection of immutable source/fragment contracts.
+Q.finalSemanticTravelUnitMap=(a,b)=>{
+ const contract=(artifact,u)=>{
+  const text=artifact.inputContract?.unitTexts?.filter(t=>t.unitId===u.unitId);
+  if(!u.sourceUnitId||!Array.isArray(u.fragments)||!u.fragments.length||text?.length!==1)return null;
+  return J.canonicalJSON([u.sourceUnitId,u.line,u.timeRange,u.holdRange,u.fragments.map(f=>[f.index,f.from,f.to,f.hold]),text[0].text,text[0].sourceUnitOrigin]);
+ };
+ if(!Array.isArray(a.units)||!Array.isArray(b.units)||a.units.length!==b.units.length)return null;
+ const prior=new Map(a.units.map(u=>[u.unitId,u]));if(prior.size!==a.units.length||new Set(b.units.map(u=>u.unitId)).size!==b.units.length)return null;
+ const joined=new Map(),used=new Set();for(const u of b.units){
+  const key=contract(b,u),matches=key?a.units.filter(v=>contract(a,v)===key):a.units.filter(v=>v.unitId===u.unitId&&!v.sourceUnitId&&!u.sourceUnitId);
+  if(matches.length!==1||used.has(matches[0].unitId))return null;
+  joined.set(u.unitId,matches[0].unitId);used.add(matches[0].unitId);
+ }
+ // Each frame must still belong to its own artifact's declared unit/fragment.
+ for(const artifact of [a,b])for(const f of artifact.frames){const u=artifact.units.find(u=>u.unitId===f.unitId);if(!u||u.sourceUnitId&&(f.sourceUnitId!==u.sourceUnitId||!u.fragments.some(g=>g.index===f.fragmentIndex)))return null;}
+ return joined;
+};
 Q.measureFinalSemanticTravel=(before,after,plan)=>{
  const a=before.provenance?.finalArtifactVerification,b=after.provenance?.finalArtifactVerification;
  if(a?.status!=='MEASURED'||b?.status!=='MEASURED'||a.binding.inputHash!==b.binding.inputHash||a.binding.sourceCommit!==b.binding.sourceCommit||a.binding.rendererVersion!==b.binding.rendererVersion||V.profileId(a.binding.outputProfile)!==V.profileId(b.binding.outputProfile))return {status:'UNMEASURED',reason:'MATCHED_FINAL_ARTIFACTS_REQUIRED',targets:[]};
- const key=f=>J.canonicalJSON([f.unitId,f.fragmentIndex,f.actualDecodedTimestamp]),old=new Map(a.frames.map(f=>[key(f),f])),rows=[];
- if(old.size!==a.frames.length||new Set(b.frames.map(key)).size!==b.frames.length)return {status:'UNMEASURED',reason:'DUPLICATE_ACTUAL_FRAME_IDENTITY',targets:[]};
+ const units=Q.finalSemanticTravelUnitMap(a,b);if(!units)return {status:'UNMEASURED',reason:'SOURCE_UNIT_CORRESPONDENCE_REQUIRED',targets:[]};
+ const key=(f,joined=false)=>J.canonicalJSON([joined?units.get(f.unitId):f.unitId,f.fragmentIndex,f.actualDecodedTimestamp]),old=new Map(a.frames.map(f=>[key(f),f])),rows=[];
+ if(old.size!==a.frames.length||new Set(b.frames.map(f=>key(f,true))).size!==b.frames.length)return {status:'UNMEASURED',reason:'DUPLICATE_ACTUAL_FRAME_IDENTITY',targets:[]};
  for(let i=0;i<plan.cuts.length;i++){
   const cut=plan.cuts[i];if(!J.finalSemanticTravelTarget(plan,cut))continue;
   const points=[],missing=[];for(const f of b.frames.filter(f=>f.fragmentIndex===i&&f.phase==='hold')){
-   const prior=old.get(key(f));if(!prior){missing.push({time:f.actualDecodedTimestamp,reason:'OLD_ACTUAL_FRAME_ABSENT'});continue;}
+   const prior=old.get(key(f,true));if(!prior){missing.push({time:f.actualDecodedTimestamp,reason:'OLD_ACTUAL_FRAME_ABSENT'});continue;}
    for(const g of f.glyphEvidence||[]){const h=prior.glyphEvidence?.find(h=>h.index===g.index&&h.row===g.row&&h.character===g.character);
     if(!h||![g,h].every(x=>x.nativeCentroid&&x.decodedCentroid)){missing.push({time:f.actualDecodedTimestamp,index:g.index,reason:'REGISTERED_GLYPH_ABSENT'});continue;}
     const expected=g.nativeCentroid.map((v,k)=>v-h.nativeCentroid[k]),observed=g.decodedCentroid.map((v,k)=>v-h.decodedCentroid[k]),pixels=Math.hypot(...expected),error=Math.hypot(...expected.map((v,k)=>v-observed[k])),tolerance=Math.max(.5,pixels*.1);
@@ -34,9 +54,10 @@ Q.finalSemanticTravelDominates=(before,after,plan,observation)=>{
  const a=before.provenance?.finalArtifactVerification,b=after.provenance?.finalArtifactVerification;if(a?.status!=='MEASURED'||b?.status!=='MEASURED'||observation.status!=='VERIFIED')return false;
  const priorCinema=before.provenance.cinemaV3,currentCinema=after.provenance.cinemaV3;
  if(priorCinema?.selectedEvidence){const binding=b.binding;if(!currentCinema||currentCinema.videoHash!==binding.videoSHA256||currentCinema.planHash!==binding.planHash||currentCinema.selectedEvidence?.id!==binding.videoSHA256||currentCinema.selectedEvidence?.planHash!==binding.planHash||!currentCinema.history?.some(h=>h.videoHash===binding.videoSHA256&&h.planHash===binding.planHash&&h.stateHistory?.some(s=>s.state==='FULL_ENCODED')&&h.stateHistory?.some(s=>s.state==='DECODED_QA')))return false;}
- const key=f=>J.canonicalJSON([f.unitId,f.fragmentIndex,f.actualDecodedTimestamp]),frames=new Map(b.frames.filter(f=>f.phase==='hold').map(f=>[key(f),f]));
+ const correspondenceUnits=Q.finalSemanticTravelUnitMap(a,b);if(!correspondenceUnits)return false;
+ const key=(f,joined=false)=>J.canonicalJSON([joined?correspondenceUnits.get(f.unitId):f.unitId,f.fragmentIndex,f.actualDecodedTimestamp]),frames=new Map(b.frames.filter(f=>f.phase==='hold').map(f=>[key(f,true),f]));
  for(const old of a.frames.filter(f=>f.phase==='hold')){const next=frames.get(key(old));if(!next||!next.nativeComplete||!next.safeArea||next.pixelPresence!==true||!Number.isFinite(next.localContrast)||!Number.isFinite(old.localContrast)||next.localContrast<old.localContrast)return false;}
- const units=new Map(b.units.map(u=>[u.unitId,u]));for(const old of a.units){const next=units.get(old.unitId);if(!next||next.status!=='MEASURED'||![next.readableHoldSeconds,old.readableHoldSeconds,next.minimumContrast,old.minimumContrast].every(Number.isFinite)||next.readableHoldSeconds<old.readableHoldSeconds||next.minimumContrast<old.minimumContrast)return false;}
+ const units=new Map(b.units.map(u=>[correspondenceUnits.get(u.unitId),u]));for(const old of a.units){const next=units.get(old.unitId);if(!next||next.status!=='MEASURED'||![next.readableHoldSeconds,old.readableHoldSeconds,next.minimumContrast,old.minimumContrast].every(Number.isFinite)||next.readableHoldSeconds<old.readableHoldSeconds||next.minimumContrast<old.minimumContrast)return false;}
  const observed=r=>{const f=r.provenance.finalArtifactVerification,d=r.provenance.decodedCinema;return {...d,...f.binding,profileId:V.profileId(f.binding.outputProfile),encodedResolution:f.binding.outputProfile.resolution,fps:f.binding.outputProfile.fps,frameCount:f.frames.length};};
  const correspondence=observation.fixedPlanCorrespondence;
  if(!correspondence||correspondence.beforePlanHash!==a.binding.planHash||correspondence.strippedTrialPlanHash!==a.binding.planHash||correspondence.trialPlanHash!==b.binding.planHash)return false;
