@@ -19,6 +19,7 @@ jobs:
             /docs/qa/generalization/tools/
             /docs/qa/generalization/composition-recovery/final-source-current23-4/
             /docs/qa/generalization/media/4eed413aec8318204067f15b792fce1696019210d3661e3c96ac5dff95f2892d.wav
+            /docs/qa/generalization/media/a01ca609476c9c5ef4c1b5eaae04231c2a38802e32d4ecd47870f7e841539c9b.mp4
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: current
@@ -36,6 +37,7 @@ jobs:
           KAMEN_CHROME: /usr/bin/google-chrome
         run: |
           mkdir -p results
+          git -C current rev-parse HEAD > results/source-head.txt
           python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization final-source-current23-4 restored --prefix matrix/supplemental-holdout-13-v3
           node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
           server_pid=$!
