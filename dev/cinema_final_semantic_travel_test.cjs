@@ -34,6 +34,14 @@ for(const mutate of [b=>b.provenance.decodedCinema.metrics.temporalContrast--,b=
   assert.equal(calls.length,2);assert.deepEqual(calls,[{trial:false,frozen:false},{trial:true,frozen:true}]);assert.equal(result.provenance.finalSemanticTravelRepair.replannedTrial,false);checks+=3;
   if(mode==='accept'){assert.notEqual(result,first);assert.equal(result.provenance.finalSemanticTravelRepair.status,'ACCEPTED');assert(J.finalSemanticTravelTarget(original,original.cuts[0]));checks+=3;}else{assert.equal(result,first);assert(result.provenance.finalSemanticTravelRepair.status.startsWith('KEPT_ORIGINAL'));assert.equal(J.canonicalJSON(original),saved);checks+=3;}
  }
+ for(const mode of ['intentionalHold','quietIntent','readabilityFallback']){
+  const candidate=plan();delete candidate.cinemaFinalSemanticTravel;
+  if(mode==='intentionalHold')candidate.cuts[0].grammar.intentionalHold=true;
+  if(mode==='quietIntent')candidate.cuts[0].grammar.directionPolicy={quietIntent:true};
+  if(mode==='readabilityFallback')candidate.cuts[0].layout='globalReadableUnit';
+  const proposal=await Q.proposeFinalSemanticTravel(candidate,{autoDirection:true},{status:'MEASURED',binding:{planHash:await V.planHash(candidate)}});
+  assert.equal(proposal,null,'a final translation trial cannot override authored static intent or the explicit readability safety fallback');checks++;
+ }
  const parent=artifact(false);parent.provenance.finalArtifactVerification.evidenceId=hash('6');parent.provenance.cinemaV3={selectedEvidence:{id:hash('b')},history:[{parent:true}],budgetPolicy:{}};
  const verified=artifact(true);verified.provenance.finalArtifactVerification.evidenceId=hash('7');verified.validation={certification:{passed:true}};
  V.finalEvaluation=async(r,p,args,session)=>{assert.equal(session.locks,V.lockSignature(p),'post-final evaluation receives the captured lock signature');checks++;return {videoHash:r.provenance.finalArtifactVerification.binding.videoSHA256,evaluation:{id:r.provenance.finalArtifactVerification.binding.videoSHA256,planHash:r.provenance.finalArtifactVerification.binding.planHash}};};

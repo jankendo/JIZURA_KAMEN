@@ -26,8 +26,29 @@ for(const [id,layout]of Object.entries(J.LAYOUTS))if(id.startsWith('cinemaGramma
 const main=J.mainDraw;J.mainDraw=(env,it)=>{if(env.plan._decodedNeutralPrimary&&env.pass==='main')return null;const g=env.cut.grammar,s=J.cinemaTemporalState(env.plan,env.cut,env.t);if(!s||locked(env.plan,env.cut)||!it.grammarMode)return main(env,it);const neutral=env.plan.cinemaSemanticNeutral,role=s.role;
  if(!neutral){it.track=role==='echo'?.060:role==='light'?.045:role==='impact'?.008:role==='grounding'?.015:role==='continuity'?.028:it.track;it.sx=(it.sx||1)*(role==='impact'?.95:role==='echo'?1.02:role==='identity'?1.05:1);it.fontWeight=Math.min(800,Math.max(500,Math.round((J.faceOf?.(it.font)?.weight||700)/100)*100-(['echo','continuity'].includes(role)?100:0)));}
  return main(env,it);};
+// Temporal eligibility is independent of grammar typography. A photo layout
+// advertises only the motion it can preserve without changing its own text fit.
+J.cinemaLyricTemporalContract=(env,it)=>{
+ const p=env.plan,c=env.cut,s=J.cinemaTemporalState(p,c,env.t),layout=J.LAYOUTS[c?.layout],cap=layout?.lyricTemporal;
+ if(!s||locked(p,c)||c?.locked)return {status:'NOT_APPLICABLE',reason:'NO_AUTOMATIC_TEMPORAL_INTENT'};
+ if(it.grammarMode)return {status:'EXECUTABLE',mode:'GRAMMAR',state:s};
+ if(!active(p)||c.line<0||!cap?.uniformTranslation||cap.version!==1)return {status:'NOT_APPLICABLE',reason:'LAYOUT_HAS_NO_TEMPORAL_CAPABILITY'};
+ const plain=v=>String(v??'').replace(/\s/gu,'');
+ if(!plain(it.text)||plain(it.text)!==plain(c.lineText??c.text)||it.ghost===false||it.fill===false)return {status:'NOT_APPLICABLE',reason:'NOT_COMPLETE_PRIMARY_LYRIC'};
+ if(c.grammar?.intentionalHold===true||c.grammar?.directionPolicy?.quietIntent===true)return {status:'NOT_APPLICABLE',reason:'INTENTIONAL_STILLNESS'};
+ if(!['light','continuity'].includes(s.role)||!J.finalSemanticTravelTarget?.(p,c))return {status:'NOT_APPLICABLE',reason:'NO_SELECTED_FINAL_TRANSLATION_TRIAL'};
+ return {status:'EXECUTABLE',mode:'UNIFORM_TRANSLATION',state:s,preserveTypography:true};
+};
 J.cinemaTypographyClosingWindow=(p,c,end)=>Math.min(.36,Math.max(0,end-c.start-.55));
-const type=J.applyTypography5;J.applyTypography5=(env,it)=>{type(env,it);const s=J.cinemaTemporalState(env.plan,env.cut,env.t),g=env.cut.grammar;if(!s||!it.grammarMode||locked(env.plan,env.cut))return;const p=env.plan,end=env.range?.end??p.duration,last=Math.floor((end-1e-7)*p.fps)/p.fps,window=J.cinemaTypographyClosingWindow(p,env.cut,end),closing=window?ease((env.t-(end-window))/Math.max(1/p.fps,last-(end-window))):0;
+const type=J.applyTypography5;J.applyTypography5=(env,it)=>{type(env,it);const contract=J.cinemaLyricTemporalContract(env,it);if(contract.status!=='EXECUTABLE')return;const s=contract.state,g=env.cut.grammar,p=env.plan;
+ if(contract.mode==='UNIFORM_TRANSLATION'){
+  if(p.cinemaSemanticNeutral)return;
+  const motion={dx:0,dy:s.role==='light'?-env.H*.018*s.travel:env.H*.002*Math.sin(s.u*Math.PI)};
+  // One phrase translation, without importing grammar font/scale/row effects.
+  // Anchoring removes this exact contribution only from its reference bounds.
+  it.cinemaAnchorMotion=motion;it.charFns.push(()=>({...motion}));return;
+ }
+ const end=env.range?.end??p.duration,last=Math.floor((end-1e-7)*p.fps)/p.fps,window=J.cinemaTypographyClosingWindow(p,env.cut,end),closing=window?ease((env.t-(end-window))/Math.max(1/p.fps,last-(end-window))):0;
  if(closing)it.alpha=(it.alpha??1)*(1-closing);if(p.cinemaSemanticNeutral)return;
  // These roles have a uniform phrase translation, separate from the shape anchor.
  if((s.role==='light'||s.role==='continuity')&&J.finalSemanticTravelTarget?.(env.plan,env.cut))it.cinemaAnchorMotion={dx:0,dy:s.role==='light'?-env.H*.018*s.travel:env.H*.002*Math.sin(s.u*Math.PI)};
