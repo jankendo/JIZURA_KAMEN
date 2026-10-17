@@ -37,7 +37,15 @@ J.Renderer.prototype.frame=function(ctx,p,t,opt){
  const state=cache.get(p);if(state)state.paintedBands=new Set();
  return frame.call(this,ctx,p,t,opt);
 };
-J.centerPhotoLyricItem=(env,item)=>{const it={...item},box=J.measureLyricItemBounds(env,it);if(!box)return it;const dx=env.W*.5-(box.x0+box.x1)*.5,dy=env.H*.5-(box.y0+box.y1)*.5,m=env.ctx?.getTransform?.(),det=m?m.a*m.d-m.b*m.c:0,k=env.scale||1;if(Math.abs(det)>1e-9){it.x+=(m.d*dx-m.c*dy)*k/det;it.y+=(-m.b*dx+m.a*dy)*k/det;}else{it.x+=dx;it.y+=dy;}it._lay=null;it._m=null;return it;};
+// Anchor the phrase shape, preserving only an explicitly declared uniform
+// semantic translation. The ordinary final safety fit still uses actual bounds.
+J.photoAnchorBounds=(env,item)=>{
+ const motion=item.cinemaAnchorMotion;
+ if(!motion||!Number.isFinite(motion.dx)||!Number.isFinite(motion.dy)||J.photoChoreographyLocked?.(env.plan,env.cut))return J.measureLyricItemBounds(env,item);
+ const char=item.charFn;
+ return J.measureLyricItemBounds(env,{...item,charFn:(i,g,n)=>{const c=char?.(i,g,n);return {...c,dx:(c?.dx||0)-motion.dx,dy:(c?.dy||0)-motion.dy};}});
+};
+J.centerPhotoLyricItem=(env,item)=>{const it={...item},box=J.photoAnchorBounds(env,it);if(!box)return it;const dx=env.W*.5-(box.x0+box.x1)*.5,dy=env.H*.5-(box.y0+box.y1)*.5,m=env.ctx?.getTransform?.(),det=m?m.a*m.d-m.b*m.c:0,k=env.scale||1;if(Math.abs(det)>1e-9){it.x+=(m.d*dx-m.c*dy)*k/det;it.y+=(-m.b*dx+m.a*dy)*k/det;}else{it.x+=dx;it.y+=dy;}it._lay=null;it._m=null;return it;};
 const readability=J.adjustLocalReadability;
 J.adjustLocalReadability=(env,it)=>{
  const c=env.cut,p=env.plan,label=String(it.text||'').replace(/\s/g,''),text=String(c?.lineText||c?.text||'').replace(/\s/g,''),scene=J.getPhotoComposition(p).find(s=>env.t>=s.from&&env.t<s.to);

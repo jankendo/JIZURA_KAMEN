@@ -388,9 +388,9 @@ J.createSocialHookPlan=(source,candidate)=>{
   const plan=JSON.parse(JSON.stringify(source)),start=C(candidate?.start,0,Math.max(0,plan.duration-.1)),end=C(candidate?.end,start,plan.duration),duration=Math.max(.1,end-start);
   const rhythmEnd=Math.min(7,duration*.48),escalateEnd=Math.min(11,duration*.74),loopStart=Math.max(escalateEnd+.4,duration-.85);
   const phases=[{name:'shock',from:0,to:Math.min(1,duration),energy:1},{name:'identity',from:1,to:Math.min(3,duration),energy:.6},{name:'rhythm',from:3,to:rhythmEnd,energy:.72},{name:'escalate',from:rhythmEnd,to:escalateEnd,energy:.82},{name:'peak',from:escalateEnd,to:loopStart,energy:1},{name:'loop',from:loopStart,to:duration,energy:.68}].filter(p=>p.to>p.from);
-  const firstCut=plan.cuts.find(c=>c.line>=0&&c.start>=start&&c.start<end),firstStyle=firstCut?.styleKey||plan.styleKey;
+  const firstCut=plan.cuts.find(c=>c.line>=0&&c.start>=start&&c.start<end&&!c.locked&&!J.photoChoreographyLocked?.(plan,c)),firstStyle=firstCut?.styleKey||plan.styleKey;
   plan.socialHook={version:2,start,end,duration,phases,loopStyle:firstStyle,dedicatedReedit:true,portraitComposition:plan.H>plan.W};
-  const matching=plan.cuts.filter(c=>c.line>=0&&c.start>=start&&c.start<end);for(const c of matching){const rel=c.start-start,p=phases.find(x=>rel>=x.from&&rel<x.to);if(!p)continue;const originalLayout=c.layout;
+  const matching=plan.cuts.filter(c=>c.line>=0&&c.start>=start&&c.start<end&&!c.locked&&!J.photoChoreographyLocked?.(plan,c));for(const c of matching){const rel=c.start-start,p=phases.find(x=>rel>=x.from&&rel<x.to);if(!p)continue;const originalLayout=c.layout;
     c.params.intensityScale=C((c.params.intensityScale||1)*(.92+p.energy*.18),.82,1.3);c.socialHookPhase=p.name;
     if(plan.H>plan.W){c.portraitSourceLayout=c.layout;c.params.maxWidth=Math.min(c.params.maxWidth||.82,.78);if(['marquee','scatter','ring','tile','diag','split'].includes(c.layout))c.layout='center';c.params.y=p.name==='shock'||p.name==='peak'?.53:.58;}
     if(p.name==='peak'){const alt=['huge','diag','stack'].find(x=>J.LAYOUTS[x]&&!J.LAYOUTS[x].special&&[...(c.lineText||c.text||'')].length<=11);if(alt&&plan.H<=plan.W)c.layout=alt;}

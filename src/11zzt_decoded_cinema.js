@@ -18,6 +18,7 @@ J.cinemaPrimaryAlpha=rgba=>{const a=new Array(rgba.length/4);for(let i=0;i<a.len
 // Historical reference and score remain unchanged unless explicitly requested by the diagnostic.
 J.renderCinemaBackgroundAudit=(renderer,ctx,p,t,options)=>{
  const main=J.mainDraw,fx=J.drawFx;
+ if(!p.musicalPhoto&&J.cinemaV5?.isPrimaryInternalLyric){const draw=J.drawItem;J.drawItem=(env,it)=>env.cut?.line>=0&&J.cinemaV5.isPrimaryInternalLyric(env,it)?null:draw(env,it);try{return renderer.frame(ctx,p,t,options);}finally{J.drawItem=draw;}}
  J.mainDraw=(env,it)=>env.plan._decodedNeutralPrimary&&env.pass==='main'?main({...env,plan:{...env.plan,_decodedNeutralPrimary:false},lyricAuditCtx:null,_cinemaBackgroundOnly:true},it):main(env,it);
  J.drawFx=(env,it)=>env._cinemaBackgroundOnly?null:fx(env,it);
  try{return renderer.frame(ctx,{...p,_decodedNeutralPrimary:true},t,options);}finally{J.mainDraw=main;J.drawFx=fx;}

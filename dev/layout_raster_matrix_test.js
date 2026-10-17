@@ -8,7 +8,9 @@ for(const aspect of ['16:9','9:16','1:1','4:5']){
    p.overrides={0:{layout}};const plan=J.plan(p,audio),cut=plan.cuts.find(c=>c.line===0&&c.layout!=='interlude');
    if(!cut)throw Error('no lyric cut');
    const at=Math.min(cut.end-.08,cut.start+Math.max(.85,cut.dur*.6));
-   const out=draw(plan,at,aspect==='9:16'||aspect==='4:5'?[100,160]:[160,100]);
+   const width=aspect==='9:16'||aspect==='4:5'?100:160,height=Math.round(width*plan.H/plan.W);
+   const out=draw(plan,at,[width,height]);
+   assert(Math.abs(height/width-plan.H/plan.W)<=.5/width,'Raster observation must preserve the actual output profile');
    if(!out.ink)failures.push({layout,aspect,reason:'no glyph pixels'});
   }catch(error){failures.push({layout,aspect,reason:error.message});}
  }

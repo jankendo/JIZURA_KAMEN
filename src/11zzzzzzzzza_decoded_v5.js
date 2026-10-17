@@ -79,6 +79,19 @@ J.applyDecodedCinemaEvidence=d=>{
  const measured=motion.filter(m=>m.status==='MEASURED');q.motionObservations=motion;q.motionRealization=evidence(measured.length?mean(measured.map(m=>m.value)):null,'supported operator realized in same-clock decoded foreground ink; unsupported converge/element tracking stays unmeasured',measured.length,{measurableIntentCount:measured.length,totalIntentCount:motion.length,coverage:motion.length?measured.length/motion.length:null});
  return d;
 };
+Q.audioSignalCorrelation=(source,observed,from,to,sourceRate,decodedRate)=>{
+ const n=Math.min(2000,to-from,observed.length),indices=Int32Array.from({length:n},(_,j)=>Math.floor((j+(j*.6180339887498949+.37)%1)*(to-from)/n));let best=-1,bestLag=null;
+ // Deterministic nonuniform positions within the same2000 strata avoid
+ // exact frequency aliases of the former regular sampling grid.
+ // Every integer lag in the ORIGINAL±2048 bound. A32-sample coarse grid can
+ // miss valid AAC delay and reject an otherwise identical high-frequency mix.
+ for(let lag=-2048;lag<=2048;lag++){
+  let xy=0,xx=0,yy=0,count=0;
+  for(let j=0;j<n;j++){const i=indices[j],k=Math.round(i*decodedRate/sourceRate)+lag;if(k<0||k>=observed.length)continue;const x=source[from+i],y=observed[k];xy+=x*y;xx+=x*x;yy+=y*y;count++;}
+  if(count>=n*.8&&xx>0&&yy>0){const value=xy/Math.sqrt(xx*yy);if(value>best){best=value;bestLag=lag;}}
+ }
+ return {correlation:best,lagSamples:bestLag,sampleCount:n,lagStepSamples:1,delaySearchSamples:2048};
+};
 Q.auditDecodedAudio=async(blob,audio,range,signal)=>{
  if(!audio?.buffer)return {status:'NOT_APPLICABLE',value:null,confidence:0,sampleCount:0,reason:'No source audio'};
  const Audio=window.OfflineAudioContext||window.webkitOfflineAudioContext;
@@ -90,9 +103,9 @@ Q.auditDecodedAudio=async(blob,audio,range,signal)=>{
   const energy=(values,from,to)=>{let sum=0;for(let i=from;i<to;i++)sum+=values[i]*values[i];return sum/Math.max(1,to-from);};
   const expected=energy(source,sourceFrom,sourceTo),actual=energy(observed,0,observed.length),durationError=Math.abs(decoded.duration-(end-start));
   // Sample source and AAC signal with a bounded encoder-delay search. No claim of perceptual identity.
-  let correlation=null;if(expected>=1e-8){const n=Math.min(2000,sourceTo-sourceFrom,observed.length);let best=-1;for(let lag=-2048;lag<=2048;lag+=32){let xy=0,xx=0,yy=0,count=0;for(let j=0;j<n;j++){const i=Math.floor((j+.37)*(sourceTo-sourceFrom)/n),k=Math.round(i*decoded.sampleRate/audio.buffer.sampleRate)+lag;if(k<0||k>=observed.length)continue;const x=source[sourceFrom+i],y=observed[k];xy+=x*y;xx+=x*x;yy+=y*y;count++;}if(count>=n*.8&&xx>0&&yy>0)best=Math.max(best,xy/Math.sqrt(xx*yy));}correlation=best;}
+  const aligned=expected>=1e-8?Q.audioSignalCorrelation(source,observed,sourceFrom,sourceTo,audio.buffer.sampleRate,decoded.sampleRate):null,correlation=aligned?.correlation??null;
   const passed=durationError<=2048/decoded.sampleRate+.05&&(expected<1e-8?actual<1e-6:actual>expected*.01&&correlation>=.6);
-  return {status:passed?'MEASURED':'FAILED',value:passed?100:null,confidence:passed?.8:0,sampleCount:observed.length,method:'decoded AAC duration, source/decoded energy and bounded AAC-delay signal correlation guard',sourceEnergy:expected,decodedEnergy:actual,signalCorrelation:correlation,correlationSampleLimit:2000,delaySearchSamples:2048,durationErrorSeconds:durationError,limits:'Signal preservation guard, not perceptual identity or syllable synchronization'};
+  return {status:passed?'MEASURED':'FAILED',value:passed?100:null,confidence:passed?.8:0,sampleCount:observed.length,method:'decoded AAC duration, source/decoded energy and bounded AAC-delay signal correlation guard',sourceEnergy:expected,decodedEnergy:actual,signalCorrelation:correlation,selectedLagSamples:aligned?.lagSamples??null,lagStepSamples:1,correlationSamplePattern:'DETERMINISTIC_STRATIFIED_GOLDEN_FRACTION',correlationSampleLimit:2000,delaySearchSamples:2048,durationErrorSeconds:durationError,limits:'Signal preservation guard, not perceptual identity or syllable synchronization'};
  }catch(e){if(signal?.aborted)throw e;return {status:'UNMEASURED',value:null,confidence:0,sampleCount:0,reason:String(e.message)};}
 };
 // A phrase may have several manual/legacy units. Only its first unit owns the LRC onset.

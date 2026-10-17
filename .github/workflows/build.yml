@@ -12,8 +12,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Full suite includes an isolated restore run; measured locally at 66 minutes.
-    timeout-minutes: 120
+    # Frozen dff full regression reached the 240-minute job limit.
+    # Keep every check and allow the measured workload to finish.
+    timeout-minutes: 360
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -42,7 +43,9 @@ jobs:
           test -f dist/licenses/FFmpeg-LGPL-2.1.txt
           ! grep -q 'jizura-custom-background.jankendo14.chatgpt.site' dist/index.html
       - name: Browser UI and MP4 smoke test
-        timeout-minutes: 12
+        # Two bounded full generation passes, MP4 encoding and UI boundary checks.
+        # Runtime watchdogs still reject stopped jobs and stalled progress.
+        timeout-minutes: 145
         env:
           KAMEN_CHROME: /usr/bin/google-chrome
         run: |
@@ -58,6 +61,14 @@ jobs:
           npm run test:cinema-export -- http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa"
           node dev/one_click_browser_contract.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa" "$RUNNER_TEMP/kamen-browser-qa/ui-boundary"
           node dev/processing_overlay_browser_test.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa/processing-overlays"
+      - name: Collect isolated restore logs
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/kamen-restore-logs"
+          shopt -s nullglob
+          logs=("$(dirname "$GITHUB_WORKSPACE")"/clean_restore_*.log)
+          if ((${#logs[@]})); then cp "${logs[@]}" "$RUNNER_TEMP/kamen-restore-logs/"; fi
       - name: Preserve validation evidence
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
@@ -67,6 +78,7 @@ jobs:
             ${{ runner.temp }}/kamen-tests.json
             ${{ runner.temp }}/kamen-browser-qa/
             ${{ runner.temp }}/kamen-server.log
+            ${{ runner.temp }}/kamen-restore-logs/
           if-no-files-found: ignore
           retention-days: 7
       - name: Upload Pages artifact
