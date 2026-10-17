@@ -1,0 +1,59 @@
+name: Final shared contract naturally selected photoCondensed MP4
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-final-contract-photo.yml]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 145
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: data
+          ref: 45ef0864bbbafd9e7acafc86b71255f41f2406a6
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/composition-recovery/late-semantic-travel-coverage-development-15/
+            /docs/qa/generalization/media/3be2bd3b13145576f98251828e00c24c2f1e3cc701c56995a94338667dbbd455.wav
+            /docs/qa/generalization/media/84bcb0dcf592dd2ecbcdb1013e3c80e623de1f2a6454638d03f1dfb9dd97851b.mp4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: e5060bdf523f3996c6bac76fbc2415d7984ba79d
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Actual final-source normal observed frozen export
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          mkdir -p results
+          python qa/docs/qa/generalization/tools/restore_canonical_artifact.py data/docs/qa/generalization late-semantic-travel-coverage-development-15 restored --prefix previous/development-15-v3
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/frozen_final_semantic_repair_probe.cjs http://127.0.0.1:4173/ restored/previous/development-15-v3-reference.json restored/previous/development-15-v3-input.wav results/export e5060bdf523f3996c6bac76fbc2415d7984ba79d > results/probe.log 2>&1
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: final-contract-photoCondensed-real-mp4
+          path: results
+          retention-days: 14
+          if-no-files-found: error
