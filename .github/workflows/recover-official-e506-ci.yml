@@ -1,0 +1,92 @@
+name: Recover exact large official CI evidence without rerunning tests
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/recover-official-e506-ci.yml]
+permissions:
+  actions: read
+  contents: read
+jobs:
+  preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Authenticate completed exact-head CI and preserve original ZIP bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p recovery
+          gh api repos/jankendo/JIZURA_KAMEN/actions/runs/38989112401 > recovery/original-run.json
+          gh api repos/jankendo/JIZURA_KAMEN/actions/artifacts/12089635015 > recovery/original-artifact.json
+          gh api repos/jankendo/JIZURA_KAMEN/actions/artifacts/12089635015/zip > recovery/original.zip
+          python - <<'PYTHON'
+          import pathlib,json,hashlib,zipfile
+          p=pathlib.Path('recovery');run=json.loads((p/'original-run.json').read_text());assert run['head_sha']=='e5060bdf523f3996c6bac76fbc2415d7984ba79d'and run['conclusion']=='success'
+          parts=[];h=hashlib.sha256();total=0
+          with (p/'original.zip').open('rb')as f:
+           for i in range(100):
+            b=f.read(64*1024*1024)
+            if not b:break
+            name='chunk-%03d.bin'%i;(p/name).write_bytes(b);h.update(b);total+=len(b);parts.append({'file':name,'bytes':len(b),'SHA256':hashlib.sha256(b).hexdigest()})
+          assert total==669157231 and len(parts)==10
+          (p/'zip-chunk-manifest.json').write_text(json.dumps({'originalArtifactId':12089635015,'originalRunId':38989112401,'sourceCommit':run['head_sha'],'archiveBytes':total,'archiveSHA256':h.hexdigest(),'parts':parts},indent=2)+'\n')
+          with zipfile.ZipFile(p/'original.zip')as z:
+           (p/'original-members.json').write_text(json.dumps([{'member':x.filename,'bytes':x.file_size}for x in z.infolist()],indent=2)+'\n')
+          PYTHON
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: official-e506-original-ci-chunk-000
+          path: recovery/chunk-000.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: official-e506-original-ci-chunk-001
+          path: recovery/chunk-001.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: official-e506-original-ci-chunk-002
+          path: recovery/chunk-002.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: official-e506-original-ci-chunk-003
+          path: recovery/chunk-003.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: official-e506-original-ci-chunk-004
+          path: recovery/chunk-004.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: official-e506-original-ci-chunk-005
+          path: recovery/chunk-005.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: official-e506-original-ci-chunk-006
+          path: recovery/chunk-006.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: official-e506-original-ci-chunk-007
+          path: recovery/chunk-007.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: official-e506-original-ci-chunk-008
+          path: recovery/chunk-008.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: official-e506-original-ci-chunk-009
+          path: recovery/chunk-009.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: official-e506-original-ci-manifest
+          path: |
+            recovery/*json
+          retention-days: 14

@@ -1,0 +1,83 @@
+name: Exact final thirty Native replay after QA loader and cache corrections
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-final-contract-native-replay.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        partition: [0, 1, 2, 3, 4, 5]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/final-contract-native-replay-preregistration.json
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: e5060bdf523f3996c6bac76fbc2415d7984ba79d
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: cd current && npm ci && npm run build
+      - name: Corrected QA counterexamples
+        run: |
+          node qa/docs/qa/generalization/tools/read_adopted_matrix_row_test.cjs
+          node qa/docs/qa/generalization/tools/dev09_composition_replay_state_test.cjs
+          node qa/docs/qa/generalization/tools/select_adopted_native_output_test.cjs
+      - name: Restore immutable original completed movies and their raw rows
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PARTITION: ${{ matrix.partition }}
+        run: |
+          mkdir -p results
+          python - <<'PYTHON'
+          import json,pathlib,os,subprocess,hashlib,zipfile
+          spec=json.load(open('qa/docs/qa/generalization/composition-recovery/final-contract-native-replay-preregistration.json'));item=next(x for x in spec['partitions']if x['partition']==int(os.environ['PARTITION']))
+          with open('original.zip','wb')as f:subprocess.run(['gh','api','repos/jankendo/JIZURA_KAMEN/actions/artifacts/'+str(item['artifactId'])+'/zip'],stdout=f,check=True)
+          h=hashlib.sha256()
+          with open('original.zip','rb')as f:
+           for b in iter(lambda:f.read(1048576),b''):h.update(b)
+          assert h.hexdigest()==item['archiveSHA256']
+          with zipfile.ZipFile('original.zip')as z:
+           for name in z.namelist():
+            rel=pathlib.PurePosixPath(name);assert not rel.is_absolute()and '..'not in rel.parts
+            if name.startswith('matrix/')and name!='matrix/results.json':z.extract(name,'original')
+          pathlib.Path('results/original-archive-binding.json').write_text(json.dumps(item,indent=2)+'\n')
+          with open(os.environ['GITHUB_ENV'],'a')as f:f.write('KAMEN_REPLAY_CASES='+','.join(item['cases'])+'\n')
+          PYTHON
+      - name: Replay all actual output clocks with no new MP4 encodes
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          status=0
+          IFS=',' read -ra cases <<< "$KAMEN_REPLAY_CASES"
+          for case_id in "${cases[@]}"; do
+            node qa/docs/qa/generalization/tools/native_dispatch_bound_trace_v2.cjs http://127.0.0.1:4173/ original/matrix "$case_id" v3 "results/$case_id" > "results/$case_id.log" 2>&1 || status=1
+          done
+          exit "$status"
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: final-contract-native-replay-${{ matrix.partition }}
+          path: results
+          retention-days: 14

@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "sourceCommit": "e5060bdf523f3996c6bac76fbc2415d7984ba79d",
+  "originalRunId": 38989559383,
+  "originalQACommit": "21a5bca5ed1a8978ef140979c4cf089d31a2a448",
+  "method": "No MP4 regeneration. Replay exact adopted Native output clocks using per-case raw row rather than oversized aggregate; restore original measured cache only when present. Original failed logs remain unchanged. Full Native RGBA identity and all source/input/plan bindings remain mandatory.",
+  "partitions": [
+    {
+      "partition": 0,
+      "artifactId": 12087561103,
+      "archiveSHA256": "bc94e2121ed988103eec95c8fadcca7a9583dae3eff1cc6ef54d3b298c9d3a12",
+      "cases": [
+        "development-01",
+        "development-07",
+        "development-14",
+        "holdout-05",
+        "holdout-11"
+      ]
+    },
+    {
+      "partition": 1,
+      "artifactId": 12087930868,
+      "archiveSHA256": "d2d839bcbbe9ebcc31bbd41f33ff3f913e2922ac2b53715c1cc140d1ccda81d1",
+      "cases": [
+        "development-02",
+        "development-08",
+        "development-15",
+        "holdout-06",
+        "holdout-12"
+      ]
+    },
+    {
+      "partition": 2,
+      "artifactId": 12090730479,
+      "archiveSHA256": "7a2e0efa3ff1c7ea0aec179123d4103b2e6746cdaa32cda8e3e63a4c59fb000b",
+      "cases": [
+        "development-03",
+        "development-09",
+        "holdout-01",
+        "holdout-07",
+        "holdout-14"
+      ]
+    },
+    {
+      "partition": 3,
+      "artifactId": 12087170909,
+      "archiveSHA256": "b98ae121ff2347640099663770c1ffc1a69a6a8185042af9fe48215120a83e5d",
+      "cases": [
+        "development-04",
+        "development-10",
+        "holdout-02",
+        "holdout-08",
+        "holdout-15"
+      ]
+    },
+    {
+      "partition": 4,
+      "artifactId": 12086487348,
+      "archiveSHA256": "bc2babb7bf378583b9cf754b4b71749ad9506b4e93264c206dfe61d719d1de7a",
+      "cases": [
+        "development-05",
+        "development-11",
+        "holdout-03",
+        "holdout-09",
+        "supplemental-development-13"
+      ]
+    },
+    {
+      "partition": 5,
+      "artifactId": 12085933388,
+      "archiveSHA256": "ab79cb5b1549cb43e330c72932f53d896178523dc85edce952e1d7d3c7fedd13",
+      "cases": [
+        "development-06",
+        "development-12",
+        "holdout-04",
+        "holdout-10",
+        "supplemental-holdout-13"
+      ]
+    }
+  ]
+}

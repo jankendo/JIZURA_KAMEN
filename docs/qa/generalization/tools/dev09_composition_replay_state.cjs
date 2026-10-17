@@ -9,7 +9,9 @@ function restoreMeasuredCompositionCache(J, plan, {binding, actualPlanHash, buil
   if (!photoComposition || photoComposition.algorithm !== plan.photoCompositionAlgorithm || !Array.isArray(photoComposition.scenes)) reject('ORIGINAL_COMPOSITION_MISSING');
   const scenes = photoComposition.scenes;
   for (const s of scenes) if (![s.from,s.to,s.scrim,s.p90].every(Number.isFinite) || s.from >= s.to || s.scrim < 0 || s.scrim > 1 || !s.box || ![s.box.x0,s.box.x1,s.box.y0,s.box.y1].every(Number.isFinite)) reject('INVALID_ORIGINAL_COMPOSITION');
-  const state = J.getPhotoCompositionStatus?.(plan);
+  if(scenes.length===0)return {domain:'ACTUAL_MEASURED_RENDERER_CACHE_RESTORE',status:'NOT_APPLICABLE',reason:'ORIGINAL_HAS_NO_PHOTO_COMPOSITION_SCENES',restored:[],encodedEffectRealization:'UNMEASURED'};
+  let state = J.getPhotoCompositionStatus?.(plan);
+  if(!state&&typeof J.getPhotoComposition==='function'){J.getPhotoComposition(plan);state=J.getPhotoCompositionStatus?.(plan);}
   if (!state || !Array.isArray(state.scenes)) reject('COMPOSITION_CACHE_NOT_INITIALIZED');
   const before = JSON.parse(JSON.stringify(state.scenes));
   state.scenes = JSON.parse(JSON.stringify(scenes));
