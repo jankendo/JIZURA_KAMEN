@@ -1,4 +1,4 @@
-name: Final source confirmation of fixed preregistered input pairs
+name: Final contract fixed independent input confirmation
 on:
   push:
     branches: [audit/late-travel-evidence-20261016]
@@ -26,7 +26,7 @@ jobs:
             /docs/qa/generalization/composition-recovery/quality-comparison-tools/
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: 9a1d1bd235e89d34f6b1e9336d661e3e27eb739d
+          ref: e5060bdf523f3996c6bac76fbc2415d7984ba79d
           path: candidate
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -69,11 +69,11 @@ jobs:
         run: |
           python qa/docs/qa/generalization/tools/verify_artifacts.py results/previous results/previous-strict-decode.json
           python qa/docs/qa/generalization/tools/verify_artifacts.py results/matrix results/strict-decode.json
-          python qa/docs/qa/generalization/composition-recovery/quality-comparison-tools/verify_pcm_matched_replay.py results b002cdd75845d189221312a82456c33a131f5e8d 9a1d1bd235e89d34f6b1e9336d661e3e27eb739d
+          python qa/docs/qa/generalization/composition-recovery/quality-comparison-tools/verify_pcm_matched_replay.py results b002cdd75845d189221312a82456c33a131f5e8d e5060bdf523f3996c6bac76fbc2415d7984ba79d
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         if: always()
         with:
-          name: final-source-semantic-travel-${{ matrix.fixture }}
+          name: final-contract-independent-${{ matrix.fixture }}
           path: results
           retention-days: 14
           if-no-files-found: error
