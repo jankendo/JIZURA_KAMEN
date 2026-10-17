@@ -28,6 +28,17 @@ const main=J.mainDraw;J.mainDraw=(env,it)=>{if(env.plan._decodedNeutralPrimary&&
  return main(env,it);};
 // Temporal eligibility is independent of grammar typography. A photo layout
 // advertises only the motion it can preserve without changing its own text fit.
+const automaticTemporalVersion='automatic-lyric-temporal-v1';
+J.bindAutomaticLyricTemporalPolicy=(p,project)=>{
+ if(!p)return false;
+ const old=p.cinemaLyricTemporalPolicy;
+ if(old&&old.version!==automaticTemporalVersion)return false;
+ if(project?.autoDirection===true){if(old?.version===automaticTemporalVersion&&old.origin==='AUTOMATIC_PROJECT_PLAN')return false;p.cinemaLyricTemporalPolicy={version:automaticTemporalVersion,origin:'AUTOMATIC_PROJECT_PLAN'};return true;}
+ if(old?.version===automaticTemporalVersion){delete p.cinemaLyricTemporalPolicy;return true;}return false;
+};
+// Candidate evaluation and completed export see the same intended photo motion.
+// No grammar typography is imported into a layout's own text fit.
+const temporalPlan=J.plan;J.plan=function(project,...args){const p=temporalPlan.call(this,project,...args);J.bindAutomaticLyricTemporalPolicy(p,project);return p;};
 J.cinemaLyricTemporalContract=(env,it)=>{
  const p=env.plan,c=env.cut,s=J.cinemaTemporalState(p,c,env.t),layout=J.LAYOUTS[c?.layout],cap=layout?.lyricTemporal;
  if(!s||locked(p,c)||c?.locked)return {status:'NOT_APPLICABLE',reason:'NO_AUTOMATIC_TEMPORAL_INTENT'};
@@ -36,7 +47,8 @@ J.cinemaLyricTemporalContract=(env,it)=>{
  const plain=v=>String(v??'').replace(/\s/gu,'');
  if(!plain(it.text)||plain(it.text)!==plain(c.lineText??c.text)||it.ghost===false||it.fill===false)return {status:'NOT_APPLICABLE',reason:'NOT_COMPLETE_PRIMARY_LYRIC'};
  if(c.grammar?.intentionalHold===true||c.grammar?.directionPolicy?.quietIntent===true)return {status:'NOT_APPLICABLE',reason:'INTENTIONAL_STILLNESS'};
- if(!['light','continuity'].includes(s.role)||!J.finalSemanticTravelTarget?.(p,c))return {status:'NOT_APPLICABLE',reason:'NO_SELECTED_FINAL_TRANSLATION_TRIAL'};
+ const automatic=p.cinemaLyricTemporalPolicy?.version===automaticTemporalVersion&&p.cinemaLyricTemporalPolicy.origin==='AUTOMATIC_PROJECT_PLAN';
+ if(!['light','continuity'].includes(s.role)||!automatic&&!J.finalSemanticTravelTarget?.(p,c))return {status:'NOT_APPLICABLE',reason:'NO_AUTOMATIC_OR_SELECTED_TEMPORAL_CONTRACT'};
  return {status:'EXECUTABLE',mode:'UNIFORM_TRANSLATION',state:s,preserveTypography:true};
 };
 J.cinemaTypographyClosingWindow=(p,c,end)=>Math.min(.36,Math.max(0,end-c.start-.55));

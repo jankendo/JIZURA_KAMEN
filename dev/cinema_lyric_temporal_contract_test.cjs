@@ -8,6 +8,7 @@ function sample(layout,W,H,role,t,mode='trial'){
  const cut={index:0,line:0,start:1,end:5,dur:4,layout,text,lineText:plain(text),params:{font:'embedded_bold',displayText:text},grammar:{mode:'openSky',stage:0,temporal:{role,level:.3,hit:1.3,entry:.2,exit:.2}},seed:17,enter:'cut',hold:'still',exit:'cut',inDur:0,outDur:0};
  const plan={W,H,duration:10,fps:24,cuts:[cut],musicalPhoto:{cinema:{architecture:{}},songProfile:{}},cinemaFinalSemanticTravel:{version:'final-semantic-travel-v1',targets:[J.canonicalJSON([cut.index,cut.line,cut.start,cut.end,cut.lineText])]}};
  if(mode==='baseline')delete plan.cinemaFinalSemanticTravel;
+ if(mode==='natural'){delete plan.cinemaFinalSemanticTravel;J.bindAutomaticLyricTemporalPolicy(plan,{autoDirection:true});}
  if(mode==='manual')cut.locked=true;
  if(mode==='override')plan.directionOverrides7={0:{layout}};
  if(mode==='still')cut.grammar.intentionalHold=true;
@@ -53,4 +54,22 @@ for(const [W,H] of [[640,360],[360,640]]){
  eq(Buffer.from(b.alpha),Buffer.from(a.alpha),'existing grammar pixels are unchanged by capability dispatch');
  const partial={...b.item,text:'光'},c=J.cinemaLyricTemporalContract({...b.env,cut:{...b.cut,layout:'photoCondensed'}},{...partial,grammarMode:undefined});eq(c.status,'NOT_APPLICABLE','partial decorative text cannot consume complete-primary capability');
 }
+// Actual Native automatic motion is identical to the isolated intended travel,
+// without needing a repair flag or importing grammar typography.
+for(const [W,H]of [[640,360],[360,640]])for(const layout of ['photoCondensed','photoBanner','photoFocus'])for(const role of ['light','continuity']){
+ const trial=sample(layout,W,H,role,2.8),natural=sample(layout,W,H,role,2.8,'natural');
+ eq(natural.plan.cinemaFinalSemanticTravel,undefined,'natural contract does not require final repair metadata');
+ eq(natural.item.charFns.length,trial.item.charFns.length,'one temporal application in natural rendering');
+ eq(Buffer.from(natural.alpha),Buffer.from(trial.alpha),'actual automatic Native glyph pixels realize the intended translation');
+}
+// Natural planning, not a final-only repair flag, must activate the same contract.
+for(const [W,H]of [[640,360],[360,640]])for(const layout of ['photoCondensed','photoBanner','photoFocus']){
+ const a=sample(layout,W,H,'light',2.8),b=sample(layout,W,H,'light',2.8,'baseline');
+ J.bindAutomaticLyricTemporalPolicy(b.plan,{autoDirection:true});
+ const contract=J.cinemaLyricTemporalContract(b.env,{...b.item,grammarMode:undefined});eq(contract.mode,'UNIFORM_TRANSLATION','automatic policy is available before candidate selection without final-trial flag');
+ const saved=J.canonicalJSON(b.cut);assert.equal(J.bindAutomaticLyricTemporalPolicy(b.plan,{autoDirection:true}),false);checks++;
+ assert.equal(J.bindAutomaticLyricTemporalPolicy(b.plan,{autoDirection:false}),true);checks++;eq(J.canonicalJSON(b.cut),saved,'manual transition preserves every authored cut field');eq(J.cinemaLyricTemporalContract(b.env,{...b.item,grammarMode:undefined}).status,'NOT_APPLICABLE','manual export cannot inherit automatic photo motion');
+}
+{const p={cinemaLyricTemporalPolicy:{version:'future-version',custom:'owned'}},saved=J.canonicalJSON(p);eq(J.bindAutomaticLyricTemporalPolicy(p,{autoDirection:true}),false,'unknown future contract is not replaced');eq(J.canonicalJSON(p),saved,'future project metadata survives');}
+for(const autoDirection of [true,false]){const project={...J.defaultProject(),lyrics:'[00:00.20]自然な演出',res:180,fps:24,autoDirection};const p=J.plan(project,{duration:4,beats:[]});eq(p.cinemaLyricTemporalPolicy?.version,autoDirection?'automatic-lyric-temporal-v1':undefined,'actual shipping planner binds only automatic projects');}
 console.log(JSON.stringify({status:'PASS',checks,profiles:['16:9','9:16'],scope:'Actual layouts -> mainDraw -> typography -> Native glyph pixels, complete text, preserved typography/line breaks, single translation, shape anchor and actual safety fit, grammar compatibility, manual locks, intentional stillness, non-Cinema and static readability fallback. Does not certify encoded MP4 or photographic contrast.'}));

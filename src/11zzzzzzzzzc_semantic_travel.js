@@ -5,7 +5,7 @@ J.finalSemanticTravelTarget=(p,c)=>!!c&&p.cinemaFinalSemanticTravel?.version===v
 Q.proposeFinalSemanticTravel=async(p,project,artifact)=>{
  if(project?.autoDirection!==true||artifact?.status!=='MEASURED'||!p.musicalPhoto?.cinema?.architecture)return null;
  if(await V.planHash(p)!==artifact.binding.planHash)throw Error('SEMANTIC_TRAVEL_PLAN_BINDING_MISMATCH');
- const targets=p.cuts.filter(c=>c.line>=0&&!c.locked&&!J.photoChoreographyLocked(p,c)&&c.layout!=='globalReadableUnit'&&c.grammar?.intentionalHold!==true&&c.grammar?.directionPolicy?.quietIntent!==true&&['light','continuity'].includes(c.grammar?.temporal?.role)).map(identity);
+ const targets=p.cuts.filter(c=>c.line>=0&&!c.locked&&!J.photoChoreographyLocked(p,c)&&c.layout!=='globalReadableUnit'&&!(p.cinemaLyricTemporalPolicy?.version==='automatic-lyric-temporal-v1'&&J.LAYOUTS[c.layout]?.lyricTemporal?.uniformTranslation)&&c.grammar?.intentionalHold!==true&&c.grammar?.directionPolicy?.quietIntent!==true&&['light','continuity'].includes(c.grammar?.temporal?.role)).map(identity);
  if(!targets.length)return null;const plan=V.clone(p);plan.cinemaFinalSemanticTravel={version,targets};
  if(V.lockSignature(plan)!==V.lockSignature(p))throw Error('SEMANTIC_TRAVEL_LOCK_CHANGED');
  return {plan,targets,trigger:'Existing selected light/continuity uniform translation was cancelled by animated-bounds anchoring; trial the same selected composition only.'};
@@ -85,8 +85,10 @@ Q.runVerifiedExport=async(encode,args)=>{
  delete J.lastFinalSemanticTravelTrial;delete J.lastFinalSemanticTravelBaseline;
  const original=args.plan?V.clone(args.plan):null,originalHash=args.plan?Object.getOwnPropertyDescriptor(args.plan,'_provenancePlanHash')?.value:undefined;
  try{
-  // The original selection pipeline sees the original renderer, including on a
-  // retry of our own previously repaired plan. Authored inputs/locks are untouched.
+  // Bind the same automatic contract before initial measurement/selection.
+  // Imported manual projects remove only this version's automatic metadata.
+  if(J.bindAutomaticLyricTemporalPolicy?.(args.plan,args.project))V.invalidate(args.plan);
+  // Repeated exports remove only our late grammar-anchor trial policy.
   if(args.project?.autoDirection===true&&args.plan?.cinemaFinalSemanticTravel?.version===version){delete args.plan.cinemaFinalSemanticTravel;V.invalidate(args.plan);}
   const first=await run(encode,args),proposal=args.plan?await Q.proposeFinalSemanticTravel(args.plan,args.project,first.provenance.finalArtifactVerification):null;if(!proposal)return first;
   args.onProgress?.(.995,'採用した構図を保ち、演出の移動だけを完成MP4で再検証しています',{stage:'verify',indeterminate:true});
