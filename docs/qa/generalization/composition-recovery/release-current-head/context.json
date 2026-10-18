@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
+  "sourceCommit": "e5060bdf523f3996c6bac76fbc2415d7984ba79d",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "expectedValidation": [
@@ -12,5 +12,11 @@
     "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
     "existingProductionReceipt": "composition-recovery/pre-release-production-baseline-20261016/receipt.json",
     "method": "Normal revert and existing main-only Pages redeploy; no force."
+  },
+  "formalRegressionCounts": {
+    "PASS": 208,
+    "FAIL": 0,
+    "SKIP": 2,
+    "scope": "Authentic exact PR HEAD official CI; browser alternatives for SKIP are independently bound."
   }
 }

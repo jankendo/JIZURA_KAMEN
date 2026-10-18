@@ -1,14 +1,41 @@
 {
-  "releaseSourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
+  "releaseSourceCommit": "e5060bdf523f3996c6bac76fbc2415d7984ba79d",
+  "gitRepository": "../../../../../../kamen-late-semantic-travel",
+  "sourceCorrespondence": [
+    {
+      "path": "official-merge-source-correspondence.json",
+      "sha256": "bdf9628fcc4a697e93cff9a436c5ef13c563ed2f062c0b3189f91d794fd27aa6"
+    }
+  ],
   "evidence": {
     "ci": {
       "path": "ci.json",
-      "sha256": "9a63ed2059ea0cc10a07ee2eec75909a7acceb577907963fc72540ceb48b8047"
+      "sha256": "5f4a25c4e040006733e2b2ae7578af82900e0552178a433f77d74dc3ba026a72"
+    },
+    "tests": {
+      "path": "tests.json",
+      "sha256": "8da04eae55fd867f690c57e68145cf845078d51f238bc0c2dedfb8ba237a1cb2"
+    },
+    "browser": {
+      "path": "browser.json",
+      "sha256": "ece740e1d4e4d9cf497c06e4b58eb2bf3a6770affc910e41ba797239c6b4e69e"
     },
     "artifacts": {
       "path": "finished-artifacts.json",
-      "sha256": "ab44d8cb43ba891655839cb8411458982beadd11b5998f7acff98498a61726b3"
+      "sha256": "e67dec709c5c0c2c8e3a020503feb31216559979d23d5551e44b289ee5caef24"
+    },
+    "comparisons": {
+      "path": "comparisons.json",
+      "sha256": "63cb7bc3911c9fe23f3705b46d30d56d8547d2976de344bf71f7d0e960f45837"
+    },
+    "operators": {
+      "path": "operators.json",
+      "sha256": "1cf834ea01e02b33bb6105e47d5473e7a3a72a8f351d12352f07baaf0978cbfc"
+    },
+    "safety": {
+      "path": "safety.json",
+      "sha256": "b807f8f1aee0f54c5d2dd88e8bb0b1de26f1c9b537b687f744a26c717c36728f"
     }
   },
-  "scope": "Only actually available active-head raw observations are referenced. Missing observations remain UNVERIFIED; historical passes are not active-source evidence."
+  "scope": "Raw successful observations registered, missing measurements remain UNVERIFIED. Experimental d6fe is separate and has no release credit."
 }

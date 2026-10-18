@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "releaseSourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
-  "manifestSHA256": "62f3d5cc39a4131a6ae9231743231d2947d509169970ddd88b671aabc8001fd9",
+  "releaseSourceCommit": "e5060bdf523f3996c6bac76fbc2415d7984ba79d",
+  "manifestSHA256": "68b66189dd675fb92479e05305be53152f9ecc5500a8d74581c9b87694686d95",
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "UNVERIFIED",
@@ -11,18 +11,18 @@
     "technical": [
       {
         "name": "ci",
-        "state": "UNVERIFIED",
-        "reason": "CI not completed successfully"
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
       },
       {
         "name": "regression/build",
         "state": "UNVERIFIED",
-        "reason": "missing path/SHA-256"
+        "reason": "SKIP has no reason/alternative evidence"
       },
       {
         "name": "browser",
-        "state": "UNVERIFIED",
-        "reason": "missing path/SHA-256"
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
       },
       {
         "name": "finished artifacts",
@@ -34,80 +34,75 @@
       {
         "name": "comparison coverage",
         "state": "UNVERIFIED",
-        "reason": "missing path/SHA-256"
+        "reason": "regression/safety result not measured"
       },
       {
         "name": "important semantic operators",
         "state": "UNVERIFIED",
-        "reason": "missing path/SHA-256"
+        "reason": "important intent population missing"
       },
       {
         "name": "regressions and correspondence",
         "state": "UNVERIFIED",
-        "reason": "missing path/SHA-256"
+        "reason": "safety/path-source correspondence unverified"
       }
     ]
   },
   "issues": [
     {
       "domain": "technical",
-      "name": "ci",
-      "state": "UNVERIFIED",
-      "reason": "CI not completed successfully"
-    },
-    {
-      "domain": "technical",
       "name": "regression/build",
       "state": "UNVERIFIED",
-      "reason": "missing path/SHA-256"
-    },
-    {
-      "domain": "technical",
-      "name": "browser",
-      "state": "UNVERIFIED",
-      "reason": "missing path/SHA-256"
+      "reason": "SKIP has no reason/alternative evidence"
     },
     {
       "domain": "quality",
       "name": "comparison coverage",
       "state": "UNVERIFIED",
-      "reason": "missing path/SHA-256"
+      "reason": "regression/safety result not measured"
     },
     {
       "domain": "quality",
       "name": "important semantic operators",
       "state": "UNVERIFIED",
-      "reason": "missing path/SHA-256"
+      "reason": "important intent population missing"
     },
     {
       "domain": "quality",
       "name": "regressions and correspondence",
       "state": "UNVERIFIED",
-      "reason": "missing path/SHA-256"
+      "reason": "safety/path-source correspondence unverified"
     }
   ],
   "limitations": [
     "Hash binding establishes file consistency, not runner authenticity. Adapters must preserve raw observations; no artistic score is inferred.",
     "No deployment or production verification is implied by RELEASE_GO."
   ],
-  "sourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
-  "recordedUTC": "2026-10-16T22:51:00.941082+00:00",
+  "sourceCommit": "e5060bdf523f3996c6bac76fbc2415d7984ba79d",
+  "recordedUTC": "2026-10-17T08:30:52.814788+00:00",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "overall": "PARTIAL",
   "productionChanged": false,
   "deploymentDecision": "NO_GO_PENDING_EVIDENCE",
   "CI": {
-    "sourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
-    "headSha": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
-    "runId": 38976985604,
-    "status": "in_progress",
-    "conclusion": null,
-    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38976985604"
+    "sourceCommit": "e5060bdf523f3996c6bac76fbc2415d7984ba79d",
+    "headSha": "e5060bdf523f3996c6bac76fbc2415d7984ba79d",
+    "conclusion": "success",
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/38989112401",
+    "rawRun": {
+      "path": "../official-e506-ci-recovery-manifest/original-run.json.gz",
+      "sha256": "8a223d2cfdc8ecd04f61a08b4d0c008bb78ac5123773fec8f843785c373adf8e"
+    },
+    "rawJobs": {
+      "path": "../official-e506-ci-recovery-manifest/original-jobs.json",
+      "sha256": "441e932a3d2dd51db47abb9e7989e8a8d97c91706928c879d12c7d9bf2466c84"
+    },
+    "deployment": "SKIPPED_NORMAL_PR"
   },
   "gateEvaluator": {
     "path": "dev/release_gates.cjs",
-    "sourceCommit": "9a1d1bd235e89d34f6b1e9336d661e3e27eb739d",
+    "sourceCommit": "e5060bdf523f3996c6bac76fbc2415d7984ba79d",
     "SHA256": "62ce8477946a65358061d20487916d15265280425fbc81a12922eff279d44fd3",
     "existingCounterexampleScenarios": 37
   },
@@ -118,12 +113,15 @@
     "scope": "Historical30-condition comparison,205PASS/0FAIL/2SKIP and actual UI evidence. These source bindings are retained, never relabeled as current-head certification."
   },
   "currentSourceValidation": {
-    "focusedSyntheticRepairHistoryChecks": 105,
-    "anchorChecks": 540,
-    "climaxChecks": 40,
+    "formalRegressionCounts": {
+      "PASS": 208,
+      "FAIL": 0,
+      "SKIP": 2,
+      "scope": "Authentic exact PR HEAD official CI; browser alternatives for SKIP are independently bound."
+    },
     "realMP4": "PASS",
     "realMP4Scope": "Only the hash-bound listed movies, not all target export paths",
-    "officialCI": "UNVERIFIED",
+    "officialCI": "PASS",
     "expectedConditions": [
       "Exact-head official npm ci/test/build/UI CI and independent full decode",
       "Current-head selected MP4/history integrity and protected manual/no-target paths",
