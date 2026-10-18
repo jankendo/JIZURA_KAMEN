@@ -1,0 +1,28 @@
+{
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "controlCase": "development-15",
+  "controlKey": "1-2",
+  "purpose": "Low-opacity selected contour needs a source-edge image sensor; primary-text minimum contrast does not certify an image overlay. No new encodes and no application/gate changes.",
+  "criteria": {
+    "registrationPixels": 0.5,
+    "projectionMin": 0.3,
+    "projectionMax": 1.8,
+    "inkAgreement": 0.95,
+    "minimumLuma": 1.0,
+    "repeatNoiseMultiplier": 3.0
+  },
+  "method": "Before inspecting actual signed contour signals, freeze source-owned Native ON-minus-OFF and decoded ON-minus-OFF templates, repeated ON noise, two-dimensional rank/ECC registration, per-ink signed projection agreement and independent resolved signal. White edge bitmap is transparent, source src/11zzr_artifact_style.js blueprintContour. Exclude registered primary ink. No group-RMS success.",
+  "statuses": [
+    "VERIFIED_CONTOUR_TEMPLATE",
+    "FAILED_CONTOUR_TEMPLATE_MODEL",
+    "UNMEASURED"
+  ],
+  "limits": "A failed contour sensor is not automatically a major whole-film defect. Earlier CONFOUNDED report retained. Creative/aesthetic quality is separate.",
+  "QAFileSHA256": {
+    "measure_selected_foreground_shapes.cjs": "7eadf6f429feb949769fb1404db729086f13c9b05ce73d2b747a257e6542803d",
+    "contour_template_sensor.py": "aa92f542008b8d950d951ba20e1c7c2bcea2e499e13e3feb73bd92d9c06a1733",
+    "contour_template_sensor_test.py": "dfe17f7690564a2bbd5332a290040b848e132d36591f437682a65d23c83d3704",
+    "analyze_selected_contour_signals.py": "8197f939ceb150214c662187d59fd467d82f59bb1ce841a9d2c02376951a0d67"
+  },
+  "counterexamples": 9
+}
