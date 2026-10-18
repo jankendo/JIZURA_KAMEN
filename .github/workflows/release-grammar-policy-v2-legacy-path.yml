@@ -1,0 +1,56 @@
+name: Final exact-source legacy path full MP4 independent verification
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-grammar-policy-v2-legacy-path.yml]
+permissions:
+  contents: read
+jobs:
+  variable-font:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/variable-font-source-b002.json
+            /docs/qa/generalization/composition-recovery/ci-b002-validation/archive-manifest.json
+            /docs/qa/generalization/composition-recovery/ci-b002-validation/kamen-browser-qa/saved-project.json.gz
+            /docs/qa/generalization/media/ad9f01eb3a4c884a6f516f7f709e58ae740e91e2c7febe4017e5515444665309.wav
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: d04c734bc5eb0c0c427a42a196cae3a507b89506
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Restore immutable actual CI project and audio; pin licensed font
+        run: |
+          python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization ci-b002-validation restored --prefix kamen-browser-qa/saved-project.json
+          python qa/docs/qa/generalization/tools/restore_canonical_artifact.py qa/docs/qa/generalization ci-b002-validation restored --prefix kamen-browser-qa/audio.wav
+      - name: Actual browser legacy planning state and full original-range MP4 decode
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_EXPECTED_SOURCE_COMMIT: d04c734bc5eb0c0c427a42a196cae3a507b89506
+        run: |
+          mkdir -p results
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/final_legacy_path_probe.cjs http://127.0.0.1:4173/ restored/kamen-browser-qa/saved-project.json restored/kamen-browser-qa/audio.wav results > results/probe.log 2>&1
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: grammar-policy-v2-legacy-path-browser
+          path: results/
+          retention-days: 14

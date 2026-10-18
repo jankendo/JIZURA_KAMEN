@@ -1,0 +1,14 @@
+{
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "purpose": "Existing legacy public export compatibility, independent FAV when no V3 finalEvaluation/history. Not natural Cinema comparison. Original saved-project/audio input reused, actual current source output required.",
+  "construction": "Exact existing V3 legacy planning source from legacyPlanningStates WeakMap, clone, set cinemaCandidateMode legacy and copy delivery/export settings as in src/11zzzzzzzz_cinema_v3.js. autoDirection=false respects manual path. No library/runtime source mutation or fake plan input.",
+  "required": [
+    "actual browser",
+    "no lock mutation",
+    "full original audio/range",
+    "FAV MEASURED",
+    "source and video hash match",
+    "H264 AAC full decode"
+  ],
+  "toolSHA256": "a6ae05922b063dc860f06052b4f8dedd00cc32da813d16ebecfe08bd43043862"
+}
