@@ -1,0 +1,54 @@
+name: Reanalyse preserved photo control movies with exact fragment identity
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-automatic-contract-controls-reanalysis.yml]
+permissions:
+  contents: read
+jobs:
+  existing-movies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /docs/qa/generalization/tools/
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Restore unchanged original four-way controls and prove their hashes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p results original
+          gh api repos/jankendo/JIZURA_KAMEN/actions/artifacts/12136970215/zip > original.zip
+          python - <<'PY'
+          import pathlib,zipfile,hashlib,json,subprocess
+          p=pathlib.Path('original.zip');h=hashlib.sha256(p.read_bytes()).hexdigest();assert h=='05793f690429c84572756d39f2c9ff4558b4152ca715c0507c99850c3da94765'
+          with zipfile.ZipFile(p) as z:
+            assert all(not pathlib.PurePosixPath(n).is_absolute() and '..' not in pathlib.PurePosixPath(n).parts for n in z.namelist());z.extractall('original')
+          d=json.load(open('original/controls/effect-counterfactual-report.json'));assert d['build']['sourceCommit']=='d6fe7be2fa53475dc7493f35229af6ad4f57235f';assert d['fullNativeIdentity'] and d['nativeONRepeatIdentical'] and d['adoptedMovieReproduced']
+          records=[]
+          for m in d['movies']:
+            f=pathlib.Path('original/controls')/m['file'];assert hashlib.sha256(f.read_bytes()).hexdigest()==m['videoSHA256'];subprocess.run(['ffmpeg','-v','error','-xerror','-i',str(f),'-f','null','-'],check=True);records.append({'mode':m['mode'],'videoSHA256':m['videoSHA256'],'fullDecode':'PASS'})
+          pathlib.Path('results/reuse-receipt.json').write_text(json.dumps({'originalArtifactId':12136970215,'failedOriginalWorkflow':39126982299,'originalArchiveSHA256':h,'sourceCommit':d['build']['sourceCommit'],'freshEncodes':0,'controlMovies':records,'reason':'Authored CUT index7 differs from final fragment ordinal2. Match unique line plus exact complete fragment interval; keep old failed analysis unchanged.','wholeControlFAVStatus':'UNMEASURED: core-only control did not supply ordinary certification metadata. Every unit MEASURED, original shipping FAV MEASURED, independent decode PASS; no whole-control certification claimed.'}))
+          PY
+      - name: Actual counterexample tests and existing decoded registered glyph analysis
+        run: |
+          node qa/docs/qa/generalization/tools/resolve_translation_targets_test.cjs > results/counterexamples.log
+          node qa/docs/qa/generalization/tools/uniform_lyric_translation_control_test.cjs >> results/counterexamples.log
+          node qa/docs/qa/generalization/tools/analyze_uniform_lyric_translation_control.cjs original/controls/effect-counterfactual-report.json results/registered-uniform-translation.json > results/analysis.log
+          python - <<'PY'
+          import json
+          d=json.load(open('results/registered-uniform-translation.json'));assert d['rows'] and all(r['status']=='VERIFIED' for r in d['rows'])
+          PY
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: automatic-contract-photo-controls-reanalysis
+          path: results/
+          retention-days: 14
