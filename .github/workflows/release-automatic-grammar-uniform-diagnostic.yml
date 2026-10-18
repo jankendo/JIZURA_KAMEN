@@ -1,0 +1,80 @@
+name: Diagnose selected Grammar uniform travel without regenerating MP4
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-automatic-grammar-uniform-diagnostic.yml]
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        key: [0]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/automatic-grammar-uniform-diagnostic-preregistration.json
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: d6fe7be2fa53475dc7493f35229af6ad4f57235f
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Immutable selected original and predeclared executed operator
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CONTROL_KEY: ${{ matrix.key }}
+        run: |
+          node qa/docs/qa/generalization/tools/grammar_uniform_component_control_test.cjs
+          mkdir -p results original
+          python - <<'PYTHON'
+          import pathlib,zipfile,hashlib,json,subprocess,os
+          spec=json.load(open('qa/docs/qa/generalization/composition-recovery/automatic-grammar-uniform-diagnostic-preregistration.json'));c=next(x for x in spec['originals'] if x['partition']==int(os.environ['CONTROL_KEY']))
+          with open('original.zip','wb') as f:subprocess.run(['gh','api',f"repos/jankendo/JIZURA_KAMEN/actions/artifacts/{c['artifactId']}/zip"],stdout=f,check=True)
+          p=pathlib.Path('original.zip');h=hashlib.sha256(p.read_bytes()).hexdigest();assert h==c['archiveSHA256']
+          with zipfile.ZipFile(p) as z:
+            assert all(not pathlib.PurePosixPath(n).is_absolute() and '..' not in pathlib.PurePosixPath(n).parts for n in z.namelist());z.extractall('original')
+          pathlib.Path('results/original-binding.json').write_text(json.dumps(c))
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('CONTROL_CASE='+c['caseId']+'\n')
+          PYTHON
+      - name: No-reencode exact full Native output actuation replay
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_OPERATOR_SOURCE: ${{ github.workspace }}/current
+          KAMEN_COUNTERFACTUAL_PHASES: 1
+          KAMEN_COUNTERFACTUAL_NATIVE_HASHES: 1
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          for mode in ON OFF ON_REPEAT; do
+            KAMEN_NATIVE_OPERATOR_MODE="$mode" node qa/docs/qa/generalization/tools/diagnose_grammar_uniform_native_component.cjs http://127.0.0.1:4173/ original/matrix "$CONTROL_CASE" v3 "results/$mode" > "results/$mode.log" 2>&1
+          done
+          python - <<'PYTHON'
+          import json,pathlib
+          modes={m:json.load(open('results/'+m+'/native-dispatch-trace.json')) for m in ['ON','OFF','ON_REPEAT']};on=modes['ON'];off=modes['OFF'];repeat=modes['ON_REPEAT'];assert on['exactNativeRGBA'] and repeat['exactNativeRGBA'];assert on['nativeFrameHashes']==repeat['nativeFrameHashes'];assert on['operatorControl']['stats']['matchedFunctions']>0 and off['operatorControl']['stats']['modifiedEvaluations']>0
+          pairs=list(zip(on['nativeFrameHashes'],off['nativeFrameHashes']));assert len(pairs)==on['outputFramesSampled']==off['outputFramesSampled'];changed=sum(a!=b for a,b in pairs)
+          pathlib.Path('results/diagnosis.json').write_text(json.dumps({'sourceCommit':on['build']['sourceCommit'],'videoSHA256':on['videoSHA256'],'planHash':on['planHash'],'originalNativeMatched':True,'repeatNativeMatched':True,'outputFrames':len(pairs),'nativeONOFFChangedFrames':changed,'nativeONOFFEqual':changed==0,'componentStats':{m:x['operatorControl']['stats']for m,x in modes.items()},'scope':'Frozen chosen Grammar light/continuity dy only, paired explicit anchor metadata if present. Native negative/diagnostic evidence; no fresh encoded control or positive semantic certificate.','status':'NO_NATIVE_INDEPENDENT_CONTRIBUTION' if changed==0 else 'NATIVE_COMPONENT_CONTRIBUTION_EXISTS_REQUIRES_ENCODED_MEASUREMENT'}))
+          PYTHON
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: automatic-grammar-uniform-native-diagnostic
+          path: results/
+          retention-days: 14

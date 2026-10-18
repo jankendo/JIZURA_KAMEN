@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "sourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f",
+  "sourcePath": "src/11zzu_temporal_direction.js",
+  "sourceFileSHA256": "908aa0f58c05b9bdc00c962bb386aa812c26fc86bf352275cdc0d6e69136b905",
+  "functionBody": "(i,glyph)=>{const row=glyph.li||0,read=['echo','grounding','continuity'].includes(s.role),pressure=s.level,base=(s.climax?.075:s.role==='identity'?.04:.018)*s.impact,entry=s.entry,dx=s.role==='gathering'?(row%2?1:-1)*env.W*.025*entry:s.role==='participation'?((g.phraseMotion==='call'?-1:g.phraseMotion==='response'?1:row%2?1:-1)*env.W*.023*entry):0,dy=s.role==='light'?-env.H*.018*s.travel:s.role==='echo'?env.H*.008*Math.sin(s.u*Math.PI*2-row*.65):s.role==='continuity'?env.H*.002*Math.sin(s.u*Math.PI):s.role==='participation'?env.H*.009*pressure*Math.sin(s.u*Math.PI*2-row*.7):0;\n return {dx,dy,s:1+base+(read?.004:.008)*Math.sin(s.u*Math.PI)*pressure,sx:s.role==='impact'?1-.04*s.impact:1,sy:s.role==='impact'?1+.035*s.impact:1};}",
+  "functionSHA256": "ba152ea39ac81419c2861116129e8ccca348367627024e487ccd759cbf84c209",
+  "purpose": "Diagnose exact selected Grammar light/continuity translation after animated-bounds anchoring. Native ON/OFF/ON_REPEAT at all original output times; no video regeneration and no positive encoded semantic claim.",
+  "originalArtifactId": 12136723951,
+  "originalCase": "development-11",
+  "originalArchiveSHA256": "3fcc15da64509fdfa13a58221d8f427ef41f8192b01ee1c6a2e928e65d89e33d",
+  "criteria": "Original complete Native ON and ON_REPEAT must match. OFF removes only exact dy plus corresponding explicit anchor metadata if present. Zero Native pixel difference demonstrates absent independent rendered contribution, not aesthetic certification."
+}
