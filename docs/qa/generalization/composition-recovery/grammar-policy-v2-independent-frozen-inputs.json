@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "fixtures": [
+    {
+      "id": "automatic-unseen-confirmation-20261018",
+      "seed": 1810329,
+      "aspect": "9:16",
+      "image": "independent-checker",
+      "audio": "intense",
+      "lyrics": [
+        "駆け出した風に声を重ねる",
+        "遠い光まで今をつないで",
+        "新しい朝へ歩みを運ぶ"
+      ],
+      "starts": [
+        0.35,
+        4.3,
+        8.7
+      ],
+      "duration": 13.7,
+      "cohort": "unused-after-automatic-contract-d6fe-freeze-20261018",
+      "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
+      "imageSeed": 1810329,
+      "res": 360,
+      "fps": 24,
+      "naturalDirection": true,
+      "baselineCinema": true,
+      "short": false,
+      "loop": false,
+      "manual": false,
+      "fontFailure": false
+    }
+  ],
+  "sources": {
+    "main": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+    "previous": "5e14682249ce690337874214f2ec76fc8e68fa26",
+    "current": "d6fe7be2fa53475dc7493f35229af6ad4f57235f"
+  },
+  "purpose": "Prospective untouched confirmation after d6fe code freeze. No score-driven changes to input or criteria. Own procedural audio, geometric image and original short Japanese lyrics.",
+  "criteria": "Existing unchanged technical/FAV/decoded descriptors and meaningful-regression assessment. Missing stays missing; no metric retuning.",
+  "unusedBeforeFreeze": true,
+  "notUsedForAdjustment": true,
+  "HUMAN": "HUMAN_UNVERIFIED",
+  "expectedOriginalConditions": [
+    {
+      "fixture": "automatic-unseen-confirmation-20261018",
+      "input": {
+        "audioHash": "96ce0a6dec792555075bf75ddde80b4a64ebd5a3eef3259913d86ccfeefc47cd",
+        "imageHash": "45a89328b552dacff43d09c5474b1d16d403354d17b97e1525090517be193223",
+        "lyrics": "[00:00.35]駆け出した風に声を重ねる\n[00:04.30]遠い光まで今をつないで\n[00:08.70]新しい朝へ歩みを運ぶ",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          13.7
+        ]
+      },
+      "audioWAVSHA256": "96ce0a6dec792555075bf75ddde80b4a64ebd5a3eef3259913d86ccfeefc47cd",
+      "pcmHash": "9e1bb9804207cb5a3c469983d8b444479dc6f8f5b122fe3e584f848f727f77b5",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          13.7
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "originalVideoSHA256": "5fcebd3d9d653fbc03034188e82ef5f16d7a4b8288fef699716f8d8aa64c847b",
+      "originalSourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f"
+    }
+  ],
+  "reusePolicy": "Retain exact original preregistered unused inputs. New v2 movie only. Historical main and previous completed MP4s may be reused only with strict fixture/WAV/PCM/profile correspondence. No current-source tuning to these outcomes.",
+  "priorRowSHA256": "f5fed2de2ee02ffd71aa6dec53b839bb7630b484a5d555e9a01672512fe370c8"
+}
