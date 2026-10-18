@@ -1,20 +1,26 @@
 {
   "schema": 1,
-  "ledgerSHA256": "369f45f1f1779f0e0e4e067617f434793fe7851aa225cc48a71ec009cafafe23",
-  "sourceCommit": "b5a46b79ab463fe7f74d0a6d43c90ecbae984a41",
-  "applicable": 1541,
-  "measured": 0,
-  "successful": 0,
-  "statuses": {
-    "VERIFIED": 0,
-    "FAILED": 0,
-    "NOT_APPLICABLE": 30,
-    "UNMEASURED": 1541,
-    "CONFOUNDED": 0,
-    "STALE": 0
-  },
-  "actualEncodedClockStatus": "UNMEASURED_FOR_INDIVIDUAL_EFFECTS",
-  "realizationRate": null,
-  "qualityGo": "UNVERIFIED",
-  "reason": "Individually selected components require isolated decoded effect evidence and intended timing. Existing composite primary motion is separately retained."
+  "sourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f",
+  "populationComplete": false,
+  "populationScope": "Only three current shipping cases; remaining thirty-condition population not collected",
+  "observedImportantContracts": 101,
+  "verifiedIndependentContracts": 1,
+  "unmeasuredOrCompositeContracts": 100,
+  "observations": [
+    {
+      "intentId": "30fbf22337c6f0ecd5bfe607a8baf710ba6f586ec764e4d76a4c9f72b68a72c0",
+      "status": "VERIFIED",
+      "counterfactual": true,
+      "decodedPixels": true,
+      "videoSHA256": "c8810ca3a5015a26c1ff7b01e24d169a44970ff9e7ba83fa857db739c703fae6",
+      "controlVideoSHA256": "dddd93acfe354bac764f68e0a6f2242899eec980a34928ff14dd83401c00a859",
+      "actualDecodedTimestamp": 6.333333333333333,
+      "measurement": {
+        "path": "../automatic-contract-chosen-photo-isolated/important-intent-measurement.json",
+        "sha256": "4bed22b70513c19c35ede591e9b9456ce855aa31bee5309c38bd3b70185719a9"
+      }
+    }
+  ],
+  "status": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED"
 }

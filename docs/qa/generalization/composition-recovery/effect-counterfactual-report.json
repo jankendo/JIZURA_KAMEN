@@ -1,33 +1,16 @@
 {
-  "schema": 1,
-  "adoptedOriginalVideoSHA256": "5d50a264d6a7fb2309f68419de697f753dae9175cdc45b1fe9d59d65d3d1ae77",
-  "actualProfile": "360x450 /24fps /original full duration / H.264 AAC",
-  "diagnosticEncodes": 6,
-  "uniqueVideoSHA256": 6,
-  "fullDecode": "6/6 PASS",
-  "sampleCounts": {
-    "cameraAt": 9,
-    "lyricsCameraAt": 9
-  },
-  "isolatedContributionAbovePreregisteredNoiseCriterion": {
-    "cameraAt": 0,
-    "lyricsCameraAt": 0
-  },
-  "observedFacts": "cameraAt changed low-amplitude decoded pixels at two sampled times; lyricsCameraAt ON/OFF samples identical; ON_REPEAT pixels matched ON at all matched times. Do not infer missing intended effects without implementation and intended-motion contract.",
-  "effectSemanticRealization": "UNMEASURED",
-  "individualTechniques": "CONFOUNDED",
-  "humanStatus": "HUMAN_UNVERIFIED",
-  "countsWarning": "Frozen diagnostic controls are not new successful natural generation MP4s, nor full-engine realization proof",
-  "reports": [
+  "sourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f",
+  "completedControls": [
     {
-      "hook": "cameraAt",
-      "file": "cameraAt-report.json",
-      "sha256": "ef5dbe215f8703d9cf6bbedcd439bbe4ac50b6e4a83637ce58f8c50c09ebb858"
-    },
-    {
-      "hook": "lyricsCameraAt",
-      "file": "lyricsCameraAt-report.json",
-      "sha256": "cf99382a78e974e915071d7f840ab702fe81f643f80eb4100f23f8c811dab85f"
+      "originalVideoSHA256": "c8810ca3a5015a26c1ff7b01e24d169a44970ff9e7ba83fa857db739c703fae6",
+      "raw": {
+        "path": "../automatic-contract-chosen-photo-isolated/registered-uniform-translation.json",
+        "sha256": "1b8af57a03a583a104486326027566005c7e7a3f4629303dcfaa354b35fda5cd"
+      },
+      "verdict": "VERIFIED_UNIFORM_TRANSLATION_ONLY"
     }
-  ]
+  ],
+  "missing": "Other primary operators, image/camera/background/FX/transition independently isolated semantic observations remain missing. Dispatch, aliases, settings and whole-frame RMS are not substituted.",
+  "status": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED"
 }

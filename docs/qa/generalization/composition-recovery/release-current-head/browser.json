@@ -1,76 +1,10 @@
 {
-  "sourceCommit": "4f4e8aaaf34474e79acfb4b386a3b76284ce5d4f",
+  "sourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f",
   "actualBrowser": true,
-  "browser": "155.0.8059.39",
-  "operations": [
-    {
-      "id": "generation",
-      "completed": true,
-      "traceSHA256": "15c40705ceb9e5394748612a336cd8617f34c502dc4b8967eff8f05da3c70b42",
-      "raw": {
-        "path": "../official-e506-ci-original/kamen-browser-qa/report.json.gz",
-        "sha256": "3b6b499701253d46428a319ee28141a8ee93468ae030daa245a3c81c65ea36d6"
-      }
-    },
-    {
-      "id": "oneClickExport",
-      "completed": true,
-      "traceSHA256": "15c40705ceb9e5394748612a336cd8617f34c502dc4b8967eff8f05da3c70b42",
-      "raw": {
-        "path": "../official-e506-ci-original/kamen-browser-qa/report.json.gz",
-        "sha256": "3b6b499701253d46428a319ee28141a8ee93468ae030daa245a3c81c65ea36d6"
-      }
-    },
-    {
-      "id": "save",
-      "completed": true,
-      "traceSHA256": "15c40705ceb9e5394748612a336cd8617f34c502dc4b8967eff8f05da3c70b42",
-      "raw": {
-        "path": "../official-e506-ci-original/kamen-browser-qa/report.json.gz",
-        "sha256": "3b6b499701253d46428a319ee28141a8ee93468ae030daa245a3c81c65ea36d6"
-      }
-    },
-    {
-      "id": "restore",
-      "completed": true,
-      "traceSHA256": "15c40705ceb9e5394748612a336cd8617f34c502dc4b8967eff8f05da3c70b42",
-      "raw": {
-        "path": "../official-e506-ci-original/kamen-browser-qa/report.json.gz",
-        "sha256": "3b6b499701253d46428a319ee28141a8ee93468ae030daa245a3c81c65ea36d6"
-      }
-    },
-    {
-      "id": "cancel",
-      "completed": true,
-      "traceSHA256": "34b456e3c8f857594599da67719d2067a799c7c948e833c8f837ee5a8d00f2ba",
-      "raw": {
-        "path": "../official-e506-ci-original/kamen-browser-qa/cancellation-retry/probe-summary.json.gz",
-        "sha256": "cb384baf38848ffc361c5e3f0de2688dffbc40733b957f27f8ac0ca67de8d68c"
-      }
-    },
-    {
-      "id": "retry",
-      "completed": true,
-      "traceSHA256": "34b456e3c8f857594599da67719d2067a799c7c948e833c8f837ee5a8d00f2ba",
-      "raw": {
-        "path": "../official-e506-ci-original/kamen-browser-qa/cancellation-retry/probe-summary.json.gz",
-        "sha256": "cb384baf38848ffc361c5e3f0de2688dffbc40733b957f27f8ac0ca67de8d68c"
-      }
-    },
-    {
-      "id": "rejectInvalidMP4",
-      "completed": true,
-      "traceSHA256": "0b5ff4bf1060ee840e3c1cb1c8e56a7ca04fa107df2addd5f97414baf1b5f3c9",
-      "raw": {
-        "path": "../official-e506-ci-original/kamen-browser-qa/ui-boundary/report.json.gz",
-        "sha256": "ebbe79c564cb80a59e4004c45f2076b88bcafc74da986488d6dbe50854500b9c"
-      },
-      "scope": "Real browser UI boundary; validated MP4 reused and invalid MP4 injected. Not a separate fresh encode."
-    }
-  ],
-  "raw": {
-    "path": "../official-e506-ci-original/kamen-browser-qa/report.json.gz",
-    "sha256": "3b6b499701253d46428a319ee28141a8ee93468ae030daa245a3c81c65ea36d6"
+  "operations": [],
+  "variableFontActual": {
+    "path": "../automatic-d6fe7be-variable-font-browser/report.json.gz",
+    "sha256": "517cc6d75a28fbb035ebd2c10af1e9c5acc60f86b6c15ff2e59d37f5fb7e1ead"
   },
-  "saveMeaning": "Download saved and independently decoded; SAVE_AVAILABLE alone is not an OS picker completion claim."
+  "scope": "Actual font-upload/raster/ordinary Cinema MP4 and separate skipped test wrappers PASS. This alone does not certify all generation/save/restore/cancel/retry UI operations."
 }
