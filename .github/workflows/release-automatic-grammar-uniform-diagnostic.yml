@@ -40,6 +40,7 @@ jobs:
           CONTROL_KEY: ${{ matrix.key }}
         run: |
           node qa/docs/qa/generalization/tools/grammar_uniform_component_control_test.cjs
+          NODE_PATH="$PWD/current/node_modules" KAMEN_OPERATOR_SOURCE="$PWD/current" KAMEN_NATIVE_OPERATOR_MODE=ON KAMEN_NATIVE_DIAGNOSTIC_PREFLIGHT=1 node qa/docs/qa/generalization/tools/diagnose_grammar_uniform_native_component.cjs
           mkdir -p results original
           python - <<'PYTHON'
           import pathlib,zipfile,hashlib,json,subprocess,os
