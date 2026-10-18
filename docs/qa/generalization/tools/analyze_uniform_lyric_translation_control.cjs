@@ -2,7 +2,7 @@
 // Frozen inherited glyph registration tolerance, actual chosen ON and isolated OFF.
 const fs=require('fs'),zlib=require('zlib'),assert=require('assert/strict');
 const [input,out]=process.argv.slice(2),bytes=fs.readFileSync(input),r=JSON.parse(input.endsWith('.gz')?zlib.gunzipSync(bytes):bytes);
-assert.equal(r.selectedOperator,'lyricTemporalTranslation');assert(r.fullNativeIdentity&&r.nativeONRepeatIdentical,'ORIGINAL_OR_REPEAT_NATIVE_MISMATCH');
+assert(['lyricTemporalTranslation','grammarUniformTranslation'].includes(r.selectedOperator),'UNTRUSTED_TRANSLATION_OPERATOR');assert(r.fullNativeIdentity&&r.nativeONRepeatIdentical,'ORIGINAL_OR_REPEAT_NATIVE_MISMATCH');
 const modes=Object.fromEntries(r.movies.map(m=>[m.mode,m.modeFinalArtifactVerification]));for(const [mode,v]of Object.entries(modes)){assert(v);assert.equal(v.binding.videoSHA256,r.movies.find(m=>m.mode===mode).videoSHA256);assert.equal(v.binding.planHash,r.planHash);}
 const targets=require('./resolve_translation_targets.cjs').resolveTranslationTargets(modes.ON.units,r.parameterTrace),rows=[];
 for(const {unit,fragment:f,binding:targetBinding} of targets){
