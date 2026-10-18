@@ -1,0 +1,69 @@
+name: Resolve historical development09 Native composition state mismatch
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-development09-historical-cache-causal.yml]
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/development09-historical-cache-causal-preregistration.json
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: b002cdd75845d189221312a82456c33a131f5e8d
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Original immutable adopted artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p results original
+          python - <<'PYTHON'
+          import pathlib,json,subprocess,hashlib,zipfile
+          spec=json.load(open('qa/docs/qa/generalization/composition-recovery/development09-historical-cache-causal-preregistration.json'))
+          with open('original.zip','wb')as f:subprocess.run(['gh','api',f"repos/jankendo/JIZURA_KAMEN/actions/artifacts/{spec['artifactId']}/zip"],stdout=f,check=True)
+          assert hashlib.sha256(pathlib.Path('original.zip').read_bytes()).hexdigest()==spec['archiveSHA256']
+          with zipfile.ZipFile('original.zip')as z:
+            assert all(not pathlib.PurePosixPath(n).is_absolute()and '..'not in pathlib.PurePosixPath(n).parts for n in z.namelist());z.extractall('original')
+          pathlib.Path('results/original-binding.json').write_text(json.dumps(spec))
+          PYTHON
+      - name: Three bounded Native-only causal arms
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          for arm in cold restored cold-repeat; do
+            if [ "$arm" = restored ]; then export KAMEN_RESTORE_MEASURED_COMPOSITION=1; else export KAMEN_RESTORE_MEASURED_COMPOSITION=0; fi
+            node qa/docs/qa/generalization/tools/native_dispatch_composition_causal_trace.cjs http://127.0.0.1:4173/ original/matrix development-09 v3 "results/$arm" > "results/$arm.log" 2>&1
+          done
+          python - <<'PYTHON'
+          import pathlib,json,hashlib
+          p=pathlib.Path('results');d={name:json.load(open(p/name/'native-dispatch-trace.json'))for name in ['cold','restored','cold-repeat']};a,b,c=[d[n]for n in ['cold','restored','cold-repeat']];assert a['artifactBinding']==b['artifactBinding']==c['artifactBinding'];assert a['primaryFonts']==b['primaryFonts']==c['primaryFonts'];assert a['nativeFrameHashes']==c['nativeFrameHashes'],'UNSTABLE_COLD_REPLAY';assert b['exactNativeRGBA'],'ORIGINAL_MEASURED_STATE_DID_NOT_REPRODUCE';assert not a['exactNativeRGBA'],'HISTORICAL_MISMATCH_NOT_REPRODUCED';changed=[i for i,(x,y)in enumerate(zip(a['nativeFrameHashes'],b['nativeFrameHashes']))if x!=y];assert len(a['nativeFrameHashes'])==len(b['nativeFrameHashes'])==240
+          report={'schema':1,'sourceCommit':b['build']['sourceCommit'],'originalVideoSHA256':b['videoSHA256'],'binding':b['artifactBinding'],'status':'VERIFIED_NATIVE_RENDERER_STATE_REPLAY_CAUSE','classification':'A_ACTUAL_RENDERED_PIXEL_DIFFERENCE_FROM_COMPOSITION_STATE_NOT_ENCODER','changedFrameIndices':changed,'changedNativeFrameCount':len(changed),'coldRepeatExact':True,'restoredAll240OriginalNativeExact':True,'cacheState':b['compositionReplayState'],'raw':{n:{'path':n+'/native-dispatch-trace.json','SHA256':hashlib.sha256((p/n/'native-dispatch-trace.json').read_bytes()).hexdigest()}for n in d},'limits':'Historical b002 provenance/cache reproduction only. Does not relabel old evidence as current source or certify encoded semantics/artistry. Original failure retained.'};(p/'causal-report.json').write_text(json.dumps(report,indent=2))
+          PYTHON
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: development09-historical-cache-causal
+          path: results/
+          retention-days: 14
