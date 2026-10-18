@@ -32,7 +32,2291 @@
     "supplemental-development-13",
     "supplemental-holdout-13"
   ],
-  "conditions": [],
-  "independent": [],
-  "reason": "Fresh final source original30 and independent comparison pending. Prior runtime evidence never relabeled."
+  "conditions": [
+    {
+      "id": "development-01",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-01-main.json",
+          "sha256": "04f57cb0b4da243ad8412804391852fc0da6f2422670ada1a50d365936866d7e",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-01-previous.json",
+          "sha256": "bba921e30a6aeab9f020b371c352a9500e3dd3e06a917a29a7cf223c8ab01f0a",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-01-current.json",
+          "sha256": "5449a1d4605c906edc6280d954890083d03089e517ef408930fbcfa16c778fc1",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 73,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 78,
+          "typographyDiversity": 37
+        },
+        "previous": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 61,
+          "displayOnsetAccuracy": null,
+          "localContrast": 2,
+          "motionRealization": 100,
+          "typographyDiversity": 29
+        },
+        "current": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 61,
+          "displayOnsetAccuracy": null,
+          "localContrast": 2,
+          "motionRealization": 100,
+          "typographyDiversity": 29
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-02",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-02-main.json",
+          "sha256": "bac2d720595a6ed08c73d9c415153247cb64fb551c2ecf4be06d9eaa05412a39",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-02-previous.json",
+          "sha256": "12da6f4af91a111b17021d31acbda45d6f94ca8b9a87315d7c7e8e2551fd1265",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-02-current.json",
+          "sha256": "0dd304548f5a4a6c2faac3fcab2fb67b2b81793f63cabaa5cb58953d623e9a22",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 4,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 92,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 62,
+          "motionRealization": 100,
+          "typographyDiversity": 33
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 16,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 51,
+          "motionRealization": 100,
+          "typographyDiversity": 37
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 69,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 45,
+          "motionRealization": 100,
+          "typographyDiversity": 37
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-03",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-03-main.json",
+          "sha256": "2e7c8cbea0106e9a0788bea1407c45b2c508c0a30c65f03f2e5dc781c189f4cd",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-03-previous.json",
+          "sha256": "4573f49ed873692e1cad38c968e94638e8b6d2439a39788a8d44117f29cfc8e7",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-03-current.json",
+          "sha256": "d426957464491fe31380fb76fee474e6a5bafe85762f47c932547073ab6c86ea",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 57,
+          "motion": 21,
+          "temporalContrast": 31,
+          "hookNovelty": 59,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 62,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 53.95311966030595,
+          "localContrast": 90,
+          "motionRealization": 100,
+          "typographyDiversity": 72
+        },
+        "previous": {
+          "perceptualNovelty": 75,
+          "motion": 20,
+          "temporalContrast": 22,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 74,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 100,
+          "motionRealization": 100,
+          "typographyDiversity": 24
+        },
+        "current": {
+          "perceptualNovelty": 75,
+          "motion": 20,
+          "temporalContrast": 22,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 74,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 100,
+          "motionRealization": 100,
+          "typographyDiversity": 24
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-04",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-04-main.json",
+          "sha256": "536ae8a69c50fd0a7e165f22b403cca216819b768bfcd1e8bd447216d23b1fb4",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-04-previous.json",
+          "sha256": "56f6f604b7944473535c0965a51a4b06249b57278caf4670634152c13fad27ec",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-04-current.json",
+          "sha256": "058527e30a7891a83d29f80a0de7d244c0af18b24148ac743e38d81292f2aa4e",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 26,
+          "temporalContrast": 90,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 98,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 82,
+          "motionRealization": 67,
+          "typographyDiversity": 72
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 35.5,
+          "temporalContrast": 32,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 95,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 88,
+          "motionRealization": 100,
+          "typographyDiversity": 79
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 21.5,
+          "temporalContrast": 90,
+          "hookNovelty": 70,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 75,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 40,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 85,
+          "motionRealization": 100,
+          "typographyDiversity": 30
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-05",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-05-main.json",
+          "sha256": "2a802f181b1d1b75d26c09fb614dc757392618e7b93e28408cd2e7cc32f00936",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-05-previous.json",
+          "sha256": "90d160cdd0b22a78474487b1fbc9b91d5f8cca722b0b5b27b6ada5a0a2f25934",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-05-current.json",
+          "sha256": "298bd91603d86aa3e2364ab63270e535936a526def2ee6262dc3b9ca7fef34bb",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 23,
+          "temporalContrast": 49,
+          "hookNovelty": 49,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 79,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 0,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 87,
+          "motionRealization": 100,
+          "typographyDiversity": 32
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 25,
+          "temporalContrast": 20,
+          "hookNovelty": 38,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 86,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 83,
+          "motionRealization": 100,
+          "typographyDiversity": 42
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 25,
+          "temporalContrast": 20,
+          "hookNovelty": 38,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 86,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 83,
+          "motionRealization": 100,
+          "typographyDiversity": 42
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-06",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-06-main.json",
+          "sha256": "f1d47bfe3094579f08ed578dd76bd14629a15621ad7b1eeb964e887dcb2c872e",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-06-previous.json",
+          "sha256": "27a2f00f49d568026e277c3ad151d142cbd3217dce790a5353839959364111bb",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-06-current.json",
+          "sha256": "94c85eea53302354bab724a2a3ecd06a7123fd4cddc7ca9c3329386495204cd8",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 54,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 82,
+          "typographyDiversity": 41
+        },
+        "previous": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 54,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 82,
+          "typographyDiversity": 30
+        },
+        "current": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 54,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 82,
+          "typographyDiversity": 30
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-07",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-07-main.json",
+          "sha256": "ed5b1f14a7edb3ddc5854b43c83b62fca8d2225ac8a79faa194872ab5dd219ab",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-07-previous.json",
+          "sha256": "e7e08cdb44ce7631ac6d986a39deaa2f15a709af7357462cd5b3d7ab252e8fdb",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-07-current.json",
+          "sha256": "08a20faee6850ab6f9c119cdd3132fbde7d5dc92bfb831b4eecc63ffd206e313",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 83,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 63,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 67,
+          "typographyDiversity": 29
+        },
+        "previous": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 83,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 72,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 31
+        },
+        "current": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 83,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 72,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 31
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-08",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-08-main.json",
+          "sha256": "aac84f3944588542964be3e7a34a0d17e8ebdae3a858d9e58f56e8f03300ad67",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-08-previous.json",
+          "sha256": "eaf869b606f01e22c95e0745bdf471c8dd97ca165760ddbb7dfdcd12b29d328b",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-08-current.json",
+          "sha256": "6f7a34350424c603a53fc6183b834374c1aa25862dcb825ea5e6dac06aaad578",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 42,
+          "motion": 60,
+          "temporalContrast": 44,
+          "hookNovelty": 100,
+          "loopQuality": 32,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 20.112231012346996,
+          "localContrast": 85,
+          "motionRealization": 100,
+          "typographyDiversity": 27
+        },
+        "previous": {
+          "perceptualNovelty": 42,
+          "motion": 59,
+          "temporalContrast": 41,
+          "hookNovelty": 100,
+          "loopQuality": 32,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 21.3014126621492,
+          "localContrast": 81,
+          "motionRealization": 100,
+          "typographyDiversity": 25
+        },
+        "current": {
+          "perceptualNovelty": 42,
+          "motion": 59,
+          "temporalContrast": 41,
+          "hookNovelty": 100,
+          "loopQuality": 32,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 21.3014126621492,
+          "localContrast": 81,
+          "motionRealization": 100,
+          "typographyDiversity": 25
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-09",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-09-main.json",
+          "sha256": "9eca338ffd9cf4ab5e6c31320c21b047351b5217281eb7bfe21ce03d127fee95",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-09-previous.json",
+          "sha256": "f11e26be4e28794d76695857e9716940c091ac549ebd20f8c62dd4e186f3b9ea",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-09-current.json",
+          "sha256": "a495db23d7a636abf7122b7478b556e2b1e22bc001ebfc21bdf67cab2a61d44d",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 98,
+          "motion": 40,
+          "temporalContrast": 24,
+          "hookNovelty": 54,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 84,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 70
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 44,
+          "temporalContrast": 9,
+          "hookNovelty": 58,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 81,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 51
+        },
+        "current": {
+          "perceptualNovelty": 97,
+          "motion": 57,
+          "temporalContrast": 21,
+          "hookNovelty": 43,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 89,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 57
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-10",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-10-main.json",
+          "sha256": "2d720049df19c7f11008aa88fdfc82c99443c798b66d392b0854312a43b4ec2b",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-10-previous.json",
+          "sha256": "4bed78dbc738e1811fd5041f59c0b64bd1493160284ba4665e61ac09721f6ebd",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-10-current.json",
+          "sha256": "50566ab158ac898c42c015108e2602792d77ef43ac30dd0fe4f0b4d39026e2af",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 100,
+          "temporalContrast": 80,
+          "hookNovelty": 69,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 93,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 99,
+          "motionRealization": 67,
+          "typographyDiversity": 35
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 100,
+          "temporalContrast": 35,
+          "hookNovelty": 90,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 87,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 98,
+          "motionRealization": 100,
+          "typographyDiversity": 66
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 100,
+          "temporalContrast": 35,
+          "hookNovelty": 90,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 87,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 98,
+          "motionRealization": 100,
+          "typographyDiversity": 66
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-11",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-11-main.json",
+          "sha256": "423debe90f42ccf70e7fde480f336bcba23dfb921dc041bca1953febafeea3e3",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-11-previous.json",
+          "sha256": "cb220bf7ed79b31cb088b85969482687cfe3f95e5f5fefee077a626d4d3a1d16",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-11-current.json",
+          "sha256": "10070dda7cf3bd71d0c7060503a429e9e6c84469f65e04a99d0df6667c3acec1",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": null,
+          "temporalContrast": 51,
+          "hookNovelty": 52,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 76,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 60,
+          "motionRealization": 67,
+          "typographyDiversity": 17
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": null,
+          "temporalContrast": 36,
+          "hookNovelty": 52,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 92,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 76.71372888648034,
+          "localContrast": 81,
+          "motionRealization": 100,
+          "typographyDiversity": 72
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": null,
+          "temporalContrast": 36,
+          "hookNovelty": 52,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 92,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 76.71372888648034,
+          "localContrast": 81,
+          "motionRealization": 100,
+          "typographyDiversity": 72
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-12",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-12-main.json",
+          "sha256": "234e71a3bcc414506074cfcc07f968c95b6f8c2d0cf2e494e1e70a924bf7462e",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-12-previous.json",
+          "sha256": "98fcf742f8b28e9a0f9a067d0338c644b3c54c6688a5708c42993d5a8a90ae60",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-12-current.json",
+          "sha256": "cdeace8266699e5cf2ce6acb237d49c09e9b83a1d5172d2b11f8e7ca2d97993f",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 3,
+          "loopQuality": 49,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 54,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 60,
+          "typographyDiversity": 23
+        },
+        "previous": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 3,
+          "loopQuality": 49,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 55,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 60,
+          "typographyDiversity": 23
+        },
+        "current": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 3,
+          "loopQuality": 49,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 55,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 60,
+          "typographyDiversity": 23
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-14",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-14-main.json",
+          "sha256": "8b82657c99c2d89d815eea9fee4254296632cd80d5f6b43589ddc9d74bdcc65b",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-14-previous.json",
+          "sha256": "217caf1ec16b293806d9acd090a4aac491f068a3d01382ebf76d36c9bf4b1637",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-14-current.json",
+          "sha256": "27db32770ac3f9c9967825b62f31ca73dd5a29ea6dfe8a05c43fffd38377ac19",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 20.5,
+          "temporalContrast": 24,
+          "hookNovelty": 100,
+          "loopQuality": 41,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 96,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 60,
+          "regionalPerceptualNovelty": 65.98874490842881,
+          "localContrast": 92,
+          "motionRealization": 100,
+          "typographyDiversity": 35
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 33,
+          "hookNovelty": 100,
+          "loopQuality": 41,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 71,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 97.04579031972308,
+          "localContrast": 74,
+          "motionRealization": 100,
+          "typographyDiversity": 43
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 47,
+          "hookNovelty": 100,
+          "loopQuality": 41,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 75,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 97.04579031972308,
+          "localContrast": 93,
+          "motionRealization": 100,
+          "typographyDiversity": 53
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "development-15",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/development-15-main.json",
+          "sha256": "8641b2a5c2f9160844ed60abfba166db44931e92292874157997d354d455bb57",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/development-15-previous.json",
+          "sha256": "551666dda30cd9a98d49916e0bd31287e79036f567fbb8a3f422ebbdeadd07f8",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/development-15-current.json",
+          "sha256": "a244d22d40697356688b51500e576cf3d5253daeb09c198d85e91b59368b4798",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 19,
+          "hookNovelty": 48,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 97,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 86,
+          "motionRealization": 100,
+          "typographyDiversity": 41
+        },
+        "previous": {
+          "perceptualNovelty": 45,
+          "motion": 22.5,
+          "temporalContrast": 23,
+          "hookNovelty": 49,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 38,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 75.85718658750315,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 6
+        },
+        "current": {
+          "perceptualNovelty": 84,
+          "motion": 21.5,
+          "temporalContrast": 74,
+          "hookNovelty": 50,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 67,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 98,
+          "motionRealization": 67,
+          "typographyDiversity": 49
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-01",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-01-main.json",
+          "sha256": "76ef8f61df4804510d136b644cdd6af30e11ef43f57771bfb02c7ec08cea16c3",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-01-previous.json",
+          "sha256": "1121b951869847fe56db295e6ab8b4a124359cc5f051fdfaf2d22fa96021757c",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-01-current.json",
+          "sha256": "fa8523088936a776c180e836b378ff50db6bb35c88fa9067e819df9a7f9e9f1e",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 77,
+          "motion": 22,
+          "temporalContrast": 85,
+          "hookNovelty": 37,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 66,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 90.94781702242295,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 62
+        },
+        "previous": {
+          "perceptualNovelty": 61,
+          "motion": 26.5,
+          "temporalContrast": 38,
+          "hookNovelty": 47,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 53,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 73.61887745815497,
+          "localContrast": 95,
+          "motionRealization": 100,
+          "typographyDiversity": 6
+        },
+        "current": {
+          "perceptualNovelty": 74,
+          "motion": 26.5,
+          "temporalContrast": 75,
+          "hookNovelty": 52,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 62,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 94.23207530365741,
+          "localContrast": 98,
+          "motionRealization": 100,
+          "typographyDiversity": 63
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-02",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-02-main.json",
+          "sha256": "9b599a9caf0854366ce28dcb0ddd2ebbe904df35ff7b8ebd8289e0de4d6cebe7",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-02-previous.json",
+          "sha256": "a7982c97caf98160a83df2865d189013b3b26b7023fdd4adefc27cec85126df8",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-02-current.json",
+          "sha256": "a656c449bcf28f46934bd34ec9b37c0f6730c4c925b79ad4a3155c546312010f",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 24,
+          "temporalContrast": 41,
+          "hookNovelty": 84,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 93,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 84
+        },
+        "previous": {
+          "perceptualNovelty": 76,
+          "motion": 29,
+          "temporalContrast": 2,
+          "hookNovelty": 68,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 64,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 59.1699869337853,
+          "localContrast": 86,
+          "motionRealization": 100,
+          "typographyDiversity": 21
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 30.5,
+          "temporalContrast": 44,
+          "hookNovelty": 76,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 87,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 78,
+          "motionRealization": 100,
+          "typographyDiversity": 99
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-03",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-03-main.json",
+          "sha256": "74b9b2143cd71db911bbb3555d423df2ccd21d1beb9992905f3c24736c2f9574",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-03-previous.json",
+          "sha256": "a1cef331cbf4439f3edff5c36201a2500526a961a7e352f45768b4aae319e2e4",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-03-current.json",
+          "sha256": "87af557e2d392cff36035ee38ead060b91e8ff81e7e3655510dbbfc26bdf5b71",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 92,
+          "motion": 18.5,
+          "temporalContrast": 23,
+          "hookNovelty": 50,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 86,
+          "motionRealization": 33,
+          "typographyDiversity": 41
+        },
+        "previous": {
+          "perceptualNovelty": 92,
+          "motion": 23.5,
+          "temporalContrast": 23,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 91,
+          "motionRealization": 100,
+          "typographyDiversity": 61
+        },
+        "current": {
+          "perceptualNovelty": 92,
+          "motion": 23.5,
+          "temporalContrast": 23,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 91,
+          "motionRealization": 100,
+          "typographyDiversity": 61
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-04",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-04-main.json",
+          "sha256": "17f9ed8619d25a44eac700cd6a78dbba34280b383dfdccde2a6237d9b538f304",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-04-previous.json",
+          "sha256": "0384a5dd1093d82835a7c7550ba13b18f5f7bb14edf61413fbf1dd9969d02ba8",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-04-current.json",
+          "sha256": "2ea508e3b053aeaa7be1043996420bd0255cf67406abbbfbcf31a38512799614",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 68,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 86,
+          "typographyDiversity": 46
+        },
+        "previous": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 76,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 60
+        },
+        "current": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 76,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 60
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-05",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-05-main.json",
+          "sha256": "a07d773a31c3ba7e549a6321903f08b0ba56a3f05d691be7f7d2391531936cda",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-05-previous.json",
+          "sha256": "43ab5e6e7e808375e39b22cd27482e60883716c8ccfc4c2b8557619c08709b94",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-05-current.json",
+          "sha256": "c42848cf9519921a12594a4a92742d0a332cbfc5dfb85fe482bed61c7e48efed",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 19
+        },
+        "previous": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 19
+        },
+        "current": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 57,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 19
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-06",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-06-main.json",
+          "sha256": "359be0fbf3ae12c1b549a073d5f1122fb967e9953ec735552c40c772fb9bb232",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-06-previous.json",
+          "sha256": "90bc56fcb6247a777dac153498b5764a4b4d45b682affbe99df450f578be379b",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-06-current.json",
+          "sha256": "e2c54b2113e9fc7dccb8077ce9b895f931ed59917c09a88b9f83f63862345799",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 20.5,
+          "temporalContrast": 100,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 78,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 88,
+          "motionRealization": 100,
+          "typographyDiversity": 59
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 23.5,
+          "temporalContrast": 24,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 33,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 45,
+          "motionRealization": 100,
+          "typographyDiversity": 58
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 18.5,
+          "temporalContrast": 63,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 74,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 83,
+          "motionRealization": 67,
+          "typographyDiversity": 100
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-07",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-07-main.json",
+          "sha256": "0d6fa18b77b230d13c99cfb080fc164dccc526cc31ea4983ff844fbc5d73df57",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-07-previous.json",
+          "sha256": "3307ce33e424687d90693c1fd54e8d532cb073817150427b14b636b92b5f1176",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-07-current.json",
+          "sha256": "f6b53ddf335061b21886286afba79fe11b2c2fd547df417cd7a234f6fb3cb443",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 72,
+          "motion": 84.5,
+          "temporalContrast": 34,
+          "hookNovelty": 47,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 66,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 71.73806622355457,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 74
+        },
+        "previous": {
+          "perceptualNovelty": 65,
+          "motion": 84.5,
+          "temporalContrast": 43,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 61,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 82.37652303149743,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 67
+        },
+        "current": {
+          "perceptualNovelty": 65,
+          "motion": 84.5,
+          "temporalContrast": 43,
+          "hookNovelty": 57,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 61,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 82.3881767069839,
+          "localContrast": 99,
+          "motionRealization": 100,
+          "typographyDiversity": 67
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-08",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-08-main.json",
+          "sha256": "ce40b0d917574c1960d5b9bb86655ade1c304108e7926326413734388687e599",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-08-previous.json",
+          "sha256": "924a51f7d5331d4e650d69f94109e9a129db242af2bd9643b7cbe8ec94c7b54c",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-08-current.json",
+          "sha256": "dcb82e51edeea1afaddc5d85e21a1de13279c4ea20d9fbdd9ec36955699bda87",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 67.5,
+          "temporalContrast": 27,
+          "hookNovelty": 41,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 99,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 60,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 73,
+          "motionRealization": 100,
+          "typographyDiversity": 35
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 70,
+          "temporalContrast": 35,
+          "hookNovelty": 71,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 43,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 83,
+          "motionRealization": 100,
+          "typographyDiversity": 30
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 70,
+          "temporalContrast": 35,
+          "hookNovelty": 71,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 43,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 83,
+          "motionRealization": 100,
+          "typographyDiversity": 30
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-09",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-09-main.json",
+          "sha256": "d4a97d601246a35ec8beb3d9c54cff1d38656590ca3e3843ec17c892c205a964",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-09-previous.json",
+          "sha256": "83e8efea734e9f14d9009a2ad5fb38fb4ecb7ef473a1a2c6a85e2400c7006d08",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-09-current.json",
+          "sha256": "8a3b278e88a5c108a94be935ff32c2a8287ebc68bbe7a23fe6c40c5e9dd57f59",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 56.5,
+          "temporalContrast": 18,
+          "hookNovelty": 51,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 50,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 90,
+          "motionRealization": 100,
+          "typographyDiversity": 30
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 66,
+          "temporalContrast": 27,
+          "hookNovelty": 60,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 61,
+          "motionRealization": 100,
+          "typographyDiversity": 39
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 66,
+          "temporalContrast": 27,
+          "hookNovelty": 60,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 61,
+          "motionRealization": 100,
+          "typographyDiversity": 39
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-10",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-10-main.json",
+          "sha256": "95b7a0d53ffb1c3567ac4c75bfaec61a7c8f6e00dd85c5abab502cfc5a501262",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-10-previous.json",
+          "sha256": "4cfb8e84719781b5dbe1ccb49711be1466cbc1f91923ba92ab4302cd074248bf",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-10-current.json",
+          "sha256": "a0b669b32e6610353562029e1811fcece41e63b6672cb08daa6c9d159ee92ee1",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 87,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 64,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 23
+        },
+        "previous": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 87,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 64,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 28
+        },
+        "current": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 87,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 64,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 28
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-11",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-11-main.json",
+          "sha256": "e6a48327601971ad8882e44e235eadbcdffe99a1e377dc7384f1b9998e15e599",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-11-previous.json",
+          "sha256": "04f0bdfcc4a46e6f43e6c2c243681f5345b32b1e18f752c8a612a9c7f1b4b133",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-11-current.json",
+          "sha256": "70b7b86187b9f5759ac726a82548f3732db89d7325d4cf2294b4deb9be826b26",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 1,
+          "loopQuality": 51,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 60,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 32
+        },
+        "previous": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 1,
+          "loopQuality": 51,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 56,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 29
+        },
+        "current": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 1,
+          "loopQuality": 51,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 56,
+          "displayOnsetAccuracy": null,
+          "localContrast": 0,
+          "motionRealization": 100,
+          "typographyDiversity": 29
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-12",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-12-main.json",
+          "sha256": "21de338ff21ced70d54bdd35415d09a4ab56d78be572d8f7a22b13cde98c381c",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-12-previous.json",
+          "sha256": "58ec041dd5453d9d7e0bcf56c2d38c550de2c3fe02d89b522579a5a6826c7c18",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-12-current.json",
+          "sha256": "3fd3e7b42ddbd2a5c90143399d3360a536bead381b98aecabf7d15c107494d34",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 20,
+          "temporalContrast": 35,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 58,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 54.73970327872583,
+          "localContrast": 94,
+          "motionRealization": 100,
+          "typographyDiversity": 27
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 21.5,
+          "temporalContrast": 29,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 80,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 90,
+          "motionRealization": 100,
+          "typographyDiversity": 57
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 57,
+          "hookNovelty": 100,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 83,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 90,
+          "motionRealization": 100,
+          "typographyDiversity": 57
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-14",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-14-main.json",
+          "sha256": "3d907eb2633d70e7f860a72f44d32a2634a53d54db6c218152230cf76a49b16e",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-14-previous.json",
+          "sha256": "d917fa74e3fcd035cef50124d01c87d7c60df7e4bf58feaf3d8b1c5b7fa3e548",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-14-current.json",
+          "sha256": "80db9e8ac4493cf521854d073fc5b1fd5e91efe8c5fa5f43534c06ba77b03f2a",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 21.25,
+          "temporalContrast": 66,
+          "hookNovelty": 52,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 81,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 83.0689996665283,
+          "localContrast": 71,
+          "motionRealization": 88,
+          "typographyDiversity": 42
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 20.75,
+          "temporalContrast": 99,
+          "hookNovelty": 81,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 71,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 80.51127246214526,
+          "localContrast": 71,
+          "motionRealization": 100,
+          "typographyDiversity": 33
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 21.25,
+          "temporalContrast": 99,
+          "hookNovelty": 81,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 71,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 100,
+          "regionalPerceptualNovelty": 82.21847455809743,
+          "localContrast": 76,
+          "motionRealization": 100,
+          "typographyDiversity": 34
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "holdout-15",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/holdout-15-main.json",
+          "sha256": "7bff454cfbdcded1dadaa2cec19fc537105e26c79588973c87651ab667e4e136",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/holdout-15-previous.json",
+          "sha256": "a3f5811aaafcc087d260803e0e90a43c2f49780987fca0ac0e7f3ca37764a663",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/holdout-15-current.json",
+          "sha256": "1917eced557fca9b915710841c1f6a8e00836633ee5b5b93db96de98df1891de",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 87,
+          "motion": 13,
+          "temporalContrast": 22,
+          "hookNovelty": 48,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 100,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 67,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 67,
+          "motionRealization": 67,
+          "typographyDiversity": 39
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 21.5,
+          "temporalContrast": 25,
+          "hookNovelty": 48,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 54,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 87,
+          "motionRealization": 100,
+          "typographyDiversity": 42
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 56,
+          "hookNovelty": 48,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 70,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 87,
+          "motionRealization": 100,
+          "typographyDiversity": 42
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "supplemental-development-13",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/supplemental-development-13-main.json",
+          "sha256": "12fb04ced45d301b7b951fe4a0433db5b75237e03ca8713cec47a9298b64a795",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/supplemental-development-13-previous.json",
+          "sha256": "14e40250b235d7f17884a07ce559bee87ec180972313726d70f00e97d191104c",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/supplemental-development-13-current.json",
+          "sha256": "fb7d29e2b76585129c82f28cdeb8d80eb034e48b9851581e3d43c2bfe073a623",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 39,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 32,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 62,
+          "typographyDiversity": 23
+        },
+        "previous": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 40,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 37,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 67,
+          "typographyDiversity": 21
+        },
+        "current": {
+          "perceptualNovelty": null,
+          "motion": null,
+          "temporalContrast": null,
+          "hookNovelty": 40,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 37,
+          "displayOnsetAccuracy": null,
+          "localContrast": null,
+          "motionRealization": 67,
+          "typographyDiversity": 21
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    },
+    {
+      "id": "supplemental-holdout-13",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/supplemental-holdout-13-main.json",
+          "sha256": "25e2e8cd463113f6697e8ac275b94bfa90539071a409f81e016ab76f681a20cc",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/supplemental-holdout-13-previous.json",
+          "sha256": "10946d8a32c816d4d5e41e9a66fb78f80b539a9e94d137d7821f3026c6c307fe",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        },
+        {
+          "path": "comparison-movies/supplemental-holdout-13-current.json",
+          "sha256": "7ab9e5d38bc5ef527e6dd14258bbdd7cba45af4b94dc84482e1863545c2678d7",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        }
+      ],
+      "observedDescriptors": {
+        "main": {
+          "perceptualNovelty": 74,
+          "motion": 20.5,
+          "temporalContrast": 100,
+          "hookNovelty": 5,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 75.07193735914906,
+          "localContrast": 99,
+          "motionRealization": 67,
+          "typographyDiversity": 23
+        },
+        "previous": {
+          "perceptualNovelty": 98,
+          "motion": 21,
+          "temporalContrast": 100,
+          "hookNovelty": 35,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 94,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 88.9153679818406,
+          "localContrast": 96,
+          "motionRealization": 100,
+          "typographyDiversity": 83
+        },
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 21,
+          "temporalContrast": 100,
+          "hookNovelty": 35,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 95,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": 0,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 96,
+          "motionRealization": 100,
+          "typographyDiversity": 83
+        }
+      },
+      "reason": "Exact actual-video/input/WAV/PCM/profile comparison; engineering metric differences disclosed. Major creative regression assessment remains unverified, not inferred from a score."
+    }
+  ],
+  "independent": [
+    {
+      "id": "automatic-unseen-confirmation-20261018",
+      "sameInput": true,
+      "sameSeed": true,
+      "sameProfile": true,
+      "shippedPipelines": true,
+      "actualDecodedComparison": true,
+      "significantRegression": null,
+      "lyricSafetyFailed": false,
+      "movies": [
+        {
+          "path": "comparison-movies/automatic-unseen-confirmation-20261018-current.json",
+          "sha256": "5742551d042338acaf946b665f19ec22ad4bd6469d9c3352cc2668611592e413",
+          "expectedSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+        },
+        {
+          "path": "comparison-movies/automatic-unseen-confirmation-20261018-main.json",
+          "sha256": "adfccf5c0c03e9369eb22f50ac10b6679f0b2ce5fb5de74a211fb93735cd758c",
+          "expectedSourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00"
+        },
+        {
+          "path": "comparison-movies/automatic-unseen-confirmation-20261018-previous.json",
+          "sha256": "f2eb7a08ec92f3d9e13c5a12626295c383a83559907a30cd25d321d88451fc78",
+          "expectedSourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26"
+        }
+      ],
+      "unusedBeforeFreeze": true,
+      "notUsedForAdjustment": true,
+      "usageHistory": "Original inputs preregistered after d6 freeze; d04 generic Grammar/anchor correction completed before these outcomes were inspected. This fixture was not used to tune source. Reuse only exact-matched old main/previous MP4s.",
+      "observedDescriptors": {
+        "current": {
+          "perceptualNovelty": 100,
+          "motion": 90,
+          "temporalContrast": 58,
+          "hookNovelty": 90,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 84,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 71.59851365900514,
+          "localContrast": 86,
+          "motionRealization": 100,
+          "typographyDiversity": 59
+        },
+        "main": {
+          "perceptualNovelty": 100,
+          "motion": 60.5,
+          "temporalContrast": 92,
+          "hookNovelty": 92,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 99,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 100,
+          "localContrast": 80,
+          "motionRealization": 67,
+          "typographyDiversity": 54
+        },
+        "previous": {
+          "perceptualNovelty": 100,
+          "motion": 86.5,
+          "temporalContrast": 68,
+          "hookNovelty": 90,
+          "loopQuality": 0,
+          "foregroundNovelty": null,
+          "lyricForegroundNovelty": 87,
+          "displayOnsetAccuracy": null,
+          "impactBeatSync": null,
+          "regionalPerceptualNovelty": 71.68247957205831,
+          "localContrast": 86,
+          "motionRealization": 100,
+          "typographyDiversity": 97
+        }
+      },
+      "reason": "Typography proxy previous97/current59 and main54/current59 disclosed. No major-regression resolution inferred without actual compositional assessment."
+    }
+  ],
+  "compositionAssessment": {
+    "significantRegressionsResolved": null,
+    "observations": []
+  },
+  "raw": {
+    "path": "../grammar-policy-v2-three-version-comparison.json",
+    "sha256": "a204e54b43d2e5f06e28fa184602177aca3aa1e128dc9da898b547d52661d948"
+  },
+  "scope": "Complete physical three-version conditions registered; creative comparison unresolved, no inferred quality PASS."
 }

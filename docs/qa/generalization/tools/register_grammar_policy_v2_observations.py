@@ -7,6 +7,7 @@ def sha(b):return hashlib.sha256(b).hexdigest()
 def ref(p):return {'path':os.path.relpath(p,A),'sha256':sha(p.read_bytes())}
 def write(p,d):p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n');return ref(p)
 assert read(A/'context.json')['sourceCommit']==S
+assert len(read(A/'finished-artifacts.json').get('movies',[]))<=4,'FOCUSED_CHECKPOINT_REFUSES_TO_OVERWRITE_COMPLETE_FINAL_SOURCE_EVIDENCE'
 movies=[]
 for i in range(4):
  p=R/f'grammar-policy-v2-focused-{i}';raw=next((p/'matrix').glob('*-row.json.gz'));d=read(raw);b=d['provenance']['finalArtifactVerification']['binding'];assert b['sourceCommit']==S and d['provenance']['finalArtifactVerification']['status']=='MEASURED'

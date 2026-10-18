@@ -1,0 +1,10 @@
+{
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "runId": 39161788234,
+  "jobId": 117776425353,
+  "classification": "QA_WORKFLOW_PYTHON_HEREDOC_SYNTAX_FAILURE",
+  "cause": "Sparse-checkout path replacement also inserted a newline inside a Python string literal. Failed before original/control artifact restoration and before any contour measurement.",
+  "appFailureProven": false,
+  "rawSignalsExecuted": false,
+  "repair": "Fix quoted Python path; statically compile every embedded Python block in final-v2 QA workflows before rerun. No app source or quality thresholds changed."
+}

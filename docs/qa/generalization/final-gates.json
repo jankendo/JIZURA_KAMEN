@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "releaseSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-  "manifestSHA256": "a57ca026746190d9292ef56185a0b095c87808f8c1b8c4ce5ca673a99fa3ee8c",
+  "manifestSHA256": "446b3df330830e73ee26f145fbf543e49aea3690aece27cbcba4142e2df7f1ab",
   "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "UNVERIFIED",
@@ -34,7 +34,7 @@
       {
         "name": "comparison coverage",
         "state": "UNVERIFIED",
-        "reason": "missing/duplicate comparison condition"
+        "reason": "regression/safety result not measured"
       },
       {
         "name": "important semantic operators",
@@ -43,8 +43,8 @@
       },
       {
         "name": "regressions and correspondence",
-        "state": "UNVERIFIED",
-        "reason": "safety/path-source correspondence unverified"
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
       }
     ]
   },
@@ -53,19 +53,13 @@
       "domain": "quality",
       "name": "comparison coverage",
       "state": "UNVERIFIED",
-      "reason": "missing/duplicate comparison condition"
+      "reason": "regression/safety result not measured"
     },
     {
       "domain": "quality",
       "name": "important semantic operators",
       "state": "UNVERIFIED",
       "reason": "important effect unmeasured/confounded/stale or no isolated encoded control"
-    },
-    {
-      "domain": "quality",
-      "name": "regressions and correspondence",
-      "state": "UNVERIFIED",
-      "reason": "safety/path-source correspondence unverified"
     }
   ],
   "limitations": [
@@ -73,7 +67,7 @@
     "No deployment or production verification is implied by RELEASE_GO."
   ],
   "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-  "recordedUTC": "2026-10-18T19:42:36.269498+00:00",
+  "recordedUTC": "2026-10-18T20:20:52.066238+00:00",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "overall": "PARTIAL",
