@@ -1,0 +1,79 @@
+name: Verify exact same-case ON baseline reuse against completed independent controls
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-grammar-policy-v2-shared-baseline-pilot.yml]
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/grammar-policy-v2-shared-baseline-pilot.json
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: d04c734bc5eb0c0c427a42a196cae3a507b89506
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Hash-bound original and existing actual baseline and prior full control
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p results
+          python - <<'PYTHON'
+          import json,pathlib,zipfile,hashlib,subprocess
+          spec=json.load(open('qa/docs/qa/generalization/composition-recovery/grammar-policy-v2-shared-baseline-pilot.json'))
+          for name,a in spec['archives'].items():
+            p=pathlib.Path(name+'.zip')
+            with p.open('wb')as f:subprocess.run(['gh','api',f"repos/jankendo/JIZURA_KAMEN/actions/artifacts/{a['artifactId']}/zip"],stdout=f,check=True)
+            assert hashlib.sha256(p.read_bytes()).hexdigest()==a['archiveSHA256']
+            with zipfile.ZipFile(p)as z:
+              assert all(not pathlib.PurePosixPath(n).is_absolute()and '..'not in pathlib.PurePosixPath(n).parts for n in z.namelist());z.extractall(name)
+          PYTHON
+          node qa/docs/qa/generalization/tools/validate_shared_control_baseline_test.cjs original/matrix baseline/controls > results/baseline-counterexamples.log
+      - name: Fresh current runner Native proof then one new isolated OFF only
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_COUNTERFACTUAL_PHASES: 1
+          KAMEN_COUNTERFACTUAL_NATIVE_HASHES: 1
+          KAMEN_COUNTERFACTUAL_HOOK: registry:LAYOUTS:cinemaGrammarsolo
+          KAMEN_REUSE_BASELINE_REPORT: ${{ github.workspace }}/baseline/controls/effect-counterfactual-report.json
+          KAMEN_CURRENT_NATIVE_TRACE: ${{ github.workspace }}/results/native/native-dispatch-trace.json
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/native_dispatch_camera_return_trace_v6.cjs http://127.0.0.1:4173/ original/matrix development-15 v3 results/native > results/native.log 2>&1
+          node qa/docs/qa/generalization/tools/encoded_selected_operator_off_with_baseline.cjs http://127.0.0.1:4173/ original/matrix development-15 v3 current results/controls > results/controls.log 2>&1
+      - name: Compare new OFF with completed full-triad OFF without re-encoding originals
+        run: |
+          python - <<'PYTHON'
+          import json,subprocess,pathlib
+          new=json.load(open('results/controls/effect-counterfactual-report.json'));old=json.load(open('prior/controls/effect-counterfactual-report.json'));assert new['originalVideoSHA256']==old['originalVideoSHA256']and new['planHash']==old['planHash']and new['fullNativeIdentity']and new['adoptedMovieReproduced'];a=next(m for m in new['movies']if m['mode']=='OFF');b=next(m for m in old['movies']if m['mode']=='OFF');assert a['nativeFrameHashes']==b['nativeFrameHashes']
+          def decoded(p):
+            r=subprocess.run(['ffmpeg','-v','error','-xerror','-i',p,'-map','0:v:0','-f','hash','-hash','sha256','-'],capture_output=True,text=True,check=True);assert not r.stderr;return r.stdout.strip()
+          x=decoded('results/controls/OFF.mp4');y=decoded('prior/controls/OFF.mp4');assert x==y
+          pathlib.Path('results/shared-baseline-pilot.json').write_text(json.dumps({'sourceCommit':new['build']['sourceCommit'],'originalVideoSHA256':new['originalVideoSHA256'],'newOFFVideoSHA256':a['videoSHA256'],'priorOFFVideoSHA256':b['videoSHA256'],'NativeOFFExact':True,'decodedOFFExact':True,'decodedOFFSHA256':x,'newEncodeModes':['OFF'],'actuallyReusedEncodeModes':['ON','ON_REPEAT'],'currentRunnerNativeExact':new['sameSourceBaselineReuse']['currentRunnerNative'],'scope':'Collector/protocol identity only; no new artistic or semantic success inferred.'},indent=2))
+          PYTHON
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: grammar-policy-v2-shared-baseline-pilot
+          path: results/
+          retention-days: 14

@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "caseId": "development-15",
+  "hook": "registry:LAYOUTS:cinemaGrammarsolo",
+  "archives": {
+    "original": {
+      "artifactId": 12139273093,
+      "archiveSHA256": "bb67b3dc38fb28e32c401362cfec1b21181212100d67d5b44ffdd48ee6a0edeb"
+    },
+    "baseline": {
+      "artifactId": 12139498920,
+      "archiveSHA256": "35e1773cbda4231f4030cccf2d9a58c8f9ea0d2e55bfb4ef7c45273a6d526d8e"
+    },
+    "prior": {
+      "artifactId": 12139623437,
+      "archiveSHA256": "947ac26859f9833c7561db556f70c4a754401258025045b7b31b0ce781855a4b"
+    }
+  },
+  "purpose": "Validate cached shared actual ON/ON_REPEAT bundle plus one fresh isolated OFF against an already completed full same-actor triad. Mandatory fresh current-runner full Native original equality before reuse; refuse different source/input/reference/WAV/plan/profile/frames. This bounded pilot avoids hundreds of duplicate ON encodes later.",
+  "criteria": "Original/repeat baseline must be actual encoded and complete-decode PASS, original full Native/decoded match. Fresh runner Native exact. Cached ON and repeated ON bytes are explicitly reused, not newly measured. New OFF must full-decode and full Native/decoded pixels must match prior independent same-actor OFF. No app source or gate threshold changes."
+}
