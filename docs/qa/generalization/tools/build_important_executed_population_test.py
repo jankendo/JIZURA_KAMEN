@@ -17,4 +17,9 @@ class Population(unittest.TestCase):
  def test_qualified_uniform_contract_requires_execution(self):
   with tempfile.TemporaryDirectory() as d:
    p=pathlib.Path(d)/'t.json';t={'automaticSelection':True,'directionSelectionMethod':'SHIPPING_OPTIMIZE_DIRECTION_CANDIDATES_RENDERED','exactNativeRGBA':True,'artifactBinding':{'sourceCommit':'s'},'videoSHA256':'h','temporalContracts':[{'unitKey':'u','time':1,'charFnsAdded':1,'contract':{'status':'EXECUTABLE','mode':'UNIFORM_TRANSLATION','state':{'role':'light'}}}]};p.write_text(json.dumps(t));o=m.build([p],'s');self.assertEqual(len(o['expectedImportantIntentIds']),1);t['temporalContracts'][0]['charFnsAdded']=0;p.write_text(json.dumps(t));self.assertEqual(m.build([p],'s')['expectedImportantIntentIds'],[])
+ def test_grammar_contract_with_other_char_functions_is_inventory_only(self):
+  with tempfile.TemporaryDirectory() as d:
+   p=pathlib.Path(d)/'t.json';tc={'unitKey':'u','time':1,'charFnsAdded':5,'cinemaAnchorMotion':{'dx':0,'dy':-2},'contract':{'status':'EXECUTABLE','mode':'GRAMMAR','uniformTranslation':True,'state':{'role':'light'}}};t={'automaticSelection':True,'directionSelectionMethod':'SHIPPING_OPTIMIZE_DIRECTION_CANDIDATES_RENDERED','exactNativeRGBA':True,'artifactBinding':{'sourceCommit':'s'},'videoSHA256':'h','temporalContracts':[tc]};p.write_text(json.dumps(t));o=m.build([p],'s');self.assertEqual(len(o['expectedImportantIntentIds']),1);self.assertEqual(o['rows'][0]['encodedStatus'],'UNMEASURED');self.assertEqual(o['observations'],[])
+   for field,value in [('cinemaAnchorMotion',None),('charFnsAdded',0)]:
+    saved=tc[field];tc[field]=value;p.write_text(json.dumps(t));self.assertEqual(m.build([p],'s')['expectedImportantIntentIds'],[]);tc[field]=saved
 if __name__=='__main__':unittest.main()

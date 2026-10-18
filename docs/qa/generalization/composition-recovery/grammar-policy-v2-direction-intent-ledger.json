@@ -35579,6 +35579,52 @@
       "counterfactual": false
     },
     {
+      "intentId": "e4ef47dae8b5f4cc86b69af9b22715772cab9a8f8db2e973a1589451bd22ae51",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "videoSHA256": "00d11806c93845649990710f9e44daa62f6f72632bc15828fd0863778cc989b1",
+      "planHash": "8d8191d6e36d35de71e00e61d7b70a98e2f4f6ad763f91889d7942454ee4f221",
+      "unitKey": "[2,7,2,6.1,9.11,\"We find 光のかけら\"]",
+      "group": "LYRIC_TEMPORAL_CONTRACT",
+      "operator": "UNIFORM_TRANSLATION",
+      "pass": "main",
+      "semanticRoles": [
+        "light"
+      ],
+      "classification": "EXECUTED_IMPORTANT",
+      "classificationReason": "Executed structural, lyric, image, camera, FX or transition operation; semantic success remains unmeasured.",
+      "naturalSelection": "NATURAL",
+      "important": true,
+      "dispatch": {
+        "group": "LYRIC_TEMPORAL_CONTRACT",
+        "id": "UNIFORM_TRANSLATION",
+        "unitKey": "[2,7,2,6.1,9.11,\"We find 光のかけら\"]",
+        "pass": "main",
+        "calls": 72,
+        "firstTime": 6.125,
+        "lastTime": 9.083333333333334
+      },
+      "resolvedFinalUnitBinding": {
+        "resolvedUnitKey": "[2,7,2,6.1,9.11,\"We find 光のかけら\"]",
+        "domain": "PRIMARY_LYRIC_FRAGMENT",
+        "ordinal": 2,
+        "authoredCutIndex": 7,
+        "unitId": "33e8df85e0d65d3302f1b608c2d0068d4a2a1c9f90abe49c63b5ce732e10819a",
+        "sourceUnitId": "a0a010819f8d553adffbb7a86cbb270a6ab90ee44a835c114f40f88c3b85b0d4",
+        "fragmentId": "ccaf2dace357a96445c7d27d66981d56268329a0c0b90045d15bcb163ea398b6",
+        "method": "Unique exact authored-index/line/start/end/text tuple in selected hash-verified plan; never line-only. Original raw key retained."
+      },
+      "implementation": null,
+      "exactFunctionObjectAliases": [],
+      "aliasesDoNotRemoveIntent": true,
+      "trace": "composition-recovery/grammar-policy-v2-focused-1/dispatch/development-15/native-dispatch-trace.json.gz",
+      "traceRawSHA256": "9a1c1a6dc372617d017b143d4f037ab3457b9a16d6085d27dfdbe91bdef90ecd",
+      "bindingStatus": "EXACT_CURRENT_ADOPTED_NATIVE",
+      "encodedStatus": "UNMEASURED",
+      "observedTarget": "UNMEASURED",
+      "actualDecodedTimestamp": null,
+      "counterfactual": false
+    },
+    {
       "intentId": "7126f27adc2a31d2a50dac941d601e5153bfcf3d18b667399bc740200e079922",
       "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
       "videoSHA256": "2431feaa6b17b1c2ed686d5446759b0b21ca3776d5c5e663b2dc07c52d0c6678",
@@ -78361,11 +78407,57 @@
       "observedTarget": "UNMEASURED",
       "actualDecodedTimestamp": null,
       "counterfactual": false
+    },
+    {
+      "intentId": "7b5cf9f3105bd13e42de614ba40ef416d3ca5f9effaed1aeb19a81a61defdd27",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "videoSHA256": "ba71737a7412ea3b89f493d9ed95c1b696568508f9d63220802e1d4dab49bdde",
+      "planHash": "63ca610f9e3ab4945aa312ddcc8f0d6c00785558a158fb21fda88f06f635b3bd",
+      "unitKey": "[2,10,2,9.1,11.94,\"この光を次の街へ届けよう\"]",
+      "group": "LYRIC_TEMPORAL_CONTRACT",
+      "operator": "UNIFORM_TRANSLATION",
+      "pass": "main",
+      "semanticRoles": [
+        "light"
+      ],
+      "classification": "EXECUTED_IMPORTANT",
+      "classificationReason": "Executed structural, lyric, image, camera, FX or transition operation; semantic success remains unmeasured.",
+      "naturalSelection": "NATURAL",
+      "important": true,
+      "dispatch": {
+        "group": "LYRIC_TEMPORAL_CONTRACT",
+        "id": "UNIFORM_TRANSLATION",
+        "unitKey": "[2,10,2,9.1,11.94,\"この光を次の街へ届けよう\"]",
+        "pass": "main",
+        "calls": 68,
+        "firstTime": 9.125,
+        "lastTime": 11.916666666666666
+      },
+      "resolvedFinalUnitBinding": {
+        "resolvedUnitKey": "[2,10,2,9.1,11.94,\"この光を次の街へ届けよう\"]",
+        "domain": "PRIMARY_LYRIC_FRAGMENT",
+        "ordinal": 2,
+        "authoredCutIndex": 10,
+        "unitId": "5be0bd55ddbd621274c304c2b721082517a30765a81df17d0b8187adccd7da94",
+        "sourceUnitId": "345498fb63e7a1034f1573792f0ab967926967e01635e1394e7bc5ff05f67915",
+        "fragmentId": "dd4ff8a56bae6526b1f1709526bc3a95a06665ee2df7df0913f1bf1e194d2505",
+        "method": "Unique exact authored-index/line/start/end/text tuple in selected hash-verified plan; never line-only. Original raw key retained."
+      },
+      "implementation": null,
+      "exactFunctionObjectAliases": [],
+      "aliasesDoNotRemoveIntent": true,
+      "trace": "composition-recovery/grammar-policy-v2-focused-3/dispatch/late-unseen-quiet-16x9/native-dispatch-trace.json.gz",
+      "traceRawSHA256": "0bddc968595f2716e71377a7d187e28dad40feb1bca2da421b10f1ea5ff2db9e",
+      "bindingStatus": "EXACT_CURRENT_ADOPTED_NATIVE",
+      "encodedStatus": "UNMEASURED",
+      "observedTarget": "UNMEASURED",
+      "actualDecodedTimestamp": null,
+      "counterfactual": false
     }
   ],
   "classificationCounts": {
     "COMPOSITE_IMPORTANT": 33,
-    "EXECUTED_IMPORTANT": 80,
+    "EXECUTED_IMPORTANT": 82,
     "MANUAL_LOCKED": 27,
     "NON_EXECUTION_IDENTITY": 8,
     "INTENTIONAL_STATIC": 7
@@ -78415,6 +78507,7 @@
     "b95616a1724bbf76eb47c89907e92d63aafc7e77ac98d4ebf85aec31fa060cfd",
     "e8a2a2123c674eb5bea3abba25fe26add86e4defd7881e3708b308af804d0c70",
     "116a3f2c215088926d8a48cf0ff7575adc394ed9d722569bedf02b72624bd919",
+    "e4ef47dae8b5f4cc86b69af9b22715772cab9a8f8db2e973a1589451bd22ae51",
     "7126f27adc2a31d2a50dac941d601e5153bfcf3d18b667399bc740200e079922",
     "ba6cc1f6a5e20b07f7dc480b8f33638ce7a9e3b18faccab78982aaae29937350",
     "c2a72d223dde965baf7c9b02cd4bdbbe03a8048c6c68075d365727b8d575ca18",
@@ -78490,7 +78583,8 @@
     "3cfa803752a2e3d93b8ee0fb7c2f90a8fdcd93de15eefd5f6249b638df0b69e0",
     "6cd72ed16a572e21e234d10894cb26cf040ffb09c4adf4594989655ec1ad4b7a",
     "5c69b1bb287d6c5abafe6aee2b2f09243e9b33d2ce3145d80e0c78be7cc98179",
-    "c2525b790b1493687d1ba06bb2f9f7588750a2f323d4e30c0188eabddf27a3b3"
+    "c2525b790b1493687d1ba06bb2f9f7588750a2f323d4e30c0188eabddf27a3b3",
+    "7b5cf9f3105bd13e42de614ba40ef416d3ca5f9effaed1aeb19a81a61defdd27"
   ],
   "unknownNaturalPopulation": [],
   "observations": [],
@@ -78499,5 +78593,5 @@
   "independentSemanticStatus": "UNVERIFIED",
   "human": "HUMAN_UNVERIFIED",
   "completeFinalThirtyPopulation": false,
-  "scope": "All four current completed focused shipping cases only. Raw actuation/clock contexts merged into one operator/unit/pass intent without dropping clocks. Important conservative inventory, not semantic realization or final30 completeness."
+  "scope": "Partial focused four-case inventory; all raw execution clocks retained. No independent semantic success inferred from contract declaration or aggregate charFns count."
 }

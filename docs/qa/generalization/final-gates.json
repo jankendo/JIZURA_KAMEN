@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "releaseSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-  "manifestSHA256": "4e55ce0e3f9d4fa3c5afbb04b033d38ecb0bbcfed895909436eed107ef99c3ab",
+  "manifestSHA256": "7ceca1eb358e15f9d302b2931934771d44ec8a8345959b87f5c25679e6a921ef",
   "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "UNVERIFIED",
@@ -26,8 +26,8 @@
       },
       {
         "name": "finished artifacts",
-        "state": "UNVERIFIED",
-        "reason": "evidence hash mismatch"
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
       }
     ],
     "quality": [
@@ -39,7 +39,7 @@
       {
         "name": "important semantic operators",
         "state": "UNVERIFIED",
-        "reason": "important intent population missing"
+        "reason": "important effect unmeasured/confounded/stale or no isolated encoded control"
       },
       {
         "name": "regressions and correspondence",
@@ -68,12 +68,6 @@
       "reason": "missing unique trace-bound operation: generation"
     },
     {
-      "domain": "technical",
-      "name": "finished artifacts",
-      "state": "UNVERIFIED",
-      "reason": "evidence hash mismatch"
-    },
-    {
       "domain": "quality",
       "name": "comparison coverage",
       "state": "UNVERIFIED",
@@ -83,7 +77,7 @@
       "domain": "quality",
       "name": "important semantic operators",
       "state": "UNVERIFIED",
-      "reason": "important intent population missing"
+      "reason": "important effect unmeasured/confounded/stale or no isolated encoded control"
     },
     {
       "domain": "quality",
@@ -97,7 +91,7 @@
     "No deployment or production verification is implied by RELEASE_GO."
   ],
   "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-  "recordedUTC": "2026-10-18T14:19:48.009425+00:00",
+  "recordedUTC": "2026-10-18T14:20:38.673121+00:00",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "overall": "PARTIAL",
@@ -125,7 +119,7 @@
   },
   "currentSourceValidation": {
     "formalRegressionCounts": null,
-    "realMP4": "UNVERIFIED",
+    "realMP4": "PASS",
     "realMP4Scope": "Only the hash-bound listed movies, not all target export paths",
     "officialCI": "UNVERIFIED",
     "expectedConditions": [

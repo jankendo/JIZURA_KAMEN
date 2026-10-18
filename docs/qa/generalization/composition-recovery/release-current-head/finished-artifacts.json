@@ -2,72 +2,6 @@
   "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
   "movies": [
     {
-      "id": "holdout-10",
-      "inputHash": "2f436bdd9b26642f8f5ccb51711d570fa39f7f2677844594c69b585cd8ecbbba",
-      "planHash": "608a6a33c597ec538b5c5bae6b98a2d59dab5555a39b29f3881c57495b1d67d2",
-      "outputProfile": {
-        "purpose": "SQUARE",
-        "aspect": "1:1",
-        "fps": 24,
-        "range": [
-          0,
-          9.999977324263039
-        ],
-        "loopRequired": false,
-        "resolution": [
-          360,
-          360
-        ]
-      },
-      "rendererVersion": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278",
-      "selectedCandidateId": "e315f146a74bdb27ec404d4a6728d3c1764b3424a9bec1dbb37fa1bb34b8a8b3",
-      "videoSHA256": "2431feaa6b17b1c2ed686d5446759b0b21ca3776d5c5e663b2dc07c52d0c6678",
-      "codecVideo": "h264",
-      "codecAudio": "aac",
-      "decodeExitCode": 0,
-      "decodeComplete": true,
-      "hasVideo": true,
-      "hasAudio": true,
-      "hashMatches": true,
-      "observation": {
-        "path": "v2-movies/holdout-10.json",
-        "sha256": "4a0a49762e5b10c8cc76a8882d7d88aba4207ed7c0fb12fe288d915930bc224b"
-      }
-    },
-    {
-      "id": "late-unseen-quiet-16x9",
-      "inputHash": "63147a11d92052e42fdfd588529ada1675f0f51ed49750005a8ddb2501929536",
-      "planHash": "63ca610f9e3ab4945aa312ddcc8f0d6c00785558a158fb21fda88f06f635b3bd",
-      "outputProfile": {
-        "purpose": "FULL_MV",
-        "aspect": "16:9",
-        "fps": 24,
-        "range": [
-          0,
-          14.3
-        ],
-        "loopRequired": false,
-        "resolution": [
-          640,
-          360
-        ]
-      },
-      "rendererVersion": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278",
-      "selectedCandidateId": "a4878f34c0b9f75ddbcd094ff9b56e4695dadf0e5253e77fa794ae5df4286858",
-      "videoSHA256": "ba71737a7412ea3b89f493d9ed95c1b696568508f9d63220802e1d4dab49bdde",
-      "codecVideo": "h264",
-      "codecAudio": "aac",
-      "decodeExitCode": 0,
-      "decodeComplete": true,
-      "hasVideo": true,
-      "hasAudio": true,
-      "hashMatches": true,
-      "observation": {
-        "path": "v2-movies/late-unseen-quiet-16x9.json",
-        "sha256": "f8fbcda0aba3c7d3e2c1ec421ae67351354c219d600a74968d211da725088b49"
-      }
-    },
-    {
       "id": "development-11",
       "inputHash": "d607d1e02209793961caa3ce4c0345a580e45de9f920f9d18fb34d8ab33fcc9f",
       "planHash": "156378b44182f444b1f42d6b0d03452bf4e5aa434dcdb55f715cb188db7a1fc9",
@@ -132,7 +66,73 @@
         "path": "v2-movies/development-15.json",
         "sha256": "853bf32f15a37bb1feb6109bb3ef09e576d3d0d05423482ab8ba707bb4cfae39"
       }
+    },
+    {
+      "id": "holdout-10",
+      "inputHash": "2f436bdd9b26642f8f5ccb51711d570fa39f7f2677844594c69b585cd8ecbbba",
+      "planHash": "608a6a33c597ec538b5c5bae6b98a2d59dab5555a39b29f3881c57495b1d67d2",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rendererVersion": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278",
+      "selectedCandidateId": "e315f146a74bdb27ec404d4a6728d3c1764b3424a9bec1dbb37fa1bb34b8a8b3",
+      "videoSHA256": "2431feaa6b17b1c2ed686d5446759b0b21ca3776d5c5e663b2dc07c52d0c6678",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "decodeExitCode": 0,
+      "decodeComplete": true,
+      "hasVideo": true,
+      "hasAudio": true,
+      "hashMatches": true,
+      "observation": {
+        "path": "v2-movies/holdout-10.json",
+        "sha256": "4a0a49762e5b10c8cc76a8882d7d88aba4207ed7c0fb12fe288d915930bc224b"
+      }
+    },
+    {
+      "id": "late-unseen-quiet-16x9",
+      "inputHash": "63147a11d92052e42fdfd588529ada1675f0f51ed49750005a8ddb2501929536",
+      "planHash": "63ca610f9e3ab4945aa312ddcc8f0d6c00785558a158fb21fda88f06f635b3bd",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          14.3
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rendererVersion": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278",
+      "selectedCandidateId": "a4878f34c0b9f75ddbcd094ff9b56e4695dadf0e5253e77fa794ae5df4286858",
+      "videoSHA256": "ba71737a7412ea3b89f493d9ed95c1b696568508f9d63220802e1d4dab49bdde",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "decodeExitCode": 0,
+      "decodeComplete": true,
+      "hasVideo": true,
+      "hasAudio": true,
+      "hashMatches": true,
+      "observation": {
+        "path": "v2-movies/late-unseen-quiet-16x9.json",
+        "sha256": "f8fbcda0aba3c7d3e2c1ec421ae67351354c219d600a74968d211da725088b49"
+      }
     }
   ],
-  "scope": "Four exact-source normally chosen focused shipping MP4s. Three isolated control encodes are separate diagnostics, not additional natural-selection cases."
+  "scope": "Four exact-source normally chosen focused shipping MP4s. Isolated control encodes are separate diagnostics."
 }

@@ -49,8 +49,10 @@ def build(traces,source,unit_bindings=None):
   calls=merge_clock_context_calls(t.get('calls',[]));contract_calls={}
   for tc in t.get('temporalContracts',[]):
    contract=tc.get('contract',{})
-   if contract.get('status')!='EXECUTABLE' or tc.get('charFnsAdded')!=1:continue
-   if not (contract.get('mode')=='UNIFORM_TRANSLATION' or (contract.get('mode')=='GRAMMAR' and contract.get('uniformTranslation') is True and tc.get('cinemaAnchorMotion'))):continue
+   if contract.get('status')!='EXECUTABLE':continue
+   photo=contract.get('mode')=='UNIFORM_TRANSLATION' and tc.get('charFnsAdded')==1
+   grammar=contract.get('mode')=='GRAMMAR' and contract.get('uniformTranslation') is True and (tc.get('charFnsAdded') or 0)>=1 and tc.get('cinemaAnchorMotion')
+   if not (photo or grammar):continue
    key=tc['unitKey'];row=contract_calls.setdefault(key,{'group':'LYRIC_TEMPORAL_CONTRACT','id':'UNIFORM_TRANSLATION','unitKey':key,'pass':'main','calls':0,'firstTime':tc['time'],'lastTime':tc['time']});row['calls']+=1;row['lastTime']=tc['time']
   calls.extend(contract_calls.values())
   for c in calls:
