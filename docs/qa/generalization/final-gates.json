@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "releaseSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-  "manifestSHA256": "f324095dbc873b8d8444f394f5455590d47ac03602e9c0f47a61e3922f0b6c8a",
-  "TECHNICAL_GO": "UNVERIFIED",
+  "manifestSHA256": "a57ca026746190d9292ef56185a0b095c87808f8c1b8c4ce5ca673a99fa3ee8c",
+  "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "UNVERIFIED",
   "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
@@ -11,18 +11,18 @@
     "technical": [
       {
         "name": "ci",
-        "state": "UNVERIFIED",
-        "reason": "CI not completed successfully"
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
       },
       {
         "name": "regression/build",
-        "state": "UNVERIFIED",
-        "reason": "per-test observations absent"
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
       },
       {
         "name": "browser",
-        "state": "UNVERIFIED",
-        "reason": "missing unique trace-bound operation: generation"
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
       },
       {
         "name": "finished artifacts",
@@ -50,24 +50,6 @@
   },
   "issues": [
     {
-      "domain": "technical",
-      "name": "ci",
-      "state": "UNVERIFIED",
-      "reason": "CI not completed successfully"
-    },
-    {
-      "domain": "technical",
-      "name": "regression/build",
-      "state": "UNVERIFIED",
-      "reason": "per-test observations absent"
-    },
-    {
-      "domain": "technical",
-      "name": "browser",
-      "state": "UNVERIFIED",
-      "reason": "missing unique trace-bound operation: generation"
-    },
-    {
       "domain": "quality",
       "name": "comparison coverage",
       "state": "UNVERIFIED",
@@ -91,7 +73,7 @@
     "No deployment or production verification is implied by RELEASE_GO."
   ],
   "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-  "recordedUTC": "2026-10-18T14:22:33.310404+00:00",
+  "recordedUTC": "2026-10-18T19:42:36.269498+00:00",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "overall": "PARTIAL",
@@ -100,10 +82,17 @@
   "CI": {
     "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
     "headSha": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-    "status": "in_progress",
-    "conclusion": null,
+    "conclusion": "success",
     "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/39134745243",
-    "observation": "Exact source PR run observed; not completed or successful yet."
+    "rawRun": {
+      "path": "../grammar-policy-v2-ci-run/run.json.gz",
+      "sha256": "be8324d6798a04610375899c28b1c2b168a3193836165226d9c5dd34371e24eb"
+    },
+    "rawJobs": {
+      "path": "../grammar-policy-v2-ci-run/jobs.json.gz",
+      "sha256": "617cf057453c5ecdb5de3d931de2afb5835dc278ab16c312a8daab6ddcf14242"
+    },
+    "deployment": "SKIPPED_NORMAL_PR"
   },
   "gateEvaluator": {
     "path": "dev/release_gates.cjs",
@@ -118,10 +107,14 @@
     "scope": "Historical30-condition comparison,205PASS/0FAIL/2SKIP and actual UI evidence. These source bindings are retained, never relabeled as current-head certification."
   },
   "currentSourceValidation": {
-    "formalRegressionCounts": null,
+    "formalRegressionCounts": {
+      "PASS": 208,
+      "FAIL": 0,
+      "SKIP": 2
+    },
     "realMP4": "PASS",
     "realMP4Scope": "Only the hash-bound listed movies, not all target export paths",
-    "officialCI": "UNVERIFIED",
+    "officialCI": "PASS",
     "expectedConditions": [
       "Exact-head official npm ci/test/build/UI CI and independent full decode",
       "Current-head selected MP4/history integrity and protected manual/no-target paths",

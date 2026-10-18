@@ -13,7 +13,11 @@
     "existingProductionReceipt": "composition-recovery/pre-release-production-baseline-20261016/receipt.json",
     "method": "Normal revert and existing main-only Pages redeploy; no force."
   },
-  "formalRegressionCounts": null,
+  "formalRegressionCounts": {
+    "PASS": 208,
+    "FAIL": 0,
+    "SKIP": 2
+  },
   "predecessorFormalRegression": {
     "sourceCommit": "e5060bdf523f3996c6bac76fbc2415d7984ba79d",
     "PASS": 208,
