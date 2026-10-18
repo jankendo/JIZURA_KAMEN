@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "sourcePath": "src/11zzu_temporal_direction.js",
+  "sourceFileSHA256": "847c9eb04d2731c69cad01fc8f8898078ea0d372f2838d57c08ff6485062ef4e",
+  "functionBody": "(i,glyph)=>{const row=glyph.li||0,read=['echo','grounding','continuity'].includes(s.role),pressure=s.level,base=(s.climax?.075:s.role==='identity'?.04:.018)*s.impact,entry=s.entry,dx=s.role==='gathering'?(row%2?1:-1)*env.W*.025*entry:s.role==='participation'?((g.phraseMotion==='call'?-1:g.phraseMotion==='response'?1:row%2?1:-1)*env.W*.023*entry):0,dy=s.role==='light'?-env.H*.018*s.travel:s.role==='echo'?env.H*.008*Math.sin(s.u*Math.PI*2-row*.65):s.role==='continuity'?env.H*.002*Math.sin(s.u*Math.PI):s.role==='participation'?env.H*.009*pressure*Math.sin(s.u*Math.PI*2-row*.7):0;\n return {dx,dy,s:1+base+(read?.004:.008)*Math.sin(s.u*Math.PI)*pressure,sx:s.role==='impact'?1-.04*s.impact:1,sy:s.role==='impact'?1+.035*s.impact:1};}",
+  "functionSHA256": "ba152ea39ac81419c2861116129e8ccca348367627024e487ccd759cbf84c209",
+  "purpose": "Isolate exactly one pre-existing primary temporal-role char function. All other typography/layout/HOLD/entry processors remain active. A shared recipe is not a certificate for separate constituents or aesthetics.",
+  "originalArtifactId": 12138743816,
+  "originalCase": "late-unseen-quiet-16x9",
+  "originalArchiveSHA256": "cc378716f38e87df0e827720856e93d1112bb5ee89bf631713d620bd560c4994",
+  "criteria": "Original and ON/repeat full Native exact, actual decoded ON equals original, all three H264AAC controls complete decode. Same .5pixel/10percent registered physical error and .9 agreement, at least3 actual frame clocks. Require role-specific intended geometry and timing separately; unsupported/insufficient phase data remain UNMEASURED. Whole-frame RMS is never semantic success. No claimed isolated HOLD from a composite temporal recipe.",
+  "controls": [
+    {
+      "key": "legacy-intro",
+      "caseId": "development-11",
+      "artifactId": 12139084030,
+      "archiveSHA256": "3c4d0615158205201cf883a4b49e65cb33fc8ed80cad0f0a07e1bbfbd735d600",
+      "hook": "grammarTemporalRecipe"
+    },
+    {
+      "key": "square",
+      "caseId": "development-15",
+      "artifactId": 12139273093,
+      "archiveSHA256": "bb67b3dc38fb28e32c401362cfec1b21181212100d67d5b44ffdd48ee6a0edeb",
+      "hook": "grammarTemporalRecipe"
+    },
+    {
+      "key": "quiet",
+      "caseId": "late-unseen-quiet-16x9",
+      "artifactId": 12138743816,
+      "archiveSHA256": "cc378716f38e87df0e827720856e93d1112bb5ee89bf631713d620bd560c4994",
+      "hook": "grammarTemporalRecipe"
+    }
+  ]
+}
