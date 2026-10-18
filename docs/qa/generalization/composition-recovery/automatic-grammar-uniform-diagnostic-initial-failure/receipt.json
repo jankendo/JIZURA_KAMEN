@@ -1,0 +1,12 @@
+{
+  "workflowRun": 39130901500,
+  "jobId": 117685666211,
+  "appSourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f",
+  "qaSourceCommit": "3190b6b8e3fc6fd27a3b48a5996775ec17f6604f",
+  "failure": "KeyError: originals in diagnostic preregistration schema adapter",
+  "failureDomain": "QA_WORKFLOW",
+  "nativeExperimentStarted": false,
+  "appVerdict": "UNVERIFIED",
+  "rawLogSHA256": "fdaeb4b9160aeba20283b17c6ab513c56eb94ad926ed518373f8efe671072bad",
+  "fix": "Read explicit originalArtifactId/originalArchiveSHA256/originalCase fields; validated Python syntax and specification keys. No app or original video change."
+}

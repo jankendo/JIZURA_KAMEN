@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "releaseSourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f",
-  "manifestSHA256": "d333541738098d5784fe945a485abd2fbbb4ebc81a719969575341eaedd10269",
+  "manifestSHA256": "876d0a46956a82bb585a7abc3b11136c53f5ffbb3086ac5b32885900aca397d4",
   "TECHNICAL_GO": "UNVERIFIED",
-  "QUALITY_GO": "UNVERIFIED",
-  "RELEASE_GO": "UNVERIFIED",
+  "QUALITY_GO": "FAIL",
+  "RELEASE_GO": "FAIL",
   "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
   "human": "HUMAN_UNVERIFIED",
   "checks": {
@@ -38,8 +38,8 @@
       },
       {
         "name": "important semantic operators",
-        "state": "UNVERIFIED",
-        "reason": "important effect unmeasured/confounded/stale or no isolated encoded control"
+        "state": "FAIL",
+        "reason": "observed required check failed"
       },
       {
         "name": "regressions and correspondence",
@@ -76,8 +76,8 @@
     {
       "domain": "quality",
       "name": "important semantic operators",
-      "state": "UNVERIFIED",
-      "reason": "important effect unmeasured/confounded/stale or no isolated encoded control"
+      "state": "FAIL",
+      "reason": "observed required check failed"
     },
     {
       "domain": "quality",
@@ -91,7 +91,7 @@
     "No deployment or production verification is implied by RELEASE_GO."
   ],
   "sourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f",
-  "recordedUTC": "2026-10-18T12:38:31.039412+00:00",
+  "recordedUTC": "2026-10-18T13:45:05.849961+00:00",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "overall": "PARTIAL",

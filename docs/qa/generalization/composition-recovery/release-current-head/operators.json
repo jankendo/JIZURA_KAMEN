@@ -1,6 +1,7 @@
 {
   "sourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f",
   "expectedImportantIntentIds": [
+    "cb98c040349449a596581b00b9444dd99fe85e45355f7448c13ff81221cb0140",
     "12c0623ee3b2a0409fc2736e216a592243bb54bc09a36f36c9e21b2864e4f53c",
     "516bc41b747b434c4bb346b0f87307e7479a152c3a4fc7ab88795e19d79c8b9d",
     "a642c53e1c393443c9dd9286ead04367043c524700d339f8a924878a206fbdce",
@@ -116,6 +117,15 @@
         "path": "../automatic-contract-chosen-photo-isolated/important-intent-measurement.json",
         "sha256": "4bed22b70513c19c35ede591e9b9456ce855aa31bee5309c38bd3b70185719a9"
       }
+    },
+    {
+      "intentId": "cb98c040349449a596581b00b9444dd99fe85e45355f7448c13ff81221cb0140",
+      "status": "FAILED",
+      "reason": "PLANNED_GRAMMAR_UNIFORM_TRANSLATION_CANCELED_BY_ANIMATED_BOUNDS_ANCHOR",
+      "measurement": {
+        "path": "../automatic-grammar-uniform-native-diagnostic/critical-intent-failure.json",
+        "sha256": "e5b3dda018ffc8bd9410b1151bfaad8e81b19bccb7abd180fd180106c9edc379"
+      }
     }
   ],
   "completeFinalThirtyPopulation": false,
@@ -123,5 +133,7 @@
     "path": "../direction-intent-ledger.json",
     "sha256": "4c99b79fe3fabc71b2c1238add9ed393a8a48f5b3ae294700d9aa66228d09d68"
   },
-  "scope": "One actually chosen uniform-translation leaf has an isolated encoded semantic measurement. All other current observed contracts remain unverified. Do not infer universal completeness from this conservative partial inventory."
+  "scope": "One actually chosen uniform-translation leaf has an isolated encoded semantic measurement. All other current observed contracts remain unverified. Do not infer universal completeness from this conservative partial inventory.",
+  "knownCriticalIntentFailure": "PLANNED_GRAMMAR_UNIFORM_TRANSLATION_CANCELED_BY_ANIMATED_BOUNDS_ANCHOR",
+  "evaluationOrder": "Confirmed critical failures first, because unchanged evaluator returns at first unmet intent; no expected intent or failed observation removed."
 }
