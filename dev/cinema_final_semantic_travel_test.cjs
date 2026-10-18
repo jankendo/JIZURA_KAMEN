@@ -43,8 +43,8 @@ for(const mutate of [b=>b.provenance.decodedCinema.metrics.temporalContrast--,b=
   const proposal=await Q.proposeFinalSemanticTravel(candidate,{autoDirection:true},{status:'MEASURED',binding:{planHash:await V.planHash(candidate)}});
   assert.equal(proposal,null,'a final translation trial cannot override authored static intent or the explicit readability safety fallback');checks++;
  }
- // An already-realized photo contract must not request a duplicate full encode.
- {const photo=plan();delete photo.cinemaFinalSemanticTravel;photo.cuts[0].layout='photoCondensed';J.bindAutomaticLyricTemporalPolicy(photo,{autoDirection:true});const f=artifact(false).provenance.finalArtifactVerification;f.binding.planHash=await V.planHash(photo);assert.equal(await Q.proposeFinalSemanticTravel(photo,{autoDirection:true},f),null);checks++;}
+ // An already-realized compatible contract must not request a duplicate full encode.
+ for(const layout of ['photoCondensed','cinemaGrammaropenSky','cinemaGrammarvoice']){const photo=plan();delete photo.cinemaFinalSemanticTravel;photo.cuts[0].layout=layout;J.bindAutomaticLyricTemporalPolicy(photo,{autoDirection:true});const f=artifact(false).provenance.finalArtifactVerification;f.binding.planHash=await V.planHash(photo);assert.equal(await Q.proposeFinalSemanticTravel(photo,{autoDirection:true},f),null);checks++;}
  const parent=artifact(false);parent.provenance.finalArtifactVerification.evidenceId=hash('6');parent.provenance.cinemaV3={selectedEvidence:{id:hash('b')},history:[{parent:true}],budgetPolicy:{}};
  const verified=artifact(true);verified.provenance.finalArtifactVerification.evidenceId=hash('7');verified.validation={certification:{passed:true}};
  V.finalEvaluation=async(r,p,args,session)=>{assert.equal(session.locks,V.lockSignature(p),'post-final evaluation receives the captured lock signature');checks++;return {videoHash:r.provenance.finalArtifactVerification.binding.videoSHA256,evaluation:{id:r.provenance.finalArtifactVerification.binding.videoSHA256,planHash:r.provenance.finalArtifactVerification.binding.planHash}};};

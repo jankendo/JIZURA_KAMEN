@@ -5,7 +5,7 @@ J.finalSemanticTravelTarget=(p,c)=>!!c&&p.cinemaFinalSemanticTravel?.version===v
 Q.proposeFinalSemanticTravel=async(p,project,artifact)=>{
  if(project?.autoDirection!==true||artifact?.status!=='MEASURED'||!p.musicalPhoto?.cinema?.architecture)return null;
  if(await V.planHash(p)!==artifact.binding.planHash)throw Error('SEMANTIC_TRAVEL_PLAN_BINDING_MISMATCH');
- const targets=p.cuts.filter(c=>c.line>=0&&!c.locked&&!J.photoChoreographyLocked(p,c)&&c.layout!=='globalReadableUnit'&&!(p.cinemaLyricTemporalPolicy?.version==='automatic-lyric-temporal-v1'&&J.LAYOUTS[c.layout]?.lyricTemporal?.uniformTranslation)&&c.grammar?.intentionalHold!==true&&c.grammar?.directionPolicy?.quietIntent!==true&&['light','continuity'].includes(c.grammar?.temporal?.role)).map(identity);
+ const targets=p.cuts.filter(c=>c.line>=0&&!c.locked&&!J.photoChoreographyLocked(p,c)&&c.layout!=='globalReadableUnit'&&!(J.automaticLyricTemporalTranslationEnabled?.(p,c)&&(J.LAYOUTS[c.layout]?.lyricTemporal?.uniformTranslation||/^cinemaGrammar/.test(c.layout||'')))&&c.grammar?.intentionalHold!==true&&c.grammar?.directionPolicy?.quietIntent!==true&&['light','continuity'].includes(c.grammar?.temporal?.role)).map(identity);
  if(!targets.length)return null;const plan=V.clone(p);plan.cinemaFinalSemanticTravel={version,targets};
  if(V.lockSignature(plan)!==V.lockSignature(p))throw Error('SEMANTIC_TRAVEL_LOCK_CHANGED');
  return {plan,targets,trigger:'Existing selected light/continuity uniform translation was cancelled by animated-bounds anchoring; trial the same selected composition only.'};

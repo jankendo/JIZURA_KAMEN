@@ -8,13 +8,14 @@ function sample(layout,W,H,role,t,mode='trial'){
  const cut={index:0,line:0,start:1,end:5,dur:4,layout,text,lineText:plain(text),params:{font:'embedded_bold',displayText:text},grammar:{mode:'openSky',stage:0,temporal:{role,level:.3,hit:1.3,entry:.2,exit:.2}},seed:17,enter:'cut',hold:'still',exit:'cut',inDur:0,outDur:0};
  const plan={W,H,duration:10,fps:24,cuts:[cut],musicalPhoto:{cinema:{architecture:{}},songProfile:{}},cinemaFinalSemanticTravel:{version:'final-semantic-travel-v1',targets:[J.canonicalJSON([cut.index,cut.line,cut.start,cut.end,cut.lineText])]}};
  if(mode==='baseline')delete plan.cinemaFinalSemanticTravel;
- if(mode==='natural'){delete plan.cinemaFinalSemanticTravel;J.bindAutomaticLyricTemporalPolicy(plan,{autoDirection:true});}
- if(mode==='manual')cut.locked=true;
- if(mode==='override')plan.directionOverrides7={0:{layout}};
- if(mode==='still')cut.grammar.intentionalHold=true;
- if(mode==='quiet')cut.grammar.directionPolicy={quietIntent:true};
- if(mode==='nonCinema')delete plan.musicalPhoto.cinema.architecture;
- if(mode==='neutral')plan.cinemaSemanticNeutral=true;
+ if(mode.startsWith('natural')||mode==='legacy-natural'){delete plan.cinemaFinalSemanticTravel;J.bindAutomaticLyricTemporalPolicy(plan,{autoDirection:true});}
+ if(mode==='legacy-natural')plan.cinemaLyricTemporalPolicy.version='automatic-lyric-temporal-v1';
+ if(['manual','natural-manual'].includes(mode))cut.locked=true;
+ if(['override','natural-override'].includes(mode))plan.directionOverrides7={0:{layout}};
+ if(['still','natural-still'].includes(mode))cut.grammar.intentionalHold=true;
+ if(['quiet','natural-quiet'].includes(mode))cut.grammar.directionPolicy={quietIntent:true};
+ if(['nonCinema','natural-nonCinema'].includes(mode))delete plan.musicalPhoto.cinema.architecture;
+ if(['neutral','natural-neutral'].includes(mode))plan.cinemaSemanticNeutral=true;
  const env={W,H,ctx,plan,cut,t,lt:t-cut.start,pIn:1,pOut:0,pass:'main',sc:{fg:'#fff',accent:'#ffaaee'},scale:1};
  const draw=J.drawFx;let item,box,alpha;
  J.drawFx=(e,it)=>{item=it;box=J.measureLyricItemBounds(e,it);const mask=createCanvas(W,H),mx=mask.getContext('2d');J.drawItem({...e,ctx:mx},{...it,shadow:null,stroke:0});alpha=mx.getImageData(0,0,W,H).data;return draw(e,it);};
@@ -71,5 +72,23 @@ for(const [W,H]of [[640,360],[360,640]])for(const layout of ['photoCondensed','p
  assert.equal(J.bindAutomaticLyricTemporalPolicy(b.plan,{autoDirection:false}),true);checks++;eq(J.canonicalJSON(b.cut),saved,'manual transition preserves every authored cut field');eq(J.cinemaLyricTemporalContract(b.env,{...b.item,grammarMode:undefined}).status,'NOT_APPLICABLE','manual export cannot inherit automatic photo motion');
 }
 {const p={cinemaLyricTemporalPolicy:{version:'future-version',custom:'owned'}},saved=J.canonicalJSON(p);eq(J.bindAutomaticLyricTemporalPolicy(p,{autoDirection:true}),false,'unknown future contract is not replaced');eq(J.canonicalJSON(p),saved,'future project metadata survives');}
-for(const autoDirection of [true,false]){const project={...J.defaultProject(),lyrics:'[00:00.20]自然な演出',res:180,fps:24,autoDirection};const p=J.plan(project,{duration:4,beats:[]});eq(p.cinemaLyricTemporalPolicy?.version,autoDirection?'automatic-lyric-temporal-v1':undefined,'actual shipping planner binds only automatic projects');}
+for(const autoDirection of [true,false]){const project={...J.defaultProject(),lyrics:'[00:00.20]自然な演出',res:180,fps:24,autoDirection};const p=J.plan(project,{duration:4,beats:[]});eq(p.cinemaLyricTemporalPolicy?.version,autoDirection?'automatic-lyric-temporal-v2':undefined,'actual shipping planner binds only automatic projects');}
+// Grammar and photo rendering share the same selected uniform component.
+// In the rejected d6fe artifact, its Grammar component was fully cancelled.
+for(const [W,H]of [[640,360],[360,640]])for(const layout of ['cinemaGrammaropenSky','cinemaGrammarvoice'])for(const role of ['light','continuity'])for(const t of [1.8,2.8,4]){
+ const trial=sample(layout,W,H,role,t),natural=sample(layout,W,H,role,t,'natural'),baseline=sample(layout,W,H,role,t,'baseline');
+ eq(natural.item.cinemaAnchorMotion,trial.item.cinemaAnchorMotion,'Grammar automatic policy declares the same actual uniform component as the isolated successful trial');assert(natural.item.cinemaAnchorMotion);checks++;
+ eq(natural.item.charFns.length,baseline.item.charFns.length,'Grammar activates its existing function without another translation');
+ for(const field of ['text','font','size','sx','track','lead','grammarMode'])eq(natural.item[field],baseline.item[field],'Grammar automatic translation preserves '+field);
+ const a=J.centerPhotoLyricItem(trial.env,trial.item),b=J.centerPhotoLyricItem(natural.env,natural.item),neutral=J.centerPhotoLyricItem(baseline.env,baseline.item),ab=J.measureLyricItemBounds(trial.env,a),bb=J.measureLyricItemBounds(natural.env,b),nb=J.measureLyricItemBounds(baseline.env,neutral);near(bb.x0,ab.x0,'same selected X');near(bb.y0,ab.y0,'same selected Y');
+ near(bb.y0-nb.y0,natural.item.cinemaAnchorMotion.dy,'animated bounds no longer cancel the selected Grammar travel');
+ const raster=(env,item)=>{const cv=createCanvas(W,H),ctx=cv.getContext('2d');J.drawItem({...env,ctx},{...item,shadow:null,stroke:0});return Buffer.from(ctx.getImageData(0,0,W,H).data);};eq(raster(natural.env,b),raster(trial.env,a),'actual anchored Native glyphs agree with isolated intended travel');
+}
+for(const [W,H]of [[640,360],[360,640]])for(const layout of ['photoCondensed','cinemaGrammaropenSky'])for(const reason of ['manual','override','still','quiet','nonCinema','neutral']){
+ const natural=sample(layout,W,H,'light',2.8,'natural-'+reason);eq(natural.item.cinemaAnchorMotion,undefined,'automatic Grammar/photo policy respects '+reason);
+}
+for(const layout of ['photoCondensed','photoBanner','photoFocus']){
+ const old=sample(layout,640,360,'light',2.8,'legacy-natural'),now=sample(layout,640,360,'light',2.8,'natural');eq(Buffer.from(old.alpha),Buffer.from(now.alpha),'old photo policy renders compatibly before normal upgrade');eq(old.item.cinemaAnchorMotion,now.item.cinemaAnchorMotion,'old photo anchor metadata retained');
+}
+{const b=sample('cinemaGrammaropenSky',640,360,'light',2.8,'legacy-natural');eq(b.item.cinemaAnchorMotion,undefined,'old persisted Grammar policy remains the historical preview until normal policy upgrade');const saved=J.canonicalJSON(b.cut);b.plan.cinemaLyricTemporalPolicy.custom='preserved';eq(J.bindAutomaticLyricTemporalPolicy(b.plan,{autoDirection:true}),true,'old policy upgrades explicitly');eq(b.plan.cinemaLyricTemporalPolicy.version,'automatic-lyric-temporal-v2','current policy version');eq(b.plan.cinemaLyricTemporalPolicy.custom,'preserved','unknown fields on owned old policy survive');eq(J.canonicalJSON(b.cut),saved,'upgrade does not change authored cut fields');}
 console.log(JSON.stringify({status:'PASS',checks,profiles:['16:9','9:16'],scope:'Actual layouts -> mainDraw -> typography -> Native glyph pixels, complete text, preserved typography/line breaks, single translation, shape anchor and actual safety fit, grammar compatibility, manual locks, intentional stillness, non-Cinema and static readability fallback. Does not certify encoded MP4 or photographic contrast.'}));
