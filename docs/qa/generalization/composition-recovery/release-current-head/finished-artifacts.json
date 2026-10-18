@@ -66,7 +66,73 @@
         "path": "v2-movies/late-unseen-quiet-16x9.json",
         "sha256": "f8fbcda0aba3c7d3e2c1ec421ae67351354c219d600a74968d211da725088b49"
       }
+    },
+    {
+      "id": "development-11",
+      "inputHash": "d607d1e02209793961caa3ce4c0345a580e45de9f920f9d18fb34d8ab33fcc9f",
+      "planHash": "156378b44182f444b1f42d6b0d03452bf4e5aa434dcdb55f715cb188db7a1fc9",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rendererVersion": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278",
+      "selectedCandidateId": "88e985af9a4437c3ea85682ca9aa5e9a17ababe89193e08c76792eff27dcc757",
+      "videoSHA256": "7f083c578c00ecfd03684d27737afbce32b7d1f942fa22ddd9d7b0be5e982d64",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "decodeExitCode": 0,
+      "decodeComplete": true,
+      "hasVideo": true,
+      "hasAudio": true,
+      "hashMatches": true,
+      "observation": {
+        "path": "v2-movies/development-11.json",
+        "sha256": "a56d25f0a11ac4ec58e4816296805dbc7e215e5aa3f8100a063ab8e216f3aaac"
+      }
+    },
+    {
+      "id": "development-15",
+      "inputHash": "95dc93fd844f1838f5b749369dbd295572efe28475f82efee75b4a154777c034",
+      "planHash": "8d8191d6e36d35de71e00e61d7b70a98e2f4f6ad763f91889d7942454ee4f221",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rendererVersion": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278",
+      "selectedCandidateId": "f69ab1ba76618fa6da1e788676e62a0df0e5b921a911e3c418b674d0191556d3",
+      "videoSHA256": "00d11806c93845649990710f9e44daa62f6f72632bc15828fd0863778cc989b1",
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "decodeExitCode": 0,
+      "decodeComplete": true,
+      "hasVideo": true,
+      "hasAudio": true,
+      "hashMatches": true,
+      "observation": {
+        "path": "v2-movies/development-15.json",
+        "sha256": "853bf32f15a37bb1feb6109bb3ef09e576d3d0d05423482ab8ba707bb4cfae39"
+      }
     }
   ],
-  "scope": "Only two completed exact-v2 chosen shipping movies; other candidate paths and full population not yet certified."
+  "scope": "Four exact-source normally chosen focused shipping MP4s. Three isolated control encodes are separate diagnostics, not additional natural-selection cases."
 }

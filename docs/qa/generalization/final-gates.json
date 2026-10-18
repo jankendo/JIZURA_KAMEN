@@ -26,8 +26,8 @@
       },
       {
         "name": "finished artifacts",
-        "state": "PASS",
-        "reason": "hash-bound observations satisfy contract"
+        "state": "UNVERIFIED",
+        "reason": "evidence hash mismatch"
       }
     ],
     "quality": [
@@ -68,6 +68,12 @@
       "reason": "missing unique trace-bound operation: generation"
     },
     {
+      "domain": "technical",
+      "name": "finished artifacts",
+      "state": "UNVERIFIED",
+      "reason": "evidence hash mismatch"
+    },
+    {
       "domain": "quality",
       "name": "comparison coverage",
       "state": "UNVERIFIED",
@@ -91,7 +97,7 @@
     "No deployment or production verification is implied by RELEASE_GO."
   ],
   "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-  "recordedUTC": "2026-10-18T14:12:07.446708+00:00",
+  "recordedUTC": "2026-10-18T14:19:48.009425+00:00",
   "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "overall": "PARTIAL",
@@ -119,7 +125,7 @@
   },
   "currentSourceValidation": {
     "formalRegressionCounts": null,
-    "realMP4": "PASS",
+    "realMP4": "UNVERIFIED",
     "realMP4Scope": "Only the hash-bound listed movies, not all target export paths",
     "officialCI": "UNVERIFIED",
     "expectedConditions": [
