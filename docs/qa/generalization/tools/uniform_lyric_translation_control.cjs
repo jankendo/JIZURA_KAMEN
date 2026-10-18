@@ -9,7 +9,7 @@ function installUniformLyricTranslationControl(J,mode,trace=[]){
   const contract=original.apply(this,arguments);
   if(contract?.status==='EXECUTABLE'&&contract.mode==='UNIFORM_TRANSLATION'){
    stats.executableUniformCalls++;
-   trace.push({mode,time:env.t,cutIndex:env.cut.index,line:env.cut.line,pass:env.pass,layout:env.cut.layout,target:'primary-uniform-translation',role:contract.state?.role,range:[env.cut.start,env.cut.end]});
+   trace.push({mode,time:env.t,cutIndex:env.cut.index,fragmentOrdinal:typeof window!=='undefined'&&window.qaResolveActualCutOrdinal?window.qaResolveActualCutOrdinal(env.plan,env.cut):null,line:env.cut.line,pass:env.pass,layout:env.cut.layout,target:'primary-uniform-translation',role:contract.state?.role,range:[env.cut.start,env.cut.end]});
    if(mode==='OFF'){stats.disabledCalls++;return {status:'NOT_APPLICABLE',reason:'QA_ISOLATED_UNIFORM_TRANSLATION_OFF'};}
   }
   return contract;

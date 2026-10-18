@@ -1,12 +1,14 @@
 'use strict';
 // Exact-output-clock counterfactual controls; raw non-output safety calls retained. Diagnostic typography group controls only. No independent stages6/7 API exists; do not invent one. Composite contribution is not semantic or aesthetic certification.
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict'),{spawnSync}=require('child_process'),{chromium}=require('playwright-core');
+const {resolveActualCutOrdinal}=require('./resolve_actual_cut_ordinal.cjs');
 const {selectAdoptedNativeOutput}=require('./select_adopted_native_output.cjs');const {restoreMeasuredCompositionCache}=require('./dev09_composition_replay_state.cjs');const [url,input,caseId,variant,source,out]=process.argv.slice(2),sha=x=>crypto.createHash('sha256').update(x).digest('hex');fs.mkdirSync(out,{recursive:true});
 const r=require('./read_adopted_matrix_row.cjs').readAdoptedMatrixRow(input,caseId,variant);assert(r);assert.equal(r.sha256,r.provenance.finalArtifactVerification.binding.videoSHA256,'ORIGINAL_VIDEO_BINDING_MISMATCH');assert.equal(sha(fs.readFileSync(path.join(input,caseId+'-'+variant+'.mp4'))),r.sha256,'ORIGINAL_VIDEO_BYTES_MISMATCH');
 const refBytes=fs.readFileSync(path.join(input,r.referenceInputs.file)),wav=fs.readFileSync(path.join(input,r.referenceInputs.audioFile));assert.equal(sha(refBytes),r.referenceInputs.sha256);assert.equal(sha(wav),r.referenceInputs.audioSHA256);
 const core=fs.readFileSync(path.join(source,'src/11_export.js'),'utf8');const begin=core.indexOf('J.exportMP4 = async'),end=core.indexOf('J.exportCapabilities =',begin);assert(begin>=0&&end>begin);
 (async()=>{const browser=await chromium.launch({executablePath:process.env.KAMEN_CHROME||'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});try{
  const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(url);await page.waitForFunction(()=>window.J?.ui?.project);await page.addScriptTag({content:core+'\nwindow.qaFrozenExport=window.J.exportMP4;'});
+ await page.addScriptTag({content:'window.qaResolveActualCutOrdinal='+resolveActualCutOrdinal.toString()+';'});
  await page.addScriptTag({content:'window.qaRestoreMeasuredCompositionCache='+restoreMeasuredCompositionCache.toString()+';'});const hook=process.env.KAMEN_COUNTERFACTUAL_HOOK||'cameraAt';assert(['cameraAt','lyricsCameraAt','temporalCinemaFocus','paintCinemaGrammarForeground','primaryGlyphs','backgroundComposite','drawCinemaAccent','decorations','transitions','applyTypography5','typography5State','lyricTemporalTranslation'].includes(hook)||/^registry:(LAYOUTS|ENTER|HOLD|EXIT|CAMERA|BG|TREAT|DECOR|TRANS):[A-Za-z0-9_-]+$/.test(hook));
  await page.addScriptTag({content:fs.readFileSync(path.join(__dirname,'uniform_lyric_translation_control.cjs'),'utf8')});
  const registrySpec=/^registry:(LAYOUTS|ENTER|HOLD|EXIT|CAMERA|BG|TREAT|DECOR|TRANS):([A-Za-z0-9_-]+)$/.exec(hook);
