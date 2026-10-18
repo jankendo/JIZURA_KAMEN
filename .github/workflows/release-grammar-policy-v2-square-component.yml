@@ -1,0 +1,75 @@
+name: Verify final v2 independent square chosen Grammar component in complete encoded controls
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-grammar-policy-v2-square-component.yml]
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        key: [square]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/grammar-policy-v2-encoded-component-preregistration.json
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: d04c734bc5eb0c0c427a42a196cae3a507b89506
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Immutable selected original and predeclared executed operator
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CONTROL_KEY: ${{ matrix.key }}
+        run: |
+          node qa/docs/qa/generalization/tools/resolve_actual_cut_ordinal_test.cjs
+          node qa/docs/qa/generalization/tools/resolve_translation_targets_test.cjs
+          mkdir -p results original
+          python - <<'PYTHON'
+          import pathlib,zipfile,hashlib,json,subprocess,os
+          spec=json.load(open('qa/docs/qa/generalization/composition-recovery/grammar-policy-v2-encoded-component-preregistration.json'));c=next(x for x in spec['controls'] if x['key']==os.environ['CONTROL_KEY'])
+          with open('original.zip','wb') as f:subprocess.run(['gh','api',f"repos/jankendo/JIZURA_KAMEN/actions/artifacts/{c['artifactId']}/zip"],stdout=f,check=True)
+          p=pathlib.Path('original.zip');h=hashlib.sha256(p.read_bytes()).hexdigest();assert h==c['archiveSHA256']
+          with zipfile.ZipFile(p) as z:
+            assert all(not pathlib.PurePosixPath(n).is_absolute() and '..' not in pathlib.PurePosixPath(n).parts for n in z.namelist());z.extractall('original')
+          pathlib.Path('results/original-binding.json').write_text(json.dumps(c))
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('CONTROL_CASE='+c['caseId']+'\nKAMEN_COUNTERFACTUAL_HOOK='+c['hook']+'\n')
+          PYTHON
+      - name: Raw ORIGINAL ON OFF ON_REPEAT complete H264 AAC and registered glyph controls; semantics stay unverified
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_COUNTERFACTUAL_PHASES: 1
+          KAMEN_COUNTERFACTUAL_NATIVE_HASHES: 1
+          KAMEN_GRAMMAR_CONTROL_SPEC: ${{ github.workspace }}/qa/docs/qa/generalization/composition-recovery/grammar-policy-v2-encoded-component-preregistration.json
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/encoded_selected_operator_controls.cjs http://127.0.0.1:4173/ original/matrix "$CONTROL_CASE" v3 current results/controls > results/controls.log 2>&1
+      - name: Inherited actual decoded glyph displacement criteria
+        run: node qa/docs/qa/generalization/tools/analyze_uniform_lyric_translation_control.cjs results/controls/effect-counterfactual-report.json results/registered-grammar-translation.json
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: grammar-policy-v2-encoded-component-${{ matrix.key }}
+          path: results/
+          retention-days: 14
