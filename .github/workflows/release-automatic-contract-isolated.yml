@@ -1,0 +1,63 @@
+name: Chosen automatic photo translation isolated encoded control
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-automatic-contract-isolated.yml]
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /docs/qa/generalization/tools/
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: d6fe7be2fa53475dc7493f35229af6ad4f57235f
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Control isolation counterexamples and immutable original
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node qa/docs/qa/generalization/tools/uniform_lyric_translation_control_test.cjs
+          mkdir -p results original
+          gh api repos/jankendo/JIZURA_KAMEN/actions/artifacts/12095517576/zip > original.zip
+          python - <<'PY'
+          import pathlib,zipfile,hashlib,json
+          p=pathlib.Path('original.zip');h=hashlib.sha256(p.read_bytes()).hexdigest();assert h=='cee78f8c88157328727dfeea31479f1dae17a6b9c63ed14961001da67090102b'
+          with zipfile.ZipFile(p) as z:
+            assert all(not pathlib.PurePosixPath(n).is_absolute() and '..' not in pathlib.PurePosixPath(n).parts for n in z.namelist());z.extractall('original')
+          pathlib.Path('results/original-binding.json').write_text(json.dumps({'artifactId':12095517576,'runId':39017110280,'sourceCommit':'d6fe7be2fa53475dc7493f35229af6ad4f57235f','archiveSHA256':h}))
+          PY
+      - name: ORIGINAL ON OFF ON_REPEAT complete H264 AAC and registered glyph controls
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_COUNTERFACTUAL_HOOK: lyricTemporalTranslation
+          KAMEN_COUNTERFACTUAL_PHASES: 1
+          KAMEN_COUNTERFACTUAL_NATIVE_HASHES: 1
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/encoded_selected_operator_controls.cjs http://127.0.0.1:4173/ original/matrix development-15 v3 current results/controls > results/controls.log 2>&1
+          node qa/docs/qa/generalization/tools/analyze_uniform_lyric_translation_control.cjs results/controls/effect-counterfactual-report.json results/registered-uniform-translation.json > results/analysis.log 2>&1
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: automatic-contract-chosen-photo-isolated
+          path: results/
+          retention-days: 14

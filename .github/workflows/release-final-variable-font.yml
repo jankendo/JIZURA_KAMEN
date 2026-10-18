@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: current
-          ref: 9a1d1bd235e89d34f6b1e9336d661e3e27eb739d
+          ref: d6fe7be2fa53475dc7493f35229af6ad4f57235f
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: 24
@@ -59,6 +59,6 @@ jobs:
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
         if: always()
         with:
-          name: final-9a1d1bd-variable-font-browser
+          name: automatic-d6fe7be-variable-font-browser
           path: results/
           retention-days: 14
