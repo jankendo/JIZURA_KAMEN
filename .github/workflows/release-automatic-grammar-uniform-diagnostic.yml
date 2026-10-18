@@ -43,7 +43,7 @@ jobs:
           mkdir -p results original
           python - <<'PYTHON'
           import pathlib,zipfile,hashlib,json,subprocess,os
-          spec=json.load(open('qa/docs/qa/generalization/composition-recovery/automatic-grammar-uniform-diagnostic-preregistration.json'));c=next(x for x in spec['originals'] if x['partition']==int(os.environ['CONTROL_KEY']))
+          spec=json.load(open('qa/docs/qa/generalization/composition-recovery/automatic-grammar-uniform-diagnostic-preregistration.json'));c={'artifactId':spec['originalArtifactId'],'archiveSHA256':spec['originalArchiveSHA256'],'caseId':spec['originalCase']}
           with open('original.zip','wb') as f:subprocess.run(['gh','api',f"repos/jankendo/JIZURA_KAMEN/actions/artifacts/{c['artifactId']}/zip"],stdout=f,check=True)
           p=pathlib.Path('original.zip');h=hashlib.sha256(p.read_bytes()).hexdigest();assert h==c['archiveSHA256']
           with zipfile.ZipFile(p) as z:
