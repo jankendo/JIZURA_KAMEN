@@ -1,0 +1,79 @@
+name: Bind real camera return values to full chosen output clocks without re-encoding
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-grammar-policy-v2-camera-returns.yml]
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        key: [0, 1, 3]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/grammar-policy-v2-prewrap-identity-preregistration.json
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: d04c734bc5eb0c0c427a42a196cae3a507b89506
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Immutable selected original and predeclared executed operator
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CONTROL_KEY: ${{ matrix.key }}
+        run: |
+          node qa/docs/qa/generalization/tools/resolve_actual_cut_ordinal_test.cjs
+          node qa/docs/qa/generalization/tools/render_actuation_snapshot_test.cjs
+          node qa/docs/qa/generalization/tools/instrument_registry_dispatch_test.cjs
+          mkdir -p results original
+          python - <<'PYTHON'
+          import pathlib,zipfile,hashlib,json,subprocess,os
+          spec=json.load(open('qa/docs/qa/generalization/composition-recovery/grammar-policy-v2-prewrap-identity-preregistration.json'));c=next(x for x in spec['originals'] if x['partition']==int(os.environ['CONTROL_KEY']))
+          with open('original.zip','wb') as f:subprocess.run(['gh','api',f"repos/jankendo/JIZURA_KAMEN/actions/artifacts/{c['artifactId']}/zip"],stdout=f,check=True)
+          p=pathlib.Path('original.zip');h=hashlib.sha256(p.read_bytes()).hexdigest();assert h==c['archiveSHA256']
+          with zipfile.ZipFile(p) as z:
+            assert all(not pathlib.PurePosixPath(n).is_absolute() and '..' not in pathlib.PurePosixPath(n).parts for n in z.namelist());z.extractall('original')
+          pathlib.Path('results/original-binding.json').write_text(json.dumps(c))
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('CONTROL_CASES='+','.join(c['cases'])+'\n')
+          PYTHON
+      - name: No-reencode exact full Native output actuation replay
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_COUNTERFACTUAL_PHASES: 1
+          KAMEN_COUNTERFACTUAL_NATIVE_HASHES: 1
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          IFS=',' read -ra cases <<< "$CONTROL_CASES"
+          status=0
+          for case_id in "${cases[@]}"; do
+            node qa/docs/qa/generalization/tools/native_dispatch_camera_return_trace_v6.cjs http://127.0.0.1:4173/ original/matrix "$case_id" v3 "results/trace/$case_id" > "results/trace-$case_id.log" 2>&1 || status=1
+          done
+          test "$status" = 0
+          python -c 'import json; import glob; paths=glob.glob("results/trace/*/native-dispatch-trace.json"); assert paths; assert all((lambda d:d["exactNativeRGBA"] and d["domain"]=="NATIVE_ACTUATION_CLOCK_ALIAS_AND_CAMERA_RETURN_VALUES")(json.load(open(p))) for p in paths)'
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: grammar-policy-v2-camera-returns-${{ matrix.key }}
+          path: results/
+          retention-days: 14
