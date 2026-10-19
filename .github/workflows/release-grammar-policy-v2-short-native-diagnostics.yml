@@ -51,6 +51,8 @@ jobs:
           pathlib.Path('results/original-binding.json').write_text(json.dumps(c))
           with open(os.environ['GITHUB_ENV'],'a')as f:f.write('CONTROL_CASE='+c['caseId']+'\n')
           PYTHON
+          CONTROL_CASE=$(python -c 'import json; print(json.load(open("results/original-binding.json"))["caseId"])')
+          test -n "$CONTROL_CASE"
           node qa/docs/qa/generalization/tools/native_only_diagnostic_baseline_test.cjs cached/inputs/original/matrix "$CONTROL_CASE" "cached/cases/$CONTROL_CASE/baseline" > results/guard-counterexamples.log
       - name: Fresh Native then only ten predeclared OFFs with explicit no-release-credit flags
         env:
