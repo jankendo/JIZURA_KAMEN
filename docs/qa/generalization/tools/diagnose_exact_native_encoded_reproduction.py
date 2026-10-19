@@ -1,0 +1,19 @@
+"""Keep encoded hash mismatches explicit; inspect actual registered glyph consistency."""
+from pathlib import Path
+import gzip,json,hashlib,collections,math
+Q=Path(__file__).resolve().parents[1];R=Q/'composition-recovery';rows=[]
+for group,cid in [('4','supplemental-development-13'),('5','supplemental-holdout-13')]:
+ p=R/('grammar-policy-v2-remaining-controls-'+group)/'cases'/cid/'baseline/effect-counterfactual-report.json.gz';raw=gzip.decompress(p.read_bytes());r=json.loads(raw);assert r['fullNativeIdentity']and r['nativeONRepeatIdentical'];orig=r['registeredOriginal'];modes={m['mode']:m['modeFinalArtifactVerification']for m in r['movies']};observations=[];missing=[];originalFrames=[x for x in orig['frames']if x['phase']=='hold']
+ for mode in ['ON','ON_REPEAT']:
+  lookup={(x['unitId'],x['fragmentId'],x['actualDecodedTimestamp']):x for x in modes[mode]['frames']};points=[]
+  for a in originalFrames:
+   key=(a['unitId'],a['fragmentId'],a['actualDecodedTimestamp']);b=lookup.get(key)
+   if not b:missing.append({'mode':mode,'key':key,'reason':'ACTUAL_CLOCK_OR_UNIT_NOT_MATCHED'});continue
+   bg={(g['index'],g['character'],g['row']):g for g in b.get('glyphEvidence',[])}
+   for g in a.get('glyphEvidence',[]):
+    h=bg.get((g['index'],g['character'],g['row']))
+    if not h or not all(x.get('nativeCentroid')and x.get('decodedCentroid')for x in [g,h]):missing.append({'mode':mode,'unitId':a['unitId'],'time':a['actualDecodedTimestamp'],'glyph':g['index'],'reason':'GLYPH_UNMEASURED'});continue
+    nativeError=math.dist(g['nativeCentroid'],h['nativeCentroid']);decodedError=math.dist(g['decodedCentroid'],h['decodedCentroid']);points.append({'unitId':a['unitId'],'fragmentId':a['fragmentId'],'actualDecodedTimestamp':a['actualDecodedTimestamp'],'index':g['index'],'character':g['character'],'row':g['row'],'nativeCentroidErrorPixels':nativeError,'decodedCentroidErrorPixels':decodedError,'withinExistingHalfPixelRegistration':decodedError<=.5,'originalInkStatus':g['status'],'reproducedInkStatus':h['status']})
+  observations.append({'mode':mode,'points':points,'pointCount':len(points),'maximumDecodedCentroidErrorPixels':max((x['decodedCentroidErrorPixels']for x in points),default=None),'outsideExistingHalfPixel':sum(not x['withinExistingHalfPixelRegistration']for x in points),'nativeCentroidMismatches':sum(x['nativeCentroidErrorPixels']!=0 for x in points)})
+ rows.append({'caseId':cid,'sourceCommit':r['build']['sourceCommit'],'originalVideoSHA256':r['originalVideoSHA256'],'rawReportSHA256':hashlib.sha256(raw).hexdigest(),'originalDecodedSHA256':r['originalDecodedSHA256'],'reproducedDecodedSHA256':r['onDecodedSHA256'],'strictDecodedHashIdentity':r['adoptedMovieReproduced'],'strictNativeIdentity':r['fullNativeIdentity'],'nativeRepeatIdentity':r['nativeONRepeatIdentical'],'profile':r['adoptedNativeProof']['profile'],'actualOriginalHoldFrames':len(originalFrames),'missing':missing,'observations':observations,'verdict':'DIAGNOSTIC_ONLY_NOT_RELEASE_CERTIFICATE','limits':'This does not turn a false exact decoded identity into true or modify the strict shared-baseline guard. Missing/ambiguous targets remain unmeasured; encoder internal cause remains unresolved.'})
+report={'schema':1,'sourceCommit':'d04c734bc5eb0c0c427a42a196cae3a507b89506','rows':rows,'scope':'Actual original versus actual re-encoded ON/repeat under existing half-pixel glyph registration. Raw full-frame encoded mismatch remains false and retained.'};b=json.dumps(report,separators=(',',':'),ensure_ascii=False).encode();(R/'grammar-policy-v2-short-registered-reproduction-diagnostic.json.gz').write_bytes(gzip.compress(b,mtime=0));print(json.dumps([{'case':x['caseId'],'originalHoldFrames':x['actualOriginalHoldFrames'],'missing':len(x['missing']),'modes':[{k:v for k,v in y.items()if k!='points'}for y in x['observations']]}for x in rows]))
