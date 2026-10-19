@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "historicalSourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+  "historicalVideoSHA256": "c598f926258b8e4f4f0b1822e6b91cebdd688d0714a1d59d79651134de902654",
+  "historicalColdFullNativeExact": true,
+  "restoredOriginal240NativeExact": true,
+  "historicalColdRepeatExact": true,
+  "changedNativeFrameCount": 69,
+  "verdict": "RESOLVED_ACTUAL_RENDERER_COMPOSITION_STATE",
+  "classification": "A_ACTUAL_DRAWING_DIFFERENCE",
+  "mechanism": "The immutable plan hash omitted an actual measured renderer photo-composition cache. A cold renderer recomputed its initial scene scrim differently. Restoring only original measured scene state reproduces all240 adopted Native RGBA hashes.",
+  "changedScrim": {
+    "cold": 0,
+    "originalMeasured": 0.04644968402085092
+  },
+  "appSourceChangedForThisExperiment": false,
+  "encoderRootCauseClaimed": false,
+  "fontRootCauseClaimed": false,
+  "currentSource": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "currentSourceFullNativeVerifiedSeparately": true,
+  "runURL": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/39166573205",
+  "oldFailedEvidenceRetained": true,
+  "limits": "This resolves the original historical Native-replay mismatch only if the preserved historical cold array matches exactly. It neither replaces the historical video nor certifies unrelated encoded operator semantics/artistry. The original stale replay remains unsuitable for encoded-effect credit."
+}

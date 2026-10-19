@@ -1,35 +1,10 @@
 #!/usr/bin/env python3
 """Inventory actual dispatch, never semantic certification. Rules frozen in v1."""
 import argparse,collections,gzip,hashlib,json,pathlib
-POLICY='important-executed-population-v3-exact-clock-contexts'
+POLICY='important-executed-population-v2-shipping-selection'
 def sha(x):return hashlib.sha256(x).hexdigest()
 def read(p):
  b=pathlib.Path(p).read_bytes();return gzip.decompress(b) if str(p).endswith('.gz') else b
-def merge_clock_context_calls(calls):
- """One physical operator/unit/pass intent; preserve every raw execution clock."""
- import copy
- out={}
- for raw in calls:
-  key=(raw['group'],raw['id'],raw['unitKey'],raw.get('pass'))
-  if key not in out:
-   item=copy.deepcopy(raw);item['executionRecords']=[copy.deepcopy(raw)];item['executionContexts']=[raw.get('executionContext','UNSPECIFIED')];out[key]=item;continue
-  item=out[key]
-  for field in ['line','from','to']:
-   if field in raw and field in item and item[field]!=raw[field]:raise ValueError('CONFLICTING_UNIT_INTERVAL')
-  item['executionRecords'].append(copy.deepcopy(raw));item['executionContexts']=list(dict.fromkeys(item['executionContexts']+[raw.get('executionContext','UNSPECIFIED')]))
-  item['calls']+=raw['calls'];item['firstTime']=min(item['firstTime'],raw['firstTime']);item['lastTime']=max(item['lastTime'],raw['lastTime'])
-  if 'clockPairs' in raw:item['clockPairs']=item.get('clockPairs',[])+copy.deepcopy(raw['clockPairs'])
-  if 'actuation' in raw:
-   a=item.setdefault('actuation',{})
-   for k,v in raw['actuation'].items():
-    if isinstance(v,(int,float)) and not isinstance(v,bool):a[k]=a.get(k,0)+v
-    elif isinstance(v,dict):
-     target=a.setdefault(k,{})
-     for field,count in v.items():target[field]=target.get(field,0)+count
-    elif isinstance(v,list):a[k]=list(dict.fromkeys(a.get(k,[])+v))
-    else:raise ValueError('UNKNOWN_ACTUATION_FIELD')
- return list(out.values())
-
 def classify(c,manual=False):
  g,i=c['group'],c['id']
  if manual:return 'MANUAL_LOCKED','Manual contract is separately protected, not natural-selection improvement.'
@@ -46,13 +21,10 @@ def build(traces,source,unit_bindings=None):
   b=t.get('artifactBinding',{});same=t.get('exactNativeRGBA') is True and b.get('sourceCommit')==source
   implementations={(x['group'],x['id']):x for x in t.get('implementationIdentity',[])};aliases=collections.defaultdict(list)
   for x in implementations.values():aliases[(x['group'],x['functionObjectId'])].append(x['id'])
-  calls=merge_clock_context_calls(t.get('calls',[]));contract_calls={}
+  calls=list(t.get('calls',[]));contract_calls={}
   for tc in t.get('temporalContracts',[]):
    contract=tc.get('contract',{})
-   if contract.get('status')!='EXECUTABLE':continue
-   photo=contract.get('mode')=='UNIFORM_TRANSLATION' and tc.get('charFnsAdded')==1
-   grammar=contract.get('mode')=='GRAMMAR' and contract.get('uniformTranslation') is True and (tc.get('charFnsAdded') or 0)>=1 and tc.get('cinemaAnchorMotion')
-   if not (photo or grammar):continue
+   if contract.get('status')!='EXECUTABLE' or contract.get('mode')!='UNIFORM_TRANSLATION' or tc.get('charFnsAdded')!=1:continue
    key=tc['unitKey'];row=contract_calls.setdefault(key,{'group':'LYRIC_TEMPORAL_CONTRACT','id':'UNIFORM_TRANSLATION','unitKey':key,'pass':'main','calls':0,'firstTime':tc['time'],'lastTime':tc['time']});row['calls']+=1;row['lastTime']=tc['time']
   calls.extend(contract_calls.values())
   for c in calls:
