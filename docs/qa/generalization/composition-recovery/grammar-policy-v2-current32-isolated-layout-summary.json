@@ -1,18 +1,63 @@
 {
   "schema": 1,
   "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-  "operatorCasePairsWithCollectedControls": 48,
+  "operatorCasePairsWithCollectedControls": 65,
   "unitStatuses": {
-    "VERIFIED_LAYOUT_PRIMARY_GLYPH_REALIZATION": 88,
+    "VERIFIED_LAYOUT_PRIMARY_GLYPH_REALIZATION": 123,
     "NOT_APPLICABLE_EMPTY_HOLD": 2
   },
   "criterion": "Existing unchanged analyze_isolated_layout_presence sensor: same completed original Native/decoded ON, exact repeat, actual complete HOLD frame clock population, per-glyph .5pixel and .9 agreement, isolated missing-ink negative control.",
   "scope": "Registered chosen primary glyph placement and isolated absence only. No role-motion, font aesthetic, creative superiority or all-effects PASS. Original text remains an authenticated input/renderer contract, not OCR.",
   "human": "HUMAN_UNVERIFIED",
-  "units": 90,
-  "actualHOLDFrames": 4025,
-  "glyphObservations": 41185,
+  "units": 125,
+  "actualHOLDFrames": 6062,
+  "glyphObservations": 55933,
   "guardUnmeasured": [
+    {
+      "caseId": "development-01",
+      "operator": "registry:LAYOUTS:diag",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "development-01",
+      "operator": "registry:LAYOUTS:globalReadableUnit",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "development-01",
+      "operator": "registry:LAYOUTS:type",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "development-07",
+      "operator": "registry:LAYOUTS:diag",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "development-07",
+      "operator": "registry:LAYOUTS:globalReadableUnit",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "development-07",
+      "operator": "registry:LAYOUTS:type",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "holdout-01",
+      "operator": "registry:LAYOUTS:cinemaGrammarsolo",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "holdout-07",
+      "operator": "registry:LAYOUTS:cinemaGrammarstands",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "holdout-07",
+      "operator": "registry:LAYOUTS:cinemaGrammarvoice",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
     {
       "caseId": "supplemental-development-13",
       "operator": "registry:LAYOUTS:globalReadableUnit",
@@ -34,5 +79,5 @@
       "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
     }
   ],
-  "rawLedgerSHA256": "f38315702dbbd7e70ac52df63aee48f3ce4df4a48fa89ea5fcbd0f907b79e3a0"
+  "rawLedgerSHA256": "413f4e6d2e36e3a6d6e33e31e3d9ad6d86e65b8063076ed3b1bcd74e6c9a33d2"
 }

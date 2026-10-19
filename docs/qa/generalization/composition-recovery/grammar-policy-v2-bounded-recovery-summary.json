@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "initialRun": 39192699203,
+  "initialCases": [
+    {
+      "caseId": "development-01",
+      "initial": "COLLECTED_NOT_SEMANTICALLY_CERTIFIED",
+      "failedControls": [],
+      "raw": "grammar-policy-v2-bounded-pending-development-01/observations/collection-progress.json.gz"
+    },
+    {
+      "caseId": "development-07",
+      "initial": "COLLECTED_NOT_SEMANTICALLY_CERTIFIED",
+      "failedControls": [],
+      "raw": "grammar-policy-v2-bounded-pending-development-07/observations/collection-progress.json.gz"
+    },
+    {
+      "caseId": "development-14",
+      "initial": "FAILED_CONTROL_PROCESS",
+      "failedControls": [
+        "grammarTemporalRecipe"
+      ],
+      "raw": "grammar-policy-v2-bounded-pending-development-14/observations/collection-progress.json.gz"
+    },
+    {
+      "caseId": "holdout-01",
+      "initial": "FAILED_CONTROL_PROCESS",
+      "failedControls": [
+        "grammarTemporalRecipe"
+      ],
+      "raw": "grammar-policy-v2-bounded-pending-holdout-01/observations/collection-progress.json.gz"
+    },
+    {
+      "caseId": "holdout-05",
+      "initial": "COLLECTED_NOT_SEMANTICALLY_CERTIFIED",
+      "failedControls": [],
+      "raw": "grammar-policy-v2-bounded-pending-holdout-05/observations/collection-progress.json.gz"
+    },
+    {
+      "caseId": "holdout-07",
+      "initial": "FAILED_CONTROL_PROCESS",
+      "failedControls": [
+        "grammarTemporalRecipe"
+      ],
+      "raw": "grammar-policy-v2-bounded-pending-holdout-07/observations/collection-progress.json.gz"
+    },
+    {
+      "caseId": "holdout-11",
+      "initial": "COLLECTED_NOT_SEMANTICALLY_CERTIFIED",
+      "failedControls": [],
+      "raw": "grammar-policy-v2-bounded-pending-holdout-11/observations/collection-progress.json.gz"
+    },
+    {
+      "caseId": "holdout-14",
+      "initial": "FAILED_CONTROL_PROCESS",
+      "failedControls": [
+        "grammarTemporalRecipe"
+      ],
+      "raw": "grammar-policy-v2-bounded-pending-holdout-14/observations/collection-progress.json.gz"
+    }
+  ],
+  "QACollectorRootCause": "Missing KAMEN_GRAMMAR_CONTROL_SPEC and sparse checkout file for grammarTemporalRecipe. Failed before that actor encode; other actor encodes completed. No app defect inferred.",
+  "repairRun": 39194154285,
+  "repairedCases": [
+    {
+      "caseId": "development-14",
+      "status": "COLLECTED_NOT_SEMANTICALLY_CERTIFIED",
+      "raw": "grammar-policy-v2-grammar-spec-repair-development-14/observations/collection-progress.json.gz"
+    },
+    {
+      "caseId": "holdout-01",
+      "status": "COLLECTED_NOT_SEMANTICALLY_CERTIFIED",
+      "raw": "grammar-policy-v2-grammar-spec-repair-holdout-01/observations/collection-progress.json.gz"
+    },
+    {
+      "caseId": "holdout-07",
+      "status": "COLLECTED_NOT_SEMANTICALLY_CERTIFIED",
+      "raw": "grammar-policy-v2-grammar-spec-repair-holdout-07/observations/collection-progress.json.gz"
+    },
+    {
+      "caseId": "holdout-14",
+      "status": "COLLECTED_NOT_SEMANTICALLY_CERTIFIED",
+      "raw": "grammar-policy-v2-grammar-spec-repair-holdout-14/observations/collection-progress.json.gz"
+    }
+  ],
+  "repairScope": "Only4failed grammar recipe OFFs, same actual baselines; no successful OFF or normal movie rerun. Strict source/Native/ref guards unchanged.",
+  "semanticStatus": "UNVERIFIED_BY_COLLECTION_ALONE"
+}
