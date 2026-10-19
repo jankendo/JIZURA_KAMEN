@@ -1,5 +1,5 @@
 """Import exact current-source Actions bytes; never adjudicate creative regression."""
-import argparse,gzip,hashlib,json,pathlib,shutil,zipfile
+import argparse,gzip,hashlib,json,pathlib,shutil,zipfile,math
 Q=pathlib.Path(__file__).resolve().parents[1]
 OUT=Q/'composition-recovery/release-recovery-20261019'
 def sha(b):return hashlib.sha256(b).hexdigest()
@@ -21,8 +21,10 @@ def main():
  checks=correspondence['records'][0];assert checks['fixture']==n.case and checks['actualBinding']==b and all(v is True for v in checks['checks'].values())
  old=next(c for c in spec['expectedOriginalConditions']if c['fixture']==n.case);assert row['input']==old['input']and row['sourceInvariant']['pcmHash']==old['pcmHash']and b['outputProfile']==old['outputProfile']
  decoded=read(destination/'strict-decode.json.gz');assert decoded['count']==1
- record=decoded['entries'][0];assert record['videoSHA256']==b['videoSHA256']and record['completeDecode']=='PASS'and not record['stderr']
+ record=decoded['entries'][0];assert record['videoSHA256']==b['videoSHA256']and record['binding']==b and record['completeDecode']=='PASS'and not record['stderr']
  tracefile=destination/'dispatch'/n.case/'native-dispatch-trace.json.gz';trace=read(tracefile);assert trace['exactNativeRGBA']is True and trace['artifactBinding']==b and trace['referenceSHA256']==row['referenceInputs']['sha256']
+ proof=row['nativeOutputProof'];assert proof['videoSHA256']==b['videoSHA256']and proof['selectedPlanHash']==b['planHash']and proof['profile']==b['outputProfile']
+ frames=math.floor((b['outputProfile']['range'][1]-b['outputProfile']['range'][0])*b['outputProfile']['fps']+.5);groups=[g for g in proof['groups']if g['planHash']==b['planHash']and len(g['frames'])==frames];assert len(groups)==1 and len({f['time']for f in groups[0]['frames']})==frames and groups[0]['frames']==trace['nativeFrameHashes'],'EXACT_COMPLETE_NATIVE_OUTPUT_REQUIRED'
  shutil.copyfile(movie,Q/'media'/(b['videoSHA256']+'.mp4'))
  imported={'caseId':n.case,'sourceCommit':spec['sourceCommit'],'artifactId':n.artifact_id,'runId':39244958536,'archiveSHA256':sha(n.archive.read_bytes()),'videoSHA256':b['videoSHA256'],'binding':b,'inputCorrespondence':'MATCHED','nativeReplay':'EXACT','finalArtifactVerification':fav['status'],'fullDecode':'PASS','referenceSHA256':row['referenceInputs']['sha256'],'traceSHA256':sha(tracefile.read_bytes()),'rawRowSHA256':sha(rowfile.read_bytes()),'importantSemanticProof':'UNVERIFIED','significantRegression':None,'scope':'Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success.'}
  write(destination/'import.json',imported)

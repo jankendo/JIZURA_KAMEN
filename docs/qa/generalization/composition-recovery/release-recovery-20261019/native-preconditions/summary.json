@@ -1,0 +1,24 @@
+{
+  "caseId": "development-01",
+  "records": [
+    {
+      "mode": "baseline-valid",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "browser": "155.0.8059.39",
+      "exactNativeRGBA": false,
+      "frames": 240,
+      "rawSHA256": "6f61b034efec4e4128b8719686405fad57e7c905589a15125a63e3c3ac38a415"
+    },
+    {
+      "mode": "analyze-audio",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "browser": "155.0.8059.39",
+      "exactNativeRGBA": false,
+      "frames": 240,
+      "rawSHA256": "6398616f95bdccdc9aee01dd5f80e2a0213f1a7ca530cd3d7c9ad40fcaec2f11"
+    }
+  ],
+  "finding": "Both native-only runs retain the same 25 original Native mismatches. Analyzing the original audio before drawing does not change that mismatch. Differences coincide with the two Noto Serif JP fragments; recorded primary parameters and font-loading descriptors equal the historical trace. Actual font resources/raster environment are being compared; no encoder cause is established.",
+  "newMP4s": 0,
+  "releaseCredit": false
+}
