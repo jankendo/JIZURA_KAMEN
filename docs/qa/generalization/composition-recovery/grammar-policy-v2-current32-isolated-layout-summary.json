@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "operatorCasePairsWithCollectedControls": 48,
+  "unitStatuses": {
+    "VERIFIED_LAYOUT_PRIMARY_GLYPH_REALIZATION": 88,
+    "NOT_APPLICABLE_EMPTY_HOLD": 2
+  },
+  "criterion": "Existing unchanged analyze_isolated_layout_presence sensor: same completed original Native/decoded ON, exact repeat, actual complete HOLD frame clock population, per-glyph .5pixel and .9 agreement, isolated missing-ink negative control.",
+  "scope": "Registered chosen primary glyph placement and isolated absence only. No role-motion, font aesthetic, creative superiority or all-effects PASS. Original text remains an authenticated input/renderer contract, not OCR.",
+  "human": "HUMAN_UNVERIFIED",
+  "units": 90,
+  "actualHOLDFrames": 4025,
+  "glyphObservations": 41185,
+  "guardUnmeasured": [
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:LAYOUTS:globalReadableUnit",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:LAYOUTS:portraitDiag",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:LAYOUTS:portraitStack",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "operator": "registry:LAYOUTS:cinemaGrammarduo",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    }
+  ],
+  "rawLedgerSHA256": "f38315702dbbd7e70ac52df63aee48f3ce4df4a48fa89ea5fcbd0f907b79e3a0"
+}

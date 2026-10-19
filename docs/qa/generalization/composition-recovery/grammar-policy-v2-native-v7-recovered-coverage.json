@@ -151,8 +151,22 @@
       "frames": 240,
       "videoSHA256": "2431feaa6b17b1c2ed686d5446759b0b21ca3776d5c5e663b2dc07c52d0c6678",
       "trace": "composition-recovery/grammar-policy-v2-remaining-controls-8/cases/holdout-10/native/native-dispatch-trace.json.gz"
+    },
+    "holdout-05": {
+      "frames": 240,
+      "videoSHA256": "3f866781979fbbb50d09adf1bc993147586a2829107d9ec7ebd1fc3b5eb096d4",
+      "trace": "composition-recovery/grammar-policy-v2-bounded-pending-holdout-05/observations/native/native-dispatch-trace.json.gz",
+      "traceFileSHA256": "696c3d1f508064aec85595e4d165352080e1ccb9c9ff935d5a1ef16c263ccea2",
+      "sourceOfLineage": "Recovered bounded current-source diagnostic; no previous missing lineage invented."
+    },
+    "holdout-11": {
+      "frames": 480,
+      "videoSHA256": "31901f414789108136f844578ba7ab87f0c3ae4e4d850c2a69666ffcb3ab8179",
+      "trace": "composition-recovery/grammar-policy-v2-bounded-pending-holdout-11/observations/native/native-dispatch-trace.json.gz",
+      "traceFileSHA256": "41b5e2807d096960e46db689ae8daecf4185da67585999d6b505b6b3b62ec038",
+      "sourceOfLineage": "Recovered bounded current-source diagnostic; no previous missing lineage invented."
     }
   },
-  "coverageComplete": false,
-  "scope": "Actual full Native lineage for completed traces only. Original v5 has separate full32 coverage. Missing v7 traces are not silently counted."
+  "coverageComplete": true,
+  "scope": "Full32 actual v7 lineage recovered. Original full v5 Native hashes independently match each newly added trace. Earlier missing-lineage checkpoint remains in normal Git history; no old evidence relabeled."
 }

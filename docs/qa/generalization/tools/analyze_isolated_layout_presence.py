@@ -6,6 +6,14 @@ import pathlib,json,gzip,hashlib,math
 Q=pathlib.Path(__file__).resolve().parents[1];R=Q/'composition-recovery';S='d6fe7be2fa53475dc7493f35229af6ad4f57235f'
 def read(p):return json.loads(gzip.decompress(p.read_bytes())) if p.suffix=='.gz' else json.loads(p.read_bytes())
 def ref(p):return {'path':str(p.relative_to(Q)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
+def match_hold_populations(a,b,c,hold):
+ clocks=lambda fs:[f['actualDecodedTimestamp']for f in fs]
+ assert clocks(a)==clocks(b)==clocks(c),'CONTROL_FRAME_POPULATION_MISMATCH'
+ if hold[1]<=hold[0]:
+  assert not a,'FRAME_INSIDE_EMPTY_HOLD'
+  return 'NOT_APPLICABLE_EMPTY_HOLD'
+ assert a,'EXPECTED_HOLD_OBSERVATION_ABSENT'
+ return 'PRESENT'
 def analyze(report,reference,source=S):
  r=read(report);p=read(reference)['plan'];assert r['build']['sourceCommit']==source and not r['build']['sourceDirty'];assert r['fullNativeIdentity'] and r['nativeONRepeatIdentical'] and r['adoptedMovieReproduced'];assert r['selectedOperator'].startswith('registry:LAYOUTS:');layout=r['selectedOperator'].split(':')[-1];movies={m['mode']:m for m in r['movies']};on=movies['ON']['modeFinalArtifactVerification'];repeat=movies['ON_REPEAT']['modeFinalArtifactVerification'];negative=movies['OFF']['offAgainstOnVerification'];original=r['registeredOriginal'];assert original['status']=='MEASURED';assert negative
  assert all(m['fullDecode']=='PASS' and {'h264','aac'}.issubset({x['codec_name'] for x in m['ffprobe']['streams']}) for m in r['movies'])
@@ -17,7 +25,10 @@ def analyze(report,reference,source=S):
    cut=p['cuts'][fragment['index']]
    if cut['layout']!=layout:continue
    frames=lambda v:[f for f in v['frames'] if f['unitId']==unit['unitId'] and f['fragmentIndex']==fragment['index'] and fragment['hold'][0]<=f['actualDecodedTimestamp']<fragment['hold'][1]]
-   a,b,c=frames(on),frames(negative),frames(repeat);assert a and [f['actualDecodedTimestamp'] for f in a]==[f['actualDecodedTimestamp']for f in b]==[f['actualDecodedTimestamp']for f in c],'CONTROL_FRAME_POPULATION_MISMATCH'
+   a,b,c=frames(on),frames(negative),frames(repeat);population=match_hold_populations(a,b,c,fragment['hold'])
+   if population=='NOT_APPLICABLE_EMPTY_HOLD':
+    actual=[{'phase':f['phase'],'actualDecodedTimestamp':f['actualDecodedTimestamp']}for f in original['frames']if f['unitId']==unit['unitId']and f['fragmentId']==fragment['id']]
+    rows.append({'unitId':unit['unitId'],'fragmentId':fragment['id'],'fragmentIndex':fragment['index'],'line':unit['line'],'fragmentRange':[fragment['from'],fragment['to']],'hold':fragment['hold'],'actualHOLDFrames':0,'glyphObservations':0,'status':population,'reason':'This source fragment has no HOLD interval. Its existing entry/exit frames remain recorded; no placement or temporal certificate is inferred from another fragment.','nonHoldOriginalFrames':actual,'nonHoldPlacementStatus':'UNMEASURED','points':[]});continue
    points=[];missing=[];negativeMissing=0;eligible=0
    for f,g,h in zip(a,b,c):
     for ink in f['glyphEvidence']:

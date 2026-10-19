@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "caseIds": [
+    "development-14",
+    "holdout-01",
+    "holdout-07",
+    "holdout-14"
+  ],
+  "cases": [
+    {
+      "caseId": "development-14",
+      "original": {
+        "artifactId": 12143903203,
+        "archiveSHA256": "5ba2369b22c5aa7068faa8fba05328c89af0e1fa83d114fa1a19d25aa687a084",
+        "name": "grammar-policy-v2-final30-0"
+      },
+      "originalVideoSHA256": "10a6e92f9a287cc3a6f3338adc7cd0029b9324c5ba0de2d4e349ac46f24fe519",
+      "planHash": "4c423d306c7fd487a23d38cf4ef3c3bd98852c38543444281ed834b4d93377c3",
+      "nativeTraceSHA256": "080433e3ed308dbc61645c796e21a168fd8df0d91696465f78079ffd5407ad42",
+      "candidates": [
+        "cameraAt",
+        "grammarTemporalRecipe",
+        "paintCinemaGrammarForeground",
+        "registry:DECOR:bars",
+        "registry:ENTER:photoResolve",
+        "registry:HOLD:drift",
+        "registry:LAYOUTS:cinemaGrammarduo",
+        "registry:LAYOUTS:cinemaGrammarground",
+        "registry:LAYOUTS:huge",
+        "temporalCinemaFocus"
+      ],
+      "completedControls": [],
+      "additionalOFFHooks": [
+        "grammarTemporalRecipe"
+      ],
+      "baseline": null,
+      "newBaselineHook": "cameraAt",
+      "recoveredBaseline": {
+        "artifactId": 12160257634,
+        "archiveSHA256": "22a6acf6e27ec0af36c0c71eeee8706b11b3c85e3360d7574cc656b424b20cef",
+        "path": "baseline",
+        "name": "grammar-policy-v2-original-fav-transport-pilot"
+      }
+    },
+    {
+      "caseId": "holdout-01",
+      "original": {
+        "artifactId": 12144499611,
+        "archiveSHA256": "f896668a7bef0f498474a323035edda9c39a539a93afb76498e45c0616f0e105",
+        "name": "grammar-policy-v2-final30-2"
+      },
+      "originalVideoSHA256": "c499c59cda6697054f04ae48b85550820e6c777702ff61dc892f2023e3b6065b",
+      "planHash": "f85ca98999de7efd25919c4b712b86a0c3523939f2e827aac7476ba9a56dd33f",
+      "nativeTraceSHA256": "48ab2932a323e67a8de56b558630d15abba41a6be1a94ab1ea58f06810801765",
+      "candidates": [
+        "cameraAt",
+        "grammarTemporalRecipe",
+        "paintCinemaGrammarForeground",
+        "registry:ENTER:photoResolve",
+        "registry:LAYOUTS:cinemaGrammarsolo",
+        "temporalCinemaFocus"
+      ],
+      "completedControls": [],
+      "additionalOFFHooks": [
+        "grammarTemporalRecipe"
+      ],
+      "baseline": null,
+      "newBaselineHook": "cameraAt",
+      "recoveredBaseline": {
+        "artifactId": 12159935453,
+        "archiveSHA256": "bcf43f2dd70e8f47b8e3892f6e0de29b05b58e7fcdaeba8b6dfab7fc4ffe341a",
+        "path": "cases/holdout-01/baseline",
+        "name": "grammar-policy-v2-remaining-controls-2"
+      }
+    },
+    {
+      "caseId": "holdout-07",
+      "original": {
+        "artifactId": 12144499611,
+        "archiveSHA256": "f896668a7bef0f498474a323035edda9c39a539a93afb76498e45c0616f0e105",
+        "name": "grammar-policy-v2-final30-2"
+      },
+      "originalVideoSHA256": "a46dec22f0ad21bb70719dc72ea8f66391ed2b71de0a68437ec624859738b185",
+      "planHash": "85acf430ca452e65f3ba967227aa4801cc1da0a74b1a0bb9fe8989c97dc70cef",
+      "nativeTraceSHA256": "b4c1e6b4504cca0b37c811e9e84cff5d3b878bd098ab97d9688ddf4f5bf9c8ea",
+      "candidates": [
+        "cameraAt",
+        "grammarTemporalRecipe",
+        "paintCinemaGrammarForeground",
+        "registry:ENTER:photoResolve",
+        "registry:LAYOUTS:cinemaGrammarstands",
+        "registry:LAYOUTS:cinemaGrammarvoice",
+        "temporalCinemaFocus"
+      ],
+      "completedControls": [],
+      "additionalOFFHooks": [
+        "grammarTemporalRecipe"
+      ],
+      "baseline": null,
+      "newBaselineHook": "cameraAt",
+      "recoveredBaseline": {
+        "artifactId": 12159935453,
+        "archiveSHA256": "bcf43f2dd70e8f47b8e3892f6e0de29b05b58e7fcdaeba8b6dfab7fc4ffe341a",
+        "path": "cases/holdout-07/baseline",
+        "name": "grammar-policy-v2-remaining-controls-2"
+      }
+    },
+    {
+      "caseId": "holdout-14",
+      "original": {
+        "artifactId": 12144499611,
+        "archiveSHA256": "f896668a7bef0f498474a323035edda9c39a539a93afb76498e45c0616f0e105",
+        "name": "grammar-policy-v2-final30-2"
+      },
+      "originalVideoSHA256": "a31319bade2681df420129ed967bf2c9ec520d3b307a78eb28d7f1a5c118a148",
+      "planHash": "4c9e2ff39e9139916adefdf41f77c6a1d9547466fbad172495c1cf30e97f2b54",
+      "nativeTraceSHA256": "e93b1bd92463a60bbccbb0a92106edc790c82431e1da72a7da57b6940560d32c",
+      "candidates": [
+        "cameraAt",
+        "grammarTemporalRecipe",
+        "paintCinemaGrammarForeground",
+        "registry:ENTER:photoResolve",
+        "registry:LAYOUTS:cinemaGrammarduo",
+        "temporalCinemaFocus"
+      ],
+      "completedControls": [],
+      "additionalOFFHooks": [
+        "grammarTemporalRecipe"
+      ],
+      "baseline": null,
+      "newBaselineHook": "cameraAt",
+      "recoveredBaseline": {
+        "artifactId": 12160664183,
+        "archiveSHA256": "907946bf7de36c4647ae3f1b65984fe8a7ffdad7bd4e1759108f07c523905540",
+        "path": "observations/baseline",
+        "name": "grammar-policy-v2-bounded-pending-holdout-14"
+      }
+    }
+  ],
+  "scope": "Only4 failed grammarTemporalRecipe collectors from39192699203, caused by a missing QA source-spec environment path. All other successful OFFs retained. Same original inputs/source/plan/profile and actual full baseline movies; no new ON/repeat encode, no app/source/gate change. Original strict decoded mismatch stays false. Source file/function SHA guard required.",
+  "perNativeDeadlineSeconds": 600,
+  "perEncodeProcessDeadlineSeconds": 1200,
+  "criteria": "Every new movie H264/AAC full decode; current Native exact; source unchanged; actual decoded identity reported. No retries, threshold/profile reduction or candidate changes."
+}

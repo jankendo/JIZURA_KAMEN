@@ -2,9 +2,9 @@
   "schema": 1,
   "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
   "sourceTreeSHA256": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278",
-  "completeUniqueDiagnosticMP4s": 277,
-  "rawControlReports": 181,
-  "distinctCaseOperatorPairs": 177,
+  "completeUniqueDiagnosticMP4s": 290,
+  "rawControlReports": 192,
+  "distinctCaseOperatorPairs": 188,
   "strictDecodedReproductionFailures": [
     {
       "caseId": "development-01",
@@ -40,6 +40,66 @@
       "caseId": "supplemental-holdout-13",
       "operator": "cameraAt",
       "rawPath": "composition-recovery/grammar-policy-v2-remaining-controls-5/cases/supplemental-holdout-13/baseline/effect-counterfactual-report.json.gz",
+      "strictOriginalDecodedIdentity": false
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:DECOR:bracketsJP",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/0/effect-counterfactual-report.json.gz",
+      "strictOriginalDecodedIdentity": false
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:DECOR:leaders",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/1/effect-counterfactual-report.json.gz",
+      "strictOriginalDecodedIdentity": false
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:LAYOUTS:globalReadableUnit",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/2/effect-counterfactual-report.json.gz",
+      "strictOriginalDecodedIdentity": false
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:LAYOUTS:portraitDiag",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/3/effect-counterfactual-report.json.gz",
+      "strictOriginalDecodedIdentity": false
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:LAYOUTS:portraitStack",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/4/effect-counterfactual-report.json.gz",
+      "strictOriginalDecodedIdentity": false
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:TRANS:wipe",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/5/effect-counterfactual-report.json.gz",
+      "strictOriginalDecodedIdentity": false
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "operator": "grammarTemporalRecipe",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-5/controls/0/effect-counterfactual-report.json.gz",
+      "strictOriginalDecodedIdentity": false
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "operator": "registry:ENTER:photoResolve",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-5/controls/1/effect-counterfactual-report.json.gz",
+      "strictOriginalDecodedIdentity": false
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "operator": "registry:LAYOUTS:cinemaGrammarduo",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-5/controls/2/effect-counterfactual-report.json.gz",
+      "strictOriginalDecodedIdentity": false
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "operator": "temporalCinemaFocus",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-5/controls/3/effect-counterfactual-report.json.gz",
       "strictOriginalDecodedIdentity": false
     }
   ],
@@ -433,6 +493,24 @@
       "originalVideoSHA256": "ba71737a7412ea3b89f493d9ed95c1b696568508f9d63220802e1d4dab49bdde",
       "planHash": "63ca610f9e3ab4945aa312ddcc8f0d6c00785558a158fb21fda88f06f635b3bd",
       "inputHash": "63147a11d92052e42fdfd588529ada1675f0f51ed49750005a8ddb2501929536",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": true,
+      "newEncodeModes": [
+        "ON",
+        "OFF",
+        "ON_REPEAT"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
+      "caseId": "development-14",
+      "operator": "cameraAt",
+      "rawPath": "composition-recovery/grammar-policy-v2-original-fav-transport-pilot/baseline/effect-counterfactual-report.json.gz",
+      "rawSHA256": "bfff3a92182004c5c567fd1b31349d549eb3c8b94b9010c41be18a7d1342c78e",
+      "originalVideoSHA256": "10a6e92f9a287cc3a6f3338adc7cd0029b9324c5ba0de2d4e349ac46f24fe519",
+      "planHash": "4c423d306c7fd487a23d38cf4ef3c3bd98852c38543444281ed834b4d93377c3",
+      "inputHash": "228bf5f94f5f223586d0bd4ccd3b8c1a47b06e917a408d0254155d97e8572bc3",
       "fullNativeIdentity": true,
       "NativeONRepeatIdentical": true,
       "strictOriginalDecodedIdentity": true,
@@ -2996,6 +3074,166 @@
       "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
     },
     {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:DECOR:bracketsJP",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/0/effect-counterfactual-report.json.gz",
+      "rawSHA256": "d11816873a24c88051e6ccc1a7233b2c47fb1361a61aedd011cdd644611ae8e4",
+      "originalVideoSHA256": "71c7cf76c92c1d0322f16afb2dc1a4f32177cdf7c36809d36173c5f8e367f674",
+      "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+      "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": false,
+      "newEncodeModes": [
+        "OFF"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:DECOR:leaders",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/1/effect-counterfactual-report.json.gz",
+      "rawSHA256": "43fc2e6a902b08e506dffc18d634ee16477ffe8ff8e79a354e74f45ae548e658",
+      "originalVideoSHA256": "71c7cf76c92c1d0322f16afb2dc1a4f32177cdf7c36809d36173c5f8e367f674",
+      "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+      "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": false,
+      "newEncodeModes": [
+        "OFF"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:LAYOUTS:globalReadableUnit",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/2/effect-counterfactual-report.json.gz",
+      "rawSHA256": "09775e217bd4a5fc1e1727ebaa195d273dc4bd2af074a8b07dd4846c858a150c",
+      "originalVideoSHA256": "71c7cf76c92c1d0322f16afb2dc1a4f32177cdf7c36809d36173c5f8e367f674",
+      "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+      "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": false,
+      "newEncodeModes": [
+        "OFF"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:LAYOUTS:portraitDiag",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/3/effect-counterfactual-report.json.gz",
+      "rawSHA256": "8dbc4cfbe4aba44680a435b627e623cbff4821754182af900226f4400753d833",
+      "originalVideoSHA256": "71c7cf76c92c1d0322f16afb2dc1a4f32177cdf7c36809d36173c5f8e367f674",
+      "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+      "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": false,
+      "newEncodeModes": [
+        "OFF"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:LAYOUTS:portraitStack",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/4/effect-counterfactual-report.json.gz",
+      "rawSHA256": "46132a34f79e371ecb10cd0a30891d07a8213939b3e17b7678a492d8b63a33e3",
+      "originalVideoSHA256": "71c7cf76c92c1d0322f16afb2dc1a4f32177cdf7c36809d36173c5f8e367f674",
+      "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+      "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": false,
+      "newEncodeModes": [
+        "OFF"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "operator": "registry:TRANS:wipe",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-4/controls/5/effect-counterfactual-report.json.gz",
+      "rawSHA256": "cf986221f27dacb53043c06d2e8949293377876e147472f173596e93dcf010ed",
+      "originalVideoSHA256": "71c7cf76c92c1d0322f16afb2dc1a4f32177cdf7c36809d36173c5f8e367f674",
+      "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+      "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": false,
+      "newEncodeModes": [
+        "OFF"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "operator": "grammarTemporalRecipe",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-5/controls/0/effect-counterfactual-report.json.gz",
+      "rawSHA256": "93b3d374a7afb24b3f8c7e80eff729a751cfa5adff42c06b533be64e21f5c95a",
+      "originalVideoSHA256": "efd6004774afbd008c0ff0c93d33e4e36b83dc569c0e4fbd13322f3668bd096d",
+      "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+      "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": false,
+      "newEncodeModes": [
+        "OFF"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "operator": "registry:ENTER:photoResolve",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-5/controls/1/effect-counterfactual-report.json.gz",
+      "rawSHA256": "9c64f5f4c539345bebcea85e5c3d7def2e255eec8748c535dc62ff0184c4232c",
+      "originalVideoSHA256": "efd6004774afbd008c0ff0c93d33e4e36b83dc569c0e4fbd13322f3668bd096d",
+      "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+      "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": false,
+      "newEncodeModes": [
+        "OFF"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "operator": "registry:LAYOUTS:cinemaGrammarduo",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-5/controls/2/effect-counterfactual-report.json.gz",
+      "rawSHA256": "99f9186f05cd49247a808f1a74239ad3c31562e528e329c3ee3b14ad7204c7c3",
+      "originalVideoSHA256": "efd6004774afbd008c0ff0c93d33e4e36b83dc569c0e4fbd13322f3668bd096d",
+      "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+      "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": false,
+      "newEncodeModes": [
+        "OFF"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "operator": "temporalCinemaFocus",
+      "rawPath": "composition-recovery/grammar-policy-v2-short-native-diagnostic-5/controls/3/effect-counterfactual-report.json.gz",
+      "rawSHA256": "5dedde13022e71d04cf28e67aa049d89a0bd02e089b5fee2e396a9a41ca9d798",
+      "originalVideoSHA256": "efd6004774afbd008c0ff0c93d33e4e36b83dc569c0e4fbd13322f3668bd096d",
+      "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+      "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+      "fullNativeIdentity": true,
+      "NativeONRepeatIdentical": true,
+      "strictOriginalDecodedIdentity": false,
+      "newEncodeModes": [
+        "OFF"
+      ],
+      "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+    },
+    {
       "caseId": "development-11",
       "operator": "grammarTemporalRecipe",
       "rawPath": "composition-recovery/grammar-policy-v2-temporal-recipe-legacy-intro/controls/effect-counterfactual-report.json.gz",
@@ -4248,6 +4486,57 @@
           "operator": "temporalCinemaFocus",
           "planHash": "63ca610f9e3ab4945aa312ddcc8f0d6c00785558a158fb21fda88f06f635b3bd",
           "inputHash": "63147a11d92052e42fdfd588529ada1675f0f51ed49750005a8ddb2501929536",
+          "diagnosticFAVStatus": "UNMEASURED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "b271c47c1cb4b3db9311a3374ddf95cc77f4e8d4d6e358e2d6381025b0604347",
+      "path": "media/b271c47c1cb4b3db9311a3374ddf95cc77f4e8d4d6e358e2d6381025b0604347.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "development-14",
+          "mode": "ON",
+          "operator": "cameraAt",
+          "planHash": "4c423d306c7fd487a23d38cf4ef3c3bd98852c38543444281ed834b4d93377c3",
+          "inputHash": "228bf5f94f5f223586d0bd4ccd3b8c1a47b06e917a408d0254155d97e8572bc3",
+          "diagnosticFAVStatus": "UNMEASURED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "a183456e08a6377ae9aad100018f71a1c36efec93d512388350a561bb68df064",
+      "path": "media/a183456e08a6377ae9aad100018f71a1c36efec93d512388350a561bb68df064.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "development-14",
+          "mode": "OFF",
+          "operator": "cameraAt",
+          "planHash": "4c423d306c7fd487a23d38cf4ef3c3bd98852c38543444281ed834b4d93377c3",
+          "inputHash": "228bf5f94f5f223586d0bd4ccd3b8c1a47b06e917a408d0254155d97e8572bc3",
+          "diagnosticFAVStatus": "UNMEASURED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "cca70f38bfc0f3ecf619afbaa93ea63a4cfca06f03082b3fe019c8faa4bb9a92",
+      "path": "media/cca70f38bfc0f3ecf619afbaa93ea63a4cfca06f03082b3fe019c8faa4bb9a92.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "development-14",
+          "mode": "ON_REPEAT",
+          "operator": "cameraAt",
+          "planHash": "4c423d306c7fd487a23d38cf4ef3c3bd98852c38543444281ed834b4d93377c3",
+          "inputHash": "228bf5f94f5f223586d0bd4ccd3b8c1a47b06e917a408d0254155d97e8572bc3",
           "diagnosticFAVStatus": "UNMEASURED"
         }
       ]
@@ -8403,6 +8692,54 @@
           "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
           "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
           "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON",
+          "operator": "registry:DECOR:bracketsJP",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON",
+          "operator": "registry:DECOR:leaders",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON",
+          "operator": "registry:LAYOUTS:globalReadableUnit",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON",
+          "operator": "registry:LAYOUTS:portraitDiag",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON",
+          "operator": "registry:LAYOUTS:portraitStack",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON",
+          "operator": "registry:TRANS:wipe",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
         }
       ]
     },
@@ -8434,6 +8771,54 @@
           "caseId": "supplemental-development-13",
           "mode": "ON_REPEAT",
           "operator": "cameraAt",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON_REPEAT",
+          "operator": "registry:DECOR:bracketsJP",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON_REPEAT",
+          "operator": "registry:DECOR:leaders",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON_REPEAT",
+          "operator": "registry:LAYOUTS:globalReadableUnit",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON_REPEAT",
+          "operator": "registry:LAYOUTS:portraitDiag",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON_REPEAT",
+          "operator": "registry:LAYOUTS:portraitStack",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "ON_REPEAT",
+          "operator": "registry:TRANS:wipe",
           "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
           "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
           "diagnosticFAVStatus": "UNMEASURED"
@@ -9366,6 +9751,38 @@
           "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
           "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
           "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "ON",
+          "operator": "grammarTemporalRecipe",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "ON",
+          "operator": "registry:ENTER:photoResolve",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "ON",
+          "operator": "registry:LAYOUTS:cinemaGrammarduo",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "ON",
+          "operator": "temporalCinemaFocus",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
         }
       ]
     },
@@ -9397,6 +9814,38 @@
           "caseId": "supplemental-holdout-13",
           "mode": "ON_REPEAT",
           "operator": "cameraAt",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "ON_REPEAT",
+          "operator": "grammarTemporalRecipe",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "ON_REPEAT",
+          "operator": "registry:ENTER:photoResolve",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "ON_REPEAT",
+          "operator": "registry:LAYOUTS:cinemaGrammarduo",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
+        },
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "ON_REPEAT",
+          "operator": "temporalCinemaFocus",
           "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
           "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
           "diagnosticFAVStatus": "UNMEASURED"
@@ -9732,6 +10181,176 @@
           "planHash": "8d8191d6e36d35de71e00e61d7b70a98e2f4f6ad763f91889d7942454ee4f221",
           "inputHash": "95dc93fd844f1838f5b749369dbd295572efe28475f82efee75b4a154777c034",
           "diagnosticFAVStatus": "FAILED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "c4afba3dcda69a5a3847f826312fa960e64f812bf80f40b2118131ade0052285",
+      "path": "media/c4afba3dcda69a5a3847f826312fa960e64f812bf80f40b2118131ade0052285.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "OFF",
+          "operator": "registry:DECOR:bracketsJP",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "aff2f16c18eacd5b7aa821856ec4c2e674067014618519ae17cdb1f3e1902579",
+      "path": "media/aff2f16c18eacd5b7aa821856ec4c2e674067014618519ae17cdb1f3e1902579.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "OFF",
+          "operator": "registry:DECOR:leaders",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "0d43b61fab373ab39cf1a4c0fbfc0e6e86158f023c653ab9546bb9cd8e3eb2a1",
+      "path": "media/0d43b61fab373ab39cf1a4c0fbfc0e6e86158f023c653ab9546bb9cd8e3eb2a1.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "OFF",
+          "operator": "registry:LAYOUTS:globalReadableUnit",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "FAILED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "5e850b7d3726ef88fc8714d3f56f51325fe619909115c6cc6b8e97cf441e0916",
+      "path": "media/5e850b7d3726ef88fc8714d3f56f51325fe619909115c6cc6b8e97cf441e0916.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "OFF",
+          "operator": "registry:LAYOUTS:portraitDiag",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "FAILED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "e7a1ffc4c7cdf0409ca78e5125b429764a554f965d4184e2317064b054149a01",
+      "path": "media/e7a1ffc4c7cdf0409ca78e5125b429764a554f965d4184e2317064b054149a01.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "OFF",
+          "operator": "registry:LAYOUTS:portraitStack",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "FAILED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "20e3b9a2d4d96d91bda216d5b3b691b7184b9c096c51d81d0c23ea44f5347f9a",
+      "path": "media/20e3b9a2d4d96d91bda216d5b3b691b7184b9c096c51d81d0c23ea44f5347f9a.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "supplemental-development-13",
+          "mode": "OFF",
+          "operator": "registry:TRANS:wipe",
+          "planHash": "be5e02cb4e4debd172e6902796cc7a1006ecba5125e68ffec2697c901eec5f69",
+          "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+          "diagnosticFAVStatus": "UNMEASURED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "6b633ab8d7c687fbb2c377329b729a078a5f8ce69acca65c59030ace2d5a150a",
+      "path": "media/6b633ab8d7c687fbb2c377329b729a078a5f8ce69acca65c59030ace2d5a150a.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "OFF",
+          "operator": "grammarTemporalRecipe",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "da1d6e1ca91c23447da647be6019f4275b9f9ec0ab61467e1dbe314a602cf35e",
+      "path": "media/da1d6e1ca91c23447da647be6019f4275b9f9ec0ab61467e1dbe314a602cf35e.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "OFF",
+          "operator": "registry:ENTER:photoResolve",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "d09321e32eb2010c52240bba993be6e3197c47a83123be37f7b8dd6081fe21fa",
+      "path": "media/d09321e32eb2010c52240bba993be6e3197c47a83123be37f7b8dd6081fe21fa.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "OFF",
+          "operator": "registry:LAYOUTS:cinemaGrammarduo",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "FAILED"
+        }
+      ]
+    },
+    {
+      "videoSHA256": "f27fc917e598ba835bb762aecf74d14636b1db68b6eb3e14c91b162334c12131",
+      "path": "media/f27fc917e598ba835bb762aecf74d14636b1db68b6eb3e14c91b162334c12131.mp4",
+      "fullDecode": "PASS",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "actualContexts": [
+        {
+          "caseId": "supplemental-holdout-13",
+          "mode": "OFF",
+          "operator": "temporalCinemaFocus",
+          "planHash": "d88f17eecb5cd407ba8e3e28b9b2d88f76cc70996d1d864b147da9c72e7049af",
+          "inputHash": "9abfdd478ed8d938bdfed56dd6463af6d8ac795c7f14cbd943689da012b2b5be",
+          "diagnosticFAVStatus": "UNMEASURED"
         }
       ]
     },

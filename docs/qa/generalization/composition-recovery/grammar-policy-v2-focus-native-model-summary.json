@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "cases": [
+    {
+      "raw": "composition-recovery/grammar-policy-v2-focus-native-model-0-6/shape/focus-native-versus-decoded-model-report.json.gz",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "videoSHA256": "7f083c578c00ecfd03684d27737afbce32b7d1f942fa22ddd9d7b0be5e982d64",
+      "statusCounts": {
+        "MODEL_UNVERIFIED_ON_NATIVE_NO_APP_FAILURE_CLAIM": 48,
+        "SOURCE_AND_DECODED_CROP_VERIFIED": 184
+      },
+      "nativeStatusCounts": {
+        "UNMEASURED": 46,
+        "VERIFIED_IMAGE_TRANSFORM": 184,
+        "FAILED_IMAGE_TRANSFORM": 2
+      },
+      "encodedStatusCounts": {
+        "UNMEASURED": 46,
+        "VERIFIED_IMAGE_TRANSFORM": 185,
+        "FAILED_IMAGE_TRANSFORM": 1
+      }
+    },
+    {
+      "raw": "composition-recovery/grammar-policy-v2-focus-native-model-1-6/shape/focus-native-versus-decoded-model-report.json.gz",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "videoSHA256": "00d11806c93845649990710f9e44daa62f6f72632bc15828fd0863778cc989b1",
+      "statusCounts": {
+        "MODEL_UNVERIFIED_ON_NATIVE_NO_APP_FAILURE_CLAIM": 181,
+        "DECODED_CROP_UNVERIFIED_AFTER_NATIVE_MODEL_SUCCESS": 3,
+        "SOURCE_AND_DECODED_CROP_VERIFIED": 27
+      },
+      "nativeStatusCounts": {
+        "UNMEASURED": 154,
+        "FAILED_IMAGE_TRANSFORM": 27,
+        "VERIFIED_IMAGE_TRANSFORM": 30
+      },
+      "encodedStatusCounts": {
+        "UNMEASURED": 154,
+        "FAILED_IMAGE_TRANSFORM": 26,
+        "VERIFIED_IMAGE_TRANSFORM": 31
+      }
+    },
+    {
+      "raw": "composition-recovery/grammar-policy-v2-focus-native-model-3-5/shape/focus-native-versus-decoded-model-report.json.gz",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "videoSHA256": "ba71737a7412ea3b89f493d9ed95c1b696568508f9d63220802e1d4dab49bdde",
+      "statusCounts": {
+        "MODEL_UNVERIFIED_ON_NATIVE_NO_APP_FAILURE_CLAIM": 16,
+        "SOURCE_AND_DECODED_CROP_VERIFIED": 261
+      },
+      "nativeStatusCounts": {
+        "UNMEASURED": 16,
+        "VERIFIED_IMAGE_TRANSFORM": 261
+      },
+      "encodedStatusCounts": {
+        "UNMEASURED": 16,
+        "VERIFIED_IMAGE_TRANSFORM": 261
+      }
+    }
+  ],
+  "statusCounts": {
+    "MODEL_UNVERIFIED_ON_NATIVE_NO_APP_FAILURE_CLAIM": 245,
+    "SOURCE_AND_DECODED_CROP_VERIFIED": 472,
+    "DECODED_CROP_UNVERIFIED_AFTER_NATIVE_MODEL_SUCCESS": 3
+  },
+  "scope": "Only source-owned crop geometry under unchanged rank6/.5pixel/10percent/.9 criteria. Native model failure prevents encoded certification. Frame certificates do not certify a whole operator interval or artistic quality.",
+  "QUALITY_GO": "UNVERIFIED"
+}

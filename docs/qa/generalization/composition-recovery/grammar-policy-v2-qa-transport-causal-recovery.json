@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "caseId": "development-14",
+  "originalVideoSHA256": "10a6e92f9a287cc3a6f3338adc7cd0029b9324c5ba0de2d4e349ac46f24fe519",
+  "planHash": "4c423d306c7fd487a23d38cf4ef3c3bd98852c38543444281ed834b4d93377c3",
+  "inputHash": "228bf5f94f5f223586d0bd4ccd3b8c1a47b06e917a408d0254155d97e8572bc3",
+  "outputProfile": {
+    "purpose": "FULL_MV",
+    "aspect": "9:16",
+    "fps": 24,
+    "range": [
+      0,
+      44.999977324263035
+    ],
+    "loopRequired": false,
+    "resolution": [
+      360,
+      640
+    ]
+  },
+  "originalFVReuseOnlyRun": 39190596248,
+  "minimalTransportRun": 39191701073,
+  "originalFVReuseOnly": {
+    "exitCode": 124,
+    "timedOut": true,
+    "elapsedSeconds": 1200.07,
+    "deadlineSeconds": 1200.0,
+    "terminatedDescendantProcessGroups": [
+      4057,
+      4069
+    ],
+    "scope": "QA process only; timeout does not imply a normal production export failure or semantic PASS."
+  },
+  "minimalTransport": {
+    "exitCode": 0,
+    "timedOut": false,
+    "elapsedSeconds": 513.384,
+    "deadlineSeconds": 1200.0,
+    "terminatedDescendantProcessGroups": [],
+    "scope": "QA process only; timeout does not imply a normal production export failure or semantic PASS."
+  },
+  "transport": {
+    "originalProvenanceBytes": 71962542,
+    "transferredOriginalMetadataBytes": 2604,
+    "sameOriginalFAVRetainedOnNode": true,
+    "originalFAVObjectSHA256": "0001cb7b52dd4b95b4a8a5491c5b391e6c819ae292c773754f68bd4683c8cd8a",
+    "originalMP4AndValidationNotTransferred": true,
+    "scope": "Only unused QA transport data removed; no rendering/input/profile/quality change claimed."
+  },
+  "fullNativeIdentity": true,
+  "NativeONRepeatIdentical": true,
+  "strictOriginalDecodedIdentity": true,
+  "movies": [
+    {
+      "mode": "ON",
+      "videoSHA256": "b271c47c1cb4b3db9311a3374ddf95cc77f4e8d4d6e358e2d6381025b0604347",
+      "fullDecode": "PASS"
+    },
+    {
+      "mode": "OFF",
+      "videoSHA256": "a183456e08a6377ae9aad100018f71a1c36efec93d512388350a561bb68df064",
+      "fullDecode": "PASS"
+    },
+    {
+      "mode": "ON_REPEAT",
+      "videoSHA256": "cca70f38bfc0f3ecf619afbaa93ea63a4cfca06f03082b3fe019c8faa4bb9a92",
+      "fullDecode": "PASS"
+    }
+  ],
+  "verdict": "BOUNDED_CONTROLLED_QA_TRANSPORT_UNBLOCK_CONFIRMED_ON_ONE_STALLED_CASE",
+  "scope": "Identical application/selected plan/input/profile. Keeping original FAV reuse in both runs, remove unused history/original video/validation from host-to-page payload. Old QA process timed out1200s; new513.384s completes all3diagnostic encodes and exact Native/original-decoded checks. This isolates the QA transport intervention operationally; underlying runtime resource/serialization internals are not measured. Normal application generation was not changed and no production timeout/root OOM is inferred.",
+  "unmeasured": [
+    "runner peak memory",
+    "specific V8/DevTools serialization internals",
+    "historical five-hour process internal failure point"
+  ],
+  "semanticVerdict": "UNVERIFIED_BY_COLLECTION_ALONE"
+}

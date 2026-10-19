@@ -1,0 +1,3247 @@
+{
+  "schema": 1,
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "unmeasuredControls": [
+    {
+      "caseId": "supplemental-holdout-13",
+      "raw": "composition-recovery/grammar-policy-v2-short-native-diagnostic-5/controls/0/effect-counterfactual-report.json.gz",
+      "status": "UNMEASURED",
+      "reason": "STRICT_ORIGINAL_DECODED_REPRODUCTION_FALSE"
+    }
+  ],
+  "statuses": {
+    "VERIFIED_RECIPE_CONTRIBUTION": 41,
+    "UNMEASURED": 6
+  },
+  "criteria": "Existing unchanged whole-recipe contribution sensor: >=.5pixel source signal,>=3actual frames, .5pixel/10percent error and repeat tolerance,>=.9agreement; missing glyphs retained.",
+  "scope": "Whole selected pre-existing recipe charFn contribution only; no constituent HOLD/entry/camera attribution or artistic grade. All intended-role semantic verdicts remain explicitly separate. Strict original decoded mismatch prevents certificate.",
+  "human": "HUMAN_UNVERIFIED",
+  "caseControls": 19,
+  "fragmentObservations": 47,
+  "positiveGlyphPoints": 9558,
+  "measuredFrames": 1878,
+  "rawSHA256": "4df73d902e2bd784b0963cd27b552b0f1b995abe9126789fd7846e704476213b",
+  "unitSummary": [
+    {
+      "caseId": "development-02",
+      "unitId": "b892fbfeec3ed3bf437a73c310840109872699834526895a39e15d605c7ff2a9",
+      "sourceUnitId": "2647f17711c3fcc1298f2edfc0b8cc6454dc52a2614206c9737f8d36bba73c60",
+      "fragmentId": "9cc7190b2b2005cf8cee1f7e88a5b9f80655ad7c7f31d03ff848ad7afe1bbc6a",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 3,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "2563b8e0ee206ce458d2955391ab56b6ff3831f350266838450a8aa86f276982",
+      "planHash": "72ac8384724cca1601e2348718511b23ef27cf771031353a78af54a05cdc8642",
+      "inputHash": "5a47be48b975a1a86d67f089d51e3330cb761453de0124b60f38509a2cfbc792",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "4d1c60fb7203291c45999210f7deb1d0d6ed928c6addb0517896caad90c0bb0e",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "e4f7dc3342c4cfd10df2c468a5a3d3e8454e78cb2f6a8141c7f75d2911d7ef08",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "15c63b0c3a16fb8b42869a4d8c10dbc8d2c0a3622adee278bae50b80117ed318",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "01d9b709a486d802b4358ccd95b3d1eac9824734b7bcfcfc9fedb6019b6b41a9",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 61,
+      "matchedPoints": 61,
+      "measuredFrames": 60,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-02",
+      "unitId": "de468462ecc9a9ea563c0318501aaeab32b85db6a3ab5b15c5d354d5bbb16995",
+      "sourceUnitId": "ab61aecb78fa6254a077f0c386466e664126dd781c8bd26a1de45cbca1eaed2d",
+      "fragmentId": "b0982854502560e2eec6922fdfb507cb5881c03c0caf2443b325f3448d96097b",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 7,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        6.1,
+        8.6
+      ],
+      "measuredFragmentRange": [
+        6.1,
+        8.6
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "2563b8e0ee206ce458d2955391ab56b6ff3831f350266838450a8aa86f276982",
+      "planHash": "72ac8384724cca1601e2348718511b23ef27cf771031353a78af54a05cdc8642",
+      "inputHash": "5a47be48b975a1a86d67f089d51e3330cb761453de0124b60f38509a2cfbc792",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "4d1c60fb7203291c45999210f7deb1d0d6ed928c6addb0517896caad90c0bb0e",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "e4f7dc3342c4cfd10df2c468a5a3d3e8454e78cb2f6a8141c7f75d2911d7ef08",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "15c63b0c3a16fb8b42869a4d8c10dbc8d2c0a3622adee278bae50b80117ed318",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "01d9b709a486d802b4358ccd95b3d1eac9824734b7bcfcfc9fedb6019b6b41a9",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 71,
+      "matchedPoints": 71,
+      "measuredFrames": 48,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 4,
+        "hold": 50,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-08",
+      "unitId": "acae9c067d124198290538377fef90e4b5913cf66cb5f348a7908177d497f7f4",
+      "sourceUnitId": "faeed7988389dc8297007e52354bd4f85ae79fed7198689d4b999ea8baf895f6",
+      "fragmentId": "2a5c1aa00c20375628ef1d829532439dc92508bb508059fa726fc744b2ce386f",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "echo",
+      "motionPrinciple": "arrival-and-resonance",
+      "grammarMode": "voice",
+      "originalVideoSHA256": "3caff233021ee5062ec9543631be904a617a87e8fb4ec8158122a108de15aa7b",
+      "planHash": "e653d8dd1c8952551abdea6fb98bb323d5323691b091e09dc4b24063e29640a3",
+      "inputHash": "4c0848d90bded9f293c41670ad2597d055b5a1e9d6f468c6789c59c1a553dcd6",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "4b32a176fd1bd4fec1d71e75368615cd46e3bc369d9eac57c5be745cf035922a",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "dbd835430f3394ce9b6afd8afffeced3ad3f184f1189137c50d6f600fe4a167d",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "8863df6a3d3bfe3d5305b1a57c91c6097acd8315fe3adb61d8a432da7a81d822",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "847cdcd23fbee3a4279ca1b5ba45b3915be7701bf13a828c7fba4a6ff44067ba",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 20,
+      "matchedPoints": 20,
+      "measuredFrames": 6,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 4,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-08",
+      "unitId": "2536654cb0fa0afa55a6c636ff7e021021d77fa8c55c0cb4062361d10aabbe11",
+      "sourceUnitId": "976c4c6ed771f96c1661e62bcd766530c1e426eaedf93e11b7cd9853b57174e5",
+      "fragmentId": "c08a445d42f529758d5cca2b8b68e1bf405a13ca2b46e94149043b76166e87e2",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 1,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "echo",
+      "motionPrinciple": "arrival-and-resonance",
+      "grammarMode": "voice",
+      "originalVideoSHA256": "3caff233021ee5062ec9543631be904a617a87e8fb4ec8158122a108de15aa7b",
+      "planHash": "e653d8dd1c8952551abdea6fb98bb323d5323691b091e09dc4b24063e29640a3",
+      "inputHash": "4c0848d90bded9f293c41670ad2597d055b5a1e9d6f468c6789c59c1a553dcd6",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "4b32a176fd1bd4fec1d71e75368615cd46e3bc369d9eac57c5be745cf035922a",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "dbd835430f3394ce9b6afd8afffeced3ad3f184f1189137c50d6f600fe4a167d",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "8863df6a3d3bfe3d5305b1a57c91c6097acd8315fe3adb61d8a432da7a81d822",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "847cdcd23fbee3a4279ca1b5ba45b3915be7701bf13a828c7fba4a6ff44067ba",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 1,
+      "matchedPoints": 1,
+      "measuredFrames": 1,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_ABOVE_HALF_PIXEL_SIGNAL_OR_MISSING_GLYPH",
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-08",
+      "unitId": "259d06e2c02852f068031a21657e8be5a76e65d1a2dcb7fc46d9d83a9b9b6c83",
+      "sourceUnitId": "f5cb2e335e534eb91cbad34624105248a167526b4c2e996e33bb94073399015f",
+      "fragmentId": "4ecadef61374f3845262e511c130e4b6d932491ed05b69ea1ec0432b915b52a9",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 3,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        6.1,
+        7.75
+      ],
+      "measuredFragmentRange": [
+        6.1,
+        7.75
+      ],
+      "targetTraceMode": "OFF",
+      "role": "echo",
+      "motionPrinciple": "arrival-and-resonance",
+      "grammarMode": "voice",
+      "originalVideoSHA256": "3caff233021ee5062ec9543631be904a617a87e8fb4ec8158122a108de15aa7b",
+      "planHash": "e653d8dd1c8952551abdea6fb98bb323d5323691b091e09dc4b24063e29640a3",
+      "inputHash": "4c0848d90bded9f293c41670ad2597d055b5a1e9d6f468c6789c59c1a553dcd6",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "4b32a176fd1bd4fec1d71e75368615cd46e3bc369d9eac57c5be745cf035922a",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "dbd835430f3394ce9b6afd8afffeced3ad3f184f1189137c50d6f600fe4a167d",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "8863df6a3d3bfe3d5305b1a57c91c6097acd8315fe3adb61d8a432da7a81d822",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "847cdcd23fbee3a4279ca1b5ba45b3915be7701bf13a828c7fba4a6ff44067ba",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 114,
+      "matchedPoints": 114,
+      "measuredFrames": 39,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 4,
+        "hold": 30,
+        "exit": 5
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-06",
+      "unitId": "e8fe7eeaf50b4cf78d54963a00000895a1abdd008ab8e3b97caab3f62da1fac0",
+      "sourceUnitId": "51a18f0e56b8f46829bf48725d9a9dcb6a919f098d129b46c532ae2255394ef3",
+      "fragmentId": "27f2f2b57374e135bd2e7abe32ef9cd155b4b846bed9a06539f1b173709ed307",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "b6215e244d8f3a7fcad6a461f44b6a4fd4325974394eb55b8c2fd15629b676bd",
+      "planHash": "77335aa30aef29b91e609a7c2cea1a0168e113c65ee24866bfeb9b4c498eb2cf",
+      "inputHash": "7d9ed445737c014b3933d6de6ae35cb3231b731889bcad9c7fadb279ff52a9a0",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "7209074aeaef1fec1e34066de5504aa63637454a5b3998fe80fd775300bcfc78",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4c50b63426fd55a9ab8ae7afc6b7b422c0768a1c286422a85622787a958f4602",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "832502d96fad6202192dead1cbfaad172ce0d56aef0c15d0f35d5f9b5bfae3c5",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "6fe052451f5e695fd636555d0d2112e44c6e1931dd865e60b2472986c2ed1e19",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 34,
+      "matchedPoints": 34,
+      "measuredFrames": 30,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 66
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-06",
+      "unitId": "a6a977e2a9c880d3bc6cd7eb646c2d7ad64682e594335362fe35eeaedfca1840",
+      "sourceUnitId": "40625572cc80e597d8d7a865e768bb95058f5645618999adc8bb9434684c2843",
+      "fragmentId": "86571e1ca82a0c85b779759146f4afbb5b2d68fac5267ac58f5359e48c32754b",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 4,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "b6215e244d8f3a7fcad6a461f44b6a4fd4325974394eb55b8c2fd15629b676bd",
+      "planHash": "77335aa30aef29b91e609a7c2cea1a0168e113c65ee24866bfeb9b4c498eb2cf",
+      "inputHash": "7d9ed445737c014b3933d6de6ae35cb3231b731889bcad9c7fadb279ff52a9a0",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "7209074aeaef1fec1e34066de5504aa63637454a5b3998fe80fd775300bcfc78",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4c50b63426fd55a9ab8ae7afc6b7b422c0768a1c286422a85622787a958f4602",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "832502d96fad6202192dead1cbfaad172ce0d56aef0c15d0f35d5f9b5bfae3c5",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "6fe052451f5e695fd636555d0d2112e44c6e1931dd865e60b2472986c2ed1e19",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 308,
+      "matchedPoints": 308,
+      "measuredFrames": 40,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 6,
+        "hold": 58,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-06",
+      "unitId": "56b3e44bfa52d281282ad35b67913d782245cc55d63e67f48748f8f89d2603c2",
+      "sourceUnitId": "291aa544c3f13d3e197642d6a1c64b093f4c158cb901845ade452f532eb07edb",
+      "fragmentId": "cbc5f67169f8256db65f4969c0267e989250eb2af43c1ef597d4b33ddc1f1cae",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 7,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        6.1,
+        10.64
+      ],
+      "measuredFragmentRange": [
+        6.1,
+        9.999977324263039
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "b6215e244d8f3a7fcad6a461f44b6a4fd4325974394eb55b8c2fd15629b676bd",
+      "planHash": "77335aa30aef29b91e609a7c2cea1a0168e113c65ee24866bfeb9b4c498eb2cf",
+      "inputHash": "7d9ed445737c014b3933d6de6ae35cb3231b731889bcad9c7fadb279ff52a9a0",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "7209074aeaef1fec1e34066de5504aa63637454a5b3998fe80fd775300bcfc78",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4c50b63426fd55a9ab8ae7afc6b7b422c0768a1c286422a85622787a958f4602",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "832502d96fad6202192dead1cbfaad172ce0d56aef0c15d0f35d5f9b5bfae3c5",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "6fe052451f5e695fd636555d0d2112e44c6e1931dd865e60b2472986c2ed1e19",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 21,
+      "matchedPoints": 21,
+      "measuredFrames": 2,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 80,
+        "exit": 8
+      },
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_ABOVE_HALF_PIXEL_SIGNAL_OR_MISSING_GLYPH",
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-12",
+      "unitId": "5543ffb3b2bd3e86174f20412140d3a2e18a3a390be41c0258b2b09ab9edcc4b",
+      "sourceUnitId": "a96f9862d6133b51d3623c0814684658189db8bc44db9e13d326cf18227e2744",
+      "fragmentId": "666ab2e7035d99fb0a9f2f0e2b08a17a25846268ca495975d1971801ba28caf1",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        9,
+        12.33
+      ],
+      "measuredFragmentRange": [
+        9,
+        12.33
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "86e369509342512379d1ceb05fc1d5deba43c90ce52b5ebcd54d28317f35771b",
+      "planHash": "606d9558582e41813853227c59350b5ec7b0b38f4c046f8556d2c329891fa17e",
+      "inputHash": "2ee75c72e75a65bf735216b847ee169c6308d7eec514e111833519560e246308",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "e7962757611ba2bb318fa3efda2ac5093962397e4e5c09e8b249562a91677f7f",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4495fe63a47e8220b6bdca79c2056ad9429b7821777f4f6049f568864a834015",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "29a723ea74b09bddf4d5f254c472d185714ad593172681b66499af15ac3f97eb",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "2c02f07f8b14d1e7385ef8db1b7b9e84ae29eff8f8bd7b6d1bae4ecc1bfdf9d2",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 363,
+      "matchedPoints": 363,
+      "measuredFrames": 75,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 77
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-12",
+      "unitId": "d8c092f1e8ab16f9263e0540598b568ab856519d8cef0a91574a6676f3665b2d",
+      "sourceUnitId": "fce9dafce1849eb6986d80273b41590801b6ae3158dc6900924ff2779f19e6da",
+      "fragmentId": "cf6368159ce4a229fb94544613954342c3fb178dc42fa96d01331a641dca360f",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 4,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        12.33,
+        15.67
+      ],
+      "measuredFragmentRange": [
+        12.33,
+        15.67
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "86e369509342512379d1ceb05fc1d5deba43c90ce52b5ebcd54d28317f35771b",
+      "planHash": "606d9558582e41813853227c59350b5ec7b0b38f4c046f8556d2c329891fa17e",
+      "inputHash": "2ee75c72e75a65bf735216b847ee169c6308d7eec514e111833519560e246308",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "e7962757611ba2bb318fa3efda2ac5093962397e4e5c09e8b249562a91677f7f",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4495fe63a47e8220b6bdca79c2056ad9429b7821777f4f6049f568864a834015",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "29a723ea74b09bddf4d5f254c472d185714ad593172681b66499af15ac3f97eb",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "2c02f07f8b14d1e7385ef8db1b7b9e84ae29eff8f8bd7b6d1bae4ecc1bfdf9d2",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 226,
+      "matchedPoints": 226,
+      "measuredFrames": 76,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 78
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "automatic-unseen-confirmation-20261018",
+      "unitId": "05c2c4bf74566e77a55e8863494ab14caaa76be0571185835cf3c09fb4541277",
+      "sourceUnitId": "9debf28d8247fa46672b8abbfd06ec2a024958a608af0204af3138639bfe9efe",
+      "fragmentId": "829cca86e54d40040cf75a3d7d37affffc0682f806714d899e842e71781a76aa",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.35,
+        4.3
+      ],
+      "measuredFragmentRange": [
+        0.35,
+        4.3
+      ],
+      "targetTraceMode": "OFF",
+      "role": "echo",
+      "motionPrinciple": "arrival-and-resonance",
+      "grammarMode": "voice",
+      "originalVideoSHA256": "a0f20b01ac5e3046c65f28e257156d57fd78576953182a99003f44360ec6babb",
+      "planHash": "479f546208ea2229bbd7ffb0cd56052fd01d91bc392b13e93ee5c13b63bd2a11",
+      "inputHash": "c54e970ce9611ff92c31ae75ce86a019623da2c3cd9854c195461d610442a6f1",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          13.7
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "197ac2ebedd6af502b4b4c275c16be2ff7cdbd70d1d901456df558199c1585ef",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "de2fb3247bd137063c97889d3167597207618fafd75d39d043dbb9a9eaa57bff",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "8a4d6c8bea8ddeb305d1a9ab5e860569b7cdab0bdb5b135ec95524fe1f5a6eee",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "b9d062c312c4d0871eb351e99734f63303b6943aebc8e6d7b73ec32a9135af3b",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 1001,
+      "matchedPoints": 1001,
+      "measuredFrames": 95,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 92
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "automatic-unseen-confirmation-20261018",
+      "unitId": "d2bf1e9fbc69a9760c37babf4ef028d99c77b1d810fe7e6032b5d3025306b352",
+      "sourceUnitId": "3d3c0fbf60732094e961c40114ddd136e09ca4beb95425f95ebd2f1d6109b129",
+      "fragmentId": "3dac334733374222a52babdd9c8a5958d651dec381c837c47264a2cf987c6c8c",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 5,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        4.3,
+        8.7
+      ],
+      "measuredFragmentRange": [
+        4.3,
+        8.7
+      ],
+      "targetTraceMode": "OFF",
+      "role": "light",
+      "motionPrinciple": "open-and-illuminate",
+      "grammarMode": "openSky",
+      "originalVideoSHA256": "a0f20b01ac5e3046c65f28e257156d57fd78576953182a99003f44360ec6babb",
+      "planHash": "479f546208ea2229bbd7ffb0cd56052fd01d91bc392b13e93ee5c13b63bd2a11",
+      "inputHash": "c54e970ce9611ff92c31ae75ce86a019623da2c3cd9854c195461d610442a6f1",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          13.7
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "197ac2ebedd6af502b4b4c275c16be2ff7cdbd70d1d901456df558199c1585ef",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "de2fb3247bd137063c97889d3167597207618fafd75d39d043dbb9a9eaa57bff",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "8a4d6c8bea8ddeb305d1a9ab5e860569b7cdab0bdb5b135ec95524fe1f5a6eee",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "b9d062c312c4d0871eb351e99734f63303b6943aebc8e6d7b73ec32a9135af3b",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 1051,
+      "matchedPoints": 1051,
+      "measuredFrames": 100,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 102
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "automatic-unseen-confirmation-20261018",
+      "unitId": "a9e274ce977900c8a47e4b478809e34bc5f792082bc66efb955744280c4378fc",
+      "sourceUnitId": "3aa204142d24a6c36af80091ae0f04d76c0104906ecc678dab1bf166ec41fdef",
+      "fragmentId": "2376944b83a098b17f3a7a901c3bb5fa2b39e6dcd3630c8c966d68e017bcbb3b",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 8,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        8.7,
+        11.2
+      ],
+      "measuredFragmentRange": [
+        8.7,
+        11.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "continuity",
+      "motionPrinciple": "stable-travel",
+      "grammarMode": "stands",
+      "originalVideoSHA256": "a0f20b01ac5e3046c65f28e257156d57fd78576953182a99003f44360ec6babb",
+      "planHash": "479f546208ea2229bbd7ffb0cd56052fd01d91bc392b13e93ee5c13b63bd2a11",
+      "inputHash": "c54e970ce9611ff92c31ae75ce86a019623da2c3cd9854c195461d610442a6f1",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          13.7
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "197ac2ebedd6af502b4b4c275c16be2ff7cdbd70d1d901456df558199c1585ef",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "de2fb3247bd137063c97889d3167597207618fafd75d39d043dbb9a9eaa57bff",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "8a4d6c8bea8ddeb305d1a9ab5e860569b7cdab0bdb5b135ec95524fe1f5a6eee",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "b9d062c312c4d0871eb351e99734f63303b6943aebc8e6d7b73ec32a9135af3b",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 468,
+      "matchedPoints": 468,
+      "measuredFrames": 55,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 57
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-03",
+      "unitId": "b87d8dba2a8e71e8e95b4d9237499c44124ec51dbf1787fdec8106ef53e3cda0",
+      "sourceUnitId": "e4057aae1dc18d53f2f56e8cc2f83966575db89a4b0074df1ad05278b4a1eba8",
+      "fragmentId": "6108e033d9baf05d8a0e316ba265e4a0c131c96d9e76c5364f44bea50002d002",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "08e500d0871472be3ca5d688ad49cdfb04ab4e4398c3544ccd366db03c9f4b09",
+      "planHash": "b36e8c62e473f58aefb33e3605cb692850fc033883a346451662ca1efe664f5b",
+      "inputHash": "0a9ce7691dc551ee651dafb0ce0b73f25b4b4b9389581915753a6104bff3df5a",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "ec9cfdab095e56bad044d4775d9b47c339f144906447beba9d4407792bad0498",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "2530f4ca099bec62e8ac7003f78aef280b0d2e079a59d7abfacd25817c63b6a4",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "803d11413b7aa64956ad9f816c4377e878c922f24b1e48582a3564b21c242cc4",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "c441d123a35efa28313ac7f70359a40a82047d2113a7d3a60706cbd87851fd34",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 1,
+      "matchedPoints": 1,
+      "measuredFrames": 1,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 66
+      },
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_ABOVE_HALF_PIXEL_SIGNAL_OR_MISSING_GLYPH",
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-03",
+      "unitId": "7bb1518a44259bc3cea1bdcb00610157c95e6e9b7d3ea934809f0e8207513184",
+      "sourceUnitId": "ab92fe3908a5e8b5ea9337d6cbd44b6fbd2e3d7e4578d0743ce4e8a4eb083623",
+      "fragmentId": "c6e8b34a0e5f2c6f83c40566b7f035ff841616dc0de10b1545aa360f03b031a1",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 4,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "08e500d0871472be3ca5d688ad49cdfb04ab4e4398c3544ccd366db03c9f4b09",
+      "planHash": "b36e8c62e473f58aefb33e3605cb692850fc033883a346451662ca1efe664f5b",
+      "inputHash": "0a9ce7691dc551ee651dafb0ce0b73f25b4b4b9389581915753a6104bff3df5a",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "ec9cfdab095e56bad044d4775d9b47c339f144906447beba9d4407792bad0498",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "2530f4ca099bec62e8ac7003f78aef280b0d2e079a59d7abfacd25817c63b6a4",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "803d11413b7aa64956ad9f816c4377e878c922f24b1e48582a3564b21c242cc4",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "c441d123a35efa28313ac7f70359a40a82047d2113a7d3a60706cbd87851fd34",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 337,
+      "matchedPoints": 337,
+      "measuredFrames": 67,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 67
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-09",
+      "unitId": "1a2d09a6f286e1e5d93083d11b9bcefd3ea551a70e92206eddac1f6de9016b59",
+      "sourceUnitId": "0067bd9e871b605d6578cca9f001a04d76958d780dd7c66888cf56ecd5a98155",
+      "fragmentId": "5413f399d56b97efd4e59f4d9ecc964f4dcd9c87b3c12513abea1aaeba85be62",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 4,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "stands",
+      "originalVideoSHA256": "953e2993c9c0b87f99f3ec63994711d3da5adbe06a061db6469b554b346724ac",
+      "planHash": "adce15067c6a221c48aade874ff6fe2b6c75b7ef09d7d804d293878be2162042",
+      "inputHash": "358ab3946f2b38d41cfe7feadcbeccaa8a2b78d65702c29fff51019fea5830da",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "ae2950201911bc1a73b624f0978ab9b0b5e098b97eabe8f6224a4430a580191c",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "edc61459b1cd52757712c381d743454ea8dffca28ef9d1afa90b083a3cfed367",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "ab9190ba77076e473c34bef4398964e94103b6d2921e4924566a824a51c169ef",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "4cf8b5a5a86a032dbfe4aa70a61d19821ca8e441261c6228220e243e2507690b",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 166,
+      "matchedPoints": 166,
+      "measuredFrames": 66,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-04",
+      "unitId": "ba98ea1c1b5f0f54e16cc68ef7760bc713e3575a6f6e7408519c5eb48dd13483",
+      "sourceUnitId": "b4d3722737bbbf2ce9ee5a6c8ad76b0e182a5457936557f9e0dbab0009d98246",
+      "fragmentId": "507eda4c272e5192eb3199c1d9547f9d738df159d390193ebc474bcb65f0b79e",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "d3fc43fa5e738929f5be2a65fb4ed52800a7ca055b70c8fc590b34287003fb25",
+      "planHash": "d133e786c69488fa9684f26111b8f43266de14155dc3cb1639a8ec32a038d570",
+      "inputHash": "dea01a20ec545a4aa00f5f35e216526b15508ad1249f6bf4ef1918cd284f4f87",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "a58660d249e61e6b47b9c6078276678153cb67d4e6487678b221fa23183077ee",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "1b60134be74900dd02bf3359d9e0d43fe881a3193701614500a309edf2b07001",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "c0d9ae7034feae6758d119a03eed9cf255686ce758dada9bea08ae357ba03763",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "5727d02f2f1e13e2fcd91187f00530b43efff42614b03790133824db5ba2d796",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 7,
+      "matchedPoints": 7,
+      "measuredFrames": 3,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 66
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-04",
+      "unitId": "48ef8f243ced2a8cd1dcca63dcb28c03c4fbcbf6affec44dd65deba8f6dd485b",
+      "sourceUnitId": "dab27c3bdca5cd8864d52e70a48835b6a0ea83251e744dd0914eab6df3f2f808",
+      "fragmentId": "11526ebb3faf0f08b77ae85e0c10ef8aac1b5fbb368b6dbba1c6445ca75d4bcd",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 5,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "d3fc43fa5e738929f5be2a65fb4ed52800a7ca055b70c8fc590b34287003fb25",
+      "planHash": "d133e786c69488fa9684f26111b8f43266de14155dc3cb1639a8ec32a038d570",
+      "inputHash": "dea01a20ec545a4aa00f5f35e216526b15508ad1249f6bf4ef1918cd284f4f87",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "a58660d249e61e6b47b9c6078276678153cb67d4e6487678b221fa23183077ee",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "1b60134be74900dd02bf3359d9e0d43fe881a3193701614500a309edf2b07001",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "c0d9ae7034feae6758d119a03eed9cf255686ce758dada9bea08ae357ba03763",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "5727d02f2f1e13e2fcd91187f00530b43efff42614b03790133824db5ba2d796",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 125,
+      "matchedPoints": 125,
+      "measuredFrames": 24,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 67
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-04",
+      "unitId": "b2508517d5721c6295e5d38d1a1eec0d47b26db59c613a86d5b35cb8b48bfb37",
+      "sourceUnitId": "39ff34bc68b21af1124e18ea77674fb5d2be398b1de1ee0a59c500101972c9bc",
+      "fragmentId": "5f59a14746cd8d4de8edb67f4d3cbd73aab30eaa70f6eef5cdb3df20a91588fd",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 9,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        6.1,
+        8.26
+      ],
+      "measuredFragmentRange": [
+        6.1,
+        8.26
+      ],
+      "targetTraceMode": "OFF",
+      "role": "light",
+      "motionPrinciple": "open-and-illuminate",
+      "grammarMode": "openSky",
+      "originalVideoSHA256": "d3fc43fa5e738929f5be2a65fb4ed52800a7ca055b70c8fc590b34287003fb25",
+      "planHash": "d133e786c69488fa9684f26111b8f43266de14155dc3cb1639a8ec32a038d570",
+      "inputHash": "dea01a20ec545a4aa00f5f35e216526b15508ad1249f6bf4ef1918cd284f4f87",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "a58660d249e61e6b47b9c6078276678153cb67d4e6487678b221fa23183077ee",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "1b60134be74900dd02bf3359d9e0d43fe881a3193701614500a309edf2b07001",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "c0d9ae7034feae6758d119a03eed9cf255686ce758dada9bea08ae357ba03763",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "5727d02f2f1e13e2fcd91187f00530b43efff42614b03790133824db5ba2d796",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 364,
+      "matchedPoints": 364,
+      "measuredFrames": 48,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 49
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-10",
+      "unitId": "db851435a4026e8bf3a84fa94d6c07ad116b384c22207bb13a6f9d23e953bf52",
+      "sourceUnitId": "d2feec151c5bae5c91000553361e8472a87d5b03f3e834623d3698262b78bbbe",
+      "fragmentId": "df9b0daf0d7a2e324fb94ddec9b2c64b44a8a85281014f763b47be5d12971200",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "656095fc416b040fb76d054391421532e0db8124261e2167bc8adaad8a8a0a74",
+      "planHash": "f4fc594ecf19ec3b45932165559e4bec5428991f5312e60a5d0f88113d014011",
+      "inputHash": "1fd219e72c6c878c4c2d9798c193cd7652995416b906d338dab432de8dfb4c7c",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "1f263ae53da8e7dd1b611e1d08830cce3c85bf9da00136743bbc1f7da818c280",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "dffbffc8f179f0acddd2116bffed165210e9aa1e7fece20227b11a096db4ea38",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "7a5c25d24e6408177d6560e96440cf7ea6bed62df49376f4643363097a23248d",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "853faba33f2d332ebd957ddbab3042f311082573b84e9ea06cf3bc09f99e3761",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 67,
+      "matchedPoints": 67,
+      "measuredFrames": 48,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 4,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-10",
+      "unitId": "933a240496c475aab4b4ea6029ecb09baba591484c628879b810e479b0ad6e47",
+      "sourceUnitId": "ad426f12852a111446331825d4f4fbe8bfa8d75bd3c1958ef31d23eb10217978",
+      "fragmentId": "ee6daa7a940fdd5d7a2650148a815f2019da1f0495881b9bfa5c61eae5be9a26",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 3,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "656095fc416b040fb76d054391421532e0db8124261e2167bc8adaad8a8a0a74",
+      "planHash": "f4fc594ecf19ec3b45932165559e4bec5428991f5312e60a5d0f88113d014011",
+      "inputHash": "1fd219e72c6c878c4c2d9798c193cd7652995416b906d338dab432de8dfb4c7c",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "1f263ae53da8e7dd1b611e1d08830cce3c85bf9da00136743bbc1f7da818c280",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "dffbffc8f179f0acddd2116bffed165210e9aa1e7fece20227b11a096db4ea38",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "7a5c25d24e6408177d6560e96440cf7ea6bed62df49376f4643363097a23248d",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "853faba33f2d332ebd957ddbab3042f311082573b84e9ea06cf3bc09f99e3761",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 57,
+      "matchedPoints": 57,
+      "measuredFrames": 55,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-10",
+      "unitId": "c6f5a13d442f280d75ceaad3b79d3f64569dc07510fb4a4346f62caf05e07f1f",
+      "sourceUnitId": "d3b4be9b5bf80cf872fdc8a96bc78bb92682aee07719ab6c99991692d30cf309",
+      "fragmentId": "a5aeebd14c8adf4b906dcb55aa5d046bd137ada76df2372342ecccaf12dc8500",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 7,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        6.1,
+        8.43
+      ],
+      "measuredFragmentRange": [
+        6.1,
+        8.43
+      ],
+      "targetTraceMode": "OFF",
+      "role": "echo",
+      "motionPrinciple": "arrival-and-resonance",
+      "grammarMode": "voice",
+      "originalVideoSHA256": "656095fc416b040fb76d054391421532e0db8124261e2167bc8adaad8a8a0a74",
+      "planHash": "f4fc594ecf19ec3b45932165559e4bec5428991f5312e60a5d0f88113d014011",
+      "inputHash": "1fd219e72c6c878c4c2d9798c193cd7652995416b906d338dab432de8dfb4c7c",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "1f263ae53da8e7dd1b611e1d08830cce3c85bf9da00136743bbc1f7da818c280",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "dffbffc8f179f0acddd2116bffed165210e9aa1e7fece20227b11a096db4ea38",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "7a5c25d24e6408177d6560e96440cf7ea6bed62df49376f4643363097a23248d",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "853faba33f2d332ebd957ddbab3042f311082573b84e9ea06cf3bc09f99e3761",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 408,
+      "matchedPoints": 408,
+      "measuredFrames": 56,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 4,
+        "hold": 46,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-02",
+      "unitId": "e343b59fb2415649d55d23a41d0fd21a3892ac5e5cc9aa757f00dc1c46fdb3e2",
+      "sourceUnitId": "c1e2e21bbaa33028ed5afe7e0b63d87cf723f786cb088dcda404dabf7fb91ea5",
+      "fragmentId": "8d5a290265720add3d6fedff130b956130e3c65ca5551e8d1f07afef495eb626",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "bb2a8cc0da2047b538bcf7b8098761fadde93f7133e40ca21b483bedb733d8b1",
+      "planHash": "7bed5873076746341534b03ce10079e55e4ab0162c9b0b7cfb4abe9a28245ab5",
+      "inputHash": "c3bf0874e58018ff27a55a02fa6f98787b60ece4cbba49c4933b65db680890aa",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "ef5dcbc376bb15527702eaa5a79cd262987ffb5dc23946ef4a187210a175bf90",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "d02057c0bbfa9debfe8874581ab36f03f7ede8fe38f1c7c973475fece8023001",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "c3d83f6115683dcd3a2d96cc0f3e0880689fc60aa773e31e3ad34a7e87d6f956",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "570777367dc551bedb8a45c95bce5945e0dc9898ff85913b5960615d00206a19",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 213,
+      "matchedPoints": 213,
+      "measuredFrames": 52,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 66
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-02",
+      "unitId": "340bc39b56fc7777d2b1c906dc2d586b1c0f5e9efadb4d9c57177f233b4016bb",
+      "sourceUnitId": "a3ec6cda2ebb10472f1dd34eb5a258d64ea2501fc31254258f5046786439b1f7",
+      "fragmentId": "579a626357658faeefc68317c905d5df3f7923189dd68f98f5bd6016322ef786",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 3,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "bb2a8cc0da2047b538bcf7b8098761fadde93f7133e40ca21b483bedb733d8b1",
+      "planHash": "7bed5873076746341534b03ce10079e55e4ab0162c9b0b7cfb4abe9a28245ab5",
+      "inputHash": "c3bf0874e58018ff27a55a02fa6f98787b60ece4cbba49c4933b65db680890aa",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "ef5dcbc376bb15527702eaa5a79cd262987ffb5dc23946ef4a187210a175bf90",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "d02057c0bbfa9debfe8874581ab36f03f7ede8fe38f1c7c973475fece8023001",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "c3d83f6115683dcd3a2d96cc0f3e0880689fc60aa773e31e3ad34a7e87d6f956",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "570777367dc551bedb8a45c95bce5945e0dc9898ff85913b5960615d00206a19",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 17,
+      "matchedPoints": 17,
+      "measuredFrames": 6,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-08",
+      "unitId": "b375ae70e373dfd7f820f0a8ef50277a9929dc35be893e104a930fca6a759ea6",
+      "sourceUnitId": "c6d8fbb818b5e42532c2632dfe6cb5fd528a1680ca149e5a5eaf61b4fa7cbeb5",
+      "fragmentId": "ea96683fbb8315db598ced6a1b24fc2f8152a2623041bd644a1a404d34617363",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "c316af1bfa95ade1cbe79d729b840b85a710ac7a3e7692cd3a7d21b3572d7b00",
+      "planHash": "9339594b8f0574d063b2fc02849c9f03a2eabcf40f7734afc2b270d5a01da8a3",
+      "inputHash": "c002836f6741402a82b32c4156e8386b5e14d646dde813e0f487bcd4ecf431d7",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "f60145e3dc2626de92bb82a05b256b9c151d150134bd2f26fe94377f47b73add",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4dd0b655e32952fa1538f1ffe7279f2f079d7deacd0025802aace1fd9c7f681d",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "70b9f30097bb0cede46336ef4553aebb3f220305bd878bd31b304e928ffaf97c",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "e9ad985fe6f27e49695961f9b2fd416b61bd26807c35d49ee761ed709b349639",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 60,
+      "matchedPoints": 60,
+      "measuredFrames": 56,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 66
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-08",
+      "unitId": "0a874efe898481926ae285ba44de76ebc182d0e4332d613161a0da570035def6",
+      "sourceUnitId": "ca90e78b90e9673d686f91e42ef76db9d0f73fb738cfef5405b0f31fe77b1bd7",
+      "fragmentId": "68e61b3a887ff929cac157f447462c29360b76861fba77a648b8a7fd11328867",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 1,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "c316af1bfa95ade1cbe79d729b840b85a710ac7a3e7692cd3a7d21b3572d7b00",
+      "planHash": "9339594b8f0574d063b2fc02849c9f03a2eabcf40f7734afc2b270d5a01da8a3",
+      "inputHash": "c002836f6741402a82b32c4156e8386b5e14d646dde813e0f487bcd4ecf431d7",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "f60145e3dc2626de92bb82a05b256b9c151d150134bd2f26fe94377f47b73add",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4dd0b655e32952fa1538f1ffe7279f2f079d7deacd0025802aace1fd9c7f681d",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "70b9f30097bb0cede46336ef4553aebb3f220305bd878bd31b304e928ffaf97c",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "e9ad985fe6f27e49695961f9b2fd416b61bd26807c35d49ee761ed709b349639",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 1,
+      "matchedPoints": 1,
+      "measuredFrames": 1,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 67
+      },
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_ABOVE_HALF_PIXEL_SIGNAL_OR_MISSING_GLYPH",
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-08",
+      "unitId": "9f23917eea0363275aee92e8bd70824f6768296d1f573e0bb46a7a8d65ca80a5",
+      "sourceUnitId": "6ce5196831765c40b50ec90b264092e2333f6242447c5902452a3b75fc01fb35",
+      "fragmentId": "4fe3464d2efc52553a8bcbfc858a1127c258cf9921c5c1ef0709a0b17ce2ad92",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 3,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        6.1,
+        7.75
+      ],
+      "measuredFragmentRange": [
+        6.1,
+        7.75
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "c316af1bfa95ade1cbe79d729b840b85a710ac7a3e7692cd3a7d21b3572d7b00",
+      "planHash": "9339594b8f0574d063b2fc02849c9f03a2eabcf40f7734afc2b270d5a01da8a3",
+      "inputHash": "c002836f6741402a82b32c4156e8386b5e14d646dde813e0f487bcd4ecf431d7",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "f60145e3dc2626de92bb82a05b256b9c151d150134bd2f26fe94377f47b73add",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4dd0b655e32952fa1538f1ffe7279f2f079d7deacd0025802aace1fd9c7f681d",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "70b9f30097bb0cede46336ef4553aebb3f220305bd878bd31b304e928ffaf97c",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "e9ad985fe6f27e49695961f9b2fd416b61bd26807c35d49ee761ed709b349639",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 7,
+      "matchedPoints": 7,
+      "measuredFrames": 4,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 36
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-15",
+      "unitId": "8523ed38978f26edadd2c3109d1a4a2d52e606623dfcf6624e3d4b522802832a",
+      "sourceUnitId": "29940e50dfb3124fcf50575da124a9b68dc6d563df843f6974233f51d9c029f6",
+      "fragmentId": "13dfce4131a1117beeab8f6e4b746506bb957ea8bbb7d2dd244414502402979e",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "48850fd4243a79bc64d733361406baefc83d04ce4e3c45b3cc3f4c957183d19c",
+      "planHash": "883a030bfed4bfdc2788c7dae87e3179ebf6e98b1c11478a0fbc88dbdc541de2",
+      "inputHash": "5097b6a32f761d7da2e61ec1d30593bf8e24cc66a52893d6594b57025e731291",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "cd91d2b76051e7cb2ed7f2eeb72657deed3bc5ce7f86aee068ef58652246b15e",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "96457feb8cbb23413a023f7b5ca5b9fbfede59d99c5f0de193c02e336aec25ce",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "a6d09e3773e8d7e3e44f4d6d55258c22d39d9ec0a105b11d6982e69781478f5a",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "f0162f8de2d7067acf41affa2a0493bafcfd3858e19b48a9065bec9757267b81",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 9,
+      "matchedPoints": 9,
+      "measuredFrames": 2,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 58,
+        "exit": 6
+      },
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_ABOVE_HALF_PIXEL_SIGNAL_OR_MISSING_GLYPH",
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-15",
+      "unitId": "c5f3d9a0ec354de451e0204a77eaf5ada42b9f09e7c24e09a56df73b1b50fae9",
+      "sourceUnitId": "48c216eafaca7297c382dbd931df974b48800db287b9ab21481737596a186933",
+      "fragmentId": "a5556a4b96d2cd46ec5274aba541b5ab8354b40d94292e94396cde0ff510364d",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 3,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "48850fd4243a79bc64d733361406baefc83d04ce4e3c45b3cc3f4c957183d19c",
+      "planHash": "883a030bfed4bfdc2788c7dae87e3179ebf6e98b1c11478a0fbc88dbdc541de2",
+      "inputHash": "5097b6a32f761d7da2e61ec1d30593bf8e24cc66a52893d6594b57025e731291",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "cd91d2b76051e7cb2ed7f2eeb72657deed3bc5ce7f86aee068ef58652246b15e",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "96457feb8cbb23413a023f7b5ca5b9fbfede59d99c5f0de193c02e336aec25ce",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "a6d09e3773e8d7e3e44f4d6d55258c22d39d9ec0a105b11d6982e69781478f5a",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "f0162f8de2d7067acf41affa2a0493bafcfd3858e19b48a9065bec9757267b81",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 3,
+      "matchedPoints": 3,
+      "measuredFrames": 3,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-05",
+      "unitId": "c354b4b83abefffc1c34791c633956f3b06448a63d042e6a0391292ff78524b9",
+      "sourceUnitId": "ef0cc9f347ecf008bcf14d44e8be3d8f9b1df7648daa332b2b08c06c16f83f55",
+      "fragmentId": "2617422283c667bfdd8cdca8d1e0d1e5aa644bee5ee4c7e5cb9d23c85398cb76",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "a67cb96a7a451e56669426b9182b1d89c078b57ee74a5391287212f233bf17fd",
+      "planHash": "cf1b6340ce1e6eefb2f70e89b78b441bc3411bf37b21a6df62f8d99c937e3a5e",
+      "inputHash": "5922f5e7278b671b8560a4906bec0f93bd3f4806c4d2814b7ed1a7c6c0baeeb6",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "2ef439739175626078ed2534c20d2a25d47e24597373d2a3d1520970d7c5f1da",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "57cf63d95c3d111c6e07151ba58a881ab93557d37df4fe98a18b664b3dca9637",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "cf8b994651a80d69eb1152e353805b038a02d33b3c3dd8b30d6df506b4daadf3",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "8fc257c813dfa8dcfb8888efc143dd7c05c90af4f35b0660a286e2ff7eb3209e",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 12,
+      "matchedPoints": 12,
+      "measuredFrames": 8,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 58,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-05",
+      "unitId": "fc50759c442060d9abbaa902779281e0126f7320dab2429142a64ffe15d57a5b",
+      "sourceUnitId": "0c0b4dd1cb62951543c65d2725b83ecb80e858de5bd934e04c26211a2f669458",
+      "fragmentId": "42c4e9275b7929b2833eab13d3ffb07e83b0aa5724855b6e7c3dadd8986c0e54",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 3,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "a67cb96a7a451e56669426b9182b1d89c078b57ee74a5391287212f233bf17fd",
+      "planHash": "cf1b6340ce1e6eefb2f70e89b78b441bc3411bf37b21a6df62f8d99c937e3a5e",
+      "inputHash": "5922f5e7278b671b8560a4906bec0f93bd3f4806c4d2814b7ed1a7c6c0baeeb6",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "2ef439739175626078ed2534c20d2a25d47e24597373d2a3d1520970d7c5f1da",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "57cf63d95c3d111c6e07151ba58a881ab93557d37df4fe98a18b664b3dca9637",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "cf8b994651a80d69eb1152e353805b038a02d33b3c3dd8b30d6df506b4daadf3",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "8fc257c813dfa8dcfb8888efc143dd7c05c90af4f35b0660a286e2ff7eb3209e",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 2,
+      "matchedPoints": 2,
+      "measuredFrames": 1,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "UNMEASURED",
+      "reason": "INSUFFICIENT_ABOVE_HALF_PIXEL_SIGNAL_OR_MISSING_GLYPH",
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-05",
+      "unitId": "f3f20d37ddd4d7b2351d276444eb2c93f787d19db59140524ca40389cb41d5f1",
+      "sourceUnitId": "9f5440079d49502dbdf75b7bceece9bd420993a19b9044afadfb9661a07c6963",
+      "fragmentId": "7f6b1be2c9a76cc532f82f1eed3c7c3c4dbcf197a6bc57ae1b12c1a0b03e3516",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 7,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        6.1,
+        8.43
+      ],
+      "measuredFragmentRange": [
+        6.1,
+        8.43
+      ],
+      "targetTraceMode": "OFF",
+      "role": "echo",
+      "motionPrinciple": "arrival-and-resonance",
+      "grammarMode": "voice",
+      "originalVideoSHA256": "a67cb96a7a451e56669426b9182b1d89c078b57ee74a5391287212f233bf17fd",
+      "planHash": "cf1b6340ce1e6eefb2f70e89b78b441bc3411bf37b21a6df62f8d99c937e3a5e",
+      "inputHash": "5922f5e7278b671b8560a4906bec0f93bd3f4806c4d2814b7ed1a7c6c0baeeb6",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "2ef439739175626078ed2534c20d2a25d47e24597373d2a3d1520970d7c5f1da",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "57cf63d95c3d111c6e07151ba58a881ab93557d37df4fe98a18b664b3dca9637",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "cf8b994651a80d69eb1152e353805b038a02d33b3c3dd8b30d6df506b4daadf3",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "8fc257c813dfa8dcfb8888efc143dd7c05c90af4f35b0660a286e2ff7eb3209e",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 335,
+      "matchedPoints": 335,
+      "measuredFrames": 53,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 4,
+        "hold": 46,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-03",
+      "unitId": "ea7f8cfb6ee7a355e95ed95faefca39a83b1d7bc7a613d020164a8e5a6d034b1",
+      "sourceUnitId": "4028895d8962c50ee3afd69b87f0d6124838b8ceae9b64cf94cbed0ca9da3775",
+      "fragmentId": "f4cb702ed3d4847d15c7fce19f521306ecf37dc6aafeae26b4ec3454712b8491",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "d25e9fc0e0b539c65d5f0b7a4a27840f013eefbf21b05cc24538b32bf8d2f7cd",
+      "planHash": "476c225647a11335933add103f1f61d53c17afca47a11f3f4e15d89dc87356e2",
+      "inputHash": "4aafe0e5dc520c70acbac0ce89240de967d265b77cc8e99905b9f6871bd88e5b",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "2347eb62033dcc2041761d1555ed1585f40b418d80eeafec314efe171b50db11",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "f77cf61dae8cbe6196e584afda68973feb21502a79a45dcf77aadac4591bca81",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "0e5ce4d3b1dad30a010e829bb871c10e7f3f02d59a95a90cd246dde0fe8d2d80",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "039c33528c361b0a0328c7ed9e41ba687c21378f7c6d04cbc3f562c7c1ed42b0",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 50,
+      "matchedPoints": 50,
+      "measuredFrames": 49,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 66
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-03",
+      "unitId": "93bcc68e7b9adbbcae0aeff6cbe40e22ef76c19d59eb1d6e241472a1fbbe85e8",
+      "sourceUnitId": "f9725a61c6fc561fcb73774cc8df20e288dd3bc6a53e84e027092a094d1b7f46",
+      "fragmentId": "dcefa2d969940829f499b31afad239278e7eecccef205d643624a521a3051a4b",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 3,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "d25e9fc0e0b539c65d5f0b7a4a27840f013eefbf21b05cc24538b32bf8d2f7cd",
+      "planHash": "476c225647a11335933add103f1f61d53c17afca47a11f3f4e15d89dc87356e2",
+      "inputHash": "4aafe0e5dc520c70acbac0ce89240de967d265b77cc8e99905b9f6871bd88e5b",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "2347eb62033dcc2041761d1555ed1585f40b418d80eeafec314efe171b50db11",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "f77cf61dae8cbe6196e584afda68973feb21502a79a45dcf77aadac4591bca81",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "0e5ce4d3b1dad30a010e829bb871c10e7f3f02d59a95a90cd246dde0fe8d2d80",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "039c33528c361b0a0328c7ed9e41ba687c21378f7c6d04cbc3f562c7c1ed42b0",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 25,
+      "matchedPoints": 25,
+      "measuredFrames": 20,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 67
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-03",
+      "unitId": "822a3f2e2ca18dc311defd177c7b3431b239c343a152aee8b50f67020772c7e1",
+      "sourceUnitId": "160f9aac98c1f569eb70691d05141dba4db4e8bacce06aafc0755e9196ab697f",
+      "fragmentId": "9b46cc8d64b9b03a88c7302c8a785d7c01b325ba8ee95ea5b2c507fe839c201b",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 7,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        6.1,
+        8.43
+      ],
+      "measuredFragmentRange": [
+        6.1,
+        8.43
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "duo",
+      "originalVideoSHA256": "d25e9fc0e0b539c65d5f0b7a4a27840f013eefbf21b05cc24538b32bf8d2f7cd",
+      "planHash": "476c225647a11335933add103f1f61d53c17afca47a11f3f4e15d89dc87356e2",
+      "inputHash": "4aafe0e5dc520c70acbac0ce89240de967d265b77cc8e99905b9f6871bd88e5b",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "rawSHA256": "2347eb62033dcc2041761d1555ed1585f40b418d80eeafec314efe171b50db11",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "f77cf61dae8cbe6196e584afda68973feb21502a79a45dcf77aadac4591bca81",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "0e5ce4d3b1dad30a010e829bb871c10e7f3f02d59a95a90cd246dde0fe8d2d80",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "039c33528c361b0a0328c7ed9e41ba687c21378f7c6d04cbc3f562c7c1ed42b0",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 74,
+      "matchedPoints": 74,
+      "measuredFrames": 48,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 53
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-09",
+      "unitId": "b527aab46bf922f749382309393901329b3f392b3f0211b44ef61e349db58a62",
+      "sourceUnitId": "21b7854130d8f6a000a5fe534af623756ecd9eacbd551e474a19855fb9006c00",
+      "fragmentId": "58139c6e631e86ed66868a32c400f2ba4b0458d24d7bc281b1a7148c6b88594b",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "stands",
+      "originalVideoSHA256": "fbd75eb518aa401899f0cbd20e61456fa2b008ef6d4341d89b807865b89c919d",
+      "planHash": "b7e4438619065f6174a1f07641e47a1f4df50e8c16a7fc6418433f8b8c6e95aa",
+      "inputHash": "70e8eae81488d546ab62c991b8185d1445e9af972be85735fadd8033fe637116",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "95fdbf99e82ef17a00d11deba4d03ea62d285e508f7e8981dd1719b2918dbb24",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "854e095719381799c880978512da9981d43f2f67d424d0620293c2d6b2c0cdc6",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "f5b61b1d22e199f0a94d6aff76c015a533ae5d70f8b74f297a489c8b6fb46137",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "64c4a4a912e1b7330972cd22b6e6bc7709d71f203c74f698694c84b2af0cc24f",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 79,
+      "matchedPoints": 79,
+      "measuredFrames": 35,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 4,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-09",
+      "unitId": "e2c4656e571a1e286adb35c1ba8f30e7daff200573158d8261dfa1cabd89f140",
+      "sourceUnitId": "535044e6001fc3d5f3108211d2fa6f7da6eb99732644b4ff967e3542e5be44e3",
+      "fragmentId": "2bc968028f1e3ebf729f843f1d86e5338084a2110f579cd8f1984f30cb46a2ed",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 4,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "stands",
+      "originalVideoSHA256": "fbd75eb518aa401899f0cbd20e61456fa2b008ef6d4341d89b807865b89c919d",
+      "planHash": "b7e4438619065f6174a1f07641e47a1f4df50e8c16a7fc6418433f8b8c6e95aa",
+      "inputHash": "70e8eae81488d546ab62c991b8185d1445e9af972be85735fadd8033fe637116",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "95fdbf99e82ef17a00d11deba4d03ea62d285e508f7e8981dd1719b2918dbb24",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "854e095719381799c880978512da9981d43f2f67d424d0620293c2d6b2c0cdc6",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "f5b61b1d22e199f0a94d6aff76c015a533ae5d70f8b74f297a489c8b6fb46137",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "64c4a4a912e1b7330972cd22b6e6bc7709d71f203c74f698694c84b2af0cc24f",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 168,
+      "matchedPoints": 168,
+      "measuredFrames": 65,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 59,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "holdout-09",
+      "unitId": "57fc2a977ca4d56cb88f4e7cb72e1f16c04429558fce8ececf6ff9717825bedd",
+      "sourceUnitId": "0f396bc9f49237b1a7c11a149227a754044d4476d75fb8298bcf8baf4c1cea8e",
+      "fragmentId": "a46d9ac5a4575218a4c4059b3390709e34f45ebaaefb70b6401567934f854e8a",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 9,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        6.1,
+        8.09
+      ],
+      "measuredFragmentRange": [
+        6.1,
+        8.09
+      ],
+      "targetTraceMode": "OFF",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "stands",
+      "originalVideoSHA256": "fbd75eb518aa401899f0cbd20e61456fa2b008ef6d4341d89b807865b89c919d",
+      "planHash": "b7e4438619065f6174a1f07641e47a1f4df50e8c16a7fc6418433f8b8c6e95aa",
+      "inputHash": "70e8eae81488d546ab62c991b8185d1445e9af972be85735fadd8033fe637116",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "rawSHA256": "95fdbf99e82ef17a00d11deba4d03ea62d285e508f7e8981dd1719b2918dbb24",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "854e095719381799c880978512da9981d43f2f67d424d0620293c2d6b2c0cdc6",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "f5b61b1d22e199f0a94d6aff76c015a533ae5d70f8b74f297a489c8b6fb46137",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "64c4a4a912e1b7330972cd22b6e6bc7709d71f203c74f698694c84b2af0cc24f",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 101,
+      "matchedPoints": 101,
+      "measuredFrames": 34,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 4,
+        "hold": 38,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-11",
+      "unitId": "9ea468c9f545ae233f20b91f8fd93ab1f866c670eb5207a6bee85da3a291fd14",
+      "sourceUnitId": "4f7f7e9b3ac0dc6941a9f4ffcd8287cbb87673790176815299a2860bca1e7d7b",
+      "fragmentId": "efe54045dab185d10c79b6978361d9bb34721f736899c100a9dc176a962bd89a",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        8,
+        11.67
+      ],
+      "measuredFragmentRange": [
+        8,
+        11.67
+      ],
+      "targetTraceMode": "ON",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "voice",
+      "originalVideoSHA256": "7f083c578c00ecfd03684d27737afbce32b7d1f942fa22ddd9d7b0be5e982d64",
+      "planHash": "156378b44182f444b1f42d6b0d03452bf4e5aa434dcdb55f715cb188db7a1fc9",
+      "inputHash": "d607d1e02209793961caa3ce4c0345a580e45de9f920f9d18fb34d8ab33fcc9f",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "81c0d775f19fb0b91ed70ed313a8fba236c05c3e30ecdc7159335b400d0d0f95",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "010b1d9ccbbeca9c5ce1035a2f10d16df6f8fccfad9fe04f403a83dfd2f75ddf",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "bc4d421ba26a6cfaf03b1d83fc7c31400a6b5306dadc5aff80a1f29f4a6522fc",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "3996e33a9f078159efc576c3ca2ee85e87b3b4ca47cf3e20f2dae6a00128b0ce",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 54,
+      "matchedPoints": 54,
+      "measuredFrames": 25,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 78,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-11",
+      "unitId": "bd71d0c93c9603cfd862f834ab6656b5f3c88270b511eaeb0d04fa6fbb56349a",
+      "sourceUnitId": "58fcc8a04271c7a586667683a060325edfd789f36681615267639e5a677a5b65",
+      "fragmentId": "4eb5c96bde0cd1ce0eead634d2e1cbf53f25194fce72c96ca5286dac4422a594",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 4,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        11.67,
+        15.33
+      ],
+      "measuredFragmentRange": [
+        11.67,
+        15.33
+      ],
+      "targetTraceMode": "ON",
+      "role": "light",
+      "motionPrinciple": "open-and-illuminate",
+      "grammarMode": "openSky",
+      "originalVideoSHA256": "7f083c578c00ecfd03684d27737afbce32b7d1f942fa22ddd9d7b0be5e982d64",
+      "planHash": "156378b44182f444b1f42d6b0d03452bf4e5aa434dcdb55f715cb188db7a1fc9",
+      "inputHash": "d607d1e02209793961caa3ce4c0345a580e45de9f920f9d18fb34d8ab33fcc9f",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "81c0d775f19fb0b91ed70ed313a8fba236c05c3e30ecdc7159335b400d0d0f95",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "010b1d9ccbbeca9c5ce1035a2f10d16df6f8fccfad9fe04f403a83dfd2f75ddf",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "bc4d421ba26a6cfaf03b1d83fc7c31400a6b5306dadc5aff80a1f29f4a6522fc",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "3996e33a9f078159efc576c3ca2ee85e87b3b4ca47cf3e20f2dae6a00128b0ce",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 89,
+      "matchedPoints": 89,
+      "measuredFrames": 84,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 4,
+        "hold": 78,
+        "exit": 5
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-11",
+      "unitId": "a911fa480940b2e5f81c8e82b72ff6cff11142fa667c25fdbeb864959439f214",
+      "sourceUnitId": "18e68f59f9bc1a0c96598b9dc7211399d2f560b19cddfbee5b6ba325f1c9e3d7",
+      "fragmentId": "a12a31b6a171e4f43cae5b035ef22641f49a0f3769571c33f14ea9dfd6f613f4",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 8,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        15.33,
+        17.66
+      ],
+      "measuredFragmentRange": [
+        15.33,
+        17.66
+      ],
+      "targetTraceMode": "ON",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "voice",
+      "originalVideoSHA256": "7f083c578c00ecfd03684d27737afbce32b7d1f942fa22ddd9d7b0be5e982d64",
+      "planHash": "156378b44182f444b1f42d6b0d03452bf4e5aa434dcdb55f715cb188db7a1fc9",
+      "inputHash": "d607d1e02209793961caa3ce4c0345a580e45de9f920f9d18fb34d8ab33fcc9f",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "81c0d775f19fb0b91ed70ed313a8fba236c05c3e30ecdc7159335b400d0d0f95",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "010b1d9ccbbeca9c5ce1035a2f10d16df6f8fccfad9fe04f403a83dfd2f75ddf",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "bc4d421ba26a6cfaf03b1d83fc7c31400a6b5306dadc5aff80a1f29f4a6522fc",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "3996e33a9f078159efc576c3ca2ee85e87b3b4ca47cf3e20f2dae6a00128b0ce",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 16,
+      "matchedPoints": 16,
+      "measuredFrames": 4,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 46,
+        "exit": 5
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "late-unseen-quiet-16x9",
+      "unitId": "1ef44b8a85db7201b855e5eac3ab1a011f7faa482214e43f840e4d721f6625b4",
+      "sourceUnitId": "b963feee5af6e42386ccac2f0ef1670afe57251a2c3ebdab5b75405e4e02e7f2",
+      "fragmentId": "6bc3a98707868b92990ffbacc8481966e00a078f2a090f194075b3e6dc255ba2",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.4,
+        4.8
+      ],
+      "measuredFragmentRange": [
+        0.4,
+        4.8
+      ],
+      "targetTraceMode": "ON",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "stands",
+      "originalVideoSHA256": "ba71737a7412ea3b89f493d9ed95c1b696568508f9d63220802e1d4dab49bdde",
+      "planHash": "63ca610f9e3ab4945aa312ddcc8f0d6c00785558a158fb21fda88f06f635b3bd",
+      "inputHash": "63147a11d92052e42fdfd588529ada1675f0f51ed49750005a8ddb2501929536",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          14.3
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "796f25a0c2806a3673fe8d6f0c1db493be2c86c17e91b7fc77bba6b7b23e0f6f",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "84845db65cf7e59f29f9ebb26d438ab603e645026856e5547a17b0d53f2b07cc",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "de95b8e38e88164157ebcfaa316cffcf65ab94b5d95a9138983b809c85403078",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "a5699c4db4f3e0ecfd670d6e2eb4e987b65e72f0393d738580e3cc2c92a67d6b",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 74,
+      "matchedPoints": 74,
+      "measuredFrames": 30,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 103
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "late-unseen-quiet-16x9",
+      "unitId": "816373365e974d431277ef79caa1747cdd97b0e83dc94aedfc43a633b29c7b29",
+      "sourceUnitId": "411336c8a24689e74ce8e92d8f77f1a582ebdbc0244d8b8c51cd2d4e1e3627a6",
+      "fragmentId": "29e3915f70074d0859096ae61748c43e9187ada0bb13c834816b05bfd258b364",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 5,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        4.8,
+        9.1
+      ],
+      "measuredFragmentRange": [
+        4.8,
+        9.1
+      ],
+      "targetTraceMode": "ON",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "stands",
+      "originalVideoSHA256": "ba71737a7412ea3b89f493d9ed95c1b696568508f9d63220802e1d4dab49bdde",
+      "planHash": "63ca610f9e3ab4945aa312ddcc8f0d6c00785558a158fb21fda88f06f635b3bd",
+      "inputHash": "63147a11d92052e42fdfd588529ada1675f0f51ed49750005a8ddb2501929536",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          14.3
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "796f25a0c2806a3673fe8d6f0c1db493be2c86c17e91b7fc77bba6b7b23e0f6f",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "84845db65cf7e59f29f9ebb26d438ab603e645026856e5547a17b0d53f2b07cc",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "de95b8e38e88164157ebcfaa316cffcf65ab94b5d95a9138983b809c85403078",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "a5699c4db4f3e0ecfd670d6e2eb4e987b65e72f0393d738580e3cc2c92a67d6b",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 130,
+      "matchedPoints": 130,
+      "measuredFrames": 53,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 4,
+        "hold": 93,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "late-unseen-quiet-16x9",
+      "unitId": "5be0bd55ddbd621274c304c2b721082517a30765a81df17d0b8187adccd7da94",
+      "sourceUnitId": "345498fb63e7a1034f1573792f0ab967926967e01635e1394e7bc5ff05f67915",
+      "fragmentId": "dd4ff8a56bae6526b1f1709526bc3a95a06665ee2df7df0913f1bf1e194d2505",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 10,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        9.1,
+        11.94
+      ],
+      "measuredFragmentRange": [
+        9.1,
+        11.94
+      ],
+      "targetTraceMode": "ON",
+      "role": "light",
+      "motionPrinciple": "open-and-illuminate",
+      "grammarMode": "openSky",
+      "originalVideoSHA256": "ba71737a7412ea3b89f493d9ed95c1b696568508f9d63220802e1d4dab49bdde",
+      "planHash": "63ca610f9e3ab4945aa312ddcc8f0d6c00785558a158fb21fda88f06f635b3bd",
+      "inputHash": "63147a11d92052e42fdfd588529ada1675f0f51ed49750005a8ddb2501929536",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          14.3
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rawSHA256": "796f25a0c2806a3673fe8d6f0c1db493be2c86c17e91b7fc77bba6b7b23e0f6f",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "84845db65cf7e59f29f9ebb26d438ab603e645026856e5547a17b0d53f2b07cc",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "de95b8e38e88164157ebcfaa316cffcf65ab94b5d95a9138983b809c85403078",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "a5699c4db4f3e0ecfd670d6e2eb4e987b65e72f0393d738580e3cc2c92a67d6b",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 792,
+      "matchedPoints": 792,
+      "measuredFrames": 67,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 5,
+        "hold": 57,
+        "exit": 6
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-15",
+      "unitId": "e9e48d98c9605f2afc3aab1d7dd3b5bef568eb73337a07587458132323085a36",
+      "sourceUnitId": "5abba1ce868db5fff5655faf783c9809965597dca89c7a66a2c772550b474cc2",
+      "fragmentId": "bae73dc9d0de4012c052841e4cf53f78cfd2d7f467a57841018f0d8671b9b28b",
+      "finalOrdinal": 0,
+      "reportedCutIndexNotFinalOrdinal": 0,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 0,
+      "range": [
+        0.3,
+        3.2
+      ],
+      "measuredFragmentRange": [
+        0.3,
+        3.2
+      ],
+      "targetTraceMode": "ON",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "00d11806c93845649990710f9e44daa62f6f72632bc15828fd0863778cc989b1",
+      "planHash": "8d8191d6e36d35de71e00e61d7b70a98e2f4f6ad763f91889d7942454ee4f221",
+      "inputHash": "95dc93fd844f1838f5b749369dbd295572efe28475f82efee75b4a154777c034",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "bca8f223c3efa981161e157e570c259265fe6bb14d17b0c845d174f3964709dc",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4aa76d21e9bff36d0960f42cf5f049c912f30d08099c7368e874a6849fb33863",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "da963ec2a6174af1467f04ee094e984fa3cabe8bbab8edf8a89af728d694a24a",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "10d73dace23862ce1a4cac31427ae4810837a34f5c8e1a99fdb0a3f518f47ab6",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 598,
+      "matchedPoints": 598,
+      "measuredFrames": 52,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 66
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-15",
+      "unitId": "59f385d2ecd4a1dc652d94a65c69e23a9001029c526b2f23cf0b66ba0d744b71",
+      "sourceUnitId": "a5a5370dc239229acec17833f7aade2bbd3eec79dafbdb602941bbaba2086709",
+      "fragmentId": "6b6cd4bbff6e1b8bbb099bcf81e92b385df80fc86b42e9b9006067398370f6d2",
+      "finalOrdinal": 1,
+      "reportedCutIndexNotFinalOrdinal": 4,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 1,
+      "range": [
+        3.2,
+        6.1
+      ],
+      "measuredFragmentRange": [
+        3.2,
+        6.1
+      ],
+      "targetTraceMode": "ON",
+      "role": "narrative",
+      "motionPrinciple": "reveal-and-settle",
+      "grammarMode": "solo",
+      "originalVideoSHA256": "00d11806c93845649990710f9e44daa62f6f72632bc15828fd0863778cc989b1",
+      "planHash": "8d8191d6e36d35de71e00e61d7b70a98e2f4f6ad763f91889d7942454ee4f221",
+      "inputHash": "95dc93fd844f1838f5b749369dbd295572efe28475f82efee75b4a154777c034",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "bca8f223c3efa981161e157e570c259265fe6bb14d17b0c845d174f3964709dc",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4aa76d21e9bff36d0960f42cf5f049c912f30d08099c7368e874a6849fb33863",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "da963ec2a6174af1467f04ee094e984fa3cabe8bbab8edf8a89af728d694a24a",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "10d73dace23862ce1a4cac31427ae4810837a34f5c8e1a99fdb0a3f518f47ab6",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 724,
+      "matchedPoints": 724,
+      "measuredFrames": 67,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 67
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    },
+    {
+      "caseId": "development-15",
+      "unitId": "33e8df85e0d65d3302f1b608c2d0068d4a2a1c9f90abe49c63b5ce732e10819a",
+      "sourceUnitId": "a0a010819f8d553adffbb7a86cbb270a6ab90ee44a835c114f40f88c3b85b0d4",
+      "fragmentId": "ccaf2dace357a96445c7d27d66981d56268329a0c0b90045d15bcb163ea398b6",
+      "finalOrdinal": 2,
+      "reportedCutIndexNotFinalOrdinal": 7,
+      "targetBindingMethod": "Unique line plus complete source fragment range; raw cut.index explicitly differs from final ordinal when present.",
+      "line": 2,
+      "range": [
+        6.1,
+        9.11
+      ],
+      "measuredFragmentRange": [
+        6.1,
+        9.11
+      ],
+      "targetTraceMode": "ON",
+      "role": "light",
+      "motionPrinciple": "open-and-illuminate",
+      "grammarMode": "openSky",
+      "originalVideoSHA256": "00d11806c93845649990710f9e44daa62f6f72632bc15828fd0863778cc989b1",
+      "planHash": "8d8191d6e36d35de71e00e61d7b70a98e2f4f6ad763f91889d7942454ee4f221",
+      "inputHash": "95dc93fd844f1838f5b749369dbd295572efe28475f82efee75b4a154777c034",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rawSHA256": "bca8f223c3efa981161e157e570c259265fe6bb14d17b0c845d174f3964709dc",
+      "controlVideos": [
+        {
+          "mode": "ON",
+          "videoSHA256": "4aa76d21e9bff36d0960f42cf5f049c912f30d08099c7368e874a6849fb33863",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "da963ec2a6174af1467f04ee094e984fa3cabe8bbab8edf8a89af728d694a24a",
+          "fullDecode": "PASS"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "10d73dace23862ce1a4cac31427ae4810837a34f5c8e1a99fdb0a3f518f47ab6",
+          "fullDecode": "PASS"
+        }
+      ],
+      "positivePoints": 654,
+      "matchedPoints": 654,
+      "measuredFrames": 64,
+      "agreement": 1.0,
+      "phaseFrames": {
+        "entry": 3,
+        "hold": 69
+      },
+      "status": "VERIFIED_RECIPE_CONTRIBUTION",
+      "reason": null,
+      "semanticIntendedMotion": "UNVERIFIED_SEPARATE_ROLE_MODEL_REQUIRED"
+    }
+  ]
+}
