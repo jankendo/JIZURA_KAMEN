@@ -23,6 +23,10 @@ def save():
  p=out/'collection-progress.json';temp=p.with_suffix('.tmp');temp.write_text(json.dumps(receipt,indent=2)+'\n');temp.replace(p)
 save();original=inputs/'original';download(c['original'],original)
 env={**os.environ,'KAMEN_COUNTERFACTUAL_PHASES':'1','KAMEN_COUNTERFACTUAL_NATIVE_HASHES':'1'}
+if any(h in ['grammarTemporalRecipe','grammarUniformTranslation']for h in c['additionalOFFHooks']):
+ grammar=pathlib.Path(specpath).resolve().parent/'grammar-policy-v2-temporal-recipe-preregistration.json'
+ assert grammar.is_file(),'GRAMMAR_CONTROL_SOURCE_SPEC_REQUIRED_BEFORE_RENDER'
+ env['KAMEN_GRAMMAR_CONTROL_SPEC']=str(grammar)
 native=out/'native';native.mkdir(exist_ok=True)
 receipt['native']=run('native','native_dispatch_lineage_trace_v7.cjs',['http://127.0.0.1:4173/',original/'matrix',cid,'v3',native],env,spec['perNativeDeadlineSeconds']);save()
 assert receipt['native']['exitCode']==0,'NATIVE_PROCESS_FAILED'
