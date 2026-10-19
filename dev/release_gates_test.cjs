@@ -60,7 +60,7 @@ try{
  console.log('release gate evidence contract: 37 counterexample/positive scenarios PASS');
  // Synthetic v2 contracts exercise the evaluator only; these are never media evidence.
  const readRef=r=>JSON.parse(fs.readFileSync(path.join(root,r.path)));
- const videoRef=(label,b)=>{const bytes=Buffer.from('synthetic evaluator fixture '+label),videoSHA256=sha(bytes),file=`synthetic-${n++}.mp4`;fs.writeFileSync(path.join(root,file),bytes);return {hash:videoSHA256,ref:ref({binding:{...b,videoSHA256},videoSHA256,codecVideo:'h264',decodeComplete:true,decodeExitCode:0,media:{path:file,sha256:videoSHA256}})};};
+ const videoRef=(label,b)=>{const bytes=Buffer.from('synthetic evaluator fixture '+label),videoSHA256=sha(bytes),file=`synthetic-${n++}.mp4`;fs.writeFileSync(path.join(root,file),bytes);return {hash:videoSHA256,ref:ref({binding:{...b,videoSHA256},videoSHA256,decodedRGBA_SHA256:sha(Buffer.from('decoded synthetic '+label)),codecVideo:'h264',decodeComplete:true,decodeExitCode:0,media:{path:file,sha256:videoSHA256}})};};
  function typedFixture(type='STATIC'){
   const b={sourceCommit:commit,rendererVersion:hash,inputHash:hash,planHash:hash,outputProfile:{resolution:[64,64],fps:10,range:[0,.4]}};
   const original=videoRef('original',b);b.videoSHA256=original.hash;
@@ -123,6 +123,10 @@ try{
  {const m=typedFixture('COMPOSITE');change(m,'operators',o=>{o.observations.shift();o.observations[0].status='FAILED';});assert.equal(typedState(m),'FAIL','v2 missing first component cannot hide a later observed failure');v2checks++;}
 
  for(const omitFirst of [false,true]){const m=typedFixture();change(m,'operators',o=>{const p=readRef(o.population),c=p.intents[0],l=readRef(p.executionLedger),r=readRef(o.observations[0].measurement);c.fps=30;c.from=31/30;c.to=35/30;c.binding.outputProfile={resolution:[64,64],fps:30,range:[0,2]};l.rows[0].binding=c.binding;r.binding=c.binding;const fixMovie=refValue=>{const v=readRef(refValue);v.binding={...c.binding,videoSHA256:v.videoSHA256};return ref(v);};r.movie=fixMovie(r.movie);const sensitivity=readRef(r.sensitivityControl);sensitivity.movie=fixMovie(sensitivity.movie);r.sensitivityControl=ref(sensitivity);r.decodedFrames=Array.from({length:4},(_,i)=>({frameIndex:31+i,actualDecodedTimestamp:(31+i)/30,targetId:c.target.id,glyphs:c.glyphIds.map((id,j)=>({id,pixelPresence:true,decodedCentroid:[10+j*5,20]}))}));if(omitFirst)r.decodedFrames.shift();r.contractSHA256=sha(Buffer.from(JSON.stringify(c)));p.executionLedger=ref(l);o.population=ref(p);o.observations[0].measurement=ref(r);});assert.equal(typedState(m),omitFirst?'UNVERIFIED':'PASS','exact 31/30 boundary frame owns itself and may not be dropped');v2checks++;}
+
+ {const m=typedFixture('DYNAMIC');editRaw(m,r=>{r.controlMovie=r.movie;r.controlVideoSHA256=r.binding.videoSHA256;});change(m,'operators',o=>o.observations[0].controlVideoSHA256=o.observations[0].videoSHA256);assert.equal(typedState(m),'UNVERIFIED','identical actual control movie cannot certify motion even with fabricated nonzero vectors');v2checks++;}
+ {const m=typedFixture('DYNAMIC');editRaw(m,r=>{const c=readRef(r.controlMovie);c.decodedRGBA_SHA256=readRef(r.movie).decodedRGBA_SHA256;r.controlMovie=ref(c);});assert.equal(typedState(m),'UNVERIFIED','different containers with identical decoded pixels cannot certify motion');v2checks++;}
+ {const m=typedFixture();editRaw(m,r=>{const control=readRef(r.sensitivityControl),c=readRef(control.movie);c.decodedRGBA_SHA256=readRef(r.movie).decodedRGBA_SHA256;control.movie=ref(c);r.sensitivityControl=ref(control);});assert.equal(typedState(m),'UNVERIFIED','static detector sensitivity cannot use identical decoded pixels');v2checks++;}
  console.log(`v2 typed intent proof contract: ${v2checks} synthetic positive/counterexample scenarios PASS`);
 
 }finally{fs.rmSync(root,{recursive:true,force:true});}

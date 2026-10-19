@@ -22,7 +22,7 @@ function typedImportantOperators(o,load,media){
  const observations=o.observations||[],ledgerRows=new Map((ledger.rows||[]).map(i=>[i.intentId,i])),visited=new Set();
  const finitePoint=p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite);
  const binding=(a,b)=>['sourceCommit','rendererVersion','inputHash','planHash','videoSHA256'].every(k=>a?.[k]===b?.[k])&&a?.outputProfile&&JSON.stringify(a.outputProfile)===JSON.stringify(b?.outputProfile)&&COMMIT.test(b?.sourceCommit||'')&&['rendererVersion','inputHash','planHash','videoSHA256'].every(k=>HASH.test(b?.[k]||''));
- function movie(ref,b,hash){const m=load(ref);if(!binding({...m.binding,videoSHA256:b.videoSHA256},b)||m.videoSHA256!==hash||m.binding.videoSHA256!==hash||m.decodeComplete!==true||m.decodeExitCode!==0||m.codecVideo!=='h264')throw Error('v2 decoded movie binding missing');media(m.media,hash);return m;}
+ function movie(ref,b,hash){const m=load(ref);if(!binding({...m.binding,videoSHA256:b.videoSHA256},b)||m.videoSHA256!==hash||m.binding.videoSHA256!==hash||m.decodeComplete!==true||m.decodeExitCode!==0||m.codecVideo!=='h264'||!HASH.test(m.decodedRGBA_SHA256||''))throw Error('v2 decoded movie binding missing');media(m.media,hash);return m;}
  function staticFrames(raw,c,b){
   const f=raw.decodedFrames,glyphs=c.glyphIds;
   if(c.target.layer!=='PRIMARY_LYRIC'||!Array.isArray(glyphs)||!glyphs.length||new Set(glyphs).size!==glyphs.length||!Array.isArray(f)||!Number.isFinite(c.fps)||c.fps<=0||!Number.isFinite(c.from)||!Number.isFinite(c.to)||c.to<=c.from||!Number.isFinite(c.frameOrigin)||!Number.isFinite(c.tolerancePixels)||c.tolerancePixels<0||c.tolerancePixels>1)return 'v2 static contract or glyph population incomplete';
@@ -41,7 +41,7 @@ function typedImportantOperators(o,load,media){
   }
   if(moved)return false;
   const control=load(raw.sensitivityControl);
-  movie(control.movie,b,control.videoSHA256);
+  const controlMovie=movie(control.movie,b,control.videoSHA256);if(controlMovie.decodedRGBA_SHA256===load(raw.movie).decodedRGBA_SHA256)return 'v2 static sensitivity control has identical decoded pixels';
   if(control.targetId!==c.target.id||control.videoSHA256===b.videoSHA256||!Array.isArray(control.glyphs)||control.glyphs.length!==glyphs.length||new Set(control.glyphs.map(g=>g.id)).size!==glyphs.length)return 'v2 static sensor independent moving-target control missing';
   for(const id of glyphs){const g=control.glyphs.find(g=>g.id===id);if(!g||!finitePoint(g.from)||!finitePoint(g.to)||!Number.isFinite(g.expectedDisplacementPixels)||g.expectedDisplacementPixels<=c.tolerancePixels*2||Math.abs(Math.hypot(...g.to.map((v,k)=>v-g.from[k]))-g.expectedDisplacementPixels)>.5)return 'v2 static sensor failed moving-target sensitivity control';}
   return true;
@@ -68,7 +68,7 @@ function typedImportantOperators(o,load,media){
    // typed contract additionally binds repeat, target, interval and actual files.
    if(a[0].counterfactual!==true||raw.isolatedControl!==true||!HASH.test(raw.controlVideoSHA256||'')||!HASH.test(raw.repeatVideoSHA256||'')||!Number.isFinite(raw.actualDecodedTimestamp)||raw.actualDecodedTimestamp!==a[0].actualDecodedTimestamp||raw.actualDecodedTimestamp<contract.from||raw.actualDecodedTimestamp>=contract.to||!Array.isArray(raw.measuredValues)||!raw.measuredValues.length||raw.measuredValues.some(v=>!Number.isFinite(v)))return 'v2 isolated dynamic/assembly control missing';
    if(a[0].videoSHA256!==b.videoSHA256||a[0].controlVideoSHA256!==raw.controlVideoSHA256||a[0].decodedPixels!==true)return 'v2 dynamic observation differs from raw proof';
-   movie(raw.controlMovie,b,raw.controlVideoSHA256);movie(raw.repeatMovie,b,raw.repeatVideoSHA256);
+   const controlMovie=movie(raw.controlMovie,b,raw.controlVideoSHA256);movie(raw.repeatMovie,b,raw.repeatVideoSHA256);if(raw.controlVideoSHA256===b.videoSHA256||controlMovie.decodedRGBA_SHA256===load(raw.movie).decodedRGBA_SHA256)return 'v2 original/control pixels are identical; no dynamic attribution';
    if(raw.independentRepeat!==true||raw.originalNativeIdentity!==true||raw.originalDecodedIdentity!==true||raw.repeatNativeIdentity!==true||raw.targetModelPassed!==true)return 'v2 repeat/original reproduction or target semantic model unverified';
    const model=contract.semanticModel,samples=raw.semanticSamples;
    if(model?.units!=='OUTPUT_PIXELS'||!Array.isArray(model.expectedSamples)||model.expectedSamples.length<3||!Array.isArray(samples)||samples.length!==model.expectedSamples.length)return 'v2 preregistered target vector model or actual samples missing';
