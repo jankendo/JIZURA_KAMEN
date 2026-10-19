@@ -1,0 +1,97 @@
+{
+  "scope": "HISTORICAL_NATURALLY_SELECTED_PLAN_CURRENT_PUBLIC_API_EXPORT_COMPATIBILITY",
+  "freshAutomaticSelection": false,
+  "uiProjectRestoreTest": false,
+  "historicalSourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f",
+  "historicalVideoSHA256": "c8810ca3a5015a26c1ff7b01e24d169a44970ff9e7ba83fa857db739c703fae6",
+  "videoSHA256": "d9231d886c096c19c91a26d7ec374dad065387f8580940ee61166c679eb26b1d",
+  "locksUnchanged": true,
+  "initialPlanHash": "787cef28fdaa7dda401d0e127a1416f3d340f1f92927a2cfbac2d3a50b52af67",
+  "finalPlanHash": "4cab175da57c89b414ee292b7b9a4f3de96e46f96a9e814e774357c0545778c4",
+  "publicExportPlanChanged": true,
+  "cuts": [
+    {
+      "index": 0,
+      "line": 0,
+      "start": 0.3,
+      "end": 3.2,
+      "layout": "cinemaGrammarduo",
+      "role": "narrative"
+    },
+    {
+      "index": 4,
+      "line": 1,
+      "start": 3.2,
+      "end": 6.1,
+      "layout": "cinemaGrammarduo",
+      "role": "narrative"
+    },
+    {
+      "index": 7,
+      "line": 2,
+      "start": 6.1,
+      "end": 9.11,
+      "layout": "photoCondensed",
+      "role": "light"
+    }
+  ],
+  "independentFullDecode": "PASS",
+  "browserVersion": "151.0.7922.173",
+  "finalArtifactVerification": {
+    "status": "MEASURED",
+    "binding": {
+      "inputHash": "684eb07c9e01b230be2bbe6483ecd5cf76073480834a58490251b36b55024c61",
+      "planHash": "4cab175da57c89b414ee292b7b9a4f3de96e46f96a9e814e774357c0545778c4",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "rendererVersion": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278",
+      "selectedCandidateId": "228589996272e7e3b04ea7404367c1e968c61b8cdffe8a97379ee0fc4737f569",
+      "videoSHA256": "d9231d886c096c19c91a26d7ec374dad065387f8580940ee61166c679eb26b1d",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "sourceTreeSHA256": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278",
+      "sourceDirty": false
+    },
+    "evidenceId": "f6ffc5e548d8a782fa924b03b54107cf463dde768a5c07a0422baf4b7ad38f4e",
+    "units": [
+      {
+        "unitId": "37fd5c9ec84bd5bc0ae2278bd060b59705f23f62a263e8bf8670e8e904c412d6",
+        "status": "MEASURED",
+        "minimumContrast": 99,
+        "holdFrames": 58
+      },
+      {
+        "unitId": "1f12e460778dc9e61eb7ff91f04fe2eaf8205a8451f277aa71d48e0f573de869",
+        "status": "MEASURED",
+        "minimumContrast": 100,
+        "holdFrames": 58
+      },
+      {
+        "unitId": "7eb20224b3b24631e2a1de37ccdd6b8df15770bae930290fc95ed3479894c0ae",
+        "status": "MEASURED",
+        "minimumContrast": 100,
+        "holdFrames": 61
+      }
+    ]
+  },
+  "photoExecutableContractCalls": 2589,
+  "independentMotionRealization": "UNVERIFIED_PENDING_ISOLATED_ON_OFF",
+  "wholeReleaseGateCredit": false,
+  "human": "HUMAN_UNVERIFIED",
+  "limits": [
+    "Historical naturally authored plan, not current fresh selection or UI restoration.",
+    "Executable dispatch is not alone evidence of actual decoded displacement.",
+    "Public export altered planHash; adopted current hash and selected candidate are retained. Cause still requires field-level comparison."
+  ]
+}
