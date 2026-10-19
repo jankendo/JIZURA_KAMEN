@@ -117,6 +117,10 @@ try{
  for(const [fn,state]of [[r=>delete r.semanticSamples,'UNVERIFIED'],[r=>r.semanticSamples[0].targetId='background','UNVERIFIED'],[r=>r.semanticSamples[0].observedVector=[-5,0],'FAIL'],[r=>r.semanticSamples[0].repeatVector=[8,0],'FAIL'],[r=>r.semanticSamples[0].actualDecodedTimestamp=.3,'UNVERIFIED'],[r=>r.semanticSamples.forEach(s=>s.observedVector=[0,0]),'FAIL']]){const m=typedFixture('DYNAMIC');editRaw(m,fn);assert.equal(typedState(m),state);v2checks++;}
 
  for(const mode of ['missing-model','zero-effect','wrong-units']){const m=typedFixture('DYNAMIC');change(m,'operators',o=>{const p=readRef(o.population),c=p.intents[0],r=readRef(o.observations[0].measurement);if(mode==='missing-model')delete c.semanticModel;else if(mode==='wrong-units')c.semanticModel.units='UNRESOLVED';else{c.semanticModel.expectedSamples.forEach(s=>s.vector=[0,0]);r.semanticSamples.forEach(s=>{s.observedVector=[0,0];s.repeatVector=[0,0];});}r.contractSHA256=sha(Buffer.from(JSON.stringify(c)));o.population=ref(p);o.observations[0].measurement=ref(r);});assert.equal(typedState(m),'UNVERIFIED',mode);v2checks++;}
+
+ {const m=fixture();change(m,'operators',o=>{o.expectedImportantIntentIds=['unproved',...o.expectedImportantIntentIds];o.observations[0].status='FAILED';});assert.equal(typedState(m),'FAIL','v1 unproved earlier intent cannot hide an observed failure');v2checks++;}
+ {const m=fixture();change(m,'comparisons',o=>{o.conditions[0].significantRegression=null;o.conditions[1].significantRegression=true;});assert.equal(evaluate(m,root).QUALITY_GO,'FAIL','earlier unassessed comparison cannot hide known major regression');v2checks++;}
+ {const m=typedFixture('COMPOSITE');change(m,'operators',o=>{o.observations.shift();o.observations[0].status='FAILED';});assert.equal(typedState(m),'FAIL','v2 missing first component cannot hide a later observed failure');v2checks++;}
  console.log(`v2 typed intent proof contract: ${v2checks} synthetic positive/counterexample scenarios PASS`);
 
 }finally{fs.rmSync(root,{recursive:true,force:true});}
