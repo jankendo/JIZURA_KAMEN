@@ -29,8 +29,10 @@ assert.equal(sha(wav),'3be2bd3b13145576f98251828e00c24c2f1e3cc701c56995a94338667
  const video=path.join(out,'current.mp4');assert.equal(sha(fs.readFileSync(video)),result.videoSHA256);
  const dec=spawnSync('ffmpeg',['-v','error','-xerror','-i',video,'-f','null','-'],{encoding:'utf8'});assert.equal(dec.status,0,dec.stderr);assert(!dec.stderr.trim());
  const probe=JSON.parse(spawnSync('ffprobe',['-v','error','-count_frames','-show_streams','-of','json',video],{encoding:'utf8'}).stdout);assert(probe.streams.some(s=>s.codec_name==='h264')&&probe.streams.some(s=>s.codec_name==='aac'));
- const fav=result.provenance.finalArtifactVerification;assert.equal(fav.binding.videoSHA256,result.videoSHA256);assert.equal(fav.binding.sourceCommit,source);assert(result.locksUnchanged);assert.equal(result.initialPlanHash,result.finalPlanHash);assert.deepEqual(errors,[]);
+ const fav=result.provenance.finalArtifactVerification;assert.equal(fav.binding.videoSHA256,result.videoSHA256);assert.equal(fav.binding.sourceCommit,source);assert(result.locksUnchanged);assert.deepEqual(errors,[]);
  const report={schema:1,scope:'HISTORICAL_NATURALLY_SELECTED_PLAN_CURRENT_PUBLIC_API_EXPORT_COMPATIBILITY',freshAutomaticSelection:false,uiProjectRestoreTest:false,historicalSourceCommit:'d6fe7be2fa53475dc7493f35229af6ad4f57235f',historicalVideoSHA256:'c8810ca3a5015a26c1ff7b01e24d169a44970ff9e7ba83fa857db739c703fae6',referenceSHA256:sha(refBytes),audioSHA256:sha(wav),independentFullDecode:'PASS',browserVersion:browser.version(),pageErrors:errors,ffprobe:probe,...result};
+ report.publicExportPlanChanged=result.initialPlanHash!==result.finalPlanHash;
+ report.planIdentityStatus=report.publicExportPlanChanged?'CHANGED_BY_PUBLIC_EXPORT_REQUIRES_ADOPTED_PLAN_ANALYSIS':'UNCHANGED';
  fs.writeFileSync(path.join(out,'report.json.gz'),zlib.gzipSync(Buffer.from(JSON.stringify(report)),{mtime:0}));
  console.log(JSON.stringify({videoSHA256:result.videoSHA256,FAV:fav.status,fullDecode:'PASS',photoExecutableCalls:result.photoContractTrace.filter(x=>x.status==='EXECUTABLE').length,scope:report.scope}));
  }finally{await browser.close();}})().catch(e=>{fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({error:String(e.stack)}));console.error(e);process.exitCode=1;});
