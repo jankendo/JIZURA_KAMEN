@@ -1,0 +1,33 @@
+name: Stop stalled diagnostic audit before runner deadline to preserve always-upload artifacts
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-preserve-stalled-audit.yml]
+permissions:
+  actions: write
+  contents: read
+jobs:
+  preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Record and cancel only the stalled diagnostic collection run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p results
+          gh api repos/jankendo/JIZURA_KAMEN/actions/runs/39165480377 > results/before.json
+          python - <<'PYTHON'
+          import json,pathlib
+          d=json.load(open('results/before.json'));assert d['name']=='Collect frozen32 executed-operator controls with exact shared baselines';assert d['head_sha']=='219038d913b6e6460003f4c6f146129e6f45330e';assert d['head_branch']=='audit/late-travel-evidence-20261016';pathlib.Path('results/reason.txt').write_text('Two diagnostic collection jobs remained active over five hours. Cancel before the six-hour runner limit so their existing if:always artifact-upload steps can preserve partial outputs. Exact-head official CI and production are not targeted. No source change or semantic certificate is implied.\n')
+          PYTHON
+          status=$(python -c 'import json; print(json.load(open("results/before.json"))["status"])')
+          if [ "$status" = in_progress ] || [ "$status" = queued ]; then
+            gh api --method POST repos/jankendo/JIZURA_KAMEN/actions/runs/39165480377/cancel > results/cancel-response.txt
+          fi
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: stalled-audit-preservation-request
+          path: results/
+          retention-days: 14
