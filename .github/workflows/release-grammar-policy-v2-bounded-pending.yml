@@ -1,0 +1,58 @@
+name: Recover only pending current32 controls with bounded minimal QA transport
+on:
+  push:
+    branches: [audit/late-travel-evidence-20261016]
+    paths: [.github/workflows/release-grammar-policy-v2-bounded-pending.yml]
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        case: [development-01, development-07, development-14, holdout-01, holdout-05, holdout-07, holdout-11, holdout-14]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/grammar-policy-v2-bounded-pending-controls.json
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: d04c734bc5eb0c0c427a42a196cae3a507b89506
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: Collector guards and isolated bounded collection
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          CONTROL_CASE: ${{ matrix.case }}
+        run: |
+          mkdir -p results
+          node qa/docs/qa/generalization/tools/pack_original_counterfactual_metadata_test.cjs
+          python qa/docs/qa/generalization/tools/run_bounded_diagnostic_test.py
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          python qa/docs/qa/generalization/tools/collect_bounded_pending_controls.py qa/docs/qa/generalization/composition-recovery/grammar-policy-v2-bounded-pending-controls.json "$CONTROL_CASE" qa/docs/qa/generalization/tools current results/observations
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: grammar-policy-v2-bounded-pending-${{ matrix.case }}
+          path: |
+            results/observations/
+            results/server.log
+          retention-days: 14
