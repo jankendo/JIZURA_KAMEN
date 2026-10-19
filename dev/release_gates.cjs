@@ -10,8 +10,38 @@ const QA_PATHS=['dev/pages_e2e.cjs','dev/export_watchdog.cjs','dev/export_watchd
 const QA_PREFIXES=['.github/workflows/','docs/qa/'];
 const SHIPPING_PATHS=['src','scripts','app','assets','vendor','package.json','package-lock.json'];
 const qaPath=p=>QA_PATHS.includes(p)||p.startsWith('docs/qa/');
-// v2 keeps the v1 dynamic certificate contract, and adds target-specific static
-// and composite contracts. Inventory/whole-hook pixel differences never suffice.
+// Contrast-bearing glyph pixels use a fixed output-space crop. A centroid can
+// remain still while the glyph shrinks or rotates; require the complete ink
+// shape as well. Runs are [start,length] in row-major order, without overlap.
+function decodeInkRaster(r,rect,resolution){
+ if(!r||!Array.isArray(rect)||rect.length!==4||!rect.every(Number.isInteger)||!Array.isArray(resolution)||resolution.length!==2)return null;
+ const [x,y,w,h]=rect;
+ if(x<0||y<0||w<1||h<1||w>4096||h>4096||x+w>resolution[0]||y+h>resolution[1]||r.width!==w||r.height!==h||!Array.isArray(r.origin)||r.origin.length!==2||r.origin[0]!==x||r.origin[1]!==y||!Array.isArray(r.runs))return null;
+ const pixels=new Uint8Array(w*h);let end=0,count=0,sx=0,sy=0;
+ for(const run of r.runs){
+  if(!Array.isArray(run)||run.length!==2||!run.every(Number.isInteger)||run[0]<end||run[1]<1||run[0]+run[1]>pixels.length)return null;
+  end=run[0]+run[1];
+  for(let i=run[0];i<end;i++){pixels[i]=1;count++;sx+=x+i%w;sy+=y+Math.floor(i/w);}
+ }
+ if(!count)return null;
+ // A foreground pixel at the crop boundary cannot establish full-glyph shape.
+ for(let i=0;i<pixels.length;i++)if(pixels[i]&&(i%w===0||i%w===w-1||i<w||i>=pixels.length-w))return null;
+ return {pixels,width:w,height:h,count,centroid:[sx/count,sy/count]};
+}
+function inkWithin(a,b,tolerance){
+ const offsets=[],radius=Math.ceil(tolerance);
+ for(let y=-radius;y<=radius;y++)for(let x=-radius;x<=radius;x++)if(x*x+y*y<=tolerance*tolerance)offsets.push([x,y]);
+ const covered=(left,right)=>{
+  for(let i=0;i<left.pixels.length;i++)if(left.pixels[i]){
+   const x=i%left.width,y=Math.floor(i/left.width);
+   if(!offsets.some(([dx,dy])=>x+dx>=0&&x+dx<right.width&&y+dy>=0&&y+dy<right.height&&right.pixels[(y+dy)*right.width+x+dx]))return false;
+  }
+  return true;
+ };
+ return covered(a,b)&&covered(b,a);
+}
+// v3 retains the independent dynamic/composite controls and requires complete
+// ink geometry for world-static claims. Local HOLD identity is a distinct scope.
 function typedImportantOperators(o,load,media){
  if(o.importanceClassificationFinalized!==true)return 'v2 importance classification is not finalized';
  const p=load(o.population),ledger=load(p.executionLedger),ids=o.expectedImportantIntentIds;
@@ -24,26 +54,49 @@ function typedImportantOperators(o,load,media){
  const binding=(a,b)=>['sourceCommit','rendererVersion','inputHash','planHash','videoSHA256'].every(k=>a?.[k]===b?.[k])&&a?.outputProfile&&JSON.stringify(a.outputProfile)===JSON.stringify(b?.outputProfile)&&COMMIT.test(b?.sourceCommit||'')&&['rendererVersion','inputHash','planHash','videoSHA256'].every(k=>HASH.test(b?.[k]||''));
  function movie(ref,b,hash){const m=load(ref);if(!binding({...m.binding,videoSHA256:b.videoSHA256},b)||m.videoSHA256!==hash||m.binding.videoSHA256!==hash||m.decodeComplete!==true||m.decodeExitCode!==0||m.codecVideo!=='h264'||!HASH.test(m.decodedRGBA_SHA256||''))throw Error('v2 decoded movie binding missing');media(m.media,hash);return m;}
  function staticFrames(raw,c,b){
+  if(o.proofSchema!==3)return 'v2 centroid-only static proof is insufficient';
   const f=raw.decodedFrames,glyphs=c.glyphIds;
   if(c.target.layer!=='PRIMARY_LYRIC'||!Array.isArray(glyphs)||!glyphs.length||new Set(glyphs).size!==glyphs.length||!Array.isArray(f)||!Number.isFinite(c.fps)||c.fps<=0||!Number.isFinite(c.from)||!Number.isFinite(c.to)||c.to<=c.from||!Number.isFinite(c.frameOrigin)||!Number.isFinite(c.tolerancePixels)||c.tolerancePixels<0||c.tolerancePixels>1)return 'v2 static contract or glyph population incomplete';
   if(c.frameOrigin!==b.outputProfile.range?.[0]||c.fps!==b.outputProfile.fps||!Array.isArray(b.outputProfile.range)||c.from<b.outputProfile.range[0]||c.to>b.outputProfile.range[1])return 'v2 static interval differs from actual output profile';
   // Match the renderer's actual i/fps predicate. ceil(time*fps) can skip a
   // real boundary frame (e.g. (31/30)*30 rounds above 31).
-  const firstAt=time=>{let lo=0,hi=Math.max(0,Math.ceil((c.to-c.frameOrigin)*c.fps)+2);while(lo<hi){const mid=Math.floor((lo+hi)/2);if(c.frameOrigin+mid/c.fps>=time)hi=mid;else lo=mid+1;}return lo;};
+  const movieInfo=load(raw.movie),frameCount=movieInfo.videoFrameCount;
+  if(!Number.isInteger(frameCount)||frameCount!==Math.max(1,Math.round((b.outputProfile.range[1]-c.frameOrigin)*c.fps)))return 'v3 actual encoded frame population missing';
+  if(c.target.coordinateFrame!=='OUTPUT_PIXELS'||c.rasterMethod!=='ISOLATED_TARGET_OFF_CONTRAST'||!Array.isArray(c.glyphROIs)||c.glyphROIs.length!==glyphs.length||new Set(c.glyphROIs.map(g=>g.id)).size!==glyphs.length)return 'v3 full output-space glyph raster contract missing';
+  const firstAt=time=>{let lo=0,hi=frameCount;while(lo<hi){const mid=Math.floor((lo+hi)/2);if(c.frameOrigin+mid/c.fps>=time)hi=mid;else lo=mid+1;}return lo;};
   const first=firstAt(c.from),end=firstAt(c.to);
   if(end-first<3||f.length!==end-first)return 'v2 static whole-interval frame population missing';
-  const starts=new Map();let moved=false;
+  const starts=new Map(),inkStarts=new Map();let moved=false;
   for(let i=0;i<f.length;i++){
    const a=f[i],time=c.frameOrigin+(first+i)/c.fps;
    if(a.frameIndex!==first+i||!Number.isFinite(a.actualDecodedTimestamp)||Math.abs(a.actualDecodedTimestamp-time)>1e-7||a.targetId!==c.target.id||!Array.isArray(a.glyphs)||a.glyphs.length!==glyphs.length)return 'v2 static target or actual clock mismatch';
    if(new Set(a.glyphs.map(g=>g.id)).size!==glyphs.length||glyphs.some(id=>!a.glyphs.some(g=>g.id===id)))return 'v2 static glyph identity missing';
-   for(const g of a.glyphs){if(g.pixelPresence===false||g.nativeComplete===false)return false;if(g.pixelPresence!==true||g.nativeComplete!==true||!finitePoint(g.nativeCentroid)||!finitePoint(g.decodedCentroid)||!(g.nativeInkPixels>0)||!(g.decodedInkPixels>0))return 'v2 static registered glyph not measured';if(Math.hypot(...g.decodedCentroid.map((v,k)=>v-g.nativeCentroid[k]))>.5)return false;if(!starts.has(g.id))starts.set(g.id,g.decodedCentroid);if(Math.hypot(...g.decodedCentroid.map((v,k)=>v-starts.get(g.id)[k]))>c.tolerancePixels)moved=true;}
+   for(const g of a.glyphs){
+    if(g.pixelPresence===false||g.nativeComplete===false)return false;
+    if(g.pixelPresence!==true||g.nativeComplete!==true||!finitePoint(g.nativeCentroid)||!finitePoint(g.decodedCentroid)||!(g.nativeInkPixels>0)||!(g.decodedInkPixels>0))return 'v3 static registered glyph not measured';
+    if(Math.hypot(...g.decodedCentroid.map((v,k)=>v-g.nativeCentroid[k]))>.5)return false;
+    const rect=c.glyphROIs.find(r=>r.id===g.id)?.rect,native=decodeInkRaster(g.nativeRaster,rect,b.outputProfile.resolution),decoded=decodeInkRaster(g.decodedRaster,rect,b.outputProfile.resolution);
+    if(!native||!decoded)return 'v3 full glyph ink raster absent, malformed or cropped';
+    if(native.count!==g.nativeInkPixels||decoded.count!==g.decodedInkPixels||Math.hypot(...native.centroid.map((v,k)=>v-g.nativeCentroid[k]))>1e-6||Math.hypot(...decoded.centroid.map((v,k)=>v-g.decodedCentroid[k]))>1e-6)return false;
+    if(!inkWithin(native,decoded,1))return false;
+    if(!starts.has(g.id)){starts.set(g.id,g.decodedCentroid);inkStarts.set(g.id,{native,decoded});}
+    if(Math.hypot(...g.decodedCentroid.map((v,k)=>v-starts.get(g.id)[k]))>c.tolerancePixels||!inkWithin(inkStarts.get(g.id).native,native,c.tolerancePixels)||!inkWithin(inkStarts.get(g.id).decoded,decoded,c.tolerancePixels))moved=true;
+   }
   }
   if(moved)return false;
   const control=load(raw.sensitivityControl);
   const controlMovie=movie(control.movie,b,control.videoSHA256);if(controlMovie.decodedRGBA_SHA256===load(raw.movie).decodedRGBA_SHA256)return 'v2 static sensitivity control has identical decoded pixels';
   if(control.targetId!==c.target.id||control.videoSHA256===b.videoSHA256||!Array.isArray(control.glyphs)||control.glyphs.length!==glyphs.length||new Set(control.glyphs.map(g=>g.id)).size!==glyphs.length)return 'v2 static sensor independent moving-target control missing';
-  for(const id of glyphs){const g=control.glyphs.find(g=>g.id===id);if(!g||!finitePoint(g.from)||!finitePoint(g.to)||!Number.isFinite(g.expectedDisplacementPixels)||g.expectedDisplacementPixels<=c.tolerancePixels*2||Math.abs(Math.hypot(...g.to.map((v,k)=>v-g.from[k]))-g.expectedDisplacementPixels)>.5)return 'v2 static sensor failed moving-target sensitivity control';}
+  for(const id of glyphs){
+   const g=control.glyphs.find(g=>g.id===id);
+   if(!g||!finitePoint(g.from)||!finitePoint(g.to)||!Number.isFinite(g.expectedDisplacementPixels)||g.expectedDisplacementPixels<=c.tolerancePixels*2||Math.abs(Math.hypot(...g.to.map((v,k)=>v-g.from[k]))-g.expectedDisplacementPixels)>.5)return 'v3 static sensor failed moving-target sensitivity control';
+   const samples=g.samples,rect=c.glyphROIs.find(r=>r.id===id)?.rect;
+   if(!Array.isArray(samples)||samples.length!==2||samples[0].actualDecodedTimestamp!==f[0].actualDecodedTimestamp||samples[1].actualDecodedTimestamp!==f.at(-1).actualDecodedTimestamp)return 'v3 coded sensitivity frame clocks missing';
+   for(let i=0;i<2;i++){
+    const raster=decodeInkRaster(samples[i].decodedRaster,rect,b.outputProfile.resolution),point=i?g.to:g.from;
+    if(!raster||Math.hypot(...raster.centroid.map((v,k)=>v-point[k]))>1e-6)return 'v3 sensitivity motion is not bound to decoded target pixels';
+   }
+  }
   return true;
  }
  function verify(id){
@@ -135,18 +188,18 @@ function evaluate(manifest,root=process.cwd()) {
  }
  const load=(ref,expectedCommit=commit)=>{const obj=read(ref);if(obj.sourceCommit!==expectedCommit){if(expectedCommit!==commit||!COMMIT.test(obj.sourceCommit||''))throw Error('stale or missing sourceCommit');correspondence(obj.sourceCommit);}return obj;};
  function check(domain,name,ref,fn){try{const o=load(ref);const r=fn(o);record(domain,name,r===true?'PASS':r===false?'FAIL':'UNVERIFIED',r===true?'hash-bound observations satisfy contract':r===false?'observed required check failed':String(r));}catch(e){record(domain,name,'UNVERIFIED',e.message);}}
- if(!COMMIT.test(commit||'')){return {schema:2,evaluatorVersion:'release-gates-v2',releaseSourceCommit:commit||null,TECHNICAL_GO:'UNVERIFIED',QUALITY_GO:'UNVERIFIED',RELEASE_GO:'UNVERIFIED',ARTISTIC_100_VERIFICATION:'UNVERIFIED',issues:[{reason:'exact 40-character releaseSourceCommit required'}]};}
+ if(!COMMIT.test(commit||'')){return {schema:3,evaluatorVersion:'release-gates-v3',releaseSourceCommit:commit||null,TECHNICAL_GO:'UNVERIFIED',QUALITY_GO:'UNVERIFIED',RELEASE_GO:'UNVERIFIED',ARTISTIC_100_VERIFICATION:'UNVERIFIED',issues:[{reason:'exact 40-character releaseSourceCommit required'}]};}
  const e=manifest.evidence||{};
  check('technical','ci',e.ci,o=>o.headSha!==commit?'CI head does not match release source':o.conclusion==='failure'?false:o.conclusion==='success'&&/^https:\/\/github\.com\//.test(o.url||'')?true:'CI not completed successfully');
  check('technical','regression/build',e.tests,o=>{if(!Array.isArray(o.cases)||!o.cases.length)return 'per-test observations absent';if(o.cases.some(x=>x.status==='FAIL')||o.build?.exitCode>0||o.install?.exitCode>0)return false;if(o.install?.exitCode!==0||o.build?.exitCode!==0||!HASH.test(o.build?.outputSHA256||''))return 'install/build observation missing';const ids=new Set();for(const t of o.cases){if(!t.id||ids.has(t.id))return 'missing/duplicate test ID';ids.add(t.id);if(t.status==='SKIP'){if(!t.reason||!t.browserAlternative)return 'SKIP has no reason/alternative evidence';const a=load(t.browserAlternative);if(a.testId!==t.id||a.actualBrowser!==true||a.exitCode!==0)return 'SKIP browser alternative unverified';}else if(t.status!=='PASS'||t.exitCode!==0)return 'test exit observations incomplete';}return true;});
  check('technical','browser',e.browser,o=>{const required=['generation','oneClickExport','save','restore','cancel','retry','rejectInvalidMP4'];if(o.actualBrowser!==true||!Array.isArray(o.operations))return 'actual browser observations absent';for(const id of required){const a=o.operations.filter(x=>x.id===id);if(a.some(x=>x.completed===false||x.error))return false;if(a.length!==1||a[0].completed!==true||!HASH.test(a[0].traceSHA256||''))return `missing unique trace-bound operation: ${id}`;}return true;});
  check('technical','finished artifacts',e.artifacts,o=>{if(!Array.isArray(o.movies)||!o.movies.length)return 'movie observations absent';const seen=new Set();for(const m of o.movies){if(!m.id||seen.has(m.id))return 'duplicate/missing movie ID';seen.add(m.id);if(m.decodeExitCode>0||m.hashMatches===false||m.hasVideo===false||m.hasAudio===false)return false;if(m.decodeExitCode!==0||m.codecVideo!=='h264'||m.codecAudio!=='aac'||m.decodeComplete!==true||m.hashMatches!==true||!HASH.test(m.videoSHA256||'')||!HASH.test(m.inputHash||'')||!HASH.test(m.planHash||'')||!m.outputProfile||!m.rendererVersion||!m.selectedCandidateId)return 'incomplete decode/provenance observations';const raw=load(m.observation);if(raw.videoSHA256!==m.videoSHA256||raw.decodeExitCode!==0||raw.decodeComplete!==true)return 'raw decode record mismatch';}return true;});
  check('quality','comparison coverage',e.comparisons,o=>{if([...(Array.isArray(o.conditions)?o.conditions:[]),...(Array.isArray(o.independent)?o.independent:[])].some(c=>c.significantRegression===true||c.lyricSafetyFailed===true))return false;if(!Array.isArray(o.conditions)||!Array.isArray(o.expectedConditionIds)||o.expectedConditionIds.length!==30||new Set(o.expectedConditionIds).size!==30)return 'frozen 30-condition population missing';const ids=o.conditions.map(x=>x.id);if(new Set(ids).size!==ids.length||o.expectedConditionIds.some(id=>!ids.includes(id)))return 'missing/duplicate comparison condition';if(!Array.isArray(o.independent)||!o.independent.length)return 'independent conditions absent';for(const c of [...o.conditions,...o.independent]){if(c.significantRegression===true||c.lyricSafetyFailed===true)return false;if(c.significantRegression!==false||c.lyricSafetyFailed!==false)return 'regression/safety result not measured';if(c.sameInput!==true||c.sameSeed!==true||c.sameProfile!==true||c.shippedPipelines!==true||c.actualDecodedComparison!==true||!Array.isArray(c.movies)||c.movies.length<3)return 'comparison conditions or three versions unverified';if(new Set(c.movies.map(r=>r.expectedSourceCommit)).size<3||!c.movies.some(r=>r.expectedSourceCommit===commit||r.releaseEquivalent===true&&correspondence(r.expectedSourceCommit)))return 'three distinct source versions including release required';for(const r of c.movies){if(!COMMIT.test(r.expectedSourceCommit||''))return 'comparison source commit missing';const raw=load(r,r.expectedSourceCommit);if(!HASH.test(raw.videoSHA256||'')||raw.decodeComplete!==true||raw.decodeExitCode!==0)return 'comparison movie decode missing';}}if(!o.independent.some(x=>x.unusedBeforeFreeze===true&&x.notUsedForAdjustment===true))return 'at least one unused, untuned independent confirmation required';if(o.compositionAssessment?.significantRegressionsResolved!==true||!Array.isArray(o.compositionAssessment?.observations)||!o.compositionAssessment.observations.length)return 'composition regression resolution lacks observations';for(const r of o.compositionAssessment.observations){const a=load(r);if(a.actualDecodedFrames!==true||!Array.isArray(a.videoSHA256s)||a.videoSHA256s.length<2||a.videoSHA256s.some(h=>!HASH.test(h))||!Number.isFinite(a.measuredSampleCount)||a.measuredSampleCount<=0)return 'composition frame observations missing';}return true;});
- check('quality','important semantic operators',e.operators,o=>{if(o.proofSchema===2)return typedImportantOperators(o,load,(ref,hash)=>{if(!ref||typeof ref.path!=='string'||ref.sha256!==hash||!HASH.test(hash||''))throw Error('v2 actual MP4 file reference missing');if(sha(fs.readFileSync(path.resolve(root,ref.path)))!==hash)throw Error('v2 actual MP4 file hash mismatch');});if(o.proofSchema!==undefined&&o.proofSchema!==1)return 'unsupported operator proof schema';if(Array.isArray(o.expectedImportantIntentIds)&&Array.isArray(o.observations)&&o.observations.some(a=>o.expectedImportantIntentIds.includes(a.intentId)&&a.status==='FAILED'))return false;if(!Array.isArray(o.expectedImportantIntentIds)||!o.expectedImportantIntentIds.length||new Set(o.expectedImportantIntentIds).size!==o.expectedImportantIntentIds.length||!Array.isArray(o.observations))return 'important intent population missing';for(const id of o.expectedImportantIntentIds){const a=o.observations.filter(x=>x.intentId===id);if(a.some(x=>x.status==='FAILED'))return false;if(a.length!==1||a[0].status!=='VERIFIED'||a[0].counterfactual!==true||a[0].decodedPixels!==true||!HASH.test(a[0].videoSHA256||'')||!HASH.test(a[0].controlVideoSHA256||'')||!Number.isFinite(a[0].actualDecodedTimestamp))return 'important effect unmeasured/confounded/stale or no isolated encoded control';const raw=load(a[0].measurement);if(raw.intentId!==id||raw.videoSHA256!==a[0].videoSHA256||raw.controlVideoSHA256!==a[0].controlVideoSHA256||raw.actualDecodedTimestamp!==a[0].actualDecodedTimestamp||raw.isolatedControl!==true||!Array.isArray(raw.measuredValues)||!raw.measuredValues.length||raw.measuredValues.some(v=>!Number.isFinite(v)))return 'semantic raw measurement missing or differs';}return true;});
+ check('quality','important semantic operators',e.operators,o=>{if(o.proofSchema===2||o.proofSchema===3)return typedImportantOperators(o,load,(ref,hash)=>{if(!ref||typeof ref.path!=='string'||ref.sha256!==hash||!HASH.test(hash||''))throw Error('v2 actual MP4 file reference missing');if(sha(fs.readFileSync(path.resolve(root,ref.path)))!==hash)throw Error('v2 actual MP4 file hash mismatch');});if(o.proofSchema!==undefined&&o.proofSchema!==1)return 'unsupported operator proof schema';if(Array.isArray(o.expectedImportantIntentIds)&&Array.isArray(o.observations)&&o.observations.some(a=>o.expectedImportantIntentIds.includes(a.intentId)&&a.status==='FAILED'))return false;if(!Array.isArray(o.expectedImportantIntentIds)||!o.expectedImportantIntentIds.length||new Set(o.expectedImportantIntentIds).size!==o.expectedImportantIntentIds.length||!Array.isArray(o.observations))return 'important intent population missing';for(const id of o.expectedImportantIntentIds){const a=o.observations.filter(x=>x.intentId===id);if(a.some(x=>x.status==='FAILED'))return false;if(a.length!==1||a[0].status!=='VERIFIED'||a[0].counterfactual!==true||a[0].decodedPixels!==true||!HASH.test(a[0].videoSHA256||'')||!HASH.test(a[0].controlVideoSHA256||'')||!Number.isFinite(a[0].actualDecodedTimestamp))return 'important effect unmeasured/confounded/stale or no isolated encoded control';const raw=load(a[0].measurement);if(raw.intentId!==id||raw.videoSHA256!==a[0].videoSHA256||raw.controlVideoSHA256!==a[0].controlVideoSHA256||raw.actualDecodedTimestamp!==a[0].actualDecodedTimestamp||raw.isolatedControl!==true||!Array.isArray(raw.measuredValues)||!raw.measuredValues.length||raw.measuredValues.some(v=>!Number.isFinite(v)))return 'semantic raw measurement missing or differs';}return true;});
  check('quality','regressions and correspondence',e.safety,o=>{if(o.knownMajorDefects>0||o.lyricMissing>0||o.audioBroken>0||o.manualLocksChanged>0)return false;const fields=['knownMajorDefects','lyricMissing','audioBroken','manualLocksChanged'];if(fields.some(k=>o[k]!==0)||o.allTargetPathsBound!==true||o.finalArtifactMatchesSource!==true||!Array.isArray(o.pathObservations)||!o.pathObservations.length)return 'safety/path-source correspondence unverified';return true;});
  const gate=xs=>xs.some(x=>x.state==='FAIL')?'FAIL':xs.every(x=>x.state==='PASS')?'PASS':'UNVERIFIED';
  const technical=gate(checks.technical),quality=gate(checks.quality);
- return {schema:2,evaluatorVersion:'release-gates-v2',releaseSourceCommit:commit,manifestSHA256:sha(Buffer.from(JSON.stringify(manifest))),TECHNICAL_GO:technical,QUALITY_GO:quality,RELEASE_GO:[technical,quality].includes('FAIL')?'FAIL':technical==='PASS'&&quality==='PASS'?'PASS':'UNVERIFIED',ARTISTIC_100_VERIFICATION:'UNVERIFIED',human:'HUMAN_UNVERIFIED',checks,issues,limitations:['Hash binding establishes file consistency, not runner authenticity. Adapters must preserve raw observations; no artistic score is inferred.','No deployment or production verification is implied by RELEASE_GO.']};
+ return {schema:3,evaluatorVersion:'release-gates-v3',releaseSourceCommit:commit,manifestSHA256:sha(Buffer.from(JSON.stringify(manifest))),TECHNICAL_GO:technical,QUALITY_GO:quality,RELEASE_GO:[technical,quality].includes('FAIL')?'FAIL':technical==='PASS'&&quality==='PASS'?'PASS':'UNVERIFIED',ARTISTIC_100_VERIFICATION:'UNVERIFIED',human:'HUMAN_UNVERIFIED',checks,issues,limitations:['Hash binding establishes file consistency, not runner authenticity. Adapters must preserve raw observations; no artistic score is inferred.','No deployment or production verification is implied by RELEASE_GO.']};
 }
 module.exports={evaluate,sha};
 if(require.main===module){try{const file=path.resolve(process.argv[2]||'');const result=evaluate(JSON.parse(fs.readFileSync(file)),path.dirname(file));process.stdout.write(JSON.stringify(result,null,2)+'\n');process.exitCode=result.RELEASE_GO==='PASS'?0:2;}catch(e){process.stderr.write(e.message+'\n');process.exitCode=2;}}
