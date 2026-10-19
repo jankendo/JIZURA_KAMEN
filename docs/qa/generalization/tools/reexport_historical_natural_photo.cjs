@@ -25,6 +25,7 @@ assert.equal(sha(wav),'3be2bd3b13145576f98251828e00c24c2f1e3cc701c56995a94338667
   const videoSHA256=await window.preserveMovie(btoa(text));
   return {build:window.KAMEN_BUILD_INFO,inputSnapshot:snapshot,initialPlanHash:before,finalPlanHash:await J.cinemaV3.planHash(p),locksUnchanged:J.cinemaV3.lockSignature(p)===locks,videoSHA256,validation:output.validation,provenance:output.provenance,photoContractTrace:trace,policy:p.cinemaLyricTemporalPolicy,cuts:p.cuts.map(c=>({index:c.index,line:c.line,start:c.start,end:c.end,layout:c.layout,role:c.grammar?.temporal?.role}))};
  },{ref,wav:wav.toString('base64'),source});
+ fs.writeFileSync(path.join(out,'completed-export-before-assertions.json.gz'),zlib.gzipSync(Buffer.from(JSON.stringify(result)),{mtime:0}));
  const video=path.join(out,'current.mp4');assert.equal(sha(fs.readFileSync(video)),result.videoSHA256);
  const dec=spawnSync('ffmpeg',['-v','error','-xerror','-i',video,'-f','null','-'],{encoding:'utf8'});assert.equal(dec.status,0,dec.stderr);assert(!dec.stderr.trim());
  const probe=JSON.parse(spawnSync('ffprobe',['-v','error','-count_frames','-show_streams','-of','json',video],{encoding:'utf8'}).stdout);assert(probe.streams.some(s=>s.codec_name==='h264')&&probe.streams.some(s=>s.codec_name==='aac'));
