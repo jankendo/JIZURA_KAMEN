@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "classification": "VERIFIED_UNIFORM_TRANSLATION_CONTRIBUTION_CURRENT_SOURCE_HISTORICAL_SELECTION",
+  "historicalSelectionSourceCommit": "d6fe7be2fa53475dc7493f35229af6ad4f57235f",
+  "currentSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "currentRendererVersion": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278",
+  "currentFreshAutomaticSelection": false,
+  "uiProjectRestoreTest": false,
+  "cohort": "Additional compatibility proof, outside frozen current32 comparison and frozen238actor-case control population",
+  "binding": {
+    "inputHash": "684eb07c9e01b230be2bbe6483ecd5cf76073480834a58490251b36b55024c61",
+    "planHash": "4cab175da57c89b414ee292b7b9a4f3de96e46f96a9e814e774357c0545778c4",
+    "outputProfile": {
+      "purpose": "SQUARE",
+      "aspect": "1:1",
+      "fps": 24,
+      "range": [
+        0,
+        9.999977324263039
+      ],
+      "loopRequired": false,
+      "resolution": [
+        360,
+        360
+      ]
+    },
+    "selectedCandidateId": "d13f2238ec8d83c875f0561e511b631ee79c1d732a9e00ff5e59e8031c6b68db",
+    "videoSHA256": "417e13dc57feb14388929828c22c4ae1b5f14f0f3fedcab495565c4e8359e6c4",
+    "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506"
+  },
+  "originalFullNativeMatched": true,
+  "nativeONRepeatIdentical": true,
+  "originalDecodedPixelSHA256Matched": true,
+  "originalDecodedPixelSHA256": "SHA256=7cb985b6eac76a7bdc8b3b10198fd98b597090515f463c34d84b9926bc47a300",
+  "adoptedOriginalFAVStatus": "MEASURED",
+  "diagnosticMovieFAVStatuses": [
+    {
+      "mode": "ON",
+      "status": "UNMEASURED"
+    },
+    {
+      "mode": "OFF",
+      "status": "UNMEASURED"
+    },
+    {
+      "mode": "ON_REPEAT",
+      "status": "UNMEASURED"
+    }
+  ],
+  "fullH264AACDecode": {
+    "currentPublicExports": 3,
+    "isolatedControlMovies": 3,
+    "PASS": 6,
+    "FAIL": 0
+  },
+  "target": {
+    "layout": "photoCondensed",
+    "role": "light",
+    "mode": "UNIFORM_TRANSLATION",
+    "unitId": "7eb20224b3b24631e2a1de37ccdd6b8df15770bae930290fc95ed3479894c0ae",
+    "fragmentOrdinal": 2,
+    "authoredCutIndex": 7,
+    "range": [
+      6.1,
+      9.11
+    ],
+    "hold": [
+      6.295999999999999,
+      8.868333333333334
+    ]
+  },
+  "measurement": {
+    "status": "VERIFIED",
+    "measuredHoldFrames": 61,
+    "matchedGlyphPoints": 671,
+    "positiveGlyphPoints": 671,
+    "agreement": 1,
+    "missing": [],
+    "expectedDisplacementPixels": [
+      0.954154603325495,
+      6
+    ],
+    "maximumErrorPixels": 0.07518683762582229,
+    "actualDecodedTimestampRange": [
+      6.333333333333333,
+      8.833333333333334
+    ]
+  },
+  "controlVideos": [
+    {
+      "mode": "ON",
+      "videoSHA256": "9d3603c10db10a8925ee7899e5d9e2b01066d6770be4cf7ffb23277ce3798f40",
+      "fullDecode": "PASS"
+    },
+    {
+      "mode": "OFF",
+      "videoSHA256": "6f73f0a09f319f0661d95418de3653e68876cb06cd2354af935ca4a931345ecc",
+      "fullDecode": "PASS"
+    },
+    {
+      "mode": "ON_REPEAT",
+      "videoSHA256": "a009d9e03fdd12dfe4e0f141abdae259abda2174718f0b33e44454a2daab7e88",
+      "fullDecode": "PASS"
+    }
+  ],
+  "analysisFile": "grammar-policy-v2-historical-photo-isolated-controls/uniform-translation-analysis.json.gz",
+  "analysisRawSHA256": "9575458b407f19d71e53b574dc82db8b76f62e0cdbe3833dd3b5fe738194275c",
+  "reportRawSHA256": "07a192131fc13bab07840432b9f83bae7d24cf3ec8dcc7ce39efa6bfac851dab",
+  "human": "HUMAN_UNVERIFIED",
+  "releaseGateCredit": "No whole P0/important-operators/QUALITY_GO credit; current new-selection photo and representative profile coverage still incomplete",
+  "limits": [
+    "Existing unchanged geometry thresholds; no metric or threshold relaxation.",
+    "Exact current original/ON decoded matching established for the final Native-captured movie. Earlier two public-export decoded hashes differ and remain retained.",
+    "Core diagnostic exports have overall FAV UNMEASURED; all actual per-glyph evidence and unchanged status retained. The adopted public artifact itself has FAV MEASURED.",
+    "Uniform translation contribution is distinct from artistic quality or all important effects/whole phase realization."
+  ],
+  "evidenceId": "e52d4dce88dacd6b9e517f900504c67fe8eba2c2552ae00fd9cf4a916f1f6eb9"
+}

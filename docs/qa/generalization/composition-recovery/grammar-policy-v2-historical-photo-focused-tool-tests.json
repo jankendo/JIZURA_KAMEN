@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "formalCICountUnchanged": 208,
+  "scope": "Two focused QA tool suites executed locally during historical-photo counterfactual validation; separate from official CI",
+  "suites": [
+    {
+      "command": "node docs/qa/generalization/tools/uniform_lyric_translation_control_test.cjs",
+      "stdout": "11 PASS: exact contract isolation, ON identity, grammar/manual exclusion, settings unchanged and restoration",
+      "fileSHA256": "a5cc4d8fa5847d1518d7942764ba2c58a05c743456ac8fcae0b2729c46ef20d8",
+      "exitCode": 0
+    },
+    {
+      "command": "node docs/qa/generalization/tools/resolve_translation_targets_test.cjs",
+      "stdout": "10 PASS: authored index differs from ordinal, same-line units, duplicate/unknown/range/phase rejection",
+      "fileSHA256": "bb1c3deac9d2ccf98f10183c0d79fb9c480f817f1fadd87a8534143e0a38ca4f",
+      "exitCode": 0
+    }
+  ]
+}
