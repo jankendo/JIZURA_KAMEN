@@ -20,6 +20,8 @@ for(const source of ['追\nいつけない\n昨日を置く','夢','👩‍🎤'
 }
 const options={font:'embedded_bold',size:189,maxWidth:1094.4,maxHeight:774,lead:1.26,track:.015,ctx};
 const source='追いつけない昨日を置く';
+const repaired=J.semanticLyricLayout(source,options);
+assert.equal(repaired.text,'追いつけない\n昨日を置く','Merge the orphan with its neighbour rather than moving the break into the next word');checks++;
 for(const protectedOption of [{manual:true},{allowSingleCharacterLines:true}]){
  const r=J.semanticLyricLayout(source,{...options,...protectedOption});
  assert.equal(r.orphanRepairApplied,false);assert.equal(r.text,protectedOption.manual?source:'追\nいつけない\n昨日を置く');checks+=2;

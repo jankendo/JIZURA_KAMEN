@@ -37,7 +37,13 @@ J.semanticLyricLayout=(value,options={})=>{
  const repairOrphans=!explicit&&!manual&&options.allowSingleCharacterLines!==true;
  // Reuse legitimate boundary/size candidates and the original measured bounds.
  // Never replace a fitting row with overflow merely to remove an orphan.
- const safeAlternative=repairOrphans&&J.automaticLyricOrphanRows(initial.rows).length?ordered.find(c=>(c.fits||!measured&&c.overflow===0)&&!J.automaticLyricOrphanRows(c.rows).length):null;
+ const breakOffsets=rows=>{let offset=0;return rows.slice(0,-1).map(row=>(offset+=row.length));};
+ const initialBreaks=new Set(breakOffsets(initial.rows));
+ const alternatives=repairOrphans&&J.automaticLyricOrphanRows(initial.rows).length?ordered.filter(c=>(c.fits||!measured&&c.overflow===0)&&!J.automaticLyricOrphanRows(c.rows).length):[];
+ // First merge the isolated row with its neighbour, keeping the other chosen
+ // linguistic boundaries. Moving the break one character can merely exchange
+ // a single-character orphan for an equally awkward partial word.
+ const safeAlternative=alternatives.find(c=>breakOffsets(c.rows).every(offset=>initialBreaks.has(offset)))||alternatives[0];
  const winner=safeAlternative||initial;
  const text=winner.rows.join('\n'),withoutInserted=text.replace(/\n/g,''),sourceWithoutBreaks=original.replace(/\n/g,'');
  if(measured)ctx.font=previousFont;
