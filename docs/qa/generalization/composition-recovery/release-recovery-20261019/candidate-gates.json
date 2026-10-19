@@ -1,0 +1,76 @@
+{
+  "schema": 2,
+  "evaluatorVersion": "release-gates-v2",
+  "releaseSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "manifestSHA256": "552009a291ca0d7eb47ccaca0e09ad181128241201a546c01c46dc41802727b6",
+  "TECHNICAL_GO": "PASS",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "UNVERIFIED",
+  "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED",
+  "checks": {
+    "technical": [
+      {
+        "name": "ci",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      },
+      {
+        "name": "regression/build",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      },
+      {
+        "name": "browser",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      },
+      {
+        "name": "finished artifacts",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      }
+    ],
+    "quality": [
+      {
+        "name": "comparison coverage",
+        "state": "UNVERIFIED",
+        "reason": "regression/safety result not measured"
+      },
+      {
+        "name": "important semantic operators",
+        "state": "UNVERIFIED",
+        "reason": "v2 importance classification is not finalized"
+      },
+      {
+        "name": "regressions and correspondence",
+        "state": "UNVERIFIED",
+        "reason": "safety/path-source correspondence unverified"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "domain": "quality",
+      "name": "comparison coverage",
+      "state": "UNVERIFIED",
+      "reason": "regression/safety result not measured"
+    },
+    {
+      "domain": "quality",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "v2 importance classification is not finalized"
+    },
+    {
+      "domain": "quality",
+      "name": "regressions and correspondence",
+      "state": "UNVERIFIED",
+      "reason": "safety/path-source correspondence unverified"
+    }
+  ],
+  "limitations": [
+    "Hash binding establishes file consistency, not runner authenticity. Adapters must preserve raw observations; no artistic score is inferred.",
+    "No deployment or production verification is implied by RELEASE_GO."
+  ]
+}

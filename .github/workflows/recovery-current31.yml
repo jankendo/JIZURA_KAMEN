@@ -1,0 +1,85 @@
+name: Frozen recovery source current31 natural movies and clock-bound traces
+on:
+  push:
+    branches: [codex/release-evidence-recovery-20261019]
+    paths: [.github/workflows/recovery-current31.yml]
+permissions:
+  contents: read
+jobs:
+  current:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        case: [development-01, development-02, development-03, development-04, development-05, development-06, development-07, development-08, development-09, development-10, development-11, development-12, development-14, development-15, holdout-01, holdout-02, holdout-03, holdout-04, holdout-05, holdout-06, holdout-07, holdout-08, holdout-09, holdout-10, holdout-11, holdout-12, holdout-14, holdout-15, supplemental-development-13, supplemental-holdout-13, automatic-unseen-confirmation-20261018]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: qa
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /docs/qa/generalization/tools/
+            /docs/qa/generalization/composition-recovery/release-recovery-20261019/current31-frozen-inputs.json
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: current
+          ref: 5eb02e6fba86c2104711894dc894b461d2fae922
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: current/package-lock.json
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: cd current && npm ci && npm run build
+      - name: One unchanged shipping natural selection and complete MP4
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+          KAMEN_MATRIX_FIXTURE_FILE: ${{ github.workspace }}/qa/docs/qa/generalization/composition-recovery/release-recovery-20261019/current31-frozen-inputs.json
+          KAMEN_MATRIX_CASES: ${{ matrix.case }}
+          KAMEN_MATRIX_VARIANTS: v3
+          KAMEN_MATRIX_NATIVE_HASHES: 1
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+        run: |
+          mkdir -p results
+          sha256sum "$KAMEN_MATRIX_FIXTURE_FILE" qa/docs/qa/generalization/tools/matrix.cjs > results/preregistration.sha256
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/matrix.cjs http://127.0.0.1:4173/ http://127.0.0.1:4173/ results/matrix > results/matrix.log 2>&1
+      - name: Full decode and original input correspondence
+        if: always()
+        env:
+          CONTROL_CASE: ${{ matrix.case }}
+        run: |
+          python qa/docs/qa/generalization/tools/verify_artifacts.py results/matrix results/strict-decode.json
+          python qa/docs/qa/generalization/tools/verify_current23_inputs.py results qa/docs/qa/generalization/composition-recovery/release-recovery-20261019/current31-frozen-inputs.json "$CONTROL_CASE"
+      - name: Exact current native replay with source and output clocks
+        if: always()
+        env:
+          NODE_PATH: ${{ github.workspace }}/current/node_modules
+          KAMEN_CHROME: /usr/bin/google-chrome
+          CONTROL_CASE: ${{ matrix.case }}
+        run: |
+          node current/scripts/serve.mjs dist 127.0.0.1 4173 > results/dispatch-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for n in {1..30}; do curl -fsS -o /dev/null http://127.0.0.1:4173/ && break || sleep 1; done
+          node qa/docs/qa/generalization/tools/native_dispatch_lineage_trace_v7.cjs http://127.0.0.1:4173/ results/matrix "$CONTROL_CASE" v3 "results/dispatch/$CONTROL_CASE" > results/dispatch.log 2>&1
+      - name: Preserve original JSON bytes with lossless compression
+        if: always()
+        run: |
+          python - <<'PY'
+          import pathlib,gzip
+          for p in pathlib.Path('results').rglob('*.json'):
+              p.with_name(p.name+'.gz').write_bytes(gzip.compress(p.read_bytes(),mtime=0));p.unlink()
+          PY
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        if: always()
+        with:
+          name: recovery-current31-${{ matrix.case }}
+          path: results/
+          retention-days: 14

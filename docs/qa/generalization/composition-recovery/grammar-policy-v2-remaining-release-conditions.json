@@ -1,86 +1,123 @@
 {
-  "schema": 1,
-  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-  "applicationSourceChangedInThisQAContinuation": false,
-  "TECHNICAL_GO": "PASS",
+  "schema": 2,
+  "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "TECHNICAL_GO": "UNVERIFIED",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "UNVERIFIED",
-  "unchangedGateEvaluator": "dev/release_gates.cjs",
+  "evaluatorVersion": "release-gates-v2",
+  "classificationFinalized": false,
+  "historicalSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "historicalConditions": {
+    "path": "composition-recovery/release-recovery-20261019/historical-remaining-release-conditions.json",
+    "sha256": "9f62f5ab737b6664360755acf945e3723558cd354c1d2a092be97c2920456bd2"
+  },
+  "currentManifest": {
+    "path": "composition-recovery/release-current-head/release-gate-manifest.json",
+    "sha256": "3cbb137e6dddbb8e2d66283083cfc5bf78c546cd6bdbfe18dbaffc09e823e52c"
+  },
   "blockingQualityConditions": [
     {
-      "id": "NATURAL_PHOTO_TEMPORAL_TARGET",
+      "id": "CURRENT_IMPORTANT_POPULATION_AND_PHASE_SEMANTICS",
       "status": "UNVERIFIED",
-      "reason": "All4bounded natural-route experiments completed with H264/AAC full decode and exact Native. All naturally selected Grammar, so no active natural photoCondensed light/continuity target was independently verified. No forced selection or additional seed retry."
-    },
-    {
-      "id": "IMPORTANT_INTENT_SEMANTICS",
-      "status": "UNVERIFIED",
-      "reason": "All238fixed actor-case controls and32full Native lineage traces are collected.1129conservative important IDs are still provisional; composite/local-static/independent-role classification and full phase-specific semantic certificates are incomplete. Recipe/layout/crop contributions are explicitly limited."
+      "historicalImportantIds": 1129,
+      "historicalUnproven": 1127,
+      "detail": {
+        "path": "composition-recovery/release-recovery-20261019/intent-audit.json",
+        "sha256": "23ecd1c0ba237c7e326efa37e2ed15585c82164bece6930faee024c097d23d90"
+      },
+      "clockDetail": {
+        "path": "composition-recovery/release-recovery-20261019/clock-population-audit.json",
+        "sha256": "0cd79284915817943ee66ac9036e555827d75b8d4717969a8b94b508fce33d29"
+      },
+      "reason": "Historical unit-only evidence does not certify incoming/outgoing targets at distinct source/output clocks. Current naturally selected population and required semantic contracts are not finalized."
     },
     {
       "id": "ORIGINAL_DECODED_REPRODUCTION",
       "status": "UNVERIFIED",
-      "reason": "6cases have differing decoded hashes despite exact original/repeated Native.13978primary HOLD glyph comparisons have no target/ink/native mismatch and max0.14347211436716634pixel decoded error, but non-primary full-pixel equality is not established; strict flags remain false."
+      "cases": [
+        "development-01",
+        "development-07",
+        "holdout-01",
+        "holdout-07",
+        "supplemental-development-13",
+        "supplemental-holdout-13"
+      ],
+      "detail": {
+        "path": "composition-recovery/release-recovery-20261019/encoded-mismatches/summary.json",
+        "sha256": "cd73c4f574a2fd0fc23ad6a0f2cebfe12528d7c245b99afaccdb96a4c6a80bf2"
+      },
+      "reason": "Exact decoded-original identity remains false. Fresh local probes have 25/240 original Native mismatches and cannot settle the historical encoder cause."
     },
     {
-      "id": "SUBSTANTIVE_COMPOSITION_COMPARISON",
+      "id": "COMPLETED_31_CONDITION_ADJUDICATION",
       "status": "UNVERIFIED",
-      "reason": "Original30 matched comparisons and actual frame reviews retained. Lower20metric recovered; development04 79to30 with a leading-character line and independent97to59 remain disclosed. No blanket major-regression assertion or artistic grade is inferred from samples/uncalibrated scores."
+      "detail": {
+        "path": "composition-recovery/release-recovery-20261019/comparison-blockers.json",
+        "sha256": "4a6f3fe815aaa10cee232199bd0aab7a640eea6d6dcdada363e69474312abf83"
+      },
+      "reason": "All historical matched films retained; current-source natural comparisons and full relative major-regression adjudication remain incomplete."
     }
   ],
-  "resolvedQAConditions": [
+  "technicalConditions": [
     {
-      "id": "DEVELOPMENT09_HISTORICAL_STALE",
-      "status": "RESOLVED_ACTUAL_RENDERER_COMPOSITION_STATE",
-      "evidence": "development09-historical-cause-resolution.json"
-    },
-    {
-      "id": "STALLED_DIAGNOSTIC_TRANSPORT",
-      "status": "BOUNDED_OPERATIONAL_RECOVERY_CONFIRMED",
-      "evidence": "grammar-policy-v2-qa-transport-causal-recovery.json"
-    },
-    {
-      "id": "MISSING_GRAMMAR_CONTROL_SPEC",
-      "status": "REPAIRED_4_JOBS_SUCCESS",
-      "run": 39194154285
-    },
-    {
-      "id": "CURRENT32_V7_LINEAGE",
-      "status": "COMPLETE_EXACT_NATIVE_10628_FRAMES",
-      "evidence": "grammar-policy-v2-native-v7-recovered-coverage.json"
-    },
-    {
-      "id": "FROZEN238_CONTROL_COLLECTION",
-      "status": "COMPLETE_NOT_SEMANTIC_CERTIFICATE",
-      "evidence": "grammar-policy-v2-current32-control-population-reconciliation.json"
+      "id": "LATEST_HEAD_FORMAL_CI_AND_UI",
+      "state": {
+        "conclusion": "",
+        "headSha": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "status": "in_progress",
+        "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/39220369311"
+      },
+      "reason": "Do not substitute historical CI or focused suites for the latest-head full suite and UI operations."
     }
   ],
-  "notReleaseBlockers": [
-    "generation speed alone",
-    "human aesthetic unverified alone",
-    "historical503 alone"
+  "resolvedConditions": [
+    {
+      "id": "DEVELOPMENT04_AUTOMATIC_ORPHAN",
+      "status": "MEASURED_SAVED_PLAN_REPAIR",
+      "detail": {
+        "path": "composition-recovery/release-recovery-20261019/development04-replays.json",
+        "sha256": "1ce6da4bbfe23320b0480420ea646058819d5143798bd2688cc355f706a202de"
+      }
+    },
+    {
+      "id": "SYNTHETIC_TEMPORAL_CLOCK_LOSS",
+      "status": "REPAIRED_METADATA_NOT_SEMANTIC_PASS",
+      "recordsRecovered": 400,
+      "unchangedIntentIds": 1250,
+      "clockDomains": {
+        "MIXED_DIRECT_AND_REMAPPED": 721,
+        "DIRECT_ONLY": 420,
+        "REMAPPED_ONLY": 109
+      }
+    },
+    {
+      "id": "DIAGNOSTIC_NATIVE_HELPER_MISSING_EXPORT",
+      "status": "REPAIRED_STRICT_GUARD_RETAINED"
+    }
   ],
   "mainChanged": false,
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "productionVerification": "NOT_EXECUTED_CURRENT_SOURCE_NOT_DEPLOYED",
   "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
   "human": "HUMAN_UNVERIFIED",
-  "allStartedWorkflowJobsCompleted": true,
-  "currentNormalPopulation": 32,
-  "additionalTargetedNaturalMovies": 4,
-  "diagnosticUniqueCompletelyDecodedMP4s": 353,
-  "historicalPhotoCurrentSourceReplay": {
-    "status": "VERIFIED_UNIFORM_TRANSLATION_CONTRIBUTION",
-    "evidence": "grammar-policy-v2-historical-photo-current-realization.json",
-    "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-    "fullDecodedAdditionalMP4s": 6,
-    "HOLDFrames": 61,
-    "glyphPointsMatched": 671,
-    "glyphPointsMeasured": 671,
-    "maximumDecodedDisplacementErrorPixels": 0.07518683762582229,
-    "currentFreshAutomaticSelection": false,
-    "representativeNewPhotoProfileCoverage": "UNVERIFIED",
-    "notIncludedInFrozen32Or238": true
+  "notReleaseBlockers": [
+    "generation speed alone",
+    "independent human aesthetic grading not performed alone"
+  ],
+  "currentGates": {
+    "TECHNICAL_GO": "PASS",
+    "QUALITY_GO": "UNVERIFIED",
+    "RELEASE_GO": "UNVERIFIED"
   },
-  "allLocalHistoricalPhotoProbesCompleted": true
+  "latestFormalCI": {
+    "runId": 39220369311,
+    "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+    "conclusion": "success",
+    "formalTests": {
+      "PASS": 209,
+      "FAIL": 0,
+      "SKIP": 2
+    },
+    "actualBrowserAlternatives": 2
+  }
 }

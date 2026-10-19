@@ -1,41 +1,45 @@
 {
-  "releaseSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
-  "gitRepository": "../../../../../../kamen-late-semantic-travel",
+  "releaseSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "gitRepository": "../../../../..",
   "sourceCorrespondence": [
     {
+      "path": "../release-recovery-20261019/source-correspondence.json",
+      "sha256": "87735b10a146276b82711ab681733bd83cab465cc5e005fd18385e244eee0199"
+    },
+    {
       "path": "official-merge-source-correspondence.json",
-      "sha256": "c221980dbd7a1332920dc2da5011ebd88d4f4da6370ca1434cc43d7765fb7e95"
+      "sha256": "1ae3773edfa0402aaa906424b625c60f90eaa79211dcc3c9b207e415070c47af"
     }
   ],
   "evidence": {
     "ci": {
       "path": "ci.json",
-      "sha256": "a815cfd6990a9b9329c896a14e7207e2c237086a46ad6cb14ad788ef7d21118a"
-    },
-    "artifacts": {
-      "path": "finished-artifacts.json",
-      "sha256": "88021c8430310c972f02ea4f1d66bf8283ee7c2a4755288b155aa5b2c1bd6db5"
+      "sha256": "e3ba896f3d1fc4a670db2d30ba1cb95605bd06ad70e40bac6c254ad5caf4b6b4"
     },
     "tests": {
       "path": "tests.json",
-      "sha256": "44c83d410f82fc245025905a0b8e1916e0c4af162ffa27803b4eac3476015f40"
+      "sha256": "195cba284d13e3214ae3baae2eb22623ecfbe5f64c29a66e7bfc0e418010f92f"
     },
     "browser": {
       "path": "browser.json",
-      "sha256": "bfa16a1fddf539e21cb1b2a60f8f2c47744fc1e9a9537df5f8aadf5f809f5011"
+      "sha256": "37f5f34b186d69a840d3347cb893778ee51b087a01232ce76ce406580984f25f"
+    },
+    "artifacts": {
+      "path": "finished-artifacts.json",
+      "sha256": "83a971d5d42e121705df1476328efc61cf3b1e3e82d44f5bccdb8928cdcff59f"
     },
     "comparisons": {
       "path": "comparisons.json",
-      "sha256": "44d1e68d3aa30441fcb6162158e71962843ee51f739620f60e68a837af16f9b2"
+      "sha256": "5b61d9e1113f5dad897a671b47532c8cdd4e33c82b79f64f3922c1d638d5569b"
     },
     "operators": {
       "path": "operators.json",
-      "sha256": "ca424f442bdf8c990a1cace66d1e1266a1da7e5136a453397d5cc50641f0789a"
+      "sha256": "ce3e3eb9c902e7ec61fe89aefc54777900be8e5df92f726527850bf9cc2ff8e7"
     },
     "safety": {
       "path": "safety.json",
-      "sha256": "6b3dbb2ed26eed3e10fbff068fb81115e579660ece4f8dc638fbab19d1b2b5df"
+      "sha256": "f4597d04a1fbb1d8ed1af87657bd5e23181e3dcc9593c00d27f8112487dd70cb"
     }
   },
-  "scope": "All runtime observations exact-v2 source only; old runtime evidence historical, no equivalence shortcut."
+  "scope": "Current candidate checkpoint, not a release approval. Old source successes are retained separately; only QA-identical source correspondence may transfer the targeted fixed MP4."
 }

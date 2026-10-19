@@ -1,0 +1,70 @@
+{
+  "schema": 2,
+  "evaluatorVersion": "release-gates-v2",
+  "releaseSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "manifestSHA256": "3cf6a596bc8ff32e88f55eea2cf1a9c6ef4c98d3a7b3a6ae985f624eaeafd4b2",
+  "TECHNICAL_GO": "PASS",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "UNVERIFIED",
+  "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED",
+  "checks": {
+    "technical": [
+      {
+        "name": "ci",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      },
+      {
+        "name": "regression/build",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      },
+      {
+        "name": "browser",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      },
+      {
+        "name": "finished artifacts",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      }
+    ],
+    "quality": [
+      {
+        "name": "comparison coverage",
+        "state": "UNVERIFIED",
+        "reason": "regression/safety result not measured"
+      },
+      {
+        "name": "important semantic operators",
+        "state": "UNVERIFIED",
+        "reason": "important effect unmeasured/confounded/stale or no isolated encoded control"
+      },
+      {
+        "name": "regressions and correspondence",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "domain": "quality",
+      "name": "comparison coverage",
+      "state": "UNVERIFIED",
+      "reason": "regression/safety result not measured"
+    },
+    {
+      "domain": "quality",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "important effect unmeasured/confounded/stale or no isolated encoded control"
+    }
+  ],
+  "limitations": [
+    "Hash binding establishes file consistency, not runner authenticity. Adapters must preserve raw observations; no artistic score is inferred.",
+    "No deployment or production verification is implied by RELEASE_GO."
+  ]
+}

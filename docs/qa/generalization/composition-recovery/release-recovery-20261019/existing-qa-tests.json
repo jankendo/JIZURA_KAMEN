@@ -1,0 +1,344 @@
+{
+  "tests": [
+    {
+      "test": "docs/qa/generalization/composition-recovery/quality-comparison-tools/verify_pcm_matched_replay_test.py",
+      "exitCode": 0,
+      "output": "{\"status\": \"PASS\", \"counterexamples\": 8, \"scope\": \"Comparison contract only; synthetic rows never counted as rendered MP4 evidence\"}\n",
+      "seconds": 0.6793546676635742,
+      "testFileSHA256": "0b5e4404b0a39a0fffc506e7e0eb04c3618154191b00f4a14ac550daa384bd6b"
+    },
+    {
+      "test": "docs/qa/generalization/tools/automatic_contract_dispatch_binding_test.py",
+      "args": [],
+      "exitCode": 0,
+      "output": "...\n----------------------------------------------------------------------\nRan 3 tests in 5.129s\n\nOK\n",
+      "seconds": 6.3582844734191895,
+      "priorAttempt": {
+        "test": "docs/qa/generalization/tools/automatic_contract_dispatch_binding_test.py",
+        "exitCode": 1,
+        "output": "EEE\n======================================================================\nERROR: test_bound_controlled_intent_preserves_raw_dispatch_key (__main__.ActualBinding.test_bound_controlled_intent_preserves_raw_dispatch_key)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/automatic_contract_dispatch_binding_test.py\", line 8, in setUp\n    self.p=R/'automatic-contract-focused-0/dispatch/development-15/native-dispatch-trace.json.gz';self.b=bind(self.p,self.p.parents[2])\n                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/bind_actual_dispatch_units.py\", line 9, in bind\n    rp=root/'matrix'/f\"{t['caseId']}-{t['variant']}-row.json.gz\";row,_=read(rp);refpath=root/'matrix'/(row['referenceInputs']['file']+'.gz');ref,rb=read(refpath)\n                                                                       ^^^^^^^^\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/bind_actual_dispatch_units.py\", line 5, in read\n    b=p.read_bytes();return (json.loads(gzip.decompress(b) if p.suffix=='.gz' else b),b)\n      ^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1019, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/workspace/kamen-evidence/docs/qa/generalization/composition-recovery/automatic-contract-focused-0/matrix/development-15-v3-row.json.gz'\n\n======================================================================\nERROR: test_clone_maps_exact_final_fragment (__main__.ActualBinding.test_clone_maps_exact_final_fragment)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/automatic_contract_dispatch_binding_test.py\", line 8, in setUp\n    self.p=R/'automatic-contract-focused-0/dispatch/development-15/native-dispatch-trace.json.gz';self.b=bind(self.p,self.p.parents[2])\n                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/bind_actual_dispatch_units.py\", line 9, in bind\n    rp=root/'matrix'/f\"{t['caseId']}-{t['variant']}-row.json.gz\";row,_=read(rp);refpath=root/'matrix'/(row['referenceInputs']['file']+'.gz');ref,rb=read(refpath)\n                                                                       ^^^^^^^^\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/bind_actual_dispatch_units.py\", line 5, in read\n    b=p.read_bytes();return (json.loads(gzip.decompress(b) if p.suffix=='.gz' else b),b)\n      ^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1019, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/workspace/kamen-evidence/docs/qa/generalization/composition-recovery/automatic-contract-focused-0/matrix/development-15-v3-row.json.gz'\n\n======================================================================\nERROR: test_wrong_raw_hash_cannot_rebind (__main__.ActualBinding.test_wrong_raw_hash_cannot_rebind)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/automatic_contract_dispatch_binding_test.py\", line 8, in setUp\n    self.p=R/'automatic-contract-focused-0/dispatch/development-15/native-dispatch-trace.json.gz';self.b=bind(self.p,self.p.parents[2])\n                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/bind_actual_dispatch_units.py\", line 9, in bind\n    rp=root/'matrix'/f\"{t['caseId']}-{t['variant']}-row.json.gz\";row,_=read(rp);refpath=root/'matrix'/(row['referenceInputs']['file']+'.gz');ref,rb=read(refpath)\n                                                                       ^^^^^^^^\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/bind_actual_dispatch_units.py\", line 5, in read\n    b=p.read_bytes();return (json.loads(gzip.decompress(b) if p.suffix=='.gz' else b),b)\n      ^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1019, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/workspace/kamen-evidence/docs/qa/generalization/composition-recovery/automatic-contract-focused-0/matrix/development-15-v3-row.json.gz'\n\n----------------------------------------------------------------------\nRan 3 tests in 0.080s\n\nFAILED (errors=3)\n",
+        "seconds": 0.24687409400939941
+      },
+      "testFileSHA256": "53e2840ba5187a06d6527fdab4fb1f18af75e0e5640134b13131179d08cc2c59"
+    },
+    {
+      "test": "docs/qa/generalization/tools/background_crop_ecc_sensor_test.py",
+      "args": [
+        "/workspace/release-audit/background_crop_ecc_sensor_test.json"
+      ],
+      "exitCode": 0,
+      "output": "{'status': 'PASS', 'cases': 9}\n",
+      "seconds": 4.891475439071655,
+      "priorAttempt": {
+        "test": "docs/qa/generalization/tools/background_crop_ecc_sensor_test.py",
+        "exitCode": 1,
+        "output": "Traceback (most recent call last):\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/background_crop_ecc_sensor_test.py\", line 1, in <module>\n    import numpy as np,cv2,json,pathlib,sys,tempfile\nModuleNotFoundError: No module named 'cv2'\n",
+        "seconds": 0.37543487548828125
+      },
+      "priorAttempt2": {
+        "test": "docs/qa/generalization/tools/background_crop_ecc_sensor_test.py",
+        "args": [],
+        "exitCode": 1,
+        "output": "Traceback (most recent call last):\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/background_crop_ecc_sensor_test.py\", line 13, in <module>\n    d={'schema':1,'status':'PASS','opencvVersion':cv2.__version__,'actualMVExamined':False,'cases':cases,'method':'Direct known-transform-initialized affine ECC, full-rank geometry, all owned pixels, fixed existing0.5px/10%/90% agreement and max(1,3noise) signal floor. No scoring change.'};pathlib.Path(sys.argv[1]).write_text(json.dumps(d,indent=2)+'\\n');print({'status':'PASS','cases':len(cases)})\n                                                                                                                                                                                                                                                                                                                ~~~~~~~~^^^\nIndexError: list index out of range\n",
+        "seconds": 4.891475439071655
+      },
+      "testFileSHA256": "9e3578039d888ec3526f47ba5bfbcd6c81d24828a94d580bea0c4e6bfe2ef6e3"
+    },
+    {
+      "test": "docs/qa/generalization/tools/background_focus_support_mask_test.py",
+      "args": [
+        "/workspace/release-audit/background_focus_support_mask_test.json"
+      ],
+      "exitCode": 0,
+      "output": "{'status': 'PASS', 'cases': 4, 'supportRadius': 102}\n",
+      "seconds": 0.533393383026123,
+      "priorAttempt": {
+        "test": "docs/qa/generalization/tools/background_focus_support_mask_test.py",
+        "exitCode": 1,
+        "output": "Traceback (most recent call last):\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/background_focus_support_mask_test.py\", line 1, in <module>\n    import pathlib,json,sys,numpy as np,cv2\nModuleNotFoundError: No module named 'cv2'\n",
+        "seconds": 0.2846195697784424
+      },
+      "priorAttempt2": {
+        "test": "docs/qa/generalization/tools/background_focus_support_mask_test.py",
+        "args": [],
+        "exitCode": 1,
+        "output": "Traceback (most recent call last):\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/background_focus_support_mask_test.py\", line 11, in <module>\n    d={'schema':1,'status':'PASS','opencvVersion':cv2.__version__,'supportRadius':r,'radiusDerivation':'(half-window+interpolation)*2^pyramidLevel + 5-tap pyramid radii; fixed existing LK parameters','cases':{'everyAllowedPointHasOwnedFullSupport':True,'knownTranslationWithStaticForeground':positive,'oppositeDirection':negative,'fullyOccluded':occluded},'actualMVExamined':False,'thresholdsChanged':False};pathlib.Path(sys.argv[1]).write_text(json.dumps(d,indent=2)+'\\n');print({'status':'PASS','cases':4,'supportRadius':r})\n                                                                                                                                                                                                                                                                                                                                                                                                                                     ~~~~~~~~^^^\nIndexError: list index out of range\n",
+        "seconds": 0.533393383026123
+      },
+      "testFileSHA256": "07ed593a8d7a0d7dd3d68b5a776f6e8a9ae492accfa2d1dc2f974e96e32f27c5"
+    },
+    {
+      "test": "docs/qa/generalization/tools/build_current_gate_checkpoint_test.py",
+      "args": [
+        "/workspace/kamen-release"
+      ],
+      "exitCode": 0,
+      "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.096s\n\nOK\n",
+      "seconds": 0.20637774467468262,
+      "priorAttempt": {
+        "test": "docs/qa/generalization/tools/build_current_gate_checkpoint_test.py",
+        "exitCode": 1,
+        "output": "EE\n======================================================================\nERROR: test_no_historical_pass_promotion (__main__.ActiveGate.test_no_historical_pass_promotion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/build_current_gate_checkpoint_test.py\", line 7, in test_no_historical_pass_promotion\n    p=pathlib.Path(t)/'minimal.json';p.write_text(json.dumps({'releaseSourceCommit':json.loads((A/'context.json').read_text())['sourceCommit'],'evidence':{}}));g=build(sys.argv[1],p)\n                                                                                                                                                                        ~~~~~~~~^^^\nIndexError: list index out of range\n\n======================================================================\nERROR: test_stale_release_manifest_rejected (__main__.ActiveGate.test_stale_release_manifest_rejected)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/build_current_gate_checkpoint_test.py\", line 13, in test_stale_release_manifest_rejected\n    with self.assertRaisesRegex(AssertionError,'ACTIVE_SOURCE_MANIFEST_MISMATCH'):build(sys.argv[1],p)\n                                                                                        ~~~~~~~~^^^\nIndexError: list index out of range\n\n----------------------------------------------------------------------\nRan 2 tests in 0.035s\n\nFAILED (errors=2)\n",
+        "seconds": 0.19801688194274902
+      },
+      "testFileSHA256": "4b561c3e9ac94b7decc9582c7194d1119e37a74e5ad257a7d03bd88e04876972"
+    },
+    {
+      "test": "docs/qa/generalization/tools/build_important_executed_population_test.py",
+      "exitCode": 0,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 0.003s\n\nOK\n",
+      "seconds": 0.7244260311126709,
+      "testFileSHA256": "bd6e5b986067bcc80d8a65c260573bfa38eebbe2c47fbff11dc0e195771d3380"
+    },
+    {
+      "test": "docs/qa/generalization/tools/checkpoint_gate_policy_test.py",
+      "exitCode": 0,
+      "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.033s\n\nOK\n",
+      "seconds": 0.2750523090362549,
+      "testFileSHA256": "9c29ce81b466b2b1a7eba75753cb6287a64af60951effba40cd88a984e6a360b"
+    },
+    {
+      "test": "docs/qa/generalization/tools/clock_context_population_test.py",
+      "exitCode": 0,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nOK\n",
+      "seconds": 0.23980927467346191,
+      "testFileSHA256": "741c0172146f7cac665d225c788ce5aede7624d6958735abbbb15e6ad6469c22"
+    },
+    {
+      "test": "docs/qa/generalization/tools/contour_template_sensor_test.py",
+      "args": [],
+      "exitCode": 0,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.026s\n\nOK\n",
+      "seconds": 0.26054859161376953,
+      "priorAttempt": {
+        "test": "docs/qa/generalization/tools/contour_template_sensor_test.py",
+        "exitCode": 1,
+        "output": "Traceback (most recent call last):\n  File \"/workspace/kamen-evidence/docs/qa/generalization/tools/contour_template_sensor_test.py\", line 1, in <module>\n    import unittest,cv2,numpy as np\nModuleNotFoundError: No module named 'cv2'\n",
+        "seconds": 0.1633603572845459
+      },
+      "testFileSHA256": "dfe17f7690564a2bbd5332a290040b848e132d36591f437682a65d23c83d3704"
+    },
+    {
+      "test": "docs/qa/generalization/tools/decoded_recipe_binding_test.py",
+      "exitCode": 0,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.038s\n\nOK\n",
+      "seconds": 0.19276905059814453,
+      "testFileSHA256": "95b2b93d71b8143e63d24e67141b72498a831b09cd7e7a1ec67c542647db7ad8"
+    },
+    {
+      "test": "docs/qa/generalization/tools/empty_hold_population_test.py",
+      "exitCode": 0,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n",
+      "seconds": 0.23944568634033203,
+      "testFileSHA256": "0a0ff24d43d2a2998c5575a6b2777e4a238480131b61c3b097a0f3e6b1e96896"
+    },
+    {
+      "test": "docs/qa/generalization/tools/export_clipped_recipe_binding_test.py",
+      "exitCode": 0,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nOK\n",
+      "seconds": 0.19321918487548828,
+      "testFileSHA256": "d554f677dbad8c2a96a7873843472bb511df60468d6b077cd72a78f85ec271c0"
+    },
+    {
+      "test": "docs/qa/generalization/tools/normalized_temporal_intent_binding_test.py",
+      "exitCode": 0,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK\n",
+      "seconds": 0.19812560081481934,
+      "testFileSHA256": "65d375f9f1d0c9cbafb885835d4377506192b1be604a98ca8cb0423afc809a4d"
+    },
+    {
+      "test": "docs/qa/generalization/tools/registered_reproduction_geometry_test.py",
+      "exitCode": 0,
+      "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.001s\n\nOK\n",
+      "seconds": 0.1702287197113037,
+      "testFileSHA256": "b1944072431c758f3a7720b88445132977bd4fc65a2e365575e6e94e2104be6d"
+    },
+    {
+      "test": "docs/qa/generalization/tools/restore_canonical_artifact_test.py",
+      "exitCode": 0,
+      "output": "6 PASS: chunk reconstruction, corruption/offset/whole/path rejection, legacy gzip\n",
+      "seconds": 0.08741474151611328,
+      "testFileSHA256": "47030a4f6ec85f880a00bdf92636e41829f9a6450a5d56785547dabfed78be9d"
+    },
+    {
+      "test": "docs/qa/generalization/tools/run_bounded_diagnostic_test.py",
+      "exitCode": 0,
+      "output": "...\n----------------------------------------------------------------------\nRan 3 tests in 1.070s\n\nOK\n",
+      "seconds": 1.2324130535125732,
+      "testFileSHA256": "d66c6d497c716fcc4bda79a7d62f0589561ef6933e8741c60b4386cb30ee4de4"
+    },
+    {
+      "test": "docs/qa/generalization/tools/shared_recipe_trace_binding_test.py",
+      "exitCode": 0,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nOK\n",
+      "seconds": 0.18103504180908203,
+      "testFileSHA256": "e222dfed900eef47cab76599586ae275564718e1c86b42a80198af24995a82c5"
+    },
+    {
+      "test": "docs/qa/generalization/tools/verify_current23_inputs_test.py",
+      "exitCode": 0,
+      "output": "{\"pass\": 8, \"fail\": 0, \"scope\": \"Strict input/audio/profile/source/movie identity and measured FAV counterexamples\"}\n",
+      "seconds": 0.6330966949462891,
+      "testFileSHA256": "b9720e633217fa93a896eb3fac908bbd3eb073086542b7e0c9b2a7cb4818f490"
+    },
+    {
+      "test": "docs/qa/generalization/composition-recovery/quality-comparison-tools/observer_input_correspondence_test.cjs",
+      "exitCode": 0,
+      "output": "{\"status\":\"PASS\",\"cases\":19,\"scope\":\"Visual-only observation cannot certify a mismatched input or audio/FAV; all non-audio mismatches reject\"}\n",
+      "seconds": 0.2588531970977783,
+      "testFileSHA256": "dbb832c26cc3bdf5e2f62fe98256d318e10b371a139c1ec90e2b227072a3b52d"
+    },
+    {
+      "test": "docs/qa/generalization/tools/grammar_temporal_recipe_control_test.cjs",
+      "exitCode": 0,
+      "output": "14 PASS: exact selected recipe only, all other functions/font/size preserved, paired anchor, manual exclusion and restoration\n",
+      "seconds": 0.0959930419921875,
+      "testFileSHA256": "8f6fa85eff492a0252e67c211825be71017daa815ddb9a71c8bfd27ef78536ad"
+    },
+    {
+      "test": "docs/qa/generalization/tools/instrument_registry_dispatch_test.cjs",
+      "exitCode": 0,
+      "output": "PASS: immutable pre-wrap identities, shared-object alias once, distinct entries, actual alias choice, unresolved alias, this/args/return and restoration\n",
+      "seconds": 0.053169965744018555,
+      "testFileSHA256": "ea519e0644d4047072a5c258ba66adf1af0fe84953b28f357ff00f9b63620e66"
+    },
+    {
+      "test": "docs/qa/generalization/tools/native_only_diagnostic_baseline_test.cjs",
+      "args": [
+        "/workspace/qa-reuse-fixtures/development-01",
+        "development-01",
+        "/workspace/qa-reuse-fixtures/development-01/baseline"
+      ],
+      "exitCode": 0,
+      "output": "15 PASS: strict encoded guard unchanged; Native-only diagnostic explicitly denies release credit; actual mismatches and tampering rejected\n",
+      "seconds": 0.7373049259185791,
+      "priorAttempt": {
+        "test": "docs/qa/generalization/tools/native_only_diagnostic_baseline_test.cjs",
+        "exitCode": 1,
+        "output": "node:internal/errors:542\n      throw error;\n      ^\n\nTypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string. Received undefined\n    at Object.join (node:path:1339:7)\n    at Object.<anonymous> (/workspace/kamen-evidence/docs/qa/generalization/tools/native_only_diagnostic_baseline_test.cjs:4:160)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'ERR_INVALID_ARG_TYPE'\n}\n\nNode.js v24.19.0\n",
+        "seconds": 0.0909421443939209
+      },
+      "testFileSHA256": "66455238d8d7f1f79302f9060d8083271ce47d5b03ad4d022d7d936e826c28c7"
+    },
+    {
+      "test": "docs/qa/generalization/tools/original_verification_reuse_test.cjs",
+      "args": [
+        "/workspace/qa-reuse-fixtures/development-04/development-04-v3-row.json",
+        "/workspace/kamen-evidence/docs/qa/generalization/composition-recovery/grammar-policy-v2-remaining-controls-3/cases/development-04/native/native-dispatch-trace.json.gz"
+      ],
+      "exitCode": 0,
+      "output": "12 PASS: actual original certificate reused only for its original bytes with full Native/source/ref/profile identity; tampering and failures rejected\n",
+      "seconds": 0.9699721336364746,
+      "priorAttempt": {
+        "test": "docs/qa/generalization/tools/original_verification_reuse_test.cjs",
+        "exitCode": 1,
+        "output": "/workspace/kamen-evidence/docs/qa/generalization/tools/original_verification_reuse_test.cjs:3\nconst [rowPath,tracePath]=process.argv.slice(2),read=p=>JSON.parse(p.endsWith('.gz')?zlib.gunzipSync(fs.readFileSync(p)):fs.readFileSync(p)),row=read(rowPath),trace=read(tracePath),reference=row.referenceInputs.sha256;let count=1;const receipt=check(row,trace,reference);assert.equal(receipt.originalVideoSHA256,row.sha256);assert.equal(receipt.originalEvidenceId,row.provenance.finalArtifactVerification.evidenceId);assert.match(receipt.scope,/same original video only/);\n                                                                     ^\n\nTypeError: Cannot read properties of undefined (reading 'endsWith')\n    at read (/workspace/kamen-evidence/docs/qa/generalization/tools/original_verification_reuse_test.cjs:3:70)\n    at Object.<anonymous> (/workspace/kamen-evidence/docs/qa/generalization/tools/original_verification_reuse_test.cjs:3:146)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47\n\nNode.js v24.19.0\n",
+        "seconds": 0.08997416496276855
+      },
+      "testFileSHA256": "67386725183d267bc8d4c03cb7a1de653d242c30b61651d73aae7584035d5f43"
+    },
+    {
+      "test": "docs/qa/generalization/tools/pack_original_counterfactual_metadata_test.cjs",
+      "exitCode": 0,
+      "output": "9 PASS: exact used metadata, independent copies, original certificate preserved, no large unused payload\n",
+      "seconds": 0.09115481376647949,
+      "testFileSHA256": "73ceb59738e881ac165f8077a1f00459feb05bfe433ff82373afd80aa1b2d28c"
+    },
+    {
+      "test": "docs/qa/generalization/tools/render_actuation_snapshot_test.cjs",
+      "exitCode": 0,
+      "output": "11 PASS: true no-op, appended glyph function, geometry/clip changes, opaque state and canvas transform snapshot\n",
+      "seconds": 0.08604955673217773,
+      "testFileSHA256": "7120e3cb37d73fe9d8fc6c036fd956b024e2c95dd878cb8eef47e8ee33fec82d"
+    },
+    {
+      "test": "docs/qa/generalization/tools/resolve_actual_cut_ordinal_test.cjs",
+      "exitCode": 0,
+      "output": "9 PASS: cloned cuts, same-line fragments, authored IDs, changed geometry/text and ambiguity rejected\n",
+      "seconds": 0.08455061912536621,
+      "testFileSHA256": "edc5c15831dc7ed45cf8832900ac352a2d194de57549f2b3b1be81579b1a9ec8"
+    },
+    {
+      "test": "docs/qa/generalization/tools/resolve_translation_targets_test.cjs",
+      "exitCode": 0,
+      "output": "10 PASS: authored index differs from ordinal, same-line units, duplicate/unknown/range/phase rejection\n",
+      "seconds": 0.05402946472167969,
+      "testFileSHA256": "bb1c3deac9d2ccf98f10183c0d79fb9c480f817f1fadd87a8534143e0a38ca4f"
+    },
+    {
+      "test": "docs/qa/generalization/tools/semantic_translation_component_test.cjs",
+      "exitCode": 0,
+      "output": "{\"pass\":14,\"fail\":0,\"scope\":\"Exact dy and anchor-reference metadata subtraction; ON/repeat identity; unrelated dx/scale, role/lock/neutral, endpoints, property restoration and unknown-body rejection\"}\n",
+      "seconds": 0.08903837203979492,
+      "testFileSHA256": "ca3361cf89e156c3c3ea98ac3cf8b802fad3374e582a5cfb4ad2f66e505d651d"
+    },
+    {
+      "test": "docs/qa/generalization/tools/stream_json_test.cjs",
+      "exitCode": 0,
+      "output": "{\"status\":\"PASS\",\"equivalenceCases\":72,\"largeBytes\":25165859,\"cycleRejected\":true,\"atomicFailurePreserved\":true}\n",
+      "seconds": 0.8064589500427246,
+      "testFileSHA256": "8e7187dca97f142bfda2fe4d8aa164abc608db746c92e99cbf637ac66ab3975b"
+    },
+    {
+      "test": "docs/qa/generalization/tools/temporal_continuity_component_test.cjs",
+      "exitCode": 0,
+      "output": "{\"pass\":14,\"fail\":0,\"scope\":\"Exact dy subtraction; ON/repeat identity; unrelated dx/scale, role/lock/neutral, endpoints, property restoration and unknown-body rejection\"}\n",
+      "seconds": 0.05260872840881348,
+      "testFileSHA256": "57cf21249e99f612a9be4de96b28472a8d5886be9fc5869e5582c1a9b42b4bef"
+    },
+    {
+      "test": "docs/qa/generalization/tools/uniform_lyric_translation_control_test.cjs",
+      "exitCode": 0,
+      "output": "11 PASS: exact contract isolation, ON identity, grammar/manual exclusion, settings unchanged and restoration\n",
+      "seconds": 0.09004378318786621,
+      "testFileSHA256": "a5cc4d8fa5847d1518d7942764ba2c58a05c743456ac8fcae0b2729c46ef20d8"
+    },
+    {
+      "test": "docs/qa/generalization/tools/unit_pixel_control_test.cjs",
+      "exitCode": 0,
+      "output": "{\"pass\":8,\"fail\":0,\"scope\":\"Same-line different stable units, cloned render cut, unchanged geometry return/context/path, rejection of ambiguous/missing IDs, and exception-safe paint restoration\"}\n{\"pass\":16,\"fail\":0,\"scope\":\"Exact whole body text and stable cut tuple; prompt, substring, extra text, empty and other-unit controls rejected; decomposed glyph-only text remains unsupported\"}\n",
+      "seconds": 0.9473874568939209,
+      "testFileSHA256": "2908082cd09dce876e4bb34af135197ed728c01f712d4f6610eccddb1fdbe417"
+    },
+    {
+      "test": "docs/qa/generalization/tools/validate_shared_control_baseline_test.cjs",
+      "args": [
+        "/workspace/qa-reuse-fixtures/development-15",
+        "/workspace/qa-reuse-fixtures/development-15/baseline"
+      ],
+      "exitCode": 0,
+      "output": "12 PASS: actual completed source bundle accepted; wrong case/video/plan/source/renderer/reference/WAV/input/profile/native correspondence rejected\n",
+      "seconds": 0.6210193634033203,
+      "priorAttempt": {
+        "test": "docs/qa/generalization/tools/validate_shared_control_baseline_test.cjs",
+        "exitCode": 1,
+        "output": "node:internal/errors:542\n      throw error;\n      ^\n\nTypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string. Received undefined\n    at Object.join (node:path:1339:7)\n    at Object.<anonymous> (/workspace/kamen-evidence/docs/qa/generalization/tools/validate_shared_control_baseline_test.cjs:1:290)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'ERR_INVALID_ARG_TYPE'\n}\n\nNode.js v24.19.0\n",
+        "seconds": 0.08200907707214355
+      },
+      "testFileSHA256": "26745b456619f9d6658a155039602d99c45abce491cdce2f2de470445d0a9f70"
+    },
+    {
+      "test": "docs/qa/generalization/tools/duo_settle_component_counterexamples.cjs",
+      "exitCode": 0,
+      "output": "{\"status\":\"PASS\",\"onEquivalent\":true,\"stage2SinPreserved\":true,\"laterCharFnMapOrderPreserved\":true,\"otherDxAndDyPreserved\":true,\"unknownFunctionRejected\":true,\"cases\":40}\n",
+      "seconds": 0.092559814453125,
+      "testFileSHA256": "2af4737e33674312c9e5293cfa57a3f34ad965dfe1d9d9c20455b9ab46ce75d0"
+    },
+    {
+      "test": "docs/qa/generalization/tools/foreground_shape_sensor_counterexamples.cjs",
+      "args": [],
+      "exitCode": 0,
+      "output": "8 PASS: resolved geometric foreground, independent OFF, uniform/other/camera false positives, absent support, invalid geometry and out-of-frame rejection. Not artistic calibration.\n",
+      "seconds": 0.7810091972351074,
+      "priorAttempt": {
+        "test": "docs/qa/generalization/tools/foreground_shape_sensor_counterexamples.cjs",
+        "exitCode": 1,
+        "output": "node:internal/errors:542\n      throw error;\n      ^\n\nTypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string. Received undefined\n    at Object.join (node:path:1339:7)\n    at Object.<anonymous> (/workspace/kamen-evidence/docs/qa/generalization/tools/foreground_shape_sensor_counterexamples.cjs:1:95)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'ERR_INVALID_ARG_TYPE'\n}\n\nNode.js v24.19.0\n",
+        "seconds": 0.08111691474914551
+      },
+      "testFileSHA256": "b73d8752bea0f3a873647f3c7c07e96942f03f60fc2e7ca6476dbf7ca1153d1c"
+    }
+  ],
+  "passed": 35,
+  "failed": 0
+}

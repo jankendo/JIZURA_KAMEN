@@ -1,0 +1,384 @@
+{
+  "caseId": "development-01",
+  "originalVideoSHA256": "d5ac8e2f96518267625ce8a6d7fc3c4bfb97260973a5810593c5e271cee55990",
+  "browser": "155.0.8059.39",
+  "summary": [
+    {
+      "mode": "REPEAT_A",
+      "videoSHA256": "f14a50bb292c9a7e1af63df979ba92f5fd3d4cad8f1f1502ec33fd418d579632",
+      "frames": 240,
+      "copiesFailed": 0
+    },
+    {
+      "mode": "REPEAT_B",
+      "videoSHA256": "3e7c9c59461a84ce488eb3b04d5c96f2c1508a1e8828dd53f0933f0a9d7d387f",
+      "frames": 240,
+      "copiesFailed": 0
+    }
+  ],
+  "errors": [],
+  "completeNativeEqualsOriginal": [
+    false,
+    false
+  ],
+  "nativeRepeatsEqual": true,
+  "submittedFrameBuffersAndMetadataEqual": true,
+  "encoderConfigsEqual": true,
+  "decodedSHA256": [
+    "SHA256=bc3420ff40a1cf35abaf9de44bdf203b835fd260f485aecd99c9615ff15db591",
+    "SHA256=bc3420ff40a1cf35abaf9de44bdf203b835fd260f485aecd99c9615ff15db591"
+  ],
+  "decodedRepeatsEqual": true,
+  "configs": [
+    [
+      {
+        "codec": "avc1.640033",
+        "width": 1280,
+        "height": 720,
+        "bitrate": 6193152,
+        "framerate": 24,
+        "avc": {
+          "format": "avc"
+        },
+        "latencyMode": "realtime"
+      }
+    ],
+    [
+      {
+        "codec": "avc1.640033",
+        "width": 1280,
+        "height": 720,
+        "bitrate": 6193152,
+        "framerate": 24,
+        "avc": {
+          "format": "avc"
+        },
+        "latencyMode": "realtime"
+      }
+    ]
+  ],
+  "source": {
+    "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+    "sourceDirty": false,
+    "sourceTreeSHA256": "f9f242449118e137534f399426a1de3a82c2ff7e302bcadc492fe5a80faae278"
+  },
+  "scope": "Two causal diagnostic encodes of the exact historical selected plan; no changed application source, no independent intent or artistic release credit.",
+  "outputNativeCaptureRule": "Exact original full-output times; extra renderer safety calls retained in raw traces and excluded. Missing, duplicate or reordered output clocks rejected.",
+  "excludedNonOutputNativeCalls": [
+    8,
+    8
+  ],
+  "finding": "Both fresh encodes match the original complete native output and one another at every submitted VideoFrame byte/metadata record, encoder configuration and decoded frame. This reproduces deterministic repeated encoding here; it does not explain or overwrite the historical six original-vs-control mismatches.",
+  "originalNativeMismatches": [
+    {
+      "mode": "REPEAT_A",
+      "mismatches": [
+        {
+          "frameIndex": 66,
+          "actualOutputTimestamp": 2.75,
+          "expectedSHA256": "2b8cdf947800947b9a8358d45618078446ac3a3e4f6d519630c2b198e8636e65",
+          "observedSHA256": "1bca305a805a5daf2eae1ff549c8c799b025d4c6132414fad121c615c1d9fbd3"
+        },
+        {
+          "frameIndex": 67,
+          "actualOutputTimestamp": 2.7916666666666665,
+          "expectedSHA256": "12bbe012898ee13da962d87b734a116818e6b4bcd540365b830bda44587e939d",
+          "observedSHA256": "539a1e36b03fce27b15c351e0e32017307e6c4cf35c195702b46ea8d3664e069"
+        },
+        {
+          "frameIndex": 68,
+          "actualOutputTimestamp": 2.8333333333333335,
+          "expectedSHA256": "1196e4f5200149823c834023d5b3d115fa2c013a4000a229279c96bd3acd7196",
+          "observedSHA256": "fea5afa4118f6a40cd59b5f2d2c66ad23e8a5baa022c6a654cf214f83dfb16d3"
+        },
+        {
+          "frameIndex": 69,
+          "actualOutputTimestamp": 2.875,
+          "expectedSHA256": "fe552fd2f6186c3bf7df7dea983f0ada9c70f81c5652cfe91b97f094767c2dfb",
+          "observedSHA256": "e9e43fa3da4a3222e248728729759c47fb6c2978cf91af00d026753d1fe6d6c3"
+        },
+        {
+          "frameIndex": 70,
+          "actualOutputTimestamp": 2.9166666666666665,
+          "expectedSHA256": "379de202acdec4c09fd0e2b3a40f4ee1b400182b632f6a018eb79211c48aea5b",
+          "observedSHA256": "b7bdd26533c01c235058168f411f923065f18b1ddcd68e3c404712505c77832b"
+        },
+        {
+          "frameIndex": 71,
+          "actualOutputTimestamp": 2.9583333333333335,
+          "expectedSHA256": "33f4621e486ed74db34cbf290fe8e91d156c8a11b3af9809e6c6cba03a5c9880",
+          "observedSHA256": "d57c4c2744df50cb5eeb53dc534d261ed9a91e4ee2dbf07c7cda9e7fd6a7ac5e"
+        },
+        {
+          "frameIndex": 72,
+          "actualOutputTimestamp": 3,
+          "expectedSHA256": "6ecdeaac8714e9b249467257af73a8cde02344d7aea4ea62f7b6dfc000dc5b01",
+          "observedSHA256": "1060270529a0b1bdfd6fcda71d55232fac4cb0d98f72921ef1573a2208ee5c22"
+        },
+        {
+          "frameIndex": 73,
+          "actualOutputTimestamp": 3.0416666666666665,
+          "expectedSHA256": "5d5a2ad8b95441f30fe33accfdf9f3bef22c559fcca43db484d22d3bc9199b92",
+          "observedSHA256": "474cf493a5f4b51d1bee2d5453458c657b2dbaf3af3b1add450595f42b0bbb14"
+        },
+        {
+          "frameIndex": 74,
+          "actualOutputTimestamp": 3.0833333333333335,
+          "expectedSHA256": "f1657eb8e64592782fa46d2d43b221103a153ac2a93fe4fdcd632f1096f4ea46",
+          "observedSHA256": "426d761de99e891eebd06dc252af36b23fbf626a1fd6ce8d2181ca97af1eae22"
+        },
+        {
+          "frameIndex": 75,
+          "actualOutputTimestamp": 3.125,
+          "expectedSHA256": "0c929b6756496be3718cc5c0b64ea3349c67d8802ef74bd2e1c715d01bb5a958",
+          "observedSHA256": "4b1e3391e2037b8a15fb785ca23a24dfa750fce254fed8df1268ce4a9e142853"
+        },
+        {
+          "frameIndex": 76,
+          "actualOutputTimestamp": 3.1666666666666665,
+          "expectedSHA256": "4f7447fb74a9ba3f5810eeb7c2261a5654695ceaed8db610bf3809a0cbd469f6",
+          "observedSHA256": "849047d869a24cfbf099b6feba1fb4c050be8d1221870a1268d9317128e3dfea"
+        },
+        {
+          "frameIndex": 185,
+          "actualOutputTimestamp": 7.708333333333333,
+          "expectedSHA256": "9fd7cc9a8d85038400c7547dee55ca2183dda7913d3540a04e22c26cb151a3d2",
+          "observedSHA256": "5c84ec30354665ba76bfece35e051c97a19f2d6046ba28f7e4616369e55e9c41"
+        },
+        {
+          "frameIndex": 186,
+          "actualOutputTimestamp": 7.75,
+          "expectedSHA256": "6387858f2379d1b189fdcfa366f5b6e7c6c95ac8a91026f78e9db84c1dc3d016",
+          "observedSHA256": "6dcac795b65b5eb2e157c9f984269d908392fb1b80ccceb767a11e122a60d7a8"
+        },
+        {
+          "frameIndex": 187,
+          "actualOutputTimestamp": 7.791666666666667,
+          "expectedSHA256": "4dc554751c32a6dce46844fd14f20e5963043f4e8bc1581ca936bbffa4fa31a9",
+          "observedSHA256": "5b96b047328bfb9e9bf84143b8f84384112ce29cebb7fdcec4b5eb2b68495d80"
+        },
+        {
+          "frameIndex": 188,
+          "actualOutputTimestamp": 7.833333333333333,
+          "expectedSHA256": "65b96e25351aa9004ac95dd5992ef287bc617a57408265ca38857f761707ccfb",
+          "observedSHA256": "ef23ddc809f47863b4e32b34ca87e38fd2f367508da8b901c8195ec903b32fec"
+        },
+        {
+          "frameIndex": 189,
+          "actualOutputTimestamp": 7.875,
+          "expectedSHA256": "14daf05adf17177c4e1d2ed44e405c2c211596c552a34446d40be0b94a051523",
+          "observedSHA256": "c50edc77f4e858f709da03076e336c72370cc86bd087225e6a0e0d90c6a7cc17"
+        },
+        {
+          "frameIndex": 190,
+          "actualOutputTimestamp": 7.916666666666667,
+          "expectedSHA256": "bde54889cb9c32615978187bd52a675f99b805f1559604c0dd81f9379ca566e4",
+          "observedSHA256": "9b1aebaaa50147036e09032a5aa174863385bb913980b0b9290b33a114bc32db"
+        },
+        {
+          "frameIndex": 191,
+          "actualOutputTimestamp": 7.958333333333333,
+          "expectedSHA256": "e3263ac6fc8b2c1c7149013ace5ff538d22d821adb4b27150a2811adb01dea38",
+          "observedSHA256": "9d64f63e86bc30ba5aa2363464c347622ae47d428b494cbd281df9719cb00687"
+        },
+        {
+          "frameIndex": 192,
+          "actualOutputTimestamp": 8,
+          "expectedSHA256": "9b78f36b3638410635001c5abd7914cb0d7bf8d31b06a09e6e667b25593a1294",
+          "observedSHA256": "d720b4979d7ba3e3137f24b68165f3bbcfa09fa6e965a46825e9547fbd612d65"
+        },
+        {
+          "frameIndex": 193,
+          "actualOutputTimestamp": 8.041666666666666,
+          "expectedSHA256": "7f45a35c90f3df7691710563bff5414ceca3dbe26f1d27ebaa91cad436fe8a80",
+          "observedSHA256": "e901b01779155ed41380301f894009d50fb0c0f2beef8bc09969da2c18d82ed2"
+        },
+        {
+          "frameIndex": 194,
+          "actualOutputTimestamp": 8.083333333333334,
+          "expectedSHA256": "4925ea1aec2700e2da324be33138696f6a1d9bc386bab3828c8f7822001cdf0c",
+          "observedSHA256": "6f2dd52a427e392ae4dff0079fde2b3e460ca47f14ea3bb80101a9379eb2c8a9"
+        },
+        {
+          "frameIndex": 195,
+          "actualOutputTimestamp": 8.125,
+          "expectedSHA256": "eca7917329023685f3a11abe75b778a7e427c031103612efeb44675b5fb294f8",
+          "observedSHA256": "d5566ba05efc655caaebf5b380f75aabeced49aab988a4e498bac6ff3c4dd512"
+        },
+        {
+          "frameIndex": 196,
+          "actualOutputTimestamp": 8.166666666666666,
+          "expectedSHA256": "b494d9b2ad82f657315df9654ba284c552a31be58f3d073119853119be342f92",
+          "observedSHA256": "f3f19548063af419a7ee530655d840fb68d1395a06d380cbe0d0eea18aebe98c"
+        },
+        {
+          "frameIndex": 197,
+          "actualOutputTimestamp": 8.208333333333334,
+          "expectedSHA256": "7776e528a372d0f2b8c878e115471bf8b40b7a197807f94bbd1e6a7b5f59e9a9",
+          "observedSHA256": "953f7b967ca6ae10bc53d1d97e0e88324933f365b576f598f37e28ba3d7ff8df"
+        },
+        {
+          "frameIndex": 198,
+          "actualOutputTimestamp": 8.25,
+          "expectedSHA256": "e9ca96f288450838f676f6e2bd5a1461a088b120d40d17d5dba989d285eb771f",
+          "observedSHA256": "835eeba1d853ee3ba37f053fe2fde5e6eed2243e5f2a70f40463d900a7e3872b"
+        }
+      ]
+    },
+    {
+      "mode": "REPEAT_B",
+      "mismatches": [
+        {
+          "frameIndex": 66,
+          "actualOutputTimestamp": 2.75,
+          "expectedSHA256": "2b8cdf947800947b9a8358d45618078446ac3a3e4f6d519630c2b198e8636e65",
+          "observedSHA256": "1bca305a805a5daf2eae1ff549c8c799b025d4c6132414fad121c615c1d9fbd3"
+        },
+        {
+          "frameIndex": 67,
+          "actualOutputTimestamp": 2.7916666666666665,
+          "expectedSHA256": "12bbe012898ee13da962d87b734a116818e6b4bcd540365b830bda44587e939d",
+          "observedSHA256": "539a1e36b03fce27b15c351e0e32017307e6c4cf35c195702b46ea8d3664e069"
+        },
+        {
+          "frameIndex": 68,
+          "actualOutputTimestamp": 2.8333333333333335,
+          "expectedSHA256": "1196e4f5200149823c834023d5b3d115fa2c013a4000a229279c96bd3acd7196",
+          "observedSHA256": "fea5afa4118f6a40cd59b5f2d2c66ad23e8a5baa022c6a654cf214f83dfb16d3"
+        },
+        {
+          "frameIndex": 69,
+          "actualOutputTimestamp": 2.875,
+          "expectedSHA256": "fe552fd2f6186c3bf7df7dea983f0ada9c70f81c5652cfe91b97f094767c2dfb",
+          "observedSHA256": "e9e43fa3da4a3222e248728729759c47fb6c2978cf91af00d026753d1fe6d6c3"
+        },
+        {
+          "frameIndex": 70,
+          "actualOutputTimestamp": 2.9166666666666665,
+          "expectedSHA256": "379de202acdec4c09fd0e2b3a40f4ee1b400182b632f6a018eb79211c48aea5b",
+          "observedSHA256": "b7bdd26533c01c235058168f411f923065f18b1ddcd68e3c404712505c77832b"
+        },
+        {
+          "frameIndex": 71,
+          "actualOutputTimestamp": 2.9583333333333335,
+          "expectedSHA256": "33f4621e486ed74db34cbf290fe8e91d156c8a11b3af9809e6c6cba03a5c9880",
+          "observedSHA256": "d57c4c2744df50cb5eeb53dc534d261ed9a91e4ee2dbf07c7cda9e7fd6a7ac5e"
+        },
+        {
+          "frameIndex": 72,
+          "actualOutputTimestamp": 3,
+          "expectedSHA256": "6ecdeaac8714e9b249467257af73a8cde02344d7aea4ea62f7b6dfc000dc5b01",
+          "observedSHA256": "1060270529a0b1bdfd6fcda71d55232fac4cb0d98f72921ef1573a2208ee5c22"
+        },
+        {
+          "frameIndex": 73,
+          "actualOutputTimestamp": 3.0416666666666665,
+          "expectedSHA256": "5d5a2ad8b95441f30fe33accfdf9f3bef22c559fcca43db484d22d3bc9199b92",
+          "observedSHA256": "474cf493a5f4b51d1bee2d5453458c657b2dbaf3af3b1add450595f42b0bbb14"
+        },
+        {
+          "frameIndex": 74,
+          "actualOutputTimestamp": 3.0833333333333335,
+          "expectedSHA256": "f1657eb8e64592782fa46d2d43b221103a153ac2a93fe4fdcd632f1096f4ea46",
+          "observedSHA256": "426d761de99e891eebd06dc252af36b23fbf626a1fd6ce8d2181ca97af1eae22"
+        },
+        {
+          "frameIndex": 75,
+          "actualOutputTimestamp": 3.125,
+          "expectedSHA256": "0c929b6756496be3718cc5c0b64ea3349c67d8802ef74bd2e1c715d01bb5a958",
+          "observedSHA256": "4b1e3391e2037b8a15fb785ca23a24dfa750fce254fed8df1268ce4a9e142853"
+        },
+        {
+          "frameIndex": 76,
+          "actualOutputTimestamp": 3.1666666666666665,
+          "expectedSHA256": "4f7447fb74a9ba3f5810eeb7c2261a5654695ceaed8db610bf3809a0cbd469f6",
+          "observedSHA256": "849047d869a24cfbf099b6feba1fb4c050be8d1221870a1268d9317128e3dfea"
+        },
+        {
+          "frameIndex": 185,
+          "actualOutputTimestamp": 7.708333333333333,
+          "expectedSHA256": "9fd7cc9a8d85038400c7547dee55ca2183dda7913d3540a04e22c26cb151a3d2",
+          "observedSHA256": "5c84ec30354665ba76bfece35e051c97a19f2d6046ba28f7e4616369e55e9c41"
+        },
+        {
+          "frameIndex": 186,
+          "actualOutputTimestamp": 7.75,
+          "expectedSHA256": "6387858f2379d1b189fdcfa366f5b6e7c6c95ac8a91026f78e9db84c1dc3d016",
+          "observedSHA256": "6dcac795b65b5eb2e157c9f984269d908392fb1b80ccceb767a11e122a60d7a8"
+        },
+        {
+          "frameIndex": 187,
+          "actualOutputTimestamp": 7.791666666666667,
+          "expectedSHA256": "4dc554751c32a6dce46844fd14f20e5963043f4e8bc1581ca936bbffa4fa31a9",
+          "observedSHA256": "5b96b047328bfb9e9bf84143b8f84384112ce29cebb7fdcec4b5eb2b68495d80"
+        },
+        {
+          "frameIndex": 188,
+          "actualOutputTimestamp": 7.833333333333333,
+          "expectedSHA256": "65b96e25351aa9004ac95dd5992ef287bc617a57408265ca38857f761707ccfb",
+          "observedSHA256": "ef23ddc809f47863b4e32b34ca87e38fd2f367508da8b901c8195ec903b32fec"
+        },
+        {
+          "frameIndex": 189,
+          "actualOutputTimestamp": 7.875,
+          "expectedSHA256": "14daf05adf17177c4e1d2ed44e405c2c211596c552a34446d40be0b94a051523",
+          "observedSHA256": "c50edc77f4e858f709da03076e336c72370cc86bd087225e6a0e0d90c6a7cc17"
+        },
+        {
+          "frameIndex": 190,
+          "actualOutputTimestamp": 7.916666666666667,
+          "expectedSHA256": "bde54889cb9c32615978187bd52a675f99b805f1559604c0dd81f9379ca566e4",
+          "observedSHA256": "9b1aebaaa50147036e09032a5aa174863385bb913980b0b9290b33a114bc32db"
+        },
+        {
+          "frameIndex": 191,
+          "actualOutputTimestamp": 7.958333333333333,
+          "expectedSHA256": "e3263ac6fc8b2c1c7149013ace5ff538d22d821adb4b27150a2811adb01dea38",
+          "observedSHA256": "9d64f63e86bc30ba5aa2363464c347622ae47d428b494cbd281df9719cb00687"
+        },
+        {
+          "frameIndex": 192,
+          "actualOutputTimestamp": 8,
+          "expectedSHA256": "9b78f36b3638410635001c5abd7914cb0d7bf8d31b06a09e6e667b25593a1294",
+          "observedSHA256": "d720b4979d7ba3e3137f24b68165f3bbcfa09fa6e965a46825e9547fbd612d65"
+        },
+        {
+          "frameIndex": 193,
+          "actualOutputTimestamp": 8.041666666666666,
+          "expectedSHA256": "7f45a35c90f3df7691710563bff5414ceca3dbe26f1d27ebaa91cad436fe8a80",
+          "observedSHA256": "e901b01779155ed41380301f894009d50fb0c0f2beef8bc09969da2c18d82ed2"
+        },
+        {
+          "frameIndex": 194,
+          "actualOutputTimestamp": 8.083333333333334,
+          "expectedSHA256": "4925ea1aec2700e2da324be33138696f6a1d9bc386bab3828c8f7822001cdf0c",
+          "observedSHA256": "6f2dd52a427e392ae4dff0079fde2b3e460ca47f14ea3bb80101a9379eb2c8a9"
+        },
+        {
+          "frameIndex": 195,
+          "actualOutputTimestamp": 8.125,
+          "expectedSHA256": "eca7917329023685f3a11abe75b778a7e427c031103612efeb44675b5fb294f8",
+          "observedSHA256": "d5566ba05efc655caaebf5b380f75aabeced49aab988a4e498bac6ff3c4dd512"
+        },
+        {
+          "frameIndex": 196,
+          "actualOutputTimestamp": 8.166666666666666,
+          "expectedSHA256": "b494d9b2ad82f657315df9654ba284c552a31be58f3d073119853119be342f92",
+          "observedSHA256": "f3f19548063af419a7ee530655d840fb68d1395a06d380cbe0d0eea18aebe98c"
+        },
+        {
+          "frameIndex": 197,
+          "actualOutputTimestamp": 8.208333333333334,
+          "expectedSHA256": "7776e528a372d0f2b8c878e115471bf8b40b7a197807f94bbd1e6a7b5f59e9a9",
+          "observedSHA256": "953f7b967ca6ae10bc53d1d97e0e88324933f365b576f598f37e28ba3d7ff8df"
+        },
+        {
+          "frameIndex": 198,
+          "actualOutputTimestamp": 8.25,
+          "expectedSHA256": "e9ca96f288450838f676f6e2bd5a1461a088b120d40d17d5dba989d285eb771f",
+          "observedSHA256": "835eeba1d853ee3ba37f053fe2fde5e6eed2243e5f2a70f40463d900a7e3872b"
+        }
+      ]
+    }
+  ]
+}

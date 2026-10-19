@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Inventory actual dispatch, never semantic certification. Rules frozen in v1."""
 import argparse,collections,copy,gzip,hashlib,json,pathlib
-POLICY='important-executed-population-v2-shipping-selection'
+POLICY='important-executed-population-v3-clock-complete'
 def sha(x):return hashlib.sha256(x).hexdigest()
 def read(p):
  b=pathlib.Path(p).read_bytes();return gzip.decompress(b) if str(p).endswith('.gz') else b
@@ -39,6 +39,25 @@ def classify(c,manual=False):
  if g=='COMPOSITE_HOOK':return 'COMPOSITE_IMPORTANT','Composite hook dispatched; constituent attribution requires isolated controls.'
  # Decorations can encode meaningful events. Conservatively retain rather than exclude by size.
  return 'EXECUTED_IMPORTANT','Executed structural, lyric, image, camera, FX or transition operation; semantic success remains unmeasured.'
+def temporal_contract_calls(contracts):
+ groups={}
+ for tc in contracts:
+  contract=tc.get('contract',{})
+  direct=contract.get('mode')=='UNIFORM_TRANSLATION'and tc.get('charFnsAdded')==1
+  grammar=contract.get('mode')=='GRAMMAR'and contract.get('uniformTranslation')is True and tc.get('charFnsAdded',0)>=1 and tc.get('cinemaAnchorMotion')is not None
+  if contract.get('status')!='EXECUTABLE'or not(direct or grammar):continue
+  key=tc['unitKey'];row=groups.setdefault(key,{'group':'LYRIC_TEMPORAL_CONTRACT','id':'UNIFORM_TRANSLATION','unitKey':key,'pass':'main','calls':0,'firstTime':tc['time'],'lastTime':tc['time'],'clockPairs':[],'contractEvidence':[],'executionRecords':[]})
+  row['calls']+=1;row['firstTime']=min(row['firstTime'],tc['time']);row['lastTime']=max(row['lastTime'],tc['time'])
+  # time is the actual outer output clock; sourceTimestamp may be a frozen
+  # outgoing lyric frame. Never substitute one for the other or infer a clock
+  # that an older trace did not record.
+  clock={'actualOutputTimestamp':tc['time'],'sourceTimestamp':tc.get('sourceTimestamp'),'executionContext':tc.get('executionContext','UNMEASURED')}
+  row['clockPairs'].append(clock);row['contractEvidence'].append(copy.deepcopy(tc))
+  context=clock['executionContext'];record=next((r for r in row['executionRecords']if r['executionContext']==context),None)
+  if record is None:record={'executionContext':context,'calls':0,'firstTime':tc['time'],'lastTime':tc['time'],'clockPairs':[]};row['executionRecords'].append(record)
+  record['calls']+=1;record['firstTime']=min(record['firstTime'],tc['time']);record['lastTime']=max(record['lastTime'],tc['time']);record['clockPairs'].append(copy.deepcopy(clock))
+ for row in groups.values():row['executionContext']=row['executionRecords'][0]['executionContext']if len(row['executionRecords'])==1 else'MULTIPLE_PRESERVED_CLOCK_CONTEXTS'
+ return list(groups.values())
 def build(traces,source,unit_bindings=None):
  rows=[];warnings=[]
  for file in traces:
@@ -47,14 +66,7 @@ def build(traces,source,unit_bindings=None):
   b=t.get('artifactBinding',{});same=t.get('exactNativeRGBA') is True and b.get('sourceCommit')==source
   implementations={(x['group'],x['id']):x for x in t.get('implementationIdentity',[])};aliases=collections.defaultdict(list)
   for x in implementations.values():aliases[(x['group'],x['functionObjectId'])].append(x['id'])
-  calls=merge_clock_context_calls(t.get('calls',[]));contract_calls={}
-  for tc in t.get('temporalContracts',[]):
-   contract=tc.get('contract',{})
-   direct=contract.get('mode')=='UNIFORM_TRANSLATION' and tc.get('charFnsAdded')==1
-   grammar=contract.get('mode')=='GRAMMAR' and contract.get('uniformTranslation') is True and tc.get('charFnsAdded',0)>=1 and tc.get('cinemaAnchorMotion') is not None
-   if contract.get('status')!='EXECUTABLE' or not(direct or grammar):continue
-   key=tc['unitKey'];row=contract_calls.setdefault(key,{'group':'LYRIC_TEMPORAL_CONTRACT','id':'UNIFORM_TRANSLATION','unitKey':key,'pass':'main','calls':0,'firstTime':tc['time'],'lastTime':tc['time']});row['calls']+=1;row['lastTime']=tc['time']
-  calls.extend(contract_calls.values())
+  calls=merge_clock_context_calls(t.get('calls',[]));calls.extend(temporal_contract_calls(t.get('temporalContracts',[])))
   for c in calls:
    if c.get('calls',0)<=0:continue
    rawunit=c['unitKey'];resolved=bound['bindings'][rawunit] if bound else None;unit=resolved['resolvedUnitKey'] if resolved else rawunit;manual=rawunit in t.get('manualUnitKeys',[]) or unit in t.get('manualUnitKeys',[]);cl,reason=classify(c,manual);im=implementations.get((c['group'],c['id']))

@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "releaseSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "manifestSHA256": "e5d25045bcc775105f0dfbe8410c6b719ec94b63e3deb05ba6a982312c59358d",
+  "TECHNICAL_GO": "PASS",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "UNVERIFIED",
+  "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED",
+  "checks": {
+    "technical": [
+      {
+        "name": "ci",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      },
+      {
+        "name": "regression/build",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      },
+      {
+        "name": "browser",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      },
+      {
+        "name": "finished artifacts",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      }
+    ],
+    "quality": [
+      {
+        "name": "comparison coverage",
+        "state": "UNVERIFIED",
+        "reason": "regression/safety result not measured"
+      },
+      {
+        "name": "important semantic operators",
+        "state": "UNVERIFIED",
+        "reason": "important effect unmeasured/confounded/stale or no isolated encoded control"
+      },
+      {
+        "name": "regressions and correspondence",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "domain": "quality",
+      "name": "comparison coverage",
+      "state": "UNVERIFIED",
+      "reason": "regression/safety result not measured"
+    },
+    {
+      "domain": "quality",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "important effect unmeasured/confounded/stale or no isolated encoded control"
+    }
+  ],
+  "limitations": [
+    "Hash binding establishes file consistency, not runner authenticity. Adapters must preserve raw observations; no artistic score is inferred.",
+    "No deployment or production verification is implied by RELEASE_GO."
+  ],
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "recordedUTC": "2026-10-19T06:21:25.176767+00:00",
+  "PR": "https://github.com/jankendo/JIZURA_KAMEN/pull/13",
+  "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+  "overall": "PARTIAL",
+  "productionChanged": false,
+  "deploymentDecision": "NO_GO_PENDING_EVIDENCE",
+  "CI": {
+    "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+    "headSha": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+    "conclusion": "success",
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/39134745243",
+    "rawRun": {
+      "path": "../grammar-policy-v2-ci-run/run.json.gz",
+      "sha256": "be8324d6798a04610375899c28b1c2b168a3193836165226d9c5dd34371e24eb"
+    },
+    "rawJobs": {
+      "path": "../grammar-policy-v2-ci-run/jobs.json.gz",
+      "sha256": "617cf057453c5ecdb5de3d931de2afb5835dc278ab16c312a8daab6ddcf14242"
+    },
+    "deployment": "SKIPPED_NORMAL_PR"
+  },
+  "gateEvaluator": {
+    "path": "dev/release_gates.cjs",
+    "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+    "SHA256": "62ce8477946a65358061d20487916d15265280425fbc81a12922eff279d44fd3",
+    "existingCounterexampleScenarios": 37
+  },
+  "historicalBaseline": {
+    "sourceCommit": "b002cdd75845d189221312a82456c33a131f5e8d",
+    "path": "composition-recovery/b002-gates-before-final-repair.json.gz",
+    "gzipSHA256": "74f5f8775c8335198fb3e250da482fd7c1ba803be7638065517e91965e868752",
+    "scope": "Historical30-condition comparison,205PASS/0FAIL/2SKIP and actual UI evidence. These source bindings are retained, never relabeled as current-head certification."
+  },
+  "currentSourceValidation": {
+    "formalRegressionCounts": {
+      "PASS": 208,
+      "FAIL": 0,
+      "SKIP": 2
+    },
+    "realMP4": "PASS",
+    "realMP4Scope": "Only the hash-bound listed movies, not all target export paths",
+    "officialCI": "PASS",
+    "expectedConditions": [
+      "Exact-head official npm ci/test/build/UI CI and independent full decode",
+      "Current-head selected MP4/history integrity and protected manual/no-target paths",
+      "Prospectively fixed affected and unused confirmation conditions; retain original source bindings",
+      "Complete important semantic effect evidence; no unmeasured or confounded item silently converted to PASS"
+    ],
+    "speedIsReleaseBlocker": false
+  },
+  "rollback": {
+    "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+    "existingProductionReceipt": "composition-recovery/pre-release-production-baseline-20261016/receipt.json",
+    "method": "Normal revert and existing main-only Pages redeploy; no force."
+  }
+}

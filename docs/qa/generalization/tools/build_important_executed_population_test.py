@@ -1,6 +1,16 @@
 import importlib.util,json,pathlib,tempfile,unittest
 p=pathlib.Path(__file__).with_name('build_important_executed_population.py');s=importlib.util.spec_from_file_location('population',p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
 class Population(unittest.TestCase):
+ def test_temporal_contract_retains_output_and_source_clock_and_state(self):
+  tc={'unitKey':'u','time':2,'sourceTimestamp':1.9,'executionContext':'REMAPPED_SOURCE_CLOCK','charFnsAdded':1,'contract':{'status':'EXECUTABLE','mode':'UNIFORM_TRANSLATION','state':{'role':'light','phase':'exit'}}}
+  direct={**tc,'time':1.8,'sourceTimestamp':1.8,'executionContext':'ADOPTED_OUTPUT_CLOCK'}
+  rows=m.temporal_contract_calls([direct,tc]);self.assertEqual(len(rows),1);r=rows[0]
+  self.assertEqual(r['calls'],2);self.assertEqual(r['firstTime'],1.8);self.assertEqual(r['lastTime'],2)
+  self.assertEqual(r['clockPairs'][1],{'actualOutputTimestamp':2,'sourceTimestamp':1.9,'executionContext':'REMAPPED_SOURCE_CLOCK'})
+  self.assertEqual(len(r['executionRecords']),2);self.assertEqual(r['contractEvidence'][1],tc);self.assertEqual(r['executionContext'],'MULTIPLE_PRESERVED_CLOCK_CONTEXTS')
+ def test_old_trace_missing_source_clock_is_not_invented(self):
+  tc={'unitKey':'u','time':2,'charFnsAdded':1,'contract':{'status':'EXECUTABLE','mode':'UNIFORM_TRANSLATION'}}
+  r=m.temporal_contract_calls([tc])[0];self.assertIsNone(r['clockPairs'][0]['sourceTimestamp']);self.assertEqual(r['clockPairs'][0]['executionContext'],'UNMEASURED')
  def test_static_not_excluded(self):self.assertEqual(m.classify({'group':'HOLD','id':'still'})[0],'INTENTIONAL_STATIC')
  def test_small_decor_still_important(self):self.assertEqual(m.classify({'group':'DECOR','id':'rings'})[0],'EXECUTED_IMPORTANT')
  def test_composite_not_independent(self):self.assertEqual(m.classify({'group':'COMPOSITE_HOOK','id':'drawCinemaGrammar'})[0],'COMPOSITE_IMPORTANT')
