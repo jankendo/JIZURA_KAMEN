@@ -1,0 +1,37 @@
+{
+  "sourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "fromCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "toCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "gitDiffSHA256": "bd08cc4b92650057d22099779c60a943f0224ae7e4a51e42964c1c1c5a0351ea",
+  "paths": [
+    {
+      "path": "dev/cinema_v5_final_artifact_test.cjs",
+      "classification": "TELEMETRY_ONLY",
+      "reason": "Non-shipping focused regression test. Listed explicitly under legacy telemetry correspondence rather than an unsupported QA-only whitelist exemption.",
+      "diffHunkSHA256": "1f6beff98d6a3633b24966b74cf5b961ad8f1a887730d1c697848a3cfebc99bf"
+    },
+    {
+      "path": "dev/release_gates.cjs",
+      "classification": "QA_ONLY",
+      "reason": "Release evaluator only; static contracts reject old centroid-only proofs and require complete world-space rasters; no renderer or candidate logic.",
+      "diffHunkSHA256": "0b0d619fa1c4d521eb164b70edc86a915218525110af3145060e6c99c9d48354"
+    },
+    {
+      "path": "dev/release_gates_test.cjs",
+      "classification": "QA_ONLY",
+      "reason": "Positive and failed evaluator fixtures; not included in shipped runtime.",
+      "diffHunkSHA256": "215f0a920164f215a9a4f26e3d5971b821798143fe51947fc9851710d16729b4"
+    },
+    {
+      "path": "src/11zzzzzzzzzaa_final_artifact_v5.js",
+      "classification": "TELEMETRY_ONLY",
+      "reason": "Only Q.measureFinalOperatorIntent changes: HOLD observation metadata refuses centered shape changes. Native rendering, generation, ranking and final readability/audio decisions are unchanged. All 32 original adopted plans have independent complete Native equality; original coded labels remain intact.",
+      "diffHunkSHA256": "650e7aedab53ef57f731ecf10656f906aeb47b287f49b0074128a78cfa7fc815"
+    }
+  ],
+  "allOtherRuntimeSourceBytesIdentical": true,
+  "oldSourceFileSHA256": "f36b83d7fc09edd2bf74e6914cdba57183a057e315521665762b552997f6ccde",
+  "newSourceFileSHA256": "aacdc7246c57c7067a03f298cc9c654c75d5304649023497a74888676cce2b60",
+  "measurementConsumers": "Q.verifyFinalArtifact stores intentObservation and diagnostic motionSummary. Q.finalArtifactEvaluation uses unit/input/audio safety and timing, not HOLD intent realization; candidate repair/semantic-travel decisions do not consume these diagnostic rates. No changed rendering or selector branch is inferred from a mere function name.",
+  "scope": "Native equality is required and observed separately for every referenced source-5eb natural film, not extrapolated from one condition."
+}

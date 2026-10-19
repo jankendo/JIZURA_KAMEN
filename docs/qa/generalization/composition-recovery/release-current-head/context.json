@@ -2,10 +2,10 @@
   "sourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
   "mainSHA": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
   "releaseManifest": "release-gate-manifest.json",
-  "runtimeArtifactSourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "runtimeArtifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
   "rendererSHA256": "8c9dee4d995bcf0e0802b9fa07e429b39a083daf9a018280751bd285d197109b",
   "currentImportantPopulationFinalized": false,
-  "currentNaturalComparisonPopulationComplete": false,
+  "currentNaturalComparisonPopulationComplete": true,
   "historicalContext": {
     "path": "../release-d04c734-frozen/context.json",
     "sha256": "364286b7df58f6fc23d3cbc07979e27bf35346bfea6cd956f4f0d8885bb2348f"
@@ -36,5 +36,7 @@
   },
   "historicalNaturalMovieSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
   "completedPreObserverFixNaturalConditions": 32,
-  "currentNaturalComparisonReason": "All 32 5eb-source films imported. Shipping observation metadata changed in 0a5; original-source films remain bound to 5eb, with no cross-source release credit."
+  "currentNaturalComparisonReason": "All 32 original movies retain source 5eb. Every full Native output frame matches source 0a5 in CI 39337531341; old/new runtime difference is observation metadata only. Individual bindings are required; no single-case extrapolation.",
+  "nativeContinuityRun": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/39337531341",
+  "nativeContinuityFullFrames": 10628
 }

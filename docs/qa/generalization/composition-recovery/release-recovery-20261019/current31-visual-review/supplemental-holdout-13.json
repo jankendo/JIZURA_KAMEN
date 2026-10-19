@@ -1,0 +1,56 @@
+{
+  "caseId": "supplemental-holdout-13",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "5285db7b11854ae2fac44297b2708542b5b4dc80ae2165a6ed76acb3406167eb",
+    "f2b593188419c6bbbe9f4c556c1af906b3cda7209a3616d45b7ad5803587eb9b",
+    "efd6004774afbd008c0ff0c93d33e4e36b83dc569c0e4fbd13322f3668bd096d",
+    "382ed160a4931fb9c14ed68ad35b5e72a3e3c406a1cd10f65c9ebb9341a23112"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    12,
+    42,
+    71,
+    101,
+    131,
+    160,
+    190,
+    220,
+    249,
+    279
+  ],
+  "outputTimestamps": [
+    0.8,
+    2.05,
+    3.2583333333333333,
+    4.508333333333333,
+    5.758333333333333,
+    6.966666666666667,
+    8.216666666666667,
+    9.466666666666667,
+    10.675,
+    11.925
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/supplemental-holdout-13.json",
+    "sha256": "a597740a9b38d35e34576cd49b0bfdaf9eb3a4408443426a04d72e48682993e6"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/supplemental-holdout-13.png",
+    "sha256": "c3fd617da8c10fec88fb35d7cc1c726e0bb46dd6bfd774762f6ec8dce47c11f3"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/supplemental-holdout-13.json",
+    "sha256": "aa4429f3f9d7678ef1f57bcbac91db5ac22f16059735d7f3faddc0d3efe875a9"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Recovery changes 今 / だけを / 抱える to 今だけを / 抱える in the first section. Middle phrase stays two rows; closing phrase moves to a three-row arrangement. This is a second observed generic orphan repair, not lyric-specific code.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-14",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "e441bb52d8488467cbdf4166d2bddaa260fdc8f8a7bba291dad18ee6c66ff6b7",
+    "fcc724eed8d0d9722ddc99ec47b7e0efc515399db964b18d0e455e8debd9f377",
+    "a31319bade2681df420129ed967bf2c9ec520d3b307a78eb28d7f1a5c118a148",
+    "127eda6608bf71feb588758085de74a05ef5786b33155f295cfbe994d65b9485"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    43,
+    151,
+    259,
+    367,
+    475,
+    583,
+    691,
+    798,
+    906,
+    1014
+  ],
+  "outputTimestamps": [
+    1.7916666666666667,
+    6.291666666666667,
+    10.791666666666666,
+    15.291666666666666,
+    19.791666666666668,
+    24.291666666666668,
+    28.791666666666668,
+    33.25,
+    37.75,
+    42.25
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-14.json",
+    "sha256": "3fb76637e30df91a7051103a42e58da8e82b3a61efdbbab3127b4c0bfbdea647"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-14.png",
+    "sha256": "3ac7430f48080eae7e33c2042a7b85a11402bf14f07511d5926cba03de2e0d14"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-14.json",
+    "sha256": "d0d508427df0775e5d419cae4b020802f25c882e879bce19bdc15c8ec1076ae6"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals d04. Long clip retains early blue/gold panels, compact middle captions and two-row final phrase. Main serif/previous layouts differ; the recovery remains contained in inspected clocks.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-07",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "c41aa7a66d4f3b8e35c42404f88622c7de4042046b4d95b5e3e225d5d8721f5d",
+    "4d03ede699dc42dd10c3d8dcba5ae400dcb564a5e088300bd4ed9fca8a15cde3",
+    "a46dec22f0ad21bb70719dc72ea8f66391ed2b71de0a68437ec624859738b185",
+    "f26f2fc8ab3a8e8cffd05b882f67eb40023b120c84af52341ea12de3728209ba"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-07.json",
+    "sha256": "db62a0888cd9977fbdb8b030a281aaa33f1e5a65dd46b3b5b520a979fdf2548b"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-07.png",
+    "sha256": "910affe0989d64e238ec95b09c1eb52925328661c0b5009f11873a1ef61c762a"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-07.json",
+    "sha256": "00844fe7915ba4dc1d2488a1202b507e8f0014f7bc6a5cf864817719846058b7"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Recovery preserves three distinct dark scenes and complete phrases. First phrase over grid, centered middle group and brown final group resemble d04; exact decoded equality is not claimed and independent component attribution remains open.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

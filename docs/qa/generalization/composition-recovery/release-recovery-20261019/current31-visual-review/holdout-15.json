@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-15",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "9de8258684e1134d4d1284a5dc7e63b5401f959ff7839f1fb539973cddddfc7a",
+    "f8e0a96afb041d586333b84aa3838a39fd1cf6e96a4f328dd6cea2be77c53941",
+    "48850fd4243a79bc64d733361406baefc83d04ce4e3c45b3cc3f4c957183d19c",
+    "1f859c89491a52bebe32f9dbaab57587b0fe5580998e418cd9db3ce2f459ef16"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-15.json",
+    "sha256": "2f529b8c7dbf824a6c4c0c50998c4c0e1433b615e8fd88a0c0bbe26cea21e7d3"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-15.png",
+    "sha256": "8f8f1c05f7faecd4e66d2e8711c6e58ccb79ef0d828cc1f6d07b5b4b5f2c40e6"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-15.json",
+    "sha256": "4926a369a6be1d1f7dddd3fbc79db9426d3d2ebc3fb628838dc5547ea10eef82"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals d04. Mixed-language phrases remain complete; recovery avoids previous's son / g split and retains a complete closing Japanese row. Main and recovery differ in framing/background emphasis.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

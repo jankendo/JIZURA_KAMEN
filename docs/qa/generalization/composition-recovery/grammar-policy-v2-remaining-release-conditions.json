@@ -1,10 +1,10 @@
 {
   "schema": 2,
-  "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "sourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
   "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "UNVERIFIED",
-  "evaluatorVersion": "release-gates-v2",
+  "evaluatorVersion": "release-gates-v3",
   "classificationFinalized": false,
   "historicalSourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
   "historicalConditions": {
@@ -13,7 +13,7 @@
   },
   "currentManifest": {
     "path": "composition-recovery/release-current-head/release-gate-manifest.json",
-    "sha256": "bf38578e35d6c7cc4f62ad4406efdcaec0e8821516aca9963a966bf78b71352c"
+    "sha256": "29420f9ea852aa38de68249f71ccafc0d10c9d640ddfa7cf4841d2969b42cc65"
   },
   "blockingQualityConditions": [
     {
@@ -22,14 +22,21 @@
       "historicalImportantIds": 1129,
       "historicalUnproven": 1127,
       "detail": {
-        "path": "composition-recovery/release-recovery-20261019/intent-audit.json",
-        "sha256": "23ecd1c0ba237c7e326efa37e2ed15585c82164bece6930faee024c097d23d90"
+        "path": "composition-recovery/release-recovery-20261019/remaining-intents.json.gz",
+        "sha256": "8d8c709eb02b95c54b19acd2e8b4980b8799c38edf83c2947ea6295d6375508a"
       },
       "clockDetail": {
         "path": "composition-recovery/release-recovery-20261019/clock-population-audit.json",
         "sha256": "0cd79284915817943ee66ac9036e555827d75b8d4717969a8b94b508fce33d29"
       },
-      "reason": "Historical unit-only evidence does not certify incoming/outgoing targets at distinct source/output clocks. Current naturally selected population and required semantic contracts are not finalized."
+      "reason": "All 1250 actual records are bound and retained, with 1129 conservative important targets. Per-target intent/phase/attribution contracts remain unfinalized; Native/source/lyric safety success does not certify isolated encoded semantics. Legacy 2/1127 remain historical.",
+      "currentConservativeImportantIds": 1129,
+      "currentRegisteredVerified": 0,
+      "classificationFinalized": false,
+      "exactIdList": {
+        "path": "composition-recovery/release-recovery-20261019/remaining-important-intent-ids.tsv",
+        "sha256": "a498189c304b8263d58e35a1f9b0d8f3f660f93a173ca33affabd026b3590e92"
+      }
     },
     {
       "id": "ORIGINAL_DECODED_REPRODUCTION",
@@ -52,18 +59,51 @@
       "id": "COMPLETED_31_CONDITION_ADJUDICATION",
       "status": "UNVERIFIED",
       "detail": {
-        "path": "composition-recovery/release-recovery-20261019/comparison-blockers.json",
-        "sha256": "4a6f3fe815aaa10cee232199bd0aab7a640eea6d6dcdada363e69474312abf83"
+        "path": "composition-recovery/release-recovery-20261019/current31-visual-review/summary.json",
+        "sha256": "d2286cb048b05b4bc48ab5ddbbee5924de38a117ab07550f33404ad845af8b75"
       },
-      "reason": "All historical matched films retained; current-source natural comparisons and full relative major-regression adjudication remain incomplete."
+      "reason": "All 31 complete coded comparisons and 1244 decoded frame extracts were inspected, and all 31 active-primary lyric/audio/source/timing safety checks pass. Full-interval music/phrase/climax and isolated semantic judgments remain incomplete; significantRegression stays null individually.",
+      "cases": [
+        "automatic-unseen-confirmation-20261018",
+        "development-01",
+        "development-02",
+        "development-03",
+        "development-04",
+        "development-05",
+        "development-06",
+        "development-07",
+        "development-08",
+        "development-09",
+        "development-10",
+        "development-11",
+        "development-12",
+        "development-14",
+        "development-15",
+        "holdout-01",
+        "holdout-02",
+        "holdout-03",
+        "holdout-04",
+        "holdout-05",
+        "holdout-06",
+        "holdout-07",
+        "holdout-08",
+        "holdout-09",
+        "holdout-10",
+        "holdout-11",
+        "holdout-12",
+        "holdout-14",
+        "holdout-15",
+        "supplemental-development-13",
+        "supplemental-holdout-13"
+      ]
     }
   ],
   "technicalConditions": [
     {
       "id": "LATEST_HEAD_FORMAL_CI_AND_UI",
       "status": "PASS",
-      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
-      "runId": 39220369311,
+      "sourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+      "runId": 39257690138,
       "formalTests": {
         "PASS": 209,
         "FAIL": 0,
@@ -76,10 +116,14 @@
   "resolvedConditions": [
     {
       "id": "DEVELOPMENT04_AUTOMATIC_ORPHAN",
-      "status": "MEASURED_SAVED_PLAN_REPAIR",
+      "status": "MEASURED_SAVED_PLAN_AND_FRESH_NATURAL_REPAIR",
       "detail": {
         "path": "composition-recovery/release-recovery-20261019/development04-replays.json",
         "sha256": "1ce6da4bbfe23320b0480420ea646058819d5143798bd2688cc355f706a202de"
+      },
+      "freshNaturalDetail": {
+        "path": "composition-recovery/release-recovery-20261019/current31-visual-review/development-04.json",
+        "sha256": "6c6df74e45980ea155c85afedbbc1d71fa12eb3d926d0a9721a037e326f9e203"
       }
     },
     {
@@ -96,6 +140,26 @@
     {
       "id": "DIAGNOSTIC_NATIVE_HELPER_MISSING_EXPORT",
       "status": "REPAIRED_STRICT_GUARD_RETAINED"
+    },
+    {
+      "id": "CENTROID_ONLY_STATIC_FALSE_POSITIVE",
+      "status": "V3_REJECTS_SAME_REAL_SHRINKING_MOVIE_AND_WITHDRAWS_TWO_RUNTIME_HOLD_POSITIVES",
+      "detail": {
+        "path": "composition-recovery/release-recovery-20261019/hold-observer-remeasurement.json",
+        "sha256": "5f0caac7c60adeaa09ac2132346d457e8e4a4a79d87bcf8dd3f0aac0b896f66b"
+      }
+    },
+    {
+      "id": "ALL32_LATEST_SOURCE_NATIVE_CONTINUITY",
+      "status": "PASS",
+      "runId": 39337531341,
+      "cases": 32,
+      "completeFrames": 10628,
+      "newMP4s": 0,
+      "detail": {
+        "path": "composition-recovery/release-recovery-20261019/native32-ci-correspondence/summary.json",
+        "sha256": "6c9bfce02db4e70520deca64a5c39a344ca2e00b49eec0462b02aeacf54c997a"
+      }
     }
   ],
   "mainChanged": false,
@@ -113,15 +177,16 @@
     "RELEASE_GO": "UNVERIFIED"
   },
   "latestFormalCI": {
-    "runId": 39220369311,
-    "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+    "runId": 39257690138,
+    "sourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
     "conclusion": "success",
     "formalTests": {
       "PASS": 209,
       "FAIL": 0,
       "SKIP": 2
     },
-    "actualBrowserAlternatives": 2
+    "actualBrowserAlternatives": 2,
+    "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/39257690138"
   },
   "currentNaturalCollection": {
     "runs": [
@@ -135,7 +200,11 @@
     "latestReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
     "complete": true,
     "semanticCredit": false,
-    "latestSourceTransfer": "UNVERIFIED; no single-case correspondence used to transfer all natural films."
+    "latestSourceTransfer": "PASS: all 32 case-specific full Native proofs in CI 39337531341; original source labels preserved."
   },
-  "releaseSourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc"
+  "releaseSourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "detailedRecoveryStatus": {
+    "path": "composition-recovery/release-recovery-20261019/FINAL_STATUS.md",
+    "sha256": "68c429e716ef343f267abd2814ad1bde517552d9b086541984a5a391f582bd5a"
+  }
 }

@@ -1,0 +1,56 @@
+{
+  "caseId": "development-01",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "f36626a4fddbbf0bb8b818e78c396a4d86f812ee06856ed641f37e7cf00c5a13",
+    "075fa948156c0cc6317571f7d6ed08ce5af07cf1a7bdadf492d9be9cd985e3e5",
+    "d5ac8e2f96518267625ce8a6d7fc3c4bfb97260973a5810593c5e271cee55990",
+    "03496f3bdfb30c3632edfe774f8d8881bddb9284bec2d771ac27f6f0a03a095c"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/development-01.json",
+    "sha256": "b4d4db2f60d42822a1560b187df7ad117fabea99ed751a00995d0bad4c7c6587"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/development-01.png",
+    "sha256": "b4aee6614ba64af9307341b175622685bb6ffffe44f73d317ad44ad3799d3d2d"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/development-01.json",
+    "sha256": "663446d8c9c44a181c533e96236739537e6f5b1bfdb7e7b3a79fec08f664a29e"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "At 4.375/5.375s the recovery text remains dark, centered and contained, whereas main has oversized light lettering over pale panels. Previous/d04/recovery phrase arrangements agree in inspected clocks; complete decoded equality with previous is not claimed.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

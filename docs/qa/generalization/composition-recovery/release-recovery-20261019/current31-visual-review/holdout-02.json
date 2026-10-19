@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-02",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "5539f9db7660904ca2c45696a636c2140f5512d04e256dd16aa5656dd899d328",
+    "5bac00591255c81565ca6195518846e815091dd094a60882d82355406e38aef2",
+    "bb2a8cc0da2047b538bcf7b8098761fadde93f7133e40ca21b483bedb733d8b1",
+    "fdebc494797b21c4d60c5cd76cc967b063df383a3bc8ec9f0e6562e9fade3154"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-02.json",
+    "sha256": "8da91418b5fbbd93d4a6bb85e143ca792a6ed4537d4f3f7bae897991b0fb9c62"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-02.png",
+    "sha256": "1571a31efa20c1a621bbae287b3b7103cfbdd8ab17f4667693361841e6cadc2d"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-02.json",
+    "sha256": "b8dc750eae21d51578428064c3cbedcd4ef8b903a10b9cd5b6397c61a3c19b0a"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Recovery retains the framed opening image and caption, middle phrase on three rows and complete final phrase near the blue scene. Complete output equals d04. Main/previous have different type scale and panels; sampled containment is not a full semantic certificate.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

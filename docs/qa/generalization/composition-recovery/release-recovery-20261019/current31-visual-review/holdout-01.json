@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-01",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "4eff41ecbf70f6554719ca3267cc7ecefb9b1b6df672ad7c675449eb2591fdcf",
+    "daa77a1509a5bf73a8bac4c89a95903bee54d22bfad168a7af6defa360609949",
+    "c499c59cda6697054f04ae48b85550820e6c777702ff61dc892f2023e3b6065b",
+    "c44aa20e3673461bd728424c6e3454cc096db26a1850126a55e81e7080d3ce74"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-01.json",
+    "sha256": "23f6c0f8b41be169de2edd83053f8f382fe26ca4c6cc8812524f74bce38ac60c"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-01.png",
+    "sha256": "5a54c7131cb5b990815c01d1f7d1898c0ff327a50f6ed2221a1008972b9d3bca"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-01.json",
+    "sha256": "af0f1b8305e2b8eb7f418e9a0299be0c1f535e78d0dbfb0486580e280e0de78a"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "First phrase uses three compact rows; middle phrase returns to three centered rows beside a pale block, and final phrase remains on the brown scene. Recovery resembles d04 but differs in complete coded output; no isolated background/camera attribution is inferred.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

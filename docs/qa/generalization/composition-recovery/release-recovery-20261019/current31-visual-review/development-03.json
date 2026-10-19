@@ -1,0 +1,56 @@
+{
+  "caseId": "development-03",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "61a17366e95aeb7da6614fd2afd5d84645b4c6f517b997bda8429751e1039b83",
+    "9ea00b1aca617fbbd33861d1e450ce9e9a4d64eacaa98f7328810f6ff8ae890e",
+    "08e500d0871472be3ca5d688ad49cdfb04ab4e4398c3544ccd366db03c9f4b09",
+    "04bc15f8001b922a0c4a90348f086a4072144a21bc332704ddb53682b3bfb969"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/development-03.json",
+    "sha256": "6fdaea3ea096bdaacb32d60bd3de75ca1270c67152d569a4aea9923011b8b898"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/development-03.png",
+    "sha256": "c72f0ad3ad55c3a73740d62c704431bb67cd223000f03a7e71a7bc001143cbee"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/development-03.json",
+    "sha256": "f4070ebda8d3607a98fce56c4a5d9fe7993bb718ec7338c122fdc801783cc789"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Recovery keeps the heavy first phrase, two-row middle phrase and compact final phrase. Complete decoded output equals previous/d04. Main uses a different type family and larger final phrase; a proxy drop alone is not an artistic verdict.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

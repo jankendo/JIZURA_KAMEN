@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-08",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "4ece3e6ea3cbcdcbf527f4db2627dee7830241363d058bafa50bf44c7b6f4f8a",
+    "c0d51d411e5d91f8fb10a0dc0e49b1c6793473b6a58252d2c7879aef78a9ded5",
+    "c316af1bfa95ade1cbe79d729b840b85a710ac7a3e7692cd3a7d21b3572d7b00",
+    "a886951e6d5f03fa4e807e6380221c33a71703bb8225ce79a50cf886557a65a6"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-08.json",
+    "sha256": "bc32a834d6107ffc01a88793eb7cb8b5eda844635df15eee82b9169e3ad6326b"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-08.png",
+    "sha256": "eaecbeeb036cac83539b7b99085b12e5c42f67ee568812811c71748dd2f12335"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-08.json",
+    "sha256": "1861ac65d1ded94d094a66d65e7a5c28c57e81d1038b2d584a36a36619167c9f"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals previous/d04. Repeated 歌え text survives over the dense first scene, under a framed middle scene and over blue blocks. Background density changes from main; a full musical-climax judgment remains separate.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

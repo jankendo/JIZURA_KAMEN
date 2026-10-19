@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-04",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "8ec73d0b32be00ffe30040b8fb300859f4e712a9017ba9e61e2f1d1c13628004",
+    "c81211535c8d721d7c328a4b920687d97afa007923404f555acbdcfea0eb2539",
+    "7b4ddceade5402c4ec0917237bbd3fba8cc4c177aaacc78bd427820f210736ae",
+    "c6d0ee4009d995dfaceda1e088263776953483e376a983c0e57b1f3174e16fe4"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-04.json",
+    "sha256": "b819dbb28054ac7f462c418a12b43082ed9962c566287826b5bfac2c29d7c362"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-04.png",
+    "sha256": "94b97f2e0dc858bc5e2a2193ee8706a8e5cb1e751662135d744e1d6b50f538c4"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-04.json",
+    "sha256": "b8a569d55901de958d954f17ad92683b2874b9464f0a9670dd7e37c0286d8dba"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals previous/d04. The bright diagonal ribbon seen in main at 2.375s is absent in later versions, with the full word still present; light middle and dark closing sections remain distinct. Loss of ribbon cannot be judged only from a novelty proxy.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

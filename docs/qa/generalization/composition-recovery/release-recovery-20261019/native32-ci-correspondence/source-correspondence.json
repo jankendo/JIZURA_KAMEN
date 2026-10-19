@@ -1,0 +1,921 @@
+{
+  "sourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "fromCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "toCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "gitDiffSHA256": "bd08cc4b92650057d22099779c60a943f0224ae7e4a51e42964c1c1c5a0351ea",
+  "changedPaths": [
+    "dev/cinema_v5_final_artifact_test.cjs",
+    "dev/release_gates.cjs",
+    "dev/release_gates_test.cjs",
+    "src/11zzzzzzzzzaa_final_artifact_v5.js"
+  ],
+  "runtimeAssessment": {
+    "path": "../release-recovery-20261019/native32-ci-correspondence/runtime-impact-assessment.json",
+    "sha256": "6b281876e9bc59de3030d52474a2b359d95228ed1e9de9e7912b9037e6470e83"
+  },
+  "nativeComparison": {
+    "path": "../release-recovery-20261019/native32-ci-correspondence/automatic-unseen-confirmation-20261018/source-proof.json",
+    "sha256": "7f9a0692f16417d910f97a4ecb5e5799d6a948f18fab777577031eb5889d1e01"
+  },
+  "additionalNativeComparisons": [
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-01/source-proof.json",
+      "sha256": "7ef0f0c8725e97cf737f264461979900279498712427d3449f02b2067c519e79"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-02/source-proof.json",
+      "sha256": "f3b5f150f5b1cf3cd071b798817301ce2ab4d82d08dd22efde50e9b8e292b1a2"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-03/source-proof.json",
+      "sha256": "84f5130fe497602c7f70f37997e6cb3c970424a1ebc05c4445e5bcd59eb0422c"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-04/source-proof.json",
+      "sha256": "f33b2b6c225a02021acc988bcb0134084024bd253e3fc478c7b4de23b639aaf2"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-05/source-proof.json",
+      "sha256": "1883a36995f2d7d4b8f3b0a12e15bb56e14886be37491465ca95c585fee75ad5"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-06/source-proof.json",
+      "sha256": "fec32c04995f75dc8fb9ee3acc9e4651f4070646b8a26f32bcec6fcc2c3e51bd"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-07/source-proof.json",
+      "sha256": "38aec66eb68a13cac5e6740496c014846cc0db2baa21f376c5ebf516caffb302"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-08/source-proof.json",
+      "sha256": "1845081ca8c5ccf5eab6bdc74de9e92d59a4589189c886f3d6195540903bc78a"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-09/source-proof.json",
+      "sha256": "71be594712f34e8eaee21b74e55a17eb4d0e6b62a7bea94f349f4032201de221"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-10/source-proof.json",
+      "sha256": "0236d8fed0a2876bc93de5e8f1ebb232e9e96d152fe38c58295363a23abef146"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-11/source-proof.json",
+      "sha256": "980cbba4ccc7eece23c070b6930f0f80c2410ba65764998c01666896ec32b05a"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-12/source-proof.json",
+      "sha256": "149bf9baa8e816527446b0365a1a38ae225f1a111a519edb04a470adc4a576e6"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-14/source-proof.json",
+      "sha256": "c32a2225376742f7383c6ba6f6cc405b70b06cc7b2999b459deac46015ccf8b5"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/development-15/source-proof.json",
+      "sha256": "c05b97cd93d5e93243ade450ee3b53c2db0b73b471332d2f00bbd2d3e8a30645"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-01/source-proof.json",
+      "sha256": "35c42a7717245ac2d2eba39c5125baa94ba498131fb30ecbbce0d3dd268a4012"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-02/source-proof.json",
+      "sha256": "db0b5b8f5314a3064178b0aba654052b0b0ea344dd50a7a81118ff1a70592241"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-03/source-proof.json",
+      "sha256": "186d370d2f390c98e2fc5d45e60150758464a090f6eed5545b393ba44c206905"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-04/source-proof.json",
+      "sha256": "144399611de3a56c84aa3f25c247da5b45b808650ce641c751980230f6aa6387"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-05/source-proof.json",
+      "sha256": "3ae793e7d58b2f33fb658d600a10075303d81435c0eab88970a193aeda9dfbf7"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-06/source-proof.json",
+      "sha256": "0cffaebb850f1390736862954076a6f8f572b269a97e83804754e0644fc85358"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-07/source-proof.json",
+      "sha256": "d214573b5d7a35786f2ca7f1c38bf0e4b4054055df68eb707292e6d558c20596"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-08/source-proof.json",
+      "sha256": "37364c08dedbe413079fce169daddc2c0c310fbda5500054cce766ab5279c56e"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-09/source-proof.json",
+      "sha256": "2c479a313e45e423973ab0e0f7860ccc6d82e5f84f73f644179b2009c4f251ce"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-10/source-proof.json",
+      "sha256": "3d5f7346d08264d98f3dd8f45ad9d9a7b860e28835dfe7ad7d66afcf161d7112"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-11/source-proof.json",
+      "sha256": "51804b35916ffce7618d8f6f5bf3068430201106a44d79adf4524136f9c0e8b4"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-12/source-proof.json",
+      "sha256": "1e58f515d85d89e834b39eac183998c58ba77416b39c47ac4a8cb95857519321"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-14/source-proof.json",
+      "sha256": "499aa163dfba3119618d0c8022e2095261d8a44197af3c18f9cb2ab29657d6ec"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-15/source-proof.json",
+      "sha256": "0665e40e6dcfe4dfe45ae4243b251ed3203c2c5209d959792d8a3bcb0066149b"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/late-unseen-quiet-16x9/source-proof.json",
+      "sha256": "110f986fe0baedbe8ab2737c22f77bbb4f651a4787b89564ab0f0fdb15a453e9"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/supplemental-development-13/source-proof.json",
+      "sha256": "865c747117a7e9c8fd64fd8e7cfe7139d7de6653ba41cd17ae8e409e758af0a5"
+    },
+    {
+      "path": "../release-recovery-20261019/native32-ci-correspondence/supplemental-holdout-13/source-proof.json",
+      "sha256": "51f08113209e895f367084009c10d1dec88133aeb10a181425617e125859994a"
+    }
+  ],
+  "completeCaseCoverage": {
+    "path": "../release-recovery-20261019/native32-ci-correspondence/summary.json",
+    "sha256": "6c9bfce02db4e70520deca64a5c39a344ca2e00b49eec0462b02aeacf54c997a"
+  },
+  "caseBindings": [
+    {
+      "caseId": "automatic-unseen-confirmation-20261018",
+      "inputHash": "0ba6831170c94bd180b58eed4534601ed9ce7480e956aaf4d33aae4d82565560",
+      "planHash": "9929778fde60172658032cda0bb110b0b5345cb4d39ad0c290b50b6f8f080b22",
+      "videoSHA256": "8d20ec4bda82a4150ca6fb510b9a30a8faa6231b3e1bf8d53542878b105bcc91",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          13.7
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/automatic-unseen-confirmation-20261018/source-proof.json",
+        "sha256": "7f9a0692f16417d910f97a4ecb5e5799d6a948f18fab777577031eb5889d1e01"
+      }
+    },
+    {
+      "caseId": "development-01",
+      "inputHash": "46df5a27be058d0b36ddbb0aaa7c6e8c992c35a249c3ec1b6428507be5f85634",
+      "planHash": "d1b351e5e51adad7559912a92af25c0a2286a3043b2707b50851759a81e3991e",
+      "videoSHA256": "03496f3bdfb30c3632edfe774f8d8881bddb9284bec2d771ac27f6f0a03a095c",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-01/source-proof.json",
+        "sha256": "7ef0f0c8725e97cf737f264461979900279498712427d3449f02b2067c519e79"
+      }
+    },
+    {
+      "caseId": "development-02",
+      "inputHash": "c6167f2d954d944e6276a9667d3eadce025ec9d472c57b7bb47a27e8302e9529",
+      "planHash": "c481a68f3f635c3437878589326f616bdc953a82efacb3bae732513c96d27bbc",
+      "videoSHA256": "d4ef131f4b6ab0f95336f5ad3fe4d7488da008240dc6799cbad46cce0023f1cd",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-02/source-proof.json",
+        "sha256": "f3b5f150f5b1cf3cd071b798817301ce2ab4d82d08dd22efde50e9b8e292b1a2"
+      }
+    },
+    {
+      "caseId": "development-03",
+      "inputHash": "c9053c05129645d4bbc38401d9241e585e2a3ba57d880f787f057fb561a00cc5",
+      "planHash": "9cdeb16a3a6897e7884b67724802e83f1c7a327ba46490a7f4e732594ce74eef",
+      "videoSHA256": "04bc15f8001b922a0c4a90348f086a4072144a21bc332704ddb53682b3bfb969",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-03/source-proof.json",
+        "sha256": "84f5130fe497602c7f70f37997e6cb3c970424a1ebc05c4445e5bcd59eb0422c"
+      }
+    },
+    {
+      "caseId": "development-04",
+      "inputHash": "0ab2aadd58db45d33b058dd84e4bec6d48ce4993395bd632cebb75f2499d80a0",
+      "planHash": "ca96ee482eef0ef98d260ec381082d5dfd585ab507285f478a25ed4189f9d24b",
+      "videoSHA256": "7c3c5e7c808727b861bd8a10326326c435ccb0ee7331ae250f031771fb4abc8c",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-04/source-proof.json",
+        "sha256": "f33b2b6c225a02021acc988bcb0134084024bd253e3fc478c7b4de23b639aaf2"
+      }
+    },
+    {
+      "caseId": "development-05",
+      "inputHash": "3fcf5a5c31cee0c6b371e81006c0f6c9f530aa1a0df85c8d2400852b93470f44",
+      "planHash": "5d0f18c96cfeec0422331b0c5a4929bed6db578fa968dc438bf79082191eeafe",
+      "videoSHA256": "60cff640dd6df5064ac069bc0eb015b724c20cfac863ae03d549786af181a1df",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-05/source-proof.json",
+        "sha256": "1883a36995f2d7d4b8f3b0a12e15bb56e14886be37491465ca95c585fee75ad5"
+      }
+    },
+    {
+      "caseId": "development-06",
+      "inputHash": "748da416232a94c19da4f9148a30d01d7b13a54fd3fc8e88548a8b1aa8cfd584",
+      "planHash": "f1034776bbbde85158a3d261fb3ba6aac18bc56272e74df23d0e95ee3054e701",
+      "videoSHA256": "c5970a3cee255f3cacc0abe94e5cb69546d5926a661d6fc8a0d20d8169af0580",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-06/source-proof.json",
+        "sha256": "fec32c04995f75dc8fb9ee3acc9e4651f4070646b8a26f32bcec6fcc2c3e51bd"
+      }
+    },
+    {
+      "caseId": "development-07",
+      "inputHash": "131ba290eef52b79e27a19ac4bf39eb0093135189a5af09b89066fb4026956de",
+      "planHash": "f29534cbdc6873c64554ad0f305152b9d82690d19c2bb898803a268b9e4ccbd5",
+      "videoSHA256": "f5c533228553e90a746955dc659638ece68297fb1a352ae440533e395122fe7c",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          720,
+          720
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-07/source-proof.json",
+        "sha256": "38aec66eb68a13cac5e6740496c014846cc0db2baa21f376c5ebf516caffb302"
+      }
+    },
+    {
+      "caseId": "development-08",
+      "inputHash": "9eccc819eee148b3cd1a9f070943c87ab264e758eea7f1251978a863eacc10c5",
+      "planHash": "14bd68ac6f2d0b641d272bbc7f81cd3d2c7167f59ff918bb305f85fd378303db",
+      "videoSHA256": "5e3ebdd76da5cb4c49a838a3219dec33ccfcd3b58ccc6fe23e149ee3da7ca4c2",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-08/source-proof.json",
+        "sha256": "1845081ca8c5ccf5eab6bdc74de9e92d59a4589189c886f3d6195540903bc78a"
+      }
+    },
+    {
+      "caseId": "development-09",
+      "inputHash": "c27a9f51f0d07360486881e8245539eaafdb76d96e49fc61448c5d7326c934fd",
+      "planHash": "554a910ff08e1b5dd8d6f1202068c240703a2ae5b3224b0e05f41944b1fd2444",
+      "videoSHA256": "87569489541567cf25157851a33922c3ed467f1957a2b0071abea411dcd6bd0e",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-09/source-proof.json",
+        "sha256": "71be594712f34e8eaee21b74e55a17eb4d0e6b62a7bea94f349f4032201de221"
+      }
+    },
+    {
+      "caseId": "development-10",
+      "inputHash": "627a2041c9a67cf20ee0edc987fcbdc53a8692f351bf414c1c5652e25788b97a",
+      "planHash": "6331b7ed23c50cebd0d7f7d8be2b0876abe4fd2f4c16d6a77edd5380a51fcc95",
+      "videoSHA256": "c346c9ce3e34d78f5abeb51bf167aedae3781cb9af0d44bc42a8a1f7b8a6f02f",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-10/source-proof.json",
+        "sha256": "0236d8fed0a2876bc93de5e8f1ebb232e9e96d152fe38c58295363a23abef146"
+      }
+    },
+    {
+      "caseId": "development-11",
+      "inputHash": "5a708e7d54d7b3d7b26fb075ebce8471236549df235783e2ff7b4f72a29288b2",
+      "planHash": "8a9717cab981ee82cdfa7733ae245afa7ec3936de2e5c75c220db80fe365ac55",
+      "videoSHA256": "d2de8c52e073bdd1f5d6dce3c26a8d5fe17d5a5a42bef4cf8410e6d8602343c8",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-11/source-proof.json",
+        "sha256": "980cbba4ccc7eece23c070b6930f0f80c2410ba65764998c01666896ec32b05a"
+      }
+    },
+    {
+      "caseId": "development-12",
+      "inputHash": "0b3a84171727aed08d271187ffb0229414f6cf1c1208f3f634d0bd6e0b791922",
+      "planHash": "48a7228fea5b1c549e759516bbe568c7fb93c8eb534b64b51d281f4069aaeff8",
+      "videoSHA256": "788a9041cf6a66a7bcd083d8d9cf387e76591238c35b938a1026380bd8064b28",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-12/source-proof.json",
+        "sha256": "149bf9baa8e816527446b0365a1a38ae225f1a111a519edb04a470adc4a576e6"
+      }
+    },
+    {
+      "caseId": "development-14",
+      "inputHash": "139a92aa7bf0e01984936e07c171090e9f9e728dbd9d22898db928bbc49145fc",
+      "planHash": "148ea03870a8a6a71dcc7d82538b9f221486180ec2988a09b9e4bc9ef446b9f3",
+      "videoSHA256": "8f9d1ca21b523a8f6d841033b8576ddb2508dcde97c28130e0f51f82570342d6",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          44.999977324263035
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-14/source-proof.json",
+        "sha256": "c32a2225376742f7383c6ba6f6cc405b70b06cc7b2999b459deac46015ccf8b5"
+      }
+    },
+    {
+      "caseId": "development-15",
+      "inputHash": "946af6338dfa1985c96205e64311407dd3f5cc66bdb8393615479dca3e5dc5c2",
+      "planHash": "9e08e8adaddd7cdeb06f986d616f536b68328c10872f844e8eca155ae4728d1e",
+      "videoSHA256": "eca4cf410cc3ad71cdc8da16c0b08e04b992950d8c1eabac5161be9bd555e75a",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/development-15/source-proof.json",
+        "sha256": "c05b97cd93d5e93243ade450ee3b53c2db0b73b471332d2f00bbd2d3e8a30645"
+      }
+    },
+    {
+      "caseId": "holdout-01",
+      "inputHash": "f62fc56d46df7e28659ef261306657b73cb2afd4e7dd5f820b80464b589b9709",
+      "planHash": "cb6a56e8a6240feba3e32160ff538463a6bdaa49bfd13860bbb266b67b407a0f",
+      "videoSHA256": "c44aa20e3673461bd728424c6e3454cc096db26a1850126a55e81e7080d3ce74",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          720,
+          1280
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-01/source-proof.json",
+        "sha256": "35c42a7717245ac2d2eba39c5125baa94ba498131fb30ecbbce0d3dd268a4012"
+      }
+    },
+    {
+      "caseId": "holdout-02",
+      "inputHash": "ca2a945f5ab73b313a219cf594edcd4c94e38fd711ef5cddcfd385ddcdcb2617",
+      "planHash": "69004e3b3d2d78872db69152af77641c9aa399960624c39a44d9fb4f2d1a232c",
+      "videoSHA256": "fdebc494797b21c4d60c5cd76cc967b063df383a3bc8ec9f0e6562e9fade3154",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-02/source-proof.json",
+        "sha256": "db0b5b8f5314a3064178b0aba654052b0b0ea344dd50a7a81118ff1a70592241"
+      }
+    },
+    {
+      "caseId": "holdout-03",
+      "inputHash": "e31acd7d4c00e4d13b08d6f3c3fb6e316232c06f5cb58439af3a4ace2d3801cd",
+      "planHash": "8b1e075dcc749bb084ce536ffa2fe6432a6e5963ba6f2029f2f4cd256885584d",
+      "videoSHA256": "95c5f04a8f185972cd66a1f9567ec0b5181fe0583769244171c401339f9e086c",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-03/source-proof.json",
+        "sha256": "186d370d2f390c98e2fc5d45e60150758464a090f6eed5545b393ba44c206905"
+      }
+    },
+    {
+      "caseId": "holdout-04",
+      "inputHash": "0c665f5898d61e4da17b28bd2159fe4311f4e35f6f7cca190751b2384309dac7",
+      "planHash": "e091cc38bbc2c368ddd08cfab394bfc0cd4495a5b398831f3ed0605f51b728e6",
+      "videoSHA256": "c6d0ee4009d995dfaceda1e088263776953483e376a983c0e57b1f3174e16fe4",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-04/source-proof.json",
+        "sha256": "144399611de3a56c84aa3f25c247da5b45b808650ce641c751980230f6aa6387"
+      }
+    },
+    {
+      "caseId": "holdout-05",
+      "inputHash": "b41669a9cd0ec9488970a784d9261c53f74e668c04c4c0b3ee6178e44abfc2cb",
+      "planHash": "8070b0d06bb16fa6ce6cde06da7772131ec173b78265c65d5882d23d46f187da",
+      "videoSHA256": "ba673eb71eb32382112757ea3879b848b3efaff58398c7de08ed755680e5ec3b",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-05/source-proof.json",
+        "sha256": "3ae793e7d58b2f33fb658d600a10075303d81435c0eab88970a193aeda9dfbf7"
+      }
+    },
+    {
+      "caseId": "holdout-06",
+      "inputHash": "6f0bc02c76c9ee7ccf2c15b5df18b65fe1b9c086c761a76c365e7f30e21536ee",
+      "planHash": "09dd0f8abec17e552d3168a9687c1c7cf14061d2c27e58cbf4bbb6f21d3051d8",
+      "videoSHA256": "0970671b276f9f3694ec263eb3af010137fe95e55bd3e3f64a7c383e81400e36",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-06/source-proof.json",
+        "sha256": "0cffaebb850f1390736862954076a6f8f572b269a97e83804754e0644fc85358"
+      }
+    },
+    {
+      "caseId": "holdout-07",
+      "inputHash": "938fa7cc8c347810b429a0eb0bb855dcd57e96f0861bbeb00bbaf5ce9996728d",
+      "planHash": "6e1ae277e2802fb630156840b008b8d6019b8aad0c474bb8fa4546e1d2321a51",
+      "videoSHA256": "f26f2fc8ab3a8e8cffd05b882f67eb40023b120c84af52341ea12de3728209ba",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          720,
+          900
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-07/source-proof.json",
+        "sha256": "d214573b5d7a35786f2ca7f1c38bf0e4b4054055df68eb707292e6d558c20596"
+      }
+    },
+    {
+      "caseId": "holdout-08",
+      "inputHash": "afdd5ab53b83dc81b636dde78fa8b0dfe9be42c3270a5ad21c2ac63d476bd399",
+      "planHash": "d078534bd4f4a1622a7a8c5a14fcc8f754936a5c73ee3c106ce699aac1a04b29",
+      "videoSHA256": "a886951e6d5f03fa4e807e6380221c33a71703bb8225ce79a50cf886557a65a6",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-08/source-proof.json",
+        "sha256": "37364c08dedbe413079fce169daddc2c0c310fbda5500054cce766ab5279c56e"
+      }
+    },
+    {
+      "caseId": "holdout-09",
+      "inputHash": "7ead563f4370891e7bd11785b91bb95ca2efb36ed23620f74ca3fa3c2f2cd11b",
+      "planHash": "c00cc337821a4ca2c32a79b6a3369c4a614f157d56e88f7435cf7bcbbb746085",
+      "videoSHA256": "2fd212c18a70b89d67bcd743d1a9a39bed848b3b7a444db568d38e33fb7c5645",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          640
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-09/source-proof.json",
+        "sha256": "2c479a313e45e423973ab0e0f7860ccc6d82e5f84f73f644179b2009c4f251ce"
+      }
+    },
+    {
+      "caseId": "holdout-10",
+      "inputHash": "2f436bdd9b26642f8f5ccb51711d570fa39f7f2677844594c69b585cd8ecbbba",
+      "planHash": "3f86b56554ce66ac2d10df9054215c7cb94cecfd121178dc5d28b755903330dd",
+      "videoSHA256": "17d1019204699be80167b3325c43045fd94de18f7922d9c350f80de31495df46",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-10/source-proof.json",
+        "sha256": "3d5f7346d08264d98f3dd8f45ad9d9a7b860e28835dfe7ad7d66afcf161d7112"
+      }
+    },
+    {
+      "caseId": "holdout-11",
+      "inputHash": "77aa12b7642ced13f2a67ce4335304b103f14d9bf845d6850349a7bb71767181",
+      "planHash": "22a7c983a476683891ee75142ba1b9ffb8c2d7d25e0839bd08a94ee16b0af48a",
+      "videoSHA256": "d147cc6ba428a328043adc250fb641d620cd78e7a6da9b764ffb2b73e0d64aed",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-11/source-proof.json",
+        "sha256": "51804b35916ffce7618d8f6f5bf3068430201106a44d79adf4524136f9c0e8b4"
+      }
+    },
+    {
+      "caseId": "holdout-12",
+      "inputHash": "e9313df43ddbea46800ae534dc21d7fa7d855bc5dae918b85b212f5eb5b05de2",
+      "planHash": "9058882b9e256988cf6cf97c44f68dd452a680782ff55e8a69a9eef0cdf295ac",
+      "videoSHA256": "4d0bc1df04d20edd297ea836c67f1586856e0259d807a52b59459a83b6d09661",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          19.99997732426304
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-12/source-proof.json",
+        "sha256": "1e58f515d85d89e834b39eac183998c58ba77416b39c47ac4a8cb95857519321"
+      }
+    },
+    {
+      "caseId": "holdout-14",
+      "inputHash": "c96dee4f006b89aa0fbb30942b4d5033571b91448001894eae789ad387f94c58",
+      "planHash": "35506c0b2dfbfae27dee31897d17ce67fea420d806c90f8c9ffed0994bcb9c2c",
+      "videoSHA256": "127eda6608bf71feb588758085de74a05ef5786b33155f295cfbe994d65b9485",
+      "outputProfile": {
+        "purpose": "SQUARE",
+        "aspect": "1:1",
+        "fps": 24,
+        "range": [
+          0,
+          44.999977324263035
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-14/source-proof.json",
+        "sha256": "499aa163dfba3119618d0c8022e2095261d8a44197af3c18f9cb2ab29657d6ec"
+      }
+    },
+    {
+      "caseId": "holdout-15",
+      "inputHash": "ce3b733b48e716a75cdc3dc297777b6fd99fc9d3d60bcf5f8f12b6d649220e34",
+      "planHash": "46ccacc0bbddec457b8c2a2af5b13188e91611c81041f0c8b2a5e7fc847cae68",
+      "videoSHA256": "1f859c89491a52bebe32f9dbaab57587b0fe5580998e418cd9db3ce2f459ef16",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "4:5",
+        "fps": 24,
+        "range": [
+          0,
+          9.999977324263039
+        ],
+        "loopRequired": false,
+        "resolution": [
+          360,
+          450
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-15/source-proof.json",
+        "sha256": "0665e40e6dcfe4dfe45ae4243b251ed3203c2c5209d959792d8a3bcb0066149b"
+      }
+    },
+    {
+      "caseId": "late-unseen-quiet-16x9",
+      "inputHash": "31e8534f41a911b2bfe3bfb1a09fb74cc9e68f3b8f7dea8a577c8de3d4400685",
+      "planHash": "f97dc87c5d5711a014726d6f1b00e30deea6278bec0f153dcdb4623602154a2f",
+      "videoSHA256": "7aee2b0989050ef4c5a0e78f3dc6dda352906cc44e96bf59a4265fb0a5bebdd4",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          14.3
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/late-unseen-quiet-16x9/source-proof.json",
+        "sha256": "110f986fe0baedbe8ab2737c22f77bbb4f651a4787b89564ab0f0fdb15a453e9"
+      }
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+      "planHash": "6a1c4ae269c470c47af098d1adb31351b343d907bd261dd08c8013df1b255fe7",
+      "videoSHA256": "93f9d0bf59f90dc614e702059e1cd438b10b2c8e61ec9786b2b11d098b0856d7",
+      "outputProfile": {
+        "purpose": "SHORT",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0.3,
+          12.72
+        ],
+        "loopRequired": false,
+        "resolution": [
+          720,
+          1280
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/supplemental-development-13/source-proof.json",
+        "sha256": "865c747117a7e9c8fd64fd8e7cfe7139d7de6653ba41cd17ae8e409e758af0a5"
+      }
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "inputHash": "2aeac81455d19abd241986d589d70d1210ea28dded4a2d5930d3f20184590a85",
+      "planHash": "f9c34b6c87c6b7702f0e2b8d364e70a8f34947a5220132f753e25c435b89be1f",
+      "videoSHA256": "382ed160a4931fb9c14ed68ad35b5e72a3e3c406a1cd10f65c9ebb9341a23112",
+      "outputProfile": {
+        "purpose": "SHORT",
+        "aspect": "9:16",
+        "fps": 24,
+        "range": [
+          0.3,
+          12.72
+        ],
+        "loopRequired": false,
+        "resolution": [
+          720,
+          1280
+        ]
+      },
+      "nativeProof": {
+        "path": "../release-recovery-20261019/native32-ci-correspondence/supplemental-holdout-13/source-proof.json",
+        "sha256": "51f08113209e895f367084009c10d1dec88133aeb10a181425617e125859994a"
+      }
+    }
+  ],
+  "registrationPolicy": "This adapter rejects missing, duplicate or mismatched coverage before producing correspondence. Existing evaluator consumes the primary Native proof; all 32 immutable per-case proofs and adapter assertions remain mandatory for this registration. It is not a universal transfer to other source-5eb films."
+}

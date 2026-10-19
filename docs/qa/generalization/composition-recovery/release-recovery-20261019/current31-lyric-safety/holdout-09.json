@@ -1,0 +1,126 @@
+{
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "evaluatedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "caseId": "holdout-09",
+  "videoSHA256": "2fd212c18a70b89d67bcd743d1a9a39bed848b3b7a444db568d38e33fb7c5645",
+  "inputHash": "7ead563f4370891e7bd11785b91bb95ca2efb36ed23620f74ca3fa3c2f2cd11b",
+  "planHash": "c00cc337821a4ca2c32a79b6a3369c4a614f157d56e88f7435cf7bcbbb746085",
+  "actualFinalUnits": 3,
+  "unitStatuses": [
+    {
+      "unitId": "aaa7dd050f533f2e94e54cac7fc6db6522495f7f998ca46909ad434f508a0ce8",
+      "status": "MEASURED",
+      "holdFrameCount": 59,
+      "expectedHoldFrames": 59,
+      "minimumContrast": 91
+    },
+    {
+      "unitId": "51530e036ba1e6c0fcab211a08cb96e3ffa99d5282286a194057edacf8441dc6",
+      "status": "MEASURED",
+      "holdFrameCount": 59,
+      "expectedHoldFrames": 59,
+      "minimumContrast": 100
+    },
+    {
+      "unitId": "51fc5fc63bb4f8595c4fd8a63a59af7aa451d2f71e720ea01c0e731bd2ea5bb0",
+      "status": "MEASURED",
+      "holdFrameCount": 38,
+      "expectedHoldFrames": 38,
+      "minimumContrast": 100
+    }
+  ],
+  "inputContract": {
+    "status": "MEASURED",
+    "method": "Immutable input snapshot and selected renderer plan contract; not decoded OCR",
+    "inputHash": "7ead563f4370891e7bd11785b91bb95ca2efb36ed23620f74ca3fa3c2f2cd11b",
+    "lyricsHash": "5f78be99deb24a6d8c476fb0d86af5e14e12bef15e5ec684401a59242d753f30",
+    "unitTexts": [
+      {
+        "unitId": "aaa7dd050f533f2e94e54cac7fc6db6522495f7f998ca46909ad434f508a0ce8",
+        "line": 0,
+        "text": "夜露に指先を沈める",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 0,
+            "from": 0.3,
+            "to": 3.2,
+            "hold": [
+              0.488,
+              2.9583333333333335
+            ],
+            "id": "69d0758bbd1ac6b6d43c43ea797b52002cf63fe7909e8b0672c712ee9af3becd"
+          }
+        ]
+      },
+      {
+        "unitId": "51530e036ba1e6c0fcab211a08cb96e3ffa99d5282286a194057edacf8441dc6",
+        "line": 1,
+        "text": "静かに頁を閉じる",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 1,
+            "from": 3.2,
+            "to": 6.1,
+            "hold": [
+              3.386,
+              5.8583333333333325
+            ],
+            "id": "df22e3c78eb1516cdf8ee4f4eb449594dba7b9dbb6aaa4f4d235c376f9cdb618"
+          }
+        ]
+      },
+      {
+        "unitId": "51fc5fc63bb4f8595c4fd8a63a59af7aa451d2f71e720ea01c0e731bd2ea5bb0",
+        "line": 2,
+        "text": "余白の中で眠る",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 2,
+            "from": 6.1,
+            "to": 8.09,
+            "hold": [
+              6.284,
+              7.848333333333333
+            ],
+            "id": "fcb7145155ab462d085b06b7ed16018806e56d9cbb27a48c622fc50e28f8c251"
+          }
+        ]
+      }
+    ],
+    "timingStatus": "MEASURED",
+    "originalSourceLineTextStatus": "MEASURED",
+    "originalSourceLineTextMethod": "Canonical input-format parsing compared with every selected-plan source line; input contract, not decoded OCR",
+    "originalUnitTextStatus": "MEASURED"
+  },
+  "audioEvidence": {
+    "status": "MEASURED",
+    "value": 100,
+    "confidence": 0.8,
+    "sampleCount": 442175,
+    "method": "decoded AAC duration, source/decoded energy and bounded AAC-delay signal correlation guard",
+    "sourceEnergy": 0.00027268977152102757,
+    "decodedEnergy": 0.00027138036758946895,
+    "signalCorrelation": 0.9999330940171322,
+    "selectedLagSamples": 941,
+    "lagStepSamples": 1,
+    "correlationSamplePattern": "DETERMINISTIC_STRATIFIED_GOLDEN_FRACTION",
+    "correlationSampleLimit": 2000,
+    "delaySearchSamples": 2048,
+    "durationErrorSeconds": 0.026666666666665506,
+    "limits": "Signal preservation guard, not perceptual identity or syllable synchronization"
+  },
+  "fullDecode": "PASS",
+  "sourceCorrespondence": {
+    "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-09/source-proof.json",
+    "sha256": "2c479a313e45e423973ab0e0f7860ccc6d82e5f84f73f644179b2009c4f251ce"
+  },
+  "rawRow": {
+    "path": "../release-recovery-20261019/current31-results/holdout-09/matrix/holdout-09-v3-row.json.gz",
+    "sha256": "2b64dffbe7939269058270e252139430fde65bb647433845eff45b4e7edb1fbf"
+  },
+  "lyricSafetyFailed": false,
+  "scope": "Original source text/unit integrity, selected-plan timing, all active-primary decoded HOLD glyph/contrast observations, audio signal and complete file decode. Does not certify every isolated operator or outgoing texture; semantic/phase attribution remains separate and cannot inherit this safety result."
+}

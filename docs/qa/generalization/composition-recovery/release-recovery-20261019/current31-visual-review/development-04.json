@@ -1,0 +1,58 @@
+{
+  "caseId": "development-04",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "4307ae432e82e0e2f588877f2a066234d30842d28e0dee7a233847c7a61950f9",
+    "a94f24b35d94ad26545acee0d5fafe6649118879a4b8e8c86a1b3d5017a62912",
+    "d3fc43fa5e738929f5be2a65fb4ed52800a7ca055b70c8fc590b34287003fb25",
+    "7c3c5e7c808727b861bd8a10326326c435ccb0ee7331ae250f031771fb4abc8c"
+  ],
+  "sampleCountPerVersion": 11,
+  "measuredSampleCount": 44,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    102,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.25,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/development-04.json",
+    "sha256": "77ed8eaa7bb60918896fa995bece78fd4b6b4abcee533619c5119a5de10f7001"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/development-04.png",
+    "sha256": "cbe72d8838481251728de63878aa2e19c3bae18de587b1745064f5231b72b213"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/development-04.json",
+    "sha256": "bdd5797e5958bf038d547262aa4b9f194668b9b2b2ca2f20cfc8dcfaca15a8ea"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "At 4.25s d04 has 追 / いつけない / 昨日を置く. Recovery has 追いつけない / 昨日を置く, preserving text while removing the isolated prefix. The first phrase also fits in two rows; final phrase remains present over blue blocks.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

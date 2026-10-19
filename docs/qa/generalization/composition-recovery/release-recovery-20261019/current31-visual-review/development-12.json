@@ -1,0 +1,56 @@
+{
+  "caseId": "development-12",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "bbe7fe671cfe64fd17c081e5954609702d6457c5c696b5ef6d23bcce128cda7f",
+    "d1e1f54957e77b2672ecd4ba5b255b6b173f45b03a6f44d52ec6f2822c14aaae",
+    "17029b522d33787b4afe39320990a7555f21e5afdc25843167fb4da4a2bc038d",
+    "788a9041cf6a66a7bcd083d8d9cf387e76591238c35b938a1026380bd8064b28"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    19,
+    67,
+    115,
+    163,
+    211,
+    259,
+    307,
+    354,
+    402,
+    450
+  ],
+  "outputTimestamps": [
+    0.7916666666666666,
+    2.7916666666666665,
+    4.791666666666667,
+    6.791666666666667,
+    8.791666666666666,
+    10.791666666666666,
+    12.791666666666666,
+    14.75,
+    16.75,
+    18.75
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/development-12.json",
+    "sha256": "8cfd13eae95be3edc492451b17d447c8234184e8882d9da235ce79b9b2456284"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/development-12.png",
+    "sha256": "e96632a98314caf00361b69741864eb78891c9cc374bfe0ed65fcc05d08e9ff2"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/development-12.json",
+    "sha256": "457787e2762e6384b67c298a7850d484ebdc16369814fd05e9ab63523f3d5ef0"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals previous/d04. Opening blank clocks and subsequent light-background words/vertical ending agree in sampled sequence. Runtime HOLD fragment 9 had a false static-positive from centered shrinking Native ink and is withdrawn; that does not by itself make the film artistically defective.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

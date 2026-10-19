@@ -1,0 +1,126 @@
+{
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "evaluatedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "caseId": "holdout-06",
+  "videoSHA256": "0970671b276f9f3694ec263eb3af010137fe95e55bd3e3f64a7c383e81400e36",
+  "inputHash": "6f0bc02c76c9ee7ccf2c15b5df18b65fe1b9c086c761a76c365e7f30e21536ee",
+  "planHash": "09dd0f8abec17e552d3168a9687c1c7cf14061d2c27e58cbf4bbb6f21d3051d8",
+  "actualFinalUnits": 3,
+  "unitStatuses": [
+    {
+      "unitId": "3e7ccf151ae2f3e4204c8883f153bda7a3f2f29b72239897dfc40d5601cfc7ef",
+      "status": "MEASURED",
+      "holdFrameCount": 66,
+      "expectedHoldFrames": 66,
+      "minimumContrast": 65
+    },
+    {
+      "unitId": "f92d312daf355aaa0ca4e28f4ed71ab1d443667337b63cf7f9fba76b7c113fd9",
+      "status": "MEASURED",
+      "holdFrameCount": 58,
+      "expectedHoldFrames": 58,
+      "minimumContrast": 100
+    },
+    {
+      "unitId": "563717dc64e16ca741fadc36bcad646de212e513dc58c9d39d0120216c28f5da",
+      "status": "MEASURED",
+      "holdFrameCount": 80,
+      "expectedHoldFrames": 80,
+      "minimumContrast": 100
+    }
+  ],
+  "inputContract": {
+    "status": "MEASURED",
+    "method": "Immutable input snapshot and selected renderer plan contract; not decoded OCR",
+    "inputHash": "6f0bc02c76c9ee7ccf2c15b5df18b65fe1b9c086c761a76c365e7f30e21536ee",
+    "lyricsHash": "edd2855d60db7bbb5413f71808e566052066207e080072a1cf2e20943868d00e",
+    "unitTexts": [
+      {
+        "unitId": "3e7ccf151ae2f3e4204c8883f153bda7a3f2f29b72239897dfc40d5601cfc7ef",
+        "line": 0,
+        "text": "Crystal wires ignite the room",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 0,
+            "from": 0.3,
+            "to": 3.2,
+            "hold": [
+              0.42,
+              3.2
+            ],
+            "id": "280ddf5f4d7e2b73a6143e5e020671ce8dda82afe102499534344fd10fa11691"
+          }
+        ]
+      },
+      {
+        "unitId": "f92d312daf355aaa0ca4e28f4ed71ab1d443667337b63cf7f9fba76b7c113fd9",
+        "line": 1,
+        "text": "Frequency blooms beneath the moon",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 1,
+            "from": 3.2,
+            "to": 6.1,
+            "hold": [
+              3.4360000000000004,
+              5.8583333333333325
+            ],
+            "id": "3a85819cd0f9641484e1190f7a599ca79435e8955431aec223c0985d88432053"
+          }
+        ]
+      },
+      {
+        "unitId": "563717dc64e16ca741fadc36bcad646de212e513dc58c9d39d0120216c28f5da",
+        "line": 2,
+        "text": "Shape the endless wave",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 2,
+            "from": 6.1,
+            "to": 9.999977324263039,
+            "hold": [
+              6.314,
+              9.63997732426304
+            ],
+            "id": "267ceb7b1a4f94076dc45a9b37b165607852fa2b655c9f989b4839b7a63f105e"
+          }
+        ]
+      }
+    ],
+    "timingStatus": "MEASURED",
+    "originalSourceLineTextStatus": "MEASURED",
+    "originalSourceLineTextMethod": "Canonical input-format parsing compared with every selected-plan source line; input contract, not decoded OCR",
+    "originalUnitTextStatus": "MEASURED"
+  },
+  "audioEvidence": {
+    "status": "MEASURED",
+    "value": 100,
+    "confidence": 0.8,
+    "sampleCount": 442175,
+    "method": "decoded AAC duration, source/decoded energy and bounded AAC-delay signal correlation guard",
+    "sourceEnergy": 0.002160326555840753,
+    "decodedEnergy": 0.002144401645583936,
+    "signalCorrelation": 0.9997211097186517,
+    "selectedLagSamples": 941,
+    "lagStepSamples": 1,
+    "correlationSamplePattern": "DETERMINISTIC_STRATIFIED_GOLDEN_FRACTION",
+    "correlationSampleLimit": 2000,
+    "delaySearchSamples": 2048,
+    "durationErrorSeconds": 0.026666666666665506,
+    "limits": "Signal preservation guard, not perceptual identity or syllable synchronization"
+  },
+  "fullDecode": "PASS",
+  "sourceCorrespondence": {
+    "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-06/source-proof.json",
+    "sha256": "0cffaebb850f1390736862954076a6f8f572b269a97e83804754e0644fc85358"
+  },
+  "rawRow": {
+    "path": "../release-recovery-20261019/current31-results/holdout-06/matrix/holdout-06-v3-row.json.gz",
+    "sha256": "a761a0550f55f14dd6ea3a771e289ecd5e61b0a2d500315426a953f248560548"
+  },
+  "lyricSafetyFailed": false,
+  "scope": "Original source text/unit integrity, selected-plan timing, all active-primary decoded HOLD glyph/contrast observations, audio signal and complete file decode. Does not certify every isolated operator or outgoing texture; semantic/phase attribution remains separate and cannot inherit this safety result."
+}

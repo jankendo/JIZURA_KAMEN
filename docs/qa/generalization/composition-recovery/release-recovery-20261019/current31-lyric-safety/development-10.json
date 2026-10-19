@@ -1,0 +1,126 @@
+{
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "evaluatedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "caseId": "development-10",
+  "videoSHA256": "c346c9ce3e34d78f5abeb51bf167aedae3781cb9af0d44bc42a8a1f7b8a6f02f",
+  "inputHash": "627a2041c9a67cf20ee0edc987fcbdc53a8692f351bf414c1c5652e25788b97a",
+  "planHash": "6331b7ed23c50cebd0d7f7d8be2b0876abe4fd2f4c16d6a77edd5380a51fcc95",
+  "actualFinalUnits": 3,
+  "unitStatuses": [
+    {
+      "unitId": "ae2d0185b71bfd85b462323be680ec6d9569ebeccb07c63c99c704010a4c4654",
+      "status": "MEASURED",
+      "holdFrameCount": 59,
+      "expectedHoldFrames": 59,
+      "minimumContrast": 97
+    },
+    {
+      "unitId": "2675642f23b08236337e0c76a2c5f338eb4228e28bd867687dcdac0ae85e3c0b",
+      "status": "MEASURED",
+      "holdFrameCount": 59,
+      "expectedHoldFrames": 59,
+      "minimumContrast": 100
+    },
+    {
+      "unitId": "4ee45872d2b48e7aab83a55d32d9147347aa317801a11992f0ac3fcecbb7996f",
+      "status": "MEASURED",
+      "holdFrameCount": 46,
+      "expectedHoldFrames": 46,
+      "minimumContrast": 100
+    }
+  ],
+  "inputContract": {
+    "status": "MEASURED",
+    "method": "Immutable input snapshot and selected renderer plan contract; not decoded OCR",
+    "inputHash": "627a2041c9a67cf20ee0edc987fcbdc53a8692f351bf414c1c5652e25788b97a",
+    "lyricsHash": "4d1ec5025e819d3df1c2f597a9a54e7492286d493c2f8efac9faea796e0ddfce",
+    "unitTexts": [
+      {
+        "unitId": "ae2d0185b71bfd85b462323be680ec6d9569ebeccb07c63c99c704010a4c4654",
+        "line": 0,
+        "text": "静かな水面を見つめる",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 0,
+            "from": 0.3,
+            "to": 3.2,
+            "hold": [
+              0.49,
+              2.9583333333333335
+            ],
+            "id": "fdfd2a7d65852f256dda365e4c64daa7cc29a0247e2fefe4fc48203db55dd65d"
+          }
+        ]
+      },
+      {
+        "unitId": "2675642f23b08236337e0c76a2c5f338eb4228e28bd867687dcdac0ae85e3c0b",
+        "line": 1,
+        "text": "雨が扉を叩き始める",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 1,
+            "from": 3.2,
+            "to": 6.1,
+            "hold": [
+              3.3880000000000003,
+              5.8583333333333325
+            ],
+            "id": "4ddb0c6a720deebdf438da55c87e3dd6011f255171cf9198240e7112de59d831"
+          }
+        ]
+      },
+      {
+        "unitId": "4ee45872d2b48e7aab83a55d32d9147347aa317801a11992f0ac3fcecbb7996f",
+        "line": 2,
+        "text": "晴れた空へ声を放つ",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 2,
+            "from": 6.1,
+            "to": 8.43,
+            "hold": [
+              6.287999999999999,
+              8.188333333333334
+            ],
+            "id": "c40410baf45761bc6fce8ff45d26b53e0d10663017f4b1135b9bd50b27dfa08a"
+          }
+        ]
+      }
+    ],
+    "timingStatus": "MEASURED",
+    "originalSourceLineTextStatus": "MEASURED",
+    "originalSourceLineTextMethod": "Canonical input-format parsing compared with every selected-plan source line; input contract, not decoded OCR",
+    "originalUnitTextStatus": "MEASURED"
+  },
+  "audioEvidence": {
+    "status": "MEASURED",
+    "value": 100,
+    "confidence": 0.8,
+    "sampleCount": 442175,
+    "method": "decoded AAC duration, source/decoded energy and bounded AAC-delay signal correlation guard",
+    "sourceEnergy": 0.004259517018254844,
+    "decodedEnergy": 0.004233267612579722,
+    "signalCorrelation": 0.9998094371020049,
+    "selectedLagSamples": 941,
+    "lagStepSamples": 1,
+    "correlationSamplePattern": "DETERMINISTIC_STRATIFIED_GOLDEN_FRACTION",
+    "correlationSampleLimit": 2000,
+    "delaySearchSamples": 2048,
+    "durationErrorSeconds": 0.026666666666665506,
+    "limits": "Signal preservation guard, not perceptual identity or syllable synchronization"
+  },
+  "fullDecode": "PASS",
+  "sourceCorrespondence": {
+    "path": "../release-recovery-20261019/native32-ci-correspondence/development-10/source-proof.json",
+    "sha256": "0236d8fed0a2876bc93de5e8f1ebb232e9e96d152fe38c58295363a23abef146"
+  },
+  "rawRow": {
+    "path": "../release-recovery-20261019/current31-results/development-10/matrix/development-10-v3-row.json.gz",
+    "sha256": "4e0f1be7f3572b20d651a4d745807ba18c71a248f9ac2783190b80efaab93bcd"
+  },
+  "lyricSafetyFailed": false,
+  "scope": "Original source text/unit integrity, selected-plan timing, all active-primary decoded HOLD glyph/contrast observations, audio signal and complete file decode. Does not certify every isolated operator or outgoing texture; semantic/phase attribution remains separate and cannot inherit this safety result."
+}

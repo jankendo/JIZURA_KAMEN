@@ -1,0 +1,56 @@
+{
+  "caseId": "development-09",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "390ebcaff3086f9c57bbd3725a54fcbe10a8325be863b3b7f2e5212c5e21b011",
+    "b0981bb20022d5719a3ca2c63b4d6b8df89daa28b7e378345099f410166611a1",
+    "953e2993c9c0b87f99f3ec63994711d3da5adbe06a061db6469b554b346724ac",
+    "87569489541567cf25157851a33922c3ed467f1957a2b0071abea411dcd6bd0e"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/development-09.json",
+    "sha256": "46a5e48ff2e6ba0345fdeee903f109f53cbc8a438e18ecf16c05fcd933f60c04"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/development-09.png",
+    "sha256": "9910218507ed9c32fbdfe6228cf241123ce48274606971a6c3e978cbbfaab7d3"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/development-09.json",
+    "sha256": "0266e046eb9d5a7efe3435ff1426d3be1b41e01ab7e7e1bab7ad0c2ac906bdd4"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Recovery first phrase becomes one complete horizontal row; middle phrase has two rows and final phrase stays below blue blocks. Complete output equals d04, with a different layout/background arrangement from main and previous.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

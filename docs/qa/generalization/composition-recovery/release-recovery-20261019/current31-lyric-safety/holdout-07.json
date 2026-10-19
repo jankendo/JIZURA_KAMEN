@@ -1,0 +1,126 @@
+{
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "evaluatedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "caseId": "holdout-07",
+  "videoSHA256": "f26f2fc8ab3a8e8cffd05b882f67eb40023b120c84af52341ea12de3728209ba",
+  "inputHash": "938fa7cc8c347810b429a0eb0bb855dcd57e96f0861bbeb00bbaf5ce9996728d",
+  "planHash": "6e1ae277e2802fb630156840b008b8d6019b8aad0c474bb8fa4546e1d2321a51",
+  "actualFinalUnits": 3,
+  "unitStatuses": [
+    {
+      "unitId": "0eb1179122b4d78f9c8435b5a64a2f7e1de7f02bb00fac0cd559876127be165d",
+      "status": "MEASURED",
+      "holdFrameCount": 59,
+      "expectedHoldFrames": 59,
+      "minimumContrast": 54
+    },
+    {
+      "unitId": "0293ebb06b12cc83d5b868b494efe7abd077c8989a370975eddd2c8ca5e9c70f",
+      "status": "MEASURED",
+      "holdFrameCount": 59,
+      "expectedHoldFrames": 59,
+      "minimumContrast": 100
+    },
+    {
+      "unitId": "65dd1814b2c1142bed3bcd2841f5a39b639e84d95b3bc9a54eb1ec82f1006123",
+      "status": "MEASURED",
+      "holdFrameCount": 46,
+      "expectedHoldFrames": 46,
+      "minimumContrast": 100
+    }
+  ],
+  "inputContract": {
+    "status": "MEASURED",
+    "method": "Immutable input snapshot and selected renderer plan contract; not decoded OCR",
+    "inputHash": "938fa7cc8c347810b429a0eb0bb855dcd57e96f0861bbeb00bbaf5ce9996728d",
+    "lyricsHash": "1357b9383177d57be879db2c717187336c90e9e184ebbd90d02ab68110e60f8d",
+    "unitTexts": [
+      {
+        "unitId": "0eb1179122b4d78f9c8435b5a64a2f7e1de7f02bb00fac0cd559876127be165d",
+        "line": 0,
+        "text": "深緑から朝霧が昇る",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 0,
+            "from": 0.3,
+            "to": 3.2,
+            "hold": [
+              0.488,
+              2.9583333333333335
+            ],
+            "id": "94e13ff19924e15c4af27a307d4e2efa59cccab7736554f39be776e50d9a6ceb"
+          }
+        ]
+      },
+      {
+        "unitId": "0293ebb06b12cc83d5b868b494efe7abd077c8989a370975eddd2c8ca5e9c70f",
+        "line": 1,
+        "text": "大地の奥に鐘が響く",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 1,
+            "from": 3.2,
+            "to": 6.1,
+            "hold": [
+              3.3880000000000003,
+              5.8583333333333325
+            ],
+            "id": "246706d2797eec5a8664ef38ee573c54f69a941c41696b296f352004f1955517"
+          }
+        ]
+      },
+      {
+        "unitId": "65dd1814b2c1142bed3bcd2841f5a39b639e84d95b3bc9a54eb1ec82f1006123",
+        "line": 2,
+        "text": "天頂を指して奏でる",
+        "sourceUnitOrigin": null,
+        "fragments": [
+          {
+            "index": 2,
+            "from": 6.1,
+            "to": 8.43,
+            "hold": [
+              6.287999999999999,
+              8.188333333333334
+            ],
+            "id": "6bea23939ed4c7ab42cd2c09d379f9cb61ccfe6a4c90f2853926ca912731a30e"
+          }
+        ]
+      }
+    ],
+    "timingStatus": "MEASURED",
+    "originalSourceLineTextStatus": "MEASURED",
+    "originalSourceLineTextMethod": "Canonical input-format parsing compared with every selected-plan source line; input contract, not decoded OCR",
+    "originalUnitTextStatus": "MEASURED"
+  },
+  "audioEvidence": {
+    "status": "MEASURED",
+    "value": 100,
+    "confidence": 0.8,
+    "sampleCount": 442175,
+    "method": "decoded AAC duration, source/decoded energy and bounded AAC-delay signal correlation guard",
+    "sourceEnergy": 0.0035428802904835257,
+    "decodedEnergy": 0.0035259557499407405,
+    "signalCorrelation": 0.999947555603117,
+    "selectedLagSamples": 941,
+    "lagStepSamples": 1,
+    "correlationSamplePattern": "DETERMINISTIC_STRATIFIED_GOLDEN_FRACTION",
+    "correlationSampleLimit": 2000,
+    "delaySearchSamples": 2048,
+    "durationErrorSeconds": 0.026666666666665506,
+    "limits": "Signal preservation guard, not perceptual identity or syllable synchronization"
+  },
+  "fullDecode": "PASS",
+  "sourceCorrespondence": {
+    "path": "../release-recovery-20261019/native32-ci-correspondence/holdout-07/source-proof.json",
+    "sha256": "d214573b5d7a35786f2ca7f1c38bf0e4b4054055df68eb707292e6d558c20596"
+  },
+  "rawRow": {
+    "path": "../release-recovery-20261019/current31-results/holdout-07/matrix/holdout-07-v3-row.json.gz",
+    "sha256": "e8302f19ec136c6140996e42b90231582cde2c1678f5acad0a3f7606dad47cc1"
+  },
+  "lyricSafetyFailed": false,
+  "scope": "Original source text/unit integrity, selected-plan timing, all active-primary decoded HOLD glyph/contrast observations, audio signal and complete file decode. Does not certify every isolated operator or outgoing texture; semantic/phase attribution remains separate and cannot inherit this safety result."
+}

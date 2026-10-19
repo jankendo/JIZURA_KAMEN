@@ -1,0 +1,56 @@
+{
+  "caseId": "development-08",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "9df3b338d28be8c47cf6952a06048b50f6aab3ea7883568d3ca9e9a425fb1e4c",
+    "d37b66831ad326e98fe4a4ab939c1f5409e1147652212d09a729126f8bfca2ce",
+    "3caff233021ee5062ec9543631be904a617a87e8fb4ec8158122a108de15aa7b",
+    "5e3ebdd76da5cb4c49a838a3219dec33ccfcd3b58ccc6fe23e149ee3da7ca4c2"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/development-08.json",
+    "sha256": "dfa5bbf317a2f701020a3a58a6a58e8e6ed458eb6b4b021b054979121715f4bf"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/development-08.png",
+    "sha256": "b60f77dc544ea07e766aa877747d79f4cf0f042f9356970dfb423afdeb45ddd1"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/development-08.json",
+    "sha256": "834e9de9e21ad66c10e307063db3f2e954cabbbb92b9706d7567df6cbee6952f"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Repeated complete 響け strings survive; the last layout still separates the second word vertically, as previous/d04 do. Complete output equals previous/d04. Intentional one-character layouts must remain distinguished from automatic wrapping.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

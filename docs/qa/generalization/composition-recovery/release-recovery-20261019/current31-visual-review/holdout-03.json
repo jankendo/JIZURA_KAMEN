@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-03",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "f6140c22171fcfc10277ede456b4afe59c0541dbd410577b9ca3acf64ce4907f",
+    "d292be6bba257bccd1b75aef09afa775a12fe15c53919ef567b14972bc931eaa",
+    "d25e9fc0e0b539c65d5f0b7a4a27840f013eefbf21b05cc24538b32bf8d2f7cd",
+    "95c5f04a8f185972cd66a1f9567ec0b5181fe0583769244171c401339f9e086c"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-03.json",
+    "sha256": "2bba62d1d1b6f3c155fca4c1c54b967f587fed48ac33b0161f1259cf80ba15ca"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-03.png",
+    "sha256": "9d07b0c618dfbd55f350ee5d7cda1ed95ec8acab3eb952163868d67f950afdf0"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-03.json",
+    "sha256": "39602eb0d839358ea4e2639e96d4c97e59b4e58235c820caaf6e0258759bd73b"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals previous/d04. Three phrases remain readable on distinct grid/panel/plain scenes. Main has a smaller first phrase and a different last-row break; all sampled recovery characters remain visible.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

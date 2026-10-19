@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-11",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "a6726da8ddf4258cfa5097bf60a230bac16b119ad1a0a3bedc20b623dbb3c935",
+    "35c3ef292afdc068af3cf22a650d6c36b37bfc9e1bb6a5eb65a390fe0716fac4",
+    "31901f414789108136f844578ba7ab87f0c3ae4e4d850c2a69666ffcb3ab8179",
+    "d147cc6ba428a328043adc250fb641d620cd78e7a6da9b764ffb2b73e0d64aed"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    19,
+    67,
+    115,
+    163,
+    211,
+    259,
+    307,
+    354,
+    402,
+    450
+  ],
+  "outputTimestamps": [
+    0.7916666666666666,
+    2.7916666666666665,
+    4.791666666666667,
+    6.791666666666667,
+    8.791666666666666,
+    10.791666666666666,
+    12.791666666666666,
+    14.75,
+    16.75,
+    18.75
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-11.json",
+    "sha256": "f8953e63cc0351e90afbd79bc88cf4b75d89ecd719958c8900722ceaa6826090"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-11.png",
+    "sha256": "6dce606c75d2fb290b4f7ce82b2712f016fa233ac35c8e3bb441e0aaa71cc896"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-11.json",
+    "sha256": "574db033ed3ffefa5c3fc1cde18af2c06c63b69869dae337936552011ba7cb2b"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals previous/d04. Later dark text stays visible against pale background where main has very light text, including the closing 向かう. Blank early clocks agree; no missing-lyric conclusion is drawn from intended instrumental/entry intervals.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

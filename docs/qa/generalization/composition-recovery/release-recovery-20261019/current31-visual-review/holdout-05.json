@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-05",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "f48a1ad3402f6bbd06a344e16d5728234e862a1b30a4b3946f9a2cca4606dbf7",
+    "6661e428fa59a7b03e4cee0a602612faf6875671ae1412a5cc18cea6ce74d0c5",
+    "3f866781979fbbb50d09adf1bc993147586a2829107d9ec7ebd1fc3b5eb096d4",
+    "ba673eb71eb32382112757ea3879b848b3efaff58398c7de08ed755680e5ec3b"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-05.json",
+    "sha256": "50185e9f1bf85bd601fec13afdab4f3017d68b0e1af0e3fd4d17e33ad2c62712"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-05.png",
+    "sha256": "5f335e4e0f3a5b0e459443193b3d5590ad9700d3bd9393d34502b5ad96b0a445"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-05.json",
+    "sha256": "4b8f09b8f55a0baa2bf82986833c5186aca97c30f23e57ddc4433f7ab8efb763"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals previous/d04. Dark bracketed words survive on the pale background at the inspected clocks where main uses pale low-contrast text. Closing vertical 応える remains intentional; no automatic one-character exclusion is used.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

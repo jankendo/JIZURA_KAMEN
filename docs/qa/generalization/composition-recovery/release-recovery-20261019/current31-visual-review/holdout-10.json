@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-10",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "1d4a85d8011472d5f6eede4c87f663f6e30e35dc3f39bcd03da247fe9aec8f9d",
+    "e59002fd80399c5c8c45006b970728b68bc177dacf01290cb346e2bc48bff2e5",
+    "2431feaa6b17b1c2ed686d5446759b0b21ca3776d5c5e663b2dc07c52d0c6678",
+    "17d1019204699be80167b3325c43045fd94de18f7922d9c350f80de31495df46"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-10.json",
+    "sha256": "cc63b580ffe7e5fb5216b76aa91f339cc5aca70dd1abae799d7f9ab521a439b5"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-10.png",
+    "sha256": "ab094b77aa352c409c78d3ebbec4919d52844ec9c293f6bbbead6de85feb94c1"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-10.json",
+    "sha256": "fadd55e2cdce11979686843b2e129b2d78095f26279f32eefcf899e943d12218"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals previous/d04. Bracketed first fragments, light middle words and the closing 見届ける are retained. Main's closing clock can show diagonal bars instead; the sampled lexical visibility improvement is distinct from full phrase choreography.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

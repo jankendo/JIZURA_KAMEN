@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-09",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "ca4ffeef74ee95f87be9e2d2352eed4f43624b000d12c307243aac9800b9a6de",
+    "83c1d0a0a843578530f7fc502042689c428d5bae77b3dd272a3fc9ea186f18ec",
+    "fbd75eb518aa401899f0cbd20e61456fa2b008ef6d4341d89b807865b89c919d",
+    "2fd212c18a70b89d67bcd743d1a9a39bed848b3b7a444db568d38e33fb7c5645"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-09.json",
+    "sha256": "57cc1f784912a67b3594dabe95ea1698294ad63990d0bc7d863c21254795058e"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-09.png",
+    "sha256": "f5da1413203318e4e6d7ab379989c5c0a525dd803e4fc4d3a71e6529742dbc5c"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-09.json",
+    "sha256": "e568bcbc3371e8f690be20305a39fd6cbdcc3137099a1e06d0bbd54d51a2f2a7"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals previous/d04. Three-row first phrase, under-panel second caption and three-row closing phrase remain visible. Main uses smaller compact lines; stable visibility alone does not resolve all motion contracts.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}

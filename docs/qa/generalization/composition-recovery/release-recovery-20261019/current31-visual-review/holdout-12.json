@@ -1,0 +1,56 @@
+{
+  "caseId": "holdout-12",
+  "artifactSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "reviewedForReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "actualDecodedFrames": true,
+  "videoSHA256s": [
+    "84eb6a00bbb65cb76e10b9a79926c729e28f19b484eaf940adcc95d26dede416",
+    "8bb0b44d29322fe2896928ba5a87981d7349bf75116b2912fbb23a6532ab9cb4",
+    "86e369509342512379d1ceb05fc1d5deba43c90ce52b5ebcd54d28317f35771b",
+    "4d0bc1df04d20edd297ea836c67f1586856e0259d807a52b59459a83b6d09661"
+  ],
+  "sampleCountPerVersion": 10,
+  "measuredSampleCount": 40,
+  "frameIndices": [
+    19,
+    67,
+    115,
+    163,
+    211,
+    259,
+    307,
+    354,
+    402,
+    450
+  ],
+  "outputTimestamps": [
+    0.7916666666666666,
+    2.7916666666666665,
+    4.791666666666667,
+    6.791666666666667,
+    8.791666666666666,
+    10.791666666666666,
+    12.791666666666666,
+    14.75,
+    16.75,
+    18.75
+  ],
+  "sheet": {
+    "path": "../current31-contact-sheets-v2/holdout-12.json",
+    "sha256": "0ec87c91fe56c38832edc798b2096abfdcf94233843f4136e7e024315e672224"
+  },
+  "image": {
+    "path": "../current31-contact-sheets-v2/holdout-12.png",
+    "sha256": "3a062499b71708c1b983f87f4453e9df0dc977d7ba68900abd2056649721ccff"
+  },
+  "wholeDecodedComparison": {
+    "path": "../current31-decoded-comparisons/holdout-12.json",
+    "sha256": "6a5c63d47ab2d668aa77dbf8f4cf045923d7bd79277669157af322c085b7aa1c"
+  },
+  "reviewMethod": "AI engineering inspection of actual four-version fixed-frame sheets plus whole decoded video/audio/clock hashes. No human viewing or full-interval isolated semantics claimed.",
+  "existingCriterion": "User §5.1: source/lyric safety, unnatural wrapping, repetition, unintended static motion, music-fit, climax and interference; uncalibrated proxy decline is not automatically major regression. No new artistic score threshold.",
+  "observations": "Complete output equals d04. Opening scene-only clocks are retained; later caption, two-row memory phrase and green final scene remain distinct. Their exact music-fit/intentional-stillness contracts remain unresolved.",
+  "significantRegression": null,
+  "formalStatus": "PARTIAL_ENGINEERING_REVIEW_COMPLETE_FULL_PHASE_MUSIC_SEMANTIC_JUDGMENT_PENDING",
+  "releaseCredit": false
+}
