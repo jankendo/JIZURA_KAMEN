@@ -26,7 +26,11 @@ function typedImportantOperators(o,load,media){
  function staticFrames(raw,c,b){
   const f=raw.decodedFrames,glyphs=c.glyphIds;
   if(c.target.layer!=='PRIMARY_LYRIC'||!Array.isArray(glyphs)||!glyphs.length||new Set(glyphs).size!==glyphs.length||!Array.isArray(f)||!Number.isFinite(c.fps)||c.fps<=0||!Number.isFinite(c.from)||!Number.isFinite(c.to)||c.to<=c.from||!Number.isFinite(c.frameOrigin)||!Number.isFinite(c.tolerancePixels)||c.tolerancePixels<0||c.tolerancePixels>1)return 'v2 static contract or glyph population incomplete';
-  const first=Math.ceil((c.from-c.frameOrigin)*c.fps),end=Math.ceil((c.to-c.frameOrigin)*c.fps);
+  if(c.fps!==b.outputProfile.fps||!Array.isArray(b.outputProfile.range)||c.from<b.outputProfile.range[0]||c.to>b.outputProfile.range[1])return 'v2 static interval differs from actual output profile';
+  // Match the renderer's actual i/fps predicate. ceil(time*fps) can skip a
+  // real boundary frame (e.g. (31/30)*30 rounds above 31).
+  const firstAt=time=>{let lo=0,hi=Math.max(0,Math.ceil((c.to-c.frameOrigin)*c.fps)+2);while(lo<hi){const mid=Math.floor((lo+hi)/2);if(c.frameOrigin+mid/c.fps>=time)hi=mid;else lo=mid+1;}return lo;};
+  const first=firstAt(c.from),end=firstAt(c.to);
   if(end-first<3||f.length!==end-first)return 'v2 static whole-interval frame population missing';
   const starts=new Map();let moved=false;
   for(let i=0;i<f.length;i++){
