@@ -1,6 +1,9 @@
 /* One lossless wrapping decision for rendering and QA; no midpoint or material-specific rule. */
 (()=>{'use strict';const J=window.J;
 const cache=new Map();
+// Only automatically inserted rows are repaired. Authored breaks, locked text
+// and explicitly requested single-character compositions retain their contract.
+J.automaticLyricOrphanRows=(rows)=>rows.length>1?rows.flatMap((row,index)=>J.graphemes(row.replace(/\s/gu,'')).length===1?[index]:[]):[];
 J.semanticLyricLayout=(value,options={})=>{
  const original=String(value??''),font=options.font||'embedded_bold',lead=options.lead??1.2,track=options.track??.015;
  const maxWidth=options.maxWidth??Infinity,maxHeight=options.maxHeight??Infinity,initialSize=options.size??48;let minSize=options.minSize??initialSize*.55;
@@ -27,13 +30,19 @@ J.semanticLyricLayout=(value,options={})=>{
   const overflow=measured?Math.max(0,...widths.map(w=>w/maxWidth-1),height/maxHeight-1):Math.max(0,...rowCounts.map(n=>n/characterLimit-1));
   // Preserve a fitting unbroken phrase; wrapping precedes further size loss only when required.
   const loss=(initialSize-size)/initialSize,cost=overflow*100+loss*2+(rows.length-1)*.16+balanced*.005;
-  ranked.push({rows,size,widths,height,fits,cost});
+  ranked.push({rows,size,widths,height,fits,cost,overflow});
  }
- const winner=ranked.sort((a,b)=>Number(b.fits)-Number(a.fits)||a.cost-b.cost||b.size-a.size||a.rows.join('\n').localeCompare(b.rows.join('\n'),'en'))[0]||{rows:[original],size:initialSize,widths:[null],height:initialSize,fits:false};
+ const ordered=ranked.sort((a,b)=>Number(b.fits)-Number(a.fits)||a.cost-b.cost||b.size-a.size||a.rows.join('\n').localeCompare(b.rows.join('\n'),'en'));
+ const initial=ordered[0]||{rows:[original],size:initialSize,widths:[null],height:initialSize,fits:false};
+ const repairOrphans=!explicit&&!manual&&options.allowSingleCharacterLines!==true;
+ // Reuse legitimate boundary/size candidates and the original measured bounds.
+ // Never replace a fitting row with overflow merely to remove an orphan.
+ const safeAlternative=repairOrphans&&J.automaticLyricOrphanRows(initial.rows).length?ordered.find(c=>(c.fits||!measured&&c.overflow===0)&&!J.automaticLyricOrphanRows(c.rows).length):null;
+ const winner=safeAlternative||initial;
  const text=winner.rows.join('\n'),withoutInserted=text.replace(/\n/g,''),sourceWithoutBreaks=original.replace(/\n/g,'');
  if(measured)ctx.font=previousFont;
  if(withoutInserted!==sourceWithoutBreaks)throw Error('LYRIC_LAYOUT_SOURCE_CHANGED');
- return {original,text,rows:winner.rows,size:winner.size,widths:winner.widths,height:winner.height,status:measured?'MEASURED':'UNMEASURED',fits:winner.fits,explicitBreaksPreserved:explicit,method:ledger.method,semanticConfidence:ledger.semanticConfidence,sourceOffsets:ledger.offsets,limits:ledger.limits};
+ return {original,text,rows:winner.rows,size:winner.size,widths:winner.widths,height:winner.height,status:measured?'MEASURED':'UNMEASURED',fits:winner.fits,explicitBreaksPreserved:explicit,automaticOrphanRows:repairOrphans?J.automaticLyricOrphanRows(winner.rows):[],orphanRepairApplied:!!safeAlternative,method:ledger.method,semanticConfidence:ledger.semanticConfidence,sourceOffsets:ledger.offsets,limits:ledger.limits};
 };
 J.splitLines=(value,maxPer)=>{
  const text=String(value??'');if(text.includes('\n')||J.graphemes(text).length<=maxPer)return text;

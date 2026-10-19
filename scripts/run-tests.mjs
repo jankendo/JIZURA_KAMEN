@@ -36,6 +36,7 @@ tests.push('cinema_composition_promotion_test.cjs','cinema_candidate_trace_test.
 tests.push('cinema_v5_selection_test.cjs','cinema_v5_layout_test.cjs','cinema_v5_physical_evidence_test.cjs','cinema_v5_planner_test.cjs','cinema_v5_repair_audio_test.cjs','cinema_v5_final_artifact_test.cjs');
 tests.push('cinema_semantic_translation_anchor_test.cjs','cinema_final_semantic_travel_test.cjs','cinema_lyric_temporal_contract_test.cjs');
 tests.push('cinema_nested_progress_test.cjs', 'cinema_climax_semantic_layout_test.cjs','release_gates_test.cjs');
+tests.push('semantic_orphan_layout_test.cjs');
 const testResults=[];let failures = 0, skipped = 0;
 for (const test of tests) {
   console.log(`\n> ${test}`);
