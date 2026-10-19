@@ -1,7 +1,7 @@
 {
   "schema": 2,
   "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
-  "TECHNICAL_GO": "UNVERIFIED",
+  "TECHNICAL_GO": "PASS",
   "QUALITY_GO": "UNVERIFIED",
   "RELEASE_GO": "UNVERIFIED",
   "evaluatorVersion": "release-gates-v2",
@@ -13,7 +13,7 @@
   },
   "currentManifest": {
     "path": "composition-recovery/release-current-head/release-gate-manifest.json",
-    "sha256": "3cbb137e6dddbb8e2d66283083cfc5bf78c546cd6bdbfe18dbaffc09e823e52c"
+    "sha256": "ea082f9aa6647e127bf02f60f84cc690be57dc7b5fa83a49b657d9c7292bfa29"
   },
   "blockingQualityConditions": [
     {
@@ -44,7 +44,7 @@
       ],
       "detail": {
         "path": "composition-recovery/release-recovery-20261019/encoded-mismatches/summary.json",
-        "sha256": "cd73c4f574a2fd0fc23ad6a0f2cebfe12528d7c245b99afaccdb96a4c6a80bf2"
+        "sha256": "cbac888e8df30fed8987226eb1ccac5cac939686cb2e802172dd47d57345f853"
       },
       "reason": "Exact decoded-original identity remains false. Fresh local probes have 25/240 original Native mismatches and cannot settle the historical encoder cause."
     },
@@ -61,13 +61,16 @@
   "technicalConditions": [
     {
       "id": "LATEST_HEAD_FORMAL_CI_AND_UI",
-      "state": {
-        "conclusion": "",
-        "headSha": "5eb02e6fba86c2104711894dc894b461d2fae922",
-        "status": "in_progress",
-        "url": "https://github.com/jankendo/JIZURA_KAMEN/actions/runs/39220369311"
+      "status": "PASS",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "runId": 39220369311,
+      "formalTests": {
+        "PASS": 209,
+        "FAIL": 0,
+        "SKIP": 2
       },
-      "reason": "Do not substitute historical CI or focused suites for the latest-head full suite and UI operations."
+      "actualBrowserAlternatives": 2,
+      "reason": "Latest-head successful CI, exact full-tree synthetic merge correspondence and raw per-test/browser observations are registered."
     }
   ],
   "resolvedConditions": [
@@ -119,5 +122,12 @@
       "SKIP": 2
     },
     "actualBrowserAlternatives": 2
+  },
+  "currentNaturalCollection": {
+    "runId": 39244958536,
+    "status": "IN_PROGRESS",
+    "expectedConditions": 31,
+    "sourceFrozen": "5eb02e6fba86c2104711894dc894b461d2fae922",
+    "semanticCredit": false
   }
 }

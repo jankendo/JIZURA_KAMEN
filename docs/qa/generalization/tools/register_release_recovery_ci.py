@@ -53,5 +53,5 @@ for c in tests['cases']:
  c['browserAlternative']=write('skip-alternatives/'+c['id']+'.json',{'sourceCommit':S,'testId':c['id'],'actualBrowser':True,'exitCode':0,'rawReport':ref(fontroot/'report.json.gz'),'rawWrapper':ref(fontroot/logfile),'scope':'Formal Node SKIP remains SKIP; separately completed actual browser wrapper and ordinary export fallback alternative.'})
 refs['tests']=write('tests.json',tests)
 context=read(A/'context.json');context['formalRegressionCounts']={'PASS':rawtests['passed'],'FAIL':rawtests['failed'],'SKIP':rawtests['skipped']};write('context.json',context)
-manifest=read(A/'release-gate-manifest.json');assert manifest['releaseSourceCommit']==S;manifest['sourceCorrespondence']=[*manifest.get('sourceCorrespondence',[]),corr];manifest['evidence'].update(refs);write('release-gate-manifest.json',manifest)
+manifest=read(A/'release-gate-manifest.json');assert manifest['releaseSourceCommit']==S;manifest['sourceCorrespondence']=[r for r in manifest.get('sourceCorrespondence',[]) if r!=corr]+[corr];manifest['evidence'].update(refs);write('release-gate-manifest.json',manifest)
 print({'sourceCommit':S,'CI':run['conclusion'],'formal':context['formalRegressionCounts'],'actualBrowserAlternatives':sum(t['status']=='SKIP'for t in tests['cases']),'wholeGitTreeIdentical':True})

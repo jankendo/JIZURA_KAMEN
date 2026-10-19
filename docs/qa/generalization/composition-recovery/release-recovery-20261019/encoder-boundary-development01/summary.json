@@ -68,7 +68,7 @@
     8,
     8
   ],
-  "finding": "Both fresh encodes match the original complete native output and one another at every submitted VideoFrame byte/metadata record, encoder configuration and decoded frame. This reproduces deterministic repeated encoding here; it does not explain or overwrite the historical six original-vs-control mismatches.",
+  "finding": "Fresh repeats agree with each other at every captured Native output, submitted VideoFrame buffer/metadata, encoder configuration and decoded frame. Both differ from the historical original Native in 25/240 output frames; therefore they cannot establish the historical original encoding cause or certify its control equivalence.",
   "originalNativeMismatches": [
     {
       "mode": "REPEAT_A",
@@ -380,5 +380,6 @@
         }
       ]
     }
-  ]
+  ],
+  "supersededFinding": "Both fresh encodes match the original complete native output and one another at every submitted VideoFrame byte/metadata record, encoder configuration and decoded frame. This reproduces deterministic repeated encoding here; it does not explain or overwrite the historical six original-vs-control mismatches."
 }
