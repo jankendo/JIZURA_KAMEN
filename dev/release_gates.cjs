@@ -26,7 +26,7 @@ function typedImportantOperators(o,load,media){
  function staticFrames(raw,c,b){
   const f=raw.decodedFrames,glyphs=c.glyphIds;
   if(c.target.layer!=='PRIMARY_LYRIC'||!Array.isArray(glyphs)||!glyphs.length||new Set(glyphs).size!==glyphs.length||!Array.isArray(f)||!Number.isFinite(c.fps)||c.fps<=0||!Number.isFinite(c.from)||!Number.isFinite(c.to)||c.to<=c.from||!Number.isFinite(c.frameOrigin)||!Number.isFinite(c.tolerancePixels)||c.tolerancePixels<0||c.tolerancePixels>1)return 'v2 static contract or glyph population incomplete';
-  if(c.fps!==b.outputProfile.fps||!Array.isArray(b.outputProfile.range)||c.from<b.outputProfile.range[0]||c.to>b.outputProfile.range[1])return 'v2 static interval differs from actual output profile';
+  if(c.frameOrigin!==b.outputProfile.range?.[0]||c.fps!==b.outputProfile.fps||!Array.isArray(b.outputProfile.range)||c.from<b.outputProfile.range[0]||c.to>b.outputProfile.range[1])return 'v2 static interval differs from actual output profile';
   // Match the renderer's actual i/fps predicate. ceil(time*fps) can skip a
   // real boundary frame (e.g. (31/30)*30 rounds above 31).
   const firstAt=time=>{let lo=0,hi=Math.max(0,Math.ceil((c.to-c.frameOrigin)*c.fps)+2);while(lo<hi){const mid=Math.floor((lo+hi)/2);if(c.frameOrigin+mid/c.fps>=time)hi=mid;else lo=mid+1;}return lo;};
@@ -37,7 +37,7 @@ function typedImportantOperators(o,load,media){
    const a=f[i],time=c.frameOrigin+(first+i)/c.fps;
    if(a.frameIndex!==first+i||!Number.isFinite(a.actualDecodedTimestamp)||Math.abs(a.actualDecodedTimestamp-time)>1e-7||a.targetId!==c.target.id||!Array.isArray(a.glyphs)||a.glyphs.length!==glyphs.length)return 'v2 static target or actual clock mismatch';
    if(new Set(a.glyphs.map(g=>g.id)).size!==glyphs.length||glyphs.some(id=>!a.glyphs.some(g=>g.id===id)))return 'v2 static glyph identity missing';
-   for(const g of a.glyphs){if(g.pixelPresence===false)return false;if(g.pixelPresence!==true||!finitePoint(g.decodedCentroid))return 'v2 static glyph not measured';if(!starts.has(g.id))starts.set(g.id,g.decodedCentroid);if(Math.hypot(...g.decodedCentroid.map((v,k)=>v-starts.get(g.id)[k]))>c.tolerancePixels)moved=true;}
+   for(const g of a.glyphs){if(g.pixelPresence===false)return false;if(g.pixelPresence!==true||g.nativeComplete!==true||!finitePoint(g.nativeCentroid)||!finitePoint(g.decodedCentroid)||!(g.nativeInkPixels>0)||!(g.decodedInkPixels>0))return 'v2 static registered glyph not measured';if(Math.hypot(...g.decodedCentroid.map((v,k)=>v-g.nativeCentroid[k]))>.5)return false;if(!starts.has(g.id))starts.set(g.id,g.decodedCentroid);if(Math.hypot(...g.decodedCentroid.map((v,k)=>v-starts.get(g.id)[k]))>c.tolerancePixels)moved=true;}
   }
   if(moved)return false;
   const control=load(raw.sensitivityControl);
@@ -75,9 +75,9 @@ function typedImportantOperators(o,load,media){
    let signal=false;const clocks=new Set();
    for(let i=0;i<samples.length;i++){
     const expected=model.expectedSamples[i],sample=samples[i],t=expected.actualDecodedTimestamp;
-    if(!Number.isFinite(t)||t<contract.from||t>=contract.to||clocks.has(t)||sample.actualDecodedTimestamp!==t||sample.targetId!==contract.target.id||!finitePoint(expected.vector)||!finitePoint(sample.observedVector)||!finitePoint(sample.repeatVector))return 'v2 target-model frame/target/vector mismatch';clocks.add(t);
+    if(!Number.isFinite(t)||t<contract.from||t>=contract.to||clocks.has(t)||sample.actualDecodedTimestamp!==t||sample.targetId!==contract.target.id||!finitePoint(expected.vector)||!finitePoint(sample.nativeExpectedVector)||!finitePoint(sample.observedVector)||!finitePoint(sample.repeatVector))return 'v2 target-model frame/target/vector mismatch';clocks.add(t);
     const amount=Math.hypot(...expected.vector),tolerance=Math.max(.5,amount*.1);signal||=amount>=.5;
-    if(Math.hypot(...sample.observedVector.map((v,k)=>v-expected.vector[k]))>tolerance||Math.hypot(...sample.observedVector.map((v,k)=>v-sample.repeatVector[k]))>tolerance)return false;
+    if(Math.hypot(...sample.nativeExpectedVector.map((v,k)=>v-expected.vector[k]))>tolerance||Math.hypot(...sample.observedVector.map((v,k)=>v-expected.vector[k]))>tolerance||Math.hypot(...sample.observedVector.map((v,k)=>v-sample.repeatVector[k]))>tolerance)return false;
    }
    if(!signal)return 'v2 dynamic semantic model has no resolved expected effect';
    return true;
