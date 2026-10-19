@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "proofSchema": 2,
+  "importanceClassificationFinalized": true,
+  "expectedImportantIntentIds": [
+    "eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f"
+  ],
+  "population": {
+    "path": "moving-movie-invalid-static-claim-fixture-population.json",
+    "sha256": "d0d18e745f1e4f2b8db9d1118bc2c4284645cd954c2ae31f0a1d8d7d7a9f1804"
+  },
+  "observations": [
+    {
+      "intentId": "eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f",
+      "status": "VERIFIED",
+      "measurement": {
+        "path": "moving-movie-invalid-static-claim-measurement.json",
+        "sha256": "1e6048651846736534e969c5dba406cb042b2356ad26402b33c267375c886abf"
+      }
+    }
+  ],
+  "scope": "Isolated contract test fixture; canonical importanceClassificationFinalized remains false. Negative fixture intentionally injects a claim that must fail."
+}

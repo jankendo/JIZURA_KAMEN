@@ -1,0 +1,920 @@
+{
+  "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "expectedImportantIntentIds": [
+    "eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f"
+  ],
+  "rows": [
+    {
+      "intentId": "eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "videoSHA256": "03496f3bdfb30c3632edfe774f8d8881bddb9284bec2d771ac27f6f0a03a095c",
+      "planHash": "d1b351e5e51adad7559912a92af25c0a2286a3043b2707b50851759a81e3991e",
+      "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+      "group": "HOLD",
+      "operator": "still",
+      "pass": "main",
+      "semanticRoles": [
+        "UNMEASURED"
+      ],
+      "classification": "INTENTIONAL_STATIC",
+      "classificationReason": "Local identity operator; composite stillness is not assumed.",
+      "naturalSelection": "NATURAL",
+      "important": true,
+      "dispatch": {
+        "group": "HOLD",
+        "id": "still",
+        "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+        "line": 0,
+        "from": 2.734,
+        "to": 3.2,
+        "pass": "main",
+        "executionContext": "MULTIPLE_PRESERVED_CLOCK_CONTEXTS",
+        "calls": 11,
+        "firstTime": 2.8333333333333335,
+        "lastTime": 3.25,
+        "sourceFirstTime": 2.833333333333333,
+        "sourceLastTime": 3.1666666666666665,
+        "clockPairs": [
+          {
+            "actualOutputTimestamp": 2.8333333333333335,
+            "sourceTimestamp": 2.833333333333333
+          },
+          {
+            "actualOutputTimestamp": 2.9583333333333335,
+            "sourceTimestamp": 2.958333333333333
+          },
+          {
+            "actualOutputTimestamp": 3.0833333333333335,
+            "sourceTimestamp": 3.083333333333333
+          },
+          {
+            "actualOutputTimestamp": 3.2083333333333335,
+            "sourceTimestamp": 3.1666666666666665
+          },
+          {
+            "actualOutputTimestamp": 3.25,
+            "sourceTimestamp": 3.1666666666666665
+          },
+          {
+            "actualOutputTimestamp": 2.875,
+            "sourceTimestamp": 2.875
+          },
+          {
+            "actualOutputTimestamp": 2.9166666666666665,
+            "sourceTimestamp": 2.9166666666666665
+          },
+          {
+            "actualOutputTimestamp": 3,
+            "sourceTimestamp": 3
+          },
+          {
+            "actualOutputTimestamp": 3.0416666666666665,
+            "sourceTimestamp": 3.0416666666666665
+          },
+          {
+            "actualOutputTimestamp": 3.125,
+            "sourceTimestamp": 3.125
+          },
+          {
+            "actualOutputTimestamp": 3.1666666666666665,
+            "sourceTimestamp": 3.1666666666666665
+          }
+        ],
+        "argumentPlanIsSelectedObject": true,
+        "lineageSamples": [
+          {
+            "actualOutputTimestamp": 2.8333333333333335,
+            "sourceTimestamp": 2.833333333333333,
+            "parent": {
+              "group": "LAYOUTS",
+              "id": "diag",
+              "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+              "pass": "main"
+            },
+            "callDepth": 1,
+            "canvasIsOutput": true,
+            "canvasDimensions": [
+              1280,
+              720
+            ],
+            "phaseArgument": 0.1593333333333322,
+            "argumentPlanIsSelectedObject": true,
+            "actualCutLayout": "diag",
+            "cutRequested": {
+              "enter": "wipe",
+              "hold": "still",
+              "exit": "wipe",
+              "cam": "driftDiag",
+              "camera": null
+            },
+            "renderItem": {
+              "text": "影",
+              "font": "mincho_black",
+              "size": 216,
+              "lyricRole": null,
+              "grammarMode": null,
+              "explicitEnter": null,
+              "explicitHold": null,
+              "explicitExit": null,
+              "primary": true,
+              "manualLocked": false,
+              "declaredSourceUnitId": null
+            }
+          },
+          {
+            "actualOutputTimestamp": 2.9583333333333335,
+            "sourceTimestamp": 2.958333333333333,
+            "parent": {
+              "group": "LAYOUTS",
+              "id": "diag",
+              "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+              "pass": "main"
+            },
+            "callDepth": 1,
+            "canvasIsOutput": true,
+            "canvasDimensions": [
+              1280,
+              720
+            ],
+            "phaseArgument": 0.6593333333333322,
+            "argumentPlanIsSelectedObject": true,
+            "actualCutLayout": "diag",
+            "cutRequested": {
+              "enter": "wipe",
+              "hold": "still",
+              "exit": "wipe",
+              "cam": "driftDiag",
+              "camera": null
+            },
+            "renderItem": {
+              "text": "影",
+              "font": "mincho_black",
+              "size": 216,
+              "lyricRole": null,
+              "grammarMode": null,
+              "explicitEnter": null,
+              "explicitHold": null,
+              "explicitExit": null,
+              "primary": true,
+              "manualLocked": false,
+              "declaredSourceUnitId": null
+            }
+          },
+          {
+            "actualOutputTimestamp": 3.0833333333333335,
+            "sourceTimestamp": 3.083333333333333,
+            "parent": {
+              "group": "LAYOUTS",
+              "id": "diag",
+              "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+              "pass": "main"
+            },
+            "callDepth": 1,
+            "canvasIsOutput": true,
+            "canvasDimensions": [
+              1280,
+              720
+            ],
+            "phaseArgument": 1,
+            "argumentPlanIsSelectedObject": true,
+            "actualCutLayout": "diag",
+            "cutRequested": {
+              "enter": "wipe",
+              "hold": "still",
+              "exit": "wipe",
+              "cam": "driftDiag",
+              "camera": null
+            },
+            "renderItem": {
+              "text": "影",
+              "font": "mincho_black",
+              "size": 216,
+              "lyricRole": null,
+              "grammarMode": null,
+              "explicitEnter": null,
+              "explicitHold": null,
+              "explicitExit": null,
+              "primary": true,
+              "manualLocked": false,
+              "declaredSourceUnitId": null
+            }
+          },
+          {
+            "actualOutputTimestamp": 3.2083333333333335,
+            "sourceTimestamp": 3.1666666666666665,
+            "parent": {
+              "group": "LAYOUTS",
+              "id": "diag",
+              "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+              "pass": "main"
+            },
+            "callDepth": 1,
+            "canvasIsOutput": false,
+            "canvasDimensions": [
+              1280,
+              720
+            ],
+            "phaseArgument": 0.4761904761904808,
+            "argumentPlanIsSelectedObject": true,
+            "actualCutLayout": "diag",
+            "cutRequested": {
+              "enter": "wipe",
+              "hold": "still",
+              "exit": "wipe",
+              "cam": "driftDiag",
+              "camera": null
+            },
+            "renderItem": {
+              "text": "影",
+              "font": "mincho_black",
+              "size": 216,
+              "lyricRole": null,
+              "grammarMode": null,
+              "explicitEnter": null,
+              "explicitHold": null,
+              "explicitExit": null,
+              "primary": true,
+              "manualLocked": false,
+              "declaredSourceUnitId": null
+            }
+          },
+          {
+            "actualOutputTimestamp": 3.25,
+            "sourceTimestamp": 3.1666666666666665,
+            "parent": {
+              "group": "LAYOUTS",
+              "id": "diag",
+              "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+              "pass": "main"
+            },
+            "callDepth": 1,
+            "canvasIsOutput": false,
+            "canvasDimensions": [
+              1280,
+              720
+            ],
+            "phaseArgument": 0.4761904761904808,
+            "argumentPlanIsSelectedObject": true,
+            "actualCutLayout": "diag",
+            "cutRequested": {
+              "enter": "wipe",
+              "hold": "still",
+              "exit": "wipe",
+              "cam": "driftDiag",
+              "camera": null
+            },
+            "renderItem": {
+              "text": "影",
+              "font": "mincho_black",
+              "size": 216,
+              "lyricRole": null,
+              "grammarMode": null,
+              "explicitEnter": null,
+              "explicitHold": null,
+              "explicitExit": null,
+              "primary": true,
+              "manualLocked": false,
+              "declaredSourceUnitId": null
+            }
+          }
+        ],
+        "sharedEntryAliases": [
+          "still"
+        ],
+        "registryEntryObjectId": 1,
+        "selectedAliasResolved": true,
+        "actuation": {
+          "ownPaintCalls": 0,
+          "descendantPaintCalls": 0,
+          "ownClipCalls": 0,
+          "descendantClipCalls": 0,
+          "itemMutationCalls": 0,
+          "changedItemFields": {},
+          "opaqueItemFields": [],
+          "canvasStateMutationCalls": 0,
+          "returnedTrue": 0,
+          "returnedFalse": 0,
+          "returnedVoid": 11,
+          "returnedTransforms": {}
+        },
+        "executionRecords": [
+          {
+            "group": "HOLD",
+            "id": "still",
+            "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+            "line": 0,
+            "from": 2.734,
+            "to": 3.2,
+            "pass": "main",
+            "executionContext": "REMAPPED_SOURCE_CLOCK",
+            "calls": 5,
+            "firstTime": 2.8333333333333335,
+            "lastTime": 3.25,
+            "sourceFirstTime": 2.833333333333333,
+            "sourceLastTime": 3.1666666666666665,
+            "clockPairs": [
+              {
+                "actualOutputTimestamp": 2.8333333333333335,
+                "sourceTimestamp": 2.833333333333333
+              },
+              {
+                "actualOutputTimestamp": 2.9583333333333335,
+                "sourceTimestamp": 2.958333333333333
+              },
+              {
+                "actualOutputTimestamp": 3.0833333333333335,
+                "sourceTimestamp": 3.083333333333333
+              },
+              {
+                "actualOutputTimestamp": 3.2083333333333335,
+                "sourceTimestamp": 3.1666666666666665
+              },
+              {
+                "actualOutputTimestamp": 3.25,
+                "sourceTimestamp": 3.1666666666666665
+              }
+            ],
+            "argumentPlanIsSelectedObject": true,
+            "lineageSamples": [
+              {
+                "actualOutputTimestamp": 2.8333333333333335,
+                "sourceTimestamp": 2.833333333333333,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": true,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 0.1593333333333322,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              },
+              {
+                "actualOutputTimestamp": 2.9583333333333335,
+                "sourceTimestamp": 2.958333333333333,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": true,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 0.6593333333333322,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              },
+              {
+                "actualOutputTimestamp": 3.0833333333333335,
+                "sourceTimestamp": 3.083333333333333,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": true,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 1,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              },
+              {
+                "actualOutputTimestamp": 3.2083333333333335,
+                "sourceTimestamp": 3.1666666666666665,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": false,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 0.4761904761904808,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              },
+              {
+                "actualOutputTimestamp": 3.25,
+                "sourceTimestamp": 3.1666666666666665,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": false,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 0.4761904761904808,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              }
+            ],
+            "sharedEntryAliases": [
+              "still"
+            ],
+            "registryEntryObjectId": 1,
+            "selectedAliasResolved": true,
+            "actuation": {
+              "ownPaintCalls": 0,
+              "descendantPaintCalls": 0,
+              "ownClipCalls": 0,
+              "descendantClipCalls": 0,
+              "itemMutationCalls": 0,
+              "changedItemFields": {},
+              "opaqueItemFields": [],
+              "canvasStateMutationCalls": 0,
+              "returnedTrue": 0,
+              "returnedFalse": 0,
+              "returnedVoid": 5,
+              "returnedTransforms": {}
+            }
+          },
+          {
+            "group": "HOLD",
+            "id": "still",
+            "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+            "line": 0,
+            "from": 2.734,
+            "to": 3.2,
+            "pass": "main",
+            "executionContext": "ADOPTED_OUTPUT_CLOCK",
+            "calls": 6,
+            "firstTime": 2.875,
+            "lastTime": 3.1666666666666665,
+            "sourceFirstTime": 2.875,
+            "sourceLastTime": 3.1666666666666665,
+            "clockPairs": [
+              {
+                "actualOutputTimestamp": 2.875,
+                "sourceTimestamp": 2.875
+              },
+              {
+                "actualOutputTimestamp": 2.9166666666666665,
+                "sourceTimestamp": 2.9166666666666665
+              },
+              {
+                "actualOutputTimestamp": 3,
+                "sourceTimestamp": 3
+              },
+              {
+                "actualOutputTimestamp": 3.0416666666666665,
+                "sourceTimestamp": 3.0416666666666665
+              },
+              {
+                "actualOutputTimestamp": 3.125,
+                "sourceTimestamp": 3.125
+              },
+              {
+                "actualOutputTimestamp": 3.1666666666666665,
+                "sourceTimestamp": 3.1666666666666665
+              }
+            ],
+            "argumentPlanIsSelectedObject": true,
+            "lineageSamples": [
+              {
+                "actualOutputTimestamp": 2.875,
+                "sourceTimestamp": 2.875,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": true,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 0.32600000000000007,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              },
+              {
+                "actualOutputTimestamp": 2.9166666666666665,
+                "sourceTimestamp": 2.9166666666666665,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": true,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 0.49266666666666614,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              },
+              {
+                "actualOutputTimestamp": 3,
+                "sourceTimestamp": 3,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": true,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 0.8260000000000001,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              },
+              {
+                "actualOutputTimestamp": 3.0416666666666665,
+                "sourceTimestamp": 3.0416666666666665,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": true,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 0.9926666666666661,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              },
+              {
+                "actualOutputTimestamp": 3.125,
+                "sourceTimestamp": 3.125,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": true,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 1,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              },
+              {
+                "actualOutputTimestamp": 3.1666666666666665,
+                "sourceTimestamp": 3.1666666666666665,
+                "parent": {
+                  "group": "LAYOUTS",
+                  "id": "diag",
+                  "unitKey": "[2,2,0,2.734,3.2,\"影\"]",
+                  "pass": "main"
+                },
+                "callDepth": 1,
+                "canvasIsOutput": true,
+                "canvasDimensions": [
+                  1280,
+                  720
+                ],
+                "phaseArgument": 0.4761904761904808,
+                "argumentPlanIsSelectedObject": true,
+                "actualCutLayout": "diag",
+                "cutRequested": {
+                  "enter": "wipe",
+                  "hold": "still",
+                  "exit": "wipe",
+                  "cam": "driftDiag",
+                  "camera": null
+                },
+                "renderItem": {
+                  "text": "影",
+                  "font": "mincho_black",
+                  "size": 216,
+                  "lyricRole": null,
+                  "grammarMode": null,
+                  "explicitEnter": null,
+                  "explicitHold": null,
+                  "explicitExit": null,
+                  "primary": true,
+                  "manualLocked": false,
+                  "declaredSourceUnitId": null
+                }
+              }
+            ],
+            "sharedEntryAliases": [
+              "still"
+            ],
+            "registryEntryObjectId": 1,
+            "selectedAliasResolved": true,
+            "actuation": {
+              "ownPaintCalls": 0,
+              "descendantPaintCalls": 0,
+              "ownClipCalls": 0,
+              "descendantClipCalls": 0,
+              "itemMutationCalls": 0,
+              "changedItemFields": {},
+              "opaqueItemFields": [],
+              "canvasStateMutationCalls": 0,
+              "returnedTrue": 0,
+              "returnedFalse": 0,
+              "returnedVoid": 6,
+              "returnedTransforms": {}
+            }
+          }
+        ]
+      },
+      "resolvedFinalUnitBinding": {
+        "resolvedUnitKey": "[2,2,0,2.734,3.2,\"影\"]",
+        "domain": "PRIMARY_LYRIC_FRAGMENT",
+        "ordinal": 2,
+        "authoredCutIndex": 2,
+        "unitId": "a422a64c9116d703886636e3ce651bddf16fc423e5fca40b49e35bf08761e907",
+        "sourceUnitId": "f1217880673c88e852560f7b5ee40a8d8c65774b334ea66808a1b928fc0e9244",
+        "fragmentId": "82f739b09b9b889d170cbe7ef86bc20ac523930b9959c676cd1c959d69aa1a49",
+        "method": "Unique exact authored-index/line/start/end/text tuple in selected hash-verified plan; never line-only. Original raw key retained."
+      },
+      "implementation": {
+        "group": "HOLD",
+        "id": "still",
+        "method": "apply",
+        "functionObjectId": 273,
+        "registryEntryObjectId": 1,
+        "sharedEntryAliases": [
+          "still"
+        ],
+        "functionSHA256": "8abb667bbb90331db128cc23ec3da37b4d820c9236be4bffe45a4a698038b669"
+      },
+      "exactFunctionObjectAliases": [
+        "still"
+      ],
+      "aliasesDoNotRemoveIntent": true,
+      "trace": "/workspace/kamen-evidence/docs/qa/generalization/composition-recovery/release-recovery-20261019/current31-results/development-01/dispatch/development-01/native-dispatch-trace.json.gz",
+      "traceRawSHA256": "f50e8c434de3468a1bae58786a5972637ed6ac0e79c2f8439a7170d76d0708c9",
+      "bindingStatus": "EXACT_CURRENT_ADOPTED_NATIVE",
+      "encodedStatus": "UNMEASURED",
+      "observedTarget": "UNMEASURED",
+      "actualDecodedTimestamp": null,
+      "counterfactual": false,
+      "binding": {
+        "inputHash": "46df5a27be058d0b36ddbb0aaa7c6e8c992c35a249c3ec1b6428507be5f85634",
+        "planHash": "d1b351e5e51adad7559912a92af25c0a2286a3043b2707b50851759a81e3991e",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            1280,
+            720
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "00f11c5d9008ed1bbb21a08ce37938bb7e23b53fcf5a13aa14a79aac4106456b",
+        "videoSHA256": "03496f3bdfb30c3632edfe774f8d8881bddb9284bec2d771ac27f6f0a03a095c",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "proofTypeProvisional": "STATIC",
+      "targetContractFinalized": false,
+      "targetContractBlocker": "Local identity and composed primary stillness must be separated; no implicit world-space stillness."
+    }
+  ],
+  "scope": "ONE_CONTRACT_VALIDATION_FIXTURE_ONLY_NOT_THE_RELEASE_POPULATION",
+  "sourcePopulationSnapshot": {
+    "path": "source-population-snapshot.json.gz",
+    "sha256": "c5e6d22d9745ea16bdff621d02ba1f2b91fd6f3b7c0faee1db5ee7f8bfd483a8"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "caseId": "development-04",
+  "movies": [
+    {
+      "label": "main",
+      "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+      "videoSHA256": "4307ae432e82e0e2f588877f2a066234d30842d28e0dee7a233847c7a61950f9"
+    },
+    {
+      "label": "previous",
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "videoSHA256": "a94f24b35d94ad26545acee0d5fafe6649118879a4b8e8c86a1b3d5017a62912"
+    },
+    {
+      "label": "current",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "videoSHA256": "d3fc43fa5e738929f5be2a65fb4ed52800a7ca055b70c8fc590b34287003fb25"
+    },
+    {
+      "label": "recovery",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "videoSHA256": "7c3c5e7c808727b861bd8a10326326c435ccb0ee7331ae250f031771fb4abc8c"
+    }
+  ],
+  "frameIndices": [
+    10,
+    33,
+    57,
+    81,
+    102,
+    105,
+    129,
+    153,
+    177,
+    201,
+    225
+  ],
+  "outputTimestamps": [
+    0.4166666666666667,
+    1.375,
+    2.375,
+    3.375,
+    4.25,
+    4.375,
+    5.375,
+    6.375,
+    7.375,
+    8.375,
+    9.375
+  ],
+  "sampling": "Fixed 4%,14%,...,94% of complete encoded frame population, plus the previously identified development-04 repair clock. Same frame index for all versions.",
+  "scope": "Sparse decoded visual comparison; does not certify unsampled frames, all motion or all semantic intents."
+}

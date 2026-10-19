@@ -1,8 +1,8 @@
 {
-  "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "sourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
   "movies": [
     {
-      "id": "development-04-saved-plan-replay",
+      "id": "latest-ci-ui-save",
       "decodeComplete": true,
       "decodeExitCode": 0,
       "hashMatches": true,
@@ -10,30 +10,97 @@
       "hasVideo": true,
       "codecVideo": "h264",
       "codecAudio": "aac",
-      "videoSHA256": "27e0ea8bb187e51e9f7389281fc0c153c24686ea2b15bbd1d065fcf7457e70c1",
-      "inputHash": "68472c5aacd2e35062964e8c922248c56e7187148919596bab5e68f72e0d8f5a",
-      "planHash": "d133e786c69488fa9684f26111b8f43266de14155dc3cb1639a8ec32a038d570",
+      "videoSHA256": "72b679331631ee36f1d24094664d912b82017da24c83b19ab97e6f149cd926ad",
+      "inputHash": "17bc54750776cff02fb8acbdbc40ac1d4b0614167617739e7370d6b131ea5650",
+      "planHash": "cfacc3cba36e3a2b5a7af9010fd2d904e97d28e2514cdb45e47f502cdc0f87e2",
       "outputProfile": {
         "purpose": "FULL_MV",
-        "aspect": "4:5",
+        "aspect": "16:9",
         "fps": 24,
         "range": [
           0,
-          9.999977324263039
+          8.999977324263039
         ],
         "loopRequired": false,
         "resolution": [
-          360,
-          450
+          1280,
+          720
         ]
       },
-      "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
-      "selectedCandidateId": "1cf11208c517722e8a3e23252ecf78bb781b0a23513f3e66e3dba54733509587",
+      "rendererVersion": "8c9dee4d995bcf0e0802b9fa07e429b39a083daf9a018280751bd285d197109b",
+      "selectedCandidateId": "0a13f302858954574654c411c406a197e775287a1c90f5120b8371fdec0553c5",
       "observation": {
-        "path": "../release-recovery-20261019/development04-fixed-decode.json",
-        "sha256": "427345f0ef5234545992ab12480366fd52ba72cbab7ef4c8ad7f63fb7791ba1b"
+        "path": "finished-artifact-observations/latest-ci-ui-save.json",
+        "sha256": "b9c5de1d5fce386d2445dd153dc1bca41ffdbcca1ad03340b8b82c3272d175f3"
+      }
+    },
+    {
+      "id": "latest-ci-cancel-retry",
+      "decodeComplete": true,
+      "decodeExitCode": 0,
+      "hashMatches": true,
+      "hasAudio": true,
+      "hasVideo": true,
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "videoSHA256": "b7d6fc5fc4c1e63f1325762d408978c9f74c2bb30c0eb8650b490c71ab200174",
+      "inputHash": "f6b85b7c62186b503b6dce3a696a623772b80f2e2797c331bdd30c1825324ff1",
+      "planHash": "4de1470f826ec9027779505566a55a9ddee890d4b02d4648a7b86da464de9928",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 24,
+        "range": [
+          0,
+          3.9999773242630385
+        ],
+        "loopRequired": false,
+        "resolution": [
+          640,
+          360
+        ]
+      },
+      "rendererVersion": "8c9dee4d995bcf0e0802b9fa07e429b39a083daf9a018280751bd285d197109b",
+      "selectedCandidateId": "e413ab13777db8c2b7180a1a9f5f30d34c424f1b4fa9a82112164151472e11c9",
+      "observation": {
+        "path": "finished-artifact-observations/latest-ci-cancel-retry.json",
+        "sha256": "96b8fb52098978753d9ca1fff1160b8e04dbcf438641198f6383ba5b92afc2cd"
+      }
+    },
+    {
+      "id": "latest-variable-font-export",
+      "decodeComplete": true,
+      "decodeExitCode": 0,
+      "hashMatches": true,
+      "hasAudio": true,
+      "hasVideo": true,
+      "codecVideo": "h264",
+      "codecAudio": "aac",
+      "videoSHA256": "16bcdf416cbdf76b989a05905f3c0b17f2c6f54efb889707a77e3c922fe9c029",
+      "inputHash": "ebdc5c2de23b3abcb9b2e84dec02e5fd132c3453b865557c86f853241e3bd867",
+      "planHash": "89ff2dca46e85dec01a994728e48a78382d8f504c6a5689737f715f2eac4daa0",
+      "outputProfile": {
+        "purpose": "FULL_MV",
+        "aspect": "16:9",
+        "fps": 30,
+        "range": [
+          0,
+          3
+        ],
+        "loopRequired": false,
+        "resolution": [
+          1920,
+          1080
+        ]
+      },
+      "rendererVersion": "8c9dee4d995bcf0e0802b9fa07e429b39a083daf9a018280751bd285d197109b",
+      "selectedCandidateId": "ea72d31f67e95cd1d552565cf095f31eb0fb20101cf3f19444be7879a5cb6d3a",
+      "observation": {
+        "path": "finished-artifact-observations/latest-variable-font-export.json",
+        "sha256": "195c40547a71b697a61e9c5d7c44430117baf86e18b56d4afcbce55e6da96a21"
       }
     }
   ],
-  "scope": "Targeted saved-plan candidate only; no claim that all 32 natural current-source films have been generated."
+  "scope": "Latest official CI and actual new-source variable-font browser outputs only. All 32 earlier natural movies are preserved in the historical checkpoint and current31-results with source 5eb; no latest-source credit is inferred.",
+  "historicalNaturalMovieSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922"
 }

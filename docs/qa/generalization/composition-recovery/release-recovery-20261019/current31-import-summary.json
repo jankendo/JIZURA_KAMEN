@@ -1,41 +1,58 @@
 {
   "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
   "runId": 39244958536,
+  "collectionRunIds": [
+    39244958536,
+    39246207521
+  ],
   "expected": 32,
   "formalComparisonConditions": 31,
-  "imported": 4,
-  "complete": false,
-  "remainingCaseIds": [
-    "automatic-unseen-confirmation-20261018",
-    "development-02",
-    "development-03",
-    "development-04",
-    "development-08",
-    "development-09",
-    "development-10",
-    "development-11",
-    "development-12",
-    "development-14",
-    "development-15",
-    "holdout-01",
-    "holdout-02",
-    "holdout-03",
-    "holdout-04",
-    "holdout-05",
-    "holdout-06",
-    "holdout-07",
-    "holdout-08",
-    "holdout-09",
-    "holdout-10",
-    "holdout-11",
-    "holdout-12",
-    "holdout-14",
-    "holdout-15",
-    "late-unseen-quiet-16x9",
-    "supplemental-development-13",
-    "supplemental-holdout-13"
-  ],
+  "imported": 32,
+  "complete": true,
+  "remainingCaseIds": [],
   "records": [
+    {
+      "caseId": "automatic-unseen-confirmation-20261018",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12187913656,
+      "runId": 39244958536,
+      "archiveSHA256": "a2dd79a7dd9fed839a2cf6430d218535272916961eda79f40f54800d5959ba2a",
+      "videoSHA256": "8d20ec4bda82a4150ca6fb510b9a30a8faa6231b3e1bf8d53542878b105bcc91",
+      "binding": {
+        "inputHash": "0ba6831170c94bd180b58eed4534601ed9ce7480e956aaf4d33aae4d82565560",
+        "planHash": "9929778fde60172658032cda0bb110b0b5345cb4d39ad0c290b50b6f8f080b22",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            13.7
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "0f1e0c495c0f5c46acbb66065f792c42162556c45095759060271f604e3d0296",
+        "videoSHA256": "8d20ec4bda82a4150ca6fb510b9a30a8faa6231b3e1bf8d53542878b105bcc91",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "aadd37cf64873dac9c869a1c38837fec7f45352320882bfd549d915ff91db8c7",
+      "traceSHA256": "5334ddbb848b1058051dacb5bb1437a25435a53969780d2be0b2496790018b84",
+      "rawRowSHA256": "bc1bbb3205ef9a170c89b32cac93e04d15ec02c3dd70626e822d713029f7d574",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
     {
       "caseId": "development-01",
       "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
@@ -74,6 +91,132 @@
       "referenceSHA256": "2e456e1f009f4ccc707b4be869badf274bdedf16b35abb2ee4fbe924d5978116",
       "traceSHA256": "70b15a25722f878832ceec3f0781d267e34dc3914a21e2467e33691f1e7688a8",
       "rawRowSHA256": "3b759fcaa580da6cf212809ff15f48c3a3081de644eb28487551c5ea1a541481",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "development-02",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12184743090,
+      "runId": 39244958536,
+      "archiveSHA256": "b9f2ee5379e6781e40a9211dd2108aab268946cf2db9434cd0795c9aa8453528",
+      "videoSHA256": "d4ef131f4b6ab0f95336f5ad3fe4d7488da008240dc6799cbad46cce0023f1cd",
+      "binding": {
+        "inputHash": "c6167f2d954d944e6276a9667d3eadce025ec9d472c57b7bb47a27e8302e9529",
+        "planHash": "c481a68f3f635c3437878589326f616bdc953a82efacb3bae732513c96d27bbc",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "be18016454f3d18efc3a2ae341e8eabdf33950d7104edebb9f8e1ed2a9ccaaac",
+        "videoSHA256": "d4ef131f4b6ab0f95336f5ad3fe4d7488da008240dc6799cbad46cce0023f1cd",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "ddd484fb4de5d2baa16d9e77c470f3a0ae048c5ddf3b57c5e54b14714bb4202f",
+      "traceSHA256": "4ce4f743420ac06f126dd92dfefda0a216173a46cc281e35beee992e4ad89fe7",
+      "rawRowSHA256": "b3936a91fb3dffbe6709eac60da447adc7b676313a40ae77165bdea18921c05e",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "development-03",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12183748746,
+      "runId": 39244958536,
+      "archiveSHA256": "9aeada06c01d6b54c86066d6eaf5b1ef7632fc83b87ff78dc6decaf097bf890e",
+      "videoSHA256": "04bc15f8001b922a0c4a90348f086a4072144a21bc332704ddb53682b3bfb969",
+      "binding": {
+        "inputHash": "c9053c05129645d4bbc38401d9241e585e2a3ba57d880f787f057fb561a00cc5",
+        "planHash": "9cdeb16a3a6897e7884b67724802e83f1c7a327ba46490a7f4e732594ce74eef",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "be6bbf1635f849deda3208794f818b4dc7ee1b4f53d9386f34169e3048d7e5ef",
+        "videoSHA256": "04bc15f8001b922a0c4a90348f086a4072144a21bc332704ddb53682b3bfb969",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "92b6fad80215a7c388a2eb0684be4288fe87239536d6ae2aaaf903066221f810",
+      "traceSHA256": "7ec662896a65fe4e9e7f03446727ff41afebe4e68d369587ad2bf56367d4192a",
+      "rawRowSHA256": "19db201e3ebcd590d36fa3e561df09ee31328ef7d53d0b8ee5b6334df196af0d",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "development-04",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12184610940,
+      "runId": 39244958536,
+      "archiveSHA256": "e45a0c3c122da85ccad9b3d7fc78c7ffdfef4b7be068b9a5ec59f4b568cf5444",
+      "videoSHA256": "7c3c5e7c808727b861bd8a10326326c435ccb0ee7331ae250f031771fb4abc8c",
+      "binding": {
+        "inputHash": "0ab2aadd58db45d33b058dd84e4bec6d48ce4993395bd632cebb75f2499d80a0",
+        "planHash": "ca96ee482eef0ef98d260ec381082d5dfd585ab507285f478a25ed4189f9d24b",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "c055ef02d93be00c1e33bed14bae077ae2ddb9db8b52ec4ee8a9cf1acef4e9c2",
+        "videoSHA256": "7c3c5e7c808727b861bd8a10326326c435ccb0ee7331ae250f031771fb4abc8c",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "85448fa674c2d3b74bbee6ad8e030cd82b35041081f5151f0bbb526fdd842133",
+      "traceSHA256": "903161f23db947c1d9c47e60790f87596b6010c6793085974f3f8960a89ed244",
+      "rawRowSHA256": "3a75c659fb2f24415c4c473b1e3d2f67a9e7459029440e07f01628b516c4812f",
       "importantSemanticProof": "UNVERIFIED",
       "significantRegression": null,
       "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
@@ -200,6 +343,1014 @@
       "referenceSHA256": "a4ac7ea45c1e7006e0a55522ad127e155e20552489c20f0a5bce28c2f9dcd5b1",
       "traceSHA256": "b4663ab03a502308f7e33e96f3ba8092af1f1bed91287ee109d1f6d23d7688bb",
       "rawRowSHA256": "b315ee59c58fc4ba898d3e8b6fd72d1b37e7407e0cdd09c66300775c27cfeb10",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "development-08",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12182823014,
+      "runId": 39244958536,
+      "archiveSHA256": "96a3c4ec3f9fa3e68277031dfac69f4ec17d3c3b09c4f026afbe26cb0b982bc7",
+      "videoSHA256": "5e3ebdd76da5cb4c49a838a3219dec33ccfcd3b58ccc6fe23e149ee3da7ca4c2",
+      "binding": {
+        "inputHash": "9eccc819eee148b3cd1a9f070943c87ab264e758eea7f1251978a863eacc10c5",
+        "planHash": "14bd68ac6f2d0b641d272bbc7f81cd3d2c7167f59ff918bb305f85fd378303db",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "8d6c9a67fb0deb3aefe52d928cbe0c83258954178c143bd278eb12b308e26370",
+        "videoSHA256": "5e3ebdd76da5cb4c49a838a3219dec33ccfcd3b58ccc6fe23e149ee3da7ca4c2",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "83c8c7e7c1da9643ba538784f909d4c8a5adc8531d6e405916ac6415cca40b00",
+      "traceSHA256": "d08cd58463ebd310186ebf3b5cb9b461ce202cbb4954c0f2711141680b98df1a",
+      "rawRowSHA256": "2521ce7fc19ea2f592ee7f946a60ee5131f9bd999dc67e615bcbab8e1eca0fcd",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "development-09",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12183174608,
+      "runId": 39244958536,
+      "archiveSHA256": "995b971163f721cb42d3eecc8cbdf43d551b0734e6df65fc794eb7a922fe35dd",
+      "videoSHA256": "87569489541567cf25157851a33922c3ed467f1957a2b0071abea411dcd6bd0e",
+      "binding": {
+        "inputHash": "c27a9f51f0d07360486881e8245539eaafdb76d96e49fc61448c5d7326c934fd",
+        "planHash": "554a910ff08e1b5dd8d6f1202068c240703a2ae5b3224b0e05f41944b1fd2444",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "cfc095fcf5b119773f2cc31abba7296669da0a4fd30028df64bfb8ae38cd87c5",
+        "videoSHA256": "87569489541567cf25157851a33922c3ed467f1957a2b0071abea411dcd6bd0e",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "4271f8e7f3d86e924ef552ad5258270a0ce61ea7c41ed8790586b72b819f50f9",
+      "traceSHA256": "f3cbc6638331cc274042620b4bafbbd405b4e860856e587998eb0a228d7af01f",
+      "rawRowSHA256": "7fe6dbe0e77f16b768178859454dcf1e1fc64a6667282305e5b92a16ee5bfbfe",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "development-10",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12185151218,
+      "runId": 39244958536,
+      "archiveSHA256": "4c05d2e461014f9a2a74aebab6c2bb08e6d5861191fc9fcb92f2f84d37e99e9a",
+      "videoSHA256": "c346c9ce3e34d78f5abeb51bf167aedae3781cb9af0d44bc42a8a1f7b8a6f02f",
+      "binding": {
+        "inputHash": "627a2041c9a67cf20ee0edc987fcbdc53a8692f351bf414c1c5652e25788b97a",
+        "planHash": "6331b7ed23c50cebd0d7f7d8be2b0876abe4fd2f4c16d6a77edd5380a51fcc95",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "f61aa67182b043aa0ac520e957b0475c84da1c6b4c327d51a260c6e73debc7eb",
+        "videoSHA256": "c346c9ce3e34d78f5abeb51bf167aedae3781cb9af0d44bc42a8a1f7b8a6f02f",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "870f5363d8c95757893a285d98424872b34f7c6a64c7738b2e6cc22b43cefdf3",
+      "traceSHA256": "c4e8ae7ce7306f6a30a8a8eb7ee59ab134b3f1dd370cf3a1995e7ddbd1eb89a0",
+      "rawRowSHA256": "4e0f1be7f3572b20d651a4d745807ba18c71a248f9ac2783190b80efaab93bcd",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "development-11",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12185345394,
+      "runId": 39244958536,
+      "archiveSHA256": "91772441e3ef79ea88b7a506411fa2174908d88cf97ea3ef649e36e6e0792eec",
+      "videoSHA256": "d2de8c52e073bdd1f5d6dce3c26a8d5fe17d5a5a42bef4cf8410e6d8602343c8",
+      "binding": {
+        "inputHash": "5a708e7d54d7b3d7b26fb075ebce8471236549df235783e2ff7b4f72a29288b2",
+        "planHash": "8a9717cab981ee82cdfa7733ae245afa7ec3936de2e5c75c220db80fe365ac55",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "3de06f26052f88b0c297af038878de556b49b8d0cadced163b528b6a206154e6",
+        "videoSHA256": "d2de8c52e073bdd1f5d6dce3c26a8d5fe17d5a5a42bef4cf8410e6d8602343c8",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "2772ff285abcc8adedacb1076ed9e545813bae8051cd218cea25bcbfedde2636",
+      "traceSHA256": "a7e2de11164d892943b527c880730eaec5430499be27e82a193c4c228125d38c",
+      "rawRowSHA256": "4d2d680fc901bb2cfd399dadc15df086b014afbd27b876ba0f4e533c7d91dc7c",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "development-12",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12184265964,
+      "runId": 39244958536,
+      "archiveSHA256": "4fb2898322c13fd115d9084d3f1cb437e6d70f3abf2b770ad30b8deb62a11bdd",
+      "videoSHA256": "788a9041cf6a66a7bcd083d8d9cf387e76591238c35b938a1026380bd8064b28",
+      "binding": {
+        "inputHash": "0b3a84171727aed08d271187ffb0229414f6cf1c1208f3f634d0bd6e0b791922",
+        "planHash": "48a7228fea5b1c549e759516bbe568c7fb93c8eb534b64b51d281f4069aaeff8",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "864e1de5039b9509ad2cc74316321e0791e9822a670974746fb549227fc5ca31",
+        "videoSHA256": "788a9041cf6a66a7bcd083d8d9cf387e76591238c35b938a1026380bd8064b28",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "db5b58bd031f3021002e332e32b3c8f3eb43f5b34d670535709c0b71d996ba10",
+      "traceSHA256": "c225e7c55eeebf594c0eed34cdeba0ff08fa08a6aa7fdb0c07be7c44a2934187",
+      "rawRowSHA256": "79cfd0c6885d2fb94def08d46cd996192d0daecc78727cb77b5740340d0ce594",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "development-14",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12188653757,
+      "runId": 39244958536,
+      "archiveSHA256": "f231559346a959eba782b6b7493f6d6919c2c61b5d7ff1663b04e5b10094761a",
+      "videoSHA256": "8f9d1ca21b523a8f6d841033b8576ddb2508dcde97c28130e0f51f82570342d6",
+      "binding": {
+        "inputHash": "139a92aa7bf0e01984936e07c171090e9f9e728dbd9d22898db928bbc49145fc",
+        "planHash": "148ea03870a8a6a71dcc7d82538b9f221486180ec2988a09b9e4bc9ef446b9f3",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "5c197f9bcce504435c1a3ed8245aaff1b0326e31ed7aee74ff79ed6899a09305",
+        "videoSHA256": "8f9d1ca21b523a8f6d841033b8576ddb2508dcde97c28130e0f51f82570342d6",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "926d0b12ee0f5c4a66eb1b509ad49abdab41750b01ee93ce3baa0a2152b08916",
+      "traceSHA256": "c367fa183c51578ecab03779c20f7d942d36f51e49758cc70b5df0331acc37dc",
+      "rawRowSHA256": "06090b70a48a5ce4d94d5279cb3110e7e2e0ac9e4596e9112d5ea0acd2331b0c",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "development-15",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12185785886,
+      "runId": 39244958536,
+      "archiveSHA256": "32ac8eba49bcd9110767ba0fdfb0baeeabc0d1cf4652ea9104e6a1526fb2b0a7",
+      "videoSHA256": "eca4cf410cc3ad71cdc8da16c0b08e04b992950d8c1eabac5161be9bd555e75a",
+      "binding": {
+        "inputHash": "946af6338dfa1985c96205e64311407dd3f5cc66bdb8393615479dca3e5dc5c2",
+        "planHash": "9e08e8adaddd7cdeb06f986d616f536b68328c10872f844e8eca155ae4728d1e",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "677b75937dded4184943331c316b27f4b9d4f02c123f2ed0f429f3080c2943af",
+        "videoSHA256": "eca4cf410cc3ad71cdc8da16c0b08e04b992950d8c1eabac5161be9bd555e75a",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "5b718c406f02ffb9f7882d7a9716760aeb087e686dea59b71d41077d98732df0",
+      "traceSHA256": "1d980b1245e3b4624956cbab04d2a8f4e43ffa6c0e81a4977d789df4ac0d5230",
+      "rawRowSHA256": "99730b7af717927650d73f13b7c24b8f35a29a295a64241b8de01ee05c8a97e5",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-01",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12187165366,
+      "runId": 39244958536,
+      "archiveSHA256": "381c849159c73248d450e4aa992fc91dfc79dcceff4f8249daf9182f2351dfef",
+      "videoSHA256": "c44aa20e3673461bd728424c6e3454cc096db26a1850126a55e81e7080d3ce74",
+      "binding": {
+        "inputHash": "f62fc56d46df7e28659ef261306657b73cb2afd4e7dd5f820b80464b589b9709",
+        "planHash": "cb6a56e8a6240feba3e32160ff538463a6bdaa49bfd13860bbb266b67b407a0f",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "aed13a05628d148b51edd4eecaf9e9a7e84cc689cbf617ebbfcb66676f498a31",
+        "videoSHA256": "c44aa20e3673461bd728424c6e3454cc096db26a1850126a55e81e7080d3ce74",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "fed5c264311c8a8f693cdff699d49c35de6263f156c8f920ed17b000e7982e6e",
+      "traceSHA256": "b2a6955ef3b12eed6dfdc3292061372e2df6116cac7d43b65597529a53124ccc",
+      "rawRowSHA256": "461cc74064925cca52875f681b431fab2126d3f36b9aa35ab825f666a1bdf860",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-02",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12185651419,
+      "runId": 39244958536,
+      "archiveSHA256": "c90e476af85a329634ee07093bb4bef9fd4c6bed27a1d9081c9faa5fb8fcb5db",
+      "videoSHA256": "fdebc494797b21c4d60c5cd76cc967b063df383a3bc8ec9f0e6562e9fade3154",
+      "binding": {
+        "inputHash": "ca2a945f5ab73b313a219cf594edcd4c94e38fd711ef5cddcfd385ddcdcb2617",
+        "planHash": "69004e3b3d2d78872db69152af77641c9aa399960624c39a44d9fb4f2d1a232c",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "fa8fd6c8e363498ebb2425a9566bfff523b3ee73b492e4ea2ae04ee85fad18fa",
+        "videoSHA256": "fdebc494797b21c4d60c5cd76cc967b063df383a3bc8ec9f0e6562e9fade3154",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "0c094c5927557bec90e7b4981998b2ae41a5cf2d6da58d412b5c909212d0203c",
+      "traceSHA256": "d224b38f02621c49a9a6e8b4f84688104adb8cda1780f5bcd20a69c026933d86",
+      "rawRowSHA256": "32122e074673145eadf96e99e6a34102753d5d919a6863bb1809c057ee735431",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-03",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12185709225,
+      "runId": 39244958536,
+      "archiveSHA256": "fe0fdfca4022d5179b3a0dabf78cf6cd727ad60f169758f8ffcbd5d2e160be31",
+      "videoSHA256": "95c5f04a8f185972cd66a1f9567ec0b5181fe0583769244171c401339f9e086c",
+      "binding": {
+        "inputHash": "e31acd7d4c00e4d13b08d6f3c3fb6e316232c06f5cb58439af3a4ace2d3801cd",
+        "planHash": "8b1e075dcc749bb084ce536ffa2fe6432a6e5963ba6f2029f2f4cd256885584d",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "c6382bc6c9b7d5cc8861febc2fe3101194b6adb0de0d38db175b881dc554c130",
+        "videoSHA256": "95c5f04a8f185972cd66a1f9567ec0b5181fe0583769244171c401339f9e086c",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "11e61b72b2a1151611e7f46ac3f19dc3b2f087a4d840e80a7abca13044840861",
+      "traceSHA256": "1ae7389d0bacd2531f314542199675bd14f8e3b3a492d2f09dbd8bcf2b82402f",
+      "rawRowSHA256": "b54e233156c2e43b3e11015ae2467158d42e635bbedef42554da69690c07c5f3",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-04",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12184638561,
+      "runId": 39244958536,
+      "archiveSHA256": "af036855b2bd921b3d469e6e131a9f0912438249898b71a448d25e1fae153f7e",
+      "videoSHA256": "c6d0ee4009d995dfaceda1e088263776953483e376a983c0e57b1f3174e16fe4",
+      "binding": {
+        "inputHash": "0c665f5898d61e4da17b28bd2159fe4311f4e35f6f7cca190751b2384309dac7",
+        "planHash": "e091cc38bbc2c368ddd08cfab394bfc0cd4495a5b398831f3ed0605f51b728e6",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "8f70ff4e04778989e7436dd32ddda6c550ef90093ed72cf351c3ac6c0d97feb8",
+        "videoSHA256": "c6d0ee4009d995dfaceda1e088263776953483e376a983c0e57b1f3174e16fe4",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "082155248c26d1c83e8f4a1efd6a8383607ea440c0d0b14f44715af4620dab1e",
+      "traceSHA256": "798f0a69541e05a8c9bc5bf2eaebd0cf0113966959d504feb518583ae1c0ac34",
+      "rawRowSHA256": "df3a5667c2cc62c45dcdeba9a2dcf68424c185e99af6d854f037a2993f19782f",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-05",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12184404273,
+      "runId": 39244958536,
+      "archiveSHA256": "00fbdeb1263b79eb4614914bd660016bd6aab94ce4450f9c108d1f2d6f7eff0d",
+      "videoSHA256": "ba673eb71eb32382112757ea3879b848b3efaff58398c7de08ed755680e5ec3b",
+      "binding": {
+        "inputHash": "b41669a9cd0ec9488970a784d9261c53f74e668c04c4c0b3ee6178e44abfc2cb",
+        "planHash": "8070b0d06bb16fa6ce6cde06da7772131ec173b78265c65d5882d23d46f187da",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "468e2b62e5fb3f356e57196d880c15f2044d69b5bba78abbede0b072c00f5991",
+        "videoSHA256": "ba673eb71eb32382112757ea3879b848b3efaff58398c7de08ed755680e5ec3b",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "89e7cbcdad5335138e714d9a38410281927ad9da93faae68293b61ee7391890e",
+      "traceSHA256": "a092f45e7ca102e00a0c8008e9cf7e57d591319501e91015066862a43df8b8d5",
+      "rawRowSHA256": "e1d873a6fcdccb2d96f0a5412c65ed039b1d28f042e06fa79b404e5461d5034d",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-06",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12185129772,
+      "runId": 39244958536,
+      "archiveSHA256": "e2fdd4cb28a2d720dd0ff1f1b007e4168acf16f903c154a185e84fd0db409e6d",
+      "videoSHA256": "0970671b276f9f3694ec263eb3af010137fe95e55bd3e3f64a7c383e81400e36",
+      "binding": {
+        "inputHash": "6f0bc02c76c9ee7ccf2c15b5df18b65fe1b9c086c761a76c365e7f30e21536ee",
+        "planHash": "09dd0f8abec17e552d3168a9687c1c7cf14061d2c27e58cbf4bbb6f21d3051d8",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "a3a5fe01a5c1e2f3e66384c15de79437704a9ab18c0786998aa19565f8eafb96",
+        "videoSHA256": "0970671b276f9f3694ec263eb3af010137fe95e55bd3e3f64a7c383e81400e36",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "50c411ec302d1c18debb18ac9d4b0221bd33f0053cee8a852608dd8aefbd0eef",
+      "traceSHA256": "4c00cd1f99649e61da3e1138ad2f190d01de2bff0961260fcf8ee6f50b329897",
+      "rawRowSHA256": "a761a0550f55f14dd6ea3a771e289ecd5e61b0a2d500315426a953f248560548",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-07",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12186078466,
+      "runId": 39244958536,
+      "archiveSHA256": "a85af1d0f8751b7426792cd6323498b2f446690daa8d1855ddb24a7e22a79fd8",
+      "videoSHA256": "f26f2fc8ab3a8e8cffd05b882f67eb40023b120c84af52341ea12de3728209ba",
+      "binding": {
+        "inputHash": "938fa7cc8c347810b429a0eb0bb855dcd57e96f0861bbeb00bbaf5ce9996728d",
+        "planHash": "6e1ae277e2802fb630156840b008b8d6019b8aad0c474bb8fa4546e1d2321a51",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            900
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "dff7f8cf68292c41f3a8f3754f0cf2d6392338ac782809a2495db86da9853084",
+        "videoSHA256": "f26f2fc8ab3a8e8cffd05b882f67eb40023b120c84af52341ea12de3728209ba",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "7a2514267512eafe5f03919487e048a788655bea3007875b8e1a4cf97221a34e",
+      "traceSHA256": "12d6db3c0ed593f51d024bfa9bf1ebd0b36ef7bd9a219b2b085cb8c190cbab72",
+      "rawRowSHA256": "e8302f19ec136c6140996e42b90231582cde2c1678f5acad0a3f7606dad47cc1",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-08",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12186187660,
+      "runId": 39244958536,
+      "archiveSHA256": "e622f520b788a1730b1036af245e65b8f665d9bcd6a279e886d7f5f48656a204",
+      "videoSHA256": "a886951e6d5f03fa4e807e6380221c33a71703bb8225ce79a50cf886557a65a6",
+      "binding": {
+        "inputHash": "afdd5ab53b83dc81b636dde78fa8b0dfe9be42c3270a5ad21c2ac63d476bd399",
+        "planHash": "d078534bd4f4a1622a7a8c5a14fcc8f754936a5c73ee3c106ce699aac1a04b29",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "d5ad9e03a8124be6a58ae03d1cd8f03e3b826aed9047941bf988f849fd4defad",
+        "videoSHA256": "a886951e6d5f03fa4e807e6380221c33a71703bb8225ce79a50cf886557a65a6",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "069e7492653ab72fec932f1a4d51076aa7c7c15254ddc9e898e49d043bffaccf",
+      "traceSHA256": "6b35a9d612b4c0f6700d24a03cd4a319283974efd493982b2660d79c1cd93a87",
+      "rawRowSHA256": "ec942798961a4a3292c467ae5bbbd1886ef8723408b7243055a6983e872f67a8",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-09",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12188381004,
+      "runId": 39244958536,
+      "archiveSHA256": "f8970137079fad4d1afa6d6d72c391d3aea0fd5898a5fa3182e76791bcf7083d",
+      "videoSHA256": "2fd212c18a70b89d67bcd743d1a9a39bed848b3b7a444db568d38e33fb7c5645",
+      "binding": {
+        "inputHash": "7ead563f4370891e7bd11785b91bb95ca2efb36ed23620f74ca3fa3c2f2cd11b",
+        "planHash": "c00cc337821a4ca2c32a79b6a3369c4a614f157d56e88f7435cf7bcbbb746085",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            640
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "6bf9a7925eae6ce11f9e872b16f342513e26138718e20e94beec65834deffb89",
+        "videoSHA256": "2fd212c18a70b89d67bcd743d1a9a39bed848b3b7a444db568d38e33fb7c5645",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "0c75e152649c69071676f0cc7aab797e1de3cce808790e7befc957b1eed101cd",
+      "traceSHA256": "df59509e913923d3516bee633c09e2059db7c16ddf90a685e1b942574428969c",
+      "rawRowSHA256": "2b64dffbe7939269058270e252139430fde65bb647433845eff45b4e7edb1fbf",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-10",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12186033476,
+      "runId": 39244958536,
+      "archiveSHA256": "ee2237f681b12452b5908a32b05abacb917e502643f7acab37fcd279e0873be0",
+      "videoSHA256": "17d1019204699be80167b3325c43045fd94de18f7922d9c350f80de31495df46",
+      "binding": {
+        "inputHash": "2f436bdd9b26642f8f5ccb51711d570fa39f7f2677844594c69b585cd8ecbbba",
+        "planHash": "3f86b56554ce66ac2d10df9054215c7cb94cecfd121178dc5d28b755903330dd",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "1ebe993362fa0061fa3963c53dc53346a557f6504b4c64fc8c79f42057c722c4",
+        "videoSHA256": "17d1019204699be80167b3325c43045fd94de18f7922d9c350f80de31495df46",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "924d772dcbaaf599f5fd78caf975c65fc63c7bd286c3df49a74345c4245b9719",
+      "traceSHA256": "60d3db89c0ef9bc0059668dab200a60b71aa5a40fbfe86c85c9711d645eacdfd",
+      "rawRowSHA256": "2d7661faff535874cd12fb6faee32399e9d884b4c9e20d19a98c3510d5448636",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-11",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12185669571,
+      "runId": 39244958536,
+      "archiveSHA256": "f481db715b9d5569aa19b866fe99246ac04a8db36f57f47badfc9d7c54ad54ec",
+      "videoSHA256": "d147cc6ba428a328043adc250fb641d620cd78e7a6da9b764ffb2b73e0d64aed",
+      "binding": {
+        "inputHash": "77aa12b7642ced13f2a67ce4335304b103f14d9bf845d6850349a7bb71767181",
+        "planHash": "22a7c983a476683891ee75142ba1b9ffb8c2d7d25e0839bd08a94ee16b0af48a",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "0db5bd9062509a1fbce25e00d15a4871a074b6c42edc7cc0bb106b6775f6206b",
+        "videoSHA256": "d147cc6ba428a328043adc250fb641d620cd78e7a6da9b764ffb2b73e0d64aed",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "2db925653eb7a8b32c17c83d115c536fd92f88553aff6696926eac95f801cf59",
+      "traceSHA256": "edd4b7a177d17c42db115396a9e04445b9d4df8bf27077805a66a6aa78e6dbc7",
+      "rawRowSHA256": "118368e9cc3da65b1d6cf1bb966667485653c5252ef2bf304e0e9eea1918efd3",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-12",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12187711217,
+      "runId": 39244958536,
+      "archiveSHA256": "3a9ca6671f943067e87f13c7fac9f59b4200c907235d4942ecc43b7084ff0511",
+      "videoSHA256": "4d0bc1df04d20edd297ea836c67f1586856e0259d807a52b59459a83b6d09661",
+      "binding": {
+        "inputHash": "e9313df43ddbea46800ae534dc21d7fa7d855bc5dae918b85b212f5eb5b05de2",
+        "planHash": "9058882b9e256988cf6cf97c44f68dd452a680782ff55e8a69a9eef0cdf295ac",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            19.99997732426304
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "b83355f24fca2543a417b22b3fc5493efb715e9344d0aae45155d147719274d8",
+        "videoSHA256": "4d0bc1df04d20edd297ea836c67f1586856e0259d807a52b59459a83b6d09661",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "415eecddba761161236c928e17e54996e791e6f27ed01bd0d4728cdbf16ac63c",
+      "traceSHA256": "9466d0271b801774201a00fe25ae045c2f9f24459157ce81081bcd121bb97208",
+      "rawRowSHA256": "d7e843248c5f41bd4cdee33b40e9932cc0501f1895ccd9b2bced1e10cc5e96aa",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-14",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12195435820,
+      "runId": 39244958536,
+      "archiveSHA256": "319fe6a1c46b9f9cdc8aa167568c227cd2c9927f84630465cc44071eb725f276",
+      "videoSHA256": "127eda6608bf71feb588758085de74a05ef5786b33155f295cfbe994d65b9485",
+      "binding": {
+        "inputHash": "c96dee4f006b89aa0fbb30942b4d5033571b91448001894eae789ad387f94c58",
+        "planHash": "35506c0b2dfbfae27dee31897d17ce67fea420d806c90f8c9ffed0994bcb9c2c",
+        "outputProfile": {
+          "purpose": "SQUARE",
+          "aspect": "1:1",
+          "fps": 24,
+          "range": [
+            0,
+            44.999977324263035
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "c643c4ab80a410b13e95e1f99ac8bc8e8a82f0d35a4e6553a12d5f4971ef6baa",
+        "videoSHA256": "127eda6608bf71feb588758085de74a05ef5786b33155f295cfbe994d65b9485",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "87be96cc076986aea32b2eef375ba0955d3dccd27cd6308546860dada550a785",
+      "traceSHA256": "0d1d6b2863c1ddf45a9b64fe8799ce3971e233897b58871b59d8296caa4eaeab",
+      "rawRowSHA256": "852ef50ead72126deb0f829da4ae9ce9baa502419b5955fef22fc152a7defb55",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "holdout-15",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12187947965,
+      "runId": 39244958536,
+      "archiveSHA256": "49a9d95f07b5a148f76597b29f60de2888f6de73e23e11a7457b8d7cbfcf86dc",
+      "videoSHA256": "1f859c89491a52bebe32f9dbaab57587b0fe5580998e418cd9db3ce2f459ef16",
+      "binding": {
+        "inputHash": "ce3b733b48e716a75cdc3dc297777b6fd99fc9d3d60bcf5f8f12b6d649220e34",
+        "planHash": "46ccacc0bbddec457b8c2a2af5b13188e91611c81041f0c8b2a5e7fc847cae68",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "4:5",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            360,
+            450
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "41ac0d388f14c0ca0575fe728aef2e982ddf27012f830f971bdd25515c206f60",
+        "videoSHA256": "1f859c89491a52bebe32f9dbaab57587b0fe5580998e418cd9db3ce2f459ef16",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "34b4e2ff837de45e35eb417f73b0bb17f1d2f84a18ac79b2f6da2c7e59c05045",
+      "traceSHA256": "591429f177c3c937d4431dff64ff1e9a9fbe10189d3b152dd9657bc4d17e4742",
+      "rawRowSHA256": "cfe11091290ad290e1a05e076ab68f45466e9a879e96c4d601996e650beed560",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "late-unseen-quiet-16x9",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12184710608,
+      "runId": 39246207521,
+      "archiveSHA256": "3342d02039241cdd16f2fccab8a097ce1b394025a9aabe0f194076eedab1dbd9",
+      "videoSHA256": "7aee2b0989050ef4c5a0e78f3dc6dda352906cc44e96bf59a4265fb0a5bebdd4",
+      "binding": {
+        "inputHash": "31e8534f41a911b2bfe3bfb1a09fb74cc9e68f3b8f7dea8a577c8de3d4400685",
+        "planHash": "f97dc87c5d5711a014726d6f1b00e30deea6278bec0f153dcdb4623602154a2f",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            14.3
+          ],
+          "loopRequired": false,
+          "resolution": [
+            640,
+            360
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "6bb882857dbbd20b95b0d7c7d6a4346dbdff187d991418607053305d9e146db9",
+        "videoSHA256": "7aee2b0989050ef4c5a0e78f3dc6dda352906cc44e96bf59a4265fb0a5bebdd4",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "71fa2cff8b26d0fc28f391091ee637f37b9dc0149e95ef22266492b4e4a94e34",
+      "traceSHA256": "4d2b6df5531a6d4f915850016413b2979ea80420672ed72a66ea1a6ec6fcf0c1",
+      "rawRowSHA256": "23996846f2269556fd9afde76f48169173bf6808b11c1f2fd4879d3210d2cf2e",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12187145644,
+      "runId": 39244958536,
+      "archiveSHA256": "55e8df7be151206aae2ea00518d9a388228bcd6b2cb1da9176792c754499d85d",
+      "videoSHA256": "93f9d0bf59f90dc614e702059e1cd438b10b2c8e61ec9786b2b11d098b0856d7",
+      "binding": {
+        "inputHash": "3d2116b37148b1bd328cdf60e25b46db61617363f16930de8e68fcc2c5940d87",
+        "planHash": "6a1c4ae269c470c47af098d1adb31351b343d907bd261dd08c8013df1b255fe7",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "5a886910f45d28801bf45b8206eedc8e55cb025f4afb02c59c5e6af0cdedc51b",
+        "videoSHA256": "93f9d0bf59f90dc614e702059e1cd438b10b2c8e61ec9786b2b11d098b0856d7",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "ce2dbaece077420cd43ea473688329ff2ac137b9c04f42dd19bae1e24a51ecae",
+      "traceSHA256": "caf02dd13a0ac76de44a2e02d3ca88b811331de73562e4555a38f167881ccf4a",
+      "rawRowSHA256": "38256d086be4be2b58c85c2561be5972f6d171e3454411c09b6bb82adc9e5640",
+      "importantSemanticProof": "UNVERIFIED",
+      "significantRegression": null,
+      "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "artifactId": 12188575752,
+      "runId": 39244958536,
+      "archiveSHA256": "ec4f5c075016f83db61d730c270c5aa69c1d1979d0a96d0ce0947f2455db1da3",
+      "videoSHA256": "382ed160a4931fb9c14ed68ad35b5e72a3e3c406a1cd10f65c9ebb9341a23112",
+      "binding": {
+        "inputHash": "2aeac81455d19abd241986d589d70d1210ea28dded4a2d5930d3f20184590a85",
+        "planHash": "f9c34b6c87c6b7702f0e2b8d364e70a8f34947a5220132f753e25c435b89be1f",
+        "outputProfile": {
+          "purpose": "SHORT",
+          "aspect": "9:16",
+          "fps": 24,
+          "range": [
+            0.3,
+            12.72
+          ],
+          "loopRequired": false,
+          "resolution": [
+            720,
+            1280
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "4b2bcc370d88c85e4214e6dcf94a0c9bbf37249b83d74fe81f3ebc792754c4e9",
+        "videoSHA256": "382ed160a4931fb9c14ed68ad35b5e72a3e3c406a1cd10f65c9ebb9341a23112",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "inputCorrespondence": "MATCHED",
+      "nativeReplay": "EXACT",
+      "finalArtifactVerification": "MEASURED",
+      "fullDecode": "PASS",
+      "referenceSHA256": "05c8673f2b424ede3144df8b00e59f99d3604a5567b78ff1176ac06d38b808f8",
+      "traceSHA256": "2199886f1d268a2c27d697e82f9e6bf2aaee5bdf6a27b9f79b2195ce8ef46001",
+      "rawRowSHA256": "55d5080f99c672fc1ffcbdeb09249409770ec85f4622c8b1c33f659d1f54f481",
       "importantSemanticProof": "UNVERIFIED",
       "significantRegression": null,
       "scope": "Completed current-source natural selection and real movie. Semantic/relative creative adjudication is not inferred from technical success."

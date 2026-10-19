@@ -1,0 +1,17 @@
+{
+  "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "originalVideoSHA256": "03496f3bdfb30c3632edfe774f8d8881bddb9284bec2d771ac27f6f0a03a095c",
+  "controlVideoSHA256": "2771f8caf1496c273bb8bf0e1218e98d01e0d64cc11151ff838a6ff9633f178a",
+  "sameExistingMP4sOnly": true,
+  "threshold": 0.25,
+  "thresholdOrigin": "Existing finalGlyphPresence foreground contrast threshold, unchanged.",
+  "originalModelExpectedControlDisplacementPixels": 6.544048959503473,
+  "sensorTolerancePixels": 0.5,
+  "staticTolerancePixels": 1,
+  "reference": "Full Native composite with only the bound mainDraw glyph omitted; all other primary/helper/background renderers remain enabled.",
+  "algorithm": "Measure threshold-bearing native and actual decoded contrast against that isolated target-OFF background across a padded output-pixel ROI, without switching to target-containing ON pixels at the antialiased glyph boundary.",
+  "targetPopulation": 1,
+  "falsePositiveControls": "Original Native-minus-target-OFF foreground and exact same output-clock decoded original. Moving coded target must remain non-static.",
+  "preregisteredBeforeCorrectedObservation": true,
+  "noNewMovieOrThresholdChange": true
+}

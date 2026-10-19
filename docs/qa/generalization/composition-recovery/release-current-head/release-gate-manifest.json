@@ -1,45 +1,41 @@
 {
-  "releaseSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "releaseSourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
   "gitRepository": "../../../../..",
   "sourceCorrespondence": [
     {
-      "path": "../release-recovery-20261019/source-correspondence.json",
-      "sha256": "87735b10a146276b82711ab681733bd83cab465cc5e005fd18385e244eee0199"
-    },
-    {
       "path": "official-merge-source-correspondence.json",
-      "sha256": "1ae3773edfa0402aaa906424b625c60f90eaa79211dcc3c9b207e415070c47af"
+      "sha256": "e9b12913518fc91cf7d07ed572b44bf55ae775232c3c5f178cb85c893e5332c6"
     }
   ],
   "evidence": {
     "ci": {
       "path": "ci.json",
-      "sha256": "e3ba896f3d1fc4a670db2d30ba1cb95605bd06ad70e40bac6c254ad5caf4b6b4"
+      "sha256": "2f1b42e788794e8679021cccb76989edf7f6a55eda09cfc35f77642b5186d2e6"
     },
     "tests": {
       "path": "tests.json",
-      "sha256": "195cba284d13e3214ae3baae2eb22623ecfbe5f64c29a66e7bfc0e418010f92f"
+      "sha256": "381953a2f13a7f728dcddc07fb44918ffaf3bc0d312bfb37c04ca04df294704b"
     },
     "browser": {
       "path": "browser.json",
-      "sha256": "37f5f34b186d69a840d3347cb893778ee51b087a01232ce76ce406580984f25f"
+      "sha256": "1e3767298016e143058faa53e2e70c474683bafd912dc36c66332c917b2ce0f6"
     },
     "artifacts": {
       "path": "finished-artifacts.json",
-      "sha256": "83a971d5d42e121705df1476328efc61cf3b1e3e82d44f5bccdb8928cdcff59f"
+      "sha256": "365e7970b7a2bb4bff2e06e56fccfeb445b0ba03ab347ba868d7f52a811e2273"
     },
     "comparisons": {
       "path": "comparisons.json",
-      "sha256": "5b61d9e1113f5dad897a671b47532c8cdd4e33c82b79f64f3922c1d638d5569b"
+      "sha256": "100af706d1084299a0693127ac82742b76611a47d630d493c25916c0250043b5"
     },
     "operators": {
       "path": "operators.json",
-      "sha256": "ce3e3eb9c902e7ec61fe89aefc54777900be8e5df92f726527850bf9cc2ff8e7"
+      "sha256": "2d9e21dbecc36e90ba69c5fd6bae67686642ee9865fc6245048cdd3a528e85cf"
     },
     "safety": {
       "path": "safety.json",
-      "sha256": "f4597d04a1fbb1d8ed1af87657bd5e23181e3dcc9593c00d27f8112487dd70cb"
+      "sha256": "52b3914535a78663a9eb8a7e7bfad75cee54175df50081415b218d169cd8dd89"
     }
   },
-  "scope": "Current candidate checkpoint, not a release approval. Old source successes are retained separately; only QA-identical source correspondence may transfer the targeted fixed MP4."
+  "scope": "Latest source-bound release checkpoint. TECHNICAL_GO requires new exact-source CI/browser outputs. Earlier natural movies are not silently transferred through a single Native comparison."
 }

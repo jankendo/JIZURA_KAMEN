@@ -1,0 +1,94 @@
+{
+  "schema": 2,
+  "evaluatorVersion": "release-gates-v2",
+  "releaseSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "manifestSHA256": "38dc1ee1657b18afbce43b18f5c3e22e3b5f1db59fd12490a887f7a0849b6cc8",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "UNVERIFIED",
+  "RELEASE_GO": "UNVERIFIED",
+  "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED",
+  "checks": {
+    "technical": [
+      {
+        "name": "ci",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "regression/build",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "browser",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "finished artifacts",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      }
+    ],
+    "quality": [
+      {
+        "name": "comparison coverage",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "important semantic operators",
+        "state": "PASS",
+        "reason": "hash-bound observations satisfy contract"
+      },
+      {
+        "name": "regressions and correspondence",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "domain": "technical",
+      "name": "ci",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "technical",
+      "name": "regression/build",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "technical",
+      "name": "browser",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "technical",
+      "name": "finished artifacts",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "quality",
+      "name": "comparison coverage",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "quality",
+      "name": "regressions and correspondence",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    }
+  ],
+  "limitations": [
+    "Hash binding establishes file consistency, not runner authenticity. Adapters must preserve raw observations; no artistic score is inferred.",
+    "No deployment or production verification is implied by RELEASE_GO."
+  ]
+}

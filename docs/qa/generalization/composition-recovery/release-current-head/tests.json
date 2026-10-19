@@ -1,6 +1,6 @@
 {
-  "sourceCommit": "f891e7fbf281ec9181b306fec247603f99215809",
-  "officialPRHead": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "sourceCommit": "5a38c44766a7a9cb6289d61374bb6257ce2a76e1",
+  "officialPRHead": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
   "cases": [
     {
       "id": "audio_persistence_test.js",
@@ -523,7 +523,7 @@
       "reason": "Node-only runner: browser APIs absent; formal SKIP retained. Actual exact-source alternative must be supplied separately.",
       "browserAlternative": {
         "path": "skip-alternatives/variable_font_browser_test.js.json",
-        "sha256": "5d6b46c7ad4c125013cdd28e468bdacc7df71bd235339b6b37320fb2c1e8dc3d"
+        "sha256": "ea7335b586a374019061d5cff1c415b5e92134071dd19bef561579956546f925"
       }
     },
     {
@@ -532,7 +532,7 @@
       "reason": "Node-only runner: browser APIs absent; formal SKIP retained. Actual exact-source alternative must be supplied separately.",
       "browserAlternative": {
         "path": "skip-alternatives/browser_export_e2e_test.js.json",
-        "sha256": "0b75a0bf40454d12141e9ed0ff4fdf795bd0a78ee23f4ac09570e05e943c73f5"
+        "sha256": "406024a3ce7586e96f4eff41e63200e67d8fbd26a6f461bec8c3b995b5153e8e"
       }
     },
     {
@@ -1067,27 +1067,27 @@
     }
   ],
   "raw": {
-    "path": "../release-recovery-20261019/official-ci/kamen-tests.json.gz",
+    "path": "../release-recovery-20261019/official-ci-0a5c896f/kamen-tests.json.gz",
     "sha256": "8b020d352ac05519fae2d3c3f69ae6f9104b45d0607d2b16fc245e211f08ae39"
   },
   "install": {
     "exitCode": 0,
     "rawJobs": {
-      "path": "../release-recovery-20261019/official-ci/jobs.json.gz",
-      "sha256": "74b2a6a8f4be2d140e6e0f6afcf761334c0068a963a11ac9214d02796fe1af7a"
+      "path": "../release-recovery-20261019/official-ci-0a5c896f/jobs.json.gz",
+      "sha256": "be5f714354d737eed03abd4187eacddb98049a3e973788635f042f849e3c9bc3"
     }
   },
   "build": {
     "exitCode": 0,
-    "outputSHA256": "b3edd7674a9f04920b3a03d5315f17ebdecd613597426febb4aa33ae0da906ef",
+    "outputSHA256": "fde6811056f21bce416ad158887b4244541bcc44548611651c301f4622e5b444",
     "outputScope": "Actual built runtime HTML response SHA256 from browser runner, not a whole dist tree hash.",
     "rawJobs": {
-      "path": "../release-recovery-20261019/official-ci/jobs.json.gz",
-      "sha256": "74b2a6a8f4be2d140e6e0f6afcf761334c0068a963a11ac9214d02796fe1af7a"
+      "path": "../release-recovery-20261019/official-ci-0a5c896f/jobs.json.gz",
+      "sha256": "be5f714354d737eed03abd4187eacddb98049a3e973788635f042f849e3c9bc3"
     },
     "rawBrowser": {
-      "path": "../release-recovery-20261019/official-ci/kamen-browser-qa/report.json.gz",
-      "sha256": "ec7e80fedb30a23b328f6c1b7d630b4c55379279def594a96c964ba7ff53e0cc"
+      "path": "../release-recovery-20261019/official-ci-0a5c896f/kamen-browser-qa/report.json.gz",
+      "sha256": "64274ab38c99bbf391d015f76349ba8f500f6618f396ac71e5d6ebe137cfc3b0"
     }
   }
 }

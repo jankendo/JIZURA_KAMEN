@@ -1,0 +1,40 @@
+{
+  "rendererSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "intentId": "eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f",
+  "videoSHA256": "03496f3bdfb30c3632edfe774f8d8881bddb9284bec2d771ac27f6f0a03a095c",
+  "results": [
+    {
+      "case": "v2-original-schema",
+      "operatorCheck": "PASS",
+      "evaluatorSHA256": "71a18cf30d1602326c29d8b57503bfbc1ef11c31aa87b1fb94297a5a3ba8f53a"
+    },
+    {
+      "case": "v3-rejects-legacy-static",
+      "operatorCheck": "UNVERIFIED",
+      "evaluatorSHA256": "7d5a299e5028486fc75ecea61c363444f3b09f5f66bf6910c3799f35b0c58cc4"
+    },
+    {
+      "case": "v3-complete-raster-contract",
+      "operatorCheck": "FAIL",
+      "evaluatorSHA256": "7d5a299e5028486fc75ecea61c363444f3b09f5f66bf6910c3799f35b0c58cc4"
+    },
+    {
+      "case": "v2-coded-moving",
+      "operatorCheck": "FAIL",
+      "evaluatorSHA256": "71a18cf30d1602326c29d8b57503bfbc1ef11c31aa87b1fb94297a5a3ba8f53a"
+    },
+    {
+      "case": "v3-legacy-coded-moving",
+      "operatorCheck": "UNVERIFIED",
+      "evaluatorSHA256": "7d5a299e5028486fc75ecea61c363444f3b09f5f66bf6910c3799f35b0c58cc4"
+    },
+    {
+      "case": "v3-raster-coded-moving",
+      "operatorCheck": "FAIL",
+      "evaluatorSHA256": "7d5a299e5028486fc75ecea61c363444f3b09f5f66bf6910c3799f35b0c58cc4"
+    }
+  ],
+  "newMP4s": 0,
+  "validForFormalStaticRegistration": false,
+  "finding": "Real centroid-only false positive rejected by full output-space glyph shape. No threshold, input, source movie or phase interval changed."
+}

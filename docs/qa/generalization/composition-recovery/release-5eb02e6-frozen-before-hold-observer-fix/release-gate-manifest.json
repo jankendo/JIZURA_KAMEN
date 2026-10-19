@@ -1,0 +1,45 @@
+{
+  "releaseSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "gitRepository": "../../../../..",
+  "sourceCorrespondence": [
+    {
+      "path": "../release-recovery-20261019/source-correspondence.json",
+      "sha256": "87735b10a146276b82711ab681733bd83cab465cc5e005fd18385e244eee0199"
+    },
+    {
+      "path": "official-merge-source-correspondence.json",
+      "sha256": "1ae3773edfa0402aaa906424b625c60f90eaa79211dcc3c9b207e415070c47af"
+    }
+  ],
+  "evidence": {
+    "ci": {
+      "path": "ci.json",
+      "sha256": "e3ba896f3d1fc4a670db2d30ba1cb95605bd06ad70e40bac6c254ad5caf4b6b4"
+    },
+    "tests": {
+      "path": "tests.json",
+      "sha256": "195cba284d13e3214ae3baae2eb22623ecfbe5f64c29a66e7bfc0e418010f92f"
+    },
+    "browser": {
+      "path": "browser.json",
+      "sha256": "37f5f34b186d69a840d3347cb893778ee51b087a01232ce76ce406580984f25f"
+    },
+    "artifacts": {
+      "path": "finished-artifacts.json",
+      "sha256": "50dfd8d268ae566361f17c738098b6b3412de12d444337f7f101461b0b5f23cd"
+    },
+    "comparisons": {
+      "path": "comparisons.json",
+      "sha256": "01eb03e1296880ac27fd9566cce9d4bc4f1b3cb0ac6107cb35b0bb244c2ed14f"
+    },
+    "operators": {
+      "path": "operators.json",
+      "sha256": "e0b6e8604f6212bdf37548597978b71dc8cdb890e015132f1c9a744f4700c5aa"
+    },
+    "safety": {
+      "path": "safety.json",
+      "sha256": "f4597d04a1fbb1d8ed1af87657bd5e23181e3dcc9593c00d27f8112487dd70cb"
+    }
+  },
+  "scope": "Current candidate checkpoint, not a release approval. Old source successes are retained separately; only QA-identical source correspondence may transfer the targeted fixed MP4."
+}

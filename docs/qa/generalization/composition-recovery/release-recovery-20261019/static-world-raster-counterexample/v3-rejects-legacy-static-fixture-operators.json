@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "proofSchema": 2,
+  "importanceClassificationFinalized": true,
+  "expectedImportantIntentIds": [
+    "eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f"
+  ],
+  "population": {
+    "path": "one-counterexample-fixture-population.json",
+    "sha256": "af9b8f14117fea460946bdcf119e6b1bd08123fd00bf697c347954618363ae09"
+  },
+  "observations": [
+    {
+      "intentId": "eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f",
+      "status": "VERIFIED",
+      "measurement": {
+        "path": "real-original-invalid-static-claim.json",
+        "sha256": "bc684b2ab25bd77b6598ae9fd42e55d856c27e1fdbedfc8189126beb56be94b1"
+      }
+    }
+  ],
+  "scope": "DELIBERATELY_INVALID_CLAIM_IN_A_CONTRACT_TEST_FIXTURE_ONLY"
+}

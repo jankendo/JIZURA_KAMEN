@@ -1,6 +1,6 @@
 {
-  "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
-  "proofSchema": 2,
+  "sourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+  "proofSchema": 3,
   "importanceClassificationFinalized": false,
   "expectedImportantIntentIds": [],
   "observations": [],
@@ -11,5 +11,20 @@
     "path": "../release-recovery-20261019/intent-audit.json",
     "sha256": "23ecd1c0ba237c7e326efa37e2ed15585c82164bece6930faee024c097d23d90"
   },
-  "scope": "Historical d04 dispatch IDs and the two original-source certificates are preserved, not relabelled as current-source semantic proof. The changed renderer population and target contracts are not finalized."
+  "scope": "Historical d04 dispatch IDs and the two original-source certificates are preserved, not relabelled as current-source semantic proof. The changed renderer population and target contracts are not finalized.",
+  "currentPartialPopulation": {
+    "path": "../release-recovery-20261019/current31-partial-population.json.gz",
+    "sha256": "6e71cb3387c3fa0d4aa405c829a56aeeaec3d3314bc7b4f238072bb9f4659e60"
+  },
+  "importedCurrentConditions": 32,
+  "expectedCurrentIntentCoverageConditions": 32,
+  "provisionalCurrentImportantIntents": 1129,
+  "canonicalImportanceClassificationFinalized": false,
+  "individualContractValidation": {
+    "path": "../release-recovery-20261019/static-contract-validation/summary.json",
+    "sha256": "36ce4caf522d4a2580d7aa78437caadd990d155255779eaa94e25316dc9239ee"
+  },
+  "individualContractFormalRegistration": "WITHDRAWN_WORLD_STATIC_CLAIM_V2_FALSE_POSITIVE: actual glyph shrinks while its centroid remains stable. Preserve the v2 result as a counterexample; v3 full-raster check rejects the same movie. No formal static or population approval.",
+  "historicalNaturalMovieSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "currentImportantPopulationFinalized": false
 }

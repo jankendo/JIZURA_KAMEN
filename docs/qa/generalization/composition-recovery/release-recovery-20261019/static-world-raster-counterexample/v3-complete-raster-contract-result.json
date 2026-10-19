@@ -1,0 +1,100 @@
+{
+  "schema": 3,
+  "evaluatorVersion": "release-gates-v3",
+  "releaseSourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "manifestSHA256": "0a58f2c8d4952334c356d46e5d348a6a45773617352ec3516d484cd39fe40cca",
+  "TECHNICAL_GO": "UNVERIFIED",
+  "QUALITY_GO": "FAIL",
+  "RELEASE_GO": "FAIL",
+  "ARTISTIC_100_VERIFICATION": "UNVERIFIED",
+  "human": "HUMAN_UNVERIFIED",
+  "checks": {
+    "technical": [
+      {
+        "name": "ci",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "regression/build",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "browser",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "finished artifacts",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      }
+    ],
+    "quality": [
+      {
+        "name": "comparison coverage",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      },
+      {
+        "name": "important semantic operators",
+        "state": "FAIL",
+        "reason": "observed required check failed"
+      },
+      {
+        "name": "regressions and correspondence",
+        "state": "UNVERIFIED",
+        "reason": "missing path/SHA-256"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "domain": "technical",
+      "name": "ci",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "technical",
+      "name": "regression/build",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "technical",
+      "name": "browser",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "technical",
+      "name": "finished artifacts",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "quality",
+      "name": "comparison coverage",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    },
+    {
+      "domain": "quality",
+      "name": "important semantic operators",
+      "state": "FAIL",
+      "reason": "observed required check failed"
+    },
+    {
+      "domain": "quality",
+      "name": "regressions and correspondence",
+      "state": "UNVERIFIED",
+      "reason": "missing path/SHA-256"
+    }
+  ],
+  "limitations": [
+    "Hash binding establishes file consistency, not runner authenticity. Adapters must preserve raw observations; no artistic score is inferred.",
+    "No deployment or production verification is implied by RELEASE_GO."
+  ]
+}

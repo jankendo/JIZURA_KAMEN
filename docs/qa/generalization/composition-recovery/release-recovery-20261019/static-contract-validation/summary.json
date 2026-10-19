@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "intentId": "eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f",
+  "results": [
+    {
+      "scenario": "original-static",
+      "contractCheck": "PASS",
+      "releaseGO": "UNVERIFIED"
+    },
+    {
+      "scenario": "moving-movie-invalid-static-claim",
+      "contractCheck": "FAIL",
+      "releaseGO": "FAIL"
+    }
+  ],
+  "canonicalImportanceClassificationFinalized": false,
+  "canonicalPopulationNotReplaced": true,
+  "newMP4s": 0,
+  "scope": "One real static contract passes the unchanged v2 validator; the actual moving-target MP4 remains a failing static counterexample. Canonical all-population gates are separate.",
+  "validForFormalRegistration": false,
+  "finding": "V2_FALSE_POSITIVE: the original glyph centroid stays within 1px, but its visible outline shrinks by about 8%. Static world-space proof is invalid. Retain the v2 PASS as an evaluator counterexample; do not register as VERIFIED.",
+  "requiredCorrection": "Full glyph contour/mask stationarity, not centroid-only stationarity. Local HOLD identity must be distinguished from composition-wide stillness."
+}

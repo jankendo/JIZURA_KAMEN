@@ -1,4 +1,21 @@
-# Release recovery checkpoint — PARTIAL
+# Release recovery — latest verified checkpoint
+
+Application source: `0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc`.
+Official CI [39257690138](https://github.com/jankendo/JIZURA_KAMEN/actions/runs/39257690138) completed successfully: **209 PASS, 0 FAIL, 2 SKIP**. Actual synthetic merge checkout `5a38c447…` has the identical complete Git tree. Both formal Node SKIPs retain their status and have separately completed latest-source actual-browser alternatives. The real UI save/retry and variable-font export MP4s all independently decode completely. Latest canonical gates: **TECHNICAL_GO PASS; QUALITY_GO UNVERIFIED; RELEASE_GO UNVERIFIED**. No merge or new Pages deployment.
+
+All **32** frozen source-`5eb02e6f…` natural movies are now imported: 31 formal comparison cases plus the retained quiet Intent case. Input/PCM/profile, actual movie bytes, complete decode and original full-frame Native replay match in their original CI artifacts. The fresh population contains **1,250 rows / 1,129 conservative important rows**, with 772 executed-important, 280 composite-important, 94 provisional identity/nonexecution, 77 provisional static and 27 protected manual rows. Classification remains unfinalized; these are observations, not 1,129 certificates.
+
+**Withdrawn static positives:** `影` remains nearly centered while shrinking about 8%. The frozen v2 evaluator's original STATIC PASS is an actual false-positive counterexample. v3 rejects the same full-raster claim and treats centroid-only schema-2 STATIC as UNVERIFIED. One controlled moving MP4 was reused for the corrected pixel observation; no replacement trial was generated to obtain a preferred result. Across all 32 actual FAVs, remeasurement withdraws two old runtime HOLD positives: development-12 fragment 9 and development-14 fragment 7. Both are now CONFOUNDED by changing Native outlines. Stable centers/bounds alone also remain UNMEASURED. See `hold-observer-remeasurement.json` and `static-world-raster-counterexample/summary.json`.
+
+The runtime change is confined to observation metadata, but a changed shipping source hash still requires explicit correspondence. A 480-frame local before/after pair is identical; both differ from original CI in 136 frames, so it grants **no** release transfer. Initial source-guard and Chrome-151 failed attempts are preserved. The preregistered 32-case CI Native-only workflow compares every latest-renderer frame against each original adopted Native hash. It generates **no new MP4**. Until its case-specific evidence is complete, old natural movie labels remain source `5eb`; the latest technical PASS instead uses actual latest-source CI/browser outputs.
+
+All 31 full decoded output comparisons and fixed-clock four-version sheets are preserved in `current31-decoded-comparisons/` and `current31-contact-sheets-v2/`. Fourteen films are exactly unchanged from previous across complete decoded video/audio/clocks; 24 match the original d04 candidate. None is byte-identical to main. Inequality alone is not a regression. The fresh development-04 natural film fixes `追 / いつけない / 昨日を置く` to `追いつけない / 昨日を置く`; supplemental-holdout-13 also removes an isolated `今` row. Sparse sheets do not prove all motion/phase semantics or complete the remaining significant-regression judgments. No null verdict was bulk-converted to false.
+
+The original 385 movies, 238 controls and historical 2/1,127 semantic outcomes remain source-bound. The old 5eb canonical checkpoint is frozen at `../release-5eb02e6-frozen-before-hold-observer-fix/`. The following earlier investigation notes retain their historical scope; older “latest” labels refer to that checkpoint, not the current application source.
+
+## Earlier source-bound investigation notes
+
+# Historical release recovery checkpoint — PARTIAL
 
 Application/PR #13 head: `5eb02e6fba86c2104711894dc894b461d2fae922`.
 Measured final wrapping repair MP4 source: `bea4fca948be2548635a92094716fd89c5947707`.
@@ -74,3 +91,25 @@ The real saved supplemental-development-13 MP4 was reused at output clocks 1.3 a
 The encoder probe summary's stale initial narrative was corrected to agree with its retained `completeNativeEqualsOriginal=false` and 25-frame mismatch records. The prior sentence is retained as `supersededFinding`, never as a success observation. Current collection run: [39244958536](https://github.com/jankendo/JIZURA_KAMEN/actions/runs/39244958536).
 
 The historical 32-movie Intent ledger also contains `late-unseen-quiet-16x9`, outside the formal 31-comparison set. `current32-frozen-inputs.json` retains that existing condition for current Intent coverage. Its one separate current-source collection avoids silently dropping the historical important IDs. It is an exposed prior condition, not a new holdout.
+
+## Additional Native mismatch localization
+
+The local original-source Native replay still differs in 25/240 frames. Original-audio analysis and preloading the secondary-strip separator did not remove it. Primary draw parameters and recorded font-loading descriptors match the original trace. The mincho font calls are the `diag` layout's scrolling secondary strip; FAV's authoritative main glyph at frame 66 is just `影`. The secondary-strip mismatch does not establish missing main lyrics.
+
+The separate no-encode CI font probe 39247047126 uses the identical Chrome 155 version and original d04 source. All 210 shared font-resource byte hashes and 12 isolated glyph raster/width samples match the local probe. This rejects a simple changed-font-file explanation; full-render context differences remain unresolved. The scoped layer control now requires actual `J.mainDraw` ownership, with a sixth counterexample preserving a layout helper on the same cut. Historical broad font-spy labels are not retroactively treated as primary-target certificates.
+
+The updated ownership-aware scoped observer was rerun on the same saved outgoing-layer MP4. It preserves both exact original/repeat Native hashes and the same 19,814 / 12,964 affected pixels. Both selected calls are bound to J.mainDraw; other primary dispatches remain unchanged. `scoped-layer-owned/` retains the new actual run, without replacing the earlier observations.
+
+## Real static contract pilot
+
+Current-source Intent `eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f` targets the primary `影` in development-01's complete eight-frame HOLD interval. One new full-profile moving-target MP4 was generated with a preregistered 0→6 output-pixel shift. It fully decodes; the unchanged static-reference FAV correctly reports FAILED. Its original centroid estimate missed the preregistered displacement by 0.646 pixels, so that sensor calibration was retained as a failed precision check.
+
+The reference switched back to target-containing ON pixels around antialiased glyph edges, introducing residual old-edge foreground into the centroid. The corrected QA observer uses the actual single-target-OFF composite across the whole padded glyph ROI. It reuses the same original/control bytes and unchanged 0.25 contrast threshold, 1px static tolerance, 0.5px calibration tolerance and original pre-control motion model. Original decoded drift is 0.731px; original Native/decoded centroid error is at most 0.029px; calibration error is 0.148px. The signed per-clock commanded shift is measured within 0.212px. Actual non-target encoded regions change while the original primary remains static.
+
+The unchanged application evaluator v2 passes this real original STATIC contract and rejects the actual moving MP4 when an invalid static claim is injected. `static-contract-validation/` is explicitly a one-contract validation fixture, not a release-population manifest. Its parent population snapshot is immutable. Canonical classification remains unfinished and QUALITY_GO remains UNVERIFIED. The original failed observation and all actual media hashes are retained; no extra video was made for the corrected measurement.
+
+## Static PASS withdrawn: actual v2 false positive
+
+The original `影` is centroid-stationary but **not shape-stationary**. Its actual Native font size changes from 218.39 to 200.85 plan pixels, and its ink bounds shrink from `[567,291,710,438]` to `[573,296,705,431]`. The v2 centroid-only STATIC check accepts this invalid world-static claim. The earlier isolated PASS is therefore withdrawn as a static proof and retained only as a real evaluator false-positive counterexample. It was never registered as complete-population release approval.
+
+The corrected target-OFF centroid measurement remains valid and the known coded translation remains detected. Those facts do not establish whole-glyph stillness. Evaluator v3 must also require complete output-pixel glyph contours to remain within the existing static tolerance. Local HOLD identity and composed typography motion remain distinct contracts; shrinking here is not automatically a shipping artistic regression.

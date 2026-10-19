@@ -1,6 +1,7 @@
 """Register recovered raw observations without manufacturing missing alternatives or semantic verdicts."""
-import pathlib,json,gzip,hashlib,subprocess,os
-Q=pathlib.Path(__file__).resolve().parents[1];R=Q/'composition-recovery';A=R/'release-current-head';S='5eb02e6fba86c2104711894dc894b461d2fae922';M='f891e7fbf281ec9181b306fec247603f99215809';repo=Q.parents[2]
+import pathlib,json,gzip,hashlib,subprocess,os,argparse
+Q=pathlib.Path(__file__).resolve().parents[1];R=Q/'composition-recovery';A=R/'release-current-head';repo=Q.parents[2]
+a=argparse.ArgumentParser();a.add_argument('--source',required=True);a.add_argument('--ci-directory',required=True);a.add_argument('--font-directory',required=True);args=a.parse_args();S=args.source;rawroot=R/'release-recovery-20261019'/args.ci_directory;M=json.loads(gzip.decompress((rawroot/'kamen-browser-qa/report.json.gz').read_bytes()))['provenance']['finalArtifactVerification']['binding']['sourceCommit']
 def sha(b):return hashlib.sha256(b).hexdigest()
 def read(p):return json.loads(gzip.decompress(p.read_bytes())) if p.suffix=='.gz' else json.loads(p.read_bytes())
 def ref(p):return {'path':os.path.relpath(p,A),'sha256':sha(p.read_bytes())}
@@ -8,9 +9,9 @@ def write(n,d):
  p=A/n;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n');return ref(p)
 def git(*args):return subprocess.check_output(['git','-C',str(repo),*args])
 oldcontext=read(A/'context.json');oldcontext['sourceCommit']=S;write('context.json',oldcontext)
-jobs=read(R/'release-recovery-20261019/official-ci/jobs.json.gz')['jobs'];build=next(x for x in jobs if x['name']=='build');steps={x['name']:x for x in build['steps']};print('official build steps',list(steps))
-rawroot=R/'release-recovery-20261019/official-ci';runpath=R/'release-recovery-20261019/official-ci/run.json.gz';run=read(runpath);assert run['head_sha']==S and run['conclusion']=='success'
-ci={'sourceCommit':S,'headSha':run['head_sha'],'conclusion':run['conclusion'],'url':run['html_url'],'rawRun':ref(runpath),'rawJobs':ref(R/'release-recovery-20261019/official-ci/jobs.json.gz'),'deployment':'SKIPPED_NORMAL_PR'}
+jobs=read(rawroot/'jobs.json.gz')['jobs'];build=next(x for x in jobs if x['name']=='build');steps={x['name']:x for x in build['steps']};print('official build steps',list(steps))
+runpath=rawroot/'run.json.gz';run=read(runpath);assert run['head_sha']==S and run['conclusion']=='success'
+ci={'sourceCommit':S,'headSha':run['head_sha'],'conclusion':run['conclusion'],'url':run['html_url'],'rawRun':ref(runpath),'rawJobs':ref(rawroot/'jobs.json.gz'),'deployment':'SKIPPED_NORMAL_PR'}
 refs={'ci':write('ci.json',ci)}
 # Actual synthetic PR merge checkout is retained. The complete Git tree is identical.
 assert git('diff','--binary',M,S)==b''
@@ -45,7 +46,7 @@ for ident in ['cancel','retry']:
 invalid=next(x for x in boundary['cases'] if x.get('state')=='INVALID_MP4');ops.append({'id':'rejectInvalidMP4','completed':invalid['outcome']['fileState']=='FAILED_TECHNICAL','traceSHA256':sha(gzip.decompress((rawroot/'kamen-browser-qa/ui-boundary/report.json.gz').read_bytes())),'raw':ref(rawroot/'kamen-browser-qa/ui-boundary/report.json.gz'),'scope':'Real browser UI boundary; validated MP4 reused and invalid MP4 injected. Not a separate fresh encode.'})
 refs['browser']=write('browser.json',{'sourceCommit':M,'actualBrowser':True,'browser':report['browser'],'operations':ops,'raw':ref(reportpath),'saveMeaning':'Download saved and independently decoded; SAVE_AVAILABLE alone is not an OS picker completion claim.'})
 
-fontroot=R/'release-recovery-20261019/variable-font-browser';font=read(fontroot/'report.json.gz');assert font['status']=='PASS'and font['build']['sourceCommit']==S and font['independentFullDecode']=='PASS'
+fontroot=R/'release-recovery-20261019'/args.font_directory;font=read(fontroot/'report.json.gz');assert font['status']=='PASS'and font['build']['sourceCommit']==S and font['independentFullDecode']=='PASS'
 for c in tests['cases']:
  if c['status']!='SKIP':continue
  logfile='variable-font-wrapper.log.gz'if c['id']=='variable_font_browser_test.js'else'browser-export-wrapper.log.gz'if c['id']=='browser_export_e2e_test.js'else None

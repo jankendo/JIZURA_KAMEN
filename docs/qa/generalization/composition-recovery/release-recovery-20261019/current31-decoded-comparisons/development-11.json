@@ -1,0 +1,63 @@
+{
+  "caseId": "development-11",
+  "versions": {
+    "recovery": {
+      "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+      "videoSHA256": "d2de8c52e073bdd1f5d6dce3c26a8d5fe17d5a5a42bef4cf8410e6d8602343c8",
+      "decodedVideoSHA256": "SHA256=5b1b7518a13113d212912f395cdb539eb33b0fdaa31ebfc8f4c1e65a9223cba1",
+      "decodedAudioSHA256": "SHA256=e549a0aea8b8921eb484657763f4de90a5ee9143008b7881933acca1a6d95382",
+      "decodedVideoClocksSHA256": "0913530c2d552b1e7fc2b2d270a205175be38cd57457dffb30072b4254f56eca"
+    },
+    "main": {
+      "sourceCommit": "2e7ed477f88028dbb63aa609e8a11b4052ea8c00",
+      "videoSHA256": "af05e3fe8b904afb482450c86f39eac9cbbbacba2394778bb2adac2fe3461d45",
+      "decodedVideoSHA256": "SHA256=e533e6cb7b228916a15b1e17659faf538de6f3fbdffe53ba9e666e36d6213ced",
+      "decodedAudioSHA256": "SHA256=e549a0aea8b8921eb484657763f4de90a5ee9143008b7881933acca1a6d95382",
+      "decodedVideoClocksSHA256": "0913530c2d552b1e7fc2b2d270a205175be38cd57457dffb30072b4254f56eca"
+    },
+    "previous": {
+      "sourceCommit": "5e14682249ce690337874214f2ec76fc8e68fa26",
+      "videoSHA256": "a06d808c7126bd5bc84ec2fb7676ed75c031ff9cd8602a32b5222194149460c6",
+      "decodedVideoSHA256": "SHA256=5b1b7518a13113d212912f395cdb539eb33b0fdaa31ebfc8f4c1e65a9223cba1",
+      "decodedAudioSHA256": "SHA256=e549a0aea8b8921eb484657763f4de90a5ee9143008b7881933acca1a6d95382",
+      "decodedVideoClocksSHA256": "0913530c2d552b1e7fc2b2d270a205175be38cd57457dffb30072b4254f56eca"
+    },
+    "current": {
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "videoSHA256": "7f083c578c00ecfd03684d27737afbce32b7d1f942fa22ddd9d7b0be5e982d64",
+      "decodedVideoSHA256": "SHA256=5b1b7518a13113d212912f395cdb539eb33b0fdaa31ebfc8f4c1e65a9223cba1",
+      "decodedAudioSHA256": "SHA256=e549a0aea8b8921eb484657763f4de90a5ee9143008b7881933acca1a6d95382",
+      "decodedVideoClocksSHA256": "0913530c2d552b1e7fc2b2d270a205175be38cd57457dffb30072b4254f56eca"
+    }
+  },
+  "comparisons": [
+    {
+      "reference": "main",
+      "checks": {
+        "decodedVideoSHA256": false,
+        "decodedAudioSHA256": true,
+        "decodedVideoClocksSHA256": true
+      },
+      "result": "DIFFERENT_REQUIRES_ADJUDICATION"
+    },
+    {
+      "reference": "previous",
+      "checks": {
+        "decodedVideoSHA256": true,
+        "decodedAudioSHA256": true,
+        "decodedVideoClocksSHA256": true
+      },
+      "result": "EXACT_DECODED_OUTPUT_UNCHANGED"
+    },
+    {
+      "reference": "current",
+      "checks": {
+        "decodedVideoSHA256": true,
+        "decodedAudioSHA256": true,
+        "decodedVideoClocksSHA256": true
+      },
+      "result": "EXACT_DECODED_OUTPUT_UNCHANGED"
+    }
+  ],
+  "scope": "All actual decoded video/audio bytes and video frame clocks. Equality proves no completed-output difference against that reference; inequality alone is not a significant-regression verdict. No threshold or semantic release credit."
+}

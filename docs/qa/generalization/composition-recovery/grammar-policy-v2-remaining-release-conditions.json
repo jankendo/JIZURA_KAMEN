@@ -13,7 +13,7 @@
   },
   "currentManifest": {
     "path": "composition-recovery/release-current-head/release-gate-manifest.json",
-    "sha256": "ea082f9aa6647e127bf02f60f84cc690be57dc7b5fa83a49b657d9c7292bfa29"
+    "sha256": "bf38578e35d6c7cc4f62ad4406efdcaec0e8821516aca9963a966bf78b71352c"
   },
   "blockingQualityConditions": [
     {
@@ -124,10 +124,18 @@
     "actualBrowserAlternatives": 2
   },
   "currentNaturalCollection": {
-    "runId": 39244958536,
-    "status": "IN_PROGRESS",
-    "expectedConditions": 31,
+    "runs": [
+      39244958536,
+      39246207521
+    ],
+    "expectedComparisonConditions": 31,
+    "expectedIntentCoverageConditions": 32,
+    "importedConditions": 32,
     "sourceFrozen": "5eb02e6fba86c2104711894dc894b461d2fae922",
-    "semanticCredit": false
-  }
+    "latestReleaseSource": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc",
+    "complete": true,
+    "semanticCredit": false,
+    "latestSourceTransfer": "UNVERIFIED; no single-case correspondence used to transfer all natural films."
+  },
+  "releaseSourceCommit": "0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc"
 }
