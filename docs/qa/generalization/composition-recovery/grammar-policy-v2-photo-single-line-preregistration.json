@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "fixtures": [
+    {
+      "id": "final-photo-single-line-continuity-20261019",
+      "cohort": "TARGETED_CAUSAL_ROUTE_COVERAGE_NOT_UNUSED_QUALITY_HOLDOUT",
+      "category": "acoustic",
+      "genreEvidence": "PROCEDURAL_SONIC_PROXY_NOT_REAL_GENRE_CERTIFICATION",
+      "seed": 12044,
+      "imageSeed": 12044,
+      "aspect": "9:16",
+      "image": "bright",
+      "lyrics": [
+        "日々の道をたどる",
+        "乾いた弦が風を呼ぶ",
+        "手のひらに季節が残る"
+      ],
+      "starts": [
+        0.3,
+        3.1999999999999997,
+        6.1
+      ],
+      "duration": 10,
+      "short": false,
+      "loop": false,
+      "res": 360,
+      "fps": 24,
+      "naturalDirection": true,
+      "baselineCinema": true,
+      "manual": false,
+      "fontFailure": false,
+      "synthesis": {
+        "tempo": 86,
+        "notes": [
+          293.6647679174076,
+          116.54094037952248,
+          138.59131548843604,
+          164.81377845643496,
+          195.99771799087463,
+          233.08188075904496,
+          277.1826309768721,
+          110
+        ],
+        "harmonics": [
+          1,
+          0.2,
+          0.07
+        ],
+        "attack": 0.35,
+        "decay": 0.2,
+        "percussion": 0.04,
+        "energyStages": [
+          0.4,
+          0.6,
+          0.7,
+          0.25
+        ],
+        "silenceUntil": 0
+      }
+    }
+  ],
+  "purpose": "Single preregistered lexical change to first line of a naturally photoCondensed-selected input. The earlier3 targeted cases changed all3lines and selected Grammar; isolate just first-line role while keeping other source lines, audio/image/seed/profile. No forced layout, style, motion or candidate. Not an independent creative-improvement holdout.",
+  "changedField": {
+    "fixture": "development-02",
+    "field": "lyrics[0]",
+    "before": "木漏れ日の道をたどる",
+    "after": "日々の道をたどる"
+  },
+  "criteria": "One normal shipping generation. Full MP4 decode and final FAV. If target photoCondensed/continuity not naturally selected, retain NOT_APPLICABLE; no additional seed retry authorized. If selected, require independent original/ON/repeat/OFF source-bound final pixels before certifying.",
+  "fixtureSelectionBeforeResults": true,
+  "releaseCriteriaChanged": false
+}
