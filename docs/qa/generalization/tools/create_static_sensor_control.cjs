@@ -1,0 +1,33 @@
+'use strict';
+// One fixed-plan encoded moving-primary control. The original movie is reused.
+const fs=require('node:fs'),path=require('node:path'),zlib=require('node:zlib'),crypto=require('node:crypto'),assert=require('node:assert/strict'),{spawnSync,execFileSync}=require('node:child_process'),{chromium}=require('playwright-core');
+const {installScopedPrimaryLayerControl}=require('./scoped_primary_layer_control.cjs');
+const {restoreMeasuredCompositionCache}=require('./dev09_composition_replay_state.cjs');
+const [url,source,input,preregFile,out]=process.argv.slice(2),sha=b=>crypto.createHash('sha256').update(b).digest('hex'),raw=p=>p.endsWith('.gz')?zlib.gunzipSync(fs.readFileSync(p)):fs.readFileSync(p),read=p=>JSON.parse(raw(p));fs.mkdirSync(out,{recursive:true});
+const prereg=read(preregFile),row=read(path.join(input,'development-01-v3-row.json.gz')),refFile=path.join(input,row.referenceInputs.file+'.gz'),ref=read(refFile),wav=fs.readFileSync(path.join(input,row.referenceInputs.audioFile));assert.equal(sha(raw(refFile)),row.referenceInputs.sha256);assert.equal(sha(wav),row.referenceInputs.audioSHA256);assert.deepEqual(prereg.binding,row.provenance.finalArtifactVerification.binding);
+const exportCode=fs.readFileSync(path.join(source,'src/11_export.js'));assert.equal(sha(exportCode),sha(execFileSync('git',['-C',source,'show',prereg.sourceCommit+':src/11_export.js'])));
+(async()=>{const browser=await chromium.launch({executablePath:process.env.KAMEN_CHROME||'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});try{
+ const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(url);await page.waitForFunction(()=>window.J?.ui?.project);
+ await page.addScriptTag({content:exportCode.toString()+'\nwindow.qaFrozenExport=window.J.exportMP4;'});
+ await page.addScriptTag({content:'window.qaScopedLayer='+installScopedPrimaryLayerControl.toString()+';window.qaRestoreComposition='+restoreMeasuredCompositionCache.toString()+';'});
+ await page.exposeFunction('preserveStaticSensorVideo',base64=>fs.writeFileSync(path.join(out,'moving-target.mp4'),Buffer.from(base64,'base64')));
+ const result=await page.evaluate(async({ref,wav,prereg,existing})=>{
+  const J=window.J,V=J.cinemaV3,Q=J.cinemaV5,revive=v=>!v||typeof v!=='object'?v:v.__qaTypedArray?new window[v.__qaTypedArray](v.data):v.__qaMap?new Map(v.__qaMap.map(([k,x])=>[revive(k),revive(x)])):v.__qaSet?new Set(v.__qaSet.map(revive)):Array.isArray(v)?v.map(revive):Object.fromEntries(Object.entries(v).map(([k,x])=>[k,revive(x)]));
+  const p=revive(ref.plan),project=revive(ref.project),range=ref.range,b=prereg.binding,build=window.KAMEN_BUILD_INFO;if(build.sourceCommit!==b.sourceCommit||build.sourceTreeSHA256!==b.rendererVersion||build.sourceDirty!==false)throw Error('SOURCE_BINDING_MISMATCH');
+  J.enableSingleBackgroundMode();if(p.visualAssets?.length>1)J.singleBackgroundMode=false;await J.ensureFonts(p.lines.map(l=>l.text).join(''),Object.keys(J.FONTS));const audio=await J.analyzeAudio(new Blob([Uint8Array.from(atob(wav),c=>c.charCodeAt(0))],{type:'audio/wav'}));
+  const input=await V.snapshot(project,audio,p,range),planHash=await V.planHash(p);if(input.inputHash!==b.inputHash||planHash!==b.planHash)throw Error('INPUT_OR_SELECTED_PLAN_MISMATCH');
+  const hook=window.qaScopedLayer(J,p,null,prereg.target,'SHIFT_SENSOR');let exported;
+  try{exported=await qaFrozenExport({plan:p,project,audio,range});}finally{hook.restore();}
+  const bytes=new Uint8Array(await exported.blob.arrayBuffer());let binary='';for(let i=0;i<bytes.length;i+=32768)binary+=String.fromCharCode(...bytes.subarray(i,i+32768));await preserveStaticSensorVideo(btoa(binary));
+  const [width,height]=b.outputProfile.resolution;exported.validation=await J.certifyExport(exported.blob,{width,height,fps:p.fps,duration:range.end-range.start,audio:true});
+  // Deliberately verify against the unchanged static Native reference. The
+  // encoded shift must be observed, not hidden by moving the expected glyph.
+  const verification=await Q.verifyFinalArtifact(exported,{plan:p,project,audio,range},input);if(await V.planHash(p)!==planHash)throw Error('PLAN_MUTATED');
+  return {build,input,planHash,validation:exported.validation,verification,controlRecords:hook.records,existingMovieReused:false};
+ },{ref,wav:wav.toString('base64'),prereg});
+ assert.deepEqual(errors,[]);const file=path.join(out,'moving-target.mp4'),decode=spawnSync('ffmpeg',['-v','error','-xerror','-i',file,'-f','null','-'],{encoding:'utf8'});assert.equal(decode.status,0,decode.stderr);const probe=JSON.parse(spawnSync('ffprobe',['-v','error','-show_streams','-of','json',file],{encoding:'utf8'}).stdout);assert(probe.streams.some(s=>s.codec_name==='h264')&&probe.streams.some(s=>s.codec_name==='aac'));
+ const frames=result.verification.frames.filter(f=>f.fragmentId===prereg.fragmentId&&prereg.target.outputClocks.some(t=>Math.abs(t-f.actualDecodedTimestamp)<1e-7));assert.equal(frames.length,prereg.target.outputClocks.length);const points=frames.map(f=>({time:f.actualDecodedTimestamp,glyphs:f.glyphEvidence.map(g=>({index:g.index,row:g.row,character:g.character,nativeCentroid:g.nativeCentroid,decodedCentroid:g.decodedCentroid,status:g.status})),pixelPresence:f.pixelPresence}));
+ const first=points[0].glyphs[0].decodedCentroid,last=points.at(-1).glyphs[0].decodedCentroid,observed=Math.hypot(last[0]-first[0],last[1]-first[1]);
+ const report={schema:1,sourceCommit:prereg.sourceCommit,preregistrationSHA256:sha(fs.readFileSync(preregFile)),exportImplementationSHA256:sha(exportCode),controlImplementationSHA256:sha(fs.readFileSync(path.join(__dirname,'scoped_primary_layer_control.cjs'))),originalVideoSHA256:prereg.binding.videoSHA256,controlVideoSHA256:sha(fs.readFileSync(file)),expectedDisplacementPixels:prereg.expectedControlDisplacementPixels,observedDisplacementPixels:observed,sensitivityMatches:Math.abs(observed-prereg.expectedControlDisplacementPixels)<=.5,staticReferenceVerificationStatus:result.verification.status,decodeExitCode:decode.status,probe,points,releaseCredit:false,...result};
+ fs.writeFileSync(path.join(out,'report.json.gz'),zlib.gzipSync(JSON.stringify(report)));console.log(JSON.stringify({videoSHA256:report.controlVideoSHA256,expected:report.expectedDisplacementPixels,observed,matched:report.sensitivityMatches,staticReference:report.staticReferenceVerificationStatus,decode:decode.status,selectedCalls:result.controlRecords.filter(r=>r.selected).length}));
+ }finally{await browser.close();}})().catch(e=>{fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({status:'FAILED',error:String(e.stack)}));console.error(e);process.exitCode=1;});
