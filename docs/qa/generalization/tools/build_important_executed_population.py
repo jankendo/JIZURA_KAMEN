@@ -27,6 +27,10 @@ def merge_clock_context_calls(calls):
     for name,count in v.items():d[name]=d.get(name,0)+count
    elif isinstance(v,list):target[k]=target.get(k,[])+copy.deepcopy(v)
  return list(groups.values())
+def contracts_for_unit(t,rawunit,bound=None):
+ def normalized(key):return bound['bindings'][key]['resolvedUnitKey']if bound else key
+ target=normalized(rawunit)
+ return [x for x in t.get('temporalContracts',[])if normalized(x['unitKey'])==target]
 def classify(c,manual=False):
  g,i=c['group'],c['id']
  if manual:return 'MANUAL_LOCKED','Manual contract is separately protected, not natural-selection improvement.'
@@ -54,7 +58,7 @@ def build(traces,source,unit_bindings=None):
   for c in calls:
    if c.get('calls',0)<=0:continue
    rawunit=c['unitKey'];resolved=bound['bindings'][rawunit] if bound else None;unit=resolved['resolvedUnitKey'] if resolved else rawunit;manual=rawunit in t.get('manualUnitKeys',[]) or unit in t.get('manualUnitKeys',[]);cl,reason=classify(c,manual);im=implementations.get((c['group'],c['id']))
-   contracts=[x for x in t.get('temporalContracts',[]) if x['unitKey']==rawunit];roles=sorted(set(x.get('contract',{}).get('state',{}).get('role','UNMEASURED') for x in contracts));natural=t.get('automaticSelection') is True and t.get('directionSelectionMethod')=='SHIPPING_OPTIMIZE_DIRECTION_CANDIDATES_RENDERED' and not manual
+   contracts=contracts_for_unit(t,rawunit,bound);roles=sorted(set(x.get('contract',{}).get('state',{}).get('role','UNMEASURED') for x in contracts));natural=t.get('automaticSelection') is True and t.get('directionSelectionMethod')=='SHIPPING_OPTIMIZE_DIRECTION_CANDIDATES_RENDERED' and not manual
    identity={'sourceCommit':b.get('sourceCommit'),'videoSHA256':t['videoSHA256'],'planHash':t.get('planHash'),'unitKey':unit,'group':c['group'],'operator':c['id'],'pass':c.get('pass'),'semanticRoles':roles}
    rows.append({'intentId':sha(json.dumps(identity,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()),**identity,'classification':cl,'classificationReason':reason,'naturalSelection':'NATURAL' if natural else 'MANUAL' if manual else 'UNMEASURED','important':cl not in ['MANUAL_LOCKED','NON_EXECUTION_IDENTITY'],'dispatch':c,'resolvedFinalUnitBinding':resolved,'implementation':im,'exactFunctionObjectAliases':aliases.get((c['group'],im['functionObjectId']),[]) if im else [],'aliasesDoNotRemoveIntent':True,'trace':str(file),'traceRawSHA256':sha(raw),'bindingStatus':'EXACT_CURRENT_ADOPTED_NATIVE' if same else 'STALE_OR_UNMEASURED','encodedStatus':'UNMEASURED','observedTarget':'UNMEASURED','actualDecodedTimestamp':None,'counterfactual':False})
   if not same:warnings.append({'trace':str(file),'reason':'Source or adopted Native correspondence is not exact; no current-source credit.'})

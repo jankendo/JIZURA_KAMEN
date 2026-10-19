@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "historicalEvidenceCommit": "98f3f32325f4dd2e4be65a3abdb071fc6c1616b6",
+  "historicalLedgerFileSHA256": "5a4be3b7924adebf5047c21f4e89e4e26973eaf1ebea54362b6e0733cf698fcf",
+  "currentLedgerFileSHA256": "f9653af1dd8275e4164e7d61a7d9d5f40dc0b95d16b83d84a5bac6c295eaca2a",
+  "correctedIntentIds": [],
+  "unchangedRawTraceAndFinalUnitBindings": true,
+  "reason": "The resolver now joins temporal states through authenticated selected-cut/final-unit/fragment mapping, guarding raw renderer-clone ordinals. For current32 this is an exact equivalence check: zero role/Intent-ID changes and unchanged raw traces, final unit bindings and measurements. No current-source rendering bug or semantic success is claimed. Four adversarial binding tests cover the clone/same-line hazard.",
+  "QUALITY_GO": "UNVERIFIED",
+  "current32NormalizationWasEquivalent": true
+}
