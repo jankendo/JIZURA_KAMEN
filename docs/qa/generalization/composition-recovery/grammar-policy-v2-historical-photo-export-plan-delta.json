@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "scope": "Serialized top-level selected-plan field changes during current public export; hashes here are standard JSON field hashes, not application canonical plan hash",
+  "initialPlanHash": "787cef28fdaa7dda401d0e127a1416f3d340f1f92927a2cfbac2d3a50b52af67",
+  "finalPlanHash": "4cab175da57c89b414ee292b7b9a4f3de96e46f96a9e814e774357c0545778c4",
+  "changes": [
+    {
+      "key": "cinemaLyricTemporalPolicy",
+      "beforePresent": true,
+      "afterPresent": true,
+      "beforeSHA256": "f0832cd0fceb52919ef2a19e2fd4cb882f4bda9f437a9de11d9afe848079b232",
+      "afterSHA256": "0e7bdb089cab3106710e4fabfc4c6c384e997575e47478d3bcbbccdd2345f85b",
+      "beforeSummary": "{'version': 'automatic-lyric-temporal-v1', 'origin': 'AUTOMATIC_PROJECT_PLAN'}",
+      "afterSummary": "{'version': 'automatic-lyric-temporal-v2', 'origin': 'AUTOMATIC_PROJECT_PLAN'}"
+    },
+    {
+      "key": "musicalPhoto",
+      "beforePresent": true,
+      "afterPresent": true,
+      "beforeSHA256": "d311bfb6fb099de5d4dc5789a037205255a4e19c9120c3fe398ca736ee118115",
+      "afterSHA256": "e08f09164eca2d446c4924c2fc83dccd3552840c0c836744f52593abc5619d4c",
+      "beforeSummary": "{'version': 2, 'chapterZooms': [1.06, 1.06, 1.06], 'chapterGrades': [0, 0, 0], 'source': 'lyric sections and salient audio beats', 'cornerFrame': False, 'phraseSettle': {'duration': 0.18, 'initialScale': 0.92, ",
+      "afterSummary": "{'version': 2, 'chapterZooms': [1.06, 1.06, 1.06], 'chapterGrades': [0, 0, 0], 'source': 'lyric sections and salient audio beats', 'cornerFrame': False, 'phraseSettle': {'duration': 0.18, 'initialScale': 0.92, "
+    }
+  ],
+  "finalContrastRepair": null,
+  "locksUnchanged": true,
+  "layoutRoleSummary": [
+    {
+      "index": 0,
+      "line": 0,
+      "start": 0.3,
+      "end": 3.2,
+      "layout": "cinemaGrammarduo",
+      "role": "narrative"
+    },
+    {
+      "index": 4,
+      "line": 1,
+      "start": 3.2,
+      "end": 6.1,
+      "layout": "cinemaGrammarduo",
+      "role": "narrative"
+    },
+    {
+      "index": 7,
+      "line": 2,
+      "start": 6.1,
+      "end": 9.11,
+      "layout": "photoCondensed",
+      "role": "light"
+    }
+  ],
+  "noClaimThatPlanHashDriftIsAnAppDefect": true,
+  "musicalPhotoLeafChanges": [
+    {
+      "path": "musicalPhoto.preparation",
+      "beforeSummary": "None",
+      "afterSummary": "{'method': 'candidate video search, then encoded failure-specific repair', 'attempts': [], 'maxPasses': 0, 'reason': 'Do not rerun the full candidate tournament to optimize unmeasured final-video metrics'}",
+      "beforeSHA256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "afterSHA256": "97715e580ff002baa068cf90728f75cc725a142cfb2f2560b722017fe455e4ba"
+    }
+  ]
+}
