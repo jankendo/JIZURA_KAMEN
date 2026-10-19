@@ -58,4 +58,65 @@ try{
  const telemetry=JSON.parse(fs.readFileSync(path.join(root,qRec.runtimeAssessment.path)));telemetry.paths[0].classification='TELEMETRY_ONLY';assert.equal(qState({...qManifest,sourceCorrespondence:[ref({...qRec,runtimeAssessment:ref(telemetry)})]}),'UNVERIFIED','telemetry still requires actual Native comparison despite equal shipping tree');
  const nonworkflow=JSON.parse(fs.readFileSync(path.join(root,qRec.runtimeAssessment.path)));nonworkflow.paths[0].classification='CI_ONLY';assert.equal(qState({...qManifest,sourceCorrespondence:[ref({...qRec,runtimeAssessment:ref(nonworkflow)})]}),'UNVERIFIED','dev harness cannot masquerade as workflow-only');
  console.log('release gate evidence contract: 37 counterexample/positive scenarios PASS');
+ // Synthetic v2 contracts exercise the evaluator only; these are never media evidence.
+ const readRef=r=>JSON.parse(fs.readFileSync(path.join(root,r.path)));
+ const videoRef=(label,b)=>{const bytes=Buffer.from('synthetic evaluator fixture '+label),videoSHA256=sha(bytes),file=`synthetic-${n++}.mp4`;fs.writeFileSync(path.join(root,file),bytes);return {hash:videoSHA256,ref:ref({binding:{...b,videoSHA256},videoSHA256,codecVideo:'h264',decodeComplete:true,decodeExitCode:0,media:{path:file,sha256:videoSHA256}})};};
+ function typedFixture(type='STATIC'){
+  const b={sourceCommit:commit,rendererVersion:hash,inputHash:hash,planHash:hash,outputProfile:{resolution:[64,64],fps:10,range:[0,.4]}};
+  const original=videoRef('original',b);b.videoSHA256=original.hash;
+  const control=videoRef('control',b),repeat=videoRef('repeat',b);
+  const types=type==='COMPOSITE'?['DYNAMIC','DYNAMIC','COMPOSITE']:[type],intents=[],rows=[],observations=[];
+  for(const [i,kind]of types.entries()){
+   const id='typed-'+i,contract={intentId:id,proofType:kind,binding:b,target:{id:'unit:primary',layer:'PRIMARY_LYRIC'},from:0,to:.4,fps:10,frameOrigin:0,tolerancePixels:.5,glyphIds:['0:a','1:b'],...(kind==='COMPOSITE'?{requiredComponentIntentIds:['typed-0','typed-1']}:{})};
+   if(kind!=='STATIC')contract.semanticModel={units:'OUTPUT_PIXELS',expectedSamples:[0,.1,.2].map((t,i)=>({actualDecodedTimestamp:t,vector:[1+i,0]}))};
+   intents.push(contract);rows.push({intentId:id,binding:b,important:true,naturalSelection:'NATURAL',classification:kind==='STATIC'?'INTENTIONAL_STATIC':kind==='COMPOSITE'?'COMPOSITE_IMPORTANT':'EXECUTED_IMPORTANT'});
+   const raw={intentId:id,proofType:kind,binding:b,targetId:contract.target.id,contractSHA256:sha(Buffer.from(JSON.stringify(contract))),decodedPixels:true,movie:original.ref};
+   if(kind==='STATIC'){
+    raw.decodedFrames=Array.from({length:4},(_,i)=>({frameIndex:i,actualDecodedTimestamp:i/10,targetId:contract.target.id,glyphs:contract.glyphIds.map((id,j)=>({id,pixelPresence:true,decodedCentroid:[10+j*5,20]}))}));
+    raw.sensitivityControl=ref({targetId:contract.target.id,videoSHA256:control.hash,movie:control.ref,glyphs:contract.glyphIds.map((id,j)=>({id,from:[10+j*5,20],to:[12+j*5,20],expectedDisplacementPixels:2}))});
+   }else Object.assign(raw,{isolatedControl:true,controlVideoSHA256:control.hash,repeatVideoSHA256:repeat.hash,controlMovie:control.ref,repeatMovie:repeat.ref,actualDecodedTimestamp:.2,measuredValues:[0,2],independentRepeat:true,originalNativeIdentity:true,originalDecodedIdentity:true,repeatNativeIdentity:true,targetModelPassed:true,semanticSamples:contract.semanticModel.expectedSamples.map(e=>({...e,targetId:contract.target.id,observedVector:e.vector,repeatVector:e.vector})),...kind==='COMPOSITE'?{componentIntentIds:contract.requiredComponentIntentIds}:{}});
+   observations.push({intentId:id,status:'VERIFIED',videoSHA256:b.videoSHA256,controlVideoSHA256:control.hash,actualDecodedTimestamp:.2,counterfactual:kind!=='STATIC',decodedPixels:true,measurement:ref(raw)});
+  }
+  const ids=intents.map(i=>i.intentId),m=fixture();m.evidence.operators=ref({proofSchema:2,importanceClassificationFinalized:true,expectedImportantIntentIds:ids,population:ref({intents,executionLedger:ref({expectedImportantIntentIds:ids,rows})}),observations});return m;
+ }
+ const typedState=m=>evaluate(m,root).checks.quality.find(c=>c.name==='important semantic operators').state;
+ const editRaw=(m,fn,index=0)=>change(m,'operators',o=>{const raw=readRef(o.observations[index].measurement);fn(raw);o.observations[index].measurement=ref(raw);});
+ let v2checks=0;
+ for(const kind of ['DYNAMIC','STATIC','COMPOSITE']){const m=typedFixture(kind);assert.equal(typedState(m),'PASS',kind);v2checks++;}
+ const staticCounterexamples=[
+  [r=>r.decodedFrames[2].glyphs[0].decodedCentroid[0]+=2,'FAIL'],
+  [r=>r.decodedFrames.pop(),'UNVERIFIED'],
+  [r=>r.decodedFrames[1].actualDecodedTimestamp=.15,'UNVERIFIED'],
+  [r=>r.decodedFrames[1].frameIndex=0,'UNVERIFIED'],
+  [r=>r.decodedFrames[1].targetId='background','UNVERIFIED'],
+  [r=>r.decodedFrames[1].glyphs.pop(),'UNVERIFIED'],
+  [r=>r.decodedFrames[1].glyphs[0].id='other','UNVERIFIED'],
+  [r=>r.decodedFrames[1].glyphs[0].pixelPresence=false,'FAIL'],
+  [r=>r.decodedFrames[1].glyphs[0].decodedCentroid=null,'UNVERIFIED'],
+  [r=>r.binding={...r.binding,inputHash:'f'.repeat(64)},'UNVERIFIED'],
+  [r=>r.binding={...r.binding,planHash:'f'.repeat(64)},'UNVERIFIED'],
+  [r=>r.binding={...r.binding,sourceCommit:'f'.repeat(40)},'UNVERIFIED'],
+  [r=>r.binding={...r.binding,videoSHA256:'f'.repeat(64)},'UNVERIFIED'],
+  [r=>r.contractSHA256='f'.repeat(64),'UNVERIFIED'],
+  [r=>r.decodedPixels=false,'UNVERIFIED'],
+  [r=>delete r.sensitivityControl,'UNVERIFIED'],
+  [r=>{const c=readRef(r.sensitivityControl);c.targetId='background';r.sensitivityControl=ref(c);},'UNVERIFIED'],
+  [r=>{const c=readRef(r.sensitivityControl);c.glyphs[0].to=c.glyphs[0].from;r.sensitivityControl=ref(c);},'UNVERIFIED'],
+ ];
+ for(const [fn,state]of staticCounterexamples){const m=typedFixture();editRaw(m,fn);assert.equal(typedState(m),state);v2checks++;}
+ {const m=typedFixture();editRaw(m,r=>r.backgroundDriftPixels=100);assert.equal(typedState(m),'PASS','moving background is not moving primary lyrics');v2checks++;}
+ for(const fn of [o=>o.importanceClassificationFinalized=false,o=>o.expectedImportantIntentIds=[],o=>o.observations=[],o=>o.observations.push(o.observations[0]),o=>o.proofSchema=999]){const m=typedFixture();change(m,'operators',fn);assert.equal(typedState(m),'UNVERIFIED');v2checks++;}
+ {const m=typedFixture();change(m,'operators',o=>{const p=readRef(o.population),l=readRef(p.executionLedger);l.rows[0].classification='EXECUTED_IMPORTANT';p.executionLedger=ref(l);o.population=ref(p);});assert.equal(typedState(m),'UNVERIFIED','dynamic effect cannot borrow a static contract');v2checks++;}
+ {const m=typedFixture();editRaw(m,r=>{const v=readRef(r.movie);fs.appendFileSync(path.join(root,v.media.path),'tampered');});assert.equal(typedState(m),'UNVERIFIED','actual video hash mismatch');v2checks++;}
+ const dynamicCounterexamples=[r=>r.isolatedControl=false,r=>r.actualDecodedTimestamp=.4,r=>r.repeatNativeIdentity=false,r=>r.originalDecodedIdentity=false,r=>r.independentRepeat=false,r=>r.targetModelPassed=false,r=>r.measuredValues=[],r=>r.controlMovie=ref({...readRef(r.controlMovie),binding:{...readRef(r.controlMovie).binding,inputHash:'f'.repeat(64)}})];
+ for(const fn of dynamicCounterexamples){const m=typedFixture('DYNAMIC');editRaw(m,fn);assert.equal(typedState(m),'UNVERIFIED');v2checks++;}
+ {const m=typedFixture('COMPOSITE');change(m,'operators',o=>o.observations.shift());assert.equal(typedState(m),'UNVERIFIED','assembled pixel change cannot replace a component proof');v2checks++;}
+ {const m=typedFixture('COMPOSITE');editRaw(m,r=>r.componentIntentIds=[],2);assert.equal(typedState(m),'UNVERIFIED');v2checks++;}
+ {const m=typedFixture();change(m,'operators',o=>{const p=readRef(o.population),l=readRef(p.executionLedger);o.expectedImportantIntentIds.push('missing');l.expectedImportantIntentIds.push('missing');l.rows.push({...l.rows[0],intentId:'missing'});p.intents.push({...p.intents[0],intentId:'missing'});p.executionLedger=ref(l);o.population=ref(p);});assert.equal(typedState(m),'UNVERIFIED','one unproved intent blocks all-intent PASS');v2checks++;}
+
+ for(const [fn,state]of [[r=>delete r.semanticSamples,'UNVERIFIED'],[r=>r.semanticSamples[0].targetId='background','UNVERIFIED'],[r=>r.semanticSamples[0].observedVector=[-5,0],'FAIL'],[r=>r.semanticSamples[0].repeatVector=[8,0],'FAIL'],[r=>r.semanticSamples[0].actualDecodedTimestamp=.3,'UNVERIFIED'],[r=>r.semanticSamples.forEach(s=>s.observedVector=[0,0]),'FAIL']]){const m=typedFixture('DYNAMIC');editRaw(m,fn);assert.equal(typedState(m),state);v2checks++;}
+
+ for(const mode of ['missing-model','zero-effect','wrong-units']){const m=typedFixture('DYNAMIC');change(m,'operators',o=>{const p=readRef(o.population),c=p.intents[0],r=readRef(o.observations[0].measurement);if(mode==='missing-model')delete c.semanticModel;else if(mode==='wrong-units')c.semanticModel.units='UNRESOLVED';else{c.semanticModel.expectedSamples.forEach(s=>s.vector=[0,0]);r.semanticSamples.forEach(s=>{s.observedVector=[0,0];s.repeatVector=[0,0];});}r.contractSHA256=sha(Buffer.from(JSON.stringify(c)));o.population=ref(p);o.observations[0].measurement=ref(r);});assert.equal(typedState(m),'UNVERIFIED',mode);v2checks++;}
+ console.log(`v2 typed intent proof contract: ${v2checks} synthetic positive/counterexample scenarios PASS`);
+
 }finally{fs.rmSync(root,{recursive:true,force:true});}
