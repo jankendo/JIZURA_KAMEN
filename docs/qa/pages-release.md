@@ -22,7 +22,7 @@ in this repository at that same SHA, containing exactly one unexpired artifact
 named `kamen-release-evidence`. Its extracted root contains `manifest.json` and
 all referenced JSON/gzip/MP4 files. Use Actions `upload-artifact` to retain the
 assembled bundle. The producer is an evidence assembly step, not a certification
-by itself. No producer or real canonical bundle is supplied by this patch:
+by itself. No producer or self-contained publication bundle is supplied by this patch:
 existing `kamen-validation` is a different artifact, and cannot be renamed to
 manufacture missing observations. The producer run ID and reviewed manifest
 SHA-256 are explicit publication inputs; its repository/SHA/success and artifact
@@ -89,36 +89,83 @@ an explicitly approved revert commit on main, followed by source correspondence,
 CI/quality review and the same approved dispatch. No force push or branch policy
 change is required. The existing successful production stays online on rejection.
 
-## Remaining real quality evidence
+## Recovered real evidence and remaining quality work
 
-On 2026-10-20, `/workspace/kamen-evidence/` was absent. CI #39257690138 succeeded
-for PR head `0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc`; its artifact
-12197471775 (`kamen-validation`, 438707885 bytes) existed, but the storage download
-endpoint returned HTTP 403 from this environment. No canonical release manifest,
-Intent population or candidate media was recovered. Therefore current evaluator
-TECHNICAL_GO / QUALITY_GO / RELEASE_GO are UNVERIFIED here. Prior technical PASS
-and the conservative 1129-important/1250-total counts are historical claims, not
-new certifications. Native recovery run 39337531341 is a different workflow/SHA;
-reuse it only after verifying full source/input/profile/frame correspondence.
+On 2026-10-20, `/workspace/kamen-evidence/` was absent. Direct storage download
+of CI artifact 12197471775 returned HTTP 403, but this was not a complete evidence
+access block. The existing GitHub connector recovered a small Native artifact,
+and GitHub API recovered the actual canonical manifest and ledgers from immutable
+ref `bd38de83ecff998c3a45821a6e01da233f106ad3` under
+`docs/qa/generalization/composition-recovery/`:
+
+- `release-current-head/release-gate-manifest.json` (raw SHA-256
+  `bf38578e35d6c7cc4f62ad4406efdcaec0e8821516aca9963a966bf78b71352c`).
+- `release-recovery-20261019/clock-complete-ledger.json.gz` (SHA-256
+  `044eac6ca1dba8b14cb08c4777264476079d9896809ffbc04acf6be6c2f8938d`).
+- `release-recovery-20261019/current31-partial-population.json.gz` (SHA-256
+  `6e71cb3387c3fa0d4aa405c829a56aeeaec3d3314bc7b4f238072bb9f4659e60`).
+
+The canonical manifest, hash-bound direct evidence, two SKIP alternatives and three
+finished-artifact observations were recovered. Its original CI merge checkout
+`5a38c44766a7a9cb6289d61374bb6257ce2a76e1` was fetched, and its actual full tree
+matches PR HEAD `0a5c896fcf1a734b4f18d3f2467c285ba7c6a1fc` through the recorded
+Git correspondence. Re-running the existing evaluator on the original evidence
+(replacing only `gitRepository` with the local checkout path) reproduced
+**TECHNICAL_GO PASS / QUALITY_GO UNVERIFIED / RELEASE_GO UNVERIFIED** for that PR
+HEAD. No CI or production MP4 was regenerated. Raw manifest bytes and the
+normalized evaluator `manifestSHA256` are different hashes; do not interchange
+those with the reviewed publication input. This does not certify the new adapter
+commit or satisfy the stronger latest-candidate/publication contract.
+
+Both ledgers contain 1,250 rows: 772 dynamic, 280 composite, 77 static, 27 manual
+and 94 identity rows. The conservative important population is exactly 1,129
+(772+280+77); its rows are encoded-UNMEASURED, have no actual decoded timestamp,
+no counterfactual, and no finalized target contract. The partial ledger is
+source-bound to `5eb02e6`, the clock-complete ledger to `d04c734`; neither can
+silently certify current source. Current `0a5c896` operators correctly retain
+`importanceClassificationFinalized:false`, zero finalized expected IDs and zero
+observations. Full important-population proof is still required, not a sampling
+extrapolation.
 
 Minimum remaining work, without mass re-encoding:
 
-- Recover the original canonical manifest, frozen execution ledger/contracts,
-  candidate selection/plan, raw browser/SKIP alternatives and MP4/hash records.
-  `kamen-tests.json` alone lacks the evaluator's exit-code/build/SKIP contracts.
-- Reconcile every conservatively important Intent by ID and finalized importance;
-  require original/control/repeat movie bindings and decoded target measurements
-  over declared intervals. Static proofs require full glyph rasters and sensitivity
-  control; dynamic/composite proofs require semantic samples and attribution.
-- Resolve significant-regression judgments and the old six comparison gaps using
-  exact source/input/seed/profile correspondence and complete decoded comparisons.
-  Reobserve missing intervals of existing media with
-  `dev/cinema_v5_reobserve_final.cjs` when applicable. Only generate new isolated
-  controls/repeats when the required original evidence genuinely does not exist.
-- Do not transfer the old cinema-v3 NO_GO or sparse-sheet positives to this SHA:
-  that report was source-bound to an older revision and also recorded unmeasured
-  contrast/independent conditions. Current pass/fail needs actual matched proof.
+- Restore/review the retained movies, input/PCM/profile/plan and candidate
+  selection records; assemble a self-contained producer artifact. The recovered
+  canonical manifest itself lacks the new latest-candidate binding. Preserve
+  original sources and JSON observations; relocate bundle paths with updated
+  hashes rather than accepting escaping paths. Existing test summaries alone
+  cannot replace exit-code/build/SKIP/browser observations.
+- Finalize each important Intent's target, interval and intended phase. For 1,052
+  dynamic/composite rows, register semantic/phase models and independent component
+  attribution, then reuse original/control/repeat media where they exist. For 77
+  static rows, distinguish local HOLD identity from world-space static proof;
+  require all-glyph rasters over the full interval and a coded moving sensitivity
+  control. Generate controls only where actually missing.
+- A minimum measurement-pipeline check uses one static, one dynamic and one
+  composite case; it does not certify all 1,129. A concrete static row is
+  `0328a74e22265c06f8d4084f1a939fb039e6fa3f55d404392a1dcede39be92ea`
+  in `development-01`, lyric 窓辺に, interval [0.3, 1.2013513513513514).
+  Freeze its full glyph/clock contract before observing the retained movie.
+- Complete the 31 source/input/seed/profile-matched comparison judgments. Every
+  `significantRegression` remains null in the recovered blockers; a proxy score
+  alone cannot decide music/phrase-level major regression. Reobserve missing
+  intervals of existing media with `dev/cinema_v5_reobserve_final.cjs` where
+  applicable. Do not invent a new acceptance threshold.
+- Resolve the historical decoded-original reproduction cases `development-01`,
+  `development-07`, `holdout-01`, `holdout-07`, `supplemental-development-13`,
+  `supplemental-holdout-13`. The latest retained remaining-conditions document
+  still lists them. Their old d04 movie hashes differ from all corresponding
+  recovered 5eb movies. Their strict original decoded identity remains false;
+  pixel conversion versus historical encoder causes are not established.
+  Native continuity run 39337531341 verifies the 5eb movies' Native frames against
+  current rendering, not the old d04 encoded-original identity. Neither current
+  movie decode failure nor resolution of the old six follows from Native32.
+
+The old cinema-v3 five contrast/independent-brief gaps are separate historical
+records, not the six cases above. Never transfer old NO_GO or sparse-sheet
+positives to current source without matched evidence. The production workflow
+continues to reject incomplete quality and safety/source correspondence.
 
 No public preview is added: local build/serve and existing validation artifacts do
-not overwrite the main Pages site. Formal quality cannot be completed from absent
-raw evidence by modifying an evaluator or writing PASS flags.
+not overwrite main Pages. The existing successful production remains online.
+Formal quality cannot be completed by modifying an evaluator or writing PASS flags.
