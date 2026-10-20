@@ -259,6 +259,10 @@ function replan() {
   S.socialPlan=null;
   S.pixelQA=null;S.exportValidation=null;
   S.plan = J.plan(S.project, audioLike());
+  let restoreNotice=$('songNativeRestoreNotice');
+  if(!restoreNotice){restoreNotice=document.createElement('p');restoreNotice.id='songNativeRestoreNotice';restoreNotice.setAttribute('role','status');$('directionStatus').parentElement.appendChild(restoreNotice);}
+  restoreNotice.hidden=!['REJECTED','PENDING_INPUT'].includes(S.plan.songNativeRestore?.status);
+  restoreNotice.textContent=S.plan.songNativeRestore?.status==='PENDING_INPUT'?'保存されたMVの演出は、音源の読み込み後に互換性を確認します。':'保存されたMVの演出は、現在のバージョンとの互換性を確認できませんでした。元データは保持されています。演出を再確認してください。';
   if(S.plan.songNativeDirection&&S.project.artDirection)S.project.artDirection.songNativeDirection=J.clonePhotoRenderPlan(S.plan.songNativeDirection);
   if(S.project.visualAssets?.length) (S.renderer._uiLoadQueue=(S.renderer._uiLoadQueue||Promise.resolve()).catch(()=>{}).then(()=>S.renderer.loadAssetDeck(S.plan))).then(()=>{S.need=true;}).catch(e=>toast(e.message));
   refreshVisualAssetsUI();
@@ -1132,10 +1136,11 @@ async function autoDirection() {
     S.exportCapabilities=await J.exportCapabilities(S.project,S.project.includeAudio!==false?S.audio:null).catch(()=>null);
     assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
     let report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);
+    const fixSnapshot=J.songNativeFixSnapshot(S.project,audioLike(),S.plan);
     const renderFixes=J.fixMVQuality(S.project,report,S.audio);
-    if(renderFixes){
+    if(renderFixes||J.canonicalJSON(fixSnapshot.project)!==J.canonicalJSON(S.project)){
       syncUI();replan();generationIdentity=J.songNativeInputIdentity(S.project,audioLike());const fixedPlan=S.plan;
-      await J.searchSongNativeCandidates(fixedPlan,range,generationAudio,{onProgress:detail});assertGeneration();if(S.plan!==fixedPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
+      await J.runSongNativeFixSearch(fixSnapshot,S.project,audioLike(),fixedPlan,range,{onProgress:detail});assertGeneration();if(S.plan!==fixedPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
       analyzedInput=await captureInput();const fixedQA=await J.observeMVQuality(fixedPlan,range,generationAudio,{onProgress:detail});assertGeneration();if(S.plan!==fixedPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
       S.pixelQA=fixedQA;fixedPlan.lastPixelQA=fixedQA;report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);
     }
@@ -1143,7 +1148,7 @@ async function autoDirection() {
     if(!S.pixelQA?.completed||analyzedInput?.plan!==S.plan)throw new Error('FINAL_PLAN_REQUIRES_OBSERVATION');
     const finalBinding=await captureInput();assertGeneration();
     if(finalBinding.plan!==S.plan||finalBinding.input.inputHash!==analyzedInput.input.inputHash||finalBinding.renderState!==analyzedInput.renderState||finalBinding.analysisKey!==analyzedInput.analysisKey||S.pixelQA.observationBinding?.planHash!==await J.cinemaV3.planHash(S.plan))throw new Error('FINAL_PLAN_REQUIRES_REOBSERVATION');
-    assertGeneration();J.captureSongNativeResolved(S.project,audioLike(),S.plan,generationIdentity);
+    assertGeneration();J.captureSongNativeResolved(S.project,audioLike(),S.plan,generationIdentity);if($('songNativeRestoreNotice'))$('songNativeRestoreNotice').hidden=true;
     analyzedInput=await captureInput();assertGeneration();
     S.lastQuality=report;updateStudioQuality(pre.fixes+renderFixes);
     const quality = J.inspectDirection(S.plan);

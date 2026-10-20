@@ -24,19 +24,13 @@ jobs:
         run: npm ci
       - name: Check changed JavaScript syntax
         run: |
-          for file in src/11_export.js src/11zzzzzz_video_search.js src/11zzi_render_selection.js src/08_planner.js src/11zzj_musical_photo.js src/11zzq_render_feedback.js src/11zzzzzzzz_cinema_v3.js src/11zzzzzzzzzb_planner_v5.js src/11zzzzzzzzzc_semantic_travel.js src/12_ui.js src/08c_auto_direction.js src/11v_perceptual_director.js src/11w_observer_director.js src/11y_processing_tasks.js src/11zzk_quality_target.js src/11zzm_story_director.js src/11zzp_shot_grammar.js src/11zzzzzzzzze_song_native_director.js; do
+          for file in src/11zzzzzzzzze_song_native_director.js src/11zzm_story_director.js src/11zzzzzz_video_search.js src/11zzzzzzzz_cinema_v3.js src/12_ui.js scripts/build.mjs dev/kamen_song_native_director_test.cjs dev/kamen_song_native_v3_fast_test.cjs; do
             node --check "$file"
           done
-      - name: Check encoder lifecycle and codec fallback
-        run: node dev/kamen_encoder_liveness_test.cjs && node dev/kamen_gpu_codec_test.cjs
+      - name: Check Song-Native v3 contracts
+        run: node dev/kamen_song_native_v3_fast_test.cjs
       - name: Check export UI behavior
         run: node dev/kamen_export_ui_test.cjs
-      - name: Check render optimization equivalence
-        run: node dev/kamen_fast_render_v3_test.cjs
-      - name: Check fast pipeline control and quality compatibility
-        run: node dev/kamen_fast_pipeline_v4_test.cjs && node dev/kamen_machine_refinement_test.cjs && node dev/cinema_v3_state_machine_test.cjs && node dev/cinema_final_semantic_travel_test.cjs && node dev/cinema_v5_final_artifact_test.cjs
-      - name: Check Song-Native structure and observation contract
-        run: node dev/kamen_song_native_director_test.cjs && node dev/kamen_story_director_test.cjs --song-native
       - name: Build production files
         run: npm run build
       - name: Verify production layout

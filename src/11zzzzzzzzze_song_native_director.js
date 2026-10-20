@@ -1,4 +1,4 @@
-/* Song-Native Director v2. Local analysis, explicit search, immutable observation. */
+/* Song-Native Director v3. Local analysis, explicit search, immutable observation. */
 (()=>{
 'use strict';
 const J=window.J,C=J.clamp,finite=Number.isFinite;
@@ -53,12 +53,22 @@ J.buildSongNativeDirection=(project,audio)=>{
   return {intent,intentStatus:e===null?'UNMEASURED':'INFERRED',start,end,measuredEnergy:e,energyStatus:e===null?'UNMEASURED':status,onset:onsets,spectralFlux:flux,energyChange:delta,lyricDensity:density,repetition:repeat,rest,quietIntent:quiet,motionIntensity:motion,visualDensity:quiet?.08:C(.1+level*.4+change*.2-detail*.15-density*.15),cameraTravel:quiet?.025:C(.05+motion*.65+change*.15),negativeSpace:C(.35+space*.25+density*.25-level*.15),typographyScale:C(.35+level*.3+repeat*.1-density*.18),contrastIntent:C(.45+(1-contrast)*.25+detail*.15),transitionIntensity:quiet?.03:C(change*.6+rhythm*.15),entryDuration:Math.min(.16,Math.max(.06,.16-rhythm*.08)),emphasis:quiet?'quiet':change>.4?'change':repeat>.3?'return':'sustain'};
  });
  const known=sections.filter(s=>s.measuredEnergy!==null&&!s.rest),peak=known.reduce((best,s)=>!best||s.measuredEnergy>best.measuredEnergy?s:best,null);
- return {version:2,sourceIdentity:inputIdentity(project,audio),duration,sections,lyrics:lines,climax:peak?.start??null,commonLanguage:{palette:copy(project.autoPalette?.palette||null),font:project.fonts?.display||null,motion:'continuous phrase travel and complete readable lyric',imageStatus:imageMeasured?'MEASURED':'UNMEASURED'},evidence:{energy:status,sections:timeline.length?'INFERRED':'LRC_STRUCTURE_ONLY',coarseBlocks:coarse?'PROVIDED_NOT_FORMAL_SECTIONS':'NOT_USED',semantics:'UNKNOWN',image:imageMeasured?'MEASURED':'UNMEASURED'},limitations:'Heuristic structure and exact lyric repetition; keyword hints are not semantic understanding. No artistic quality claim.'};
+ // Continuous trajectory derived from evidence, with a shared cumulative memory.
+ let accumulated=0;
+ for(const section of sections){
+  const progress=section.start/Math.max(.1,duration),drive=section.energyChange??0;
+  accumulated=C(accumulated+drive*.55+(section.onset??0)*.08-section.lyricDensity*.04);
+  section.motif={progress,cohesion:C(.25+accumulated*.45+section.repetition*.3+progress*.18),
+   spread:C(section.negativeSpace*.5+(section.spectralFlux??0)*.3+(1-section.repetition)*.15),
+   axis:C(.5+drive*.5+(section.repetition-.3)*.2+(space-.5)*.2),
+   lift:C(.5-drive*.35+section.lyricDensity*.15-progress*.1),accumulation:accumulated};
+ }
+ return {version:3,sourceIdentity:inputIdentity(project,audio),duration,sections,lyrics:lines,climax:peak?.start??null,commonLanguage:{palette:copy(project.autoPalette?.palette||null),font:project.fonts?.display||null,motion:'continuous phrase travel and complete readable lyric',imageStatus:imageMeasured?'MEASURED':'UNMEASURED'},evidence:{energy:status,sections:timeline.length?'INFERRED':'LRC_STRUCTURE_ONLY',coarseBlocks:coarse?'PROVIDED_NOT_FORMAL_SECTIONS':'NOT_USED',semantics:'UNKNOWN',image:imageMeasured?'MEASURED':'UNMEASURED'},limitations:'Heuristic structure and exact lyric repetition; keyword hints are not semantic understanding. No artistic quality claim.'};
 };
-J.validSongNativeDirection=d=>[1,2].includes(d?.version)&&typeof d.sourceIdentity==='string'&&finite(d.duration)&&d.duration>0&&Array.isArray(d.sections)&&d.sections.length>0&&d.sections.every((s,i)=>finite(s.start)&&finite(s.end)&&s.start>=0&&s.end>s.start&&s.end<=d.duration&&(!i||s.start===d.sections[i-1].end)&&['motionIntensity','visualDensity','cameraTravel','negativeSpace','typographyScale','contrastIntent','transitionIntensity'].every(k=>finite(s[k])&&s[k]>=0&&s[k]<=1))&&d.sections[0].start===0&&d.sections.at(-1).end===d.duration;
+J.validSongNativeDirection=d=>[1,2,3].includes(d?.version)&&typeof d.sourceIdentity==='string'&&finite(d.duration)&&d.duration>0&&Array.isArray(d.sections)&&d.sections.length>0&&d.sections.every((s,i)=>finite(s.start)&&finite(s.end)&&s.start>=0&&s.end>s.start&&s.end<=d.duration&&(!i||s.start===d.sections[i-1].end)&&['motionIntensity','visualDensity','cameraTravel','negativeSpace','typographyScale','contrastIntent','transitionIntensity'].every(k=>finite(s[k])&&s[k]>=0&&s[k]<=1))&&(d.version!==3||d.sections.every(s=>s.motif&&['progress','cohesion','spread','axis','lift','accumulation'].every(k=>finite(s.motif[k])&&s.motif[k]>=0&&s.motif[k]<=1)))&&d.sections[0].start===0&&d.sections.at(-1).end===d.duration;
 J.songNativeSectionAt=(p,t)=>{const a=p.songNativeDirection?.sections||[];if(!finite(t))return null;let lo=0,hi=a.length;while(lo<hi){const m=(lo+hi)>>>1;if(a[m].start<=t)lo=m+1;else hi=m;}const s=a[lo-1];return s&&t<s.end?s:null;};
 J.applySongNativeDirection=p=>{
- const d=p.songNativeDirection;if(p.songNativeManualPlan||![1,2].includes(d?.version))return p;
+ const d=p.songNativeDirection;if(p.songNativeManualPlan||![1,2,3].includes(d?.version))return p;
  for(const c of p.cuts||[]){if(c.line<0||locked(p,c))continue;const s=J.songNativeSectionAt(p,c.start);if(!s)continue;
   c.songNative={sectionStart:s.start,motionIntensity:s.motionIntensity,visualDensity:s.visualDensity,typographyScale:s.typographyScale,quietIntent:s.quietIntent};
   if(c.grammar){const g=c.grammar;g.quiet=g.quiet||s.quietIntent;g.intentionalHold=g.intentionalHold||s.quietIntent;g.layerStrength=s.visualDensity;g.directionPolicy={...g.directionPolicy,motionBudget:s.motionIntensity,attentionBudget:s.visualDensity,quietIntent:s.quietIntent};
@@ -85,14 +95,19 @@ const delta=(a,b,path=[],out=[])=>{
 };
 const safePath=path=>Array.isArray(path)&&renderRoots.includes(path[0])&&path.every(k=>typeof k==='string'&&!['__proto__','prototype','constructor'].includes(k)&&!transient(k));
 const patch=(target,ops)=>{for(const op of ops){if(!safePath(op.path))throw Error('INVALID_RESOLVED_PATH');let node=target;for(const k of op.path.slice(0,-1)){if(!node[k]||typeof node[k]!=='object')throw Error('INVALID_RESOLVED_PARENT');node=node[k];}const key=op.path.at(-1);if(op.remove)delete node[key];else node[key]=copy(op.value);}return target;};
-const rendererVersion=()=>(window.KAMEN_BUILD_INFO?.sourceTreeSHA256||J.cinemaV3.version)+'/song-native-2';
+// Bump only for incompatible rendering semantics. Build hashes are diagnostic.
+J.songNativeRendererCompatibilityId='kamen-song-native-renderer-3';
+const rendererVersion=()=>J.songNativeRendererCompatibilityId;
+const buildId=()=>window.KAMEN_BUILD_INFO?.sourceTreeSHA256||window.KAMEN_BUILD_INFO?.sourceCommit||'development';
+const renderContract=p=>fingerprint({lines:p.lines,W:p.W,H:p.H,duration:p.duration,locks:J.cinemaV3.lockSignature(p)});
+const restoreState=(p,status,reason)=>{p.songNativeRestore={status,reason};return p;};
 J.captureSongNativeResolved=(project,audio,p,expectedIdentity=inputIdentity(project,audio))=>{
  if(expectedIdentity!==inputIdentity(project,audio))throw Error('INPUT_CHANGED_BEFORE_RESOLVED_COMMIT');
  if(!J.validSongNativeDirection(p.songNativeDirection)||p.songNativeDirection.sourceIdentity!==expectedIdentity)throw Error('STALE_SONG_NATIVE_PLAN');
  const source={...project,artDirection:{...project.artDirection}};delete source.artDirection.songNativeResolved;
  const baseline=J.plan(source,audio),base=J.songNativeRenderDecisions(baseline),final=J.songNativeRenderDecisions(p);
  if(!same(baseline.lines,p.lines)||J.cinemaV3.lockSignature(baseline)!==J.cinemaV3.lockSignature(p))throw Error('TIMING_OR_LOCK_CHANGED');
- const resolved={version:2,sourceIdentity:expectedIdentity,rendererVersion:rendererVersion(),baselineIdentity:fingerprint(base),decisionsIdentity:fingerprint(final),direction:copy(p.songNativeDirection),overrides:delta(base,final),locks:J.cinemaV3.lockSignature(p)};
+ const resolved={version:3,songNativeSchemaVersion:3,buildId:buildId(),rendererCompatibilityId:rendererVersion(),renderContract:renderContract(baseline),sourceIdentity:expectedIdentity,baselineIdentity:fingerprint(base),decisionsIdentity:fingerprint(final),direction:copy(p.songNativeDirection),overrides:delta(base,final),locks:J.cinemaV3.lockSignature(p)};
  if(fingerprint(patch(base,resolved.overrides))!==resolved.decisionsIdentity)throw Error('UNREPRESENTABLE_RENDER_DECISIONS');
  // Commit atomically after all validation. A superseded async job cannot reach here.
  project.artDirection={...project.artDirection,songNativeDirection:copy(p.songNativeDirection),songNativeResolved:resolved};
@@ -100,44 +115,96 @@ J.captureSongNativeResolved=(project,audio,p,expectedIdentity=inputIdentity(proj
 };
 J.restoreSongNativeResolved=(project,audio,p)=>{
  const r=project.artDirection?.songNativeResolved;
- if(r?.version!==2||r.rendererVersion!==rendererVersion()||r.sourceIdentity!==inputIdentity(project,audio)||!J.validSongNativeDirection(r.direction)||!same(r.direction,p.songNativeDirection)||!Array.isArray(r.overrides))return p;
- if(r.baselineIdentity!==fingerprint(J.songNativeRenderDecisions(p))||r.locks!==J.cinemaV3.lockSignature(p))return p;
+ if(!r)return restoreState(p,'NOT_SAVED');
+ if(!audio||!audio.duration)return restoreState(p,'PENDING_INPUT','AUDIO_NOT_READY');
+ // No legacy hash is allowlisted without a verified equivalent rendering contract.
+ if(r.version!==3||r.songNativeSchemaVersion!==3||r.rendererCompatibilityId!==rendererVersion())return restoreState(p,'REJECTED','RENDERER_OR_SCHEMA');
+ if(r.sourceIdentity!==inputIdentity(project,audio)||!J.validSongNativeDirection(r.direction)||!same(r.direction,p.songNativeDirection)||!Array.isArray(r.overrides))return restoreState(p,'REJECTED','INPUT_OR_DIRECTION');
+ if(r.renderContract!==renderContract(p)||r.baselineIdentity!==fingerprint(J.songNativeRenderDecisions(p))||r.locks!==J.cinemaV3.lockSignature(p))return restoreState(p,'REJECTED','BASELINE_OR_LOCK');
  try{
   // The planner deliberately shares some anchors between contracts. Patch the
   // dealiased JSON projection so a cut override cannot mutate an unchanged contract.
   const decisions=patch(J.songNativeRenderDecisions(p),r.overrides),candidate=copy(p);
   for(const k of renderRoots){delete candidate[k];if(decisions[k]!==undefined)candidate[k]=decisions[k];}
-  if(fingerprint(J.songNativeRenderDecisions(candidate))!==r.decisionsIdentity||r.locks!==J.cinemaV3.lockSignature(candidate)||!same(candidate.lines,p.lines))return p;
-  J.cinemaV3.restorePlan(p,candidate);J.cinemaV3.invalidate(p);
+  if(fingerprint(J.songNativeRenderDecisions(candidate))!==r.decisionsIdentity||r.locks!==J.cinemaV3.lockSignature(candidate)||!same(candidate.lines,p.lines))return restoreState(p,'REJECTED','DECISIONS_OR_LOCK');
+  J.cinemaV3.restorePlan(p,candidate);J.cinemaV3.invalidate(p);restoreState(p,'RESTORED');
   // Restoration is last in J.plan; basic direction never runs after these decisions.
- }catch{/* Invalid/old payload safely falls back to the current deterministic plan. */}
+ }catch{return restoreState(p,'REJECTED','INVALID_PATCH');}
  return p;
+};
+
+J.songNativeFixSnapshot=(project,audio,p)=>({project:copy(project),identity:inputIdentity(project,audio),audioIdentity:fingerprint({key:J.registrySelectionAudioKey(audio),energy:Array.from(audio?.energy||[]),onset:Array.from(audio?.onset||[])}),base:J.songNativeRenderDecisions(J.plan({...project,artDirection:{...project.artDirection,songNativeResolved:undefined}},audio)),chosen:J.songNativeRenderDecisions(p),lines:copy(p.lines),locks:J.cinemaV3.lockSignature(p)});
+const overlap=(a,b)=>a.every((v,i)=>b[i]===v)||b.every((v,i)=>a[i]===v);
+J.classifySongNativeFix=(before,project,p,audio)=>{
+ const expand=op=>op.path[0]==='overrides'&&op.path.length===2&&op.value&&typeof op.value==='object'?Object.entries(op.value).map(([k,value])=>({path:[...op.path,k],value})):[op];
+ const ops=delta(before.project,project).flatMap(expand),planOps=delta(before.base,J.songNativeRenderDecisions(J.plan({...project,artDirection:{...project.artDirection,songNativeResolved:undefined}},audio)));
+ if(!ops.length&&!planOps.length)return 'OBSERVATION_ONLY';
+ if(ops.some(o=>['lyrics','timing','aspect','customBg','audioAsset','visualAssets'].includes(o.path[0])))return 'INPUT_OR_ASPECT_CHANGE';
+ const read=o=>o.path[0]==='lyricPlacementWide'||o.path[0]==='titleDisplay'||o.path[0]==='autoPalette'&&o.path[1]==='options'||o.path[0]==='overrides'&&['size','color','stroke','strokeColor'].includes(o.path[2]);
+ const motion=o=>o.path[0]==='overrides'&&['hold','enter','exit','inDur','outDur'].includes(o.path[2])||o.path[0]==='fx'&&['motion','glitch'].includes(o.path[1])||o.path[0]==='artDirection'&&o.path[1]==='motionDNA'&&['transitionDuration','cameraSpeed','beatResponse'].includes(o.path[2]);
+ if(!ops.length)return 'UNKNOWN';
+ if(ops.every(read))return 'LOCAL_READABILITY';
+ if(ops.every(o=>read(o)||motion(o)))return 'LOCAL_MOTION';
+ if(ops.some(o=>['style','mood','enabled','seed','artDirection','fx'].includes(o.path[0])))return 'GLOBAL_COMPOSITION';
+ return 'UNKNOWN';
+};
+J.reapplySongNativeSelection=(before,project,audio,p,impact)=>{
+ if(before.identity!==inputIdentity(before.project,audio)||impact!==J.classifySongNativeFix(before,project,p,audio)||p.songNativeDirection?.sourceIdentity!==inputIdentity(project,audio))return false;
+ if(before.audioIdentity!==fingerprint({key:J.registrySelectionAudioKey(audio),energy:Array.from(audio?.energy||[]),onset:Array.from(audio?.onset||[])}))return false;
+ if(!['OBSERVATION_ONLY','LOCAL_READABILITY','LOCAL_MOTION'].includes(impact)||!same(before.lines,p.lines)||before.locks!==J.cinemaV3.lockSignature(p))return false;
+ // Rebase only non-conflicting decisions. Never restore stale caches or QA.
+ const current=J.songNativeRenderDecisions(J.plan({...project,artDirection:{...project.artDirection,songNativeResolved:undefined}},audio)),repairs=delta(before.base,current),selected=delta(before.base,before.chosen);
+ if(selected.some(o=>!safePath(o.path)))return false;
+ const applicable=selected.filter(o=>!repairs.some(r=>overlap(o.path,r.path)));
+ try{const decisions=patch(current,applicable),candidate=copy(p);for(const k of renderRoots){delete candidate[k];if(decisions[k]!==undefined)candidate[k]=decisions[k];}
+  if(before.locks!==J.cinemaV3.lockSignature(candidate)||!same(before.lines,candidate.lines))return false;
+  J.cinemaV3.restorePlan(p,candidate);delete p.lastPixelQA;J.cinemaV3.invalidate(p);return true;
+ }catch{return false;}
+};
+J.runSongNativeFixSearch=async(before,project,audio,p,range,telemetry={})=>{
+ const impact=J.classifySongNativeFix(before,project,p,audio),reused=J.reapplySongNativeSelection(before,project,audio,p,impact);
+ if(!reused)await J.searchSongNativeCandidates(p,range,audio,telemetry);
+ return {impact,reused,requiresObservation:true};
+};
+
+J.songNativeSpatialObservation=(mask,w,h)=>{let weight=0,x=0,y=0,second=0;for(let i=3;i<mask.length;i+=4){const a=mask[i]/255,px=((i-3)/4%w)/w,py=Math.floor((i-3)/4/w)/h;weight+=a;x+=a*px;y+=a*py;second+=a*(px*px+py*py);}return weight?{centroidX:x/weight,centroidY:y/weight,spread:Math.sqrt(Math.max(0,second/weight-(x*x+y*y)/(weight*weight)))}:{};};
+J.songNativeCandidateKey=p=>{const render=J.songNativeRenderDecisions(p);if(render.musicalPhoto?.cinema?.architecture)delete render.musicalPhoto.cinema.architecture.candidate;return J.canonicalJSON({render,motif:p.songNativeDirection,profile:[p.W,p.H,p.fps]});};
+J.songNativeDistinctCandidates=(items,minimum=3)=>{
+ const ordered=[...items.filter(item=>item.id==='baseline'),...items.filter(item=>item.id!=='baseline')],seen=new Set(),distinct=ordered.filter(item=>{const key=J.songNativeCandidateKey(item.plan);if(seen.has(key))return false;seen.add(key);return true;});
+ return {items:distinct.length>=Math.min(minimum,items.length)?distinct:items,fallback:distinct.length<Math.min(minimum,items.length)};
 };
 
 const propose=J.proposeDirection;J.proposeDirection=(...args)=>({...propose(...args),songNativeDirector:1});
 const direction=J.makeArtDirection;J.makeArtDirection=(project,audio,proposal)=>{
- const d=direction(project,audio,proposal);if(proposal.songNativeDirector===1||[1,2].includes(project.artDirection?.songNativeDirection?.version)){const input={...project,style:d.style,mood:d.mood,fonts:d.typography,fx:proposal.fx||project.fx,overrides:proposal.overrides||project.overrides};d.songNativeDirection=J.buildSongNativeDirection(input,audio);}return d;
+ const d=direction(project,audio,proposal);if(proposal.songNativeDirector===1||[1,2,3].includes(project.artDirection?.songNativeDirection?.version)){const input={...project,style:d.style,mood:d.mood,fonts:d.typography,fx:proposal.fx||project.fx,overrides:proposal.overrides||project.overrides};d.songNativeDirection=J.buildSongNativeDirection(input,audio);}return d;
 };
 const plan=J.plan;J.plan=(project,audio)=>{
  const p=plan(project,audio),saved=project.artDirection?.songNativeDirection;
- if(![1,2].includes(saved?.version)||!p.artDirection)return p;
+ if(![1,2,3].includes(saved?.version)||!p.artDirection)return p;
  // Authored section plans keep v1's opt-out from native modulation, while their
- // selected render decisions still receive the v2 save/restore contract.
+ // selected render decisions still receive the versioned save/restore contract.
  p.songNativeManualPlan=!!p.directorSections7?.length;
  // Recompute stale input; never edit the saved project from this pure planner.
  p.songNativeDirection=J.validSongNativeDirection(saved)&&saved.sourceIdentity===inputIdentity(project,audio)?copy(saved):J.buildSongNativeDirection(project,audio);
  p.artDirection={...p.artDirection,songNativeDirection:p.songNativeDirection};J.applySongNativeDirection(p);return J.restoreSongNativeResolved(project,audio,p);
 };
 const architecture=J.applyCinemaArchitecture;J.applyCinemaArchitecture=(p,...args)=>{const r=architecture(p,...args);J.applySongNativeDirection(p);return r;};
+J.songNativeMotifAt=(p,t)=>{
+ const d=p.songNativeDirection,s=J.songNativeSectionAt(p,t);if(d?.version!==3||!s?.motif)return null;
+ const next=d.sections[d.sections.indexOf(s)+1]?.motif||s.motif,u=C((t-s.start)/Math.max(.1,s.end-s.start)),v=u*u*(3-2*u);
+ return Object.fromEntries(Object.keys(s.motif).map(k=>[k,s.motif[k]*(1-v)+next[k]*v]));
+};
 // Runtime adapters also sample at render time, so a long cut can cross a section.
 const temporal=J.cinemaTemporalState;J.cinemaTemporalState=(p,c,t)=>{const state=temporal(p,c,t),s=J.songNativeSectionAt(p,t);if(!state||!s||locked(p,c))return state;
  const hold=c.grammar?.intentionalHold||s.quietIntent,u=state.u,progress=s.intent==='release'?1-Math.pow(1-u,3):s.intent==='accumulation'?u*u:u*u*(3-2*u);
  return {...state,level:hold?Math.min(state.level,.08):C(state.level*(.65+s.motionIntensity*.55)+(c.songNativeRepair?.motionDelta||0)),travel:hold?state.travel:state.travel*.6+progress*.4,impact:state.impact*(.7+s.transitionIntensity*.6),entry:state.entry};};
 const focus=J.temporalCinemaFocus;J.temporalCinemaFocus=(p,c,f,t)=>{
- const base=focus(p,c,f,t),s=J.songNativeSectionAt(p,t);if(!s||locked(p,c)||c.grammar?.intentionalHold)return base;
+ const base=focus(p,c,f,t),s=J.songNativeSectionAt(p,t);if(!s||s.quietIntent||locked(p,c)||c.grammar?.intentionalHold)return base;
  const u=C((t-s.start)/Math.max(.1,s.end-s.start)),v=s.intent==='release'?1-Math.pow(1-u,3):s.intent==='accumulation'?u*u:u*u*(3-2*u),q={...base},space=p.autoPalette?.stats||{};
  q.zoom=Math.max(1,Math.min(2.8,(base.zoom??1)+s.cameraTravel*.025*v*(.8+s.transitionIntensity*.4)));
- q.x=C((base.x??.5)+((space.spaceRight??.5)-(space.spaceLeft??.5))*s.cameraTravel*.025*v,.03,.97);return q;
+ const motif=J.songNativeMotifAt(p,t);
+ if(motif&&!s.quietIntent){q.x=C((base.x??.5)+(motif.axis-.5)*.09,.03,.97);q.y=C((base.y??.5)+(motif.lift-.5)*.07,.03,.97);}
+ q.x=C((q.x??base.x??.5)+((space.spaceRight??.5)-(space.spaceLeft??.5))*s.cameraTravel*.025*v,.03,.97);return q;
 };
 const camera=J.cameraAt;J.cameraAt=(p,t,range)=>{
  const s=J.songNativeSectionAt(p,t),c=J.cutAt(p,t);if(!s||s.quietIntent||locked(p,c)||c?.grammar)return camera(p,t,range);
@@ -146,6 +213,11 @@ const camera=J.cameraAt;J.cameraAt=(p,t,range)=>{
 const main=J.mainDraw;J.mainDraw=(env,it)=>{
  const s=J.songNativeSectionAt(env.plan,env.t),c=env.cut;
  if(s&&c?.line>=0&&!locked(env.plan,c)&&norm(it.text)===norm(c.lineText??c.text)&&finite(it.size))it={...it,size:it.size*(.82+.18*s.typographyScale)*(1-.08*s.negativeSpace)};
+ const motif=J.songNativeMotifAt(env.plan,env.t);
+ if(motif&&s&&!s.quietIntent&&c?.line>=0&&!locked(env.plan,c)&&norm(it.text)===norm(c.lineText??c.text)){
+  it=J.safeLyricItem(env,{...it,x:finite(it.x)?it.x+(motif.axis-.5)*env.W*.035:it.x,y:finite(it.y)?it.y+(motif.lift-.5)*env.H*.025:it.y,
+   size:finite(it.size)?it.size*(.96+.04*motif.cohesion-.025*motif.spread):it.size});
+ }
  return main(env,it);
 };
 
@@ -164,7 +236,19 @@ J.measureSongNativeFit=(p,samples)=>{
  let matches=0,count=0;
  for(let i=0;i<rows.length;i++)for(let j=i+1;j<rows.length;j++){const a=rows[i],b=rows[j];if(Math.abs(a.target-b.target)<.12)continue;count++;if(Math.abs(a.motion-b.motion)>.0001&&Math.sign(a.target-b.target)===Math.sign(a.motion-b.motion))matches++;}
  for(const r of rows)if(r.quiet){count++;if(r.motion<=.003)matches++;}
- return {status:count?'MEASURED':'UNMEASURED',score:count?matches/count:null,population:J.canonicalJSON(rows.map(r=>[r.line,r.time,r.target,r.quiet])),comparisons:count,samples:rows,formula:'agreeing acoustic-order / observed-mask-motion-order pairs and quiet holds divided by comparable observations; ordinal ties do not claim motion',semantics:'UNMEASURED',artisticQuality:'UNVERIFIED'};
+ const components={ordinal:count?matches/count:null,transitionTiming:null,accumulationRelease:null,intentionalSilence:null,motifProgression:null};
+ const ordered=[...rows].sort((a,b)=>a.time-b.time),pairs=ordered.slice(1).map((r,i)=>({a:ordered[i],b:r})).filter(x=>x.a.line!==x.b.line);
+ const transitions=(p.songNativeDirection?.sections||[]).filter(s=>Math.abs(s.energyChange??0)>.12);
+ const observed=pairs.filter(x=>Math.abs(x.b.motion-x.a.motion)>.0001);
+ if(transitions.length&&observed.length)components.transitionTiming=mean(transitions.map(s=>1-C(Math.min(...observed.map(x=>Math.abs((x.a.time+x.b.time)/2-s.start)))/Math.max(.1,s.end-s.start))));
+ const changes=pairs.filter(x=>Math.abs(x.b.target-x.a.target)>.05);
+ if(changes.length)components.accumulationRelease=mean(changes.map(x=>Math.abs(x.b.motion-x.a.motion)<=.0001?0:Number(Math.sign(x.b.target-x.a.target)===Math.sign(x.b.motion-x.a.motion))));
+ const quiet=rows.filter(r=>r.quiet&&finite(r.cameraMotion));
+ if(quiet.length)components.intentionalSilence=mean(quiet.map(r=>1-C(Math.max(r.motion/.003,r.cameraMotion/.003))));
+ const spatial=rows.filter(r=>finite(r.centroidX)&&finite(r.spread)&&J.songNativeMotifAt(p,r.time));
+ if(spatial.length>1)components.motifProgression=mean(spatial.slice(1).map((r,i)=>{const prior=spatial[i],a=J.songNativeMotifAt(p,prior.time),b=J.songNativeMotifAt(p,r.time),expected=b.axis-a.axis,actual=r.centroidX-prior.centroidX;return Math.abs(expected)<.01?1-C(Math.abs(actual)*4):Math.abs(actual)<.001?0:Number(Math.sign(expected)===Math.sign(actual));}));
+ const measured=Object.values(components).filter(finite),complete=finite(components.ordinal)&&finite(components.transitionTiming)&&finite(components.accumulationRelease)&&(!rows.some(r=>r.quiet)||finite(components.intentionalSilence))&&(p.songNativeDirection?.version!==3||finite(components.motifProgression)),score=complete?mean(measured):components.ordinal,profile=J.canonicalJSON(Object.entries(components).filter(([,v])=>finite(v)).map(([k])=>k));
+ return {status:finite(score)?'MEASURED':'UNMEASURED',score,fallback:complete?null:'ORDINAL_INCOMPLETE_TEMPORAL_EVIDENCE',components,profile,population:J.canonicalJSON(rows.map(r=>[r.line,r.time,r.target,r.quiet,finite(r.cameraMotion),finite(r.centroidX)])),comparisons:count,samples:rows,formula:'Comparable Canvas ordinal motion, normalized transition distance, accumulation/release, observed camera and glyph quietness, spatial motif progression; missing components excluded',semantics:'UNMEASURED',artisticQuality:'UNVERIFIED'};
 };
 
 // The captured chain contains every existing glyph/contrast/onset observer.

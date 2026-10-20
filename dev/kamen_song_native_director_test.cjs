@@ -20,7 +20,7 @@ const {engine}=require('./custom_test_support.cjs');
  const proposal=J.proposeDirection(project,a,null);Object.assign(project,{style:proposal.style,mood:proposal.mood,fx:proposal.fx,enabled:proposal.enabled,seed:proposal.seed,overrides:proposal.overrides,autoDirection:true});
  project.artDirection=J.makeArtDirection(project,a,proposal);project.fonts={...project.artDirection.typography};
  const p=J.plan(project,a),saved=JSON.parse(JSON.stringify(project)),restored=J.plan(saved,a);
- assert.equal(p.songNativeDirection.version,2);assert(J.validSongNativeDirection(p.songNativeDirection));const corrupt=JSON.parse(JSON.stringify(saved));corrupt.artDirection.songNativeDirection.sections[0].motionIntensity=10;assert(J.validSongNativeDirection(J.plan(corrupt,a).songNativeDirection));assert.equal(JSON.stringify(p.songNativeDirection),JSON.stringify(restored.songNativeDirection));
+ assert.equal(p.songNativeDirection.version,3);assert(J.validSongNativeDirection(p.songNativeDirection));const corrupt=JSON.parse(JSON.stringify(saved));corrupt.artDirection.songNativeDirection.sections[0].motionIntensity=10;assert(J.validSongNativeDirection(J.plan(corrupt,a).songNativeDirection));assert.equal(JSON.stringify(p.songNativeDirection),JSON.stringify(restored.songNativeDirection));
  for(const change of [q=>q.lyrics+='\n[00:15]またね',q=>q.fonts.display='embedded_bold',q=>q.customBg.zoom=1.23,q=>q.aspect='9:16',q=>q.exportSettings.videoBitrate=123456]){
   const q=JSON.parse(JSON.stringify(project));change(q);assert.notEqual(J.plan(q,a).songNativeDirection.sourceIdentity,p.songNativeDirection.sourceIdentity);
  }
@@ -61,7 +61,7 @@ const {engine}=require('./custom_test_support.cjs');
   resolvedPlan.lastPixelQA={completed:true,stale:'MUST_NOT_PERSIST'};
   const original=J.canonicalJSON(J.songNativeRenderDecisions(resolvedPlan)),identity=J.songNativeInputIdentity(q,a);
   const payload=J.captureSongNativeResolved(q,a,resolvedPlan,identity);
-  assert.equal(payload.version,2);assert(payload.overrides.length>0);assert(!JSON.stringify(payload).includes('MUST_NOT_PERSIST'));assert(!('cuts' in payload));
+  assert.equal(payload.version,3);assert(payload.overrides.length>0);assert(!JSON.stringify(payload).includes('MUST_NOT_PERSIST'));assert(!('cuts' in payload));
   const roundtrip=JSON.parse(JSON.stringify(q));let rebuilt=J.plan(J.migrateProject(roundtrip),a);assert.equal(J.songNativeInputIdentity(J.migrateProject(roundtrip),a),identity,'migration identity');
   assertRender(rebuilt,original);assert.equal(V.lockSignature(rebuilt),V.lockSignature(resolvedPlan));assert(V.lockSignature(rebuilt)!=='[]');assert.equal(rebuilt.lastPixelQA,null);assert.equal(J.canonicalJSON(rebuilt.lines),J.canonicalJSON(resolvedPlan.lines));
   const rr=new J.Renderer(),cc=createCanvas(192,Math.round(192*rebuilt.H/rebuilt.W)),xx=cc.getContext('2d');await rr.loadCustomBackground(q.customBg.dataUrl);await rr.loadAssetDeck?.(rebuilt);
@@ -69,7 +69,7 @@ const {engine}=require('./custom_test_support.cjs');
   for(const time of [.5,5,9])assert(rasterAt(resolvedPlan,time).equals(rasterAt(rebuilt,time)),aspect+' saved pixels '+time);
   for(let i=0;i<2;i++){J.restoreSongNativeResolved(roundtrip,a,rebuilt);J.captureSongNativeResolved(roundtrip,a,rebuilt);rebuilt=J.plan(JSON.parse(JSON.stringify(roundtrip)),a);assertRender(rebuilt,original);}
   const oldIdentity=J.songNativeInputIdentity(roundtrip,a);roundtrip.seed++;assert.throws(()=>J.captureSongNativeResolved(roundtrip,a,rebuilt,oldIdentity),/INPUT_CHANGED/);assert(!J.plan(roundtrip,a).cuts.some(c=>c.songNativeRepair));
-  const staleRenderer=JSON.parse(JSON.stringify(q));staleRenderer.artDirection.songNativeResolved.rendererVersion='old-renderer';assert(!J.plan(staleRenderer,a).cuts.some(c=>c.songNativeRepair));
+  const staleRenderer=JSON.parse(JSON.stringify(q));staleRenderer.artDirection.songNativeResolved.rendererCompatibilityId='old-renderer';assert(!J.plan(staleRenderer,a).cuts.some(c=>c.songNativeRepair));
   const corruptPayload=JSON.parse(JSON.stringify(q));corruptPayload.artDirection.songNativeResolved.overrides.push({path:['cuts','0','__proto__','bad'],value:true});assert(!J.plan(corruptPayload,a).cuts.some(c=>c.songNativeRepair));assert.equal({}.bad,undefined);
   rr.disposeAssets?.();
  }
