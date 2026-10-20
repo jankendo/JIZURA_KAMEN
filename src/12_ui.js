@@ -181,7 +181,7 @@ function flushSave() {
   if(!S.project||localRecoveryBlocked)return flushSaveImpl();
   const task=J.processing.begin('このブラウザに保存しています',[['json','編集内容を保存形式にまとめています',1],['assets','画像・素材をIndexedDBに保存しています',8],['metadata','プロジェクト情報を確定しています',1]],{compact:true,retry:flushSave});
   task.enter('json');
-  try{return Promise.resolve(flushSaveImpl(task)).then(saved=>{if(saved)task.complete('編集内容を保存しました');else if(task.state.status==='running'){task.fail(new Error('より新しい編集内容の保存に引き継ぎました'),true);task.dismiss();}return saved;},error=>{task.fail(error);throw error;});}
+  try{return Promise.resolve(flushSaveImpl(task)).then(saved=>{if(saved)task.complete('編集内容を保存しました');else if(task.state.status==='running'){task.supersede('より新しい編集内容の保存に引き継ぎました');}return saved;},error=>{task.fail(error);throw error;});}
   catch(error){task.fail(error);throw error;}
 }
 function flushSaveImpl(task) {
@@ -1120,31 +1120,42 @@ async function autoDirection() {
     generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
     task.enter('quality');await J.processingYield();assertGeneration();
     const range={start:0,end:Math.min(S.plan.duration,S.audio?.duration||S.plan.duration)};
-    let pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));
-    if(pre.fixes){syncUI();replan();pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));}
+    const pre=J.preflightMV(S.project,audioLike(),range,()=>J.plan(S.project,audioLike()));
+    // preflight owns its bounded repair loop; a second pass could mutate project
+    // after the UI replan and leave the direction tied to the previous settings.
+    S.plan=pre.plan;
+    if(pre.fixes||S.plan.songNativeDirection?.sourceIdentity!==J.songNativeInputIdentity(S.project,audioLike())){syncUI();replan();}
     generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
+    J.ensureSongNativeDirection(S.project,audioLike(),S.plan,generationIdentity);
+    const observationCache=new Map();
     const generationPlan=S.plan;
     await J.searchSongNativeCandidates(generationPlan,range,generationAudio,{onProgress:detail});assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
     const captureInput=async()=>J.cinemaV3?.enabled?{plan:S.plan,input:await J.cinemaV3.snapshot(S.project,S.audio,S.plan,range),renderState:J.cinemaV3.qaRenderState(S.project,S.plan,range),analysisKey:J.canonicalJSON(audioLike())}:null;
+    J.ensureSongNativeDirection(S.project,audioLike(),S.plan,generationIdentity);
     let analyzedInput=await captureInput();
-    const observed=await J.observeMVQuality(generationPlan,range,generationAudio,{onProgress:detail});
+    const observed=await J.observeMVQuality(generationPlan,range,generationAudio,{onProgress:detail,observationCache});
     assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
     S.pixelQA=observed;generationPlan.lastPixelQA=observed;
     const targeted=await J.repairWeakSections(S.plan,S.pixelQA,range,S.audio,{onProgress:detail});
     assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
-    if(targeted.accepted){analyzedInput=await captureInput();const repairedQA=await J.observeMVQuality(generationPlan,range,generationAudio,{onProgress:detail});assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');S.pixelQA=repairedQA;generationPlan.lastPixelQA=repairedQA;}
+    if(targeted.accepted){analyzedInput=await captureInput();const repairedQA=await J.observeMVQuality(generationPlan,range,generationAudio,{onProgress:detail,observationCache});assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');S.pixelQA=repairedQA;generationPlan.lastPixelQA=repairedQA;}
     S.exportCapabilities=await J.exportCapabilities(S.project,S.project.includeAudio!==false?S.audio:null).catch(()=>null);
     assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
     let report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);
     const fixSnapshot=J.songNativeFixSnapshot(S.project,audioLike(),S.plan);
     const renderFixes=J.fixMVQuality(S.project,report,S.audio);
-    if(renderFixes||J.canonicalJSON(fixSnapshot.project)!==J.canonicalJSON(S.project)){
+    const fixChanged=renderFixes||J.canonicalJSON(fixSnapshot.project)!==J.canonicalJSON(S.project);
+    if(fixChanged&&J.classifySongNativeFix(fixSnapshot,S.project,S.plan,audioLike())==='OBSERVATION_ONLY'){analyzedInput=await captureInput();}
+    else if(fixChanged){
       syncUI();replan();generationIdentity=J.songNativeInputIdentity(S.project,audioLike());const fixedPlan=S.plan;
       await J.runSongNativeFixSearch(fixSnapshot,S.project,audioLike(),fixedPlan,range,{onProgress:detail});assertGeneration();if(S.plan!==fixedPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
-      analyzedInput=await captureInput();const fixedQA=await J.observeMVQuality(fixedPlan,range,generationAudio,{onProgress:detail});assertGeneration();if(S.plan!==fixedPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
+      J.ensureSongNativeDirection(S.project,audioLike(),fixedPlan,generationIdentity);
+      analyzedInput=await captureInput();const fixedQA=await J.observeMVQuality(fixedPlan,range,generationAudio,{onProgress:detail,observationCache});assertGeneration();if(S.plan!==fixedPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
       S.pixelQA=fixedQA;fixedPlan.lastPixelQA=fixedQA;report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);
     }
     assertGeneration();
+    const reconciled=J.ensureSongNativeDirection(S.project,audioLike(),S.plan,generationIdentity);
+    if(reconciled.requiresObservation){analyzedInput=await captureInput();S.pixelQA=await J.observeMVQuality(S.plan,range,generationAudio,{onProgress:detail,observationCache});assertGeneration();S.plan.lastPixelQA=S.pixelQA;report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);}
     if(!S.pixelQA?.completed||analyzedInput?.plan!==S.plan)throw new Error('FINAL_PLAN_REQUIRES_OBSERVATION');
     const finalBinding=await captureInput();assertGeneration();
     if(finalBinding.plan!==S.plan||finalBinding.input.inputHash!==analyzedInput.input.inputHash||finalBinding.renderState!==analyzedInput.renderState||finalBinding.analysisKey!==analyzedInput.analysisKey||S.pixelQA.observationBinding?.planHash!==await J.cinemaV3.planHash(S.plan))throw new Error('FINAL_PLAN_REQUIRES_REOBSERVATION');

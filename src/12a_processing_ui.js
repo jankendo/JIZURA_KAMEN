@@ -1,5 +1,13 @@
 (() => {
 'use strict';
+J.processingErrorGuidance=s=>{
+ const code=String(s.errorCode||s.error||'');
+ if(/STALE_SONG_NATIVE_PLAN|INPUT_CHANGED|PLAN_CHANGED|TIMING_OR_LOCK|FINAL_PLAN_REQUIRES/.test(code))return '映像演出の整合性を確定できませんでした。入力と演出を確認してMVを作り直してください。保存済みデータを削除する処理は行っていません。';
+ if(/保存|save|storage|quota|IndexedDB/i.test(code)||/保存/.test(s.title||''))return 'ブラウザーへの保存に失敗しました。空き容量を確認し、プロジェクト保存でバックアップしてください。';
+ if(/画像|image|bitmap/i.test(code))return '画像素材を読み込めませんでした。画像ファイルを確認して選び直してください。';
+ if(/ONSET|INSPECTION|OBSERVATION|検査|品質/.test(code)||s.stages?.[s.index]?.id==='quality')return '映像品質検査を完了できませんでした。再試行してください。解消しない場合はエラーの詳細を添えてお知らせください。';
+ return /[ぁ-んァ-ヶ一-龠]/u.test(s.error||'')?s.error:'処理を完了できませんでした。再試行してください。';
+};
 J.mountProcessingUI=()=>{
   const host=document.getElementById('processingPanel');if(!host||host.dataset.mounted)return;
   host.dataset.mounted='true';const cards=new Map();let timer=0,heartbeat=0,lastPaint=0;
@@ -39,7 +47,7 @@ J.mountProcessingUI=()=>{
       card.querySelector('.processing-heartbeat').textContent=running&&performance.now()-s.lastEvent>15000?'処理を続行しています…':'';
       [...card.querySelectorAll('li')].forEach((li,i)=>{const st=s.stages[i];li.textContent=`${st.status==='done'?'✓':st.status==='skipped'?'−':st.status==='running'?'●':st.status==='error'?'!':'○'} ${st.label}${st.status==='skipped'?'（対象外）':''}`;});
       card.querySelector('summary').textContent=active.length>1?`詳細（ほか ${active.length-1} 件を処理中）`:'詳細';
-      card.querySelector('.processing-error').textContent=s.status==='error'?`素材・空き容量を確認して再試行してください。保存済みデータは保持されています。${/[ぁ-んァ-ヶ一-龠]/u.test(s.error)?' '+s.error:''}`:'';
+      card.querySelector('.processing-error').textContent=s.status==='error'?J.processingErrorGuidance(s):'';
       card.querySelector('.processing-close').hidden=running;
       card.querySelector('.processing-retry').hidden=!(s.status==='error'&&s.retry);
       card.querySelector('.processing-cancel').hidden=!(running&&s.cancel);

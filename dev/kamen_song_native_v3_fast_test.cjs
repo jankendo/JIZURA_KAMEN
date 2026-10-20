@@ -54,5 +54,62 @@ const {engine}=require('./custom_test_support.cjs');
  T.Renderer=class {async loadCustomBackground(){} frame(ctx,plan){T.drawItem({pass:'main',ctx,cut:plan.cuts[0]},{alpha:1});} disposeAssets(){}};
  const storyCode=fs.readFileSync('src/11zzm_story_director.js','utf8');vm.runInNewContext(storyCode.slice(storyCode.indexOf('/* Bounded Top-K')),{window:{J:T},document:{createElement:()=>({width:2,height:2,getContext:()=>cx})},setTimeout});
  const tournament=await T.compareRegistryCandidates({},null,null,{});assert.equal(detailCalls,0);assert.equal(tournament.recommended.plan.musicalPhoto.story.search.qualityStatus,'UNMEASURED');assert.equal(tournament.recommended.plan.musicalPhoto.story.search.uniqueCandidateCount,1);
+ // Emergency regression: actual preflight/fix wrappers, selection, replan and commit.
+ {
+  const {J:K}=engine(),q=clone(project);delete q.artDirection.songNativeResolved;q.artDirection.registrySelection={};q.fx.motion=.95;
+  q.timing.bpm=120;const analysis=()=>({...a,beats:K.beatGrid(q.timing.bpm,q.timing.beatOffset||0,a.duration)});let plan=K.plan(q,analysis());
+  const startIdentity=K.songNativeInputIdentity(q,analysis()),check=K.checkMVQuality;
+  K.checkMVQuality=()=>({issues:[{code:'direction_realization',fixable:true}]});
+  const pre=K.preflightMV(q,analysis(),null,()=>K.plan(q,analysis()));K.checkMVQuality=check;
+  assert.equal(pre.fixes,0);assert.equal(q.renderFeedbackRequested,true);assert.equal(K.songNativeInputIdentity(q,analysis()),startIdentity,'diagnostic feedback does not change inputs');
+  assert(K.validSongNativeDirection(plan.songNativeDirection));assert.equal(plan.songNativeDirection.sourceIdentity,startIdentity);
+  plan=pre.plan;let selected=0;K.repairCinemaSequence=async trial=>{selected++;trial.cuts.find(c=>!c.locked).songNativeRepair={motionDelta:.19};};
+  await K.searchSongNativeCandidates(plan,null,analysis());const before=K.songNativeFixSnapshot(q,analysis(),plan);
+  assert(K.fixMVQuality(q,{issues:[{code:'motion',fixable:true}]},analysis())>0);plan=K.plan(q,analysis());
+  const fix=await K.runSongNativeFixSearch(before,q,analysis(),plan,null);assert(fix.reused);assert.equal(selected,1);assert.equal(plan.cuts[0].songNativeRepair.motionDelta,.19);
+  const finalIdentity=K.songNativeInputIdentity(q,analysis());assert.equal(plan.songNativeDirection.sourceIdentity,finalIdentity);
+  const observed=await K.observeMVQuality(plan,{start:0,end:.08},analysis(),{observationCache:new Map()});assert(observed.completed);assert.equal(observed.observationBinding.planHash,await K.cinemaV3.planHash(plan));
+  const resolved=K.captureSongNativeResolved(q,analysis(),plan,finalIdentity),reloaded=K.plan(clone(q),analysis());assert.equal(reloaded.songNativeRestore.status,'RESTORED');assert.equal(K.canonicalJSON(K.songNativeRenderDecisions(reloaded)),K.canonicalJSON(K.songNativeRenderDecisions(plan)));
+  const broken=K.cinemaV3.clone(plan);broken.songNativeDirection.sections[0].motionIntensity=2;assert.throws(()=>K.captureSongNativeResolved(q,analysis(),broken),e=>e.reason==='INVALID_DIRECTION'&&!e.diagnostic.validDirection);
+  broken.songNativeDirection=clone(plan.songNativeDirection);broken.songNativeDirection.sourceIdentity='stale';assert.throws(()=>K.captureSongNativeResolved(q,analysis(),broken),e=>e.reason==='SOURCE_IDENTITY_MISMATCH'&&e.diagnostic.validDirection);
+  broken.lastPixelQA=observed;assert(K.ensureSongNativeDirection(q,analysis(),broken).requiresObservation);assert.equal(broken.lastPixelQA,null);assert.equal(broken.cuts[0].songNativeRepair.motionDelta,.19);
+  const old=finalIdentity;q.lyrics+='\n[00:15]変化';assert.throws(()=>K.captureSongNativeResolved(q,analysis(),plan,old),/INPUT_CHANGED/);assert.throws(()=>K.ensureSongNativeDirection(q,analysis(),plan),/STALE_SONG_NATIVE_PLAN/);
+  assert.equal(resolved.sourceIdentity,old);
+  console.log('緊急回帰 PASS: diagnostic-only preflight + real quality fix + selected repair + replan + observed commit + restore; invalid vs mismatched direction distinguished');
+ }
+ // Existing frames only: real glyph/mask renders, 30/60 fps, both aspects, tail.
+ {
+  const {J:K}=engine(),q=K.defaultProject();q.lyrics='[00:00]歌\n[00:00.10]空\n[00:00.90]光';q.timing.duration=1;
+  const A={duration:1};let frameCalls=0;const originalFrame=K.Renderer.prototype.frame;
+  K.Renderer.prototype.frame=function(...args){frameCalls++;return originalFrame.apply(this,args);};
+  let lastPlan,lastResult;
+  for(const fps of [30,60])for(const aspect of ['16:9','9:16']){
+   const plan=K.plan({...q,fps,aspect},A);for(const c of plan.cuts){c.layout='center';c.enter='cut';c.hold='still';c.exit='cut';c.inDur=c.outDur=c.stagger=0;}
+   const cache=new Map(),result=await K.measureDisplayOnsets(plan,{start:0,end:1},{observationCache:cache});
+   assert.equal(result.samples.length,3);assert.equal(result.samples[0].early,null);assert.equal(result.samples[0].preBoundaryStatus,'NOT_APPLICABLE');assert.equal(result.samples[0].pass,true,'zero-time static glyph is on time');assert(result.samples[0].probes.every(r=>!r.preBoundary));assert(result.samples.some(s=>s.probes.some(r=>r.displayed)),'actual rendered glyph ink');
+   assert(result.samples.every(s=>s.probes.every(r=>r.t>=0&&r.t<1)));assert(result.samples[1].probes.some(r=>r.preBoundary));
+   const calls=frameCalls;await K.measureDisplayOnsets(plan,{start:0,end:1},{observationCache:cache});assert.equal(frameCalls,calls,'identical onset results reuse real dependency key');
+   plan.cuts[0].params.font='embedded_bold';await K.measureDisplayOnsets(plan,{start:0,end:1},{observationCache:cache});assert(frameCalls>calls,'font change invalidates onset observation');
+   lastPlan=plan;lastResult=result;
+  }
+  const oldFrame=K.Renderer.prototype.frame,error=new Error('original raster failure');K.Renderer.prototype.frame=()=>{throw error;};await assert.rejects(K.measureDisplayOnsets(lastPlan,{start:0,end:1}),e=>e.code==='DISPLAY_ONSET_INSPECTION_FAILED'&&e.cause===error&&e.line===0&&e.time===0&&e.stage==='glyph-mask');K.Renderer.prototype.frame=oldFrame;
+  const near=K.cinemaV3.clone(lastPlan);near.lines=[{index:0,text:'歌',start:.999,end:1}];const tail=await K.measureDisplayOnsets(near,{start:0,end:1});assert.equal(tail.samples[0].status,'UNMEASURED');assert.equal(tail.samples[0].pass,null);assert.equal(tail.score,null);
+  // A completed quality observation is reused only for the exact current plan.
+  const cache=new Map(),range={start:0,end:.02};const one=await K.observeMVQuality(lastPlan,range,null,{observationCache:cache}),count=frameCalls;
+  const two=await K.observeMVQuality(lastPlan,range,null,{observationCache:cache});assert(two.completed&&one.completed);assert.equal(frameCalls,count);assert.equal(two.observationBinding.planHash,await K.cinemaV3.planHash(lastPlan));lastPlan.fps=24;await K.observeMVQuality(lastPlan,range,null,{observationCache:cache});assert(frameCalls>count);
+  console.log('LRC境界 PASS: existing zero/normal/last frames, short cues, actual glyphs, two aspects/FPS, safe cache invalidation and original error cause');
+ }
+ // Reuse the existing durable queue contract and exercise real UI save supersession.
+ {
+  const {J:K,context:saveContext}=engine();let calls=0;const data=new Map(),queue=K.createAssetSaveQueue(async entries=>{calls++;if(calls===1)throw Error('quota');await new Promise(r=>setTimeout(r,1));for(const [k,v]of entries)data.set(k,v);});
+  await assert.rejects(queue([['background','A']]));await Promise.all([queue([['background','A']]),queue([['background','B']])]);assert.equal(data.get('background'),'B');assert(queue.isDurable([['background','B']]));
+  const text=fs.readFileSync('src/12_ui.js','utf8'),fn=text.slice(text.indexOf('function flushSave()'),text.indexOf('function fileAsDataUrl('));
+  const writes=[],storage=new Map();let release;const held=new Promise(r=>release=r),persist=K.createAssetSaveQueue(async entries=>{await held;writes.push(entries);});
+  const state={project:K.defaultProject()},errors=[],box=vm.createContext({J:K,S:state,localRecoveryBlocked:false,saveTimer:0,saveRevision:0,persistAssets:persist,LS_KEY:'project',localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},saveStatus(){},clearTimeout,console:{error:(...args)=>errors.push(args)},Promise});vm.runInContext(fn,box);
+  const first=box.flushSave();state.project.title='newest';const second=box.flushSave();release();assert.equal(await first,false);assert.equal(await second,true);assert.equal(JSON.parse(storage.get('project')).title,'newest');assert.equal(errors.length,0);assert(![...K.processing.jobs.values()].some(s=>s.status==='error'||s.status==='superseded'));
+  saveContext.console={error:(...args)=>errors.push(args)};box.localStorage.setItem=()=>{throw Error('quota')};state.project.title='cannot save';assert.equal(await box.flushSave(),false);assert(errors.length>0);assert([...K.processing.jobs.values()].some(s=>s.status==='error'&&s.errorObject));
+  vm.runInContext(fs.readFileSync('src/12a_processing_ui.js','utf8'),vm.createContext({J:K}));assert(K.processingErrorGuidance({error:'STALE_SONG_NATIVE_PLAN'}).includes('整合性'));assert(K.processingErrorGuidance({error:'quota'}).includes('保存'));assert(K.processingErrorGuidance({error:'DISPLAY_ONSET_INSPECTION_FAILED'}).includes('品質検査'));
+  console.log('保存安全性 PASS: original saved decisions/locks retained, queue failure/retry, latest metadata wins and normal handoff stays quiet');
+ }
  console.log('既存機能保護 PASS (locks, timing, two aspects, save/restore, fit, dedup fallback, export mode paths; MP4 UNVERIFIED)');
 })().catch(e=>{console.error(e);process.exitCode=1;});

@@ -43,9 +43,13 @@ J.processing = {
         if(state.compact)handle.dismiss();
         else state.dismissTimer=setTimeout(()=>handle.dismiss(),1200);
       },
+      supersede(detail='新しい保存処理へ引き継ぎました') {
+        if(state.status!=='running')return;
+        state.status='superseded';state.detail=detail;state.endTime=now();emit();handle.dismiss();
+      },
       fail(error, cancelled=false) {
         if(state.status!=='running')return;
-        state.status=cancelled?'cancelled':'error';state.error=String(error?.message||error);state.endTime=now();
+        state.status=cancelled?'cancelled':'error';state.error=String(error?.message||error);state.errorCode=error?.code||state.error;state.errorStack=error?.stack||'';state.errorObject=error;state.endTime=now();
         if(state.index>=0)state.stages[state.index].status=state.status;
         console.error('KAMEN processing',state.title,state.stages[state.index]?.id,error);emit();
       },

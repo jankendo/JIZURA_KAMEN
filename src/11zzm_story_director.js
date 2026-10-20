@@ -4,7 +4,7 @@ J.vocaliseGroup=text=>{const t=String(text||'').replace(/[\sー〜～、。!！?
 const anchorCache=new WeakMap();
 J.photoAnchorCandidates=image=>{
  if(!image)return [{x:.5,y:.5,saliency:.5}];if(anchorCache.has(image))return anchorCache.get(image);
- const cv=document.createElement('canvas');cv.width=64;cv.height=36;const ctx=cv.getContext('2d');ctx.drawImage(image,0,0,64,36);const d=ctx.getImageData(0,0,64,36).data,lum=i=>d[i*4]*.2126+d[i*4+1]*.7152+d[i*4+2]*.0722;
+ const cv=document.createElement('canvas');cv.width=64;cv.height=36;const ctx=cv.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0,64,36);const d=ctx.getImageData(0,0,64,36).data,lum=i=>d[i*4]*.2126+d[i*4+1]*.7152+d[i*4+2]*.0722;
  const anchors=[{x:.5,y:.5},{x:.5,y:.28},{x:.5,y:.72},{x:.35,y:.56},{x:.65,y:.56}].map(a=>{let sum=0,n=0;for(let y=Math.max(1,Math.floor(a.y*36)-4);y<Math.min(35,a.y*36+4);y++)for(let x=Math.max(1,Math.floor(a.x*64)-17);x<Math.min(63,a.x*64+17);x++){sum+=Math.abs(lum(y*64+x)-lum(y*64+x-1))+Math.abs(lum(y*64+x)-lum((y-1)*64+x));n++;}return {...a,saliency:C(sum/Math.max(1,n)/65),source:'local edge density; not face or subject recognition'};});cv.width=cv.height=1;anchorCache.set(image,anchors);return anchors;
 };
 const center=J.centerPhotoLyricItem;J.centerPhotoLyricItem=(env,item)=>{
@@ -83,18 +83,37 @@ J.Renderer.prototype.drawCustomBackground=function(ctx,p,t,...args){
 const dispose=J.Renderer.prototype.disposeAssets;J.Renderer.prototype.disposeAssets=function(){for(const c of this.storyLooks?.values()||[])c.width=c.height=1;this.storyLooks?.clear();return dispose.call(this);};
 const credit=J.creditStateAt;J.creditStateAt=(p,t)=>p.musicalPhoto?.story&&p.creditChoreography?.mode!=='always'?{hidden:t>Math.min(2.8,p.lines[0]?.start||2.8)&&t<p.duration-1.1,opacity:1,scale:1}:credit(p,t);
 // Actual glyph drawing at cue boundaries, independent of strong pixel peaks.
-J.measureDisplayOnsets=async(p,range)=>{
- const start=range?.start??0,end=range?.end??p.duration,R=new J.Renderer(),cv=document.createElement('canvas'),mc=document.createElement('canvas');cv.width=mc.width=256;cv.height=mc.height=Math.round(256*p.H/p.W);const ctx=cv.getContext('2d'),mask=mc.getContext('2d'),samples=[],norm=t=>String(t||'').replace(/\s/g,'');
+J.measureDisplayOnsets=async(p,range,telemetry={})=>{
+ const source=p,inputHash=await J.cinemaV3.planHash(p);
+ const start=range?.start??0,end=range?.end??p.duration,fps=p.fps,frameCount=Math.max(1,Math.round((end-start)*fps));
+ const cacheKey=telemetry.observationCache&&J.songNativeObservationKey?await J.songNativeObservationKey(p,range):null,cached=cacheKey&&telemetry.observationCache.get('onsets:'+cacheKey);
+ if(telemetry.signal?.aborted)throw new DOMException('Aborted','AbortError');if(cached){if(await J.cinemaV3.planHash(source)!==inputHash||await J.songNativeObservationKey(source,range)!==cacheKey)throw Error('INPUT_CHANGED_DURING_OBSERVATION');return J.clonePhotoRenderPlan(cached);}
+ p=J.clonePhotoRenderPlan(p);
+ const R=new J.Renderer(),cv=document.createElement('canvas'),mc=document.createElement('canvas');cv.width=mc.width=256;cv.height=mc.height=Math.round(256*p.H/p.W);
+ const ctx=cv.getContext('2d',{willReadFrequently:true}),mask=mc.getContext('2d',{willReadFrequently:true}),samples=[],norm=t=>String(t||'').replace(/\s/g,'');
+ let currentLine=null,currentTime=null,stage='assets';
  try{await R.loadCustomBackground(p.customBg?.dataUrl);await R.loadAssetDeck?.(p);
-  for(const line of p.lines.filter(l=>l.start>=start&&l.start<end)){const first=Math.ceil(line.start*p.fps-1e-7)/p.fps,probes=[Math.max(start,line.start-1/p.fps),first,first+1/p.fps],results=[];
-   for(const t of probes){const records=[],draw=J.drawItem;J.drawItem=(env,it)=>{if(env.pass==='main'&&env.ctx===ctx&&env.cut.line>=0){const glyphs=J.layoutText(it).filter(g=>{const ch=it.charFn?.(g.i,g);return !ch?.hide&&(it.alpha??1)*(ch?.a??1)>=.55;}).map(g=>it.charFn?.(g.i,g)?.ch||g.ch).join('');records.push({line:env.cut.line,text:norm(glyphs)});}return draw(env,it);};try{R.frame(ctx,p,t,{scale:256/p.W,production:true,noHud:true,lyricAuditCtx:mask,lyricAuditItems:[]});const bytes=mask.getImageData(0,0,mc.width,mc.height).data;let ink=0;for(let i=3;i<bytes.length;i+=4)if(bytes[i]>24)ink++;results.push({t,displayed:records.some(r=>r.line===line.index&&r.text===norm(line.text))&&ink>8});}finally{J.drawItem=draw;}}
-   const onset=results.slice(1).find(r=>r.displayed),early=results[0].displayed;samples.push({line:line.index,targetTime:line.start,firstFrame:first,displayTime:onset?.t??null,errorMs:onset?(onset.t-line.start)*1000:null,early,pass:!!onset&&!early&&(onset.t-line.start)*1000<=Math.max(50,1000/p.fps+1),probes:results});await new Promise(r=>setTimeout(r,0));
+  for(const line of p.lines.filter(l=>l.start>=start&&l.start<end)){
+   currentLine=line.index;const index=Math.max(0,Math.ceil((line.start-start)*fps-1e-7)),first=start+index/fps,next=p.lines.find(l=>l.start>line.start)?.start??end,limit=Math.min(end,line.end??end,next);
+   // The frame before a zero-second cue does not exist. Never duplicate frame 0.
+   const prior=index>0?index-1:null,indices=[...(prior===null?[]:[prior]),index,index+1].filter(i=>i<frameCount&&start+i/fps<end&&(i<index||start+i/fps<limit)),results=[];
+   for(const i of indices){
+    if(telemetry.signal?.aborted)throw new DOMException('Aborted','AbortError');currentTime=start+i/fps;stage='glyph-mask';
+    const records=[],draw=J.drawItem;J.drawItem=(env,it)=>{if(env.pass==='main'&&env.ctx===ctx&&env.cut.line>=0){const glyphs=J.layoutText(it).filter(g=>{const ch=it.charFn?.(g.i,g);return !ch?.hide&&(it.alpha??1)*(ch?.a??1)>=.55;}).map(g=>it.charFn?.(g.i,g)?.ch||g.ch).join('');records.push({line:env.cut.line,text:norm(glyphs)});}return draw(env,it);};
+    try{R.frame(ctx,p,currentTime,{scale:256/p.W,production:true,noHud:true,lyricAuditCtx:mask,lyricAuditItems:[]});const bytes=mask.getImageData(0,0,mc.width,mc.height).data;let ink=0;for(let k=3;k<bytes.length;k+=4)if(bytes[k]>24)ink++;results.push({t:currentTime,preBoundary:i<index,displayed:records.some(r=>r.line===line.index&&r.text===norm(line.text))&&ink>8});}finally{J.drawItem=draw;}
+   }
+   const post=results.filter(r=>!r.preBoundary),onset=post.find(r=>r.displayed),before=results.find(r=>r.preBoundary),early=before?before.displayed:null,errorMs=onset?(onset.t-line.start)*1000:null;
+   samples.push({line:line.index,targetTime:line.start,firstFrame:first,displayTime:onset?.t??null,errorMs,early,preBoundaryStatus:before?'MEASURED':line.start===start?'NOT_APPLICABLE':'UNMEASURED',status:post.length?'MEASURED':'UNMEASURED',pass:post.length?!!onset&&early!==true&&errorMs<=Math.max(50,1000/fps+1):null,probes:results});
+   await new Promise(r=>setTimeout(r,0));
   }
-  return {score:samples.length?Math.round(100*samples.filter(s=>s.pass).length/samples.length):null,samples,status:samples.length?'RENDERED_GLYPH_ONSET':'UNMEASURED',source:'full visible lyric glyphs and real alpha mask at LRC boundary frames',limits:'Pre-encode raster evidence; not audio singing alignment or decoded text recognition'};
+  const measured=samples.filter(s=>s.status==='MEASURED'),result={score:measured.length?Math.round(100*measured.filter(s=>s.pass).length/measured.length):null,samples,status:measured.length?'RENDERED_GLYPH_ONSET':'UNMEASURED',source:'full visible lyric glyphs and real alpha mask at existing LRC boundary frames',limits:'Pre-encode raster evidence; nonexistent frames are not measured; not audio singing alignment or decoded text recognition'};
+  if(await J.cinemaV3.planHash(source)!==inputHash||cacheKey&&await J.songNativeObservationKey(source,range)!==cacheKey)throw Error('INPUT_CHANGED_DURING_OBSERVATION');
+  if(cacheKey){if(telemetry.observationCache.size>=8)telemetry.observationCache.delete(telemetry.observationCache.keys().next().value);telemetry.observationCache.set('onsets:'+cacheKey,J.clonePhotoRenderPlan(result));}return result;
+ }catch(cause){if(cause?.name==='AbortError')throw cause;throw Object.assign(new Error('DISPLAY_ONSET_INSPECTION_FAILED line='+currentLine+' time='+currentTime+' stage='+stage,{cause}),{code:'DISPLAY_ONSET_INSPECTION_FAILED',line:currentLine,time:currentTime,stage});
  }finally{R.disposeAssets?.();R.customBgBitmap?.close?.();cv.width=cv.height=mc.width=mc.height=1;}
 };
 const refine=J.refineMusicalPhotoPlan;J.refineMusicalPhotoPlan=async(p,...args)=>p.musicalPhoto?.story?undefined:refine(p,...args);
-const analyze=J.analyzeRenderedFrames;J.analyzeRenderedFrames=async(p,range,audio,telemetry={})=>{const r=await analyze(p,range,audio,telemetry);if(r.completed){telemetry.onProgress?.({label:'LRC境界の実際の全文表示を検査しています'});r.metrics.displayOnsetAccuracy=await J.measureDisplayOnsets(p,range);p.lastPixelQA=r;}return r;};
+const analyze=J.analyzeRenderedFrames;J.analyzeRenderedFrames=async(p,range,audio,telemetry={})=>{const r=await analyze(p,range,audio,telemetry);if(r.completed){telemetry.onProgress?.({label:'LRC境界の実際の全文表示を検査しています'});r.metrics.displayOnsetAccuracy=await J.measureDisplayOnsets(p,range,telemetry);p.lastPixelQA=r;}return r;};
 const check=J.checkMVQuality;J.checkMVQuality=(...args)=>{
  const r=check(...args),p=args[1],m=args[4]?.metrics||{},q=r.quality;if(q.productionDomains){q.productionDomains.visualImpactSync=q.productionDomains.lyricSync;q.productionDomains.impactBeatSync=q.productionDomains.beatSync;delete q.productionDomains.lyricSync;delete q.productionDomains.beatSync;q.productionDomains.displayOnsetAccuracy=m.displayOnsetAccuracy?.score??null;}
  let last=[],repeated=false;for(const c of p.cuts||[]){if(c.line<0||locked(p,c)){last=[];continue;}last.push(c.hold);if(last.length>=3&&last.at(-1)===last.at(-2)&&last.at(-1)===last.at(-3))repeated=true;}if(repeated&&!r.issues.some(i=>i.code==='HOLD_STAGNATION')){const issue={code:'HOLD_STAGNATION',message:'自動演出で同じ保持モーションが3行以上続いています',severity:'ERROR',category:'creative',exportBlocking:false};r.issues.push(issue);r.errors.push(issue);}
@@ -117,7 +136,7 @@ J.storyRankDominates=(next,prior)=>next.length===prior.length&&next.every(Number
 const compare=J.compareRegistryCandidates;
 J.compareRegistryCandidates=async(project,audio,image,options={})=>{
  const result=await compare(project,audio,image,{...options,onProgress:e=>options.onProgress?.({...e,current:Math.round(55*(e.current||0)/(e.total||1)),total:100})});if(!result)return result;
- const base=result.recommended,styles=base.selection.styleComparisons.filter(s=>s.eligible).slice(0,3),trials=[],R=new J.Renderer(),cv=document.createElement('canvas'),mask=document.createElement('canvas');cv.width=mask.width=160;cv.height=mask.height=Math.round(160*base.plan.H/base.plan.W);const ctx=cv.getContext('2d'),mc=mask.getContext('2d'),norm=s=>String(s||'').replace(/\s/g,'');
+ const base=result.recommended,styles=base.selection.styleComparisons.filter(s=>s.eligible).slice(0,3),trials=[],R=new J.Renderer(),cv=document.createElement('canvas'),mask=document.createElement('canvas');cv.width=mask.width=160;cv.height=mask.height=Math.round(160*base.plan.H/base.plan.W);const ctx=cv.getContext('2d',{willReadFrequently:true}),mc=mask.getContext('2d',{willReadFrequently:true}),norm=s=>String(s||'').replace(/\s/g,'');
  try{await R.loadCustomBackground(base.plan.customBg.dataUrl);await R.loadAssetDeck?.(base.plan);
   if(J.virtualShotCandidates)base.project.artDirection.registrySelection.virtualShots=J.virtualShotCandidates(R.customBgBitmap);
   const specifications=styles.flatMap(style=>[0,1].map(variant=>({style,variant}))),preliminary=[];

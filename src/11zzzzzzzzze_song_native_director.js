@@ -8,7 +8,7 @@ const locked=(p,c)=>!c||p.songNativeManualPlan||c.locked||J.photoChoreographyLoc
 const abort=signal=>{if(signal?.aborted)throw new DOMException('Aborted','AbortError');};
 const copy=x=>J.clonePhotoRenderPlan(x);
 const fingerprint=value=>{const s=J.canonicalJSON(value);let h=2166136261,g=3339675911;for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),16777619)>>>0;g=Math.imul(g^s.charCodeAt(i),2246822519)>>>0;}return s.length+':'+h+':'+g;};
-const inputIdentity=(project,audio)=>fingerprint({audio:J.registrySelectionAudioKey(audio),envelope:Array.from(audio?.energy||[]),onset:Array.from(audio?.onset||[]),rms:Array.from(audio?.rms||[]),energyRate:audio?.energyRate,analysisSource:audio?.analysisSource,project:{...Object.fromEntries(Object.entries(project).filter(([k])=>!['schemaVersion','migratedFromSchema','audioAsset'].includes(k))),artDirection:project.artDirection?Object.fromEntries(Object.entries(project.artDirection).filter(([k])=>!['songNativeDirection','songNativeResolved'].includes(k))):null}});
+const inputIdentity=(project,audio)=>fingerprint({audio:J.registrySelectionAudioKey(audio),envelope:Array.from(audio?.energy||[]),onset:Array.from(audio?.onset||[]),rms:Array.from(audio?.rms||[]),energyRate:audio?.energyRate,analysisSource:audio?.analysisSource,project:{...Object.fromEntries(Object.entries(project).filter(([k])=>!['schemaVersion','migratedFromSchema','audioAsset','renderFeedbackRequested','lastPixelQA','lastQualityTarget','exportValidation'].includes(k))),artDirection:project.artDirection?Object.fromEntries(Object.entries(project.artDirection).filter(([k])=>!['songNativeDirection','songNativeResolved'].includes(k)).map(([k,v])=>[k,k==='registrySelection'&&v?Object.fromEntries(Object.entries(v).filter(([key])=>key!=='storySearch')):v])):null}});
 
 const lower=(a,t)=>{let lo=0,hi=a.length;while(lo<hi){const m=(lo+hi)>>>1;if(a[m].time<t)lo=m+1;else hi=m;}return lo;};
 const between=(a,start,end)=>a.slice(lower(a,start),lower(a,end));
@@ -101,9 +101,29 @@ const rendererVersion=()=>J.songNativeRendererCompatibilityId;
 const buildId=()=>window.KAMEN_BUILD_INFO?.sourceTreeSHA256||window.KAMEN_BUILD_INFO?.sourceCommit||'development';
 const renderContract=p=>fingerprint({lines:p.lines,W:p.W,H:p.H,duration:p.duration,locks:J.cinemaV3.lockSignature(p)});
 const restoreState=(p,status,reason)=>{p.songNativeRestore={status,reason};return p;};
+J.songNativePlanStatus=(project,audio,p,expectedIdentity=inputIdentity(project,audio))=>({
+ validDirection:J.validSongNativeDirection(p.songNativeDirection),identityMatches:p.songNativeDirection?.sourceIdentity===expectedIdentity,
+ inputMatches:inputIdentity(project,audio)===expectedIdentity,expectedIdentity,directionIdentity:p.songNativeDirection?.sourceIdentity??null,
+ directionVersion:p.songNativeDirection?.version??null,sectionCount:p.songNativeDirection?.sections?.length??0});
+const staleDirectionError=status=>Object.assign(Error('STALE_SONG_NATIVE_PLAN'),{code:'STALE_SONG_NATIVE_PLAN',reason:status.validDirection?'SOURCE_IDENTITY_MISMATCH':'INVALID_DIRECTION',diagnostic:status});
+J.ensureSongNativeDirection=(project,audio,p,expectedIdentity=inputIdentity(project,audio))=>{
+ const status=J.songNativePlanStatus(project,audio,p,expectedIdentity);
+ if(!status.inputMatches)throw Error('INPUT_CHANGED_BEFORE_RESOLVED_COMMIT');
+ if(status.validDirection&&status.identityMatches)return {changed:false,requiresObservation:false};
+ // Only an input-bound plan may reconstruct lost/stale direction metadata.
+ // A real input change must go through replan/search, not identity replacement.
+ if(p.songNativePlanInputIdentity!==expectedIdentity)throw staleDirectionError(status);
+ const baseline=J.plan({...project,artDirection:{...project.artDirection,songNativeResolved:undefined}},audio);
+ if(!same(p.lines,baseline.lines)||J.cinemaV3.lockSignature(p)!==J.cinemaV3.lockSignature(baseline))throw Error('TIMING_OR_LOCK_CHANGED');
+ const fresh=J.buildSongNativeDirection(project,audio);if(!J.validSongNativeDirection(fresh))throw staleDirectionError({...status,validDirection:false});
+ p.songNativeDirection=fresh;p.artDirection={...p.artDirection,songNativeDirection:fresh};
+ // Do not reapply basic modulation over adopted repairs. The new runtime direction
+ // is nevertheless a render dependency, so exact-plan QA must be observed again.
+ J.cinemaV3.invalidate(p);return {changed:true,requiresObservation:true};
+};
 J.captureSongNativeResolved=(project,audio,p,expectedIdentity=inputIdentity(project,audio))=>{
  if(expectedIdentity!==inputIdentity(project,audio))throw Error('INPUT_CHANGED_BEFORE_RESOLVED_COMMIT');
- if(!J.validSongNativeDirection(p.songNativeDirection)||p.songNativeDirection.sourceIdentity!==expectedIdentity)throw Error('STALE_SONG_NATIVE_PLAN');
+ const status=J.songNativePlanStatus(project,audio,p,expectedIdentity);if(!status.validDirection||!status.identityMatches)throw staleDirectionError(status);
  const source={...project,artDirection:{...project.artDirection}};delete source.artDirection.songNativeResolved;
  const baseline=J.plan(source,audio),base=J.songNativeRenderDecisions(baseline),final=J.songNativeRenderDecisions(p);
  if(!same(baseline.lines,p.lines)||J.cinemaV3.lockSignature(baseline)!==J.cinemaV3.lockSignature(p))throw Error('TIMING_OR_LOCK_CHANGED');
@@ -138,7 +158,7 @@ const overlap=(a,b)=>a.every((v,i)=>b[i]===v)||b.every((v,i)=>a[i]===v);
 J.classifySongNativeFix=(before,project,p,audio)=>{
  const expand=op=>op.path[0]==='overrides'&&op.path.length===2&&op.value&&typeof op.value==='object'?Object.entries(op.value).map(([k,value])=>({path:[...op.path,k],value})):[op];
  const ops=delta(before.project,project).flatMap(expand),planOps=delta(before.base,J.songNativeRenderDecisions(J.plan({...project,artDirection:{...project.artDirection,songNativeResolved:undefined}},audio)));
- if(!ops.length&&!planOps.length)return 'OBSERVATION_ONLY';
+ if((!ops.length||before.identity===inputIdentity(project,audio))&&!planOps.length)return 'OBSERVATION_ONLY';
  if(ops.some(o=>['lyrics','timing','aspect','customBg','audioAsset','visualAssets'].includes(o.path[0])))return 'INPUT_OR_ASPECT_CHANGE';
  const read=o=>o.path[0]==='lyricPlacementWide'||o.path[0]==='titleDisplay'||o.path[0]==='autoPalette'&&o.path[1]==='options'||o.path[0]==='overrides'&&['size','color','stroke','strokeColor'].includes(o.path[2]);
  const motion=o=>o.path[0]==='overrides'&&['hold','enter','exit','inDur','outDur'].includes(o.path[2])||o.path[0]==='fx'&&['motion','glitch'].includes(o.path[1])||o.path[0]==='artDirection'&&o.path[1]==='motionDNA'&&['transitionDuration','cameraSpeed','beatResponse'].includes(o.path[2]);
@@ -179,13 +199,14 @@ const direction=J.makeArtDirection;J.makeArtDirection=(project,audio,proposal)=>
  const d=direction(project,audio,proposal);if(proposal.songNativeDirector===1||[1,2,3].includes(project.artDirection?.songNativeDirection?.version)){const input={...project,style:d.style,mood:d.mood,fonts:d.typography,fx:proposal.fx||project.fx,overrides:proposal.overrides||project.overrides};d.songNativeDirection=J.buildSongNativeDirection(input,audio);}return d;
 };
 const plan=J.plan;J.plan=(project,audio)=>{
- const p=plan(project,audio),saved=project.artDirection?.songNativeDirection;
+ const p=plan(copy(project),audio),saved=project.artDirection?.songNativeDirection;
  if(![1,2,3].includes(saved?.version)||!p.artDirection)return p;
  // Authored section plans keep v1's opt-out from native modulation, while their
  // selected render decisions still receive the versioned save/restore contract.
  p.songNativeManualPlan=!!p.directorSections7?.length;
  // Recompute stale input; never edit the saved project from this pure planner.
  p.songNativeDirection=J.validSongNativeDirection(saved)&&saved.sourceIdentity===inputIdentity(project,audio)?copy(saved):J.buildSongNativeDirection(project,audio);
+ p.songNativePlanInputIdentity=inputIdentity(project,audio);
  p.artDirection={...p.artDirection,songNativeDirection:p.songNativeDirection};J.applySongNativeDirection(p);return J.restoreSongNativeResolved(project,audio,p);
 };
 const architecture=J.applyCinemaArchitecture;J.applyCinemaArchitecture=(p,...args)=>{const r=architecture(p,...args);J.applySongNativeDirection(p);return r;};
@@ -253,13 +274,21 @@ J.measureSongNativeFit=(p,samples)=>{
 
 // The captured chain contains every existing glyph/contrast/onset observer.
 // It runs on private data; renderer caches and lastPixelQA never touch the caller.
+const observationFontIds=new WeakMap();let observationFontSerial=0;
+J.songNativeObservationKey=async(p,range,audio=null)=>{
+ const fonts=document.fonts,faces=fonts&&typeof fonts[Symbol.iterator]==='function'?Array.from(fonts,f=>{if(!observationFontIds.has(f))observationFontIds.set(f,++observationFontSerial);return [observationFontIds.get(f),f.family,f.style,f.weight,f.stretch,f.status];}):[];
+ if(fonts?.status==='loading'||faces.some(f=>f.at(-1)!=='loaded'))return null;
+ return J.sha256(J.canonicalJSON({plan:p,range:range??null,audio:inputIdentity({},audio),renderer:rendererVersion(),build:buildId(),fontStatus:fonts?.status??null,faces}));
+};
 const analyze=J.analyzeRenderedFrames;
 J.observeMVQuality=async(p,range,audio,telemetry={})=>{
- abort(telemetry.signal);const working=copy(p);
- const planHash=await J.cinemaV3.planHash(p);
- const result=await analyze(working,range,audio,{...telemetry,observationOnly:true});abort(telemetry.signal);
- if(await J.cinemaV3.planHash(p)!==planHash)throw Error('INPUT_CHANGED_DURING_OBSERVATION');
+ abort(telemetry.signal);
+ const planHash=await J.cinemaV3.planHash(p),key=telemetry.observationCache?await J.songNativeObservationKey(p,range,audio):null,cached=key&&telemetry.observationCache.get('quality:'+key);
+ if(cached?.completed){abort(telemetry.signal);if(await J.cinemaV3.planHash(p)!==planHash||await J.songNativeObservationKey(p,range,audio)!==key)throw Error('INPUT_CHANGED_DURING_OBSERVATION');return {...copy(cached),observationBinding:{planHash,rangeKey:J.canonicalJSON(range??null)}};}
+ const working=copy(p),result=await analyze(working,range,audio,{...telemetry,observationOnly:true});abort(telemetry.signal);
+ if(await J.cinemaV3.planHash(p)!==planHash||key&&await J.songNativeObservationKey(p,range,audio)!==key)throw Error('INPUT_CHANGED_DURING_OBSERVATION');
  result.observationBinding={planHash,rangeKey:J.canonicalJSON(range??null)};
+ if(key&&result.completed){if(telemetry.observationCache.size>=8)telemetry.observationCache.delete(telemetry.observationCache.keys().next().value);telemetry.observationCache.set('quality:'+key,copy(result));}
  return result;
 };
 // Keep compatibility for callers that expect lastPixelQA, but never search here.
