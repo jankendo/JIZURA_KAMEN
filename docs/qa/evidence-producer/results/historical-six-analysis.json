@@ -1,0 +1,283 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "caseId": "development-01",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "historicalOriginalMP4": "d5ac8e2f96518267625ce8a6d7fc3c4bfb97260973a5810593c5e271cee55990",
+      "recovered5ebMovieSHA256": "03496f3bdfb30c3632edfe774f8d8881bddb9284bec2d771ac27f6f0a03a095c",
+      "sameHistoricalAnd5ebMovie": false,
+      "strictOriginalDecodedIdentity": false,
+      "retainedFullNativePairIdentity": true,
+      "decodeFailure": false,
+      "decodeFailureBasis": "Both retained streams produced decoded hashes and per-frame PSNR; identity failure is not decoder failure",
+      "observed": {
+        "allComparedPacketClocksEqual": true,
+        "allListedCodecColorPropertiesEqual": true,
+        "allListedH264HeadersEqual": true,
+        "allQPSlicesEqual": true,
+        "codedPacketDifferences": [
+          {
+            "mode": "ON",
+            "changedCodedPackets": 236,
+            "firstChangedCodedPacket": 1
+          },
+          {
+            "mode": "ON_REPEAT",
+            "changedCodedPackets": 237,
+            "firstChangedCodedPacket": 1
+          }
+        ]
+      },
+      "sourceEvidence": {
+        "summaryPath": "encoded-mismatches/summary.json",
+        "summarySHA256": "cbac888e8df30fed8987226eb1ccac5cac939686cb2e802172dd47d57345f853",
+        "codecPath": "encoded-mismatches/development-01-ORIGINAL-codec.json",
+        "codecSHA256": "c64e6d300b3e5604b47be646ba521d59b122655b5099fe0f76f5d20ec01f2b98"
+      },
+      "causalConclusion": "UNRESOLVED: matching listed properties/clocks do not identify historical frame-buffer, conversion or encoder-state cause",
+      "minimumOperation": "Recover original submitted frame buffers/metadata and exact pipeline settings before any paired decode or generation; preserve original and repeat identities separately"
+    },
+    {
+      "caseId": "development-07",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "historicalOriginalMP4": "50e29856421a134b569bd7c8a09bff98a3d11aa4cf1a17569b520644f8f4eaca",
+      "recovered5ebMovieSHA256": "f5c533228553e90a746955dc659638ece68297fb1a352ae440533e395122fe7c",
+      "sameHistoricalAnd5ebMovie": false,
+      "strictOriginalDecodedIdentity": false,
+      "retainedFullNativePairIdentity": true,
+      "decodeFailure": false,
+      "decodeFailureBasis": "Both retained streams produced decoded hashes and per-frame PSNR; identity failure is not decoder failure",
+      "observed": {
+        "allComparedPacketClocksEqual": true,
+        "allListedCodecColorPropertiesEqual": true,
+        "allListedH264HeadersEqual": true,
+        "allQPSlicesEqual": true,
+        "codedPacketDifferences": [
+          {
+            "mode": "ON",
+            "changedCodedPackets": 220,
+            "firstChangedCodedPacket": 1
+          },
+          {
+            "mode": "ON_REPEAT",
+            "changedCodedPackets": 231,
+            "firstChangedCodedPacket": 1
+          }
+        ]
+      },
+      "sourceEvidence": {
+        "summaryPath": "encoded-mismatches/summary.json",
+        "summarySHA256": "cbac888e8df30fed8987226eb1ccac5cac939686cb2e802172dd47d57345f853",
+        "codecPath": "encoded-mismatches/development-07-ORIGINAL-codec.json",
+        "codecSHA256": "266e57dceba14d26fdf6045142ed923a09570eef3d14fe614723876036587614"
+      },
+      "causalConclusion": "UNRESOLVED: matching listed properties/clocks do not identify historical frame-buffer, conversion or encoder-state cause",
+      "minimumOperation": "Recover original submitted frame buffers/metadata and exact pipeline settings before any paired decode or generation; preserve original and repeat identities separately"
+    },
+    {
+      "caseId": "holdout-01",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "historicalOriginalMP4": "c499c59cda6697054f04ae48b85550820e6c777702ff61dc892f2023e3b6065b",
+      "recovered5ebMovieSHA256": "c44aa20e3673461bd728424c6e3454cc096db26a1850126a55e81e7080d3ce74",
+      "sameHistoricalAnd5ebMovie": false,
+      "strictOriginalDecodedIdentity": false,
+      "retainedFullNativePairIdentity": true,
+      "decodeFailure": false,
+      "decodeFailureBasis": "Both retained streams produced decoded hashes and per-frame PSNR; identity failure is not decoder failure",
+      "observed": {
+        "allComparedPacketClocksEqual": true,
+        "allListedCodecColorPropertiesEqual": true,
+        "allListedH264HeadersEqual": true,
+        "allQPSlicesEqual": true,
+        "codedPacketDifferences": [
+          {
+            "mode": "ON",
+            "changedCodedPackets": 239,
+            "firstChangedCodedPacket": 1
+          },
+          {
+            "mode": "ON_REPEAT",
+            "changedCodedPackets": 239,
+            "firstChangedCodedPacket": 1
+          }
+        ]
+      },
+      "sourceEvidence": {
+        "summaryPath": "encoded-mismatches/summary.json",
+        "summarySHA256": "cbac888e8df30fed8987226eb1ccac5cac939686cb2e802172dd47d57345f853",
+        "codecPath": "encoded-mismatches/holdout-01-ORIGINAL-codec.json",
+        "codecSHA256": "1f52d0044c3d172dd35799c60480d8da628093e87777bdeef1c93d0b8b7762b8"
+      },
+      "causalConclusion": "UNRESOLVED: matching listed properties/clocks do not identify historical frame-buffer, conversion or encoder-state cause",
+      "minimumOperation": "Recover original submitted frame buffers/metadata and exact pipeline settings before any paired decode or generation; preserve original and repeat identities separately"
+    },
+    {
+      "caseId": "holdout-07",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "historicalOriginalMP4": "a46dec22f0ad21bb70719dc72ea8f66391ed2b71de0a68437ec624859738b185",
+      "recovered5ebMovieSHA256": "f26f2fc8ab3a8e8cffd05b882f67eb40023b120c84af52341ea12de3728209ba",
+      "sameHistoricalAnd5ebMovie": false,
+      "strictOriginalDecodedIdentity": false,
+      "retainedFullNativePairIdentity": true,
+      "decodeFailure": false,
+      "decodeFailureBasis": "Both retained streams produced decoded hashes and per-frame PSNR; identity failure is not decoder failure",
+      "observed": {
+        "allComparedPacketClocksEqual": true,
+        "allListedCodecColorPropertiesEqual": true,
+        "allListedH264HeadersEqual": true,
+        "allQPSlicesEqual": true,
+        "codedPacketDifferences": [
+          {
+            "mode": "ON",
+            "changedCodedPackets": 236,
+            "firstChangedCodedPacket": 3
+          },
+          {
+            "mode": "ON_REPEAT",
+            "changedCodedPackets": 237,
+            "firstChangedCodedPacket": 1
+          }
+        ]
+      },
+      "sourceEvidence": {
+        "summaryPath": "encoded-mismatches/summary.json",
+        "summarySHA256": "cbac888e8df30fed8987226eb1ccac5cac939686cb2e802172dd47d57345f853",
+        "codecPath": "encoded-mismatches/holdout-07-ORIGINAL-codec.json",
+        "codecSHA256": "02a559fb5f56a3477b31a2ea0a3016af4e3b13d6814db58bc19bbedbd2e07bb6"
+      },
+      "causalConclusion": "UNRESOLVED: matching listed properties/clocks do not identify historical frame-buffer, conversion or encoder-state cause",
+      "minimumOperation": "Recover original submitted frame buffers/metadata and exact pipeline settings before any paired decode or generation; preserve original and repeat identities separately"
+    },
+    {
+      "caseId": "supplemental-development-13",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "historicalOriginalMP4": "71c7cf76c92c1d0322f16afb2dc1a4f32177cdf7c36809d36173c5f8e367f674",
+      "recovered5ebMovieSHA256": "93f9d0bf59f90dc614e702059e1cd438b10b2c8e61ec9786b2b11d098b0856d7",
+      "sameHistoricalAnd5ebMovie": false,
+      "strictOriginalDecodedIdentity": false,
+      "retainedFullNativePairIdentity": true,
+      "decodeFailure": false,
+      "decodeFailureBasis": "Both retained streams produced decoded hashes and per-frame PSNR; identity failure is not decoder failure",
+      "observed": {
+        "allComparedPacketClocksEqual": true,
+        "allListedCodecColorPropertiesEqual": true,
+        "allListedH264HeadersEqual": true,
+        "allQPSlicesEqual": true,
+        "codedPacketDifferences": [
+          {
+            "mode": "ON",
+            "changedCodedPackets": 297,
+            "firstChangedCodedPacket": 1
+          },
+          {
+            "mode": "ON_REPEAT",
+            "changedCodedPackets": 297,
+            "firstChangedCodedPacket": 1
+          }
+        ]
+      },
+      "sourceEvidence": {
+        "summaryPath": "encoded-mismatches/summary.json",
+        "summarySHA256": "cbac888e8df30fed8987226eb1ccac5cac939686cb2e802172dd47d57345f853",
+        "codecPath": "encoded-mismatches/supplemental-development-13-ORIGINAL-codec.json",
+        "codecSHA256": "2afa6ca60b432fe7956c0cfe7848ae04e4e0fbf936c417e0be020427c3a95240"
+      },
+      "causalConclusion": "UNRESOLVED: matching listed properties/clocks do not identify historical frame-buffer, conversion or encoder-state cause",
+      "minimumOperation": "Recover original submitted frame buffers/metadata and exact pipeline settings before any paired decode or generation; preserve original and repeat identities separately"
+    },
+    {
+      "caseId": "supplemental-holdout-13",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "historicalOriginalMP4": "efd6004774afbd008c0ff0c93d33e4e36b83dc569c0e4fbd13322f3668bd096d",
+      "recovered5ebMovieSHA256": "382ed160a4931fb9c14ed68ad35b5e72a3e3c406a1cd10f65c9ebb9341a23112",
+      "sameHistoricalAnd5ebMovie": false,
+      "strictOriginalDecodedIdentity": false,
+      "retainedFullNativePairIdentity": true,
+      "decodeFailure": false,
+      "decodeFailureBasis": "Both retained streams produced decoded hashes and per-frame PSNR; identity failure is not decoder failure",
+      "observed": {
+        "allComparedPacketClocksEqual": true,
+        "allListedCodecColorPropertiesEqual": true,
+        "allListedH264HeadersEqual": true,
+        "allQPSlicesEqual": true,
+        "codedPacketDifferences": [
+          {
+            "mode": "ON",
+            "changedCodedPackets": 297,
+            "firstChangedCodedPacket": 1
+          },
+          {
+            "mode": "ON_REPEAT",
+            "changedCodedPackets": 297,
+            "firstChangedCodedPacket": 1
+          }
+        ]
+      },
+      "sourceEvidence": {
+        "summaryPath": "encoded-mismatches/summary.json",
+        "summarySHA256": "cbac888e8df30fed8987226eb1ccac5cac939686cb2e802172dd47d57345f853",
+        "codecPath": "encoded-mismatches/supplemental-holdout-13-ORIGINAL-codec.json",
+        "codecSHA256": "6a2eb782ee48c7bc630934f667b52c9af76b79250a129d1f5a1d8bb9561f2764"
+      },
+      "causalConclusion": "UNRESOLVED: matching listed properties/clocks do not identify historical frame-buffer, conversion or encoder-state cause",
+      "minimumOperation": "Recover original submitted frame buffers/metadata and exact pipeline settings before any paired decode or generation; preserve original and repeat identities separately"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "encoded-mismatches/summary.json",
+      "sha256": "cbac888e8df30fed8987226eb1ccac5cac939686cb2e802172dd47d57345f853"
+    },
+    {
+      "path": "encoder-boundary-development01/summary.json",
+      "sha256": "2b4e33760eb2ebdaf230645b1f7a1874381951f6cba65d6c1304156cc12ae29a"
+    },
+    {
+      "path": "font-raster-environment/summary.json",
+      "sha256": "da2d42a6c05ea57b2da005c1fe1955e86c7e0ad9bc1086cc0d7df2557aa21803"
+    },
+    {
+      "path": "native-preconditions/summary.json",
+      "sha256": "c95b2fd9f73e4fa966e4df36f0d7350e28724e3fbdc510673f77bb6ed12168c0"
+    }
+  ],
+  "development01CounterEvidence": {
+    "freshNativeEqualsHistorical": [
+      false,
+      false
+    ],
+    "freshNativeRepeatsEqual": true,
+    "submittedBuffersAndMetadataEqualBetweenFreshRepeats": true,
+    "freshEncoderConfigsEqual": true,
+    "freshDecodedRepeatsEqual": true,
+    "finding": "Fresh repeats agree with each other at every captured Native output, submitted VideoFrame buffer/metadata, encoder configuration and decoded frame. Both differ from the historical original Native in 25/240 output frames; therefore they cannot establish the historical original encoding cause or certify its control equivalence.",
+    "audioAnalysisFinding": "Both native-only runs retain the same 25 original Native mismatches. Analyzing the original audio before drawing does not change that mismatch. Differences coincide with the two Noto Serif JP fragments; recorded primary parameters and font-loading descriptors equal the historical trace. Actual font resources/raster environment are being compared; no encoder cause is established."
+  },
+  "fontCounterEvidence": {
+    "sharedResources": 210,
+    "sharedByteMismatches": [],
+    "isolatedSamples": 12,
+    "allSampleRastersAndWidthsEqual": true,
+    "finding": "Shared font-file bytes and the 12 isolated glyph samples are identical. These observations do not explain the 25 full-render Native mismatches. The affected Noto Serif JP draw calls originate in diag layout secondary strips, not the authoritative mainDraw lyric. Missing decorated glyph preloading alone also failed to reproduce the original."
+  },
+  "established": [
+    "All six old original MP4 hashes differ from corresponding recovered 5eb movies.",
+    "Listed codec/color/header/QP properties and packet clocks match in retained pairs.",
+    "Creation-time metadata differences alone do not explain decoded pixel differences.",
+    "Development-01 fresh repeats agree with each other but differ from historical Native in 25/240 frames; this does not isolate an encoder cause.",
+    "Shared font bytes/12 isolated raster samples match; full-render context remains unresolved."
+  ],
+  "notEstablished": [
+    "Historical submitted pixel-buffer equality with fresh probes",
+    "Historical pixel/color conversion equality",
+    "Full-render font/context equality",
+    "Unique encoder cause",
+    "Resolution by the distinct Native32 source-5eb run"
+  ],
+  "newMP4s": 0,
+  "newDecodes": 0,
+  "currentDecodeFailureImplied": false,
+  "resolvedCases": 0,
+  "unresolvedCases": 6
+}

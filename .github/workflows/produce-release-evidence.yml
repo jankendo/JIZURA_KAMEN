@@ -1,0 +1,103 @@
+name: Assemble KAMEN release evidence
+
+on:
+  workflow_dispatch:
+    inputs:
+      intake_run_id:
+        description: 'Successful repository run containing kamen-evidence-intake (data only)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: kamen-evidence-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+          filter: blob:none
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - name: Install media verifier
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Verify producer and existing gates
+        run: |
+          node docs/qa/evidence-producer/producer_test.cjs
+          node dev/release_gates_test.cjs
+          node dev/pages_release_test.cjs
+      - name: Verify immutable intake run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INTAKE_RUN_ID: ${{ inputs.intake_run_id }}
+        run: |
+          node <<'JS'
+          const fs = require('node:fs'), {execFileSync} = require('node:child_process');
+          const id = process.env.INTAKE_RUN_ID;
+          if (!/^\d+$/.test(id)) throw Error('Numeric intake run ID required');
+          const run = JSON.parse(execFileSync('gh',['api',`repos/${process.env.GITHUB_REPOSITORY}/actions/runs/${id}`]));
+          if (run.repository?.full_name !== process.env.GITHUB_REPOSITORY || run.status !== 'completed' || run.conclusion !== 'success') throw Error('Intake repository/success mismatch');
+          const response = JSON.parse(execFileSync('gh',['api',`repos/${process.env.GITHUB_REPOSITORY}/actions/runs/${id}/artifacts?name=kamen-evidence-intake&per_page=100`]));
+          const artifacts = response.artifacts.filter(a=>a.name==='kamen-evidence-intake');
+          if (response.total_count !== 1 || artifacts.length !== 1 || artifacts[0].expired || !artifacts[0].digest) throw Error('Unique unexpired intake artifact/digest required');
+          fs.writeFileSync(`${process.env.RUNNER_TEMP}/intake-run.json`,JSON.stringify({run,artifact:artifacts[0]}));
+          JS
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: kamen-evidence-intake
+          path: ${{ runner.temp }}/kamen-intake
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.intake_run_id }}
+      - name: Install final media verifier and build source
+        run: |
+          npm ci
+          npm run build
+      - name: Assemble and verify (no video generation or full regression rerun)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node <<'JS'
+          const fs=require('node:fs'),path=require('node:path');
+          const {produce,safe,prepareHistory}=require('./docs/qa/evidence-producer/producer.cjs');
+          const root=path.join(process.env.RUNNER_TEMP,'kamen-intake');
+          const config=JSON.parse(fs.readFileSync(safe(root,'intake-config.json')));
+          const {run,artifact}=JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP,'intake-run.json')));
+          const output=path.join(process.env.RUNNER_TEMP,'kamen-produced');
+          try {
+            console.log(JSON.stringify(prepareHistory({root,manifest:config.manifest,mappings:config.mappings,repositoryRoot:process.cwd(),target:process.env.GITHUB_SHA})));
+            const report=produce({root,manifest:config.manifest,mappings:config.mappings,
+              output,target:process.env.GITHUB_SHA,
+              repositoryRoot:process.cwd(),provenance:{repository:process.env.GITHUB_REPOSITORY,commit:run.head_sha,runId:run.id,url:run.html_url,artifactId:artifact.id,artifactDigest:artifact.digest}});
+            console.log(JSON.stringify(report));if(!report.qualified)process.exitCode=2;
+          } catch(error) {
+            fs.mkdirSync(output,{recursive:true});
+            fs.rmSync(path.join(output,'manifest.json'),{force:true});
+            if(!fs.existsSync(path.join(output,'producer-result.json'))) fs.writeFileSync(path.join(output,'producer-result.json'),JSON.stringify({qualified:false,artifactName:'kamen-evidence-diagnostic',reason:error.message}));
+            console.error(error.message);process.exitCode=2;
+          }
+          JS
+      - name: Preserve diagnostic result
+        if: failure()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: kamen-evidence-diagnostic
+          path: ${{ runner.temp }}/kamen-produced
+          if-no-files-found: ignore
+          retention-days: 90
+      - name: Upload only fully qualified release evidence
+        if: success()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: kamen-release-evidence
+          path: ${{ runner.temp }}/kamen-produced
+          if-no-files-found: error
+          retention-days: 90

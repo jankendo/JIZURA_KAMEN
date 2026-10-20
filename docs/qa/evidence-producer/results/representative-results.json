@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "preregisteredContractSHA256": "8d82335c363cd100760999786c3642caf8a525bdf7b47d539467640deaff7748",
+  "newMP4s": 0,
+  "uniqueMP4s": 8,
+  "physicalFullDecodes": 8,
+  "totalDecodeSeconds": 9.020926125000074,
+  "decodedRawBytesAvoidedOnDisk": 3262464000,
+  "static": {
+    "intentId": "eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f",
+    "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+    "kind": "REAL_FALSE_POSITIVE_COUNTEREXAMPLE_NOT_POSITIVE_CERTIFICATION",
+    "decodedInkPixels": [
+      8452,
+      8278,
+      8154,
+      8157,
+      8037,
+      7783,
+      7430,
+      6998
+    ],
+    "centroidMaximumDriftPixels": 0.7309364287986432,
+    "formalCertification": "UNVERIFIED",
+    "expectedEvaluatorResult": "FAIL",
+    "actualReobservation": "static-pixel-reobservation.json",
+    "actualEvaluatorChecks": "static-evaluator-results.json",
+    "evaluatorConfirmedRejection": true
+  },
+  "dynamicComposite": [
+    {
+      "operator": "cameraAt",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "originalONIdentity": true,
+      "ONRepeatIdentity": true,
+      "OFFDiffers": true,
+      "differentFrameCount": 248,
+      "audioIdentity": true,
+      "semantic": "UNVERIFIED",
+      "phase": "UNVERIFIED",
+      "attribution": "GROUP_CONTRIBUTION_ONLY_COMPONENTS_UNVERIFIED",
+      "formalCertification": "UNVERIFIED"
+    },
+    {
+      "operator": "drawCinemaAccent",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "originalONIdentity": true,
+      "ONRepeatIdentity": true,
+      "OFFDiffers": true,
+      "differentFrameCount": 134,
+      "audioIdentity": true,
+      "semantic": "UNVERIFIED",
+      "phase": "UNVERIFIED",
+      "attribution": "GROUP_CONTRIBUTION_ONLY_COMPONENTS_UNVERIFIED",
+      "formalCertification": "UNVERIFIED"
+    }
+  ],
+  "expansionAuthorizedByEvidence": false,
+  "limitations": [
+    "Full decode identity is not semantic or phase proof.",
+    "The static record is an intentionally invalid world-static claim and is not a finalized static Intent PASS.",
+    "Dynamic/composite diagnostics have no frozen semantic vector model; positive quality experiment remains blocked."
+  ],
+  "supplementalPartialObservations": 4,
+  "observerCorrections": [
+    "Arithmetic-mean luma corrected to original weighted float32 formula; initial comparison is superseded.",
+    "RGB conversion must precede odd-coordinate crop; YUV420 crop otherwise rounds the ROI. Preliminary two partial observations were rejected and two corrected observations retained.",
+    "FFmpeg/Chromium luma differs by up to one 8-bit level; no cross-decoder equality is asserted."
+  ]
+}
