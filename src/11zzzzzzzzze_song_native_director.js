@@ -4,7 +4,7 @@
 const J=window.J,C=J.clamp,finite=Number.isFinite;
 const mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:null;
 const norm=t=>String(t||'').normalize('NFC').replace(/\s/gu,'');
-const locked=(p,c)=>!c||c.locked||J.photoChoreographyLocked?.(p,c);
+const locked=(p,c)=>!c||p.songNativeManualPlan||c.locked||J.photoChoreographyLocked?.(p,c);
 const abort=signal=>{if(signal?.aborted)throw new DOMException('Aborted','AbortError');};
 const copy=x=>J.clonePhotoRenderPlan(x);
 const fingerprint=value=>{const s=J.canonicalJSON(value);let h=2166136261,g=3339675911;for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),16777619)>>>0;g=Math.imul(g^s.charCodeAt(i),2246822519)>>>0;}return s.length+':'+h+':'+g;};
@@ -120,7 +120,10 @@ const direction=J.makeArtDirection;J.makeArtDirection=(project,audio,proposal)=>
 };
 const plan=J.plan;J.plan=(project,audio)=>{
  const p=plan(project,audio),saved=project.artDirection?.songNativeDirection;
- if(![1,2].includes(saved?.version)||!p.artDirection||p.directorSections7?.length)return p;
+ if(![1,2].includes(saved?.version)||!p.artDirection)return p;
+ // Authored section plans keep v1's opt-out from native modulation, while their
+ // selected render decisions still receive the v2 save/restore contract.
+ p.songNativeManualPlan=!!p.directorSections7?.length;
  // Recompute stale input; never edit the saved project from this pure planner.
  p.songNativeDirection=J.validSongNativeDirection(saved)&&saved.sourceIdentity===inputIdentity(project,audio)?copy(saved):J.buildSongNativeDirection(project,audio);
  p.artDirection={...p.artDirection,songNativeDirection:p.songNativeDirection};J.applySongNativeDirection(p);return J.restoreSongNativeResolved(project,audio,p);

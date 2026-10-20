@@ -73,6 +73,10 @@ const {engine}=require('./custom_test_support.cjs');
   const corruptPayload=JSON.parse(JSON.stringify(q));corruptPayload.artDirection.songNativeResolved.overrides.push({path:['cuts','0','__proto__','bad'],value:true});assert(!J.plan(corruptPayload,a).cuts.some(c=>c.songNativeRepair));assert.equal({}.bad,undefined);
   rr.disposeAssets?.();
  }
+ // Authored section plans retain their native-modulation opt-out and still save safely.
+ const authored=JSON.parse(JSON.stringify(project));authored.directorPlan={sections:[{from:0,to:16,role:'sustain',motionIntent:['stillCamera']}]};
+ const authoredPlan=J.plan(authored,a);assert(authoredPlan.songNativeManualPlan);const authoredCuts=J.canonicalJSON(authoredPlan.cuts);J.applySongNativeDirection(authoredPlan);assert.equal(J.canonicalJSON(authoredPlan.cuts),authoredCuts);
+ J.captureSongNativeResolved(authored,a,authoredPlan);assert.equal(J.canonicalJSON(J.plan(JSON.parse(JSON.stringify(authored)),a).cuts),authoredCuts);
  // T-02/T-03: search is exact at boundaries and through reverse seeks; temporal roles survive.
  for(const t of [0,4,8,12,16,7.99,3,-1,NaN])assert.equal(J.songNativeSectionAt(p,t),p.songNativeDirection.sections.find(s=>t>=s.start&&t<s.end)||null);
  assert.notDeepEqual(first.sections.map(s=>s.intent),second.sections.map(s=>s.intent));

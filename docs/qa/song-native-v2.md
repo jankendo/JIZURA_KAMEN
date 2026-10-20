@@ -10,7 +10,7 @@ The UI commits the resolved payload after search, observation, accepted bounded 
 
 ## Direction and ranking
 
-Existing temporal roles and motion principles survive. Song-Native modulates their travel curve and level using inferred silence, accumulation, release, repetition and sustain; it delegates to the existing camera trajectory before adding a bounded adjustment. Intentional holds and manual locks take priority. Drawing uses fresh item values rather than cumulative scale changes.
+Existing temporal roles and motion principles survive. Song-Native modulates their travel curve and level using inferred silence, accumulation, release, repetition and sustain; it delegates to the existing camera trajectory before adding a bounded adjustment. Intentional holds and manual locks take priority. Authored section plans keep their previous opt-out from native modulation while receiving the v2 persistence contract. Drawing uses fresh item values rather than cumulative scale changes.
 
 `negativeSpace` reduces primary text occupancy within existing safe-layout guards. `contrastIntent` strengthens the existing local readability edge under the glyph fill, then applies the geometry guard again. `transitionIntensity` modulates the existing impact envelope and camera adjustment. No readability or timing thresholds change.
 
