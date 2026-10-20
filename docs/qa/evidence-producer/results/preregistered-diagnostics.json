@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "createdUTC": "2026-10-20T00:33:44.014206+00:00",
+  "scope": "DIAGNOSTIC_PIPELINE_ONLY_NO_FINAL_IMPORTANCE_OR_SEMANTIC_CONTRACT",
+  "static": {
+    "contractSHA256": "ba68773285af4aebe8965ead985ccfb4f54f5cf771ce75ab9c7b286457a21242",
+    "contract": {
+      "intentId": "eb95604df40e42b3422e6b6749790d20117480b3e11a71c8c7d7a67e87c8c22f",
+      "proofType": "STATIC",
+      "target": {
+        "id": "PRIMARY_LYRIC:a422a64c9116d703886636e3ce651bddf16fc423e5fca40b49e35bf08761e907:82f739b09b9b889d170cbe7ef86bc20ac523930b9959c676cd1c959d69aa1a49",
+        "layer": "PRIMARY_LYRIC",
+        "coordinateFrame": "OUTPUT_PIXELS"
+      },
+      "binding": {
+        "inputHash": "46df5a27be058d0b36ddbb0aaa7c6e8c992c35a249c3ec1b6428507be5f85634",
+        "planHash": "d1b351e5e51adad7559912a92af25c0a2286a3043b2707b50851759a81e3991e",
+        "outputProfile": {
+          "purpose": "FULL_MV",
+          "aspect": "16:9",
+          "fps": 24,
+          "range": [
+            0,
+            9.999977324263039
+          ],
+          "loopRequired": false,
+          "resolution": [
+            1280,
+            720
+          ]
+        },
+        "rendererVersion": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "selectedCandidateId": "00f11c5d9008ed1bbb21a08ce37938bb7e23b53fcf5a13aa14a79aac4106456b",
+        "videoSHA256": "03496f3bdfb30c3632edfe774f8d8881bddb9284bec2d771ac27f6f0a03a095c",
+        "sourceCommit": "5eb02e6fba86c2104711894dc894b461d2fae922",
+        "sourceTreeSHA256": "3afc3c4084435b0abc5a311a6ebfb6f8316eccf76b9ec4160f3f6c252c8de8a1",
+        "sourceDirty": false
+      },
+      "from": 2.804,
+      "to": 3.1300000000000003,
+      "fps": 24,
+      "frameOrigin": 0,
+      "tolerancePixels": 1,
+      "glyphIds": [
+        "0:0:影"
+      ],
+      "rasterMethod": "ISOLATED_TARGET_OFF_CONTRAST",
+      "glyphROIs": [
+        {
+          "id": "0:0:影",
+          "rect": [
+            551,
+            275,
+            176,
+            180
+          ]
+        }
+      ]
+    },
+    "expected": "Reject deliberately invalid centered/shrinking world-static claim using unchanged v3 evaluator",
+    "rasterSource": "bc684b2ab25bd77b6598ae9fd42e55d856c27e1fdbedfc8189126beb56be94b1"
+  },
+  "dynamicComposite": [
+    {
+      "operator": "cameraAt",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "planHash": "156378b44182f444b1f42d6b0d03452bf4e5aa434dcdb55f715cb188db7a1fc9",
+      "originalVideoSHA256": "7f083c578c00ecfd03684d27737afbce32b7d1f942fa22ddd9d7b0be5e982d64",
+      "movies": [
+        {
+          "mode": "ON",
+          "videoSHA256": "b4c0ab419550611961a184c10b4d78eb5f912e1240dc4c2f151ca21a205e2fad"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "0733a2aff2de67da479a9733764d9d3b4d65a46705a5067b85e3fbb230dc7f04"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "5569021b31d4f9795845b67e6dd3bcb34f24d60196b4f8211a09e371bd69c62f"
+        }
+      ],
+      "diagnosticContract": {
+        "originalONRepeat": "exact full decoded RGBA identity",
+        "isolatedOFF": "must differ from ON to establish contribution only",
+        "audio": "exact full decoded PCM identity",
+        "semanticVectors": null,
+        "phaseModel": null,
+        "componentAttributionModel": null
+      },
+      "formalExpected": "UNVERIFIED: no preregistered semantic vectors/complete component contracts"
+    },
+    {
+      "operator": "drawCinemaAccent",
+      "sourceCommit": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+      "planHash": "156378b44182f444b1f42d6b0d03452bf4e5aa434dcdb55f715cb188db7a1fc9",
+      "originalVideoSHA256": "7f083c578c00ecfd03684d27737afbce32b7d1f942fa22ddd9d7b0be5e982d64",
+      "movies": [
+        {
+          "mode": "ON",
+          "videoSHA256": "d78e6a1bc4d68d6d491e236cd794eac773ed16023d4ea91929fdb346794db5ee"
+        },
+        {
+          "mode": "OFF",
+          "videoSHA256": "d7bbf54609bfc5eb7224ecc280397c3dfe246cdc865784a96e1f2810ee729098"
+        },
+        {
+          "mode": "ON_REPEAT",
+          "videoSHA256": "5569021b31d4f9795845b67e6dd3bcb34f24d60196b4f8211a09e371bd69c62f"
+        }
+      ],
+      "diagnosticContract": {
+        "originalONRepeat": "exact full decoded RGBA identity",
+        "isolatedOFF": "must differ from ON to establish contribution only",
+        "audio": "exact full decoded PCM identity",
+        "semanticVectors": null,
+        "phaseModel": null,
+        "componentAttributionModel": null
+      },
+      "formalExpected": "UNVERIFIED: no preregistered semantic vectors/complete component contracts"
+    }
+  ],
+  "noThresholdChanges": true,
+  "newMP4GenerationAllowed": false,
+  "decoder": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers"
+}

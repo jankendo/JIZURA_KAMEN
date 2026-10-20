@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "checks": [
+    {
+      "scenario": "retained-centered-shrinking",
+      "name": "important semantic operators",
+      "state": "FAIL",
+      "reason": "observed required check failed"
+    },
+    {
+      "scenario": "actual-ffmpeg-centered-shrinking",
+      "name": "important semantic operators",
+      "state": "FAIL",
+      "reason": "observed required check failed"
+    },
+    {
+      "scenario": "missing-full-raster",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "v3 full glyph ink raster absent, malformed or cropped"
+    },
+    {
+      "scenario": "source-mismatch",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "missing unique source correspondence"
+    },
+    {
+      "scenario": "plan-mismatch",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "v2 raw target/contract/source/video binding mismatch"
+    },
+    {
+      "scenario": "hash-tamper",
+      "name": "important semantic operators",
+      "state": "UNVERIFIED",
+      "reason": "evidence hash mismatch"
+    }
+  ],
+  "assemblyStats": {
+    "references": 11,
+    "uniqueInputFiles": 10,
+    "reusedReferences": 1,
+    "inputBytes": 7524741,
+    "outputBytes": 7669350,
+    "mediaCopies": 2,
+    "assemblyMilliseconds": 649.571538
+  },
+  "formalPositiveStaticIntentProven": false,
+  "newMP4s": 0,
+  "scope": "Real negative counterexample plus actual decoded pixels; no population-wide or release PASS"
+}

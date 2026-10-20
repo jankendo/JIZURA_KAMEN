@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "inputs": [
+    {
+      "path": "docs/qa/generalization/composition-recovery/release-recovery-20261019/intent-audit.json",
+      "sha256": "23ecd1c0ba237c7e326efa37e2ed15585c82164bece6930faee024c097d23d90"
+    },
+    {
+      "path": "docs/qa/generalization/composition-recovery/release-recovery-20261019/clock-complete-ledger.json.gz",
+      "sha256": "044eac6ca1dba8b14cb08c4777264476079d9896809ffbc04acf6be6c2f8938d"
+    },
+    {
+      "path": "docs/qa/generalization/composition-recovery/release-recovery-20261019/current31-partial-population.json.gz",
+      "sha256": "6e71cb3387c3fa0d4aa405c829a56aeeaec3d3314bc7b4f238072bb9f4659e60"
+    },
+    {
+      "path": "docs/qa/generalization/composition-recovery/release-recovery-20261019/existing-mp4-inventory.json",
+      "sha256": "2f209401deac8d00cf8eb355d7845d982ffb0d3dacf7314d156e3fd79b4e117d"
+    },
+    {
+      "path": "docs/qa/generalization/composition-recovery/release-recovery-20261019/comparison-blockers.json",
+      "sha256": "4a6f3fe815aaa10cee232199bd0aab7a640eea6d6dcdada363e69474312abf83"
+    },
+    {
+      "path": "docs/qa/generalization/composition-recovery/release-recovery-20261019/historical-remaining-release-conditions.json",
+      "sha256": "9f62f5ab737b6664360755acf945e3723558cd354c1d2a092be97c2920456bd2"
+    }
+  ],
+  "historicalSource": "d04c734bc5eb0c0c427a42a196cae3a507b89506",
+  "currentPartialSource": "5eb02e6fba86c2104711894dc894b461d2fae922",
+  "population": 1250,
+  "importantCandidates": 1129,
+  "importanceFinalized": false,
+  "kinds": {
+    "COMPOSITE_IMPORTANT": 280,
+    "EXECUTED_IMPORTANT": 772,
+    "MANUAL_LOCKED": 27,
+    "NON_EXECUTION_IDENTITY": 94,
+    "INTENTIONAL_STATIC": 77
+  },
+  "workClasses": {
+    "E": 1129,
+    "A": 121
+  },
+  "postContractWorkHints": {
+    "D": 580,
+    "C": 549
+  },
+  "formalProvenImportant": 0,
+  "formalUnprovenImportant": 1129,
+  "legacyVerifiedNotTransferred": 2,
+  "currentPopulation": 1250,
+  "currentWorkClasses": {
+    "E": 1129,
+    "A": 121
+  },
+  "currentIDsIntersectHistorical": 0,
+  "regressions": 31,
+  "finalRegressionJudgments": 0,
+  "newVideoLowerBound": 0,
+  "newVideoMinimumEstablished": false,
+  "minimumLogicalWork": {
+    "pipelineKinds": 3,
+    "intentContracts": 1129,
+    "regressionReviews": 31,
+    "historicalDiagnoses": 6
+  },
+  "limits": [
+    "A means reusable bookkeeping, not quality PASS.",
+    "C/D are provisional work hints after E is resolved.",
+    "No absence of controls inferred merely from an empty historical row.",
+    "No new-video minimum can be proved before exact report/media recovery and contract freeze.",
+    "Partial 5eb ledger IDs are source-specific and never joined to d04 IDs by name alone."
+  ]
+}
