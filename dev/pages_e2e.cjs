@@ -7,7 +7,7 @@ const assert = require('node:assert/strict');
 const {spawnSync} = require('node:child_process');
 const os = require('node:os');
 const {createHash}=require('node:crypto');
-const {ExportWatchdog}=require('./export_watchdog.cjs');
+const {ExportWatchdog,GenerationWatchdog}=require('./export_watchdog.cjs');
 const {createCanvas} = require('@napi-rs/canvas');
 const {chromium} = require('playwright-core');
 const [url, output] = process.argv.slice(2);
@@ -51,6 +51,7 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
   const target=new URL(url);target.searchParams.set('kamen_qa',String(Date.now()));
   const response=await page.goto(target.toString(),{waitUntil:'load',timeout:60000});assert.equal(response.status(),200);environment.runtimeSHA256=createHash('sha256').update(await response.body()).digest('hex');
   await page.waitForFunction(()=>window.J?.ui?.project&&document.querySelector('#studioExport'));
+  if(process.env.KAMEN_PROFILE_GENERATION==='1')await require('./generation_profile.cjs').install(page,out);
   assert((await page.title()).includes('KAMEN'));assert.equal(await page.evaluate(()=>KAMEN_APP_INFO.version),'2.0.26');
   check('startup',{version:'2.0.26',secure:await page.evaluate(()=>isSecureContext)});
   await page.locator('[data-bg-file]').first().setInputFiles(path.join(out,'background.webp'));
@@ -66,8 +67,16 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
   await page.locator('#audioFile').setInputFiles(path.join(out,'audio.wav'));
   await page.waitForFunction(()=>J.ui.audio?.buffer&&Math.abs(J.ui.audio.duration-9)<.001&&!J.ui.audioLoading,null,{timeout:120000});
   check('audio upload and analysis',{bpm:await page.evaluate(()=>J.ui.audio.bpm)});
+  const waitForGeneration=async()=>{
+   const watchdog=new GenerationWatchdog(Date.now()),observations=[];
+   for(;;){const state=await page.evaluate(()=>({done:!document.querySelector('#studioResult').hidden&&!document.querySelector('#btnAutoDirection').disabled,jobs:[...J.processing.jobs.values()].map(({id,title,status,index,detail,error,stages})=>({id,title,status,index,detail,error,stages:stages.map(({id,status,fraction})=>({id,status,fraction}))}))}));
+    observations.push({time:Date.now(),...state});fs.writeFileSync(path.join(out,'generation-states.json'),JSON.stringify(observations,null,2));
+    if(state.done)return;const terminal=state.jobs.filter(j=>j.title==='MVを作成しています').at(-1);assert(!terminal||!['error','cancelled'].includes(terminal.status),'Generation stopped: '+terminal?.error);
+    const deadline=watchdog.observe(state.jobs,Date.now());assert.equal(deadline,null,'Generation '+deadline+'; actual stage/fraction observations saved');await page.waitForTimeout(5000);
+   }
+  };
   await page.locator('#btnAutoDirection').click();
-  await page.waitForFunction(()=>!document.querySelector('#studioResult').hidden&&!document.querySelector('#btnAutoDirection').disabled,null,{timeout:600000});
+  await waitForGeneration();
   const plan=await page.evaluate(()=>({cuts:J.ui.plan.cuts.length,lines:J.ui.plan.lines.length,duration:J.ui.plan.duration}));assert(plan.cuts>0);assert.equal(plan.lines,4);check('automatic MV generation',plan);
   if(await page.evaluate(()=>J.ui.playing))await page.locator('#btnPlay').click();await page.keyboard.press('Home');await page.locator('#btnPlay').click();await page.waitForFunction(()=>J.ui.playing);
   await page.waitForFunction(()=>J.ui.t>.3);await page.locator('#btnPlay').click();await page.waitForFunction(()=>!J.ui.playing);check('preview playback');
@@ -77,7 +86,7 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
   await page.locator('#fileProject').setInputFiles(projectFile);await page.waitForFunction(()=>!J.ui.projectLoading&&J.ui.audio===null,null,{timeout:60000});
   assert.deepEqual(await page.evaluate(()=>({lyrics:J.ui.project.lyrics,image:J.ui.project.customBg.dataUrl})),before);check('project save and reload');await page.locator('#studioAdvanced').click();
   await page.locator('#audioFile').setInputFiles(path.join(out,'audio.wav'));await page.waitForFunction(()=>J.ui.audio?.buffer&&!J.ui.audioLoading,null,{timeout:120000});
-  await page.locator('#btnAutoDirection').click();await page.waitForFunction(()=>!document.querySelector('#studioResult').hidden&&!document.querySelector('#btnAutoDirection').disabled,null,{timeout:600000});check('regenerate after restored audio');
+  await page.locator('#btnAutoDirection').click();await waitForGeneration();check('regenerate after restored audio');
   await page.locator('#studioExportDetails').evaluate(el=>el.open=true);await page.locator('#studioRes').selectOption('720');await page.locator('#studioFPS').selectOption('24');
   // Reproduce the native headless dialog separately; it never touches the project.
   const pickerProbe=await browser.newPage();
@@ -132,12 +141,12 @@ fs.writeFileSync(path.join(out,'audio.wav'),wav);
     assert.equal(lastState.draft,false,'one-click export must not request Draft approval');
     const terminal=lastState.jobs.filter(j=>j.title==='動画を書き出しています').sort((a,b)=>a.id-b.id).at(-1);
     if(terminal&&['error','cancelled'].includes(terminal.status))throw new Error('Application export stopped: '+terminal.error);
-    if(deadline==='timeout')throw new Error('Export timeout: maximum 8 minutes exceeded');
+    if(deadline==='timeout')throw new Error('Export timeout: encoding or final verification exceeded its bounded 8-minute phase budget');
     if(deadline==='stalled')throw new Error('Export stalled: no state or progress change for 90 seconds');
     if(!exported)await page.waitForTimeout(5000);
    }
    const video=path.join(out,'ui-export.mp4');console.log('export state: saving download');const saveStarted=Date.now();let saveTimer;
-   try{await Promise.race([exported.saveAs(video),new Promise((_,reject)=>{saveTimer=setTimeout(()=>reject(new Error('Export timeout while saving download')),Math.max(1,480000-(Date.now()-started)));})]);}
+   try{await Promise.race([exported.saveAs(video),new Promise((_,reject)=>{saveTimer=setTimeout(()=>reject(new Error('Export timeout while saving download')),90000);})]);}
    catch(error){await exported.cancel().catch(()=>{});throw error;}finally{clearTimeout(saveTimer);downloadSaveWallMs=Date.now()-saveStarted;}
    downloadError=await exported.failure();assert.equal(downloadError,null);console.log('export state: download-completed');
   }finally{page.off('download',onDownload);}

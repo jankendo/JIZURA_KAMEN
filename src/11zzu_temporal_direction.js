@@ -22,13 +22,50 @@ const makeEnv=J.Renderer.prototype.makeEnv;J.Renderer.prototype.makeEnv=function
 const draw=J.drawCinemaGrammar;J.drawCinemaGrammar=function(ctx,p,t){const value=draw.call(this,ctx,p,t),c=J.cutAt(p,t),s=J.cinemaTemporalState(p,c,t);if(!value||!s||locked(p,c))return value;const end=this.renderRange?.end??p.duration;if(t>=end-.7)return value;
  if(s.role==='light'||(s.impact>.015&&s.level>.4)){ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=s.role==='light'?.055*Math.sin(s.u*Math.PI):.075*s.level*s.impact;ctx.fillStyle=p.style?.schemes?.[0]?.accent||'#73baff';ctx.fillRect(0,0,p.W,p.H);ctx.restore();}return value;};
 // Typography keeps one authoritative complete phrase; echoes are decoration.
-for(const [id,layout]of Object.entries(J.LAYOUTS))if(id.startsWith('cinemaGrammar')){const original=layout.render;layout.render=env=>{const g=env.cut.grammar;if(!g?.temporal||!g.stage||g.quiet)return original(env);const {W,H,cut}=env,source=String(cut.lineText||cut.text),chars=Array.from(source),text=W>H&&(g.temporal.climax||g.stage===2||g.stage===4)?chars.slice(0,Math.ceil(chars.length/2)).join('')+'\n'+chars.slice(Math.ceil(chars.length/2)).join(''):J.vocaliseUnits(source).join('\n'),font=cut.params.font||'embedded_bold',size=Math.min(H*(W>H?(g.temporal.climax?.185:[0,.135,.155,.175,.185][g.stage]):.105),J.fitSize(text,font,W*.84,H*.61,{lead:1.10,track:.028,sx:1.04}));return J.mainDraw(env,{text,font,size,x:W/2,y:H/2,lead:1.10,track:.028,sx:1.04,color:'#fff',noHold:true,grammarMode:g.mode,cinemaMotion:'read',enter:cut.enter,exit:cut.exit});};}
+for(const [id,layout]of Object.entries(J.LAYOUTS))if(id.startsWith('cinemaGrammar')){const original=layout.render;layout.render=env=>{const g=env.cut.grammar;if(!g?.temporal||!g.stage||g.quiet)return original(env);const {W,H,cut}=env,source=String(cut.lineText||cut.text),chars=Array.from(source),text=W>H&&(g.temporal.climax||g.stage===2||g.stage===4)?chars.slice(0,Math.ceil(chars.length/2)).join('')+'\n'+chars.slice(Math.ceil(chars.length/2)).join(''):J.vocaliseUnits(source).join('\n'),font=cut.params.font||'embedded_bold',size=Math.min(H*(W>H?(g.temporal.climax?.185:[0,.135,.155,.175,.185][g.stage]):.105),J.fitSize(text,font,W*.84,H*.61,{lead:1.10,track:.028,sx:1.04}));const semantic=!cut.locked&&!locked(env.plan,cut)?J.cinemaSemanticLyricLayout?.(env.plan,cut,env.ctx):null;return J.mainDraw(env,{text:semantic?.text??text,font,size:semantic?.size??size,x:W/2,y:H/2,lead:semantic?.lead??1.10,track:semantic?.track??.028,sx:semantic?1:1.04,color:'#fff',noHold:true,grammarMode:g.mode,cinemaMotion:'read',enter:cut.enter,exit:cut.exit});};}
 const main=J.mainDraw;J.mainDraw=(env,it)=>{if(env.plan._decodedNeutralPrimary&&env.pass==='main')return null;const g=env.cut.grammar,s=J.cinemaTemporalState(env.plan,env.cut,env.t);if(!s||locked(env.plan,env.cut)||!it.grammarMode)return main(env,it);const neutral=env.plan.cinemaSemanticNeutral,role=s.role;
  if(!neutral){it.track=role==='echo'?.060:role==='light'?.045:role==='impact'?.008:role==='grounding'?.015:role==='continuity'?.028:it.track;it.sx=(it.sx||1)*(role==='impact'?.95:role==='echo'?1.02:role==='identity'?1.05:1);it.fontWeight=Math.min(800,Math.max(500,Math.round((J.faceOf?.(it.font)?.weight||700)/100)*100-(['echo','continuity'].includes(role)?100:0)));}
  return main(env,it);};
+// Temporal eligibility is independent of grammar typography. A photo layout
+// advertises only the motion it can preserve without changing its own text fit.
+const automaticTemporalVersion='automatic-lyric-temporal-v2',legacyTemporalVersion='automatic-lyric-temporal-v1';
+J.bindAutomaticLyricTemporalPolicy=(p,project)=>{
+ if(!p)return false;
+ const old=p.cinemaLyricTemporalPolicy;
+ if(old&&![automaticTemporalVersion,legacyTemporalVersion].includes(old.version))return false;
+ if(project?.autoDirection===true){if(old?.version===automaticTemporalVersion&&old.origin==='AUTOMATIC_PROJECT_PLAN')return false;p.cinemaLyricTemporalPolicy={...old,version:automaticTemporalVersion,origin:'AUTOMATIC_PROJECT_PLAN'};return true;}
+ if([automaticTemporalVersion,legacyTemporalVersion].includes(old?.version)){delete p.cinemaLyricTemporalPolicy;return true;}return false;
+};
+J.lyricTemporalTranslationPermitted=(p,c)=>!!c&&c.line>=0&&!c.locked&&!locked(p,c)&&c.grammar?.intentionalHold!==true&&c.grammar?.directionPolicy?.quietIntent!==true&&['light','continuity'].includes(c.grammar?.temporal?.role);
+J.automaticLyricTemporalTranslationEnabled=(p,c)=>active(p)&&p.cinemaLyricTemporalPolicy?.version===automaticTemporalVersion&&p.cinemaLyricTemporalPolicy.origin==='AUTOMATIC_PROJECT_PLAN'&&J.lyricTemporalTranslationPermitted(p,c);
+// Candidate evaluation and completed export see the same intended motion.
+// Photo text fit is preserved; Grammar reuses its existing uniform function.
+const temporalPlan=J.plan;J.plan=function(project,...args){const p=temporalPlan.call(this,project,...args);J.bindAutomaticLyricTemporalPolicy(p,project);return p;};
+J.cinemaLyricTemporalContract=(env,it)=>{
+ const p=env.plan,c=env.cut,s=J.cinemaTemporalState(p,c,env.t),layout=J.LAYOUTS[c?.layout],cap=layout?.lyricTemporal;
+ if(!s||locked(p,c)||c?.locked)return {status:'NOT_APPLICABLE',reason:'NO_AUTOMATIC_TEMPORAL_INTENT'};
+ if(it.grammarMode){const complete=String(it.text??'').replace(/\s/gu,'')===String(c.lineText??c.text??'').replace(/\s/gu,'')&&String(it.text??'').trim()&&J.cinemaV5?.isPrimaryInternalLyric?.(env,it)!==false;return {status:'EXECUTABLE',mode:'GRAMMAR',state:s,uniformTranslation:!!complete&&J.automaticLyricTemporalTranslationEnabled(p,c)};}
+ if(!active(p)||c.line<0||!cap?.uniformTranslation||cap.version!==1)return {status:'NOT_APPLICABLE',reason:'LAYOUT_HAS_NO_TEMPORAL_CAPABILITY'};
+ const plain=v=>String(v??'').replace(/\s/gu,'');
+ if(!plain(it.text)||plain(it.text)!==plain(c.lineText??c.text)||it.ghost===false||it.fill===false)return {status:'NOT_APPLICABLE',reason:'NOT_COMPLETE_PRIMARY_LYRIC'};
+ if(c.grammar?.intentionalHold===true||c.grammar?.directionPolicy?.quietIntent===true)return {status:'NOT_APPLICABLE',reason:'INTENTIONAL_STILLNESS'};
+ const automatic=[automaticTemporalVersion,legacyTemporalVersion].includes(p.cinemaLyricTemporalPolicy?.version)&&p.cinemaLyricTemporalPolicy.origin==='AUTOMATIC_PROJECT_PLAN';
+ if(!['light','continuity'].includes(s.role)||!automatic&&!J.finalSemanticTravelTarget?.(p,c))return {status:'NOT_APPLICABLE',reason:'NO_AUTOMATIC_OR_SELECTED_TEMPORAL_CONTRACT'};
+ return {status:'EXECUTABLE',mode:'UNIFORM_TRANSLATION',state:s,preserveTypography:true};
+};
 J.cinemaTypographyClosingWindow=(p,c,end)=>Math.min(.36,Math.max(0,end-c.start-.55));
-const type=J.applyTypography5;J.applyTypography5=(env,it)=>{type(env,it);const s=J.cinemaTemporalState(env.plan,env.cut,env.t),g=env.cut.grammar;if(!s||!it.grammarMode||locked(env.plan,env.cut))return;const p=env.plan,end=env.range?.end??p.duration,last=Math.floor((end-1e-7)*p.fps)/p.fps,window=J.cinemaTypographyClosingWindow(p,env.cut,end),closing=window?ease((env.t-(end-window))/Math.max(1/p.fps,last-(end-window))):0;
+const type=J.applyTypography5;J.applyTypography5=(env,it)=>{type(env,it);const contract=J.cinemaLyricTemporalContract(env,it);if(contract.status!=='EXECUTABLE')return;const s=contract.state,g=env.cut.grammar,p=env.plan;
+ if(contract.mode==='UNIFORM_TRANSLATION'){
+  if(p.cinemaSemanticNeutral)return;
+  const motion={dx:0,dy:s.role==='light'?-env.H*.018*s.travel:env.H*.002*Math.sin(s.u*Math.PI)};
+  // One phrase translation, without importing grammar font/scale/row effects.
+  // Anchoring removes this exact contribution only from its reference bounds.
+  it.cinemaAnchorMotion=motion;it.charFns.push(()=>({...motion}));return;
+ }
+ const end=env.range?.end??p.duration,last=Math.floor((end-1e-7)*p.fps)/p.fps,window=J.cinemaTypographyClosingWindow(p,env.cut,end),closing=window?ease((env.t-(end-window))/Math.max(1/p.fps,last-(end-window))):0;
  if(closing)it.alpha=(it.alpha??1)*(1-closing);if(p.cinemaSemanticNeutral)return;
+ // These roles have a uniform phrase translation, separate from the shape anchor.
+ if(J.lyricTemporalTranslationPermitted(p,env.cut)&&(contract.uniformTranslation||J.finalSemanticTravelTarget?.(p,env.cut)))it.cinemaAnchorMotion={dx:0,dy:s.role==='light'?-env.H*.018*s.travel:env.H*.002*Math.sin(s.u*Math.PI)};
  it.charFns.push((i,glyph)=>{const row=glyph.li||0,read=['echo','grounding','continuity'].includes(s.role),pressure=s.level,base=(s.climax?.075:s.role==='identity'?.04:.018)*s.impact,entry=s.entry,dx=s.role==='gathering'?(row%2?1:-1)*env.W*.025*entry:s.role==='participation'?((g.phraseMotion==='call'?-1:g.phraseMotion==='response'?1:row%2?1:-1)*env.W*.023*entry):0,dy=s.role==='light'?-env.H*.018*s.travel:s.role==='echo'?env.H*.008*Math.sin(s.u*Math.PI*2-row*.65):s.role==='continuity'?env.H*.002*Math.sin(s.u*Math.PI):s.role==='participation'?env.H*.009*pressure*Math.sin(s.u*Math.PI*2-row*.7):0;
  return {dx,dy,s:1+base+(read?.004:.008)*Math.sin(s.u*Math.PI)*pressure,sx:s.role==='impact'?1-.04*s.impact:1,sy:s.role==='impact'?1+.035*s.impact:1};});
 };

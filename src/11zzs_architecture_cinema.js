@@ -1,10 +1,25 @@
 /* Content-seeded composition tournament. Only visible raster improvements survive. */
 (()=>{'use strict';const J=window.J,C=J.clamp,ease=u=>{u=C(u);return u*u*(3-2*u);},active=p=>!!p.musicalPhoto?.cinema,locked=(p,c)=>!!c&&J.photoChoreographyLocked(p,c);
 const hash=s=>{let h=2166136261;for(const ch of String(s)){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;};
-J.cinemaContentSeed=p=>hash(JSON.stringify([p.artDirection?.registrySelection?.audioKey,p.artDirection?.registrySelection?.backgroundKey,p.lines?.map(l=>[l.start,l.text]),p.musicalPhoto?.songProfile,p.musicalPhoto?.cinema?.pool,p.styleKey]));
+J.cinemaImmutableContentSeed=p=>{
+ let audioIdentity=null;try{audioIdentity=JSON.parse(p.artDirection?.registrySelection?.audioKey||'null')?.sourceFileSHA256??null;}catch{}
+ // Unknown uploaded identity stays explicit; floating analysis and resampled
+ // PCM never seed geometry. Musical scoring and intentional holds are intact.
+ return hash(JSON.stringify(['immutable-content-seed-v2',p.seed,audioIdentity,p.artDirection?.registrySelection?.backgroundKey,p.lines?.map(l=>[l.start,l.text]),p.W,p.H]));
+};
+// The shipping baseline retains its original seed semantics. A stable seed
+// is an explicit competing search, never an unverified replacement baseline.
+J.cinemaContentSeed=p=>{
+ if(Number.isInteger(p.cinemaStableExplorationSeed))return p.cinemaStableExplorationSeed;
+ let audioKey=p.artDirection?.registrySelection?.audioKey;try{const key=JSON.parse(audioKey);delete key.sourceFileSHA256;audioKey=JSON.stringify(key);}catch{}
+ return hash(JSON.stringify([audioKey,p.artDirection?.registrySelection?.backgroundKey,p.lines?.map(l=>[l.start,l.text]),p.musicalPhoto?.songProfile,p.musicalPhoto?.cinema?.pool,p.styleKey]));
+};
 const fields=['hero','window','asymmetric','band','graphic','arena'],safeLayers=['frame','rails','grid','contour'];
 J.cinemaArchitectureCandidates=p=>{const seed=J.cinemaContentSeed(p),quiet=['flow','drift'].includes(p.musicalPhoto.songProfile.mode);return Array.from({length:12},(_,id)=>({id,seed,quiet,rotation:hash(seed+':'+id)%6,direction:hash('side'+seed+id)%2,opening:hash('open'+seed+id)%3}));};
 const sync=p=>{const f=p.musicalPhoto.cinema;if(f.visualDNA){f.visualDNA.master={...f.visualDNA.master,seed:f.architecture.seed};f.visualDNA.worlds=p.cuts.filter(c=>c.grammar).map(c=>({line:c.line,world:c.grammar.subWorld,role:c.grammar.temporal?.role,energy:p.musicalPhoto.localMusic?.find(x=>x.line===c.line)?.energy??c.grammar.temporal?.level}));}f.grammar.shots=p.cuts.filter(c=>c.grammar).map(c=>({line:c.line,from:c.start,to:c.end,...c.grammar}));for(const s of p.storyboard||[]){const c=p.cuts.find(c=>c.start===s.from&&c.grammar);if(c&&!s.locked)s.shotGrammar={...c.grammar};}};
+// Shared physical allocation for the native architecture and semantic layout.
+// Labels alone never create a different geometry or a novelty observation.
+J.cinemaArchitectureTypographyBox=(p,c)=>{const g=c.grammar;if(!g?.architectureVersion)return null;return {width:p.W*(g.field==='asymmetric'&&p.W>p.H?.46:g.field==='negative'?.62:.76),height:p.H*(['window','band'].includes(g.field)?.30:g.stage?.56:.43)};};
 J.applyCinemaArchitecture=(p,candidate)=>{const f=p.musicalPhoto.cinema,quiet=candidate.quiet,climaxCuts=p.cuts.filter(c=>c.grammar&&c.start>=f.climax&&!locked(p,c)),n=Math.max(1,climaxCuts.length-1);let prior='';
  for(const c of p.cuts)if(c.grammar&&!locked(p,c)){
   const g=c.grammar,meaning=c.cinema.meaning,stage=g.stage,climax=climaxCuts.indexOf(c),pick=hash(candidate.seed+':'+candidate.id+':'+c.line+':'+meaning),pool=quiet?['hero','window','band']:fields;
@@ -40,7 +55,7 @@ J.paintCinemaGrammarForeground=function(ctx,p,c,t){const g=c.grammar;if(!g?.safe
  ctx.restore();return true;};
 const draw=J.drawCinemaGrammar;J.drawCinemaGrammar=function(ctx,p,t){const result=draw.call(this,ctx,p,t),c=J.cutAt(p,t);if(result&&c?.grammar?.architectureVersion&&!this.cinemaNeutralLayers)J.paintCinemaGrammarForeground.call(this,ctx,p,c,t);return result;};
 // Architecture changes actual reading regions, not just shot identifiers.
-for(const [id,layout] of Object.entries(J.LAYOUTS))if(id.startsWith('cinemaGrammar')){const original=layout.render;layout.render=function(env){const g=env.cut.grammar;if(!g?.architectureVersion)return original(env);const {W,H,cut}=env,source=String(cut.lineText||cut.text),units=J.vocaliseUnits(source),stage=g.stage;let text=J.composeLyricPhrase(source);if(stage)text=units.join(stage===2&&W>H?' ':'\n');const field=g.field,width=W*(field==='asymmetric'&&W>H?.46:field==='negative'?.62:.76),height=H*(['window','band'].includes(field)?.30:stage?.56:.43),font=cut.params.font||'embedded_bold',lead=stage?1.12:1.24,size=Math.min(H*(H>W?.102:stage?.17:.16),J.fitSize(text,font,width,height,{lead,track:.015}));return J.mainDraw(env,{text,font,size,x:W/2,y:H/2,lead,track:.015,color:'#fff',noHold:true,cinemaMotion:'read',grammarMode:g.mode,enter:cut.enter,exit:cut.exit});};}
+for(const [id,layout] of Object.entries(J.LAYOUTS))if(id.startsWith('cinemaGrammar')){const original=layout.render;layout.render=function(env){const g=env.cut.grammar;if(!g?.architectureVersion)return original(env);const {W,H,cut}=env,source=String(cut.lineText||cut.text),units=J.vocaliseUnits(source),stage=g.stage;let text=J.composeLyricPhrase(source);if(stage)text=units.join(stage===2&&W>H?' ':'\n');const field=g.field,box=J.cinemaArchitectureTypographyBox(env.plan,cut),width=box.width,height=box.height,font=cut.params.font||'embedded_bold',lead=stage?1.12:1.24,size=Math.min(H*(H>W?.102:stage?.17:.16),J.fitSize(text,font,width,height,{lead,track:.015}));const semantic=!cut.locked&&!locked(env.plan,cut)?J.cinemaSemanticLyricLayout?.(env.plan,cut,env.ctx):null;return J.mainDraw(env,{text:semantic?.text??text,font,size:semantic?.size??size,x:W/2,y:H/2,lead:semantic?.lead??lead,track:semantic?.track??.015,color:'#fff',noHold:true,cinemaMotion:'read',grammarMode:g.mode,enter:cut.enter,exit:cut.exit});};}
 const type=J.applyTypography5;J.applyTypography5=(env,it)=>{type(env,it);const g=env.cut.grammar;if(!g?.architectureVersion||!it.grammarMode||env.plan.cinemaSemanticNeutral)return;const u=C(env.lt/Math.max(.1,env.cut.dur)),force=g.quiet?.35:1,stage=g.stage;
  if(stage)it.charFns.push((i,glyph)=>{const row=glyph.li||0;return g.phraseMotion==='response'?{dx:(row%2?1:-1)*env.W*.017*Math.sin(u*Math.PI*2)*force}:g.phraseMotion==='wave'?{dy:env.H*.012*Math.sin(u*Math.PI*2-row*.7)*force}:g.phraseMotion==='crowd'?{s:1+.045*ease(u)*force,dy:env.H*.012*Math.sin(u*Math.PI-row*.4)*force}:{};});
 };

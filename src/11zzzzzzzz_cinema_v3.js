@@ -28,7 +28,7 @@ V.captureLegacyPlan=p=>{if(p.cinemaCandidateMode!=='legacy'&&!V.legacyPlanningSt
 // Freeze only owned JSON metadata; never freeze PCM buffers, DOM or codec objects.
 V.freezeMetadata=value=>{if(value&&typeof value==='object'){Object.values(value).forEach(V.freezeMetadata);Object.freeze(value);}return value;};
 // The design canvas (e.g. 1920×1080) is not the requested delivery raster.
-V.bindDelivery=(p,project)=>{const [width,height]=J.outputSize(project);if(p.cinemaDelivery?.width!==width||p.cinemaDelivery?.height!==height){delete p.musicalPhoto?.cinema?.architectureSearch;delete p.musicalPhoto?.preparation;}p.cinemaDelivery={width,height};return p;};
+V.bindDelivery=(p,project)=>{const [width,height]=J.outputSize(project);if(p.cinemaDelivery?.width!==width||p.cinemaDelivery?.height!==height){delete p.musicalPhoto?.cinema?.architectureSearch;delete p.musicalPhoto?.preparation;}p.cinemaDelivery={width,height,videoBitrate:Number(project.exportSettings?.videoBitrate)||0};return p;};
 const deliveryPlan=J.plan;J.plan=(project,...args)=>V.bindDelivery(deliveryPlan(project,...args),project);
 V.outputProfile=(p,range=null)=>{const loop=p.exportSettings?.loopRequired===true,short=!!p.socialHook,aspect=(()=>{const gcd=(a,b)=>b?gcd(b,a%b):a,d=gcd(p.W,p.H);return p.W/d+':'+p.H/d;})();return V.validateProfile({purpose:loop?'LOOP_SHORT':short?'SHORT':aspect==='1:1'?'SQUARE':'FULL_MV',aspect,fps:p.fps,range:[range?.start??p.socialHook?.start??0,range?.end??p.socialHook?.end??p.duration],loopRequired:loop,...(p.cinemaDelivery?{resolution:[p.cinemaDelivery.width,p.cinemaDelivery.height]}:{})});};
 V.validateProfile=p=>{if(!profile(p))throw new TypeError('Invalid Cinema V3 output profile');return p;};
@@ -101,7 +101,7 @@ V.searchEvaluation=(item,p,stage,inputHash='search-local',range=null)=>{
 V.proxyEligibility=(item,p,range=null,inputHash='unbound')=>{const evidence=V.searchEvaluation(item,p,'C',inputHash,range);return J.rankCinemaCandidateV2(evidence.evaluation,{...evidence.profile,requiredMetrics:evidence.profile.requiredMetrics.filter(id=>!['outputReadability','frameAlignedOutputReadability'].includes(id))});};
 // An ineligible incumbent can still supply readable-interval protection for another candidate.
 V.needsOutputReadability=(items,item)=>items.some(s=>s.proxyEligibility?.eligible)&&(item.id==='baseline'||item.proxyEligibility?.eligible===true);
-V.searchInputHash=async(p,range,audio)=>J.sha256(J.canonicalJSON({audioHash:await V.audioHash(audio),lyrics:p.lines,image:p.customBg,assets:p.visualAssets,locks:p.directionOverrides7,directives:p.directorLyricDirectives7,profile:V.outputProfile(p,range),rendererVersion:V.version}));
+V.searchInputHash=async(p,range,audio)=>J.sha256(J.canonicalJSON({audioHash:await V.audioHash(audio),lyrics:p.lines,image:p.customBg,assets:p.visualAssets,locks:p.directionOverrides7,directives:p.directorLyricDirectives7,profile:V.outputProfile(p,range),lyricTemporalPolicy:p.cinemaLyricTemporalPolicy?{version:p.cinemaLyricTemporalPolicy.version,origin:p.cinemaLyricTemporalPolicy.origin}:null,rendererVersion:V.version}));
 V.selectSearch=(items,p,stage,range=null,inputHash='unbound')=>{const values=items.map(item=>({...V.searchEvaluation(item,p,stage,inputHash,range),item})),baseline=values.find(v=>v.item.id==='baseline'),profile=values[0]?.profile;if(!profile)return {item:null,status:'NO_CANDIDATES',ranked:[]};
  // Applicability is determined once for the output and shared by every candidate.
  profile.allIntentionalHolds=values.every(v=>v.profile.allIntentionalHolds);profile.requiredMetrics=V.requiredMetrics(stage,profile);
@@ -269,7 +269,45 @@ V.repairReadabilityPreview=async(p,range,signal,options={})=>{
 (()=>{'use strict';const J=window.J,V=J.cinemaV3;
 V.captureLegacyGrammar=p=>{if(!V.enabled||p.cinemaCandidateMode==='legacy')return;for(const c of p.cuts||[])if(c.grammar&&!J.photoChoreographyLocked(p,c)){const g=V.clone(c.grammar);delete g.scenePhases;delete g.directionPolicy;delete g.intentionalHold;c.cinemaV3LegacyCandidateGrammar=g;}};
 V.readabilityDominates=(next,prior)=>{for(const key of ['outputResolution','observerResolution','fps'])if((next?.[key]!==undefined||prior?.[key]!==undefined)&&J.canonicalJSON(next?.[key]??null)!==J.canonicalJSON(prior?.[key]??null))return false;if(!Number.isFinite(next?.score)||!Number.isFinite(prior?.score)||next.score<prior.score)return false;const map=new Map(next.samples.map(s=>[s.time,s.contrast?.score]));const aligned=new Map(next.samples.map(s=>[s.time,s.alignedContrast?.score]));const clocks=new Map(next.samples.map(s=>[s.time,s.actualTime]));return prior.samples.every(s=>(!Number.isFinite(s.actualTime)||Number.isFinite(clocks.get(s.time))&&Math.abs(clocks.get(s.time)-s.actualTime)<1e-7)&&(!Number.isFinite(s.contrast?.score)||Number.isFinite(map.get(s.time))&&map.get(s.time)>=s.contrast.score)&&(!Number.isFinite(s.alignedContrast?.score)||Number.isFinite(aligned.get(s.time))&&aligned.get(s.time)>=s.alignedContrast.score));};
-V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
+// New registry compositions need actual creative evidence, not a readability tie.
+V.encodedCompositionComparisonAvailable=()=>typeof VideoEncoder==='function'&&typeof Mp4Muxer!=='undefined'&&typeof window.JIZURAMedia?.sampleMP4==='function';
+V.musicObservationPopulationMatches=(next,prior)=>{
+ const keys=e=>{if(!Array.isArray(e?.samples)||!e.samples.length)return null;const values=e.samples.map(s=>Number.isFinite(s.line)&&Number.isFinite(s.from)&&Number.isFinite(s.to)&&s.to>s.from?J.canonicalJSON([s.line,s.from,s.to]):null);return values.some(v=>v===null)||new Set(values).size!==values.length?null:values.sort();},a=keys(next),b=keys(prior);
+ return !!a&&!!b&&J.canonicalJSON(a)===J.canonicalJSON(b);
+};
+V.visualComparisonBindingMatches=(next,prior)=>!next?.completed||!prior?.completed||!(next.frameCount>0&&prior.frameCount>0)||!next.inputHash||next.inputHash!==prior.inputHash||!next.rendererVersion||next.rendererVersion!==prior.rendererVersion||!next.videoSHA256||!prior.videoSHA256||!next.planHash||!prior.planHash||!next.profileId||next.profileId!==prior.profileId||!Array.isArray(next.encodedResolution)||!Array.isArray(prior.encodedResolution)||!Number.isFinite(next.fps)||J.canonicalJSON(next.encodedResolution)!==J.canonicalJSON(prior.encodedResolution)||next.fps!==prior.fps||J.canonicalJSON(next.outputProfile)!==J.canonicalJSON(prior.outputProfile)?false:V.musicObservationPopulationMatches(next,prior);
+V.registryCreativeDominates=(next,prior)=>{
+ if(!V.visualComparisonBindingMatches(next,prior))return false;
+ const axes=['typographyDiversity','lyricForegroundNovelty','temporalContrast','localContrast','motionRealization'],a=[next.lowerTailQuality,...axes.map(k=>next.metrics?.[k])],b=[prior.lowerTailQuality,...axes.map(k=>prior.metrics?.[k])];
+ const otherMeasured=['perceptualNovelty','regionalPerceptualNovelty','hookNovelty','impactBeatSync','motion'];
+ return a.every(Number.isFinite)&&b.every(Number.isFinite)&&a.every((v,i)=>v>=b[i])&&a.some((v,i)=>v>b[i])&&otherMeasured.every(k=>!Number.isFinite(prior.metrics?.[k])||Number.isFinite(next.metrics?.[k])&&next.metrics[k]>=prior.metrics[k]);
+};
+// Preregistered music-conditioned Pareto alternative. The original strict
+// rule remains intact. No metric coefficients/thresholds are rewritten.
+V.musicConditionedCompositionTradeoff=(next,prior)=>{
+ if(!V.visualComparisonBindingMatches(next,prior))return {allowed:false,reason:'INCOMPARABLE_DELIVERY'};
+ const stable=['localContrast','motionRealization','perceptualNovelty','regionalPerceptualNovelty','hookNovelty','impactBeatSync','motion'],structural=['typographyDiversity','lyricForegroundNovelty'];
+ if(!Number.isFinite(next.lowerTailQuality)||!Number.isFinite(prior.lowerTailQuality)||next.lowerTailQuality<prior.lowerTailQuality||stable.some(k=>!Number.isFinite(prior.metrics?.[k])||!Number.isFinite(next.metrics?.[k])||next.metrics[k]<prior.metrics[k])||structural.some(k=>!Number.isFinite(prior.metrics?.[k])||!Number.isFinite(next.metrics?.[k])||next.metrics[k]<=prior.metrics[k]))return {allowed:false,reason:'PHYSICAL_OR_STRUCTURAL_FLOOR'};
+ const slack=J.cinemaV5.selectionPolicy.creativeSlack;
+ if(!Number.isFinite(next.metrics.temporalContrast)||!Number.isFinite(prior.metrics.temporalContrast)||next.metrics.temporalContrast<prior.metrics.temporalContrast-slack)return {allowed:false,reason:'PREEXISTING_TEMPORAL_SLACK_EXCEEDED'};
+ const key=s=>J.canonicalJSON([s.line,s.from,s.to]),map=new Map((next.samples||[]).map(s=>[key(s),s])),errors=[];let gain=false;
+ if(!prior.samples?.length)return {allowed:false,reason:'UNMEASURED_MUSIC_UNITS'};
+ for(const a of prior.samples){const b=map.get(key(a));if(!b||![a.energy,b.energy,a.targetMotion,b.targetMotion].every(Number.isFinite)||a.targetMotion!==b.targetMotion||a.quiet!==b.quiet)return {allowed:false,reason:'INCOMPARABLE_MUSIC_UNIT'};
+  const before=Math.abs(a.energy-a.targetMotion),after=Math.abs(b.energy-b.targetMotion);
+  if(after>before||a.quiet&&b.energy>a.energy||!a.stagnant&&b.stagnant)return {allowed:false,reason:'MUSIC_UNIT_REGRESSION'};
+  if(!a.quiet&&after<before)gain=true;errors.push({line:a.line,timeRange:[a.from,a.to],targetMotion:a.targetMotion,beforeAbsoluteError:before,afterAbsoluteError:after,beforeStagnant:a.stagnant,afterStagnant:b.stagnant});
+ }
+ return {allowed:gain,reason:gain?'MUSIC_CONDITIONED_STRUCTURE_GAIN':'NO_MUSIC_FIT_GAIN',policyId:'music-conditioned-composition-pareto-v1',musicUnits:errors,tradeoffs:{temporalContrast:{before:prior.metrics.temporalContrast,after:next.metrics.temporalContrast},temporalModulationV2:{before:prior.cinemaV5?.temporalContrast?.value??null,after:next.cinemaV5?.temporalContrast?.value??null}},humanStatus:'HUMAN_UNVERIFIED',strictMetricDominanceClaimed:false};
+};
+// Configuration identity permits retaining an unchanged incumbent, never a
+// renamed or modified plan. Changed roots all require the existing strict guard.
+V.guardCompositionPromotion=async(root,planHash,incumbentPlanHash,measure)=>{
+ if(planHash&&planHash===incumbentPlanHash)return {root,allowed:true,status:'UNCHANGED_INCUMBENT',planHash,incumbentPlanHash,encodedCreativeEvidence:'NOT_APPLICABLE_NO_CHANGE'};
+ const evidence=await measure(),allowed=V.registryCreativeDominates(evidence.next,evidence.prior);
+ return {root,allowed,status:allowed?'MEASURED_NONREGRESSING_IMPROVEMENT':'NOT_PROMOTED_UNMEASURED_OR_NO_CREATIVE_IMPROVEMENT',planHash,incumbentPlanHash,...evidence,comparison:'Same input, profile and renderer; unchanged strict creative axes for every changed root; final MP4 QA required'};
+};
+V.compareLegacyFinalist=async(p,range,signal,shared,incumbent,telemetry={})=>{
+ let measuredWork=0;const measuredProgress=label=>telemetry.onProgress?.({label,candidateWorkEvents:++measuredWork});
  if(!Number.isFinite(incumbent?.score))return {status:'UNMEASURED',reason:'INCUMBENT_DELIVERY_READABILITY_UNMEASURED'};
 
  const rasterScope={renderer:new J.Renderer(),ready:false};try{
@@ -281,10 +319,10 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  for(const item of shared){
   if(signal?.aborted)throw new DOMException('Aborted','AbortError');restore(baseline);if(item.candidate)J.applyCinemaArchitecture(working,item.candidate);J.rebuildCinemaBeatIntent(working);
   const activeCuts=working.cuts.filter(c=>c.grammar&&!J.photoChoreographyLocked(working,c)&&c.start<(range?.end??p.duration)&&c.end>(range?.start??0)),indices=[0,Math.floor(activeCuts.length/2),activeCuts.length-1],raster=await J.measureCinemaSequence(working,range,{scope:rasterScope,...(item.id==='baseline'?{}:{lines:[...new Set(indices.map(i=>activeCuts[i]?.line).filter(Number.isFinite))]})}),sig=raster.samples.flatMap(s=>[...s.signature,...s.primarySignature]),duplicate=item.id!=='baseline'&&seen.some(v=>distance(v,sig)<.012);if(item.id!=='baseline')seen.push(sig);const safe=raster.samples.every(s=>s.safe);attempts.push({id:item.id,rank:raster.rank,duplicate,safe,safetySamples:raster.samples.map(s=>({line:s.line,safe:s.safe,readabilityFailures:s.readabilityFailures}))});
-  if(item.id==='baseline'||!duplicate&&safe){pool.push({id:item.id,state:save(),raster});pool.sort((a,b)=>b.raster.rank-a.raster.rank);const top=[pool.find(x=>x.id==='baseline'),...pool.filter(x=>x.id!=='baseline').slice(0,7)].filter(Boolean);pool.length=0;pool.push(...top);}await new Promise(resolve=>setTimeout(resolve,0));
+  if(item.id==='baseline'||!duplicate&&safe){pool.push({id:item.id,state:save(),raster});pool.sort((a,b)=>b.raster.rank-a.raster.rank);const top=[pool.find(x=>x.id==='baseline'),...pool.filter(x=>x.id!=='baseline').slice(0,7)].filter(Boolean);pool.length=0;pool.push(...top);}measuredProgress('基準構図の実描画検査 '+(attempts.length)+'/'+shared.length);await new Promise(resolve=>setTimeout(resolve,0));
  }
  if(!pool.length)return {status:'UNMEASURED',reason:'NO_LEGACY_RASTER',attempts};
- const stages=await J.selectCinemaProxyStages(working,range,{signal},pool,restore,V.budgetPolicy(working.exportSettings),false,{scope:rasterScope});restore(stages.chosen.state);
+ const stages=await J.selectCinemaProxyStages(working,range,{...telemetry,signal},pool,restore,V.budgetPolicy(working.exportSettings),false,{scope:rasterScope});restore(stages.chosen.state);
  const selected={id:stages.chosen.id,plan:working,raster:stages.chosen.raster},legacyStages={selectedCandidate:selected.id,stageA:attempts.length-1,stageB:stages.stageB.map(x=>({candidate:x.id,score:x.score,safe:x.raster.samples.every(s=>s.safe)})),stageC:stages.stageC.map(x=>({candidate:x.id,completed:x.encoded.completed,score:x.encoded.score??null})),source:'shared generated specifications; same existing local B/C selection and fallback, no V3 evidence privileges'};
  if(selected.raster.samples.some(s=>!s.safe))return {status:'UNMEASURED',reason:'LEGACY_FINALIST_UNSAFE',attempts,legacyStages};const selectedProxyPlanHash=await V.planHash(selected.plan);
  const inputHash=incumbent.cacheIdentity?.inputHash,additionalTimes=[...new Set([...incumbent.samples.map(s=>s.time),...stages.stageC.flatMap(item=>(item.state.cuts||[]).flatMap(c=>[c.start+.04,c.start+c.dur*.25,c.start+c.dur*.5,c.start+c.dur*.75,c.end-.2,c.grammar?.temporal?.hit])).filter(Number.isFinite)])],measurementOptions={scope:rasterScope,inputHash,backgroundConsistency:true,physicalOnly:true,additionalTimes};
@@ -292,21 +330,96 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  // glyph references at the very same actual frame clock, input and profile.
  incumbent=await J.measureCinemaOutputReadability(p,range,signal,measurementOptions);
  const rawLegacy=await J.measureCinemaOutputReadability(selected.plan,range,signal,measurementOptions),legacyTrial=await V.repairReadabilityPreview(selected.plan,range,signal,{...measurementOptions,cached:rawLegacy}),legacyReadability=legacyTrial.after,repairedSelected=V.clone(selected.plan),finalistComparisons=[],components=[{id:'INCUMBENT',plan:V.clone(p),readability:incumbent},{id:'LEGACY_FINALIST',plan:repairedSelected,readability:legacyReadability}];
+ if(p.registryMeasuredCuts?.length){
+  const registryPlan=V.clone(p);registryPlan.cuts=V.clone(p.registryMeasuredCuts);
+  for(const c of registryPlan.cuts){const live=p.cuts.find(x=>x.line===c.line&&x.start===c.start&&x.end===c.end);if(live&&J.photoChoreographyLocked(p,live)){for(const key of Object.keys(c))delete c[key];Object.assign(c,V.clone(live));}}
+  const registryReadability=await J.measureCinemaOutputReadability(registryPlan,range,signal,measurementOptions);measuredProgress('元の構図候補の実画素検査が完了');
+  components.push({id:'MEASURED_REGISTRY_BASELINE',plan:registryPlan,readability:registryReadability});
+  finalistComparisons.push({candidate:'MEASURED_REGISTRY_BASELINE',planHash:await V.planHash(registryPlan),readability:registryReadability,creativeLowerTail:null,source:'Original measured registry layouts retained as a real renderer candidate; Cinema remains enabled; final MP4 verification required'});
+ }
+ if(p.registryGeometryAlternativeCuts?.length){
+  const geometryPlan=V.clone(p);geometryPlan.cuts=V.clone(p.registryGeometryAlternativeCuts);
+  for(const c of geometryPlan.cuts){const live=p.cuts.find(x=>x.line===c.line&&x.start===c.start&&x.end===c.end);if(live&&J.photoChoreographyLocked(p,live)){for(const key of Object.keys(c))delete c[key];Object.assign(c,V.clone(live));}}
+  const geometryReadability=await J.measureCinemaOutputReadability(geometryPlan,range,signal,measurementOptions);measuredProgress('安全な構図候補の実画素検査が完了');components.push({id:'MEASURED_REGISTRY_GEOMETRY',plan:geometryPlan,readability:geometryReadability});finalistComparisons.push({candidate:'MEASURED_REGISTRY_GEOMETRY',planHash:await V.planHash(geometryPlan),readability:geometryReadability,creativeLowerTail:null,source:'Complete post-director geometry alternative, phase-reverified with its own anchor/font/layout; final artifact comparison required',upstreamTrace:p.registryGeometryAlternativeTrace??null,earlierPhaseEvidenceReusable:!p.registryGeometryAlternativeTrace?.some(t=>String(t.status).startsWith('STALE_'))});
+ }
  for(const finalist of stages.stageC){
   if(finalist.id===selected.id||!finalist.encoded?.completed||finalist.raster.samples.some(s=>!s.safe))continue;
   if(signal?.aborted)throw new DOMException('Aborted','AbortError');restore(finalist.state);const alternativePlan=V.clone(working),trial=await V.repairReadabilityPreview(alternativePlan,range,signal,measurementOptions);components.push({id:finalist.id,plan:alternativePlan,readability:trial.after});finalistComparisons.push({candidate:finalist.id,planHash:await V.planHash(alternativePlan),readability:trial.after,creativeLowerTail:finalist.encoded.lowerTailQuality??null,source:'already encoded Stage C finalist; actual-time native pixels are not final MP4 certification'});
  }
  const perLine=(measurement,line)=>({...measurement,samples:measurement.samples.filter(s=>s.line===line)}),value=s=>s.backgroundConsistentAlignedContrast?.score,improves=(next,prior)=>{const map=new Map(prior.samples.map(s=>[s.time,value(s)]));return next.samples.some(s=>Number.isFinite(value(s))&&Number.isFinite(map.get(s.time))&&value(s)>map.get(s.time));},protectedTimes=new Set([...legacyReadability.samples,...incumbent.samples].filter(s=>Number.isFinite(value(s))).map(s=>s.time)),vector=e=>e.samples.filter(s=>protectedTimes.has(s.time)).map(value).filter(Number.isFinite).sort((a,b)=>a-b),proposals=[];
- for(const root of [components[1],components[0]]){
+ for(const root of [...components.filter(c=>c.id==='MEASURED_REGISTRY_BASELINE'||c.id==='MEASURED_REGISTRY_GEOMETRY'),components[1],components[0]]){
   const plan=V.clone(root.plan),lines=[];
   for(const target of plan.cuts){if(J.photoChoreographyLocked(plan,target))continue;let current=perLine(root.readability,target.line);
    for(const component of components){const source=component.plan.cuts.find(c=>c.line===target.line&&c.start===target.start&&c.end===target.end);if(!source)continue;const next=perLine(component.readability,target.line);if(!V.physicalReadabilityDominates(next,current)||!improves(next,current))continue;for(const key of Object.keys(target))delete target[key];Object.assign(target,V.clone(source));if(component.plan.cinemaCandidateMode==='legacy'&&plan.cinemaCandidateMode!=='legacy')target.cinemaV3Legacy=true;target.cinemaV3LegacyFinalist=true;current=next;lines.push({line:target.line,component:component.id});}
   }
   J.rebuildCinemaBeatIntent(plan);const raw=await J.measureCinemaOutputReadability(plan,range,signal,measurementOptions),repair=V.physicalReadabilityDominates(raw,legacyReadability)&&V.physicalReadabilityDominates(raw,incumbent)?null:await V.repairReadabilityPreview(plan,range,signal,{...measurementOptions,cached:raw}),readability=repair?.after||raw,legacyProtected=V.physicalReadabilityDominates(readability,legacyReadability),incumbentProtected=V.physicalReadabilityDominates(readability,incumbent);
-  proposals.push({root:root.id,plan,lines,readability,repair,legacyProtected,incumbentProtected});
+  proposals.push({root:root.id,plan,lines,readability,repair,legacyProtected,incumbentProtected});measuredProgress('候補 '+root.id+' の全歌詞検査が完了');
  }
- const viable=proposals.filter(x=>x.legacyProtected&&x.incumbentProtected).sort((a,b)=>V.compareRanks(vector(a.readability),vector(b.readability))||String(a.root).localeCompare(String(b.root))),proposal=viable[0],plan=proposal?.plan||p,readability=proposal?.readability||incumbent,lines=proposal?.lines||[],raster=proposal?await J.measureCinemaSequence(plan,range,{scope:rasterScope}):null,encoded=proposal?(!legacyTrial.accepted&&!lines.length&&stages.chosen.encoded&&selectedProxyPlanHash===await V.planHash(plan)?stages.chosen.encoded:await J.measureCinemaEncodedProxy(plan,range,signal,{scope:rasterScope})):null,safe=!!encoded?.completed&&raster.samples.every(s=>s.safe)&&!(encoded.layerPresence?.primaryText?.samples||[]).some(s=>s.visibleSamples<s.samples.length),accepted=!!proposal&&safe;
- const evidence={status:inputHash?'LEGACY_DRAFT_FINALIST_COMPARED':'UNMEASURED',candidate:selected.id,selectedComposition:proposal?'physical-phrase-protected-hybrid':'incumbent-retained',compositionRoot:proposal?.root??null,v3Lines:lines.map(x=>x.line),components:lines,compositionRejected:!proposal,planHash:await V.planHash(plan),profile:V.outputProfile(plan,range),attempts,legacyStages,supplementalFinalistsNeeded:true,finalistComparisons,legacyTrial,legacyReadability,readability,encoded,accepted,physicalLowerTailProtected:proposal?.incumbentProtected??false,incumbentIntervalsProtected:proposal?.incumbentProtected??false,legacyIntervalsProtected:proposal?.legacyProtected??false,proposals:proposals.map(x=>({root:x.root,components:x.lines,readability:x.readability,repair:x.repair,legacyProtected:x.legacyProtected,incumbentProtected:x.incumbentProtected})),reason:!inputHash?'NATIVE_COMPARISON_INPUT_HASH_UNMEASURED':accepted?'ACTUAL_FRAME_PHRASE_BASELINES_PROTECTED_FINAL_QA_REQUIRED':!proposal?'NO_COMPOSITION_PROTECTS_BOTH_ACTUAL_FRAME_BASELINES':'LEGACY_ENCODED_LYRIC_OR_DECODE_FAILURE',lowerTailMissingReason:'Contrast never substitutes for missing creative lower-tail evidence',selectionEvidence:'SAME_ACTUAL_FRAME_BACKGROUND_CONSISTENT_NATIVE_PIXELS',historicalProxyValuesRetained:true,candidateGenerationReused:true,additional32CandidateGeneration:false,finalMP4Certified:false};
+ // Equal physical candidates must reach the encoded composition comparison.
+ // Isolated unit substitutions preserve every other shipping cut and expose
+ // musical development that the previous greedy contrast-only merge erased.
+ const shipping=proposals.find(x=>x.root==='INCUMBENT'&&x.legacyProtected&&x.incumbentProtected)?.plan??components[0].plan,unitAlternativeTrace=[],identities=new Set([await V.planHash(shipping)]),unitAlternatives=[];
+ for(let index=0;V.encodedCompositionComparisonAvailable()&&index<shipping.cuts.length;index++){
+  const target=shipping.cuts[index];if(target.line<0||J.photoChoreographyLocked(shipping,target))continue;
+  for(const component of components){
+   const source=component.plan.cuts.find(c=>c.line===target.line&&c.start===target.start&&c.end===target.end);
+   if(!source||String(source.lineText)!==String(target.lineText))continue;
+   const perUnit=m=>({...m,samples:m.samples.filter(s=>s.line===target.line&&s.time>=target.start&&s.time<target.end)}),required=perUnit(incumbent),observed=perUnit(component.readability);
+   if(!required.samples.length||!observed.samples.length||!V.physicalReadabilityDominates(observed,required)){unitAlternativeTrace.push({index,line:target.line,component:component.id,reason:'ACTUAL_UNIT_PHYSICAL_FLOOR'});continue;}
+   const plan=V.clone(shipping);plan.cuts[index]=V.clone(source);
+   if(component.plan.cinemaCandidateMode==='legacy'&&plan.cinemaCandidateMode!=='legacy')plan.cuts[index].cinemaV3Legacy=true;
+   plan.cuts[index].cinemaV3LegacyFinalist=true;J.rebuildCinemaBeatIntent(plan);
+   const identity=await V.planHash(plan);if(identities.has(identity))continue;identities.add(identity);
+   unitAlternatives.push({index,component,plan,identity});
+  }
+ }
+ // Without an encoded observer no changed unit can pass the promotion guard.
+ // Avoid only those provably inadmissible extra native proposals; browser
+ // candidate count and every shipping/legacy physical floor remain intact.
+ if(!V.encodedCompositionComparisonAvailable())unitAlternativeTrace.push({reason:'NOT_APPLICABLE_NO_ENCODED_COMPARISON_CAPABILITY',additionalBudget:32,changedUnitPromotionPossible:false});
+ // Round-robin across actual unit ordinals: no lyric ID/seed/material branches,
+ // and no forced rotation. The existing32-search scale bounds added work.
+ unitAlternatives.sort((a,b)=>a.index-b.index||String(a.component.id).localeCompare(String(b.component.id)));
+ const queues=[...new Map(unitAlternatives.map(a=>[a.index,unitAlternatives.filter(b=>b.index===a.index)])).values()],scheduled=[];for(let offset=0;scheduled.length<32&&queues.some(q=>q.length>offset);offset++)for(const q of queues)if(q[offset]&&scheduled.length<32)scheduled.push(q[offset]);
+ for(const alternative of scheduled){
+  measuredProgress('構図変更区間の検査 '+(scheduled.indexOf(alternative)+1)+'/'+scheduled.length);
+  if(signal?.aborted)throw new DOMException('Aborted','AbortError');
+  const {plan,index,component,identity}=alternative,raw=await J.measureCinemaOutputReadability(plan,range,signal,measurementOptions),repair=V.physicalReadabilityDominates(raw,legacyReadability)&&V.physicalReadabilityDominates(raw,incumbent)?null:await V.repairReadabilityPreview(plan,range,signal,{...measurementOptions,cached:raw}),readability=repair?.after||raw;
+  proposals.push({root:'MEASURED_UNIT_'+index+'_FROM_'+component.id,plan,lines:[{line:plan.cuts[index].line,unitIndex:index,component:component.id}],readability,repair,legacyProtected:V.physicalReadabilityDominates(readability,legacyReadability),incumbentProtected:V.physicalReadabilityDominates(readability,incumbent)});
+  unitAlternativeTrace.push({index,line:plan.cuts[index].line,component:component.id,planHash:identity,reason:'RETAINED_FOR_ENCODED_NONREGRESSION_COMPARISON'});
+ }
+ // Every changed hybrid competes against the same shipping incumbent. A
+ // readability-only promotion can erase its typography and temporal structure.
+ const readable=proposals.filter(x=>x.legacyProtected&&x.incumbentProtected),creativeGuards=[];
+ // The existing shipping fallback is the physically protected incumbent
+ // hybrid, including its readability repair. Do not roll it back to raw p.
+ const shippingBaseline=readable.find(x=>x.root==='INCUMBENT')?.plan||components[0].plan;
+ const incumbentIdentity=await V.planHash(shippingBaseline);
+ let priorEncoded=null,priorDeliveryEncoded=null;
+ for(const candidate of readable){
+  measuredProgress('完成プロファイルの候補比較 '+(readable.indexOf(candidate)+1)+'/'+readable.length);
+  const identity=await V.planHash(candidate.plan);
+  const guard=await V.guardCompositionPromotion(candidate.root,identity,incumbentIdentity,async()=>{
+   priorEncoded??=await J.measureCinemaEncodedProxy(shippingBaseline,range,signal,{scope:rasterScope,inputHash});
+   candidate.encoded=await J.measureCinemaEncodedProxy(candidate.plan,range,signal,{scope:rasterScope,inputHash});
+   return {next:candidate.encoded,prior:priorEncoded};
+  });
+  // A10fps proxy is not the requested film. Promising safe geometry is
+  // compared again at the actual delivery dimensions/FPS, with the SAME
+  // nonregression rule; proxy losses and the second decision are retained.
+  const axes=['typographyDiversity','lyricForegroundNovelty','temporalContrast','localContrast','motionRealization'];
+  let deliveryGuard=null;
+  if(identity!==incumbentIdentity&&guard.next?.completed&&guard.prior?.completed&&(guard.allowed||axes.some(k=>Number.isFinite(guard.next.metrics?.[k])&&Number.isFinite(guard.prior.metrics?.[k])&&guard.next.metrics[k]>guard.prior.metrics[k]))){
+   const deliveryPrior=priorDeliveryEncoded??=await J.measureCinemaEncodedProxy(shippingBaseline,range,signal,{scope:rasterScope,inputHash,deliveryProfile:true}),deliveryNext=await J.measureCinemaEncodedProxy(candidate.plan,range,signal,{scope:rasterScope,inputHash,deliveryProfile:true});
+   deliveryGuard=await V.guardCompositionPromotion(candidate.root,identity,incumbentIdentity,async()=>({next:deliveryNext,prior:deliveryPrior}));
+   deliveryGuard.phase='ACTUAL_DELIVERY_DIMENSIONS_FPS';candidate.encoded=deliveryNext;
+   if(!deliveryGuard.allowed){const musicTradeoff=V.musicConditionedCompositionTradeoff(deliveryNext,deliveryPrior);deliveryGuard.musicTradeoff=musicTradeoff;if(musicTradeoff.allowed){deliveryGuard.allowed=true;deliveryGuard.status='MUSIC_CONDITIONED_COMPOSITION_TRADEOFF_ACCEPTED';}}
+  }
+  candidate.creativeProtected=identity===incumbentIdentity?guard.allowed:deliveryGuard?.allowed===true;candidate.measuredCompositionGain=candidate.creativeProtected&&identity!==incumbentIdentity;creativeGuards.push({...guard,phase:'10FPS_EXPLORATORY_PROXY'},...deliveryGuard?[deliveryGuard]:[]);
+ }
+ const creativeGuard=creativeGuards.find(x=>x.root==='MEASURED_REGISTRY_BASELINE')??null;
+ const viable=readable.filter(x=>x.creativeProtected).sort((a,b)=>Number(!!b.measuredCompositionGain)-Number(!!a.measuredCompositionGain)||V.compareRanks(vector(a.readability),vector(b.readability))||String(a.root).localeCompare(String(b.root))),proposal=viable[0],plan=proposal?.plan||p,readability=proposal?.readability||incumbent,lines=proposal?.lines||[],raster=proposal?await J.measureCinemaSequence(plan,range,{scope:rasterScope}):null,encoded=proposal?(proposal.encoded||(!legacyTrial.accepted&&!lines.length&&stages.chosen.encoded&&selectedProxyPlanHash===await V.planHash(plan)?stages.chosen.encoded:await J.measureCinemaEncodedProxy(plan,range,signal,{scope:rasterScope}))):null,safe=!!encoded?.completed&&raster.samples.every(s=>s.safe)&&!(encoded.layerPresence?.primaryText?.samples||[]).some(s=>s.visibleSamples<s.samples.length),accepted=!!proposal&&safe;
+ const evidence={status:inputHash?'LEGACY_DRAFT_FINALIST_COMPARED':'UNMEASURED',candidate:selected.id,selectedComposition:proposal?'physical-phrase-protected-hybrid':'incumbent-retained',compositionRoot:proposal?.root??null,unitAlternativeTrace,registryCreativeGuard:creativeGuard,compositionCreativeGuards:creativeGuards,compositionIncumbentPlanHash:incumbentIdentity,compositionIncumbentDefinition:'Existing physically protected INCUMBENT hybrid, including readability repair; raw input only when none protects both baselines',v3Lines:lines.map(x=>x.line),components:lines,compositionRejected:!proposal,planHash:await V.planHash(plan),profile:V.outputProfile(plan,range),attempts,legacyStages,supplementalFinalistsNeeded:true,finalistComparisons,legacyTrial,legacyReadability,readability,encoded,accepted,physicalLowerTailProtected:proposal?.incumbentProtected??false,incumbentIntervalsProtected:proposal?.incumbentProtected??false,legacyIntervalsProtected:proposal?.legacyProtected??false,proposals:proposals.map(x=>({root:x.root,components:x.lines,readability:x.readability,repair:x.repair,legacyProtected:x.legacyProtected,incumbentProtected:x.incumbentProtected,creativeProtected:x.creativeProtected??null,measuredCompositionGain:x.measuredCompositionGain??false})),reason:!inputHash?'NATIVE_COMPARISON_INPUT_HASH_UNMEASURED':accepted?'ACTUAL_FRAME_PHRASE_BASELINES_PROTECTED_FINAL_QA_REQUIRED':!proposal?'NO_COMPOSITION_PROTECTS_BOTH_ACTUAL_FRAME_BASELINES':'LEGACY_ENCODED_LYRIC_OR_DECODE_FAILURE',lowerTailMissingReason:'Contrast never substitutes for missing creative lower-tail evidence',selectionEvidence:'SAME_ACTUAL_FRAME_BACKGROUND_CONSISTENT_NATIVE_PIXELS',historicalProxyValuesRetained:true,candidateGenerationReused:true,additional32CandidateGeneration:false,finalMP4Certified:false};
  if(signal?.aborted)throw new DOMException('Aborted','AbortError');
  p.cinemaProtectedIntervalTimes=[...new Set([...incumbent.samples,...legacyReadability.samples].map(s=>s.time))].sort((a,b)=>a-b);
  if(accepted){for(const c of plan.cuts){const target=p.cuts.find(x=>x.line===c.line&&x.start===c.start&&x.end===c.end);if(target&&!J.photoChoreographyLocked(p,target)){for(const k of Object.keys(target))delete target[k];Object.assign(target,V.clone(c));}}p.cinemaCandidateMode=plan.cinemaCandidateMode;const f=p.musicalPhoto.cinema;for(const key of Object.keys(f))delete f[key];Object.assign(f,V.clone(plan.musicalPhoto.cinema));p.storyboard=V.clone(plan.storyboard);J.rebuildCinemaBeatIntent(p);}
@@ -314,4 +427,31 @@ V.compareLegacyFinalist=async(p,range,signal,shared,incumbent)=>{
  return evidence;
  }finally{rasterScope.renderer.customBgBitmap?.close?.();rasterScope.renderer.disposeAssets?.();}
 };
+const repairWithShippingBaseline=J.repairCinemaSequence,stableComparisonCache=new WeakMap();
+J.repairCinemaSequence=async(p,range,telemetry={})=>{
+ const before=V.clone(p),baselineResult=await repairWithShippingBaseline(p,range,telemetry);
+ if(!V.encodedCompositionComparisonAvailable()||p.cinemaCandidateMode==='legacy'||!p.musicalPhoto?.cinema||p.cuts.every(c=>c.line<0||J.photoChoreographyLocked(p,c)))return baselineResult;
+ let uploadedIdentity=null;try{uploadedIdentity=JSON.parse(before.artDirection?.registrySelection?.audioKey||'null')?.sourceFileSHA256;}catch{}
+ if(!/^[0-9a-f]{64}$/.test(uploadedIdentity||''))return baselineResult;
+ const baselineIdentity=await V.planHash(p);if(stableComparisonCache.get(p)===baselineIdentity)return baselineResult;
+ const trial=V.clone(before),stableSeed=J.cinemaImmutableContentSeed(trial);
+ if(stableSeed===J.cinemaContentSeed(before))return baselineResult;
+ trial.cinemaStableExplorationSeed=stableSeed;
+ const candidate=J.cinemaArchitectureCandidates(trial)[0];if(!candidate)return baselineResult;
+ J.applyCinemaArchitecture(trial,candidate);delete trial.musicalPhoto.cinema.architectureSearch;delete trial.compositionSearch;
+ const signal=telemetry.signal;let record;
+ try{
+  if(signal?.aborted)throw new DOMException('Aborted','AbortError');
+  await repairWithShippingBaseline(trial,range,telemetry);
+  if(V.lockSignature(p)!==V.lockSignature(trial))throw Error('STABLE_SEARCH_LOCK_CHANGED');
+  const times=[...new Set([...p.cuts,...trial.cuts].filter(c=>c.line>=0).flatMap(c=>[c.start+.04,c.start+c.dur*.25,c.start+c.dur*.5,c.start+c.dur*.75,c.end-.2,c.grammar?.temporal?.hit]).filter(Number.isFinite))],options={backgroundConsistency:true,physicalOnly:true,additionalTimes:times};
+  const prior=await J.measureCinemaOutputReadability(p,range,signal,options),next=await J.measureCinemaOutputReadability(trial,range,signal,{...options,inputHash:prior.cacheIdentity?.inputHash});
+  const physical=V.physicalReadabilityDominates(next,prior);let creative=null;
+  if(physical&&prior.cacheIdentity?.inputHash){const opts={deliveryProfile:true,inputHash:prior.cacheIdentity.inputHash},a=await J.measureCinemaEncodedProxy(p,range,signal,opts),b=await J.measureCinemaEncodedProxy(trial,range,signal,opts);creative=await V.guardCompositionPromotion('IMMUTABLE_SEED_SEARCH',await V.planHash(trial),await V.planHash(p),async()=>({next:b,prior:a}));}
+  const accepted=physical&&creative?.allowed===true;record={status:accepted?'ACCEPTED':'KEPT_SHIPPING_BASELINE',stableSeed,shippingSeed:J.cinemaContentSeed(before),physicalProtected:physical,creative,method:'Whole original32 search baseline retained; whole immutable32 search competes under unchanged physical and complete-unit delivery guards; final adopted MP4 QA still required'};
+  if(accepted)V.restorePlan(p,trial,Object.getOwnPropertyDescriptor(trial,'_provenancePlanHash')?.value);
+ }catch(error){if(signal?.aborted)throw error;record={status:'KEPT_SHIPPING_BASELINE_FAILED_TRIAL',stableSeed,error:String(error.message)};}
+ p.musicalPhoto.cinema.immutableSeedComparison=record;stableComparisonCache.set(p,await V.planHash(p));return baselineResult;
+};
+
 })();

@@ -416,6 +416,11 @@ class Renderer {
   }
 
   makeEnv(ctx, plan, cut, sc, o) {
+    if (J.validLyricUnitOrigin?.(cut)) {
+      const origin=cut.lyricUnitOrigin,offset=cut.start-origin.start;
+      o={...o,lt:o.lt+offset,ltb:Number.isFinite(o.ltb)?o.ltb+offset:o.ltb};
+      cut={...cut,dur:origin.end-origin.start};
+    }
     const W = plan.W, H = plan.H;
     const env = Object.assign({ ctx, W, H, sc, st: cut?.style||plan.style, fx: plan.fx, fps: plan.fps, cut, plan, production:this._productionFrame===true,lyricAuditCtx:this.lyricAuditCtx,lyricAuditItems:this.lyricAuditItems }, o);
     if (cut) {
@@ -428,14 +433,14 @@ class Renderer {
     // Layout packs may contain internal indices and timestamps. They are editor diagnostics,
     // never content; suppress them in ordinary previews and every production render.
     env.draw = it => {
-      const label=String(it?.text||'').trim();
+      const label=String(it?.text||'').trim(),lyricText=String(env.cut?.lineText||env.cut?.text||''),lyricContains=label&&lyricText.replace(/\s/gu,'').includes(label.replace(/\s/gu,''));
       const debugFlag=it?.debug===true||it?.internalTiming===true||it?.layer==='debug';
       // Match diagnostics only on non-lyric items; a user may sing "LINE 1" or coordinates.
-      const lyric=env.cut?.line>=0&&String(env.cut.lineText||env.cut.text||'').includes(label);
+      const lyric=env.cut?.line>=0&&lyricContains;
       const debugText=!lyric&&/(?:\bLINE\s*\d+\b|^LINE$|^TIME$|\bNo\.\d+\b|\b\d{2}:\d{2}\.\d{2}\b|^X-?\d+\s+Y-?\d+$)/iu.test(label);
       if((env.production&&(debugFlag||debugText))||(!this.editorDebug&&(debugFlag||debugText)))return null;
-      const adjusted=J.adjustLocalReadability?J.adjustLocalReadability(env,it):it;
-      if(env.lyricAuditCtx&&env.pass==='main'&&env.cut?.line>=0&&label&&String(env.cut.lineText||env.cut.text||'').includes(label)){
+      const readable=J.adjustLocalReadability?J.adjustLocalReadability(env,it):it,decorative=!!J.decorativeLyricContexts?.get(env.ctx),adjusted=decorative?{...readable,lyricRole:'decorative'}:readable;
+      if(!decorative&&env.lyricAuditCtx&&env.pass==='main'&&env.cut?.line>=0&&lyricContains){
         const audit=env.lyricAuditCtx,auditEnv={...env,ctx:audit,inLayer:true,allowFilter:false,lyricAuditCtx:null};
         audit.save();const m=env.ctx.getTransform();audit.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);
         J.drawItem(auditEnv,{...adjusted,shadow:null,blur:0,pre:null,post:null,blend:null});audit.restore();

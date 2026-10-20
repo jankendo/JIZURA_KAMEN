@@ -226,8 +226,8 @@ J.analyzeAudio = async (file, {onStage, onProgress, signal} = {}) => {
   return {
     name: file.name, duration: audioBuffer.duration, sampleRate: sr, buffer: audioBuffer,
     peakAmplitude,clipFraction:clipCount/Math.max(1,len),
-    bpm, bpmCandidates, tempoConfidence, beats: bpm ? beats : [], energy: energyN, onset, energyRate: rate, peaks,
-    features,
+    bpm, bpmCandidates, tempoConfidence, beats: bpm ? beats : [], energy: energyN, rms:energy, onset, energyRate: rate, peaks,
+    features,analysisSource:{status:'MEASURED',method:'PCM_AUDIO_FEATURES_V1',sampleRate:sr,frames:len,channels:ch},
   };
 };
 
