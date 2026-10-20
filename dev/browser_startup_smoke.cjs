@@ -32,11 +32,11 @@ assert(url,'URL is required');
   await page.locator('#btnAutoDirection').click({force:true});
   await page.waitForFunction(()=>document.querySelector('#directionStatus').dataset.result==='true'||[...J.processing.jobs.values()].some(s=>s.status==='error'),null,{timeout:60000});
   const grammar=await page.evaluate(()=>{
-   const J=window.J,S=J.ui;if(document.querySelector('#directionStatus').dataset.result!=='true')throw Error('V4_UI_GENERATION_FAILED: '+[...J.processing.jobs.values()].filter(s=>s.status==='error').map(s=>s.error).join(';'));
+   const J=window.J,S=J.ui;if(document.querySelector('#directionStatus').dataset.result!=='true')throw Error('V5_UI_GENERATION_FAILED: '+[...J.processing.jobs.values()].filter(s=>s.status==='error').map(s=>s.error).join(';'));
    const audio={...S.audio,beats:J.beatGrid(S.project.timing.bpm,S.project.timing.beatOffset||0,1)},saved=JSON.parse(JSON.stringify(S.project)),round=J.plan(saved,audio);
-   if(J.canonicalJSON(J.songNativeRenderDecisions(S.plan))!==J.canonicalJSON(J.songNativeRenderDecisions(round)))throw Error('V4_RENDER_DECISIONS_CHANGED');
+   if(J.canonicalJSON(J.songNativeRenderDecisions(S.plan))!==J.canonicalJSON(J.songNativeRenderDecisions(round)))throw Error('V5_RENDER_DECISIONS_CHANGED');
    return {version:S.plan.songNativeDirection.version,restored:round.songNativeRestore.status,observed:S.pixelQA?.completed,build:window.KAMEN_BUILD_INFO};
-  });assert.equal(grammar.version,4);assert.equal(grammar.restored,'RESTORED');assert.equal(grammar.observed,true);console.log('Browser v4 real UI/Canvas/quality/commit/restore smoke PASS',JSON.stringify(grammar.build));
+  });assert.equal(grammar.version,5);assert.equal(grammar.restored,'RESTORED');assert.equal(grammar.observed,true);console.log('Browser v5 real UI/Canvas/quality/commit/restore smoke PASS',JSON.stringify(grammar.build));
   assert.deepEqual(errors,[]);console.log('Browser initialization and observed synthetic quality-fix/commit/restore smoke PASS',browser.version());
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

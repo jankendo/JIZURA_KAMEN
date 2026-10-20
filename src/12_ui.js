@@ -1102,7 +1102,7 @@ async function autoDirection() {
     const generationProject=S.project,generationAudio=S.audio;
     let generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
     const assertGeneration=()=>{if(generationCancel.signal.aborted)throw new DOMException('Aborted','AbortError');if(S.project!==generationProject||S.audio!==generationAudio||J.songNativeInputIdentity(S.project,audioLike())!==generationIdentity)throw new Error('入力が変更されたため、古いMVの確定を中止しました。もう一度作成してください');};
-    const directionSet=await J.generateSongVisualGrammarV4(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
+    const directionSet=await J.generateSongVisualGrammarV5(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
     assertGeneration();task.enter('apply');await J.processingYield();assertGeneration();
     const proposal=directionSet.recommended.proposal;
     S.directionCandidates=directionSet.candidates;S.alternative=0;
@@ -1173,7 +1173,7 @@ async function autoDirection() {
     assertGeneration();task.enter('save');const saved=await flushSave();assertGeneration();if(!saved)throw new Error('MVは作成しましたが、ブラウザへの保存を完了できませんでした。プロジェクト保存でバックアップしてください');
     if(analyzedInput?.plan===S.plan){const plan=S.plan,input=await J.cinemaV3.snapshot(S.project,S.audio,plan,range),analysisKey=J.canonicalJSON(audioLike());if(analyzedInput.renderState&&analyzedInput.renderState===J.cinemaV3.qaRenderState(S.project,plan,range)&&input.inputHash===analyzedInput.input.inputHash&&analysisKey===analyzedInput.analysisKey)S.confirmedCinemaPlan={plan,inputHash:input.inputHash,analysisKey,planHash:await J.cinemaV3.planHash(plan),pixelQA:S.pixelQA,pixelQAPlan:plan,renderState:J.cinemaV3.qaRenderState(S.project,plan,range),rangeKey:J.canonicalJSON(range)};}
     task.complete('MVを作成しました。仕上がりを確認してください');
-    toast(proposal.songNativeDirector===4?'楽曲から映像構成を生成しました':`自動演出：${J.STYLES[proposal.style].name} × ${J.MOODS[proposal.mood].name}`);
+    toast(proposal.songNativeDirector>=4?'楽曲から映像構成を生成しました':`自動演出：${J.STYLES[proposal.style].name} × ${J.MOODS[proposal.mood].name}`);
   } catch (err) {task.fail(err,generationCancel.signal.aborted);console.error('JIZURA MV generation failed',err); $('directionStatus').textContent = err.message || '演出を作成できませんでした'; delete $('directionStatus').dataset.result; }
   finally { showMsg(null); directionBusy = false; syncDirectionUI(); }
 }
@@ -1192,13 +1192,15 @@ function updateStudioQuality(fixes=0) {
   const details=$('studioQualityDetails'),summary=$('studioScore'),breakdown=$('studioQualityBreakdown');
   if(details&&summary&&breakdown){details.hidden=false;summary.textContent=scoreText;
     const labels={styleSelection:'スタイルの適合',styleRealization:'スタイルの実現',lyrics:'歌詞の可読性・表現',motion:'動きの実現と静動差',composition:'構図・前景の展開',coherence:'演出の一貫性',repetition:'反復の展開',title:'タイトル・アーティスト',export:'書き出し準備',hookStrength:'歌詞開始フック',scrollStopPower:'停止力',visualEnergyDensity:'視覚エネルギー',socialShareability:'SNS共有適性'};
+    const grammar=report.quality.songGrammarV5;
+    const grammarNodes=grammar?Object.entries(grammar.metrics).map(([key,m])=>{const line=document.createElement('span');const names={world:'映像世界',typography:'文字配置',camera:'カメラ軌道',background:'背景構成',temporal:'音楽との時間対応',density:'映像変化の密度',temporalContrast:'静と動の対比',repetition:'反復構造',stillness:'静止意図',continuity:'構図の連続性',opening:'冒頭の変化',lyricVisibility:'歌詞表示',readability:'可読性',ending:'終端',loop:'ループ'};line.textContent=`${names[key]||key}　${m.status}${m.status==='MEASURED'?' · '+m.score+' / 100':''}`;return line;}):[];
     const domainNodes=(verified?[]:domains).map(item=>{const line=document.createElement('span');line.className='quality-domain';line.textContent=`${item.key==='technical'?'技術':item.key==='creative'?'創作':'SNS'}　${item.score} / ${item.max}`;return line;});
     const metricLabels={localContrast:'文字の局所コントラスト（画素推定）',motion:'最終MP4の動作（画素推定）',semanticDirection:'歌詞の意味の実現',motionRealization:'文字動作の実現（画素推定）',impactBeatSync:'選択した強拍の同期（画素推定）',styleRealization:'スタイルの実現',decodedMotion:'最終MP4の区間内動作（画素推定）',perceptualNovelty:'画面の新規性',foregroundNovelty:'画像前景の新規性（画素推定）',lyricForegroundNovelty:'歌詞前景の新規性（診断）',visualStagnationSeconds:'最長の停滞秒数',structuralDiversity:'構成の多様性',styleArcRealization:'Style Arc実現度',typographyDiversity:'文字構成の変化',layerDepth:'レイヤーの深さ',temporalContrast:'静と動の差',peakImpact:'ピークの強さ',hookNovelty:'冒頭の独自性',loopQuality:'映像・文字・音声のループ適性'};
     const metricNodes=Object.entries(verified?.metrics||report.quality.metrics||{}).map(([key,value])=>{const line=document.createElement('span');line.textContent=`${metricLabels[key]||key}　${value==null?'未計測':`${value}${key==='visualStagnationSeconds'?' 秒':key==='backgroundShotDiversity'?' 種類':' / 100'}`}`;return line;});
     const productionLabels={technical:'技術',musicalDirection:'音楽の展開',semanticDirection:'意味の実現',typography:'歌詞表現（前景の変化を反映）',visualWorld:'映像世界',motionRealization:'動作の実現',audienceImpact:'画素変化の推定（観客評価ではありません）',social:'SNS',beatSync:'指定した拍演出の実現（画素）',lyricSync:'LRC開始と画面変化（推定）',displayOnsetAccuracy:'LRC全文表示の精度',visualImpactSync:'歌詞開始の視覚Impact（診断）',impactBeatSync:'指定した拍演出の同期',assetDirection:'画像の監督',multiImageCoherence:'画像間の一貫性'};const productionNodes=Object.entries(verified?{}:report.quality.productionDomains||{}).map(([key,value])=>{const line=document.createElement('span');line.textContent=`${productionLabels[key]||key}　${key==='audienceImpact'&&report.quality.audienceImpact?.climaxApplicable===false?'対象外（クライマックス未検出）':value==null?'未測定':value+' / 100'}`;return line;});
     const measurementNote=document.createElement('span');measurementNote.textContent=(report.quality.decodedCinema?.completed?'判定対象：最終MP4。計画・書き出し前の値はQAの別欄に保持。':'判定対象：書き出し前。最終MP4は未検査。')+'技術検査・創作品質の画素推定・人間／意味の検証状況を分けて表示します。自動検査は技術・画素の推定値です。観客の評価や芸術的な100点を証明しません。新規性・静動差・意味の実現が80未満／未計測なら総合は89以下。意味・動作・拍演出の未計測が残る間は100点認定しません。';
     const targetNote=document.createElement('span'),acceptance=report.quality.targetAcceptance;targetNote.textContent=verified?'認定には主要92点・詳細85点、未計測なし、Hard Gateなしが必要です。現在は未認定です。':acceptance?`主要90点・詳細80点：${acceptance.minimumMet?'測定済み項目は基準を達成':`未達 ${acceptance.failures.length}項目`}${acceptance.unmeasured.length?` · 未測定／対象外 ${acceptance.unmeasured.length}項目`:''}。100点認定：${acceptance.certified100?'適合':'未達'}。`:'';
-    const dependencyNote=document.createElement('span');dependencyNote.textContent=report.quality.domainDependencies?.caps.length?'演出の弱点を反映：'+report.quality.domainDependencies.caps.map(c=>({creative:'創作',visualWorld:'映像世界',motion:'動き',typography:'歌詞表現'}[c.domain]||c.domain)+'は最大89').join(' · '):'';const scopeNote=document.createElement('span');scopeNote.textContent=report.quality.socialScope?.scope==='dedicated-short'?'Short版：縦型の再編集を実描画して評価':'本編のSNS適性を評価。12〜15秒の縦型Short版は別途生成・検査します';breakdown.replaceChildren(measurementNote,targetNote,dependencyNote,scopeNote,...domainNodes,...productionNodes,...(verified?[]:report.quality.categories).map(item=>{const line=document.createElement('span');line.textContent=`${labels[item.key]||item.key}　${item.score} / ${item.max}`;return line;}),...metricNodes);
+    const dependencyNote=document.createElement('span');dependencyNote.textContent=report.quality.domainDependencies?.caps.length?'演出の弱点を反映：'+report.quality.domainDependencies.caps.map(c=>({creative:'創作',visualWorld:'映像世界',motion:'動き',typography:'歌詞表現'}[c.domain]||c.domain)+'は最大89').join(' · '):'';const scopeNote=document.createElement('span');scopeNote.textContent=report.quality.socialScope?.scope==='dedicated-short'?'Short版：縦型の再編集を実描画して評価':'本編のSNS適性を評価。12〜15秒の縦型Short版は別途生成・検査します';breakdown.replaceChildren(measurementNote,targetNote,dependencyNote,scopeNote,...grammarNodes,...domainNodes,...productionNodes,...(verified?[]:report.quality.categories).map(item=>{const line=document.createElement('span');line.textContent=`${labels[item.key]||item.key}　${item.score} / ${item.max}`;return line;}),...metricNodes);
   }
   const panel=$('studioPreflight');if(panel)panel.textContent=report.ready?
     `${report.quality.pixelQA==='checked'?'代表フレームを確認済み':'代表フレーム検査は書き出し前に実行'}${report.warnings.length?` · ${report.warnings.length}件の確認事項`:''}。`:text;
@@ -1321,7 +1323,7 @@ function mountStudio() {
   $('studioAlternative').addEventListener('click',async()=>{
     if(!S.audio||!S.project.autoDirection)return;
     if(S.directionCandidates.length<3){
-      S.directionCandidates=(await J.generateSongVisualGrammarV4(S.project,audioLike())).candidates;
+      S.directionCandidates=(await J.generateSongVisualGrammarV5(S.project,audioLike())).candidates;
       S.alternative=0;
     } else S.alternative=(S.alternative+1)%S.directionCandidates.length;
     const proposal=S.directionCandidates[S.alternative].proposal;
