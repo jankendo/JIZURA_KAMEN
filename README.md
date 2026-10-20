@@ -68,3 +68,9 @@ E2Eはブラウザーの通常ダウンロード経路を検証するため、�
 段階的な改修と検証結果は [実装状況](docs/CINEMA_V3_IMPLEMENTATION_STATUS.md) を参照してください。ソース順は `scripts/source-manifest.json` で固定し、追加ファイル・欠落・順序変更はビルドで検出します。既存API・保存形式・品質閾値を維持し、未測定値はnullのまま扱います。美的100点は認定しません。
 
 Cinema V3の検証手順・素材範囲・ブラインド比較・未測定項目・切り戻し: [docs/CINEMA_V3_VALIDATION.md](docs/CINEMA_V3_VALIDATION.md)。
+
+## Song-Generated Visual Grammar v4
+
+新規MVは音響特徴の自己類似性・反復・転換と、歌詞・背景画像から連続した文字構図、カメラ、クロップを生成します。固定アーキタイプ・4モード・Storyレシピの選択は新規生成に使用しません。旧プロジェクトの演出経路と保存データは保持します。
+
+FAST CIはv4の4契約、既存v3互換性、出力UI、ビルド、1秒の合成素材によるChrome生成・保存復元を確認し、mainへのpush後にGitHub Pagesへ公開します。実装・検証範囲と制約は [v4 QAメモ](docs/qa/song-grammar-v4.md) を参照してください。長尺MP4の全フレーム品質と人間による芸術評価は今回の検証対象外です。

@@ -24,9 +24,11 @@ jobs:
         run: npm ci
       - name: Check changed JavaScript syntax
         run: |
-          for file in src/01p_processing.js src/12a_processing_ui.js src/11w_observer_director.js src/11zzq_render_feedback.js src/11zzzzzzzzze_song_native_director.js src/11zzm_story_director.js src/11zzzzzz_video_search.js src/11zzzzzzzz_cinema_v3.js src/12_ui.js scripts/build.mjs dev/kamen_song_native_director_test.cjs dev/kamen_song_native_v3_fast_test.cjs dev/browser_startup_smoke.cjs; do
+          for file in src/01p_processing.js src/12a_processing_ui.js src/11w_observer_director.js src/11zzq_render_feedback.js src/10_audio.js src/11s_hype_engine.js src/11zzl_song_direction.js src/11zzzzzzzzzf_song_grammar_v4.js dev/kamen_song_native_v4_fast_test.cjs src/11zzzzzzzzze_song_native_director.js src/11zzm_story_director.js src/11zzzzzz_video_search.js src/11zzzzzzzz_cinema_v3.js src/12_ui.js scripts/build.mjs dev/kamen_song_native_director_test.cjs dev/kamen_song_native_v3_fast_test.cjs dev/browser_startup_smoke.cjs; do
             node --check "$file"
           done
+      - name: Check Song-Generated Visual Grammar v4 contracts
+        run: node dev/kamen_song_native_v4_fast_test.cjs
       - name: Check Song-Native v3 contracts
         run: node dev/kamen_song_native_v3_fast_test.cjs
       - name: Check export UI behavior

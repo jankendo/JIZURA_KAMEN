@@ -62,10 +62,11 @@ function* spectralFrames(mono, sampleRate, energy, onset, duration, beatStrength
     if (i < j) swapIndices.push(i, j);
   }
   const swaps = Uint16Array.from(swapIndices);
-  const frequencyWeight = new Float64Array(N / 2), bassBand = new Uint8Array(N / 2), highBand = new Uint8Array(N / 2);
+  const frequencyWeight = new Float64Array(N / 2), bassBand = new Uint8Array(N / 2), highBand = new Uint8Array(N / 2), logBandIndex = new Uint8Array(N / 2);
   for (let k = 1; k < N / 2; k++) {
     const hz = k * sampleRate / N;
     frequencyWeight[k] = Math.min(1, hz / 6000);
+    logBandIndex[k] = Math.max(0,Math.min(5,Math.floor(Math.log2(Math.max(80,hz)/80))));
     bassBand[k] = hz < 250; highBand[k] = hz > 2500;
   }
   const frames = [], frameRate = 10;
@@ -83,15 +84,17 @@ function* spectralFrames(mono, sampleRate, energy, onset, duration, beatStrength
       }
     }
     let total = 0, weighted = 0, bass = 0, high = 0, flux = 0;
+    const logBands = [0,0,0,0,0,0];
     for (let k = 1; k < N / 2; k++) {
       const v = Math.hypot(re[k], im[k]);
       total += v; weighted += v * frequencyWeight[k];
+      logBands[logBandIndex[k]] += v;
       if (bassBand[k]) bass += v; if (highBand[k]) high += v;
       flux += Math.max(0, v - prev[k]); prev[k] = v;
     }
     const t = pos / sampleRate, index = Math.min(energy.length - 1, Math.floor(t * 50));
     let attack=0;for(let j=index;j<Math.min(onset.length,index+5);j++)attack=Math.max(attack,onset[j]);
-    frames.push({ time: t, energy: energy[index] || 0, onset: attack,
+    frames.push({ logBands:logBands.map(v=>total?v/total:0), time: t, energy: energy[index] || 0, onset: attack,
       brightness: total ? weighted / total : 0, bass: total ? bass / total : 0,
       high: total ? high / total : 0, spectralFlux: total ? Math.min(1, flux / total) : 0 });
     if (frames.length % 16 === 0) yield {current:frames.length,total:Math.max(0,Math.ceil((mono.length-N)/step))};

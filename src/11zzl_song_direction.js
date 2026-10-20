@@ -27,7 +27,7 @@ const plan=J.plan;J.plan=(project,audio)=>{
  const saved=project.artDirection?.registrySelection,key=J.registrySelectionAudioKey(audio);
  // A saved measured selection is valid only for the audio it was compared with.
  const input=saved?.audioKey&&key&&saved.audioKey!==key?{...project,artDirection:{...project.artDirection,registrySelection:null}}:project;
- const p=plan(input,audio);if(!p.musicalPhoto||p.directorSections7?.length)return p;
+ const p=plan(input,audio);if(project.artDirection?.songNativeDirection?.version===4||!p.musicalPhoto||p.directorSections7?.length)return p;
  const profile=J.songDirectionProfile(audio),ss=p.musicalStructure.sections;p.musicalPhoto.songProfile=profile;
  p.musicalPhoto.chapterZooms=ss.map(s=>{const e=C(s.energy??profile.energy),quiet=['intro','outro','break'].includes(s.role);return quiet?1.03:profile.mode==='drift'?1.06+e*.08:profile.mode==='flow'?1.08+e*.13:1.10+e*.23+(['climax','reprise','chorus'].includes(s.role)?.08:0);});
  p.musicalPhoto.chapterOffsets=ss.map((s,i)=>({x:['intro','outro'].includes(s.role)?0:(i%2?-1:1)*(profile.mode==='drift'?.008:profile.mode==='flow'?.025:.04),y:0}));
