@@ -67,7 +67,7 @@ J.refineMusicalPhotoPlan=async(p,range,telemetry={})=>{
   p.musicalPhoto.refinement={target:100,score:best.score,targetMet:best.score===100,history,method:'unchanged measureWorldDistance7; same renderer, same lyric masks, bounded photo crops',limits:'A uniform image may not reach the target without replacing its visual identity.'};
  }finally{R.disposeAssets?.();R.customBgBitmap?.close?.();canvas.width=mask.width=canvas.height=mask.height=1;}
 };
-const analyze=J.analyzeRenderedFrames;J.analyzeRenderedFrames=async(p,range,audio,telemetry={})=>{await J.refineMusicalPhotoPlan(p,range,telemetry);return analyze(p,range,audio,telemetry);};
+const analyze=J.analyzeRenderedFrames;J.analyzeRenderedFrames=async(p,range,audio,telemetry={})=>{if(!telemetry.observationOnly)await J.refineMusicalPhotoPlan(p,range,telemetry);return analyze(p,range,audio,telemetry);};
 const context=J.directorContext;J.directorContext=(project,p,...args)=>({...context(project,p,...args),musicalPhoto:p.musicalPhoto||null});
 const provenance=J.createExportProvenance;J.createExportProvenance=async(...args)=>({...await provenance(...args),musicalPhoto:args[0].plan.musicalPhoto||null});
 // Verify the encoded artifact, then refine the actual motion and re-encode.

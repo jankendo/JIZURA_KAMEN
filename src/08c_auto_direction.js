@@ -130,9 +130,10 @@ J.proposeDirection = (project,audio,imageStats,variant=0) => {
   const useEditorialAnchor=spatial==='left'||spatial==='right'||lyrics.longRatio>.22&&img.detail>.58;
   const chantLayout=useEditorialAnchor?'type':'center';
   const songLayout=chant?chantLayout:(['editorial','organic'].includes(key)&&lyrics.longRatio>.38||useEditorialAnchor?'type':'center');
-  const grammar={layout:[songLayout],
+  const hasTimeline=!!(audio?.energy?.length||audio?.features?.timeline?.length||audio?.features?.detailedTimeline?.length);
+  const grammar={layout:hasTimeline?[songLayout,'center','type'].filter((k,i,a)=>a.indexOf(k)===i):[songLayout],
     enter:chant?(energy>.66&&rhythm>.55?['zoom']:['wipe']):energy>.7?['wipe','zoom']:['blur','wipe'],
-    exit:['wipe'],hold:chant?['still','breathe']:['breathe'],cam:['push'],trans:[],decor:[],fx:[],treat:['none'],bg:['none']};
+    exit:['wipe'],hold:hasTimeline?['still','breathe','drift']:chant?['still','breathe']:['breathe'],cam:hasTimeline?['stillCamera','push','panL']:['push'],trans:[],decor:[],fx:[],treat:['none'],bg:['none']};
   for(const [group,allowed] of Object.entries(grammar))for(const k of Object.keys(enabled[group]||{}))enabled[group][k]=allowed.includes(k);
   if(chant)enabled.enter.wipe=true;
   if(variant){

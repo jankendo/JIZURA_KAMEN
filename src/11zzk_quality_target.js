@@ -79,7 +79,7 @@ const targets=J.musicalTargets;J.musicalTargets=p=>{const base=targets(p),author
 // Keep ranking penalties separate: repeated use is required for one supplied
 // background; it is not a failure to select a different image.
 const analyze=J.analyzeRenderedFrames;J.analyzeRenderedFrames=async(p,range,audio,telemetry={})=>{
- if(p.musicalPhoto&&p.visualAssets?.some(a=>!a.analysis)&&p.customBg?.dataUrl){
+ if(!telemetry.observationOnly&&p.musicalPhoto&&p.visualAssets?.some(a=>!a.analysis)&&p.customBg?.dataUrl){
   const R=new J.Renderer();try{await R.loadCustomBackground(p.customBg.dataUrl);for(const a of p.visualAssets)if(!a.analysis&&a.dataUrl===p.customBg.dataUrl)a.analysis=J.analyzeVisualAsset(R.customBgBitmap);
    for(const s of p.storyboard||[]){const a=p.visualAssets.find(a=>a.id===s.assetId);if(a&&!s.locked){const chant=/CHANT|TEAM_CALL/.test(p.artDirection?.visualDNA?.type||''),section=p.musicalStructure.sections.find(w=>s.from>=w.from&&s.from<w.to),intent=chant&&!['intro','outro'].includes(section?.role)?'unity':s.semanticIntent;s.selectionFit=s.fit;s.fit=J.assetChapterFit(a,{intent},null,0,p.H>p.W);s.fitEvidence={source:'measured source descriptors; required single-background reuse has no selection penalty',intent,roleSource:'existing lyric/music classification; no image subject recognition'};}}
   }finally{R.customBgBitmap?.close?.();R.disposeAssets?.();}

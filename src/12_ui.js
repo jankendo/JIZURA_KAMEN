@@ -259,6 +259,7 @@ function replan() {
   S.socialPlan=null;
   S.pixelQA=null;S.exportValidation=null;
   S.plan = J.plan(S.project, audioLike());
+  if(S.plan.songNativeDirection&&S.project.artDirection)S.project.artDirection.songNativeDirection=J.clonePhotoRenderPlan(S.plan.songNativeDirection);
   if(S.project.visualAssets?.length) (S.renderer._uiLoadQueue=(S.renderer._uiLoadQueue||Promise.resolve()).catch(()=>{}).then(()=>S.renderer.loadAssetDeck(S.plan))).then(()=>{S.need=true;}).catch(e=>toast(e.message));
   refreshVisualAssetsUI();
   refreshPreviewPlan();
@@ -1113,13 +1114,17 @@ async function autoDirection() {
     const range={start:0,end:Math.min(S.plan.duration,S.audio?.duration||S.plan.duration)};
     let pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));
     if(pre.fixes){syncUI();replan();pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));}
+    await J.searchSongNativeCandidates(S.plan,range,S.audio,{onProgress:detail});
     const captureInput=async()=>J.cinemaV3?.enabled?{plan:S.plan,input:await J.cinemaV3.snapshot(S.project,S.audio,S.plan,range),renderState:J.cinemaV3.qaRenderState(S.project,S.plan,range),analysisKey:J.canonicalJSON(audioLike())}:null;
     let analyzedInput=await captureInput();
-    S.pixelQA=await J.analyzeRenderedFrames(S.plan,range,S.audio,{onProgress:detail});
+    S.pixelQA=await J.observeMVQuality(S.plan,range,S.audio,{onProgress:detail});
+    S.plan.lastPixelQA=S.pixelQA;
+    const targeted=await J.repairWeakSections(S.plan,S.pixelQA,range,S.audio,{onProgress:detail});
+    if(targeted.accepted){analyzedInput=await captureInput();S.pixelQA=await J.observeMVQuality(S.plan,range,S.audio,{onProgress:detail});S.plan.lastPixelQA=S.pixelQA;}
     S.exportCapabilities=await J.exportCapabilities(S.project,S.project.includeAudio!==false?S.audio:null).catch(()=>null);
     let report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);
     const renderFixes=J.fixMVQuality(S.project,report,S.audio);
-    if(renderFixes){syncUI();replan();analyzedInput=await captureInput();S.pixelQA=await J.analyzeRenderedFrames(S.plan,range,S.audio,{onProgress:detail});report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);}
+    if(renderFixes){syncUI();replan();analyzedInput=await captureInput();S.pixelQA=await J.observeMVQuality(S.plan,range,S.audio,{onProgress:detail});S.plan.lastPixelQA=S.pixelQA;report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);}
     S.lastQuality=report;updateStudioQuality(pre.fixes+renderFixes);
     const quality = J.inspectDirection(S.plan);
     if (!quality.coherent) console.warn('Art direction check:', quality.violations);

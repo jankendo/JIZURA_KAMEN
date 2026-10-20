@@ -35,7 +35,7 @@ const buildArc=J.buildStyleArc;J.buildStyleArc=(p,project,audio)=>{const arc=bui
 const makeDirection=J.makeArtDirection;J.makeArtDirection=(p,a,proposal)=>{const d=makeDirection(p,a,proposal);if(proposal.registrySelection){d.registrySelection=JSON.parse(JSON.stringify(proposal.registrySelection));d.typography.display=proposal.registrySelection.font;}return d;};
 const makePlan=J.plan;J.plan=(p,a)=>{const plan=makePlan(p,a);if(plan.artDirection&&Object.keys(plan.directionOverrides7||{}).length)J.applyExplicitOverrides7(plan);return J.sanitizePhotoEvents(plan);};
 const makeSocial=J.createSocialHookPlan;if(makeSocial)J.createSocialHookPlan=(p,c)=>J.sanitizePhotoEvents(makeSocial(p,c));
-const analyze=J.analyzeRenderedFrames;J.analyzeRenderedFrames=async(p,...args)=>{J.sanitizePhotoEvents(p);return analyze(p,...args);};
+const analyze=J.analyzeRenderedFrames;J.analyzeRenderedFrames=async(p,...args)=>{if(!args[2]?.observationOnly)J.sanitizePhotoEvents(p);return analyze(p,...args);};
 const fontFor=key=>J.STYLES[key].fonts.display.find(k=>J.FONTS[k])||'gothic_bold';
 const candidateCut=(p,c,id,font,enter='photoSettle',hold='still')=>{const original=p.lines[c.line].text,family=families[id]||id,params={...J.LAYOUTS[id].plan?.(J.rng(c.seed),{...c,text:original,lineText:original,n:[...norm(original)].length,W:p.W,H:p.H,dur:c.dur},p.style),font,align:'center',prompt:false,label:false,readablePhoto:true,readableHero:true,directionAngle:0,composition:family};
  if(id.startsWith('photo'))params.displayText=['phrase','banner','frame'].includes(family)?J.composeLyricPhrase(original):p.H>p.W?J.splitLines(original,10):J.splitLines(original,18);
