@@ -6,7 +6,7 @@ const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const HASH=/^[a-f0-9]{64}$/, COMMIT=/^[a-f0-9]{40}$/;
 // Build.mjs reads these shipped inputs. This exact QA allowlist must never
 // expand implicitly to arbitrary dev/ scripts or runtime paths.
-const QA_PATHS=['dev/pages_e2e.cjs','dev/export_watchdog.cjs','dev/export_watchdog_test.cjs','dev/release_gates.cjs','dev/release_gates_test.cjs'];
+const QA_PATHS=['dev/pages_e2e.cjs','dev/export_watchdog.cjs','dev/export_watchdog_test.cjs','dev/release_gates.cjs','dev/release_gates_test.cjs','dev/pages_release.cjs','dev/pages_release_test.cjs'];
 const QA_PREFIXES=['.github/workflows/','docs/qa/'];
 const SHIPPING_PATHS=['src','scripts','app','assets','vendor','package.json','package-lock.json'];
 const qaPath=p=>QA_PATHS.includes(p)||p.startsWith('docs/qa/');
