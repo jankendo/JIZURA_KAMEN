@@ -36,7 +36,7 @@ jobs:
       - name: Check fast pipeline control and quality compatibility
         run: node dev/kamen_fast_pipeline_v4_test.cjs && node dev/kamen_machine_refinement_test.cjs && node dev/cinema_v3_state_machine_test.cjs && node dev/cinema_final_semantic_travel_test.cjs && node dev/cinema_v5_final_artifact_test.cjs
       - name: Check Song-Native structure and observation contract
-        run: node dev/kamen_song_native_director_test.cjs
+        run: node dev/kamen_song_native_director_test.cjs && node dev/kamen_story_director_test.cjs --song-native
       - name: Build production files
         run: npm run build
       - name: Verify production layout

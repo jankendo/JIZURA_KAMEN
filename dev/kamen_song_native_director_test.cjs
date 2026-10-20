@@ -3,6 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('nod
 const {engine}=require('./custom_test_support.cjs');
 (async()=>{
  const {J,context,createCanvas}=engine(),V=J.cinemaV3;
+ const assertRender=(p,expected)=>{const a=JSON.parse(J.canonicalJSON(J.songNativeRenderDecisions(p))),b=JSON.parse(expected);const diff=(x,y,path='')=>{if(JSON.stringify(x)===JSON.stringify(y))return null;if(x&&y&&typeof x==='object'&&typeof y==='object'){for(const k of new Set([...Object.keys(x),...Object.keys(y)])){const d=diff(x[k],y[k],path+'.'+k);if(d)return d;}}return {path,actual:x,expected:y};};assert.equal(JSON.stringify(diff(a,b)), 'null');};
  const project=J.defaultProject();project.lyrics='[00:00]見えない道\n[00:04]歩こう\n[00:08]見えない道\n[00:12]その先へ';
  const audio=values=>({duration:16,bpm:120,energy:Float32Array.from(values),energyRate:1,onset:Float32Array.from(values.map(v=>v*.2)),rms:Float32Array.from(values.map(v=>v===0?0:.03)),features:{energy:.5,beatStrength:.4,onsetDensity:.3},analysisSource:{status:'MEASURED',method:'PCM_AUDIO_FEATURES_V1'}});
  const a=audio([.15,.15,.15,.15,.85,.85,.85,.85,0,0,0,0,1,1,1,1]),b=audio([.85,.85,.85,.85,0,0,0,0,1,1,1,1,.15,.15,.15,.15]);
@@ -18,7 +19,7 @@ const {engine}=require('./custom_test_support.cjs');
  const proposal=J.proposeDirection(project,a,null);Object.assign(project,{style:proposal.style,mood:proposal.mood,fx:proposal.fx,enabled:proposal.enabled,seed:proposal.seed,overrides:proposal.overrides,autoDirection:true});
  project.artDirection=J.makeArtDirection(project,a,proposal);project.fonts={...project.artDirection.typography};
  const p=J.plan(project,a),saved=JSON.parse(JSON.stringify(project)),restored=J.plan(saved,a);
- assert.equal(p.songNativeDirection.version,1);assert(J.validSongNativeDirection(p.songNativeDirection));const corrupt=JSON.parse(JSON.stringify(saved));corrupt.artDirection.songNativeDirection.sections[0].motionIntensity=10;assert(J.validSongNativeDirection(J.plan(corrupt,a).songNativeDirection));assert.equal(JSON.stringify(p.songNativeDirection),JSON.stringify(restored.songNativeDirection));
+ assert.equal(p.songNativeDirection.version,2);assert(J.validSongNativeDirection(p.songNativeDirection));const corrupt=JSON.parse(JSON.stringify(saved));corrupt.artDirection.songNativeDirection.sections[0].motionIntensity=10;assert(J.validSongNativeDirection(J.plan(corrupt,a).songNativeDirection));assert.equal(JSON.stringify(p.songNativeDirection),JSON.stringify(restored.songNativeDirection));
  for(const change of [q=>q.lyrics+='\n[00:15]またね',q=>q.fonts.display='embedded_bold',q=>q.customBg.zoom=1.23,q=>q.aspect='9:16',q=>q.exportSettings.videoBitrate=123456]){
   const q=JSON.parse(JSON.stringify(project));change(q);assert.notEqual(J.plan(q,a).songNativeDirection.sourceIdentity,p.songNativeDirection.sourceIdentity);
  }
@@ -41,6 +42,47 @@ const {engine}=require('./custom_test_support.cjs');
  photo.artDirection=J.makeArtDirection(photo,a,pp);const photoPlan=J.plan(photo,a);assert(photoPlan.musicalPhoto.cinema);const photoBefore=JSON.stringify(photoPlan),photoPixel=await J.observeMVQuality(photoPlan,{start:0,end:.15},a,{onProgress(){}});
  assert(photoPixel.completed);assert(photoPixel.metrics.cinemaFeedback);assert.equal(JSON.stringify(photoPlan),photoBefore);
  const r=new J.Renderer(),raster=createCanvas(160,90),rx=raster.getContext('2d');await r.loadCustomBackground(photo.customBg.dataUrl);r.frame(rx,photoPlan,5,{scale:160/photoPlan.W,production:true});const nativePixels=Buffer.from(rx.getImageData(0,0,160,90).data);const legacy=V.clone(photoPlan);delete legacy.songNativeDirection;r.frame(rx,legacy,5,{scale:160/legacy.W,production:true});assert(!nativePixels.equals(Buffer.from(rx.getImageData(0,0,160,90).data)),'native adapter must change actual pixels');r.disposeAssets?.();
+ // Individual renderer inputs must reach real pixels, and reusing an item cannot compound size.
+ assert.equal(fake.mainDraw({...env,t:.5},{...item}).size,small);
+ const probeRenderer=new J.Renderer(),probeCanvas=createCanvas(192,108),probeCtx=probeCanvas.getContext('2d');await probeRenderer.loadCustomBackground(photo.customBg.dataUrl);
+ const intentPixels=(plan,time)=>{probeRenderer.frame(probeCtx,plan,time,{scale:192/plan.W,production:true});return Buffer.from(probeCtx.getImageData(0,0,192,108).data);};
+ for(const [key,time] of [['negativeSpace',5],['contrastIntent',5],['transitionIntensity',photoPlan.cuts.at(-1).grammar.temporal.hit+.015]]){
+  const left=V.clone(photoPlan),right=V.clone(photoPlan);J.songNativeSectionAt(left,time)[key]=0;J.songNativeSectionAt(right,time)[key]=1;
+  assert(!intentPixels(left,time).equals(intentPixels(right,time)),key+' must affect Canvas pixels');
+ }
+ probeRenderer.disposeAssets?.();
+ // T-01: a real renderer plan retains selected geometry, typography, camera and repairs.
+ for(const aspect of ['16:9','9:16']){
+  const q=J.migrateProject(JSON.parse(JSON.stringify(photo)));q.aspect=aspect;q.overrides[1]={lock:true,lockedSeed:451,cam:'stillCamera',font:'embedded_bold'};
+  const resolvedPlan=J.plan(q,a),cut=resolvedPlan.cuts.find(c=>c.line>=0&&!J.photoChoreographyLocked(resolvedPlan,c));
+  cut.params.photoAnchor={...cut.params.photoAnchor,x:.39,y:.55};cut.params.font='embedded_bold';cut.camP={...cut.camP,zoom:1.14};
+  cut.songNativeRepair={motionDelta:.08};if(cut.grammar){cut.grammar.motion=.47;cut.grammar.temporal={...cut.grammar.temporal,level:.47};}
+  resolvedPlan.lastPixelQA={completed:true,stale:'MUST_NOT_PERSIST'};
+  const original=J.canonicalJSON(J.songNativeRenderDecisions(resolvedPlan)),identity=J.songNativeInputIdentity(q,a);
+  const payload=J.captureSongNativeResolved(q,a,resolvedPlan,identity);
+  assert.equal(payload.version,2);assert(payload.overrides.length>0);assert(!JSON.stringify(payload).includes('MUST_NOT_PERSIST'));assert(!('cuts' in payload));
+  const roundtrip=JSON.parse(JSON.stringify(q));let rebuilt=J.plan(J.migrateProject(roundtrip),a);assert.equal(J.songNativeInputIdentity(J.migrateProject(roundtrip),a),identity,'migration identity');
+  assertRender(rebuilt,original);assert.equal(V.lockSignature(rebuilt),V.lockSignature(resolvedPlan));assert(V.lockSignature(rebuilt)!=='[]');assert.equal(rebuilt.lastPixelQA,null);assert.equal(J.canonicalJSON(rebuilt.lines),J.canonicalJSON(resolvedPlan.lines));
+  const rr=new J.Renderer(),cc=createCanvas(192,Math.round(192*rebuilt.H/rebuilt.W)),xx=cc.getContext('2d');await rr.loadCustomBackground(q.customBg.dataUrl);await rr.loadAssetDeck?.(rebuilt);
+  const rasterAt=(plan,time)=>{rr.frame(xx,plan,time,{scale:192/plan.W,production:true});return Buffer.from(xx.getImageData(0,0,cc.width,cc.height).data);};
+  for(const time of [.5,5,9])assert(rasterAt(resolvedPlan,time).equals(rasterAt(rebuilt,time)),aspect+' saved pixels '+time);
+  for(let i=0;i<2;i++){J.restoreSongNativeResolved(roundtrip,a,rebuilt);J.captureSongNativeResolved(roundtrip,a,rebuilt);rebuilt=J.plan(JSON.parse(JSON.stringify(roundtrip)),a);assertRender(rebuilt,original);}
+  const oldIdentity=J.songNativeInputIdentity(roundtrip,a);roundtrip.seed++;assert.throws(()=>J.captureSongNativeResolved(roundtrip,a,rebuilt,oldIdentity),/INPUT_CHANGED/);assert(!J.plan(roundtrip,a).cuts.some(c=>c.songNativeRepair));
+  const staleRenderer=JSON.parse(JSON.stringify(q));staleRenderer.artDirection.songNativeResolved.rendererVersion='old-renderer';assert(!J.plan(staleRenderer,a).cuts.some(c=>c.songNativeRepair));
+  const corruptPayload=JSON.parse(JSON.stringify(q));corruptPayload.artDirection.songNativeResolved.overrides.push({path:['cuts','0','__proto__','bad'],value:true});assert(!J.plan(corruptPayload,a).cuts.some(c=>c.songNativeRepair));assert.equal({}.bad,undefined);
+  rr.disposeAssets?.();
+ }
+ // T-02/T-03: search is exact at boundaries and through reverse seeks; temporal roles survive.
+ for(const t of [0,4,8,12,16,7.99,3,-1,NaN])assert.equal(J.songNativeSectionAt(p,t),p.songNativeDirection.sections.find(s=>t>=s.start&&t<s.end)||null);
+ assert.notDeepEqual(first.sections.map(s=>s.intent),second.sections.map(s=>s.intent));
+ const coarse=J.buildSongNativeDirection(project,{duration:16,features:{sections:[.2,.2,.8,.8,.8,.8,.2,.2]}});assert.equal(coarse.evidence.coarseBlocks,'PROVIDED_NOT_FORMAL_SECTIONS');assert(coarse.sections.length<8);
+ const oldV1=JSON.parse(JSON.stringify(project));oldV1.artDirection.songNativeDirection.version=1;assert(J.validSongNativeDirection(J.plan(oldV1,a).songNativeDirection));
+ const temporalCut={...p.cuts[0],start:4,end:7,dur:3,locked:false,grammar:{temporal:{role:'impact',motionPrinciple:'percussive-deformation',level:.7,hit:.2,entry:.1,exit:.1},intentionalHold:false}};
+ const temporalPlan={...p,cuts:[temporalCut]};J.applySongNativeDirection(temporalPlan);assert.equal(temporalCut.grammar.temporal.motionPrinciple,'percussive-deformation');
+ temporalCut.grammar.intentionalHold=true;J.applySongNativeDirection(temporalPlan);assert(temporalCut.grammar.intentionalHold);
+ const musicPlan={songNativeDirection:first},quiet=first.sections.find(s=>s.quietIntent),loud=first.sections.find(s=>s.motionIntensity>.4);
+ const aligned=J.measureSongNativeFit(musicPlan,[{line:0,time:quiet.start+.1,motion:0},{line:1,time:loud.start+.1,motion:.03}]);
+ const inverted=J.measureSongNativeFit(musicPlan,[{line:0,time:quiet.start+.1,motion:.03},{line:1,time:loud.start+.1,motion:0}]);assert(aligned.score>inverted.score);assert.equal(J.measureSongNativeFit({},[]).score,null);
  // Explicit search invokes the repair chain, invalidates prior QA and rolls back on error.
  let searched=0;J.repairCinemaSequence=async trial=>{searched++;trial.cuts[0].params.testSearch=true;};p.lastPixelQA=pixel;
  await J.searchSongNativeCandidates(p,null,null,{});assert.equal(searched,1);assert.equal(p.cuts[0].params.testSearch,true);assert.equal(p.lastPixelQA,null);
