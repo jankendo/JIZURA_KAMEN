@@ -1094,8 +1094,11 @@ async function autoDirection() {
     await new Promise(resolve => requestAnimationFrame(resolve));
     task.enter('direction');
     const detail=e=>task.observe(e.current,e.total,[e.label,e.detail,e.total?(e.current+' / '+e.total):''].filter(Boolean).join(' · '));
+    const generationProject=S.project,generationAudio=S.audio;
+    let generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
+    const assertGeneration=()=>{if(S.project!==generationProject||S.audio!==generationAudio||J.songNativeInputIdentity(S.project,audioLike())!==generationIdentity)throw new Error('入力が変更されたため、古いMVの確定を中止しました。もう一度作成してください');};
     const directionSet=await J.optimizeDirectionCandidatesRendered(S.project,S.audio,result&&result.stats,1,{onProgress:detail});
-    task.enter('apply');await J.processingYield();
+    assertGeneration();task.enter('apply');await J.processingYield();assertGeneration();
     const proposal=directionSet.recommended.proposal;
     S.directionCandidates=directionSet.candidates;S.alternative=0;
     S.directionStats=result?.stats||null;S.range=null;S.rangeMode=null;S.highlights=[];S.highlightIndex=0;S.pixelQA=null;
@@ -1110,21 +1113,38 @@ async function autoDirection() {
     syncStudioResultVisibility();
     $('studioHighlight').setAttribute('aria-pressed','false');$('studioHighlight').textContent='SNS 60秒版';$('highlightChoice').textContent='';$('highlightNext').hidden=true;
     $('alternativeChoice').textContent='推奨案';
-    task.enter('quality');await J.processingYield();
+    generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
+    task.enter('quality');await J.processingYield();assertGeneration();
     const range={start:0,end:Math.min(S.plan.duration,S.audio?.duration||S.plan.duration)};
     let pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));
     if(pre.fixes){syncUI();replan();pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));}
-    await J.searchSongNativeCandidates(S.plan,range,S.audio,{onProgress:detail});
+    generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
+    const generationPlan=S.plan;
+    await J.searchSongNativeCandidates(generationPlan,range,generationAudio,{onProgress:detail});assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
     const captureInput=async()=>J.cinemaV3?.enabled?{plan:S.plan,input:await J.cinemaV3.snapshot(S.project,S.audio,S.plan,range),renderState:J.cinemaV3.qaRenderState(S.project,S.plan,range),analysisKey:J.canonicalJSON(audioLike())}:null;
     let analyzedInput=await captureInput();
-    S.pixelQA=await J.observeMVQuality(S.plan,range,S.audio,{onProgress:detail});
-    S.plan.lastPixelQA=S.pixelQA;
+    const observed=await J.observeMVQuality(generationPlan,range,generationAudio,{onProgress:detail});
+    assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
+    S.pixelQA=observed;generationPlan.lastPixelQA=observed;
     const targeted=await J.repairWeakSections(S.plan,S.pixelQA,range,S.audio,{onProgress:detail});
-    if(targeted.accepted){analyzedInput=await captureInput();S.pixelQA=await J.observeMVQuality(S.plan,range,S.audio,{onProgress:detail});S.plan.lastPixelQA=S.pixelQA;}
+    assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
+    if(targeted.accepted){analyzedInput=await captureInput();const repairedQA=await J.observeMVQuality(generationPlan,range,generationAudio,{onProgress:detail});assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');S.pixelQA=repairedQA;generationPlan.lastPixelQA=repairedQA;}
     S.exportCapabilities=await J.exportCapabilities(S.project,S.project.includeAudio!==false?S.audio:null).catch(()=>null);
+    assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
     let report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);
     const renderFixes=J.fixMVQuality(S.project,report,S.audio);
-    if(renderFixes){syncUI();replan();analyzedInput=await captureInput();S.pixelQA=await J.observeMVQuality(S.plan,range,S.audio,{onProgress:detail});S.plan.lastPixelQA=S.pixelQA;report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);}
+    if(renderFixes){
+      syncUI();replan();generationIdentity=J.songNativeInputIdentity(S.project,audioLike());const fixedPlan=S.plan;
+      await J.searchSongNativeCandidates(fixedPlan,range,generationAudio,{onProgress:detail});assertGeneration();if(S.plan!==fixedPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
+      analyzedInput=await captureInput();const fixedQA=await J.observeMVQuality(fixedPlan,range,generationAudio,{onProgress:detail});assertGeneration();if(S.plan!==fixedPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
+      S.pixelQA=fixedQA;fixedPlan.lastPixelQA=fixedQA;report=J.checkMVQuality(S.project,S.plan,S.audio,range,S.pixelQA,S.exportCapabilities);
+    }
+    assertGeneration();
+    if(!S.pixelQA?.completed||analyzedInput?.plan!==S.plan)throw new Error('FINAL_PLAN_REQUIRES_OBSERVATION');
+    const finalBinding=await captureInput();assertGeneration();
+    if(finalBinding.plan!==S.plan||finalBinding.input.inputHash!==analyzedInput.input.inputHash||finalBinding.renderState!==analyzedInput.renderState||finalBinding.analysisKey!==analyzedInput.analysisKey||S.pixelQA.observationBinding?.planHash!==await J.cinemaV3.planHash(S.plan))throw new Error('FINAL_PLAN_REQUIRES_REOBSERVATION');
+    assertGeneration();J.captureSongNativeResolved(S.project,audioLike(),S.plan,generationIdentity);
+    analyzedInput=await captureInput();assertGeneration();
     S.lastQuality=report;updateStudioQuality(pre.fixes+renderFixes);
     const quality = J.inspectDirection(S.plan);
     if (!quality.coherent) console.warn('Art direction check:', quality.violations);
@@ -1132,7 +1152,7 @@ async function autoDirection() {
     $('directionStatus').textContent = `提案：${proposal.summary}（画像 ${proposal.signals.image ? '✓' : '—'}・曲 ${proposal.signals.audio ? '✓' : '—'}・歌詞 ${proposal.signals.lyricLines}行）`;
     $('directionStatus').dataset.result = 'true';
     task.enter('preview');await J.processingYield();S.need=true;
-    task.enter('save');const saved=await flushSave();if(!saved)throw new Error('MVは作成しましたが、ブラウザへの保存を完了できませんでした。プロジェクト保存でバックアップしてください');
+    assertGeneration();task.enter('save');const saved=await flushSave();assertGeneration();if(!saved)throw new Error('MVは作成しましたが、ブラウザへの保存を完了できませんでした。プロジェクト保存でバックアップしてください');
     if(analyzedInput?.plan===S.plan){const plan=S.plan,input=await J.cinemaV3.snapshot(S.project,S.audio,plan,range),analysisKey=J.canonicalJSON(audioLike());if(analyzedInput.renderState&&analyzedInput.renderState===J.cinemaV3.qaRenderState(S.project,plan,range)&&input.inputHash===analyzedInput.input.inputHash&&analysisKey===analyzedInput.analysisKey)S.confirmedCinemaPlan={plan,inputHash:input.inputHash,analysisKey,planHash:await J.cinemaV3.planHash(plan),pixelQA:S.pixelQA,pixelQAPlan:plan,renderState:J.cinemaV3.qaRenderState(S.project,plan,range),rangeKey:J.canonicalJSON(range)};}
     task.complete('MVを作成しました。仕上がりを確認してください');
     toast(`自動演出：${J.STYLES[proposal.style].name} × ${J.MOODS[proposal.mood].name}`);

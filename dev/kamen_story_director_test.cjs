@@ -2,6 +2,15 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{engine}=require('./custom_test_support.cjs');
 (async()=>{
  const {J,createCanvas}=engine();J.enableSingleBackgroundMode();
+ if(process.argv.includes('--song-native')){
+  // Bounded ranking contract; the full 49-second production fixture is unchanged.
+  const unsafe={rank:[-1,1,1,100,100],variant:0},safe={rank:[1,1,.4,10,10],variant:1},musical={rank:[1,1,.9,1,1],variant:1},diverse={rank:[1,1,.3,100,100],variant:0};
+  assert(J.storyShippingOrder(safe,unsafe)<0);assert(J.storyShippingOrder(musical,diverse)<0);
+  assert(J.storyShippingOrder({rank:[1,1,90,1],variant:0},{rank:[1,1,80,100],variant:1})<0,'legacy fallback order');
+  assert.equal(J.measureSongNativeFit({},[{line:0,time:0,motion:.2}]).status,'UNMEASURED');
+  console.log('Story Director Song-Native subset PASS: safety first, comparable music fit before diversity, legacy/unmeasured fallback');return;
+ }
+
  const lyrics='[00:02.879]今ここに集いし\n[00:05.049]青と黒の戦士たち\n[00:07.858]我らの誇りと共に輝き\n[00:10.758]荒れ狂い暴れまわる\n[00:13.788]戦士たちよ俺らの\n[00:16.519]声が聞こえるだろ\n[00:19.570]俺らはいつものように\n[00:22.459]今日もここにいるぜ\n[00:25.632]ラララーラララーララララー\n[00:28.479]ラララーラララーラララー\n[00:31.382]ラララーラララーララララー\n[00:34.450]ラララーラララーラララー\n[00:37.369]オオオーオオオーオオオオ\n[00:40.220]オオオーオオオーオオオ\n[00:43.090]オオオーオオオーオオオオ\n[00:46.022]オオオーオオオーオオオ';
  const cv=createCanvas(640,640),cx=cv.getContext('2d');cx.fillStyle='#071326';cx.fillRect(0,0,640,640);const grad=cx.createLinearGradient(0,0,640,640);grad.addColorStop(0,'#175da2');grad.addColorStop(1,'#020911');cx.fillStyle=grad;cx.fillRect(0,0,640,640);cx.fillStyle='#7592b1';cx.fillRect(170,130,90,370);cx.fillRect(420,90,80,450);
  const dir=process.env.KAMEN_REVIEW_ASSETS,context=dir?JSON.parse(fs.readFileSync(path.join(dir,'DIRECTOR_CONTEXT.json'))):null,p=J.defaultProject();Object.assign(p,{autoDirection:true,res:720,fps:30,title:'俺らにできること',artist:'@Arijigoku_GMB',lyrics:dir?fs.readFileSync(path.join(dir,'lyrics.lrc'),'utf8'):lyrics});p.customBg={...p.customBg,enabled:true,dataUrl:dir?'data:image/png;base64,'+fs.readFileSync(path.join(dir,'assets/background.png')).toString('base64'):cv.toDataURL()};
