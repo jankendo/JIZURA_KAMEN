@@ -75,9 +75,13 @@ J.registryInkDistance=(a,b)=>{
 // Translation/zoom is a separate axis from primary typography structure.
 J.registryTypographySignature=(mask,w,h)=>{
  let x0=w,y0=h,x1=-1,y1=-1;for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(mask[(y*w+x)*4+3]>80){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);}
- if(x1<x0)return null;const W=x1-x0+1,H=y1-y0+1,cut=new Uint8ClampedArray(W*H*4);
- for(let y=0;y<H;y++)for(let x=0;x<W;x++)cut[(y*W+x)*4+3]=mask[((y+y0)*w+x+x0)*4+3];
- return J.registryInkSignature(cut,W,H);
+ if(x1<x0)return null;const W=x1-x0+1,H=y1-y0+1,cols=20,rows=12,out=[];
+ for(let gy=0;gy<rows;gy++)for(let gx=0;gx<cols;gx++){
+  const left=Math.floor(gx*W/cols),right=Math.max(left+1,Math.floor((gx+1)*W/cols)),top=Math.floor(gy*H/rows),bottom=Math.max(top+1,Math.floor((gy+1)*H/rows));
+  let n=0;for(let y=top;y<bottom;y++)for(let x=left;x<right;x++)n+=mask[((y+y0)*w+x+x0)*4+3]>80?1:0;
+  out.push(n/((right-left)*(bottom-top)));
+ }
+ return out;
 };
 // Exact rendered-geometry duplicates do not consume the sequence portfolio.
 // Retain all distinct safe candidates inside the existing local-fit tolerance;
@@ -105,18 +109,24 @@ J.registryPhaseSafeAnchorState=(cut,phases,anchors,sample)=>{
 J.chooseRegistryStoryboard=(steps,beamWidth=8)=>{
  if(!steps.length)return {status:'NOT_APPLICABLE_NO_LYRIC_STEPS',picks:[],score:null};
  const cap=Math.max(1,Math.min(32,Math.floor(beamWidth)||8));
+ // This synchronous search only reads feature arrays; no cache survives the call.
+ const distances=new WeakMap(),distanceBetween=(a,b)=>{
+  if(!a||!b)return J.registryInkDistance(a,b);
+  let pairs=distances.get(a);if(pairs?.has(b))return pairs.get(b);
+  const value=J.registryInkDistance(a,b);if(!pairs){pairs=new WeakMap();distances.set(a,pairs);}pairs.set(b,value);return value;
+ };
  let beam=[{score:0,picks:[],last:null,previous:null,serial:''}];
  for(const step of steps){
   const eligible=(step.candidates||[]).filter(c=>c?.evidence?.eligible&&Number.isFinite(c.score)&&c.signature?.length&&Array.from(c.signature).every(Number.isFinite));
   if(!eligible.length)return {status:'NO_MEASURED_SAFE_PATH',picks:[],score:null};
   const next=[];
   for(const state of beam)for(const c of eligible){
-   const prev=state.last,spatialDistance=prev?J.registryInkDistance(prev.signature,c.signature):null,distance=prev?J.registryInkDistance(prev.typographySignature,c.typographySignature):null;
+   const prev=state.last,spatialDistance=prev?distanceBetween(prev.signature,c.signature):null,distance=prev?distanceBetween(prev.typographySignature,c.typographySignature):null;
    const energyDelta=Number.isFinite(step.energy)&&Number.isFinite(prev?.energy)?Math.abs(step.energy-prev.energy):0,boundary=!!prev&&prev.role!==step.role;
    const quiet=['intro','outro','break'].includes(step.role)||(Number.isFinite(step.energy)&&step.energy<.25);
    const target=C((quiet?.09:.20)+energyDelta*.36+(boundary?.16:0),.05,.65);
    const pacing=(distance===null?0:.12*(1-Math.abs(distance-target)))+(spatialDistance===null?0:.06*(1-Math.abs(spatialDistance-target)));
-   const previousDistance=state.previous?J.registryInkDistance(state.previous.typographySignature,c.typographySignature):null;
+   const previousDistance=state.previous?distanceBetween(state.previous.typographySignature,c.typographySignature):null;
    const fatigue=distance!==null&&previousDistance!==null&&distance<.06&&previousDistance<.06&&!quiet?-.20:0;
    const stagnant=distance!==null&&distance<.06&&!quiet&&energyDelta>.15?-.12:0;
    const overload=distance!==null&&distance>.82&&!boundary&&quiet?-.16:0;
@@ -141,9 +151,10 @@ J.compareRegistryCandidates=async(project,audio,image,options={})=>{
  const representatives=[...new Map([unlocked.slice().sort((a,b)=>norm(b.lineText).length-norm(a.lineText).length)[0],unlocked.find(c=>/[A-Za-z]{2}/.test(c.lineText)),unlocked.slice().sort((a,b)=>norm(a.lineText).length-norm(b.lineText).length)[0]].filter(Boolean).map(c=>[c.line,c])).values()];
  const fonts=Object.keys(J.FONTS);if(options.ensureFonts!==false)await J.ensureFonts(p.lines.map(l=>l.text).join(''),fonts);
  const canvas=document.createElement('canvas'),mask=document.createElement('canvas'),w=256,h=Math.min(512,Math.round(w*p.H/p.W));canvas.width=mask.width=w;canvas.height=mask.height=h;const ctx=canvas.getContext('2d'),mc=mask.getContext('2d'),R=new J.Renderer(),styles=[],fontResults=[],layoutResults=[],motionResults=[],backgroundPlans=new Map();let frames=0,lastEnter='',workDone=0;const workTotal=fonts.length+J.STYLE_ORDER.length+Object.keys(J.LAYOUTS).length+Object.keys(J.ENTER).length+Object.keys(J.HOLD).length+unlocked.length,progress=label=>options.onProgress?.({label,current:++workDone,total:workTotal});
- const sample=(plan,c,dt)=>{const records=[],items=[],draw=J.drawItem,fill=ctx.fillText,directLabels=[];let unstable=false,primary=false,glyphBackdrop=null;const geometry=[];ctx.fillText=function(text,...args){if(!primary&&String(text).trim())directLabels.push(String(text));return fill.call(this,text,...args);};J.drawItem=(env,it)=>{if(env.pass==='main'&&env.ctx===ctx&&it.text){if(!glyphBackdrop)glyphBackdrop=new Uint8ClampedArray(ctx.getImageData(0,0,w,h).data);geometry.push(J.selectionGlyphEvidence(env,it));if(it.pieceFn||it.clip||it.clipY||it.clipFn||it.bands||it.vbands||(it.blur||0)>.5||it.streak?.a>.01||it.echo?.n>0)unstable=true;const glyphs=J.layoutText(it).filter(g=>{const ch=it.charFn?.(g.i,g);if(Math.abs((it.rot||0)+(ch?.rot||0)+(g.r90?90:0))>6)unstable=true;return !ch?.hide&&(it.alpha??1)*(ch?.a??1)>.06;}).map(g=>it.charFn?.(g.i,g)?.ch||g.ch).join('');records.push(glyphs);}const before=primary;primary=env.pass==='main'&&env.ctx===ctx;try{return draw(env,it);}finally{primary=before;}};try{const cp={...plan,cuts:plan.cuts.map(old=>old.line===c.line?c:old),events:[],hypeTimeline:[],titleDisplay:null};const reference=backgroundPlans.get(plan.styleKey);if(reference)J.sharePhotoComposition(reference,cp);else backgroundPlans.set(plan.styleKey,cp);R.frame(ctx,cp,Math.min(c.end-.04,Math.ceil((c.start+dt)*plan.fps)/plan.fps),{scale:w/plan.W,production:true,noHud:true,noPost:true,noGhost:true,noHype:true,noTrans:true,lyricAuditCtx:mc,lyricAuditItems:items});frames++;const rendered=ctx.getImageData(0,0,w,h).data,bytes=mc.getImageData(0,0,w,h).data,ev=J.selectionPixelEvidence(rendered,bytes,w,h,items.map(it=>it.bounds).filter(Boolean),plan.W,plan.H),actual=norm(records.join('')),expected=norm(c.lineText),full=actual===expected,extra=actual!==expected||directLabels.length>0;
+ // getImageData owns independent snapshots; evidence and mask consumers only read them.
+ const sample=(plan,c,dt)=>{const records=[],items=[],draw=J.drawItem,fill=ctx.fillText,directLabels=[];let unstable=false,primary=false,glyphBackdrop=null;const geometry=[];ctx.fillText=function(text,...args){if(!primary&&String(text).trim())directLabels.push(String(text));return fill.call(this,text,...args);};J.drawItem=(env,it)=>{if(env.pass==='main'&&env.ctx===ctx&&it.text){if(!glyphBackdrop)glyphBackdrop=ctx.getImageData(0,0,w,h).data;geometry.push(J.selectionGlyphEvidence(env,it));if(it.pieceFn||it.clip||it.clipY||it.clipFn||it.bands||it.vbands||(it.blur||0)>.5||it.streak?.a>.01||it.echo?.n>0)unstable=true;const glyphs=J.layoutText(it).filter(g=>{const ch=it.charFn?.(g.i,g);if(Math.abs((it.rot||0)+(ch?.rot||0)+(g.r90?90:0))>6)unstable=true;return !ch?.hide&&(it.alpha??1)*(ch?.a??1)>.06;}).map(g=>it.charFn?.(g.i,g)?.ch||g.ch).join('');records.push(glyphs);}const before=primary;primary=env.pass==='main'&&env.ctx===ctx;try{return draw(env,it);}finally{primary=before;}};try{const cp={...plan,cuts:plan.cuts.map(old=>old.line===c.line?c:old),events:[],hypeTimeline:[],titleDisplay:null};const reference=backgroundPlans.get(plan.styleKey);if(reference)J.sharePhotoComposition(reference,cp);else backgroundPlans.set(plan.styleKey,cp);R.frame(ctx,cp,Math.min(c.end-.04,Math.ceil((c.start+dt)*plan.fps)/plan.fps),{scale:w/plan.W,production:true,noHud:true,noPost:true,noGhost:true,noHype:true,noTrans:true,lyricAuditCtx:mc,lyricAuditItems:items});frames++;const rendered=ctx.getImageData(0,0,w,h).data,bytes=mc.getImageData(0,0,w,h).data,ev=J.selectionPixelEvidence(rendered,bytes,w,h,items.map(it=>it.bounds).filter(Boolean),plan.W,plan.H),actual=norm(records.join('')),expected=norm(c.lineText),full=actual===expected,extra=actual!==expected||directLabels.length>0;
  const contrast=glyphBackdrop?{...J.glyphFootprintContrast(glyphBackdrop,rendered,bytes,w,h),control:'COMPOSITE_BEFORE_FIRST_PRIMARY_GLYPH; includes lyric scrim and backplates'}:{measured:false,status:'NO_PRIMARY_GLYPH_CONTROL'},contrastFit=contrast.measured?C(contrast.renderedVsBackgroundContrastP10/4.5):null;
- return {...ev,contrast,contrastFit,full,extra,directLabels,unstable,geometry,eligible:full&&!extra&&!unstable&&contrast.measured&&contrast.renderedVsBackgroundContrastP10>=3&&geometry.length>0&&geometry.every(g=>g.readable)&&ev.ink>8&&ev.safe&&(c.params.photoAnchor||ev.centerError<.025)&&ev.height>.035,mask:new Uint8ClampedArray(bytes)};}finally{J.drawItem=draw;ctx.fillText=fill;}};
+ return {...ev,contrast,contrastFit,full,extra,directLabels,unstable,geometry,eligible:full&&!extra&&!unstable&&contrast.measured&&contrast.renderedVsBackgroundContrastP10>=3&&geometry.length>0&&geometry.every(g=>g.readable)&&ev.ink>8&&ev.safe&&(c.params.photoAnchor||ev.centerError<.025)&&ev.height>.035,mask:bytes};}finally{J.drawItem=draw;ctx.fillText=fill;}};
  const metrics=({mask,...ev})=>ev;
  try{
   await R.loadCustomBackground(p.customBg.dataUrl);await R.loadAssetDeck?.(p);

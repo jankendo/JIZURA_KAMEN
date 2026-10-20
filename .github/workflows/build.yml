@@ -31,6 +31,8 @@ jobs:
         run: node dev/kamen_encoder_liveness_test.cjs && node dev/kamen_gpu_codec_test.cjs
       - name: Check export UI behavior
         run: node dev/kamen_export_ui_test.cjs
+      - name: Check render optimization equivalence
+        run: node dev/kamen_fast_render_v3_test.cjs
       - name: Build production files
         run: npm run build
       - name: Verify production layout
