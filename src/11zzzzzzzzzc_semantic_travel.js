@@ -82,6 +82,7 @@ Q.recordFinalSemanticTravelHistory=async(before,after,args)=>{
 };
 const run=Q.runVerifiedExport;
 Q.runVerifiedExport=async(encode,args)=>{
+ args={...args,refinementMode:J.exportRefinementMode(args)};
  delete J.lastFinalSemanticTravelTrial;delete J.lastFinalSemanticTravelBaseline;
  const original=args.plan?V.clone(args.plan):null,originalHash=args.plan?Object.getOwnPropertyDescriptor(args.plan,'_provenancePlanHash')?.value:undefined;
  try{
@@ -90,7 +91,9 @@ Q.runVerifiedExport=async(encode,args)=>{
   if(J.bindAutomaticLyricTemporalPolicy?.(args.plan,args.project))V.invalidate(args.plan);
   // Repeated exports remove only our late grammar-anchor trial policy.
   if(args.project?.autoDirection===true&&args.plan?.cinemaFinalSemanticTravel?.version===version){delete args.plan.cinemaFinalSemanticTravel;V.invalidate(args.plan);}
-  const first=await run(encode,args),proposal=args.plan?await Q.proposeFinalSemanticTravel(args.plan,args.project,first.provenance.finalArtifactVerification):null;if(!proposal)return first;
+  const first=await run(encode,args);
+  if(args.refinementMode==='fast'){first.provenance.finalSemanticTravelRepair={version,status:'SKIPPED_FAST_MODE',additionalCompletedEncodes:0,observation:{status:'UNMEASURED'},reason:'Additional creative comparison skipped; selected MP4 final verification retained'};first.sidecar=new Blob([JSON.stringify(first.provenance,null,2)],{type:'application/json'});return first;}
+  const proposal=args.plan?await Q.proposeFinalSemanticTravel(args.plan,args.project,first.provenance.finalArtifactVerification):null;if(!proposal)return first;
   args.onProgress?.(.995,'採用した構図を保ち、演出の移動だけを完成MP4で再検証しています',{stage:'verify',indeterminate:true});
   // Core certification/decoded observer and independent FAV remain enabled.
   // Frozen post-final history is recorded from those completed observations.

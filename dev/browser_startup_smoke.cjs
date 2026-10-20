@@ -10,6 +10,8 @@ assert(url,'URL is required');
   const response=await page.goto(url,{waitUntil:'load',timeout:30000});assert.equal(response.status(),200);
   await page.waitForFunction(()=>window.J?.ui&&window.KAMEN_BUILD_INFO,undefined,{timeout:15000});
   assert.equal(await page.evaluate(()=>document.querySelector('#studioExport')!==null),true);
+  assert.equal(await page.locator('#studioRefinementMode').inputValue(),'fast');
+  assert.equal(await page.locator('#studioRefinementMode option[value=quality]').count(),1);
   assert.deepEqual(errors,[]);console.log('Browser initialization smoke PASS',browser.version());
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

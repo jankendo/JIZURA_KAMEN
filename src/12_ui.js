@@ -54,6 +54,7 @@ function mergeProject(p) {
   o.titleDisplay.opacity = J.clamp(Number(o.titleDisplay.opacity) || .72, .2, .85);
   o.titleDisplay.enabled = o.titleDisplay.enabled !== false;
   o.exportSettings=Object.assign({},d.exportSettings,(p&&p.exportSettings)||{});
+  o.exportSettings.refinementMode=o.exportSettings.refinementMode==='quality'?'quality':'fast';
   o.exportSettings.preset=J.EXPORT_PRESETS?.[o.exportSettings.preset]?o.exportSettings.preset:'auto';
   o.exportSettings.videoBitrate=Number.isFinite(+o.exportSettings.videoBitrate)?Math.max(0,+o.exportSettings.videoBitrate):0;
   o.exportSettings.audioBitrate=[128000,192000,256000,320000].includes(+o.exportSettings.audioBitrate)?+o.exportSettings.audioBitrate:192000;
@@ -916,6 +917,7 @@ function updateExportSummary() {
 function syncStudioExportControls() {
   if(!$('studioPreset')||!S.project)return;
   const e=J.resolveExportSettings(S.project);
+  $('studioRefinementMode').value=S.project.exportSettings.refinementMode==='quality'?'quality':'fast';
   $('studioPreset').value=e.preset;$('studioRes').value=String(S.project.res||1080);$('studioFPS').value=S.project.exportSettings.fpsMode==='auto'?'auto':String(S.project.fps||30);
   $('studioQualityLevel').value=S.project.quality||'high';$('studioVideoBitrate').value=e.videoBitrate>0?(e.videoBitrate/1e6).toString():'';
   $('studioSampleRate').value=String(e.sampleRate||48000);
@@ -1111,7 +1113,7 @@ async function autoDirection() {
     const range={start:0,end:Math.min(S.plan.duration,S.audio?.duration||S.plan.duration)};
     let pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));
     if(pre.fixes){syncUI();replan();pre=J.preflightMV(S.project,S.audio,range,()=>J.plan(S.project,audioLike()));}
-    const captureInput=async()=>J.cinemaV3?.enabled?{plan:S.plan,input:await J.cinemaV3.snapshot(S.project,S.audio,S.plan,range),analysisKey:J.canonicalJSON(audioLike())}:null;
+    const captureInput=async()=>J.cinemaV3?.enabled?{plan:S.plan,input:await J.cinemaV3.snapshot(S.project,S.audio,S.plan,range),renderState:J.cinemaV3.qaRenderState(S.project,S.plan,range),analysisKey:J.canonicalJSON(audioLike())}:null;
     let analyzedInput=await captureInput();
     S.pixelQA=await J.analyzeRenderedFrames(S.plan,range,S.audio,{onProgress:detail});
     S.exportCapabilities=await J.exportCapabilities(S.project,S.project.includeAudio!==false?S.audio:null).catch(()=>null);
@@ -1126,7 +1128,7 @@ async function autoDirection() {
     $('directionStatus').dataset.result = 'true';
     task.enter('preview');await J.processingYield();S.need=true;
     task.enter('save');const saved=await flushSave();if(!saved)throw new Error('MVは作成しましたが、ブラウザへの保存を完了できませんでした。プロジェクト保存でバックアップしてください');
-    if(analyzedInput?.plan===S.plan){const plan=S.plan,input=await J.cinemaV3.snapshot(S.project,S.audio,plan,range),analysisKey=J.canonicalJSON(audioLike());if(input.inputHash===analyzedInput.input.inputHash&&analysisKey===analyzedInput.analysisKey)S.confirmedCinemaPlan={plan,inputHash:input.inputHash,analysisKey,planHash:await J.cinemaV3.planHash(plan),pixelQA:S.pixelQA,pixelQAPlan:plan,rangeKey:J.canonicalJSON(range)};}
+    if(analyzedInput?.plan===S.plan){const plan=S.plan,input=await J.cinemaV3.snapshot(S.project,S.audio,plan,range),analysisKey=J.canonicalJSON(audioLike());if(analyzedInput.renderState&&analyzedInput.renderState===J.cinemaV3.qaRenderState(S.project,plan,range)&&input.inputHash===analyzedInput.input.inputHash&&analysisKey===analyzedInput.analysisKey)S.confirmedCinemaPlan={plan,inputHash:input.inputHash,analysisKey,planHash:await J.cinemaV3.planHash(plan),pixelQA:S.pixelQA,pixelQAPlan:plan,renderState:J.cinemaV3.qaRenderState(S.project,plan,range),rangeKey:J.canonicalJSON(range)};}
     task.complete('MVを作成しました。仕上がりを確認してください');
     toast(`自動演出：${J.STYLES[proposal.style].name} × ${J.MOODS[proposal.mood].name}`);
   } catch (err) {task.fail(err);console.error('JIZURA MV generation failed',err); $('directionStatus').textContent = err.message || '演出を作成できませんでした'; delete $('directionStatus').dataset.result; }
@@ -1239,6 +1241,7 @@ function mountStudio() {
   $('studioAudio').addEventListener('change',e=>{
     S.project.includeAudio=e.target.value!=='off';S.exportValidation=null;syncOut();codecNote();flushSave();updateExportSummary();updateStudioQuality();
   });
+  $('studioRefinementMode').addEventListener('change',e=>{S.project.exportSettings.refinementMode=e.target.value==='quality'?'quality':'fast';flushSave();});
   $('studioSampleRate').addEventListener('change',e=>{S.project.exportSettings.sampleRate=+e.target.value;S.exportValidation=null;flushSave();codecNote();updateExportSummary();});
   $('studioAudioBitrate').addEventListener('change',e=>{
     S.project.exportSettings.audioBitrate=+e.target.value;S.project.exportSettings.preset='custom';S.exportValidation=null;syncStudioExportControls();flushSave();codecNote();updateExportSummary();updateStudioQuality();
@@ -1389,22 +1392,26 @@ async function runExport(kind) {
     S.exportValidation=null;saveHandle=await destination;if(saveHandle==='declined'){outcome.fileState='CANCELLED';task.fail(new Error('保存を中止しました'),true);return;}
     let fixes=0,report=null,retainConfirmedPlan=false;
     const confirmed=S.confirmedCinemaPlan,V=J.cinemaV3;
-    if(!socialHook&&V?.enabled&&confirmed?.plan===exportPlan&&confirmed.pixelQA===S.pixelQA&&confirmed.pixelQA?.completed&&confirmed.pixelQAPlan===exportPlan&&confirmed.rangeKey===J.canonicalJSON(range)){const input=await V.snapshot(outputProject,S.audio,exportPlan,range);retainConfirmedPlan=input.inputHash===confirmed.inputHash&&J.canonicalJSON(audioLike())===confirmed.analysisKey&&await V.planHash(exportPlan)===confirmed.planHash;}
+    if(!socialHook&&V?.enabled&&confirmed?.plan===exportPlan&&confirmed.pixelQA===S.pixelQA&&confirmed.pixelQA?.completed&&confirmed.pixelQAPlan===exportPlan&&confirmed.rangeKey===J.canonicalJSON(range)){const input=await V.snapshot(outputProject,S.audio,exportPlan,range);retainConfirmedPlan=!!confirmed.renderState&&confirmed.renderState===V.qaRenderState(outputProject,exportPlan,range)&&input.inputHash===confirmed.inputHash&&J.canonicalJSON(audioLike())===confirmed.analysisKey&&await V.planHash(exportPlan)===confirmed.planHash;}
     outcome.initialConfirmedPlanReused=retainConfirmedPlan;
+    let capabilitiesKey=null;
+    const refreshCapabilities=async()=>{const key=JSON.stringify([outputProject.aspect,outputProject.res,outputProject.fps,outputProject.quality,outputProject.exportSettings,outputProject.includeAudio]);if(key===capabilitiesKey)return;S.exportCapabilities=await J.exportCapabilities(outputProject,S.project.includeAudio!==false?S.audio:null).catch(()=>({webCodecs:false,h264:false,aac:false,recorder:null}));capabilitiesKey=key;};
     for(let pass=0;pass<3;pass++){
       outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;
       const pre=pass===0&&retainConfirmedPlan?{fixes:0,plan:exportPlan}:J.preflightMV(outputProject,S.audio,range,makeOutputPlan);
       fixes+=pre.fixes;exportPlan=pre.plan;
       if(socialHook)S.socialPlan=exportPlan;else S.plan=exportPlan;
       if(pre.fixes){syncUI();replan();}
-      S.exportCapabilities=await J.exportCapabilities(outputProject,S.project.includeAudio!==false?S.audio:null).catch(()=>({webCodecs:false,h264:false,aac:false,recorder:null}));
+      await refreshCapabilities();
       if(!(pass===0&&retainConfirmedPlan))S.pixelQA=await J.analyzeRenderedFrames(exportPlan,range,S.audio,{onProgress:auditDetail});
       report=J.checkMVQuality(outputProject,exportPlan,S.audio,range,S.pixelQA,S.exportCapabilities,null);
       const repaired=J.fixMVQuality(S.project,report,S.audio);fixes+=repaired;
       if(!repaired)break;
+      S.pixelQA=null;
       syncUI();replan();
       if(pass===2){outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;exportPlan=makeOutputPlan();S.pixelQA=null;}
     }
+    await refreshCapabilities();
     if(!S.pixelQA?.completed)S.pixelQA=await J.analyzeRenderedFrames(exportPlan,range,S.audio,{onProgress:auditDetail});
     await J.preparePhotoExport({plan:exportPlan,project:outputProject,audio:S.audio,range,signal:ac.signal,onProgress:(_p,label)=>auditDetail({label})});S.pixelQA=exportPlan.lastPixelQA||S.pixelQA;
     report=J.checkMVQuality(outputProject,exportPlan,S.audio,range,S.pixelQA,S.exportCapabilities,null);S.lastQuality=report;
@@ -1438,21 +1445,21 @@ async function runExport(kind) {
     task.enter('fonts');await J.processingYield();
     await J.ensureFonts(S.project.lyrics + (S.project.title || '') + (S.project.artist || '') + HUD_CHARS, J.fontsOfPlan(exportPlan));
     if (kind === 'mp4') {
-      const args={plan:exportPlan,project:outputProject,audio:S.project.includeAudio!==false?S.audio:null,range,quality:S.project.quality||'high',cinemaV3:J.cinemaV3?.enabled===true,onProgress,signal:ac.signal};
+      const args={plan:exportPlan,project:outputProject,audio:S.project.includeAudio!==false?S.audio:null,range,quality:S.project.quality||'high',cinemaV3:J.cinemaV3?.enabled===true,refinementMode:S.project.exportSettings?.refinementMode==='quality'?'quality':'fast',onProgress,signal:ac.signal};
       const caps=S.exportCapabilities||await J.exportCapabilities(outputProject,args.audio);
       let r;
       try{
         if(!caps.webCodecs)throw new Error('通常の書き出し方法を利用できません');
         r=await J.exportMP4(args);
       }catch(primary){
-        if(ac.signal.aborted||/EXPORT_INVALID|PROVENANCE_MISMATCH|検査|フレームが不足/.test(String(primary.message||primary)))throw primary;
+        if(ac.signal.aborted||/EXPORT_INVALID|CINEMA_V5_UNSAFE_EXPORT|PROVENANCE_MISMATCH|検査|フレームが不足/.test(String(primary.message||primary)))throw primary;
         if(caps.webCodecs){
           const [w,h]=J.outputSize(outputProject),estimate=J.estimateExport(outputProject,(range?.end??exportPlan.duration)-(range?.start??0),!!args.audio),bitrate=Math.round(estimate.videoBitrate);
           const attempts=await J.videoAttempts(w,h,exportPlan.fps,bitrate);
           for(const attempt of attempts.slice(1)){
             if(ac.signal.aborted)throw primary;
             setText('別のH.264エンコーダーで再試行しています…');
-            try{r=await J.exportMP4({...args,videoAttempt:attempt,...(window.JIZURAAAC&&/音声|AAC/.test(String(primary.message||primary))?{audioAttempt:{codec:'mp4a.40.2',mux:'aac',sr:J.resolveExportSettings(outputProject).sampleRate,bitrate:J.resolveExportSettings(outputProject).audioBitrate,wasm:true}}:{})});break;}catch(retry){if(ac.signal.aborted||/EXPORT_INVALID|PROVENANCE_MISMATCH|検査|フレームが不足/.test(String(retry.message||retry)))throw retry;}
+            try{r=await J.exportMP4({...args,videoAttempt:attempt,...(window.JIZURAAAC&&/音声|AAC/.test(String(primary.message||primary))?{audioAttempt:{codec:'mp4a.40.2',mux:'aac',sr:J.resolveExportSettings(outputProject).sampleRate,bitrate:J.resolveExportSettings(outputProject).audioBitrate,wasm:true}}:{})});break;}catch(retry){if(ac.signal.aborted||/EXPORT_INVALID|CINEMA_V5_UNSAFE_EXPORT|PROVENANCE_MISMATCH|検査|フレームが不足/.test(String(retry.message||retry)))throw retry;}
           }
         }
         if(!r){if(!caps.recorder)throw primary;

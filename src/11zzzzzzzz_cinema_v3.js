@@ -40,6 +40,13 @@ V.snapshot=async(project,audio,p,range=null)=>{
  const state={audioHash,imageHashes,lyricsHash,projectHash,rendererVersion:V.version,proceduralTextureVersion:J.proceduralTextureVersion,outputProfile,userLocks:{lockedLines:[...new Set(locked)].sort((a,b)=>a-b),manualTypography:locked.slice(),manualCamera:locked.slice()}};
  state.inputHash=await J.sha256(J.canonicalJSON(state));return V.freezeMetadata(V.validate('ImmutableInputSnapshot',state));
 };
+const qaFontIds=new WeakMap();let qaFontSerial=0;
+V.qaRenderState=(project,p,range)=>{
+ const fonts=document.fonts;if(!fonts||fonts.status!=='loaded'||typeof fonts[Symbol.iterator]!=='function')return null;
+ const faces=Array.from(fonts,f=>{if(!qaFontIds.has(f))qaFontIds.set(f,++qaFontSerial);return {id:qaFontIds.get(f),family:f.family,style:f.style,weight:f.weight,stretch:f.stretch,status:f.status};});
+ if(faces.some(f=>f.status!=='loaded'))return null;
+ return J.canonicalJSON({faces,output:J.outputSize(project),fps:p.fps,range,rendererVersion:V.version,proceduralTextureVersion:J.proceduralTextureVersion,project});
+};
 V.planHash=p=>J.sha256(J.canonicalJSON(p));
 V.assertSnapshot=async(expected,project,audio,p,range)=>{const next=await V.snapshot(project,audio,p,range);if(next.inputHash!==expected.inputHash){V.invalidate(p);throw new Error('INPUT_CHANGED');}return next;};
 V.invalidate=p=>{p.lastPixelQA=null;delete p.lastQualityTarget;delete p._provenancePlanHash;J.clearPhotoComposition?.(p);};
