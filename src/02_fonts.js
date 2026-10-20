@@ -40,6 +40,7 @@ J.GOOGLE_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Dela+Gothic+One&f
 J.addUserFont = (key, label, family, weight = 400, kind = 'custom') => {
   J.FONTS[key] = { label, family: `"${family.replace(/"/g, '')}"`, weight, kind, fb: JP_SANS_FB, user: true };
   J.glyphs.clear();
+  J.metrics?.clear();
 };
 J.userFontBytes = new Map();
 J.fontContentHash = async buffer => {
@@ -82,6 +83,8 @@ J.fontCSS = (key, px, verifiedWeight = null) => {
 const cssJobs = new Map();
 J.fontLoadEvidence = new Map();
 const boundedFontWait=(promise,ms)=>new Promise((resolve,reject)=>{const timer=setTimeout(()=>resolve(null),ms);Promise.resolve(promise).then(value=>{clearTimeout(timer);resolve(value);},error=>{clearTimeout(timer);reject(error);});});
+const fontFaceState=fontSet=>[...fontSet].map(face=>[face.family,face.weight,face.style,face.stretch,face.status,face.unicodeRange||''].join('|')).sort().join('\n');
+let lastFontConfigState=null;
 function attachFamily(spec) {
   if (!spec || typeof document === 'undefined' || !document.head) return Promise.resolve();
   if (cssJobs.has(spec)) return cssJobs.get(spec);
@@ -108,26 +111,32 @@ J.fontsOfPlan = (plan) => {
 /* make sure the glyphs we need are loaded (Google Fonts are unicode-range split). keys = null → every catalogue face */
 J.ensureFonts = async (text, keys) => {
   if (!document.fonts || !document.fonts.load) return;
+  const priorFontState=fontFaceState(document.fonts);
   const uniq = [...new Set([...text])].join('') || 'あ';
   const list = (keys || Object.keys(J.FONTS)).filter(k => J.FONTS[k]);
   // faces in the current lyric language (+ its fallback sans / serif), each with the weight it is drawn at
   const faces = list.map(k => (J.faceOf ? J.faceOf(k) : J.FONTS[k]));
+  const fontConfigState=JSON.stringify(list.map((key,i)=>{const f=faces[i];return [key,f.family,f.weight,f.gf||'',f.kind||'',!!f.user];}));
   if (J.langBaseFaces) for (const b of J.langBaseFaces(list)) faces.push({ family: '"' + b.family + '"', weight: b.weight, gf: b.gf });
   await Promise.all([...new Set(faces.map(f => f.gf).filter(Boolean))].map(attachFamily));
-  const jobs = [], seen = new Set();
+  const jobs = [], seen = new Set();let complete=true;
   for (const f of faces) {
     const spec = `${f.weight} 64px ${f.family}`;
     if (seen.has(spec)) continue; seen.add(spec);
     jobs.push(boundedFontWait(document.fonts.load(spec, uniq),8000).then(loaded => {
       for (const key of list.filter(k => (J.faceOf ? J.faceOf(k) : J.FONTS[k]).family === f.family && (J.faceOf ? J.faceOf(k) : J.FONTS[k]).weight === f.weight))
         J.fontLoadEvidence.set(key, {status: loaded?.length ? "LOADED" : "REQUESTED_FACE_UNAVAILABLE", family: f.family, faces: loaded?.length || 0});
+      if(!loaded?.length)complete=false;
       return loaded;
-    }).catch(() => { for (const key of list.filter(k => J.FONTS[k].family === f.family && J.FONTS[k].weight === f.weight)) J.fontLoadEvidence.set(key,{status:"LOAD_FAILED",family:f.family}); return null; }));
+    }).catch(() => { complete=false;for (const key of list.filter(k => J.FONTS[k].family === f.family && J.FONTS[k].weight === f.weight)) J.fontLoadEvidence.set(key,{status:"LOAD_FAILED",family:f.family}); return null; }));
   }
   await Promise.all(jobs);
   if (document.fonts.ready) await boundedFontWait(document.fonts.ready,2000);
-  J.glyphs.clear();
-  J.metrics.clear();
+  if(!complete||priorFontState!==fontFaceState(document.fonts)||lastFontConfigState!==fontConfigState){
+    J.glyphs.clear();
+    J.metrics.clear();
+  }
+  lastFontConfigState=fontConfigState;
 };
 
 /* ---------- metrics (advance widths) ---------- */
