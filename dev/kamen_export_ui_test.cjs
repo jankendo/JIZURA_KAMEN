@@ -17,7 +17,7 @@ assert.equal(J.creativeExportState({minimumMet:false,failures:[{score:0}]}),'BEL
 J.checkMVQuality=()=>({ready:true,errors:[],quality:{targetAcceptance:{minimumMet:true}}});J.fixMVQuality=()=>0;J.exportMP4=result;J.canonicalJSON=JSON.stringify;
 let planned=0;const plan=J.plan;J.plan=(...args)=>{planned++;return plan(...args)};
 J.cinemaV3={enabled:true,snapshot:async(p,a)=>({inputHash:JSON.stringify({project:p,pcm:a.pcm})}),planHash:async p=>JSON.stringify(p)};
-const confirm=async()=>{S.confirmedCinemaPlan={plan:S.plan,inputHash:(await J.cinemaV3.snapshot(S.project,S.audio)).inputHash,analysisKey:JSON.stringify(S.audio),planHash:await J.cinemaV3.planHash(S.plan)}};
+const confirm=async()=>{S.pixelQA={completed:true};S.confirmedCinemaPlan={plan:S.plan,inputHash:(await J.cinemaV3.snapshot(S.project,S.audio)).inputHash,analysisKey:JSON.stringify(S.audio),planHash:await J.cinemaV3.planHash(S.plan),pixelQA:S.pixelQA,pixelQAPlan:S.plan,rangeKey:JSON.stringify({start:0,end:1})}};
 await confirm();let count=planned;await c.runExport('mp4');assert.equal(planned,count,'unchanged confirmed plan is not regenerated');assert.equal(S.exportOutcome.initialConfirmedPlanReused,true);
 for(const mutation of [()=>{S.project.revision++},()=>{S.audio.pcm='changed'},()=>{S.audio.analysis='changed'},()=>{S.plan.revision++}]){await confirm();count=planned;mutation();await c.runExport('mp4');assert(planned>count);assert.equal(S.exportOutcome.initialConfirmedPlanReused,false,'changed input/PCM/analysis/plan must replan');}
 console.log('UI runtime: final repair/audit, one-click states, technical rejection, cancel, QA-save protection and exact confirmed plan invalidation PASS');})().catch(e=>{console.error(e);process.exitCode=1});
