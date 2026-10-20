@@ -1,7 +1,7 @@
 /* Song Grammar v5 short output: preserve exact LRC intervals and the generated
    acoustic trajectory. No named phases, event injection or loop-style forcing. */
 (()=>{'use strict';const J=window.J,F=Number.isFinite,mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
-const active=p=>p?.songNativeDirection?.version===5;
+const active=p=>[5,6].includes(p?.songNativeDirection?.version);
 const candidates=J.socialHookCandidates;
 J.socialHookCandidates=(p,audio,...args)=>{
  const picks=candidates(p,audio,...args);if(!active(p))return picks;
@@ -26,8 +26,8 @@ J.createSocialHookPlan=(source,candidate)=>{
  if(source.H<=source.W)throw Error('V5_SHORT_REQUIRES_PORTRAIT_REPLAN');
  if(source.lines.some(l=>l.start<end&&l.end>start&&(l.start<start-1e-6||l.end>end+1e-6)))throw Error('V5_SHORT_WOULD_TRUNCATE_LYRIC');
  const p=J.clonePhotoRenderPlan(source);
- p.socialHook={version:5,start,end,duration:end-start,dedicatedReedit:true,portraitComposition:true,loopRequired:candidate.loopRequired===true,method:'ACOUSTIC_TRAJECTORY_WITH_EXACT_LRC'};
- p.socialDirector={version:5,aspect:'9:16',independent:true,sections:p.songNativeDirection.sections.filter(s=>s.start<end&&s.end>start).map(s=>({from:Math.max(start,s.start),to:Math.min(end,s.end),boundaryConfidence:s.boundaryConfidence,repeatFrom:s.repeatFrom,quietIntent:s.quietIntent}))};
+ p.socialHook={version:p.songNativeDirection.version,start,end,duration:end-start,dedicatedReedit:true,portraitComposition:true,loopRequired:candidate.loopRequired===true,method:'ACOUSTIC_TRAJECTORY_WITH_EXACT_LRC'};
+ p.socialDirector={version:p.songNativeDirection.version,aspect:'9:16',independent:true,sections:p.songNativeDirection.sections.filter(s=>s.start<end&&s.end>start).map(s=>({from:Math.max(start,s.start),to:Math.min(end,s.end),boundaryConfidence:s.boundaryConfidence,repeatFrom:s.repeatFrom,quietIntent:s.quietIntent}))};
  p.socialHookAudit={dedicated:true,method:p.socialHook.method,phases:[],cuts:p.cuts.filter(c=>c.line>=0&&c.start<end&&c.end>start).length,quality:'UNMEASURED'};
  delete p.lastPixelQA;delete p.songGrammarV5Evidence;
  J.cinemaV3.invalidate(p);return p;

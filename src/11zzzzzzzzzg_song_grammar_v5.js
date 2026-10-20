@@ -5,7 +5,7 @@
 const J=window.J,C=J.clamp,F=Number.isFinite,copy=J.clonePhotoRenderPlan;
 const mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
 const distance=(a,b)=>Math.sqrt(mean(a.map((v,i)=>(v-b[i])**2)));
-const active=p=>(p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version===5;
+const active=p=>[5,6].includes((p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version);
 const locked=(p,c)=>!!(p.songNativeManualPlan||c?.locked||Object.keys(p.directionOverrides7?.[c?.line]||{}).length||p.directorLyricDirectives7?.some(d=>d.line===c?.line)||c?.assetScene?.locked||p.directorSections7?.some(s=>c?.start>=s.from&&c?.start<s.to&&(s.typographyIntent||s.motionIntent)));
 const abort=s=>{if(s?.aborted)throw new DOMException('Aborted','AbortError');};
 const baseKeys=['x','y','width','height','track','lead','cameraX','cameraY','zoom','layerX','layerY','alpha','contrast','motion'];
@@ -157,7 +157,7 @@ J.Renderer.prototype.drawCustomBackground=function(ctx,p,t,...args){
  if(darkness){ctx.save();ctx.globalAlpha*=darkness;ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);ctx.restore();}
  const result=true;
  const horizontal=s.regionAxis,split=s.split;
- const rectangles=[[0,0,W*(horizontal+(1-horizontal)*split),H*((1-horizontal)+horizontal*split)],[(1-horizontal)*W*split,horizontal*H*split,W*(horizontal+(1-horizontal)*(1-split)),H*((1-horizontal)+horizontal*(1-split))]];
+ const rectangles=p.songNativeDirection.version===6?J.songBackgroundRegionsV6(p,s,image):[[0,0,W*(horizontal+(1-horizontal)*split),H*((1-horizontal)+horizontal*split)],[(1-horizontal)*W*split,horizontal*H*split,W*(horizontal+(1-horizontal)*(1-split)),H*((1-horizontal)+horizontal*(1-split))]];
  for(let i=0;i<rectangles.length;i++){
   const [x,y,w,h]=rectangles[i],scale=Math.max(w/image.width,h/image.height)/s.cropRatio,sw=w/scale,sh=h/scale;
   const sx=C(s.cameraX+(i-.5)*s.layerX*4)*(image.width-sw),sy=C(s.cameraY+(i-.5)*s.layerY*4)*(image.height-sh);
