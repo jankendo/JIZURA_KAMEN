@@ -6,7 +6,7 @@ J.analyzeRenderedFrames=async(plan,range,audio,telemetry={})=>{
   let own;
   if(!telemetry.onProgress){
     own=J.processing.begin('映像の品質を検査しています',[['quality','映像・歌詞・動き・画像を検査しています',1]]);
-    own.enter('quality');telemetry={onProgress:e=>own.observe(e.current,e.total,[e.label,e.detail,e.total?`${e.current} / ${e.total}`:''].filter(Boolean).join(' · '))};
+    own.enter('quality');telemetry={...telemetry,onProgress:e=>own.observe(e.current,e.total,[e.label,e.detail,e.total?`${e.current} / ${e.total}`:''].filter(Boolean).join(' · '))};
   }
   try{const result=await analyze(plan,range,audio,telemetry);if(own){if(result.completed)own.complete('映像の検査が完了しました');else own.fail(new Error('この環境では画質検査を完了できませんでした'));}return result;}
   catch(error){own?.fail(error);throw error;}

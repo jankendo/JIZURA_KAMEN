@@ -42,7 +42,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('nod
  const source=fs.readFileSync('src/11zzq_render_feedback.js','utf8'),frameSource=source.slice(source.indexOf('const frame='),source.indexOf('\n try{await J.prepareCinemaProxyRenderer'));
  function sample(legacy){let calls=0;const x={getImageData:()=>({data:[1,2,3,4]})},mx=x,J={drawItem(){},layoutText:()=>[{i:0,ch:'字'}],selectionGlyphEvidence:()=>{calls++;return {readable:true,maxGlyphHeight:.1};}},p={},R={frame(){J.drawItem({pass:'main',ctx:x,cut:{line:0}},{alpha:1});}};
   const code=legacy?frameSource.replace('const glyphEvidence=J.selectionGlyphEvidence(env,it);','').replace('readable:glyphEvidence.readable,glyphEvidence','readable:J.selectionGlyphEvidence(env,it).readable,glyphEvidence:J.selectionGlyphEvidence(env,it)'):frameSource;
-  const c={J,p,R,x,mx,w:128,h:72,range:null};vm.runInNewContext(code+'globalThis.result=frame(0);',c);return {calls,records:JSON.stringify(c.result.records)};
+  const c={J,p,R,x,mx,w:128,h:72,range:null,options:{}};vm.runInNewContext(code+'globalThis.result=frame(0);',c);return {calls,records:JSON.stringify(c.result.records)};
  }
  const current=sample(false),old=sample(true);assert.equal(current.records,old.records);assert.equal(current.calls,1);assert.equal(old.calls,2);
  console.log('Fast nested encode count, honest evidence, technical rejection, quality comparison, render state and glyph equivalence PASS (mocks; no MP4 encoded)');
