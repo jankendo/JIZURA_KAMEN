@@ -1126,7 +1126,7 @@ async function autoDirection() {
     $('directionStatus').dataset.result = 'true';
     task.enter('preview');await J.processingYield();S.need=true;
     task.enter('save');const saved=await flushSave();if(!saved)throw new Error('MVは作成しましたが、ブラウザへの保存を完了できませんでした。プロジェクト保存でバックアップしてください');
-    if(analyzedInput?.plan===S.plan){const plan=S.plan,input=await J.cinemaV3.snapshot(S.project,S.audio,plan,range),analysisKey=J.canonicalJSON(audioLike());if(input.inputHash===analyzedInput.input.inputHash&&analysisKey===analyzedInput.analysisKey)S.confirmedCinemaPlan={plan,inputHash:input.inputHash,analysisKey,planHash:await J.cinemaV3.planHash(plan)};}
+    if(analyzedInput?.plan===S.plan){const plan=S.plan,input=await J.cinemaV3.snapshot(S.project,S.audio,plan,range),analysisKey=J.canonicalJSON(audioLike());if(input.inputHash===analyzedInput.input.inputHash&&analysisKey===analyzedInput.analysisKey)S.confirmedCinemaPlan={plan,inputHash:input.inputHash,analysisKey,planHash:await J.cinemaV3.planHash(plan),pixelQA:S.pixelQA,pixelQAPlan:plan,rangeKey:J.canonicalJSON(range)};}
     task.complete('MVを作成しました。仕上がりを確認してください');
     toast(`自動演出：${J.STYLES[proposal.style].name} × ${J.MOODS[proposal.mood].name}`);
   } catch (err) {task.fail(err);console.error('JIZURA MV generation failed',err); $('directionStatus').textContent = err.message || '演出を作成できませんでした'; delete $('directionStatus').dataset.result; }
@@ -1389,7 +1389,7 @@ async function runExport(kind) {
     S.exportValidation=null;saveHandle=await destination;if(saveHandle==='declined'){outcome.fileState='CANCELLED';task.fail(new Error('保存を中止しました'),true);return;}
     let fixes=0,report=null,retainConfirmedPlan=false;
     const confirmed=S.confirmedCinemaPlan,V=J.cinemaV3;
-    if(!socialHook&&V?.enabled&&confirmed?.plan===exportPlan){const input=await V.snapshot(outputProject,S.audio,exportPlan,range);retainConfirmedPlan=input.inputHash===confirmed.inputHash&&J.canonicalJSON(audioLike())===confirmed.analysisKey&&await V.planHash(exportPlan)===confirmed.planHash;}
+    if(!socialHook&&V?.enabled&&confirmed?.plan===exportPlan&&confirmed.pixelQA===S.pixelQA&&confirmed.pixelQA?.completed&&confirmed.pixelQAPlan===exportPlan&&confirmed.rangeKey===J.canonicalJSON(range)){const input=await V.snapshot(outputProject,S.audio,exportPlan,range);retainConfirmedPlan=input.inputHash===confirmed.inputHash&&J.canonicalJSON(audioLike())===confirmed.analysisKey&&await V.planHash(exportPlan)===confirmed.planHash;}
     outcome.initialConfirmedPlanReused=retainConfirmedPlan;
     for(let pass=0;pass<3;pass++){
       outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;
@@ -1398,7 +1398,7 @@ async function runExport(kind) {
       if(socialHook)S.socialPlan=exportPlan;else S.plan=exportPlan;
       if(pre.fixes){syncUI();replan();}
       S.exportCapabilities=await J.exportCapabilities(outputProject,S.project.includeAudio!==false?S.audio:null).catch(()=>({webCodecs:false,h264:false,aac:false,recorder:null}));
-      S.pixelQA=await J.analyzeRenderedFrames(exportPlan,range,S.audio,{onProgress:auditDetail});
+      if(!(pass===0&&retainConfirmedPlan))S.pixelQA=await J.analyzeRenderedFrames(exportPlan,range,S.audio,{onProgress:auditDetail});
       report=J.checkMVQuality(outputProject,exportPlan,S.audio,range,S.pixelQA,S.exportCapabilities,null);
       const repaired=J.fixMVQuality(S.project,report,S.audio);fixes+=repaired;
       if(!repaired)break;
@@ -1449,7 +1449,7 @@ async function runExport(kind) {
         if(caps.webCodecs){
           const [w,h]=J.outputSize(outputProject),estimate=J.estimateExport(outputProject,(range?.end??exportPlan.duration)-(range?.start??0),!!args.audio),bitrate=Math.round(estimate.videoBitrate);
           const attempts=await J.videoAttempts(w,h,exportPlan.fps,bitrate);
-          for(const attempt of attempts.slice(1,2)){
+          for(const attempt of attempts.slice(1)){
             if(ac.signal.aborted)throw primary;
             setText('別のH.264エンコーダーで再試行しています…');
             try{r=await J.exportMP4({...args,videoAttempt:attempt,...(window.JIZURAAAC&&/音声|AAC/.test(String(primary.message||primary))?{audioAttempt:{codec:'mp4a.40.2',mux:'aac',sr:J.resolveExportSettings(outputProject).sampleRate,bitrate:J.resolveExportSettings(outputProject).audioBitrate,wasm:true}}:{})});break;}catch(retry){if(ac.signal.aborted||/EXPORT_INVALID|PROVENANCE_MISMATCH|検査|フレームが不足/.test(String(retry.message||retry)))throw retry;}

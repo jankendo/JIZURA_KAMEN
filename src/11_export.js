@@ -101,24 +101,27 @@ J.pickVideoCodec = async (w, h, fps, bitrate) => {
     { codec: 'avc1.4d0033', mux: 'avc', label: 'H.264 Main' },
     { codec: 'avc1.42003e', mux: 'avc', label: 'H.264 Baseline' },
   ];
-  for (const c of cands) {
+  const acceleration = ['prefer-hardware', null, 'prefer-software'];
+  for (const hardwareAcceleration of acceleration) for (const c of cands) {
     const cfg = { codec: c.codec, width: w, height: h, bitrate, framerate: fps };
+    if (hardwareAcceleration) cfg.hardwareAcceleration = hardwareAcceleration;
     if (c.mux === 'avc') cfg.avc = { format: 'avc' };
-    try { const s = await J.waitExportStep(()=>VideoEncoder.isConfigSupported(cfg),{label:'映像コーデック確認',timeout:10000}); if (s.supported) return Object.assign({}, c, { cfg }); } catch (e) {}
+    try {
+      const s = await J.waitExportStep(()=>VideoEncoder.isConfigSupported(cfg),{label:'映像コーデック確認',timeout:10000});
+      if (s.supported) return Object.assign({}, c, { label: hardwareAcceleration==='prefer-hardware'?'H.264（ハードウェア優先）':c.label, cfg });
+    } catch (e) {}
   }
   return null;
 };
-/* Keep SNS exports in H.264; retry supported software profiles if a device encoder stalls. */
+/* Keep SNS exports in H.264; retry automatic and software configurations if an encoder stalls. */
 J.videoAttempts = async (w,h,fps,bitrate) => {
   if(typeof VideoEncoder==='undefined')return [];
-  const primary=await J.pickVideoCodec(w,h,fps,bitrate);
-  if(!primary)return [];
-  const attempts=[primary];
-  for(const codec of [primary.codec,'avc1.4d0033','avc1.42003e']){
-    if(attempts.length>=4)break;
-    const cfg={codec,width:w,height:h,framerate:fps,bitrate,hardwareAcceleration:'prefer-software',avc:{format:'avc'}};
-    if(attempts.some(a=>a.cfg.codec===cfg.codec&&a.cfg.hardwareAcceleration===cfg.hardwareAcceleration))continue;
-    try{if((await J.waitExportStep(()=>VideoEncoder.isConfigSupported(cfg),{label:'映像コーデック確認',timeout:10000})).supported)attempts.push({codec,mux:'avc',label:'H.264（ソフトウェア）',cfg});}catch(e){}
+  const attempts=[],seen=new Set(),acceleration=['prefer-hardware',null,'prefer-software'];
+  for(const hardwareAcceleration of acceleration)for(const codec of ['avc1.640033','avc1.4d0033','avc1.42003e']){
+    const cfg={codec,width:w,height:h,framerate:fps,bitrate,avc:{format:'avc'}};
+    if(hardwareAcceleration)cfg.hardwareAcceleration=hardwareAcceleration;
+    const key=codec+'|'+(hardwareAcceleration||'auto');if(seen.has(key))continue;seen.add(key);
+    try{if((await J.waitExportStep(()=>VideoEncoder.isConfigSupported(cfg),{label:'映像コーデック確認',timeout:10000})).supported)attempts.push({codec,mux:'avc',label:hardwareAcceleration==='prefer-hardware'?'H.264（ハードウェア優先）':hardwareAcceleration==='prefer-software'?'H.264（ソフトウェア）':'H.264（自動選択）',cfg});}catch(e){}
   }
   return attempts;
 };

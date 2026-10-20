@@ -1,0 +1,67 @@
+name: FULL validation (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Node.js 24
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - name: Set up media validation
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run full regression tests
+        env:
+          JIZURA_QA_CACHE: ${{ runner.temp }}/kamen-npm-cache
+          JIZURA_TEST_SUMMARY: ${{ runner.temp }}/kamen-tests.json
+        run: npm run test
+      - name: Build production files
+        run: npm run build
+      - name: Verify production layout
+        run: |
+          cmp index.html dist/index.html
+          test -f dist/LICENSE
+          test -f dist/OFL.txt
+          test -f dist/THIRD_PARTY_NOTICES.md
+          test -f dist/licenses/FFmpeg-LGPL-2.1.txt
+          ! grep -q 'jizura-custom-background.jankendo14.chatgpt.site' dist/index.html
+      - name: Browser UI and MP4 smoke test
+        timeout-minutes: 145
+        env:
+          KAMEN_CHROME: /usr/bin/google-chrome
+        run: |
+          node scripts/serve.mjs dist 127.0.0.1 4173 > "$RUNNER_TEMP/kamen-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS -o /dev/null http://127.0.0.1:4173/; then break; fi
+            sleep 1
+          done
+          curl -fsS -o /dev/null http://127.0.0.1:4173/
+          node --test dev/export_watchdog_test.cjs
+          npm run test:cinema-export -- http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa"
+          node dev/one_click_browser_contract.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa" "$RUNNER_TEMP/kamen-browser-qa/ui-boundary"
+          node dev/processing_overlay_browser_test.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/kamen-browser-qa/processing-overlays"
+      - name: Preserve validation evidence
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: kamen-validation
+          path: |
+            ${{ runner.temp }}/kamen-tests.json
+            ${{ runner.temp }}/kamen-browser-qa/
+            ${{ runner.temp }}/kamen-server.log
+          if-no-files-found: ignore
+          retention-days: 7
