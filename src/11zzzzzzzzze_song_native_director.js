@@ -29,6 +29,7 @@ J.buildSongNativeDirection=(project,audio)=>{
  const status=timeline.length?(measured&&!coarse?'MEASURED':'PROVIDED'):'UNMEASURED';
  const lengths=lines.map(l=>l.end-l.start).filter(v=>v>0).sort((a,b)=>a-b),phrase=lengths.length?lengths[Math.floor(lengths.length/2)]:4;
  const gap=Math.max(.8,Math.min(6,phrase)),bounds=new Set([0,duration]);
+ if(coarse){timeline.length=0;const step=Math.min(gap,duration/f.sections.length);for(let t=0;t<duration;t+=step)timeline.push({time:t,energy:C(f.sections[Math.min(f.sections.length-1,Math.floor(t/duration*f.sections.length))]),onset:null,rms:null});}
  // Keep real section boundaries; supplement missing coarse structure with phrase-scale
  // envelope changes, rests, lyric gaps and returning phrases. No seed decides a boundary.
  for(const s of f.sections||[])if(s&&typeof s==='object')for(const t of [s.from??s.start,s.to??s.end])if(finite(t)&&t>0&&t<duration)bounds.add(t);
@@ -49,7 +50,7 @@ J.buildSongNativeDirection=(project,audio)=>{
   const rest=samples.length>0&&samples.every(s=>finite(s.rms)&&s.rms<.001),level=e??C(f.energy??.35),change=C(Math.abs(delta??0)*2+(flux??0)*.25),quiet=rest||e!==null&&level<.2;
   const rhythm=C((onsets??f.onsetDensity??.3)*.65+(f.beatStrength??.3)*.35),motion=quiet?.04:C(.08+level*.48+rhythm*.16+change*.18-density*.12);
   const intent=quiet?'silence':e===null?'unmeasured':delta>.12?'release':delta<-.12?'afterglow':repeat>.3?'repetition':change>.3?'transition':rhythm>.55?'accumulation':'sustain';
-  return {intent,intentStatus:e===null?'UNMEASURED':'INFERRED',start,end,measuredEnergy:e,energyStatus:status,onset:onsets,spectralFlux:flux,energyChange:delta,lyricDensity:density,repetition:repeat,rest,quietIntent:quiet,motionIntensity:motion,visualDensity:quiet?.08:C(.1+level*.4+change*.2-detail*.15-density*.15),cameraTravel:quiet?.025:C(.05+motion*.65+change*.15),negativeSpace:C(.35+space*.25+density*.25-level*.15),typographyScale:C(.35+level*.3+repeat*.1-density*.18),contrastIntent:C(.45+(1-contrast)*.25+detail*.15),transitionIntensity:quiet?.03:C(change*.6+rhythm*.15),entryDuration:Math.min(.16,Math.max(.06,.16-rhythm*.08)),emphasis:quiet?'quiet':change>.4?'change':repeat>.3?'return':'sustain'};
+  return {intent,intentStatus:e===null?'UNMEASURED':'INFERRED',start,end,measuredEnergy:e,energyStatus:e===null?'UNMEASURED':status,onset:onsets,spectralFlux:flux,energyChange:delta,lyricDensity:density,repetition:repeat,rest,quietIntent:quiet,motionIntensity:motion,visualDensity:quiet?.08:C(.1+level*.4+change*.2-detail*.15-density*.15),cameraTravel:quiet?.025:C(.05+motion*.65+change*.15),negativeSpace:C(.35+space*.25+density*.25-level*.15),typographyScale:C(.35+level*.3+repeat*.1-density*.18),contrastIntent:C(.45+(1-contrast)*.25+detail*.15),transitionIntensity:quiet?.03:C(change*.6+rhythm*.15),entryDuration:Math.min(.16,Math.max(.06,.16-rhythm*.08)),emphasis:quiet?'quiet':change>.4?'change':repeat>.3?'return':'sustain'};
  });
  const known=sections.filter(s=>s.measuredEnergy!==null&&!s.rest),peak=known.reduce((best,s)=>!best||s.measuredEnergy>best.measuredEnergy?s:best,null);
  return {version:2,sourceIdentity:inputIdentity(project,audio),duration,sections,lyrics:lines,climax:peak?.start??null,commonLanguage:{palette:copy(project.autoPalette?.palette||null),font:project.fonts?.display||null,motion:'continuous phrase travel and complete readable lyric',imageStatus:imageMeasured?'MEASURED':'UNMEASURED'},evidence:{energy:status,sections:timeline.length?'INFERRED':'LRC_STRUCTURE_ONLY',coarseBlocks:coarse?'PROVIDED_NOT_FORMAL_SECTIONS':'NOT_USED',semantics:'UNKNOWN',image:imageMeasured?'MEASURED':'UNMEASURED'},limitations:'Heuristic structure and exact lyric repetition; keyword hints are not semantic understanding. No artistic quality claim.'};
@@ -136,7 +137,7 @@ const focus=J.temporalCinemaFocus;J.temporalCinemaFocus=(p,c,f,t)=>{
  q.x=C((base.x??.5)+((space.spaceRight??.5)-(space.spaceLeft??.5))*s.cameraTravel*.025*v,.03,.97);return q;
 };
 const camera=J.cameraAt;J.cameraAt=(p,t,range)=>{
- const s=J.songNativeSectionAt(p,t),c=J.cutAt(p,t);if(!s||locked(p,c)||c?.grammar)return camera(p,t,range);
+ const s=J.songNativeSectionAt(p,t),c=J.cutAt(p,t);if(!s||s.quietIntent||locked(p,c)||c?.grammar)return camera(p,t,range);
  const base=camera(p,t,range),u=C((t-s.start)/Math.max(.1,s.end-s.start)),v=s.intent==='accumulation'?u*u:s.intent==='release'?1-Math.pow(1-u,3):u;return {...base,s:(base.s??1)+s.cameraTravel*.025*v};
 };
 const main=J.mainDraw;J.mainDraw=(env,it)=>{

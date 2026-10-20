@@ -11,6 +11,7 @@ const {engine}=require('./custom_test_support.cjs');
  assert.equal(a.bpm,b.bpm);assert.equal([...a.energy].reduce((s,v)=>s+v,0),[...b.energy].reduce((s,v)=>s+v,0));
  assert.equal(JSON.stringify(first),JSON.stringify(J.buildSongNativeDirection(project,a)));
  assert.notDeepEqual(first.sections,second.sections);assert.notEqual(first.climax,second.climax);
+ for(const key of ['intent','cameraTravel','negativeSpace','transitionIntensity'])assert.notDeepEqual(first.sections.map(s=>s[key]),second.sections.map(s=>s[key]),key+' follows structure without changing seed');
  for(const d of [first,second])for(const s of d.sections)for(const key of ['motionIntensity','visualDensity','cameraTravel','negativeSpace','typographyScale','contrastIntent','transitionIntensity'])assert(Number.isFinite(s[key])&&s[key]>=0&&s[key]<=1,key);
  assert(first.sections.some(s=>s.quietIntent));assert(first.lyrics[2].repetition>0);assert(first.lyrics.every(l=>l.semanticStatus==='UNKNOWN'));
  const unmeasured=J.buildSongNativeDirection(project,null);assert.equal(unmeasured.evidence.energy,'UNMEASURED');assert(unmeasured.sections.every(s=>s.measuredEnergy===null));
@@ -75,7 +76,7 @@ const {engine}=require('./custom_test_support.cjs');
  // T-02/T-03: search is exact at boundaries and through reverse seeks; temporal roles survive.
  for(const t of [0,4,8,12,16,7.99,3,-1,NaN])assert.equal(J.songNativeSectionAt(p,t),p.songNativeDirection.sections.find(s=>t>=s.start&&t<s.end)||null);
  assert.notDeepEqual(first.sections.map(s=>s.intent),second.sections.map(s=>s.intent));
- const coarse=J.buildSongNativeDirection(project,{duration:16,features:{sections:[.2,.2,.8,.8,.8,.8,.2,.2]}});assert.equal(coarse.evidence.coarseBlocks,'PROVIDED_NOT_FORMAL_SECTIONS');assert(coarse.sections.length<8);
+ const coarse=J.buildSongNativeDirection(project,{duration:16,features:{sections:[.2,.2,.8,.8,.8,.8,.2,.2]}});assert.equal(coarse.evidence.coarseBlocks,'PROVIDED_NOT_FORMAL_SECTIONS');assert(coarse.sections.length<8);const coarseLong=J.buildSongNativeDirection({...project,timing:{...project.timing,duration:240}},{duration:240,features:{sections:[.2,.2,.8,.8,.8,.8,.2,.2]}});assert(coarseLong.sections.every(s=>s.measuredEnergy!==null));
  const oldV1=JSON.parse(JSON.stringify(project));oldV1.artDirection.songNativeDirection.version=1;assert(J.validSongNativeDirection(J.plan(oldV1,a).songNativeDirection));
  const temporalCut={...p.cuts[0],start:4,end:7,dur:3,locked:false,grammar:{temporal:{role:'impact',motionPrinciple:'percussive-deformation',level:.7,hit:.2,entry:.1,exit:.1},intentionalHold:false}};
  const temporalPlan={...p,cuts:[temporalCut]};J.applySongNativeDirection(temporalPlan);assert.equal(temporalCut.grammar.temporal.motionPrinciple,'percussive-deformation');
