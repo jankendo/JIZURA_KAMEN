@@ -58,7 +58,7 @@ J.buildSongNativeDirection=(project,audio)=>{
 J.validSongNativeDirection=d=>[1,2].includes(d?.version)&&typeof d.sourceIdentity==='string'&&finite(d.duration)&&d.duration>0&&Array.isArray(d.sections)&&d.sections.length>0&&d.sections.every((s,i)=>finite(s.start)&&finite(s.end)&&s.start>=0&&s.end>s.start&&s.end<=d.duration&&(!i||s.start===d.sections[i-1].end)&&['motionIntensity','visualDensity','cameraTravel','negativeSpace','typographyScale','contrastIntent','transitionIntensity'].every(k=>finite(s[k])&&s[k]>=0&&s[k]<=1))&&d.sections[0].start===0&&d.sections.at(-1).end===d.duration;
 J.songNativeSectionAt=(p,t)=>{const a=p.songNativeDirection?.sections||[];if(!finite(t))return null;let lo=0,hi=a.length;while(lo<hi){const m=(lo+hi)>>>1;if(a[m].start<=t)lo=m+1;else hi=m;}const s=a[lo-1];return s&&t<s.end?s:null;};
 J.applySongNativeDirection=p=>{
- const d=p.songNativeDirection;if(![1,2].includes(d?.version))return p;
+ const d=p.songNativeDirection;if(p.songNativeManualPlan||![1,2].includes(d?.version))return p;
  for(const c of p.cuts||[]){if(c.line<0||locked(p,c))continue;const s=J.songNativeSectionAt(p,c.start);if(!s)continue;
   c.songNative={sectionStart:s.start,motionIntensity:s.motionIntensity,visualDensity:s.visualDensity,typographyScale:s.typographyScale,quietIntent:s.quietIntent};
   if(c.grammar){const g=c.grammar;g.quiet=g.quiet||s.quietIntent;g.intentionalHold=g.intentionalHold||s.quietIntent;g.layerStrength=s.visualDensity;g.directionPolicy={...g.directionPolicy,motionBudget:s.motionIntensity,attentionBudget:s.visualDensity,quietIntent:s.quietIntent};
