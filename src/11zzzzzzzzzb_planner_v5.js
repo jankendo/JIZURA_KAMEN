@@ -109,9 +109,12 @@ Q.finalRepairDominates=(before,after)=>{
  return Object.keys(x).every(k=>!Number.isFinite(x[k])||Number.isFinite(y[k])&&y[k]>=x[k]);
 };
 Q.runVerifiedExport=async(exportMP4,args)=>{
+ args={...args,refinementMode:J.exportRefinementMode(args)};
  const original=args.plan?V.clone(args.plan):null,provenanceHash=args.plan?Object.getOwnPropertyDescriptor(args.plan,'_provenancePlanHash')?.value:undefined,guarded=args.plan&&args.project?{...args,_finalArtifactInput:await V.snapshot(args.project,args.audio,args.plan,args.range)}:args;
  try{
-  const first=await Q.guardExport(await exportMP4(guarded),guarded),repair=args.plan?await Q.proposeFinalContrastRepair(args.plan,args.project,first.provenance.finalArtifactVerification):null;
+  const first=await Q.guardExport(await exportMP4(guarded),guarded);
+  if(args.refinementMode==='fast'){first.provenance.finalContrastRepair={status:'SKIPPED_FAST_MODE',reason:'Additional artistic repair disabled; final artifact verification retained',trialVideoSHA256:null};first.sidecar=new Blob([JSON.stringify(first.provenance,null,2)],{type:'application/json'});return first;}
+  const repair=args.plan?await Q.proposeFinalContrastRepair(args.plan,args.project,first.provenance.finalArtifactVerification):null;
   if(!repair)return first;
   args.onProgress?.(.995,'完成映像の弱い歌詞区間を局所的に再検証しています',{stage:'verify',indeterminate:true});
   const trialArgs={...guarded,plan:repair.plan,onProgress:(_,label)=>args.onProgress?.(.995,label||'局所再検証中',{stage:'verify',indeterminate:true})};V.invalidate(repair.plan);let trial,accepted=false,error=null;
@@ -122,6 +125,6 @@ Q.runVerifiedExport=async(exportMP4,args)=>{
   chosen.provenance.finalContrastRepair=record;chosen.sidecar=new Blob([JSON.stringify(chosen.provenance,null,2)],{type:'application/json'});return chosen;
  }catch(e){if(args.signal?.aborted&&original)V.restorePlan(args.plan,original,provenanceHash);throw e;}
 };
-const exportMP4=J.exportMP4;J.exportMP4=args=>Q.runVerifiedExport(exportMP4,args);
+for(const key of ['exportMP4','exportMP4Fallback']){const encode=J[key];if(encode)J[key]=args=>Q.runVerifiedExport(encode,args);}
 
 })();

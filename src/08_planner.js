@@ -26,7 +26,7 @@ J.defaultProject = () => ({
   autoPalette: J.emptyAutoPalette ? J.emptyAutoPalette() : { enabled: false, analyzed: false, sourceHash: '', mood: null, palette: null, variants: [], suggestedDarkness: null, stats: null, localMap: null, viewportKey: '', userModified: false },
   seed: 20260922,
   aspect: '16:9', res: 1080, fps: 30, includeAudio:true,quality:'high',
-  exportSettings:{preset:'auto',videoCodec:'auto',videoBitrate:0,audioBitrate:192000,range:'full',fileName:''},
+  exportSettings:{refinementMode:'fast',preset:'auto',videoCodec:'auto',videoBitrate:0,audioBitrate:192000,range:'full',fileName:''},
   fx: { motion: 0.7, glitch: 0.55, chroma: 0.7, decor: 0.5, density: 0.55, texture: 0.6, flash: true, onTwos: true, koma: 12, hud: 'auto', bgSwitch: 0.35 },
   enabled: Object.fromEntries(J.GROUP_KEYS.map(g => [g, Object.fromEntries(J.order(g).map(k => [k, true]))])),
   timing: { bpm: 0, offset: 0.4, snap: true, tail: 0.9, lineTimes: {}, lineScale: 1 },
