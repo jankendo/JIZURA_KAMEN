@@ -26,7 +26,11 @@ async function runDirectionTestsV11(){
  assert(expanded.length>initial.length,'deficient similar portfolio expands live layouts');
  assert.equal([...J.directionLayoutSequenceV11(initial,available,()=>true,{p:left.p,f:{change:0,onset:0},rows:()=>sameRows})].length,initial.length,'stable input preserves frontier');
  assert(selection.traces.some(t=>t.creative.layers.typography.status==='MEASURED'));
- assert(selection.traces.every(t=>t.creative.layers.background.status==='UNMEASURED'&&t.creative.layers.decorationFX.status==='UNMEASURED'));
+ assert(selection.traces.every(t=>t.creative.layers.decorationFX.status==='UNMEASURED'));
+ for(const t of selection.traces)for(const [layer,group] of [['background','bg'],['decoration','decor'],['fx','fx']])if(t.creative.layers[layer]?.status==='MEASURED')assert(t.creative.ablations.some(a=>a.group===group&&a.temporalContribution?.status==='MEASURED'),'role layer requires actual same-time ablation');
+ const visited=J.directionStyleCandidatesV11(left.p,a,{energy:.5,change:.9,onset:.9,flux:.8,length:8});
+ const narrow=[{musicFit:.2,signature:[.2,.2]},{musicFit:.2,signature:[.2,.2]}],extra=J.additionalStylesV112(left.p,a,{energy:.5,change:.9,onset:.9,flux:.8,length:8},narrow,visited);assert(extra.length>0&&extra.every(x=>!visited.some(y=>y.style===x.style)),'weak converged frontier expands beyond old style shortlist');
+ assert.equal(J.additionalStylesV112(left.p,a,{change:0,onset:0,flux:0},[{musicFit:1},{musicFit:1},{musicFit:1}],visited).length,0,'adequate stable frontier does not expand');
  assert(J.inspectDirection(left.p).coherent,'v11 per-line inspection');
  const invalidRegistry=copy(left.p);invalidRegistry.cuts[0].cam='missing-camera';assert(!J.inspectDirection(invalidRegistry).coherent);
  console.log('TEST 1 PASS: full registry retrieval, diverse capability traversal, actual joint comparisons and production dispatch',JSON.stringify(counts));

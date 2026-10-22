@@ -176,6 +176,7 @@ const changeRole=(cut,g,k)=>{
  if(g==='exit')c.outDur=k==='cut'?0:Math.min(.12,c.dur*.08);
  if(g==='trans')c.transDur=k==='cut'?0:Math.min(.10,c.dur*.08);return c;
 };
+J.changeDirectionRoleV11=changeRole;
 J.scoreDirectionV11=(cut,f,intent,checks,baseScore)=>{
  const out=J.scoreCreativeCandidateV10(cut,f,checks.filter(e=>e.readable!==false),baseScore);
  const pairs=checks.slice(1).map((e,i)=>({a:checks[i],b:e,visual:distance(e.raster,checks[i].raster)})).filter(x=>Number.isFinite(x.visual));
@@ -270,11 +271,12 @@ J.optimizeCreativeLineV10=async args=>{
    for(const g of roles.filter(g=>get(item.cut,g)!==neutral[g])){
     const cc=changeRole(item.cut,g,neutral[g]),checks=item.times.map(t=>sample(sp,cc,t)),safe=checks.every(e=>e.eligible)&&checks.some(e=>e.readable),fit=safe?J.scoreDirectionV11(cc,f,intent,checks,start.score):null;
     const differences=checks.map((e,i)=>distance(e.raster,item.checks[i].raster)),difference=differences.every(Number.isFinite)?mean(differences):null;
-    ablations.push({group:g,id:get(item.cut,g),status:checks.some(e=>e.renderErrors?.length)?'FAILED':differences.every(Number.isFinite)?'MEASURED':'UNMEASURED',controlSafe:safe,pixelDifference:difference,fitGain:fit?item.score-fit.score:null,times:item.times.map(t=>c.start+t)});
-    if(safe&&difference<=1e-6){item.cut=cc;item.checks=checks;}
+    ablations.push({group:g,id:get(item.cut,g),status:checks.some(e=>e.renderErrors?.length)?'FAILED':differences.every(Number.isFinite)?'MEASURED':'UNMEASURED',controlSafe:safe,pixelDifference:difference,fitGain:fit?item.score-fit.score:null,times:item.times.map(t=>c.start+t),...(J.temporalRoleContributionV112?{temporalContribution:J.temporalRoleContributionV112(c,item.times,item.checks,checks,intent)}:{})});
+    if(safe&&difference<=1e-6){item.cut=cc;item.checks=checks;Object.assign(item,fit);}
    }
    const positive=ablations.filter(x=>x.controlSafe&&x.pixelDifference>1e-6&&Number.isFinite(x.fitGain));
    item.dimensions.expressiveContribution=positive.length?mean(positive.map(x=>x.fitGain)):null;
+   const temporal=ablations.map(x=>x.temporalContribution?.acousticFitGain).filter(Number.isFinite);item.dimensions.temporalRoleFitGain=temporal.length?mean(temporal):null;if(temporal.length)item.score+=C(mean(temporal)*.03,-.03,.03);
    const hold=item.checks.find(e=>e.temporalStage==='HOLD'&&e.readable),w=256,h=Math.round(w*p.H/p.W);
    results.push({...item,params:item.cut.params,evidence:strip(hold),phaseEvidence:item.checks.map(strip),signature:J.registryInkSignature(hold.mask,w,h),typographySignature:J.registryTypographySignature(hold.mask,w,h),rasterSignature:hold.raster,features:f,intent,ablations,attempts:[],musicFit:item.dimensions.musicFit});
   }
@@ -300,7 +302,7 @@ J.directionLayersV111=(item,p)=>{
 };
 const layerDistance=(a,b)=>{
  const values=[];
- for(const k of ['typography','glyphMotion','camera','color']){const x=a?.[k],y=b?.[k];if(x?.status!=='MEASURED'||y?.status!=='MEASURED')continue;const d=k==='typography'?J.registryInkDistance(x.value,y.value):distance(x.value,y.value);if(Number.isFinite(d))values.push(C(d));}
+ for(const k of ['typography','glyphMotion','camera','color','background','decoration','fx']){const x=a?.[k],y=b?.[k];if(x?.status!=='MEASURED'||y?.status!=='MEASURED')continue;const d=k==='typography'?J.registryInkDistance(x.value,y.value):distance(x.value,y.value);if(Number.isFinite(d))values.push(C(d));}
  return values.length?mean(values):null;
 };
 const acoustic=(a,b)=>mean(['energy','onset','brightness','change','flux'].filter(k=>Number.isFinite(a?.[k])&&Number.isFinite(b?.[k])).map(k=>Math.abs(a[k]-b[k])));
@@ -310,12 +312,12 @@ const arc=J.chooseCreativeArcV10;J.chooseCreativeArcV10=(p,portfolios,initial)=>
  for(const step of portfolios)for(const item of step.candidates)if(item.checks)item.layerEvidenceV111=J.directionLayersV111(item,p);
  const relations=p.songNativeDirection.structure?.relations||[];
  const chosen=J.chooseRegistryStoryboard(portfolios,Math.min(14,8+Math.ceil(mean(portfolios.flatMap(x=>x.candidates.map(c=>c.intent?.changeDemand??0)))*6)),{acousticPacingOnly:true,transitionScore:(state,c,step)=>{
-  const prev=state.last;if(!prev)return 0;const delta=acoustic(prev.features,c.features),vd=visual(prev,c),target=C(delta*2.5,0,.8);
+  const prev=state.last;if(!prev)return 0;const delta=acoustic(prev.features,c.features),vd=visual(prev,c),boundary=prev.features.sectionIndex!==c.features.sectionIndex?(c.features.boundaryConfidence??0):0,target=C(delta*(2.5+boundary*.5),0,.8);
   const repeat=state.picks.find(x=>norm(p.lines[x.line]?.text)===norm(p.lines[step.line]?.text));
   const relation=state.picks.find(x=>relations.some(r=>r.from===x.features.sectionIndex&&r.to===c.features.sectionIndex||r.to===x.features.sectionIndex&&r.from===c.features.sectionIndex)&&Math.abs((x.features.sectionPhase??0)-(c.features.sectionPhase??0))<.2);
   const previous=repeat||relation,recurrence=previous?Math.abs(visual(previous,c)-C(acoustic(previous.features,c.features)*2.5,0,.8))*.12:0;
-  const layers=layerDistance(prev.layerEvidenceV111,c.layerEvidenceV111);
-  return -.28*Math.abs(vd-target)-recurrence-(layers===null?0:.08*Math.abs(layers-C(delta*1.5,0,.6)))-(prev.styleKey!==c.styleKey?.10*(1-delta):0);
+  const layers=layerDistance(prev.layerEvidenceV111,c.layerEvidenceV111),repeatLayers=previous?layerDistance(previous.layerEvidenceV111,c.layerEvidenceV111):null;
+  return -.28*Math.abs(vd-target)-recurrence-(repeatLayers===null?0:.05*Math.abs(repeatLayers-C(acoustic(previous.features,c.features)*1.5,0,.6)))-(layers===null?0:.08*Math.abs(layers-C(delta*1.5,0,.6)))-(prev.styleKey!==c.styleKey?.10*(1-delta):0);
  }});
  const audit=J.auditCreativeArcV10(portfolios,chosen.picks);
  return {...chosen,creativeArc:{...audit,source:'primary glyph + complete RGB raster + acoustic recurrence/phase',repeatRelations:copy(relations),unresolvedMonotony:audit.requiresReevaluation?'NO_BETTER_GLOBAL_SAFE_PATH':null},method:'input-derived capability/temporal Pareto and multilevel raster beam v11'};

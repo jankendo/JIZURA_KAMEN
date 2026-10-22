@@ -1089,7 +1089,8 @@ function syncDirectionUI() {
   $('studioExport').disabled = !canExport;
   $('studioHighlight').disabled = !canExport;
   if($('studioSocialHook'))$('studioSocialHook').disabled=!canExport;
-  $('studioAlternative').disabled = !(canExport && S.project.autoDirection);
+  $('studioAlternative').disabled = !(canExport && S.project.autoDirection && S.plan?.songNativeDirection?.selection?.alternatives?.length);
+  $('studioAlternative').title=S.plan?.songNativeDirection?.selection?.alternatives?.length?'実Canvasで確認した別案':'利用できる安全な別案はありません';
   $('studioTiming').disabled = !lyrics || !!S.exporting;
   const btn = $('btnAutoDirection');
   btn.disabled = directionBusy || S.audioLoading || !!S.tap || !image || !music || !lyrics;
