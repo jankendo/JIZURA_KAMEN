@@ -7,6 +7,8 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright-core')
  const original=JSON.parse(JSON.stringify(S.project)),image=document.createElement('canvas');image.width=32;image.height=18;const ix=image.getContext('2d');ix.fillStyle='#122840';ix.fillRect(0,0,32,18);const background=image.toDataURL();
  // Genuine browser storage quota, not a successful setItem stub.
  let quota=false;try{for(let i=0;i<20;i++)localStorage.setItem('quota-test-'+i,'x'.repeat(1024*1024));}catch(e){quota=e.name==='QuotaExceededError';}check(quota,'real localStorage quota not reached');
+ let lo=0,hi=1024*1024;while(lo<hi){const mid=Math.ceil((lo+hi)/2);try{localStorage.setItem('quota-tail','q'.repeat(mid));lo=mid;}catch(e){check(e.name==='QuotaExceededError','unexpected localStorage error');hi=mid-1;}}
+ let referenceQuota=false;try{localStorage.setItem('jizura.project.ref.v2',JSON.stringify({key:'project-current-v2',revision:1}));}catch(e){referenceQuota=e.name==='QuotaExceededError';}check(referenceQuota,'small project reference must also hit real quota');
  for(const count of [8,50,100]){
  S.project=J.defaultProject();S.project.lyrics=Array.from({length:count},(_,i)=>`[${String(Math.floor(i/60)).padStart(2,'0')}:${String(i%60).padStart(2,'0')}]日本語の全文 ${i}`).join('\n');
  S.project.customBg={...S.project.customBg,enabled:true,dataUrl:background};S.project.overrides=Object.fromEntries(Array.from({length:count},(_,i)=>[i,{lock:true,layout:'center'}]));
@@ -20,8 +22,8 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright-core')
  // Abort an actual transaction: atomic rollback protects previous project/assets.
  const tx=db.transaction('assets','readwrite');tx.objectStore('assets').put({broken:true},'project-current-v2');tx.objectStore('assets').put('broken','background');tx.abort();await new Promise(r=>{tx.onabort=r;});db.close();{const read=await api.loadLocal();check(normalize(read)===prior,'aborted save destroyed previous project: '+Object.keys({...read,...JSON.parse(prior)}).filter(k=>J.canonicalJSON(read[k])!==J.canonicalJSON(JSON.parse(prior)[k])).join(','));}
  S.project.title='older';const old=api.flushSave();S.project.title='newest';const newest=api.flushSave();await Promise.all([old,newest]);check((await api.loadLocal()).title==='newest','revision ordering');
- for(let i=0;i<20;i++)localStorage.removeItem('quota-test-'+i);
- S.project=original;await api.flushSave();return {quota,lines:[8,50,100],atomicAbort:true,revision:true};
+ for(let i=0;i<20;i++)localStorage.removeItem('quota-test-'+i);localStorage.removeItem('quota-tail');
+ S.project=original;await api.flushSave();return {quota,referenceQuota,lines:[8,50,100],atomicAbort:true,revision:true};
  });assert(result.quota);console.log('Persistence v11.1 real Chromium PASS',JSON.stringify(result));
  // Navigation uses a fresh document and actual IndexedDB read.
  await page.reload();await page.waitForFunction(()=>J.uiApi&&J.ui.project&&J.ui.plan);assert.equal(await page.evaluate(()=>J.ui.persistenceRevision>0),true);

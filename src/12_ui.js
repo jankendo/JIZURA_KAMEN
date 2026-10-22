@@ -2028,7 +2028,7 @@ async function boot() {
   // open on a representative frame (end of the first cut's entrance)
   const c0 = S.plan.cuts.find(c => c.line >= 0);
   if (c0) seek(c0.start + Math.min(c0.dur * 0.6, c0.inDur + 0.25));
-  saveStatus(localRecoveryBlocked?'前回のデータを保全中 · 自動保存停止。バックアップから開き直してください。':S.recoveredLocal?'前回の保存中断から復元しました。プロジェクト保存でバックアップしてください。':'編集内容はこのブラウザに自動保存されます',localRecoveryBlocked);
+  saveStatus(localRecoveryBlocked?'前回のデータを保全中 · 自動保存停止。バックアップから開き直してください。':S.unsaved?'未保存 · ブラウザに保存できませんでした。再読み込み前にプロジェクト保存でバックアップしてください。':S.recoveredLocal?'前回の保存中断から復元しました。プロジェクト保存でバックアップしてください。':'編集内容はこのブラウザに自動保存されます',localRecoveryBlocked||S.unsaved);
   requestAnimationFrame(tick);
   if(localRecoveryBlocked)task.fail(new Error('保存素材の一部を復元できません。保存済みデータを保全して自動保存を停止しています'));else task.complete('プロジェクトを読み込みました。保存音源がある場合は続けて解析します');
   if(S.project.audioAsset)requestAnimationFrame(()=>setTimeout(restoreAudioFile,0));
