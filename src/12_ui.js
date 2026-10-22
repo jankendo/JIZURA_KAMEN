@@ -78,7 +78,7 @@ function setBadges(d) {
   return (d && d.extra ? '<span class="set-badge ex" title="最初の公開版のあとに追加">追加</span>' : '') + (d && d.wa ? '<span class="set-badge" title="和風の演出">和</span>' : '');
 }
 const BG_DB_NAME = 'jizura-assets-v1';
-let bgDbPromise = null, audioSaveQueue=Promise.resolve(), saveRevision=0, projectSaveQueue=Promise.resolve(), localRecoveryBlocked=false;
+let bgDbPromise = null, saveRevision=0, projectSaveQueue=Promise.resolve(), localRecoveryBlocked=false;
 function saveStatus(message,error=false){const el=$('localSaveStatus');if(el){el.textContent=message;el.dataset.error=String(error);}}
 function openBgDb() {
   if (!window.indexedDB) return Promise.reject(new Error('IndexedDB unavailable'));
@@ -115,6 +115,7 @@ async function readCommittedProject(){
   const r=store.get('project-current-v2');
   r.onsuccess=()=>{record=r.result||null;const p=record?.project;if(!p)return;if(typeof p!=='object'||Array.isArray(p)||record.format!==2){localRecoveryBlocked=true;record=null;return;}
    const get=(key,target)=>{const req=store.get(key);req.onsuccess=()=>{target.dataUrl=req.result||'';if(!req.result)localRecoveryBlocked=true;};};
+   if(p.audioAsset){const audio=store.get('audio');audio.onsuccess=()=>{record.audio=audio.result||null;};}
    if(p.customBg?.storedInIndexedDB&&!p.customBg.dataUrl)get('background',p.customBg);
    for(const [kind,prefix] of [['visualAssets','visualAsset:'],['proAssets','proAsset:']])for(const a of p[kind]||[])if(a.storedInIndexedDB&&!a.dataUrl)get(prefix+a.id,a);
   };
@@ -123,7 +124,7 @@ async function readCommittedProject(){
 }
 async function loadLocal() {
   let p=null,raw=null,fromIndexedDB=false;
-  try{const record=await readCommittedProject();if(record?.project){p=record.project;fromIndexedDB=true;saveRevision=record.revision||0;S.persistenceRevision=saveRevision;}}catch(error){console.warn('JIZURA IndexedDB restore unavailable',error);}
+  try{const record=await readCommittedProject();if(record?.project){p=record.project;S.localAudioSnapshot={info:p.audioAsset,file:record.audio};fromIndexedDB=true;saveRevision=record.revision||0;S.persistenceRevision=saveRevision;}}catch(error){console.warn('JIZURA IndexedDB restore unavailable',error);}
   try { raw=localStorage.getItem(LS_KEY); if (raw&&!p) {p = JSON.parse(raw);if(!p||typeof p!=='object'||Array.isArray(p))throw new Error('Invalid local project');} } catch (e) {if(!p)localRecoveryBlocked=true;console.error('JIZURA local project read failed',e);}
   // IndexedDB and localStorage cannot share a transaction. A small recovery
   // record commits with the assets; use it only when its previous mirror matches.
@@ -215,6 +216,7 @@ function flushSaveImpl(task) {
   if(localRecoveryBlocked){saveStatus('前回のデータを保全中 · 自動保存停止。バックアップから開き直してください。',true);return Promise.resolve(false);}
   const revision=++saveRevision,project=S.project,source=project.customBg?.dataUrl||'';
   const entries=[['background',source],...(project.visualAssets||[]).filter(a=>a.dataUrl).map(a=>['visualAsset:'+a.id,a.dataUrl]),...(project.proAssets||[]).filter(a=>a.dataUrl).map(a=>['proAsset:'+a.id,a.dataUrl])];
+  const pendingAudio=J.audioAssetMatches(project.audioAsset,S.pendingAudioFile)?S.pendingAudioFile:null;if(pendingAudio)entries.push(['audio',pendingAudio]);
   for(const meta of project.userFonts||[]){const bytes=J.userFontBytes?.get(meta.key);if(bytes)entries.push(['font:'+String(meta.assetKey||meta.key),bytes]);}
   const copy=J.compactPersistentProjectV111(project);
   copy.customBg={...copy.customBg,dataUrl:'',storedInIndexedDB:!!source};
@@ -229,6 +231,7 @@ function flushSaveImpl(task) {
     const verified=await bgDbGet('project-current-v2');
     if(verified?.revision!==revision||J.canonicalJSON(verified.project)!==J.canonicalJSON(copy))throw new Error('保存データの読み戻し確認に失敗しました');
     S.persistenceRevision=revision;
+    if(pendingAudio&&S.pendingAudioFile===pendingAudio)S.pendingAudioFile=null;
     if(revision!==saveRevision||project!==S.project)return false;
     task?.enter('metadata');
     try{localStorage.setItem('jizura.project.ref.v2',JSON.stringify({key:'project-current-v2',revision}));}catch(error){S.localReferenceWarning=error.name;}
@@ -1942,13 +1945,8 @@ async function loadAudioFile(f) {
     delete $('directionStatus').dataset.result; syncUI(); replan();
     task.state.cancel=null;task.enter('save');await J.processingYield();
     // A large file or an unavailable IndexedDB does not prevent this session's MV creation.
-    if(f.size<=120*1024*1024){
-      try{
-        audioSaveQueue=audioSaveQueue.catch(()=>{}).then(()=>project===S.project&&request===S.audioLoad?bgDbSet('audio',f):null);
-        await audioSaveQueue;
-        if(project===S.project&&request===S.audioLoad){S.project.audioAsset=J.audioAssetInfo(f);flushSave();}
-      }catch(e){if(project===S.project&&request===S.audioLoad){S.project.audioAsset=null;S.audioNotice='音源は読み込みましたが、この端末には保存できませんでした。次回はもう一度選択してください。';flushSave();}}
-    }else{S.project.audioAsset=null;S.audioNotice='音源は読み込みました。ファイルが大きいため、次回はもう一度選択してください。';flushSave();}
+    if(f.size<=120*1024*1024){S.pendingAudioFile=f;S.project.audioAsset=J.audioAssetInfo(f);}
+    else{S.pendingAudioFile=null;S.project.audioAsset=null;S.audioNotice='音源は読み込みました。ファイルが大きいため、次回はもう一度選択してください。';}
     const saved=await flushSave();if(!saved)task.fail(new Error('音源は解析しましたが、プロジェクトの保存完了を確認できませんでした'));else task.complete(S.audioNotice||'音源の解析が完了しました');return true;
   } catch (err) { task.fail(err,cancel.signal.aborted||request!==S.audioLoad);console.error('JIZURA audio import failed',err);if(project===S.project&&request===S.audioLoad){
       S.audioNotice=S.audio?`音源を読み込めませんでした。前の曲「${S.audio.name}」を使用中です。`:'音源を読み込めませんでした。対応形式を確認してください。';
@@ -1964,7 +1962,7 @@ async function restoreAudioFile(){
   S.audioLoading=true;S.audioPendingName=info.name||'';S.audioNotice='';syncDirectionUI();
   $('audioName').textContent='音源を復元中…';
   try{
-    task.enter('read');const file=await bgDbGet('audio');
+    task.enter('read');const snapshot=S.localAudioSnapshot;const file=J.audioAssetMatches(info,snapshot?.file)?snapshot.file:await bgDbGet('audio');
     if(!J.audioAssetMatches(info,file))throw new Error('保存された音源を見つけられませんでした');
     const audio=await J.analyzeAudio(file,{onProgress:J.audioProgressEvent(task)});
     if(project!==S.project||request!==S.audioLoad){task.fail(new Error('別のプロジェクトに切り替わりました'),true);return;}
