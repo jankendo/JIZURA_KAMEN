@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),{chromium}=require('playwright-core');
 (async()=>{const browser=await chromium.launch({executablePath:process.env.KAMEN_CHROME||'/usr/bin/chromium',args:['--no-sandbox']});try{
- const page=await browser.newPage();await page.goto(process.argv[2]||'http://127.0.0.1:4173/');await page.waitForFunction(()=>J.uiApi&&J.ui.project&&J.ui.plan);
+ const context=await browser.newContext(),page=await context.newPage();await page.goto(process.argv[2]||'http://127.0.0.1:4173/');await page.waitForFunction(()=>J.uiApi&&J.ui.project&&J.ui.plan);
  const result=await page.evaluate(async()=>{
  const J=window.J,S=J.ui,api=J.uiApi,check=(x,m)=>{if(!x)throw Error(m);};
  const original=JSON.parse(JSON.stringify(S.project)),image=document.createElement('canvas');image.width=32;image.height=18;const ix=image.getContext('2d');ix.fillStyle='#122840';ix.fillRect(0,0,32,18);const background=image.toDataURL();
@@ -29,7 +29,8 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright-core')
  await page.reload();await page.waitForFunction(()=>J.uiApi&&J.ui.project&&J.ui.plan);assert.equal(await page.evaluate(()=>J.ui.persistenceRevision>0),true);
  console.log('Persistence reload PASS');
  const peer=await page.context().newPage();await peer.goto(process.argv[2]||'http://127.0.0.1:4173/');await peer.waitForFunction(()=>J.ui?.plan);
- assert.equal(await page.evaluate(async()=>{J.ui.project.title='cross-tab-winner';return J.uiApi.flushSave();}),true);
+ await peer.evaluate(()=>J.uiApi.flushSave());await page.evaluate(()=>J.uiApi.loadLocal());
+ const winner=await page.evaluate(async()=>{J.ui.project.title='cross-tab-winner';return {saved:await J.uiApi.flushSave(),error:J.ui.persistenceError,status:document.querySelector('#localSaveStatus').textContent};});assert.equal(winner.saved,true,JSON.stringify(winner));
  assert.equal(await peer.evaluate(async()=>{J.ui.project.title='cross-tab-unsaved';const ok=await J.uiApi.flushSave();return !ok&&J.ui.unsaved&&J.ui.project.title==='cross-tab-unsaved'&&(await J.uiApi.loadLocal()).title==='cross-tab-winner';}),true);
  await peer.close();console.log('Cross-tab optimistic revision guard and unsaved edit protection PASS');
  const legacyContext=await browser.newContext(),legacy=await legacyContext.newPage();
