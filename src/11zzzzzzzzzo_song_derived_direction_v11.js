@@ -215,6 +215,13 @@ J.optimizeCreativeLineV10=async args=>{
    const fit=J.scoreDirectionV11(cut,f,intent,checks,start.score),item={...start,cut,checks,times:initial,...fit};local.push(item);observed.set(key,item);return item;
   };
   const control=evaluate(base),singles=[];
+  // Image saliency supplies placement hypotheses, not recognized subjects or a
+  // mandatory off-center quota. Keep only actual safe/composed improvements.
+  const baseAnchor=base.params.photoAnchor||{x:.5,y:.5};
+  const placements=anchors.filter(a=>Math.hypot(a.x-baseAnchor.x,a.y-baseAnchor.y)>1e-6).sort((a,b)=>(a.saliency??.5)-(b.saliency??.5)||a.x-b.x||a.y-b.y);
+  for(const anchor of placements.slice(0,Math.ceil(1+intent.changeDemand*2))){
+   if(used>=limit)break;evaluate({...copy(base),params:{...copy(base.params),photoAnchor:copy(anchor)}});
+  }
   // All eligible entries participate in retrieval. The raster budget expands
   // with acoustic demand and capability diversity, rather than a top-two list.
   const queues=Object.fromEntries(roles.map(g=>[g,J.directionRepresentativesV11(discover[g],Math.ceil(3+intent.changeDemand*3))]));
