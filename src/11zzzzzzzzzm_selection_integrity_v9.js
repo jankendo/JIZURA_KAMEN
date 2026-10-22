@@ -103,7 +103,7 @@ J.registryAlternativesV9=async(p,portfolios,winner,sample,phases,selection)=>{
 J.applyRegistryAlternativeV9=async(q,a,p,range,options={})=>{
  J.assertSelectionV9(p,a);const s=p.songNativeDirection.selection,alt=s.alternatives?.[0];
  if(!alt||alt.status!=='MEASURED_SAFE_SEQUENCE'||alt.sourceIdentity!==s.sourceIdentity||alt.rendererCompatibilityId!==s.rendererCompatibilityId)return null;
- const trial=copy(p),byLine=new Map(alt.entries.map(e=>[e.line,e.cut])),previous={...copy(alt),entries:copy(s.entries),...(s.optimizerVersion===10?{traces:copy(s.traces),visualArc:copy(s.visualArc)}:{})};
+ const trial=copy(p),byLine=new Map(alt.entries.map(e=>[e.line,e.cut])),previous={...copy(alt),entries:copy(s.entries),...(s.optimizerVersion>=10?{traces:copy(s.traces),visualArc:copy(s.visualArc)}:{})};
  trial.cuts=trial.cuts.map(c=>c.line<0||J.songNativeLockedV8(trial,c)?c:copy(byLine.get(c.line)));trial.cuts.forEach((c,i)=>c.index=i);
  trial.songNativeDirection.selection={...copy(s),entries:copy(alt.entries),...(alt.traces?{traces:copy(alt.traces),visualArc:copy(alt.visualArc)}:{}),alternatives:[previous]};trial.artDirection.songNativeDirection=trial.songNativeDirection;
  J.assertSelectionV9(trial,a);const evidence=await J.collectJizuraDirectionV8(trial,range,options);

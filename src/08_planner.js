@@ -520,6 +520,7 @@ function pickHold(rng, en, fx, history) {
 function decorParams(rng, k) {
   return { id: k, seed: rng.int(1, 1e9), n: rng.int(1, 3) + (k === 'shapes' ? 3 : 0) + (k === 'sparks' ? 4 : 0), right: rng.chance(0.5), low: rng.chance(0.5), accent: rng.chance(0.4), corner: rng.chance(0.5), big: rng.chance(0.4), mode: rng.pick(['count', 'index']), from: rng.int(0, 20), to: rng.int(30, 999), v: rng.int(0, 5), r: rng() };
 }
+J.registryDecorParams=decorParams;
 function pickDecor(rng, st, en, fx, layout, history = []) {
   const count = Math.round(fx.decor * 2.8 * rng.range(0.45, 1.15));
   const recent = new Set(history.slice(-2).flatMap(h => h.decor || []));

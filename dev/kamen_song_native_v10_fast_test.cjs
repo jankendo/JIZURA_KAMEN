@@ -31,7 +31,7 @@ const {engine}=require('./custom_test_support.cjs');
  const small=left.p.cuts.find(c=>c.line===0);for(const [x,y] of [[.35,.5],[.65,.5],[.5,.3],[.5,.7],[.5,.5]]){const offset={...copy(small),params:{...copy(small.params),photoAnchor:{x,y}}},ev=sample(left.p,offset,small.dur*.5);assert(ev.eligible,'safe intentional placement '+x+','+y);if(x!==.5||y!==.5)assert(ev.centerError>.025);}
  const pristine=J.canonicalJSON(left.p);try{assert(sample(left.p,cut,.001).eligible);assert(sample(left.p,cut,cut.dur*.5).eligible);}finally{hooks.reverse().forEach(f=>f());}
  assert.equal(J.canonicalJSON(left.p),pristine,'production rendering must not mutate confirmed decisions');assert(calls.layout>0&&calls.hold>0);if(cut.enter!=='cut')assert(calls.enter>0);assert.equal(J.describeJizuraDirectionV8(left.p,cut).hold,J.HOLD[cut.hold].name);
- const ui=fs.readFileSync('src/12_ui.js','utf8');assert(ui.includes('J.generateJizuraDirectionV10(')&&ui.includes('J.describeJizuraDirectionV8?.(S.plan,cut)'));
+ const ui=fs.readFileSync('src/12_ui.js','utf8');assert(ui.includes('J.generateJizuraDirectionV11(')&&ui.includes('J.describeJizuraDirectionV8?.(S.plan,cut)'));
  console.log('TEST 1 PASS: measured contribution, active/quiet fit, real registry dispatch and selected-cut UI');
  // 2: same loudness/BPM, changed temporal order, deterministic results and locks.
  const right=await prepare(b);assert.equal(a.bpm,b.bpm);assert.deepEqual(a.energy,b.energy);
