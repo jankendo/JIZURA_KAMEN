@@ -87,7 +87,7 @@ J.registryRoleCandidatesV9=(p,g,target)=>{
 // Cut-owned FX are materialized identically in probes and final rendering.
 const frame=J.Renderer.prototype.frame;J.Renderer.prototype.frame=function(ctx,p,t,opt={}){
  if(!active(p)||!p.cuts.some(c=>c.registryFxV9))return frame.call(this,ctx,p,t,opt);
- const events=[...(p.events||[]),...p.cuts.filter(c=>c.registryFxV9&&J.FXE[c.registryFxV9]).map(c=>({t:c.start,type:c.registryFxV9,dur:Math.min(.12,c.dur*.15),amp:.12,seed:c.seed,source:'registry-v9',musicalPhotoCue:true}))].sort((a,b)=>a.t-b.t);
+ const events=[...(p.events||[]),...p.cuts.filter(c=>c.registryFxV9&&J.FXE[c.registryFxV9]).map(c=>({t:c.start,type:c.registryFxV9,dur:Math.min(.12,c.dur*.15),amp:.12,seed:c.seed,source:'registry-v9',musicalPhotoCue:!J.isSongDerivedV11?.(p),...(J.isSongDerivedV11?.(p)?{registryDirectionV11:true}:{})}))].sort((a,b)=>a.t-b.t);
  return frame.call(this,ctx,{...p,events},t,opt);
 };
 J.registryAlternativesV9=async(p,portfolios,winner,sample,phases,selection)=>{

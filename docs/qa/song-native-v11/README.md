@@ -4,7 +4,7 @@ New generations use optimizer 11 with the existing v9 renderer and persistence c
 
 ## Source findings and changes
 
-At baseline `6b0787f3e1a4f5855f71a5d3eabe0cab573a393d`, `creativeRoleCandidatesV10` returned at most two entries, the joint search hard-gated candidates at the midpoint, pairs were explicitly enumerated, and `createRegistryRenderProbe` rejected clip/blur/echo by mechanism. The v10 arc combined primary ink with an impact scalar; v11 adds the complete RGB raster to arc distance. Existing SSM sections/relations, style scoring, Canvas, Pareto, beam, ablation and immutable call-local cache code are reused.
+At baseline `6b0787f3e1a4f5855f71a5d3eabe0cab573a393d`, `creativeRoleCandidatesV10` returned at most two entries, the joint search hard-gated candidates at the midpoint, pairs were explicitly enumerated, and `createRegistryRenderProbe` rejected clip/blur/echo by mechanism. The v10 arc combined primary ink with an impact scalar; v11 adds the complete RGB raster to arc distance. Tracing the production post path also revealed that v9 cut-owned FX were tagged as musical-photo cues, so a legacy post wrapper converted them to generic pushes before their FX callbacks. V11 uses an explicitly preserved registry-owned event flag and dispatches the actual FX; old projects retain their existing cue behavior. Existing SSM sections/relations, style scoring, Canvas, Pareto, beam, ablation and immutable call-local cache code are reused.
 
 Responsibilities are separated in `src/11zzzzzzzzzo_song_derived_direction_v11.js`:
 

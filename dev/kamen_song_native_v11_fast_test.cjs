@@ -27,7 +27,7 @@ const scenarios=require('./kamen_song_native_v11_scenarios.cjs');
   const source=auditBootstrap+'\n'+manifest.map(n=>fs.readFileSync(path.join(root,'src',n),'utf8')+auditBoundary(n)).join('\n');
   report.sourceTreeSHA256=require('node:crypto').createHash('sha256').update(source).digest('hex');
   report.sourceCommit=require('node:child_process').execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
-  console.log('V11_EVIDENCE',JSON.stringify({registered:report.registered,techniques:report.techniques,framesCompared:report.framesCompared,sourceTreeSHA256:report.sourceTreeSHA256,sourceCommit:report.sourceCommit,lines:report.lines?.map(x=>({line:x.line,counts:x.counts,compared:x.compared})),selected:report.selected}));
+  console.log('V11_EVIDENCE',JSON.stringify({registered:report.registered,techniques:report.techniques,framesCompared:report.framesCompared,sourceTreeSHA256:report.sourceTreeSHA256,sourceCommit:report.sourceCommit,lines:Array.isArray(report.lines)?report.lines.map(x=>({line:x.line,counts:x.counts,compared:x.compared})):report.lines,selected:report.selected}));
   if(process.env.KAMEN_V11_REPORT)fs.writeFileSync(process.env.KAMEN_V11_REPORT,JSON.stringify({...report,browser:browser.version()},null,2));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
