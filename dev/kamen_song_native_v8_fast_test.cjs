@@ -20,7 +20,7 @@ const {engine}=require('./custom_test_support.cjs');
  for(const [g,key] of [['layout','render'],['enter','apply'],['hold','apply']]){const d=J.registry(g)[cut[g]],fn=d[key];hooks.push(()=>d[key]=fn);d[key]=function(...args){calls[g]++;return fn.apply(this,args);};}
  const pristine=J.canonicalJSON(left.p);try{assert(sample(left.p,cut,.001).eligible);assert(sample(left.p,cut,cut.dur*.5).eligible);}finally{hooks.reverse().forEach(f=>f());}
  assert.equal(J.canonicalJSON(left.p),pristine,'production rendering must not mutate confirmed decisions');assert(calls.layout>0&&calls.hold>0);if(cut.enter!=='cut')assert(calls.enter>0);assert.equal(J.describeJizuraDirectionV8(left.p,cut).hold,J.HOLD[cut.hold].name);
- const ui=fs.readFileSync('src/12_ui.js','utf8');assert(ui.includes('J.generateJizuraDirectionV10(')&&ui.includes('J.describeJizuraDirectionV8?.(S.plan,cut)'));
+ const ui=fs.readFileSync('src/12_ui.js','utf8');assert(ui.includes('J.generateJizuraDirectionV11(')&&ui.includes('J.describeJizuraDirectionV8?.(S.plan,cut)'));
  console.log('TEST 1 PASS: registry candidates, different safe layouts, actual layout/enter/hold dispatch and cut-backed UI');
  // 2: same loudness/BPM, changed temporal order, deterministic results and locks.
  const right=await prepare(b);assert.equal(a.bpm,b.bpm);assert.deepEqual(a.energy,b.energy);

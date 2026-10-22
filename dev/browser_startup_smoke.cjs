@@ -6,7 +6,7 @@ assert(url,'URL is required');
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.KAMEN_CHROME||'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage'],timeout:30000});
  try{
-  const page=await browser.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
+  const page=await browser.newPage(),errors=[];page.on('console',m=>{if(m.type()==='error')console.error(m.text());});page.on('pageerror',error=>errors.push(error.message));
   const response=await page.goto(url,{waitUntil:'load',timeout:30000});assert.equal(response.status(),200);
   await page.waitForFunction(()=>window.J?.ui&&window.KAMEN_BUILD_INFO,undefined,{timeout:15000});
   assert.equal(await page.evaluate(()=>document.querySelector('#studioExport')!==null),true);
@@ -29,6 +29,7 @@ assert(url,'URL is required');
    const buffer=new AudioBuffer({length:48000,sampleRate:48000,numberOfChannels:1}),pcm=buffer.getChannelData(0);for(let i=0;i<pcm.length;i++)pcm[i]=Math.sin(i/48000*Math.PI*440)*.2;
    S.audio={name:'synthetic',buffer,duration:1,bpm:120,energyRate:2,energy:Float32Array.from([.2,.8]),onset:Float32Array.from([.2,.6]),features:{energy:.5}};S.project.timing.snap=false;J.uiApi.syncUI();J.uiApi.replan();
   });
+  await page.evaluate(()=>{const original=J.searchSongNativeCandidates;J.searchSongNativeCandidates=async(...args)=>{try{return await original(...args);}catch(e){console.error('DIRECTION_DIAGNOSTIC '+JSON.stringify(e.diagnostic));throw e;}};});
   await page.locator('#btnAutoDirection').click({force:true});
   await page.waitForFunction(()=>document.querySelector('#directionStatus').dataset.result==='true'||[...J.processing.jobs.values()].some(s=>s.status==='error'),null,{timeout:60000});
   const grammar=await page.evaluate(()=>{
@@ -37,11 +38,12 @@ assert(url,'URL is required');
    const audio={...S.audio,beats:J.beatGrid(S.project.timing.bpm,S.project.timing.beatOffset||0,1)},saved=JSON.parse(JSON.stringify(S.project)),round=J.plan(saved,audio);
    if(J.canonicalJSON(J.songNativeRenderDecisions(S.plan))!==J.canonicalJSON(J.songNativeRenderDecisions(round)))throw Error('V9_RENDER_DECISIONS_CHANGED');
    return {optimizer:S.plan.songNativeDirection.selection.optimizerVersion,arc:S.plan.songNativeDirection.selection.visualArc,version:S.plan.songNativeDirection.version,restored:round.songNativeRestore.status,observed:S.pixelQA?.completed,build:window.KAMEN_BUILD_INFO};
-  });assert.equal(grammar.version,9);assert.equal(grammar.optimizer,10);assert.equal(grammar.arc.requiresReevaluation,false);assert.equal(grammar.restored,'RESTORED');assert.equal(grammar.observed,true);console.log('Browser v10 real UI/Canvas/quality/commit/restore smoke PASS',JSON.stringify(grammar.build));
+  });assert.equal(grammar.version,9);assert.equal(grammar.optimizer,11);assert.equal(grammar.arc.requiresReevaluation,false);assert.equal(grammar.restored,'RESTORED');assert.equal(grammar.observed,true);console.log('Browser v11 real UI/Canvas/quality/commit/restore smoke PASS',JSON.stringify(grammar.build));
   await page.waitForFunction(()=>!document.querySelector('#btnAutoDirection').disabled,null,{timeout:15000});
   if(await page.evaluate(()=>!!J.ui.plan.songNativeDirection.selection.alternatives?.length)){
    await page.locator('#studioAlternative').click({force:true});
-   await page.waitForFunction(()=>document.querySelector('#alternativeChoice').textContent==='実Canvas確認済みの別案を適用しました',null,{timeout:15000});
+   await page.waitForFunction(()=>document.querySelector('#alternativeChoice').textContent==='実Canvas確認済みの別案を適用しました'||!document.querySelector('#btnAutoDirection').disabled,null,{timeout:15000});
+   assert.equal(await page.locator('#alternativeChoice').textContent(),'実Canvas確認済みの別案を適用しました',await page.evaluate(()=>document.body.innerText.slice(-2000)));
    assert.equal(await page.evaluate(()=>{const J=window.J,S=J.ui;J.assertSelectionV9(S.plan,S.audio);return S.project.artDirection.songNativeResolved.version;}),9);
    console.log('Browser safe alternate storyboard commit PASS');
   }

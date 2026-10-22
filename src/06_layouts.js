@@ -69,6 +69,7 @@ J.drawFx = (env, it) => {
     if (it.streak && it.streak.a > 0.01) {
       for (let k = it.streak.n; k >= 1; k--) {
         const c = Object.assign({}, it, { x: it.x + it.streak.dx * k, y: it.y + (it.streak.dy || 0) * k, alpha: (it.alpha ?? 1) * it.streak.a * (1 - k / (it.streak.n + 1)), pieceFn: null, streak: null, echo: null, pre: null, post: null, shadow: null, extrude: null });
+        if(J.isSongDerivedV11?.(env.plan))c.lyricRole='decorative';
         J.drawItem(env, c);
       }
     }
@@ -79,6 +80,7 @@ J.drawFx = (env, it) => {
           alpha: (it.alpha ?? 1) * (E0.a ?? 0.5) * Math.pow(E0.decay ?? 0.7, k - 1), pieceFn: null, streak: null, echo: null, pre: null, post: null, shadow: null, extrude: null, pattern: null, gradient: null,
           color: E0.color || it.color, _lay: null, _m: null });
         if (E0.outline) Object.assign(c, { fill: false, stroke: Math.max(1, it.size * 0.012), strokeColor: E0.color || it.color });
+        if(J.isSongDerivedV11?.(env.plan))c.lyricRole='decorative';
         J.drawItem(env, c);
       }
     }

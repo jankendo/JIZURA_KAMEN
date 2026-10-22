@@ -528,6 +528,7 @@ class Renderer {
       const k = (t - ev.t) / Math.max(ev.dur, 1e-3);
       const st2 = clock24;
       const D = J.FXE[ev.type];
+      if(J.isSongDerivedV11?.(plan)&&D?.builtin)J.directionBuiltinProbeV11?.(ev.type);
       if (D && D.draw) {
         if (D.scratch) copy();
         try {
