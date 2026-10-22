@@ -6,7 +6,7 @@ async function runAssetSmokeV11(input){
  const q=input.savedProject||J.defaultProject();q.lyrics=input.lyrics;q.timing.snap=false;
  q.customBg={...q.customBg,enabled:true,dataUrl:'data:image/webp;base64,'+input.background};
  const img=await new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=reject;i.src=q.customBg.dataUrl;});
- J.applyImagePalette(q,J.analyzeCustomBackground(img,q),{palette:true,readability:true,mood:false});
+ if(!input.savedProject)J.applyImagePalette(q,J.analyzeCustomBackground(img,q),{palette:true,readability:true,mood:false});
  if(!input.savedProject){const direction=await J.generateJizuraDirectionV11(q,audio);q.autoDirection=true;q.artDirection=J.makeArtDirection(q,audio,direction.recommended.proposal);q.fonts={...q.artDirection.typography};}
  if(input.onlyLine!==undefined)for(let i=0;i<8;i++)if(i!==Number(input.onlyLine))q.overrides[i]={lock:true};
  const p=J.plan(q,audio);if(!input.savedProject)await J.searchSongNativeCandidates(p,null,audio,{ensureFonts:false,onProgress:x=>console.log('ASSET',x.current,'/',x.total)}).catch(e=>{console.log('DIAGNOSTIC',JSON.stringify(e.diagnostic));throw e;});J.assertSelectionV9(p,audio);
@@ -17,7 +17,7 @@ async function runAssetSmokeV11(input){
  const cuts=p.cuts.filter(c=>c.line>=0),sheet=Object.assign(document.createElement('canvas'),{width:1280,height:720}),sx=sheet.getContext('2d');
  const measured=[];
  for(let i=0;i<cuts.length;i++){
-  const c=cuts[i],checks=J.directionPhasesV11(p,c,audio).map(t=>({time:c.start+t,...probe(p,c,t)}));
+  const c=cuts[i],checks=J.directionPhasesV11(p,c,audio).map(t=>({time:c.start+t,...probe.verifyScale(p,c,t)}));
   if(!checks.every(e=>e.eligible)||!checks.some(e=>e.temporalStage==='HOLD'&&e.readable)){console.log('ASSET_BAD_FRAME',JSON.stringify(checks.filter(e=>!e.eligible).map(({mask,...e})=>e)));throw Error('ASSET_PHASE_SAFETY_'+c.line);}
   measured.push({line:c.line,phases:checks.map(({mask,...e})=>e)});
   if(i<4){R.frame(cv.getContext('2d'),p,c.start+c.dur*.5,{scale:640/p.W,production:true,noHud:true});sx.drawImage(cv,(i%2)*640,Math.floor(i/2)*360);}

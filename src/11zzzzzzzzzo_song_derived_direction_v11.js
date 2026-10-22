@@ -71,8 +71,16 @@ const probeFactory=J.createRegistryRenderProbe;J.createRegistryRenderProbe=(...a
   finally{restores.reverse().forEach(fn=>fn());J.directionBuiltinProbeV11=builtin;}
  };
  probe.verifyScale=(p,c,t)=>{
-  if(!detail){const cv=document.createElement('canvas'),mask=document.createElement('canvas');cv.width=mask.width=640;cv.height=mask.height=Math.round(640*p.H/p.W);detail=J.createRegistryRenderProbe(p,args[1],cv,mask,{production:true,onFrame:args[4]?.onFrame});}
-  return detail(p,c,t);
+  if(!detail){const cv=document.createElement('canvas'),mask=document.createElement('canvas');cv.width=mask.width=640;cv.height=mask.height=Math.round(640*p.H/p.W);detail={cv,sample:J.createRegistryRenderProbe(p,args[1],cv,mask,{production:true,onFrame:args[4]?.onFrame})};}
+  const e=detail.sample(p,c,t);if(!e.eligible)return e;
+  // Apply the same FX to the no-primary-glyph control as to the actual frame.
+  // A post-effect wash must not borrow contrast from the pre-effect background.
+  const cv=detail.cv,ctx=cv.getContext('2d'),actual=ctx.getImageData(0,0,cv.width,cv.height).data,draw=J.drawItem;
+  const cp={...p,cuts:p.cuts.map(old=>old.line===c.line?c:old),titleDisplay:null};J.sharePhotoComposition?.(p,cp);
+  J.drawItem=(env,it)=>env.cut?.line>=0&&it.lyricRole!=='decorative'?null:draw(env,it);
+  try{args[1].frame(ctx,cp,Math.min(c.end-.000001,c.start+t),{scale:cv.width/p.W,production:true,noHud:true});args[4]?.onFrame?.();}finally{J.drawItem=draw;}
+  const contrast=J.glyphFootprintContrast(ctx.getImageData(0,0,cv.width,cv.height).data,actual,e.mask,cv.width,cv.height),readable=contrast.measured&&contrast.renderedVsBackgroundContrastP10>=3;
+  return {...e,compositedContrast:contrast,readable:e.readable&&readable,eligible:e.eligible&&(!e.ink||readable)};
  };return probe;
 };
 J.directionRoleCandidatesV11=(p,g,intent,index=J.directionCapabilityIndexV11(p))=>index.filter(x=>x.group===g&&x.eligible&&x.id!==neutral[g]).map(x=>{
