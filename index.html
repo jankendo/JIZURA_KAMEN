@@ -864,7 +864,7 @@ body:has(.processing-panel:not([hidden])) .kamen-downloads{left:16px;right:auto;
 
 <script>
 window.KAMEN_APP_INFO=window.JIZURA_APP_INFO=Object.freeze({"name":"KAMEN","edition":"Custom Edition","version":"2.0.27"});
-window.KAMEN_BUILD_INFO=Object.freeze({"sourceCommit":"f02e1e19bb666d8cad27c55ea2491192abd18509","sourceDirty":true,"sourceTreeSHA256":"29d484a129008ef47f274275894c087f0d195ef8b71f7c72893e574ed75d9590"});
+window.KAMEN_BUILD_INFO=Object.freeze({"sourceCommit":"b7be88dc1b98455fcb7f801d9161104786b358e2","sourceDirty":true,"sourceTreeSHA256":"1e5264cfbf80556d73fd1cc002bf42ac8469c3c29369fbc84b85e802e5de9133"});
 /*! mp4-muxer v5.2.2 | MIT License | (c) 2023 Vanilagy | see THIRD_PARTY_NOTICES.md */
 "use strict";var Mp4Muxer=(()=>{var we=Object.defineProperty,at=Object.getOwnPropertyDescriptor,nt=Object.getOwnPropertyNames,ot=Object.prototype.hasOwnProperty,ht=(e,t)=>{for(var s in t)we(e,s,{get:t[s],enumerable:!0})},lt=(e,t,s,r)=>{if(t&&typeof t=="object"||typeof t=="function")for(let a of nt(t))!ot.call(e,a)&&a!==s&&we(e,a,{get:()=>t[a],enumerable:!(r=at(t,a))||r.enumerable});return e},ft=e=>lt(we({},"__esModule",{value:!0}),e),ve=(e,t,s)=>{if(!t.has(e))throw TypeError("Cannot "+s)},i=(e,t,s)=>(ve(e,t,"read from private field"),s?s.call(e):t.get(e)),d=(e,t,s)=>{if(t.has(e))throw TypeError("Cannot add the same private member more than once");t instanceof WeakSet?t.add(e):t.set(e,s)},C=(e,t,s,r)=>(ve(e,t,"write to private field"),r?r.call(e,s):t.set(e,s),s),ut=(e,t,s,r)=>({set _(a){C(e,t,a,s)},get _(){return i(e,t,r)}}),m=(e,t,s)=>(ve(e,t,"access private method"),s),Re={};ht(Re,{ArrayBufferTarget:()=>qe,FileSystemWritableFileStreamTarget:()=>Xe,Muxer:()=>vi,StreamTarget:()=>Te});var p=new Uint8Array(8),z=new DataView(p.buffer),y=e=>[(e%256+256)%256],c=e=>(z.setUint16(0,e,!1),[p[0],p[1]]),dt=e=>(z.setInt16(0,e,!1),[p[0],p[1]]),Pe=e=>(z.setUint32(0,e,!1),[p[1],p[2],p[3]]),n=e=>(z.setUint32(0,e,!1),[p[0],p[1],p[2],p[3]]),mt=e=>(z.setInt32(0,e,!1),[p[0],p[1],p[2],p[3]]),x=e=>(z.setUint32(0,Math.floor(e/2**32),!1),z.setUint32(4,e,!1),[p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]]),ge=e=>(z.setInt16(0,2**8*e,!1),[p[0],p[1]]),A=e=>(z.setInt32(0,2**16*e,!1),[p[0],p[1],p[2],p[3]]),ye=e=>(z.setInt32(0,2**30*e,!1),[p[0],p[1],p[2],p[3]]),E=(e,t=!1)=>{let s=Array(e.length).fill(null).map((r,a)=>e.charCodeAt(a));return t&&s.push(0),s},se=e=>e&&e[e.length-1],Ce=e=>{let t;for(let s of e)(!t||s.presentationTimestamp>t.presentationTimestamp)&&(t=s);return t},O=(e,t,s=!0)=>{let r=e*t;return s?Math.round(r):r},Le=e=>{let t=e*(Math.PI/180),s=Math.cos(t),r=Math.sin(t);return[s,r,0,-r,s,0,0,0,1]},Ve=Le(0),je=e=>[A(e[0]),A(e[1]),ye(e[2]),A(e[3]),A(e[4]),ye(e[5]),A(e[6]),A(e[7]),ye(e[8])],X=e=>!e||typeof e!="object"?e:Array.isArray(e)?e.map(X):Object.fromEntries(Object.entries(e).map(([t,s])=>[t,X(s)])),V=e=>e>=0&&e<2**32,v=(e,t,s)=>({type:e,contents:t&&new Uint8Array(t.flat(10)),children:s}),w=(e,t,s,r,a)=>v(e,[y(t),Pe(s),r??[]],a),pt=e=>{let t=512;return e.fragmented?v("ftyp",[E("iso5"),n(t),E("iso5"),E("iso6"),E("mp41")]):v("ftyp",[E("isom"),n(t),E("isom"),e.holdsAvc?E("avc1"):[],E("mp41")])},Se=e=>({type:"mdat",largeSize:e}),ct=e=>({type:"free",size:e}),re=(e,t,s=!1)=>v("moov",null,[wt(t,e),...e.map(r=>vt(r,t)),s?Gt(e):null]),wt=(e,t)=>{let s=O(Math.max(0,...t.filter(l=>l.samples.length>0).map(l=>{const u=Ce(l.samples);return u.presentationTimestamp+u.duration})),Ae),r=Math.max(...t.map(l=>l.id))+1,a=!V(e)||!V(s),o=a?x:n;return w("mvhd",+a,0,[o(e),o(e),n(Ae),o(s),A(1),ge(1),Array(10).fill(0),je(Ve),Array(24).fill(0),n(r)])},vt=(e,t)=>v("trak",null,[gt(e,t),yt(e,t)]),gt=(e,t)=>{let s=Ce(e.samples),r=O(s?s.presentationTimestamp+s.duration:0,Ae),a=!V(t)||!V(r),o=a?x:n,l;return e.info.type==="video"?l=typeof e.info.rotation=="number"?Le(e.info.rotation):e.info.rotation:l=Ve,w("tkhd",+a,3,[o(t),o(t),n(e.id),n(0),o(r),Array(8).fill(0),c(0),c(0),ge(e.info.type==="audio"?1:0),c(0),je(l),A(e.info.type==="video"?e.info.width:0),A(e.info.type==="video"?e.info.height:0)])},yt=(e,t)=>v("mdia",null,[Ct(e,t),St(e.info.type==="video"?"vide":"soun"),Tt(e)]),Ct=(e,t)=>{let s=Ce(e.samples),r=O(s?s.presentationTimestamp+s.duration:0,e.timescale),a=!V(t)||!V(r),o=a?x:n;return w("mdhd",+a,0,[o(t),o(t),n(e.timescale),o(r),c(21956),c(0)])},St=e=>w("hdlr",0,0,[E("mhlr"),E(e),n(0),n(0),n(0),E("mp4-muxer-hdlr",!0)]),Tt=e=>v("minf",null,[e.info.type==="video"?bt():_t(),kt(),At(e)]),bt=()=>w("vmhd",0,1,[c(0),c(0),c(0),c(0)]),_t=()=>w("smhd",0,0,[c(0),c(0)]),kt=()=>v("dinf",null,[Et()]),Et=()=>w("dref",0,0,[n(1)],[zt()]),zt=()=>w("url ",0,1),At=e=>{const t=e.compositionTimeOffsetTable.length>1||e.compositionTimeOffsetTable.some(s=>s.sampleCompositionTimeOffset!==0);return v("stbl",null,[Ot(e),Vt(e),jt(e),$t(e),Ht(e),qt(e),t?Xt(e):null])},Ot=e=>w("stsd",0,0,[n(1)],[e.info.type==="video"?Mt(ri[e.info.codec],e):Rt(ni[e.info.codec],e)]),Mt=(e,t)=>v(e,[Array(6).fill(0),c(1),c(0),c(0),Array(12).fill(0),c(t.info.width),c(t.info.height),n(4718592),n(4718592),n(0),c(1),Array(32).fill(0),c(24),dt(65535)],[ai[t.info.codec](t),t.info.decoderConfig.colorSpace?Ut(t):null]),Bt={bt709:1,bt470bg:5,smpte170m:6},It={bt709:1,smpte170m:6,"iec61966-2-1":13},Dt={rgb:0,bt709:1,bt470bg:5,smpte170m:6},Ut=e=>v("colr",[E("nclx"),c(Bt[e.info.decoderConfig.colorSpace.primaries]),c(It[e.info.decoderConfig.colorSpace.transfer]),c(Dt[e.info.decoderConfig.colorSpace.matrix]),y((e.info.decoderConfig.colorSpace.fullRange?1:0)<<7)]),xt=e=>e.info.decoderConfig&&v("avcC",[...new Uint8Array(e.info.decoderConfig.description)]),Wt=e=>e.info.decoderConfig&&v("hvcC",[...new Uint8Array(e.info.decoderConfig.description)]),Ft=e=>{if(!e.info.decoderConfig)return null;let t=e.info.decoderConfig;if(!t.colorSpace)throw new Error("'colorSpace' is required in the decoder config for VP9.");let s=t.codec.split("."),r=Number(s[1]),a=Number(s[2]),u=(Number(s[3])<<4)+(0<<1)+Number(t.colorSpace.fullRange);return w("vpcC",1,0,[y(r),y(a),y(u),y(2),y(2),y(2),c(0)])},Nt=()=>{let s=(1<<7)+1;return v("av1C",[s,0,0,0])},Rt=(e,t)=>v(e,[Array(6).fill(0),c(1),c(0),c(0),n(0),c(t.info.numberOfChannels),c(16),c(0),c(0),A(t.info.sampleRate)],[oi[t.info.codec](t)]),Pt=e=>{let t=new Uint8Array(e.info.decoderConfig.description);return w("esds",0,0,[n(58753152),y(32+t.byteLength),c(1),y(0),n(75530368),y(18+t.byteLength),y(64),y(21),Pe(0),n(130071),n(130071),n(92307584),y(t.byteLength),...t,n(109084800),y(1),y(2)])},Lt=e=>{let t=3840,s=0;const r=e.info.decoderConfig?.description;if(r){if(r.byteLength<18)throw new TypeError("Invalid decoder description provided for Opus; must be at least 18 bytes long.");const a=ArrayBuffer.isView(r)?new DataView(r.buffer,r.byteOffset,r.byteLength):new DataView(r);t=a.getUint16(10,!0),s=a.getInt16(14,!0)}return v("dOps",[y(0),y(e.info.numberOfChannels),c(t),n(e.info.sampleRate),ge(s),y(0)])},Vt=e=>w("stts",0,0,[n(e.timeToSampleTable.length),e.timeToSampleTable.map(t=>[n(t.sampleCount),n(t.sampleDelta)])]),jt=e=>{if(e.samples.every(s=>s.type==="key"))return null;let t=[...e.samples.entries()].filter(([,s])=>s.type==="key");return w("stss",0,0,[n(t.length),t.map(([s])=>n(s+1))])},$t=e=>w("stsc",0,0,[n(e.compactlyCodedChunkTable.length),e.compactlyCodedChunkTable.map(t=>[n(t.firstChunk),n(t.samplesPerChunk),n(1)])]),Ht=e=>w("stsz",0,0,[n(0),n(e.samples.length),e.samples.map(t=>n(t.size))]),qt=e=>e.finalizedChunks.length>0&&se(e.finalizedChunks).offset>=2**32?w("co64",0,0,[n(e.finalizedChunks.length),e.finalizedChunks.map(t=>x(t.offset))]):w("stco",0,0,[n(e.finalizedChunks.length),e.finalizedChunks.map(t=>n(t.offset))]),Xt=e=>w("ctts",0,0,[n(e.compositionTimeOffsetTable.length),e.compositionTimeOffsetTable.map(t=>[n(t.sampleCount),n(t.sampleCompositionTimeOffset)])]),Gt=e=>v("mvex",null,e.map(Zt)),Zt=e=>w("trex",0,0,[n(e.id),n(1),n(0),n(0),n(0)]),$e=(e,t)=>v("moof",null,[Kt(e),...t.map(Qt)]),Kt=e=>w("mfhd",0,0,[n(e)]),He=e=>{let t=0,s=0,r=0,a=0,o=e.type==="delta";return s|=+o,o?t|=1:t|=2,t<<24|s<<16|r<<8|a},Qt=e=>v("traf",null,[Jt(e),Yt(e),ei(e)]),Jt=e=>{let t=0;t|=8,t|=16,t|=32,t|=131072;let s=e.currentChunk.samples[1]??e.currentChunk.samples[0],r={duration:s.timescaleUnitsToNextSample,size:s.size,flags:He(s)};return w("tfhd",0,t,[n(e.id),n(r.duration),n(r.size),n(r.flags)])},Yt=e=>w("tfdt",1,0,[x(O(e.currentChunk.startTimestamp,e.timescale))]),ei=e=>{let t=e.currentChunk.samples.map(D=>D.timescaleUnitsToNextSample),s=e.currentChunk.samples.map(D=>D.size),r=e.currentChunk.samples.map(He),a=e.currentChunk.samples.map(D=>O(D.presentationTimestamp-D.decodeTimestamp,e.timescale)),o=new Set(t),l=new Set(s),u=new Set(r),g=new Set(a),b=u.size===2&&r[0]!==r[1],U=o.size>1,ie=l.size>1,st=!b&&u.size>1,rt=g.size>1||[...g].some(D=>D!==0),L=0;return L|=1,L|=4*+b,L|=256*+U,L|=512*+ie,L|=1024*+st,L|=2048*+rt,w("trun",1,L,[n(e.currentChunk.samples.length),n(e.currentChunk.offset-e.currentChunk.moofOffset||0),b?n(r[0]):[],e.currentChunk.samples.map((D,ce)=>[U?n(t[ce]):[],ie?n(s[ce]):[],st?n(r[ce]):[],rt?mt(a[ce]):[]])])},ti=e=>v("mfra",null,[...e.map(ii),si()]),ii=(e,t)=>w("tfra",1,0,[n(e.id),n(63),n(e.finalizedChunks.length),e.finalizedChunks.map(r=>[x(O(r.startTimestamp,e.timescale)),x(r.moofOffset),n(t+1),n(1),n(1)])]),si=()=>w("mfro",0,0,[n(0)]),ri={avc:"avc1",hevc:"hvc1",vp9:"vp09",av1:"av01"},ai={avc:xt,hevc:Wt,vp9:Ft,av1:Nt},ni={aac:"mp4a",opus:"Opus"},oi={aac:Pt,opus:Lt},hi=Symbol("isTarget"),ae=class{},qe=class extends ae{constructor(){super(...arguments),this.buffer=null}},Te=class extends ae{constructor(e){if(super(),this.options=e,typeof e!="object")throw new TypeError("StreamTarget requires an options object to be passed to its constructor.");if(e.onData){if(typeof e.onData!="function")throw new TypeError("options.onData, when provided, must be a function.");if(e.onData.length<2)throw new TypeError("options.onData, when provided, must be a function that takes in at least two arguments (data and position). Ignoring the position argument, which specifies the byte offset at which the data is to be written, can lead to broken outputs.")}if(e.chunked!==void 0&&typeof e.chunked!="boolean")throw new TypeError("options.chunked, when provided, must be a boolean.");if(e.chunkSize!==void 0&&(!Number.isInteger(e.chunkSize)||e.chunkSize<1024))throw new TypeError("options.chunkSize, when provided, must be an integer and not smaller than 1024.")}},Xe=class extends ae{constructor(e,t){if(super(),this.stream=e,this.options=t,!(e instanceof FileSystemWritableFileStream))throw new TypeError("FileSystemWritableFileStreamTarget requires a FileSystemWritableFileStream instance.");if(t!==void 0&&typeof t!="object")throw new TypeError("FileSystemWritableFileStreamTarget's options, when provided, must be an object.");if(t&&t.chunkSize!==void 0&&(!Number.isInteger(t.chunkSize)||t.chunkSize<=0))throw new TypeError("options.chunkSize, when provided, must be a positive integer")}},W,j,Ge=class{constructor(){this.pos=0,d(this,W,new Uint8Array(8)),d(this,j,new DataView(i(this,W).buffer)),this.offsets=new WeakMap}seek(e){this.pos=e}writeU32(e){i(this,j).setUint32(0,e,!1),this.write(i(this,W).subarray(0,4))}writeU64(e){i(this,j).setUint32(0,Math.floor(e/2**32),!1),i(this,j).setUint32(4,e,!1),this.write(i(this,W).subarray(0,8))}writeAscii(e){for(let t=0;t<e.length;t++)i(this,j).setUint8(t%8,e.charCodeAt(t)),t%8===7&&this.write(i(this,W));e.length%8!==0&&this.write(i(this,W).subarray(0,e.length%8))}writeBox(e){if(this.offsets.set(e,this.pos),e.contents&&!e.children)this.writeBoxHeader(e,e.size??e.contents.byteLength+8),this.write(e.contents);else{let t=this.pos;if(this.writeBoxHeader(e,0),e.contents&&this.write(e.contents),e.children)for(let a of e.children)a&&this.writeBox(a);let s=this.pos,r=e.size??s-t;this.seek(t),this.writeBoxHeader(e,r),this.seek(s)}}writeBoxHeader(e,t){this.writeU32(e.largeSize?1:t),this.writeAscii(e.type),e.largeSize&&this.writeU64(t)}measureBoxHeader(e){return 8+(e.largeSize?8:0)}patchBox(e){let t=this.pos;this.seek(this.offsets.get(e)),this.writeBox(e),this.seek(t)}measureBox(e){if(e.contents&&!e.children)return this.measureBoxHeader(e)+e.contents.byteLength;{let t=this.measureBoxHeader(e);if(e.contents&&(t+=e.contents.byteLength),e.children)for(let s of e.children)s&&(t+=this.measureBox(s));return t}}};W=new WeakMap,j=new WeakMap;var ne,F,G,Z,oe,be,li=class extends Ge{constructor(e){super(),d(this,oe),d(this,ne,void 0),d(this,F,new ArrayBuffer(2**16)),d(this,G,new Uint8Array(i(this,F))),d(this,Z,0),C(this,ne,e)}write(e){m(this,oe,be).call(this,this.pos+e.byteLength),i(this,G).set(e,this.pos),this.pos+=e.byteLength,C(this,Z,Math.max(i(this,Z),this.pos))}finalize(){m(this,oe,be).call(this,this.pos),i(this,ne).buffer=i(this,F).slice(0,Math.max(i(this,Z),this.pos))}};ne=new WeakMap,F=new WeakMap,G=new WeakMap,Z=new WeakMap,oe=new WeakSet,be=function(e){let t=i(this,F).byteLength;for(;t<e;)t*=2;if(t===i(this,F).byteLength)return;let s=new ArrayBuffer(t),r=new Uint8Array(s);r.set(i(this,G),0),C(this,F,s),C(this,G,r)};var fi=2**24,ui=2,K,N,Q,B,_,he,_e,ke,Ze,Ee,Ke,J,le,ze=class extends Ge{constructor(e){super(),d(this,he),d(this,ke),d(this,Ee),d(this,J),d(this,K,void 0),d(this,N,[]),d(this,Q,void 0),d(this,B,void 0),d(this,_,[]),C(this,K,e),C(this,Q,e.options?.chunked??!1),C(this,B,e.options?.chunkSize??fi)}write(e){i(this,N).push({data:e.slice(),start:this.pos}),this.pos+=e.byteLength}flush(){if(i(this,N).length===0)return;let e=[],t=[...i(this,N)].sort((s,r)=>s.start-r.start);e.push({start:t[0].start,size:t[0].data.byteLength});for(let s=1;s<t.length;s++){let r=e[e.length-1],a=t[s];a.start<=r.start+r.size?r.size=Math.max(r.size,a.start+a.data.byteLength-r.start):e.push({start:a.start,size:a.data.byteLength})}for(let s of e){s.data=new Uint8Array(s.size);for(let r of i(this,N))s.start<=r.start&&r.start<s.start+s.size&&s.data.set(r.data,r.start-s.start);i(this,Q)?(m(this,he,_e).call(this,s.data,s.start),m(this,J,le).call(this)):i(this,K).options.onData?.(s.data,s.start)}i(this,N).length=0}finalize(){i(this,Q)&&m(this,J,le).call(this,!0)}};K=new WeakMap,N=new WeakMap,Q=new WeakMap,B=new WeakMap,_=new WeakMap,he=new WeakSet,_e=function(e,t){let s=i(this,_).findIndex(u=>u.start<=t&&t<u.start+i(this,B));s===-1&&(s=m(this,Ee,Ke).call(this,t));let r=i(this,_)[s],a=t-r.start,o=e.subarray(0,Math.min(i(this,B)-a,e.byteLength));r.data.set(o,a);let l={start:a,end:a+o.byteLength};if(m(this,ke,Ze).call(this,r,l),r.written[0].start===0&&r.written[0].end===i(this,B)&&(r.shouldFlush=!0),i(this,_).length>ui){for(let u=0;u<i(this,_).length-1;u++)i(this,_)[u].shouldFlush=!0;m(this,J,le).call(this)}o.byteLength<e.byteLength&&m(this,he,_e).call(this,e.subarray(o.byteLength),t+o.byteLength)},ke=new WeakSet,Ze=function(e,t){let s=0,r=e.written.length-1,a=-1;for(;s<=r;){let o=Math.floor(s+(r-s+1)/2);e.written[o].start<=t.start?(s=o+1,a=o):r=o-1}for(e.written.splice(a+1,0,t),(a===-1||e.written[a].end<t.start)&&a++;a<e.written.length-1&&e.written[a].end>=e.written[a+1].start;)e.written[a].end=Math.max(e.written[a].end,e.written[a+1].end),e.written.splice(a+1,1)},Ee=new WeakSet,Ke=function(e){let s={start:Math.floor(e/i(this,B))*i(this,B),data:new Uint8Array(i(this,B)),written:[],shouldFlush:!1};return i(this,_).push(s),i(this,_).sort((r,a)=>r.start-a.start),i(this,_).indexOf(s)},J=new WeakSet,le=function(e=!1){for(let t=0;t<i(this,_).length;t++){let s=i(this,_)[t];if(!(!s.shouldFlush&&!e)){for(let r of s.written)i(this,K).options.onData?.(s.data.subarray(r.start,r.end),s.start+r.start);i(this,_).splice(t--,1)}}};var di=class extends ze{constructor(e){super(new Te({onData:(t,s)=>e.stream.write({type:"write",data:t,position:s}),chunked:!0,chunkSize:e.options?.chunkSize}))}},Ae=1e3,mi=["avc","hevc","vp9","av1"],pi=["aac","opus"],ci=2082844800,wi=["strict","offset","cross-track-offset"],h,f,fe,k,T,S,$,H,Oe,R,P,Y,Me,Qe,Be,Je,Ie,Ye,De,et,Ue,tt,ue,xe,M,I,We,it,ee,de,me,Fe,q,te,pe,Ne,vi=class{constructor(e){if(d(this,Me),d(this,Be),d(this,Ie),d(this,De),d(this,Ue),d(this,ue),d(this,M),d(this,We),d(this,ee),d(this,me),d(this,q),d(this,pe),d(this,h,void 0),d(this,f,void 0),d(this,fe,void 0),d(this,k,void 0),d(this,T,null),d(this,S,null),d(this,$,Math.floor(Date.now()/1e3)+ci),d(this,H,[]),d(this,Oe,1),d(this,R,[]),d(this,P,[]),d(this,Y,!1),m(this,Me,Qe).call(this,e),e.video=X(e.video),e.audio=X(e.audio),e.fastStart=X(e.fastStart),this.target=e.target,C(this,h,{firstTimestampBehavior:"strict",...e}),e.target instanceof qe)C(this,f,new li(e.target));else if(e.target instanceof Te)C(this,f,new ze(e.target));else if(e.target instanceof Xe)C(this,f,new di(e.target));else throw new Error(`Invalid target: ${e.target}`);m(this,De,et).call(this),m(this,Be,Je).call(this)}addVideoChunk(e,t,s,r){if(!(e instanceof EncodedVideoChunk))throw new TypeError("addVideoChunk's first argument (sample) must be of type EncodedVideoChunk.");if(t&&typeof t!="object")throw new TypeError("addVideoChunk's second argument (meta), when provided, must be an object.");if(s!==void 0&&(!Number.isFinite(s)||s<0))throw new TypeError("addVideoChunk's third argument (timestamp), when provided, must be a non-negative real number.");if(r!==void 0&&!Number.isFinite(r))throw new TypeError("addVideoChunk's fourth argument (compositionTimeOffset), when provided, must be a real number.");let a=new Uint8Array(e.byteLength);e.copyTo(a),this.addVideoChunkRaw(a,e.type,s??e.timestamp,e.duration,t,r)}addVideoChunkRaw(e,t,s,r,a,o){if(!(e instanceof Uint8Array))throw new TypeError("addVideoChunkRaw's first argument (data) must be an instance of Uint8Array.");if(t!=="key"&&t!=="delta")throw new TypeError("addVideoChunkRaw's second argument (type) must be either 'key' or 'delta'.");if(!Number.isFinite(s)||s<0)throw new TypeError("addVideoChunkRaw's third argument (timestamp) must be a non-negative real number.");if(!Number.isFinite(r)||r<0)throw new TypeError("addVideoChunkRaw's fourth argument (duration) must be a non-negative real number.");if(a&&typeof a!="object")throw new TypeError("addVideoChunkRaw's fifth argument (meta), when provided, must be an object.");if(o!==void 0&&!Number.isFinite(o))throw new TypeError("addVideoChunkRaw's sixth argument (compositionTimeOffset), when provided, must be a real number.");if(m(this,pe,Ne).call(this),!i(this,h).video)throw new Error("No video track declared.");if(typeof i(this,h).fastStart=="object"&&i(this,T).samples.length===i(this,h).fastStart.expectedVideoChunks)throw new Error(`Cannot add more video chunks than specified in 'fastStart' (${i(this,h).fastStart.expectedVideoChunks}).`);let l=m(this,ue,xe).call(this,i(this,T),e,t,s,r,a,o);if(i(this,h).fastStart==="fragmented"&&i(this,S)){for(;i(this,P).length>0&&i(this,P)[0].decodeTimestamp<=l.decodeTimestamp;){let u=i(this,P).shift();m(this,M,I).call(this,i(this,S),u)}l.decodeTimestamp<=i(this,S).lastDecodeTimestamp?m(this,M,I).call(this,i(this,T),l):i(this,R).push(l)}else m(this,M,I).call(this,i(this,T),l)}addAudioChunk(e,t,s){if(!(e instanceof EncodedAudioChunk))throw new TypeError("addAudioChunk's first argument (sample) must be of type EncodedAudioChunk.");if(t&&typeof t!="object")throw new TypeError("addAudioChunk's second argument (meta), when provided, must be an object.");if(s!==void 0&&(!Number.isFinite(s)||s<0))throw new TypeError("addAudioChunk's third argument (timestamp), when provided, must be a non-negative real number.");let r=new Uint8Array(e.byteLength);e.copyTo(r),this.addAudioChunkRaw(r,e.type,s??e.timestamp,e.duration,t)}addAudioChunkRaw(e,t,s,r,a){if(!(e instanceof Uint8Array))throw new TypeError("addAudioChunkRaw's first argument (data) must be an instance of Uint8Array.");if(t!=="key"&&t!=="delta")throw new TypeError("addAudioChunkRaw's second argument (type) must be either 'key' or 'delta'.");if(!Number.isFinite(s)||s<0)throw new TypeError("addAudioChunkRaw's third argument (timestamp) must be a non-negative real number.");if(!Number.isFinite(r)||r<0)throw new TypeError("addAudioChunkRaw's fourth argument (duration) must be a non-negative real number.");if(a&&typeof a!="object")throw new TypeError("addAudioChunkRaw's fifth argument (meta), when provided, must be an object.");if(m(this,pe,Ne).call(this),!i(this,h).audio)throw new Error("No audio track declared.");if(typeof i(this,h).fastStart=="object"&&i(this,S).samples.length===i(this,h).fastStart.expectedAudioChunks)throw new Error(`Cannot add more audio chunks than specified in 'fastStart' (${i(this,h).fastStart.expectedAudioChunks}).`);let o=m(this,ue,xe).call(this,i(this,S),e,t,s,r,a);if(i(this,h).fastStart==="fragmented"&&i(this,T)){for(;i(this,R).length>0&&i(this,R)[0].decodeTimestamp<=o.decodeTimestamp;){let l=i(this,R).shift();m(this,M,I).call(this,i(this,T),l)}o.decodeTimestamp<=i(this,T).lastDecodeTimestamp?m(this,M,I).call(this,i(this,S),o):i(this,P).push(o)}else m(this,M,I).call(this,i(this,S),o)}finalize(){if(i(this,Y))throw new Error("Cannot finalize a muxer more than once.");if(i(this,h).fastStart==="fragmented"){for(let t of i(this,R))m(this,M,I).call(this,i(this,T),t);for(let t of i(this,P))m(this,M,I).call(this,i(this,S),t);m(this,me,Fe).call(this,!1)}else i(this,T)&&m(this,ee,de).call(this,i(this,T)),i(this,S)&&m(this,ee,de).call(this,i(this,S));let e=[i(this,T),i(this,S)].filter(Boolean);if(i(this,h).fastStart==="in-memory"){let t;for(let r=0;r<2;r++){let a=re(e,i(this,$)),o=i(this,f).measureBox(a);t=i(this,f).measureBox(i(this,k));let l=i(this,f).pos+o+t;for(let u of i(this,H)){u.offset=l;for(let{data:g}of u.samples)l+=g.byteLength,t+=g.byteLength}if(l<2**32)break;t>=2**32&&(i(this,k).largeSize=!0)}let s=re(e,i(this,$));i(this,f).writeBox(s),i(this,k).size=t,i(this,f).writeBox(i(this,k));for(let r of i(this,H))for(let a of r.samples)i(this,f).write(a.data),a.data=null}else if(i(this,h).fastStart==="fragmented"){let t=i(this,f).pos,s=ti(e);i(this,f).writeBox(s);let r=i(this,f).pos-t;i(this,f).seek(i(this,f).pos-4),i(this,f).writeU32(r)}else{let t=i(this,f).offsets.get(i(this,k)),s=i(this,f).pos-t;i(this,k).size=s,i(this,k).largeSize=s>=2**32,i(this,f).patchBox(i(this,k));let r=re(e,i(this,$));if(typeof i(this,h).fastStart=="object"){i(this,f).seek(i(this,fe)),i(this,f).writeBox(r);let a=t-i(this,f).pos;i(this,f).writeBox(ct(a))}else i(this,f).writeBox(r)}m(this,q,te).call(this),i(this,f).finalize(),C(this,Y,!0)}};return h=new WeakMap,f=new WeakMap,fe=new WeakMap,k=new WeakMap,T=new WeakMap,S=new WeakMap,$=new WeakMap,H=new WeakMap,Oe=new WeakMap,R=new WeakMap,P=new WeakMap,Y=new WeakMap,Me=new WeakSet,Qe=function(e){if(typeof e!="object")throw new TypeError("The muxer requires an options object to be passed to its constructor.");if(!(e.target instanceof ae))throw new TypeError("The target must be provided and an instance of Target.");if(e.video){if(!mi.includes(e.video.codec))throw new TypeError(`Unsupported video codec: ${e.video.codec}`);if(!Number.isInteger(e.video.width)||e.video.width<=0)throw new TypeError(`Invalid video width: ${e.video.width}. Must be a positive integer.`);if(!Number.isInteger(e.video.height)||e.video.height<=0)throw new TypeError(`Invalid video height: ${e.video.height}. Must be a positive integer.`);const t=e.video.rotation;if(typeof t=="number"&&![0,90,180,270].includes(t))throw new TypeError(`Invalid video rotation: ${t}. Has to be 0, 90, 180 or 270.`);if(Array.isArray(t)&&(t.length!==9||t.some(s=>typeof s!="number")))throw new TypeError(`Invalid video transformation matrix: ${t.join()}`);if(e.video.frameRate!==void 0&&(!Number.isInteger(e.video.frameRate)||e.video.frameRate<=0))throw new TypeError(`Invalid video frame rate: ${e.video.frameRate}. Must be a positive integer.`)}if(e.audio){if(!pi.includes(e.audio.codec))throw new TypeError(`Unsupported audio codec: ${e.audio.codec}`);if(!Number.isInteger(e.audio.numberOfChannels)||e.audio.numberOfChannels<=0)throw new TypeError(`Invalid number of audio channels: ${e.audio.numberOfChannels}. Must be a positive integer.`);if(!Number.isInteger(e.audio.sampleRate)||e.audio.sampleRate<=0)throw new TypeError(`Invalid audio sample rate: ${e.audio.sampleRate}. Must be a positive integer.`)}if(e.firstTimestampBehavior&&!wi.includes(e.firstTimestampBehavior))throw new TypeError(`Invalid first timestamp behavior: ${e.firstTimestampBehavior}`);if(typeof e.fastStart=="object"){if(e.video){if(e.fastStart.expectedVideoChunks===void 0)throw new TypeError("'fastStart' is an object but is missing property 'expectedVideoChunks'.");if(!Number.isInteger(e.fastStart.expectedVideoChunks)||e.fastStart.expectedVideoChunks<0)throw new TypeError("'expectedVideoChunks' must be a non-negative integer.")}if(e.audio){if(e.fastStart.expectedAudioChunks===void 0)throw new TypeError("'fastStart' is an object but is missing property 'expectedAudioChunks'.");if(!Number.isInteger(e.fastStart.expectedAudioChunks)||e.fastStart.expectedAudioChunks<0)throw new TypeError("'expectedAudioChunks' must be a non-negative integer.")}}else if(![!1,"in-memory","fragmented"].includes(e.fastStart))throw new TypeError("'fastStart' option must be false, 'in-memory', 'fragmented' or an object.");if(e.minFragmentDuration!==void 0&&(!Number.isFinite(e.minFragmentDuration)||e.minFragmentDuration<0))throw new TypeError("'minFragmentDuration' must be a non-negative number.")},Be=new WeakSet,Je=function(){if(i(this,f).writeBox(pt({holdsAvc:i(this,h).video?.codec==="avc",fragmented:i(this,h).fastStart==="fragmented"})),C(this,fe,i(this,f).pos),i(this,h).fastStart==="in-memory")C(this,k,Se(!1));else if(i(this,h).fastStart!=="fragmented"){if(typeof i(this,h).fastStart=="object"){let e=m(this,Ie,Ye).call(this);i(this,f).seek(i(this,f).pos+e)}C(this,k,Se(!0)),i(this,f).writeBox(i(this,k))}m(this,q,te).call(this)},Ie=new WeakSet,Ye=function(){if(typeof i(this,h).fastStart!="object")return;let e=0,t=[i(this,h).fastStart.expectedVideoChunks,i(this,h).fastStart.expectedAudioChunks];for(let s of t)s&&(e+=8*Math.ceil(.6666666666666666*s),e+=4*s,e+=12*Math.ceil(.6666666666666666*s),e+=4*s,e+=8*s);return e+=4096,e},De=new WeakSet,et=function(){if(i(this,h).video&&C(this,T,{id:1,info:{type:"video",codec:i(this,h).video.codec,width:i(this,h).video.width,height:i(this,h).video.height,rotation:i(this,h).video.rotation??0,decoderConfig:null},timescale:i(this,h).video.frameRate??57600,samples:[],finalizedChunks:[],currentChunk:null,firstDecodeTimestamp:void 0,lastDecodeTimestamp:-1,timeToSampleTable:[],compositionTimeOffsetTable:[],lastTimescaleUnits:null,lastSample:null,compactlyCodedChunkTable:[]}),i(this,h).audio&&(C(this,S,{id:i(this,h).video?2:1,info:{type:"audio",codec:i(this,h).audio.codec,numberOfChannels:i(this,h).audio.numberOfChannels,sampleRate:i(this,h).audio.sampleRate,decoderConfig:null},timescale:i(this,h).audio.sampleRate,samples:[],finalizedChunks:[],currentChunk:null,firstDecodeTimestamp:void 0,lastDecodeTimestamp:-1,timeToSampleTable:[],compositionTimeOffsetTable:[],lastTimescaleUnits:null,lastSample:null,compactlyCodedChunkTable:[]}),i(this,h).audio.codec==="aac")){let e=m(this,Ue,tt).call(this,2,i(this,h).audio.sampleRate,i(this,h).audio.numberOfChannels);i(this,S).info.decoderConfig={codec:i(this,h).audio.codec,description:e,numberOfChannels:i(this,h).audio.numberOfChannels,sampleRate:i(this,h).audio.sampleRate}}},Ue=new WeakSet,tt=function(e,t,s){let a=[96e3,88200,64e3,48e3,44100,32e3,24e3,22050,16e3,12e3,11025,8e3,7350].indexOf(t),o=s,l="";l+=e.toString(2).padStart(5,"0"),l+=a.toString(2).padStart(4,"0"),a===15&&(l+=t.toString(2).padStart(24,"0")),l+=o.toString(2).padStart(4,"0");let u=Math.ceil(l.length/8)*8;l=l.padEnd(u,"0");let g=new Uint8Array(l.length/8);for(let b=0;b<l.length;b+=8)g[b/8]=parseInt(l.slice(b,b+8),2);return g},ue=new WeakSet,xe=function(e,t,s,r,a,o,l){let u=r/1e6,g=(r-(l??0))/1e6,b=a/1e6,U=m(this,We,it).call(this,u,g,e);return u=U.presentationTimestamp,g=U.decodeTimestamp,o?.decoderConfig&&(e.info.decoderConfig===null?e.info.decoderConfig=o.decoderConfig:Object.assign(e.info.decoderConfig,o.decoderConfig)),{presentationTimestamp:u,decodeTimestamp:g,duration:b,data:t,size:t.byteLength,type:s,timescaleUnitsToNextSample:O(b,e.timescale)}},M=new WeakSet,I=function(e,t){i(this,h).fastStart!=="fragmented"&&e.samples.push(t);const s=O(t.presentationTimestamp-t.decodeTimestamp,e.timescale);if(e.lastTimescaleUnits!==null){let a=O(t.decodeTimestamp,e.timescale,!1),o=Math.round(a-e.lastTimescaleUnits);if(e.lastTimescaleUnits+=o,e.lastSample.timescaleUnitsToNextSample=o,i(this,h).fastStart!=="fragmented"){let l=se(e.timeToSampleTable);l.sampleCount===1?(l.sampleDelta=o,l.sampleCount++):l.sampleDelta===o?l.sampleCount++:(l.sampleCount--,e.timeToSampleTable.push({sampleCount:2,sampleDelta:o}));const u=se(e.compositionTimeOffsetTable);u.sampleCompositionTimeOffset===s?u.sampleCount++:e.compositionTimeOffsetTable.push({sampleCount:1,sampleCompositionTimeOffset:s})}}else e.lastTimescaleUnits=0,i(this,h).fastStart!=="fragmented"&&(e.timeToSampleTable.push({sampleCount:1,sampleDelta:O(t.duration,e.timescale)}),e.compositionTimeOffsetTable.push({sampleCount:1,sampleCompositionTimeOffset:s}));e.lastSample=t;let r=!1;if(!e.currentChunk)r=!0;else{let a=t.presentationTimestamp-e.currentChunk.startTimestamp;if(i(this,h).fastStart==="fragmented"){let o=i(this,T)??i(this,S);const l=i(this,h).minFragmentDuration??1;e===o&&t.type==="key"&&a>=l&&(r=!0,m(this,me,Fe).call(this))}else r=a>=.5}r&&(e.currentChunk&&m(this,ee,de).call(this,e),e.currentChunk={startTimestamp:t.presentationTimestamp,samples:[]}),e.currentChunk.samples.push(t)},We=new WeakSet,it=function(e,t,s){const r=i(this,h).firstTimestampBehavior==="strict",a=s.lastDecodeTimestamp===-1;if(r&&a&&t!==0)throw new Error(`The first chunk for your media track must have a timestamp of 0 (received DTS=${t}).Non-zero first timestamps are often caused by directly piping frames or audio data from a MediaStreamTrack into the encoder. Their timestamps are typically relative to the age of thedocument, which is probably what you want.
 
@@ -9033,7 +9033,7 @@ class Renderer {
     // motion is quantised to 'koma' drawings per second (24fps timebase); random flicker runs on a <=24Hz clock
     const stepDur = J.stepDur(fx, fps);
     const clock = J.komaOf(fx) > 0 ? stepDur : 1 / 24;
-    const tq = J.renderTimeWithLyricBoundary(plan,t,stepDur);
+    const tq = plan.songNativeDirection?.version===7&&J.cutAt(plan,t)?.generatedMotionV7?t:J.renderTimeWithLyricBoundary(plan,t,stepDur);
     const mainCut = J.cutAt(plan, tq);
     const mainStyle=mainCut?.style||st;
     const sc = mainStyle.schemes[mainCut ? mainCut.scheme % mainStyle.schemes.length : 0] || mainStyle.schemes[0];
@@ -35284,7 +35284,7 @@ J.scoreMVQuality=(report,project,plan,audio,range,pixel,capabilities,validation)
 };
 const baseFrame=J.Renderer?.prototype?.frame;
 if(baseFrame)J.Renderer.prototype.frame=function(ctx,plan,t,opt={}){
- if([4,5,6].includes(plan?.songNativeDirection?.version))return baseFrame.call(this,ctx,plan,t,opt);
+ if([4,5,6,7].includes(plan?.songNativeDirection?.version))return baseFrame.call(this,ctx,plan,t,opt);
  const hype=plan?.visualEnergyDensity,rangeStart=opt.range?.start,anchor=Number.isFinite(rangeStart)?rangeStart:(plan?.hookEngine?.firstCut?.start||0);
  const c=plan?.cuts?.find(x=>x.line>=0&&x.layout!=='interlude'&&x.start>=anchor-.02&&x.start<anchor+.1),priorScale=c?.params?.intensityScale,priorHookScale=c?.params?.hookScale;
  if(c&&t>=anchor&&t<anchor+.68){c.params.intensityScale=C(priorScale*1.1,.82,1.27);c.params.hookScale=Math.max(c.params.hookScale||1,1.1);}
@@ -39932,7 +39932,8 @@ const locked=(p,c)=>!c||p.songNativeManualPlan||c.locked||J.photoChoreographyLoc
 const abort=signal=>{if(signal?.aborted)throw new DOMException('Aborted','AbortError');};
 const copy=x=>J.clonePhotoRenderPlan(x);
 const fingerprint=value=>{const s=J.canonicalJSON(value);let h=2166136261,g=3339675911;for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),16777619)>>>0;g=Math.imul(g^s.charCodeAt(i),2246822519)>>>0;}return s.length+':'+h+':'+g;};
-const inputIdentity=(project,audio)=>fingerprint({audio:J.registrySelectionAudioKey(audio),envelope:Array.from(audio?.energy||[]),onset:Array.from(audio?.onset||[]),rms:Array.from(audio?.rms||[]),energyRate:audio?.energyRate,analysisSource:audio?.analysisSource,project:{...Object.fromEntries(Object.entries(project).filter(([k])=>!['schemaVersion','migratedFromSchema','audioAsset','renderFeedbackRequested','lastPixelQA','lastQualityTarget','exportValidation'].includes(k))),artDirection:project.artDirection?Object.fromEntries(Object.entries(project.artDirection).filter(([k])=>!['songNativeDirection','songNativeResolved'].includes(k)).map(([k,v])=>[k,k==='registrySelection'&&v?Object.fromEntries(Object.entries(v).filter(([key])=>key!=='storySearch')):v])):null}});
+const legacyInputIdentity=(project,audio)=>fingerprint({audio:J.registrySelectionAudioKey(audio),envelope:Array.from(audio?.energy||[]),onset:Array.from(audio?.onset||[]),rms:Array.from(audio?.rms||[]),energyRate:audio?.energyRate,analysisSource:audio?.analysisSource,project:{...Object.fromEntries(Object.entries(project).filter(([k])=>!['schemaVersion','migratedFromSchema','audioAsset','renderFeedbackRequested','lastPixelQA','lastQualityTarget','exportValidation'].includes(k))),artDirection:project.artDirection?Object.fromEntries(Object.entries(project.artDirection).filter(([k])=>!['songNativeDirection','songNativeResolved'].includes(k)).map(([k,v])=>[k,k==='registrySelection'&&v?Object.fromEntries(Object.entries(v).filter(([key])=>key!=='storySearch')):v])):null}});
+const inputIdentity=(p,a)=>((p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version===7&&J.songNativeInputIdentityV7)?J.songNativeInputIdentityV7(p,a):legacyInputIdentity(p,a);
 
 const lower=(a,t)=>{let lo=0,hi=a.length;while(lo<hi){const m=(lo+hi)>>>1;if(a[m].time<t)lo=m+1;else hi=m;}return lo;};
 const between=(a,start,end)=>a.slice(lower(a,start),lower(a,end));
@@ -40021,7 +40022,7 @@ const safePath=path=>Array.isArray(path)&&renderRoots.includes(path[0])&&path.ev
 const patch=(target,ops)=>{for(const op of ops){if(!safePath(op.path))throw Error('INVALID_RESOLVED_PATH');let node=target;for(const k of op.path.slice(0,-1)){if(!node[k]||typeof node[k]!=='object')throw Error('INVALID_RESOLVED_PARENT');node=node[k];}const key=op.path.at(-1);if(op.remove)delete node[key];else node[key]=copy(op.value);}return target;};
 // Bump only for incompatible rendering semantics. Build hashes are diagnostic.
 J.songNativeRendererCompatibilityId='kamen-song-native-renderer-3';
-const rendererVersion=p=>[4,5,6].includes(p?.songNativeDirection?.version)?'kamen-song-grammar-renderer-'+p.songNativeDirection.version:J.songNativeRendererCompatibilityId;
+const rendererVersion=p=>[4,5,6,7].includes(p?.songNativeDirection?.version)?'kamen-song-grammar-renderer-'+p.songNativeDirection.version:J.songNativeRendererCompatibilityId;
 const buildId=()=>window.KAMEN_BUILD_INFO?.sourceTreeSHA256||window.KAMEN_BUILD_INFO?.sourceCommit||'development';
 const renderContract=p=>fingerprint({lines:p.lines,W:p.W,H:p.H,duration:p.duration,locks:J.cinemaV3.lockSignature(p)});
 const restoreState=(p,status,reason)=>{p.songNativeRestore={status,reason};return p;};
@@ -40052,7 +40053,7 @@ J.captureSongNativeResolved=(project,audio,p,expectedIdentity=inputIdentity(proj
  source.artDirection.songNativeDirection=copy(p.songNativeDirection);
  const baseline=J.plan(source,audio),base=J.songNativeRenderDecisions(baseline),final=J.songNativeRenderDecisions(p);
  if(!same(baseline.lines,p.lines)||J.cinemaV3.lockSignature(baseline)!==J.cinemaV3.lockSignature(p))throw Error('TIMING_OR_LOCK_CHANGED');
- const schema=[4,5,6].includes(p.songNativeDirection.version)?p.songNativeDirection.version:3;
+ const schema=[4,5,6,7].includes(p.songNativeDirection.version)?p.songNativeDirection.version:3;
  const resolved={version:schema,songNativeSchemaVersion:schema,buildId:buildId(),rendererCompatibilityId:rendererVersion(p),renderContract:renderContract(baseline),sourceIdentity:expectedIdentity,baselineIdentity:fingerprint(base),decisionsIdentity:fingerprint(final),direction:copy(p.songNativeDirection),overrides:delta(base,final),locks:J.cinemaV3.lockSignature(p)};
  if(fingerprint(patch(base,resolved.overrides))!==resolved.decisionsIdentity)throw Error('UNREPRESENTABLE_RENDER_DECISIONS');
  // Commit atomically after all validation. A superseded async job cannot reach here.
@@ -40064,7 +40065,7 @@ J.restoreSongNativeResolved=(project,audio,p)=>{
  if(!r)return restoreState(p,'NOT_SAVED');
  if(!audio||!audio.duration)return restoreState(p,'PENDING_INPUT','AUDIO_NOT_READY');
  // No legacy hash is allowlisted without a verified equivalent rendering contract.
- const schema=[4,5,6].includes(p.songNativeDirection?.version)?p.songNativeDirection.version:3;
+ const schema=[4,5,6,7].includes(p.songNativeDirection?.version)?p.songNativeDirection.version:3;
  if(r.version!==schema||r.songNativeSchemaVersion!==schema||r.rendererCompatibilityId!==rendererVersion(p))return restoreState(p,'REJECTED','RENDERER_OR_SCHEMA');
  if(r.sourceIdentity!==inputIdentity(project,audio)||!J.validSongNativeDirection(r.direction)||!same(r.direction,p.songNativeDirection)||!Array.isArray(r.overrides))return restoreState(p,'REJECTED','INPUT_OR_DIRECTION');
  if(r.renderContract!==renderContract(p)||r.baselineIdentity!==fingerprint(J.songNativeRenderDecisions(p))||r.locks!==J.cinemaV3.lockSignature(p))return restoreState(p,'REJECTED','BASELINE_OR_LOCK');
@@ -40160,7 +40161,7 @@ const camera=J.cameraAt;J.cameraAt=(p,t,range)=>{
 };
 const main=J.mainDraw;J.mainDraw=(env,it)=>{
  const s=J.songNativeSectionAt(env.plan,env.t),c=env.cut;
- if(![4,5,6].includes(env.plan.songNativeDirection?.version)&&s&&c?.line>=0&&!locked(env.plan,c)&&norm(it.text)===norm(c.lineText??c.text)&&finite(it.size))it={...it,size:it.size*(.82+.18*s.typographyScale)*(1-.08*s.negativeSpace)};
+ if(![4,5,6,7].includes(env.plan.songNativeDirection?.version)&&s&&c?.line>=0&&!locked(env.plan,c)&&norm(it.text)===norm(c.lineText??c.text)&&finite(it.size))it={...it,size:it.size*(.82+.18*s.typographyScale)*(1-.08*s.negativeSpace)};
  const motif=J.songNativeMotifAt(env.plan,env.t);
  if(motif&&s&&!s.quietIntent&&c?.line>=0&&!locked(env.plan,c)&&norm(it.text)===norm(c.lineText??c.text)){
   it=J.safeLyricItem(env,{...it,x:finite(it.x)?it.x+(motif.axis-.5)*env.W*.035:it.x,y:finite(it.y)?it.y+(motif.lift-.5)*env.H*.025:it.y,
@@ -40536,7 +40537,7 @@ window.KAMEN_MODULE_AUDIT.observe("11zzzzzzzzzf_song_grammar_v4.js");
 const J=window.J,C=J.clamp,F=Number.isFinite,copy=J.clonePhotoRenderPlan;
 const mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
 const distance=(a,b)=>Math.sqrt(mean(a.map((v,i)=>(v-b[i])**2)));
-const active=p=>[5,6].includes((p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version);
+const active=p=>[5,6,7].includes((p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version);
 const locked=(p,c)=>!!(p.songNativeManualPlan||c?.locked||Object.keys(p.directionOverrides7?.[c?.line]||{}).length||p.directorLyricDirectives7?.some(d=>d.line===c?.line)||c?.assetScene?.locked||p.directorSections7?.some(s=>c?.start>=s.from&&c?.start<s.to&&(s.typographyIntent||s.motionIntent)));
 const abort=s=>{if(s?.aborted)throw new DOMException('Aborted','AbortError');};
 const baseKeys=['x','y','width','height','track','lead','cameraX','cameraY','zoom','layerX','layerY','alpha','contrast','motion'];
@@ -40688,7 +40689,7 @@ J.Renderer.prototype.drawCustomBackground=function(ctx,p,t,...args){
  if(darkness){ctx.save();ctx.globalAlpha*=darkness;ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);ctx.restore();}
  const result=true;
  const horizontal=s.regionAxis,split=s.split;
- const rectangles=p.songNativeDirection.version===6?J.songBackgroundRegionsV6(p,s,image):[[0,0,W*(horizontal+(1-horizontal)*split),H*((1-horizontal)+horizontal*split)],[(1-horizontal)*W*split,horizontal*H*split,W*(horizontal+(1-horizontal)*(1-split)),H*((1-horizontal)+horizontal*(1-split))]];
+ const rectangles=p.songNativeDirection.version>=6?J.songBackgroundRegionsV6(p,s,image):[[0,0,W*(horizontal+(1-horizontal)*split),H*((1-horizontal)+horizontal*split)],[(1-horizontal)*W*split,horizontal*H*split,W*(horizontal+(1-horizontal)*(1-split)),H*((1-horizontal)+horizontal*(1-split))]];
  for(let i=0;i<rectangles.length;i++){
   const [x,y,w,h]=rectangles[i],scale=Math.max(w/image.width,h/image.height)/s.cropRatio,sw=w/scale,sh=h/scale;
   const sx=C(s.cameraX+(i-.5)*s.layerX*4)*(image.width-sw),sy=C(s.cameraY+(i-.5)*s.layerY*4)*(image.height-sh);
@@ -40727,7 +40728,7 @@ window.KAMEN_MODULE_AUDIT.observe("11zzzzzzzzzg_song_grammar_v5.js");
 /* v5 observation contract. Planned acoustic/composition targets never count as
    rendered evidence. Canvas proxies do not certify decoded MP4 or audience taste. */
 (()=>{'use strict';
-const J=window.J,F=Number.isFinite,C=J.clamp,active=p=>[5,6].includes(p?.songNativeDirection?.version);
+const J=window.J,F=Number.isFinite,C=J.clamp,active=p=>[5,6,7].includes(p?.songNativeDirection?.version);
 const version='kamen-song-grammar-quality-5',mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
 const delta=(a,b)=>a?.length&&a.length===b?.length?mean(a.map((v,i)=>Math.abs(v-b[i]))):null;
 const fontIds=new WeakMap();let nextFont=0;
@@ -40786,7 +40787,7 @@ J.measureSongGrammarV5=(p,frames=[],range)=>{
  const endingPairs=pairs.filter(r=>r.from>=to-.6&&F(r.target)).map(r=>({...r,closingActual:r.actual+(r.background??0)*.5,closingExpected:r.target+r.cameraTarget*.15}));
  metrics.ending=endCovered&&ending.length>=2&&endingPairs.length?metric('MEASURED',lastLine&&lastLine.end>to+.05?0:100*mean(endingPairs.map(r=>C(1-Math.abs(r.closingActual-r.closingExpected)/Math.max(.01,r.closingExpected)))),[{lastFrame:ending.at(-1).time,lyricTruncated:!!lastLine&&lastLine.end>to+.05,observedProgression:endingPairs,scope:'Canvas endpoint and input-conditioned closing pixel progression; audio/MP4 closure unmeasured'}]):metric('UNMEASURED',null,[]);
  metrics.loop=p.socialHook?.loopRequired===true?metric('UNMEASURED',null,[{reason:'requires decoded visual, lyric and audio join'}]):metric('NOT_APPLICABLE',null,[],'output does not require looping');
- const refinement=p.songNativeDirection.version===6?J.refineSongGrammarQualityV6(p,rows,pairs,metrics,range):null;
+ const refinement=p.songNativeDirection.version===7?J.refineSongGrammarQualityV7(p,rows,pairs,metrics,range):p.songNativeDirection.version===6?J.refineSongGrammarQualityV6(p,rows,pairs,metrics,range):null;
  const required=['world','typography','camera','background','temporal','repetition','stillness','continuity','opening','lyricVisibility','readability','density','temporalContrast','ending','loop'];
  if(refinement)required.push('realization','perceptualNovelty','backgroundNovelty');
  if(malformed.length)for(const k of required)if(metrics[k].status!=='NOT_APPLICABLE')metrics[k]=metric('FAILED',null,[{reason:'INVALID_CANVAS_CHANNELS',frames:malformed.map(f=>f.time)}]);
@@ -40801,7 +40802,7 @@ const collect=async(p,range,telemetry={})=>{
  for(const s of p.songNativeDirection.sections){if(s.end<=from||s.start>=to)continue;const tr=s.transition||{},start=tr.start??s.start,end=start+(tr.duration||.3);for(const t of [s.start-.08,s.start+.04,start-.04,(start+end)/2,end+.04,(s.start+s.end)/2])add(t);}
  for(const l of (p.lines||[]).slice(0,6))for(const t of [l.start+.04,l.start+.18])add(t);
  for(let i=1;i<8;i++)add(from+(to-from)*i/8);
- if(p.songNativeDirection.version===6){times.clear();for(const t of J.selectSongGrammarObservationTimesV6(p,range))times.add(t);}
+ if(p.songNativeDirection.version>=6){times.clear();for(const t of (p.songNativeDirection.version===7?J.selectSongGrammarObservationTimesV7:J.selectSongGrammarObservationTimesV6)(p,range))times.add(t);}
  const R=new J.Renderer(),cv=document.createElement('canvas'),mask=document.createElement('canvas'),bg=document.createElement('canvas'),w=160,h=Math.round(w*p.H/p.W);
  cv.width=mask.width=bg.width=w;cv.height=mask.height=bg.height=h;
  const ctx=cv.getContext('2d',{willReadFrequently:true}),mc=mask.getContext('2d',{willReadFrequently:true}),bc=bg.getContext('2d',{willReadFrequently:true}),frames=[];
@@ -40816,8 +40817,8 @@ const collect=async(p,range,telemetry={})=>{
    try{R.frame(ctx,p,t,{scale:w/p.W,production:true,noHud:true,range,lyricAuditCtx:mc,lyricAuditItems:items});}finally{J.drawItem=draw;}
    const pixels=ctx.getImageData(0,0,w,h).data,ink=mc.getImageData(0,0,w,h).data,features=J.observePixelFrame(pixels,w,h,ink),s=J.songGrammarStateAt(p,t),row={time:t,features};
    if(glyphChecks.length){const geometry=J.selectionPixelEvidence(pixels,ink,w,h,items.map(i=>i.bounds).filter(Boolean),p.W,p.H);row.readable=glyphChecks.every(Boolean)&&geometry.safe&&geometry.ink>0;}
-   if(items.length&&features.area>0){const bands=items.map(item=>{const b=item.bounds;let inkCount=0;if(b)for(let y=Math.max(0,Math.floor(b.y0/p.H*h));y<Math.min(h,Math.ceil(b.y1/p.H*h));y++)for(let x=Math.max(0,Math.floor(b.x0/p.W*w));x<Math.min(w,Math.ceil(b.x1/p.W*w));x++)if(ink[(y*w+x)*4+3]>24)inkCount++;return {bounds:b,inkPixels:inkCount};});row.groupBands=bands;const cut=J.cutAt(p,t),count=(p.songNativeDirection.version===6?J.songGrammarV6Groups(cut?.lineText||cut?.text||'',s,p):J.songGrammarV5Groups(cut?.lineText||cut?.text||'',s)).length;row.groupRealization=C(bands.filter(b=>b.inkPixels>0).length/Math.max(1,count));}
-   if(R.customBgBitmap){row.backgroundFeatures=background(p,t);const control=background(frozen,t);row.cameraEffect=pixelDistance(row.backgroundFeatures,control);row.cameraExpected=Math.hypot(s.cameraX-initial.cameraX,s.cameraY-initial.cameraY)+Math.abs(s.zoom-initial.zoom);}
+   if(items.length&&features.area>0){const bands=items.map(item=>{const b=item.bounds;let inkCount=0;if(b)for(let y=Math.max(0,Math.floor(b.y0/p.H*h));y<Math.min(h,Math.ceil(b.y1/p.H*h));y++)for(let x=Math.max(0,Math.floor(b.x0/p.W*w));x<Math.min(w,Math.ceil(b.x1/p.W*w));x++)if(ink[(y*w+x)*4+3]>24)inkCount++;return {bounds:b,inkPixels:inkCount};});row.groupBands=bands;const cut=J.cutAt(p,t),count=(p.songNativeDirection.version>=6?J.songGrammarV6Groups(cut?.lineText||cut?.text||'',s,p):J.songGrammarV5Groups(cut?.lineText||cut?.text||'',s)).length;row.groupRealization=C(bands.filter(b=>b.inkPixels>0).length/Math.max(1,count));}
+   if(R.customBgBitmap){row.backgroundFeatures=background(p,t);const control=background(frozen,t);row.cameraEffect=pixelDistance(row.backgroundFeatures,control);row.cameraExpected=Math.hypot(s.cameraX-initial.cameraX,s.cameraY-initial.cameraY)+Math.abs(s.zoom-initial.zoom);if(p.songNativeDirection.version===7){row.backgroundReference=J.referenceSongBackgroundV7(R.customBgBitmap,p,t,bc,w,h);row.cameraReferenceEffect=pixelDistance(row.backgroundReference,J.referenceSongBackgroundV7(R.customBgBitmap,frozen,t,bc,w,h));}}
    frames.push(row);
    if(frames.length%8===0){telemetry.onProgress?.({label:'構図・時間・背景の実画素を検査しています',current:frames.length,total:times.size});await new Promise(r=>setTimeout(r,0));}
   }
@@ -40860,6 +40861,7 @@ const check=J.checkMVQuality;J.checkMVQuality=(project,p,audio,range,pixel,caps,
  // Keep every inherited hard gate and threshold. This contract only replaces
  // legacy style/event proxies and cannot certify missing/undecoded evidence.
  if(p.songNativeDirection.version===6)q.songGrammarV6=e;
+ if(p.songNativeDirection.version===7)q.songGrammarV7=e;
  if(q.targetAcceptance){q.targetAcceptance.certified100=false;if(!e.requiredComplete){q.targetAcceptance.minimumMet=false;q.targetAcceptance.unmeasured=[...new Set([...(q.targetAcceptance.unmeasured||[]),...q.unmeasuredRequired.map(k=>'v5.'+k)])];}}
  return r;
 };
@@ -40870,7 +40872,7 @@ window.KAMEN_MODULE_AUDIT.observe("11zzzzzzzzzh_song_grammar_quality_v5.js");
 /* Song Grammar v5 short output: preserve exact LRC intervals and the generated
    acoustic trajectory. No named phases, event injection or loop-style forcing. */
 (()=>{'use strict';const J=window.J,F=Number.isFinite,mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
-const active=p=>[5,6].includes(p?.songNativeDirection?.version);
+const active=p=>[5,6,7].includes(p?.songNativeDirection?.version);
 const candidates=J.socialHookCandidates;
 J.socialHookCandidates=(p,audio,...args)=>{
  const picks=candidates(p,audio,...args);if(!active(p))return picks;
@@ -41083,6 +41085,285 @@ J.measureSongGrammarV6=J.measureSongGrammarV5;J.collectSongGrammarEvidenceV6=J.c
 })();
 
 window.KAMEN_MODULE_AUDIT.observe("11zzzzzzzzzj_song_grammar_v6.js");
+
+/* Song-causal composition search v7. Numerical starts, bounded local search,
+   renderer trajectories and paired raster observations; no style recipes. */
+(()=>{'use strict';
+const J=window.J,C=J.clamp,F=Number.isFinite,copy=J.clonePhotoRenderPlan;
+const active=p=>(p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version===7;
+const mean=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:0;
+const abort=s=>{if(s?.aborted)throw new DOMException('Aborted','AbortError');};
+const hash=x=>{const s=J.canonicalJSON(x);let a=2166136261,b=3339675911;for(let i=0;i<s.length;i++){a=Math.imul(a^s.charCodeAt(i),16777619)>>>0;b=Math.imul(b^s.charCodeAt(i),2246822519)>>>0;}return `${s.length}:${a}:${b}`;};
+// Generated decisions and diagnostics are not source inputs. Keep legacy hashes
+// untouched; v7 also binds the measured spectral timeline (not the PCM buffer).
+J.songNativeInputIdentityV7=(p,a)=>hash({
+ project:Object.fromEntries(Object.entries(p).filter(([k])=>!['artDirection','songNativeDirection','schemaVersion','migratedFromSchema','audioAsset','renderFeedbackRequested','lastPixelQA','lastQualityTarget','exportValidation'].includes(k)&&!k.startsWith('_'))),
+ manualArt:p.artDirection?.motionDNA??null,
+ audio:{key:J.registrySelectionAudioKey(a),duration:a?.duration,bpm:a?.bpm,energy:Array.from(a?.energy||[]),onset:Array.from(a?.onset||[]),rms:Array.from(a?.rms||[]),rate:a?.energyRate,features:a?.features,source:a?.analysisSource}
+});
+const locked=(p,c)=>!!(p.songNativeManualPlan||c?.locked||Object.keys(p.directionOverrides7?.[c?.line]||{}).length||p.directorLyricDirectives7?.some(d=>d.line===c?.line)||c?.assetScene?.locked||p.directorSections7?.some(s=>c?.start>=s.from&&c?.start<s.to&&(s.typographyIntent||s.motionIntent)));
+const ranges={x:[.28,.72],y:[.28,.72],width:[.5,.84],height:[.26,.5],cameraX:[.18,.82],cameraY:[.18,.82],zoom:[1,1.2],groupSpread:[.16,.44],groupAxis:[0,1],split:[.22,.78],regionMix:[0,.42],regionAxis:[0,1],cropRatio:[.5,1]};
+const keys=Object.keys(ranges),norm=(a,b)=>Math.sqrt(mean(keys.map(k=>((a[k]-b[k])/(ranges[k][1]-ranges[k][0]))**2)));
+const acoustic=(a,b)=>Math.sqrt(mean(a.map((x,i)=>(x-b[i])**2)));
+const as6=d=>({...copy(d),version:6,schemaVersion:6,algorithm:'SONG_NATIVE_ACOUSTIC_TRAJECTORY_V6',rendererCompatibilityId:'kamen-song-grammar-renderer-6'});
+const interpolate=(knots,t)=>{
+ let lo=0,hi=knots.length-1;while(lo+1<hi){const m=(lo+hi)>>1;if(knots[m].time<=t)lo=m;else hi=m;}
+ const a=knots[lo],b=knots[hi],u=C((t-a.time)/Math.max(1e-9,b.time-a.time)),e=u*u*(3-2*u);
+ return Object.fromEntries(Object.keys(a.state).map(k=>[k,['groupCount','regionCount'].includes(k)?a.state[k]:J.lerp(a.state[k],b.state[k],e)]));
+};
+const baseDirection=(p,a,options={})=>{
+ const d=J.buildSongVisualGrammarV6(p,a,options);
+ Object.assign(d,{version:7,schemaVersion:7,algorithm:'SONG_CAUSAL_COMPOSITION_SEARCH_V7',rendererCompatibilityId:'kamen-song-grammar-renderer-7',sourceIdentity:J.songNativeInputIdentityV7(p,a),seed:p.seed??0});
+ // Center a local transition on its measured acoustic time, rather than ending
+ // interpolation at that time (v6's peak visual velocity preceded the onset).
+ const ks=d.trajectory.knots;
+ for(let i=1;i<ks.length-1;i++)if(ks[i].reason==='measured-local-change'&&ks[i-1].reason==='pre-change-hold'){
+  const event=ks[i],pre=ks[i-1],half=Math.min((event.time-pre.time)*.5,(ks[i+1].time-event.time)*.45);
+  if(half>1e-5){event.acousticTime=event.time;pre.time=event.time-half;event.time+=half;event.transitionStart=pre.time;}
+ }
+ d.grammar.contractVersion='KAMEN_SONG_CAUSAL_COMPOSITION_V7';return d;
+};
+const halton=(n,b)=>{let f=1,r=0;while(n>0){f/=b;r+=f*(n%b);n=Math.floor(n/b);}return r;};
+const primes=[2,3,5,7,11,13,17,19,23,29,31,37,41];
+const imageAt=(p,x,y)=>p.autoPalette?.localMap?J.sampleLocalLuma(p.autoPalette.localMap,x,y,2,2):null;
+const costs=(d,targets,p)=>{
+ const motion=mean(d.sections.map(s=>s.motionIntensity)),density=mean(d.sections.map(s=>s.lyricDensity)),recurrence=mean(d.structure.relations.map(r=>r.similarity));
+ return {music:1+motion,coherence:1+d.grammar.continuity,readability:1+density,structure:1+recurrence};
+};
+const localCost=(d,targets,p,i,s,w)=>{
+ const section=d.sections[i],target=targets[i];let value=norm(s,target)**2*w.music;
+ for(const j of [i-1,i+1])if(d.sections[j]){
+  const ad=acoustic(d.structure.sections[i].vector,d.structure.sections[j].vector);
+  value+=norm(s,d.sections[j].state)**2*(1-ad)*w.coherence*.25;
+ }
+ for(const r of d.structure.relations)if(r.from===i||r.to===i)value+=norm(s,d.sections[r.from===i?r.to:r.from].state)**2*r.similarity*w.structure*.22;
+ const image=imageAt(p,s.x,s.y),darkness=image?.luma??.5;
+ // Actual local information/brightness, not split count, drives text placement.
+ value+=((image?.detail||0)*w.readability+Math.abs(darkness-.18)*.08)*.8;
+ const source=imageAt(p,s.cameraX,s.cameraY),cropEdge=imageAt(p,C(s.cameraX+(s.split-.5)*s.cropRatio),C(s.cameraY+(s.regionAxis-.5)*s.cropRatio));
+ // Favor crops with useful information away from the lyric region. Dense source
+ // edges under text increase the cost; splitting is charged for visible detail.
+ value+=(source?.detail||0)*s.regionMix*s.width*w.readability*.15;
+ value+=(cropEdge?.detail||0)*s.regionMix*(1-s.cropRatio)*.12;
+ value+=s.regionMix**2*(image?.detail||0)*(1-section.motionIntensity)*.2;
+ value+=Math.max(0,Math.abs(s.x-.5)+s.groupSpread*(1-s.groupAxis)*.18-.37)**2*40;
+ value+=Math.max(0,Math.abs(s.y-.5)+s.groupSpread*.5-.38)**2*40;
+ if(section.quietIntent)value+=s.regionMix**2+s.motion**2;
+ return value;
+};
+const attachMotions=d=>{
+ d.motions=d.lyrics.map(l=>{
+  const s=d.sections.find(s=>l.start>=s.start&&l.start<s.end)||d.sections.at(-1),ks=d.trajectory.knots.filter(k=>k.time>=l.start&&k.time<=l.end),dur=l.end-l.start;
+  const around=t=>{const k=d.trajectory.knots.reduce((best,k)=>Math.abs((k.acousticTime??k.time)-t)<Math.abs((best.acousticTime??best.time)-t)?k:best);return k.reason==='measured-local-change'?k.importance:0;};
+  const entry=s.quietIntent?0:C(around(l.start)+s.transition.importance*.3),exit=s.quietIntent?0:C(around(l.end));
+  const v=d.structure.sections[d.sections.indexOf(s)].vector,dx=(v[2]-v[3])*entry*.035,dy=(v[5]-v[0])*entry*.025;
+  const inEnd=Math.min(l.end,l.start+Math.min(dur*.22,.12+entry*.3)),outStart=Math.max(inEnd,l.end-Math.min(dur*.18,.12+exit*.25));
+  const points=[{time:l.start,state:{dx,dy,scale:1-entry*.035,opacity:1}},{time:inEnd,state:{dx:0,dy:0,scale:1,opacity:1}},{time:outStart,state:{dx:0,dy:0,scale:1,opacity:1}},{time:l.end,state:{dx:-dx*exit,dy:dy*exit,scale:1-exit*.025,opacity:1}}];
+  const knots=points.filter((k,i)=>!i||k.time>points[i-1].time);
+  return {version:7,line:l.line,start:l.start,end:l.end,knots,entryEnd:inEnd,exitStart:outStart,evidence:{sectionStart:s.start,quiet:s.quietIntent,entryImportance:entry,exitImportance:exit,acousticKnots:ks.filter(k=>k.reason==='measured-local-change').map(k=>k.acousticTime??k.time),repeatFrom:s.repeatFrom,source:'measured acoustic neighborhood + LRC duration + optimized section state'}};
+ });return d;
+};
+const motionAt=(d,t)=>{const m=d.motions?.find(m=>m.start<=t&&m.end>t);return m?interpolate(m.knots,t):{dx:0,dy:0,scale:1,opacity:1};};
+const objectives=(d,targets,p,w)=>{
+ const errors=d.sections.map((s,i)=>localCost(d,targets,p,i,s.state,w)),changes=d.trajectory.knots.slice(1).map((k,i)=>({amount:norm(k.state,d.trajectory.knots[i].state),importance:k.importance,reason:k.reason}));
+ const repetitions=d.structure.relations.map(r=>norm(d.sections[r.from].state,d.sections[r.to].state));
+ return {musicFit:d.structure.status==='UNMEASURED'?null:1-C(mean(d.sections.map((s,i)=>norm(s.state,targets[i])))),structuralFit:repetitions.length?1-C(mean(repetitions)):null,visualCoherence:1-C(mean(changes.map(x=>x.amount))),compositionNovelty:null,readability:1-C(mean(d.sections.map(s=>imageAt(p,s.state.x,s.state.y)?.detail||0))),excessMotionPenalty:mean(changes.map(x=>Math.max(0,x.amount-x.importance))),cost:mean(errors)};
+};
+const signature=d=>d.trajectory.knots.map(k=>keys.map(key=>k.state[key]));
+const separation=(a,b)=>Math.sqrt(mean(a.flatMap((row,i)=>row.map((x,j)=>((x-b[i][j])/(ranges[keys[j]][1]-ranges[keys[j]][0]))**2))));
+J.distinctSongCompositionsV7=(candidates,minimum=.018)=>{const accepted=[];for(const c of candidates)if(!accepted.some(a=>separation(signature(a.direction),signature(c.direction))<minimum))accepted.push(c);return accepted;};
+let poolCache=null;
+const generatePool=(p,a,options={},source=null)=>{
+ const identity=J.songNativeInputIdentityV7(p,a);
+ if(!source&&poolCache?.identity===identity)return copy(poolCache.candidates);
+ const base=source?copy(source):baseDirection(p,a,options),targets=base.sections.map(s=>copy(s.state)),w=costs(base,targets,p);
+ const budget=Math.min(8,Math.max(3,Math.floor(1600/Math.max(200,base.trajectory.knots.length)))),candidates=[];
+ const seed=Number.parseInt(hash(p.seed??base.seed??0).split(':')[1],10)%997;
+ for(let n=0;n<budget;n++){
+  abort(options.signal);const d=copy(base);delete d.optimization;
+  for(let i=0;i<d.sections.length;i++)for(let j=0;j<keys.length;j++){
+   const key=keys[j],[lo,hi]=ranges[key],v=d.structure.sections[i].vector;
+   // Low-discrepancy points explore numeric space. Spectral variation controls
+   // available displacement; these are never completed compositions or modes.
+   const extent=.12+acoustic(v,Array(12).fill(mean(v)))*.3;
+   d.sections[i].state[key]=C(targets[i][key]+(n?(halton(seed+n*17+i,primes[j])-.5)*(hi-lo)*extent*2:0),lo,hi);
+  }
+  for(let sweep=0;sweep<3;sweep++)for(let i=0;i<d.sections.length;i++){
+   abort(options.signal);const s=d.sections[i].state;
+   for(const key of keys){const [lo,hi]=ranges[key],old=s[key],step=(hi-lo)*.018/(sweep+1);let best=old,bestCost=localCost(d,targets,p,i,s,w);
+    for(const sign of [-1,1]){s[key]=C(old+sign*step,lo,hi);const cost=localCost(d,targets,p,i,s,w);if(cost<bestCost){best=s[key];bestCost=cost;}}s[key]=best;
+   }
+  }
+  for(const knot of d.trajectory.knots){const i=d.sections.findIndex(s=>knot.time>=s.start&&knot.time<s.end),index=i<0?d.sections.length-1:i;
+   for(const key of keys)knot.state[key]=C(knot.state[key]+d.sections[index].state[key]-targets[index][key],...ranges[key]);
+  }
+  // Preserve a sustained hold across all knots in a silent section.
+  for(const s of d.sections.filter(s=>s.quietIntent)){const k=d.trajectory.knots.find(k=>k.time>=s.start);for(const knot of d.trajectory.knots.filter(k=>k.time>=s.start&&k.time<=s.end))knot.state={...k.state,motion:0};}
+  attachMotions(d);const o=objectives(d,targets,p,w),candidate={id:`v7-${n}-${hash(signature(d))}`,direction:d,objectives:o,numericSafe:J.validSongNativeDirection(d)};
+  candidates.push(candidate);
+ }
+ const distinct=J.distinctSongCompositionsV7(candidates);
+ for(const c of distinct)c.objectives.compositionNovelty=distinct.length>1?Math.min(...distinct.filter(x=>x!==c).map(x=>separation(signature(c.direction),signature(x.direction)))):null;
+ for(const c of distinct)c.generation={attempted:budget,distinct:distinct.length,duplicates:budget-distinct.length,reason:distinct.length===1?'only one distinct feasible numeric basin':'distinct constrained numerical solutions',weights:w};
+ if(!source)poolCache={identity,candidates:copy(distinct)};return distinct;
+};
+const valid=J.validSongNativeDirection;
+J.validSongNativeDirection=d=>d?.version!==7?valid(d):!!(d.schemaVersion===7&&d.algorithm==='SONG_CAUSAL_COMPOSITION_SEARCH_V7'&&d.rendererCompatibilityId==='kamen-song-grammar-renderer-7'&&valid(as6(d))&&Array.isArray(d.motions)&&d.motions.length===d.lyrics.length&&d.motions.every((m,i)=>m.version===7&&m.line===d.lyrics[i].line&&m.start===d.lyrics[i].start&&m.end===d.lyrics[i].end&&m.knots.length>=2&&m.knots.length<=4&&m.knots[0].time===m.start&&m.knots.at(-1).time===m.end&&m.knots.every((k,i)=>F(k.time)&&(!i||k.time>m.knots[i-1].time)&&F(k.state.dx)&&Math.abs(k.state.dx)<=.05&&F(k.state.dy)&&Math.abs(k.state.dy)<=.05&&F(k.state.scale)&&k.state.scale>=.9&&k.state.scale<=1.1&&F(k.state.opacity)&&k.state.opacity>=.9&&k.state.opacity<=1)));
+J.buildSongCausalCompositionV7=(p,a,options={})=>attachMotions(baseDirection(p,a,options));
+const build=J.buildSongNativeDirection;J.buildSongNativeDirection=(p,a)=>active(p)?J.buildSongCausalCompositionV7(p,a):build(p,a);
+const proposal=(p,d)=>({songNativeDirector:7,style:p.style,mood:p.mood,fx:{...p.fx,hud:'off'},enabled:copy(p.enabled),seed:p.seed,overrides:copy(p.overrides||{}),summary:'曲・歌詞・画像から探索した構図 v7',signals:{image:!!p.autoPalette?.analyzed,audio:true,lyricLines:d.lyrics.length},grammarDirection:d});
+J.generateSongCausalCompositionV7=async(p,a,options={})=>{
+ const identity=J.songNativeInputIdentityV7(p,a),pool=generatePool(p,a,options);await new Promise(r=>setTimeout(r,0));abort(options.signal);
+ if(identity!==J.songNativeInputIdentityV7(p,a))throw Error('INPUT_CHANGED_DURING_GRAMMAR');
+ const candidates=pool.filter(c=>c.numericSafe).sort((a,b)=>a.objectives.cost-b.objectives.cost).map(c=>({id:c.id,proposal:proposal(p,c.direction),objectives:c.objectives}));
+ if(!candidates.length)throw Error('V7_NO_NUMERICALLY_SAFE_COMPOSITION');
+ options.onProgress?.({label:`${pool.length}件の異なる数値構図を生成しました`});return {recommended:candidates[0],candidates};
+};
+const make=J.makeArtDirection;J.makeArtDirection=(p,a,pr)=>{
+ if(pr.songNativeDirector!==7)return make(p,a,pr);
+ const saved=pr.grammarDirection,d=J.validSongNativeDirection(saved)&&saved.sourceIdentity===J.songNativeInputIdentityV7(p,a)?copy(saved):J.buildSongCausalCompositionV7(p,a);
+ const adapter=copy(p);if(adapter.artDirection?.songNativeDirection)adapter.artDirection.songNativeDirection=as6(d);
+ const compatibility=as6(d);compatibility.sourceIdentity=J.songNativeInputIdentity(adapter,a);
+ const art=make(adapter,a,{...pr,songNativeDirector:6,grammarDirection:compatibility});art.songNativeDirection=d;art.vocabulary.layout=art.layoutLanguage=['songGrammarV7'];return art;
+};
+const installMotions=p=>{for(const c of p.cuts||[])if(c.line>=0&&!locked(p,c)){c.layout='songGrammarV7';c.generatedMotionV7=copy(p.songNativeDirection.motions.find(m=>m.line===c.line));}return p;};
+const plan=J.plan;J.plan=(p,a)=>{
+ if(!active(p))return plan(p,a);
+ const saved=p.artDirection.songNativeDirection,identity=J.songNativeInputIdentityV7(p,a),d=J.validSongNativeDirection(saved)&&saved.sourceIdentity===identity?copy(saved):J.buildSongCausalCompositionV7(p,a);
+ const adapter=copy(p);adapter.artDirection.songNativeDirection=as6(d);delete adapter.artDirection.songNativeResolved;
+ adapter.artDirection.songNativeDirection.sourceIdentity=J.songNativeInputIdentity(adapter,a);
+ const result=plan(adapter,a);result.songNativeDirection=d;result.artDirection={...result.artDirection,...copy(p.artDirection),songNativeDirection:d};result.songNativePlanInputIdentity=identity;
+ installMotions(result);return J.restoreSongNativeResolved(p,a,result);
+};
+const stateAt=J.songGrammarStateAt;J.songGrammarStateAt=(p,t)=>active(p)?interpolate(p.songNativeDirection.trajectory.knots,t):stateAt(p,t);
+J.songCompositionStateV7=(p,t)=>{const s=J.songGrammarStateAt(p,t),m=motionAt(p.songNativeDirection,t);return {...s,x:s.x+m.dx,y:s.y+m.dy,width:s.width*m.scale,height:s.height*m.scale};};
+J.LAYOUTS.songGrammarV7={name:'楽曲生成の時間構図 v7',plan:()=>({}),render:env=>{
+ const {plan:p,cut:c,W,H}=env,s=J.songCompositionStateV7(p,env.t),motion=c.generatedMotionV7;
+ if(!motion)return J.LAYOUTS.songGrammarV6.render(env);
+ const groups=J.songGrammarV6Groups(c.lineText||c.text,s,p),font=c.params.font,m=interpolate(motion.knots,env.t);
+ for(let i=0;i<groups.length;i++){
+  const phase=groups.length===1?0:i/(groups.length-1)-.5,width=W*Math.min(.86,s.width+s.groupAxis*.12),height=groups.length>1?Math.min(H*s.height,H*s.groupSpread/(groups.length-1)*.85):H*s.height;
+  const rows=J.semanticLyricLayout(groups[i],{font,size:H*.14,minSize:H*.038,maxWidth:width,maxHeight:height,lead:s.lead,track:s.track,ctx:env.ctx});
+  const item={text:rows?.text??groups[i],font,size:Math.max(H*.038,Math.min(H*.16,rows?.size??J.fitSize(groups[i],font,width,height,{lead:s.lead,track:s.track}))*m.scale),x:(s.x+phase*s.groupSpread*(1-s.groupAxis)*.35)*W,y:(s.y+phase*s.groupSpread)*H,lead:s.lead,track:s.track,color:env.sc.fg,noHold:true};
+  J.mainDraw(env,J.safeLyricItem(env,item));
+ }
+}};
+// Search the actual plan, after preflight and fonts. Only the best three Stage A
+// candidates reach Canvas; no intermediate encode and no image reanalysis.
+const search=J.searchSongNativeCandidates;
+J.searchSongNativeCandidates=async(p,range,a,options={})=>{
+ if(!active(p))return search(p,range,a,options);abort(options.signal);
+ const before=await J.cinemaV3.planHash(p),source=copy(p.songNativeDirection);
+ // Generation may have preceded preflight settings. Reuse only exactly bound pools.
+ const cached=poolCache?.identity===source.sourceIdentity?copy(poolCache.candidates):null;
+ const pool=cached||generatePool(p,a,options,source),safe=pool.filter(c=>c.numericSafe),shortlist=safe.sort((a,b)=>a.objectives.cost-b.objectives.cost).slice(0,3);
+ const R=new J.Renderer(),cv=document.createElement('canvas'),mask=document.createElement('canvas'),bg=document.createElement('canvas');cv.width=mask.width=bg.width=256;cv.height=mask.height=bg.height=Math.round(256*p.H/p.W);
+ const ctx=cv.getContext('2d'),mc=mask.getContext('2d'),bc=bg.getContext('2d'),cuts=p.cuts.filter(c=>c.line>=0&&!locked(p,c)&&c.end>(range?.start??0)&&c.start<(range?.end??p.duration));
+ const representatives=cuts.filter((_,i)=>i===0||i===Math.floor(cuts.length/2)||i===cuts.length-1);
+ try{
+  if(p.customBg?.enabled&&p.customBg.dataUrl)await R.loadCustomBackground(p.customBg.dataUrl);await R.loadAssetDeck?.(p);
+  for(const candidate of shortlist){
+   abort(options.signal);const trial=copy(p);trial.songNativeDirection=candidate.direction;trial.artDirection.songNativeDirection=candidate.direction;installMotions(trial);
+   const observations=[];let safe=true;
+   for(const c of representatives){
+    const t=Math.max(range?.start??0,c.start)+Math.min(.2,(Math.min(range?.end??p.duration,c.end)-Math.max(range?.start??0,c.start))*.5),items=[],glyph=[],draw=J.drawItem;
+    J.drawItem=(env,it)=>{if(env.pass==='main'&&env.cut.line>=0)glyph.push(J.selectionGlyphEvidence(env,it).readable);return draw(env,it);};
+    try{R.frame(ctx,trial,t,{scale:cv.width/p.W,production:true,noHud:true,lyricAuditCtx:mc,lyricAuditItems:items});}finally{J.drawItem=draw;}
+    const ink=mc.getImageData(0,0,cv.width,cv.height).data,pixels=ctx.getImageData(0,0,cv.width,cv.height).data,geometry=J.selectionPixelEvidence(pixels,ink,cv.width,cv.height,items.map(i=>i.bounds).filter(Boolean),p.W,p.H),features=J.observePixelFrame(pixels,cv.width,cv.height,ink);
+    const readable=geometry.safe&&geometry.ink>0&&glyph.length>0&&glyph.every(Boolean);safe&&=readable;
+    let backgroundObservation=null;
+    if(R.customBgBitmap){bc.setTransform(1,0,0,1,0,0);bc.clearRect(0,0,bg.width,bg.height);bc.save();bc.scale(bg.width/p.W,bg.width/p.W);try{R.drawCustomBackground(bc,trial,t,t,0,{},bg.width/p.W,true);}finally{bc.restore();}const f=J.observePixelFrame(bc.getImageData(0,0,bg.width,bg.height).data,bg.width,bg.height);backgroundObservation={texture:f.texture,lumaMean:mean(f.luma),source:'ISOLATED_SOURCE_IMAGE_CANVAS'};}
+    const s=J.songCompositionStateV7(trial,t);observations.push({time:t,readable,center:features.center,bbox:features.bbox,spread:features.spread,placementError:Math.hypot(features.center[0]-s.x,features.center[1]-s.y),background:backgroundObservation??{status:'NOT_APPLICABLE'},regions:J.songBackgroundRegionsV6(trial,s,R.customBgBitmap)});
+   }
+   candidate.canvas={status:observations.length?'OBSERVED_GLYPH_MASK':'NOT_APPLICABLE',safe,frames:observations,readability:observations.length?mean(observations.map(r=>Number(r.readable))):null,realization:observations.length?1-C(mean(observations.map(r=>r.placementError))/.25):null};
+   options.onProgress?.({label:'候補の構図と文字の実Canvasを比較しています'});await new Promise(r=>setTimeout(r,0));
+  }
+ }finally{R.disposeAssets?.();cv.width=cv.height=mask.width=mask.height=bg.width=bg.height=1;}
+ abort(options.signal);if(await J.cinemaV3.planHash(p)!==before)throw Error('INPUT_CHANGED_DURING_SEARCH');
+ const feasible=shortlist.filter(c=>c.canvas?.safe),w=pool[0]?.generation.weights||{music:1,coherence:1,structure:1,readability:1};
+ for(const c of feasible){const o=c.objectives;c.utility=o.musicFit*w.music+(o.structuralFit??0)*w.structure+o.visualCoherence*w.coherence+(c.canvas.realization??0)+(c.canvas.readability??0)*w.readability+Math.min(o.compositionNovelty??0,mean(source.structure.novelty.map(n=>n.value)))-o.excessMotionPenalty;}
+ const chosen=feasible.sort((a,b)=>b.utility-a.utility||a.id.localeCompare(b.id))[0];if(!chosen)throw Error('V7_NO_READABLE_COMPOSITION');
+ const optimization={method:'LOW_DISCREPANCY_MULTISTART_CONSTRAINED_COORDINATE_SEARCH',selectedId:chosen.id,candidateCount:pool.length,attemptedCount:pool[0]?.generation.attempted??pool.length,duplicateCount:pool[0]?.generation.duplicates??0,numericSafeCount:safe.length,canvasComparedCount:shortlist.filter(c=>c.canvas?.frames.length).length,canvasSafeCount:feasible.length,reason:pool[0]?.generation.reason,weights:w,objectives:chosen.objectives,canvas:chosen.canvas.frames.length?'OBSERVED_GLYPH_MASK':'NOT_APPLICABLE_LOCKED_OR_EMPTY',representativeFrames:shortlist.reduce((s,c)=>s+(c.canvas?.frames.length||0),0),candidates:pool.map(c=>({id:c.id,numericSafe:c.numericSafe,objectives:c.objectives,utility:c.utility??null,canvas:c.canvas??{status:'NOT_OBSERVED'}})),artisticQuality:'UNVERIFIED'};
+ p.songNativeDirection=copy(chosen.direction);p.songNativeDirection.optimization=optimization;p.artDirection.songNativeDirection=p.songNativeDirection;installMotions(p);J.cinemaV3.invalidate(p);return p;
+};
+// Reference compositor evaluates the saved numeric contract independently of
+// the production background dispatch. It measures plan realization, not taste.
+J.referenceSongBackgroundV7=(image,p,t,ctx,w,h)=>{
+ if(!active(p)||!image?.width||locked(p,J.cutAt(p,t)||{}))return null;
+ const s=J.songGrammarStateAt(p,t),cfg=p.customBg||{},rect=J.customBgGeometry(image.width,image.height,p.W,p.H,cfg);if(!rect)return null;
+ ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,w,h);ctx.save();ctx.scale(w/p.W,w/p.W);
+ ctx.save();ctx.translate(p.W/2+(.5-s.cameraX)*p.W*.35,p.H/2+(.5-s.cameraY)*p.H*.35);ctx.scale(s.zoom,s.zoom);ctx.translate(-p.W/2,-p.H/2);
+ if(rect.blur>0)ctx.filter=`blur(${(rect.blur*w/p.W).toFixed(1)}px)`;
+ ctx.drawImage(image,rect.x,rect.y,rect.w,rect.h);ctx.restore();
+ if(cfg.darkness){ctx.save();ctx.globalAlpha=C(+cfg.darkness||0,0,.8);ctx.fillStyle='#000';ctx.fillRect(0,0,p.W,p.H);ctx.restore();}
+ for(const [i,[x,y,width,height]] of J.songBackgroundRegionsV6(p,s,image).entries()){
+  const factor=Math.max(width/image.width,height/image.height)/s.cropRatio,sw=width/factor,sh=height/factor;
+  const sx=C(s.cameraX+(i-.5)*s.layerX*4)*(image.width-sw),sy=C(s.cameraY+(i-.5)*s.layerY*4)*(image.height-sh);
+  ctx.save();ctx.globalAlpha=s.regionMix;ctx.beginPath();ctx.rect(x,y,width,height);ctx.clip();ctx.drawImage(image,sx,sy,sw,sh,x,y,width,height);ctx.restore();
+ }
+ ctx.restore();return J.observePixelFrame(ctx.getImageData(0,0,w,h).data,w,h);
+};
+// Reserve complete event triplets. Never count a half-sampled event as covered.
+J.selectSongGrammarObservationTimesV7=(p,range)=>{
+ const from=range?.start??0,to=range?.end??p.duration,last=to-Math.min(1/(p.fps||30),(to-from)/10),selected=new Set();
+ const add=t=>{if(F(t)&&t>=from&&t<=last)selected.add(t);};
+ for(const t of [from,from+.04,last,last-.2,last-.5,Math.min(last,from+3)])add(t);
+ const first=p.lines.find(l=>l.end>from&&l.start<to);if(first)for(const t of [Math.max(from,first.start)+.04,Math.max(from,first.start)+.18])add(t);
+ const events=p.songNativeDirection.trajectory.knots.filter(k=>k.reason==='measured-local-change'&&k.transitionStart>=from&&k.time<=last).sort((a,b)=>b.importance-a.importance);
+ for(const e of events){const group=[e.transitionStart,e.acousticTime,e.time];if(selected.size+group.filter(t=>!selected.has(t)).length>48)continue;group.forEach(add);}
+ for(const s of p.songNativeDirection.sections.filter(s=>s.quietIntent))for(const u of [.25,.75])if(selected.size<56)add(s.start+(s.end-s.start)*u);
+ for(const t of J.selectSongGrammarObservationTimesV6(p,range))if(selected.size<64)add(t);
+ return [...selected].sort((a,b)=>a-b);
+};
+J.refineSongGrammarQualityV7=(p,rows,pairs,metrics,range)=>{
+ J.refineSongGrammarQualityV6(p,rows,pairs,metrics,range);
+ const measured=(values,evidence,source)=>({status:values.length?'MEASURED':'UNMEASURED',score:values.length?Math.round(100*C(mean(values))):null,evidence,source,contractVersion:'kamen-song-composition-quality-7'});
+ const sameLine=(a,b)=>p.lines.find(l=>l.start<=a&&l.end>a)?.index===p.lines.find(l=>l.start<=b&&l.end>b)?.index;
+ const geometry=s=>{const camera={scale:s.zoom,dx:(.5-s.cameraX)*.35,dy:(.5-s.cameraY)*.35};return [(s.x-.5)*camera.scale+.5+camera.dx,(s.y-.5)*camera.scale+.5+camera.dy];};
+ const comparisons=pairs.map(r=>{
+  const a=rows.find(f=>f.time===r.from),b=rows.find(f=>f.time===r.to),x=geometry(J.songCompositionStateV7(p,r.from)),y=geometry(J.songCompositionStateV7(p,r.to));
+  const expected=[y[0]-x[0],y[1]-x[1]],observed=[b.features.center[0]-a.features.center[0],b.features.center[1]-a.features.center[1]],covered=sameLine(r.from,r.to)&&a.features.area>0&&b.features.area>0&&a.features.foregroundSource==='raster-mask'&&b.features.foregroundSource==='raster-mask';
+  const error=Math.hypot(observed[0]-expected[0],observed[1]-expected[1]),magnitude=Math.hypot(...expected),actual=Math.hypot(...observed);
+  return {...r,covered,expectedVector:expected,observedVector:observed,expected:magnitude,actual,error,score:magnitude>1e-5?C(1-error/magnitude)*C(actual/magnitude):C(1-actual/.025)};
+ });
+ const available=comparisons.filter(r=>r.covered);
+ metrics.density=measured(available.filter(r=>r.duration<=.55).map(r=>r.score),available,'same-unit projected and observed geometry');
+ metrics.continuity=measured(available.filter(r=>r.duration<=.55).map(r=>1-C(Math.max(0,r.actual-r.expected))),available,'observed excess projected displacement');
+ metrics.world=metrics.realization=measured(available.map(r=>r.score),comparisons,'same-unit projected glyph centroid displacement; camera included');
+ const from=range?.start??0,to=range?.end??p.duration;
+ const events=p.songNativeDirection.trajectory.knots.filter(k=>k.reason==='measured-local-change'&&(k.acousticTime??k.time)>from&&(k.acousticTime??k.time)<to);
+ const timing=events.map(e=>{
+  const start=e.transitionStart,end=e.time,acoustic=e.acousticTime??e.time,local=available.filter(r=>r.from>=start-1e-7&&r.to<=end+1e-7),covered=local.length>0&&Math.abs(local[0].from-start)<1e-7&&Math.abs(local.at(-1).to-end)<1e-7;
+  const strongest=[...local].sort((a,b)=>b.actual/Math.max(1e-9,b.duration)-a.actual/Math.max(1e-9,a.duration))[0],observedTime=strongest?(strongest.from+strongest.to)/2:null;
+  return {acousticTime:acoustic,plannedTime:(start+end)/2,observationWindow:[start,end],observedTime,frameIntervals:local.map(r=>[r.from,r.to]),observedChange:local.reduce((s,r)=>s+r.actual,0),expectedChange:local.reduce((s,r)=>s+r.expected,0),covered,score:covered&&local.some(r=>r.expected>1e-5)?mean(local.filter(r=>r.expected>1e-5).map(r=>r.score)):null,classification:!covered?'INSUFFICIENT_PAIRED_COVERAGE':local.every(r=>r.expected<1e-5)?'GEOMETRY_HOLD_OTHER_OPERATORS_UNMEASURED':local.some(r=>r.actual>0)?'OBSERVED_GEOMETRY_RESPONSE':'MISSING_VISUAL_RESPONSE'};
+ });
+ metrics.temporal=measured(timing.filter(r=>r.covered&&r.expectedChange>1e-5).map(r=>r.score),[{coverage:events.length?timing.filter(r=>r.covered).length/events.length:null,events:timing}],'paired acoustic-centered Canvas windows; unobserved events excluded and reported');
+ if(!events.length)metrics.temporal=measured(available.map(r=>r.score),comparisons,'measured acoustic hold and Canvas geometry');
+ // Background composition is reference raster realization, independent of pixel
+ // novelty and musical merit. No normalized coordinates/pixels ratio.
+ const backgroundRows=rows.filter(r=>r.backgroundFeatures?.luma?.length&&r.backgroundReference?.luma?.length===r.backgroundFeatures.luma.length),bgEvidence=backgroundRows.map(r=>({time:r.time,sourceTexture:r.backgroundFeatures.texture,observedLuma:r.backgroundFeatures.luma,referenceLuma:r.backgroundReference.luma,error:mean(r.backgroundFeatures.luma.map((v,i)=>Math.abs(v-r.backgroundReference.luma[i]))),status:'RASTER_REFERENCE_COMPARISON'}));
+ metrics.background=p.customBg?.enabled?measured(bgEvidence.map(r=>1-r.error),bgEvidence,'same-unit isolated background raster vs saved numeric region/crop contract; artistic merit unverified'): {status:'NOT_APPLICABLE',score:null,evidence:[]};
+ const cameraRows=rows.filter(r=>F(r.cameraReferenceEffect)&&F(r.cameraEffect)&&(r.cameraExpected<=.0001||r.cameraReferenceEffect>0));
+ metrics.camera=measured(cameraRows.map(r=>1-Math.abs(r.cameraEffect-r.cameraReferenceEffect)),cameraRows.map(r=>({time:r.time,actualCausalPixelDelta:r.cameraEffect,expectedCausalPixelDelta:r.cameraReferenceEffect})),'same-unit production and reference camera-only raster ablation');
+ metrics.backgroundRelation=measured(rows.filter(r=>typeof r.readable==='boolean').map(r=>Number(r.readable)),rows.filter(r=>typeof r.readable==='boolean').map(r=>({time:r.time,readable:r.readable})),'actual glyph/background contrast and safe bounds');
+ metrics.backgroundMusicFit=measured([],timing,'image-dependent raster displacement has no calibrated acoustic magnitude target');
+ return {contractVersion:'kamen-song-composition-quality-7',comparisons};
+};
+const snapshot=J.songNativeFixSnapshot;J.songNativeFixSnapshot=(q,a,p)=>({...snapshot(q,a,p),compositionV7:active(p)?copy(p.songNativeDirection):null});
+const reapply=J.reapplySongNativeSelection;J.reapplySongNativeSelection=(before,q,a,p,impact)=>{
+ const reused=reapply(before,q,a,p,impact);if(reused&&active(p)&&before.compositionV7){const identity=p.songNativeDirection.sourceIdentity;p.songNativeDirection={...copy(before.compositionV7),sourceIdentity:identity};p.artDirection.songNativeDirection=p.songNativeDirection;installMotions(p);J.cinemaV3.invalidate(p);}return reused;
+};
+J.describeSongCompositionV7=(p,c)=>{
+ if(!active(p)||!c?.generatedMotionV7)return null;
+ const m=c.generatedMotionV7,d=p.songNativeDirection,o=d.optimization;
+ const sampleTimes=[c.start,m.entryEnd,m.exitStart,c.end-1e-6,...d.trajectory.knots.filter(k=>k.time>c.start&&k.time<c.end).map(k=>k.time)];
+ const states=sampleTimes.map(t=>J.songCompositionStateV7(p,t)),middle=J.songCompositionStateV7(p,(c.start+c.end)/2);
+ const changing=(from,to)=>{const samples=[from,to,...sampleTimes.filter(t=>t>from&&t<to)].map(t=>J.songCompositionStateV7(p,Math.min(t,c.end-1e-6)));return samples.some(s=>norm(s,samples[0])>1e-5);};
+ return {groups:J.songGrammarV6Groups(c.lineText||c.text,middle,p).length,entry:changing(m.start,m.entryEnd)?'数値軌道':'即時表示',hold:changing(m.entryEnd,m.exitStart)?'生成軌道':'静止',exit:changing(m.exitStart,m.end)?'数値軌道':'表示終了',camera:states.some(s=>Math.hypot(s.cameraX-states[0].cameraX,s.cameraY-states[0].cameraY)+Math.abs(s.zoom-states[0].zoom)>1e-6)?'生成軌道':'静止',background:p.customBg?.enabled?`${middle.regionCount}領域`:'画像なし',repeat:m.evidence.repeatFrom,selection:o?`${o.candidateCount}候補・採用 ${o.selectedId}・Canvas ${o.canvasComparedCount}案比較（${o.canvasSafeCount}案適合）・音楽/反復/可読性/過剰運動の比較`: '数値生成済み・Canvas比較前'};
+};
+})();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzzzzzzzzk_song_composition_v7.js");
 
 /* ============================================================
    JIZURA — editor UI
@@ -41342,6 +41623,7 @@ function refreshPreviewPlan() {
   S.previewPlan = S.previewAspect ? J.plan({ ...S.project, aspect:S.previewAspect }, audioLike()) : null;
 }
 function replan() {
+  lastCutIdx=-2;
   S.socialPlan=null;
   S.pixelQA=null;S.exportValidation=null;
   S.plan = J.plan(S.project, audioLike());
@@ -41579,6 +41861,9 @@ function updateCutInfo() {
   if (!cut) { el.innerHTML = '<span class="hint">この位置にカットはありません</span>'; return; }
   const chip = (cls, k, v) => `<span class="chip ${cls}"><b>${k}</b>${v}</span>`;
   const n = (tbl, k) => (tbl[k] ? tbl[k].name : k);
+  const generated=J.describeSongCompositionV7?.(S.plan,cut);
+  const generatedChip=(cls,key,value)=>chip(cls,key,escapeHtml(value));
+  if(generated){el.innerHTML=[generatedChip('l','構図',`${generated.groups}文字グループ`),generatedChip('e','登場',generated.entry),generatedChip('h','表示中',generated.hold),generatedChip('x','退場',generated.exit),generatedChip('c','カメラ',generated.camera),generatedChip('b','背景',generated.background),generatedChip('','反復',generated.repeat===null?'独立区間':`区間 ${generated.repeat+1} と関連`),generatedChip('','探索',generated.selection)].join('');return;}
   el.innerHTML = [
     `<span class="chip mono">#${String(cut.index + 1).padStart(2, '0')}</span>`,
     chip('l', 'レイアウト', n(J.LAYOUTS, cut.layout)), chip('e', '登場', n(J.ENTER, cut.enter)), chip('h', '保持', n(J.HOLD, cut.hold)), chip('x', '退場', n(J.EXIT, cut.exit)),
@@ -41631,7 +41916,7 @@ function renderLines() {
     });
     const cutsEl = li.querySelector('.cuts');
     S.plan.cuts.filter(c => c.line === i && J.LAYOUTS[c.layout] && !J.LAYOUTS[c.layout].special).forEach(c => {
-      const sp = document.createElement('span'); sp.textContent = J.LAYOUTS[c.layout].name; sp.title = `${c.text}｜${J.ENTER[c.enter].name} → ${J.EXIT[c.exit].name}`;
+      const sp = document.createElement('span'); sp.textContent = J.LAYOUTS[c.layout].name; sp.title = c.generatedMotionV7?`${c.text}｜${J.describeSongCompositionV7(S.plan,c).selection}`:`${c.text}｜${J.ENTER[c.enter].name} → ${J.EXIT[c.exit].name}`;
       sp.style.borderColor = `hsla(${layoutHue(c.layout)},70%,58%,0.7)`;
       sp.addEventListener('click', () => seek(c.start + Math.min(c.dur * 0.5, c.inDur + 0.05)));
       cutsEl.appendChild(sp);
@@ -42188,7 +42473,7 @@ async function autoDirection() {
     const generationProject=S.project,generationAudio=S.audio;
     let generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
     const assertGeneration=()=>{if(generationCancel.signal.aborted)throw new DOMException('Aborted','AbortError');if(S.project!==generationProject||S.audio!==generationAudio||J.songNativeInputIdentity(S.project,audioLike())!==generationIdentity)throw new Error('入力が変更されたため、古いMVの確定を中止しました。もう一度作成してください');};
-    const directionSet=await J.generateSongVisualGrammarV6(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
+    const directionSet=await J.generateSongCausalCompositionV7(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
     assertGeneration();task.enter('apply');await J.processingYield();assertGeneration();
     const proposal=directionSet.recommended.proposal;
     S.directionCandidates=directionSet.candidates;S.alternative=0;
@@ -42253,7 +42538,9 @@ async function autoDirection() {
     const quality = J.inspectDirection(S.plan);
     if (!quality.coherent) console.warn('Art direction check:', quality.violations);
     if (new URLSearchParams(location.search).has('directionDebug')) console.info('Auto Direction Debug Report', proposal.debug, S.project.artDirection);
-    $('directionStatus').textContent = `提案：${proposal.summary}（画像 ${proposal.signals.image ? '✓' : '—'}・曲 ${proposal.signals.audio ? '✓' : '—'}・歌詞 ${proposal.signals.lyricLines}行）`;
+    const v7Selection=J.describeSongCompositionV7?.(S.plan,S.plan.cuts.find(c=>c.generatedMotionV7));
+    $('alternativeChoice').textContent=v7Selection?.selection||'推奨案';
+    $('directionStatus').textContent = (v7Selection?v7Selection.selection+' · ':'')+`提案：${proposal.summary}（画像 ${proposal.signals.image ? '✓' : '—'}・曲 ${proposal.signals.audio ? '✓' : '—'}・歌詞 ${proposal.signals.lyricLines}行）`;
     $('directionStatus').dataset.result = 'true';
     task.enter('preview');await J.processingYield();S.need=true;
     assertGeneration();task.enter('save');const saved=await flushSave();assertGeneration();if(!saved)throw new Error('MVは作成しましたが、ブラウザへの保存を完了できませんでした。プロジェクト保存でバックアップしてください');
@@ -42278,8 +42565,8 @@ function updateStudioQuality(fixes=0) {
   const details=$('studioQualityDetails'),summary=$('studioScore'),breakdown=$('studioQualityBreakdown');
   if(details&&summary&&breakdown){details.hidden=false;summary.textContent=scoreText;
     const labels={styleSelection:'スタイルの適合',styleRealization:'スタイルの実現',lyrics:'歌詞の可読性・表現',motion:'動きの実現と静動差',composition:'構図・前景の展開',coherence:'演出の一貫性',repetition:'反復の展開',title:'タイトル・アーティスト',export:'書き出し準備',hookStrength:'歌詞開始フック',scrollStopPower:'停止力',visualEnergyDensity:'視覚エネルギー',socialShareability:'SNS共有適性'};
-    const grammar=report.quality.songGrammarV6||report.quality.songGrammarV5;
-    const grammarNodes=grammar?Object.entries(grammar.metrics).map(([key,m])=>{const line=document.createElement('span');const names={realization:'構図の実現度',perceptualNovelty:'画面の新規性',backgroundNovelty:'背景の新規性',world:'映像世界',typography:'文字配置',camera:'カメラ軌道',background:'背景構成',temporal:'音楽との時間対応',density:'映像変化の密度',temporalContrast:'静と動の対比',repetition:'反復構造',stillness:'静止意図',continuity:'構図の連続性',opening:'冒頭の変化',lyricVisibility:'歌詞表示',readability:'可読性',ending:'終端',loop:'ループ'};line.textContent=`${names[key]||key}　${m.status}${m.status==='MEASURED'?' · '+m.score+' / 100':''}`;return line;}):[];
+    const grammar=report.quality.songGrammarV7||report.quality.songGrammarV6||report.quality.songGrammarV5;
+    const grammarNodes=grammar?Object.entries(grammar.metrics).map(([key,m])=>{const line=document.createElement('span');const names={realization:'構図の実現度',perceptualNovelty:'画面の新規性',backgroundNovelty:'背景の新規性',backgroundRelation:'文字と背景の関係',backgroundMusicFit:'背景の音楽適合',world:'映像世界',typography:'文字配置',camera:'カメラ軌道',background:'背景構成',temporal:'音楽との時間対応',density:'映像変化の密度',temporalContrast:'静と動の対比',repetition:'反復構造',stillness:'静止意図',continuity:'構図の連続性',opening:'冒頭の変化',lyricVisibility:'歌詞表示',readability:'可読性',ending:'終端',loop:'ループ'};line.textContent=`${names[key]||key}　${m.status}${m.status==='MEASURED'?' · '+m.score+' / 100':''}`;return line;}):[];
     const domainNodes=(verified?[]:domains).map(item=>{const line=document.createElement('span');line.className='quality-domain';line.textContent=`${item.key==='technical'?'技術':item.key==='creative'?'創作':'SNS'}　${item.score} / ${item.max}`;return line;});
     const metricLabels={localContrast:'文字の局所コントラスト（画素推定）',motion:'最終MP4の動作（画素推定）',semanticDirection:'歌詞の意味の実現',motionRealization:'文字動作の実現（画素推定）',impactBeatSync:'選択した強拍の同期（画素推定）',styleRealization:'スタイルの実現',decodedMotion:'最終MP4の区間内動作（画素推定）',perceptualNovelty:'画面の新規性',foregroundNovelty:'画像前景の新規性（画素推定）',lyricForegroundNovelty:'歌詞前景の新規性（診断）',visualStagnationSeconds:'最長の停滞秒数',structuralDiversity:'構成の多様性',styleArcRealization:'Style Arc実現度',typographyDiversity:'文字構成の変化',layerDepth:'レイヤーの深さ',temporalContrast:'静と動の差',peakImpact:'ピークの強さ',hookNovelty:'冒頭の独自性',loopQuality:'映像・文字・音声のループ適性'};
     const metricNodes=Object.entries(verified?.metrics||report.quality.metrics||{}).map(([key,value])=>{const line=document.createElement('span');line.textContent=`${metricLabels[key]||key}　${value==null?'未計測':`${value}${key==='visualStagnationSeconds'?' 秒':key==='backgroundShotDiversity'?' 種類':' / 100'}`}`;return line;});
@@ -42409,7 +42696,7 @@ function mountStudio() {
   $('studioAlternative').addEventListener('click',async()=>{
     if(!S.audio||!S.project.autoDirection)return;
     if(S.directionCandidates.length<3){
-      S.directionCandidates=(await J.generateSongVisualGrammarV6(S.project,audioLike())).candidates;
+      S.directionCandidates=(await J.generateSongCausalCompositionV7(S.project,audioLike())).candidates;
       S.alternative=0;
     } else S.alternative=(S.alternative+1)%S.directionCandidates.length;
     const proposal=S.directionCandidates[S.alternative].proposal;

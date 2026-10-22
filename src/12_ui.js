@@ -256,6 +256,7 @@ function refreshPreviewPlan() {
   S.previewPlan = S.previewAspect ? J.plan({ ...S.project, aspect:S.previewAspect }, audioLike()) : null;
 }
 function replan() {
+  lastCutIdx=-2;
   S.socialPlan=null;
   S.pixelQA=null;S.exportValidation=null;
   S.plan = J.plan(S.project, audioLike());
@@ -493,6 +494,9 @@ function updateCutInfo() {
   if (!cut) { el.innerHTML = '<span class="hint">この位置にカットはありません</span>'; return; }
   const chip = (cls, k, v) => `<span class="chip ${cls}"><b>${k}</b>${v}</span>`;
   const n = (tbl, k) => (tbl[k] ? tbl[k].name : k);
+  const generated=J.describeSongCompositionV7?.(S.plan,cut);
+  const generatedChip=(cls,key,value)=>chip(cls,key,escapeHtml(value));
+  if(generated){el.innerHTML=[generatedChip('l','構図',`${generated.groups}文字グループ`),generatedChip('e','登場',generated.entry),generatedChip('h','表示中',generated.hold),generatedChip('x','退場',generated.exit),generatedChip('c','カメラ',generated.camera),generatedChip('b','背景',generated.background),generatedChip('','反復',generated.repeat===null?'独立区間':`区間 ${generated.repeat+1} と関連`),generatedChip('','探索',generated.selection)].join('');return;}
   el.innerHTML = [
     `<span class="chip mono">#${String(cut.index + 1).padStart(2, '0')}</span>`,
     chip('l', 'レイアウト', n(J.LAYOUTS, cut.layout)), chip('e', '登場', n(J.ENTER, cut.enter)), chip('h', '保持', n(J.HOLD, cut.hold)), chip('x', '退場', n(J.EXIT, cut.exit)),
@@ -545,7 +549,7 @@ function renderLines() {
     });
     const cutsEl = li.querySelector('.cuts');
     S.plan.cuts.filter(c => c.line === i && J.LAYOUTS[c.layout] && !J.LAYOUTS[c.layout].special).forEach(c => {
-      const sp = document.createElement('span'); sp.textContent = J.LAYOUTS[c.layout].name; sp.title = `${c.text}｜${J.ENTER[c.enter].name} → ${J.EXIT[c.exit].name}`;
+      const sp = document.createElement('span'); sp.textContent = J.LAYOUTS[c.layout].name; sp.title = c.generatedMotionV7?`${c.text}｜${J.describeSongCompositionV7(S.plan,c).selection}`:`${c.text}｜${J.ENTER[c.enter].name} → ${J.EXIT[c.exit].name}`;
       sp.style.borderColor = `hsla(${layoutHue(c.layout)},70%,58%,0.7)`;
       sp.addEventListener('click', () => seek(c.start + Math.min(c.dur * 0.5, c.inDur + 0.05)));
       cutsEl.appendChild(sp);
@@ -1102,7 +1106,7 @@ async function autoDirection() {
     const generationProject=S.project,generationAudio=S.audio;
     let generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
     const assertGeneration=()=>{if(generationCancel.signal.aborted)throw new DOMException('Aborted','AbortError');if(S.project!==generationProject||S.audio!==generationAudio||J.songNativeInputIdentity(S.project,audioLike())!==generationIdentity)throw new Error('入力が変更されたため、古いMVの確定を中止しました。もう一度作成してください');};
-    const directionSet=await J.generateSongVisualGrammarV6(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
+    const directionSet=await J.generateSongCausalCompositionV7(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
     assertGeneration();task.enter('apply');await J.processingYield();assertGeneration();
     const proposal=directionSet.recommended.proposal;
     S.directionCandidates=directionSet.candidates;S.alternative=0;
@@ -1167,7 +1171,9 @@ async function autoDirection() {
     const quality = J.inspectDirection(S.plan);
     if (!quality.coherent) console.warn('Art direction check:', quality.violations);
     if (new URLSearchParams(location.search).has('directionDebug')) console.info('Auto Direction Debug Report', proposal.debug, S.project.artDirection);
-    $('directionStatus').textContent = `提案：${proposal.summary}（画像 ${proposal.signals.image ? '✓' : '—'}・曲 ${proposal.signals.audio ? '✓' : '—'}・歌詞 ${proposal.signals.lyricLines}行）`;
+    const v7Selection=J.describeSongCompositionV7?.(S.plan,S.plan.cuts.find(c=>c.generatedMotionV7));
+    $('alternativeChoice').textContent=v7Selection?.selection||'推奨案';
+    $('directionStatus').textContent = (v7Selection?v7Selection.selection+' · ':'')+`提案：${proposal.summary}（画像 ${proposal.signals.image ? '✓' : '—'}・曲 ${proposal.signals.audio ? '✓' : '—'}・歌詞 ${proposal.signals.lyricLines}行）`;
     $('directionStatus').dataset.result = 'true';
     task.enter('preview');await J.processingYield();S.need=true;
     assertGeneration();task.enter('save');const saved=await flushSave();assertGeneration();if(!saved)throw new Error('MVは作成しましたが、ブラウザへの保存を完了できませんでした。プロジェクト保存でバックアップしてください');
@@ -1192,8 +1198,8 @@ function updateStudioQuality(fixes=0) {
   const details=$('studioQualityDetails'),summary=$('studioScore'),breakdown=$('studioQualityBreakdown');
   if(details&&summary&&breakdown){details.hidden=false;summary.textContent=scoreText;
     const labels={styleSelection:'スタイルの適合',styleRealization:'スタイルの実現',lyrics:'歌詞の可読性・表現',motion:'動きの実現と静動差',composition:'構図・前景の展開',coherence:'演出の一貫性',repetition:'反復の展開',title:'タイトル・アーティスト',export:'書き出し準備',hookStrength:'歌詞開始フック',scrollStopPower:'停止力',visualEnergyDensity:'視覚エネルギー',socialShareability:'SNS共有適性'};
-    const grammar=report.quality.songGrammarV6||report.quality.songGrammarV5;
-    const grammarNodes=grammar?Object.entries(grammar.metrics).map(([key,m])=>{const line=document.createElement('span');const names={realization:'構図の実現度',perceptualNovelty:'画面の新規性',backgroundNovelty:'背景の新規性',world:'映像世界',typography:'文字配置',camera:'カメラ軌道',background:'背景構成',temporal:'音楽との時間対応',density:'映像変化の密度',temporalContrast:'静と動の対比',repetition:'反復構造',stillness:'静止意図',continuity:'構図の連続性',opening:'冒頭の変化',lyricVisibility:'歌詞表示',readability:'可読性',ending:'終端',loop:'ループ'};line.textContent=`${names[key]||key}　${m.status}${m.status==='MEASURED'?' · '+m.score+' / 100':''}`;return line;}):[];
+    const grammar=report.quality.songGrammarV7||report.quality.songGrammarV6||report.quality.songGrammarV5;
+    const grammarNodes=grammar?Object.entries(grammar.metrics).map(([key,m])=>{const line=document.createElement('span');const names={realization:'構図の実現度',perceptualNovelty:'画面の新規性',backgroundNovelty:'背景の新規性',backgroundRelation:'文字と背景の関係',backgroundMusicFit:'背景の音楽適合',world:'映像世界',typography:'文字配置',camera:'カメラ軌道',background:'背景構成',temporal:'音楽との時間対応',density:'映像変化の密度',temporalContrast:'静と動の対比',repetition:'反復構造',stillness:'静止意図',continuity:'構図の連続性',opening:'冒頭の変化',lyricVisibility:'歌詞表示',readability:'可読性',ending:'終端',loop:'ループ'};line.textContent=`${names[key]||key}　${m.status}${m.status==='MEASURED'?' · '+m.score+' / 100':''}`;return line;}):[];
     const domainNodes=(verified?[]:domains).map(item=>{const line=document.createElement('span');line.className='quality-domain';line.textContent=`${item.key==='technical'?'技術':item.key==='creative'?'創作':'SNS'}　${item.score} / ${item.max}`;return line;});
     const metricLabels={localContrast:'文字の局所コントラスト（画素推定）',motion:'最終MP4の動作（画素推定）',semanticDirection:'歌詞の意味の実現',motionRealization:'文字動作の実現（画素推定）',impactBeatSync:'選択した強拍の同期（画素推定）',styleRealization:'スタイルの実現',decodedMotion:'最終MP4の区間内動作（画素推定）',perceptualNovelty:'画面の新規性',foregroundNovelty:'画像前景の新規性（画素推定）',lyricForegroundNovelty:'歌詞前景の新規性（診断）',visualStagnationSeconds:'最長の停滞秒数',structuralDiversity:'構成の多様性',styleArcRealization:'Style Arc実現度',typographyDiversity:'文字構成の変化',layerDepth:'レイヤーの深さ',temporalContrast:'静と動の差',peakImpact:'ピークの強さ',hookNovelty:'冒頭の独自性',loopQuality:'映像・文字・音声のループ適性'};
     const metricNodes=Object.entries(verified?.metrics||report.quality.metrics||{}).map(([key,value])=>{const line=document.createElement('span');line.textContent=`${metricLabels[key]||key}　${value==null?'未計測':`${value}${key==='visualStagnationSeconds'?' 秒':key==='backgroundShotDiversity'?' 種類':' / 100'}`}`;return line;});
@@ -1323,7 +1329,7 @@ function mountStudio() {
   $('studioAlternative').addEventListener('click',async()=>{
     if(!S.audio||!S.project.autoDirection)return;
     if(S.directionCandidates.length<3){
-      S.directionCandidates=(await J.generateSongVisualGrammarV6(S.project,audioLike())).candidates;
+      S.directionCandidates=(await J.generateSongCausalCompositionV7(S.project,audioLike())).candidates;
       S.alternative=0;
     } else S.alternative=(S.alternative+1)%S.directionCandidates.length;
     const proposal=S.directionCandidates[S.alternative].proposal;

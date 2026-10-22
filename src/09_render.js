@@ -164,7 +164,7 @@ class Renderer {
     // motion is quantised to 'koma' drawings per second (24fps timebase); random flicker runs on a <=24Hz clock
     const stepDur = J.stepDur(fx, fps);
     const clock = J.komaOf(fx) > 0 ? stepDur : 1 / 24;
-    const tq = J.renderTimeWithLyricBoundary(plan,t,stepDur);
+    const tq = plan.songNativeDirection?.version===7&&J.cutAt(plan,t)?.generatedMotionV7?t:J.renderTimeWithLyricBoundary(plan,t,stepDur);
     const mainCut = J.cutAt(plan, tq);
     const mainStyle=mainCut?.style||st;
     const sc = mainStyle.schemes[mainCut ? mainCut.scheme % mainStyle.schemes.length : 0] || mainStyle.schemes[0];

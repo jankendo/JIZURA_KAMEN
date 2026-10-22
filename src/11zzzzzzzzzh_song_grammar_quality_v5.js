@@ -1,7 +1,7 @@
 /* v5 observation contract. Planned acoustic/composition targets never count as
    rendered evidence. Canvas proxies do not certify decoded MP4 or audience taste. */
 (()=>{'use strict';
-const J=window.J,F=Number.isFinite,C=J.clamp,active=p=>[5,6].includes(p?.songNativeDirection?.version);
+const J=window.J,F=Number.isFinite,C=J.clamp,active=p=>[5,6,7].includes(p?.songNativeDirection?.version);
 const version='kamen-song-grammar-quality-5',mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
 const delta=(a,b)=>a?.length&&a.length===b?.length?mean(a.map((v,i)=>Math.abs(v-b[i]))):null;
 const fontIds=new WeakMap();let nextFont=0;
@@ -60,7 +60,7 @@ J.measureSongGrammarV5=(p,frames=[],range)=>{
  const endingPairs=pairs.filter(r=>r.from>=to-.6&&F(r.target)).map(r=>({...r,closingActual:r.actual+(r.background??0)*.5,closingExpected:r.target+r.cameraTarget*.15}));
  metrics.ending=endCovered&&ending.length>=2&&endingPairs.length?metric('MEASURED',lastLine&&lastLine.end>to+.05?0:100*mean(endingPairs.map(r=>C(1-Math.abs(r.closingActual-r.closingExpected)/Math.max(.01,r.closingExpected)))),[{lastFrame:ending.at(-1).time,lyricTruncated:!!lastLine&&lastLine.end>to+.05,observedProgression:endingPairs,scope:'Canvas endpoint and input-conditioned closing pixel progression; audio/MP4 closure unmeasured'}]):metric('UNMEASURED',null,[]);
  metrics.loop=p.socialHook?.loopRequired===true?metric('UNMEASURED',null,[{reason:'requires decoded visual, lyric and audio join'}]):metric('NOT_APPLICABLE',null,[],'output does not require looping');
- const refinement=p.songNativeDirection.version===6?J.refineSongGrammarQualityV6(p,rows,pairs,metrics,range):null;
+ const refinement=p.songNativeDirection.version===7?J.refineSongGrammarQualityV7(p,rows,pairs,metrics,range):p.songNativeDirection.version===6?J.refineSongGrammarQualityV6(p,rows,pairs,metrics,range):null;
  const required=['world','typography','camera','background','temporal','repetition','stillness','continuity','opening','lyricVisibility','readability','density','temporalContrast','ending','loop'];
  if(refinement)required.push('realization','perceptualNovelty','backgroundNovelty');
  if(malformed.length)for(const k of required)if(metrics[k].status!=='NOT_APPLICABLE')metrics[k]=metric('FAILED',null,[{reason:'INVALID_CANVAS_CHANNELS',frames:malformed.map(f=>f.time)}]);
@@ -75,7 +75,7 @@ const collect=async(p,range,telemetry={})=>{
  for(const s of p.songNativeDirection.sections){if(s.end<=from||s.start>=to)continue;const tr=s.transition||{},start=tr.start??s.start,end=start+(tr.duration||.3);for(const t of [s.start-.08,s.start+.04,start-.04,(start+end)/2,end+.04,(s.start+s.end)/2])add(t);}
  for(const l of (p.lines||[]).slice(0,6))for(const t of [l.start+.04,l.start+.18])add(t);
  for(let i=1;i<8;i++)add(from+(to-from)*i/8);
- if(p.songNativeDirection.version===6){times.clear();for(const t of J.selectSongGrammarObservationTimesV6(p,range))times.add(t);}
+ if(p.songNativeDirection.version>=6){times.clear();for(const t of (p.songNativeDirection.version===7?J.selectSongGrammarObservationTimesV7:J.selectSongGrammarObservationTimesV6)(p,range))times.add(t);}
  const R=new J.Renderer(),cv=document.createElement('canvas'),mask=document.createElement('canvas'),bg=document.createElement('canvas'),w=160,h=Math.round(w*p.H/p.W);
  cv.width=mask.width=bg.width=w;cv.height=mask.height=bg.height=h;
  const ctx=cv.getContext('2d',{willReadFrequently:true}),mc=mask.getContext('2d',{willReadFrequently:true}),bc=bg.getContext('2d',{willReadFrequently:true}),frames=[];
@@ -90,8 +90,8 @@ const collect=async(p,range,telemetry={})=>{
    try{R.frame(ctx,p,t,{scale:w/p.W,production:true,noHud:true,range,lyricAuditCtx:mc,lyricAuditItems:items});}finally{J.drawItem=draw;}
    const pixels=ctx.getImageData(0,0,w,h).data,ink=mc.getImageData(0,0,w,h).data,features=J.observePixelFrame(pixels,w,h,ink),s=J.songGrammarStateAt(p,t),row={time:t,features};
    if(glyphChecks.length){const geometry=J.selectionPixelEvidence(pixels,ink,w,h,items.map(i=>i.bounds).filter(Boolean),p.W,p.H);row.readable=glyphChecks.every(Boolean)&&geometry.safe&&geometry.ink>0;}
-   if(items.length&&features.area>0){const bands=items.map(item=>{const b=item.bounds;let inkCount=0;if(b)for(let y=Math.max(0,Math.floor(b.y0/p.H*h));y<Math.min(h,Math.ceil(b.y1/p.H*h));y++)for(let x=Math.max(0,Math.floor(b.x0/p.W*w));x<Math.min(w,Math.ceil(b.x1/p.W*w));x++)if(ink[(y*w+x)*4+3]>24)inkCount++;return {bounds:b,inkPixels:inkCount};});row.groupBands=bands;const cut=J.cutAt(p,t),count=(p.songNativeDirection.version===6?J.songGrammarV6Groups(cut?.lineText||cut?.text||'',s,p):J.songGrammarV5Groups(cut?.lineText||cut?.text||'',s)).length;row.groupRealization=C(bands.filter(b=>b.inkPixels>0).length/Math.max(1,count));}
-   if(R.customBgBitmap){row.backgroundFeatures=background(p,t);const control=background(frozen,t);row.cameraEffect=pixelDistance(row.backgroundFeatures,control);row.cameraExpected=Math.hypot(s.cameraX-initial.cameraX,s.cameraY-initial.cameraY)+Math.abs(s.zoom-initial.zoom);}
+   if(items.length&&features.area>0){const bands=items.map(item=>{const b=item.bounds;let inkCount=0;if(b)for(let y=Math.max(0,Math.floor(b.y0/p.H*h));y<Math.min(h,Math.ceil(b.y1/p.H*h));y++)for(let x=Math.max(0,Math.floor(b.x0/p.W*w));x<Math.min(w,Math.ceil(b.x1/p.W*w));x++)if(ink[(y*w+x)*4+3]>24)inkCount++;return {bounds:b,inkPixels:inkCount};});row.groupBands=bands;const cut=J.cutAt(p,t),count=(p.songNativeDirection.version>=6?J.songGrammarV6Groups(cut?.lineText||cut?.text||'',s,p):J.songGrammarV5Groups(cut?.lineText||cut?.text||'',s)).length;row.groupRealization=C(bands.filter(b=>b.inkPixels>0).length/Math.max(1,count));}
+   if(R.customBgBitmap){row.backgroundFeatures=background(p,t);const control=background(frozen,t);row.cameraEffect=pixelDistance(row.backgroundFeatures,control);row.cameraExpected=Math.hypot(s.cameraX-initial.cameraX,s.cameraY-initial.cameraY)+Math.abs(s.zoom-initial.zoom);if(p.songNativeDirection.version===7){row.backgroundReference=J.referenceSongBackgroundV7(R.customBgBitmap,p,t,bc,w,h);row.cameraReferenceEffect=pixelDistance(row.backgroundReference,J.referenceSongBackgroundV7(R.customBgBitmap,frozen,t,bc,w,h));}}
    frames.push(row);
    if(frames.length%8===0){telemetry.onProgress?.({label:'構図・時間・背景の実画素を検査しています',current:frames.length,total:times.size});await new Promise(r=>setTimeout(r,0));}
   }
@@ -134,6 +134,7 @@ const check=J.checkMVQuality;J.checkMVQuality=(project,p,audio,range,pixel,caps,
  // Keep every inherited hard gate and threshold. This contract only replaces
  // legacy style/event proxies and cannot certify missing/undecoded evidence.
  if(p.songNativeDirection.version===6)q.songGrammarV6=e;
+ if(p.songNativeDirection.version===7)q.songGrammarV7=e;
  if(q.targetAcceptance){q.targetAcceptance.certified100=false;if(!e.requiredComplete){q.targetAcceptance.minimumMet=false;q.targetAcceptance.unmeasured=[...new Set([...(q.targetAcceptance.unmeasured||[]),...q.unmeasuredRequired.map(k=>'v5.'+k)])];}}
  return r;
 };

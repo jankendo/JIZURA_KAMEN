@@ -186,7 +186,7 @@ J.scoreMVQuality=(report,project,plan,audio,range,pixel,capabilities,validation)
 };
 const baseFrame=J.Renderer?.prototype?.frame;
 if(baseFrame)J.Renderer.prototype.frame=function(ctx,plan,t,opt={}){
- if([4,5,6].includes(plan?.songNativeDirection?.version))return baseFrame.call(this,ctx,plan,t,opt);
+ if([4,5,6,7].includes(plan?.songNativeDirection?.version))return baseFrame.call(this,ctx,plan,t,opt);
  const hype=plan?.visualEnergyDensity,rangeStart=opt.range?.start,anchor=Number.isFinite(rangeStart)?rangeStart:(plan?.hookEngine?.firstCut?.start||0);
  const c=plan?.cuts?.find(x=>x.line>=0&&x.layout!=='interlude'&&x.start>=anchor-.02&&x.start<anchor+.1),priorScale=c?.params?.intensityScale,priorHookScale=c?.params?.hookScale;
  if(c&&t>=anchor&&t<anchor+.68){c.params.intensityScale=C(priorScale*1.1,.82,1.27);c.params.hookScale=Math.max(c.params.hookScale||1,1.1);}
