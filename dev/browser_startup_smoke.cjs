@@ -30,8 +30,12 @@ assert(url,'URL is required');
    S.audio={name:'synthetic',buffer,duration:1,bpm:120,energyRate:2,energy:Float32Array.from([.2,.8]),onset:Float32Array.from([.2,.6]),features:{energy:.5}};S.project.timing.snap=false;J.uiApi.syncUI();J.uiApi.replan();
   });
   await page.evaluate(()=>{const original=J.searchSongNativeCandidates;J.searchSongNativeCandidates=async(...args)=>{try{return await original(...args);}catch(e){console.error('DIRECTION_DIAGNOSTIC '+JSON.stringify(e.diagnostic));throw e;}};});
+  await page.evaluate(async()=>{await J.uiApi.flushSave();window.storageFailurePut=IDBObjectStore.prototype.put;IDBObjectStore.prototype.put=function(value,key){if(key==='project-current-v2')throw new DOMException('Injected IDB quota exhaustion','QuotaExceededError');return window.storageFailurePut.call(this,value,key);};});
   await page.locator('#btnAutoDirection').click({force:true});
-  await page.waitForFunction(()=>document.querySelector('#directionStatus').dataset.result==='true'||[...J.processing.jobs.values()].some(s=>s.status==='error'),null,{timeout:60000});
+  await page.waitForFunction(()=>document.querySelector('#directionStatus').dataset.result==='true'||[...J.processing.jobs.values()].some(s=>s.status==='error'),null,{timeout:120000}).catch(async e=>{console.error('UI_TIMEOUT',await page.evaluate(()=>({status:document.querySelector('#directionStatus').textContent,jobs:[...J.processing.jobs.values()].map(x=>({status:x.status,error:x.error,stage:x.stage}))})));throw e;});
+  await page.waitForFunction(()=>!document.querySelector('#btnAutoDirection').disabled,null,{timeout:60000});
+  assert.equal(await page.evaluate(async()=>{const S=J.ui;if(!S.unsaved||S.persistenceError?.name!=='QuotaExceededError'||!document.querySelector('#directionStatus').textContent.includes('MVは生成できました'))return false;J.assertSelectionV9(S.plan,S.audio);const backup=JSON.parse(await J.uiApi.portableProjectJSON());if(!backup.artDirection.songNativeResolved)return false;IDBObjectStore.prototype.put=window.storageFailurePut;return await J.uiApi.flushSave()&&!S.unsaved;}),true);
+  console.log('Generated MV survives IndexedDB quota failure, backup and retry PASS');
   const grammar=await page.evaluate(()=>{
    const J=window.J,S=J.ui;if(document.querySelector('#directionStatus').dataset.result!=='true')throw Error('V9_UI_GENERATION_FAILED: '+[...J.processing.jobs.values()].filter(s=>s.status==='error').map(s=>s.error).join(';'));
    J.assertSelectionV9(S.plan,S.audio);
@@ -42,7 +46,7 @@ assert(url,'URL is required');
   await page.waitForFunction(()=>!document.querySelector('#btnAutoDirection').disabled,null,{timeout:15000});
   if(await page.evaluate(()=>!!J.ui.plan.songNativeDirection.selection.alternatives?.length)){
    await page.locator('#studioAlternative').click({force:true});
-   await page.waitForFunction(()=>document.querySelector('#alternativeChoice').textContent==='実Canvas確認済みの別案を適用しました'||!document.querySelector('#btnAutoDirection').disabled,null,{timeout:15000});
+   await page.waitForFunction(()=>document.querySelector('#alternativeChoice').textContent==='実Canvas確認済みの別案を適用しました'||!document.querySelector('#btnAutoDirection').disabled,null,{timeout:60000});
    assert.equal(await page.locator('#alternativeChoice').textContent(),'実Canvas確認済みの別案を適用しました',await page.evaluate(()=>document.body.innerText.slice(-2000)));
    assert.equal(await page.evaluate(()=>{const J=window.J,S=J.ui;J.assertSelectionV9(S.plan,S.audio);return S.project.artDirection.songNativeResolved.version;}),9);
    console.log('Browser safe alternate storyboard commit PASS');

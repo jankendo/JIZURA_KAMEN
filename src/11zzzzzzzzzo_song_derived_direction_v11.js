@@ -75,7 +75,7 @@ const probeFactory=J.createRegistryRenderProbe;J.createRegistryRenderProbe=(...a
   const e=detail.sample(p,c,t);if(!e.eligible)return e;
   // Apply the same FX to the no-primary-glyph control as to the actual frame.
   // A post-effect wash must not borrow contrast from the pre-effect background.
-  const cv=detail.cv,ctx=cv.getContext('2d'),actual=ctx.getImageData(0,0,cv.width,cv.height).data,draw=J.drawItem;
+  const cv=detail.cv,ctx=cv.getContext('2d',{willReadFrequently:true}),actual=ctx.getImageData(0,0,cv.width,cv.height).data,draw=J.drawItem;
   const cp={...p,cuts:p.cuts.map(old=>old.line===c.line?c:old),titleDisplay:null};J.sharePhotoComposition?.(p,cp);
   J.drawItem=(env,it)=>env.cut?.line>=0&&it.lyricRole!=='decorative'?null:draw(env,it);
   try{args[1].frame(ctx,cp,Math.min(c.end-.000001,c.start+t),{scale:cv.width/p.W,production:true,noHud:true});args[4]?.onFrame?.();}finally{J.drawItem=draw;}
@@ -92,9 +92,9 @@ J.directionRoleCandidatesV11=(p,g,intent,index=J.directionCapabilityIndexV11(p))
 }).sort((a,b)=>b.prior-a.prior||a.id.localeCompare(b.id));
 // A capability-distance traversal preserves different mechanisms before raster
 // evidence exists; no fixed list of favoured ids and no two-candidate cutoff.
-J.directionRepresentativesV11=(rows,budget)=>{
+J.directionRepresentativesV11=(rows,budget,seeds=[])=>{
  const kept=[];const diff=(a,b)=>Number(a.temporal!==b.temporal)+Number(a.region!==b.region)+Math.abs((a.amount.value??.35)-(b.amount.value??.35))+new Set([...a.mechanisms,...b.mechanisms].filter(k=>a.mechanisms.includes(k)!==b.mechanisms.includes(k))).size*.3;
- const pending=[...rows];while(pending.length&&kept.length<budget){pending.sort((a,b)=>(b.prior+Math.min(2,...kept.map(k=>diff(b,k)))*.25)-(a.prior+Math.min(2,...kept.map(k=>diff(a,k)))*.25)||a.id.localeCompare(b.id));kept.push(pending.shift());}return kept;
+ const pending=[...rows];while(pending.length&&kept.length<budget){pending.sort((a,b)=>(b.prior+Math.min(2,...[...seeds,...kept].map(k=>diff(b,k)))*.25)-(a.prior+Math.min(2,...[...seeds,...kept].map(k=>diff(a,k)))*.25)||a.id.localeCompare(b.id));kept.push(pending.shift());}return kept;
 };
 // Style/layout retrieval uses the live catalogs and continuous input features.
 J.directionStyleCandidatesV11=(p,a,f,expand=false)=>{
@@ -109,11 +109,21 @@ const layouts=J.registryLayoutCandidatesV9;J.registryLayoutCandidatesV9=(p,c,f,s
  const rows=J.directionCapabilityIndexV11(p).filter(x=>x.group==='layout'&&x.eligible&&allowed.has(x.id)).map(x=>({...x,prior:(1-C(f.length/60))*.15+(style.bias?.layout?.[x.id]?Math.log1p(style.bias.layout[x.id])*.12:0)+(x.mechanisms.includes('charFn')?1-C(f.length/24):C(f.length/24))*.25}));
  return J.directionRepresentativesV11(rows,Math.ceil(7+f.change*5+C(f.length/32)*2)).map(x=>x.id);
 };
-J.directionLayoutSequenceV11=function*(initial,available,hasSafe){
+J.directionLayoutSequenceV11=function*(initial,available,hasSafe,context){
  yield*initial;
  // Expand only after the initial capability frontier cannot retain a temporal
  // safe baseline. Live registry order/bias remains a prior, never a certificate.
- if(!hasSafe())for(const [id] of available){if(initial.includes(id))continue;yield id;if(hasSafe())break;}
+ if(!hasSafe()){for(const [id] of available){if(initial.includes(id))continue;yield id;if(hasSafe())break;}return;}
+ if(!context)return;
+ const rows=context.rows(),demand=C(context.f.change*.65+context.f.onset*.35),best=Math.max(0,...rows.map(r=>r.musicFit||0));
+ const diversity=Math.max(0,...rows.flatMap((a,i)=>rows.slice(i+1).map(b=>J.registryInkDistance(a.signature,b.signature)||0)));
+ // Expand a deficient, visually converged frontier only when the input asks
+ // for contrast. The caller tests every yielded layout through real Canvas.
+ if(demand>.25&&best<.9&&diversity<demand*.5){
+  const allowed=new Set(available.map(([id])=>id));
+  const index=J.directionCapabilityIndexV11(context.p),rest=index.filter(x=>x.group==='layout'&&x.eligible&&allowed.has(x.id)&&!initial.includes(x.id));
+  for(const row of J.directionRepresentativesV11(rest.map(x=>({...x,prior:0})),Math.ceil(1+demand*3),index.filter(x=>x.group==='layout'&&initial.includes(x.id))))yield row.id;
+ }
 };
 // Feature-aware schedules include the actual effect windows, a long readable
 // hold, and local onsets. Final checks reuse the same schedule in composed order.
@@ -134,7 +144,7 @@ J.inspectDirectionGlyphV11=(env,it,draw,w,h)=>{
  if(!glyphCanvases)glyphCanvases=[document.createElement('canvas'),document.createElement('canvas')];
  const data=glyphCanvases.map((cv,i)=>{
   if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;}
-  const ctx=cv.getContext('2d');ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,w,h);
+  const ctx=cv.getContext('2d',{willReadFrequently:true});ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,w,h);
   const m=env.ctx.getTransform();ctx.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);
   const core={...it,echo:null,streak:null,shadow:null,blur:0,pre:null,post:null,blend:null};
   if(i){for(const k of ['clip','clipY','clipFn','bands','vbands','pieceFn'])delete core[k];const fn=it.charFn;core.alpha=1;core.charFn=fn?(...args)=>{const v={...fn(...args)};for(const k of ['hide','clipX','clipY','a'])delete v[k];return v;}:null;}
@@ -275,17 +285,37 @@ J.optimizeCreativeLineV10=async args=>{
  for(const x of results)x.optimizerEvidence={compared,budget,exclusions,interactions,axes:x.dimensions,ablations:x.ablations,intent,catalog,counts:Object.fromEntries(['registered','callable','eligible','probed','safe'].map(k=>[k,catalog.filter(x=>x[k]).length])),searchTermination:compared>=budget?'ADAPTIVE_BUDGET':'LOCAL_CAPABILITY_FRONTIER',unmeasured:['artisticQuality','semantics','encodedSurvival']};
  return results;
 };
+// Each vector names its actual observation source. Background and decoration
+// isolation are unavailable here; never relabel complete RGB as separate layers.
+J.directionLayersV111=(item,p)=>{
+ const checks=item.checks||[],w=256,h=Math.round(w*p.H/p.W),holds=checks.filter(e=>e.temporalStage==='HOLD'&&e.mask);
+ const primary=holds.map(e=>J.registryInkSignature(e.mask,w,h));
+ const movement=primary.slice(1).map((s,i)=>J.registryInkDistance(s,primary[i]));
+ const camera=checks.flatMap(e=>e.cameraSamples||[]).map(e=>e.transform);
+ const cameraVector=camera.length?['x','y','s','rot'].flatMap(k=>{const v=camera.map(t=>Number.isFinite(t[k])?t[k]:k==='s'?1:0);const scale=k==='x'?p.W:k==='y'?p.H:k==='rot'?180:1;return [mean(v)/scale,(Math.max(...v)-Math.min(...v))/scale];}):null;
+ const measured=(value,source)=>({status:value===null?'UNMEASURED':'MEASURED',value,source});
+ const rgb=item.rasterSignature||holds[0]?.raster;
+ const color=rgb?.length?[0,1,2].map(k=>mean(rgb.filter((_,i)=>i%3===k))):null;
+ return {typography:measured(primary[0]||null,'readable hold primary glyph mask'),glyphMotion:measured(movement.length?[mean(movement)]:null,'successive primary hold masks; includes layout/camera motion'),camera:measured(cameraVector,'production camera callback transforms'),color:measured(color,'complete RGB cell means'),background:{status:'UNMEASURED'},decorationFX:{status:'UNMEASURED'},wholeFrame:measured(rgb||null,'complete RGB raster')};
+};
+const layerDistance=(a,b)=>{
+ const values=[];
+ for(const k of ['typography','glyphMotion','camera','color']){const x=a?.[k],y=b?.[k];if(x?.status!=='MEASURED'||y?.status!=='MEASURED')continue;const d=k==='typography'?J.registryInkDistance(x.value,y.value):distance(x.value,y.value);if(Number.isFinite(d))values.push(C(d));}
+ return values.length?mean(values):null;
+};
 const acoustic=(a,b)=>mean(['energy','onset','brightness','change','flux'].filter(k=>Number.isFinite(a?.[k])&&Number.isFinite(b?.[k])).map(k=>Math.abs(a[k]-b[k])));
 const visual=(a,b)=>Math.max(J.registryInkDistance(a.signature,b.signature)??0,(distance(a.rasterSignature,b.rasterSignature)??0)*3);
 const arc=J.chooseCreativeArcV10;J.chooseCreativeArcV10=(p,portfolios,initial)=>{
  if(!J.isSongDerivedV11(p))return arc(p,portfolios,initial);
+ for(const step of portfolios)for(const item of step.candidates)if(item.checks)item.layerEvidenceV111=J.directionLayersV111(item,p);
  const relations=p.songNativeDirection.structure?.relations||[];
  const chosen=J.chooseRegistryStoryboard(portfolios,Math.min(14,8+Math.ceil(mean(portfolios.flatMap(x=>x.candidates.map(c=>c.intent?.changeDemand??0)))*6)),{acousticPacingOnly:true,transitionScore:(state,c,step)=>{
   const prev=state.last;if(!prev)return 0;const delta=acoustic(prev.features,c.features),vd=visual(prev,c),target=C(delta*2.5,0,.8);
   const repeat=state.picks.find(x=>norm(p.lines[x.line]?.text)===norm(p.lines[step.line]?.text));
   const relation=state.picks.find(x=>relations.some(r=>r.from===x.features.sectionIndex&&r.to===c.features.sectionIndex||r.to===x.features.sectionIndex&&r.from===c.features.sectionIndex)&&Math.abs((x.features.sectionPhase??0)-(c.features.sectionPhase??0))<.2);
   const previous=repeat||relation,recurrence=previous?Math.abs(visual(previous,c)-C(acoustic(previous.features,c.features)*2.5,0,.8))*.12:0;
-  return -.28*Math.abs(vd-target)-recurrence-(prev.styleKey!==c.styleKey?.10*(1-delta):0);
+  const layers=layerDistance(prev.layerEvidenceV111,c.layerEvidenceV111);
+  return -.28*Math.abs(vd-target)-recurrence-(layers===null?0:.08*Math.abs(layers-C(delta*1.5,0,.6)))-(prev.styleKey!==c.styleKey?.10*(1-delta):0);
  }});
  const audit=J.auditCreativeArcV10(portfolios,chosen.picks);
  return {...chosen,creativeArc:{...audit,source:'primary glyph + complete RGB raster + acoustic recurrence/phase',repeatRelations:copy(relations),unresolvedMonotony:audit.requiresReevaluation?'NO_BETTER_GLOBAL_SAFE_PATH':null},method:'input-derived capability/temporal Pareto and multilevel raster beam v11'};
@@ -317,7 +347,7 @@ const attach=J.attachCreativeEvidenceV10;J.attachCreativeEvidenceV10=(selection,
  const active=selection.optimizerVersion===11||storyboard.picks.some(x=>x.intent);attach(selection,storyboard,portfolios);if(!active)return;
  selection.optimizerVersion=11;selection.optimizerContract='jizura-song-derived-direction-11';selection.multiScaleEvidence=copy(storyboard.scaleSafety||null);
  for(const trace of selection.traces){const chosen=storyboard.picks.find(x=>x.line===trace.line);if(!chosen)continue;
-  trace.creative=copy(chosen.optimizerEvidence);trace.creative.axes=copy(chosen.dimensions);trace.creative.catalog.forEach(row=>row.selected=row.group==='style'?row.id===chosen.cut.styleKey:row.group==='layout'?row.id===chosen.cut.layout:row.id===get(chosen.cut,row.group));
+  trace.creative=copy(chosen.optimizerEvidence);trace.creative.axes=copy(chosen.dimensions);trace.creative.layers=copy(chosen.layerEvidenceV111||{status:'UNMEASURED'});trace.creative.catalog.forEach(row=>row.selected=row.group==='style'?row.id===chosen.cut.styleKey:row.group==='layout'?row.id===chosen.cut.layout:row.id===get(chosen.cut,row.group));
   trace.creative.catalog.forEach(row=>{row.states=['REGISTERED',...(row.callable?['CALLABLE']:[]),...(row.eligible?['ELIGIBLE']:[]),...(row.probed?['PROBED']:[]),...(row.safe?['SAFE']:[]),...(row.selected?['SELECTED']:[])];row.renderVerification=row.probed?'MEASURED_INPUT_COMPOSITION':'UNMEASURED';});
   trace.creative.counts.selected=trace.creative.catalog.filter(x=>x.selected).length;
   trace.reason=`曲固有の変化要求 ${chosen.intent.changeDemand.toFixed(2)}・文字密度 ${chosen.intent.density.toFixed(2)}・反復 ${chosen.intent.repeat.length}件を根拠に探索。実Canvasの登場／保持／退場と除去対照で確認。意味理解は未測定・芸術評価は未検証`;

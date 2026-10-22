@@ -21,6 +21,14 @@ async function runDirectionTestsV11(){
  const calls={layout:0,hold:0},hooks=[];for(const [g,key] of [['layout','render'],['hold','apply']]){const c=left.p.cuts.find(x=>x.line===1),d=J.registry(g)[c[g]],fn=d[key];hooks.push(()=>d[key]=fn);d[key]=function(...args){calls[g]++;return fn.apply(this,args);};}
  const R=new J.Renderer();await R.loadCustomBackground(q.customBg.dataUrl);const cv=createCanvas(256,144),mask=createCanvas(256,144),sample=J.createRegistryRenderProbe(left.p,R,cv,mask,{production:true});
  try{sample(left.p,left.p.cuts.find(c=>c.line===1),1);}finally{hooks.forEach(f=>f());}assert(calls.layout&&calls.hold);
+ const available=Object.entries(J.LAYOUTS).filter(([id])=>J.randomOk(left.p,'layout',id)),initial=[available[0][0]],sameRows=[{musicFit:.2,signature:[.2,.2]}];
+ const expanded=[...J.directionLayoutSequenceV11(initial,available,()=>true,{p:left.p,f:{change:.9,onset:.8},rows:()=>sameRows})];
+ assert(expanded.length>initial.length,'deficient similar portfolio expands live layouts');
+ assert.equal([...J.directionLayoutSequenceV11(initial,available,()=>true,{p:left.p,f:{change:0,onset:0},rows:()=>sameRows})].length,initial.length,'stable input preserves frontier');
+ assert(selection.traces.some(t=>t.creative.layers.typography.status==='MEASURED'));
+ assert(selection.traces.every(t=>t.creative.layers.background.status==='UNMEASURED'&&t.creative.layers.decorationFX.status==='UNMEASURED'));
+ assert(J.inspectDirection(left.p).coherent,'v11 per-line inspection');
+ const invalidRegistry=copy(left.p);invalidRegistry.cuts[0].cam='missing-camera';assert(!J.inspectDirection(invalidRegistry).coherent);
  console.log('TEST 1 PASS: full registry retrieval, diverse capability traversal, actual joint comparisons and production dispatch',JSON.stringify(counts));
  const draft=await prepare(a,q,false),other=await prepare(b,q,false),cut=draft.p.cuts.find(c=>c.line===0);
  const intentA=J.songVisualIntentV11(draft.p,a,cut),intentB=J.songVisualIntentV11(other.p,b,other.p.cuts.find(c=>c.line===0));
@@ -63,6 +71,7 @@ async function runDirectionTestsV11(){
  assert(left.p.lines.every((l,i)=>l.start===i*2));assert.equal(selection.artisticQuality,'UNVERIFIED');
  console.log('TEST 3 PASS: real Canvas temporal core, normal echo, missing glyph/contrast/bounds rejection, both aspects and LRC');
  const saved=J.captureSongNativeResolved(left.q,a,left.p),restored=J.plan(copy(left.q),a);assert.equal(saved.version,9);assert.equal(restored.songNativeRestore.status,'RESTORED');assert.equal(J.canonicalJSON(J.songNativeRenderDecisions(restored)),J.canonicalJSON(J.songNativeRenderDecisions(left.p)));
+ const compact=J.compactPersistentProjectV111(left.q),compactPlan=J.plan(compact,a);assert.equal(compactPlan.songNativeRestore.status,'RESTORED');J.assertSelectionV9(compactPlan,a);assert.equal(J.canonicalJSON(J.songNativeRenderDecisions(compactPlan)),J.canonicalJSON(J.songNativeRenderDecisions(left.p)));assert(!compact.artDirection.songNativeDirection.selection.traces[0].creative.catalog);assert(selection.traces[0].creative.catalog.length>0,'live diagnostics retained');
  const alt=await J.applyRegistryAlternativeV9(left.q,a,left.p,null,{ensureFonts:false});assert(alt,'independent safe alternative');J.assertSelectionV9(alt,a);J.captureSongNativeResolved(left.q,a,alt);assert.equal(J.plan(copy(left.q),a).songNativeRestore.status,'RESTORED');J.captureSongNativeResolved(left.q,a,left.p);
  const locked=copy(q);for(let i=0;i<3;i++)locked.overrides[i]={lock:true,layout:'center',size:80};const lp=await prepare(a,locked);assert(lp.p.cuts.filter(c=>c.line>=0).every(c=>!c.registrySelectedV8&&c.layout==='center'));assert.equal(lp.p.songNativeDirection.selection.optimizerVersion,11);
  const bad=copy(left.p);bad.songNativeDirection.selection.entries.pop();assert(!J.selectionIntegrityV9(bad,a).ok);assert.throws(()=>J.captureSongNativeResolved(left.q,a,bad),/確定/);
