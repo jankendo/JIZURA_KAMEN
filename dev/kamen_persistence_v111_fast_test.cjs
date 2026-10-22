@@ -28,6 +28,10 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright-core')
  // Navigation uses a fresh document and actual IndexedDB read.
  await page.reload();await page.waitForFunction(()=>J.uiApi&&J.ui.project&&J.ui.plan);assert.equal(await page.evaluate(()=>J.ui.persistenceRevision>0),true);
  console.log('Persistence reload PASS');
+ const peer=await page.context().newPage();await peer.goto(process.argv[2]||'http://127.0.0.1:4173/');await peer.waitForFunction(()=>J.ui?.plan);
+ assert.equal(await page.evaluate(async()=>{J.ui.project.title='cross-tab-winner';return J.uiApi.flushSave();}),true);
+ assert.equal(await peer.evaluate(async()=>{J.ui.project.title='cross-tab-unsaved';const ok=await J.uiApi.flushSave();return !ok&&J.ui.unsaved&&J.ui.project.title==='cross-tab-unsaved'&&(await J.uiApi.loadLocal()).title==='cross-tab-winner';}),true);
+ await peer.close();console.log('Cross-tab optimistic revision guard and unsaved edit protection PASS');
  const legacyContext=await browser.newContext(),legacy=await legacyContext.newPage();
  await legacy.addInitScript(()=>{if(!localStorage.getItem('jizura.project.v1'))localStorage.setItem('jizura.project.v1',JSON.stringify({schemaVersion:3,title:'legacy-preserved',lyrics:'[00:00]旧保存',customBg:{enabled:false}}));});
  await legacy.goto(process.argv[2]||'http://127.0.0.1:4173/');await legacy.waitForFunction(()=>J.ui?.plan);

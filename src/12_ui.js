@@ -190,7 +190,7 @@ async function restorePortableFonts(project) {
   }
 }
 let saveTimer = 0;
-function autosave() { S.unsaved=true;clearTimeout(saveTimer); saveTimer = setTimeout(flushSave, 700); scheduleHistoryObserve(); }
+function autosave() { S.unsaved=true;++saveRevision;clearTimeout(saveTimer); saveTimer = setTimeout(flushSave, 700); scheduleHistoryObserve(); }
 async function bgDbSetMany(entries, expectedRevision) {
   const db=await openBgDb();
   return new Promise((resolve,reject)=>{
