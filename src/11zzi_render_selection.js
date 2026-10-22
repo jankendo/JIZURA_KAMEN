@@ -131,7 +131,7 @@ J.chooseRegistryStoryboard=(steps,beamWidth=8,options={})=>{
    const stagnant=distance!==null&&distance<.06&&!quiet&&energyDelta>.15?-.12:0;
    const overload=distance!==null&&distance>.82&&!boundary&&quiet?-.16:0;
    const item={...c,line:step.line,energy:step.energy,role:step.role};
-   next.push({score:state.score+c.score+pacing+fatigue+stagnant+overload+(options.transitionScore?.(state,c,step)??0),picks:[...state.picks,item],last:item,previous:prev,serial:state.serial+'|'+c.layout});
+   next.push({score:state.score+c.score+(options.acousticPacingOnly?0:pacing+fatigue+stagnant+overload)+(options.transitionScore?.(state,c,step)??0),picks:[...state.picks,item],last:item,previous:prev,serial:state.serial+'|'+c.layout});
   }
   next.sort((a,b)=>b.score-a.score||a.serial.localeCompare(b.serial));beam=next.slice(0,cap);
  }

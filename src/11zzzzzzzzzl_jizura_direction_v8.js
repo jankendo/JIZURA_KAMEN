@@ -89,17 +89,17 @@ const styleCandidates=(p,a,f)=>{
  return J.scoreStyleProfiles(input,Object.keys(J.STYLES).filter(id=>J.randomOk(p,'style',id))).slice(0,3);
 };
 const phases=c=>[.001,Math.min(c.dur*.35,Math.max(.2,c.inDur+.08)),c.dur*.7,Math.max(.001,c.dur-.015)].filter((t,i,a)=>t<c.dur&&a.indexOf(t)===i);
-const evidence=({mask,...e})=>e;
+const evidence=({mask,raster,...e})=>e;
 const selectedEntries=p=>p.cuts.filter(c=>c.registrySelectedV8&&!locked(p,c)).map(c=>({line:c.line,cut:copy(c)}));
 J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
  abort(options.signal);const before=await J.cinemaV3.planHash(p),trial=copy(p),cv=document.createElement('canvas'),mask=document.createElement('canvas'),R=new J.Renderer();
  cv.width=mask.width=256;cv.height=mask.height=Math.round(256*p.H/p.W);
- let frames=0;const sample=J.createRegistryRenderProbe(trial,R,cv,mask,{production:true,onFrame:()=>frames++}),portfolios=[],traces=[],styleComparisons=[];
+ let frames=0;const rawSample=J.createRegistryRenderProbe(trial,R,cv,mask,{production:true,onFrame:()=>frames++}),sample=J.isCreativeOptimizerV10?.(p)?J.createCreativeProbeV10(rawSample,cv):rawSample,portfolios=[],traces=[],styleComparisons=[];
  const cuts=trial.cuts.filter(c=>c.line>=0&&!locked(p,c));
  try{
   if(p.customBg?.enabled&&p.customBg.dataUrl)await R.loadCustomBackground(p.customBg.dataUrl);await R.loadAssetDeck?.(p);
   for(const c of cuts){
-   abort(options.signal);const f=lineFeatures(p,a,c),target=C(f.onset*.45+f.change*.35+(f.flux??0)*.2),styles=styleCandidates(p,a,f),ranked=[],exclusions=[],layoutsSeen=new Set();
+   abort(options.signal);sample.clear?.();const f=lineFeatures(p,a,c),target=C(f.onset*.45+f.change*.35+(f.flux??0)*.2),styles=styleCandidates(p,a,f),ranked=[],exclusions=[],layoutsSeen=new Set();
    for(const st of styles){
     const style=J.STYLES[st.style],fonts=[...new Set([...(style.fonts?.display||[]),'embedded_bold'])].filter(id=>J.FONTS[id]).slice(0,2);
     if(options.ensureFonts!==false)await J.ensureFonts(c.lineText,fonts);abort(options.signal);
@@ -122,6 +122,8 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
    }
    ranked.sort((x,y)=>y.score-x.score||x.layout.localeCompare(y.layout)||x.styleKey.localeCompare(y.styleKey));
    const distinct=J.registryGeometryRepresentatives(ranked,.25).candidates.slice(0,3),safe=[];
+   if(J.isCreativeOptimizerV10?.(p)){safe.push(...await J.optimizeCreativeLineV10({p:trial,c,f,ranked,distinct,sample,phases,signal:options.signal,audio:a,anchors:R.customBgBitmap?J.photoAnchorCandidates(R.customBgBitmap):[]}));}
+   else
    for(const candidate of distinct){
     abort(options.signal);let cut=copy(candidate.cut),sp={...trial,style:cut.style,styleKey:cut.styleKey};
     // Coordinate search rather than a Cartesian product: bounded alternatives
@@ -149,21 +151,23 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
    traces.push({...J.registryCandidateTrace(c,safe[0].styleKey,safe[0].font,null,f.energy,safe,exclusions),reason:'音響の局所変化・歌詞寸法・実コントラスト・前後構図を比較',fitRanking:safe.map(x=>({layout:x.layout,style:x.styleKey,font:x.font,musicFit:x.musicFit,score:x.score})),candidateCount:ranked.length,layoutCandidates:[...layoutsSeen],safeCount:safe.length,acoustics:f,motionAttempts:safe.flatMap(s=>s.attempts)});
    options.onProgress?.({label:'歌詞ごとのJIZURA演出を実Canvasで比較しています',current:portfolios.length,total:cuts.length});await yieldUI();
   }
-  const storyboard=J.chooseRegistryStoryboard(portfolios,8,{transitionScore:(state,c,step)=>{
+  let storyboard=J.chooseRegistryStoryboard(portfolios,8,{transitionScore:(state,c,step)=>{
    const prev=state.last,delta=prev?Math.abs(step.energy-prev.energy):0;
    const styleCost=prev&&prev.styleKey!==c.styleKey?.14*(1-delta):0;
    const text=norm(p.lines[step.line].text),repeat=state.picks.find(x=>norm(p.lines[x.line].text)===text);
    const repeatCost=repeat?(J.registryInkDistance(repeat.typographySignature,c.typographySignature)??0)*.08*(1-delta):0;
    return -styleCost-repeatCost;
   }});
+  if(J.isCreativeOptimizerV10?.(p))storyboard=J.chooseCreativeArcV10(p,portfolios,storyboard);
   if(cuts.length&&storyboard.status!=='MEASURED_SAFE_SEQUENCE')throw Error('V8_NO_SAFE_STORYBOARD');
   // Validate the composed winner before committing any mutation to the input.
   install(trial,storyboard.picks.map(x=>({line:x.line,cut:x.cut})));
   const finalEvidence=new Map();for(const c of trial.cuts.filter(c=>c.registrySelectedV8&&!locked(trial,c))){const checks=phases(c).map(dt=>sample(trial,c,dt));if(!checks.every(e=>e.eligible))throw Error('V8_FINAL_STORYBOARD_HARD_GATE');finalEvidence.set(c.line,checks.map(evidence));}
   abort(options.signal);if(await J.cinemaV3.planHash(p)!==before)throw Error('INPUT_CHANGED_DURING_SEARCH');
   const selection={version:p.songNativeDirection.version,sourceIdentity:p.songNativeDirection.sourceIdentity,rendererCompatibilityId:p.songNativeDirection.rendererCompatibilityId,sourceTreeSHA256:window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null,entries:selectedEntries(trial),traces,styleComparisons,storyboard:{method:storyboard.method,status:storyboard.status,score:storyboard.score,beamWidth:8},framesCompared:frames,artisticQuality:'UNVERIFIED'};
+  if(J.isCreativeOptimizerV10?.(p))J.attachCreativeEvidenceV10(selection,storyboard,portfolios);
   if(p.songNativeDirection.version===9)for(const e of selection.entries){e.phaseEvidence=finalEvidence.get(e.line);e.validation='MEASURED_SAFE_SEQUENCE';}
-  if(p.songNativeDirection.version===9)selection.alternatives=await J.registryAlternativesV9(trial,portfolios,storyboard,sample,phases);
+  if(p.songNativeDirection.version===9)selection.alternatives=await J.registryAlternativesV9(trial,portfolios,storyboard,sample,phases,selection);
   abort(options.signal);if(await J.cinemaV3.planHash(p)!==before)throw Error('INPUT_CHANGED_DURING_SEARCH');
   const d=copy(p.songNativeDirection);d.selection=selection;if(d.version===9){d.status='SELECTED';selection.locks=J.cinemaV3.lockSignature(p);}p.songNativeDirection=d;p.artDirection.songNativeDirection=d;install(p,selection.entries);J.cinemaV3.invalidate(p);return p;
  }finally{R.disposeAssets?.();cv.width=cv.height=mask.width=mask.height=1;}

@@ -497,7 +497,7 @@ function updateCutInfo() {
   const chip = (cls, k, v) => `<span class="chip ${cls}"><b>${k}</b>${v}</span>`;
   const n = (tbl, k) => (tbl[k] ? tbl[k].name : k);
   const selected=J.describeJizuraDirectionV8?.(S.plan,cut);
-  if(selected){el.innerHTML=Object.entries({スタイル:selected.style,レイアウト:selected.layout,登場:selected.enter,保持:selected.hold,退場:selected.exit,カメラ:selected.camera,加工:selected.treat,装飾:selected.decor,背景:selected.background,採用:selected.selection}).map(([k,v])=>chip('',k,escapeHtml(v))).join('');return;}
+  if(selected){el.innerHTML=Object.entries({スタイル:selected.style,レイアウト:selected.layout,登場:selected.enter,保持:selected.hold,退場:selected.exit,カメラ:selected.camera,加工:selected.treat,装飾:selected.decor,背景:selected.background,FX:selected.fx||'なし',トランジション:selected.transition||'カット',採用:selected.selection,...(selected.reason?{理由:selected.reason,比較:selected.comparison,Canvas:selected.canvas}:{} )}).map(([k,v])=>chip('',k,escapeHtml(v))).join('');return;}
   const generated=J.describeSongCompositionV7?.(S.plan,cut);
   const generatedChip=(cls,key,value)=>chip(cls,key,escapeHtml(value));
   if(generated){el.innerHTML=[generatedChip('l','構図',`${generated.groups}文字グループ`),generatedChip('e','登場',generated.entry),generatedChip('h','表示中',generated.hold),generatedChip('x','退場',generated.exit),generatedChip('c','カメラ',generated.camera),generatedChip('b','背景',generated.background),generatedChip('','反復',generated.repeat===null?'独立区間':`区間 ${generated.repeat+1} と関連`),generatedChip('','探索',generated.selection)].join('');return;}
@@ -1112,7 +1112,7 @@ async function autoDirection() {
     const generationProject=S.project,generationAudio=S.audio;
     let generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
     const assertGeneration=()=>{if(generationCancel.signal.aborted)throw new DOMException('Aborted','AbortError');if(S.project!==generationProject||S.audio!==generationAudio||J.songNativeInputIdentity(S.project,audioLike())!==generationIdentity)throw new Error('入力が変更されたため、古いMVの確定を中止しました。もう一度作成してください');};
-    const directionSet=await J.generateJizuraDirectionV9(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
+    const directionSet=await J.generateJizuraDirectionV10(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
     assertGeneration();task.enter('apply');await J.processingYield();assertGeneration();
     const proposal=directionSet.recommended.proposal;
     S.directionCandidates=directionSet.candidates;S.alternative=0;
