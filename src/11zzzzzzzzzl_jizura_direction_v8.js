@@ -175,6 +175,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
   if(J.isCreativeOptimizerV10?.(p))J.attachCreativeEvidenceV10(selection,storyboard,portfolios);
   if(p.songNativeDirection.version===9)for(const e of selection.entries){e.phaseEvidence=finalEvidence.get(e.line);e.validation='MEASURED_SAFE_SEQUENCE';}
   if(p.songNativeDirection.version===9)selection.alternatives=await J.registryAlternativesV9(trial,portfolios,storyboard,sample,phases,selection);
+  selection.framesCompared=frames;
   abort(options.signal);if(await J.cinemaV3.planHash(p)!==before)throw Error('INPUT_CHANGED_DURING_SEARCH');
   const d=copy(p.songNativeDirection);d.selection=selection;if(d.version===9){d.status='SELECTED';selection.locks=J.cinemaV3.lockSignature(p);}p.songNativeDirection=d;p.artDirection.songNativeDirection=d;install(p,selection.entries);J.cinemaV3.invalidate(p);return p;
  }finally{R.disposeAssets?.();cv.width=cv.height=mask.width=mask.height=1;}

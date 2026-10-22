@@ -71,7 +71,7 @@ const probeFactory=J.createRegistryRenderProbe;J.createRegistryRenderProbe=(...a
   finally{restores.reverse().forEach(fn=>fn());J.directionBuiltinProbeV11=builtin;}
  };
  probe.verifyScale=(p,c,t)=>{
-  if(!detail){const cv=document.createElement('canvas'),mask=document.createElement('canvas');cv.width=mask.width=640;cv.height=mask.height=Math.round(640*p.H/p.W);detail=J.createRegistryRenderProbe(p,args[1],cv,mask,{production:true});}
+  if(!detail){const cv=document.createElement('canvas'),mask=document.createElement('canvas');cv.width=mask.width=640;cv.height=mask.height=Math.round(640*p.H/p.W);detail=J.createRegistryRenderProbe(p,args[1],cv,mask,{production:true,onFrame:args[4]?.onFrame});}
   return detail(p,c,t);
  };return probe;
 };
