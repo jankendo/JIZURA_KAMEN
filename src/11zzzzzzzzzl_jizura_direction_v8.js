@@ -2,7 +2,7 @@
    rendered storyboard. Older directions always use their original dispatch. */
 (()=>{'use strict';
 const J=window.J,C=J.clamp,copy=J.clonePhotoRenderPlan,F=Number.isFinite;
-const active=p=>(p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version===8;
+const active=p=>(p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version===8|| (p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version===9;
 const mean=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:0;
 const norm=s=>String(s||'').replace(/\s/g,'');
 const abort=s=>{if(s?.aborted)throw new DOMException('Aborted','AbortError');};
@@ -44,7 +44,7 @@ const install=(p,entries)=>{
 };
 const plan=J.plan;J.plan=(p,a)=>{
  if(!active(p))return plan(p,a);
- const identity=J.songNativeInputIdentityV7(p,a),saved=p.artDirection.songNativeDirection,d=J.validSongNativeDirection(saved)&&saved.sourceIdentity===identity?copy(saved):J.buildJizuraDirectionV8(p,a);
+ const identity=J.songNativeInputIdentityV7(p,a),saved=p.artDirection.songNativeDirection,d=J.validSongNativeDirection(saved)&&saved.sourceIdentity===identity?copy(saved):(saved?.version===9?J.buildJizuraDirectionV9:J.buildJizuraDirectionV8)(p,a);
  const adapter=copy(p);delete adapter.songNativeDirection;adapter.artDirection.songNativeDirection=as7(d);delete adapter.artDirection.songNativeResolved;
  adapter.artDirection.songNativeDirection.sourceIdentity=J.songNativeInputIdentityV7(adapter,a);
  const result=plan(adapter,a);result.songNativeDirection=d;result.artDirection={...result.artDirection,...copy(p.artDirection),songNativeDirection:d};result.songNativePlanInputIdentity=identity;
@@ -54,7 +54,7 @@ const plan=J.plan;J.plan=(p,a)=>{
 // typography/camera modulation or trajectory is layered over an automatic cut.
 const typography=J.applyTypography5;J.applyTypography5=(env,it)=>active(env.plan)&&!locked(env.plan,env.cut)?undefined:typography(env,it);
 for(const key of ['cameraAt','lyricsCameraAt']){const previous=J[key];J[key]=(p,t,...args)=>active(p)&&!locked(p,J.cutAt(p,t)||{})?null:previous?.(p,t,...args);}
-const center=J.centerPhotoLyricItem;J.centerPhotoLyricItem=(env,it)=>active(env.plan)&&!locked(env.plan,env.cut)?it:center(env,it);
+const center=J.centerPhotoLyricItem;J.centerPhotoLyricItem=(env,it)=>active(env.plan)&&!locked(env.plan,env.cut)&&!(env.plan.songNativeDirection.version===9&&env.cut.params.photoAnchor)?it:center(env,it);
 // C1 monotone cubic interpolation for consumers of analysis trajectories. Unlike
 // smoothstep at every knot, adjacent non-flat spans share their tangent.
 J.interpolateSongTrajectoryV8=(knots,t)=>{
@@ -107,7 +107,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
     for(const font of loaded){
      const sp={...trial,style,styleKey:st.style},layouts=Object.entries(J.LAYOUTS).filter(([id,d])=>typeof d.render==='function'&&!/noHold\s*:\s*true/.test(d.render.toString())&&!/^songGrammar|^(title|interlude)$/.test(id)&&J.randomOk(p,'layout',id));
      layouts.sort(([x],[y])=>(style.bias?.layout?.[y]||0)-(style.bias?.layout?.[x]||0)||x.localeCompare(y));
-     const shortlist=[...new Set([...layouts.slice(0,5).map(([id])=>id),...['center','condensed','photoPhrase','photoStatement'].filter(id=>layouts.some(([x])=>x===id))])];
+     const shortlist=p.songNativeDirection.version===9?J.registryLayoutCandidatesV9(p,c,f,style,layouts):[...new Set([...layouts.slice(0,5).map(([id])=>id),...['center','condensed','photoPhrase','photoStatement'].filter(id=>layouts.some(([x])=>x===id))])];
      for(const id of shortlist){
       layoutsSeen.add(id);let cut;
       try{cut={...J.registryCandidateCut(sp,c,id,font,'cut','still'),style,styleKey:st.style,cam:'stillCamera',bg:'none',decor:[],treat:'none',stagger:0,registrySelectedV8:true};delete cut.generatedMotionV7;delete cut.grammar;delete cut.photoChoreography;
@@ -124,18 +124,19 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
    const distinct=J.registryGeometryRepresentatives(ranked,.25).candidates.slice(0,3),safe=[];
    for(const candidate of distinct){
     abort(options.signal);let cut=copy(candidate.cut),sp={...trial,style:cut.style,styleKey:cut.styleKey};
-    // Coordinate search rather than a Cartesian product: at most two alternatives
+    // Coordinate search rather than a Cartesian product: bounded alternatives
     // in each local role; keep only phase-safe changes with a musical benefit.
     const attempts=[];
-    for(const group of ['enter','hold','cam','treat','exit']){
-     const roleTarget=group==='hold'?target:group==='cam'?target*.3:group==='enter'?target*.35:group==='exit'?target*.25:group==='treat'?C((p.autoPalette?.stats?.detail??0)*.4):0;
-     const optionsForRole=effectCandidates(p,group,roleTarget).slice(0,1).filter(x=>x.id!==cut[group]);let winner=null;
+    if(p.songNativeDirection.version===9&&R.customBgBitmap)cut=J.registryAnchorV9(cut,J.photoAnchorCandidates(R.customBgBitmap),x=>sample(sp,x,c.dur*.5));
+    for(const group of (p.songNativeDirection.version===9?['enter','hold','cam','treat','exit','bg','decor','trans','fx']:['enter','hold','cam','treat','exit'])){
+     const roleTarget=['bg','decor','trans','fx'].includes(group)?target*.25:group==='hold'?target:group==='cam'?target*.3:group==='enter'?target*.35:group==='exit'?target*.25:group==='treat'?C((p.autoPalette?.stats?.detail??0)*.4):0;
+     const optionsForRole=(p.songNativeDirection.version===9?J.registryRoleCandidatesV9(p,group,roleTarget):effectCandidates(p,group,roleTarget).slice(0,1)).filter(x=>x.id!==cut[group]);let winner=null,bestFit=p.songNativeDirection.version===9?J.registryCurrentRoleScoreV9(group,cut,roleTarget):-Infinity;
      for(const option of optionsForRole){
-      const proposed={...copy(cut),[group]:option.id,inDur:Math.min(.22,c.dur*.15),outDur:group==='exit'&&option.id!=='cut'?Math.min(.12,c.dur*.08):cut.outDur},checks=phases(proposed).map(dt=>sample(sp,proposed,dt)),eligible=checks.every(e=>e.eligible);
+      const proposed={...copy(cut),...(group==='fx'?{registryFxV9:option.id}:{[group]:group==='decor'?(option.id==='none'?[]:[{id:option.id}]):option.id}),...(group==='trans'?{transDur:option.id==='cut'?0:Math.min(.10,c.dur*.08)}:{}),inDur:Math.min(.22,c.dur*.15),outDur:group==='exit'&&option.id!=='cut'?Math.min(.12,c.dur*.08):cut.outDur},checks=phases(proposed).map(dt=>sample(sp,proposed,dt)),eligible=checks.every(e=>e.eligible);
       const delta=checks.length>2?J.registryInkDistance(J.registryInkSignature(checks[2].mask,cv.width,cv.height),J.registryInkSignature(checks.at(-1).mask,cv.width,cv.height)):0;
       const fit=option.score-(Math.max(0,(delta??0)-target)*.15);
       attempts.push({group,id:option.id,eligible,musicFit:option.score,observedChange:delta});
-      if(eligible&&(!winner||fit>winner.fit))winner={cut:proposed,fit};
+      if(eligible&&fit>bestFit){winner={cut:proposed,fit};bestFit=fit;}
      }
      if(winner)cut=winner.cut;
     }
@@ -158,10 +159,13 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
   if(cuts.length&&storyboard.status!=='MEASURED_SAFE_SEQUENCE')throw Error('V8_NO_SAFE_STORYBOARD');
   // Validate the composed winner before committing any mutation to the input.
   install(trial,storyboard.picks.map(x=>({line:x.line,cut:x.cut})));
-  for(const c of trial.cuts.filter(c=>c.registrySelectedV8&&!locked(trial,c)))if(!phases(c).every(dt=>sample(trial,c,dt).eligible))throw Error('V8_FINAL_STORYBOARD_HARD_GATE');
+  const finalEvidence=new Map();for(const c of trial.cuts.filter(c=>c.registrySelectedV8&&!locked(trial,c))){const checks=phases(c).map(dt=>sample(trial,c,dt));if(!checks.every(e=>e.eligible))throw Error('V8_FINAL_STORYBOARD_HARD_GATE');finalEvidence.set(c.line,checks.map(evidence));}
   abort(options.signal);if(await J.cinemaV3.planHash(p)!==before)throw Error('INPUT_CHANGED_DURING_SEARCH');
-  const selection={version:8,sourceIdentity:p.songNativeDirection.sourceIdentity,rendererCompatibilityId:p.songNativeDirection.rendererCompatibilityId,sourceTreeSHA256:window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null,entries:selectedEntries(trial),traces,styleComparisons,storyboard:{method:storyboard.method,status:storyboard.status,score:storyboard.score,beamWidth:8},framesCompared:frames,artisticQuality:'UNVERIFIED'};
-  const d=copy(p.songNativeDirection);d.selection=selection;p.songNativeDirection=d;p.artDirection.songNativeDirection=d;install(p,selection.entries);J.cinemaV3.invalidate(p);return p;
+  const selection={version:p.songNativeDirection.version,sourceIdentity:p.songNativeDirection.sourceIdentity,rendererCompatibilityId:p.songNativeDirection.rendererCompatibilityId,sourceTreeSHA256:window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null,entries:selectedEntries(trial),traces,styleComparisons,storyboard:{method:storyboard.method,status:storyboard.status,score:storyboard.score,beamWidth:8},framesCompared:frames,artisticQuality:'UNVERIFIED'};
+  if(p.songNativeDirection.version===9)for(const e of selection.entries){e.phaseEvidence=finalEvidence.get(e.line);e.validation='MEASURED_SAFE_SEQUENCE';}
+  if(p.songNativeDirection.version===9)selection.alternatives=await J.registryAlternativesV9(trial,portfolios,storyboard,sample,phases);
+  abort(options.signal);if(await J.cinemaV3.planHash(p)!==before)throw Error('INPUT_CHANGED_DURING_SEARCH');
+  const d=copy(p.songNativeDirection);d.selection=selection;if(d.version===9){d.status='SELECTED';selection.locks=J.cinemaV3.lockSignature(p);}p.songNativeDirection=d;p.artDirection.songNativeDirection=d;install(p,selection.entries);J.cinemaV3.invalidate(p);return p;
  }finally{R.disposeAssets?.();cv.width=cv.height=mask.width=mask.height=1;}
 };
 const search=J.searchSongNativeCandidates;J.searchSongNativeCandidates=(p,range,a,options={})=>active(p)?J.searchJizuraDirectionV8(p,range,a,options):search(p,range,a,options);
@@ -171,7 +175,7 @@ const reapply=J.reapplySongNativeSelection;J.reapplySongNativeSelection=(before,
 };
 J.describeJizuraDirectionV8=(p,c)=>{
  if(!active(p)||!c?.registrySelectedV8)return null;const trace=p.songNativeDirection.selection?.traces.find(t=>t.line===c.line),name=(g,id)=>J.registry(g)[id]?.name||id||'なし';
- return {style:J.STYLES[c.styleKey]?.name||c.styleKey,layout:name('layout',c.layout),enter:name('enter',c.enter),hold:name('hold',c.hold),exit:name('exit',c.exit),camera:name('cam',c.cam),treat:name('treat',c.treat),decor:c.decor?.map(d=>name('decor',d.id)).join('・')||'なし',background:name('bg',c.bg),selection:trace?`${trace.candidateCount}候補・安全 ${trace.safeCount}案・実Canvas確認済み・音響/字形/背景/連続性で採用`:'実Canvas比較前'};
+ return {style:J.STYLES[c.styleKey]?.name||c.styleKey||'未選択',layout:name('layout',c.layout),enter:name('enter',c.enter),hold:name('hold',c.hold),exit:name('exit',c.exit),camera:name('cam',c.cam),treat:name('treat',c.treat),decor:c.decor?.map(d=>name('decor',d.id)).join('・')||'なし',background:name('bg',c.bg),selection:trace?`${trace.candidateCount}候補・安全 ${trace.safeCount}案・実Canvas確認済み・音響/字形/背景/連続性で採用`:'実Canvas比較前'};
 };
 // Independent observations: IDs never earn visual novelty or artistry points.
 J.measureJizuraDirectionV8=(p,frames=[],range)=>{
@@ -184,14 +188,16 @@ J.measureJizuraDirectionV8=(p,frames=[],range)=>{
  return {contractVersion:'kamen-jizura-direction-quality-8',status:readable.length?'MEASURED':'UNMEASURED',metrics,requiredComplete:false,range:range??null,artisticQuality:'UNVERIFIED',social:{status:'UNMEASURED',score:null,shortScore:null,scope:'main-mv'}};
 };
 J.collectJizuraDirectionV8=async(p,range,options={})=>{
- const cv=document.createElement('canvas'),mask=document.createElement('canvas'),R=new J.Renderer(),frames=[],before=await J.cinemaV3.planHash(p);cv.width=mask.width=160;cv.height=mask.height=Math.round(160*p.H/p.W);
+ const cv=document.createElement('canvas'),mask=document.createElement('canvas'),R=new J.Renderer(),frames=[],before=await J.cinemaV3.planHash(p);cv.width=mask.width=p.songNativeDirection.version===9?256:160;cv.height=mask.height=Math.round(cv.width*p.H/p.W);
  const sample=J.createRegistryRenderProbe(p,R,cv,mask,{production:true});
  try{
   if(p.customBg?.enabled&&p.customBg.dataUrl)await R.loadCustomBackground(p.customBg.dataUrl);await R.loadAssetDeck?.(p);
   for(const c of p.cuts.filter(c=>c.line>=0&&c.end>(range?.start??0)&&c.start<(range?.end??p.duration)))for(const dt of phases(c)){
    const time=c.start+dt;if(time<(range?.start??0)||time>=(range?.end??p.duration))continue;abort(options.signal);
    const e=sample(p,c,dt),pixels=cv.getContext('2d').getImageData(0,0,cv.width,cv.height).data;
-   frames.push({time,features:J.observePixelFrame(pixels,cv.width,cv.height,e.mask),readable:e.eligible,signature:J.registryInkSignature(e.mask,cv.width,cv.height),line:c.line});
+   const row={time,features:J.observePixelFrame(pixels,cv.width,cv.height,e.mask),readable:e.eligible,signature:J.registryInkSignature(e.mask,cv.width,cv.height),line:c.line};
+   if(p.songNativeDirection.version===9){R.frame(cv.getContext('2d'),p,time,{scale:cv.width/p.W,production:true,backgroundOnly:true,noHud:true});row.background=J.observePixelFrame(cv.getContext('2d').getImageData(0,0,cv.width,cv.height).data,cv.width,cv.height);}
+   frames.push(row);
    if(frames.length%10===0){options.onProgress?.({label:'採用演出の全文・安全域・コントラストを確認しています'});await yieldUI();}
   }
   if(await J.cinemaV3.planHash(p)!==before)throw Error('INPUT_CHANGED_DURING_V8_OBSERVATION');

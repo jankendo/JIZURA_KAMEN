@@ -32,11 +32,25 @@ assert(url,'URL is required');
   await page.locator('#btnAutoDirection').click({force:true});
   await page.waitForFunction(()=>document.querySelector('#directionStatus').dataset.result==='true'||[...J.processing.jobs.values()].some(s=>s.status==='error'),null,{timeout:60000});
   const grammar=await page.evaluate(()=>{
-   const J=window.J,S=J.ui;if(document.querySelector('#directionStatus').dataset.result!=='true')throw Error('V8_UI_GENERATION_FAILED: '+[...J.processing.jobs.values()].filter(s=>s.status==='error').map(s=>s.error).join(';'));
+   const J=window.J,S=J.ui;if(document.querySelector('#directionStatus').dataset.result!=='true')throw Error('V9_UI_GENERATION_FAILED: '+[...J.processing.jobs.values()].filter(s=>s.status==='error').map(s=>s.error).join(';'));
+   J.assertSelectionV9(S.plan,S.audio);
    const audio={...S.audio,beats:J.beatGrid(S.project.timing.bpm,S.project.timing.beatOffset||0,1)},saved=JSON.parse(JSON.stringify(S.project)),round=J.plan(saved,audio);
-   if(J.canonicalJSON(J.songNativeRenderDecisions(S.plan))!==J.canonicalJSON(J.songNativeRenderDecisions(round)))throw Error('V8_RENDER_DECISIONS_CHANGED');
+   if(J.canonicalJSON(J.songNativeRenderDecisions(S.plan))!==J.canonicalJSON(J.songNativeRenderDecisions(round)))throw Error('V9_RENDER_DECISIONS_CHANGED');
    return {version:S.plan.songNativeDirection.version,restored:round.songNativeRestore.status,observed:S.pixelQA?.completed,build:window.KAMEN_BUILD_INFO};
-  });assert.equal(grammar.version,8);assert.equal(grammar.restored,'RESTORED');assert.equal(grammar.observed,true);console.log('Browser v8 real UI/Canvas/quality/commit/restore smoke PASS',JSON.stringify(grammar.build));
+  });assert.equal(grammar.version,9);assert.equal(grammar.restored,'RESTORED');assert.equal(grammar.observed,true);console.log('Browser v9 real UI/Canvas/quality/commit/restore smoke PASS',JSON.stringify(grammar.build));
+  await page.waitForFunction(()=>!document.querySelector('#btnAutoDirection').disabled,null,{timeout:15000});
+  if(await page.evaluate(()=>!!J.ui.plan.songNativeDirection.selection.alternatives?.length)){
+   await page.locator('#studioAlternative').click({force:true});
+   await page.waitForFunction(()=>document.querySelector('#alternativeChoice').textContent==='実Canvas確認済みの別案を適用しました',null,{timeout:15000});
+   assert.equal(await page.evaluate(()=>{const J=window.J,S=J.ui;J.assertSelectionV9(S.plan,S.audio);return S.project.artDirection.songNativeResolved.version;}),9);
+   console.log('Browser safe alternate storyboard commit PASS');
+  }
+  await page.waitForFunction(()=>!document.querySelector('#btnAutoDirection').disabled,null,{timeout:15000});
+  await page.evaluate(()=>{const J=window.J;window.smokeConfirmed={project:J.canonicalJSON(J.ui.project),decisions:J.canonicalJSON(J.songNativeRenderDecisions(J.ui.plan)),search:J.searchSongNativeCandidates};J.searchSongNativeCandidates=async()=>{throw Error('SMOKE_SEARCH_FAILURE');};});
+  await page.locator('#btnAutoDirection').click({force:true});
+  await page.waitForFunction(()=>document.querySelector('#directionStatus').textContent==='SMOKE_SEARCH_FAILURE',null,{timeout:15000});
+  assert.equal(await page.evaluate(()=>{const J=window.J,b=window.smokeConfirmed;J.searchSongNativeCandidates=b.search;J.assertSelectionV9(J.ui.plan,J.ui.audio);return J.canonicalJSON(J.ui.project)===b.project&&J.canonicalJSON(J.songNativeRenderDecisions(J.ui.plan))===b.decisions;}),true);
+  console.log('Browser failed-generation rollback preserves the confirmed project and storyboard PASS');
   assert.deepEqual(errors,[]);console.log('Browser initialization and observed synthetic quality-fix/commit/restore smoke PASS',browser.version());
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});
