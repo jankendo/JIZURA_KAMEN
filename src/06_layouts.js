@@ -30,7 +30,8 @@ J.mainDraw = (env, it) => {
   if (ltI < 0 && en === J.ENTER.cut) return null;
   if (en !== J.ENTER.cut && (pIn < 1 || en.pieces)) { env.lt = ltI; en.apply(env, it, pIn, ctx); env.lt = lt0; }
   if (ltI < 0 && !en.pieces) return null;
-  const amt = J.clamp((ltI - cut.inDur * 0.85) / 0.25) * (1 - pOut);
+  const holdEnvelope = J.clamp((ltI - cut.inDur * 0.85) / 0.25) * (1 - pOut);
+  const amt = env.plan.songNativeDirection?.version===8&&cut.registrySelectedV8 ? holdEnvelope*holdEnvelope*(3-2*holdEnvelope) : holdEnvelope;
   if (amt > 0 && !it.noHold) ho.apply(env, it, amt, ctx);
   if (pOut > 0 && ex !== J.EXIT.cut) ex.apply(env, it, pOut, ctx);
   const dna=env.plan.artDirection?.motionDNA;

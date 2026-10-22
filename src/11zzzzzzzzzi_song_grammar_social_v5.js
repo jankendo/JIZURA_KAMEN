@@ -1,7 +1,7 @@
 /* Song Grammar v5 short output: preserve exact LRC intervals and the generated
    acoustic trajectory. No named phases, event injection or loop-style forcing. */
 (()=>{'use strict';const J=window.J,F=Number.isFinite,mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
-const active=p=>[5,6,7].includes(p?.songNativeDirection?.version);
+const active=p=>[5,6,7,8].includes(p?.songNativeDirection?.version);
 const candidates=J.socialHookCandidates;
 J.socialHookCandidates=(p,audio,...args)=>{
  const picks=candidates(p,audio,...args);if(!active(p))return picks;

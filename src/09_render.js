@@ -164,7 +164,7 @@ class Renderer {
     // motion is quantised to 'koma' drawings per second (24fps timebase); random flicker runs on a <=24Hz clock
     const stepDur = J.stepDur(fx, fps);
     const clock = J.komaOf(fx) > 0 ? stepDur : 1 / 24;
-    const tq = plan.songNativeDirection?.version===7&&J.cutAt(plan,t)?.generatedMotionV7?t:J.renderTimeWithLyricBoundary(plan,t,stepDur);
+    const tq = ((plan.songNativeDirection?.version===8&&J.cutAt(plan,t)?.registrySelectedV8)||(plan.songNativeDirection?.version===7&&J.cutAt(plan,t)?.generatedMotionV7))?t:J.renderTimeWithLyricBoundary(plan,t,stepDur);
     const mainCut = J.cutAt(plan, tq);
     const mainStyle=mainCut?.style||st;
     const sc = mainStyle.schemes[mainCut ? mainCut.scheme % mainStyle.schemes.length : 0] || mainStyle.schemes[0];
@@ -232,7 +232,7 @@ class Renderer {
       { pass: 'A', lag: 0.8 / 24, off: [3.2 * chroma * u, 1.9 * chroma * u] },
       { pass: 'main', lag: 0, off: [0, 0] },
     ];
-    const ghostOn = !opt.backgroundOnly && (fx.chroma ?? 0.7) > 0.02 && (st.ghost ?? 1) > 0.02 && !opt.noGhost;
+    const ghostOn = !(plan.songNativeDirection?.version===8&&mainCut?.registrySelectedV8) && !opt.backgroundOnly && (fx.chroma ?? 0.7) > 0.02 && (st.ghost ?? 1) > 0.02 && !opt.noGhost;
     let mainBB = null, mainEnv = null;
     // camera blur (focus pulls etc.) is applied ONCE to the whole content layer — a blur filter on every
     // individual draw call is extremely slow when a layout draws many text rows

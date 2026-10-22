@@ -9,7 +9,7 @@ const abort=signal=>{if(signal?.aborted)throw new DOMException('Aborted','AbortE
 const copy=x=>J.clonePhotoRenderPlan(x);
 const fingerprint=value=>{const s=J.canonicalJSON(value);let h=2166136261,g=3339675911;for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),16777619)>>>0;g=Math.imul(g^s.charCodeAt(i),2246822519)>>>0;}return s.length+':'+h+':'+g;};
 const legacyInputIdentity=(project,audio)=>fingerprint({audio:J.registrySelectionAudioKey(audio),envelope:Array.from(audio?.energy||[]),onset:Array.from(audio?.onset||[]),rms:Array.from(audio?.rms||[]),energyRate:audio?.energyRate,analysisSource:audio?.analysisSource,project:{...Object.fromEntries(Object.entries(project).filter(([k])=>!['schemaVersion','migratedFromSchema','audioAsset','renderFeedbackRequested','lastPixelQA','lastQualityTarget','exportValidation'].includes(k))),artDirection:project.artDirection?Object.fromEntries(Object.entries(project.artDirection).filter(([k])=>!['songNativeDirection','songNativeResolved'].includes(k)).map(([k,v])=>[k,k==='registrySelection'&&v?Object.fromEntries(Object.entries(v).filter(([key])=>key!=='storySearch')):v])):null}});
-const inputIdentity=(p,a)=>((p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version===7&&J.songNativeInputIdentityV7)?J.songNativeInputIdentityV7(p,a):legacyInputIdentity(p,a);
+const inputIdentity=(p,a)=>([7,8].includes((p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.version)&&J.songNativeInputIdentityV7)?J.songNativeInputIdentityV7(p,a):legacyInputIdentity(p,a);
 
 const lower=(a,t)=>{let lo=0,hi=a.length;while(lo<hi){const m=(lo+hi)>>>1;if(a[m].time<t)lo=m+1;else hi=m;}return lo;};
 const between=(a,start,end)=>a.slice(lower(a,start),lower(a,end));
@@ -98,7 +98,7 @@ const safePath=path=>Array.isArray(path)&&renderRoots.includes(path[0])&&path.ev
 const patch=(target,ops)=>{for(const op of ops){if(!safePath(op.path))throw Error('INVALID_RESOLVED_PATH');let node=target;for(const k of op.path.slice(0,-1)){if(!node[k]||typeof node[k]!=='object')throw Error('INVALID_RESOLVED_PARENT');node=node[k];}const key=op.path.at(-1);if(op.remove)delete node[key];else node[key]=copy(op.value);}return target;};
 // Bump only for incompatible rendering semantics. Build hashes are diagnostic.
 J.songNativeRendererCompatibilityId='kamen-song-native-renderer-3';
-const rendererVersion=p=>[4,5,6,7].includes(p?.songNativeDirection?.version)?'kamen-song-grammar-renderer-'+p.songNativeDirection.version:J.songNativeRendererCompatibilityId;
+const rendererVersion=p=>[4,5,6,7,8].includes(p?.songNativeDirection?.version)?'kamen-song-grammar-renderer-'+p.songNativeDirection.version:J.songNativeRendererCompatibilityId;
 const buildId=()=>window.KAMEN_BUILD_INFO?.sourceTreeSHA256||window.KAMEN_BUILD_INFO?.sourceCommit||'development';
 const renderContract=p=>fingerprint({lines:p.lines,W:p.W,H:p.H,duration:p.duration,locks:J.cinemaV3.lockSignature(p)});
 const restoreState=(p,status,reason)=>{p.songNativeRestore={status,reason};return p;};
@@ -129,7 +129,7 @@ J.captureSongNativeResolved=(project,audio,p,expectedIdentity=inputIdentity(proj
  source.artDirection.songNativeDirection=copy(p.songNativeDirection);
  const baseline=J.plan(source,audio),base=J.songNativeRenderDecisions(baseline),final=J.songNativeRenderDecisions(p);
  if(!same(baseline.lines,p.lines)||J.cinemaV3.lockSignature(baseline)!==J.cinemaV3.lockSignature(p))throw Error('TIMING_OR_LOCK_CHANGED');
- const schema=[4,5,6,7].includes(p.songNativeDirection.version)?p.songNativeDirection.version:3;
+ const schema=[4,5,6,7,8].includes(p.songNativeDirection.version)?p.songNativeDirection.version:3;
  const resolved={version:schema,songNativeSchemaVersion:schema,buildId:buildId(),rendererCompatibilityId:rendererVersion(p),renderContract:renderContract(baseline),sourceIdentity:expectedIdentity,baselineIdentity:fingerprint(base),decisionsIdentity:fingerprint(final),direction:copy(p.songNativeDirection),overrides:delta(base,final),locks:J.cinemaV3.lockSignature(p)};
  if(fingerprint(patch(base,resolved.overrides))!==resolved.decisionsIdentity)throw Error('UNREPRESENTABLE_RENDER_DECISIONS');
  // Commit atomically after all validation. A superseded async job cannot reach here.
@@ -141,7 +141,7 @@ J.restoreSongNativeResolved=(project,audio,p)=>{
  if(!r)return restoreState(p,'NOT_SAVED');
  if(!audio||!audio.duration)return restoreState(p,'PENDING_INPUT','AUDIO_NOT_READY');
  // No legacy hash is allowlisted without a verified equivalent rendering contract.
- const schema=[4,5,6,7].includes(p.songNativeDirection?.version)?p.songNativeDirection.version:3;
+ const schema=[4,5,6,7,8].includes(p.songNativeDirection?.version)?p.songNativeDirection.version:3;
  if(r.version!==schema||r.songNativeSchemaVersion!==schema||r.rendererCompatibilityId!==rendererVersion(p))return restoreState(p,'REJECTED','RENDERER_OR_SCHEMA');
  if(r.sourceIdentity!==inputIdentity(project,audio)||!J.validSongNativeDirection(r.direction)||!same(r.direction,p.songNativeDirection)||!Array.isArray(r.overrides))return restoreState(p,'REJECTED','INPUT_OR_DIRECTION');
  if(r.renderContract!==renderContract(p)||r.baselineIdentity!==fingerprint(J.songNativeRenderDecisions(p))||r.locks!==J.cinemaV3.lockSignature(p))return restoreState(p,'REJECTED','BASELINE_OR_LOCK');
@@ -237,7 +237,7 @@ const camera=J.cameraAt;J.cameraAt=(p,t,range)=>{
 };
 const main=J.mainDraw;J.mainDraw=(env,it)=>{
  const s=J.songNativeSectionAt(env.plan,env.t),c=env.cut;
- if(![4,5,6,7].includes(env.plan.songNativeDirection?.version)&&s&&c?.line>=0&&!locked(env.plan,c)&&norm(it.text)===norm(c.lineText??c.text)&&finite(it.size))it={...it,size:it.size*(.82+.18*s.typographyScale)*(1-.08*s.negativeSpace)};
+ if(![4,5,6,7,8].includes(env.plan.songNativeDirection?.version)&&s&&c?.line>=0&&!locked(env.plan,c)&&norm(it.text)===norm(c.lineText??c.text)&&finite(it.size))it={...it,size:it.size*(.82+.18*s.typographyScale)*(1-.08*s.negativeSpace)};
  const motif=J.songNativeMotifAt(env.plan,env.t);
  if(motif&&s&&!s.quietIntent&&c?.line>=0&&!locked(env.plan,c)&&norm(it.text)===norm(c.lineText??c.text)){
   it=J.safeLyricItem(env,{...it,x:finite(it.x)?it.x+(motif.axis-.5)*env.W*.035:it.x,y:finite(it.y)?it.y+(motif.lift-.5)*env.H*.025:it.y,

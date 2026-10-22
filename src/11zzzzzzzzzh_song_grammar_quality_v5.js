@@ -1,7 +1,7 @@
 /* v5 observation contract. Planned acoustic/composition targets never count as
    rendered evidence. Canvas proxies do not certify decoded MP4 or audience taste. */
 (()=>{'use strict';
-const J=window.J,F=Number.isFinite,C=J.clamp,active=p=>[5,6,7].includes(p?.songNativeDirection?.version);
+const J=window.J,F=Number.isFinite,C=J.clamp,active=p=>[5,6,7,8].includes(p?.songNativeDirection?.version);
 const version='kamen-song-grammar-quality-5',mean=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
 const delta=(a,b)=>a?.length&&a.length===b?.length?mean(a.map((v,i)=>Math.abs(v-b[i]))):null;
 const fontIds=new WeakMap();let nextFont=0;
@@ -23,6 +23,7 @@ const expected=(p,a,b)=>{
  return F(sb.expectedChange)?sb.expectedChange:null;
 };
 J.measureSongGrammarV5=(p,frames=[],range)=>{
+ if(p.songNativeDirection?.version===8)return J.measureJizuraDirectionV8(p,frames,range);
  const from=range?.start??0,to=range?.end??p.duration;
  const malformed=frames.filter(f=>!f.features||!Array.isArray(f.features.luma)||!f.features.luma.length||!f.features.luma.every(F)||!['area','spread','texture'].every(k=>F(f.features[k]))||!['fg','bbox','center'].every(k=>Array.isArray(f.features[k])&&f.features[k].every(F)));
  const rows=frames.filter(f=>!malformed.includes(f)&&F(f.time)&&f.time>=from&&f.time<=to&&f.features?.luma?.length).sort((a,b)=>a.time-b.time);
@@ -69,6 +70,7 @@ J.measureSongGrammarV5=(p,frames=[],range)=>{
  return {contractVersion:refinement?.contractVersion||version,range:range??null,status:malformed.length?'FAILED':rows.length?'MEASURED':'UNMEASURED',metrics,requiredComplete,samples:rows.map(r=>r.time),social,source:'bounded production Canvas + isolated glyph masks + camera-only raster ablation',planned:p.songNativeDirection.sections.map(s=>({start:s.start,end:s.end,expectedChange:s.expectedChange,transition:s.transition})),artisticQuality:'UNVERIFIED',encodedStatus:'UNMEASURED'};
 };
 const collect=async(p,range,telemetry={})=>{
+ if(p.songNativeDirection?.version===8){const r=await J.collectJizuraDirectionV8(p,range,telemetry);r.contract.observationBinding={renderKey:binding(p,range)};return r;}
  const inputBinding=binding(p,range);
  const from=range?.start??0,to=range?.end??p.duration,times=new Set(),add=t=>{if(times.size<64&&F(t)&&t>=from&&t<to)times.add(Math.round(t*10000)/10000);};
  for(const t of [from,from+.04,to-.5,to-.04])add(t);
@@ -122,7 +124,7 @@ const reality=J.auditDirectionReality;J.auditDirectionReality=(p,pixels)=>{
 const check=J.checkMVQuality;J.checkMVQuality=(project,p,audio,range,pixel,caps,validation)=>{
  const r=check(project,p,audio,range,pixel,caps,validation);if(!active(p))return r;const candidate=pixel?.metrics?.songGrammarV5,e=candidate?.observationBinding?.renderKey===binding(p,range)?candidate:J.measureSongGrammarV5(p,[],range),q=r.quality,get=k=>e.metrics[k]?.status==='MEASURED'?e.metrics[k].score:null;
  q.songGrammarV5=e;q.socialScope={scope:e.social.scope,shortScore:e.social.shortScore};q.hype=J.hypeQuality(project,p,audio,range,{...pixel,metrics:{...pixel?.metrics,songGrammarV5:e}});q.socialScore=e.social.score;
- const creative=['world','typography','camera','background','temporal','repetition','stillness','continuity'].map(get).filter(F);q.creativeScore=creative.length?Math.round(mean(creative)):null;
+ const creative=['world','typography','camera','background','temporal','repetition','stillness','continuity'].map(get).filter(F);q.creativeScore=p.songNativeDirection.version===8?null:creative.length?Math.round(mean(creative)):null;
  q.productionDomains={technical:q.technicalScore,musicalDirection:get('temporal'),semanticDirection:null,typography:get('typography'),visualWorld:get('world'),motionRealization:get('camera'),audienceImpact:null,social:q.socialScore};
  p.currentQualityScores=q.productionDomains;
  q.metrics={...q.metrics,styleSelection:null,styleRealization:J.auditDirectionReality(p,pixel).score,styleArcRealization:null,temporalContrast:get('temporalContrast')};
@@ -135,6 +137,7 @@ const check=J.checkMVQuality;J.checkMVQuality=(project,p,audio,range,pixel,caps,
  // legacy style/event proxies and cannot certify missing/undecoded evidence.
  if(p.songNativeDirection.version===6)q.songGrammarV6=e;
  if(p.songNativeDirection.version===7)q.songGrammarV7=e;
+ if(p.songNativeDirection.version===8)q.songGrammarV8=e;
  if(q.targetAcceptance){q.targetAcceptance.certified100=false;if(!e.requiredComplete){q.targetAcceptance.minimumMet=false;q.targetAcceptance.unmeasured=[...new Set([...(q.targetAcceptance.unmeasured||[]),...q.unmeasuredRequired.map(k=>'v5.'+k)])];}}
  return r;
 };
