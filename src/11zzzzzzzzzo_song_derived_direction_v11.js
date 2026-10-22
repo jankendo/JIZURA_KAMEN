@@ -92,9 +92,9 @@ J.directionRoleCandidatesV11=(p,g,intent,index=J.directionCapabilityIndexV11(p))
 }).sort((a,b)=>b.prior-a.prior||a.id.localeCompare(b.id));
 // A capability-distance traversal preserves different mechanisms before raster
 // evidence exists; no fixed list of favoured ids and no two-candidate cutoff.
-J.directionRepresentativesV11=(rows,budget)=>{
+J.directionRepresentativesV11=(rows,budget,seeds=[])=>{
  const kept=[];const diff=(a,b)=>Number(a.temporal!==b.temporal)+Number(a.region!==b.region)+Math.abs((a.amount.value??.35)-(b.amount.value??.35))+new Set([...a.mechanisms,...b.mechanisms].filter(k=>a.mechanisms.includes(k)!==b.mechanisms.includes(k))).size*.3;
- const pending=[...rows];while(pending.length&&kept.length<budget){pending.sort((a,b)=>(b.prior+Math.min(2,...kept.map(k=>diff(b,k)))*.25)-(a.prior+Math.min(2,...kept.map(k=>diff(a,k)))*.25)||a.id.localeCompare(b.id));kept.push(pending.shift());}return kept;
+ const pending=[...rows];while(pending.length&&kept.length<budget){pending.sort((a,b)=>(b.prior+Math.min(2,...[...seeds,...kept].map(k=>diff(b,k)))*.25)-(a.prior+Math.min(2,...[...seeds,...kept].map(k=>diff(a,k)))*.25)||a.id.localeCompare(b.id));kept.push(pending.shift());}return kept;
 };
 // Style/layout retrieval uses the live catalogs and continuous input features.
 J.directionStyleCandidatesV11=(p,a,f,expand=false)=>{
@@ -121,8 +121,8 @@ J.directionLayoutSequenceV11=function*(initial,available,hasSafe,context){
  // for contrast. The caller tests every yielded layout through real Canvas.
  if(demand>.25&&best<.9&&diversity<demand*.5){
   const allowed=new Set(available.map(([id])=>id));
-  const rest=J.directionCapabilityIndexV11(context.p).filter(x=>x.group==='layout'&&x.eligible&&allowed.has(x.id)&&!initial.includes(x.id));
-  for(const row of J.directionRepresentativesV11(rest,Math.ceil(1+demand*3)))yield row.id;
+  const index=J.directionCapabilityIndexV11(context.p),rest=index.filter(x=>x.group==='layout'&&x.eligible&&allowed.has(x.id)&&!initial.includes(x.id));
+  for(const row of J.directionRepresentativesV11(rest.map(x=>({...x,prior:0})),Math.ceil(1+demand*3),index.filter(x=>x.group==='layout'&&initial.includes(x.id))))yield row.id;
  }
 };
 // Feature-aware schedules include the actual effect windows, a long readable
