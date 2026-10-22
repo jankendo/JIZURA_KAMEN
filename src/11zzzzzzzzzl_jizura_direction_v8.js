@@ -42,6 +42,7 @@ const install=(p,entries)=>{
  p.cuts=p.cuts.flatMap(c=>{if(c.line<0||locked(p,c))return [c];if(seen.has(c.line))return [];seen.add(c.line);return [copy(byLine.get(c.line)||baselineCut(p,{...c,start:p.lines[c.line].start,end:p.lines[c.line].end,dur:p.lines[c.line].end-p.lines[c.line].start}))];});
  p.cuts.forEach((c,i)=>c.index=i);return p;
 };
+J.installRegistryStoryboardV8=install;
 const plan=J.plan;J.plan=(p,a)=>{
  if(!active(p))return plan(p,a);
  const identity=J.songNativeInputIdentityV7(p,a),saved=p.artDirection.songNativeDirection,d=J.validSongNativeDirection(saved)&&saved.sourceIdentity===identity?copy(saved):(saved?.version===9?J.buildJizuraDirectionV9:J.buildJizuraDirectionV8)(p,a);
@@ -95,6 +96,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
  abort(options.signal);const before=await J.cinemaV3.planHash(p),trial=copy(p),cv=document.createElement('canvas'),mask=document.createElement('canvas'),R=new J.Renderer();
  cv.width=mask.width=256;cv.height=mask.height=Math.round(256*p.H/p.W);
  let frames=0;const rawSample=J.createRegistryRenderProbe(trial,R,cv,mask,{production:true,onFrame:()=>frames++}),sample=J.isCreativeOptimizerV10?.(p)?J.createCreativeProbeV10(rawSample,cv):rawSample,portfolios=[],traces=[],styleComparisons=[];
+ if(J.isSongDerivedV11?.(p))sample.verifyScale=rawSample.verifyScale;
  const phases=c=>J.isSongDerivedV11?.(p)?J.directionPhasesV11(p,c,a):legacyPhases(c);
  const cuts=trial.cuts.filter(c=>c.line>=0&&!locked(p,c));
  try{
@@ -162,6 +164,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
    return -styleCost-repeatCost;
   }});
   if(J.isCreativeOptimizerV10?.(p))storyboard=J.chooseCreativeArcV10(p,portfolios,storyboard);
+  if(J.isSongDerivedV11?.(p))storyboard=await J.confirmDirectionScaleV11(trial,portfolios,storyboard,sample,phases,options.signal);
   if(cuts.length&&storyboard.status!=='MEASURED_SAFE_SEQUENCE')throw Error('V8_NO_SAFE_STORYBOARD');
   // Validate the composed winner before committing any mutation to the input.
   install(trial,storyboard.picks.map(x=>({line:x.line,cut:x.cut})));

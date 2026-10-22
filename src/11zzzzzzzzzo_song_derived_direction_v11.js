@@ -58,7 +58,7 @@ J.directionCapabilityIndexV11=p=>['style',...J.GROUP_KEYS].flatMap(group=>Object
 // Dispatch observations are distinct from a technique merely being present in
 // a candidate cut. Wrappers live only for the synchronous production frame.
 const probeFactory=J.createRegistryRenderProbe;J.createRegistryRenderProbe=(...args)=>{
- const sample=probeFactory(...args);return(p,c,t)=>{
+ const sample=probeFactory(...args);let detail=null;const probe=(p,c,t)=>{
   if(!J.isSongDerivedV11(p))return sample(p,c,t);
   const called=new Map(),restores=[],mark=(group,id)=>called.set(group+':'+id,{group,id});
   const cuts=[c,...(c.trans!=='cut'?p.cuts:[])];
@@ -70,6 +70,10 @@ const probeFactory=J.createRegistryRenderProbe;J.createRegistryRenderProbe=(...a
   try{const e=sample(p,c,t);if(e.geometry?.length)mark('style',c.styleKey);return {...e,registryDispatchV11:[...called.values()]};}
   finally{restores.reverse().forEach(fn=>fn());J.directionBuiltinProbeV11=builtin;}
  };
+ probe.verifyScale=(p,c,t)=>{
+  if(!detail){const cv=document.createElement('canvas'),mask=document.createElement('canvas');cv.width=mask.width=640;cv.height=mask.height=Math.round(640*p.H/p.W);detail=J.createRegistryRenderProbe(p,args[1],cv,mask,{production:true});}
+  return detail(p,c,t);
+ };return probe;
 };
 J.directionRoleCandidatesV11=(p,g,intent,index=J.directionCapabilityIndexV11(p))=>index.filter(x=>x.group===g&&x.eligible&&x.id!==neutral[g]).map(x=>{
  const amount=x.amount.value??J.registryRoleAmountV9(g,x.id);
@@ -271,9 +275,32 @@ const arc=J.chooseCreativeArcV10;J.chooseCreativeArcV10=(p,portfolios,initial)=>
  const audit=J.auditCreativeArcV10(portfolios,chosen.picks);
  return {...chosen,creativeArc:{...audit,source:'primary glyph + complete RGB raster + acoustic recurrence/phase',repeatRelations:copy(relations),unresolvedMonotony:audit.requiresReevaluation?'NO_BETTER_GLOBAL_SAFE_PATH':null},method:'input-derived capability/temporal Pareto and multilevel raster beam v11'};
 };
+// Only the composed shortlist is checked at a larger raster. A failed state is
+// removed and the existing beam selects from remaining safe alternatives; the
+// verification budget decreases on every rejection, without threshold changes.
+J.confirmDirectionScaleV11=async(p,portfolios,initial,sample,phases,signal)=>{
+ if(!initial.picks.length)return {...initial,scaleSafety:{status:'NOT_APPLICABLE',width:640,entries:[],rejected:[]}};
+ if(!sample.verifyScale)throw Error('V11_MISSING_DETAIL_PROBE');
+ const candidates=portfolios.map(step=>({...step,candidates:[...step.candidates]})),rejected=[];
+ let selected=initial;
+ for(let remaining=candidates.reduce((n,s)=>n+s.candidates.length,0);remaining>0;remaining--){
+  abort(signal);const trial=copy(p);J.installRegistryStoryboardV8(trial,selected.picks.map(x=>({line:x.line,cut:x.cut})));
+  const evidence=[],bad=[];
+  for(const pick of selected.picks){
+   const cut=trial.cuts.find(c=>c.line===pick.line),checks=phases(cut).map(t=>sample.verifyScale(trial,cut,t));
+   evidence.push({line:cut.line,checks:checks.map(strip)});
+   if(!checks.every(e=>e.eligible)||!checks.some(e=>e.temporalStage==='HOLD'&&e.readable))bad.push(pick);
+  }
+  if(!bad.length)return {...selected,scaleSafety:{status:'MEASURED_SAFE_SEQUENCE',width:640,entries:evidence,rejected}};
+  for(const pick of bad){const step=candidates.find(s=>s.line===pick.line),key=J.canonicalJSON(pick.cut);step.candidates=step.candidates.filter(x=>J.canonicalJSON(x.cut)!==key);rejected.push({line:pick.line,reason:'LARGER_RASTER_GLYPH_CONTRAST_OR_GEOMETRY',roles:roles.map(g=>[g,get(pick.cut,g)])});if(!step.candidates.length)throw Error('V11_NO_MULTISCALE_SAFE_CANDIDATE_LINE_'+pick.line);}
+  selected=J.chooseCreativeArcV10(p,candidates,selected);await new Promise(r=>setTimeout(r,0));
+ }
+ throw Error('V11_DETAIL_FRONTIER_EXHAUSTED');
+};
+const alternative=J.creativeAlternativeEvidenceV10;J.creativeAlternativeEvidenceV10=(s,b,p)=>({...alternative(s,b,p),...(b.scaleSafety?{multiScaleEvidence:copy(b.scaleSafety)}:{})});
 const attach=J.attachCreativeEvidenceV10;J.attachCreativeEvidenceV10=(selection,storyboard,portfolios)=>{
  const active=selection.optimizerVersion===11||storyboard.picks.some(x=>x.intent);attach(selection,storyboard,portfolios);if(!active)return;
- selection.optimizerVersion=11;selection.optimizerContract='jizura-song-derived-direction-11';
+ selection.optimizerVersion=11;selection.optimizerContract='jizura-song-derived-direction-11';selection.multiScaleEvidence=copy(storyboard.scaleSafety||null);
  for(const trace of selection.traces){const chosen=storyboard.picks.find(x=>x.line===trace.line);if(!chosen)continue;
   trace.creative=copy(chosen.optimizerEvidence);trace.creative.axes=copy(chosen.dimensions);trace.creative.catalog.forEach(row=>row.selected=row.group==='style'?row.id===chosen.cut.styleKey:row.group==='layout'?row.id===chosen.cut.layout:row.id===get(chosen.cut,row.group));
   trace.creative.catalog.forEach(row=>{row.states=['REGISTERED',...(row.callable?['CALLABLE']:[]),...(row.eligible?['ELIGIBLE']:[]),...(row.probed?['PROBED']:[]),...(row.safe?['SAFE']:[]),...(row.selected?['SELECTED']:[])];row.renderVerification=row.probed?'MEASURED_INPUT_COMPOSITION':'UNMEASURED';});

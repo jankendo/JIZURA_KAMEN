@@ -14,7 +14,8 @@ Responsibilities are separated in `src/11zzzzzzzzzo_song_derived_direction_v11.j
 4. Joint search: draw independent candidates; derive interaction edges from spatial/temporal overlap and input demand; include unsafe individual states so combined treatment/background states may rescue them; refine complete states. Reuse deterministic component planners and the original decoration parameter factory. Bound the budget by input demand and terminate on an objective-fit plateau.
 5. Temporal evaluation: inspect entry, completion, readable holds, exit, transient FX/transition windows and a local acoustic peak. Compare ablations at identical times. Pixel magnitude alone earns no quality reward.
 6. Global arc: retain a safe contrast-demand reserve as well as Pareto/local candidates, then run the existing beam with full-raster/ink and acoustic recurrence/phase costs. Record unresolved monotony without failing otherwise safe generation.
-7. Commit/diagnostics: retain the v9 SELECTED/DRAFT/STALE, lock and restore semantics; add optimizer 11 evidence. Alternatives keep their own traces and arc. An optimizer-11 committed entry must contain an actually readable hold observation.
+7. A larger-raster final gate verifies only the composed shortlist at width 640; a failed state is removed and the existing beam chooses another safe sequence. The same gate protects independently generated alternatives. This caught an actual supplied-asset FX that passed at 256 but lowered contrast at 640; safety thresholds remain unchanged.
+8. Commit/diagnostics: retain the v9 SELECTED/DRAFT/STALE, lock and restore semantics; add optimizer 11 evidence. Alternatives keep their own traces and arc. An optimizer-11 committed entry must contain an actually readable hold observation.
 
 ## Text safety
 
@@ -48,7 +49,7 @@ node scripts/serve.mjs dist 127.0.0.1 4173
 node dev/browser_startup_smoke.cjs http://127.0.0.1:4173/
 ```
 
-`KAMEN_CHROME` selects Chrome/Chromium. The four v11 test groups run in a real browser using the production source-manifest order and embedded Japanese font. They cover registry exploration/actual dispatch beyond the old top two, ordered-acoustic intent/recurrence/determinism, temporal glyph safety in both aspects, and persistence/locks/alternatives/repair/export modes. Required FAST CI also retains all prior v3–v10 checks and the real UI generation/quality/commit/restore/rollback smoke.
+`KAMEN_CHROME` selects Chrome/Chromium. The four v11 test groups run in a real browser using the production source-manifest order and embedded Japanese font. They cover registry exploration/actual dispatch beyond the old top two, ordered-acoustic intent/recurrence/determinism, temporal glyph safety in both aspects and larger-raster rejection/reselection, and persistence/locks/alternatives/repair/export modes. Required FAST CI also retains all prior v3–v10 checks and the real UI generation/quality/commit/restore/rollback smoke.
 
 Optional private supplied-asset test (does not upload assets or use the supplied current storyboard):
 

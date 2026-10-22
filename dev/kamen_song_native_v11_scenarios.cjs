@@ -8,7 +8,7 @@ async function runDirectionTestsV11(){
  const synth=order=>{const rows=order.flatMap((v,i)=>Array.from({length:8},(_,j)=>({time:i*2+j*.25,energy:.5,onset:v,brightness:v,bass:1-v,spectralFlux:j===4?v:0,logBands:[v,1-v,v,0,0,1-v]})));return {duration:6,bpm:120,energyRate:4,energy:new Float32Array(24).fill(.5),onset:Float32Array.from(rows.map(r=>r.onset)),features:{energy:.5,timeline:rows,detailedTimeline:rows}};};
  const a=synth([.05,.85,.05]),b=synth([.85,.05,.05]);
  const prepare=async(audio,input=q,search=true)=>{const source=copy(input),set=await J.generateJizuraDirectionV11(source,audio);source.autoDirection=true;source.artDirection=J.makeArtDirection(source,audio,set.recommended.proposal);source.fonts={...source.artDirection.typography};const p=J.plan(source,audio);if(search)await J.searchSongNativeCandidates(p,null,audio,{ensureFonts:false});return {q:source,p};};
- const left=await prepare(a),selection=left.p.songNativeDirection.selection;J.assertSelectionV9(left.p,a);assert.equal(selection.optimizerVersion,11);
+ const left=await prepare(a),selection=left.p.songNativeDirection.selection;J.assertSelectionV9(left.p,a);assert.equal(selection.optimizerVersion,11);assert.equal(selection.multiScaleEvidence.status,'MEASURED_SAFE_SEQUENCE');
  const index=J.directionCapabilityIndexV11(left.p),counts=Object.fromEntries(['style',...J.GROUP_KEYS].map(g=>[g,index.filter(x=>x.group===g).length]));
  assert.equal(index.length,Object.keys(J.STYLES).length+J.GROUP_KEYS.reduce((n,g)=>n+Object.keys(J.registry(g)).length,0));
  const trace=selection.traces[1].creative;
@@ -49,6 +49,17 @@ async function runDirectionTestsV11(){
   }finally{hold.apply=original;}
   const typing={...base,enter:'type',inDur:Math.min(.22,base.dur*.15),hold:'still',exit:'cut',outDur:0};const entering=probe(p,typing,typing.inDur*.5),held=probe(p,typing,base.dur*.5);assert(entering.eligible&&entering.temporalStage==='ENTRY','bounded intentional entry is allowed');assert(held.eligible&&held.full&&held.readable,'entry must resolve to complete readable Japanese');
  }
+ // A real temporary FX with a resolution-dependent wash demonstrates that the
+ // composed final gate rejects a low-raster winner, then selects a safe state.
+ const scaleId='v11ScaleContrastRegression',baseScale=copy(left.p.cuts.find(c=>c.line===0));
+ J.FXE[scaleId]={name:'test-only scale contrast wash',draw(ctx){if(ctx.canvas.width>256){ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle='rgba(255,255,255,.9)';ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);ctx.restore();}}};
+ try{
+  const low=createCanvas(256,144),lm=createCanvas(256,144),probe=J.createRegistryRenderProbe(left.p,R,low,lm,{production:true}),feature=J.songLineFeaturesV8(left.p,a,baseScale);
+  const makeRow=(cut,score)=>{const e=probe(left.p,cut,cut.dur*.5);assert(e.eligible);return {line:cut.line,cut,score,layout:cut.layout,styleKey:cut.styleKey,evidence:e,features:feature,intent:J.songVisualIntentV11(left.p,a,cut),dimensions:copy(selection.traces[0].creative.axes),signature:J.registryInkSignature(e.mask,256,144),typographySignature:J.registryTypographySignature(e.mask,256,144)};};
+  const bad=makeRow({...baseScale,registryFxV9:scaleId},2),safe=makeRow(baseScale,1),steps=[{line:baseScale.line,energy:feature.energy,candidates:[bad,safe]}],first=J.chooseRegistryStoryboard(steps,8);
+  const gate=await J.confirmDirectionScaleV11(left.p,steps,first,probe,c=>J.directionPhasesV11(left.p,c,a));
+  assert(gate.scaleSafety.rejected.length>0);assert.equal(gate.picks[0].cut.registryFxV9,baseScale.registryFxV9);assert.equal(gate.scaleSafety.status,'MEASURED_SAFE_SEQUENCE');
+ }finally{delete J.FXE[scaleId];}
  assert(left.p.lines.every((l,i)=>l.start===i*2));assert.equal(selection.artisticQuality,'UNVERIFIED');
  console.log('TEST 3 PASS: real Canvas temporal core, normal echo, missing glyph/contrast/bounds rejection, both aspects and LRC');
  const saved=J.captureSongNativeResolved(left.q,a,left.p),restored=J.plan(copy(left.q),a);assert.equal(saved.version,9);assert.equal(restored.songNativeRestore.status,'RESTORED');assert.equal(J.canonicalJSON(J.songNativeRenderDecisions(restored)),J.canonicalJSON(J.songNativeRenderDecisions(left.p)));
@@ -59,7 +70,7 @@ async function runDirectionTestsV11(){
  for(const mode of ['fast','quality']){const x=copy(left.q);x.exportSettings.refinementMode=mode;assert.equal(J.resolveExportSettings(x).refinementMode,mode);}
  const quality=J.checkMVQuality(left.q,fixed,a,null,null).quality;assert.equal(quality.creativeScore,null);assert.equal(quality.socialScore,null);
  console.log('TEST 4 PASS: exact v11 save/restore, independent alternative, locks, repair finalization, invalid state and export modes');
- const report={counts,registered:index.length,techniques:index.length-counts.style,framesCompared:selection.framesCompared,lines:selection.traces.map(t=>({line:t.line,counts:t.creative.counts,compared:t.creative.compared,interactions:t.creative.interactions,ablations:t.creative.ablations})),selected:selection.entries.map(e=>({line:e.line,style:e.cut.styleKey,layout:e.cut.layout,enter:e.cut.enter,hold:e.cut.hold,exit:e.cut.exit,cam:e.cut.cam,bg:e.cut.bg,treat:e.cut.treat,decor:e.cut.decor,fx:e.cut.registryFxV9,trans:e.cut.trans})),artisticQuality:'UNVERIFIED',assets:'Synthetic 6s acoustic order + Japanese repeated lyrics + generated background; KAMEN_ASSET_PACK unavailable'};
+ const report={counts,registered:index.length,techniques:index.length-counts.style,framesCompared:selection.framesCompared,lines:selection.traces.map(t=>({line:t.line,counts:t.creative.counts,compared:t.creative.compared,interactions:t.creative.interactions,ablations:t.creative.ablations})),selected:selection.entries.map(e=>({line:e.line,style:e.cut.styleKey,layout:e.cut.layout,enter:e.cut.enter,hold:e.cut.hold,exit:e.cut.exit,cam:e.cut.cam,bg:e.cut.bg,treat:e.cut.treat,decor:e.cut.decor,fx:e.cut.registryFxV9,trans:e.cut.trans})),artisticQuality:'UNVERIFIED',assets:'Synthetic 6s acoustic order + Japanese repeated lyrics + generated background; supplied real assets validated separately'};
  R.disposeAssets?.();return report;
 }
 module.exports=runDirectionTestsV11;
