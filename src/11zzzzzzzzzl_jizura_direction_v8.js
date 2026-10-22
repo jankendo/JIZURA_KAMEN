@@ -97,12 +97,15 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
  cv.width=mask.width=256;cv.height=mask.height=Math.round(256*p.H/p.W);
  let frames=0;const rawSample=J.createRegistryRenderProbe(trial,R,cv,mask,{production:true,onFrame:()=>frames++}),sample=J.isCreativeOptimizerV10?.(p)?J.createCreativeProbeV10(rawSample,cv):rawSample,portfolios=[],traces=[],styleComparisons=[];
  if(J.isSongDerivedV11?.(p))sample.verifyScale=rawSample.verifyScale;
+ const recoveryFrontiers=new Map();
  const phases=c=>J.isSongDerivedV11?.(p)?J.directionPhasesV11(p,c,a):legacyPhases(c);
+ if(J.isSongDerivedV11?.(p))sample.recoverLine=(plan,pick,failures,budget)=>J.recoverDirectionLineV112(plan,pick,failures,{sample,phases,audio:a,signal:options.signal,budget,frontier:recoveryFrontiers.get(pick.line)||[]});
  const cuts=trial.cuts.filter(c=>c.line>=0&&!locked(p,c));
  try{
   if(p.customBg?.enabled&&p.customBg.dataUrl)await R.loadCustomBackground(p.customBg.dataUrl);await R.loadAssetDeck?.(p);
   for(const c of cuts){
    abort(options.signal);sample.clear?.();const f=lineFeatures(p,a,c),target=C(f.onset*.45+f.change*.35+(f.flux??0)*.2),styles=J.isSongDerivedV11?.(p)?J.directionStyleCandidatesV11(p,a,f):styleCandidates(p,a,f),ranked=[],exclusions=[],layoutsSeen=new Set();
+   let styleExpanded=false;
    for(const st of styles){
     const style=J.STYLES[st.style],fonts=[...new Set([...(style.fonts?.display||[]),'embedded_bold'])].filter(id=>J.FONTS[id]).slice(0,2);
     if(options.ensureFonts!==false)await J.ensureFonts(c.lineText,fonts);abort(options.signal);
@@ -123,9 +126,10 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
      }
     }
     styleComparisons.push({line:c.line,style:st.style,profileFit:st.score,safeRendered:ranked.filter(r=>r.styleKey===st.style).length});
-    if(J.isSongDerivedV11?.(p)&&st===styles.at(-1)&&!ranked.length)styles.push(...J.directionStyleCandidatesV11(p,a,f,true).filter(x=>!styles.some(y=>y.style===x.style)));
+    if(J.isSongDerivedV11?.(p)&&st===styles.at(-1)&&!styleExpanded){styleExpanded=true;const extra=J.additionalStylesV112?J.additionalStylesV112(p,a,f,ranked,styles):!ranked.length?J.directionStyleCandidatesV11(p,a,f,true):[];styles.push(...extra.filter(x=>!styles.some(y=>y.style===x.style)));}
    }
    ranked.sort((x,y)=>y.score-x.score||x.layout.localeCompare(y.layout)||x.styleKey.localeCompare(y.styleKey));
+   recoveryFrontiers.set(c.line,ranked);
    const distinct=J.registryGeometryRepresentatives(ranked,.25).candidates.slice(0,3),safe=[];
    if(J.isCreativeOptimizerV10?.(p)){safe.push(...await J.optimizeCreativeLineV10({p:trial,c,f,ranked,distinct,sample,phases,signal:options.signal,audio:a,anchors:R.customBgBitmap?J.photoAnchorCandidates(R.customBgBitmap):[]}));}
    else
@@ -165,6 +169,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
   }});
   if(J.isCreativeOptimizerV10?.(p))storyboard=J.chooseCreativeArcV10(p,portfolios,storyboard);
   if(J.isSongDerivedV11?.(p))storyboard=await J.confirmDirectionScaleV11(trial,portfolios,storyboard,sample,phases,options.signal);
+  for(const r of storyboard.scaleSafety?.recovery||[]){const trace=traces.find(t=>t.line===r.line);if(trace){trace.candidateCount+=r.examined;trace.safeCount+=r.added;trace.layoutCandidates=[...new Set([...trace.layoutCandidates,...r.techniques.map(x=>x.layout)])];}}
   if(cuts.length&&storyboard.status!=='MEASURED_SAFE_SEQUENCE')throw Error('V8_NO_SAFE_STORYBOARD');
   // Validate the composed winner before committing any mutation to the input.
   install(trial,storyboard.picks.map(x=>({line:x.line,cut:x.cut})));
@@ -174,7 +179,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
   if(J.isSongDerivedV11?.(p))selection.optimizerVersion=11;
   if(J.isCreativeOptimizerV10?.(p))J.attachCreativeEvidenceV10(selection,storyboard,portfolios);
   if(p.songNativeDirection.version===9)for(const e of selection.entries){e.phaseEvidence=finalEvidence.get(e.line);e.validation='MEASURED_SAFE_SEQUENCE';}
-  if(p.songNativeDirection.version===9)selection.alternatives=await J.registryAlternativesV9(trial,portfolios,storyboard,sample,phases,selection);
+  if(p.songNativeDirection.version===9)selection.alternatives=await J.registryAlternativesV9(trial,portfolios,storyboard,sample,phases,selection,options);
   selection.framesCompared=frames;
   abort(options.signal);if(await J.cinemaV3.planHash(p)!==before)throw Error('INPUT_CHANGED_DURING_SEARCH');
   const d=copy(p.songNativeDirection);d.selection=selection;if(d.version===9){d.status='SELECTED';selection.locks=J.cinemaV3.lockSignature(p);}p.songNativeDirection=d;p.artDirection.songNativeDirection=d;install(p,selection.entries);J.cinemaV3.invalidate(p);return p;
