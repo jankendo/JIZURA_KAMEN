@@ -17,8 +17,53 @@ J.generateJizuraDirectionV11=async(p,a,o={})=>{
  for(const x of set.candidates){x.proposal.grammarDirection.optimizerVersion=11;x.proposal.summary='曲固有の表現意図から実Canvasで技法を探索・共同選択 v11';}
  return set;
 };
-const make=J.makeArtDirection;J.makeArtDirection=(p,a,pr)=>{const art=make(p,a,pr);if(pr.grammarDirection?.optimizerVersion===11)art.songNativeDirection.optimizerVersion=11;return art;};
-const build=J.buildJizuraDirectionV9;J.buildJizuraDirectionV9=(p,a)=>{const d=build(p,a);if(J.isSongDerivedV11(p))d.optimizerVersion=11;return d;};
+// v12 changes search policy, not the v9 renderer/persistence schema.
+J.isExpressiveV12=p=>(p?.songNativeDirection||p?.artDirection?.songNativeDirection)?.expressiveVersion===12;
+J.generateJizuraDirectionV12=async(p,a,o={})=>{
+ const set=await J.generateJizuraDirectionV11(p,a,o);
+ for(const x of set.candidates){x.proposal.grammarDirection.expressiveVersion=12;x.proposal.summary='曲固有の空間・保持時間・反復から実Canvasで共同選択 v12';}
+ return set;
+};
+// Select spatially different *observed* layouts before dividing the finite raster
+// budget. An input requesting stillness still compares an active alternative.
+J.directionSeedsV12=(rows,f)=>{
+ const demand=C((f.change||0)*.4+(f.onset||0)*.3+(f.flux||0)*.3);
+ const count=Math.min(rows.length,2+Math.ceil(demand*4)),pending=[...rows],kept=[];
+ while(pending.length&&kept.length<count){
+  const utility=x=>x.score+(kept.length?Math.min(...kept.map(y=>J.registryInkDistance(x.signature,y.signature)??0)):0)*(.2+demand*.3);
+  pending.sort((a,b)=>utility(b)-utility(a)||a.layout.localeCompare(b.layout)||a.styleKey.localeCompare(b.styleKey));kept.push(pending.shift());
+ }return kept;
+};
+// Sparse input-derived envelope is part of the selected cut and therefore travels
+// through preview, save/restore and both MP4 paths. No new animation vocabulary.
+J.directionHoldEnvelopeV12=(intent,c)=>{
+ const events=intent.events.filter(e=>e.time>=c.inDur&&e.time<c.dur-c.outDur);
+ if(events.length<2)return null;
+ const lo=Math.min(...events.map(e=>e.value)),hi=Math.max(...events.map(e=>e.value));
+ if(hi-lo<.02)return null;
+ const selected=[events[0],events.at(-1)];
+ for(let bin=0;bin<3;bin++){
+  const slice=events.slice(Math.floor(bin*events.length/3),Math.ceil((bin+1)*events.length/3));
+  if(slice.length){selected.push([...slice].sort((a,b)=>a.value-b.value||a.time-b.time)[0]);selected.push([...slice].sort((a,b)=>b.value-a.value||a.time-b.time)[0]);}
+ }
+ const unique=[...new Map(selected.map(e=>[e.time,e])).values()];
+ return {version:12,source:'measured local onset/flux/energy',knots:unique.sort((a,b)=>a.time-b.time).map(e=>({time:e.time,value:C(e.value/hi)}))};
+};
+// Local transient maxima propose additional executions of an existing FX.
+// The boundary-only candidate remains a control; no longer entrance/exit window.
+J.directionEventsV12=(intent,c)=>{
+ if(intent.status!=='MEASURED')return [];
+ const average=mean(intent.events.map(e=>e.value)),maxima=intent.events.filter((e,i,all)=>e.value>average&&e.time>Math.max(.12,c.inDur)&&e.time<c.dur-Math.max(.12,c.outDur)&&e.value>(all[i-1]?.value??-Infinity)&&e.value>=(all[i+1]?.value??-Infinity));
+ const chosen=[];for(const e of maxima.sort((a,b)=>b.value-a.value||a.time-b.time)){if(chosen.every(x=>Math.abs(x.offset-e.time)>.12))chosen.push({offset:e.time,strength:e.value});if(chosen.length===2)break;}
+ return chosen.sort((a,b)=>a.offset-b.offset);
+};
+J.directionHoldAtV12=(cut,t)=>{
+ const knots=cut.expressiveEnvelopeV12?.knots;if(!knots?.length)return 1;
+ let i=0;while(i<knots.length-2&&knots[i+1].time<t)i++;
+ const a=knots[i],b=knots[i+1]||a,u=C((t-a.time)/Math.max(1e-6,b.time-a.time));return a.value+(b.value-a.value)*u*u*(3-2*u);
+};
+const make=J.makeArtDirection;J.makeArtDirection=(p,a,pr)=>{const art=make(p,a,pr);if(pr.grammarDirection?.optimizerVersion===11)art.songNativeDirection.optimizerVersion=11;if(pr.grammarDirection?.expressiveVersion===12)art.songNativeDirection.expressiveVersion=12;return art;};
+const build=J.buildJizuraDirectionV9;J.buildJizuraDirectionV9=(p,a)=>{const d=build(p,a);if(J.isSongDerivedV11(p))d.optimizerVersion=11;if(J.isExpressiveV12(p))d.expressiveVersion=12;return d;};
 // No keyword-to-effect table. Reuse measured acoustic structure and exact/near
 // phrase relations. Japanese emotional/action semantics stay explicitly unknown.
 J.songVisualIntentV11=(p,a,c,f=J.songLineFeaturesV8(p,a,c),anchors=[])=>{
@@ -35,7 +80,7 @@ J.songVisualIntentV11=(p,a,c,f=J.songLineFeaturesV8(p,a,c),anchors=[])=>{
  const previous=(p.lines||[])[c.line-1],before=previous?timeline.filter(r=>r.time>=previous.start&&r.time<c.start):[];
  const contrastDemand=C(Math.abs(mean(events.map(r=>r.value))-mean(before.map(activity)))+f.change*.4);
  const whitespace=anchors.length?[...anchors].sort((x,y)=>(x.saliency??.5)-(y.saliency??.5)||x.x-y.x||x.y-y.y)[0]:null;
- return {status:rows.length?'MEASURED':'UNMEASURED',line:c.line,pressure,changeDemand:contrastDemand,
+ return {status:rows.length?'MEASURED':'UNMEASURED',...(J.isExpressiveV12(p)?{expressiveVersion:12,objectives:{spatialChange:contrastDemand,temporalChange:change,tension:pressure,release:C(1-pressure),variation:repeat.length?contrastDemand:null,negativeSpace:C(1-density/16)}}:{}),line:c.line,pressure,changeDemand:contrastDemand,
   density:C(density/12),space:C(1-density/16),motion:pressure*(1-C(density/24)),emphasis:events.filter(r=>r.value>mean(events.map(x=>x.value))).sort((x,y)=>y.value-x.value||x.time-y.time).slice(0,3),
   continuity:1-contrastDemand,excessTolerance:C(pressure*(1-density/32)),duration:c.dur,glyphCount:glyphs.length,japaneseRatio:mean(glyphs.map(x=>/[\u3000-\u9fff]/.test(x)?1:0)),
   events,repeat,similar,sectionIndex,sectionPhase:section?C((c.start-section.start)/(section.end-section.start)):null,boundaryConfidence:section?.boundaryConfidence??null,
@@ -115,11 +160,11 @@ J.directionLayoutSequenceV11=function*(initial,available,hasSafe,context){
  // safe baseline. Live registry order/bias remains a prior, never a certificate.
  if(!hasSafe()){for(const [id] of available){if(initial.includes(id))continue;yield id;if(hasSafe())break;}return;}
  if(!context)return;
- const rows=context.rows(),demand=C(context.f.change*.65+context.f.onset*.35),best=Math.max(0,...rows.map(r=>r.musicFit||0));
+ const rows=context.rows(),demand=C(context.f.change*.65+context.f.onset*.35),measured=rows.map(r=>r.dimensions?.acousticFit).filter(Number.isFinite),best=measured.length?Math.max(...measured):null;
  const diversity=Math.max(0,...rows.flatMap((a,i)=>rows.slice(i+1).map(b=>J.registryInkDistance(a.signature,b.signature)||0)));
  // Expand a deficient, visually converged frontier only when the input asks
  // for contrast. The caller tests every yielded layout through real Canvas.
- if(demand>.25&&best<.9&&diversity<demand*.5){
+ if(demand>.25&&(best===null||best<.9)&&diversity<demand*.5){
   const allowed=new Set(available.map(([id])=>id));
   const index=J.directionCapabilityIndexV11(context.p),rest=index.filter(x=>x.group==='layout'&&x.eligible&&allowed.has(x.id)&&!initial.includes(x.id));
   for(const row of J.directionRepresentativesV11(rest.map(x=>({...x,prior:0})),Math.ceil(1+demand*3),index.filter(x=>x.group==='layout'&&initial.includes(x.id))))yield row.id;
@@ -134,6 +179,8 @@ J.directionPhasesV11=(p,c,a)=>{
  if(c.exit!=='cut'&&c.outDur>0)t.push(c.dur-c.outDur*.5);
  if(c.registryFxV9||c.trans!=='cut')t.push(Math.min(.045,c.dur*.04));
  if(events[0])t.push(events[0].time-c.start);
+ if(J.isExpressiveV12(p)&&c.registryFxV9)for(const e of c.expressiveEventsV12||[])t.push(e.offset+.01,e.offset+.06);
+ if(J.isExpressiveV12(p)){const hold=events.filter(e=>e.time-c.start>c.inDur&&e.time-c.start<c.dur-c.outDur);if(hold.length){const quiet=[...hold].sort((a,b)=>(a.onset??0)+(a.spectralFlux??0)-(b.onset??0)-(b.spectralFlux??0))[0];t.push(quiet.time-c.start);if(hold[0])t.push(Math.min(c.dur-.001,hold[0].time-c.start+.08));}}
  return [...new Set(t.filter(v=>v>=0&&v<c.dur).map(v=>+v.toFixed(6)))].sort((x,y)=>x-y);
 };
 // Reusable scratch canvases, scoped to this synchronous glyph observation. Compare
@@ -171,7 +218,7 @@ J.directionSafetyV11=(c,dt,e)=>{
 const changeRole=(cut,g,k)=>{
  const c=copy(cut),definition=J.registry(g)[k],rng=J.rng(J.h(c.seed,J.sid(g),J.sid(String(k))));
  if(['treat','bg','cam','trans'].includes(g))c[g+'P']=definition?.plan?definition.plan(rng,c.style):{};
- if(g==='fx'){if(k)c.registryFxV9=k;else delete c.registryFxV9;}else if(g==='decor')c.decor=k==='none'?[]:[J.registryDecorParams(rng,k)];else c[g]=k;
+ if(g==='fx'){if(k)c.registryFxV9=k;else{delete c.registryFxV9;delete c.expressiveEventsV12;}}else if(g==='decor')c.decor=k==='none'?[]:[J.registryDecorParams(rng,k)];else c[g]=k;
  if(g==='enter')c.inDur=k==='cut'?0:Math.min(.22,c.dur*.15);
  if(g==='exit')c.outDur=k==='cut'?0:Math.min(.12,c.dur*.08);
  if(g==='trans')c.transDur=k==='cut'?0:Math.min(.10,c.dur*.08);return c;
@@ -189,7 +236,21 @@ J.scoreDirectionV11=(cut,f,intent,checks,baseScore)=>{
  const targetFit=1-Math.abs(intent.motion-observedMotion);
  out.dimensions.intentFit=targetFit;out.dimensions.onsetAlignment=alignment;
  out.dimensions.visualImpact=pairs.length?mean(pairs.map(x=>x.visual)):null;
- out.score=out.score*.75+targetFit*.15+(alignment??.5)*.10;
+ if(!intent.expressiveVersion){out.score=out.score*.75+targetFit*.15+(alignment??.5)*.10;return out;}
+ const holds=checks.filter(e=>e.temporalStage==='HOLD'),holdPairs=holds.slice(1).map((b,i)=>({a:holds[i],b,visual:distance(b.raster,holds[i].raster)})).filter(x=>Number.isFinite(x.visual)&&x.b.sampleOffset>x.a.sampleOffset);
+ const rate=p=>p.visual/(p.b.sampleOffset-p.a.sampleOffset);
+ const activity=p=>{const rows=intent.events.filter(e=>e.time>=p.a.sampleOffset&&e.time<p.b.sampleOffset);return rows.length?mean(rows.map(e=>e.value)):null;};
+ const aligned=holdPairs.filter(p=>Number.isFinite(activity(p))),rates=aligned.map(rate),audioRates=aligned.map(activity),maxRate=Math.max(0,...rates),maxAudio=Math.max(0,...audioRates);
+ const temporal=aligned.length>1&&maxRate>1e-6&&maxAudio-Math.min(...audioRates)>.02?1-mean(rates.map((r,i)=>Math.abs(r/maxRate-audioRates[i]/maxAudio))):null;
+ const observed=holdPairs.length?C(holdPairs.reduce((sum,p)=>sum+p.visual,0)/holdPairs.reduce((sum,p)=>sum+p.b.sampleOffset-p.a.sampleOffset,0)*5):null;
+ const acousticFit=intent.status==='MEASURED'&&observed!==null?1-Math.abs(intent.motion-observed):null;
+ const geometryFit=checks.length?mean(checks.map(e=>1-Math.abs(C(e.height/.3)-(.35+f.energy*.25+f.brightness*.15-f.length/180)))):null;
+ const coherence=aligned.length>1?1-C(mean(rates.slice(1).map((v,i)=>Math.max(0,Math.abs(v-rates[i])-Math.abs(audioRates[i+1]-audioRates[i]))))):null;
+ const excess=observed===null?null:Math.max(0,observed-intent.motion-intent.excessTolerance);
+ Object.assign(out.dimensions,{visualCoherence:coherence,excessPenalty:excess,onsetAlignment:temporal,geometryFit,readability:holds.length?Number(holds.every(e=>e.readable===true)):null,acousticFit,temporalAlignment:temporal,musicFit:acousticFit,expressiveRealization:holdPairs.length?mean(holdPairs.map(p=>p.visual)):null});
+ out.holdEvidence={status:holdPairs.length?'MEASURED':'UNMEASURED',sampledStagnationSeconds:holdPairs.filter(p=>p.visual<=1e-6).reduce((sum,p)=>sum+p.b.sampleOffset-p.a.sampleOffset,0),samples:holds.map(e=>e.sampleOffset),scope:'sampled intervals; not continuous frame coverage'};
+ const terms=[[out.dimensions.compositionQuality,.28],[out.dimensions.temporalContinuity,.12],[out.dimensions.visualCoherence,.08],[acousticFit,.30],[temporal,.10],[baseScore,.12]].filter(([v])=>Number.isFinite(v));
+ out.score=terms.reduce((sum,[v,w])=>sum+v*w,0)/terms.reduce((sum,[,w])=>sum+w,0)-(excess??0)*.35;
  return out;
 };
 const optimize=J.optimizeCreativeLineV10;
@@ -197,7 +258,7 @@ J.optimizeCreativeLineV10=async args=>{
  if(!J.isSongDerivedV11(args.p))return optimize(args);
  const {p,c,ranked,distinct,sample:rawSample,phases,signal,audio,anchors=[]}=args;
  const sample=(...input)=>{abort(signal);try{return rawSample(...input);}catch(error){if(error.name==='AbortError')throw error;return {eligible:false,readable:false,renderErrors:[String(error.message)],mask:null,raster:null};}};
- const intent=J.songVisualIntentV11(p,audio,c,args.f,anchors),f={...args.f,sectionIndex:intent.sectionIndex,sectionPhase:intent.sectionPhase,boundaryConfidence:intent.boundaryConfidence,localAudio:intent.events.map(e=>({time:e.time,activity:e.value}))};
+ const intent=J.songVisualIntentV11(p,audio,c,args.f,anchors),f={...args.f,...(intent.expressiveVersion?{rhythmicProfile:Array.from({length:4},(_,i)=>{const events=intent.events.filter(e=>e.time>=c.dur*i/4&&e.time<c.dur*(i+1)/4);return events.length?mean(events.map(e=>e.value)):null;}),density:intent.density}:{}),sectionIndex:intent.sectionIndex,sectionPhase:intent.sectionPhase,boundaryConfidence:intent.boundaryConfidence,localAudio:intent.events.map(e=>({time:e.time,activity:e.value}))};
  const index=J.directionCapabilityIndexV11(p),discover=Object.fromEntries(roles.map(g=>[g,J.directionRoleCandidatesV11(p,g,intent,index)]));
  const budget=Math.ceil(78+intent.pressure*24+intent.changeDemand*24+Math.log2(1+index.length));
  const catalog=index.map(x=>({...x,probed:false,safe:false,selected:false})),observed=new Map(),results=[],interactions=[],exclusions=[];let compared=0;
@@ -209,11 +270,11 @@ J.optimizeCreativeLineV10=async args=>{
   const key=J.canonicalJSON(row.cut);if(preflight.has(key))continue;preflight.add(key);
   const sp={...p,style:row.cut.style,styleKey:row.cut.styleKey},checks=phases(row.cut).map(t=>sample(sp,row.cut,t));record(row.cut,checks);
   if(checks.every(e=>e.eligible)&&checks.some(e=>e.readable))starts.push(row);
-  if(starts.length>=2)break;
+  if(starts.length>=(J.isExpressiveV12(p)?distinct.length:2))break;
  }
  // Unsafe individual states may still be rescued by joint treatment/background
  // search. They are never committed without final full temporal validation.
- if(!starts.length)starts.push(...distinct.slice(0,2));
+ if(!starts.length)starts.push(...(J.isExpressiveV12(p)?distinct:distinct.slice(0,2)));
  for(const start of starts){
   const base=copy(start.cut),sp={...p,style:base.style,styleKey:base.styleKey},local=[],limit=Math.ceil(budget/Math.max(1,starts.length));let used=0;
   const evaluate=cut=>{
@@ -221,11 +282,12 @@ J.optimizeCreativeLineV10=async args=>{
    used++;compared++;
    // Entry, readable hold and exit precede any ranking; no midpoint hard gate.
    const times=phases(cut),early=times.filter(t=>t<c.inDur||t<c.dur*.12),late=times.filter(t=>t>c.dur-c.outDur||t>c.dur*.9);
-   const initial=[...new Set([early[Math.floor(early.length/2)]??.001,c.dur*.5,late[0]??c.dur-.001])].sort((x,y)=>x-y),checks=initial.map(t=>sample(sp,cut,t));record(cut,checks);
+   const initial=[...new Set([early[Math.floor(early.length/2)]??.001,c.dur*.5,...(J.isExpressiveV12(p)?times.filter(t=>t>cut.inDur&&t<cut.dur-cut.outDur):[]),late[0]??c.dur-.001])].sort((x,y)=>x-y),checks=initial.map(t=>sample(sp,cut,t));record(cut,checks);
    if(!checks.every(e=>e.eligible)||!checks.some(e=>e.readable)){exclusions.push({layout:cut.layout,reason:'TEMPORAL_CORE_CONTRAST_OR_GEOMETRY',roles:roles.map(g=>[g,get(cut,g)])});observed.set(key,null);return null;}
    const fit=J.scoreDirectionV11(cut,f,intent,checks,start.score),item={...start,cut,checks,times:initial,...fit};local.push(item);observed.set(key,item);return item;
   };
   const control=evaluate(base),singles=[];
+  const envelope=J.isExpressiveV12(p)?J.directionHoldEnvelopeV12(intent,c):null,localEvents=J.isExpressiveV12(p)?J.directionEventsV12(intent,c):[];
   // Image saliency supplies placement hypotheses, not recognized subjects or a
   // mandatory off-center quota. Keep only actual safe/composed improvements.
   const baseAnchor=base.params.photoAnchor||{x:.5,y:.5};
@@ -237,7 +299,7 @@ J.optimizeCreativeLineV10=async args=>{
   // with acoustic demand and capability diversity, rather than a top-two list.
   const queues=Object.fromEntries(roles.map(g=>[g,J.directionRepresentativesV11(discover[g],Math.ceil(3+intent.changeDemand*3))]));
   let cursor=0;while(used<Math.ceil(limit*.65)&&roles.some(g=>queues[g][cursor])){
-   for(const g of roles){const entry=queues[g][cursor];if(entry){const cut=changeRole(base,g,entry.id),item=evaluate(cut);singles.push({g,entry,item:item||{cut,score:control?.score??entry.prior},safe:!!item});}if(used>=Math.ceil(limit*.65))break;}cursor++;
+   for(const g of roles){const entry=queues[g][cursor];if(entry){const cut=changeRole(base,g,entry.id),item=evaluate(cut);singles.push({g,entry,item:item||{cut,score:control?.score??entry.prior},safe:!!item});if(g==='hold'&&envelope)evaluate({...copy(cut),expressiveEnvelopeV12:copy(envelope)});if(g==='fx'&&localEvents.length)evaluate({...copy(cut),expressiveEventsV12:copy(localEvents)});}if(used>=Math.ceil(limit*.65)&&(!J.isExpressiveV12(p)||cursor>0))break;}cursor++;
   }
   // Every role pair is eligible. Spatial overlap, simultaneous activity and
   // measured single-state residuals rank interactions, never a fixed pair table.
@@ -268,6 +330,13 @@ J.optimizeCreativeLineV10=async args=>{
    if(!item.checks.every(e=>e.eligible)||!item.checks.some(e=>e.temporalStage==='HOLD'&&e.readable))continue;
    Object.assign(item,J.scoreDirectionV11(item.cut,f,intent,item.checks,start.score));
    const ablations=[];
+   if(item.cut.expressiveEnvelopeV12){
+    const controlCut=copy(item.cut);delete controlCut.expressiveEnvelopeV12;
+    const controls=item.times.map(t=>sample(sp,controlCut,t)),safe=controls.every(e=>e.eligible),fit=safe?J.scoreDirectionV11(controlCut,f,intent,controls,start.score):null;
+    const differences=controls.map((e,i)=>distance(e.raster,item.checks[i].raster)),observed=differences.every(Number.isFinite)?mean(differences):null;
+    item.envelopeEvidence={status:observed===null?'UNMEASURED':'MEASURED',pixelDifference:observed,fitGain:fit?item.score-fit.score:null,source:'identical hold technique and times, acoustic modulation removed'};
+    if(safe&&(observed<=1e-6||fit.score>item.score)){item.cut=controlCut;item.checks=controls;Object.assign(item,fit);}
+   }
    for(const g of roles.filter(g=>get(item.cut,g)!==neutral[g])){
     const cc=changeRole(item.cut,g,neutral[g]),checks=item.times.map(t=>sample(sp,cc,t)),safe=checks.every(e=>e.eligible)&&checks.some(e=>e.readable),fit=safe?J.scoreDirectionV11(cc,f,intent,checks,start.score):null;
     const differences=checks.map((e,i)=>distance(e.raster,item.checks[i].raster)),difference=differences.every(Number.isFinite)?mean(differences):null;
@@ -278,13 +347,13 @@ J.optimizeCreativeLineV10=async args=>{
    item.dimensions.expressiveContribution=positive.length?mean(positive.map(x=>x.fitGain)):null;
    const temporal=ablations.map(x=>x.temporalContribution?.acousticFitGain).filter(Number.isFinite);item.dimensions.temporalRoleFitGain=temporal.length?mean(temporal):null;if(temporal.length)item.score+=C(mean(temporal)*.03,-.03,.03);
    const hold=item.checks.find(e=>e.temporalStage==='HOLD'&&e.readable),w=256,h=Math.round(w*p.H/p.W);
-   results.push({...item,params:item.cut.params,evidence:strip(hold),phaseEvidence:item.checks.map(strip),signature:J.registryInkSignature(hold.mask,w,h),typographySignature:J.registryTypographySignature(hold.mask,w,h),rasterSignature:hold.raster,features:f,intent,ablations,attempts:[],musicFit:item.dimensions.musicFit});
+   results.push({...item,params:item.cut.params,evidence:strip(hold),phaseEvidence:item.checks.map(strip),signature:J.registryInkSignature(hold.mask,w,h),typographySignature:J.registryTypographySignature(hold.mask,w,h),rasterSignature:hold.raster,features:f,intent,ablations,holdEvidence:item.holdEvidence,attempts:[],musicFit:item.dimensions.musicFit});
   }
   await new Promise(r=>setTimeout(r,0));
  }
  if(!results.length)throw Object.assign(Error('V11_NO_TEMPORAL_SAFE_CANDIDATE_LINE_'+c.line),{diagnostic:{compared,exclusions,baselines:starts.map(start=>({layout:start.cut.layout,style:start.cut.styleKey,checks:phases(start.cut).map(t=>({time:t,...strip(sample({...p,style:start.cut.style,styleKey:start.cut.styleKey},start.cut,t))}))}))}});
  results.sort((a,b)=>b.score-a.score||J.canonicalJSON(a.cut).localeCompare(J.canonicalJSON(b.cut)));
- for(const x of results)x.optimizerEvidence={compared,budget,exclusions,interactions,axes:x.dimensions,ablations:x.ablations,intent,catalog,counts:Object.fromEntries(['registered','callable','eligible','probed','safe'].map(k=>[k,catalog.filter(x=>x[k]).length])),searchTermination:compared>=budget?'ADAPTIVE_BUDGET':'LOCAL_CAPABILITY_FRONTIER',unmeasured:['artisticQuality','semantics','encodedSurvival']};
+ for(const x of results)x.optimizerEvidence={compared,budget,exclusions,interactions,axes:x.dimensions,hold:x.holdEvidence,envelope:x.envelopeEvidence||null,seedCount:starts.length,ablations:x.ablations,intent,catalog,counts:Object.fromEntries(['registered','callable','eligible','probed','safe'].map(k=>[k,catalog.filter(x=>x[k]).length])),searchTermination:compared>=budget?'ADAPTIVE_BUDGET':'LOCAL_CAPABILITY_FRONTIER',unmeasured:['artisticQuality','semantics','encodedSurvival']};
  return results;
 };
 // Each vector names its actual observation source. Background and decoration
@@ -305,7 +374,11 @@ const layerDistance=(a,b)=>{
  for(const k of ['typography','glyphMotion','camera','color','background','decoration','fx']){const x=a?.[k],y=b?.[k];if(x?.status!=='MEASURED'||y?.status!=='MEASURED')continue;const d=k==='typography'?J.registryInkDistance(x.value,y.value):distance(x.value,y.value);if(Number.isFinite(d))values.push(C(d));}
  return values.length?mean(values):null;
 };
-const acoustic=(a,b)=>mean(['energy','onset','brightness','change','flux'].filter(k=>Number.isFinite(a?.[k])&&Number.isFinite(b?.[k])).map(k=>Math.abs(a[k]-b[k])));
+const acoustic=(a,b)=>{
+ const values=['energy','onset','brightness','change','flux','density'].filter(k=>Number.isFinite(a?.[k])&&Number.isFinite(b?.[k])).map(k=>Math.abs(a[k]-b[k]));
+ if(a?.rhythmicProfile&&b?.rhythmicProfile){const bins=a.rhythmicProfile.map((v,i)=>Number.isFinite(v)&&Number.isFinite(b.rhythmicProfile[i])?Math.abs(v-b.rhythmicProfile[i]):null).filter(Number.isFinite);if(bins.length)values.push(mean(bins));}
+ return mean(values);
+};
 const visual=(a,b)=>Math.max(J.registryInkDistance(a.signature,b.signature)??0,(distance(a.rasterSignature,b.rasterSignature)??0)*3);
 const arc=J.chooseCreativeArcV10;J.chooseCreativeArcV10=(p,portfolios,initial)=>{
  if(!J.isSongDerivedV11(p))return arc(p,portfolios,initial);
@@ -317,10 +390,11 @@ const arc=J.chooseCreativeArcV10;J.chooseCreativeArcV10=(p,portfolios,initial)=>
   const relation=state.picks.find(x=>relations.some(r=>r.from===x.features.sectionIndex&&r.to===c.features.sectionIndex||r.to===x.features.sectionIndex&&r.from===c.features.sectionIndex)&&Math.abs((x.features.sectionPhase??0)-(c.features.sectionPhase??0))<.2);
   const previous=repeat||relation,recurrence=previous?Math.abs(visual(previous,c)-C(acoustic(previous.features,c.features)*2.5,0,.8))*.12:0;
   const layers=layerDistance(prev.layerEvidenceV111,c.layerEvidenceV111),repeatLayers=previous?layerDistance(previous.layerEvidenceV111,c.layerEvidenceV111):null;
-  return -.28*Math.abs(vd-target)-recurrence-(repeatLayers===null?0:.05*Math.abs(repeatLayers-C(acoustic(previous.features,c.features)*1.5,0,.6)))-(layers===null?0:.08*Math.abs(layers-C(delta*1.5,0,.6)))-(prev.styleKey!==c.styleKey?.10*(1-delta):0);
+  const motionRelation=previous&&c.intent?.expressiveVersion&&previous.dimensions?.expressiveRealization!==null&&Number.isFinite(previous.dimensions?.expressiveRealization)&&Number.isFinite(c.dimensions?.expressiveRealization)?Math.abs(Math.abs(previous.dimensions.expressiveRealization-c.dimensions.expressiveRealization)-acoustic(previous.features,c.features))*.08:0;
+  return -.28*Math.abs(vd-target)-recurrence-motionRelation-(repeatLayers===null?0:.05*Math.abs(repeatLayers-C(acoustic(previous.features,c.features)*1.5,0,.6)))-(layers===null?0:.08*Math.abs(layers-C(delta*1.5,0,.6)))-(prev.styleKey!==c.styleKey?.10*(1-delta):0);
  }});
  const audit=J.auditCreativeArcV10(portfolios,chosen.picks);
- return {...chosen,creativeArc:{...audit,source:'primary glyph + complete RGB raster + acoustic recurrence/phase',repeatRelations:copy(relations),unresolvedMonotony:audit.requiresReevaluation?'NO_BETTER_GLOBAL_SAFE_PATH':null},method:'input-derived capability/temporal Pareto and multilevel raster beam v11'};
+ return {...chosen,creativeArc:{...audit,source:'primary glyph + complete RGB raster + acoustic recurrence/phase + measured hold progression',repeatRelations:copy(relations),unresolvedMonotony:audit.requiresReevaluation?'NO_BETTER_GLOBAL_SAFE_PATH':null},method:'input-derived capability/temporal Pareto and multilevel raster beam v11'};
 };
 // Only the composed shortlist is checked at a larger raster. A failed state is
 // removed and the existing beam selects from remaining safe alternatives; the
@@ -351,6 +425,14 @@ const attach=J.attachCreativeEvidenceV10;J.attachCreativeEvidenceV10=(selection,
  for(const trace of selection.traces){const chosen=storyboard.picks.find(x=>x.line===trace.line);if(!chosen)continue;
   trace.creative=copy(chosen.optimizerEvidence);trace.creative.axes=copy(chosen.dimensions);trace.creative.layers=copy(chosen.layerEvidenceV111||{status:'UNMEASURED'});trace.creative.catalog.forEach(row=>row.selected=row.group==='style'?row.id===chosen.cut.styleKey:row.group==='layout'?row.id===chosen.cut.layout:row.id===get(chosen.cut,row.group));
   trace.creative.catalog.forEach(row=>{row.states=['REGISTERED',...(row.callable?['CALLABLE']:[]),...(row.eligible?['ELIGIBLE']:[]),...(row.probed?['PROBED']:[]),...(row.safe?['SAFE']:[]),...(row.selected?['SELECTED']:[])];row.renderVerification=row.probed?'MEASURED_INPUT_COMPOSITION':'UNMEASURED';});
+  if(chosen.intent.expressiveVersion){
+   trace.creative.expressiveVersion=12;
+   trace.creative.realization=trace.creative.catalog.filter(row=>row.selected).map(row=>{
+    const ab=chosen.ablations.find(a=>a.group===row.group&&a.id===row.id);
+    const executed=chosen.checks.some(e=>e.registryDispatchV11?.some(d=>d.group===row.group&&d.id===row.id));
+    return {group:row.group,id:row.id,registered:true,candidate:row.eligible,canvasCompared:row.probed,selected:true,rendererExecuted:executed,visible:ab?.status==='MEASURED'?ab.pixelDifference>1e-6:null,acousticFit:chosen.dimensions.acousticFit??null,mp4:'UNVERIFIED',source:ab?'same-time role removal':'UNMEASURED'};
+   });
+  }
   trace.creative.counts.selected=trace.creative.catalog.filter(x=>x.selected).length;
   trace.reason=`曲固有の変化要求 ${chosen.intent.changeDemand.toFixed(2)}・文字密度 ${chosen.intent.density.toFixed(2)}・反復 ${chosen.intent.repeat.length}件を根拠に探索。実Canvasの登場／保持／退場と除去対照で確認。意味理解は未測定・芸術評価は未検証`;
  }

@@ -118,10 +118,11 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
      for(const id of sequence){
       layoutsSeen.add(id);let cut;
       try{cut={...J.registryCandidateCut(sp,c,id,font,'cut','still'),style,styleKey:st.style,cam:'stillCamera',bg:'none',decor:[],treat:'none',stagger:0,registrySelectedV8:true};delete cut.generatedMotionV7;delete cut.grammar;delete cut.photoChoreography;
-       let ev=sample(sp,cut,c.dur*.5);if(!ev.eligible&&ev.full&&!ev.extra&&!ev.unstable){const repaired=J.registryPhaseSafeAnchorState(cut,[.6],[],(x,dt)=>sample(sp,x,Math.min(dt,c.dur*.5)));if(repaired.cut){cut=repaired.cut;ev=sample(sp,cut,c.dur*.5);}}if(J.isSongDerivedV11?.(p)&&ev.eligible){const temporal=phases(cut).map(t=>sample(sp,cut,t));if(!temporal.every(e=>e.eligible))ev={...ev,eligible:false};}if(!ev.eligible){exclusions.push({style:st.style,font,layout:id,reason:'ACTUAL_GLYPH_HARD_GATE',full:ev.full,safe:ev.safe,glyphReadable:ev.geometry.every(g=>g.readable),contrast:ev.contrast.renderedVsBackgroundContrastP10??null});continue;}
+       let temporalChecks=null,ev=sample(sp,cut,c.dur*.5);if(!ev.eligible&&ev.full&&!ev.extra&&!ev.unstable){const repaired=J.registryPhaseSafeAnchorState(cut,[.6],[],(x,dt)=>sample(sp,x,Math.min(dt,c.dur*.5)));if(repaired.cut){cut=repaired.cut;ev=sample(sp,cut,c.dur*.5);}}if(J.isSongDerivedV11?.(p)&&ev.eligible){const temporal=phases(cut).map(t=>sample(sp,cut,t));temporalChecks=temporal;if(!temporal.every(e=>e.eligible))ev={...ev,eligible:false};}if(!ev.eligible){exclusions.push({style:st.style,font,layout:id,reason:'ACTUAL_GLYPH_HARD_GATE',full:ev.full,safe:ev.safe,glyphReadable:ev.geometry.every(g=>g.readable),contrast:ev.contrast.renderedVsBackgroundContrastP10??null});continue;}
        const occupancy=C(ev.height/(p.H>p.W?.24:.30)),targetSize=C(.35+f.energy*.25+f.brightness*.15-f.length/180),geometryFit=1-Math.abs(occupancy-targetSize);
        const score=st.score*.42+(ev.contrastFit??0)*.3+geometryFit*.28;
-       ranked.push({layout:id,styleKey:st.style,font,score,evidence:evidence(ev),signature:J.registryInkSignature(ev.mask,cv.width,cv.height),typographySignature:J.registryTypographySignature(ev.mask,cv.width,cv.height),cut,params:cut.params,musicFit:geometryFit,features:f});
+       const measured=temporalChecks?J.scoreDirectionV11(cut,f,J.songVisualIntentV11(p,a,cut,f),temporalChecks,score):null;
+       ranked.push({layout:id,styleKey:st.style,font,score,evidence:evidence(ev),signature:J.registryInkSignature(ev.mask,cv.width,cv.height),typographySignature:J.registryTypographySignature(ev.mask,cv.width,cv.height),cut,params:cut.params,geometryFit,musicFit:measured?.dimensions.acousticFit??null,dimensions:measured?.dimensions??null,features:f});
       }catch(e){exclusions.push({layout:id,style:st.style,reason:e.message});}
      }
     }
@@ -130,7 +131,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
    }
    ranked.sort((x,y)=>y.score-x.score||x.layout.localeCompare(y.layout)||x.styleKey.localeCompare(y.styleKey));
    recoveryFrontiers.set(c.line,ranked);
-   const distinct=J.registryGeometryRepresentatives(ranked,.25).candidates.slice(0,3),safe=[];
+   const distinct=J.isExpressiveV12?.(p)?J.directionSeedsV12(ranked,f):J.registryGeometryRepresentatives(ranked,.25).candidates.slice(0,3),safe=[];
    if(J.isCreativeOptimizerV10?.(p)){safe.push(...await J.optimizeCreativeLineV10({p:trial,c,f,ranked,distinct,sample,phases,signal:options.signal,audio:a,anchors:R.customBgBitmap?J.photoAnchorCandidates(R.customBgBitmap):[]}));}
    else
    for(const candidate of distinct){

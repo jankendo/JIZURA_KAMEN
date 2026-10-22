@@ -1,0 +1,1237 @@
+{
+  "old": {
+    "sourceTreeSHA256": "4eed3dce00ba02ec357ce9bc97f7e1513ca75aa5b46906936abcc74251787eb8",
+    "sourceCommit": "9950f143072c193b84178f1ab54922269cb0621c",
+    "input": "4s synthetic fixed mean energy; onset repetition changes at repeated Japanese lyric; generated asymmetric background",
+    "windows": [
+      0.3,
+      1.15,
+      2.55
+    ],
+    "measurements": [
+      {
+        "line": 0,
+        "times": [
+          0.3,
+          0.55,
+          0.85,
+          1.15,
+          1.45,
+          1.8
+        ],
+        "safety": true,
+        "readable": true,
+        "sampledStagnationSeconds": 0,
+        "temporalAlignment": 0.7067647113861991,
+        "hold": "zoomSlow",
+        "cam": "panL",
+        "layout": "photoBanner",
+        "envelope": false
+      },
+      {
+        "line": 1,
+        "times": [
+          0.3,
+          0.55,
+          0.85,
+          1.15,
+          1.45
+        ],
+        "safety": true,
+        "readable": true,
+        "sampledStagnationSeconds": 0,
+        "temporalAlignment": 0.7336435690187332,
+        "hold": "still",
+        "cam": "panL",
+        "layout": "cinemaConverge",
+        "envelope": false
+      }
+    ],
+    "selected": [
+      {
+        "line": 0,
+        "layout": "photoBanner",
+        "hold": "zoomSlow",
+        "cam": "panL",
+        "bg": "none",
+        "treat": "none"
+      },
+      {
+        "line": 1,
+        "layout": "cinemaConverge",
+        "hold": "still",
+        "cam": "panL",
+        "bg": "none",
+        "treat": "none"
+      }
+    ]
+  },
+  "v12": {
+    "sourceTreeSHA256": "0b2721e9c294777f202dff565f728df04de4073b91d47a8ed7d73b212c5242ac",
+    "sourceCommit": "9950f143072c193b84178f1ab54922269cb0621c",
+    "input": "4s synthetic fixed mean energy; onset repetition changes at repeated Japanese lyric; generated asymmetric background",
+    "windows": [
+      0.3,
+      1.15,
+      2.55
+    ],
+    "measurements": [
+      {
+        "line": 0,
+        "times": [
+          0.3,
+          0.55,
+          0.85,
+          1.15,
+          1.45,
+          1.8
+        ],
+        "safety": true,
+        "readable": true,
+        "sampledStagnationSeconds": 0,
+        "temporalAlignment": 0.7625078951668307,
+        "hold": "still",
+        "cam": "stillCamera",
+        "layout": "photoBanner",
+        "envelope": false
+      },
+      {
+        "line": 1,
+        "times": [
+          0.3,
+          0.55,
+          0.85,
+          1.15,
+          1.45
+        ],
+        "safety": true,
+        "readable": true,
+        "sampledStagnationSeconds": 0,
+        "temporalAlignment": 0.7684807533911056,
+        "hold": "rotateSlow",
+        "cam": "stillCamera",
+        "layout": "photoBanner",
+        "envelope": false
+      }
+    ],
+    "selected": [
+      {
+        "line": 0,
+        "layout": "photoBanner",
+        "hold": "still",
+        "cam": "stillCamera",
+        "bg": "none",
+        "treat": "none"
+      },
+      {
+        "line": 1,
+        "layout": "photoBanner",
+        "hold": "rotateSlow",
+        "cam": "stillCamera",
+        "bg": "none",
+        "treat": "none"
+      }
+    ],
+    "holdModulation": {
+      "status": "MEASURED",
+      "observations": [
+        {
+          "time": 0.4,
+          "safe": true,
+          "difference": 0.00032368419827570014
+        },
+        {
+          "time": 0.9,
+          "safe": true,
+          "difference": 0.0020801619555704492
+        },
+        {
+          "time": 1.4,
+          "safe": true,
+          "difference": 0.0007925389410275033
+        }
+      ],
+      "scope": "same registered breathe hold with/without acoustic modulation; comparison candidate, not necessarily selected"
+    },
+    "encodedSmoke": {
+      "width": 640,
+      "height": 360,
+      "certification": {
+        "passed": true,
+        "checks": {
+          "container": true,
+          "video": true,
+          "audio": true,
+          "resolution": true,
+          "duration": true,
+          "frames": true,
+          "fps": true,
+          "avSync": true,
+          "reloaded": true,
+          "avDuration": true,
+          "seek": true,
+          "blackFrames": true,
+          "firstLast": true
+        },
+        "frames": [
+          {
+            "time": 0,
+            "nonBlack": 0.9967849794238683
+          },
+          {
+            "time": 0.25,
+            "nonBlack": 0.9964634773662552
+          },
+          {
+            "time": 0.5,
+            "nonBlack": 0.9964634773662552
+          },
+          {
+            "time": 0.92,
+            "nonBlack": 0.9964634773662552
+          }
+        ],
+        "nativeFrames": [
+          {
+            "time": 0,
+            "nonBlack": 0.9967849794238683
+          },
+          {
+            "time": 0.25,
+            "nonBlack": 0.9964634773662552
+          },
+          {
+            "time": 0.5,
+            "nonBlack": 0.9964634773662552
+          },
+          {
+            "time": 0.92,
+            "nonBlack": 0.9964634773662552
+          }
+        ],
+        "nativeChecks": {
+          "blackFrames": true,
+          "firstLast": true
+        },
+        "independentPixels": {
+          "status": "NOT_APPLICABLE",
+          "reason": "native probe passed; independent recovery unnecessary"
+        },
+        "path": "Browser WebCodecs → MP4 Blob → HTMLVideoElement reload/decode",
+        "fps": 24,
+        "avSync": "track timestamp/duration; no perceptual sync claim"
+      },
+      "roleObservations": [
+        {
+          "frame": 17,
+          "time": 1.0083333333333333,
+          "group": "decor",
+          "id": "bokeh",
+          "codecError": 0.005830678104570563,
+          "removedDifference": 0.007467042256711427,
+          "canvasContribution": 0.0018855358115465596,
+          "status": "UNVERIFIED",
+          "scope": "decoded selected MP4 versus same-time production Canvas role-removal control; not an encoded control"
+        },
+        {
+          "frame": 7,
+          "time": 0.5916666666666667,
+          "group": "decor",
+          "id": "bokeh",
+          "codecError": 0.0058518121368871774,
+          "removedDifference": 0.007362711056638901,
+          "canvasContribution": 0.0017930113017428282,
+          "status": "UNVERIFIED",
+          "scope": "decoded selected MP4 versus same-time production Canvas role-removal control; not an encoded control"
+        },
+        {
+          "frame": 12,
+          "time": 0.8,
+          "group": "decor",
+          "id": "bokeh",
+          "codecError": 0.0054879720406634785,
+          "removedDifference": 0.007100512890335281,
+          "canvasContribution": 0.0018588189905589527,
+          "status": "UNVERIFIED",
+          "scope": "decoded selected MP4 versus same-time production Canvas role-removal control; not an encoded control"
+        }
+      ]
+    }
+  },
+  "random": {
+    "sourceTreeSHA256": "dd97cf170619e614683fbb0fc499fc58a0db070291fe7e686ee7cff9f82f8450",
+    "sourceCommit": "9950f143072c193b84178f1ab54922269cb0621c",
+    "input": "4s synthetic fixed mean energy; onset repetition changes at repeated Japanese lyric; generated asymmetric background",
+    "windows": [
+      0.3,
+      1.15,
+      2.55
+    ],
+    "measurements": [
+      {
+        "line": 0,
+        "times": [
+          0.3,
+          0.55,
+          0.85
+        ],
+        "safety": false,
+        "readable": false,
+        "sampledStagnationSeconds": 0,
+        "temporalAlignment": 0.6654670468479114,
+        "hold": "drift",
+        "cam": "pullOut",
+        "layout": "type",
+        "envelope": false
+      },
+      {
+        "line": 0,
+        "times": [
+          0.3,
+          0.55,
+          0.85
+        ],
+        "safety": false,
+        "readable": false,
+        "sampledStagnationSeconds": 0,
+        "temporalAlignment": 0.6462516479087932,
+        "hold": "breathe",
+        "cam": "handheld",
+        "layout": "gloss",
+        "envelope": false
+      },
+      {
+        "line": 1,
+        "times": [
+          0.3,
+          0.55
+        ],
+        "safety": false,
+        "readable": false,
+        "sampledStagnationSeconds": 0,
+        "temporalAlignment": null,
+        "hold": "echoTrail",
+        "cam": "crashZoom",
+        "layout": "vcols",
+        "envelope": false
+      },
+      {
+        "line": 1,
+        "times": [
+          0.3,
+          0.55,
+          0.85
+        ],
+        "safety": false,
+        "readable": false,
+        "sampledStagnationSeconds": 0,
+        "temporalAlignment": 0.7922994691400422,
+        "hold": "float",
+        "cam": "push",
+        "layout": "staircase",
+        "envelope": false
+      }
+    ],
+    "selected": null
+  },
+  "regression": {
+    "counts": {
+      "style": 24,
+      "layout": 174,
+      "enter": 102,
+      "hold": 38,
+      "exit": 86,
+      "decor": 115,
+      "treat": 52,
+      "bg": 62,
+      "cam": 29,
+      "fx": 66,
+      "trans": 20
+    },
+    "registered": 768,
+    "techniques": 744,
+    "framesCompared": 3082,
+    "sourceTreeSHA256": "0b2721e9c294777f202dff565f728df04de4073b91d47a8ed7d73b212c5242ac",
+    "sourceCommit": "9950f143072c193b84178f1ab54922269cb0621c",
+    "audit": [
+      {
+        "line": 0,
+        "seedCount": 3,
+        "hold": {
+          "status": "MEASURED",
+          "sampledStagnationSeconds": 0,
+          "samples": [
+            0.001,
+            0.25,
+            1,
+            1.08,
+            1.44,
+            1.999
+          ],
+          "scope": "sampled intervals; not continuous frame coverage"
+        },
+        "envelope": null,
+        "axes": {
+          "musicFit": 0.9902472910027093,
+          "onsetAlignment": null,
+          "visualImpact": 0.0009043244790793798,
+          "compositionQuality": 0.9988090827062761,
+          "temporalContinuity": 1,
+          "visualCoherence": 0.9997786021115314,
+          "expressiveContribution": null,
+          "excessPenalty": 0,
+          "intentFit": 0.9897462450762594,
+          "geometryFit": 0.9960302756875871,
+          "readability": 1,
+          "acousticFit": 0.9902472910027093,
+          "temporalAlignment": null,
+          "expressiveRealization": 0.0009043244790793798,
+          "temporalRoleFitGain": null
+        },
+        "realization": [
+          {
+            "group": "style",
+            "id": "blueprint",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.9902472910027093,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "layout",
+            "id": "photoBanner",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.9902472910027093,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "enter",
+            "id": "cut",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": false,
+            "selected": true,
+            "rendererExecuted": false,
+            "visible": null,
+            "acousticFit": 0.9902472910027093,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "hold",
+            "id": "still",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.9902472910027093,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "exit",
+            "id": "cut",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": false,
+            "selected": true,
+            "rendererExecuted": false,
+            "visible": null,
+            "acousticFit": 0.9902472910027093,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "treat",
+            "id": "none",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.9902472910027093,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "bg",
+            "id": "none",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": false,
+            "selected": true,
+            "rendererExecuted": false,
+            "visible": null,
+            "acousticFit": 0.9902472910027093,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "cam",
+            "id": "stillCamera",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.9902472910027093,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          }
+        ],
+        "canvasCompared": [
+          {
+            "group": "style",
+            "id": "hud",
+            "safe": true
+          },
+          {
+            "group": "style",
+            "id": "blueprint",
+            "safe": true
+          },
+          {
+            "group": "style",
+            "id": "mono",
+            "safe": true
+          },
+          {
+            "group": "layout",
+            "id": "photoBanner",
+            "safe": true
+          },
+          {
+            "group": "layout",
+            "id": "cinemaConverge",
+            "safe": true
+          },
+          {
+            "group": "enter",
+            "id": "type",
+            "safe": true
+          },
+          {
+            "group": "enter",
+            "id": "outlineFill",
+            "safe": false
+          },
+          {
+            "group": "hold",
+            "id": "still",
+            "safe": true
+          },
+          {
+            "group": "hold",
+            "id": "breathe",
+            "safe": true
+          },
+          {
+            "group": "hold",
+            "id": "rotateSlow",
+            "safe": true
+          },
+          {
+            "group": "exit",
+            "id": "drift",
+            "safe": true
+          },
+          {
+            "group": "exit",
+            "id": "blur",
+            "safe": true
+          },
+          {
+            "group": "decor",
+            "id": "beatRing",
+            "safe": true
+          },
+          {
+            "group": "decor",
+            "id": "bokeh",
+            "safe": true
+          },
+          {
+            "group": "treat",
+            "id": "none",
+            "safe": true
+          },
+          {
+            "group": "treat",
+            "id": "boxed",
+            "safe": true
+          },
+          {
+            "group": "treat",
+            "id": "dotted",
+            "safe": false
+          },
+          {
+            "group": "bg",
+            "id": "bigChar",
+            "safe": false
+          },
+          {
+            "group": "bg",
+            "id": "bokehBg",
+            "safe": true
+          },
+          {
+            "group": "cam",
+            "id": "stillCamera",
+            "safe": true
+          },
+          {
+            "group": "cam",
+            "id": "driftDiag",
+            "safe": true
+          },
+          {
+            "group": "cam",
+            "id": "dollyIn",
+            "safe": true
+          },
+          {
+            "group": "fx",
+            "id": "filmBurn",
+            "safe": true
+          },
+          {
+            "group": "fx",
+            "id": "lightSweep",
+            "safe": true
+          }
+        ]
+      },
+      {
+        "line": 1,
+        "seedCount": 4,
+        "hold": {
+          "status": "MEASURED",
+          "sampledStagnationSeconds": 0,
+          "samples": [
+            0.001,
+            0.25,
+            1,
+            1.08,
+            1.44,
+            1.999
+          ],
+          "scope": "sampled intervals; not continuous frame coverage"
+        },
+        "envelope": null,
+        "axes": {
+          "musicFit": 0.7503620574836213,
+          "onsetAlignment": 0.7231657884503382,
+          "visualImpact": 0.010004218223376717,
+          "compositionQuality": 0.9685324032422344,
+          "temporalContinuity": 0.8250717326963292,
+          "visualCoherence": 0.9983773407814742,
+          "expressiveContribution": 0.008421557304222338,
+          "excessPenalty": 0,
+          "intentFit": 0.728196247827835,
+          "geometryFit": 0.8951080108074484,
+          "readability": 1,
+          "acousticFit": 0.7503620574836213,
+          "temporalAlignment": 0.7231657884503382,
+          "expressiveRealization": 0.010004218223376717,
+          "temporalRoleFitGain": 0.027906496697803096
+        },
+        "realization": [
+          {
+            "group": "style",
+            "id": "blueprint",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.7503620574836213,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "layout",
+            "id": "bounceLine",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.7503620574836213,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "enter",
+            "id": "cut",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": false,
+            "selected": true,
+            "rendererExecuted": false,
+            "visible": null,
+            "acousticFit": 0.7503620574836213,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "hold",
+            "id": "wave",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": true,
+            "acousticFit": 0.7503620574836213,
+            "mp4": "UNVERIFIED",
+            "source": "same-time role removal"
+          },
+          {
+            "group": "exit",
+            "id": "cut",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": false,
+            "selected": true,
+            "rendererExecuted": false,
+            "visible": null,
+            "acousticFit": 0.7503620574836213,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "treat",
+            "id": "none",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.7503620574836213,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "bg",
+            "id": "none",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": false,
+            "selected": true,
+            "rendererExecuted": false,
+            "visible": null,
+            "acousticFit": 0.7503620574836213,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "cam",
+            "id": "driftDiag",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": true,
+            "acousticFit": 0.7503620574836213,
+            "mp4": "UNVERIFIED",
+            "source": "same-time role removal"
+          }
+        ],
+        "canvasCompared": [
+          {
+            "group": "style",
+            "id": "noir",
+            "safe": true
+          },
+          {
+            "group": "style",
+            "id": "blueprint",
+            "safe": true
+          },
+          {
+            "group": "layout",
+            "id": "vcols",
+            "safe": true
+          },
+          {
+            "group": "layout",
+            "id": "circle",
+            "safe": true
+          },
+          {
+            "group": "layout",
+            "id": "bounceLine",
+            "safe": true
+          },
+          {
+            "group": "layout",
+            "id": "photoBanner",
+            "safe": true
+          },
+          {
+            "group": "enter",
+            "id": "fold",
+            "safe": true
+          },
+          {
+            "group": "enter",
+            "id": "splitJoin",
+            "safe": false
+          },
+          {
+            "group": "enter",
+            "id": "echoIn",
+            "safe": false
+          },
+          {
+            "group": "hold",
+            "id": "still",
+            "safe": true
+          },
+          {
+            "group": "hold",
+            "id": "wave",
+            "safe": true
+          },
+          {
+            "group": "hold",
+            "id": "float",
+            "safe": true
+          },
+          {
+            "group": "hold",
+            "id": "rotateSlow",
+            "safe": true
+          },
+          {
+            "group": "exit",
+            "id": "blur",
+            "safe": true
+          },
+          {
+            "group": "exit",
+            "id": "scatter",
+            "safe": true
+          },
+          {
+            "group": "exit",
+            "id": "blindsClose",
+            "safe": false
+          },
+          {
+            "group": "decor",
+            "id": "brackets",
+            "safe": true
+          },
+          {
+            "group": "treat",
+            "id": "none",
+            "safe": true
+          },
+          {
+            "group": "treat",
+            "id": "doubleOutline",
+            "safe": false
+          },
+          {
+            "group": "treat",
+            "id": "alternate",
+            "safe": true
+          },
+          {
+            "group": "bg",
+            "id": "bigChar",
+            "safe": false
+          },
+          {
+            "group": "cam",
+            "id": "stillCamera",
+            "safe": true
+          },
+          {
+            "group": "cam",
+            "id": "driftDiag",
+            "safe": true
+          },
+          {
+            "group": "cam",
+            "id": "dollyIn",
+            "safe": true
+          },
+          {
+            "group": "fx",
+            "id": "blindsTrans",
+            "safe": true
+          }
+        ]
+      },
+      {
+        "line": 2,
+        "seedCount": 3,
+        "hold": {
+          "status": "MEASURED",
+          "sampledStagnationSeconds": 0,
+          "samples": [
+            0.001,
+            0.25,
+            0.825,
+            1,
+            1.08,
+            1.188,
+            1.649
+          ],
+          "scope": "sampled intervals; not continuous frame coverage"
+        },
+        "envelope": null,
+        "axes": {
+          "musicFit": 0.9987992171636875,
+          "onsetAlignment": null,
+          "visualImpact": 0.0010774014021563045,
+          "compositionQuality": 0.9988090827062761,
+          "temporalContinuity": 1,
+          "visualCoherence": 1,
+          "expressiveContribution": null,
+          "excessPenalty": 0,
+          "intentFit": 0.9921500179045114,
+          "geometryFit": 0.996030275687587,
+          "readability": 1,
+          "acousticFit": 0.9987992171636875,
+          "temporalAlignment": null,
+          "expressiveRealization": 0.0010774014021563045,
+          "temporalRoleFitGain": null
+        },
+        "realization": [
+          {
+            "group": "style",
+            "id": "blueprint",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.9987992171636875,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "layout",
+            "id": "photoBanner",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.9987992171636875,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "enter",
+            "id": "cut",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": false,
+            "selected": true,
+            "rendererExecuted": false,
+            "visible": null,
+            "acousticFit": 0.9987992171636875,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "hold",
+            "id": "still",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.9987992171636875,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "exit",
+            "id": "cut",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": false,
+            "selected": true,
+            "rendererExecuted": false,
+            "visible": null,
+            "acousticFit": 0.9987992171636875,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "treat",
+            "id": "none",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.9987992171636875,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "bg",
+            "id": "none",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": false,
+            "selected": true,
+            "rendererExecuted": false,
+            "visible": null,
+            "acousticFit": 0.9987992171636875,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          },
+          {
+            "group": "cam",
+            "id": "stillCamera",
+            "registered": true,
+            "candidate": true,
+            "canvasCompared": true,
+            "selected": true,
+            "rendererExecuted": true,
+            "visible": null,
+            "acousticFit": 0.9987992171636875,
+            "mp4": "UNVERIFIED",
+            "source": "UNMEASURED"
+          }
+        ],
+        "canvasCompared": [
+          {
+            "group": "style",
+            "id": "blueprint",
+            "safe": true
+          },
+          {
+            "group": "style",
+            "id": "mono",
+            "safe": true
+          },
+          {
+            "group": "layout",
+            "id": "vcols",
+            "safe": true
+          },
+          {
+            "group": "layout",
+            "id": "photoBanner",
+            "safe": true
+          },
+          {
+            "group": "enter",
+            "id": "assemble",
+            "safe": true
+          },
+          {
+            "group": "enter",
+            "id": "type",
+            "safe": true
+          },
+          {
+            "group": "enter",
+            "id": "outlineFill",
+            "safe": false
+          },
+          {
+            "group": "enter",
+            "id": "blurStagger",
+            "safe": true
+          },
+          {
+            "group": "hold",
+            "id": "still",
+            "safe": true
+          },
+          {
+            "group": "hold",
+            "id": "breathe",
+            "safe": true
+          },
+          {
+            "group": "hold",
+            "id": "rotateSlow",
+            "safe": true
+          },
+          {
+            "group": "hold",
+            "id": "noiseDrift",
+            "safe": true
+          },
+          {
+            "group": "exit",
+            "id": "drift",
+            "safe": true
+          },
+          {
+            "group": "exit",
+            "id": "blur",
+            "safe": true
+          },
+          {
+            "group": "exit",
+            "id": "echoOut",
+            "safe": false
+          },
+          {
+            "group": "decor",
+            "id": "dateStamp",
+            "safe": true
+          },
+          {
+            "group": "decor",
+            "id": "beatRing",
+            "safe": true
+          },
+          {
+            "group": "decor",
+            "id": "bokeh",
+            "safe": true
+          },
+          {
+            "group": "treat",
+            "id": "none",
+            "safe": true
+          },
+          {
+            "group": "treat",
+            "id": "boxed",
+            "safe": true
+          },
+          {
+            "group": "treat",
+            "id": "dotted",
+            "safe": false
+          },
+          {
+            "group": "treat",
+            "id": "tall",
+            "safe": true
+          },
+          {
+            "group": "bg",
+            "id": "bigChar",
+            "safe": false
+          },
+          {
+            "group": "bg",
+            "id": "bokehBg",
+            "safe": true
+          },
+          {
+            "group": "bg",
+            "id": "letterbox",
+            "safe": true
+          },
+          {
+            "group": "cam",
+            "id": "stillCamera",
+            "safe": true
+          },
+          {
+            "group": "cam",
+            "id": "pullOut",
+            "safe": true
+          },
+          {
+            "group": "cam",
+            "id": "driftDiag",
+            "safe": true
+          },
+          {
+            "group": "cam",
+            "id": "dollyIn",
+            "safe": true
+          },
+          {
+            "group": "fx",
+            "id": "filmBurn",
+            "safe": true
+          },
+          {
+            "group": "fx",
+            "id": "lightSweep",
+            "safe": true
+          }
+        ]
+      }
+    ],
+    "selected": [
+      {
+        "line": 0,
+        "style": "blueprint",
+        "layout": "photoBanner",
+        "enter": "cut",
+        "hold": "still",
+        "exit": "cut",
+        "cam": "stillCamera",
+        "bg": "none",
+        "treat": "none",
+        "decor": [],
+        "trans": "cut"
+      },
+      {
+        "line": 1,
+        "style": "blueprint",
+        "layout": "bounceLine",
+        "enter": "cut",
+        "hold": "wave",
+        "exit": "cut",
+        "cam": "driftDiag",
+        "bg": "none",
+        "treat": "none",
+        "decor": [],
+        "trans": "cut"
+      },
+      {
+        "line": 2,
+        "style": "blueprint",
+        "layout": "photoBanner",
+        "enter": "cut",
+        "hold": "still",
+        "exit": "cut",
+        "cam": "stillCamera",
+        "bg": "none",
+        "treat": "none",
+        "decor": [],
+        "trans": "cut"
+      }
+    ],
+    "artisticQuality": "UNVERIFIED"
+  },
+  "notes": {
+    "sourceCommit": "Measurements ran on a dirty worktree based on the stated commit; sourceTreeSHA256 identifies the measured JavaScript, not a claim the base commit includes the patch.",
+    "mp4": "Video only, not separate audio/fast/quality certification. Role survival remains UNVERIFIED.",
+    "realAssets": "Unavailable",
+    "artisticQuality": "UNVERIFIED"
+  }
+}
