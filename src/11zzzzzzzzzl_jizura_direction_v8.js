@@ -111,7 +111,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
      const sp={...trial,style,styleKey:st.style},layouts=Object.entries(J.LAYOUTS).filter(([id,d])=>typeof d.render==='function'&&!/noHold\s*:\s*true/.test(d.render.toString())&&!/^songGrammar|^(title|interlude)$/.test(id)&&J.randomOk(p,'layout',id));
      layouts.sort(([x],[y])=>(style.bias?.layout?.[y]||0)-(style.bias?.layout?.[x]||0)||x.localeCompare(y));
      const shortlist=p.songNativeDirection.version===9?J.registryLayoutCandidatesV9(p,c,f,style,layouts):[...new Set([...layouts.slice(0,5).map(([id])=>id),...['center','condensed','photoPhrase','photoStatement'].filter(id=>layouts.some(([x])=>x===id))])];
-     const sequence=J.isSongDerivedV11?.(p)?J.directionLayoutSequenceV11(shortlist,layouts,()=>ranked.some(r=>r.styleKey===st.style&&r.font===font)):shortlist;
+     const sequence=J.isSongDerivedV11?.(p)?J.directionLayoutSequenceV11(shortlist,layouts,()=>ranked.some(r=>r.styleKey===st.style&&r.font===font),{p,f,rows:()=>ranked.filter(r=>r.styleKey===st.style&&r.font===font)}):shortlist;
      for(const id of sequence){
       layoutsSeen.add(id);let cut;
       try{cut={...J.registryCandidateCut(sp,c,id,font,'cut','still'),style,styleKey:st.style,cam:'stillCamera',bg:'none',decor:[],treat:'none',stagger:0,registrySelectedV8:true};delete cut.generatedMotionV7;delete cut.grammar;delete cut.photoChoreography;

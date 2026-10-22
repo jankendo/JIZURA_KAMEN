@@ -34,6 +34,7 @@ const renderProbe=J.createRegistryRenderProbe;J.createRegistryRenderProbe=(...ar
 // A call-local raster cache includes the complete cut and neighboring sequence.
 // No cache can survive an input, font, image, renderer or alternative change.
 J.createCreativeProbeV10=(sample,canvas)=>{
+ const readContext=canvas.getContext('2d',{willReadFrequently:true});
  const cache=new Map();let contexts=new WeakMap(),serial=0;
  const probe=(p,c,t)=>{
   // Search treats each cuts array as immutable; final install and alternative
@@ -42,7 +43,7 @@ J.createCreativeProbeV10=(sample,canvas)=>{
   if(!contexts.has(p.cuts))contexts.set(p.cuts,++serial);
   const key=J.canonicalJSON([c,t,p.styleKey,contexts.get(p.cuts)]);
   if(cache.has(key))return cache.get(key);
-  const e=sample(p,c,t),pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;
+  const e=sample(p,c,t),pixels=readContext.getImageData(0,0,canvas.width,canvas.height).data;
   // RGB cell averages retain background/treatment/FX evidence even when the
   // primary glyph mask is unchanged. Pixel distance is never an art score.
   const raster=[];for(let gy=0;gy<12;gy++)for(let gx=0;gx<20;gx++){
@@ -51,7 +52,7 @@ J.createCreativeProbeV10=(sample,canvas)=>{
     const k=(y*canvas.width+x)*4;for(let ch=0;ch<3;ch++)sums[ch]+=pixels[k+ch]/255;n++;
    }raster.push(...sums.map(v=>v/Math.max(1,n)));
   }
-  const result={...e,raster,sampleOffset:t,observedCenter:e.bounds?[(e.bounds.x0+e.bounds.x1)/2/p.W,(e.bounds.y0+e.bounds.y1)/2/p.H]:null};cache.set(key,result);return result;
+  const result={...e,raster,sampleOffset:t,observedCenter:e.bounds?[(e.bounds.x0+e.bounds.x1)/2/p.W,(e.bounds.y0+e.bounds.y1)/2/p.H]:null};cache.set(key,result);if(cache.size>384)cache.delete(cache.keys().next().value);return result;
  };probe.clear=()=>{cache.clear();contexts=new WeakMap();serial=0;};return probe;
 };
 const distance=(a,b)=>a?.length&&a.length===b?.length?mean(a.map((v,i)=>Math.abs(v-b[i]))):null;

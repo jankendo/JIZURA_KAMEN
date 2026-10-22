@@ -78,7 +78,7 @@ function setBadges(d) {
   return (d && d.extra ? '<span class="set-badge ex" title="最初の公開版のあとに追加">追加</span>' : '') + (d && d.wa ? '<span class="set-badge" title="和風の演出">和</span>' : '');
 }
 const BG_DB_NAME = 'jizura-assets-v1';
-let bgDbPromise = null, audioSaveQueue=Promise.resolve(), saveRevision=0, localRecoveryBlocked=false;
+let bgDbPromise = null, audioSaveQueue=Promise.resolve(), saveRevision=0, projectSaveQueue=Promise.resolve(), localRecoveryBlocked=false;
 function saveStatus(message,error=false){const el=$('localSaveStatus');if(el){el.textContent=message;el.dataset.error=String(error);}}
 function openBgDb() {
   if (!window.indexedDB) return Promise.reject(new Error('IndexedDB unavailable'));
@@ -107,13 +107,28 @@ async function bgDbSet(key, value) {
     tx.oncomplete = resolve; tx.onerror = () => reject(tx.error || new Error('IndexedDB write failed')); tx.onabort = () => reject(tx.error || new Error('IndexedDB write aborted'));
   });
 }
+// Read the committed project and its referenced images in one readonly
+// transaction, so another tab cannot splice new assets into an older revision.
+async function readCommittedProject(){
+ const db=await openBgDb();return new Promise((resolve,reject)=>{
+  const tx=db.transaction('assets','readonly'),store=tx.objectStore('assets');let record=null;
+  const r=store.get('project-current-v2');
+  r.onsuccess=()=>{record=r.result||null;const p=record?.project;if(!p)return;if(typeof p!=='object'||Array.isArray(p)||record.format!==2){localRecoveryBlocked=true;record=null;return;}
+   const get=(key,target)=>{const req=store.get(key);req.onsuccess=()=>{target.dataUrl=req.result||'';if(!req.result)localRecoveryBlocked=true;};};
+   if(p.customBg?.storedInIndexedDB&&!p.customBg.dataUrl)get('background',p.customBg);
+   for(const [kind,prefix] of [['visualAssets','visualAsset:'],['proAssets','proAsset:']])for(const a of p[kind]||[])if(a.storedInIndexedDB&&!a.dataUrl)get(prefix+a.id,a);
+  };
+  tx.oncomplete=()=>resolve(record);tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error||Error('保存データを読み込めません'));
+ });
+}
 async function loadLocal() {
-  let p=null,raw=null;
-  try { raw=localStorage.getItem(LS_KEY); if (raw) {p = JSON.parse(raw);if(!p||typeof p!=='object'||Array.isArray(p))throw new Error('Invalid local project');} } catch (e) {localRecoveryBlocked=true;console.error('JIZURA local project read failed',e);}
+  let p=null,raw=null,fromIndexedDB=false;
+  try{const record=await readCommittedProject();if(record?.project){p=record.project;fromIndexedDB=true;saveRevision=record.revision||0;S.persistenceRevision=saveRevision;}}catch(error){console.warn('JIZURA IndexedDB restore unavailable',error);}
+  try { raw=localStorage.getItem(LS_KEY); if (raw&&!p) {p = JSON.parse(raw);if(!p||typeof p!=='object'||Array.isArray(p))throw new Error('Invalid local project');} } catch (e) {if(!p)localRecoveryBlocked=true;console.error('JIZURA local project read failed',e);}
   // IndexedDB and localStorage cannot share a transaction. A small recovery
   // record commits with the assets; use it only when its previous mirror matches.
   // A project subsequently edited in v35 has a different mirror and takes priority.
-  try{const journal=await bgDbGet('project-recovery-v1'),recovery=typeof journal==='string'?JSON.parse(journal):null;if(recovery&&typeof recovery.metadata==='string'&&recovery.previousRaw===raw&&recovery.metadata!==raw){const restored=JSON.parse(recovery.metadata);if(restored&&typeof restored==='object'&&!Array.isArray(restored)){p=restored;localRecoveryBlocked=false;S.recoveredLocal=true;}}}catch(e){/* The original local project remains authoritative when recovery is unavailable. */}
+  try{const journal=!fromIndexedDB&&await bgDbGet('project-recovery-v1'),recovery=typeof journal==='string'?JSON.parse(journal):null;if(recovery&&typeof recovery.metadata==='string'&&recovery.previousRaw===raw&&recovery.metadata!==raw){const restored=JSON.parse(recovery.metadata);if(restored&&typeof restored==='object'&&!Array.isArray(restored)){p=restored;localRecoveryBlocked=false;S.recoveredLocal=true;}}}catch(e){/* The original local project remains authoritative when recovery is unavailable. */}
   if (!p) return mergeProject(null);
   if (p.customBg && p.customBg.storedInIndexedDB && !p.customBg.dataUrl) {
     try { p.customBg.dataUrl = await bgDbGet('background');if(!p.customBg.dataUrl)localRecoveryBlocked=true; } catch (e) { localRecoveryBlocked=true;console.error('JIZURA background restore failed',e); }
@@ -121,8 +136,16 @@ async function loadLocal() {
   if (p.customBg) delete p.customBg.storedInIndexedDB;
   for(const a of p.visualAssets||[])if(a.storedInIndexedDB&&!a.dataUrl){try{a.dataUrl=await bgDbGet('visualAsset:'+a.id)||'';}catch(e){localRecoveryBlocked=true;console.error('JIZURA asset restore failed',e);}if(!a.dataUrl)localRecoveryBlocked=true;delete a.storedInIndexedDB;}
   for(const a of p.proAssets||[])if(a.storedInIndexedDB&&!a.dataUrl){try{a.dataUrl=await bgDbGet('proAsset:'+a.id);}catch(e){localRecoveryBlocked=true;console.error('JIZURA asset restore failed',e);}if(!a.dataUrl)localRecoveryBlocked=true;delete a.storedInIndexedDB;}
+  for(const a of [...(p.visualAssets||[]),...(p.proAssets||[])])delete a.storedInIndexedDB;
   const project=mergeProject(p);
   await restoreProjectFonts(project);
+  if(!fromIndexedDB&&!localRecoveryBlocked){
+    try{const migrated=J.compactPersistentProjectV111(project),revision=++saveRevision;
+      await bgDbSetMany([['project-current-v2',{project:migrated,revision,format:2,savedAt:Date.now()}]],0);
+      const read=await bgDbGet('project-current-v2');if(J.canonicalJSON(read.project)!==J.canonicalJSON(migrated))throw Error('MIGRATION_READBACK');
+      S.persistenceRevision=revision;S.recoveredLocal=true;
+    }catch(error){S.unsaved=true;S.persistenceError={storage:'IndexedDB',name:error.name,message:error.message};console.warn('JIZURA migration deferred; legacy data retained',error);}
+  }
   return project;
 }
 async function restoreProjectFonts(project) {
@@ -146,7 +169,7 @@ async function fontAssetDataUrl(meta) {
   return '';
 }
 async function portableProjectJSON() {
-  const project=JSON.parse(JSON.stringify(S.project));
+  const project=J.compactPersistentProjectV111(S.project);
   project.schemaVersion=J.PROJECT_SCHEMA_VERSION;
   for (const meta of project.userFonts || []) {
     const dataUrl=await fontAssetDataUrl(meta);
@@ -167,16 +190,17 @@ async function restorePortableFonts(project) {
   }
 }
 let saveTimer = 0;
-function autosave() { clearTimeout(saveTimer); saveTimer = setTimeout(flushSave, 700); scheduleHistoryObserve(); }
-async function bgDbSetMany(entries) {
+function autosave() { S.unsaved=true;clearTimeout(saveTimer); saveTimer = setTimeout(flushSave, 700); scheduleHistoryObserve(); }
+async function bgDbSetMany(entries, expectedRevision) {
   const db=await openBgDb();
   return new Promise((resolve,reject)=>{
     const tx=db.transaction('assets','readwrite'),store=tx.objectStore('assets');
-    for(const [key,value] of entries)store.put(value,key);
-    tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error||new Error('素材の保存に失敗しました'));tx.onabort=()=>reject(tx.error||new Error('素材の保存が中断されました'));
+    let conflict=null;
+    const write=()=>{try{for(const [key,value] of entries)store.put(value,key);}catch(error){conflict=error;tx.abort();}};
+    if(expectedRevision!==undefined){const request=store.get('project-current-v2');request.onsuccess=()=>{if((request.result?.revision||0)!==expectedRevision){conflict=new Error('別のタブで保存内容が更新されました。現在のMVをプロジェクト保存でバックアップしてください。');tx.abort();}else write();};}else write();
+    tx.oncomplete=resolve;tx.onerror=()=>reject(conflict||tx.error||new Error('素材の保存に失敗しました'));tx.onabort=()=>reject(conflict||tx.error||new Error('素材の保存が中断されました'));
   });
 }
-const persistAssets=J.createAssetSaveQueue(bgDbSetMany);
 function flushSave() {
   if(S.pendingDirectionCommit)return Promise.resolve(false);
   if(!S.project||localRecoveryBlocked)return flushSaveImpl();
@@ -191,20 +215,32 @@ function flushSaveImpl(task) {
   if(localRecoveryBlocked){saveStatus('前回のデータを保全中 · 自動保存停止。バックアップから開き直してください。',true);return Promise.resolve(false);}
   const revision=++saveRevision,project=S.project,source=project.customBg?.dataUrl||'';
   const entries=[['background',source],...(project.visualAssets||[]).filter(a=>a.dataUrl).map(a=>['visualAsset:'+a.id,a.dataUrl]),...(project.proAssets||[]).filter(a=>a.dataUrl).map(a=>['proAsset:'+a.id,a.dataUrl])];
-  const copy={...project,customBg:{...project.customBg,dataUrl:'',storedInIndexedDB:!!source},visualAssets:(project.visualAssets||[]).map(a=>({...a,dataUrl:'',storedInIndexedDB:!!a.dataUrl})),proAssets:(project.proAssets||[]).map(a=>({...a,dataUrl:'',storedInIndexedDB:!!a.dataUrl}))};
-  // Capture metadata before the async transaction, so edits cannot change this snapshot.
-  const metadata=JSON.stringify(copy);
-  let previousRaw=null;try{previousRaw=localStorage.getItem(LS_KEY);}catch(e){}
-  entries.push(['project-recovery-v1',JSON.stringify({previousRaw,metadata})]);
-  const publish=()=>{task?.enter('metadata');if(revision!==saveRevision||project!==S.project)return false;localStorage.setItem(LS_KEY,metadata);saveStatus('このブラウザに保存済み');return true;};
-  task?.enter('assets');saveStatus('素材・編集内容を保存中…');
-  if(persistAssets.isDurable(entries)){try{return Promise.resolve(publish());}catch(e){console.error('JIZURA metadata save failed',e);saveStatus('保存できません。空き容量を確認し「プロジェクト保存」でバックアップしてください。',true);task?.fail(e);return Promise.resolve(false);}}
-  return persistAssets(entries).then(publish).catch(error=>{
-    task?.fail(error);console.error('JIZURA autosave failed',error);
+  for(const meta of project.userFonts||[]){const bytes=J.userFontBytes?.get(meta.key);if(bytes)entries.push(['font:'+String(meta.assetKey||meta.key),bytes]);}
+  const copy=J.compactPersistentProjectV111(project);
+  copy.customBg={...copy.customBg,dataUrl:'',storedInIndexedDB:!!source};
+  for(const kind of ['visualAssets','proAssets'])copy[kind]=(copy[kind]||[]).map(a=>({...a,dataUrl:'',storedInIndexedDB:!!a.dataUrl}));
+  const record={revision,project:copy,savedAt:Date.now(),format:2};
+  task?.enter('assets');S.unsaved=true;saveStatus('素材・編集内容を保存中…');
+  const run=async()=>{
     if(revision!==saveRevision||project!==S.project)return false;
-    // Preserve the complete portable snapshot only if the browser can accept it.
-    try{localStorage.setItem(LS_KEY,JSON.stringify({...project,customBg:{...project.customBg,storedInIndexedDB:false}}));saveStatus('簡易保存済み · 素材保存領域を利用できません。プロジェクト保存でバックアップしてください。',true);return true;}
-    catch(e){console.error('JIZURA portable autosave failed',e);saveStatus('保存できません。空き容量を確認し「プロジェクト保存」でバックアップしてください。',true);return false;}
+    // Project and binary references commit together. Aborted writes leave the
+    // previous complete record and its assets untouched. Serialize all saves.
+    await bgDbSetMany([...entries,['project-current-v2',record]],S.persistenceRevision||0);
+    const verified=await bgDbGet('project-current-v2');
+    if(verified?.revision!==revision||J.canonicalJSON(verified.project)!==J.canonicalJSON(copy))throw new Error('保存データの読み戻し確認に失敗しました');
+    S.persistenceRevision=revision;
+    if(revision!==saveRevision||project!==S.project)return false;
+    task?.enter('metadata');
+    try{localStorage.setItem('jizura.project.ref.v2',JSON.stringify({key:'project-current-v2',revision}));}catch(error){S.localReferenceWarning=error.name;}
+    S.unsaved=false;S.persistenceRevision=revision;S.persistenceError=null;saveStatus('このブラウザに保存済み');return true;
+  };
+  const result=projectSaveQueue.then(run);projectSaveQueue=result.catch(()=>{});
+  return result.catch(error=>{
+    task?.fail(error);
+    if(revision!==saveRevision||project!==S.project)return false;
+    S.unsaved=true;S.persistenceError={storage:'IndexedDB',name:error.name,message:error.message,quota:error.name==='QuotaExceededError'};
+    console.error('JIZURA IndexedDB project save failed',error);
+    saveStatus('未保存 · '+(S.persistenceError.quota?'ブラウザ保存領域の容量が不足しています。':'ブラウザへの保存に失敗しました。')+'再読み込み前にプロジェクト保存でバックアップしてください。保存状態をクリックすると再試行します。',true);return false;
   });
 }
 function fileAsDataUrl(blob) {
@@ -1071,6 +1107,7 @@ function syncDirectionUI() {
 }
 async function autoDirection() {
   if (directionBusy || S.exporting || S.tap) return;
+  let generationCommitted=false;
   const previousGeneration={project:S.project,plan:S.plan,pixelQA:S.pixelQA};
   const workingProject=J.clonePhotoRenderPlan(S.project);S.project=workingProject;S.pendingDirectionCommit=true;
   const generationCancel=new AbortController();
@@ -1183,11 +1220,11 @@ async function autoDirection() {
     $('directionStatus').textContent = '演出確定済み · '+(v7Selection?v7Selection.selection+' · ':'')+`提案：${proposal.summary}（画像 ${proposal.signals.image ? '✓' : '—'}・曲 ${proposal.signals.audio ? '✓' : '—'}・歌詞 ${proposal.signals.lyricLines}行）`;
     $('directionStatus').dataset.result = 'true';
     task.enter('preview');await J.processingYield();S.need=true;
-    assertGeneration();task.enter('save');S.pendingDirectionCommit=false;commit();const saved=await flushSave();assertGeneration();if(!saved)throw new Error('MVは作成しましたが、ブラウザへの保存を完了できませんでした。プロジェクト保存でバックアップしてください');
+    assertGeneration();generationCommitted=true;task.enter('save');S.pendingDirectionCommit=false;commit();const saved=await flushSave();if(!saved){$('directionStatus').textContent='MVは生成できましたが、ブラウザへの保存に失敗しました。再読み込みする前にプロジェクトをバックアップしてください。';task.fail(new Error($('directionStatus').textContent));return;}
     if(analyzedInput?.plan===S.plan){const plan=S.plan,input=await J.cinemaV3.snapshot(S.project,S.audio,plan,range),analysisKey=J.canonicalJSON(audioLike());if(analyzedInput.renderState&&analyzedInput.renderState===J.cinemaV3.qaRenderState(S.project,plan,range)&&input.inputHash===analyzedInput.input.inputHash&&analysisKey===analyzedInput.analysisKey)S.confirmedCinemaPlan={plan,inputHash:input.inputHash,analysisKey,planHash:await J.cinemaV3.planHash(plan),pixelQA:S.pixelQA,pixelQAPlan:plan,renderState:J.cinemaV3.qaRenderState(S.project,plan,range),rangeKey:J.canonicalJSON(range)};}
     task.complete('MVを作成しました。仕上がりを確認してください');
     toast(proposal.songNativeDirector>=4?'楽曲から映像構成を生成しました':`自動演出：${J.STYLES[proposal.style].name} × ${J.MOODS[proposal.mood].name}`);
-  } catch (err) {S.pendingDirectionCommit=false;if(S.project===workingProject){S.project=previousGeneration.project;S.plan=previousGeneration.plan;S.pixelQA=previousGeneration.pixelQA;syncUI();renderLines();S.need=true;await flushSave();}task.fail(err,generationCancel.signal.aborted);console.error('JIZURA MV generation failed',err); $('directionStatus').dataset.selectionState='FAILED';$('directionStatus').textContent = err.message || '演出を作成できませんでした'; delete $('directionStatus').dataset.result; }
+  } catch (err) {S.pendingDirectionCommit=false;if(!generationCommitted&&S.project===workingProject){S.project=previousGeneration.project;S.plan=previousGeneration.plan;S.pixelQA=previousGeneration.pixelQA;syncUI();renderLines();S.need=true;await flushSave();}task.fail(err,generationCancel.signal.aborted);console.error('JIZURA MV generation failed',err); $('directionStatus').dataset.selectionState='FAILED';$('directionStatus').textContent = err.message || '演出を作成できませんでした'; delete $('directionStatus').dataset.result; }
   finally { S.pendingDirectionCommit=false;showMsg(null); directionBusy = false; syncDirectionUI(); }
 }
 
@@ -2000,5 +2037,7 @@ const start=()=>boot().catch(error=>{S.bootTask?.fail(error);console.error('JIZU
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 J.ui = S;
 // hooks for hosts that embed the app (the After Effects CEP panel)
-J.uiApi = { toast, startTap, tapNow, undoTap, stopTap, exportLRC, replan, syncUI, pause, seek, flushSave, loadAudioFile, restartPreview };
+window.addEventListener('beforeunload',event=>{if(S.unsaved){event.preventDefault();event.returnValue='';}});
+if($('localSaveStatus')){$('localSaveStatus').title='クリックして再保存';$('localSaveStatus').tabIndex=0;$('localSaveStatus').setAttribute('role','button');$('localSaveStatus').addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();flushSave();}});$('localSaveStatus').addEventListener('click',()=>flushSave());}
+J.uiApi = { mergeProject, portableProjectJSON, loadLocal, toast, startTap, tapNow, undoTap, stopTap, exportLRC, replan, syncUI, pause, seek, flushSave, loadAudioFile, restartPreview };
 })();
