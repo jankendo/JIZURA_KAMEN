@@ -32,7 +32,11 @@ J.mainDraw = (env, it) => {
   if (ltI < 0 && !en.pieces) return null;
   const holdEnvelope = J.clamp((ltI - cut.inDur * 0.85) / 0.25) * (1 - pOut);
   const amt = env.plan.songNativeDirection?.version>=8&&cut.registrySelectedV8 ? holdEnvelope*holdEnvelope*(3-2*holdEnvelope) : holdEnvelope;
-  if (amt > 0 && !it.noHold) ho.apply(env, it, amt, ctx);
+  if (amt > 0 && !it.noHold) {
+    const activity=cut.expressiveEnvelopeV12?J.directionHoldAtV12(cut,lt0):1;
+    const holdEnv=activity===1?env:{...env,fx:{...env.fx,motion:env.fx.motion*activity}};
+    ho.apply(holdEnv, it, amt*activity, ctx);
+  }
   if (pOut > 0 && ex !== J.EXIT.cut) ex.apply(env, it, pOut, ctx);
   const dna=env.plan.artDirection?.motionDNA;
   if(dna&&env.beat&&(!env.plan.musicalPhoto||J.photoChoreographyLocked?.(env.plan,cut))){

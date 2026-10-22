@@ -101,7 +101,7 @@ J.scoreCreativeCandidateV10=(cut,f,checks,baseScore=0)=>{
  return {score,dimensions};
 };
 // Pareto pruning removes only candidates dominated on all measured fit axes.
-J.creativeParetoV10=rows=>rows.filter(a=>!rows.some(b=>b!==a&&['musicFit','compositionQuality','temporalContinuity','visualCoherence'].every(k=>b.dimensions[k]>=a.dimensions[k])&&b.dimensions.excessPenalty<=a.dimensions.excessPenalty&&b.score>a.score+1e-9));
+J.creativeParetoV10=rows=>rows.filter(a=>!rows.some(b=>b!==a&&['musicFit','compositionQuality','temporalContinuity','visualCoherence'].every(k=>Number.isFinite(a.dimensions[k])&&Number.isFinite(b.dimensions[k])?b.dimensions[k]>=a.dimensions[k]:a.dimensions[k]===b.dimensions[k])&&b.dimensions.excessPenalty<=a.dimensions.excessPenalty&&b.score>a.score+1e-9));
 J.optimizeCreativeLineV10=async({p,c,f,ranked,distinct,sample,phases,signal,audio,anchors=[]})=>{
  const results=[],attempts=[],exclusions=[],interactions=[];let compared=0;
  const timeline=audio?.features?.detailedTimeline||audio?.features?.timeline||[];

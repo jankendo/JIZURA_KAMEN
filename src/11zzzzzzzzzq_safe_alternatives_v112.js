@@ -91,9 +91,9 @@ J.observedVariationV112=(a,b)=>{
 J.additionalStylesV112=(p,a,f,ranked,visited)=>{
  const remaining=J.directionStyleCandidatesV11(p,a,f,true).filter(x=>!visited.some(y=>y.style===x.style));
  if(!ranked.length)return remaining; // Preserve the existing no-safe fallback.
- const demand=J.clamp((f.change||0)*.4+(f.onset||0)*.3+(f.flux||0)*.3),best=Math.max(...ranked.map(x=>x.musicFit||0));
+ const demand=J.clamp((f.change||0)*.4+(f.onset||0)*.3+(f.flux||0)*.3),measured=ranked.map(x=>x.dimensions?.acousticFit??x.musicFit).filter(Number.isFinite),best=measured.length?Math.max(...measured):null;
  const spread=Math.max(0,...ranked.flatMap((x,i)=>ranked.slice(i+1).map(y=>J.registryInkDistance(x.signature,y.signature)||0)));
- if(ranked.length>=3&&best>=.85&&(demand<.3||spread>=demand*.5))return [];
+ if(ranked.length>=3&&(demand<.3||(best!==null&&best>=.85&&spread>=demand*.5)))return [];
  const seeds=visited.map(x=>J.buildStyleProfile(x.style)),chosen=[];
  const distance=(a,b)=>mean(Object.keys(a).filter(k=>typeof a[k]==='number'&&typeof b[k]==='number').map(k=>Math.abs(a[k]-b[k])));
  while(remaining.length&&chosen.length<Math.ceil(1+demand*2)){
