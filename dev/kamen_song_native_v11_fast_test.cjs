@@ -27,10 +27,11 @@ const scenarios=require('./kamen_song_native_v11_scenarios.cjs');
    delete report.sheet;
    console.log('ASSET PASS:',report.lines,'lines,',report.duration,'seconds, restore',report.restore);
   }else {report=await page.evaluate(scenarios);report.safeAlternativeRegression=await page.evaluate(require('./kamen_safe_alternative_v112_scenario.cjs'));}
+  if(process.env.KAMEN_V15_CHECKS)report.v15Checks=await page.evaluate(require('./kamen_random_v15_checks.cjs'));
   if(process.env.KAMEN_V14_CHECKS)report.v14Checks=await page.evaluate(require('./kamen_motion_v14_checks.cjs'));
   if(process.env.KAMEN_V13_CHECKS)report.v13Checks=await page.evaluate(require('./kamen_exploration_v13_checks.cjs'));
   if(process.env.KAMEN_V12_MP4){
-   const encoded=await page.evaluate(async()=>{const {q,p,a}=window.comparisonV12;const result=await J.exportMP4({plan:p,project:q,audio:a,range:{start:.3,end:1.3}});const R=new J.Renderer();await R.loadCustomBackground(q.customBg.dataUrl);
+   const encoded=await page.evaluate(async()=>{const {q,p,a}=window.comparisonV12;const result=await J.exportMP4({plan:p,project:q,audio:a,range:{start:.3,end:J.isRandomFinisherV15?.(p)?3.3:1.3}});const R=new J.Renderer();await R.loadCustomBackground(q.customBg.dataUrl);
     const actual=Object.assign(document.createElement('canvas'),{width:result.width,height:result.height}),expected=actual.cloneNode(),control=actual.cloneNode(),video=document.createElement('video'),url=URL.createObjectURL(result.blob),observations=[];
     const diff=(a,b)=>{let sum=0;for(let k=0;k<a.length;k++)if(k%4!==3)sum+=Math.abs(a[k]-b[k])/255;return sum/(a.length/4*3);};
     try{video.muted=true;video.src=url;await new Promise((resolve,reject)=>{video.onloadedmetadata=resolve;video.onerror=reject;});
@@ -40,9 +41,18 @@ const scenarios=require('./kamen_song_native_v11_scenarios.cjs');
       const pixels=cv=>cv.getContext('2d').getImageData(0,0,result.width,result.height).data,e=pixels(expected),d=pixels(actual),z=pixels(control),codecError=diff(e,d),removedDifference=diff(z,d),canvasContribution=diff(e,z);
       observations.push({frame,time,group,id:ab?.id??c.hold,codecError,removedDifference,canvasContribution,status:canvasContribution>1e-6&&removedDifference>codecError*2?'OBSERVED_ABOVE_CODEC_RESIDUAL':'UNVERIFIED',scope:'decoded selected MP4 versus same-time production Canvas role-removal control; not an encoded control'});
      }
+     if(J.isRandomFinisherV15?.(p))for(const target of [{time:2.05,group:'fx'},{time:2.7,group:'cam'},{time:2.85,group:'bg'}]){
+      const frame=Math.round((target.time-.3)*p.fps),time=.3+frame/p.fps,c=J.cutAt(p,time),cc=J.changeDirectionRoleV11(c,target.group,target.group==='cam'?'stillCamera':target.group==='bg'?'none':null),cp={...p,cuts:p.cuts.map(x=>x===c?cc:x)};
+      video.currentTime=(frame+.1)/p.fps;await new Promise((resolve,reject)=>{video.onseeked=resolve;video.onerror=reject;});R.frame(expected.getContext('2d'),p,time,{scale:result.width/p.W,production:true,noHud:true});R.frame(control.getContext('2d'),cp,time,{scale:result.width/p.W,production:true,noHud:true});actual.getContext('2d').drawImage(video,0,0,result.width,result.height);
+      const pixels=cv=>cv.getContext('2d').getImageData(0,0,result.width,result.height).data,e=pixels(expected),d=pixels(actual),z=pixels(control),codecError=diff(e,d),removedDifference=diff(z,d),canvasContribution=diff(e,z);observations.push({frame,time,group:target.group,id:target.group==='fx'?c.registryFxV9:c[target.group],codecError,removedDifference,canvasContribution,status:canvasContribution>1e-6&&removedDifference>codecError*2?'OBSERVED_ABOVE_CODEC_RESIDUAL':'UNVERIFIED',scope:'decoded MP4 versus same-time production Canvas role-removal control'});
+     }
     }finally{URL.revokeObjectURL(url);R.disposeAssets?.();}
     const bytes=new Uint8Array(await result.blob.arrayBuffer());let binary='';for(let i=0;i<bytes.length;i+=8192)binary+=String.fromCharCode(...bytes.subarray(i,i+8192));return {base64:btoa(binary),roleObservations:observations,validation:result.validation,provenance:result.provenance,width:result.width,height:result.height};});
    fs.writeFileSync(process.env.KAMEN_V12_MP4,Buffer.from(encoded.base64,'base64'));delete encoded.base64;report.encodedSmoke=encoded;
+  }
+  if(process.env.KAMEN_V15_QUALITY_MP4){
+   const encoded=await page.evaluate(async()=>{const {q,p,a}=window.comparisonV12,genomes=p.cuts.filter(c=>c.line>=0).map(J.creativeGenomeV15);const result=await J.exportMP4({plan:p,project:q,audio:a,range:{start:.3,end:3.3},refinementMode:'quality',refinementAttempts:1});if(J.canonicalJSON(genomes)!==J.canonicalJSON(p.cuts.filter(c=>c.line>=0).map(J.creativeGenomeV15)))throw Error('Quality export changed genome');const bytes=new Uint8Array(await result.blob.arrayBuffer());let binary='';for(let i=0;i<bytes.length;i+=8192)binary+=String.fromCharCode(...bytes.subarray(i,i+8192));return {base64:btoa(binary),validation:result.validation,provenance:result.provenance};});
+   fs.writeFileSync(process.env.KAMEN_V15_QUALITY_MP4,Buffer.from(encoded.base64,'base64'));delete encoded.base64;report.qualityEncodedSmoke=encoded;
   }
   const {auditBootstrap,auditBoundary}=await import('../scripts/source-order.mjs');
   const source=auditBootstrap+'\n'+manifest.map(n=>sourceFiles.get(n)+auditBoundary(n)).join('\n');

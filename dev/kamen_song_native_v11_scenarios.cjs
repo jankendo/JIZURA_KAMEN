@@ -108,7 +108,7 @@ module.exports.compare=async function compareDirectionV12({mode}){
  const a={duration:4,bpm:120,energyRate:8,energy:new Float32Array(32).fill(.5),onset:Float32Array.from(rows.map(r=>r.onset)),features:{energy:.5,timeline:rows,detailedTimeline:rows}};
  const originalProject=J.clonePhotoRenderPlan(q);
  if(mode==='random'){Object.assign(q,J.omakase(q,J.rng(12812)));q.autoDirection=false;}
- else{const set=await J[['v14','random-repaired'].includes(mode)?'generateJizuraDirectionV14':mode==='v13'?'generateJizuraDirectionV13':mode==='v12'?'generateJizuraDirectionV12':'generateJizuraDirectionV11'](q,a);q.autoDirection=true;q.artDirection=J.makeArtDirection(q,a,set.recommended.proposal);q.fonts={...q.artDirection.typography};}
+ else{const set=await J[mode==='v15'?'generateJizuraDirectionV15':['v14','random-repaired'].includes(mode)?'generateJizuraDirectionV14':mode==='v13'?'generateJizuraDirectionV13':mode==='v12'?'generateJizuraDirectionV12':'generateJizuraDirectionV11'](q,a);q.autoDirection=true;q.artDirection=J.makeArtDirection(q,a,set.recommended.proposal);q.fonts={...q.artDirection.typography};}
  const started=performance.now(),p=J.plan(q,a),proposalGenerator=J.explorationProposalV13;
  if(mode==='random-repaired')J.explorationProposalV13=(plan,c,index,ordinal)=>{
   const input=J.clonePhotoRenderPlan(originalProject);Object.assign(input,J.omakase(input,J.rng(J.h(input.seed,ordinal,130))));input.autoDirection=false;input.artDirection=null;

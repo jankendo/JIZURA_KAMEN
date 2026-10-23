@@ -163,7 +163,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
    traces.push({...J.registryCandidateTrace(c,safe[0].styleKey,safe[0].font,null,f.energy,safe,exclusions),reason:'音響の局所変化・歌詞寸法・実コントラスト・前後構図を比較',fitRanking:safe.map(x=>({layout:x.layout,style:x.styleKey,font:x.font,musicFit:x.musicFit,score:x.score})),candidateCount:J.isExplorationV13?.(p)?safe[0].optimizerEvidence.compared:ranked.length,layoutCandidates:[...layoutsSeen],safeCount:safe.length,acoustics:f,motionAttempts:safe.flatMap(s=>s.attempts)});
    options.onProgress?.({label:'歌詞ごとのJIZURA演出を実Canvasで比較しています',current:portfolios.length,total:cuts.length});await yieldUI();
   }
-  let storyboard=J.chooseRegistryStoryboard(portfolios,8,{transitionScore:(state,c,step)=>{
+  let storyboard=J.isRandomFinisherV15?.(p)?J.chooseRandomStoryboardV15(p,portfolios):J.chooseRegistryStoryboard(portfolios,8,{transitionScore:(state,c,step)=>{
    const prev=state.last,delta=prev?Math.abs(step.energy-prev.energy):0;
    const styleCost=prev&&prev.styleKey!==c.styleKey?.14*(1-delta):0;
    const text=norm(p.lines[step.line].text),repeat=state.picks.find(x=>norm(p.lines[x.line].text)===text);
