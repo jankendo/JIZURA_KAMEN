@@ -330,7 +330,7 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
   row.lightSafetyV15=J.checkRandomLightV15(p,row.cut,o.sample,o.signal);
   const generated=pick.optimizerEvidence?.genome?.generated||J.creativeGenomeV15(pick.cut),final=J.creativeGenomeV15(row.cut),changedRoles=J.genomeChangesV15(generated,final);
   row.cut.creativeGenomeV15=generated;row.cut.creativeFinalGenomeV15=final;
-  row.optimizerEvidence={...copy(pick.optimizerEvidence),genome:{generated,final,changedRoles,retention:1-changedRoles.length/Object.keys(generated).length},recovery:{mode:'CAUSAL_ROLE_REPAIR',role:row.recoveryRole,scaleGate:'MEASURED_640PX'}};
+  row.optimizerEvidence={...copy(pick.optimizerEvidence),repairSummary:{...copy(pick.optimizerEvidence?.repairSummary),changedRoles:[...new Set([...(pick.optimizerEvidence?.repairSummary?.changedRoles||[]),row.recoveryRole])]},genome:{generated,final,changedRoles,retention:1-changedRoles.length/Object.keys(generated).length},recovery:{mode:'CAUSAL_ROLE_REPAIR',role:row.recoveryRole,scaleGate:'MEASURED_640PX'}};
  }rows.examined=used;return rows;}
  let examined=used;const diagnostic={safetyAnchor:{attempted:false,found:false,examined:0,failureReasons:[]},randomCompositions:{attempted:0,safe:0,rejected:0,roles:[],failures:[]},recovery:{attempted:true,safe:false}};
  const fixed=await J.composeSafeRandomV15({p,c:pick.cut,index,signal:o.signal,remaining:()=>budget-examined,diagnostic,evaluate:(cut)=>{
