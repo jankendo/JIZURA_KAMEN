@@ -80,51 +80,73 @@ J.rerollRoleV15=(p,c,index,role,ordinal)=>{
 };
 J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initialCuts=[],preserveCurrent=false,initialPlan=null})=>{
  if(J.songNativeLockedV8(p,c))throw Error('V15_LOCKED_LINE');
- const catalog=J.explorationCatalogV13(p),intent=J.songVisualIntentV11(p,audio,c,f),seen=new Set(),repairs=[],exclusions=[],origins={fresh:0,initial:0,repair:0,control:0,reroll:0,tune:0};const repairStats={attempted:0,succeeded:0};const roleRetries={};let compared=0,ordinal=0;
+ const totalBudget=Math.max(1,Math.floor(Number.isFinite(budget)?budget:108)),fallbackReserve=preserveCurrent?0:totalBudget<=48?Math.min(12,Math.max(3,Math.floor(totalBudget*.12))):2,frontierBudget=Math.max(1,totalBudget-fallbackReserve),perGenomeBudget=frontierBudget<=48?Math.max(8,Math.floor(frontierBudget/2)):frontierBudget-1;
+ const catalog=J.explorationCatalogV13(p),intent=J.songVisualIntentV11(p,audio,c,f),seen=new Set(),stateCache=new Map(),repairs=[],exclusions=[],origins={fresh:0,initial:0,repair:0,control:0,reroll:0,fallback:0,tune:0};const repairStats={attempted:0,succeeded:0,local:0,causalRerolls:0};let roleRetries={},compared=0,ordinal=0,genomeTrials=0,genomeSwitches=0,fallbackAttempted=false,fallbackExamined=0,safeFallbackUsed=false,safeCandidateFound=false,genomeStart=0,localRounds=0,passes=0,stagnantRerolls=0,current=null,lastCandidate=null,bestSafe=null,generated=null;
+ const failureReasons={};
  const deficit=item=>item.checks.reduce((sum,e)=>{
   const contrast=e.compositedContrast?.renderedVsBackgroundContrastP10??e.contrast?.renderedVsBackgroundContrastP10;
   const b=e.bounds,overflow=b?Math.max(0,.105-b.x0/p.W)+Math.max(0,b.x1/p.W-.895)+Math.max(0,.075-b.y0/p.H)+Math.max(0,b.y1/p.H-.925):0;
   return sum+(e.eligible?0:(e.sampleOffset>Math.min(.22,c.dur*.15)&&e.sampleOffset<c.dur-Math.min(.12,c.dur*.08)?20:2))+(e.safe===false?3:0)+overflow*10+(e.geometry||[]).reduce((v,g)=>v+Number(!g.readable)+Math.max(0,g.maxGlyphHeight-(p.H>p.W?.145:.195))*10,0)+(e.advancedChecks||[]).filter(x=>!x.complete).length*3+Math.max(0,.04-(e.height||0))*20+(Number.isFinite(contrast)?Math.max(0,3-contrast):3);
  },0);
- const evaluate=(cut,origin)=>{
-  abort(signal);if(compared>=budget)return null;const key=J.canonicalJSON(cut);if(seen.has(key))return null;seen.add(key);compared++;origins[origin]++;
-  const times=phases(cut),sp={...p,style:cut.style,styleKey:cut.styleKey,motionObservationV14:true},checks=times.map(t=>{abort(signal);return sample(sp,cut,t);});
+ const evaluate=(cut,kind,allowFallback=false)=>{
+  abort(signal);if(compared>=(allowFallback?totalBudget:frontierBudget))return null;const key=J.canonicalJSON(cut);if(seen.has(key))return null;seen.add(key);compared++;origins[kind]++;
+  const times=phases(cut),sp={...p,style:cut.style,styleKey:cut.styleKey,motionObservationV14:true},checks=times.map(t=>{abort(signal);return sample(sp,cut,t);});stateCache.set(key,new Map(times.map((t,i)=>[t,checks[i]])));
   Object.assign(checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:cut.lineText,cutParamsV14:cut.explorationParamsV13});
   const safe=checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable),descriptor=J.motionDescriptorV14(checks,p),fit=J.scoreExplorationV13(cut,f,intent,checks,p),hold=checks.find(e=>e.temporalStage==='HOLD'&&e.readable)||checks[Math.floor(checks.length/2)];
-  if(origin==='repair'){repairStats.attempted++;repairStats.succeeded+=Number(safe);}
-  if(!safe)exclusions.push({origin,causes:J.motionFailureV14(checks,cut)});
-  return {...fit,cut,checks,times,descriptor,safe,features:f,intent,ablations:[],attempts:[],layout:cut.layout,styleKey:cut.styleKey,font:cut.params.font,params:cut.params,evidence:strip(hold),phaseEvidence:checks.map(strip),signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster};
+  if(kind==='repair'){repairStats.attempted++;repairStats.succeeded+=Number(safe);repairStats.local++;}
+  const causes=safe?[]:J.motionFailureV14(checks,cut);for(const cause of causes)failureReasons[cause]=(failureReasons[cause]||0)+1;
+  if(!safe)exclusions.push({origin:kind,causes});
+  const item={...fit,cut,checks,times,descriptor,safe,features:f,intent,ablations:[],attempts:[],layout:cut.layout,styleKey:cut.styleKey,font:cut.params.font,params:cut.params,evidence:strip(hold),phaseEvidence:checks.map(strip),signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster};lastCandidate=item;return item;
  };
  const raw=initialCuts[0]||(preserveCurrent?initialPlan?.cuts.find(x=>x.line===c.line):J.randomProposalV15(p,c,catalog,ordinal++));
  if(!raw)throw Error('V15_MISSING_CURRENT_GENOME');
- let generated=raw.creativeGenomeV15||J.creativeGenomeV15(raw);let localRounds=0,passes=0;let current=evaluate(J.initialFinishV15(p,raw),preserveCurrent?'initial':'fresh'),bestSafe=null;
- while(current&&compared<budget&&passes++<budget){
+ const seenGenomes=new Set();let freshProposalAttempts=0;
+ if(!preserveCurrent)genomeTrials++;
+ generated=raw.creativeGenomeV15||J.creativeGenomeV15(raw);genomeStart=compared;current=evaluate(J.initialFinishV15(p,raw),preserveCurrent?'initial':'fresh');
+ seenGenomes.add(J.canonicalJSON(generated));
+ if(!preserveCurrent&&!initialCuts[0])genomeTrials=1;
+ const tryFreshGenome=()=>{
+  for(let attempts=0;attempts<totalBudget&&compared<frontierBudget;attempts++){
+   if(freshProposalAttempts>=totalBudget)return false;
+   const next=J.randomProposalV15(p,c,catalog,ordinal++),candidateGenome=J.creativeGenomeV15(next),key=J.canonicalJSON(candidateGenome);freshProposalAttempts++;genomeTrials++;
+   if(seenGenomes.has(key))continue;seenGenomes.add(key);genomeSwitches++;generated=candidateGenome;genomeStart=compared;localRounds=0;passes=0;stagnantRerolls=0;roleRetries={};current=evaluate(J.initialFinishV15(p,next),'fresh');return true;
+  }
+  return false;
+ };
+ let frontierDone=false;
+ while(!frontierDone){
+  abort(signal);
+  if((!current||compared>=frontierBudget||compared-genomeStart>=perGenomeBudget||passes>=perGenomeBudget*2)&&!preserveCurrent&&compared<frontierBudget){
+   if(tryFreshGenome())continue;frontierDone=true;break;
+  }
+  if(!current||compared>=frontierBudget||compared-genomeStart>=perGenomeBudget||passes++>=perGenomeBudget*2){frontierDone=true;break;}
   if(current.safe){
-   current.generatedGenomeV15=generated;if(!bestSafe)bestSafe=current;
-   if(preserveCurrent||current.descriptor.holdMotion.value>1e-6){bestSafe=current;break;}
-   // Only a safe but observably static result permits a fresh intensity trial.
-   // Unsafe proposals continue local repair and never restart the whole genome.
-   if(budget-compared<16)break;
-   const next=J.randomProposalV15(p,c,catalog,ordinal++);generated=J.creativeGenomeV15(next);current=evaluate(J.initialFinishV15(p,next),'fresh');localRounds=0;continue;
+   current.generatedGenomeV15=generated;safeCandidateFound=true;if(!bestSafe||current.descriptor.holdMotion.value>bestSafe.descriptor.holdMotion.value)bestSafe=current;
+   if(preserveCurrent||current.descriptor.holdMotion.value>1e-6){bestSafe=current;frontierDone=true;break;}
+   // A safe static candidate remains available while a fresh genome is tried.
+   if(compared<frontierBudget&&tryFreshGenome())continue;
+   frontierDone=true;break;
   }
   let improved=false;
   // Cumulative edits in priority order. Keep a repaired state only if it loses
   // fewer hard failures; no musical/beauty score participates.
   for(const cut of (localRounds++<5?J.finishRepairsV15(p,current.cut,current.checks):[])){
+   if(compared-genomeStart>=perGenomeBudget||compared>=frontierBudget)break;
    const fixed=evaluate(cut,'repair');if(!fixed)continue;
    repairs.push({safe:fixed.safe,idsPreserved:true,causes:J.motionFailureV14(current.checks,current.cut)});
-   if(fixed.safe){current=fixed;improved=true;break;}
-   if(deficit(fixed)<deficit(current)){current=fixed;improved=true;break;}
+   if(fixed.safe){current=fixed;stagnantRerolls=0;improved=true;break;}
+   if(deficit(fixed)<deficit(current)){current=fixed;stagnantRerolls=0;improved=true;break;}
   }
   if(current.safe)continue;
   if(improved)continue;
-  if(preserveCurrent)break;
+  if(preserveCurrent){frontierDone=true;break;}
   const causes=J.motionFailureV14(current.checks,current.cut);
   // Removal controls diagnose a role causally. After two failed random
   // alternatives, only that proven failing role may use its neutral control.
   let causal=null,causalGain=0,causalControl=null;const missing=current.checks.filter(e=>!e.eligible&&!e.geometry?.length).map(e=>e.sampleOffset);let restoredMissing=false;
   const stages=new Set(current.checks.filter(e=>!e.eligible).map(e=>e.temporalStage)),priority=stages.size===1&&stages.has('EXIT')?'exit':stages.size===1&&stages.has('ENTRY')?'enter':null;
   for(const role of [...roles].sort((a,b)=>Number(b===priority)-Number(a===priority)).filter(g=>get(current.cut,g)&&J.canonicalJSON(get(current.cut,g))!==J.canonicalJSON(g==='decor'?[]:neutral[g]))){
+   if(compared-genomeStart>=perGenomeBudget||compared>=frontierBudget)break;
    const control=evaluate(J.changeDirectionRoleV11(current.cut,role,neutral[role]),'control');if(!control)continue;
    if(control.safe){causal=role;causalGain=Infinity;causalControl=control;restoredMissing=true;break;}
    if(missing.length&&missing.every(t=>control.checks.find(e=>e.sampleOffset===t)?.geometry?.length))restoredMissing=true;
@@ -132,19 +154,32 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
   }
   if(missing.length&&!restoredMissing)causal='layout';
   if(!causal&&causes.some(x=>/SIZE|SAFE_AREA|GLYPH|READABILITY|TRANSIENT/.test(x)))causal='layout';
-  if(!causal)break;
+  if(!causal){current=null;continue;}
   if(causalControl&&causalGain>0&&(roleRetries[causal]||0)>=2){
    repairs.push({safe:causalControl.safe,role:causal,reason:causes,from:get(current.cut,causal),to:get(causalControl.cut,causal),idsPreserved:false,policy:'two random causal alternatives failed; removal reduces observed safety failures for this role only'});
-   current=causalControl;continue;
+   if(deficit(causalControl)<deficit(current))stagnantRerolls=0;current=causalControl;continue;
   }
-  roleRetries[causal]=(roleRetries[causal]||0)+1;
-  const replacement=J.rerollRoleV15(p,current.cut,catalog,causal,ordinal++);if(!replacement)break;
+  roleRetries[causal]=(roleRetries[causal]||0)+1;repairStats.causalRerolls++;
+  const replacement=J.rerollRoleV15(p,current.cut,catalog,causal,ordinal++);if(!replacement){current=null;continue;}
   localRounds=0;repairs.push({safe:false,role:causal,reason:causes,from:get(current.cut,causal),to:get(replacement,causal),idsPreserved:false});
-  current=evaluate(J.initialFinishV15(p,replacement),'reroll')||current;await new Promise(r=>setTimeout(r,0));
+  const priorDeficit=deficit(current),rerolled=evaluate(J.initialFinishV15(p,replacement),'reroll');
+  if(!rerolled)current=null;else{current=rerolled;if(current.safe||deficit(current)<priorDeficit)stagnantRerolls=0;else if(++stagnantRerolls>=8)current=null;}
+  await new Promise(r=>setTimeout(r,0));
  }
- if(!bestSafe&&current?.safe){current.generatedGenomeV15=generated;bestSafe=current;}
+ if(!bestSafe&&current?.safe){current.generatedGenomeV15=generated;bestSafe=current;safeCandidateFound=true;}
+ if(!bestSafe&&!preserveCurrent){
+  fallbackAttempted=true;const remaining=totalBudget-compared,fallbackBudget=Math.min(fallbackReserve,remaining);
+  if(fallbackBudget>1){
+   const base=current?.cut||lastCandidate?.cut||raw,failed=current?.checks||lastCandidate?.checks||[],scaleFailures=failed.filter(e=>!e.eligible).map(e=>({stage:e.temporalStage,reasons:J.motionFailureV14([e],base),observed:{safe:e.safe,full:e.full,height:e.height,ink:e.ink,contrastP10:e.compositedContrast?.renderedVsBackgroundContrastP10??e.contrast?.renderedVsBackgroundContrastP10,geometry:e.geometry||[],core:e.advancedChecks||[]}}));
+   const pick={cut:base,features:f,intent,score:0,optimizerEvidence:{catalog:copy(catalog)}},fallbackStates=new Set(),fallbackSample=(plan,cut,time)=>{const key=J.canonicalJSON(cut),cached=stateCache.get(key)?.get(time);if(cached)return cached;fallbackStates.add(key);return sample(plan,cut,time);};
+   const recovered=await recover(p,pick,scaleFailures,{sample:fallbackSample,phases,audio,signal,budget:fallbackBudget,frontier:[]});fallbackExamined=fallbackStates.size;compared+=fallbackExamined;origins.fallback+=fallbackExamined;
+   for(const row of recovered){abort(signal);const key=J.canonicalJSON(row.cut),checks=row.checks||[];if(seen.has(key)||!checks.every(e=>e.eligible)||!checks.some(e=>e.temporalStage==='HOLD'&&e.readable))continue;seen.add(key);Object.assign(checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:row.cut.lineText,cutParamsV14:row.cut.explorationParamsV13});const descriptor=J.motionDescriptorV14(checks,p),fit=J.scoreExplorationV13(row.cut,f,intent,checks,p),hold=checks.find(e=>e.temporalStage==='HOLD'&&e.readable)||checks[Math.floor(checks.length/2)],fixed={...row,...fit,cut:row.cut,checks,times:row.times||phases(row.cut),descriptor,safe:true,features:f,intent,ablations:[],attempts:[],layout:row.cut.layout,styleKey:row.cut.styleKey,font:row.cut.params.font,params:row.cut.params,evidence:strip(hold),phaseEvidence:checks.map(strip),signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster};bestSafe=fixed;generated=J.creativeGenomeV15(fixed.cut);fixed.generatedGenomeV15=generated;safeCandidateFound=true;safeFallbackUsed=true;break;}
+  }
+ }
  if(bestSafe)generated=bestSafe.generatedGenomeV15||generated;
- if(!bestSafe)throw Object.assign(Error('V15_NO_SAFE_RANDOM_LINE_'+c.line),{diagnostic:{compared,budget,exclusions,repairs,cut:current?.cut,failures:current?.checks.filter(e=>!e.eligible).map(strip)}});
+ const failureSummary=Object.entries(failureReasons).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([reason,count])=>({reason,count}));
+ const searchSummary={line:c.line,displayLine:c.line+1,fullRandomGenomeTrials:genomeTrials,localRepairCount:repairStats.local,causalRerollCount:repairStats.causalRerolls,evaluatedCandidates:compared,budget:totalBudget,primaryFailureReasons:failureSummary,newGenomeSwitches:genomeSwitches,fallbackAttempted,fallbackCandidatesExamined:fallbackExamined,safeCandidateFound};
+ if(!bestSafe)throw Object.assign(Error('V15_NO_SAFE_RANDOM_LINE_'+c.line),{diagnostic:searchSummary});
  // Timing follows discovery; retain original expressive progression and never
  // add repeated flash events. A failed timing edit simply keeps the safe cut.
  const early=intent.events.filter(e=>e.time>0&&e.time<=Math.min(.22,c.dur*.15)).sort((a,b)=>b.value-a.value||a.time-b.time)[0];
@@ -170,7 +205,8 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
  }
  const activeMotion=item.descriptor.holdMotion.value>1e-6,changes=J.genomeChangesV15(generated,final);
  const observed=catalog.map(row=>({...row,generated:row.group==='style'?row.id===final.styleKey:row.group==='layout'?row.id===final.layout:row.group==='decor'?final.decor.includes(row.id):row.id===final[row.group],probed:item.checks.some(e=>e.registryDispatchV11?.some(x=>x.group===row.group&&x.id===row.id)),safe:item.checks.some(e=>e.registryDispatchV11?.some(x=>x.group===row.group&&x.id===row.id))}));
- item.optimizerEvidence={explorationVersion:15,compared,budget,origins,repairs,repairStats,exclusions,axes:item.dimensions,ablations:item.ablations,catalog:observed,counts:Object.fromEntries(['registered','callable','eligible','generated','probed','safe'].map(k=>[k,observed.filter(x=>x[k]).length])),genome:{generated,final,changedRoles:changes,retention:1-changes.length/Object.keys(generated).length},intensity:{requested:'かなり激しい',nativeStrength:true,status:activeMotion?'OBSERVED_MOTION':'UNMET',scope:'sampled primary motion; subjective intensity UNVERIFIED'},lightSafety:item.lightSafetyV15,motionV14:J.motionObservationV14(item),seed:p.seed,artisticQuality:'UNVERIFIED'};
+ const repairSummary={attempted:repairs.length,localEvaluations:repairStats.local,causalRerolls:repairStats.causalRerolls,changedRoles:[...new Set(repairs.filter(x=>x.role).map(x=>x.role))]};
+ item.optimizerEvidence={explorationVersion:15,compared,budget:totalBudget,origins,search:searchSummary,repairSummary,repairStats,exclusions:failureSummary,axes:item.dimensions,ablations:item.ablations,catalog:observed,counts:Object.fromEntries(['registered','callable','eligible','generated','probed','safe'].map(k=>[k,observed.filter(x=>x[k]).length])),genome:{generated,final,changedRoles:changes,retention:1-changes.length/Object.keys(generated).length},...(safeFallbackUsed?{recoveryMode:'SAFE_FALLBACK',reason:'RANDOM_FRONTIER_EXHAUSTED'}:{}),intensity:{requested:'かなり激しい',nativeStrength:true,status:activeMotion?'OBSERVED_MOTION':'UNMET',scope:'sampled primary motion; subjective intensity UNVERIFIED'},lightSafety:item.lightSafetyV15,motionV14:J.motionObservationV14(item),seed:p.seed,artisticQuality:'UNVERIFIED'};
  item.checks=item.checks.map(strip);return [item];
 };
 J.chooseRandomStoryboardV15=(p,portfolios)=>{
@@ -191,6 +227,6 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
  if(!J.isRandomFinisherV15(p))return recover(p,pick,failures,o);
  // Final-scale failures cannot restart discovery or silently use a v14 arc.
  const detail=(plan,cut,t)=>{const low=o.sample(plan,cut,t),high=o.sample.verifyScale(plan,cut,t);return {...low,...high,mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:t};};
- try{const rows=await J.optimizeRandomLineV15({...o,sample:detail,p,c:pick.cut,f:pick.features,initialCuts:[pick.cut],preserveCurrent:true});for(const row of rows)row.optimizerEvidence.repairs=[...copy(pick.optimizerEvidence.repairs),...row.optimizerEvidence.repairs];return rows;}catch(e){if(e.message.startsWith('V15_NO_SAFE'))return [];throw e;}
+ try{const rows=await J.optimizeRandomLineV15({...o,sample:detail,p,c:pick.cut,f:pick.features,initialCuts:[pick.cut],preserveCurrent:true});for(const row of rows){row.optimizerEvidence.repairSummary.priorScaleRepairCount=pick.optimizerEvidence?.repairSummary?.attempted||0;row.optimizerEvidence.repairStats.priorScaleRepairSuccesses=pick.optimizerEvidence?.repairStats?.succeeded||0;}return rows;}catch(e){if(e.message.startsWith('V15_NO_SAFE'))return [];throw e;}
 };
 })();
