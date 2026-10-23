@@ -50,7 +50,7 @@ J.initialFinishV15=(p,source)=>{
  c.explorationParamsV13={...e,size:Math.min(e.size??1,n>12?.85:1),dx:e.dx||0,dy:e.dy||0};
  c.inDur=c.enter==='cut'?0:Math.min(c.inDur||.2,.22,c.dur*.15);
  c.outDur=c.exit==='cut'?0:Math.min(c.outDur||.1,.12,c.dur*.08);
- c.params={...c.params,cinemaReadabilityRepair:{shadow:2,scrim:.32}};
+ c.params={...c.params,cinemaReadabilityRepair:{shadow:2,scrim:.32,...copy(c.params.cinemaReadabilityRepair||{})}};
  return c;
 };
 J.finishRepairsV15=(p,c,checks)=>{
