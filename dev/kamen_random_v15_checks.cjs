@@ -45,6 +45,22 @@ module.exports=async function randomChecksV15(){
   assert(J.genomeChangesV15(genomeA,retry[0].optimizerEvidence.genome.generated).length,'retry does not inherit the failed genome identity');
   assert(args.phases(retry[0].cut).every(t=>probe({...p,style:retry[0].cut.style,styleKey:retry[0].cut.styleKey,motionObservationV14:true},retry[0].cut,t).eligible),'accepted retry passes actual Canvas safety');
  }finally{J.finishRepairsV15=originalFinish;J.rerollRoleV15=originalReroll;J.recoverDirectionLineV112=originalRecovery;J.motionDescriptorV14=originalMotion;J.randomProposalV15=originalProposal;}
+ // Exhaust the ordinary frontier with a genuinely unsafe registered layout.
+ // The recovery itself uses unmodified production Canvas at both resolutions.
+ let stagedRow,stagedReplay;const unsafe=J.clonePhotoRenderPlan(proposalA);unsafe.layout='tile';unsafe.params={...J.LAYOUTS.tile.plan(J.rng(c.seed),c,p.style),font:c.params.font};unsafe.creativeGenomeV15=J.creativeGenomeV15(unsafe);
+ try{
+  J.randomProposalV15=()=>J.clonePhotoRenderPlan(unsafe);J.rerollRoleV15=()=>null;
+  stagedRow=(await J.optimizeRandomLineV15({...args,preserveCurrent:false,initialCuts:[],budget:108}))[0];
+  stagedReplay=(await J.optimizeRandomLineV15({...args,preserveCurrent:false,initialCuts:[],budget:108}))[0];
+ }finally{J.randomProposalV15=originalProposal;J.rerollRoleV15=originalReroll;}
+ const stagedAudit=stagedRow.optimizerEvidence.search;
+ assert(J.canonicalJSON(stagedRow.cut)===J.canonicalJSON(stagedReplay.cut),'staged composition seed replay');
+ const alreadySafe=(await J.optimizeRandomLineV15({...args,preserveCurrent:false,initialCuts:[c],budget:2}))[0];
+ assert(!alreadySafe.optimizerEvidence.search.fallbackAttempted&&!J.genomeChangesV15(genome,J.creativeGenomeV15(alreadySafe.cut)).length,'safe initial random genome is retained');
+ assert(stagedAudit.safetyAnchor.found&&stagedAudit.randomCompositions.attempted>0&&stagedAudit.recovery.safe,'real Canvas staged recovery discovers anchor and adds random roles');
+ assert(stagedAudit.randomCompositions.rejected>0&&stagedAudit.randomCompositions.roles.some(x=>x.accepted),'real unsafe additions are rejected while safe roles survive');
+ assert(stagedAudit.evaluatedCandidates<=108&&args.phases(stagedRow.cut).every(t=>probe.verifyScale({...p,style:stagedRow.cut.style,styleKey:stagedRow.cut.styleKey},stagedRow.cut,t).eligible),'staged completed genome passes 640px within budget');
+ console.log('V15 STAGED PASS',JSON.stringify(stagedAudit));
  console.log('V15 TEST 1 PASS: actual Canvas retention, numeric fit, local reroll, locks and replay');
  let exhausted=null;const originalRerollB=J.rerollRoleV15,originalRecoveryB=J.recoverDirectionLineV112,base=checks.find(e=>e.temporalStage==='HOLD');
  try{J.rerollRoleV15=()=>null;J.recoverDirectionLineV112=async()=>Object.assign([],{examined:0});await J.optimizeRandomLineV15({...args,preserveCurrent:false,initialCuts:[],budget:36,phases:()=>[.5],sample:(_sp,_cut,t)=>({...base,sampleOffset:t,eligible:false,safe:false})});}

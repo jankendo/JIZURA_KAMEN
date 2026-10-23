@@ -88,10 +88,74 @@ J.rerollRoleV15=(p,c,index,role,ordinal)=>{
  }else cut=J.changeDirectionRoleV11(c,role,id);
  const changes=J.genomeChangesV15(J.creativeGenomeV15(c),J.creativeGenomeV15(cut));if(changes.some(g=>g!==role))throw Error('V15_NONLOCAL_REROLL');return cut;
 };
+// Recovery constructs a verified prefix instead of mutating an unsafe complete
+// recipe. Each rejected addition is isolated by the preceding safe state.
+J.composeSafeRandomV15=async({p,c,index,evaluate,remaining,signal,diagnostic})=>{
+ const rng=J.rng(J.h(p.seed,c.line+1,15,9107)),shuffle=a=>a.map(x=>({x,k:rng()})).sort((a,b)=>a.k-b.k).map(x=>x.x);
+ const available=g=>index.filter(x=>x.group===g&&x.eligible&&!flashRisk(x)).map(x=>x.id);
+ const layouts=shuffle(available('layout').filter(id=>!J.LAYOUTS[id].fits||J.LAYOUTS[id].fits(J.graphemes(c.lineText).length))),styles=shuffle(available('style'));
+ // Include registered whole-phrase layouts within a bounded, shuffled shortlist;
+ // styles still come from the complete eligible catalog, without genre recipes.
+ const phrase=['center','mixed','vcols','huge','photoPhrase'].filter(id=>layouts.includes(id));
+ const shortlist=shuffle([...new Set([...layouts.slice(0,5),...phrase])]);
+ diagnostic.safetyAnchor.attempted=true;let safe=null;const anchorBudget=Math.min(16,Math.max(1,Math.floor(remaining()*.4)));
+ for(let i=0;i<shortlist.length&&diagnostic.safetyAnchor.examined<anchorBudget&&remaining()>0;i++){
+  abort(signal);const styleKey=styles[i%styles.length],style=J.STYLES[styleKey];
+  let cut={...J.registryCandidateCut({...p,style,styleKey},c,shortlist[i],c.params.font||'embedded_bold','cut','still'),style,styleKey,registrySelectedV8:true,stagger:0};
+  delete cut.generatedMotionV7;delete cut.grammar;delete cut.photoChoreography;
+  for(const role of roles)cut=J.changeDirectionRoleV11(cut,role,neutral[role]);
+  cut=J.initialFinishV15(p,cut);cut.explorationParamsV13={size:1,dx:0,dy:0,motion:1,camera:1,fx:1};
+  let row=evaluate(cut,'anchor');diagnostic.safetyAnchor.examined++;
+  if(!row)continue;
+  if(!row.safe){diagnostic.safetyAnchor.failureReasons.push(...J.motionFailureV14(row.checks,row.cut));
+   for(const repaired of J.finishRepairsV15(p,row.cut,row.checks).slice(0,2)){
+    if(diagnostic.safetyAnchor.examined>=anchorBudget||remaining()<=0)break;const fixed=evaluate(repaired,'anchorRepair');diagnostic.safetyAnchor.examined++;if(fixed?.safe){row=fixed;break;}
+   }
+  }
+  if(row.safe){safe=row;break;}
+  await new Promise(r=>setTimeout(r,0));
+ }
+ diagnostic.safetyAnchor.failureReasons=[...new Set(diagnostic.safetyAnchor.failureReasons)];
+ diagnostic.safetyAnchor.found=!!safe;if(!safe)return null;
+ diagnostic.safetyAnchor.genome=J.creativeGenomeV15(safe.cut);
+ for(const role of shuffle(roles)){
+  abort(signal);if(remaining()<=0)break;
+  const ids=shuffle(available(role).filter(id=>id!==neutral[role]));if(!ids.length)continue;
+  const before=safe;let accepted=null;
+  // At most two alternatives for this role, retaining all previously safe roles.
+  for(const id of ids.slice(0,2)){
+   if(remaining()<=0)break;
+   const proposed=J.changeDirectionRoleV11(before.cut,role,id),row=evaluate(proposed,'composition');if(!row)continue;
+   diagnostic.randomCompositions.attempted++;
+   if(row.safe){accepted=row;diagnostic.randomCompositions.safe++;break;}
+   diagnostic.randomCompositions.rejected++;
+   const causes=J.motionFailureV14(row.checks,row.cut);let repaired=false;
+   for(const cut of J.finishRepairsV15(p,row.cut,row.checks).slice(0,2)){
+    if(remaining()<=roles.length)break;
+    const fixed=evaluate(cut,'compositionRepair');if(fixed?.safe){accepted=fixed;repaired=true;break;}
+   }
+   diagnostic.randomCompositions.failures.push({role,id,causes,repaired});if(accepted)break;
+  }
+  if(accepted)safe=accepted;
+  diagnostic.randomCompositions.roles.push({role,accepted:!!accepted,retainedPrior:!accepted});
+  await new Promise(r=>setTimeout(r,0));
+ }
+ // An internal static anchor alone is never a completed random composition.
+ if(!diagnostic.randomCompositions.roles.some(x=>x.accepted))return null;
+ diagnostic.recovery.safe=true;return safe;
+};
+J.checkRandomLightV15=(p,cut,sample,signal)=>{
+ const light=[],window=Math.min(2,cut.dur),sp={...p,style:cut.style,styleKey:cut.styleKey};
+ for(let i=0;i<Math.ceil(window*30);i++){abort(signal);const t=i/30,e=sample(sp,cut,t);if(e.renderErrors?.length)throw Error('V15_RENDERER_ERROR');if(e.raster)light.push({time:t,luma:e.raster.reduce((s,v,k)=>s+v*[.2126,.7152,.0722][k%3],0)/(e.raster.length/3)});}
+ const jumps=light.slice(1).flatMap((x,i)=>Math.abs(x.luma-light[i].luma)>.2?[x.time]:[]),unsafe=jumps.some(t=>jumps.filter(x=>x>=t&&x<t+1).length>=6);
+ if(unsafe)throw Object.assign(Error('V15_TEMPORAL_LIGHT_CHANGE_REJECTED'),{diagnostic:{line:cut.line,jumps,window}});
+ return {status:'MEASURED',sampleRate:30,window,jumps,criterion:'fewer than six >.2 mean weighted-RGB brightness jumps in any sampled second'};
+};
 J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initialCuts=[],preserveCurrent=false,initialPlan=null})=>{
  if(J.songNativeLockedV8(p,c))throw Error('V15_LOCKED_LINE');
- const totalBudget=Math.max(1,Math.floor(Number.isFinite(budget)?budget:108)),fallbackReserve=preserveCurrent?0:Math.min(totalBudget-1,Math.min(16,Math.max(totalBudget<=48?Math.min(3,totalBudget):12,Math.floor(totalBudget*.15)))),frontierBudget=totalBudget-fallbackReserve,perGenomeBudget=Math.min(28,Math.max(1,Math.floor(frontierBudget/3)));
- const catalog=J.explorationCatalogV13(p),intent=J.songVisualIntentV11(p,audio,c,f),seen=new Set(),stateCache=new Map(),repairs=[],exclusions=[],origins={fresh:0,initial:0,repair:0,control:0,reroll:0,fallback:0,tune:0};const repairStats={attempted:0,succeeded:0,local:0,causalRerolls:0};let roleRetries={},compared=0,ordinal=0,genomeTrials=0,genomeSwitches=0,fallbackAttempted=false,fallbackExamined=0,safeFallbackUsed=false,safeCandidateFound=false,genomeStart=0,localRounds=0,passes=0,stagnantRerolls=0,current=null,lastCandidate=null,bestSafe=null,generated=null;
+ const totalBudget=Math.max(1,Math.floor(Number.isFinite(budget)?budget:108)),fallbackReserve=preserveCurrent?0:Math.min(totalBudget-1,Math.min(48,Math.max(3,Math.floor(totalBudget*.45)))),frontierBudget=totalBudget-fallbackReserve,perGenomeBudget=Math.min(28,Math.max(1,Math.floor(frontierBudget/3)));
+ const catalog=J.explorationCatalogV13(p),intent=J.songVisualIntentV11(p,audio,c,f),seen=new Set(),repairs=[],exclusions=[],origins={fresh:0,initial:0,repair:0,control:0,reroll:0,fallback:0,tune:0,anchor:0,anchorRepair:0,composition:0,compositionRepair:0};const repairStats={attempted:0,succeeded:0,local:0,causalRerolls:0};let roleRetries={},compared=0,ordinal=0,genomeTrials=0,genomeSwitches=0,fallbackAttempted=false,fallbackExamined=0,safeFallbackUsed=false,safeCandidateFound=false,genomeStart=0,localRounds=0,passes=0,stagnantRerolls=0,current=null,lastCandidate=null,bestSafe=null,generated=null;
+ const staged={safetyAnchor:{attempted:false,found:false,examined:0,failureReasons:[]},randomCompositions:{attempted:0,safe:0,rejected:0,roles:[],failures:[]},recovery:{attempted:false,safe:false}};
  const failureReasons={},phaseFailureReasons={},failureCombinations={};let fallbackChanges=[];
  const deficit=item=>item.checks.reduce((sum,e)=>{
   const contrast=e.compositedContrast?.renderedVsBackgroundContrastP10??e.contrast?.renderedVsBackgroundContrastP10;
@@ -100,7 +164,7 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
  },0);
  const evaluate=(cut,kind,allowFallback=false)=>{
   abort(signal);if(compared>=(allowFallback?totalBudget:frontierBudget))return null;const key=J.canonicalJSON(cut);if(seen.has(key))return null;seen.add(key);compared++;origins[kind]++;
-  const times=phases(cut),sp={...p,style:cut.style,styleKey:cut.styleKey,motionObservationV14:true},checks=times.map(t=>{abort(signal);return sample(sp,cut,t);});stateCache.set(key,new Map(times.map((t,i)=>[t,checks[i]])));
+  const times=phases(cut),sp={...p,style:cut.style,styleKey:cut.styleKey,motionObservationV14:true},checks=times.map(t=>{abort(signal);const low=sample(sp,cut,t);if(!allowFallback||!sample.verifyScale)return low;const high=sample.verifyScale(sp,cut,t);return {...low,...high,eligible:low.eligible&&high.eligible,renderErrors:[...(low.renderErrors||[]),...(high.renderErrors||[])],mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:t};});
   if(checks.some(e=>e.renderErrors?.length))throw Object.assign(Error('V15_RENDERER_ERROR'),{code:'RENDERER_ERROR',diagnostic:{line:c.line,displayLine:c.line+1,candidate:compared,renderErrors:checks.flatMap(e=>e.renderErrors||[]).slice(0,4)}});
   Object.assign(checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:cut.lineText,cutParamsV14:cut.explorationParamsV13});
   const safe=checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable),descriptor=J.motionDescriptorV14(checks,p),fit=J.scoreExplorationV13(cut,f,intent,checks,p),hold=checks.find(e=>e.temporalStage==='HOLD'&&e.readable)||checks[Math.floor(checks.length/2)];
@@ -190,17 +254,15 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
  }
  if(!bestSafe&&current?.safe){current.generatedGenomeV15=generated;bestSafe=current;safeCandidateFound=true;}
  if(!bestSafe&&!preserveCurrent){
-  fallbackAttempted=true;const remaining=totalBudget-compared,fallbackBudget=Math.min(fallbackReserve,remaining);
-  if(fallbackBudget>0){
-   const base=current?.cut||lastCandidate?.cut||raw,failed=current?.checks||lastCandidate?.checks||[],scaleFailures=failed.filter(e=>!e.eligible).map(e=>({stage:e.temporalStage,reasons:J.motionFailureV14([e],base),observed:{safe:e.safe,full:e.full,height:e.height,ink:e.ink,contrastP10:e.compositedContrast?.renderedVsBackgroundContrastP10??e.contrast?.renderedVsBackgroundContrastP10,geometry:e.geometry||[],core:e.advancedChecks||[]}}));
-   const pick={cut:base,features:f,intent,score:0,optimizerEvidence:{catalog:copy(catalog)}},fallbackStates=new Set(),fallbackSample=(plan,cut,time)=>{const key=J.canonicalJSON(cut),cached=stateCache.get(key)?.get(time);if(cached)return cached;fallbackStates.add(key);return sample(plan,cut,time);};fallbackSample.verifyScale=sample.verifyScale;fallbackSample.candidateStates=fallbackStates;
-   const recovered=await recover(p,pick,scaleFailures,{sample:fallbackSample,phases,audio,signal,budget:fallbackBudget,frontier:[]});fallbackExamined=Math.max(fallbackStates.size,recovered.examined||0);compared+=fallbackStates.size;origins.fallback+=fallbackStates.size;
-   for(const row of recovered){abort(signal);const key=J.canonicalJSON(row.cut),checks=row.checks||[];if(seen.has(key)||!checks.every(e=>e.eligible)||!checks.some(e=>e.temporalStage==='HOLD'&&e.readable))continue;seen.add(key);Object.assign(checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:row.cut.lineText,cutParamsV14:row.cut.explorationParamsV13});const descriptor=J.motionDescriptorV14(checks,p),fit=J.scoreExplorationV13(row.cut,f,intent,checks,p),hold=checks.find(e=>e.temporalStage==='HOLD'&&e.readable)||checks[Math.floor(checks.length/2)],fixed={...row,...fit,cut:row.cut,checks,times:row.times||phases(row.cut),descriptor,safe:true,features:f,intent,ablations:[],attempts:[],layout:row.cut.layout,styleKey:row.cut.styleKey,font:row.cut.params.font,params:row.cut.params,evidence:strip(hold),phaseEvidence:checks.map(strip),signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster};fallbackChanges=J.genomeChangesV15(J.creativeGenomeV15(base),J.creativeGenomeV15(fixed.cut));bestSafe=fixed;generated=J.creativeGenomeV15(fixed.cut);fixed.generatedGenomeV15=generated;safeCandidateFound=true;safeFallbackUsed=true;break;}
-  }
+  fallbackAttempted=true;staged.recovery.attempted=true;const start=compared;
+  const fixed=await J.composeSafeRandomV15({p,c,index:catalog,evaluate:(cut,kind)=>evaluate(cut,kind,true),remaining:()=>totalBudget-compared,signal,diagnostic:staged});
+  fallbackExamined=compared-start;
+  if(fixed){bestSafe=fixed;generated=J.creativeGenomeV15(fixed.cut);fixed.generatedGenomeV15=generated;safeCandidateFound=true;safeFallbackUsed=true;}
  }
+
  if(bestSafe)generated=bestSafe.generatedGenomeV15||generated;
  const failureSummary=Object.entries(failureReasons).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([reason,count])=>({reason,count})),phaseFailureSummary=Object.entries(phaseFailureReasons).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([reason,count])=>({reason,count}));
- const searchSummary={line:c.line,displayLine:c.line+1,fullRandomGenomeTrials:genomeTrials,localRepairCount:repairStats.local,causalRerollCount:repairStats.causalRerolls,evaluatedCandidates:compared,budget:totalBudget,frontierBudget,fallbackBudget:fallbackReserve,perGenomeBudget,primaryFailureReasons:failureSummary,phaseFailureReasons:phaseFailureSummary,failedTechniqueCombinations:Object.entries(failureCombinations).sort((a,b)=>b[1]-a[1]).slice(0,4).map(([combination,count])=>({combination,count})),newGenomeSwitches:genomeSwitches,fallbackAttempted,fallbackCandidatesExamined:fallbackExamined,safeCandidateFound};
+ const searchSummary={line:c.line,lyric:c.lineText,...staged,displayLine:c.line+1,fullRandomGenomeTrials:genomeTrials,localRepairCount:repairStats.local,causalRerollCount:repairStats.causalRerolls,evaluatedCandidates:compared,budget:totalBudget,frontierBudget,fallbackBudget:fallbackReserve,perGenomeBudget,primaryFailureReasons:failureSummary,phaseFailureReasons:phaseFailureSummary,failedTechniqueCombinations:Object.entries(failureCombinations).sort((a,b)=>b[1]-a[1]).slice(0,4).map(([combination,count])=>({combination,count})),newGenomeSwitches:genomeSwitches,fallbackAttempted,fallbackCandidatesExamined:fallbackExamined,safeCandidateFound};
  if(!bestSafe)throw Object.assign(Error('V15_NO_SAFE_RANDOM_LINE_'+c.line),{diagnostic:searchSummary});
  // Timing follows discovery; retain original expressive progression and never
  // add repeated flash events. A failed timing edit simply keeps the safe cut.
@@ -212,11 +274,7 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
  const item=bestSafe;
  // A bounded 30fps light-change screen supplements the unchanged glyph gate.
  // It is an observation, not a medical photosensitivity certification.
- const light=[],window=Math.min(2,item.cut.dur),sp={...p,style:item.cut.style,styleKey:item.cut.styleKey};
- for(let i=0;i<Math.ceil(window*30);i++){abort(signal);const t=i/30,e=sample(sp,item.cut,t);if(e.renderErrors?.length)throw Error('V15_RENDERER_ERROR');if(e.raster)light.push({time:t,luma:e.raster.reduce((s,v,k)=>s+v*[.2126,.7152,.0722][k%3],0)/(e.raster.length/3)});}
- const jumps=light.slice(1).flatMap((x,i)=>Math.abs(x.luma-light[i].luma)>.2?[x.time]:[]),unsafe=jumps.some(t=>jumps.filter(x=>x>=t&&x<t+1).length>=6);
- if(unsafe)throw Object.assign(Error('V15_TEMPORAL_LIGHT_CHANGE_REJECTED'),{diagnostic:{line:c.line,jumps,window}});
- item.lightSafetyV15={status:'MEASURED',sampleRate:30,window,jumps,criterion:'fewer than six >.2 mean weighted-RGB brightness jumps in any sampled second'};
+ item.lightSafetyV15=J.checkRandomLightV15(p,item.cut,sample,signal);
  const final=J.creativeGenomeV15(item.cut);item.cut.creativeGenomeV15=generated;item.cut.creativeFinalGenomeV15=final;
  // Same-time removal evidence observes actual production contribution; IDs
  // alone cannot establish camera, background or FX realization.
@@ -228,7 +286,7 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
  const activeMotion=item.descriptor.holdMotion.value>1e-6,changes=J.genomeChangesV15(generated,final);
  const observed=catalog.map(row=>({...row,generated:row.group==='style'?row.id===final.styleKey:row.group==='layout'?row.id===final.layout:row.group==='decor'?final.decor.includes(row.id):row.id===final[row.group],probed:item.checks.some(e=>e.registryDispatchV11?.some(x=>x.group===row.group&&x.id===row.id)),safe:item.checks.some(e=>e.registryDispatchV11?.some(x=>x.group===row.group&&x.id===row.id))}));
  const repairSummary={attempted:repairs.length,localEvaluations:repairStats.local,causalRerolls:repairStats.causalRerolls,changedRoles:[...new Set(repairs.filter(x=>x.role).map(x=>x.role))],recoveryChangedRoles:fallbackChanges};
- item.optimizerEvidence={explorationVersion:15,compared,budget:totalBudget,origins,search:searchSummary,repairSummary,repairStats,exclusions:failureSummary,axes:item.dimensions,ablations:item.ablations,catalog:observed,counts:Object.fromEntries(['registered','callable','eligible','generated','probed','safe'].map(k=>[k,observed.filter(x=>x[k]).length])),genome:{generated,final,changedRoles:changes,retention:1-changes.length/Object.keys(generated).length},...(safeFallbackUsed?{recoveryMode:'SAFE_FALLBACK',reason:'RANDOM_FRONTIER_EXHAUSTED',recovery:{mode:'SAFE_FALLBACK',reason:'RANDOM_FRONTIER_EXHAUSTED',changedRoles:fallbackChanges,candidatesExamined:fallbackExamined,scaleGate:'MEASURED_640PX'}}:{}),intensity:{requested:'かなり激しい',nativeStrength:true,status:activeMotion?'OBSERVED_MOTION':'UNMET',scope:'sampled primary motion; subjective intensity UNVERIFIED'},lightSafety:item.lightSafetyV15,motionV14:J.motionObservationV14(item),seed:p.seed,artisticQuality:'UNVERIFIED'};
+ item.optimizerEvidence={explorationVersion:15,compared,budget:totalBudget,origins,search:searchSummary,repairSummary,repairStats,exclusions:failureSummary,axes:item.dimensions,ablations:item.ablations,catalog:observed,counts:Object.fromEntries(['registered','callable','eligible','generated','probed','safe'].map(k=>[k,observed.filter(x=>x[k]).length])),genome:{generated,final,changedRoles:changes,retention:1-changes.length/Object.keys(generated).length},...(safeFallbackUsed?{recoveryMode:'STAGED_SAFE_COMPOSITION',reason:'RANDOM_FRONTIER_EXHAUSTED',recovery:{mode:'SAFE_FALLBACK',reason:'RANDOM_FRONTIER_EXHAUSTED',changedRoles:fallbackChanges,candidatesExamined:fallbackExamined,scaleGate:'MEASURED_640PX'}}:{}),intensity:{requested:'かなり激しい',nativeStrength:true,status:activeMotion?'OBSERVED_MOTION':'UNMET',scope:'sampled primary motion; subjective intensity UNVERIFIED'},lightSafety:item.lightSafetyV15,motionV14:J.motionObservationV14(item),seed:p.seed,artisticQuality:'UNVERIFIED'};
  item.checks=item.checks.map(strip);return [item];
 };
 J.chooseRandomStoryboardV15=(p,portfolios)=>{
@@ -247,10 +305,11 @@ const fix=J.runSongNativeFixSearch;J.runSongNativeFixSearch=(before,q,a,p,range,
 };
 const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick,failures,o)=>{
  if(!J.isRandomFinisherV15(p))return recover(p,pick,failures,o);
+ if(J.songNativeLockedV8(p,pick.cut))throw Error('V15_LOCKED_LINE');
  // Reuse v11.2's cause-directed style/layout hypotheses while rechecking every
  // candidate at both the production probe and 640px. Never force-adopt a row.
- const detail=(plan,cut,t)=>{const low=o.sample(plan,cut,t),high=o.sample.verifyScale(plan,cut,t);if(high.renderErrors?.length)throw Object.assign(Error('V15_RENDERER_ERROR'),{code:'RENDERER_ERROR',diagnostic:{line:cut.line,displayLine:cut.line+1,renderErrors:high.renderErrors.slice(0,4)}});return {...low,...high,mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:t};};
- const budget=Math.min(16,Math.max(1,o.budget||12)),states=o.sample.candidateStates,started=states?.size||0,index=J.explorationCatalogV13(p),reasons=new Set(failures.flatMap(x=>x.reasons||[])),stages=new Set(failures.map(x=>x.stage)),causes=[];
+ const detail=(plan,cut,t)=>{const low=o.sample(plan,cut,t),high=o.sample.verifyScale(plan,cut,t);if(high.renderErrors?.length)throw Object.assign(Error('V15_RENDERER_ERROR'),{code:'RENDERER_ERROR',diagnostic:{line:cut.line,displayLine:cut.line+1,renderErrors:high.renderErrors.slice(0,4)}});return {...low,...high,eligible:low.eligible&&high.eligible,renderErrors:[...(low.renderErrors||[]),...(high.renderErrors||[])],mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:t};};
+ const budget=Math.min(48,Math.max(1,o.budget||12)),states=o.sample.candidateStates,started=states?.size||0,index=J.explorationCatalogV13(p),reasons=new Set(failures.flatMap(x=>x.reasons||[]).map(x=>/CONTRAST/.test(x)?'CONTRAST':x)),stages=new Set(failures.map(x=>x.stage)),causes=[];
  if([...reasons].some(x=>/MISSING_HOLD|HOLD_READABILITY|GLYPH_DEFORMATION|SIZE/.test(x))){causes.push('hold','layout');}
  if(stages.has('ENTRY')||reasons.has('TRANSIENT')&&pick.cut.enter!=='cut')causes.push('enter');
  if(stages.has('EXIT')||reasons.has('TRANSIENT')&&pick.cut.exit!=='cut')causes.push('exit');
@@ -266,11 +325,27 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
   if(!cut||seen.has(J.canonicalJSON(cut)))continue;seen.add(J.canonicalJSON(cut));
   const checks=o.phases(cut).map(t=>{abort(o.signal);return detail({...p,style:cut.style,styleKey:cut.styleKey,motionObservationV14:true},cut,t);});
   if(checks.some(e=>e.renderErrors?.length))throw Object.assign(Error('V15_RENDERER_ERROR'),{code:'RENDERER_ERROR',diagnostic:{line:cut.line,displayLine:cut.line+1,renderErrors:checks.flatMap(e=>e.renderErrors||[]).slice(0,4)}});
-  if(checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable))rows.push({...pick,cut,checks,times:o.phases(cut),recoveryRole:role});
+  if(checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable))rows.push({...pick,cut,checks,times:o.phases(cut),params:cut.params,styleKey:cut.styleKey,layout:cut.layout,evidence:strip(checks.find(e=>e.temporalStage==='HOLD'&&e.readable)),phaseEvidence:checks.map(strip),recoveryRole:role});
  }
- const used=usedCount();if(rows.length){rows.examined=used;return rows;}const remaining=budget-used;
- if(remaining>0){const expanded=await recover(p,pick,failures,{...o,sample:detail,budget:remaining,frontier:[]});for(const row of expanded)if(!seen.has(J.canonicalJSON(row.cut)))rows.push(row);rows.examined=used+(expanded.examined||0);}
- else rows.examined=used;
+ const used=usedCount();if(rows.length){for(const row of rows){
+  row.lightSafetyV15=J.checkRandomLightV15(p,row.cut,o.sample,o.signal);
+  const generated=pick.optimizerEvidence?.genome?.generated||J.creativeGenomeV15(pick.cut),final=J.creativeGenomeV15(row.cut),changedRoles=J.genomeChangesV15(generated,final);
+  row.cut.creativeGenomeV15=generated;row.cut.creativeFinalGenomeV15=final;
+  row.optimizerEvidence={...copy(pick.optimizerEvidence),genome:{generated,final,changedRoles,retention:1-changedRoles.length/Object.keys(generated).length},recovery:{mode:'CAUSAL_ROLE_REPAIR',role:row.recoveryRole,scaleGate:'MEASURED_640PX'}};
+ }rows.examined=used;return rows;}
+ let examined=used;const diagnostic={safetyAnchor:{attempted:false,found:false,examined:0,failureReasons:[]},randomCompositions:{attempted:0,safe:0,rejected:0,roles:[],failures:[]},recovery:{attempted:true,safe:false}};
+ const fixed=await J.composeSafeRandomV15({p,c:pick.cut,index,signal:o.signal,remaining:()=>budget-examined,diagnostic,evaluate:(cut)=>{
+  const key=J.canonicalJSON(cut);if(examined>=budget||seen.has(key))return null;seen.add(key);examined++;
+  const times=o.phases(cut),checks=times.map(t=>detail({...p,style:cut.style,styleKey:cut.styleKey,motionObservationV14:true},cut,t));
+  Object.assign(checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:cut.lineText});
+  return {...pick,cut,checks,times,safe:checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable)};
+ }});
+ if(fixed){
+  fixed.lightSafetyV15=J.checkRandomLightV15(p,fixed.cut,o.sample,o.signal);
+  const hold=fixed.checks.find(e=>e.temporalStage==='HOLD'&&e.readable),descriptor=J.motionDescriptorV14(fixed.checks,p),fit=J.scoreExplorationV13(fixed.cut,pick.features,pick.intent,fixed.checks,p),genome=J.creativeGenomeV15(fixed.cut);
+  fixed.cut.creativeGenomeV15=genome;fixed.cut.creativeFinalGenomeV15=genome;
+  rows.push({...fixed,...fit,params:fixed.cut.params,styleKey:fixed.cut.styleKey,layout:fixed.cut.layout,evidence:strip(hold),phaseEvidence:fixed.checks.map(strip),descriptor,signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster,ablations:[],optimizerEvidence:{...copy(pick.optimizerEvidence),genome:{generated:genome,final:genome,changedRoles:[],retention:1},recoveryMode:'STAGED_SAFE_COMPOSITION',recoveryDiagnostic:diagnostic}});
+ }rows.examined=examined;rows.diagnostic=diagnostic;
  return rows;
 };
 })();

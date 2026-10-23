@@ -20,7 +20,7 @@ const scenarios=require('./kamen_song_native_v11_scenarios.cjs');
   else if(process.env.KAMEN_V112_ONLY){report=await page.evaluate(require('./kamen_safe_alternative_v112_scenario.cjs'),{expectOld:!!process.env.KAMEN_V112_EXPECT_OLD});}
   else if(process.env.KAMEN_V11_ASSET_DIR){
    const dir=process.env.KAMEN_V11_ASSET_DIR;
-   const input={audio:fs.readFileSync(path.join(dir,'audio.mp3')).toString('base64'),background:fs.readFileSync(path.join(dir,'background.webp')).toString('base64'),lyrics:fs.readFileSync(path.join(dir,'lyrics.lrc'),'utf8'),onlyLine:process.env.KAMEN_V11_ONLY_LINE};
+   const input={audio:fs.readFileSync(path.join(dir,'audio.mp3')).toString('base64'),background:fs.readFileSync(path.join(dir,'background.webp')).toString('base64'),lyrics:fs.readFileSync(path.join(dir,'lyrics.lrc'),'utf8'),onlyLine:process.env.KAMEN_V11_ONLY_LINE,version:process.env.KAMEN_V15_ASSETS?'v15':null};
    if(process.env.KAMEN_V11_RESTORE)input.savedProject=JSON.parse(fs.readFileSync(process.env.KAMEN_V11_RESTORE,'utf8'));
    try{report=await page.evaluate(require('./kamen_song_native_v11_asset_scenario.cjs'),input);}finally{const saved=await page.evaluate(()=>window.assetProjectV11||null);if(saved&&process.env.KAMEN_V11_PROJECT)fs.writeFileSync(process.env.KAMEN_V11_PROJECT,JSON.stringify(saved));}
    if(process.env.KAMEN_V11_SHEET){fs.writeFileSync(process.env.KAMEN_V11_SHEET,Buffer.from(report.sheet.split(',')[1],'base64'));}
