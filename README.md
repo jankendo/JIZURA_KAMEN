@@ -6,7 +6,7 @@ KAMEN **v2.0.26** は、背景画像・音源・LRC／TXT から日本語の歌�
 
 元作品は **hakoniwa / [852wa/JIZURA](https://github.com/852wa/JIZURA)** です。元のMITライセンスと著作権表示を保持しています。KAMENの背景画像・音源・歌詞の制作フローと品質検査は提供ZIPの実装を使用し、この移行ではUI・演出ロジック・タイミング・保存形式を変更していません。旧版の多言語ページと旧ブラウザーパックは現行アプリへ混在させていません。旧AE/CEPソースは参考資産として残していますが、今回のWebアプリ公開対象ではありません。
 
-新規自動生成は **KAMEN v13 — Exploration-First Creative Director** を使用します。seed付きの自由探索、実Canvasの多様性アーカイブ、局所修復、Pareto順位と全曲構成で選択します。旧保存MVは再生成しません。[設計・監査・検証結果](docs/exploration-first-v13.md) と [合成素材の実測証拠](docs/evidence/kamen-v13.json) を参照してください。人間の芸術品質とランダムに対する優越性は未検証です。
+新規自動生成は **KAMEN v14 — Motion-Led Creative Selection** を使用します。seed付き自由探索から、構図・文字モーション・カメラ・背景を分けて保持し、原因別の局所修復と専用のPareto全曲選択を行います。旧保存MVは再生成しません。[設計・監査・検証結果](docs/motion-led-v14.md) と [固定素材の比較証拠](docs/evidence/kamen-v14.json) を参照してください。修復成功率と採用カメラの多様性には課題が残り、人間の芸術品質とランダムに対する優越性は未検証です。
 
 ## ローカル開発
 

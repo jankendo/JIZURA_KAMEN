@@ -27,6 +27,7 @@ const scenarios=require('./kamen_song_native_v11_scenarios.cjs');
    delete report.sheet;
    console.log('ASSET PASS:',report.lines,'lines,',report.duration,'seconds, restore',report.restore);
   }else {report=await page.evaluate(scenarios);report.safeAlternativeRegression=await page.evaluate(require('./kamen_safe_alternative_v112_scenario.cjs'));}
+  if(process.env.KAMEN_V14_CHECKS)report.v14Checks=await page.evaluate(require('./kamen_motion_v14_checks.cjs'));
   if(process.env.KAMEN_V13_CHECKS)report.v13Checks=await page.evaluate(require('./kamen_exploration_v13_checks.cjs'));
   if(process.env.KAMEN_V12_MP4){
    const encoded=await page.evaluate(async()=>{const {q,p,a}=window.comparisonV12;const result=await J.exportMP4({plan:p,project:q,audio:a,range:{start:.3,end:1.3}});const R=new J.Renderer();await R.loadCustomBackground(q.customBg.dataUrl);
