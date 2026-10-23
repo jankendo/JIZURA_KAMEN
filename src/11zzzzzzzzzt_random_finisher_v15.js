@@ -305,9 +305,9 @@ const fix=J.runSongNativeFixSearch;J.runSongNativeFixSearch=(before,q,a,p,range,
 const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick,failures,o)=>{
  if(!J.isRandomFinisherV15(p))return recover(p,pick,failures,o);
  if(J.songNativeLockedV8(p,pick.cut))throw Error('V15_LOCKED_LINE');
- // Reuse v11.2's cause-directed style/layout hypotheses while rechecking every
- // candidate at both the production probe and 640px. Never force-adopt a row.
- const detail=(plan,cut,t)=>{const low=o.sample(plan,cut,t),high=o.sample.verifyScale(plan,cut,t);if(high.renderErrors?.length)throw Object.assign(Error('V15_RENDERER_ERROR'),{code:'RENDERER_ERROR',diagnostic:{line:cut.line,displayLine:cut.line+1,renderErrors:high.renderErrors.slice(0,4)}});return {...low,...high,eligible:low.eligible&&high.eligible,renderErrors:[...(low.renderErrors||[]),...(high.renderErrors||[])],mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:t};};
+ // Repair the failing role first; otherwise build a verified prefix. Both
+ // production resolutions must pass, with the gate's supplied state budget.
+ const detail=(plan,cut,t)=>{const low=o.sample(plan,cut,t),high=o.sample.verifyScale(plan,cut,t);if(low.renderErrors?.length||high.renderErrors?.length)throw Object.assign(Error('V15_RENDERER_ERROR'),{code:'RENDERER_ERROR',diagnostic:{line:cut.line,displayLine:cut.line+1,renderErrors:[...(low.renderErrors||[]),...(high.renderErrors||[])].slice(0,4)}});return {...low,...high,eligible:low.eligible&&high.eligible,renderErrors:[...(low.renderErrors||[]),...(high.renderErrors||[])],mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:t};};
  const budget=Math.min(48,Math.max(1,o.budget||12)),states=o.sample.candidateStates,started=states?.size||0,index=J.explorationCatalogV13(p),reasons=new Set(failures.flatMap(x=>x.reasons||[]).map(x=>/CONTRAST/.test(x)?'CONTRAST':x)),stages=new Set(failures.map(x=>x.stage)),causes=[];
  if([...reasons].some(x=>/MISSING_HOLD|HOLD_READABILITY|GLYPH_DEFORMATION|SIZE/.test(x))){causes.push('hold','layout');}
  if(stages.has('ENTRY')||reasons.has('TRANSIENT')&&pick.cut.enter!=='cut')causes.push('enter');
