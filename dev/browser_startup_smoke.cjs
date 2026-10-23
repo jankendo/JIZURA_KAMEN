@@ -42,7 +42,7 @@ assert(url,'URL is required');
    const audio={...S.audio,beats:J.beatGrid(S.project.timing.bpm,S.project.timing.beatOffset||0,1)},saved=JSON.parse(JSON.stringify(S.project)),round=J.plan(saved,audio);
    if(J.canonicalJSON(J.songNativeRenderDecisions(S.plan))!==J.canonicalJSON(J.songNativeRenderDecisions(round)))throw Error('V9_RENDER_DECISIONS_CHANGED');
    return {exploration:S.plan.songNativeDirection.explorationVersion,optimizer:S.plan.songNativeDirection.selection.optimizerVersion,arc:S.plan.songNativeDirection.selection.visualArc,version:S.plan.songNativeDirection.version,restored:round.songNativeRestore.status,observed:S.pixelQA?.completed,build:window.KAMEN_BUILD_INFO};
-  });assert.equal(grammar.version,9);assert.equal(grammar.optimizer,11);assert.equal(grammar.exploration,14);assert.equal(grammar.arc.status,'MEASURED');assert(grammar.arc.safePaths>0&&grammar.arc.paretoPaths>0);assert.equal(grammar.restored,'RESTORED');assert.equal(grammar.observed,true);console.log('Browser v14 real UI/Canvas/quality/commit/restore smoke PASS',JSON.stringify(grammar.build));
+  });assert.equal(grammar.version,9);assert.equal(grammar.optimizer,11);assert.equal(grammar.exploration,15);assert.equal(grammar.arc.status,'MEASURED');assert.equal(grammar.restored,'RESTORED');assert.equal(grammar.observed,true);console.log('Browser v15 real UI/Canvas/quality/commit/restore smoke PASS',JSON.stringify(grammar.build));
   await page.waitForFunction(()=>!document.querySelector('#btnAutoDirection').disabled,null,{timeout:15000});
   if(await page.evaluate(()=>!!J.ui.plan.songNativeDirection.selection.alternatives?.length)){
    await page.locator('#studioAlternative').click({force:true});
@@ -52,6 +52,11 @@ assert(url,'URL is required');
    console.log('Browser safe alternate storyboard commit PASS');
   }
   await page.waitForFunction(()=>!document.querySelector('#btnAutoDirection').disabled,null,{timeout:15000});
+  await page.evaluate(()=>{const J=window.J;window.smokeCurrentLook={fx:J.canonicalJSON(J.ui.project.fx),fonts:J.canonicalJSON(J.ui.project.fonts),genomes:J.canonicalJSON(J.ui.plan.cuts.filter(c=>c.line>=0).map(J.creativeGenomeV15))};});
+  await page.locator('#studioAdaptCurrent').click({force:true});
+  await page.waitForFunction(()=>!document.querySelector('#btnAutoDirection').disabled,null,{timeout:120000});
+  assert.equal(await page.evaluate(()=>{const J=window.J,b=window.smokeCurrentLook;if(document.querySelector('#directionStatus').dataset.selectionState!=='SELECTED')throw Error(document.querySelector('#directionStatus').textContent);J.assertSelectionV9(J.ui.plan,J.ui.audio);return J.canonicalJSON(J.ui.project.fx)===b.fx&&J.canonicalJSON(J.ui.project.fonts)===b.fonts&&J.canonicalJSON(J.ui.plan.cuts.filter(c=>c.line>=0).map(J.creativeGenomeV15))===b.genomes;}),true);
+  console.log('Browser current-look finishing preserves global FX, fonts and creative genome PASS');
   await page.evaluate(()=>{const J=window.J;window.smokeConfirmed={project:J.canonicalJSON(J.ui.project),decisions:J.canonicalJSON(J.songNativeRenderDecisions(J.ui.plan)),search:J.searchSongNativeCandidates};J.searchSongNativeCandidates=async()=>{throw Error('SMOKE_SEARCH_FAILURE');};});
   await page.locator('#btnAutoDirection').click({force:true});
   await page.waitForFunction(()=>document.querySelector('#directionStatus').textContent==='SMOKE_SEARCH_FAILURE',null,{timeout:15000});

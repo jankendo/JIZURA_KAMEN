@@ -1157,16 +1157,17 @@ async function autoDirection(preserveCurrent=false) {
     const generationProject=S.project,generationAudio=S.audio;
     let generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
     const assertGeneration=()=>{if(generationCancel.signal.aborted)throw new DOMException('Aborted','AbortError');if(S.project!==generationProject||S.audio!==generationAudio||J.songNativeInputIdentity(S.project,audioLike())!==generationIdentity)throw new Error('入力が変更されたため、古いMVの確定を中止しました。もう一度作成してください');};
-    const directionSet=await J.generateJizuraDirectionV14(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
+    const directionSet=await J.generateJizuraDirectionV15(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
     assertGeneration();task.enter('apply');await J.processingYield();assertGeneration();
-    const proposal=directionSet.recommended.proposal;
+    const proposal=preserveCurrent?{...directionSet.recommended.proposal,...Object.fromEntries(['style','mood','fx','enabled','seed','overrides'].map(k=>[k,J.clonePhotoRenderPlan(previousGeneration.project[k])]))}:directionSet.recommended.proposal;
     S.directionCandidates=directionSet.candidates;S.alternative=0;
     S.directionStats=result?.stats||null;S.range=null;S.rangeMode=null;S.highlights=[];S.highlightIndex=0;S.pixelQA=null;
     Object.assign(S.project, { style: proposal.style, mood: proposal.mood, fx: proposal.fx, lyricPlacementWide:false,
       enabled: proposal.enabled, seed: proposal.seed, overrides: proposal.overrides, lang: 'ja', autoDirection: true, fonts: {} });
     if (result) S.project.autoPalette.lookModified = true;
     S.project.artDirection = J.makeArtDirection(S.project, S.audio, proposal);
-    S.project.fonts = Object.assign({}, S.project.artDirection.typography);
+    S.project.fonts = Object.assign({}, preserveCurrent?previousGeneration.project.fonts:S.project.artDirection.typography);
+    if(preserveCurrent)S.project.artDirection.typography=J.clonePhotoRenderPlan(S.project.fonts);
     S.project.fx.hud = 'off';
     S.project.titleDisplay = Object.assign({}, S.project.titleDisplay || {}, { enabled: true, position: 'auto', autoColor: true });
     fontKey = ''; syncUI(); replan(); restartPreview();
