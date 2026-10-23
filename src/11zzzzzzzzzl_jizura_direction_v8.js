@@ -171,7 +171,11 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
    return -styleCost-repeatCost;
   }});
   if(J.isCreativeOptimizerV10?.(p))storyboard=J.chooseCreativeArcV10(p,portfolios,storyboard);
-  if(J.isSongDerivedV11?.(p))storyboard=await J.confirmDirectionScaleV11(trial,portfolios,storyboard,sample,phases,options.signal);
+  if(J.isSongDerivedV11?.(p)){
+   const confirmScale=J.isRandomFinisherV15?.(trial)?J.confirmRandomDirectionScaleV15:J.confirmDirectionScaleV11;
+   if(typeof confirmScale!=='function')throw Error('V15_MISSING_FINAL_SCALE_GATE');
+   storyboard=await confirmScale(trial,portfolios,storyboard,sample,phases,options.signal);
+  }
   for(const r of storyboard.scaleSafety?.recovery||[]){const trace=traces.find(t=>t.line===r.line);if(trace){trace.candidateCount+=r.examined;trace.safeCount+=r.added;trace.layoutCandidates=[...new Set([...trace.layoutCandidates,...r.techniques.map(x=>x.layout)])];}}
   if(cuts.length&&storyboard.status!=='MEASURED_SAFE_SEQUENCE')throw Error('V8_NO_SAFE_STORYBOARD');
   // Validate the composed winner before committing any mutation to the input.
