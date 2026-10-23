@@ -27,8 +27,8 @@ const scenarios=require('./kamen_song_native_v11_scenarios.cjs');
    delete report.sheet;
    console.log('ASSET PASS:',report.lines,'lines,',report.duration,'seconds, restore',report.restore);
   }else {report=await page.evaluate(scenarios);report.safeAlternativeRegression=await page.evaluate(require('./kamen_safe_alternative_v112_scenario.cjs'));}
-  if(process.env.KAMEN_V15_CHECKS||process.env.KAMEN_V15_SCALE_ONLY)await page.addScriptTag({content:'window.v15FinalScaleChecks='+require('./kamen_random_v15_checks.cjs').finalScale.toString()});
-  if(process.env.KAMEN_V15_SCALE_ONLY)report.finalScale=await page.evaluate(()=>window.v15FinalScaleChecks());
+  if(process.env.KAMEN_V15_CHECKS||process.env.KAMEN_V15_SCALE_ONLY||process.env.KAMEN_V15_ENTRY_ONLY)await page.addScriptTag({content:'window.v15FinalScaleChecks='+require('./kamen_random_v15_checks.cjs').finalScale.toString()+';window.v15EntryContrastChecks='+require('./kamen_random_v15_checks.cjs').entryContrast.toString()+';window.v15EntryOnly='+JSON.stringify(!!process.env.KAMEN_V15_ENTRY_ONLY)});
+  if(process.env.KAMEN_V15_SCALE_ONLY||process.env.KAMEN_V15_ENTRY_ONLY)report.finalScale=await page.evaluate(()=>window.v15FinalScaleChecks());
   if(process.env.KAMEN_V15_CHECKS)report.v15Checks=await page.evaluate(require('./kamen_random_v15_checks.cjs'));
   if(process.env.KAMEN_V14_CHECKS)report.v14Checks=await page.evaluate(require('./kamen_motion_v14_checks.cjs'));
   if(process.env.KAMEN_V13_CHECKS)report.v13Checks=await page.evaluate(require('./kamen_exploration_v13_checks.cjs'));

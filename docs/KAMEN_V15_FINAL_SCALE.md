@@ -1,5 +1,8 @@
 # v15 final 640px recovery hotfix
 
+Historical first hotfix validation. The subsequent ENTRY contrast/exhaustion fix
+and current 24-state per-line recovery are documented in [KAMEN_V15_ENTRY_RECOVERY.md](KAMEN_V15_ENTRY_RECOVERY.md).
+
 `searchJizuraDirectionV8` explicitly dispatches v15 to
 `confirmRandomDirectionScaleV15`; v11–v14 keep `confirmDirectionScaleV11`.
 Missing v15 confirmation is an error. The existing v11.2 wrapper already has a
