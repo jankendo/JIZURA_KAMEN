@@ -22,7 +22,7 @@ const {engine}=require('./custom_test_support.cjs');
  const motionCut=left.p.cuts.find(c=>c.generatedMotionV7?.evidence.entryImportance>.01);
  const pristine=J.canonicalJSON(left.p);assert(motionCut);assert(!render(left.p,motionCut.start+.001).ink.equals(render(left.p,motionCut.generatedMotionV7.entryEnd).ink),'numeric entry state reaches the real Renderer');assert.equal(J.canonicalJSON(left.p),pristine,'preview rendering cannot mutate the confirmed plan');
  const locked=copy(left.q);locked.overrides[0]={lock:true,layout:'center',size:80};const lockedPlan=J.plan(locked,a);assert(lockedPlan.cuts.filter(c=>c.line===0).every(c=>c.layout!=='songGrammarV7'&&!c.generatedMotionV7));
- const ui=fs.readFileSync('src/12_ui.js','utf8');assert(ui.includes('J.describeSongCompositionV7?.(S.plan,cut)'));assert(ui.includes('J.generateJizuraDirectionV13('));assert(J.describeSongCompositionV7(left.p,motionCut).entry==='数値軌道');
+ const ui=fs.readFileSync('src/12_ui.js','utf8');assert(ui.includes('J.describeSongCompositionV7?.(S.plan,cut)'));assert(ui.includes('J.generateJizuraDirectionV14('));assert(J.describeSongCompositionV7(left.p,motionCut).entry==='数値軌道');
  console.log('TEST 1 PASS: numeric cut motion reaches Canvas, honest UI and manual locks');
  // 2. Distinct geometry, deterministic multistart, duplicate removal and Stage A/B.
  assert(left.set.candidates.length>1&&left.set.candidates.length<=8);
