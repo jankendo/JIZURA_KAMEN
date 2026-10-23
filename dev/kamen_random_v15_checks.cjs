@@ -159,6 +159,8 @@ module.exports.finalScale=async function finalScaleV15(input){
   const controller=new AbortController();controller.abort();let cancelled=false;try{await randomGate(fp,fixtureSteps,J.chooseRandomStoryboardV15(fp,fixtureSteps),fprobe,phases,controller.signal);}catch(e){cancelled=e.name==='AbortError';}assert(cancelled,'final-scale cancellation propagates');
  }finally{J.confirmRandomDirectionScaleV15=randomGate;J.confirmDirectionScaleV11=oldGate;J.cinemaV3.planHash=planHash;}
  try{
+ const entryContrast=await window.v15EntryContrastChecks({fp,fixtureRows,fixtureSteps,fprobe,audio});
+ if(window.v15EntryOnly)return entryContrast;
  // TEST A: an actual post-composition wash exists only above 256px.
  // The third line has a singleton portfolio; the final gate must reach recovery.
  const washId='v15FinalScaleWash',originalFinal=J.confirmRandomDirectionScaleV15,legacyGate=J.confirmDirectionScaleV11;
@@ -175,7 +177,7 @@ module.exports.finalScale=async function finalScaleV15(input){
   recoveryResult=await J.confirmRandomDirectionScaleV15(fp,steps,initialPick,fprobe,phases);
   assert(gateCalls===1&&recoveryCalls===1&&suppliedChecks,'dedicated gate invokes existing recovery with measured phase checks');
   assert(recoveryResult.scaleSafety.rejected.length===1&&recoveryResult.scaleSafety.rejected[0].line===2&&recoveryResult.scaleSafety.rejected[0].failures.some(f=>f.contrastP10<3),'compact measured 640px contrast diagnosis');
-  assert(recoveryResult.scaleSafety.recovery[0].examined<=12&&recoveryResult.scaleSafety.recovery[0].recovered,'bounded recovery succeeds');
+  assert(recoveryResult.scaleSafety.recovery[0].examined<=recoveryResult.scaleSafety.recovery[0].budget&&recoveryResult.scaleSafety.recovery[0].recovered,'bounded recovery succeeds');
   assert(recoveryResult.picks.slice(0,2).every((row,i)=>J.canonicalJSON(row.cut)===beforeCuts[i]),'third-line recovery preserves other safe genomes exactly');
   assert(recoveryResult.scaleSafety.entries.length===3&&recoveryResult.scaleSafety.entries.every(row=>row.checks.every(e=>e.eligible)),'all final composed lines pass 640px');
   assert(J.canonicalJSON(recoveryResult.picks[2].optimizerEvidence.genome.generated)===J.canonicalJSON(badRow.optimizerEvidence.genome.generated),'original creative genome retained as provenance');
@@ -186,4 +188,31 @@ module.exports.finalScale=async function finalScaleV15(input){
   console.log('V15 FINAL 640 RECOVERY PASS',JSON.stringify({status:recoveryResult.scaleSafety.status,lines:recoveryResult.scaleSafety.entries.length,rejected:recoveryResult.scaleSafety.rejected,recovery:recoveryResult.scaleSafety.recovery}));return recoveryResult.scaleSafety;
  }finally{delete J.FXE[washId];J.confirmRandomDirectionScaleV15=originalFinal;}
  }finally{renderer?.disposeAssets?.();}
+};
+
+// Reported failure: curtain/stamp/echoTrail/gradientV, no FX, ENTRY contrast.
+// Reconstruct the technique combination; the user's original cut seed is unknown.
+module.exports.entryContrast=async function entryContrastV15({fp,fixtureRows,fixtureSteps,fprobe,audio}){
+ const J=window.J,copy=J.clonePhotoRenderPlan,assert=(ok,msg)=>{if(!ok)throw Error(msg);},source=fixtureRows[2].cut,style=J.STYLES.paper;
+ let cut={...J.registryCandidateCut({...fp,style,styleKey:'paper'},source,'curtain','embedded_bold','stamp','echoTrail'),style,styleKey:'paper',registrySelectedV8:true,stagger:0};
+ for(const [role,id] of Object.entries({enter:'stamp',hold:'echoTrail',exit:'cut',cam:'driftDiag',bg:'splitDiag',treat:'gradientV',decor:'none',fx:null,trans:'cut'}))cut=J.changeDirectionRoleV11(cut,role,id);
+ cut=J.initialFinishV15(fp,cut);cut.params={...cut.params,variant:'rise',drape:true,pleats:true,col:'velvet'};cut.explorationParamsV13={size:1,dx:0,dy:0,motion:1,camera:1,fx:1,color:'#ffffff'};
+ const generated=J.creativeGenomeV15(cut);cut.creativeGenomeV15=generated;
+ const row={...fixtureRows[2],cut,safe:true,evidence:{eligible:true},optimizerEvidence:{...copy(fixtureRows[2].optimizerEvidence),genome:{generated,final:generated}}};
+ const phases=c=>J.directionPhasesV11(fp,c,audio),checks=phases(cut).map(t=>fprobe.verifyScale(fp,cut,t));
+ assert(checks.some(e=>e.temporalStage==='ENTRY'&&!e.eligible&&(e.compositedContrast?.renderedVsBackgroundContrastP10??e.contrast?.renderedVsBackgroundContrastP10)<3),'reported curtain ENTRY contrast failure reproduced on actual Canvas');
+ const steps=fixtureSteps.map(step=>({...step,candidates:[step.line===2?row:step.candidates[0]]})),initial=J.chooseRandomStoryboardV15(fp,steps),before=initial.picks.map(row=>J.canonicalJSON(row.cut)),originalHook=fprobe.recoverLine;
+ try{
+  fprobe.recoverLine=(plan,pick,failures,budget)=>J.recoverDirectionLineV112(plan,pick,failures,{sample:fprobe,phases,audio,budget});
+  const result=await J.confirmRandomDirectionScaleV15(fp,steps,initial,fprobe,phases).catch(e=>{console.log('V15 ENTRY DIAGNOSTIC',JSON.stringify(e.diagnostic));throw e;}),recovery=result.scaleSafety.recovery.find(r=>r.line===2),chosen=result.picks.find(row=>row.line===2);
+  assert(recovery?.recovered&&recovery.examined<=recovery.budget&&recovery.budget===24,'reported ENTRY failure repaired within bounded per-line budget');
+  assert(result.picks.filter(row=>row.line!==2).every(row=>J.canonicalJSON(row.cut)===before[initial.picks.findIndex(x=>x.line===row.line)]),'reported failure leaves all other safe lines unchanged');
+  assert(result.scaleSafety.entries.every(row=>row.checks.every(e=>e.eligible)),'reconstructed reported failure passes full composed 640px gate');
+  assert(recovery.diagnostic.attempts.every(a=>a.role!=='fx'),'no FX introduced to repair a line with no FX');
+  assert(chosen.cut.layout!=='curtain'&&['styleKey','hold','exit','cam','bg','treat','trans','registryFxV9'].every(k=>chosen.cut[k]===cut[k]),'occlusion/entry repair retains all unrelated technique IDs');
+  assert(chosen.checks.every(e=>e.lowEligible&&e.detailEligible),'recovery independently passes 256px and 640px');
+  assert(J.canonicalJSON(chosen.optimizerEvidence.genome.final)===J.canonicalJSON(J.creativeGenomeV15(chosen.cut)),'repaired cut and genome evidence agree');
+  console.log('V15 REPORTED ENTRY RECOVERY PASS',JSON.stringify({examined:recovery.examined,from:cut.layout,to:chosen.cut.layout,changedRoles:chosen.optimizerEvidence.genome.changedRoles,attempts:recovery.diagnostic.attempts}));
+  return {status:'PASS_RECONSTRUCTED_REPORTED_TECHNIQUES',examined:recovery.examined,layout:chosen.cut.layout,exactOriginalSeed:'UNAVAILABLE'};
+ }finally{fprobe.recoverLine=originalHook;}
 };

@@ -297,7 +297,7 @@ J.chooseRandomStoryboardV15=(p,portfolios)=>{
 J.confirmRandomDirectionScaleV15=async(p,portfolios,initial,sample,phases,signal)=>{
  abort(signal);
  if(typeof sample.verifyScale!=='function')throw Error('V15_MISSING_DETAIL_PROBE');
- const picks=[...initial.picks],rejected=[],recovery=[],expanded=new Set(),cache=new Map(),queues=new Map();
+ const picks=[...initial.picks],rejected=[],recovery=[],expanded=new Set(),cache=new Map(),queues=new Map(),recoveryBudget=24;
  for(const step of portfolios)queues.set(step.line,[...step.candidates]);
  const safe=checks=>checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable);
  const exhausted=line=>Object.assign(Error('V15_NO_MULTISCALE_SAFE_CANDIDATE_LINE_'+line),{code:'V15_SCALE_FRONTIER_EXHAUSTED',diagnostic:{line,scaleSafety:{status:'FAILED',width:640,rejected,recovery}}});
@@ -311,9 +311,9 @@ J.confirmRandomDirectionScaleV15=async(p,portfolios,initial,sample,phases,signal
   });
   return {times,checks};
  };
- // One 12-state recovery expansion per failed line; each later rejection
+ // One bounded recovery expansion per failed line; each later rejection
  // consumes a distinct candidate. No all-song random search is reachable here.
- let remaining=portfolios.reduce((n,s)=>n+s.candidates.length,0)+picks.length*12+1;
+ let remaining=portfolios.reduce((n,s)=>n+s.candidates.length,0)+picks.length*recoveryBudget+1;
  while(remaining-->0){
   abort(signal);const trial=copy(p);J.installRegistryStoryboardV8(trial,picks.map(x=>({line:x.line,cut:x.cut})));
   const context=J.canonicalJSON({cuts:trial.cuts,style:trial.styleKey,events:trial.events}),entries=[],bad=[];
@@ -330,15 +330,15 @@ J.confirmRandomDirectionScaleV15=async(p,portfolios,initial,sample,phases,signal
   for(const {pick,cut,checks,failures} of bad){
    const key=J.canonicalJSON(pick.cut),queue=queues.get(pick.line);if(!queue)throw Error('V15_CORRUPT_PORTFOLIO');
    queues.set(pick.line,queue.filter(x=>J.canonicalJSON(x.cut)!==key));
-   const diagnostic={line:pick.line,text:cut.lineText,resolution:640,techniques:J.creativeGenomeV15(cut),finish:copy(cut.explorationParamsV13||{}),failures:failures.map(f=>({time:f.time,stage:f.stage,eligible:f.check.eligible,full:f.check.full??null,readable:f.check.readable??null,contrastP10:f.observed.contrastP10,glyphComplete:f.check.advancedChecks?.length?f.check.advancedChecks.every(g=>g.complete):f.check.full??null,safeArea:f.check.safe??null,reason:f.reasons})),recoveryAttempted:false,recoveryCandidates:0,recovered:false};
+   const diagnostic={line:pick.line,text:cut.lineText,resolution:640,reproduction:{projectSeed:p.seed,cutSeed:cut.seed,layoutParams:copy(cut.params),inDur:cut.inDur,outDur:cut.outDur,width:p.W,height:p.H},techniques:J.creativeGenomeV15(cut),finish:copy(cut.explorationParamsV13||{}),failures:failures.map(f=>({time:f.time,stage:f.stage,eligible:f.check.eligible,full:f.check.full??null,readable:f.check.readable??null,contrastP10:f.observed.contrastP10,glyphComplete:f.check.advancedChecks?.length?f.check.advancedChecks.every(g=>g.complete):f.check.full??null,safeArea:f.check.safe??null,reason:f.reasons})),recoveryAttempted:false,recoveryCandidates:0,recovered:false};
    rejected.push(diagnostic);
    if(!queues.get(pick.line).length&&!expanded.has(pick.line)){
     expanded.add(pick.line);diagnostic.recoveryAttempted=typeof sample.recoverLine==='function';
-    const added=sample.recoverLine?await sample.recoverLine(trial,{...pick,cut,checks},failures,12):[];abort(signal);
+    const added=sample.recoverLine?await sample.recoverLine(trial,{...pick,cut,checks},failures,recoveryBudget):[];abort(signal);
     if(!Array.isArray(added))throw Error('V15_INVALID_RECOVERY_RESULT');
-    const rows=added.filter(x=>x.cut?.line===pick.line&&J.canonicalJSON(x.cut)!==key).slice(0,12);
+    const rows=added.filter(x=>x.cut?.line===pick.line&&J.canonicalJSON(x.cut)!==key).slice(0,recoveryBudget);
     diagnostic.recoveryCandidates=rows.length;
-    const record={line:pick.line,attempted:diagnostic.recoveryAttempted,added:rows.length,examined:added.examined??rows.length,budget:12,recovered:false,techniques:rows.map(x=>({layout:x.cut.layout,...J.creativeGenomeV15(x.cut)}))};recovery.push(record);
+    const record={line:pick.line,attempted:diagnostic.recoveryAttempted,added:rows.length,examined:added.examined??rows.length,budget:recoveryBudget,recovered:false,diagnostic:added.diagnostic||null,techniques:rows.map(x=>({layout:x.cut.layout,...J.creativeGenomeV15(x.cut)}))};recovery.push(record);
     queues.set(pick.line,rows);portfolios.find(x=>x.line===pick.line).candidates.push(...rows);
    }
    const next=queues.get(pick.line)[0];if(!next)throw exhausted(pick.line);
@@ -364,44 +364,76 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
  // The final gate supplies actual 640px phase checks. Try numeric/color edits
  // first, then reroll only roles implicated by those failed phases.
  if(typeof o.sample.verifyScale!=='function')throw Error('V15_MISSING_DETAIL_PROBE');
- const budget=Math.min(48,Math.max(1,o.budget||12)),index=J.explorationCatalogV13(p),seen=new Set([J.canonicalJSON(pick.cut)]);let examined=0;
+ const budget=Math.min(48,Math.max(1,o.budget||12)),index=J.explorationCatalogV13(p),seen=new Set([J.canonicalJSON(pick.cut)]),attempts=[];let examined=0;
  const decorate=checks=>Object.assign(checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:pick.cut.lineText});
- const evaluate=cut=>{
+ const evaluate=(cut,kind,role=null)=>{
   abort(o.signal);const key=J.canonicalJSON(cut);if(examined>=budget||seen.has(key))return null;seen.add(key);examined++;
-  const times=o.phases(cut),plan={...p,style:cut.style,styleKey:cut.styleKey,motionObservationV14:true};
+  // Match the installed final sequence, including previous-cut transitions.
+  const times=o.phases(cut),trial={...p,cuts:p.cuts.map(c=>c.line===cut.line?cut:c),motionObservationV14:true},plan={...trial,style:cut.style,styleKey:cut.styleKey};
   const checks=decorate(times.map(t=>{
-   abort(o.signal);const low=o.sample(plan,cut,t),high=o.sample.verifyScale(plan,cut,t);
+   abort(o.signal);const low=o.sample(plan,cut,t),high=o.sample.verifyScale(trial,cut,t);
    if(low.renderErrors?.length||high.renderErrors?.length)throw Object.assign(Error('V15_RENDERER_ERROR'),{code:'RENDERER_ERROR',diagnostic:{line:cut.line,renderErrors:[...(low.renderErrors||[]),...(high.renderErrors||[])]}});
-   return {...low,...high,eligible:low.eligible&&high.eligible,mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:t};
+   const failed=!high.eligible?high:!low.eligible?low:high;
+   return {...low,...high,...failed,compositedContrast:failed.compositedContrast,eligible:low.eligible&&high.eligible,mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:t,lowEligible:low.eligible,detailEligible:high.eligible};
   }));
-  return {cut,times,checks,safe:checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable)};
+  const row={cut,times,checks,safe:checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable)};
+  attempts.push({kind,role,safe:row.safe,failures:checks.flatMap(e=>e.eligible?[]:[{offset:e.sampleOffset,stage:e.temporalStage,lowEligible:e.lowEligible,detailEligible:e.detailEligible,reasons:J.motionFailureV14(decorate([e]),cut),contrastP10:e.compositedContrast?.renderedVsBackgroundContrastP10??e.contrast?.renderedVsBackgroundContrastP10??null}])});return row;
  };
- let current={cut:pick.cut,checks:decorate(failures.map(f=>f.check||{eligible:false,temporalStage:f.stage,safe:f.observed?.safe,height:f.observed?.height,full:f.observed?.full,geometry:f.observed?.geometry,advancedChecks:f.observed?.core,contrast:{renderedVsBackgroundContrastP10:f.observed?.contrastP10}}))},winner=null;
- const deficit=row=>row.checks.reduce((sum,e)=>sum+(e.eligible?0:20)+Math.max(0,3-(e.compositedContrast?.renderedVsBackgroundContrastP10??e.contrast?.renderedVsBackgroundContrastP10??3))+(e.safe===false?3:0)+(e.advancedChecks||[]).filter(g=>!g.complete).length,0);
- const localBudget=Math.max(1,budget-4);
- for(let round=0;round<3&&examined<localBudget&&!winner;round++){
-  let improved=false;
-  for(const cut of J.finishRepairsV15(p,current.cut,current.checks)){
-   if(examined>=localBudget)break;const row=evaluate(cut);if(!row)continue;
-   if(row.safe){winner=row;break;}
-   if(deficit(row)<deficit(current)){current=row;improved=true;break;}
+ // Compare full schedules on both sides. Eligible bounded entry/exit frames
+ // contribute no deficit, even when their intentionally partial cores differ.
+ const deficit=row=>row.checks.reduce((sum,e)=>{
+  if(e.eligible)return sum;
+  const contrast=e.compositedContrast?.renderedVsBackgroundContrastP10??e.contrast?.renderedVsBackgroundContrastP10??3,b=e.bounds;
+  const overflow=b?Math.max(0,.105-b.x0/p.W)+Math.max(0,b.x1/p.W-.895)+Math.max(0,.075-b.y0/p.H)+Math.max(0,b.y1/p.H-.925):0;
+  return sum+20+Math.max(0,3-contrast)+overflow*10+(e.advancedChecks||[]).reduce((s,g)=>s+Math.max(0,1-(g.coverage??Number(g.complete))),0);
+ },0)/Math.max(1,row.checks.length);
+ const supplied=pick.checks?.length?pick.checks:failures.map(f=>f.check||{eligible:false,temporalStage:f.stage,safe:f.observed?.safe,height:f.observed?.height,full:f.observed?.full,geometry:f.observed?.geometry,advancedChecks:f.observed?.core,contrast:{renderedVsBackgroundContrastP10:f.observed?.contrastP10}});
+ let current={cut:pick.cut,checks:decorate(supplied)},winner=null;
+ const adopt=row=>{if(!row)return false;if(row.safe){winner=row;return true;}if(deficit(row)<deficit(current)-1e-8){current=row;return true;}return false;};
+ const finish=(limit)=>{
+  const stop=Math.min(budget,examined+limit);
+  while(!winner&&examined<stop){let improved=false;
+   for(const cut of J.finishRepairsV15(p,current.cut,current.checks)){
+    if(examined>=stop)break;
+    if(adopt(evaluate(cut,'numeric'))){improved=true;if(winner)break;}
+   }
+   if(!improved)break;
   }
-  if(!improved)break;
- }
- const reasons=failures.flatMap(f=>f.reasons||[]),stages=new Set(failures.map(f=>f.stage)),causes=[];
- if(reasons.some(x=>/CONTRAST/.test(x)))causes.push('fx','treat','bg');
+ };
+ finish(Math.min(3,Math.max(1,budget-6)));
+ const reasons=J.motionFailureV14(current.checks,current.cut),stages=new Set(current.checks.filter(e=>!e.eligible).map(e=>e.temporalStage)),causes=[];
+ // A layout may paint opaque panels AFTER the glyph. No amount of pre-glyph
+ // scrim/color can repair that occlusion; include layout in contrast recovery.
+ // ENTRY/EXIT causes must be reached before spending states on unrelated FX.
+ const covered=failures.some(f=>{const e=f.check;return e?.full&&e.safe&&e.geometry?.length&&e.geometry.every(g=>g.readable)&&e.advancedChecks?.length&&e.advancedChecks.every(g=>g.complete)&&(f.observed?.contrastP10??3)<1.5;});
+ if(covered&&!current.cut.registryFxV9)causes.push('layout');
+ if(stages.has('ENTRY'))causes.push('enter');if(stages.has('EXIT'))causes.push('exit');
+ if(reasons.some(x=>/CONTRAST/.test(x))){if(current.cut.registryFxV9)causes.push('fx');if(current.cut.treat!=='none')causes.push('treat');causes.push('layout');if(current.cut.bg!=='none')causes.push('bg');}
  if(reasons.some(x=>/SAFE_AREA|CAMERA/.test(x)))causes.push('cam','layout');
  if(reasons.some(x=>/GLYPH|SIZE|READABILITY/.test(x)))causes.push('hold','layout');
- if(stages.has('ENTRY'))causes.push('enter');if(stages.has('EXIT'))causes.push('exit');
  for(const role of [...new Set(causes)]){
   if(winner||examined>=budget)break;
-  for(let attempt=0;attempt<2&&examined<budget;attempt++){
-   const cut=J.rerollRoleV15(p,current.cut,index,role,600+attempt);if(!cut)continue;
-   const row=evaluate(cut);if(row?.safe){winner=row;break;}
+  if(role!=='layout'&&J.canonicalJSON(get(current.cut,role))===J.canonicalJSON(role==='decor'?[]:neutral[role]))continue;
+  const base=copy(current.cut);
+  const tryCandidate=(cut,kind)=>{
+   const row=evaluate(cut,kind,role);if(!row)return;
+   if(row.safe){winner=row;return;}
+   // A new layout often needs fitting before it can beat the old candidate.
+   // Fit that candidate on its own measurements, then keep only a real gain.
+   const previous=current;current=row;finish(kind==='control'&&role==='layout'?4:2);const fitted=current;
+   current=previous;if(!winner)adopt(fitted);
+  };
+  for(let attempt=0;attempt<2&&examined<budget&&!winner;attempt++){
+   const cut=J.rerollRoleV15(p,base,index,role,600+attempt);if(cut)tryCandidate(cut,'reroll');
   }
-  // Only a measured safe removal control may neutralize this one causal role,
-  // after its two random alternatives fail. All other role IDs stay intact.
-  if(!winner&&role!=='layout'&&examined<budget){const control=evaluate(J.changeDirectionRoleV11(current.cut,role,neutral[role]));if(control?.safe)winner=control;}
+  if(!winner&&examined<budget){
+   if(role==='layout'&&base.layout!=='center'&&index.some(x=>x.group==='layout'&&x.id==='center'&&x.eligible)){
+    // Existing center layout is the no-panel removal control. It changes this
+    // layout only; it is never a new style/genome or an all-lines fallback.
+    const fresh=J.registryCandidateCut({...p,style:base.style,styleKey:base.styleKey},base,'center',base.params.font||'embedded_bold',base.enter,base.hold);
+    tryCandidate({...copy(base),layout:'center',explorationParamsV13:{...base.explorationParamsV13,size:1,dx:0,dy:0},params:{...fresh.params,cinemaReadabilityRepair:copy(base.params.cinemaReadabilityRepair)}},'control');
+   }else if(role!=='layout')tryCandidate(J.changeDirectionRoleV11(base,role,neutral[role]),'control');
+  }
  }
  const rows=[];
  if(winner){
@@ -413,6 +445,6 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
   const counts=Object.fromEntries(['registered','callable','eligible','generated','probed','safe'].map(k=>[k,catalog.filter(row=>row[k]).length]));
   rows.push({...pick,cut,safe:true,checks:checks.map(strip),times,params:cut.params,font:cut.params.font,styleKey:cut.styleKey,layout:cut.layout,evidence:strip(hold),phaseEvidence:checks.map(strip),descriptor,signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster,ablations:[],lightSafetyV15:lightSafety,optimizerEvidence:{...copy(pick.optimizerEvidence),catalog,counts,intensity:{...copy(pick.optimizerEvidence?.intensity),status:descriptor.holdMotion.value>1e-6?'OBSERVED_MOTION':'UNMET'},ablations:[],motionV14:J.motionObservationV14({...winner,descriptor,ablations:[]}),lightSafety,repairSummary:{...copy(pick.optimizerEvidence?.repairSummary),changedRoles:[...new Set([...(pick.optimizerEvidence?.repairSummary?.changedRoles||[]),...changedRoles])]},genome:{generated:copy(generated),final,changedRoles,retention:1-changedRoles.length/Object.keys(generated).length},recovery:{mode:changedRoles.length?'CAUSAL_ROLE_REPAIR':'LOCAL_FINISH',examined,scaleGate:'MEASURED_640PX'},unmeasured:['recoveryRoleAblations','artisticQuality']}});
  }
- rows.examined=examined;return rows;
+ rows.examined=examined;rows.diagnostic={attempts,budget,exhausted:!winner};return rows;
 };
 })();
