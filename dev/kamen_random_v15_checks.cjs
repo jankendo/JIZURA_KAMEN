@@ -95,7 +95,8 @@ module.exports=async function randomChecksV15(){
  assert(fixtureRows.some(row=>row.ablations.some(x=>x.group==='fx'&&x.pixelDifference>1e-6)),'at least one short-line FX remains visibly active in production Canvas');
  const fixtureSteps=fixtureRows.map(row=>({line:row.cut.line,candidates:[row],energy:row.features.energy})),fixturePick=J.chooseRandomStoryboardV15(fp,fixtureSteps);
  fprobe.recoverLine=(plan,pick,failures,b)=>J.recoverDirectionLineV112(plan,pick,failures,{sample:fprobe,phases:x=>J.directionPhasesV11(fp,x,audio),audio,budget:b});
- const fixtureGate=await J.confirmDirectionScaleV11(fp,fixtureSteps,fixturePick,fprobe,x=>J.directionPhasesV11(fp,x,audio));
+ await window.v15FinalScaleChecks({fp,fixtureRows,fixtureSteps,fprobe,audio});
+ const fixtureGate=await J.confirmRandomDirectionScaleV15(fp,fixtureSteps,fixturePick,fprobe,x=>J.directionPhasesV11(fp,x,audio));
  assert(fixtureGate.scaleSafety.status==='MEASURED_SAFE_SEQUENCE'&&fixtureGate.scaleSafety.width===640,'three short-fixture lines pass production 640px gate');
  assert(fixtureRows.every((row,i)=>J.canonicalJSON(row.cut)===priorCuts[i]),'scale gate does not mutate earlier safe random candidates');FR.disposeAssets?.();
  const canvasRegression={status:'PASS_SYNTHETIC_FIXTURE',realAssets:'NOT_AVAILABLE',aspect:'16:9',background:'generated custom Canvas',font:'NotoSansCJKjp-Bold',duration,lines:fixtureRows.map(row=>({line:row.cut.line,lyric:row.cut.lineText,camera:row.cut.cam,cameraContribution:row.ablations.find(x=>x.group==='cam')?.pixelDifference??null,background:row.cut.bg,backgroundContribution:row.ablations.find(x=>x.group==='bg')?.pixelDifference??null,fx:row.cut.registryFxV9||null,fxContribution:row.ablations.find(x=>x.group==='fx')?.pixelDifference??null,search:row.optimizerEvidence.search,hold:{full:row.phaseEvidence.some(e=>e.temporalStage==='HOLD'&&e.full),readable:row.phaseEvidence.some(e=>e.temporalStage==='HOLD'&&e.readable)}})),scaleGate:{status:fixtureGate.scaleSafety.status,width:fixtureGate.scaleSafety.width,rejected:fixtureGate.scaleSafety.rejected.length,recovery:fixtureGate.scaleSafety.recovery}};
@@ -119,10 +120,70 @@ module.exports=async function randomChecksV15(){
  const pp=J.plan(portrait,a),pc=pp.cuts.find(c=>c.line===0),pv=Object.assign(document.createElement('canvas'),{width:256,height:Math.round(256*pp.H/pp.W)}),pm=pv.cloneNode(),pr=J.createRegistryRenderProbe(pp,R,pv,pm,{production:true}),ps=J.createCreativeProbeV10(pr,pv);ps.verifyScale=pr.verifyScale;
  const vertical=await J.optimizeRandomLineV15({p:pp,c:pc,f:J.songLineFeaturesV8(pp,a,pc),sample:ps,phases:cut=>J.directionPhasesV11(pp,cut,a),audio:a});
  const steps=[{line:0,candidates:vertical}],pick=J.chooseRandomStoryboardV15(pp,steps);ps.recoverLine=(plan,pick,failures,budget)=>J.recoverDirectionLineV112(plan,pick,failures,{sample:ps,phases:cut=>J.directionPhasesV11(pp,cut,a),audio:a,budget});
- const confirmed=await J.confirmDirectionScaleV11(pp,steps,pick,ps,cut=>J.directionPhasesV11(pp,cut,a));assert(confirmed.scaleSafety.status==='MEASURED_SAFE_SEQUENCE','portrait 640px');
+ const confirmed=await J.confirmRandomDirectionScaleV15(pp,steps,pick,ps,cut=>J.directionPhasesV11(pp,cut,a));assert(confirmed.scaleSafety.status==='MEASURED_SAFE_SEQUENCE','portrait 640px');
  // TEST D: cancellation and changed input stay explicit failures.
  const controller=new AbortController();controller.abort();let cancelled=false;try{await J.optimizeRandomLineV15({...args,signal:controller.signal});}catch(e){cancelled=e.name==='AbortError';}assert(cancelled,'cancelled preserveCurrent finishing is not reported as success');
  const mutable=J.clonePhotoRenderPlan(p);mutable.cuts=[];mutable.customBg={enabled:false};mutable.songNativeDirection={...mutable.songNativeDirection,version:8,optimizerVersion:null,explorationVersion:15};mutable.artDirection={...mutable.artDirection,songNativeDirection:mutable.songNativeDirection};
  const planHash=J.cinemaV3.planHash;let hashCall=0,changedInput=false;J.cinemaV3.planHash=async()=>++hashCall===1?'before':'changed';try{await J.searchJizuraDirectionV8(mutable,null,a,{ensureFonts:false});}catch(e){changedInput=e.message==='INPUT_CHANGED_DURING_SEARCH';}finally{J.cinemaV3.planHash=planHash;}assert(changedInput,'input changes during search remain a clear failure');
  R.disposeAssets?.();return {retention:'PASS',determinism:'PASS',freshRetry:'PASS',allUnsafeBoundedFailure:'PASS',localReroll:'PASS',preserveCurrent:'PASS',cancellation:'PASS',inputChange:'PASS',locks:'PASS',intensityDistribution:'PASS',productionRoles:'PASS',saveRestore:'PASS',LRC:'PASS',portrait:'PASS',scale:'PASS',canvasRegression,traces:traces.map(t=>({genome:t.genome,intensity:t.intensity,compared:t.compared,search:t.search,repairSummary:t.repairSummary,repairStats:t.repairStats,lightSafety:t.lightSafety})),artisticQuality:'UNVERIFIED'};
+};
+
+// Also callable alone so a failed final-scale assertion can be rerun without
+// repeating generation, encodes or the unrelated regression scenarios.
+module.exports.finalScale=async function finalScaleV15(input){
+ const J=window.J,assert=(ok,msg)=>{if(!ok)throw Error(msg);};
+ let {fp,fixtureRows,fixtureSteps,fprobe,audio}=input||{};let renderer;
+ if(!fp){
+  const {p,q,a}=window.comparisonV12;fp=J.clonePhotoRenderPlan(p);audio=a;
+  const original=p.cuts.find(c=>c.line===0),third={...J.clonePhotoRenderPlan(original),line:2,start:4,end:4+original.dur,index:fp.cuts.length};
+  fp.cuts.push(third);fp.lines.push({...fp.lines[0],start:third.start,end:third.end});fp.duration=third.end;
+  const source=p.songNativeDirection.selection.traces.find(t=>t.line===0).creative;
+  fixtureRows=fp.cuts.filter(c=>c.line>=0).map(cut=>({cut,safe:true,evidence:{eligible:true},optimizerEvidence:J.clonePhotoRenderPlan(source)}));
+  fixtureSteps=fixtureRows.map(row=>({line:row.cut.line,candidates:[row]}));
+  renderer=new J.Renderer();await renderer.loadCustomBackground(q.customBg.dataUrl);
+  const cv=Object.assign(document.createElement('canvas'),{width:256,height:144}),raw=J.createRegistryRenderProbe(fp,renderer,cv,cv.cloneNode(),{production:true});fprobe=J.createCreativeProbeV10(raw,cv);fprobe.verifyScale=raw.verifyScale;
+ }
+ const phases=cut=>J.directionPhasesV11(fp,cut,audio);
+ // Exercise production dispatch with no lyric work; deliberately changed input
+ // stops before commit. Old versions must keep the original final gate.
+ const randomGate=J.confirmRandomDirectionScaleV15,oldGate=J.confirmDirectionScaleV11,planHash=J.cinemaV3.planHash;
+ let randomCalls=0,oldCalls=0;
+ try{
+  J.confirmRandomDirectionScaleV15=(...x)=>{randomCalls++;return randomGate(...x);};J.confirmDirectionScaleV11=(...x)=>{oldCalls++;return oldGate(...x);};
+  for(const version of [11,12,13,14,15]){
+   const plan=J.clonePhotoRenderPlan(fp);plan.cuts=[];plan.customBg={enabled:false};plan.songNativeDirection={...plan.songNativeDirection,version:8,optimizerVersion:11,explorationVersion:version>=13?version:undefined};plan.artDirection.songNativeDirection=plan.songNativeDirection;
+   let calls=0,changed=false;J.cinemaV3.planHash=async()=>++calls===1?'before':'changed';
+   try{await J.searchJizuraDirectionV8(plan,null,audio,{ensureFonts:false});}catch(e){changed=e.message==='INPUT_CHANGED_DURING_SEARCH';}assert(changed,'input changes abort final confirmation for version '+version);
+  }
+  assert(randomCalls===1&&oldCalls===4,'production v15 dispatch is dedicated; v11-v14 retain legacy gate');
+  const controller=new AbortController();controller.abort();let cancelled=false;try{await randomGate(fp,fixtureSteps,J.chooseRandomStoryboardV15(fp,fixtureSteps),fprobe,phases,controller.signal);}catch(e){cancelled=e.name==='AbortError';}assert(cancelled,'final-scale cancellation propagates');
+ }finally{J.confirmRandomDirectionScaleV15=randomGate;J.confirmDirectionScaleV11=oldGate;J.cinemaV3.planHash=planHash;}
+ try{
+ // TEST A: an actual post-composition wash exists only above 256px.
+ // The third line has a singleton portfolio; the final gate must reach recovery.
+ const washId='v15FinalScaleWash',originalFinal=J.confirmRandomDirectionScaleV15,legacyGate=J.confirmDirectionScaleV11;
+ const washCut=J.clonePhotoRenderPlan(fixtureRows[2].cut);washCut.registryFxV9=washId;
+ J.FXE[washId]={name:'test-only 640px wash',draw(ctx){if(ctx.canvas.width>256){ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle='rgba(255,255,255,.9)';ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);ctx.restore();}}};
+ let gateCalls=0,recoveryCalls=0,suppliedChecks=false,recoveryResult;
+ try{
+  const badRow={...fixtureRows[2],cut:washCut},steps=fixtureSteps.map(step=>({...step,candidates:[step.line===2?badRow:step.candidates[0]]}));
+  const beforeCuts=steps.map(step=>J.canonicalJSON(step.candidates[0].cut)),initialPick=J.chooseRandomStoryboardV15(fp,steps);
+  assert(phases(washCut).every(t=>fprobe(fp,washCut,t).eligible),'256px wash candidate PASS');
+  assert(phases(washCut).some(t=>!fprobe.verifyScale(fp,washCut,t).eligible),'actual 640px composed wash FAIL');
+  fprobe.recoverLine=async(plan,pick,failures,budget)=>{recoveryCalls++;suppliedChecks=failures.every(f=>f.check&&f.stage&&Number.isFinite(f.time));return J.recoverDirectionLineV112(plan,pick,failures,{sample:fprobe,phases:phases,audio,budget});};
+  J.confirmRandomDirectionScaleV15=async(...x)=>{gateCalls++;return originalFinal(...x);};
+  recoveryResult=await J.confirmRandomDirectionScaleV15(fp,steps,initialPick,fprobe,phases);
+  assert(gateCalls===1&&recoveryCalls===1&&suppliedChecks,'dedicated gate invokes existing recovery with measured phase checks');
+  assert(recoveryResult.scaleSafety.rejected.length===1&&recoveryResult.scaleSafety.rejected[0].line===2&&recoveryResult.scaleSafety.rejected[0].failures.some(f=>f.contrastP10<3),'compact measured 640px contrast diagnosis');
+  assert(recoveryResult.scaleSafety.recovery[0].examined<=12&&recoveryResult.scaleSafety.recovery[0].recovered,'bounded recovery succeeds');
+  assert(recoveryResult.picks.slice(0,2).every((row,i)=>J.canonicalJSON(row.cut)===beforeCuts[i]),'third-line recovery preserves other safe genomes exactly');
+  assert(recoveryResult.scaleSafety.entries.length===3&&recoveryResult.scaleSafety.entries.every(row=>row.checks.every(e=>e.eligible)),'all final composed lines pass 640px');
+  assert(J.canonicalJSON(recoveryResult.picks[2].optimizerEvidence.genome.generated)===J.canonicalJSON(badRow.optimizerEvidence.genome.generated),'original creative genome retained as provenance');
+  assert(J.canonicalJSON(recoveryResult.picks[2].optimizerEvidence.genome.final)===J.canonicalJSON(J.creativeGenomeV15(recoveryResult.picks[2].cut)),'recovered evidence matches final cut');
+  let refused=false;try{await originalFinal(fp,initialPick.picks.map(row=>({line:row.line,candidates:[row]})),initialPick,Object.assign((...x)=>fprobe(...x),{verifyScale:fprobe.verifyScale,recoverLine:async()=>[]}),phases);}catch(e){refused=e.code==='V15_SCALE_FRONTIER_EXHAUSTED';}assert(refused,'exhaustion cannot adopt unsafe candidate');
+  let rendererError=false;try{await originalFinal(fp,initialPick.picks.map(row=>({line:row.line,candidates:[row]})),initialPick,Object.assign(()=>null,{verifyScale:()=>({renderErrors:[{message:'fixture renderer failure'}]})}),phases);}catch(e){rendererError=e.code==='RENDERER_ERROR';}assert(rendererError,'renderer errors are not safety exhaustion');
+  assert(J.confirmDirectionScaleV11===legacyGate,'v11-v14 legacy final gate identity unchanged');
+  console.log('V15 FINAL 640 RECOVERY PASS',JSON.stringify({status:recoveryResult.scaleSafety.status,lines:recoveryResult.scaleSafety.entries.length,rejected:recoveryResult.scaleSafety.rejected,recovery:recoveryResult.scaleSafety.recovery}));return recoveryResult.scaleSafety;
+ }finally{delete J.FXE[washId];J.confirmRandomDirectionScaleV15=originalFinal;}
+ }finally{renderer?.disposeAssets?.();}
 };
