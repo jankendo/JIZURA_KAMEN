@@ -36,7 +36,14 @@ J.randomProposalV15=(p,c,index,ordinal=0)=>{
  let cut={...J.registryCandidateCut({...p,style,styleKey},c,layout,c.params.font||'embedded_bold','cut','still'),style,styleKey,registrySelectedV8:true,stagger:0};
  delete cut.generatedMotionV7;delete cut.grammar;delete cut.photoChoreography;
  const intense=(p.songNativeDirection||{}).intensityV15!=='normal';
- for(const g of roles){const active=available(g).filter(id=>id!==neutral[g]),prob=intense?({hold:.92,cam:.92,bg:.85,fx:.6,decor:.7,trans:.65}[g]??.8):.4;cut=J.changeDirectionRoleV11(cut,g,rng()<prob?pick(active)??neutral[g]:neutral[g]);}
+ // Preserve a high-energy random mix without stacking every glyph/frame effect
+ // on almost every trial. Role identities and native technique strengths stay
+ // random; unsafe pairings are still decided only by the real Canvas gate.
+ const activation=intense?{enter:.45,hold:.86,exit:.45,cam:.64,bg:.8,treat:.62,decor:.5,fx:.6,trans:.45}:{};
+ for(const g of roles){const active=available(g).filter(id=>id!==neutral[g]),prob=intense?activation[g]:.4;cut=J.changeDirectionRoleV11(cut,g,rng()<prob?pick(active)??neutral[g]:neutral[g]);}
+ if(intense&&c.dur<=2.4&&cut.enter!=='cut'&&cut.exit!=='cut')cut=J.changeDirectionRoleV11(cut,rng()<.5?'enter':'exit','cut');
+ if(intense){const overlays=['bg','treat','decor','fx'].filter(g=>J.canonicalJSON(get(cut,g))!==J.canonicalJSON(g==='decor'?[]:neutral[g]));while(overlays.length>2){const role=rng.pick(overlays);cut=J.changeDirectionRoleV11(cut,role,neutral[role]);overlays.splice(overlays.indexOf(role),1);}}
+ if(intense&&J.graphemes(c.lineText||'').length<=8&&cut.hold!=='still'&&cut.cam!=='stillCamera'&&rng()<.35){const role=rng()<.5?'hold':'cam';cut=J.changeDirectionRoleV11(cut,role,neutral[role]);}
  // Native strength retains bold original motions. Weaker strengths are a
  // separate safety repair, not the default distribution of every proposal.
  cut.explorationParamsV13={size:1,dx:0,dy:0,motion:intense?1:rng.range(.55,1),camera:intense?1:rng.range(.55,1),fx:1};
@@ -47,7 +54,10 @@ J.randomProposalV15=(p,c,index,ordinal=0)=>{
 // is subsequently corrected using actual glyph bounds, never by replacing IDs.
 J.initialFinishV15=(p,source)=>{
  const c=copy(source),e=c.explorationParamsV13||{},n=J.graphemes(c.lineText||'').length;
- c.explorationParamsV13={...e,size:Math.min(e.size??1,n>12?.85:1),dx:e.dx||0,dy:e.dy||0};
+ // Leave short Japanese phrases room at both canvas ratios; long lines keep
+ // the existing fit cap. The renderer's measured bounds still drive repairs.
+ const aspectCap=p.H>p.W&&n>4?.9:1,lengthCap=n>12?.85:n>8?.94:1;
+ c.explorationParamsV13={...e,size:Math.min(e.size??1,aspectCap,lengthCap),dx:e.dx??0,dy:e.dy??0};
  c.inDur=c.enter==='cut'?0:Math.min(c.inDur||.2,.22,c.dur*.15);
  c.outDur=c.exit==='cut'?0:Math.min(c.outDur||.1,.12,c.dur*.08);
  c.params={...c.params,cinemaReadabilityRepair:{shadow:2,scrim:.32,...copy(c.params.cinemaReadabilityRepair||{})}};
@@ -80,9 +90,9 @@ J.rerollRoleV15=(p,c,index,role,ordinal)=>{
 };
 J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initialCuts=[],preserveCurrent=false,initialPlan=null})=>{
  if(J.songNativeLockedV8(p,c))throw Error('V15_LOCKED_LINE');
- const totalBudget=Math.max(1,Math.floor(Number.isFinite(budget)?budget:108)),fallbackReserve=preserveCurrent?0:totalBudget<=48?Math.min(12,Math.max(3,Math.floor(totalBudget*.12))):2,frontierBudget=Math.max(1,totalBudget-fallbackReserve),perGenomeBudget=frontierBudget<=48?Math.max(8,Math.floor(frontierBudget/2)):frontierBudget-1;
+ const totalBudget=Math.max(1,Math.floor(Number.isFinite(budget)?budget:108)),fallbackReserve=preserveCurrent?0:Math.min(totalBudget-1,Math.min(16,Math.max(totalBudget<=48?Math.min(3,totalBudget):12,Math.floor(totalBudget*.15)))),frontierBudget=totalBudget-fallbackReserve,perGenomeBudget=Math.min(28,Math.max(1,Math.floor(frontierBudget/3)));
  const catalog=J.explorationCatalogV13(p),intent=J.songVisualIntentV11(p,audio,c,f),seen=new Set(),stateCache=new Map(),repairs=[],exclusions=[],origins={fresh:0,initial:0,repair:0,control:0,reroll:0,fallback:0,tune:0};const repairStats={attempted:0,succeeded:0,local:0,causalRerolls:0};let roleRetries={},compared=0,ordinal=0,genomeTrials=0,genomeSwitches=0,fallbackAttempted=false,fallbackExamined=0,safeFallbackUsed=false,safeCandidateFound=false,genomeStart=0,localRounds=0,passes=0,stagnantRerolls=0,current=null,lastCandidate=null,bestSafe=null,generated=null;
- const failureReasons={};
+ const failureReasons={},phaseFailureReasons={},failureCombinations={};let fallbackChanges=[];
  const deficit=item=>item.checks.reduce((sum,e)=>{
   const contrast=e.compositedContrast?.renderedVsBackgroundContrastP10??e.contrast?.renderedVsBackgroundContrastP10;
   const b=e.bounds,overflow=b?Math.max(0,.105-b.x0/p.W)+Math.max(0,b.x1/p.W-.895)+Math.max(0,.075-b.y0/p.H)+Math.max(0,b.y1/p.H-.925):0;
@@ -91,28 +101,41 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
  const evaluate=(cut,kind,allowFallback=false)=>{
   abort(signal);if(compared>=(allowFallback?totalBudget:frontierBudget))return null;const key=J.canonicalJSON(cut);if(seen.has(key))return null;seen.add(key);compared++;origins[kind]++;
   const times=phases(cut),sp={...p,style:cut.style,styleKey:cut.styleKey,motionObservationV14:true},checks=times.map(t=>{abort(signal);return sample(sp,cut,t);});stateCache.set(key,new Map(times.map((t,i)=>[t,checks[i]])));
+  if(checks.some(e=>e.renderErrors?.length))throw Object.assign(Error('V15_RENDERER_ERROR'),{code:'RENDERER_ERROR',diagnostic:{line:c.line,displayLine:c.line+1,candidate:compared,renderErrors:checks.flatMap(e=>e.renderErrors||[]).slice(0,4)}});
   Object.assign(checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:cut.lineText,cutParamsV14:cut.explorationParamsV13});
   const safe=checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable),descriptor=J.motionDescriptorV14(checks,p),fit=J.scoreExplorationV13(cut,f,intent,checks,p),hold=checks.find(e=>e.temporalStage==='HOLD'&&e.readable)||checks[Math.floor(checks.length/2)];
   if(kind==='repair'){repairStats.attempted++;repairStats.succeeded+=Number(safe);repairStats.local++;}
   const causes=safe?[]:J.motionFailureV14(checks,cut);for(const cause of causes)failureReasons[cause]=(failureReasons[cause]||0)+1;
+  if(!safe)for(const e of checks.filter(x=>!x.eligible)){const phase=[e];Object.assign(phase,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:cut.lineText});for(const cause of J.motionFailureV14(phase,cut)){const key=e.temporalStage+':'+cause;phaseFailureReasons[key]=(phaseFailureReasons[key]||0)+1;}}
   if(!safe)exclusions.push({origin:kind,causes});
+  if(!safe){const active=roles.filter(g=>J.canonicalJSON(get(cut,g))!==J.canonicalJSON(g==='decor'?[]:neutral[g])).map(g=>g+':'+String(get(cut,g))).join('|');failureCombinations[active]=(failureCombinations[active]||0)+1;}
   const item={...fit,cut,checks,times,descriptor,safe,features:f,intent,ablations:[],attempts:[],layout:cut.layout,styleKey:cut.styleKey,font:cut.params.font,params:cut.params,evidence:strip(hold),phaseEvidence:checks.map(strip),signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster};lastCandidate=item;return item;
  };
  const raw=initialCuts[0]||(preserveCurrent?initialPlan?.cuts.find(x=>x.line===c.line):J.randomProposalV15(p,c,catalog,ordinal++));
  if(!raw)throw Error('V15_MISSING_CURRENT_GENOME');
  const seenGenomes=new Set();let freshProposalAttempts=0;
- if(!preserveCurrent)genomeTrials++;
  generated=raw.creativeGenomeV15||J.creativeGenomeV15(raw);genomeStart=compared;current=evaluate(J.initialFinishV15(p,raw),preserveCurrent?'initial':'fresh');
  seenGenomes.add(J.canonicalJSON(generated));
- if(!preserveCurrent&&!initialCuts[0])genomeTrials=1;
+ if(!preserveCurrent&&current)genomeTrials++;
  const tryFreshGenome=()=>{
   for(let attempts=0;attempts<totalBudget&&compared<frontierBudget;attempts++){
    if(freshProposalAttempts>=totalBudget)return false;
-   const next=J.randomProposalV15(p,c,catalog,ordinal++),candidateGenome=J.creativeGenomeV15(next),key=J.canonicalJSON(candidateGenome);freshProposalAttempts++;genomeTrials++;
-   if(seenGenomes.has(key))continue;seenGenomes.add(key);genomeSwitches++;generated=candidateGenome;genomeStart=compared;localRounds=0;passes=0;stagnantRerolls=0;roleRetries={};current=evaluate(J.initialFinishV15(p,next),'fresh');return true;
+   const next=J.randomProposalV15(p,c,catalog,ordinal++),candidateGenome=J.creativeGenomeV15(next),key=J.canonicalJSON(candidateGenome);freshProposalAttempts++;
+   if(seenGenomes.has(key))continue;seenGenomes.add(key);genomeSwitches++;generated=candidateGenome;genomeStart=compared;localRounds=0;passes=0;stagnantRerolls=0;roleRetries={};current=evaluate(J.initialFinishV15(p,next),'fresh');if(current)genomeTrials++;return true;
   }
   return false;
  };
+ // First give four independently generated genomes one real Canvas trial each.
+ // Only then spend the per-genome repair allowance on the most promising seed.
+ if(!preserveCurrent){let sampled=1,bestSeed=current,bestSeedGenome=generated,bestSeedDeficit=current?deficit(current):Infinity;
+  if(current?.safe){current.generatedGenomeV15=generated;bestSafe=current;safeCandidateFound=true;}
+  while(sampled<Math.min(4,frontierBudget)&&compared<frontierBudget&&!bestSafe){if(!tryFreshGenome())break;sampled++;const candidate=current,candidateGenome=generated;if(!candidate)continue;
+   if(candidate.safe){candidate.generatedGenomeV15=candidateGenome;bestSafe=candidate;safeCandidateFound=true;break;}
+   const score=deficit(candidate);if(!candidate.safe&&score<bestSeedDeficit){bestSeed=candidate;bestSeedGenome=candidateGenome;bestSeedDeficit=score;}
+  }
+  if(bestSafe){current=bestSafe;generated=bestSafe.generatedGenomeV15;}else{current=bestSeed;generated=bestSeedGenome;}
+  genomeStart=compared;localRounds=0;passes=0;stagnantRerolls=0;roleRetries={};
+ }
  let frontierDone=false;
  while(!frontierDone){
   abort(signal);
@@ -122,9 +145,8 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
   if(!current||compared>=frontierBudget||compared-genomeStart>=perGenomeBudget||passes++>=perGenomeBudget*2){frontierDone=true;break;}
   if(current.safe){
    current.generatedGenomeV15=generated;safeCandidateFound=true;if(!bestSafe||current.descriptor.holdMotion.value>bestSafe.descriptor.holdMotion.value)bestSafe=current;
-   if(preserveCurrent||current.descriptor.holdMotion.value>1e-6){bestSafe=current;frontierDone=true;break;}
-   // A safe static candidate remains available while a fresh genome is tried.
-   if(compared<frontierBudget&&tryFreshGenome())continue;
+   // Keep the first production-safe random candidate and avoid wasting the
+   // remaining search budget after safety has already been established.
    frontierDone=true;break;
   }
   let improved=false;
@@ -169,16 +191,16 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
  if(!bestSafe&&current?.safe){current.generatedGenomeV15=generated;bestSafe=current;safeCandidateFound=true;}
  if(!bestSafe&&!preserveCurrent){
   fallbackAttempted=true;const remaining=totalBudget-compared,fallbackBudget=Math.min(fallbackReserve,remaining);
-  if(fallbackBudget>1){
+  if(fallbackBudget>0){
    const base=current?.cut||lastCandidate?.cut||raw,failed=current?.checks||lastCandidate?.checks||[],scaleFailures=failed.filter(e=>!e.eligible).map(e=>({stage:e.temporalStage,reasons:J.motionFailureV14([e],base),observed:{safe:e.safe,full:e.full,height:e.height,ink:e.ink,contrastP10:e.compositedContrast?.renderedVsBackgroundContrastP10??e.contrast?.renderedVsBackgroundContrastP10,geometry:e.geometry||[],core:e.advancedChecks||[]}}));
-   const pick={cut:base,features:f,intent,score:0,optimizerEvidence:{catalog:copy(catalog)}},fallbackStates=new Set(),fallbackSample=(plan,cut,time)=>{const key=J.canonicalJSON(cut),cached=stateCache.get(key)?.get(time);if(cached)return cached;fallbackStates.add(key);return sample(plan,cut,time);};
-   const recovered=await recover(p,pick,scaleFailures,{sample:fallbackSample,phases,audio,signal,budget:fallbackBudget,frontier:[]});fallbackExamined=fallbackStates.size;compared+=fallbackExamined;origins.fallback+=fallbackExamined;
-   for(const row of recovered){abort(signal);const key=J.canonicalJSON(row.cut),checks=row.checks||[];if(seen.has(key)||!checks.every(e=>e.eligible)||!checks.some(e=>e.temporalStage==='HOLD'&&e.readable))continue;seen.add(key);Object.assign(checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:row.cut.lineText,cutParamsV14:row.cut.explorationParamsV13});const descriptor=J.motionDescriptorV14(checks,p),fit=J.scoreExplorationV13(row.cut,f,intent,checks,p),hold=checks.find(e=>e.temporalStage==='HOLD'&&e.readable)||checks[Math.floor(checks.length/2)],fixed={...row,...fit,cut:row.cut,checks,times:row.times||phases(row.cut),descriptor,safe:true,features:f,intent,ablations:[],attempts:[],layout:row.cut.layout,styleKey:row.cut.styleKey,font:row.cut.params.font,params:row.cut.params,evidence:strip(hold),phaseEvidence:checks.map(strip),signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster};bestSafe=fixed;generated=J.creativeGenomeV15(fixed.cut);fixed.generatedGenomeV15=generated;safeCandidateFound=true;safeFallbackUsed=true;break;}
+   const pick={cut:base,features:f,intent,score:0,optimizerEvidence:{catalog:copy(catalog)}},fallbackStates=new Set(),fallbackSample=(plan,cut,time)=>{const key=J.canonicalJSON(cut),cached=stateCache.get(key)?.get(time);if(cached)return cached;fallbackStates.add(key);return sample(plan,cut,time);};fallbackSample.verifyScale=sample.verifyScale;fallbackSample.candidateStates=fallbackStates;
+   const recovered=await recover(p,pick,scaleFailures,{sample:fallbackSample,phases,audio,signal,budget:fallbackBudget,frontier:[]});fallbackExamined=Math.max(fallbackStates.size,recovered.examined||0);compared+=fallbackStates.size;origins.fallback+=fallbackStates.size;
+   for(const row of recovered){abort(signal);const key=J.canonicalJSON(row.cut),checks=row.checks||[];if(seen.has(key)||!checks.every(e=>e.eligible)||!checks.some(e=>e.temporalStage==='HOLD'&&e.readable))continue;seen.add(key);Object.assign(checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:row.cut.lineText,cutParamsV14:row.cut.explorationParamsV13});const descriptor=J.motionDescriptorV14(checks,p),fit=J.scoreExplorationV13(row.cut,f,intent,checks,p),hold=checks.find(e=>e.temporalStage==='HOLD'&&e.readable)||checks[Math.floor(checks.length/2)],fixed={...row,...fit,cut:row.cut,checks,times:row.times||phases(row.cut),descriptor,safe:true,features:f,intent,ablations:[],attempts:[],layout:row.cut.layout,styleKey:row.cut.styleKey,font:row.cut.params.font,params:row.cut.params,evidence:strip(hold),phaseEvidence:checks.map(strip),signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster};fallbackChanges=J.genomeChangesV15(J.creativeGenomeV15(base),J.creativeGenomeV15(fixed.cut));bestSafe=fixed;generated=J.creativeGenomeV15(fixed.cut);fixed.generatedGenomeV15=generated;safeCandidateFound=true;safeFallbackUsed=true;break;}
   }
  }
  if(bestSafe)generated=bestSafe.generatedGenomeV15||generated;
- const failureSummary=Object.entries(failureReasons).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([reason,count])=>({reason,count}));
- const searchSummary={line:c.line,displayLine:c.line+1,fullRandomGenomeTrials:genomeTrials,localRepairCount:repairStats.local,causalRerollCount:repairStats.causalRerolls,evaluatedCandidates:compared,budget:totalBudget,primaryFailureReasons:failureSummary,newGenomeSwitches:genomeSwitches,fallbackAttempted,fallbackCandidatesExamined:fallbackExamined,safeCandidateFound};
+ const failureSummary=Object.entries(failureReasons).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([reason,count])=>({reason,count})),phaseFailureSummary=Object.entries(phaseFailureReasons).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([reason,count])=>({reason,count}));
+ const searchSummary={line:c.line,displayLine:c.line+1,fullRandomGenomeTrials:genomeTrials,localRepairCount:repairStats.local,causalRerollCount:repairStats.causalRerolls,evaluatedCandidates:compared,budget:totalBudget,frontierBudget,fallbackBudget:fallbackReserve,perGenomeBudget,primaryFailureReasons:failureSummary,phaseFailureReasons:phaseFailureSummary,failedTechniqueCombinations:Object.entries(failureCombinations).sort((a,b)=>b[1]-a[1]).slice(0,4).map(([combination,count])=>({combination,count})),newGenomeSwitches:genomeSwitches,fallbackAttempted,fallbackCandidatesExamined:fallbackExamined,safeCandidateFound};
  if(!bestSafe)throw Object.assign(Error('V15_NO_SAFE_RANDOM_LINE_'+c.line),{diagnostic:searchSummary});
  // Timing follows discovery; retain original expressive progression and never
  // add repeated flash events. A failed timing edit simply keeps the safe cut.
@@ -205,8 +227,8 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
  }
  const activeMotion=item.descriptor.holdMotion.value>1e-6,changes=J.genomeChangesV15(generated,final);
  const observed=catalog.map(row=>({...row,generated:row.group==='style'?row.id===final.styleKey:row.group==='layout'?row.id===final.layout:row.group==='decor'?final.decor.includes(row.id):row.id===final[row.group],probed:item.checks.some(e=>e.registryDispatchV11?.some(x=>x.group===row.group&&x.id===row.id)),safe:item.checks.some(e=>e.registryDispatchV11?.some(x=>x.group===row.group&&x.id===row.id))}));
- const repairSummary={attempted:repairs.length,localEvaluations:repairStats.local,causalRerolls:repairStats.causalRerolls,changedRoles:[...new Set(repairs.filter(x=>x.role).map(x=>x.role))]};
- item.optimizerEvidence={explorationVersion:15,compared,budget:totalBudget,origins,search:searchSummary,repairSummary,repairStats,exclusions:failureSummary,axes:item.dimensions,ablations:item.ablations,catalog:observed,counts:Object.fromEntries(['registered','callable','eligible','generated','probed','safe'].map(k=>[k,observed.filter(x=>x[k]).length])),genome:{generated,final,changedRoles:changes,retention:1-changes.length/Object.keys(generated).length},...(safeFallbackUsed?{recoveryMode:'SAFE_FALLBACK',reason:'RANDOM_FRONTIER_EXHAUSTED'}:{}),intensity:{requested:'かなり激しい',nativeStrength:true,status:activeMotion?'OBSERVED_MOTION':'UNMET',scope:'sampled primary motion; subjective intensity UNVERIFIED'},lightSafety:item.lightSafetyV15,motionV14:J.motionObservationV14(item),seed:p.seed,artisticQuality:'UNVERIFIED'};
+ const repairSummary={attempted:repairs.length,localEvaluations:repairStats.local,causalRerolls:repairStats.causalRerolls,changedRoles:[...new Set(repairs.filter(x=>x.role).map(x=>x.role))],recoveryChangedRoles:fallbackChanges};
+ item.optimizerEvidence={explorationVersion:15,compared,budget:totalBudget,origins,search:searchSummary,repairSummary,repairStats,exclusions:failureSummary,axes:item.dimensions,ablations:item.ablations,catalog:observed,counts:Object.fromEntries(['registered','callable','eligible','generated','probed','safe'].map(k=>[k,observed.filter(x=>x[k]).length])),genome:{generated,final,changedRoles:changes,retention:1-changes.length/Object.keys(generated).length},...(safeFallbackUsed?{recoveryMode:'SAFE_FALLBACK',reason:'RANDOM_FRONTIER_EXHAUSTED',recovery:{mode:'SAFE_FALLBACK',reason:'RANDOM_FRONTIER_EXHAUSTED',changedRoles:fallbackChanges,candidatesExamined:fallbackExamined,scaleGate:'MEASURED_640PX'}}:{}),intensity:{requested:'かなり激しい',nativeStrength:true,status:activeMotion?'OBSERVED_MOTION':'UNMET',scope:'sampled primary motion; subjective intensity UNVERIFIED'},lightSafety:item.lightSafetyV15,motionV14:J.motionObservationV14(item),seed:p.seed,artisticQuality:'UNVERIFIED'};
  item.checks=item.checks.map(strip);return [item];
 };
 J.chooseRandomStoryboardV15=(p,portfolios)=>{
@@ -225,8 +247,30 @@ const fix=J.runSongNativeFixSearch;J.runSongNativeFixSearch=(before,q,a,p,range,
 };
 const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick,failures,o)=>{
  if(!J.isRandomFinisherV15(p))return recover(p,pick,failures,o);
- // Final-scale failures cannot restart discovery or silently use a v14 arc.
- const detail=(plan,cut,t)=>{const low=o.sample(plan,cut,t),high=o.sample.verifyScale(plan,cut,t);return {...low,...high,mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:t};};
- try{const rows=await J.optimizeRandomLineV15({...o,sample:detail,p,c:pick.cut,f:pick.features,initialCuts:[pick.cut],preserveCurrent:true});for(const row of rows){row.optimizerEvidence.repairSummary.priorScaleRepairCount=pick.optimizerEvidence?.repairSummary?.attempted||0;row.optimizerEvidence.repairStats.priorScaleRepairSuccesses=pick.optimizerEvidence?.repairStats?.succeeded||0;}return rows;}catch(e){if(e.message.startsWith('V15_NO_SAFE'))return [];throw e;}
+ // Reuse v11.2's cause-directed style/layout hypotheses while rechecking every
+ // candidate at both the production probe and 640px. Never force-adopt a row.
+ const detail=(plan,cut,t)=>{const low=o.sample(plan,cut,t),high=o.sample.verifyScale(plan,cut,t);if(high.renderErrors?.length)throw Object.assign(Error('V15_RENDERER_ERROR'),{code:'RENDERER_ERROR',diagnostic:{line:cut.line,displayLine:cut.line+1,renderErrors:high.renderErrors.slice(0,4)}});return {...low,...high,mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:t};};
+ const budget=Math.min(16,Math.max(1,o.budget||12)),states=o.sample.candidateStates,started=states?.size||0,index=J.explorationCatalogV13(p),reasons=new Set(failures.flatMap(x=>x.reasons||[])),stages=new Set(failures.map(x=>x.stage)),causes=[];
+ if([...reasons].some(x=>/MISSING_HOLD|HOLD_READABILITY|GLYPH_DEFORMATION|SIZE/.test(x))){causes.push('hold','layout');}
+ if(stages.has('ENTRY')||reasons.has('TRANSIENT')&&pick.cut.enter!=='cut')causes.push('enter');
+ if(stages.has('EXIT')||reasons.has('TRANSIENT')&&pick.cut.exit!=='cut')causes.push('exit');
+ if([...reasons].some(x=>/CONTRAST/.test(x)))causes.push('fx','treat','bg');
+ if([...reasons].some(x=>/SAFE_AREA|CAMERA/.test(x)))causes.push('cam','layout');
+ if(!causes.length)causes.push('layout','hold');
+ const rows=[],seen=new Set([J.canonicalJSON(pick.cut)]),usedCount=()=>states?states.size-started:seen.size-1,limit=()=>Math.max(0,budget-usedCount());let ordinal=600;
+ for(const role of [...new Set(causes)]){
+  if(limit()<=0||rows.length>=4)break;
+  let cut=null;
+  if(role==='fx'&&reasons.has('CONTRAST')&&pick.cut.registryFxV9)cut=J.changeDirectionRoleV11(pick.cut,'fx',null);
+  else cut=J.rerollRoleV15(p,pick.cut,index,role,ordinal++);
+  if(!cut||seen.has(J.canonicalJSON(cut)))continue;seen.add(J.canonicalJSON(cut));
+  const checks=o.phases(cut).map(t=>{abort(o.signal);return detail({...p,style:cut.style,styleKey:cut.styleKey,motionObservationV14:true},cut,t);});
+  if(checks.some(e=>e.renderErrors?.length))throw Object.assign(Error('V15_RENDERER_ERROR'),{code:'RENDERER_ERROR',diagnostic:{line:cut.line,displayLine:cut.line+1,renderErrors:checks.flatMap(e=>e.renderErrors||[]).slice(0,4)}});
+  if(checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable))rows.push({...pick,cut,checks,times:o.phases(cut),recoveryRole:role});
+ }
+ const used=usedCount();if(rows.length){rows.examined=used;return rows;}const remaining=budget-used;
+ if(remaining>0){const expanded=await recover(p,pick,failures,{...o,sample:detail,budget:remaining,frontier:[]});for(const row of expanded)if(!seen.has(J.canonicalJSON(row.cut)))rows.push(row);rows.examined=used+(expanded.examined||0);}
+ else rows.examined=used;
+ return rows;
 };
 })();
