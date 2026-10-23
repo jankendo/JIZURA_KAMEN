@@ -71,7 +71,7 @@ class Renderer {
   }
 
   drawCustomBackground(ctx, plan, t, tq, step, sc, scale, allowFilter) {
-    const image = this.customBgBitmap, cfg = plan.customBg || {}, cut=J.cutAt(plan,tq), scene=cut?.backgroundScene||null;
+    const image = this.customBgBitmap, cut=J.cutAt(plan,tq), cfg=J.explorationBackgroundV13?.(plan,cut,plan.customBg||{})||plan.customBg||{}, scene=cut?.backgroundScene||null;
     if (!image || !image.width || !image.height) return false;
     const W = plan.W, H = plan.H;
     const chapter=plan.styleArc?.segments?.find(s=>t>=s.from&&t<s.to),phase=chapter&&!plan.musicalPhoto?J.clamp((t-chapter.from)/Math.max(.1,chapter.to-chapter.from)):0;
@@ -87,6 +87,7 @@ class Renderer {
         cam = J.CAMERA[cut.cam].get(env, cut.camP || {}) || null;
       } catch (e) { cam = null; }
     }
+    cam=J.explorationCameraV13?.(plan,cut,cam)??cam;
     ctx.save();
     if (cam) {
       ctx.translate(W / 2 + (cam.x || 0), H / 2 + (cam.y || 0));
@@ -266,7 +267,7 @@ class Renderer {
       let cam = null;
       const CD = J.CAMERA[cut.cam] || J.CAMERA.push;
       try { cam = (plan.artDirection?.realityVersion===2 ? J.lyricsCameraAt(plan,tp) : J.cameraAt?.(plan,tp,this.renderRange))||CD.get(env, cut.camP || {}); } catch (e) { cam = null; }
-      cam = cam || {};
+      cam = J.explorationCameraV13?.(plan,cut,cam) || cam || {};
       if (P.pass === 'main' && J.cameraMatrix) env.cameraMatrix = J.cameraMatrix(W, H, cam, shx + P.off[0], shy + P.off[1]);
       const cs = cam.s ?? 1;
       X.translate(W / 2 + shx + P.off[0] + (cam.x || 0), H / 2 + shy + P.off[1] + (cam.y || 0));

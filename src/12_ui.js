@@ -1094,6 +1094,9 @@ function syncDirectionUI() {
   $('studioTiming').disabled = !lyrics || !!S.exporting;
   const btn = $('btnAutoDirection');
   btn.disabled = directionBusy || S.audioLoading || !!S.tap || !image || !music || !lyrics;
+  const wholeLines=S.plan?.lines?.every((l,i)=>{const cuts=S.plan.cuts.filter(c=>c.line===i);return cuts.length===1&&String(cuts[0].text).replace(/\s/g,'')===String(l.text).replace(/\s/g,'');});
+  $('studioAdaptCurrent').disabled=btn.disabled||!wholeLines;
+  $('studioAdaptCurrent').title=wholeLines?'現在の構図と技法を初期候補にして局所調整':'全文を1カットで表示する構成で利用できます';
   for(const [id,ready] of [['studioImageSlot',image],['studioAudioSlot',music],['studioLrcSlot',lyrics]])
     $(id).parentElement.classList.toggle('is-ready',ready);
   $('studioImageName').textContent=image?S.project.customBg.filename||'画像を読み込み済み':'画像を選択';
@@ -1109,7 +1112,8 @@ function syncDirectionUI() {
   syncStudioResultVisibility();
   if(locked)processingLocks(true);
 }
-async function autoDirection() {
+async function autoDirection(preserveCurrent=false) {
+  preserveCurrent=preserveCurrent===true;
   if (directionBusy || S.exporting || S.tap) return;
   let generationCommitted=false;
   const previousGeneration={project:S.project,plan:S.plan,pixelQA:S.pixelQA};
@@ -1153,7 +1157,7 @@ async function autoDirection() {
     const generationProject=S.project,generationAudio=S.audio;
     let generationIdentity=J.songNativeInputIdentity(S.project,audioLike());
     const assertGeneration=()=>{if(generationCancel.signal.aborted)throw new DOMException('Aborted','AbortError');if(S.project!==generationProject||S.audio!==generationAudio||J.songNativeInputIdentity(S.project,audioLike())!==generationIdentity)throw new Error('入力が変更されたため、古いMVの確定を中止しました。もう一度作成してください');};
-    const directionSet=await J.generateJizuraDirectionV12(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
+    const directionSet=await J.generateJizuraDirectionV13(S.project,audioLike(),{onProgress:detail,signal:generationCancel.signal});
     assertGeneration();task.enter('apply');await J.processingYield();assertGeneration();
     const proposal=directionSet.recommended.proposal;
     S.directionCandidates=directionSet.candidates;S.alternative=0;
@@ -1182,7 +1186,7 @@ async function autoDirection() {
     const observationCache=new Map();
     const generationPlan=S.plan;
     await J.ensureFonts(S.project.lyrics+(S.project.title||'')+(S.project.artist||''),J.fontsOfPlan(generationPlan));assertGeneration();
-    await J.searchSongNativeCandidates(generationPlan,range,generationAudio,{onProgress:detail,signal:generationCancel.signal});assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
+    await J.searchSongNativeCandidates(generationPlan,range,generationAudio,{onProgress:detail,signal:generationCancel.signal,preserveCurrent,initialPlan:preserveCurrent?previousGeneration.plan:null,initialCuts:preserveCurrent?previousGeneration.plan.cuts.filter(c=>c.line>=0).map(c=>({...J.clonePhotoRenderPlan(c),style:c.style||previousGeneration.plan.style,styleKey:c.styleKey||previousGeneration.plan.styleKey,registrySelectedV8:true})):[]});assertGeneration();if(S.plan!==generationPlan)throw new Error('PLAN_CHANGED_DURING_GENERATION');
     const captureInput=async()=>J.cinemaV3?.enabled?{plan:S.plan,input:await J.cinemaV3.snapshot(S.project,S.audio,S.plan,range),renderState:J.cinemaV3.qaRenderState(S.project,S.plan,range),analysisKey:J.canonicalJSON(audioLike())}:null;
     J.ensureSongNativeDirection(S.project,audioLike(),S.plan,generationIdentity);
     let analyzedInput=await captureInput();
@@ -1703,6 +1707,7 @@ function bind() {
   }));
   $('audioFile').addEventListener('change', e => { const f = e.target.files && e.target.files[0]; if (f) loadAudioFile(f); });
   $('btnAutoDirection').addEventListener('click', autoDirection);
+  $('studioAdaptCurrent').addEventListener('click',()=>autoDirection(true));
   $('btnTap').addEventListener('click', () => (S.tap ? stopTap() : startTap()));
   $('tapBtn').addEventListener('click', tapNow);
   $('tapUndo').addEventListener('click', undoTap);

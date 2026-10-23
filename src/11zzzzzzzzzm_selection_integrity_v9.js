@@ -87,7 +87,7 @@ J.registryRoleCandidatesV9=(p,g,target)=>{
 // Cut-owned FX are materialized identically in probes and final rendering.
 const frame=J.Renderer.prototype.frame;J.Renderer.prototype.frame=function(ctx,p,t,opt={}){
  if(!active(p)||!p.cuts.some(c=>c.registryFxV9))return frame.call(this,ctx,p,t,opt);
- const events=[...(p.events||[]),...p.cuts.filter(c=>c.registryFxV9&&J.FXE[c.registryFxV9]).flatMap(c=>[{offset:0,strength:1},...(J.isExpressiveV12?.(p)?c.expressiveEventsV12||[]:[])].map(e=>({t:c.start+e.offset,type:c.registryFxV9,dur:Math.min(.12,c.dur*.15),amp:.12*J.clamp(e.strength),seed:c.seed,source:'registry-v9',musicalPhotoCue:!J.isSongDerivedV11?.(p),...(J.isSongDerivedV11?.(p)?{registryDirectionV11:true}:{})})))].sort((a,b)=>a.t-b.t);
+ const events=[...(p.events||[]),...p.cuts.filter(c=>c.registryFxV9&&J.FXE[c.registryFxV9]).flatMap(c=>[{offset:0,strength:1},...(J.isExpressiveV12?.(p)?c.expressiveEventsV12||[]:[])].map(e=>({t:c.start+e.offset,type:c.registryFxV9,dur:Math.min(.12,c.dur*.15),amp:.12*J.clamp(e.strength)*(J.isExplorationV13?.(p)?c.explorationParamsV13?.fx??1:1),seed:c.seed,source:'registry-v9',musicalPhotoCue:!J.isSongDerivedV11?.(p),...(J.isSongDerivedV11?.(p)?{registryDirectionV11:true}:{})})))].sort((a,b)=>a.t-b.t);
  return frame.call(this,ctx,{...p,events},t,opt);
 };
 J.registryAlternativesV9=async(p,portfolios,winner,sample,phases,selection)=>{
