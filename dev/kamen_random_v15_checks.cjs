@@ -25,6 +25,11 @@ module.exports=async function randomChecksV15(){
  const proposals=J.finishRepairsV15(p,c,checks.map(e=>({...e,eligible:false,safe:false})));assert(proposals.every(x=>!J.genomeChangesV15(genome,J.creativeGenomeV15(x)).length),'numeric repairs cannot replace genome');
  assert(proposals.some(x=>(x.explorationParamsV13?.size??1)!==(c.explorationParamsV13?.size??1)),'measured size correction exists');
  console.log('V15 TEST 1 PASS: actual Canvas retention, numeric fit, local reroll, locks and replay');
+ const reroll=J.rerollRoleV15;let bounded=false;
+ try{J.rerollRoleV15=(_p,cut)=>J.clonePhotoRenderPlan(cut);const base=checks.find(e=>e.temporalStage==='HOLD');await J.optimizeRandomLineV15({...args,preserveCurrent:false,budget:108,phases:()=>[.5],sample:()=>({...base,sampleOffset:.5,eligible:false,safe:false})});}
+ catch(e){bounded=e.message.startsWith('V15_NO_SAFE')&&e.diagnostic.compared<108;}
+ finally{J.rerollRoleV15=reroll;}
+ assert(bounded,'duplicate causal rerolls terminate even when no new Canvas state consumes budget');
  // Dedicated selector is first-safe even if a later candidate scores higher.
  const firstPick={...first[0],score:0},later={...first[0],score:100};
  assert(J.chooseRandomStoryboardV15(p,[{line:0,candidates:[firstPick,later]}]).picks[0].score===0,'no score reselection');
@@ -47,5 +52,5 @@ module.exports=async function randomChecksV15(){
  const vertical=await J.optimizeRandomLineV15({p:pp,c:pc,f:J.songLineFeaturesV8(pp,a,pc),sample:ps,phases:cut=>J.directionPhasesV11(pp,cut,a),audio:a});
  const steps=[{line:0,candidates:vertical}],pick=J.chooseRandomStoryboardV15(pp,steps);ps.recoverLine=(plan,pick,failures,budget)=>J.recoverDirectionLineV112(plan,pick,failures,{sample:ps,phases:cut=>J.directionPhasesV11(pp,cut,a),audio:a,budget});
  const confirmed=await J.confirmDirectionScaleV11(pp,steps,pick,ps,cut=>J.directionPhasesV11(pp,cut,a));assert(confirmed.scaleSafety.status==='MEASURED_SAFE_SEQUENCE','portrait 640px');
- R.disposeAssets?.();return {retention:'PASS',determinism:'PASS',localReroll:'PASS',locks:'PASS',intensityDistribution:'PASS',productionRoles:'PASS',saveRestore:'PASS',LRC:'PASS',portrait:'PASS',scale:'PASS',traces:traces.map(t=>({genome:t.genome,intensity:t.intensity,compared:t.compared,repairs:t.repairs,repairStats:t.repairStats,lightSafety:t.lightSafety})),artisticQuality:'UNVERIFIED'};
+ R.disposeAssets?.();return {retention:'PASS',determinism:'PASS',localReroll:'PASS',boundedStagnation:'PASS',locks:'PASS',intensityDistribution:'PASS',productionRoles:'PASS',saveRestore:'PASS',LRC:'PASS',portrait:'PASS',scale:'PASS',traces:traces.map(t=>({genome:t.genome,intensity:t.intensity,compared:t.compared,repairs:t.repairs,repairStats:t.repairStats,lightSafety:t.lightSafety})),artisticQuality:'UNVERIFIED'};
 };

@@ -97,8 +97,8 @@ J.optimizeRandomLineV15=async({p,c,f,sample,phases,signal,audio,budget=108,initi
  };
  const raw=initialCuts[0]||(preserveCurrent?initialPlan?.cuts.find(x=>x.line===c.line):J.randomProposalV15(p,c,catalog,ordinal++));
  if(!raw)throw Error('V15_MISSING_CURRENT_GENOME');
- let generated=raw.creativeGenomeV15||J.creativeGenomeV15(raw);let localRounds=0;let current=evaluate(J.initialFinishV15(p,raw),preserveCurrent?'initial':'fresh'),bestSafe=null;
- while(current&&compared<budget){
+ let generated=raw.creativeGenomeV15||J.creativeGenomeV15(raw);let localRounds=0,passes=0;let current=evaluate(J.initialFinishV15(p,raw),preserveCurrent?'initial':'fresh'),bestSafe=null;
+ while(current&&compared<budget&&passes++<budget){
   if(current.safe){
    current.generatedGenomeV15=generated;if(!bestSafe)bestSafe=current;
    if(preserveCurrent||current.descriptor.holdMotion.value>1e-6){bestSafe=current;break;}
