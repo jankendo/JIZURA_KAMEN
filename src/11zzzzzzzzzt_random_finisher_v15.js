@@ -105,11 +105,10 @@ J.composeSafeRandomV15=async({p,c,index,evaluate,remaining,signal,diagnostic})=>
   delete cut.generatedMotionV7;delete cut.grammar;delete cut.photoChoreography;
   for(const role of roles)cut=J.changeDirectionRoleV11(cut,role,neutral[role]);
   cut=J.initialFinishV15(p,cut);cut.explorationParamsV13={size:1,dx:0,dy:0,motion:1,camera:1,fx:1};
-  let row=evaluate(cut,'anchor');diagnostic.safetyAnchor.examined++;
-  if(!row)continue;
+  let row=evaluate(cut,'anchor');if(!row)continue;diagnostic.safetyAnchor.examined++;
   if(!row.safe){diagnostic.safetyAnchor.failureReasons.push(...J.motionFailureV14(row.checks,row.cut));
    for(const repaired of J.finishRepairsV15(p,row.cut,row.checks).slice(0,2)){
-    if(diagnostic.safetyAnchor.examined>=anchorBudget||remaining()<=0)break;const fixed=evaluate(repaired,'anchorRepair');diagnostic.safetyAnchor.examined++;if(fixed?.safe){row=fixed;break;}
+    if(diagnostic.safetyAnchor.examined>=anchorBudget||remaining()<=0)break;const fixed=evaluate(repaired,'anchorRepair');if(fixed)diagnostic.safetyAnchor.examined++;if(fixed?.safe){row=fixed;break;}
    }
   }
   if(row.safe){safe=row;break;}
@@ -132,11 +131,11 @@ J.composeSafeRandomV15=async({p,c,index,evaluate,remaining,signal,diagnostic})=>
    const causes=J.motionFailureV14(row.checks,row.cut);let repaired=false;
    for(const cut of J.finishRepairsV15(p,row.cut,row.checks).slice(0,2)){
     if(remaining()<=roles.length)break;
-    const fixed=evaluate(cut,'compositionRepair');if(fixed?.safe){accepted=fixed;repaired=true;break;}
+    const fixed=evaluate(cut,'compositionRepair');if(fixed?.safe){accepted=fixed;repaired=true;diagnostic.randomCompositions.safe++;break;}
    }
    diagnostic.randomCompositions.failures.push({role,id,causes,repaired});if(accepted)break;
   }
-  if(accepted)safe=accepted;
+  if(accepted){if(J.genomeChangesV15(J.creativeGenomeV15(before.cut),J.creativeGenomeV15(accepted.cut)).some(g=>g!==role))throw Error('V15_NONLOCAL_COMPOSITION');safe=accepted;}
   diagnostic.randomCompositions.roles.push({role,accepted:!!accepted,retainedPrior:!accepted});
   await new Promise(r=>setTimeout(r,0));
  }
