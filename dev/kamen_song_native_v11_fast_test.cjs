@@ -11,7 +11,8 @@ const scenarios=require('./kamen_song_native_v11_scenarios.cjs');
   if(process.env.KAMEN_V12_MP4){await page.route('http://127.0.0.1:4173/v12-probe',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><title>Short production encoder probe</title>'}));await page.goto('http://127.0.0.1:4173/v12-probe');await page.addScriptTag({path:path.join(root,'vendor/mp4-muxer.min.js')});}
   // Same manifest order as the production bundle, excluding the product UI.
   const manifest=JSON.parse(fs.readFileSync(path.join(root,'scripts/source-manifest.json'),'utf8'));
-  await page.addScriptTag({content:manifest.filter(n=>!n.startsWith('12')).map(n=>fs.readFileSync(path.join(root,'src',n),'utf8')).join('\n')});
+  const sourceFiles=new Map(manifest.map(n=>[n,fs.readFileSync(path.join(root,'src',n),'utf8')]));
+  await page.addScriptTag({content:manifest.filter(n=>!n.startsWith('12')).map(n=>sourceFiles.get(n)).join('\n')});
   const fontData=fs.readFileSync(path.join(root,'assets/fonts/NotoSansCJKjp-Bold.woff2')).toString('base64');
   await page.evaluate(async data=>{const f=new FontFace('JIZURA Noto CJK JP',`url(data:font/woff2;base64,${data})`,{weight:'700'});await f.load();document.fonts.add(f);},fontData);
   let report;
@@ -26,6 +27,7 @@ const scenarios=require('./kamen_song_native_v11_scenarios.cjs');
    delete report.sheet;
    console.log('ASSET PASS:',report.lines,'lines,',report.duration,'seconds, restore',report.restore);
   }else {report=await page.evaluate(scenarios);report.safeAlternativeRegression=await page.evaluate(require('./kamen_safe_alternative_v112_scenario.cjs'));}
+  if(process.env.KAMEN_V13_CHECKS)report.v13Checks=await page.evaluate(require('./kamen_exploration_v13_checks.cjs'));
   if(process.env.KAMEN_V12_MP4){
    const encoded=await page.evaluate(async()=>{const {q,p,a}=window.comparisonV12;const result=await J.exportMP4({plan:p,project:q,audio:a,range:{start:.3,end:1.3}});const R=new J.Renderer();await R.loadCustomBackground(q.customBg.dataUrl);
     const actual=Object.assign(document.createElement('canvas'),{width:result.width,height:result.height}),expected=actual.cloneNode(),control=actual.cloneNode(),video=document.createElement('video'),url=URL.createObjectURL(result.blob),observations=[];
@@ -42,7 +44,7 @@ const scenarios=require('./kamen_song_native_v11_scenarios.cjs');
    fs.writeFileSync(process.env.KAMEN_V12_MP4,Buffer.from(encoded.base64,'base64'));delete encoded.base64;report.encodedSmoke=encoded;
   }
   const {auditBootstrap,auditBoundary}=await import('../scripts/source-order.mjs');
-  const source=auditBootstrap+'\n'+manifest.map(n=>fs.readFileSync(path.join(root,'src',n),'utf8')+auditBoundary(n)).join('\n');
+  const source=auditBootstrap+'\n'+manifest.map(n=>sourceFiles.get(n)+auditBoundary(n)).join('\n');
   report.sourceTreeSHA256=require('node:crypto').createHash('sha256').update(source).digest('hex');
   report.sourceCommit=process.env.KAMEN_V11_SOURCE_COMMIT||require('node:child_process').execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
   console.log('V11_EVIDENCE',JSON.stringify({registered:report.registered,techniques:report.techniques,framesCompared:report.framesCompared,sourceTreeSHA256:report.sourceTreeSHA256,sourceCommit:report.sourceCommit,lines:Array.isArray(report.lines)?report.lines.map(x=>({line:x.line,counts:x.counts,compared:x.compared})):report.lines,selected:report.selected}));
