@@ -16,7 +16,7 @@ A single retry coordinator tries supported automatic video configurations before
 
 Mediabunny and its AAC extension: 1.62.1; esbuild: 0.28.2; playwright-core: 1.64.1; acorn: 8.19.0; @noble/hashes: 2.4.0. Canvas QA uses the latest compatible 0.1 release, **0.1.100**, rather than 1.0.13: the 1.0 major changed raster results enough to make the existing real-render story test fail. The same test passes on 0.1.100 and the old 0.1.80. This compatibility limit affects Node QA tools, not browser rendering. Dependency versions and integrity hashes are locked.
 
-The deprecated mp4-muxer binary is retained only as an historical asset and is not embedded in production. AAC/media bundles and license notices are regenerated. GitHub Actions remain pinned to verified current release commits; the new MP4 job uploads its evidence for seven days and includes a 180-second encode. Pull requests do not deploy Pages.
+The deprecated mp4-muxer binary is retained only as an historical asset and is not embedded in production. AAC/media bundles and license notices are regenerated. GitHub Actions remain pinned to verified current release commits; the new MP4 job uploads its evidence for seven days and includes a 180-second encode. MP4 validation runs in parallel with legacy contracts, explicitly installs FFmpeg, and both jobs gate deployment. Pull requests do not deploy Pages.
 
 ## Verification
 
@@ -24,6 +24,7 @@ Run:
 
 ```bash
 npm ci
+# Install ffmpeg/ffprobe and Chrome for browser validation.
 npm run build:media
 npm run build
 node dev/mp4_block_store_test.mjs
