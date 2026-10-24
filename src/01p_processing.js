@@ -7,6 +7,9 @@ J.processing = {
   jobs,
   subscribe(fn) { listeners.add(fn); return () => listeners.delete(fn); },
   begin(title, stages, options = {}) {
+    // A new foreground attempt replaces stale outcomes; a later success must
+    // not uncover an earlier cancellation when its own acknowledgement closes.
+    if(!options.compact)for(const s of jobs.values())if(!s.compact&&s.status!=='running')s.handle.dismiss();
     const state = {id:++sequence,title,status:'running',startTime:now(),lastEvent:now(),endTime:null,
       stages:stages.map(([id,label,weight])=>({id,label,weight,status:'pending',fraction:null})),
       index:-1,detail:'',error:'',retry:options.retry,cancel:options.cancel,compact:!!options.compact};

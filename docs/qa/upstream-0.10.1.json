@@ -1,0 +1,334 @@
+{
+  "version": "2.1.0",
+  "upstream": "fc16bfe43ea4a6c25a21f1caf04d17326de14f00",
+  "checks": [
+    {
+      "name": "immutable upstream source checksums",
+      "status": "PASS"
+    },
+    {
+      "name": "shipping UI boot",
+      "status": "PASS"
+    },
+    {
+      "name": "upstream seed/theme parity, mixed LRC, words, lock and save compatibility",
+      "status": "PASS",
+      "comparisons": 21,
+      "parts": 153
+    },
+    {
+      "name": "real image/audio/LRC import and generation button",
+      "status": "PASS"
+    },
+    {
+      "name": "native picker cancellation preserves selected plan",
+      "status": "PASS"
+    },
+    {
+      "name": "real export button and MP4 download preserve selected cuts",
+      "status": "PASS"
+    },
+    {
+      "name": "project file save/reopen and audio reload preserve cuts",
+      "status": "PASS"
+    },
+    {
+      "name": "stale in-flight audio import cannot revive another project",
+      "status": "PASS"
+    },
+    {
+      "name": "720-silent",
+      "status": "PASS",
+      "validation": {
+        "container": "mp4",
+        "videoCodec": "avc1",
+        "audioCodec": null,
+        "width": 1280,
+        "height": 720,
+        "duration": 2,
+        "videoDuration": 2,
+        "audioDuration": 0,
+        "videoSamples": 48,
+        "audioSamples": 0,
+        "fps": 24,
+        "bytes": 1555970,
+        "certification": {
+          "passed": true,
+          "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
+        }
+      }
+    },
+    {
+      "name": "1080-audio",
+      "status": "PASS",
+      "validation": {
+        "container": "mp4",
+        "videoCodec": "avc1",
+        "audioCodec": "mp4a",
+        "width": 1920,
+        "height": 1080,
+        "duration": 2.026666666666667,
+        "videoDuration": 2,
+        "audioDuration": 2.026666666666667,
+        "videoSamples": 48,
+        "audioSamples": 95,
+        "fps": 24,
+        "bytes": 3524781,
+        "certification": {
+          "passed": true,
+          "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
+        }
+      }
+    },
+    {
+      "name": "vertical-audio",
+      "status": "PASS",
+      "validation": {
+        "container": "mp4",
+        "videoCodec": "avc1",
+        "audioCodec": "mp4a",
+        "width": 720,
+        "height": 1280,
+        "duration": 2.026666666666667,
+        "videoDuration": 2,
+        "audioDuration": 2.026666666666667,
+        "videoSamples": 48,
+        "audioSamples": 95,
+        "fps": 24,
+        "bytes": 1515723,
+        "certification": {
+          "passed": true,
+          "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
+        }
+      }
+    },
+    {
+      "name": "range-wasm-aac",
+      "status": "PASS",
+      "validation": {
+        "container": "mp4",
+        "videoCodec": "avc1",
+        "audioCodec": "mp4a",
+        "width": 1280,
+        "height": 720,
+        "duration": 1.536,
+        "videoDuration": 1.5,
+        "audioDuration": 1.536,
+        "videoSamples": 36,
+        "audioSamples": 72,
+        "fps": 24,
+        "bytes": 1182399,
+        "certification": {
+          "passed": true,
+          "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
+        }
+      }
+    },
+    {
+      "name": "180-second-audio",
+      "status": "PASS",
+      "validation": {
+        "container": "mp4",
+        "videoCodec": "avc1",
+        "audioCodec": "mp4a",
+        "width": 1280,
+        "height": 720,
+        "duration": 180.032,
+        "videoDuration": 180,
+        "audioDuration": 180.032,
+        "videoSamples": 4320,
+        "audioSamples": 8439,
+        "fps": 24,
+        "bytes": 4197758,
+        "certification": {
+          "passed": true,
+          "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
+        }
+      }
+    },
+    {
+      "name": "mid-encode cancellation",
+      "status": "PASS"
+    },
+    {
+      "name": "video failure retries without changing selection",
+      "status": "PASS"
+    },
+    {
+      "name": "native AAC initialization failure retries through audio fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "corrupt output is terminal and never offered for download",
+      "status": "PASS"
+    }
+  ],
+  "movies": [
+    {
+      "file": "ui.mp4",
+      "bytes": 2368041,
+      "streams": [
+        {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "24/1",
+          "duration": "3.000000"
+        },
+        {
+          "codec": "aac",
+          "fps": "0/0",
+          "duration": "3.029333"
+        }
+      ],
+      "duration": "3.029333",
+      "sha256": "165987dc260cbab9237a7c61d7d4f426c4be161d1af590d2d72eff6725fb804d"
+    },
+    {
+      "file": "720-silent.mp4",
+      "bytes": 1555970,
+      "streams": [
+        {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "24/1",
+          "duration": "2.000000"
+        }
+      ],
+      "duration": "2.000000",
+      "sha256": "72d3fb50a2a5a3301a8736c2ce6da8892aed7afb36f7eac809844bbac95a0ee4"
+    },
+    {
+      "file": "1080-audio.mp4",
+      "bytes": 3524781,
+      "streams": [
+        {
+          "codec": "h264",
+          "width": 1920,
+          "height": 1080,
+          "fps": "24/1",
+          "duration": "2.000000"
+        },
+        {
+          "codec": "aac",
+          "fps": "0/0",
+          "duration": "2.026667"
+        }
+      ],
+      "duration": "2.026667",
+      "sha256": "0cb9ea5b1e5662bf80e81e8fde103407523413e83384ec495bc02b725dd6a4a1"
+    },
+    {
+      "file": "vertical-audio.mp4",
+      "bytes": 1515723,
+      "streams": [
+        {
+          "codec": "h264",
+          "width": 720,
+          "height": 1280,
+          "fps": "24/1",
+          "duration": "2.000000"
+        },
+        {
+          "codec": "aac",
+          "fps": "0/0",
+          "duration": "2.026667"
+        }
+      ],
+      "duration": "2.026667",
+      "sha256": "0c132fdfdefb988f1a23cc614d1cb3a3fe88ef34031467dfa4cd333096774968"
+    },
+    {
+      "file": "range-wasm-aac.mp4",
+      "bytes": 1182399,
+      "streams": [
+        {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "24/1",
+          "duration": "1.500000"
+        },
+        {
+          "codec": "aac",
+          "fps": "0/0",
+          "duration": "1.536000"
+        }
+      ],
+      "duration": "1.536000",
+      "sha256": "c3796776cb2913f1142a716a0523b388582d709f303181a123803f309ab263c7"
+    },
+    {
+      "file": "180-second-audio.mp4",
+      "bytes": 4197758,
+      "streams": [
+        {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "24/1",
+          "duration": "180.000000"
+        },
+        {
+          "codec": "aac",
+          "fps": "0/0",
+          "duration": "180.032000"
+        }
+      ],
+      "duration": "180.032000",
+      "sha256": "cc68ea921578690d8026f552adae0fc2d5ed319ad27bc681d43623570d0118da"
+    },
+    {
+      "file": "retried.mp4",
+      "bytes": 2377499,
+      "streams": [
+        {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "24/1",
+          "duration": "3.000000"
+        },
+        {
+          "codec": "aac",
+          "fps": "0/0",
+          "duration": "3.029333"
+        }
+      ],
+      "duration": "3.029333",
+      "sha256": "42bbe3a6f5157d2f2cec242b0ac344375f64c30e8858b593bba89cc57900517a"
+    },
+    {
+      "file": "audio-retried.mp4",
+      "bytes": 2378142,
+      "streams": [
+        {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "24/1",
+          "duration": "3.000000"
+        },
+        {
+          "codec": "aac",
+          "fps": "0/0",
+          "duration": "3.029333"
+        }
+      ],
+      "duration": "3.029333",
+      "sha256": "4ef0c13f5989bc41eab9c8d8489725dd652915a7396a3803edfd94e3576606cb"
+    }
+  ],
+  "errors": [],
+  "status": "PASS",
+  "build": {
+    "sourceCommit": "900672445e5aa00375e34285dbd9108f100bad87",
+    "sourceDirty": true,
+    "sourceTreeSHA256": "36418886832accd4a7fe4fb2570d974c2e72c58ba13e352bfe93261944a66d10",
+    "upstreamCommit": "fc16bfe43ea4a6c25a21f1caf04d17326de14f00",
+    "upstreamSHA256": "5c364cf33e4cd5b5b7ce8ebeec252f2340ae2c45bcc55542968e3fc2fa1c9922",
+    "mediaSHA256": "9f4746e502a62364808e67f34b04c49f213fc42b12d098ebb3023c902d03e47e"
+  },
+  "artifacts": "MP4s are local verification artifacts; GitHub Actions uploads a new complete set for each run."
+}

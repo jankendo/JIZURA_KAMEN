@@ -14,7 +14,23 @@ const js = auditBootstrap+'\n'+(await Promise.all(sources.map(async name => (awa
 let sourceCommit=null,sourceDirty=null;
 try {sourceCommit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim();sourceDirty=!!execFileSync('git',['status','--porcelain','--','src','scripts','app','assets','vendor','package.json','package-lock.json'],{cwd:root,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim();}catch{/* Source archives retain a content hash; they cannot claim an exact Git commit. */}
 const buildInfo = {sourceCommit,sourceDirty,sourceTreeSHA256:createHash('sha256').update(js).digest('hex')};
-const mux = '/*! mp4-muxer v5.2.2 | MIT License | (c) 2023 Vanilagy | see THIRD_PARTY_NOTICES.md */\n' + await read('vendor/mp4-muxer.min.js');
+// Keep upstream algorithms isolated from the retained KAMEN renderer wrappers.
+const provenance=JSON.parse(await read('vendor/jizura/upstream.json'));
+const upstreamNames=Object.keys(provenance.files).filter(n=>n.startsWith('src/')).sort();
+const upstreamParts=await Promise.all(upstreamNames.map(async name=>{
+ const source=await read('vendor/jizura/'+name);
+ if(createHash('sha256').update(source).digest('hex')!==provenance.files[name])throw Error('Upstream source checksum differs: '+name);
+ if(name==='src/09_render.js'){
+  const anchor='ctx.fillStyle = sc.bg; ctx.fillRect(0, 0, W, H);';
+  if(!source.includes(anchor))throw Error('Upstream renderer background hook moved');
+  return source.replace(anchor,anchor+' J.drawCustomBackground?.(this,ctx,plan,t,tq,Math.floor(tq/clock+1e-6),sc,scale,allowFilter);');
+ }
+ return name==='src/01_util.js'?source.replace('const J = (window.J = window.J || {});','const J = {};'):source;
+}));
+const upstream='(()=>{\n'+upstreamParts.join('\n')+'\nglobalThis.window.JIZURAUpstream=J;})();';
+buildInfo.upstreamCommit=provenance.commit;
+buildInfo.upstreamSHA256=createHash('sha256').update(upstream).digest('hex');
+buildInfo.mediaSHA256=createHash('sha256').update(await read('vendor/aac-browser.min.js')).digest('hex');
 const localFontCSS=(await Promise.all([['Regular',400],['Bold',700]].map(async ([name,weight])=>
   `@font-face{font-family:"JIZURA Noto CJK JP";src:url(data:font/woff2;base64,${(await readFile(path.join(root,'assets','fonts',`NotoSansCJKjp-${name}.woff2`))).toString('base64')}) format("woff2");font-weight:${weight};font-display:block}`))).join('\n');
 const title = 'KAMEN（仮面） | 日本語歌詞MV';
@@ -46,7 +62,7 @@ ${(await read('app/body.html')).replaceAll('__APP_VERSION__',version)}
 <script>
 window.KAMEN_APP_INFO=window.JIZURA_APP_INFO=Object.freeze(${JSON.stringify({name:'KAMEN',edition:'Custom Edition',version})});
 window.KAMEN_BUILD_INFO=Object.freeze(${JSON.stringify(buildInfo)});
-${mux}
+${upstream}
 ${await read('vendor/aac-browser.min.js')}
 </script>
 <script>
@@ -68,6 +84,6 @@ console.log(`Built index.html and dist/index.html (${bytes.toLocaleString('en-US
 await Promise.all([
   ...['LICENSE', 'THIRD_PARTY_NOTICES.md'].map(name => cp(path.join(root,name),path.join(root,'dist',name))),
   cp(path.join(root,'assets','OFL.txt'),path.join(root,'dist','OFL.txt')),
-  cp(path.join(root,'vendor','LICENSE.mp4-muxer.txt'),path.join(root,'dist','LICENSE.mp4-muxer.txt')),
+  cp(path.join(root,'vendor','jizura','LICENSE'),path.join(root,'dist','LICENSE.JIZURA.txt')),
   cp(path.join(root,'vendor','licenses'),path.join(root,'dist','licenses'),{recursive:true}),
 ]);
