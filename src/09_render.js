@@ -241,7 +241,8 @@ class Renderer {
     if (allowFilter && mainCut && !plan.artDirection?.motionDNA && J.CAMERA[mainCut.cam] && mainCut.cam !== 'push') {
       try {
         const e0 = this.makeEnv(ctx, plan, mainCut, sc, { pass: 'main', t: tq, lt: tq - mainCut.start, ltb: tq - mainCut.start, step, scale, allowFilter, energy, beat: beatInfo });
-        const c0 = J.CAMERA[mainCut.cam].get(e0, mainCut.camP || {});
+        const rawCamera = J.CAMERA[mainCut.cam].get(e0, mainCut.camP || {});
+        const c0 = J.explorationCameraV13?.(plan,mainCut,rawCamera) ?? rawCamera;
         if (c0 && c0.blur > 0.4) layerBlur = c0.blur;
       } catch (e) {}
       if (layerBlur) {

@@ -393,7 +393,9 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
  const finish=(limit)=>{
   const stop=Math.min(budget,examined+limit);
   while(!winner&&examined<stop){let improved=false;
-   for(const cut of J.finishRepairsV15(p,current.cut,current.checks)){
+   const numeric=J.finishRepairsV15(p,current.cut,current.checks);
+   if(o.finishSelectedDraft&&current.cut.cam!=='stillCamera'&&current.checks.some(e=>!e.eligible&&!e.geometry?.length))numeric.unshift(...[.65,.35,.1].map(k=>({...copy(current.cut),explorationParamsV13:{...current.cut.explorationParamsV13,camera:(current.cut.explorationParamsV13?.camera??1)*k}})));
+   for(const cut of numeric){
     if(examined>=stop)break;
     if(adopt(evaluate(cut,'numeric'))){improved=true;if(winner)break;}
    }
@@ -405,6 +407,10 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
  // A layout may paint opaque panels AFTER the glyph. No amount of pre-glyph
  // scrim/color can repair that occlusion; include layout in contrast recovery.
  // ENTRY/EXIT causes must be reached before spending states on unrelated FX.
+ // With no primary geometry, offscreen camera/occluding FX cannot report bounds.
+ // Selected-mode removal/reroll trials still require measured deficit improvement.
+ if(o.finishSelectedDraft&&current.checks.some(e=>!e.eligible&&!e.geometry?.length)){if(current.cut.cam!=='stillCamera')causes.push('cam');if(current.cut.registryFxV9)causes.push('fx');}
+ if(o.finishSelectedDraft&&current.cut.trans!=='cut'&&current.checks.some(e=>!e.eligible&&e.sampleOffset<=Math.max(.12,current.cut.transDur||0)))causes.push('trans');
  const covered=failures.some(f=>{const e=f.check;return e?.full&&e.safe&&e.geometry?.length&&e.geometry.every(g=>g.readable)&&e.advancedChecks?.length&&e.advancedChecks.every(g=>g.complete)&&(f.observed?.contrastP10??3)<1.5;});
  if(covered&&!current.cut.registryFxV9)causes.push('layout');
  if(stages.has('ENTRY'))causes.push('enter');if(stages.has('EXIT'))causes.push('exit');
@@ -422,6 +428,14 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
    // Fit that candidate on its own measurements, then keep only a real gain.
    const previous=current;current=row;finish(kind==='control'&&role==='layout'?4:2);const fitted=current;
    current=previous;if(!winner)adopt(fitted);
+   // A repaired entry can expose a second, previously masked post-FX failure.
+   // Explore that measured pair only in selected mode, within the same budget.
+   if(o.finishSelectedDraft&&!winner&&kind==='control'&&role!=='fx'&&fitted.cut.registryFxV9&&fitted.checks.some(e=>!e.eligible&&(e.compositedContrast?.renderedVsBackgroundContrastP10??Infinity)<3)){
+    for(let i=0;i<3&&!winner&&examined<budget;i++){
+     const pair=i<2?J.rerollRoleV15(p,fitted.cut,index,'fx',620+i):J.changeDirectionRoleV11(fitted.cut,'fx',null);
+     if(pair)adopt(evaluate(pair,'measured-causal-pair','fx'));
+    }
+   }
   };
   for(let attempt=0;attempt<2&&examined<budget&&!winner;attempt++){
    const cut=J.rerollRoleV15(p,base,index,role,600+attempt);if(cut)tryCandidate(cut,'reroll');
@@ -445,6 +459,7 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
   const counts=Object.fromEntries(['registered','callable','eligible','generated','probed','safe'].map(k=>[k,catalog.filter(row=>row[k]).length]));
   rows.push({...pick,cut,safe:true,checks:checks.map(strip),times,params:cut.params,font:cut.params.font,styleKey:cut.styleKey,layout:cut.layout,evidence:strip(hold),phaseEvidence:checks.map(strip),descriptor,signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster,ablations:[],lightSafetyV15:lightSafety,optimizerEvidence:{...copy(pick.optimizerEvidence),catalog,counts,intensity:{...copy(pick.optimizerEvidence?.intensity),status:descriptor.holdMotion.value>1e-6?'OBSERVED_MOTION':'UNMET'},ablations:[],motionV14:J.motionObservationV14({...winner,descriptor,ablations:[]}),lightSafety,repairSummary:{...copy(pick.optimizerEvidence?.repairSummary),changedRoles:[...new Set([...(pick.optimizerEvidence?.repairSummary?.changedRoles||[]),...changedRoles])]},genome:{generated:copy(generated),final,changedRoles,retention:1-changedRoles.length/Object.keys(generated).length},recovery:{mode:changedRoles.length?'CAUSAL_ROLE_REPAIR':'LOCAL_FINISH',examined,scaleGate:'MEASURED_640PX'},unmeasured:['recoveryRoleAblations','artisticQuality']}});
  }
+ if(o.finishSelectedDraft&&!winner)rows.continuationV16={cut:copy(current.cut),checks:current.checks};
  rows.examined=examined;rows.diagnostic={attempts,budget,exhausted:!winner};return rows;
 };
 })();

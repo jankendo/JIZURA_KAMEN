@@ -30,6 +30,7 @@ const scenarios=require('./kamen_song_native_v11_scenarios.cjs');
   if(process.env.KAMEN_V15_CHECKS||process.env.KAMEN_V15_SCALE_ONLY||process.env.KAMEN_V15_ENTRY_ONLY)await page.addScriptTag({content:'window.v15FinalScaleChecks='+require('./kamen_random_v15_checks.cjs').finalScale.toString()+';window.v15EntryContrastChecks='+require('./kamen_random_v15_checks.cjs').entryContrast.toString()+';window.v15EntryOnly='+JSON.stringify(!!process.env.KAMEN_V15_ENTRY_ONLY)});
   if(process.env.KAMEN_V15_SCALE_ONLY||process.env.KAMEN_V15_ENTRY_ONLY)report.finalScale=await page.evaluate(()=>window.v15FinalScaleChecks());
   if(process.env.KAMEN_V15_CHECKS)report.v15Checks=await page.evaluate(require('./kamen_random_v15_checks.cjs'));
+  if(process.env.KAMEN_V16_CHECKS)report.v16Checks=await page.evaluate(require('./kamen_random_v16_scale.cjs'));
   if(process.env.KAMEN_V14_CHECKS)report.v14Checks=await page.evaluate(require('./kamen_motion_v14_checks.cjs'));
   if(process.env.KAMEN_V13_CHECKS)report.v13Checks=await page.evaluate(require('./kamen_exploration_v13_checks.cjs'));
   if(process.env.KAMEN_V12_MP4){

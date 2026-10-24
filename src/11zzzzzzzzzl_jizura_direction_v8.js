@@ -99,7 +99,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
  if(J.isSongDerivedV11?.(p))sample.verifyScale=rawSample.verifyScale;
  const recoveryFrontiers=new Map();
  const phases=c=>J.isSongDerivedV11?.(p)?J.directionPhasesV11(p,c,a):legacyPhases(c);
- if(J.isSongDerivedV11?.(p))sample.recoverLine=(plan,pick,failures,budget)=>options.preserveCurrent?[]:J.recoverDirectionLineV112(plan,pick,failures,{sample,phases,audio:a,signal:options.signal,budget,frontier:recoveryFrontiers.get(pick.line)||[]});
+ if(J.isSongDerivedV11?.(p))sample.recoverLine=(plan,pick,failures,budget)=>options.preserveCurrent&&!options.finishSelectedDraft?[]:J.recoverDirectionLineV112(plan,pick,failures,{sample,phases,audio:a,signal:options.signal,finishSelectedDraft:options.finishSelectedDraft===true,budget,frontier:recoveryFrontiers.get(pick.line)||[]});
  const cuts=trial.cuts.filter(c=>c.line>=0&&!locked(p,c));
  try{
   if(p.customBg?.enabled&&p.customBg.dataUrl)await R.loadCustomBackground(p.customBg.dataUrl);await R.loadAssetDeck?.(p);
@@ -133,7 +133,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
    ranked.sort((x,y)=>y.score-x.score||x.layout.localeCompare(y.layout)||x.styleKey.localeCompare(y.styleKey));
    recoveryFrontiers.set(c.line,ranked);
    const distinct=J.isExpressiveV12?.(p)?J.directionSeedsV12(ranked,f):J.registryGeometryRepresentatives(ranked,.25).candidates.slice(0,3),safe=[];
-   if(J.isCreativeOptimizerV10?.(p)){safe.push(...await J.optimizeCreativeLineV10({p:trial,c,f,ranked,distinct,sample,phases,signal:options.signal,audio:a,initialCuts:options.preserveCurrent?options.initialCuts?.filter(x=>x.line===c.line):(J.isExplorationV13?.(p)?J.explorationMotifSeedsV13(p,c,portfolios):[]),preserveCurrent:options.preserveCurrent===true,initialPlan:options.initialPlan,anchors:R.customBgBitmap?J.photoAnchorCandidates(R.customBgBitmap):[]}));}
+   if(J.isCreativeOptimizerV10?.(p)){safe.push(...await J.optimizeCreativeLineV10({p:trial,c,f,ranked,distinct,sample,phases,signal:options.signal,audio:a,finishSelectedDraft:options.finishSelectedDraft===true,initialCuts:(options.preserveCurrent||options.finishSelectedDraft)?options.initialCuts?.filter(x=>x.line===c.line):(J.isExplorationV13?.(p)?J.explorationMotifSeedsV13(p,c,portfolios):[]),preserveCurrent:options.preserveCurrent===true,initialPlan:options.initialPlan,anchors:R.customBgBitmap?J.photoAnchorCandidates(R.customBgBitmap):[]}));}
    else
    for(const candidate of distinct){
     abort(options.signal);let cut=copy(candidate.cut),sp={...trial,style:cut.style,styleKey:cut.styleKey};
@@ -186,7 +186,7 @@ J.searchJizuraDirectionV8=async(p,range,a,options={})=>{
   if(J.isSongDerivedV11?.(p))selection.optimizerVersion=11;
   if(J.isCreativeOptimizerV10?.(p))J.attachCreativeEvidenceV10(selection,storyboard,portfolios);
   if(p.songNativeDirection.version===9)for(const e of selection.entries){e.phaseEvidence=finalEvidence.get(e.line);e.validation='MEASURED_SAFE_SEQUENCE';}
-  if(p.songNativeDirection.version===9)selection.alternatives=await J.registryAlternativesV9(trial,portfolios,storyboard,sample,phases,selection,options);
+  if(p.songNativeDirection.version===9&&!options.finishSelectedDraft)selection.alternatives=await J.registryAlternativesV9(trial,portfolios,storyboard,sample,phases,selection,options);
   selection.framesCompared=frames;
   abort(options.signal);if(await J.cinemaV3.planHash(p)!==before)throw Error('INPUT_CHANGED_DURING_SEARCH');
   const d=copy(p.songNativeDirection);d.selection=selection;if(d.version===9){d.status='SELECTED';selection.locks=J.cinemaV3.lockSignature(p);}p.songNativeDirection=d;p.artDirection.songNativeDirection=d;install(p,selection.entries);J.cinemaV3.invalidate(p);return p;
