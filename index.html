@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="data:,">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>KAMEN（仮面） | 日本語歌詞MV</title>
 <meta name="description" content="KAMEN（仮面）。背景画像・音源・LRC／TXTから楽曲に合わせた日本語歌詞MVを自動制作し、MP4で書き出せます。">
@@ -870,7 +871,7 @@ body:has(.processing-panel:not([hidden])) .kamen-downloads{left:16px;right:auto;
 
 <script>
 window.KAMEN_APP_INFO=window.JIZURA_APP_INFO=Object.freeze({"name":"KAMEN","edition":"Custom Edition","version":"2.1.0"});
-window.KAMEN_BUILD_INFO=Object.freeze({"sourceCommit":"8b2dd692c396e2c49a64218d37a25192d89c748b","sourceDirty":true,"sourceTreeSHA256":"06e6368280ced14f5e394e7df43d91adeeb43386e5ff52c64f91e999008c20e0","upstreamCommit":"fc16bfe43ea4a6c25a21f1caf04d17326de14f00","upstreamSHA256":"5c364cf33e4cd5b5b7ce8ebeec252f2340ae2c45bcc55542968e3fc2fa1c9922","mediaSHA256":"9f4746e502a62364808e67f34b04c49f213fc42b12d098ebb3023c902d03e47e"});
+window.KAMEN_BUILD_INFO=Object.freeze({"sourceCommit":"900672445e5aa00375e34285dbd9108f100bad87","sourceDirty":true,"sourceTreeSHA256":"36418886832accd4a7fe4fb2570d974c2e72c58ba13e352bfe93261944a66d10","upstreamCommit":"fc16bfe43ea4a6c25a21f1caf04d17326de14f00","upstreamSHA256":"5c364cf33e4cd5b5b7ce8ebeec252f2340ae2c45bcc55542968e3fc2fa1c9922","mediaSHA256":"9f4746e502a62364808e67f34b04c49f213fc42b12d098ebb3023c902d03e47e"});
 (()=>{
 /* ============================================================
    JIZURA — util: math, easing, deterministic randomness, colour
@@ -78735,6 +78736,12 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
    if(!improved)break;
   }
  };
+ // Selected drafts keep one visited set and remaining budget across causal
+ // passes. Fixing an entry can reveal a camera/layout failure that was masked
+ // in the first diagnosis; re-diagnose only after a measured improvement.
+ let previousPass;
+ do {
+ previousPass=J.canonicalJSON(current.cut);
  finish(Math.min(3,Math.max(1,budget-6)));
  const reasons=J.motionFailureV14(current.checks,current.cut),stages=new Set(current.checks.filter(e=>!e.eligible).map(e=>e.temporalStage)),causes=[];
  // A layout may paint opaque panels AFTER the glyph. No amount of pre-glyph
@@ -78782,6 +78789,7 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
    }else if(role!=='layout')tryCandidate(J.changeDirectionRoleV11(base,role,neutral[role]),'control');
   }
  }
+ }while(o.finishSelectedDraft&&!winner&&examined<budget&&J.canonicalJSON(current.cut)!==previousPass);
  const rows=[];
  if(winner){
   const {cut,checks,times}=winner,hold=checks.find(e=>e.temporalStage==='HOLD'&&e.readable),descriptor=J.motionDescriptorV14(checks,p);
@@ -78805,6 +78813,13 @@ const J=window.J,copy=J.clonePhotoRenderPlan;
 const capabilityCache=new WeakMap();
 const capabilityCatalog=p=>{if(!capabilityCache.has(p))capabilityCache.set(p,J.explorationCatalogV13(p));return capabilityCache.get(p);};
 const rendererSource=()=>window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null;
+// 2.0.30 uses the identical renderer. Retain its saved selected cuts while
+// rerunning the corrected optimizer and every final gate on this build.
+J.workflowRendererCompatibleV16=d=>!!d&&(d.sourceTreeSHA256===rendererSource()||d.sourceTreeSHA256==='1d2bed8749d04a34e1483546b21589c64c019490ce2bb110c90b4fb6fa7ba4db'&&d.rendererCompatibilityId==='kamen-song-grammar-renderer-9');
+J.workflowErrorMessageV16=error=>{
+ const line=/^V16_(?:SELECTED_LINE_UNSAFE|LOCKED_LINE_UNSAFE)_(\d+)$/.exec(error?.message||'');
+ return line?`${Number(line[1])+1}行目の演出を安全に調整できませんでした。現在の案は保持しています。詳細設定でこの行の演出を変更するか、もう一度ランダム生成してください。`:error?.message||'最適化を完了できませんでした。現在の案は保持しています。';
+};
 const abort=s=>{if(s?.aborted)throw new DOMException('Aborted','AbortError');};
 const freeze=x=>{if(x&&typeof x==='object'){Object.freeze(x);for(const v of Object.values(x))freeze(v);}return x;};
 // Workflow metadata is output, not an input to the legacy identity contract.
@@ -78813,14 +78828,14 @@ J.songNativeInputIdentityV7=(q,a)=>{if(!q.randomWorkflowV16)return identity(q,a)
 J.randomDraftSeedV16=()=>{const n=new Uint32Array(1);if(globalThis.crypto?.getRandomValues)crypto.getRandomValues(n);else n[0]=Math.floor(Math.random()*4294967296);return n[0];};
 J.selectedDraftSnapshotV16=(q,p,a)=>{
  const d=q.randomWorkflowV16;
- if(!d||d.sourceTreeSHA256!==rendererSource()||d.state!=='RANDOM_DRAFT_READY'||d.inputHash!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
+ if(!J.workflowRendererCompatibleV16(d)||d.state!=='RANDOM_DRAFT_READY'||d.inputHash!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
  if(J.canonicalJSON(p.cuts)!==J.canonicalJSON(d.originalCuts))throw Error('V16_DRAFT_EDITED_REGENERATE');
  return freeze(copy({draftId:d.draftId,inputHash:d.inputHash,seed:d.seed,originalCuts:d.originalCuts,originalCreativeGenome:d.originalCreativeGenome,locks:J.cinemaV3.lockSignature(p),sourceTreeSHA256:d.sourceTreeSHA256,rendererCompatibilityId:d.rendererCompatibilityId}));
 };
 const plan=J.plan;
 J.plan=(q,a)=>{
  const p=plan(q,a),d=q.randomWorkflowV16;
- if(d?.state==='RANDOM_DRAFT_READY'&&d.sourceTreeSHA256===rendererSource()&&d.inputHash===J.songNativeInputIdentity(q,a)&&d.rendererCompatibilityId===p.songNativeDirection?.rendererCompatibilityId){
+ if(d?.state==='RANDOM_DRAFT_READY'&&J.workflowRendererCompatibleV16(d)&&d.inputHash===J.songNativeInputIdentity(q,a)&&d.rendererCompatibilityId===p.songNativeDirection?.rendererCompatibilityId){
   p.cuts=copy(d.originalCuts);p.randomDraftV16=true;
  }
  return p;
@@ -78886,11 +78901,10 @@ J.optimizeCreativeLineV10=async args=>{
   row.checks=checks.map((low,i)=>{const high=sample.verifyScale(p,cut,times[i]);if(high.renderErrors?.length)throw Error('V16_RENDERER_ERROR');const failed=!high.eligible?high:!low.eligible?low:high;return {...low,...high,...failed,eligible:low.eligible&&high.eligible,mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:times[i]};});
   Object.assign(row.checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:cut.lineText});
   const failures=row.checks.flatMap((e,i)=>!e.eligible?[{...J.scaleFailureV112(cut,times[i],e,p),check:e}]:[]);
-  let recovered=[],current=row;
-  for(let batch=0;batch<3&&!recovered.length;batch++){
-   recovered=await J.recoverDirectionLineV112(p,current,failures,{sample,phases,audio,signal,budget:16,finishSelectedDraft:true});
-   if(recovered.continuationV16)current={...current,...recovered.continuationV16};
-  }
+  // One bounded frontier retains its visited set. Restarting three 16-state
+  // frontiers repeated the same failed hold/layout trials and never reached
+  // a measured, safe layout control at state 18 (e.g. bubble's internal entry).
+  const recovered=await J.recoverDirectionLineV112(p,row,failures,{sample,phases,audio,signal,budget:48,finishSelectedDraft:true});
   if(!recovered.length)throw Object.assign(Error('V16_SELECTED_LINE_UNSAFE_'+c.line),{diagnostic:recovered.diagnostic});row=recovered[0];
  }
  row.lightSafetyV15=J.checkRandomLightV15(p,row.cut,sample,signal);
@@ -78942,7 +78956,7 @@ J.prepareAutomaticUnitSafety=async args=>{
 J.finishSelectedDraftV16=async(q,p,a,snapshot,{signal,onProgress}={})=>{
  const started=performance.now();abort(signal);
  const d=q.randomWorkflowV16;
- if(!d||snapshot.sourceTreeSHA256!==rendererSource()||snapshot.draftId!==d.draftId||snapshot.inputHash!==J.songNativeInputIdentity(q,a)||snapshot.rendererCompatibilityId!==p.songNativeDirection?.rendererCompatibilityId||J.canonicalJSON(snapshot.originalCuts)!==J.canonicalJSON(p.cuts)||snapshot.locks!==J.cinemaV3.lockSignature(p))throw Error('V16_STALE_DRAFT');
+ if(!d||!J.workflowRendererCompatibleV16(snapshot)||snapshot.draftId!==d.draftId||snapshot.inputHash!==J.songNativeInputIdentity(q,a)||snapshot.rendererCompatibilityId!==p.songNativeDirection?.rendererCompatibilityId||J.canonicalJSON(snapshot.originalCuts)!==J.canonicalJSON(p.cuts)||snapshot.locks!==J.cinemaV3.lockSignature(p))throw Error('V16_STALE_DRAFT');
  const trial=copy(p);
  await J.searchSongNativeCandidates(trial,null,a,{signal,onProgress,finishSelectedDraft:true,initialCuts:snapshot.originalCuts,initialPlan:p});abort(signal);
  const nativeSafety=await J.finishNativeSelectedDraftV16(q,trial,a,{signal,onProgress});
@@ -78968,7 +78982,7 @@ J.finishSelectedDraftV16=async(q,p,a,snapshot,{signal,onProgress}={})=>{
 const exportMP4=J.exportMP4;
 J.exportMP4=async args=>{
  const d=args.project?.randomWorkflowV16;
- if(args.plan?.randomDraftV16||d&&(d.state!=='FINISHED'||d.sourceTreeSHA256!==rendererSource()))throw Error('V16_OPTIMIZE_DRAFT_BEFORE_EXPORT');
+ if(args.plan?.randomDraftV16||d&&(d.state!=='FINISHED'||!J.workflowRendererCompatibleV16(d)))throw Error('V16_OPTIMIZE_DRAFT_BEFORE_EXPORT');
  return exportMP4(args);
 };
 
@@ -78985,7 +78999,7 @@ J.upstreamInfo=Object.freeze({engine:'jizura',version,commit});
 J.isUpstream=p=>p?.generation?.engine==='jizura';
 const legacy={plan:J.plan,defaults:J.defaultProject,migrate:J.migrateProject,omakase:J.omakase,randomOk:J.randomOk,export:J.exportMP4,fallback:J.exportMP4Fallback,previewPlan:J.previewPlan};
 // UI catalogues need names for upstream cuts, but legacy random pools must not change.
-const catalogKeys=['LAYOUTS','LAYOUT_ORDER','ENTER','ENTER_ORDER','HOLD','HOLD_ORDER','EXIT','EXIT_ORDER','DECOR','DECOR_ORDER','TREAT','TREAT_ORDER','BG','BG_ORDER','CAMERA','CAMERA_ORDER','FXE','FXE_ORDER','TRANS','TRANS_ORDER','STYLES','STYLE_ORDER'];
+const catalogKeys=['LAYOUTS','LAYOUT_ORDER','ENTER','ENTER_ORDER','HOLD','HOLD_ORDER','EXIT','EXIT_ORDER','DECOR','DECOR_ORDER','TREAT','TREAT_ORDER','BG','BG_ORDER','CAMERA','CAMERA_ORDER','FXE','FXE_ORDER','TRANS','TRANS_ORDER','STYLES','STYLE_ORDER','MOODS'];
 const originalCatalog=Object.fromEntries(catalogKeys.filter(k=>J[k]).map(k=>[k,Array.isArray(J[k])?J[k].slice():{...J[k]}]));
 const inLegacyCatalog=fn=>{const active=Object.fromEntries(Object.keys(originalCatalog).map(k=>[k,J[k]]));Object.assign(J,originalCatalog);try{return fn();}finally{Object.assign(J,active);}};
 J.engineOrder=(p,g)=>J.isUpstream(p)?U.order(g):(originalCatalog[{layout:'LAYOUT_ORDER',enter:'ENTER_ORDER',hold:'HOLD_ORDER',exit:'EXIT_ORDER',decor:'DECOR_ORDER',treat:'TREAT_ORDER',bg:'BG_ORDER',cam:'CAMERA_ORDER',fx:'FXE_ORDER',trans:'TRANS_ORDER'}[g]]||J.order(g));
@@ -78993,6 +79007,7 @@ const newKeys=new Map();
 for(const group of J.GROUP_KEYS){const local=J.registry(group),remote=U.registry(group);for(const key of U.order(group))if(!local[key]){local[key]=remote[key];J.order(group).push(key);newKeys.set(group+'|'+key,true);}}
 J.randomOk=(p,g,k)=>J.isUpstream(p)?U.randomOk(p,g,k):!newKeys.has(g+'|'+k)&&legacy.randomOk(p,g,k);
 for(const key of U.STYLE_ORDER)if(!J.STYLES[key]){J.STYLES[key]=U.STYLES[key];J.STYLE_ORDER.push(key);newKeys.set('style|'+key,true);}
+for(const [key,mood]of Object.entries(U.MOODS))if(!J.MOODS[key])J.MOODS[key]=mood;
 J.THEMES=U.THEMES;
 J.legacyDefaultProject=()=>({...inLegacyCatalog(legacy.defaults),generation:{engine:'kamen',version:'legacy'}});
 J.enableUpstreamMode=()=>{J.upstreamDefaultEnabled=true;};
@@ -79000,7 +79015,7 @@ J.defaultProject=()=>{
  const old=inLegacyCatalog(legacy.defaults);if(!J.upstreamDefaultEnabled)return old;
  const p=U.defaultProject();return {...old,...p,lyrics:'',customBg:old.customBg,titleDisplay:old.titleDisplay,autoPalette:old.autoPalette,exportSettings:old.exportSettings,includeAudio:true,quality:'high',autoDirection:false,generation:{...J.upstreamInfo}};
 };
-J.migrateProject=input=>{const p=legacy.migrate(input);if(p.generation?.engine==='jizura'&&(p.generation.version!==version||p.generation.commit!==commit))throw Error('このJIZURA生成バージョンには対応していません。元のファイルを保管してください');if(!p.generation)p.generation={engine:'kamen',version:'legacy'};return p;};
+J.migrateProject=input=>{const p=J.isUpstream(input)?legacy.migrate(input):inLegacyCatalog(()=>legacy.migrate(input));if(p.generation?.engine==='jizura'&&(p.generation.version!==version||p.generation.commit!==commit))throw Error('このJIZURA生成バージョンには対応していません。元のファイルを保管してください');if(!p.generation)p.generation={engine:'kamen',version:'legacy'};return p;};
 J.historyFields.push('generation','themeId','timingOrder','typo','kinetic','horror','unify','typeset','centerFree','centerDir','locks');
 J.upstreamProject=p=>{
  const d=U.defaultProject(),q={...d,...p,fx:{...d.fx,...p.fx},timing:{...d.timing,...p.timing},enabled:{}};
@@ -79013,7 +79028,7 @@ J.plan=(p,a)=>{
  Object.assign(result,{appVersion:version,generation:{...p.generation},customBg:p.customBg,titleDisplay:p.titleDisplay,autoPalette:p.autoPalette,singleBackground:true,upstream:true,quality:p.quality,outputResolution:p.res});
  return result;
 };
-J.omakase=(p,...args)=>J.isUpstream(p)?U.omakase(J.upstreamProject(p),...args):inLegacyCatalog(()=>legacy.omakase(p,...args));
+J.omakase=(p,rnd=Math.random,choice=null)=>J.isUpstream(p)?U.omakase(J.upstreamProject(p),rnd,choice??p.themeId):inLegacyCatalog(()=>legacy.omakase(p,rnd,choice));
 J.previewPlan=(p,...args)=>J.isUpstream(p)?Object.assign(U.previewPlan(J.upstreamProject(p),...args),{generation:p.generation,upstream:true}):legacy.previewPlan(p,...args);
 J.generateUpstream=(project,audio,{rnd=Math.random}={})=>{
  const q=JSON.parse(JSON.stringify(project));
@@ -79022,7 +79037,7 @@ J.generateUpstream=(project,audio,{rnd=Math.random}={})=>{
  q.generation={...J.upstreamInfo};q.timingOrder=2;
  // Do not let the retired optimizer rewrite or restore a newly generated plan.
  q.autoDirection=false;q.artDirection=null;delete q.randomWorkflowV16;delete q.directorPlan;
- const generated=U.omakase(J.upstreamProject(q),rnd);
+ const generated=U.omakase(J.upstreamProject(q),rnd,q.themeId);
  for(const [g,locked] of Object.entries(q.locks?.tech||{}))if(locked&&q.enabled?.[g])generated.enabled[g]={...q.enabled[g]};
  for(const [k,locked] of Object.entries(q.locks?.params||{}))if(locked&&q.fx?.[k]!=null)generated.fx[k]=q.fx[k];
  Object.assign(q,generated);
@@ -79415,7 +79430,9 @@ function replan() {
   if(!restoreNotice){restoreNotice=document.createElement('p');restoreNotice.id='songNativeRestoreNotice';restoreNotice.setAttribute('role','status');$('directionStatus').parentElement.appendChild(restoreNotice);}
   restoreNotice.hidden=!['REJECTED','PENDING_INPUT'].includes(S.plan.songNativeRestore?.status);
   restoreNotice.textContent=S.plan.songNativeRestore?.status==='PENDING_INPUT'?'保存されたMVの演出は、音源の読み込み後に互換性を確認します。':'保存されたMVの演出は、現在のバージョンとの互換性を確認できませんでした。元データは保持されています。演出を再確認してください。';
-  if(S.plan.songNativeDirection&&S.project.artDirection)S.project.artDirection.songNativeDirection=J.clonePhotoRenderPlan(S.plan.songNativeDirection);
+  // Boot plans before restoring audio. Its temporary direction must not replace
+  // the saved selected direction needed by the resolved-plan equality check.
+  if(S.plan.songNativeDirection&&S.project.artDirection&&S.plan.songNativeRestore?.status!=='PENDING_INPUT')S.project.artDirection.songNativeDirection=J.clonePhotoRenderPlan(S.plan.songNativeDirection);
   if(S.project.visualAssets?.length) (S.renderer._uiLoadQueue=(S.renderer._uiLoadQueue||Promise.resolve()).catch(()=>{}).then(()=>S.renderer.loadAssetDeck(S.plan))).then(()=>{S.need=true;}).catch(e=>toast(e.message));
   refreshVisualAssetsUI();
   refreshPreviewPlan();
@@ -80160,7 +80177,7 @@ function validatePaletteSource(project, image) {
     // it at the legacy 96px refresh size would replace its 128px source map.
     const workflow=project.randomWorkflowV16;
     const savedComplete=project.autoDirection&&project.artDirection?.songNativeResolved;
-    const retained=(savedComplete||workflow&&workflow.sourceTreeSHA256===(window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null)&&['RANDOM_DRAFT_READY','FINISHED'].includes(workflow.state))&&ap.localMap&&ap.viewportKey===J.autoPaletteViewportKey(project);
+    const retained=(savedComplete||J.workflowRendererCompatibleV16(workflow)&&['RANDOM_DRAFT_READY','FINISHED'].includes(workflow.state))&&ap.localMap&&ap.viewportKey===J.autoPaletteViewportKey(project);
     if (!retained&&ap.options && ap.options.readability) ap.localMap = J.refreshAutoPaletteMap(image, project);
   }
 }
@@ -80246,7 +80263,7 @@ function completedWorkflowSnapshotV16(project){
 function workflowStateV16() {
   if(J.isUpstream?.(S.project))return S.project.generation.generated?'FINISHED':'INPUT_READY';
   const d=S.project.randomWorkflowV16;
-  if(!d||d.sourceTreeSHA256!==(window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null))return 'INPUT_READY';
+  if(!J.workflowRendererCompatibleV16(d))return 'INPUT_READY';
   return d.inputHash===J.songNativeInputIdentity(S.project,audioLike())?d.state:'INPUT_READY';
 }
 async function generateRandomDraft(){return generateUpstreamMV();}
@@ -80298,7 +80315,7 @@ async function runRandomWorkflowV16(finish) {
       q.artDirection.songNativeDirection=J.clonePhotoRenderPlan(workingPlan.songNativeDirection);
       q.randomWorkflowV16.state='FINISHED';
       J.captureSongNativeResolved(q,audioLike(),workingPlan);
-      q.randomWorkflowV16={...q.randomWorkflowV16,state:'FINISHED',changes:result.changes,finishMetrics:{...result.metrics,qaObservations:1},scaleSafety:result.scaleSafety,nativeSafety:result.nativeSafety,previousFinishedProject:priorFinished};
+      q.randomWorkflowV16={...q.randomWorkflowV16,draftSourceTreeSHA256:q.randomWorkflowV16.draftSourceTreeSHA256||q.randomWorkflowV16.sourceTreeSHA256,sourceTreeSHA256:window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null,state:'FINISHED',changes:result.changes,finishMetrics:{...result.metrics,qaObservations:1},scaleSafety:result.scaleSafety,nativeSafety:result.nativeSafety,previousFinishedProject:priorFinished};
       q.randomWorkflowV16.inputHash=J.songNativeInputIdentity(q,audioLike());
       q.randomWorkflowV16.finishedProject=completedWorkflowSnapshotV16(q);
     }else{
@@ -80329,8 +80346,9 @@ async function runRandomWorkflowV16(finish) {
     task.complete(finish?'選んだ案の最適化と保存が完了しました':'ランダム案を表示しました');
   }catch(error){
     if(!committed&&S.project===q){S.project=before.project;S.plan=before.plan;S.pixelQA=before.pixelQA;S.confirmedCinemaPlan=before.confirmed;S.range=before.range;S.rangeMode=before.rangeMode;S.t=before.t;syncUI();renderLines();refreshPreviewPlan();S.need=true;}
-    task.fail(error,controller.signal.aborted);$('directionStatus').textContent=controller.signal.aborted?'処理をキャンセルしました。前の状態を保持しています。':error.message;
-    $('directionStatus').dataset.selectionState='FAILED';console.error('KAMEN v16 workflow',error);
+    const message=J.workflowErrorMessageV16(error);
+    task.fail(new Error(message,{cause:error}),controller.signal.aborted);$('directionStatus').textContent=controller.signal.aborted?'処理をキャンセルしました。前の状態を保持しています。':message;
+    $('directionStatus').dataset.selectionState='FAILED';console.error('KAMEN v16 workflow',error,{diagnostic:error.diagnostic??null});
   }finally{S.workflowSaveEntriesV16=null;S.pendingDirectionCommit=false;directionBusy=false;syncDirectionUI();}
 }
 

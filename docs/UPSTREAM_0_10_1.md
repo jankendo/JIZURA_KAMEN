@@ -36,7 +36,11 @@ KAMEN_CHROME=/path/to/chrome KAMEN_LONG_EXPORT=1 npm run test:upstream -- http:/
 
 The browser suite checks the shipping bundle, checksum provenance, fixed-seed/theme parity with the upstream planner, mixed LRC rows, locks, save compatibility, real input imports and generation, cancellation, video initialization failure/retry, invalid MP4 rejection, and actual MP4 downloads. Its matrix includes 720p silent output, 1080p audio, vertical video, a partial-range WASM AAC encode and a 180-second audio encode. FFprobe inspects codecs, dimensions, timing and tracks; FFmpeg decodes every completed file. Runtime certification decodes first/middle/last video samples and AAC endpoints; it does not claim full-frame artistic or singing-sync certification.
 
-Current results and any baseline failures are recorded below before review. Historical documents under `docs/qa` are not evidence for this release.
+[Recorded browser evidence](qa/upstream-0.10.1.json): 17 checks pass, including 21 seed/theme comparisons, eight real downloaded MP4s, 180-second audio, whole-file FFmpeg decoding, save/reopen/audio reload, cancellation, video/AAC failure recovery and corrupt-output rejection. Native AAC failure is a synthetic capability/configuration fault; AAC fallback output is real. No Windows/macOS/native-dialog success or mobile compatibility is claimed.
+
+The full historical engine suite was also run: **196/212 pass, 14 fail, 2 skip**. Two failing test adapters (ES module extraction and the changed stale-progress-outcome policy) were corrected and pass on targeted reruns. The other **12 failures reproduce in the original `8b2dd69` checkout with its original lockfile**. They concern legacy camera/scene expectations, font/storage mocks, old candidate counts and missing fixture fields. The historical suite remains red; this is not an all-tests-pass claim. [Failure inventory](qa/upstream-legacy-regressions.json) records the exact names. No aesthetic thresholds were weakened to pass the update.
+
+Current targeted checks pass: streaming page writes, H.264 negotiation/retry order, encoder lifecycle/hidden-page timeouts, sequential observer decoding, save pipeline, one-click export behavior, processing outcome lifecycle, immutable source hashes, syntax of every source/build script, and real Chrome legacy persistence/reload/cross-tab protection. Historical documents elsewhere under `docs/qa` are not evidence for this release.
 
 ## Compatibility and limits
 

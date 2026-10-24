@@ -7,7 +7,7 @@ J.upstreamInfo=Object.freeze({engine:'jizura',version,commit});
 J.isUpstream=p=>p?.generation?.engine==='jizura';
 const legacy={plan:J.plan,defaults:J.defaultProject,migrate:J.migrateProject,omakase:J.omakase,randomOk:J.randomOk,export:J.exportMP4,fallback:J.exportMP4Fallback,previewPlan:J.previewPlan};
 // UI catalogues need names for upstream cuts, but legacy random pools must not change.
-const catalogKeys=['LAYOUTS','LAYOUT_ORDER','ENTER','ENTER_ORDER','HOLD','HOLD_ORDER','EXIT','EXIT_ORDER','DECOR','DECOR_ORDER','TREAT','TREAT_ORDER','BG','BG_ORDER','CAMERA','CAMERA_ORDER','FXE','FXE_ORDER','TRANS','TRANS_ORDER','STYLES','STYLE_ORDER'];
+const catalogKeys=['LAYOUTS','LAYOUT_ORDER','ENTER','ENTER_ORDER','HOLD','HOLD_ORDER','EXIT','EXIT_ORDER','DECOR','DECOR_ORDER','TREAT','TREAT_ORDER','BG','BG_ORDER','CAMERA','CAMERA_ORDER','FXE','FXE_ORDER','TRANS','TRANS_ORDER','STYLES','STYLE_ORDER','MOODS'];
 const originalCatalog=Object.fromEntries(catalogKeys.filter(k=>J[k]).map(k=>[k,Array.isArray(J[k])?J[k].slice():{...J[k]}]));
 const inLegacyCatalog=fn=>{const active=Object.fromEntries(Object.keys(originalCatalog).map(k=>[k,J[k]]));Object.assign(J,originalCatalog);try{return fn();}finally{Object.assign(J,active);}};
 J.engineOrder=(p,g)=>J.isUpstream(p)?U.order(g):(originalCatalog[{layout:'LAYOUT_ORDER',enter:'ENTER_ORDER',hold:'HOLD_ORDER',exit:'EXIT_ORDER',decor:'DECOR_ORDER',treat:'TREAT_ORDER',bg:'BG_ORDER',cam:'CAMERA_ORDER',fx:'FXE_ORDER',trans:'TRANS_ORDER'}[g]]||J.order(g));
@@ -15,6 +15,7 @@ const newKeys=new Map();
 for(const group of J.GROUP_KEYS){const local=J.registry(group),remote=U.registry(group);for(const key of U.order(group))if(!local[key]){local[key]=remote[key];J.order(group).push(key);newKeys.set(group+'|'+key,true);}}
 J.randomOk=(p,g,k)=>J.isUpstream(p)?U.randomOk(p,g,k):!newKeys.has(g+'|'+k)&&legacy.randomOk(p,g,k);
 for(const key of U.STYLE_ORDER)if(!J.STYLES[key]){J.STYLES[key]=U.STYLES[key];J.STYLE_ORDER.push(key);newKeys.set('style|'+key,true);}
+for(const [key,mood]of Object.entries(U.MOODS))if(!J.MOODS[key])J.MOODS[key]=mood;
 J.THEMES=U.THEMES;
 J.legacyDefaultProject=()=>({...inLegacyCatalog(legacy.defaults),generation:{engine:'kamen',version:'legacy'}});
 J.enableUpstreamMode=()=>{J.upstreamDefaultEnabled=true;};
@@ -22,7 +23,7 @@ J.defaultProject=()=>{
  const old=inLegacyCatalog(legacy.defaults);if(!J.upstreamDefaultEnabled)return old;
  const p=U.defaultProject();return {...old,...p,lyrics:'',customBg:old.customBg,titleDisplay:old.titleDisplay,autoPalette:old.autoPalette,exportSettings:old.exportSettings,includeAudio:true,quality:'high',autoDirection:false,generation:{...J.upstreamInfo}};
 };
-J.migrateProject=input=>{const p=legacy.migrate(input);if(p.generation?.engine==='jizura'&&(p.generation.version!==version||p.generation.commit!==commit))throw Error('このJIZURA生成バージョンには対応していません。元のファイルを保管してください');if(!p.generation)p.generation={engine:'kamen',version:'legacy'};return p;};
+J.migrateProject=input=>{const p=J.isUpstream(input)?legacy.migrate(input):inLegacyCatalog(()=>legacy.migrate(input));if(p.generation?.engine==='jizura'&&(p.generation.version!==version||p.generation.commit!==commit))throw Error('このJIZURA生成バージョンには対応していません。元のファイルを保管してください');if(!p.generation)p.generation={engine:'kamen',version:'legacy'};return p;};
 J.historyFields.push('generation','themeId','timingOrder','typo','kinetic','horror','unify','typeset','centerFree','centerDir','locks');
 J.upstreamProject=p=>{
  const d=U.defaultProject(),q={...d,...p,fx:{...d.fx,...p.fx},timing:{...d.timing,...p.timing},enabled:{}};
@@ -35,7 +36,7 @@ J.plan=(p,a)=>{
  Object.assign(result,{appVersion:version,generation:{...p.generation},customBg:p.customBg,titleDisplay:p.titleDisplay,autoPalette:p.autoPalette,singleBackground:true,upstream:true,quality:p.quality,outputResolution:p.res});
  return result;
 };
-J.omakase=(p,...args)=>J.isUpstream(p)?U.omakase(J.upstreamProject(p),...args):inLegacyCatalog(()=>legacy.omakase(p,...args));
+J.omakase=(p,rnd=Math.random,choice=null)=>J.isUpstream(p)?U.omakase(J.upstreamProject(p),rnd,choice??p.themeId):inLegacyCatalog(()=>legacy.omakase(p,rnd,choice));
 J.previewPlan=(p,...args)=>J.isUpstream(p)?Object.assign(U.previewPlan(J.upstreamProject(p),...args),{generation:p.generation,upstream:true}):legacy.previewPlan(p,...args);
 J.generateUpstream=(project,audio,{rnd=Math.random}={})=>{
  const q=JSON.parse(JSON.stringify(project));
@@ -44,7 +45,7 @@ J.generateUpstream=(project,audio,{rnd=Math.random}={})=>{
  q.generation={...J.upstreamInfo};q.timingOrder=2;
  // Do not let the retired optimizer rewrite or restore a newly generated plan.
  q.autoDirection=false;q.artDirection=null;delete q.randomWorkflowV16;delete q.directorPlan;
- const generated=U.omakase(J.upstreamProject(q),rnd);
+ const generated=U.omakase(J.upstreamProject(q),rnd,q.themeId);
  for(const [g,locked] of Object.entries(q.locks?.tech||{}))if(locked&&q.enabled?.[g])generated.enabled[g]={...q.enabled[g]};
  for(const [k,locked] of Object.entries(q.locks?.params||{}))if(locked&&q.fx?.[k]!=null)generated.fx[k]=q.fx[k];
  Object.assign(q,generated);

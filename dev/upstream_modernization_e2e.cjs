@@ -10,15 +10,16 @@ const check=(name,data={})=>{report.checks.push({name,status:'PASS',...data});co
  try{
  page=await browser.newPage({acceptDownloads:true,viewport:{width:1365,height:900}});page.setDefaultTimeout(60000);const downloads=options=>{const task=page.waitForEvent('download',options);task.catch(()=>{});return task;};page.on('pageerror',e=>report.errors.push(e.stack));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404')&&!m.text().includes('保存を中止しました')&&!/KAMEN processing.*音源.*Aborted|JIZURA audio import failed.*Aborted|KAMEN processing.*音源.*中止|JIZURA audio import failed.*中止|KAMEN processing.*音源.*Cancelled|JIZURA audio import failed.*Cancelled/.test(m.text()))report.errors.push(m.text());});
  await page.addInitScript(()=>Object.defineProperty(window,'showSaveFilePicker',{value:undefined,configurable:true}));
- await page.goto(url,{waitUntil:'load'});await page.waitForFunction(()=>J.ui?.project&&J.ui?.plan);assert.equal(await page.evaluate(()=>KAMEN_APP_INFO.version),report.version);check('shipping UI boot');
+ await page.goto(url,{waitUntil:'load'});await page.waitForFunction(()=>J.ui?.project&&J.ui?.plan);assert.equal(await page.evaluate(()=>KAMEN_APP_INFO.version),report.version);report.build=await page.evaluate(()=>KAMEN_BUILD_INFO);report.browser=browser.version();report.node=process.version;check('shipping UI boot');
  const contracts=await page.evaluate(async()=>{
   const U=JIZURAUpstream,assert=(condition,message)=>{if(!condition)throw Error(message)},q=J.defaultProject();
   q.lyrics='[00:00.10]朝の光\n時刻のない行\n[00:03.00]I will never-ending\n[00:04.50]마음을 전해';q.fps=24;q.res=720;
   const a={duration:6,bpm:120,beats:Array.from({length:12},(_,i)=>i*.5)};
   for(const seed of [1,12,999])for(const themeId of [null,...Object.keys(U.THEMES)]){
-   const p={...q,themeId},actual=J.generateUpstream(p,a,{rnd:J.rng(seed)}),expected={...J.upstreamProject(p),...U.omakase(J.upstreamProject(p),J.rng(seed))};
+   const p={...q,themeId},actual=J.generateUpstream(p,a,{rnd:J.rng(seed)}),expected={...J.upstreamProject(p),...U.omakase(J.upstreamProject(p),J.rng(seed),themeId)};
+   if(themeId){assert(U.THEMES[themeId].moods.includes(actual.project.mood),'theme mood ignored');const set=U.THEMES[themeId].set;if(set)assert(actual.project[set]===true,'theme expression set not enabled');}
    const reference=U.plan(expected,a);assert(JSON.stringify(actual.plan.cuts)===JSON.stringify(reference.cuts),'upstream cuts differ '+themeId);assert(JSON.stringify(actual.plan.lines)===JSON.stringify(reference.lines),'upstream timing differs');
-   const restored=J.uiApi.mergeProject(JSON.parse(JSON.stringify(actual.project)));assert(JSON.stringify(J.plan(restored,a).cuts)===JSON.stringify(actual.plan.cuts),'saved standard project changed');
+   const restored=J.uiApi.mergeProject(JSON.parse(JSON.stringify(actual.project)));assert(restored.mood===actual.project.mood,'saved upstream mood changed');assert(JSON.stringify(J.plan(restored,a).cuts)===JSON.stringify(actual.plan.cuts),'saved standard project changed');
   }
   const sample=J.generateUpstream(q,a,{rnd:J.rng(12)});assert(sample.plan.lines[1].text==='時刻のない行','mixed LRC reordered');
   const locked={...q,overrides:{0:{lock:true,lockedSeed:123}},locks:{tech:{layout:true},params:{motion:true}}};
