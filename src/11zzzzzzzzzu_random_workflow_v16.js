@@ -1,6 +1,9 @@
 /* Two explicit operations. Drafts never claim final-scale certification. */
 (()=>{'use strict';
 const J=window.J,copy=J.clonePhotoRenderPlan;
+const capabilityCache=new WeakMap();
+const capabilityCatalog=p=>{if(!capabilityCache.has(p))capabilityCache.set(p,J.explorationCatalogV13(p));return capabilityCache.get(p);};
+const rendererSource=()=>window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null;
 const abort=s=>{if(s?.aborted)throw new DOMException('Aborted','AbortError');};
 const freeze=x=>{if(x&&typeof x==='object'){Object.freeze(x);for(const v of Object.values(x))freeze(v);}return x;};
 // Workflow metadata is output, not an input to the legacy identity contract.
@@ -9,14 +12,14 @@ J.songNativeInputIdentityV7=(q,a)=>{if(!q.randomWorkflowV16)return identity(q,a)
 J.randomDraftSeedV16=()=>{const n=new Uint32Array(1);if(globalThis.crypto?.getRandomValues)crypto.getRandomValues(n);else n[0]=Math.floor(Math.random()*4294967296);return n[0];};
 J.selectedDraftSnapshotV16=(q,p,a)=>{
  const d=q.randomWorkflowV16;
- if(!d||d.state!=='RANDOM_DRAFT_READY'||d.inputHash!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
+ if(!d||d.sourceTreeSHA256!==rendererSource()||d.state!=='RANDOM_DRAFT_READY'||d.inputHash!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
  if(J.canonicalJSON(p.cuts)!==J.canonicalJSON(d.originalCuts))throw Error('V16_DRAFT_EDITED_REGENERATE');
- return freeze(copy({draftId:d.draftId,inputHash:d.inputHash,seed:d.seed,originalCuts:d.originalCuts,originalCreativeGenome:d.originalCreativeGenome,locks:J.cinemaV3.lockSignature(p),rendererCompatibilityId:d.rendererCompatibilityId}));
+ return freeze(copy({draftId:d.draftId,inputHash:d.inputHash,seed:d.seed,originalCuts:d.originalCuts,originalCreativeGenome:d.originalCreativeGenome,locks:J.cinemaV3.lockSignature(p),sourceTreeSHA256:d.sourceTreeSHA256,rendererCompatibilityId:d.rendererCompatibilityId}));
 };
 const plan=J.plan;
 J.plan=(q,a)=>{
  const p=plan(q,a),d=q.randomWorkflowV16;
- if(d?.state==='RANDOM_DRAFT_READY'&&d.inputHash===J.songNativeInputIdentity(q,a)&&d.rendererCompatibilityId===p.songNativeDirection?.rendererCompatibilityId){
+ if(d?.state==='RANDOM_DRAFT_READY'&&d.sourceTreeSHA256===rendererSource()&&d.inputHash===J.songNativeInputIdentity(q,a)&&d.rendererCompatibilityId===p.songNativeDirection?.rendererCompatibilityId){
   p.cuts=copy(d.originalCuts);p.randomDraftV16=true;
  }
  return p;
@@ -53,7 +56,7 @@ J.generateRandomDraftV16=async(q,a,{signal,onProgress,seed=J.randomDraftSeedV16(
    p.cuts.forEach((c,i)=>{c.index=i;});
   }
   abort(signal);if(inputIdentity!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
-  const draft={version:16,state:'RANDOM_DRAFT_READY',draftId:'draft-'+seed+'-'+Date.now(),seed,inputHash:J.songNativeInputIdentity(q,a),rendererCompatibilityId:p.songNativeDirection.rendererCompatibilityId,originalCuts:copy(p.cuts),originalCreativeGenome:p.cuts.filter(c=>c.line>=0).map(c=>({line:c.line,genome:J.creativeGenomeV15(c)})),certification:'UNOPTIMIZED_NOT_EXPORT_CERTIFIED',metrics:{wallMs:performance.now()-started,rendererFrames:frames,candidates,probe640:0,qaObservations:0,fullEncodes:0}};
+  const draft={version:16,sourceTreeSHA256:rendererSource(),state:'RANDOM_DRAFT_READY',draftId:'draft-'+seed+'-'+Date.now(),seed,inputHash:J.songNativeInputIdentity(q,a),rendererCompatibilityId:p.songNativeDirection.rendererCompatibilityId,originalCuts:copy(p.cuts),originalCreativeGenome:p.cuts.filter(c=>c.line>=0).map(c=>({line:c.line,genome:J.creativeGenomeV15(c)})),certification:'UNOPTIMIZED_NOT_EXPORT_CERTIFIED',metrics:{wallMs:performance.now()-started,rendererFrames:frames,candidates,probe640:0,qaObservations:0,fullEncodes:0}};
   q.randomWorkflowV16=draft;p.randomDraftV16=true;return {project:q,plan:p,draft};
  }finally{R.disposeAssets?.();cv.width=cv.height=mask.width=mask.height=1;}
 };
@@ -69,9 +72,19 @@ J.optimizeCreativeLineV10=async args=>{
  Object.assign(checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:cut.lineText});
  const genome=J.creativeGenomeV15(source),descriptor=J.motionDescriptorV14(checks,p),intent=J.songVisualIntentV11(p,audio,c,f),fit=J.scoreExplorationV13(cut,f,intent,checks,p),hold=checks.find(e=>e.temporalStage==='HOLD'&&e.readable)||checks[0];
  const strip=({mask,raster,backgroundRasterV14,...e})=>e;
- let row={...fit,cut,times,checks,features:f,intent,descriptor,safe:checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable),layout:cut.layout,styleKey:cut.styleKey,font:cut.params.font,params:cut.params,evidence:strip(hold),phaseEvidence:checks.map(strip),signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster,attempts:[],ablations:[],optimizerEvidence:{explorationVersion:15,compared:1,budget:49,catalog:[],counts:{},axes:fit.dimensions,genome:{generated:genome,final:genome,changedRoles:[],retention:1},search:{fullRandomGenomeTrials:0,newGenomeSwitches:0},artisticQuality:'UNVERIFIED'}};
+ const catalog=capabilityCatalog(p).map(r=>{const generated=r.group==='style'?r.id===genome.styleKey:r.group==='decor'?genome.decor.includes(r.id):r.id===genome[r.group],probed=checks.some(e=>e.registryDispatchV11?.some(d=>d.group===r.group&&d.id===r.id));return {...r,generated,probed,safe:generated&&probed&&checks.every(e=>e.eligible)};});
+ const counts=Object.fromEntries(['registered','callable','eligible','generated','probed','safe'].map(k=>[k,catalog.filter(r=>r[k]).length]));
+ let row={...fit,cut,times,checks,features:f,intent,descriptor,safe:checks.every(e=>e.eligible)&&checks.some(e=>e.temporalStage==='HOLD'&&e.readable),layout:cut.layout,styleKey:cut.styleKey,font:cut.params.font,params:cut.params,evidence:strip(hold),phaseEvidence:checks.map(strip),signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster,attempts:[],ablations:[],optimizerEvidence:{explorationVersion:15,compared:1,budget:67,catalog,counts,intent,ablations:[],interactions:[],axes:fit.dimensions,genome:{generated:genome,final:genome,changedRoles:[],retention:1},search:{fullRandomGenomeTrials:0,newGenomeSwitches:0},artisticQuality:'UNVERIFIED'}};
  if(!row.safe){
-  const failures=checks.flatMap((e,i)=>!e.eligible?[{...J.scaleFailureV112(cut,times[i],e,p),check:e}]:[]);
+  // Reuse v15's bounded ID-preserving 256px numeric pass before paying for
+  // multiscale causal recovery. The search-level finish flag keeps recovery on.
+  try{return await J.optimizeRandomLineV15({...args,preserveCurrent:true,initialCuts:[source],initialPlan:p,budget:18});}
+  catch(error){if(error.message!=='V15_NO_SAFE_RANDOM_LINE_'+c.line)throw error;}
+  // Recovery compares like resolutions: its baseline must include actual
+  // 640px failures, rather than comparing 640px edits to a 256px-only source.
+  row.checks=checks.map((low,i)=>{const high=sample.verifyScale(p,cut,times[i]);if(high.renderErrors?.length)throw Error('V16_RENDERER_ERROR');const failed=!high.eligible?high:!low.eligible?low:high;return {...low,...high,...failed,eligible:low.eligible&&high.eligible,mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:times[i]};});
+  Object.assign(row.checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:cut.lineText});
+  const failures=row.checks.flatMap((e,i)=>!e.eligible?[{...J.scaleFailureV112(cut,times[i],e,p),check:e}]:[]);
   let recovered=[],current=row;
   for(let batch=0;batch<3&&!recovered.length;batch++){
    recovered=await J.recoverDirectionLineV112(p,current,failures,{sample,phases,audio,signal,budget:16,finishSelectedDraft:true});
@@ -85,9 +98,10 @@ J.optimizeCreativeLineV10=async args=>{
 J.finishSelectedDraftV16=async(q,p,a,snapshot,{signal,onProgress}={})=>{
  const started=performance.now();abort(signal);
  const d=q.randomWorkflowV16;
- if(!d||snapshot.draftId!==d.draftId||snapshot.inputHash!==J.songNativeInputIdentity(q,a)||snapshot.rendererCompatibilityId!==p.songNativeDirection?.rendererCompatibilityId||J.canonicalJSON(snapshot.originalCuts)!==J.canonicalJSON(p.cuts)||snapshot.locks!==J.cinemaV3.lockSignature(p))throw Error('V16_STALE_DRAFT');
+ if(!d||snapshot.sourceTreeSHA256!==rendererSource()||snapshot.draftId!==d.draftId||snapshot.inputHash!==J.songNativeInputIdentity(q,a)||snapshot.rendererCompatibilityId!==p.songNativeDirection?.rendererCompatibilityId||J.canonicalJSON(snapshot.originalCuts)!==J.canonicalJSON(p.cuts)||snapshot.locks!==J.cinemaV3.lockSignature(p))throw Error('V16_STALE_DRAFT');
  const trial=copy(p);
  await J.searchSongNativeCandidates(trial,null,a,{signal,onProgress,finishSelectedDraft:true,initialCuts:snapshot.originalCuts,initialPlan:p});abort(signal);
+ if(J.canonicalJSON(q.randomWorkflowV16.originalCuts)!==J.canonicalJSON(snapshot.originalCuts))throw Error('V16_STALE_DRAFT');
  if(snapshot.inputHash!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
  // Include locked lines in final composed safety, while never editing them.
  const R=new J.Renderer(),cv=Object.assign(document.createElement('canvas'),{width:256,height:Math.round(256*trial.H/trial.W)}),probe=J.createRegistryRenderProbe(trial,R,cv,cv.cloneNode(),{production:true});
@@ -98,11 +112,18 @@ J.finishSelectedDraftV16=async(q,p,a,snapshot,{signal,onProgress}={})=>{
    if(!checks.every(e=>e.eligible)||!checks.some(e=>e.temporalStage==='HOLD'&&e.readable))throw Error('V16_LOCKED_LINE_UNSAFE_'+c.line);
   }
  }finally{R.disposeAssets?.();}
- J.assertSelectionV9(trial,a);
+ delete trial.randomDraftV16;J.assertSelectionV9(trial,a);
  const changes=trial.cuts.filter(c=>c.line>=0).map(c=>{
   const original=snapshot.originalCuts.find(x=>x.line===c.line&&x.index===c.index)||snapshot.originalCuts.find(x=>x.line===c.line),from=J.creativeGenomeV15(original),to=J.creativeGenomeV15(c),changedRoles=J.genomeChangesV15(from,to),trace=trial.songNativeDirection.selection.traces.find(t=>t.line===c.line);
   return {line:c.line,original:from,final:to,changedRoles,reason:changedRoles.length?'MEASURED_SAFETY_FAILURE_CAUSAL_ROLE_REPAIR':J.canonicalJSON(original)===J.canonicalJSON(c)?'UNCHANGED':'NUMERIC_READABILITY_FINISH',safety:trace?.creative?.recovery||null};
  });
  return {plan:trial,changes,metrics:{wallMs:performance.now()-started,rendererFrames:trial.songNativeDirection.selection.framesCompared,qaObservations:0,fullEncodes:0},scaleSafety:trial.songNativeDirection.selection.multiScaleEvidence};
 };
+const exportMP4=J.exportMP4;
+J.exportMP4=async args=>{
+ const d=args.project?.randomWorkflowV16;
+ if(args.plan?.randomDraftV16||d&&(d.state!=='FINISHED'||d.sourceTreeSHA256!==rendererSource()))throw Error('V16_OPTIMIZE_DRAFT_BEFORE_EXPORT');
+ return exportMP4(args);
+};
+
 })();

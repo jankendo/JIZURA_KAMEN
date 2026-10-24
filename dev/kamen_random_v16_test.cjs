@@ -28,10 +28,11 @@ const {chromium}=require('playwright-core');
    for(let i=0;i<3;i++){
     await api.generateRandomDraft();const d=S.project.randomWorkflowV16;check(d?.state==='RANDOM_DRAFT_READY','draft '+i+': '+document.querySelector('#directionStatus').textContent);check(searches===0&&observations===0,'generation cannot finish automatically');check(S.plan.randomDraftV16&&S.plan.cuts.some(c=>c.registrySelectedV8),'actual registry preview '+JSON.stringify({random:S.plan.randomDraftV16,cuts:S.plan.cuts.map(c=>({line:c.line,registry:c.registrySelectedV8,layout:c.layout})),state:api.workflowStateV16()}));check(document.querySelector('#studioExport').disabled,'draft MP4 blocked');drafts.push(copy(d));
    }
+   let blocked=false;try{await J.exportMP4({project:S.project,plan:S.plan,audio:S.audio});}catch(e){blocked=e.message==='V16_OPTIMIZE_DRAFT_BEFORE_EXPORT';}check(blocked,'engine blocks draft MP4');
    check(new Set(drafts.map(d=>d.seed)).size===3,'fresh seeds');check(new Set(drafts.map(d=>J.canonicalJSON(d.originalCreativeGenome))).size===3,'different genomes');
    await window.captureV16('draft');
    const chosen=copy(S.project.randomWorkflowV16),snapshot=J.selectedDraftSnapshotV16(S.project,S.plan,S.audio);check(Object.isFrozen(snapshot)&&Object.isFrozen(snapshot.originalCuts),'immutable selected source');
-   const calls=searches;await api.optimizeSelectedDraft();check(searches===calls+1,'one selected search');check(S.project.randomWorkflowV16.state==='FINISHED','finish: '+document.querySelector('#directionStatus').textContent+' '+JSON.stringify(chosen.originalCuts.filter(c=>c.line>=0).map(c=>({line:c.line,genome:J.creativeGenomeV15(c),start:c.start,end:c.end,transDur:c.transDur}))));check(observations===1,'one final QA observation');
+   const calls=searches;await api.optimizeSelectedDraft();check(searches===calls+1,'one selected search');check(S.project.randomWorkflowV16.state==='FINISHED','finish: '+document.querySelector('#directionStatus').textContent+' '+JSON.stringify(chosen.originalCuts.filter(c=>c.line>=0).map(c=>({line:c.line,genome:J.creativeGenomeV15(c),start:c.start,end:c.end,transDur:c.transDur}))));check(observations===1,'one final QA observation');check(document.querySelector('#directionStatus').dataset.selectionState==='SELECTED','finish UI committed without errors');
    const done=S.project.randomWorkflowV16;check(done.draftId===chosen.draftId&&done.seed===chosen.seed,'same selected draft');check(done.changes.length===S.plan.cuts.filter(c=>c.line>=0).length,'per-line provenance');check(J.canonicalJSON(done.originalCuts)===J.canonicalJSON(chosen.originalCuts),'immutable original cuts');
    check(done.scaleSafety?.width===640&&done.scaleSafety.entries.every(e=>e.checks.every(x=>x.eligible)),'all-line final 640 gate');
    await window.captureV16('finished');
@@ -58,7 +59,9 @@ const {chromium}=require('playwright-core');
    return {drafts:drafts.map(d=>({seed:d.seed,genomes:d.originalCreativeGenome,metrics:d.metrics})),chosenDraftId:done.draftId,finishMetrics:done.finishMetrics,changes:done.changes,scale:done.scaleSafety,saveFailureProtectsCompletion:true,immutable:true,cancelled,inputInvalidation:stale,restore:true,portrait:true,observations};
   },input);
   if(process.env.KAMEN_V16_REPORT)fs.writeFileSync(process.env.KAMEN_V16_REPORT,JSON.stringify(report,null,2));
+  if(assetDir){await page.reload();await page.waitForFunction(()=>J.ui?.audio&&!J.ui.audioLoading,undefined,{timeout:120000});assert.equal(await page.evaluate(()=>J.uiApi.workflowStateV16()),'RANDOM_DRAFT_READY');report.browserReload=true;}
   await page.screenshot({path:process.env.KAMEN_V16_SCREENSHOT||'/tmp/kamen-v16-ui.png',fullPage:true});
+  if(process.env.KAMEN_V16_REPORT)fs.writeFileSync(process.env.KAMEN_V16_REPORT,JSON.stringify(report,null,2));
   console.log('V16 PASS',JSON.stringify({lines:report.changes.length,finishMetrics:report.finishMetrics,drafts:report.drafts.map(d=>d.metrics)}));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

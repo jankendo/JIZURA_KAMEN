@@ -428,6 +428,14 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
    // Fit that candidate on its own measurements, then keep only a real gain.
    const previous=current;current=row;finish(kind==='control'&&role==='layout'?4:2);const fitted=current;
    current=previous;if(!winner)adopt(fitted);
+   // A repaired entry can expose a second, previously masked post-FX failure.
+   // Explore that measured pair only in selected mode, within the same budget.
+   if(o.finishSelectedDraft&&!winner&&kind==='control'&&role!=='fx'&&fitted.cut.registryFxV9&&fitted.checks.some(e=>!e.eligible&&(e.compositedContrast?.renderedVsBackgroundContrastP10??Infinity)<3)){
+    for(let i=0;i<3&&!winner&&examined<budget;i++){
+     const pair=i<2?J.rerollRoleV15(p,fitted.cut,index,'fx',620+i):J.changeDirectionRoleV11(fitted.cut,'fx',null);
+     if(pair)adopt(evaluate(pair,'measured-causal-pair','fx'));
+    }
+   }
   };
   for(let attempt=0;attempt<2&&examined<budget&&!winner;attempt++){
    const cut=J.rerollRoleV15(p,base,index,role,600+attempt);if(cut)tryCandidate(cut,'reroll');

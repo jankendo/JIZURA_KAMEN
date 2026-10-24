@@ -1120,7 +1120,7 @@ function syncDirectionUI() {
 }
 function workflowStateV16() {
   const d=S.project.randomWorkflowV16;
-  if(!d)return 'INPUT_READY';
+  if(!d||d.sourceTreeSHA256!==(window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null))return 'INPUT_READY';
   return d.inputHash===J.songNativeInputIdentity(S.project,audioLike())?d.state:'INPUT_READY';
 }
 async function generateRandomDraft(){return runRandomWorkflowV16(false);}
@@ -1132,7 +1132,7 @@ async function runRandomWorkflowV16(finish) {
   const sourceIdentity=J.songNativeInputIdentity(S.project,audioLike()),sourceAudio=S.audio;
   let snapshot=null;try{if(finish)snapshot=J.selectedDraftSnapshotV16(S.project,S.plan,audioLike());}catch(error){$('directionStatus').textContent=error.message;return;}
   const q=mergeProject(J.clonePhotoRenderPlan(S.project)),controller=new AbortController();
-  const priorFinished=q.randomWorkflowV16?.previousFinishedProject||(q.randomWorkflowV16?.state==='FINISHED'||!q.randomWorkflowV16&&q.artDirection?.songNativeResolved?(()=>{const old=J.clonePhotoRenderPlan(q);delete old.randomWorkflowV16;return old;})():null);
+  const priorFinished=q.randomWorkflowV16?.finishedProject||q.randomWorkflowV16?.previousFinishedProject||(q.randomWorkflowV16?.state==='FINISHED'||!q.randomWorkflowV16&&q.artDirection?.songNativeResolved?(()=>{const old=J.clonePhotoRenderPlan(q);delete old.randomWorkflowV16;return old;})():null);
   let committed=false,workingPlan=null;
   const task=J.processing.begin(finish?'現在の案を最適化しています':'ランダム案を生成しています',finish?[['direction','選択した案の可読性と640px合成を検査しています',75],['quality','完成プレビューを観測しています',20],['save','選択案と結果を保存しています',5]]:[['direction','登録技法からランダム案を描画しています',95],['save','ドラフトを保存しています',5]],{retry:finish?optimizeSelectedDraft:generateRandomDraft,cancel:()=>controller.abort()});
   const assertCurrent=()=>{if(controller.signal.aborted)throw new DOMException('Aborted','AbortError');if(S.audio!==sourceAudio||S.project!==q||J.songNativeInputIdentity(before.project,audioLike())!==sourceIdentity)throw Error('入力が変更されたため処理を中止しました');};
@@ -1157,6 +1157,7 @@ async function runRandomWorkflowV16(finish) {
       J.captureSongNativeResolved(q,audioLike(),workingPlan);
       q.randomWorkflowV16={...q.randomWorkflowV16,state:'FINISHED',changes:result.changes,finishMetrics:{...result.metrics,qaObservations:1},scaleSafety:result.scaleSafety,previousFinishedProject:priorFinished};
       q.randomWorkflowV16.inputHash=J.songNativeInputIdentity(q,audioLike());
+      const finishedProject=J.clonePhotoRenderPlan(q);delete finishedProject.randomWorkflowV16;q.randomWorkflowV16.finishedProject=finishedProject;
     }else{
       if(before.project.randomWorkflowV16?.state==='FINISHED'||!before.project.randomWorkflowV16&&priorFinished){const previousAudio=await bgDbGet('finished-audio-v16').catch(()=>null)||audioFile;if(previousAudio)S.workflowSaveEntriesV16=[['previous-finished-audio-v16',previousAudio]];}
       result=await J.generateRandomDraftV16(q,audioLike(),options);assertCurrent();workingPlan=result.plan;
