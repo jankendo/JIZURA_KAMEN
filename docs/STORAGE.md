@@ -33,3 +33,9 @@ The project JSON does **not** contain the audio bytes. Users should keep the ori
 ## Backup limitations
 
 This source backup can document storage schemas, but it cannot read or extract a user's private browser `localStorage`/IndexedDB data from a remote Sites deployment. No per-user browser database is exposed through the Site source project.
+
+## v2.1.0 generation compatibility
+
+Project JSON and browser snapshots now retain `generation: {engine, version, commit, generated?}`. New projects use `engine: "jizura"`, version `0.10.1`, and the immutable upstream commit. Unmarked saved projects are interpreted as `engine: "kamen"` and retain the legacy path. Loading a project does not opt it into the new generator. Explicit regeneration converts it and remaps pre-0.10 LRC row indices, including line times, locks and exported line ranges.
+
+The new MP4 path writes positioned chunks into fixed-size pages and constructs a Blob without allocating a whole-video ArrayBuffer. Container inspection reads the Blob through Mediabunny's BlobSource. Download links retain their Blob until dismissed; closing the page loses unsaved output. `jizura.tapOpts` stores only tap playback speed and countdown preferences. Optional diagnostic downloads contain browser, export settings, failed attempts and error messages, not source image/audio/lyrics contents.

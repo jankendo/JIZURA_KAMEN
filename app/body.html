@@ -21,7 +21,7 @@
 
   <p id="localSaveStatus" class="local-save-status" role="status" aria-live="polite">保存内容を確認中…</p>
   <section id="studioSetup" class="studio-setup" aria-label="MV作成">
-    <div class="studio-intro"><div><span class="studio-kicker">KAMEN · LYRIC MV</span><h1>ランダム案を選び、自分の映像に。</h1><p>背景画像・音源・歌詞を選び、ランダム生成を何度でも。選んだ案を最適化してMP4に保存できます。</p></div><span id="studioStep" class="studio-step" role="status" aria-live="polite">01 / 02　素材を準備</span></div>
+    <div class="studio-intro"><div><span class="studio-kicker">KAMEN · LYRIC MV</span><h1>歌詞から、自分の映像を。</h1><p>背景画像・音源・歌詞を選び、楽曲に合わせた文字PVを生成。プレビューを確認してMP4で保存できます。</p></div><span id="studioStep" class="studio-step" role="status" aria-live="polite">01 / 02　素材を準備</span></div>
     <div class="studio-fields">
       <label class="studio-file"><span class="studio-field-label">01　背景画像</span><span id="studioImageName">画像を選択</span><span id="studioImageSlot"></span></label>
       <label class="studio-file"><span class="studio-field-label">02　音源</span><span id="studioAudioName">曲を選択</span><span id="studioAudioSlot"></span></label>
@@ -60,7 +60,7 @@
           <label class="file" title="mp3 / wav / m4a など">曲を読み込む<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
           <button id="btnTap" title="曲を再生しながら各行の頭でタップ">タップで同期</button>
         </div>
-        <div class="auto-direction"><button id="btnAutoDirection" class="primary" type="button">ランダム生成</button><p id="directionStatus" class="muted" role="status" aria-live="polite">素材を選び、ランダム生成で案を選んでから、現在の案を最適化します。</p></div>
+        <div class="auto-direction"><button id="btnAutoDirection" class="primary" type="button">ランダム生成</button><p id="directionStatus" class="muted" role="status" aria-live="polite">背景画像・音源・歌詞を選び、本家JIZURAの方式でMVを生成します。</p></div>
         <div class="fields pro-only">
           <label class="field">BPM<input id="bpm" type="number" min="45" max="240" step="0.1" placeholder="自動"></label>
           <label class="field">開始(秒)<input id="offset" type="number" min="0" step="0.05"></label>
@@ -73,7 +73,7 @@
         <div id="tapPanel" class="tapbox" hidden>
           <div class="hint">音源を再生し、各行が始まる瞬間に <span class="kbd">Space</span> かボタンを押してください。</div>
           <div class="next">次: <b id="tapLine" role="status" aria-live="polite" aria-atomic="true">—</b></div>
-          <button id="tapBtn" class="tap" aria-label="次の歌詞行の開始時刻を記録">TAP</button>
+          <label>同期の速さ <select id="tapRate"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select></label><label><input id="tapCount" type="checkbox">3秒カウントダウン</label><button id="tapBtn" class="tap" aria-label="次の歌詞行の開始時刻を記録">TAP</button>
           <button id="tapUndo" class="ghost" type="button">1行戻す</button><button id="tapStop" class="ghost">終了する</button>
         </div>
       </div>
