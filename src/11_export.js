@@ -229,6 +229,7 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
   const muxOpts = { target, video: { codec: vc.mux, width: w, height: h, frameRate: fps }, fastStart: 'in-memory', firstTimestampBehavior: 'offset' };
   if (ac) muxOpts.audio = { codec: ac.mux, numberOfChannels: Math.min(2, audio.buffer.numberOfChannels), sampleRate: ac.sr };
   const muxer = new Mp4Muxer.Muxer(muxOpts);
+  const performanceV16={backend:vc.label,codec:vc.cfg.codec,renderMs:0,videoFrameMs:0,encodeSubmitMs:0,queueWaitMs:0,audioResampleMs:0,audioTotalMs:0,muxMs:0,frames:0},pipelineStartedV16=performance.now();
   let err = null,videoFrames=0;
   const venc = new VideoEncoder({ output: (chunk, meta) => {try{muxer.addVideoChunk(chunk,meta);videoFrames++;}catch(e){err=e;}}, error: e => { err = e; } });
   try{venc.configure(Object.assign({}, vc.cfg, { latencyMode: 'realtime' }));}catch(e){venc.close();throw e;}
@@ -247,8 +248,10 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
     throw new Error('動画の切り出し範囲を確認してください');
   const total = Math.max(1, Math.round(duration * fps));
   const encodeAudio=async()=>{
+    const audioStartedV16=performance.now(),resampleStartedV16=performance.now();
     audioProgress(.91, '音声を変換中',{stage:'resample',indeterminate:true});
     const rs = await guard(()=>resample(audio.buffer,ac.sr,duration,start),'音声変換',Math.max(45000,Math.min(120000,duration*1000)));
+    performanceV16.audioResampleMs=performance.now()-resampleStartedV16;
     if(pipeline.signal.aborted)throw new Error('キャンセルしました');
     const chn = rs.numberOfChannels;
     let audioChunks=0,audioEnd=0;
@@ -276,6 +279,7 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
 
     } finally {activeAenc=null;if(aenc.state!=='closed')aenc.close();}
     }
+    performanceV16.audioTotalMs=performance.now()-audioStartedV16;
     return {audioChunks,audioEnd};
   };
   audioJob=ac?encodeAudio().catch(error=>{err=error;return null;}):null;
@@ -287,10 +291,15 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
     if (signal?.aborted) throw new Error('キャンセルしました');
     if (err) throw err;
     await guard(()=>R.prepareAssetFrame?.(plan,start+i/fps),'動画素材のフレーム');
+    let tickV16=performance.now();
     R.frame(ctx, plan, start+i / fps, { scale, production:true, range });
+    performanceV16.renderMs+=performance.now()-tickV16;tickV16=performance.now();
     const vf = new VideoFrame(canvas, { timestamp: Math.round(i * 1e6 / fps), duration: Math.round(1e6 / fps) });
+    performanceV16.videoFrameMs+=performance.now()-tickV16;tickV16=performance.now();
     try{venc.encode(vf, { keyFrame: i % (fps * 2) === 0 });}finally{vf.close();}
+    performanceV16.encodeSubmitMs+=performance.now()-tickV16;tickV16=performance.now();
     await J.waitEncoderCapacity(venc,4,{signal:pipeline.signal,label:'映像エンコーダー',getError:()=>err,getProgress:()=>videoFrames});
+    performanceV16.queueWaitMs+=performance.now()-tickV16;performanceV16.frames++;
     if(i===Math.min(total-1,fps*3)&&videoFrames===0){await guard(()=>venc.flush(),'映像エンコーダーの完了');if(!videoFrames)throw new Error('映像エンコーダーが出力を返しません');}
     const now=performance.now();
     if(now-lastProgress>=100||i===total-1){onProgress?.(.9*(i+1)/total,`映像・音声を並行生成中 ${i+1}/${total}フレーム`,{stage:'frames',current:i+1,total,encoded:videoFrames});lastProgress=now;}
@@ -304,11 +313,13 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
   videoDone=true;
   if(ac){onProgress?.(.91,'並行処理した音声の完了を確認しています',{stage:'audio',indeterminate:true});const sound=await audioJob;if(err)throw err;J.verifyEncodedTracks({frames:videoFrames,expected:total,...sound,audioExpected:Math.min(duration,audio.buffer.duration-start)});}
   onProgress&&onProgress(.985,'MP4にまとめています',{stage:'mux',indeterminate:true});
-  muxer.finalize();
+  const muxStartedV16=performance.now();muxer.finalize();performanceV16.muxMs=performance.now()-muxStartedV16;
+  performanceV16.wallMs=performance.now()-pipelineStartedV16;performanceV16.fps=total/(performanceV16.wallMs/1000);
+  performanceV16.heapBytes=performance.memory?.usedJSHeapSize??null;
   onProgress&&onProgress(.995,'動画を検査しています',{stage:'verify',indeterminate:true});
   const validation=J.inspectMP4Buffer(target.buffer,{requireAudio:!!ac});
   onProgress && onProgress(.995, '生成済みファイルの検査を続けています',{stage:'verify',indeterminate:true});
-  return { blob: new Blob([target.buffer], { type: 'video/mp4' }), codec: vc.label, audio: ac ? ac.mux : null, width: w, height: h, validation };
+  return { blob: new Blob([target.buffer], { type: 'video/mp4' }), codec: vc.label, audio: ac ? ac.mux : null, width: w, height: h, validation, performanceV16 };
   } finally {
     pipelineStopped=true;pipeline.abort();signal?.removeEventListener('abort',cancelPipeline);
     if(activeAenc?.state!=='closed')try{activeAenc?.close();}catch{}

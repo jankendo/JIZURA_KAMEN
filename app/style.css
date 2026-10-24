@@ -525,3 +525,7 @@ button:disabled,input:disabled,select:disabled { opacity:.5;cursor:not-allowed; 
 /* Retained save links must not cover progress, cancellation or retry controls. */
 body:has(.processing-panel:not([hidden])) .kamen-downloads{left:16px;right:auto;width:min(540px,calc(100vw - 408px))}
 @media(max-width:600px){body:has(.processing-panel:not([hidden])) .kamen-downloads{left:8px;right:8px;top:8px;bottom:auto;width:calc(100vw - 16px);max-height:calc(45vh - 32px)}}
+/* Selected random draft controls share the studio/detail action area. */
+#workflowChanges { max-width: 36rem; font-size: .82rem; color: var(--muted, #b7bcc5); }
+#workflowCompare { display: inline-flex; align-items: center; gap: .5rem; }
+#workflowCompare[hidden] { display: none; }

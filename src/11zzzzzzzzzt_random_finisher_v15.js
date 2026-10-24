@@ -405,6 +405,7 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
  // A layout may paint opaque panels AFTER the glyph. No amount of pre-glyph
  // scrim/color can repair that occlusion; include layout in contrast recovery.
  // ENTRY/EXIT causes must be reached before spending states on unrelated FX.
+ if(o.finishSelectedDraft&&current.cut.trans!=='cut'&&current.checks.some(e=>!e.eligible&&e.sampleOffset<=Math.max(.12,current.cut.transDur||0)))causes.push('trans');
  const covered=failures.some(f=>{const e=f.check;return e?.full&&e.safe&&e.geometry?.length&&e.geometry.every(g=>g.readable)&&e.advancedChecks?.length&&e.advancedChecks.every(g=>g.complete)&&(f.observed?.contrastP10??3)<1.5;});
  if(covered&&!current.cut.registryFxV9)causes.push('layout');
  if(stages.has('ENTRY'))causes.push('enter');if(stages.has('EXIT'))causes.push('exit');
@@ -445,6 +446,7 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
   const counts=Object.fromEntries(['registered','callable','eligible','generated','probed','safe'].map(k=>[k,catalog.filter(row=>row[k]).length]));
   rows.push({...pick,cut,safe:true,checks:checks.map(strip),times,params:cut.params,font:cut.params.font,styleKey:cut.styleKey,layout:cut.layout,evidence:strip(hold),phaseEvidence:checks.map(strip),descriptor,signature:descriptor.signature,typographySignature:descriptor.typography,rasterSignature:hold.raster,ablations:[],lightSafetyV15:lightSafety,optimizerEvidence:{...copy(pick.optimizerEvidence),catalog,counts,intensity:{...copy(pick.optimizerEvidence?.intensity),status:descriptor.holdMotion.value>1e-6?'OBSERVED_MOTION':'UNMET'},ablations:[],motionV14:J.motionObservationV14({...winner,descriptor,ablations:[]}),lightSafety,repairSummary:{...copy(pick.optimizerEvidence?.repairSummary),changedRoles:[...new Set([...(pick.optimizerEvidence?.repairSummary?.changedRoles||[]),...changedRoles])]},genome:{generated:copy(generated),final,changedRoles,retention:1-changedRoles.length/Object.keys(generated).length},recovery:{mode:changedRoles.length?'CAUSAL_ROLE_REPAIR':'LOCAL_FINISH',examined,scaleGate:'MEASURED_640PX'},unmeasured:['recoveryRoleAblations','artisticQuality']}});
  }
+ if(o.finishSelectedDraft&&!winner)rows.continuationV16={cut:copy(current.cut),checks:current.checks};
  rows.examined=examined;rows.diagnostic={attempts,budget,exhausted:!winner};return rows;
 };
 })();
