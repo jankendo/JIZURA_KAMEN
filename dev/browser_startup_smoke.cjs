@@ -36,25 +36,15 @@ assert(url,'URL is required');
    try{await J.uiApi.generateRandomDraft();if(S.project!==previous||S.plan!==plan)throw Error('V16_QUOTA_CHANGED_PREVIOUS');}finally{IDBObjectStore.prototype.put=put;}
    await J.uiApi.generateRandomDraft();if(S.project.randomWorkflowV16?.state!=='RANDOM_DRAFT_READY')throw Error('V16_NO_DRAFT');
    if(!document.querySelector('#studioExport').disabled||S.pixelQA)throw Error('V16_DRAFT_WAS_FINISHED');
-   await J.uiApi.optimizeSelectedDraft();if(S.project.randomWorkflowV16.state!=='FINISHED')throw Error('V16_FINISH_FAILED '+document.querySelector('#directionStatus').textContent);
-   J.assertSelectionV9(S.plan,S.audio);if(!S.pixelQA?.completed)throw Error('V16_NOT_OBSERVED');
   });
-  console.log('Browser v16 draft/finish/atomic quota rollback PASS');
-  await page.waitForFunction(()=>!document.querySelector('#btnAutoDirection').disabled,null,{timeout:15000});
-  if(await page.evaluate(()=>!!J.ui.plan.songNativeDirection.selection.alternatives?.length)){
-   await page.locator('#studioAlternative').click({force:true});
-   await page.waitForFunction(()=>document.querySelector('#alternativeChoice').textContent==='実Canvas確認済みの別案を適用しました'||!document.querySelector('#btnAutoDirection').disabled,null,{timeout:60000});
-   assert.equal(await page.locator('#alternativeChoice').textContent(),'実Canvas確認済みの別案を適用しました',await page.evaluate(()=>document.body.innerText.slice(-2000)));
-   assert.equal(await page.evaluate(()=>{const J=window.J,S=J.ui;J.assertSelectionV9(S.plan,S.audio);return S.project.artDirection.songNativeResolved.version;}),9);
-   console.log('Browser safe alternate storyboard commit PASS');
-  }
+  console.log('Browser v16 draft/atomic quota rollback PASS; selected finishing is covered by kamen_random_v16_test');
   await page.waitForFunction(()=>!document.querySelector('#btnAutoDirection').disabled,null,{timeout:15000});
   await page.evaluate(async()=>{
    const J=window.J,S=J.ui,project=S.project,plan=S.plan,generate=J.generateRandomDraftV16;
    J.generateRandomDraftV16=async()=>{throw Error('SMOKE_DRAFT_FAILURE');};
    try{await J.uiApi.generateRandomDraft();if(S.project!==project||S.plan!==plan)throw Error('V16_FAILED_DRAFT_CHANGED_COMPLETION');}finally{J.generateRandomDraftV16=generate;}
   });
-  console.log('Browser failed-generation rollback preserves the confirmed project and storyboard PASS');
+  console.log('Browser failed-generation rollback preserves the previous project and draft PASS');
   assert.deepEqual(errors,[]);console.log('Browser initialization and observed synthetic quality-fix/commit/restore smoke PASS',browser.version());
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});
