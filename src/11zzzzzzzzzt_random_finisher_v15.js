@@ -393,7 +393,9 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
  const finish=(limit)=>{
   const stop=Math.min(budget,examined+limit);
   while(!winner&&examined<stop){let improved=false;
-   for(const cut of J.finishRepairsV15(p,current.cut,current.checks)){
+   const numeric=J.finishRepairsV15(p,current.cut,current.checks);
+   if(o.finishSelectedDraft&&current.cut.cam!=='stillCamera'&&current.checks.some(e=>!e.eligible&&!e.geometry?.length))numeric.unshift(...[.65,.35,.1].map(k=>({...copy(current.cut),explorationParamsV13:{...current.cut.explorationParamsV13,camera:(current.cut.explorationParamsV13?.camera??1)*k}})));
+   for(const cut of numeric){
     if(examined>=stop)break;
     if(adopt(evaluate(cut,'numeric'))){improved=true;if(winner)break;}
    }
@@ -405,6 +407,9 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
  // A layout may paint opaque panels AFTER the glyph. No amount of pre-glyph
  // scrim/color can repair that occlusion; include layout in contrast recovery.
  // ENTRY/EXIT causes must be reached before spending states on unrelated FX.
+ // With no primary geometry, offscreen camera/occluding FX cannot report bounds.
+ // Selected-mode removal/reroll trials still require measured deficit improvement.
+ if(o.finishSelectedDraft&&current.checks.some(e=>!e.eligible&&!e.geometry?.length)){if(current.cut.cam!=='stillCamera')causes.push('cam');if(current.cut.registryFxV9)causes.push('fx');}
  if(o.finishSelectedDraft&&current.cut.trans!=='cut'&&current.checks.some(e=>!e.eligible&&e.sampleOffset<=Math.max(.12,current.cut.transDur||0)))causes.push('trans');
  const covered=failures.some(f=>{const e=f.check;return e?.full&&e.safe&&e.geometry?.length&&e.geometry.every(g=>g.readable)&&e.advancedChecks?.length&&e.advancedChecks.every(g=>g.complete)&&(f.observed?.contrastP10??3)<1.5;});
  if(covered&&!current.cut.registryFxV9)causes.push('layout');

@@ -1101,7 +1101,7 @@ function syncDirectionUI() {
   $('studioAdaptCurrent').title='選択したランダム案の技法を保持し、可読性と640px合成の安全性を検査します';
   for(const id of ['btnMP4','eMP4'])if($(id))$(id).disabled=draftBlocked||locked;
   if($('workflowCompare'))$('workflowCompare').hidden=!(S.project.randomWorkflowV16?.state==='FINISHED');
-  if(!directionBusy&&workflow==='RANDOM_DRAFT_READY'){$('studioQuality').textContent='未最適化・書き出し前検証未完了。現在の案を最適化してください。';$('qualityBreakdown')?.replaceChildren();$('directionStatus').textContent='ランダム案 · 未最適化・書き出し前検証未完了。現在の案を最適化するか、もう一度ランダム生成してください。';}
+  if(!directionBusy&&workflow==='RANDOM_DRAFT_READY'&&$('directionStatus').dataset.selectionState!=='FAILED'){$('studioQuality').textContent='未最適化・書き出し前検証未完了。現在の案を最適化してください。';$('qualityBreakdown')?.replaceChildren();$('directionStatus').textContent='ランダム案 · 未最適化・書き出し前検証未完了。現在の案を最適化するか、もう一度ランダム生成してください。';}
   if($('workflowPrevious')){$('workflowPrevious').hidden=!S.project.randomWorkflowV16?.previousFinishedProject;$('workflowPrevious').disabled=locked;}
   for(const [id,ready] of [['studioImageSlot',image],['studioAudioSlot',music],['studioLrcSlot',lyrics]])
     $(id).parentElement.classList.toggle('is-ready',ready);
@@ -1167,7 +1167,7 @@ async function runRandomWorkflowV16(finish) {
     S.pendingDirectionCommit=false;task.enter('save');
     if(!await flushSave())throw Error('保存できなかったため、前の状態を保持しました。空き容量を確認してください。');
     assertCurrent();committed=true;commit();fontKey='';syncUI();renderLines();refreshPreviewPlan();sizeViewport();drawTimeline();S.t=Math.min(before.t,S.plan.duration);S.need=true;
-    $('directionStatus').dataset.result='true';$('directionStatus').dataset.workflowState=q.randomWorkflowV16.state;
+    $('directionStatus').dataset.result='true';$('directionStatus').dataset.selectionState=finish?'SELECTED':'DRAFT';$('directionStatus').dataset.workflowState=q.randomWorkflowV16.state;
     $('directionStatus').textContent=finish?'最適化済み · 640px合成検査済み。芸術品質は未検証です。':'ランダム案 · 未最適化・書き出し前検証未完了。何度でも再生成できます。';
     if(finish){updateStudioQuality();const n=result.changes.reduce((n,c)=>n+c.changedRoles.length,0);$('workflowChanges').textContent=`技法変更 ${n}件 · `+result.changes.filter(c=>c.changedRoles.length).map(c=>`${c.line+1}行: ${c.changedRoles.join(' / ')}（描画安全性の復旧）`).join('、');}
     else {$('workflowChanges').textContent=`seed ${q.randomWorkflowV16.seed} · 完成認定前のプレビュー`;}

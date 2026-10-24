@@ -47,7 +47,11 @@ J.generateRandomDraftV16=async(q,a,{signal,onProgress,seed=J.randomDraftSeedV16(
   }
   J.installRegistryStoryboardV8(p,selected.map(cut=>({line:cut.line,cut})));
   // Locked multi-cut lines retain the exact source cuts.
-  if(initialPlan)p.cuts=p.cuts.flatMap(c=>J.songNativeLockedV8(p,c)?copy(initialPlan.cuts.filter(x=>x.line===c.line&&x.index===c.index).length?initialPlan.cuts.filter(x=>x.line===c.line&&x.index===c.index):[c]):[c]);
+  if(initialPlan){
+   const lockedLines=new Set(p.cuts.filter(c=>c.line>=0&&J.songNativeLockedV8(p,c)).map(c=>c.line)),seen=new Set();
+   p.cuts=p.cuts.flatMap(c=>{if(!lockedLines.has(c.line))return [c];if(seen.has(c.line))return [];seen.add(c.line);return copy(initialPlan.cuts.filter(x=>x.line===c.line));});
+   p.cuts.forEach((c,i)=>{c.index=i;});
+  }
   abort(signal);if(inputIdentity!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
   const draft={version:16,state:'RANDOM_DRAFT_READY',draftId:'draft-'+seed+'-'+Date.now(),seed,inputHash:J.songNativeInputIdentity(q,a),rendererCompatibilityId:p.songNativeDirection.rendererCompatibilityId,originalCuts:copy(p.cuts),originalCreativeGenome:p.cuts.filter(c=>c.line>=0).map(c=>({line:c.line,genome:J.creativeGenomeV15(c)})),certification:'UNOPTIMIZED_NOT_EXPORT_CERTIFIED',metrics:{wallMs:performance.now()-started,rendererFrames:frames,candidates,probe640:0,qaObservations:0,fullEncodes:0}};
   q.randomWorkflowV16=draft;p.randomDraftV16=true;return {project:q,plan:p,draft};
