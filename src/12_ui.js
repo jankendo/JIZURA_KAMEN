@@ -1044,7 +1044,11 @@ function validatePaletteSource(project, image) {
   if (ap.sourceHash && hash && ap.sourceHash !== hash) J.invalidateAutoPalette(project);
   else {
     if (!ap.sourceHash && hash) ap.sourceHash = hash;
-    if (ap.options && ap.options.readability) ap.localMap = J.refreshAutoPaletteMap(image, project);
+    // A persisted v16 map is part of the selected render input. Recomputing
+    // it at the legacy 96px refresh size would replace its 128px source map.
+    const workflow=project.randomWorkflowV16;
+    const retained=workflow&&workflow.sourceTreeSHA256===(window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null)&&['RANDOM_DRAFT_READY','FINISHED'].includes(workflow.state)&&ap.localMap&&ap.viewportKey===J.autoPaletteViewportKey(project);
+    if (!retained&&ap.options && ap.options.readability) ap.localMap = J.refreshAutoPaletteMap(image, project);
   }
 }
 
@@ -1156,7 +1160,7 @@ async function runRandomWorkflowV16(finish) {
       S.exportCapabilities=await J.exportCapabilities(q,q.includeAudio!==false?S.audio:null).catch(()=>null);assertCurrent();
       q.artDirection.songNativeDirection=J.clonePhotoRenderPlan(workingPlan.songNativeDirection);
       J.captureSongNativeResolved(q,audioLike(),workingPlan);
-      q.randomWorkflowV16={...q.randomWorkflowV16,state:'FINISHED',changes:result.changes,finishMetrics:{...result.metrics,qaObservations:1},scaleSafety:result.scaleSafety,previousFinishedProject:priorFinished};
+      q.randomWorkflowV16={...q.randomWorkflowV16,state:'FINISHED',changes:result.changes,finishMetrics:{...result.metrics,qaObservations:1},scaleSafety:result.scaleSafety,nativeSafety:result.nativeSafety,previousFinishedProject:priorFinished};
       q.randomWorkflowV16.inputHash=J.songNativeInputIdentity(q,audioLike());
       const finishedProject=J.clonePhotoRenderPlan(q);delete finishedProject.randomWorkflowV16;q.randomWorkflowV16.finishedProject=finishedProject;
     }else{
@@ -1165,7 +1169,7 @@ async function runRandomWorkflowV16(finish) {
       if(bitmap&&q.customBg?.enabled&&q.customBg.dataUrl){
         const immutable=typeof ImageBitmap!=='undefined'&&bitmap instanceof ImageBitmap,cached=immutable?workflowImageFingerprintsV16.get(bitmap):null;
         const hash=cached?.source===q.customBg.dataUrl?cached.hash:J.imageFingerprint(bitmap);if(immutable)workflowImageFingerprintsV16.set(bitmap,{source:q.customBg.dataUrl,hash});
-        const ap=q.autoPalette;paletteCacheHit=!!(ap?.analyzed&&ap.sourceHash===hash&&ap.viewportKey===J.autoPaletteViewportKey(q)&&ap.stats&&ap.palette);
+        const ap=q.autoPalette;paletteCacheHit=!!(ap?.analyzed&&ap.sourceHash===hash&&ap.viewportKey===J.autoPaletteViewportKey(q)&&ap.stats&&ap.palette&&(!q.randomWorkflowV16||q.randomWorkflowV16.inputHash===J.songNativeInputIdentity(q,audioLike())));
         if(!paletteCacheHit){let analyzed=J.analyzeCustomBackground(bitmap,q);if(!ap?.darknessManual&&Math.abs(q.customBg.darkness-analyzed.suggestedDarkness)>.005){q.customBg.darkness=analyzed.suggestedDarkness;analyzed=J.analyzeCustomBackground(bitmap,q);}J.applyImagePalette(q,analyzed,{palette:true,readability:true,mood:false});}
       }
       const paletteMs=performance.now()-paletteStarted;

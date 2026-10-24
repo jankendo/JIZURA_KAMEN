@@ -36,6 +36,8 @@ const {chromium}=require('playwright-core');
    const done=S.project.randomWorkflowV16;check(done.draftId===chosen.draftId&&done.seed===chosen.seed,'same selected draft');check(done.changes.length===S.plan.cuts.filter(c=>c.line>=0).length,'per-line provenance');check(J.canonicalJSON(done.originalCuts)===J.canonicalJSON(chosen.originalCuts),'immutable original cuts');
    check(done.scaleSafety?.width===640&&done.scaleSafety.entries.every(e=>e.checks.every(x=>x.eligible)),'all-line final 640 gate');
    await window.captureV16('finished');
+   const unsafeNative=copy(S.plan),badCut=unsafeNative.cuts.find(c=>c.line===0);badCut.layout='tile';badCut.params={...J.LAYOUTS.tile.plan(J.rng(badCut.seed),badCut,badCut.style),font:badCut.params.font};
+   const badBefore=J.canonicalJSON(unsafeNative.cuts);let nativeRejected=false;try{await J.prepareAutomaticUnitSafety({plan:unsafeNative,project:S.project,audio:S.audio});}catch(e){nativeRejected=e.message==='V16_NATIVE_GATE_WOULD_CHANGE_SELECTED_DRAFT';}check(nativeRejected&&J.canonicalJSON(unsafeNative.cuts)===badBefore,'native gate cannot replace a selected genome');
    const finishedProject=S.project,finishedPlan=S.plan,put=IDBObjectStore.prototype.put;
    IDBObjectStore.prototype.put=function(value,key){if(key==='project-current-v2')throw new DOMException('v16 quota test','QuotaExceededError');return put.call(this,value,key);};
    await api.generateRandomDraft();check(S.project===finishedProject&&S.plan===finishedPlan,'save failure protects finished MV');IDBObjectStore.prototype.put=put;
@@ -58,6 +60,16 @@ const {chromium}=require('playwright-core');
    const portrait=await J.generateRandomDraftV16(s,S.audio,{seed:16002});check(portrait.plan.H>portrait.plan.W&&portrait.draft.certification==='UNOPTIMIZED_NOT_EXPORT_CERTIFIED','portrait multilingual draft');
    return {drafts:drafts.map(d=>({seed:d.seed,genomes:d.originalCreativeGenome,metrics:d.metrics})),chosenDraftId:done.draftId,finishMetrics:done.finishMetrics,changes:done.changes,scale:done.scaleSafety,saveFailureProtectsCompletion:true,immutable:true,cancelled,inputInvalidation:stale,restore:true,portrait:true,observations};
   },input);
+  if(!assetDir){
+   const reload=await browser.newPage();await reload.goto(process.argv[2]||'http://127.0.0.1:4173/');await reload.waitForFunction(()=>J.uiApi);
+   await reload.evaluate(async()=>{
+    const J=window.J,S=J.ui;S.project=J.uiApi.mergeProject(J.defaultProject());S.project.lyrics='[00:00]光へ歩こう\n[00:02]同じ空';
+    const bg=Object.assign(document.createElement('canvas'),{width:320,height:180}),x=bg.getContext('2d'),g=x.createLinearGradient(0,0,320,180);g.addColorStop(0,'#10243c');g.addColorStop(1,'#ba8154');x.fillStyle=g;x.fillRect(0,0,320,180);S.project.customBg={...S.project.customBg,enabled:true,dataUrl:bg.toDataURL()};await S.renderer.loadCustomBackground(S.project.customBg.dataUrl);
+    const samples=48000*4,bytes=new ArrayBuffer(44+samples*2),v=new DataView(bytes),write=(off,text)=>{for(let i=0;i<text.length;i++)v.setUint8(off+i,text.charCodeAt(i));};write(0,'RIFF');v.setUint32(4,36+samples*2,true);write(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,48000,true);v.setUint32(28,96000,true);v.setUint16(32,2,true);v.setUint16(34,16,true);write(36,'data');v.setUint32(40,samples*2,true);for(let i=0;i<samples;i++)v.setInt16(44+i*2,Math.round(Math.sin(i/48000*Math.PI*440)*5000),true);
+    await J.uiApi.loadAudioFile(new File([bytes],'reload.wav',{type:'audio/wav',lastModified:123}));S.project.timing.snap=false;J.randomDraftSeedV16=()=>12812;J.uiApi.syncUI();J.uiApi.replan();await J.uiApi.generateRandomDraft();if(J.uiApi.workflowStateV16()!=='RANDOM_DRAFT_READY')throw Error('reload fixture draft failed');
+   });
+   await reload.reload();await reload.waitForFunction(()=>J.ui?.audio&&!J.ui.audioLoading,undefined,{timeout:120000});assert.equal(await reload.evaluate(()=>J.uiApi.workflowStateV16()),'RANDOM_DRAFT_READY');assert.equal(await reload.evaluate(()=>J.canonicalJSON(J.ui.plan.cuts)===J.canonicalJSON(J.ui.project.randomWorkflowV16.originalCuts)),true);report.browserReload=true;await reload.close();
+  }
   if(process.env.KAMEN_V16_REPORT)fs.writeFileSync(process.env.KAMEN_V16_REPORT,JSON.stringify(report,null,2));
   if(assetDir){await page.reload();await page.waitForFunction(()=>J.ui?.audio&&!J.ui.audioLoading,undefined,{timeout:120000});assert.equal(await page.evaluate(()=>J.uiApi.workflowStateV16()),'RANDOM_DRAFT_READY');report.browserReload=true;}
   await page.screenshot({path:process.env.KAMEN_V16_SCREENSHOT||'/tmp/kamen-v16-ui.png',fullPage:true});
