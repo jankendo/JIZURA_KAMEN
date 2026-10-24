@@ -6,6 +6,7 @@ const report={version:require('../package.json').version,upstream:require('../ve
 const check=(name,data={})=>{report.checks.push({name,status:'PASS',...data});console.log('PASS',name);};
 (async()=>{
  const manifest=require('../vendor/jizura/upstream.json');for(const [name,hash]of Object.entries(manifest.files))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(__dirname,'../vendor/jizura',name))).digest('hex'),hash,name);check('immutable upstream source checksums');
+ for(const tool of ['ffprobe','ffmpeg']){const probe=spawnSync(tool,['-version'],{encoding:'utf8'});assert.equal(probe.status,0,tool+' is required: '+(probe.error?.message||probe.stderr));}
  let page;const browser=await chromium.launch({executablePath:process.env.KAMEN_CHROME||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
  try{
  page=await browser.newPage({acceptDownloads:true,viewport:{width:1365,height:900}});page.setDefaultTimeout(60000);const downloads=options=>{const task=page.waitForEvent('download',options);task.catch(()=>{});return task;};page.on('pageerror',e=>report.errors.push(e.stack));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404')&&!m.text().includes('保存を中止しました')&&!/KAMEN processing.*音源.*Aborted|JIZURA audio import failed.*Aborted|KAMEN processing.*音源.*中止|JIZURA audio import failed.*中止|KAMEN processing.*音源.*Cancelled|JIZURA audio import failed.*Cancelled/.test(m.text()))report.errors.push(m.text());});
