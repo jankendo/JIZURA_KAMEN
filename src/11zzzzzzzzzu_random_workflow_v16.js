@@ -8,7 +8,7 @@ const abort=s=>{if(s?.aborted)throw new DOMException('Aborted','AbortError');};
 const freeze=x=>{if(x&&typeof x==='object'){Object.freeze(x);for(const v of Object.values(x))freeze(v);}return x;};
 // Workflow metadata is output, not an input to the legacy identity contract.
 const identity=J.songNativeInputIdentityV7;
-J.songNativeInputIdentityV7=(q,a)=>{if(!q.randomWorkflowV16)return identity(q,a);const p={...q};delete p.randomWorkflowV16;return identity(p,a);};
+J.songNativeInputIdentityV7=(q,a)=>{if(!q.randomWorkflowV16)return identity(q,a);const p={...q};if(q.randomWorkflowV16.refinementModeIdentity)p.exportSettings={...p.exportSettings,refinementMode:q.randomWorkflowV16.refinementModeIdentity};delete p.randomWorkflowV16;return identity(p,a);};
 J.randomDraftSeedV16=()=>{const n=new Uint32Array(1);if(globalThis.crypto?.getRandomValues)crypto.getRandomValues(n);else n[0]=Math.floor(Math.random()*4294967296);return n[0];};
 J.selectedDraftSnapshotV16=(q,p,a)=>{
  const d=q.randomWorkflowV16;
@@ -25,7 +25,7 @@ J.plan=(q,a)=>{
  return p;
 };
 J.generateRandomDraftV16=async(q,a,{signal,onProgress,seed=J.randomDraftSeedV16(),initialPlan=null}={})=>{
- const started=performance.now();abort(signal);q.seed=seed;
+ const started=performance.now();abort(signal);delete q.randomWorkflowV16;q.seed=seed;
  const set=await J.generateJizuraDirectionV15(q,a,{signal});abort(signal);
  q.autoDirection=true;q.artDirection=J.makeArtDirection(q,a,set.recommended.proposal);
  // Keep user font choices. Fonts, decoded audio and palette remain input-owned.
@@ -56,7 +56,7 @@ J.generateRandomDraftV16=async(q,a,{signal,onProgress,seed=J.randomDraftSeedV16(
    p.cuts.forEach((c,i)=>{c.index=i;});
   }
   abort(signal);if(inputIdentity!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
-  const draft={version:16,sourceTreeSHA256:rendererSource(),state:'RANDOM_DRAFT_READY',draftId:'draft-'+seed+'-'+Date.now(),seed,inputHash:J.songNativeInputIdentity(q,a),rendererCompatibilityId:p.songNativeDirection.rendererCompatibilityId,originalCuts:copy(p.cuts),originalCreativeGenome:p.cuts.filter(c=>c.line>=0).map(c=>({line:c.line,genome:J.creativeGenomeV15(c)})),certification:'UNOPTIMIZED_NOT_EXPORT_CERTIFIED',metrics:{wallMs:performance.now()-started,rendererFrames:frames,candidates,probe640:0,qaObservations:0,fullEncodes:0}};
+  const draft={version:16,refinementModeIdentity:q.exportSettings?.refinementMode||'fast',sourceTreeSHA256:rendererSource(),state:'RANDOM_DRAFT_READY',draftId:'draft-'+seed+'-'+Date.now(),seed,inputHash:J.songNativeInputIdentity(q,a),rendererCompatibilityId:p.songNativeDirection.rendererCompatibilityId,originalCuts:copy(p.cuts),originalCreativeGenome:p.cuts.filter(c=>c.line>=0).map(c=>({line:c.line,genome:J.creativeGenomeV15(c)})),certification:'UNOPTIMIZED_NOT_EXPORT_CERTIFIED',metrics:{wallMs:performance.now()-started,rendererFrames:frames,candidates,probe640:0,qaObservations:0,fullEncodes:0}};
   q.randomWorkflowV16=draft;p.randomDraftV16=true;return {project:q,plan:p,draft};
  }finally{R.disposeAssets?.();cv.width=cv.height=mask.width=mask.height=1;}
 };
@@ -95,6 +95,9 @@ J.optimizeCreativeLineV10=async args=>{
  row.lightSafetyV15=J.checkRandomLightV15(p,row.cut,sample,signal);
  return [row];
 };
+// A failed native camera-blur probe can attenuate blur without changing its ID.
+const cameraFinish=J.explorationCameraV13;
+J.explorationCameraV13=(p,c,cam)=>{const out=cameraFinish(p,c,cam),k=c?.explorationParamsV13?.cameraBlurV16;return out&&J.isRandomFinisherV15(p)&&Number.isFinite(k)?{...out,blur:(out.blur||0)*J.clamp(k,0,1)}:out;};
 // The legacy native delivery gate remains authoritative. Probe on clones so its
 // broad shipping fallback can never silently replace a selected v16 genome.
 const nativePrepare=J.prepareAutomaticUnitSafety;
@@ -110,20 +113,21 @@ J.finishNativeSelectedDraftV16=async(q,p,a,{signal}={})=>{
   const bad=measured.automaticUnitSafety?.decisions?.[0];
   if(!bad||calls>=12)throw Object.assign(Error('V16_NATIVE_DELIVERY_UNSAFE'),{diagnostic:{decisions:measured.automaticUnitSafety?.decisions,calls}});
   const cut=p.cuts.find(c=>c.index===bad.index);if(J.songNativeLockedV8(p,cut))throw Error('V16_NATIVE_LOCKED_LINE');
-  const candidates=[],geometry=bad.before.flatMap(e=>e.geometry),large=geometry.filter(g=>g.maxGlyphHeight>g.sizeCap),outside=bad.before.some(e=>!e.safe),contrast=bad.before.some(e=>e.contrast.score<95||e.contrast.contrastRatio<3),ep=cut.explorationParamsV13||{};
+  const candidates=[],geometry=bad.before.flatMap(e=>e.geometry),large=geometry.filter(g=>g.maxGlyphHeight>g.sizeCap),outside=bad.before.some(e=>!e.safe),missing=bad.before.some(e=>!e.complete||!e.geometry.length),contrast=bad.before.some(e=>e.contrast.score<95||e.contrast.contrastRatio<3),ep=cut.explorationParamsV13||{};
   if(contrast&&!p.manualLyricColor)for(const color of ['#ffffff','#111111'])candidates.push({...copy(cut),explorationParamsV13:{...ep,color},params:{...copy(cut.params),cinemaReadabilityRepair:{...copy(cut.params.cinemaReadabilityRepair),shadow:2,scrim:.8}}});
   if(large.length)candidates.push({...copy(cut),explorationParamsV13:{...ep,size:(ep.size??1)*Math.min(.94,...large.map(g=>g.sizeCap/g.maxGlyphHeight*.97))}});
-  if((outside||large.length)&&cut.cam!=='stillCamera')for(const factor of [.85,.65,.35])candidates.push({...copy(cut),explorationParamsV13:{...ep,camera:(ep.camera??1)*factor}});
+  if((outside||missing||large.length)&&cut.cam!=='stillCamera')for(const factor of [.85,.65,.35,.1])candidates.push({...copy(cut),explorationParamsV13:{...ep,camera:(ep.camera??1)*factor,cameraBlurV16:(ep.cameraBlurV16??1)*factor}});
   if(outside)for(const factor of [.9,.75])candidates.push({...copy(cut),explorationParamsV13:{...ep,size:(ep.size??1)*factor}});
-  const baseline=nativeDeficit(measured);let adopted=false;
+  const baseline=nativeDeficit(measured);let best=null,bestObservation=null,bestDeficit=baseline;
   for(const candidate of candidates){
    if(calls>=12)break;
    if(J.genomeChangesV15(J.creativeGenomeV15(cut),J.creativeGenomeV15(candidate)).length)throw Error('V16_NATIVE_NUMERIC_CHANGED_GENOME');
-   const proposal={...p,cuts:p.cuts.map(c=>c.index===cut.index?candidate:c)},observed=await measure(proposal);
-   if(observed.automaticUnitSafety?.decisions?.length&&nativeDeficit(observed)>=baseline-1e-8)continue;
-   p.cuts=proposal.cuts;measured=observed;changed=true;adopted=true;repairs.push({line:cut.line,reason:'MEASURED_NATIVE_DELIVERY_NUMERIC_REPAIR',before:bad.before,parameters:copy(candidate.explorationParamsV13),readability:copy(candidate.params.cinemaReadabilityRepair)});break;
+   const proposal={...p,cuts:p.cuts.map(c=>c.index===cut.index?candidate:c)},observed=await measure(proposal),deficit=nativeDeficit(observed);
+   if(!observed.automaticUnitSafety?.decisions?.length){best=candidate;bestObservation=observed;break;}
+   if(deficit<bestDeficit-1e-8){best=candidate;bestObservation=observed;bestDeficit=deficit;}
   }
-  if(!adopted)throw Object.assign(Error('V16_NATIVE_DELIVERY_UNSAFE'),{diagnostic:{line:cut.line,decisions:measured.automaticUnitSafety?.decisions,calls}});
+  if(!best)throw Object.assign(Error('V16_NATIVE_DELIVERY_UNSAFE'),{diagnostic:{line:cut.line,decisions:measured.automaticUnitSafety?.decisions,calls}});
+  p.cuts=p.cuts.map(c=>c.index===cut.index?best:c);measured=bestObservation;changed=true;repairs.push({line:cut.line,reason:'MEASURED_NATIVE_DELIVERY_NUMERIC_REPAIR',before:bad.before,parameters:copy(best.explorationParamsV13),readability:copy(best.params.cinemaReadabilityRepair)});
  }
  return {changed,status:p.musicalPhoto?'NOT_APPLICABLE':'MEASURED_NATIVE_SEQUENCE',calls,repairs,width:p.cinemaDelivery?.width||p.W,height:p.cinemaDelivery?.height||p.H};
 };

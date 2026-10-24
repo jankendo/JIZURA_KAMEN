@@ -1047,7 +1047,8 @@ function validatePaletteSource(project, image) {
     // A persisted v16 map is part of the selected render input. Recomputing
     // it at the legacy 96px refresh size would replace its 128px source map.
     const workflow=project.randomWorkflowV16;
-    const retained=workflow&&workflow.sourceTreeSHA256===(window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null)&&['RANDOM_DRAFT_READY','FINISHED'].includes(workflow.state)&&ap.localMap&&ap.viewportKey===J.autoPaletteViewportKey(project);
+    const savedComplete=project.autoDirection&&project.artDirection?.songNativeResolved;
+    const retained=(savedComplete||workflow&&workflow.sourceTreeSHA256===(window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null)&&['RANDOM_DRAFT_READY','FINISHED'].includes(workflow.state))&&ap.localMap&&ap.viewportKey===J.autoPaletteViewportKey(project);
     if (!retained&&ap.options && ap.options.readability) ap.localMap = J.refreshAutoPaletteMap(image, project);
   }
 }
@@ -1123,6 +1124,11 @@ function syncDirectionUI() {
   syncStudioResultVisibility();
   if(locked)processingLocks(true);
 }
+function completedWorkflowSnapshotV16(project){
+  const snapshot=J.compactPersistentProjectV111(project);
+  if(snapshot.randomWorkflowV16){delete snapshot.randomWorkflowV16.finishedProject;delete snapshot.randomWorkflowV16.previousFinishedProject;}
+  return snapshot;
+}
 function workflowStateV16() {
   const d=S.project.randomWorkflowV16;
   if(!d||d.sourceTreeSHA256!==(window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null))return 'INPUT_READY';
@@ -1137,7 +1143,7 @@ async function runRandomWorkflowV16(finish) {
   const sourceIdentity=J.songNativeInputIdentity(S.project,audioLike()),sourceAudio=S.audio;
   let snapshot=null;try{if(finish)snapshot=J.selectedDraftSnapshotV16(S.project,S.plan,audioLike());}catch(error){$('directionStatus').textContent=error.message;return;}
   const q=mergeProject(J.clonePhotoRenderPlan(S.project)),controller=new AbortController();
-  const priorFinished=q.randomWorkflowV16?.finishedProject||q.randomWorkflowV16?.previousFinishedProject||(q.randomWorkflowV16?.state==='FINISHED'||!q.randomWorkflowV16&&q.artDirection?.songNativeResolved?(()=>{const old=J.clonePhotoRenderPlan(q);delete old.randomWorkflowV16;return old;})():null);
+  const priorFinished=q.randomWorkflowV16?.finishedProject||q.randomWorkflowV16?.previousFinishedProject||(q.randomWorkflowV16?.state==='FINISHED'||!q.randomWorkflowV16&&q.artDirection?.songNativeResolved?completedWorkflowSnapshotV16(q):null);
   let committed=false,workingPlan=null;
   const task=J.processing.begin(finish?'現在の案を最適化しています':'ランダム案を生成しています',finish?[['direction','選択した案の可読性と640px合成を検査しています',75],['quality','完成プレビューを観測しています',20],['save','選択案と結果を保存しています',5]]:[['direction','登録技法からランダム案を描画しています',95],['save','ドラフトを保存しています',5]],{retry:finish?optimizeSelectedDraft:generateRandomDraft,cancel:()=>controller.abort()});
   const assertCurrent=()=>{if(controller.signal.aborted)throw new DOMException('Aborted','AbortError');if(S.audio!==sourceAudio||S.project!==q||J.songNativeInputIdentity(before.project,audioLike())!==sourceIdentity)throw Error('入力が変更されたため処理を中止しました');};
@@ -1159,10 +1165,11 @@ async function runRandomWorkflowV16(finish) {
       workingPlan.lastPixelQA=qa;S.pixelQA=qa;
       S.exportCapabilities=await J.exportCapabilities(q,q.includeAudio!==false?S.audio:null).catch(()=>null);assertCurrent();
       q.artDirection.songNativeDirection=J.clonePhotoRenderPlan(workingPlan.songNativeDirection);
+      q.randomWorkflowV16.state='FINISHED';
       J.captureSongNativeResolved(q,audioLike(),workingPlan);
       q.randomWorkflowV16={...q.randomWorkflowV16,state:'FINISHED',changes:result.changes,finishMetrics:{...result.metrics,qaObservations:1},scaleSafety:result.scaleSafety,nativeSafety:result.nativeSafety,previousFinishedProject:priorFinished};
       q.randomWorkflowV16.inputHash=J.songNativeInputIdentity(q,audioLike());
-      const finishedProject=J.clonePhotoRenderPlan(q);delete finishedProject.randomWorkflowV16;q.randomWorkflowV16.finishedProject=finishedProject;
+      q.randomWorkflowV16.finishedProject=completedWorkflowSnapshotV16(q);
     }else{
       if(before.project.randomWorkflowV16?.state==='FINISHED'||!before.project.randomWorkflowV16&&priorFinished){const previousAudio=await bgDbGet('finished-audio-v16').catch(()=>null)||audioFile;if(previousAudio)S.workflowSaveEntriesV16=[['previous-finished-audio-v16',previousAudio]];}
       const paletteStarted=performance.now(),bitmap=S.renderer.customBgBitmap;let paletteCacheHit=false;
@@ -1178,13 +1185,16 @@ async function runRandomWorkflowV16(finish) {
     }
     S.comparisonDraftV16=false;$('workflowCompare').querySelector('select').value='finished';
     S.plan=workingPlan;S.confirmedCinemaPlan=null;S.range=null;S.rangeMode=null;S.exportValidation=null;
-    S.pendingDirectionCommit=false;task.enter('save');
+    assertCurrent();task.state.cancel=null;S.pendingDirectionCommit=false;task.enter('save');
     if(!await flushSave())throw Error('保存できなかったため、前の状態を保持しました。空き容量を確認してください。');
     assertCurrent();committed=true;commit();fontKey='';syncUI();renderLines();refreshPreviewPlan();sizeViewport();drawTimeline();S.t=Math.min(before.t,S.plan.duration);if(!finish&&!(J.cutAt(S.plan,S.t)?.line>=0)){const first=S.plan.cuts.find(c=>c.line>=0);if(first)S.t=first.start+Math.min(.5,first.dur*.5);}S.need=true;
     $('directionStatus').dataset.result='true';$('directionStatus').dataset.selectionState=finish?'SELECTED':'DRAFT';$('directionStatus').dataset.workflowState=q.randomWorkflowV16.state;
     $('directionStatus').textContent=finish?'最適化済み · 640px合成検査済み。芸術品質は未検証です。':'ランダム案 · 未最適化・書き出し前検証未完了。何度でも再生成できます。';
     if(finish){updateStudioQuality();const n=result.changes.reduce((n,c)=>n+c.changedRoles.length,0);$('workflowChanges').textContent=`技法変更 ${n}件 · `+result.changes.filter(c=>c.changedRoles.length).map(c=>`${c.line+1}行: ${c.changedRoles.join(' / ')}（描画安全性の復旧）`).join('、');}
     else {$('workflowChanges').textContent=`seed ${q.randomWorkflowV16.seed} · 完成認定前のプレビュー`;}
+    if(finish&&J.cinemaV3?.enabled){
+      try{const V=J.cinemaV3,range={start:0,end:Math.min(workingPlan.duration,S.audio.duration)},renderState=V.qaRenderState(q,workingPlan,range),input=await V.snapshot(q,S.audio,workingPlan,range),planHash=await V.planHash(workingPlan);if(S.project===q&&S.plan===workingPlan&&S.pixelQA?.observationBinding?.planHash===planHash)S.confirmedCinemaPlan={plan:workingPlan,inputHash:input.inputHash,analysisKey:J.canonicalJSON(audioLike()),planHash,pixelQA:S.pixelQA,pixelQAPlan:workingPlan,renderState,rangeKey:J.canonicalJSON(range)};}catch{/* Cache preparation cannot invalidate a saved, measured result. */}
+    }
     task.complete(finish?'選んだ案の最適化と保存が完了しました':'ランダム案を表示しました');
   }catch(error){
     if(!committed&&S.project===q){S.project=before.project;S.plan=before.plan;S.pixelQA=before.pixelQA;S.confirmedCinemaPlan=before.confirmed;S.range=before.range;S.rangeMode=before.rangeMode;S.t=before.t;syncUI();renderLines();refreshPreviewPlan();S.need=true;}
