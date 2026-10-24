@@ -2,6 +2,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),{engine,root}=require('./custom_test_support.cjs');
 (async()=>{
  const e=engine(),{context,J}=e;let disposed=0,closed=0,requested=[],nullAt=-1;
+ context.sha256=require('@noble/hashes/sha2.js').sha256;
  context.VideoDecoder=class{};
  context.Input=class{async getPrimaryVideoTrack(){return {canDecode:async()=>true,getCodec:async()=>'avc'};}async getPrimaryAudioTrack(){return {getCodec:async()=>'aac'};}dispose(){disposed++;}};
  context.BlobSource=class{};context.Mp4InputFormat=class{};

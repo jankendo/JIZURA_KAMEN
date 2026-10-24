@@ -37,6 +37,90 @@
       "status": "PASS"
     },
     {
+      "name": "legacy certification and SHA-256 reject whole-video reads",
+      "status": "PASS",
+      "hash": "004471d1fd58adb47d9777714008a81a768af9aecfb6de6661a894429c19a34c",
+      "validation": {
+        "container": "mp4",
+        "videoCodec": "avc1",
+        "audioCodec": null,
+        "width": 1280,
+        "height": 720,
+        "duration": 1,
+        "videoDuration": 1,
+        "audioDuration": 0,
+        "videoSamples": 24,
+        "audioSamples": 0,
+        "fps": 24,
+        "bytes": 624069,
+        "certification": {
+          "passed": true,
+          "checks": {
+            "container": true,
+            "video": true,
+            "audio": true,
+            "resolution": true,
+            "duration": true,
+            "frames": true,
+            "fps": true,
+            "avSync": true,
+            "reloaded": true,
+            "avDuration": true,
+            "seek": true,
+            "blackFrames": true,
+            "firstLast": true
+          },
+          "frames": [
+            {
+              "time": 0,
+              "nonBlack": 1
+            },
+            {
+              "time": 0.25,
+              "nonBlack": 1
+            },
+            {
+              "time": 0.5,
+              "nonBlack": 1
+            },
+            {
+              "time": 0.92,
+              "nonBlack": 1
+            }
+          ],
+          "nativeFrames": [
+            {
+              "time": 0,
+              "nonBlack": 1
+            },
+            {
+              "time": 0.25,
+              "nonBlack": 1
+            },
+            {
+              "time": 0.5,
+              "nonBlack": 1
+            },
+            {
+              "time": 0.92,
+              "nonBlack": 1
+            }
+          ],
+          "nativeChecks": {
+            "blackFrames": true,
+            "firstLast": true
+          },
+          "independentPixels": {
+            "status": "NOT_APPLICABLE",
+            "reason": "native probe passed; independent recovery unnecessary"
+          },
+          "path": "Browser WebCodecs → MP4 Blob → HTMLVideoElement reload/decode",
+          "fps": 24,
+          "avSync": "track timestamp/duration; no perceptual sync claim"
+        }
+      }
+    },
+    {
       "name": "720-silent",
       "status": "PASS",
       "validation": {
@@ -51,7 +135,7 @@
         "videoSamples": 48,
         "audioSamples": 0,
         "fps": 24,
-        "bytes": 1555970,
+        "bytes": 1577745,
         "certification": {
           "passed": true,
           "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
@@ -73,7 +157,7 @@
         "videoSamples": 48,
         "audioSamples": 95,
         "fps": 24,
-        "bytes": 3524781,
+        "bytes": 3551071,
         "certification": {
           "passed": true,
           "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
@@ -95,7 +179,7 @@
         "videoSamples": 48,
         "audioSamples": 95,
         "fps": 24,
-        "bytes": 1515723,
+        "bytes": 1505101,
         "certification": {
           "passed": true,
           "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
@@ -117,7 +201,7 @@
         "videoSamples": 36,
         "audioSamples": 72,
         "fps": 24,
-        "bytes": 1182399,
+        "bytes": 1162937,
         "certification": {
           "passed": true,
           "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
@@ -139,7 +223,7 @@
         "videoSamples": 4320,
         "audioSamples": 8439,
         "fps": 24,
-        "bytes": 4197758,
+        "bytes": 4192812,
         "certification": {
           "passed": true,
           "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
@@ -166,7 +250,7 @@
   "movies": [
     {
       "file": "ui.mp4",
-      "bytes": 2368041,
+      "bytes": 2377915,
       "streams": [
         {
           "codec": "h264",
@@ -182,11 +266,26 @@
         }
       ],
       "duration": "3.029333",
-      "sha256": "165987dc260cbab9237a7c61d7d4f426c4be161d1af590d2d72eff6725fb804d"
+      "sha256": "866af60db4b1f96a628c4776be8653152f415b26b80493cb902d06186eb124c8"
+    },
+    {
+      "file": "legacy-stream.mp4",
+      "bytes": 624069,
+      "streams": [
+        {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "24/1",
+          "duration": "1.000000"
+        }
+      ],
+      "duration": "1.000000",
+      "sha256": "004471d1fd58adb47d9777714008a81a768af9aecfb6de6661a894429c19a34c"
     },
     {
       "file": "720-silent.mp4",
-      "bytes": 1555970,
+      "bytes": 1577745,
       "streams": [
         {
           "codec": "h264",
@@ -197,11 +296,11 @@
         }
       ],
       "duration": "2.000000",
-      "sha256": "72d3fb50a2a5a3301a8736c2ce6da8892aed7afb36f7eac809844bbac95a0ee4"
+      "sha256": "ca79b660479a7b49a359572ff3b2534f8a557951b60ffe60633ae51cbedbcb03"
     },
     {
       "file": "1080-audio.mp4",
-      "bytes": 3524781,
+      "bytes": 3551071,
       "streams": [
         {
           "codec": "h264",
@@ -217,11 +316,11 @@
         }
       ],
       "duration": "2.026667",
-      "sha256": "0cb9ea5b1e5662bf80e81e8fde103407523413e83384ec495bc02b725dd6a4a1"
+      "sha256": "ce373b5386f39cd1766d3dc6e14ff841ed2106eb5945eb1b21986929c4350578"
     },
     {
       "file": "vertical-audio.mp4",
-      "bytes": 1515723,
+      "bytes": 1505101,
       "streams": [
         {
           "codec": "h264",
@@ -237,11 +336,11 @@
         }
       ],
       "duration": "2.026667",
-      "sha256": "0c132fdfdefb988f1a23cc614d1cb3a3fe88ef34031467dfa4cd333096774968"
+      "sha256": "2c37e711bc922f4ac5a8dad234ef4265ad9898b40be0b679577e995dca9029a0"
     },
     {
       "file": "range-wasm-aac.mp4",
-      "bytes": 1182399,
+      "bytes": 1162937,
       "streams": [
         {
           "codec": "h264",
@@ -257,11 +356,11 @@
         }
       ],
       "duration": "1.536000",
-      "sha256": "c3796776cb2913f1142a716a0523b388582d709f303181a123803f309ab263c7"
+      "sha256": "65dcb4a68ba5e5f0cafda5d9527dca684a29992cd930761ea008be284aa65cf0"
     },
     {
       "file": "180-second-audio.mp4",
-      "bytes": 4197758,
+      "bytes": 4192812,
       "streams": [
         {
           "codec": "h264",
@@ -277,11 +376,11 @@
         }
       ],
       "duration": "180.032000",
-      "sha256": "cc68ea921578690d8026f552adae0fc2d5ed319ad27bc681d43623570d0118da"
+      "sha256": "d668d185fdf8cb179c33706109bdd195f39e1df96678e3f47a4ff38ac1f64ca2"
     },
     {
       "file": "retried.mp4",
-      "bytes": 2377499,
+      "bytes": 2389106,
       "streams": [
         {
           "codec": "h264",
@@ -297,11 +396,11 @@
         }
       ],
       "duration": "3.029333",
-      "sha256": "42bbe3a6f5157d2f2cec242b0ac344375f64c30e8858b593bba89cc57900517a"
+      "sha256": "822f9a6221fffeefd6945f80b623dcc594262ab65febed330f6de6b79b1b40cb"
     },
     {
       "file": "audio-retried.mp4",
-      "bytes": 2378142,
+      "bytes": 2385381,
       "streams": [
         {
           "codec": "h264",
@@ -317,18 +416,20 @@
         }
       ],
       "duration": "3.029333",
-      "sha256": "4ef0c13f5989bc41eab9c8d8489725dd652915a7396a3803edfd94e3576606cb"
+      "sha256": "36a2dc92177d97f6cb06c32a72fbeae5444c74241c86b260ee73765b99a9eb91"
     }
   ],
   "errors": [],
-  "status": "PASS",
   "build": {
-    "sourceCommit": "900672445e5aa00375e34285dbd9108f100bad87",
+    "sourceCommit": "b2a46ab128a160cf35d66db0a77b0e8fccaa84e3",
     "sourceDirty": true,
-    "sourceTreeSHA256": "36418886832accd4a7fe4fb2570d974c2e72c58ba13e352bfe93261944a66d10",
+    "sourceTreeSHA256": "3e7b8e3e7b429008c5ba4923ca67d7cfb802a7cab7a0c8fb94263207f8344ce2",
     "upstreamCommit": "fc16bfe43ea4a6c25a21f1caf04d17326de14f00",
     "upstreamSHA256": "5c364cf33e4cd5b5b7ce8ebeec252f2340ae2c45bcc55542968e3fc2fa1c9922",
-    "mediaSHA256": "9f4746e502a62364808e67f34b04c49f213fc42b12d098ebb3023c902d03e47e"
+    "mediaSHA256": "512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"
   },
+  "browser": "155.0.8059.39",
+  "node": "v24.19.0",
+  "status": "PASS",
   "artifacts": "MP4s are local verification artifacts; GitHub Actions uploads a new complete set for each run."
 }

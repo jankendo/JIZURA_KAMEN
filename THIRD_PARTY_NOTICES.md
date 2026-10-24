@@ -50,3 +50,7 @@ The production distribution includes this notice, the original MIT license, the 
 ## JIZURA v0.10.1
 
 Unmodified upstream source files and their SHA-256 checksums are in `vendor/jizura/`, pinned to https://github.com/852wa/JIZURA/commit/fc16bfe43ea4a6c25a21f1caf04d17326de14f00 . Copyright (c) 2026 hakoniwa; MIT license, retained in `vendor/jizura/LICENSE` and distributed as `LICENSE.JIZURA.txt`. The build isolates the namespace and adds one explicit photographic-background hook; the adapter is KAMEN code.
+
+## @noble/hashes 2.4.0
+
+The browser media bundle uses the unmodified SHA-256 implementation from https://github.com/paulmillr/noble-hashes to hash completed MP4s in bounded slices. Copyright (c) 2022 Paul Miller; MIT license, included in `vendor/licenses/noble-hashes-LICENSE.txt`. Exact package version and integrity are locked.

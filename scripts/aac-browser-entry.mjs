@@ -1,3 +1,4 @@
+import {sha256} from '@noble/hashes/sha2.js';
 import {registerAacEncoder} from '@mediabunny/aac-encoder';
 import {Output,BufferTarget,Mp4OutputFormat,AudioBufferSource,Input,BufferSource,Mp4InputFormat,EncodedPacketSink,BlobSource,VideoSampleSink,AudioBufferSink,StreamTarget,EncodedPacket,EncodedVideoPacketSource,EncodedAudioPacketSource} from 'mediabunny';
 let registered=false;
@@ -92,4 +93,16 @@ window.JIZURAMedia.inspectMP4=async(blob,{requireAudio=true,signal}={})=>{
   if(!stats.packetCount||!Number.isFinite(duration)||duration<=0||requireAudio&&!as?.packetCount)throw Error('映像・音声のサンプルが不足しています');
   return {container:'mp4',videoCodec:'avc1',audioCodec:audio?'mp4a':null,width:video.displayWidth,height:video.displayHeight,duration:Math.max(duration,ad),videoDuration:duration,audioDuration:ad,videoSamples:stats.packetCount,audioSamples:as?.packetCount||0,fps:stats.averagePacketRate,bytes:blob.size};
  }finally{signal?.removeEventListener('abort',cancel);input.dispose();}
+};
+
+// SHA-256 over bounded slices: legacy provenance never needs one whole-video buffer.
+window.JIZURAMedia.hashBlob=async(blob,{signal,onProgress}={})=>{
+ const hash=sha256.create(),chunkSize=1024*1024;
+ const check=()=>{if(signal?.aborted)throw new DOMException('キャンセルしました','AbortError');};
+ check();
+ for(let offset=0;offset<blob.size;offset+=chunkSize){
+  check();hash.update(new Uint8Array(await blob.slice(offset,Math.min(blob.size,offset+chunkSize)).arrayBuffer()));
+  onProgress?.(Math.min(blob.size,offset+chunkSize),blob.size);await new Promise(resolve=>setTimeout(resolve,0));
+ }
+ check();return Array.from(hash.digest(),byte=>byte.toString(16).padStart(2,'0')).join('');
 };

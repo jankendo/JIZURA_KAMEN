@@ -206,6 +206,19 @@ J.inspectMP4Buffer = (buffer,{requireAudio=true}={}) => {
   return out;
 };
 
+// The fallback supports isolated archive/Node tools without the browser bundle.
+// Production always has the streaming BlobSource inspector and sliced hash bridge.
+J.inspectMP4Blob=async(blob,options={})=>window.JIZURAMedia?.inspectMP4?window.JIZURAMedia.inspectMP4(blob,options):J.inspectMP4Buffer(await blob.arrayBuffer(),options);
+const videoBlobDigests=new WeakMap();
+J.sha256Blob=async(blob,signal)=>{
+ if(signal?.aborted)throw Object.assign(Error('キャンセルしました'),{name:'AbortError'});
+ const immutable=typeof Blob!=='undefined'&&blob instanceof Blob;
+ if(immutable&&videoBlobDigests.has(blob))return videoBlobDigests.get(blob);
+ const digest=await(window.JIZURAMedia?.hashBlob&&typeof blob.slice==='function'?window.JIZURAMedia.hashBlob(blob,{signal}):J.sha256(await blob.arrayBuffer()));
+ if(signal?.aborted)throw Object.assign(Error('キャンセルしました'),{name:'AbortError'});
+ if(immutable)videoBlobDigests.set(blob,digest);return digest;
+};
+
 async function resample(buffer, sr, duration, start=0) {
   const chn = Math.min(2, buffer.numberOfChannels);
   const len = Math.ceil(duration * sr);
