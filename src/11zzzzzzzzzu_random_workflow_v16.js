@@ -4,6 +4,13 @@ const J=window.J,copy=J.clonePhotoRenderPlan;
 const capabilityCache=new WeakMap();
 const capabilityCatalog=p=>{if(!capabilityCache.has(p))capabilityCache.set(p,J.explorationCatalogV13(p));return capabilityCache.get(p);};
 const rendererSource=()=>window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null;
+// 2.0.30 uses the identical renderer. Retain its saved selected cuts while
+// rerunning the corrected optimizer and every final gate on this build.
+J.workflowRendererCompatibleV16=d=>!!d&&(d.sourceTreeSHA256===rendererSource()||d.sourceTreeSHA256==='1d2bed8749d04a34e1483546b21589c64c019490ce2bb110c90b4fb6fa7ba4db'&&d.rendererCompatibilityId==='kamen-song-grammar-renderer-9');
+J.workflowErrorMessageV16=error=>{
+ const line=/^V16_(?:SELECTED_LINE_UNSAFE|LOCKED_LINE_UNSAFE)_(\d+)$/.exec(error?.message||'');
+ return line?`${Number(line[1])+1}行目の演出を安全に調整できませんでした。現在の案は保持しています。詳細設定でこの行の演出を変更するか、もう一度ランダム生成してください。`:error?.message||'最適化を完了できませんでした。現在の案は保持しています。';
+};
 const abort=s=>{if(s?.aborted)throw new DOMException('Aborted','AbortError');};
 const freeze=x=>{if(x&&typeof x==='object'){Object.freeze(x);for(const v of Object.values(x))freeze(v);}return x;};
 // Workflow metadata is output, not an input to the legacy identity contract.
@@ -12,14 +19,14 @@ J.songNativeInputIdentityV7=(q,a)=>{if(!q.randomWorkflowV16)return identity(q,a)
 J.randomDraftSeedV16=()=>{const n=new Uint32Array(1);if(globalThis.crypto?.getRandomValues)crypto.getRandomValues(n);else n[0]=Math.floor(Math.random()*4294967296);return n[0];};
 J.selectedDraftSnapshotV16=(q,p,a)=>{
  const d=q.randomWorkflowV16;
- if(!d||d.sourceTreeSHA256!==rendererSource()||d.state!=='RANDOM_DRAFT_READY'||d.inputHash!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
+ if(!J.workflowRendererCompatibleV16(d)||d.state!=='RANDOM_DRAFT_READY'||d.inputHash!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
  if(J.canonicalJSON(p.cuts)!==J.canonicalJSON(d.originalCuts))throw Error('V16_DRAFT_EDITED_REGENERATE');
  return freeze(copy({draftId:d.draftId,inputHash:d.inputHash,seed:d.seed,originalCuts:d.originalCuts,originalCreativeGenome:d.originalCreativeGenome,locks:J.cinemaV3.lockSignature(p),sourceTreeSHA256:d.sourceTreeSHA256,rendererCompatibilityId:d.rendererCompatibilityId}));
 };
 const plan=J.plan;
 J.plan=(q,a)=>{
  const p=plan(q,a),d=q.randomWorkflowV16;
- if(d?.state==='RANDOM_DRAFT_READY'&&d.sourceTreeSHA256===rendererSource()&&d.inputHash===J.songNativeInputIdentity(q,a)&&d.rendererCompatibilityId===p.songNativeDirection?.rendererCompatibilityId){
+ if(d?.state==='RANDOM_DRAFT_READY'&&J.workflowRendererCompatibleV16(d)&&d.inputHash===J.songNativeInputIdentity(q,a)&&d.rendererCompatibilityId===p.songNativeDirection?.rendererCompatibilityId){
   p.cuts=copy(d.originalCuts);p.randomDraftV16=true;
  }
  return p;
@@ -85,11 +92,10 @@ J.optimizeCreativeLineV10=async args=>{
   row.checks=checks.map((low,i)=>{const high=sample.verifyScale(p,cut,times[i]);if(high.renderErrors?.length)throw Error('V16_RENDERER_ERROR');const failed=!high.eligible?high:!low.eligible?low:high;return {...low,...high,...failed,eligible:low.eligible&&high.eligible,mask:low.mask,raster:low.raster,backgroundRasterV14:low.backgroundRasterV14,sampleOffset:times[i]};});
   Object.assign(row.checks,{planWidthV14:p.W,planHeightV14:p.H,cutTextV14:cut.lineText});
   const failures=row.checks.flatMap((e,i)=>!e.eligible?[{...J.scaleFailureV112(cut,times[i],e,p),check:e}]:[]);
-  let recovered=[],current=row;
-  for(let batch=0;batch<3&&!recovered.length;batch++){
-   recovered=await J.recoverDirectionLineV112(p,current,failures,{sample,phases,audio,signal,budget:16,finishSelectedDraft:true});
-   if(recovered.continuationV16)current={...current,...recovered.continuationV16};
-  }
+  // One bounded frontier retains its visited set. Restarting three 16-state
+  // frontiers repeated the same failed hold/layout trials and never reached
+  // a measured, safe layout control at state 18 (e.g. bubble's internal entry).
+  const recovered=await J.recoverDirectionLineV112(p,row,failures,{sample,phases,audio,signal,budget:48,finishSelectedDraft:true});
   if(!recovered.length)throw Object.assign(Error('V16_SELECTED_LINE_UNSAFE_'+c.line),{diagnostic:recovered.diagnostic});row=recovered[0];
  }
  row.lightSafetyV15=J.checkRandomLightV15(p,row.cut,sample,signal);
@@ -141,7 +147,7 @@ J.prepareAutomaticUnitSafety=async args=>{
 J.finishSelectedDraftV16=async(q,p,a,snapshot,{signal,onProgress}={})=>{
  const started=performance.now();abort(signal);
  const d=q.randomWorkflowV16;
- if(!d||snapshot.sourceTreeSHA256!==rendererSource()||snapshot.draftId!==d.draftId||snapshot.inputHash!==J.songNativeInputIdentity(q,a)||snapshot.rendererCompatibilityId!==p.songNativeDirection?.rendererCompatibilityId||J.canonicalJSON(snapshot.originalCuts)!==J.canonicalJSON(p.cuts)||snapshot.locks!==J.cinemaV3.lockSignature(p))throw Error('V16_STALE_DRAFT');
+ if(!d||!J.workflowRendererCompatibleV16(snapshot)||snapshot.draftId!==d.draftId||snapshot.inputHash!==J.songNativeInputIdentity(q,a)||snapshot.rendererCompatibilityId!==p.songNativeDirection?.rendererCompatibilityId||J.canonicalJSON(snapshot.originalCuts)!==J.canonicalJSON(p.cuts)||snapshot.locks!==J.cinemaV3.lockSignature(p))throw Error('V16_STALE_DRAFT');
  const trial=copy(p);
  await J.searchSongNativeCandidates(trial,null,a,{signal,onProgress,finishSelectedDraft:true,initialCuts:snapshot.originalCuts,initialPlan:p});abort(signal);
  const nativeSafety=await J.finishNativeSelectedDraftV16(q,trial,a,{signal,onProgress});
@@ -167,7 +173,7 @@ J.finishSelectedDraftV16=async(q,p,a,snapshot,{signal,onProgress}={})=>{
 const exportMP4=J.exportMP4;
 J.exportMP4=async args=>{
  const d=args.project?.randomWorkflowV16;
- if(args.plan?.randomDraftV16||d&&(d.state!=='FINISHED'||d.sourceTreeSHA256!==rendererSource()))throw Error('V16_OPTIMIZE_DRAFT_BEFORE_EXPORT');
+ if(args.plan?.randomDraftV16||d&&(d.state!=='FINISHED'||!J.workflowRendererCompatibleV16(d)))throw Error('V16_OPTIMIZE_DRAFT_BEFORE_EXPORT');
  return exportMP4(args);
 };
 

@@ -402,6 +402,12 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
    if(!improved)break;
   }
  };
+ // Selected drafts keep one visited set and remaining budget across causal
+ // passes. Fixing an entry can reveal a camera/layout failure that was masked
+ // in the first diagnosis; re-diagnose only after a measured improvement.
+ let previousPass;
+ do {
+ previousPass=J.canonicalJSON(current.cut);
  finish(Math.min(3,Math.max(1,budget-6)));
  const reasons=J.motionFailureV14(current.checks,current.cut),stages=new Set(current.checks.filter(e=>!e.eligible).map(e=>e.temporalStage)),causes=[];
  // A layout may paint opaque panels AFTER the glyph. No amount of pre-glyph
@@ -449,6 +455,7 @@ const recover=J.recoverDirectionLineV112;J.recoverDirectionLineV112=async(p,pick
    }else if(role!=='layout')tryCandidate(J.changeDirectionRoleV11(base,role,neutral[role]),'control');
   }
  }
+ }while(o.finishSelectedDraft&&!winner&&examined<budget&&J.canonicalJSON(current.cut)!==previousPass);
  const rows=[];
  if(winner){
   const {cut,checks,times}=winner,hold=checks.find(e=>e.temporalStage==='HOLD'&&e.readable),descriptor=J.motionDescriptorV14(checks,p);
