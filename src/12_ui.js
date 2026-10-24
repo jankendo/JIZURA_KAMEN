@@ -624,23 +624,29 @@ function setOv(i, patch) {
 function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
 /* ---------------- style tab ---------------- */
+let stylePreviewObserver=null;
 function drawStyleGrid() {
   const g = $('styleGrid');
+  if(g.offsetParent===null)return;
+  if(typeof IntersectionObserver==='function'&&!stylePreviewObserver)stylePreviewObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting))drawStyleGrid();},{rootMargin:'100px'});
   if (!g.children.length) {
     J.STYLE_ORDER.forEach(k => {
       const b = document.createElement('button'); b.className = 'stile'; b.dataset.k = k;
       b.title = J.STYLES[k].desc;
       b.innerHTML = `<canvas width="192" height="108"></canvas><span>${J.STYLES[k].name}</span><span class="badges">${setBadges(J.STYLES[k])}</span>`;
       b.addEventListener('click', () => { remember(); markImageLookModified(); S.project.style = k; S.project.colors.enabled = false; syncUI(); replan(); commit(); });
-      g.appendChild(b);
+      g.appendChild(b);stylePreviewObserver?.observe(b);
     });
   }
   [...g.children].forEach(b => {
-    const k = b.dataset.k, st = J.STYLES[k], sc = st.schemes[0], cv = b.querySelector('canvas'), x = cv.getContext('2d');
+    const k = b.dataset.k, st = J.STYLES[k], sc = st.schemes[0], cv = b.querySelector('canvas');
+    b.hidden=!!J.isUpstream?.(S.project)&&!window.JIZURAUpstream.STYLES[k];if(b.hidden)return;
     b.setAttribute('aria-pressed', S.project.style === k ? 'true' : 'false');
     const off = !J.randomOk(S.project, 'style', k);
     b.classList.toggle('set-off', off);
     b.title = st.desc + (off ? (st.extra && S.project.extra !== true ? '（追加分がオフのため、おまかせでは選ばれません）' : '（和風の演出がオフのため、おまかせでは選ばれません）') : '');
+    if(stylePreviewObserver){const rect=b.getBoundingClientRect();if(rect.bottom< -100||rect.top>innerHeight+100||rect.right<0||rect.left>innerWidth)return;}
+    const x=cv.getContext('2d');cv.dataset.previewReady='true';
     x.fillStyle = sc.bg; x.fillRect(0, 0, 192, 108);
     st.schemes.slice(1, 4).forEach((s2, i) => { x.fillStyle = s2.bg; x.fillRect(192 - 14 * (i + 1), 0, 14, 10); });
     const f = st.fonts.display[0];
