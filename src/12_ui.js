@@ -1167,7 +1167,7 @@ async function runRandomWorkflowV16(finish) {
     S.plan=workingPlan;S.confirmedCinemaPlan=null;S.range=null;S.rangeMode=null;S.exportValidation=null;
     S.pendingDirectionCommit=false;task.enter('save');
     if(!await flushSave())throw Error('保存できなかったため、前の状態を保持しました。空き容量を確認してください。');
-    assertCurrent();committed=true;commit();fontKey='';syncUI();renderLines();refreshPreviewPlan();sizeViewport();drawTimeline();S.t=Math.min(before.t,S.plan.duration);S.need=true;
+    assertCurrent();committed=true;commit();fontKey='';syncUI();renderLines();refreshPreviewPlan();sizeViewport();drawTimeline();S.t=Math.min(before.t,S.plan.duration);if(!finish&&!(J.cutAt(S.plan,S.t)?.line>=0)){const first=S.plan.cuts.find(c=>c.line>=0);if(first)S.t=first.start+Math.min(.5,first.dur*.5);}S.need=true;
     $('directionStatus').dataset.result='true';$('directionStatus').dataset.selectionState=finish?'SELECTED':'DRAFT';$('directionStatus').dataset.workflowState=q.randomWorkflowV16.state;
     $('directionStatus').textContent=finish?'最適化済み · 640px合成検査済み。芸術品質は未検証です。':'ランダム案 · 未最適化・書き出し前検証未完了。何度でも再生成できます。';
     if(finish){updateStudioQuality();const n=result.changes.reduce((n,c)=>n+c.changedRoles.length,0);$('workflowChanges').textContent=`技法変更 ${n}件 · `+result.changes.filter(c=>c.changedRoles.length).map(c=>`${c.line+1}行: ${c.changedRoles.join(' / ')}（描画安全性の復旧）`).join('、');}
