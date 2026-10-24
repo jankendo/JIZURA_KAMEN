@@ -105,17 +105,18 @@ const nativeChanges=(before,after)=>before.cuts.filter(c=>c.line>=0).flatMap(c=>
  const next=after.cuts.find(x=>x.index===c.index);return !next||J.canonicalJSON(c)!==J.canonicalJSON(next)?[{line:c.line,index:c.index,original:J.creativeGenomeV15(c),proposed:next?J.creativeGenomeV15(next):null}]:[];
 });
 const nativeDeficit=p=>(p.automaticUnitSafety?.decisions||[]).reduce((n,d)=>n+d.before.reduce((s,e)=>s+Number(!e.complete)*20+Number(!e.safe)*20+Math.max(0,95-(Number(e.contrast.score)||0))+Math.max(0,3-(Number(e.contrast.contrastRatio)||0))*10+e.geometry.reduce((v,g)=>v+Number(!g.readable)*20,0),0),0);
-J.finishNativeSelectedDraftV16=async(q,p,a,{signal}={})=>{
+J.finishNativeSelectedDraftV16=async(q,p,a,{signal,onProgress}={})=>{
  let calls=0,changed=false;const repairs=[];
- const measure=async plan=>{abort(signal);const copyPlan=copy(plan);await nativePrepare({plan:copyPlan,project:q,audio:a,signal});calls++;abort(signal);return copyPlan;};
+ const measure=async plan=>{abort(signal);onProgress?.({label:'配信解像度で歌詞の可読性を検査しています',current:calls,total:null});await J.processingYield();abort(signal);const copyPlan=copy(plan);await nativePrepare({plan:copyPlan,project:q,audio:a,signal});calls++;abort(signal);return copyPlan;};
  let measured=await measure(p);
  while(measured.automaticUnitSafety?.decisions?.length){
   const bad=measured.automaticUnitSafety?.decisions?.[0];
   if(!bad||calls>=12)throw Object.assign(Error('V16_NATIVE_DELIVERY_UNSAFE'),{diagnostic:{decisions:measured.automaticUnitSafety?.decisions,calls}});
   const cut=p.cuts.find(c=>c.index===bad.index);if(J.songNativeLockedV8(p,cut))throw Error('V16_NATIVE_LOCKED_LINE');
   const candidates=[],geometry=bad.before.flatMap(e=>e.geometry),large=geometry.filter(g=>g.maxGlyphHeight>g.sizeCap),outside=bad.before.some(e=>!e.safe),missing=bad.before.some(e=>!e.complete||!e.geometry.length),contrast=bad.before.some(e=>e.contrast.score<95||e.contrast.contrastRatio<3),ep=cut.explorationParamsV13||{};
-  if(contrast&&!p.manualLyricColor)for(const color of ['#ffffff','#111111'])candidates.push({...copy(cut),explorationParamsV13:{...ep,color},params:{...copy(cut.params),cinemaReadabilityRepair:{...copy(cut.params.cinemaReadabilityRepair),shadow:2,scrim:.8}}});
+  if(contrast&&!missing&&!p.manualLyricColor)for(const color of ['#ffffff','#111111'])candidates.push({...copy(cut),explorationParamsV13:{...ep,color},params:{...copy(cut.params),cinemaReadabilityRepair:{...copy(cut.params.cinemaReadabilityRepair),shadow:2,scrim:.8}}});
   if(large.length)candidates.push({...copy(cut),explorationParamsV13:{...ep,size:(ep.size??1)*Math.min(.94,...large.map(g=>g.sizeCap/g.maxGlyphHeight*.97))}});
+  if(missing&&cut.cam!=='stillCamera')for(const factor of [.35,.1,.03,0])candidates.push({...copy(cut),explorationParamsV13:{...ep,cameraBlurV16:(ep.cameraBlurV16??1)*factor}});
   if((outside||missing||large.length)&&cut.cam!=='stillCamera')for(const factor of [.85,.65,.35,.1])candidates.push({...copy(cut),explorationParamsV13:{...ep,camera:(ep.camera??1)*factor,cameraBlurV16:(ep.cameraBlurV16??1)*factor}});
   if(outside)for(const factor of [.9,.75])candidates.push({...copy(cut),explorationParamsV13:{...ep,size:(ep.size??1)*factor}});
   const baseline=nativeDeficit(measured);let best=null,bestObservation=null,bestDeficit=baseline;
@@ -143,7 +144,7 @@ J.finishSelectedDraftV16=async(q,p,a,snapshot,{signal,onProgress}={})=>{
  if(!d||snapshot.sourceTreeSHA256!==rendererSource()||snapshot.draftId!==d.draftId||snapshot.inputHash!==J.songNativeInputIdentity(q,a)||snapshot.rendererCompatibilityId!==p.songNativeDirection?.rendererCompatibilityId||J.canonicalJSON(snapshot.originalCuts)!==J.canonicalJSON(p.cuts)||snapshot.locks!==J.cinemaV3.lockSignature(p))throw Error('V16_STALE_DRAFT');
  const trial=copy(p);
  await J.searchSongNativeCandidates(trial,null,a,{signal,onProgress,finishSelectedDraft:true,initialCuts:snapshot.originalCuts,initialPlan:p});abort(signal);
- const nativeSafety=await J.finishNativeSelectedDraftV16(q,trial,a,{signal});
+ const nativeSafety=await J.finishNativeSelectedDraftV16(q,trial,a,{signal,onProgress});
  if(nativeSafety.changed){await J.searchSongNativeCandidates(trial,null,a,{signal,onProgress,finishSelectedDraft:true,initialCuts:copy(trial.cuts),initialPlan:trial});const check=copy(trial);await nativePrepare({plan:check,project:q,audio:a,signal});if(nativeChanges(trial,check).length||check.automaticUnitSafety?.decisions?.length)throw Error('V16_NATIVE_RECHECK_FAILED');}
  if(J.canonicalJSON(q.randomWorkflowV16.originalCuts)!==J.canonicalJSON(snapshot.originalCuts))throw Error('V16_STALE_DRAFT');
  if(snapshot.inputHash!==J.songNativeInputIdentity(q,a))throw Error('V16_DRAFT_INPUT_CHANGED');
