@@ -1048,7 +1048,7 @@ function validatePaletteSource(project, image) {
     // it at the legacy 96px refresh size would replace its 128px source map.
     const workflow=project.randomWorkflowV16;
     const savedComplete=project.autoDirection&&project.artDirection?.songNativeResolved;
-    const retained=(savedComplete||workflow&&workflow.sourceTreeSHA256===(window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null)&&['RANDOM_DRAFT_READY','FINISHED'].includes(workflow.state))&&ap.localMap&&ap.viewportKey===J.autoPaletteViewportKey(project);
+    const retained=(savedComplete||J.workflowRendererCompatibleV16(workflow)&&['RANDOM_DRAFT_READY','FINISHED'].includes(workflow.state))&&ap.localMap&&ap.viewportKey===J.autoPaletteViewportKey(project);
     if (!retained&&ap.options && ap.options.readability) ap.localMap = J.refreshAutoPaletteMap(image, project);
   }
 }
@@ -1131,7 +1131,7 @@ function completedWorkflowSnapshotV16(project){
 }
 function workflowStateV16() {
   const d=S.project.randomWorkflowV16;
-  if(!d||d.sourceTreeSHA256!==(window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null))return 'INPUT_READY';
+  if(!J.workflowRendererCompatibleV16(d))return 'INPUT_READY';
   return d.inputHash===J.songNativeInputIdentity(S.project,audioLike())?d.state:'INPUT_READY';
 }
 async function generateRandomDraft(){return runRandomWorkflowV16(false);}
@@ -1167,7 +1167,7 @@ async function runRandomWorkflowV16(finish) {
       q.artDirection.songNativeDirection=J.clonePhotoRenderPlan(workingPlan.songNativeDirection);
       q.randomWorkflowV16.state='FINISHED';
       J.captureSongNativeResolved(q,audioLike(),workingPlan);
-      q.randomWorkflowV16={...q.randomWorkflowV16,state:'FINISHED',changes:result.changes,finishMetrics:{...result.metrics,qaObservations:1},scaleSafety:result.scaleSafety,nativeSafety:result.nativeSafety,previousFinishedProject:priorFinished};
+      q.randomWorkflowV16={...q.randomWorkflowV16,draftSourceTreeSHA256:q.randomWorkflowV16.draftSourceTreeSHA256||q.randomWorkflowV16.sourceTreeSHA256,sourceTreeSHA256:window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null,state:'FINISHED',changes:result.changes,finishMetrics:{...result.metrics,qaObservations:1},scaleSafety:result.scaleSafety,nativeSafety:result.nativeSafety,previousFinishedProject:priorFinished};
       q.randomWorkflowV16.inputHash=J.songNativeInputIdentity(q,audioLike());
       q.randomWorkflowV16.finishedProject=completedWorkflowSnapshotV16(q);
     }else{
@@ -1198,8 +1198,9 @@ async function runRandomWorkflowV16(finish) {
     task.complete(finish?'選んだ案の最適化と保存が完了しました':'ランダム案を表示しました');
   }catch(error){
     if(!committed&&S.project===q){S.project=before.project;S.plan=before.plan;S.pixelQA=before.pixelQA;S.confirmedCinemaPlan=before.confirmed;S.range=before.range;S.rangeMode=before.rangeMode;S.t=before.t;syncUI();renderLines();refreshPreviewPlan();S.need=true;}
-    task.fail(error,controller.signal.aborted);$('directionStatus').textContent=controller.signal.aborted?'処理をキャンセルしました。前の状態を保持しています。':error.message;
-    $('directionStatus').dataset.selectionState='FAILED';console.error('KAMEN v16 workflow',error);
+    const message=J.workflowErrorMessageV16(error);
+    task.fail(new Error(message,{cause:error}),controller.signal.aborted);$('directionStatus').textContent=controller.signal.aborted?'処理をキャンセルしました。前の状態を保持しています。':message;
+    $('directionStatus').dataset.selectionState='FAILED';console.error('KAMEN v16 workflow',error,{diagnostic:error.diagnostic??null});
   }finally{S.workflowSaveEntriesV16=null;S.pendingDirectionCommit=false;directionBusy=false;syncDirectionUI();}
 }
 
