@@ -1073,6 +1073,7 @@ async function analyzeCurrentBackground() {
 }
 
 let directionBusy = false, exportPreflightBusy=false, assetPackBusy=false;
+const workflowImageFingerprintsV16=new WeakMap();
 const editingLock=J.createControlLock();
 function processingLocks(active){
   if(!active){editingLock.unlock();return;}
@@ -1160,7 +1161,15 @@ async function runRandomWorkflowV16(finish) {
       const finishedProject=J.clonePhotoRenderPlan(q);delete finishedProject.randomWorkflowV16;q.randomWorkflowV16.finishedProject=finishedProject;
     }else{
       if(before.project.randomWorkflowV16?.state==='FINISHED'||!before.project.randomWorkflowV16&&priorFinished){const previousAudio=await bgDbGet('finished-audio-v16').catch(()=>null)||audioFile;if(previousAudio)S.workflowSaveEntriesV16=[['previous-finished-audio-v16',previousAudio]];}
-      result=await J.generateRandomDraftV16(q,audioLike(),options);assertCurrent();workingPlan=result.plan;
+      const paletteStarted=performance.now(),bitmap=S.renderer.customBgBitmap;let paletteCacheHit=false;
+      if(bitmap&&q.customBg?.enabled&&q.customBg.dataUrl){
+        const immutable=typeof ImageBitmap!=='undefined'&&bitmap instanceof ImageBitmap,cached=immutable?workflowImageFingerprintsV16.get(bitmap):null;
+        const hash=cached?.source===q.customBg.dataUrl?cached.hash:J.imageFingerprint(bitmap);if(immutable)workflowImageFingerprintsV16.set(bitmap,{source:q.customBg.dataUrl,hash});
+        const ap=q.autoPalette;paletteCacheHit=!!(ap?.analyzed&&ap.sourceHash===hash&&ap.viewportKey===J.autoPaletteViewportKey(q)&&ap.stats&&ap.palette);
+        if(!paletteCacheHit){let analyzed=J.analyzeCustomBackground(bitmap,q);if(!ap?.darknessManual&&Math.abs(q.customBg.darkness-analyzed.suggestedDarkness)>.005){q.customBg.darkness=analyzed.suggestedDarkness;analyzed=J.analyzeCustomBackground(bitmap,q);}J.applyImagePalette(q,analyzed,{palette:true,readability:true,mood:false});}
+      }
+      const paletteMs=performance.now()-paletteStarted;
+      result=await J.generateRandomDraftV16(q,audioLike(),options);result.draft.metrics.paletteMs=paletteMs;result.draft.metrics.paletteCacheHit=paletteCacheHit;assertCurrent();workingPlan=result.plan;
       q.randomWorkflowV16.previousFinishedProject=priorFinished;S.pixelQA=null;
     }
     S.comparisonDraftV16=false;$('workflowCompare').querySelector('select').value='finished';
