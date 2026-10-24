@@ -305,7 +305,9 @@ function replan() {
   if(!restoreNotice){restoreNotice=document.createElement('p');restoreNotice.id='songNativeRestoreNotice';restoreNotice.setAttribute('role','status');$('directionStatus').parentElement.appendChild(restoreNotice);}
   restoreNotice.hidden=!['REJECTED','PENDING_INPUT'].includes(S.plan.songNativeRestore?.status);
   restoreNotice.textContent=S.plan.songNativeRestore?.status==='PENDING_INPUT'?'保存されたMVの演出は、音源の読み込み後に互換性を確認します。':'保存されたMVの演出は、現在のバージョンとの互換性を確認できませんでした。元データは保持されています。演出を再確認してください。';
-  if(S.plan.songNativeDirection&&S.project.artDirection)S.project.artDirection.songNativeDirection=J.clonePhotoRenderPlan(S.plan.songNativeDirection);
+  // Boot plans before restoring audio. Its temporary direction must not replace
+  // the saved selected direction needed by the resolved-plan equality check.
+  if(S.plan.songNativeDirection&&S.project.artDirection&&S.plan.songNativeRestore?.status!=='PENDING_INPUT')S.project.artDirection.songNativeDirection=J.clonePhotoRenderPlan(S.plan.songNativeDirection);
   if(S.project.visualAssets?.length) (S.renderer._uiLoadQueue=(S.renderer._uiLoadQueue||Promise.resolve()).catch(()=>{}).then(()=>S.renderer.loadAssetDeck(S.plan))).then(()=>{S.need=true;}).catch(e=>toast(e.message));
   refreshVisualAssetsUI();
   refreshPreviewPlan();
