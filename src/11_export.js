@@ -57,7 +57,7 @@ J.saveFile = async (filename, data, options={}) => {
   let panel=document.getElementById('kamenDownloads');
   if(!panel){panel=document.createElement('section');panel.id='kamenDownloads';panel.className='kamen-downloads';panel.setAttribute('aria-label','生成ファイルの保存');
     const title=document.createElement('strong');title.textContent='生成ファイルを保存';panel.appendChild(title);
-    const hint=document.createElement('p');hint.textContent='保存されない場合は、下のファイル名を押してください。この画面を閉じる前に保存してください。';panel.appendChild(hint);document.body.appendChild(panel);}
+    const hint=document.createElement('p');hint.textContent='保存されない場合は、下のファイル名を押してください。この画面を閉じる前に保存してください。';panel.appendChild(hint);(document.getElementById('exportStatusDock')||document.body).appendChild(panel);}
   const url=URL.createObjectURL(blob),row=document.createElement('div'),a=document.createElement('a'),dismiss=document.createElement('button');
   row.className='kamen-download-row';a.href=url;a.download=filename;a.textContent=filename+' を保存';
   const open=document.createElement('a');open.href=url;open.target='_blank';open.rel='noopener';open.textContent='別タブで開く';
@@ -488,7 +488,7 @@ J.exportPNGZip = async ({ plan, project, transparent, onProgress, signal, every 
   for (let i = 0; i < total; i += every) {
     if (signal && signal.aborted) throw new Error('キャンセルしました');
     await R.prepareAssetFrame?.(plan,start+i/fps);
-    R.frame(ctx, plan, start+i / fps, { scale, transparent, production:true });
+    R.frame(ctx, plan, start+i / fps, { scale, transparent, production:true, range });
     const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
     zip.add(`jizura_${String(i).padStart(5, '0')}.png`, new Uint8Array(await blob.arrayBuffer()));
     onProgress && onProgress((i+1) / total, `PNG ${i + 1}/${total}`,{stage:'frames',current:i+1,total});

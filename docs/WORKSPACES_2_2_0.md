@@ -1,5 +1,7 @@
 # KAMEN 2.2.0 — generation persistence and UI repair
 
+Historical v2.2 release record. Current credits and layout: [v2.3](CREDITS_2_3_0.md).
+
 ## Root cause and behavior
 
 In 2.1, startup called replan(), which scheduled an autosave even without an edit. Opening a second tab advanced the single saved record's revision. Generation in the first tab then failed the optimistic compare, rolled back a successfully generated MV, and replaced its diagnostic with a generic ready message.

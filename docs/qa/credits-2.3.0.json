@@ -1,0 +1,314 @@
+{
+  "version": "2.3.0",
+  "checks": [
+    {
+      "name": "new works default to hybrid credits",
+      "status": "PASS"
+    },
+    {
+      "name": "display phases, partial ranges, empty/single fields and long Unicode text",
+      "status": "PASS",
+      "phases": true,
+      "boxes": 36,
+      "longText": true,
+      "legacyPixels": true,
+      "nativeSuppression": true
+    },
+    {
+      "name": "existing works preserve native pixels and controlled credits suppress duplicate native titles",
+      "status": "PASS"
+    },
+    {
+      "name": "automatic corner selection uses native glyphs, caches results and preserves morphs",
+      "status": "PASS",
+      "position": "bl",
+      "measurements": 3,
+      "cachedFrames": 20,
+      "morph": true
+    },
+    {
+      "name": "held credit text has readable contrast on light and dark backgrounds",
+      "status": "PASS",
+      "contrast": [
+        {
+          "background": "#000000",
+          "contrast": 20.28677925468592
+        },
+        {
+          "background": "#FFFFFF",
+          "contrast": 8.479505781071616
+        }
+      ]
+    },
+    {
+      "name": "visible metadata controls apply without regeneration",
+      "status": "PASS"
+    },
+    {
+      "name": "input save detection uses media references instead of cloning large images",
+      "status": "PASS",
+      "largestMediaReference": 7,
+      "sourceBytes": 4194326
+    },
+    {
+      "name": "credits survive undo/redo and browser restore",
+      "status": "PASS"
+    },
+    {
+      "name": "aspect changes retain the chosen resolution and FPS",
+      "status": "PASS"
+    },
+    {
+      "name": "responsive easy/advanced layouts avoid overlap and horizontal scrolling",
+      "status": "PASS",
+      "layouts": [
+        {
+          "width": 1440,
+          "advanced": false,
+          "body": 1440
+        },
+        {
+          "width": 1440,
+          "advanced": true,
+          "body": 1440
+        },
+        {
+          "width": 1100,
+          "advanced": false,
+          "body": 1100
+        },
+        {
+          "width": 1100,
+          "advanced": true,
+          "body": 1100
+        },
+        {
+          "width": 1024,
+          "advanced": false,
+          "body": 1024
+        },
+        {
+          "width": 1024,
+          "advanced": true,
+          "body": 1024
+        },
+        {
+          "width": 768,
+          "advanced": false,
+          "body": 768
+        },
+        {
+          "width": 768,
+          "advanced": true,
+          "body": 768
+        },
+        {
+          "width": 375,
+          "advanced": false,
+          "body": 375
+        },
+        {
+          "width": 375,
+          "advanced": true,
+          "body": 375
+        }
+      ]
+    },
+    {
+      "name": "actual partial H.264/AAC output preserves credits through an encoder retry and fully decodes",
+      "status": "PASS",
+      "selected": 392,
+      "matched": 361,
+      "validation": {
+        "container": "mp4",
+        "videoCodec": "avc1",
+        "audioCodec": "mp4a",
+        "width": 1280,
+        "height": 720,
+        "duration": 2.026666666666667,
+        "videoDuration": 2,
+        "audioDuration": 2.026666666666667,
+        "videoSamples": 48,
+        "audioSamples": 95,
+        "fps": 24,
+        "bytes": 392020,
+        "certification": {
+          "passed": true,
+          "scope": "container, track completeness, output settings and decoded endpoint/midpoint samples"
+        }
+      },
+      "processing": "static",
+      "downloads": "static"
+    },
+    {
+      "name": "processing and save links stay in the output dock",
+      "status": "PASS"
+    },
+    {
+      "name": "AAC fallback retains the selected credit settings and produces a decodable movie",
+      "status": "PASS"
+    },
+    {
+      "name": "normal/transparent PNG ZIPs contain credits, preserve alpha and fully decode",
+      "status": "PASS"
+    },
+    {
+      "name": "portable project export/import retains the credit settings",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "build": {
+    "sourceCommit": "e031d525701c5506d5e4a0dbbc8655b560e369d9",
+    "sourceDirty": true,
+    "sourceTreeSHA256": "91f7e0d896e395f4a23a25a1a8a7c37617c49882fe813c6ecaa993d0c50af270",
+    "upstreamCommit": "fc16bfe43ea4a6c25a21f1caf04d17326de14f00",
+    "upstreamSHA256": "5c364cf33e4cd5b5b7ce8ebeec252f2340ae2c45bcc55542968e3fc2fa1c9922",
+    "mediaSHA256": "512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"
+  },
+  "browser": "155.0.8059.39",
+  "movie": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "Main",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "width": 1280,
+        "height": 720,
+        "coded_width": 1280,
+        "coded_height": 720,
+        "closed_captions": 0,
+        "film_grain": 0,
+        "has_b_frames": 0,
+        "pix_fmt": "yuvj420p",
+        "level": 31,
+        "color_range": "pc",
+        "color_space": "bt709",
+        "color_transfer": "iec61966-2-1",
+        "color_primaries": "bt709",
+        "chroma_location": "left",
+        "field_order": "progressive",
+        "refs": 1,
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "24/1",
+        "avg_frame_rate": "24/1",
+        "time_base": "1/24",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 48,
+        "duration": "2.000000",
+        "bit_rate": "1420956",
+        "bits_per_raw_sample": "8",
+        "nb_frames": "48",
+        "extradata_size": 33,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "creation_time": "2026-10-25T08:57:12.000000Z",
+          "language": "und",
+          "handler_name": "MediabunnyVideoHandler",
+          "vendor_id": "[0][0][0][0]",
+          "encoder": "Mediabunny v1.62.1"
+        }
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_long_name": "AAC (Advanced Audio Coding)",
+        "profile": "LC",
+        "codec_type": "audio",
+        "codec_tag_string": "mp4a",
+        "codec_tag": "0x6134706d",
+        "sample_fmt": "fltp",
+        "sample_rate": "48000",
+        "channels": 1,
+        "channel_layout": "mono",
+        "bits_per_sample": 0,
+        "initial_padding": 0,
+        "id": "0x2",
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0",
+        "time_base": "1/48000",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 97280,
+        "duration": "2.026667",
+        "bit_rate": "138090",
+        "nb_frames": "95",
+        "extradata_size": 5,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "creation_time": "2026-10-25T08:57:12.000000Z",
+          "language": "und",
+          "handler_name": "MediabunnySoundHandler",
+          "vendor_id": "[0][0][0][0]"
+        }
+      }
+    ],
+    "format": {
+      "filename": "/tmp/kamen-230-credits-faults/credits-audio.mp4",
+      "nb_streams": 2,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "format_long_name": "QuickTime / MOV",
+      "start_time": "0.000000",
+      "duration": "2.026667",
+      "size": "392020",
+      "bit_rate": "1547447",
+      "probe_score": 100,
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomavc1mp41",
+        "creation_time": "2026-10-25T08:57:12.000000Z"
+      }
+    }
+  },
+  "status": "PASS"
+}
