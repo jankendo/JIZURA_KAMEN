@@ -1,6 +1,6 @@
 # KAMEN（仮面）
 
-KAMEN **v2.1.0** は、背景画像・音源・LRC／TXTから日本語歌詞MVを制作するブラウザーアプリです。新規MVには本家 **[JIZURA v0.10.1](https://github.com/852wa/JIZURA/tree/fc16bfe43ea4a6c25a21f1caf04d17326de14f00)** のおまかせ・プランナー・レンダラーを使用します。文字PV・キネティック・ホラーの演出とテーマ選択を利用できます。
+KAMEN **v2.2.0** は、背景画像・音源・LRC／TXTから日本語歌詞MVを制作するブラウザーアプリです。新規MVには本家 **[JIZURA v0.10.1](https://github.com/852wa/JIZURA/tree/fc16bfe43ea4a6c25a21f1caf04d17326de14f00)** のおまかせ・プランナー・レンダラーを使用します。文字PV・キネティック・ホラーの演出とテーマ選択を利用できます。
 
 公開先: [GitHub Pages](https://jankendo.github.io/JIZURA_KAMEN/)（この変更はPR段階では未公開です）。元作品はhakoniwa / 852wa/JIZURA、MITライセンスです。
 
@@ -11,6 +11,12 @@ KAMEN **v2.1.0** は、背景画像・音源・LRC／TXTから日本語歌詞MV�
 MP4はMediabunnyのストリーム出力と分割メモリ書き込みへ移行しました。音声AACの代替処理、ソフトウェアH.264への再試行、中止・再実行に対応します。メモリ消費は動画容量に応じて増えるため、大きすぎる動画では範囲・解像度を下げてください。Windows／macOSのChrome／Edgeを優先し、今回の自動実測環境はLinuxのChromeです。
 
 変更内容・テスト・互換性・既知の制約は [更新記録](docs/UPSTREAM_0_10_1.md) を参照してください。
+
+## v2.2.0の修正
+
+別タブを開くだけで生成に失敗する保存競合を修正しました。実際に同じ作業が別タブで編集された場合は、生成結果と素材を別の作業として保存します。「保存した作業」で切り替えられます。保存容量が足りなくても生成結果は残り、プロジェクト保存・MP4書き出し・保存の再試行ができます。
+
+旧KAMEN専用の最適化・別案・品質認定・画像解析・チャント・演出パック・AE書き出し・クレジット設定・補助動画追加のUIを撤去しました。既存MVは従来の描画経路で復元・書き出しできます。曲名・アーティストは本家のタイトル演出に使われます。[変更と検証](docs/WORKSPACES_2_2_0.md)、[保存仕様](docs/STORAGE.md)も参照してください。
 
 ## ローカル開発
 
@@ -51,7 +57,7 @@ E2Eはブラウザーの通常ダウンロード経路を検証するため、�
 
 ## GitHub Pages
 
-`.github/workflows/build.yml` は `main` へのpushと手動実行で、Node.js 24、`npm ci`、回帰テスト、ビルド、ブラウザーUI／MP4検証を実行します。すべてが成功したときだけ `dist/` を公式Pages Actionsで `github-pages` environmentへデプロイします。Pull Requestは検証のみで本番デプロイしません。依存Actionsは公式の安定版コミットへ固定しています。
+`.github/workflows/build.yml` は Pull Requestと `main` へのpushで、Node.js 24、`npm ci`、回帰テスト、ビルド、ブラウザーUI／MP4検証を実行します。すべてが成功したときだけ `dist/` を公式Pages Actionsで `github-pages` environmentへデプロイします。Pull Requestは検証のみで本番デプロイしません。依存Actionsは公式の安定版コミットへ固定しています。
 
 リポジトリの Settings → Pages の Source を **GitHub Actions** にします。`contents: read` は検証ジョブ、`pages: write` と `id-token: write` はデプロイジョブだけに付与しています。同時の本番デプロイは直列化します。canonicalと `og:url` は上記公開先で、外部Sitesを変更・更新する処理はありません。
 
@@ -71,7 +77,7 @@ E2Eはブラウザーの通常ダウンロード経路を検証するため、�
 
 ## 旧KAMEN方式の開発記録
 
-以下は旧方式の実装・過去の検証記録です。v2.1.0の標準生成経路の説明ではありません。
+以下は旧方式の実装・過去の検証記録です。v2.2.0の標準生成経路の説明ではありません。
 
 ### Cinema V3 開発
 
