@@ -107,15 +107,6 @@ async function bgDbGet(key) {
   const db = await openBgDb();
   return new Promise((resolve, reject) => { const req = db.transaction('assets', 'readonly').objectStore('assets').get(key); req.onsuccess = () => resolve(req.result || ''); req.onerror = () => reject(req.error); });
 }
-async function bgDbSet(key, value) {
-  if(S.workspaceId&&isMediaKey(key))key=mediaKey(S.workspaceId,key);
-  const db = await openBgDb();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction('assets', 'readwrite'), store = tx.objectStore('assets');
-    if (value) store.put(value, key); else store.delete(key);
-    tx.oncomplete = resolve; tx.onerror = () => reject(tx.error || new Error('IndexedDB write failed')); tx.onabort = () => reject(tx.error || new Error('IndexedDB write aborted'));
-  });
-}
 // Read the committed project and its referenced images in one readonly
 // transaction, so another tab cannot splice new assets into an older revision.
 async function readCommittedProject(){
@@ -252,7 +243,7 @@ function flushSaveImpl(task) {
     const stillActive=S.workspaceId===activeId;if(stillActive){rememberWorkspace(record.id);S.workspaceForkOrigin=record.forkedFrom;}
     const verified=await bgDbGet(workspaceKey(record.id));
     if(verified?.revision!==record.revision||J.canonicalJSON(verified.project)!==J.canonicalJSON(copy))throw new Error('保存データの読み戻し確認に失敗しました');
-    if(stillActive)S.persistenceRevision=record.revision;
+    if(S.workspaceId===record.id)S.persistenceRevision=record.revision;
     if(pendingAudio&&S.pendingAudioFile===pendingAudio)S.pendingAudioFile=null;
     if(edit!==saveRevision||project!==S.project)return false;
     task?.enter('metadata');
@@ -1720,12 +1711,13 @@ function bind() {
       const face=J.FONTS[key], family=String(face.family).replace(/^"|"$/g,'');
       const meta={key,label:f.name.replace(/\.[^.]+$/,''),family,weight:face.weight||400,assetKey:key,mime:uploadedFontMime(f)};
       S.project.userFonts=(S.project.userFonts||[]).filter(item=>item.key!==key).concat([meta]);
-      task.enter('save');let persistent=true;
-      try { const bytes=J.userFontBytes.get(key); if(bytes) await bgDbSet('font:'+key,new Blob([bytes],{type:meta.mime})); }
-      catch (err) { persistent=false;task.fail(err);toast('フォントはこの画面で使えますが、次回起動時に再選択が必要です'); }
-      S.project.fonts.display = key; fontKey = ''; renderFontRoles(); replan();if(!await flushSave())throw new Error('フォントは反映しましたが、保存完了を確認できませんでした');if(persistent)task.complete('フォントを読み込みました');
+      task.enter('save');
+      S.project.fonts.display = key; fontKey = ''; renderFontRoles(); replan();
+      // Font bytes and the reference commit together through the workspace CAS.
+      if(!await flushSave())throw new Error('フォントは反映しましたが、保存完了を確認できませんでした。プロジェクト保存でバックアップしてください。');
+      task.complete('フォントを読み込みました');
     }
-    catch (err) {task.fail(err);showMsg('フォントを読み込めませんでした'); setTimeout(() => showMsg(null), 2500); }
+    catch (err) {task.fail(err);showMsg(err.message||'フォントを読み込めませんでした'); setTimeout(() => showMsg(null), 2500); }
     finally { e.target.value=''; }
   });
   ['outAspect', 'eAspect'].forEach(id => $(id).addEventListener('change', e => { S.project.aspect = e.target.value; refreshLocalPaletteMap(); syncOut(); replan(); codecNote(); }));
