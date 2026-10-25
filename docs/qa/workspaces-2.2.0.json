@@ -3,9 +3,9 @@
   "version": "2.2.0",
   "browser": "155.0.8059.39",
   "build": {
-    "sourceCommit": "a34deac610267d581191fbee7502a167d26ba420",
+    "sourceCommit": "1e6d69f12c2fa352e8f1534675a0de257f2d2cef",
     "sourceDirty": true,
-    "sourceTreeSHA256": "f9354cb887f3a88ff1da206223b6e38113dfa01db5d746cd7348455f6ec5e61d",
+    "sourceTreeSHA256": "a9425844c6cf94b7919ee4327b708d1b34c47111bce30191cfaf310852857dc5",
     "upstreamCommit": "fc16bfe43ea4a6c25a21f1caf04d17326de14f00",
     "upstreamSHA256": "5c364cf33e4cd5b5b7ce8ebeec252f2340ae2c45bcc55542968e3fc2fa1c9922",
     "mediaSHA256": "512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"
@@ -27,6 +27,7 @@
     "palette and background-position controls change actual rendered pixels",
     "tap synchronization and undo remain available",
     "saved-work selector restores the selected work",
+    "failed audio restoration does not clear metadata or create a new saved revision",
     "retired controls are absent from the document",
     "legacy localStorage migrates once and the original remains intact",
     "v2 IndexedDB migration preserves the original record and its image",

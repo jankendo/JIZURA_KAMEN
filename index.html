@@ -849,7 +849,7 @@ body:has(.processing-panel:not([hidden])) .kamen-downloads{left:16px;right:auto;
 
 <script>
 window.KAMEN_APP_INFO=window.JIZURA_APP_INFO=Object.freeze({"name":"KAMEN","edition":"Custom Edition","version":"2.2.0"});
-window.KAMEN_BUILD_INFO=Object.freeze({"sourceCommit":"a34deac610267d581191fbee7502a167d26ba420","sourceDirty":true,"sourceTreeSHA256":"f9354cb887f3a88ff1da206223b6e38113dfa01db5d746cd7348455f6ec5e61d","upstreamCommit":"fc16bfe43ea4a6c25a21f1caf04d17326de14f00","upstreamSHA256":"5c364cf33e4cd5b5b7ce8ebeec252f2340ae2c45bcc55542968e3fc2fa1c9922","mediaSHA256":"512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"});
+window.KAMEN_BUILD_INFO=Object.freeze({"sourceCommit":"1e6d69f12c2fa352e8f1534675a0de257f2d2cef","sourceDirty":true,"sourceTreeSHA256":"a9425844c6cf94b7919ee4327b708d1b34c47111bce30191cfaf310852857dc5","upstreamCommit":"fc16bfe43ea4a6c25a21f1caf04d17326de14f00","upstreamSHA256":"5c364cf33e4cd5b5b7ce8ebeec252f2340ae2c45bcc55542968e3fc2fa1c9922","mediaSHA256":"512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"});
 (()=>{
 /* ============================================================
    JIZURA — util: math, easing, deterministic randomness, colour
@@ -81009,7 +81009,7 @@ async function restoreAudioFile(){
     if(project!==S.project||request!==S.audioLoad){task.fail(new Error('別のプロジェクトに切り替わりました'),true);return;}
     S.audio=audio;S.currentAudioFile=file;$('audioName').textContent=audioSummary(audio);
     syncUI();replan();updateStudioQuality();task.skip('save');task.complete('保存した音源の復元が完了しました');
-  }catch(e){task.fail(e);if(project===S.project&&request===S.audioLoad){project.audioAsset=null;S.audioNotice='前回の音源を復元できませんでした。曲を選び直してください。';flushSave();$('audioName').textContent=S.audioNotice;}}
+  }catch(e){task.fail(e);if(project===S.project&&request===S.audioLoad){S.audioNotice='前回の音源を復元できませんでした。保存済みデータは保持しています。曲を選び直してください。';$('audioName').textContent=S.audioNotice;}}
   finally{if(request===S.audioLoad){S.audioLoading=false;S.audioPendingName='';syncDirectionUI();}}
 }
 

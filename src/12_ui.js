@@ -1894,7 +1894,7 @@ async function restoreAudioFile(){
     if(project!==S.project||request!==S.audioLoad){task.fail(new Error('別のプロジェクトに切り替わりました'),true);return;}
     S.audio=audio;S.currentAudioFile=file;$('audioName').textContent=audioSummary(audio);
     syncUI();replan();updateStudioQuality();task.skip('save');task.complete('保存した音源の復元が完了しました');
-  }catch(e){task.fail(e);if(project===S.project&&request===S.audioLoad){project.audioAsset=null;S.audioNotice='前回の音源を復元できませんでした。曲を選び直してください。';flushSave();$('audioName').textContent=S.audioNotice;}}
+  }catch(e){task.fail(e);if(project===S.project&&request===S.audioLoad){S.audioNotice='前回の音源を復元できませんでした。保存済みデータは保持しています。曲を選び直してください。';$('audioName').textContent=S.audioNotice;}}
   finally{if(request===S.audioLoad){S.audioLoading=false;S.audioPendingName='';syncDirectionUI();}}
 }
 

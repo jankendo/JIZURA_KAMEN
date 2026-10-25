@@ -14,7 +14,7 @@ The IndexedDB database remains `jizura-assets-v1`, version 1, object store `asse
 | `workspace-media:<id>:font:<assetKey>` | Uploaded font bytes. |
 | `workspace-media:<id>:visualAsset:<id>` / `proAsset:<id>` | Retained legacy assets needed for existing projects. |
 
-A single readwrite transaction commits a project's metadata and media. It compares the saved revision before writing. In-memory edit generations suppress superseded saves; they are separate from persisted revisions. Opening an editor, restoring, replanning a preview or switching display mode does not schedule a save. Actual edits are debounced for 700 ms; explicit save stages and pagehide with unsaved changes also flush.
+A single readwrite transaction commits a project's metadata and media. It compares the saved revision before writing. In-memory edit generations suppress superseded saves; they are separate from persisted revisions. Opening an editor, restoring (including audio-restore failures), replanning a preview or switching display mode does not schedule a save. Actual edits are debounced for 700 ms; explicit save stages and pagehide with unsaved changes also flush.
 
 Each tab pins its selected ID in sessionStorage `jizura.workspace.v3`. localStorage `jizura.workspace.last.v3` is only a hint for new tabs. `jizura.project.ref.v3` is a small reference, and `jizura.workspace.changed.v3` refreshes the saved-work list in other tabs. Failure to write these hints does not invalidate a committed IndexedDB record. The mode and tap preferences use `jizura.mode` and `jizura.tapOpts`.
 
