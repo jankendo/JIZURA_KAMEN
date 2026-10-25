@@ -1,4 +1,4 @@
-# KAMEN 2.2 browser storage
+# KAMEN 2.3 browser storage
 
 KAMEN processes projects and media in the browser. Storage belongs to the browser profile and origin: localhost and GitHub Pages do not share it. No application server receives project/media content.
 
@@ -35,3 +35,7 @@ Browser-local work is not a durable backup. Browser cleanup, private mode, devic
 ## Release verification
 
 `dev/workspace_conflicts_e2e.cjs` covers idle startup, two tabs, genuine concurrent edits, independent media restoration, repeated generation, quota/retry, cancellation, changed inputs, overlapping save/generation, common controls, work switching, and migration from localStorage/v2 IndexedDB. The existing persistence test covers full localStorage quota, 8/50/100 lyric rows, real transaction aborts and legacy render-decision restoration. See `docs/qa/workspaces-2.2.0.json` for recorded results.
+
+## Credits in 2.3
+
+Storage format 3 is unchanged. Optional `project.credits` is `{version:1, mode, position, size}`. New works default to `hybrid/auto/standard`; missing or null credits in existing works preserve native rendering. Loading never opts a work into the new overlay. Credits participate in undo/redo, autosave, conflict forks, work switching and portable project files. Title and artist remain existing project fields. Planned title/artist strings and measurements are derived, not separately persisted. Technical MP4 provenance records the selected credits configuration.

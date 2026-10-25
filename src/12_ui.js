@@ -38,6 +38,7 @@ function mergeProject(p) {
   p = J.migrateProject(p || J.defaultProject());
   const d = J.defaultProject();
   const o = Object.assign(d, p || {});
+  if(!p.credits)delete o.credits;
   if (!J.isValidProjectStyle(o.style)) o.style = 'noir';
   o.lang = 'ja';
   o.fx = Object.assign(J.defaultProject().fx, (p && p.fx) || {});
@@ -149,7 +150,7 @@ async function loadLocal() {
     try{if(!await flushSaveImpl())S.unsaved=true;else S.recoveredLocal=true;}finally{S.project=previous;}
   }
   if(S.workspaceId)rememberWorkspace(S.workspaceId);
-  observedProject=J.canonicalJSON(J.compactPersistentProjectV111(project));
+  observedProject=projectFingerprint(project);
   return project;
 }
 async function restoreProjectFonts(project) {
@@ -195,7 +196,15 @@ async function restorePortableFonts(project) {
 }
 let saveTimer = 0;
 let observedProject='';
-function projectFingerprint(){return J.canonicalJSON(J.compactPersistentProjectV111(S.project));}
+const mediaFingerprintIds=new Map();let nextMediaFingerprint=1;
+function projectFingerprint(project=S.project){
+  const seen=new Set(),ref=value=>{if(typeof value!=='string'||!value.startsWith('data:'))return value;seen.add(value);if(!mediaFingerprintIds.has(value))mediaFingerprintIds.set(value,nextMediaFingerprint++);return 'media:'+mediaFingerprintIds.get(value);};
+  const copy={...project,customBg:{...project.customBg,dataUrl:ref(project.customBg?.dataUrl)}};
+  for(const key of ['visualAssets','proAssets','userFonts'])copy[key]=(project[key]||[]).map(a=>({...a,dataUrl:ref(a.dataUrl)}));
+  const fingerprint=J.canonicalJSON(J.compactPersistentProjectV111(copy));
+  for(const key of mediaFingerprintIds.keys())if(!seen.has(key))mediaFingerprintIds.delete(key);
+  return fingerprint;
+}
 function autosave() { if(!S.project)return;const next=projectFingerprint();if(next===observedProject)return;observedProject=next;S.unsaved=true;++saveRevision;clearTimeout(saveTimer); saveTimer = setTimeout(flushSave, 700); scheduleHistoryObserve(); }
 async function bgDbSetMany(entries, expectedRevision, id=S.workspaceId) {
   const db=await openBgDb();
@@ -380,7 +389,7 @@ function sizeViewport() {
   const vp = $('viewport'), c = $('view');
   const plan=viewPlan(), ar = plan.W / plan.H;
   let cssW = vp.clientWidth || 800, cssH = cssW / ar;
-  const maxH = Math.max(220, window.innerHeight * 0.68);
+  const maxH = Math.max(220, Math.min(720,window.innerHeight * 0.65));
   if (cssH > maxH) { cssH = maxH; cssW = cssH * ar; }
   const dpr = Math.min(2, window.devicePixelRatio || 1);
   const pw = Math.round(Math.min(plan.W, cssW * dpr)), ph = Math.round(pw / ar);
@@ -673,7 +682,7 @@ function drawStyleGrid() {
   });
 }
 function fontSelectOptions(sel) {
-  return '<option value="">スタイルの既定</option>' + Object.entries(J.FONTS).map(([k, f]) => {
+  return '<option value="">スタイルの既定</option>' + Object.entries(J.FONTS).filter(([,f])=>!f.internal).map(([k, f]) => {
     const g = J.faceOf ? J.faceOf(k) : f, alt = g.label && g.label !== f.label ? ' → ' + g.label : '';   // the face actually used for the lyric language
     return `<option value="${k}" ${sel === k ? 'selected' : ''}>${escapeHtml(f.label + alt)}</option>`;
   }).join('');
@@ -770,7 +779,7 @@ async function histGo(d) {
   const currentMap=S.project.autoPalette&&S.project.autoPalette.localMap;
   const currentHash=S.project.autoPalette&&S.project.autoPalette.sourceHash;
   const state=J.restoreHistory(H.list[j],ref=>H.assets.get(ref)||'');
-  Object.assign(S.project,state);
+  Object.assign(S.project,state);if(state.credits===null)delete S.project.credits;
   S.project.autoPalette=J.normalizeAutoPalette(S.project.autoPalette);
   if(!S.project.autoPalette.localMap&&currentMap&&S.project.autoPalette.sourceHash&&S.project.autoPalette.sourceHash===currentHash)S.project.autoPalette.localMap=currentMap;
   await S.renderer.loadAssetDeck?.(S.plan).catch(()=>{});if(S.project.customBg?.dataUrl)await S.renderer.loadCustomBackground(S.project.customBg.dataUrl).catch(()=>{});
@@ -847,7 +856,7 @@ function toast(m, cols) {
 function setMode(m) {
   S.mode = m === 'pro' ? 'pro' : 'easy';
   const easy = S.mode === 'easy';
-  $('app').classList.toggle('is-easy', easy);
+  $('app').classList.toggle('is-easy', easy);if($('editorDetails'))$('editorDetails').hidden=easy;
   $('app').classList.toggle('studio-advanced', !easy);
   $('easyPanel').hidden = !easy;
   $('studioAdvanced').setAttribute('aria-expanded', String(!easy));
@@ -1070,7 +1079,7 @@ function syncDirectionUI() {
   if(!locked){processingLocks(false);if($('localWorkspace'))$('localWorkspace').disabled=!!(S.audioLoading||S.tap||S.workspaceStorageUnavailable);}
   const image = !!(S.project.customBg.enabled && S.project.customBg.dataUrl && S.renderer.customBgBitmap);
   const music = !!S.audio;
-  const lyrics = J.parseLyrics(S.project.lyrics).lines.length>0;
+  const lyrics = J.parseLyrics(S.project.lyrics).lines.length>0;if($('previewHint'))$('previewHint').hidden=image||lyrics;
   const generated = !!(S.project.autoDirection && S.audio && S.plan?.lines?.length && image && lyrics);
   $('studioStep').textContent = !J.isUpstream(S.project)?'保存したMV · 編集・書き出し可能':directionBusy?'処理中 · キャンセルできます':({INPUT_READY:'01 / 03　素材を準備',RANDOM_DRAFT_READY:'02 / 03　ランダム案を選択',FINISHED:J.isUpstream?.(S.project)?'03 / 03　生成済み':'03 / 03　最適化済み'})[workflowStateV16()];
   const workflow=workflowStateV16(),draftBlocked=false;
@@ -1260,16 +1269,16 @@ function mountStudio() {
   const overlay=document.createElement('div');overlay.className='social-safe-overlay';overlay.setAttribute('aria-hidden','true');
   overlay.innerHTML='<span class="safe-top"></span><span class="safe-right"></span><span class="safe-bottom"></span>';
   frame.querySelector('.social-video').appendChild(overlay);
-  $('btnAutoDirection').textContent='ランダム生成';
+  $('btnAutoDirection').textContent='本家JIZURAで生成';
 
 
   $('studioAdvanced').addEventListener('click',()=>{
     const expanded=!$('app').classList.contains('studio-advanced');
     setMode(expanded?'pro':'easy');
-    sizeViewport();drawTimeline();
+    sizeViewport();drawTimeline();if(expanded&&innerWidth<1100)$('editorDetails')?.scrollIntoView({block:'start'});
   });
   $('studioAspect').addEventListener('change',e=>{
-    S.project.aspect=e.target.value;S.project.res=1080;S.project.fps=30;S.project.exportSettings.preset='custom';
+    S.project.aspect=e.target.value;S.project.exportSettings.preset='custom';
     refreshLocalPaletteMap();syncOut();syncStudioExportControls();replan();codecNote();flushSave();updateStudioQuality();
   });
   $('studioPreset').addEventListener('change',e=>{
@@ -1557,6 +1566,7 @@ async function exportLRC() {
 function syncUI() {
   if($('upstreamTheme'))$('upstreamTheme').value=S.project.themeId||'';
   document.querySelectorAll('[data-upstream-key]').forEach(el=>{el.checked=!!(el.dataset.upstreamFx?S.project.fx[el.dataset.upstreamKey]:S.project[el.dataset.upstreamKey]);});
+  syncCreditControls();
   $('songTitle').value = S.project.title || ''; $('songArtist').value = S.project.artist || '';
 
   $('lyrics').value = S.project.lyrics;
@@ -1602,8 +1612,8 @@ function bind() {
     }
     e.target.value = '';
   });
-  $('songTitle').addEventListener('input', e => { S.project.title = e.target.value; syncSocialCopy(); replanSoon(300); });
-  $('songArtist').addEventListener('input', e => { S.project.artist = e.target.value; replanSoon(300); });
+  $('songTitle').addEventListener('input', e => { S.project.title = e.target.value; syncSocialCopy();syncCreditControls();if(S.t<.25)S.t=Math.min(.5,S.plan?.duration||.5);replanSoon(150); });
+  $('songArtist').addEventListener('input', e => { S.project.artist = e.target.value;syncCreditControls();if(S.t<.25)S.t=Math.min(.5,S.plan?.duration||.5);replanSoon(150); });
 
   $('btnSyntax').addEventListener('click', e => { const s = $('syntax'); s.hidden = !s.hidden; e.target.setAttribute('aria-expanded', String(!s.hidden)); });
   $('bpm').addEventListener('change', e => { const value=parseFloat(e.target.value)||0;S.project.timing.bpm=value>0?J.clamp(value,45,240):0;e.target.value=S.project.timing.bpm?String(S.project.timing.bpm):'';replan(); });
@@ -1927,7 +1937,7 @@ async function boot() {
     try { const image = await S.renderer.loadCustomBackground(S.project.customBg.dataUrl); validatePaletteSource(S.project, image); }
     catch(e){localRecoveryBlocked=true;console.error('JIZURA background decode failed',e);}
   } else if (S.project.autoPalette.analyzed) J.invalidateAutoPalette(S.project);
-  bind(); syncUI(); replan();mountStudio();mountUpstreamControls();mountVisualAssets();await S.renderer.loadAssetDeck?.(S.plan);
+  bind(); syncUI(); replan();mountStudio();mountUpstreamControls();mountCreditWorkbench();mountVisualAssets();await S.renderer.loadAssetDeck?.(S.plan);
   task.enter('preview');await J.processingYield();
   let savedMode='easy';try{const value=localStorage.getItem('jizura.mode');if(value==='easy'||value==='pro')savedMode=value;}catch(e){}
   setMode(savedMode); resetHistory();clearTimeout(saveTimer);observedProject=projectFingerprint();S.unsaved=!!S.persistenceError;
@@ -1945,6 +1955,28 @@ window.addEventListener('storage',e=>{if(e.key==='jizura.workspace.changed.v3')v
 const start=()=>boot().then(refreshWorkspaces).catch(error=>{S.bootTask?.fail(error);console.error('JIZURA startup failed',error);localRecoveryBlocked=true;showMsg('起動できませんでした。データを削除せずページを再読み込みしてください。解消しない場合はバックアップを保管してお問い合わせください。');saveStatus('起動に失敗しました。保存データは上書きしていません。',true);});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 J.ui = S;
+function syncCreditControls(){
+ if(!$('creditMode')||!S.project)return;
+ const c=S.project.credits?J.normalizeCredits(S.project.credits):{...J.creditDefaults(),mode:'legacy'};
+ const legacy=$('creditMode').querySelector('[value=legacy]');legacy.hidden=c.mode!=='legacy';legacy.disabled=c.mode!=='legacy';
+ $('creditMode').value=c.mode;$('creditPosition').value=c.position;$('creditSize').value=c.size;
+ const empty=!(S.project.title||'').trim()&&!(S.project.artist||'').trim();
+ for(const id of ['creditPosition','creditSize'])$(id).disabled=empty||['none','legacy'].includes(c.mode);
+ $('creditHelp').textContent=c.mode==='legacy'?'保存時の表示を維持しています。表示方式を選ぶと、新しいクレジット表示を適用します。':empty?'曲名かアーティスト名を入力してください。':c.mode==='none'?'曲名とアーティスト名は映像に表示しません。':'再生成せず、プレビューと書き出しに反映します。自動配置でも全画面の歌詞とは重なる場合があります。';
+}
+function mountCreditWorkbench(){
+ const setup=$('studioSetup'),work=document.querySelector('main.work'),bench=document.createElement('div');bench.id='studioWorkbench';setup.before(bench);bench.append(setup,work);
+ setup.querySelector('h1').textContent='歌詞を、映像に。';setup.querySelector('.studio-intro p').textContent='画像・音源・歌詞を読み込み、プレビューを見ながらMVを作成。';
+ setup.querySelector('.studio-status').after(setup.querySelector('.credit-controls'));
+ const options=document.createElement('details');options.className='generation-options';const summary=document.createElement('summary');summary.textContent='テーマと演出セット';options.append(summary,setup.querySelector('.upstream-controls'));setup.querySelector('.credit-controls').after(options);
+ const details=document.createElement('div');details.id='editorDetails';details.hidden=S.mode!=='pro';const back=document.createElement('button');back.type='button';back.textContent='プレビューへ';back.className='ghost small';back.onclick=()=>{$('viewport').scrollIntoView({block:'start',behavior:'smooth'});$('btnPlay').focus({preventScroll:true});};details.append(back,document.querySelector('.col-left'),document.querySelector('.col-right'));setup.append(details);
+ const narrow=matchMedia('(max-width:1099px)'),placeDetails=()=>{if(narrow.matches)bench.append(details);else setup.append(details);};narrow.addEventListener('change',placeDetails);placeDetails();
+ const hint=document.createElement('p');hint.id='previewHint';hint.className='preview-hint';hint.textContent='素材を読み込むと、ここにMVを表示します';$('viewport').append(hint);hint.hidden=!!S.plan.lines.length||!!S.renderer.customBgBitmap;
+ const dock=document.createElement('section');dock.id='exportStatusDock';dock.setAttribute('aria-label','処理状況と保存ファイル');document.querySelector('.col-stage').append(dock);dock.append($('processingPanel'));if($('kamenDownloads'))dock.append($('kamenDownloads'));
+ const context=document.createElement('div');context.className='workspace-strip';$('localSaveStatus').before(context);context.append($('localSaveStatus'),document.querySelector('.workspace-picker'));
+ for(const [id,key]of [['creditMode','mode'],['creditPosition','position'],['creditSize','size']])$(id).addEventListener('change',e=>{remember();S.project.credits={...J.normalizeCredits(S.project.credits),[key]:e.target.value};replan();syncCreditControls();commit();});
+ syncCreditControls();
+}
 function mountUpstreamControls(){
 const upstreamControls=document.createElement('div');upstreamControls.className='upstream-controls';
 upstreamControls.innerHTML='<label>おまかせのテーマ <select id="upstreamTheme"><option value="">テーマなし</option></select></label>';

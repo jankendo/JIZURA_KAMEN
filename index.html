@@ -553,6 +553,38 @@ body:has(.processing-panel:not([hidden])) .kamen-downloads{left:16px;right:auto;
 
 .workspace-picker{display:flex;align-items:center;gap:.65rem;max-width:760px;padding:.4rem 1rem;font-size:.85rem}.workspace-picker select{flex:1;min-width:0;max-width:100%}
 
+/* 2.3 workbench: one editing column, one preview/output column. */
+.workspace-strip{display:flex;align-items:center;gap:16px;flex-wrap:wrap;max-width:1460px;margin:auto;padding:10px 24px}
+.workspace-strip .local-save-status{margin:0;padding:0;flex:1;min-width:180px}.workspace-strip .workspace-picker{padding:0;flex:1;max-width:620px;min-width:220px}
+#studioWorkbench{display:grid;grid-template-columns:340px minmax(0,1fr);gap:24px;max-width:1460px;margin:auto;padding:16px 24px 40px;align-items:start}
+#studioWorkbench #studioSetup{padding:20px;margin:0;min-width:0;border:1px solid #34373e;border-radius:14px;background:#16181d}
+#studioWorkbench .studio-intro{display:block}.studio-intro h1{font-size:clamp(22px,2vw,28px);line-height:1.35}.studio-step{display:block;margin-top:12px}
+#studioWorkbench .studio-fields{grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}#studioWorkbench .studio-file{grid-column:1/-1;min-height:72px}#studioWorkbench .studio-text{grid-column:1/-1;min-height:64px}
+#studioWorkbench .studio-actions{flex-wrap:wrap}#studioGenerateSlot{width:100%}#studioWorkbench #btnAutoDirection{width:100%;min-width:0}#studioWorkbench #studioAdvanced{margin-left:0}
+#studioWorkbench .upstream-controls{width:100%;display:flex;flex-wrap:wrap;gap:10px;font-size:13px}#studioWorkbench .upstream-controls>label:first-child{width:100%}#studioWorkbench .upstream-controls select{max-width:100%}
+#studioWorkbench .work,#app:not(.studio-advanced) #studioWorkbench .work{display:block;width:100%;min-width:0;margin:0;min-height:0}
+#studioWorkbench .col-stage,#app:not(.studio-advanced) #studioWorkbench .col-stage{display:block;width:100%;min-width:0;padding:0;border:0;background:none}
+#editorDetails{border-top:1px solid #34373e;margin-top:20px;padding-top:12px}#editorDetails .col-left,#editorDetails .col-right{width:100%;min-width:0;border:0;padding:0;background:none}
+#editorDetails .sec{padding:12px 0;min-width:0}#editorDetails input,#editorDetails select,#editorDetails textarea{max-width:100%}#editorDetails .tabs{flex-wrap:wrap}#editorDetails .ln{min-width:0}
+#studioWorkbench .viewport{display:flex;justify-content:center;align-items:center;width:100%;max-height:65vh;min-height:0;overflow:hidden;border-radius:12px;background:#090b0e}#studioWorkbench canvas#view{display:block;max-width:100%;max-height:65vh;object-fit:contain}
+#studioWorkbench .transport{margin:12px 0;min-width:0}#studioWorkbench #scrub{min-width:60px}#app:not(.studio-advanced) .timeline-toolbar{display:none}
+#studioWorkbench .studio-result{margin-top:16px;padding:20px;border:1px solid #34373e;border-radius:12px;background:#191c22}#studioWorkbench .studio-result-heading h2{font-size:19px;margin:5px 0 10px}
+#studioWorkbench .studio-result-main{align-items:end}#studioWorkbench .studio-result-main #studioExport{flex:1}#studioWorkbench .studio-export-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}#studioWorkbench .studio-export-grid label{min-width:0}#studioWorkbench .studio-export-grid select,#studioWorkbench .studio-export-grid input{width:100%;min-width:0}
+.credit-controls{margin-top:18px;padding:16px 0;border-block:1px solid #34373e}.credit-controls h2{font-size:15px;margin:0 0 12px}.credit-controls label{display:grid;gap:7px;font-size:13px}.credit-controls select{width:100%;min-width:0;min-height:42px}.credit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.credit-controls .note{margin:10px 0 0;line-height:1.65}
+#exportStatusDock{margin-top:16px;display:grid;gap:12px;min-width:0}#exportStatusDock:not(:has(#kamenDownloads)):has(#processingPanel[hidden]){display:none}
+#exportStatusDock #processingPanel,#exportStatusDock #kamenDownloads{position:static;inset:auto;width:100%;max-height:none;z-index:auto;box-shadow:none;min-width:0;margin:0;background:#161a21;border-color:#343d4b}
+#exportStatusDock .kamen-download-row{min-width:0;flex-wrap:wrap}#exportStatusDock a{overflow-wrap:anywhere}#exportStatusDock .processing-card{width:100%;min-width:0}
+.bar .acts{display:flex;flex-wrap:wrap;gap:8px}.bar .modes{display:none!important}.bar .proj{display:none!important}
+button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid #e9c78c;outline-offset:3px}
+@media(min-width:1100px){#studioWorkbench #studioSetup{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain}}
+@media(max-width:1099px){#studioWorkbench{grid-template-columns:minmax(0,1fr);max-width:900px;gap:20px}#studioWorkbench .studio-fields{grid-template-columns:repeat(3,minmax(0,1fr))}#studioWorkbench .studio-file{grid-column:auto}#studioWorkbench .studio-text{grid-column:auto}.bar{flex-wrap:wrap}.workspace-strip{padding-inline:16px}}
+@media(max-width:600px){#studioWorkbench{padding:12px 12px 28px}#studioWorkbench #studioSetup{padding:16px}#studioWorkbench .studio-fields{grid-template-columns:1fr 1fr}#studioWorkbench .studio-file{grid-column:1/-1}#studioWorkbench .studio-text{grid-column:1/-1}#studioWorkbench .studio-result{padding:16px}#studioWorkbench .studio-export-grid{grid-template-columns:1fr}.workspace-strip{gap:8px}.workspace-strip .workspace-picker{min-width:0;width:100%;flex-basis:100%}.bar .acts{gap:6px}.bar .acts button,.bar .acts label{font-size:12px;padding:8px}}
+.workspace-strip{width:100%;box-sizing:border-box}#studioWorkbench .studio-intro h1{font-size:26px}#studioWorkbench .studio-actions #workflowChanges{display:none}.generation-options{margin-top:16px;border-block:1px solid #34373e;padding:12px 0}.generation-options summary{cursor:pointer;min-height:28px;font-size:14px;color:#e4e1da}.generation-options .upstream-controls{padding-top:12px}.studio-text:focus-within input:focus-visible{outline:none}
+@media(min-width:1100px){#studioWorkbench #studioSetup{max-height:calc(100vh - 150px)}}
+.preview-hint{position:absolute;inset:45% 24px auto;margin:0;text-align:center;color:#a1a7b0;font-size:14px;pointer-events:none}
+#studioWorkbench{width:100%;box-sizing:border-box}#editorDetails>button{margin-bottom:12px}
+@media(max-width:1099px){#studioWorkbench>#editorDetails{margin-top:0;padding:20px;border:1px solid #34373e;border-radius:12px;background:#16181d}}
+
 </style>
 </head>
 <body>
@@ -584,9 +616,15 @@ body:has(.processing-panel:not([hidden])) .kamen-downloads{left:16px;right:auto;
       <label class="studio-file"><span class="studio-field-label">01　背景画像</span><span id="studioImageName">画像を選択</span><span id="studioImageSlot"></span></label>
       <label class="studio-file"><span class="studio-field-label">02　音源</span><span id="studioAudioName">曲を選択</span><span id="studioAudioSlot"></span></label>
       <label class="studio-file"><span class="studio-field-label" title="[00:12.30]のように表示時刻を付けた歌詞。時刻なしTXTはタップ同期で調整できます。音源と同じ曲のファイルを選んでください">03　歌詞（LRC / TXT）</span><span id="studioLrcName">LRC / TXTを選択</span><span id="studioLrcSlot"></span></label>
-      <label class="studio-text">タイトル<span id="studioTitleSlot"></span></label>
+      <label class="studio-text">曲名<span id="studioTitleSlot"></span></label>
       <label class="studio-text">アーティスト<span id="studioArtistSlot"></span></label>
     </div>
+    <section class="credit-controls" aria-labelledby="creditHeading">
+      <h2 id="creditHeading">MVの曲名表示</h2>
+      <label>表示方式<select id="creditMode"><option value="legacy">保存時の表示を維持</option><option value="hybrid">冒頭・末尾＋小さく常時</option><option value="ends">冒頭・末尾のみ</option><option value="always">常時小さく表示</option><option value="none">表示しない</option></select></label>
+      <div class="credit-grid"><label>位置<select id="creditPosition"><option value="auto">自動</option><option value="br">右下</option><option value="bl">左下</option><option value="tr">右上</option><option value="tl">左上</option></select></label><label>サイズ<select id="creditSize"><option value="small">小</option><option value="standard">標準</option><option value="large">大</option></select></label></div>
+      <p id="creditHelp" class="note" role="status" aria-live="polite"></p>
+    </section>
     <div class="studio-actions"><span id="studioGenerateSlot"></span><span id="workflowChanges" role="status" aria-live="polite"></span><button id="studioAdvanced" type="button" aria-expanded="false">詳細設定</button></div>
     <div id="studioStatusSlot" class="studio-status" role="status" aria-live="polite"></div>
   </section>
@@ -665,7 +703,7 @@ body:has(.processing-panel:not([hidden])) .kamen-downloads{left:16px;right:auto;
       </div>
       <canvas id="timeline" aria-label="タイムライン。クリックで移動、上部の歌詞マーカーをドラッグして開始時刻を変更"></canvas>
       <div class="cutinfo" id="cutInfo"></div>
-      <div class="studio-result" id="studioResult" hidden><div class="studio-result-heading"><span class="studio-kicker">PREVIEW & EXPORT</span><h2>仕上がりを確認して書き出す</h2></div><div class="studio-result-main"><button id="studioExport" class="primary" type="button">X用MP4を書き出す</button><button id="studioShare" type="button" hidden>動画を共有・保存</button><label class="studio-select-label">画面比<select id="studioAspect" aria-label="書き出しの画面比"><option value="16:9">X・横長</option><option value="9:16">縦動画</option><option value="1:1">正方形</option></select></label></div><div id="studioQuality" class="studio-quality" role="status" aria-live="polite"></div><details class="studio-export-details" id="studioExportDetails"><summary>書き出し詳細設定</summary><div class="studio-export-grid"><label>書き出し preset<select id="studioPreset"><option value="auto">自動おすすめ</option><option value="xStandard">X 標準</option><option value="xHigh">X 高画質</option><option value="youtube1080">YouTube 1080p</option><option value="vertical">9:16 SNS</option><option value="master">高品質マスター</option><option value="custom">カスタム</option></select></label><label>コンテナ<select disabled aria-label="コンテナ"><option>MP4</option></select></label><label>映像コーデック<select disabled aria-label="映像コーデック"><option>H.264 / AVC（自動互換）</option></select></label><label>サンプルレート<select id="studioSampleRate"><option value="48000">48 kHz</option><option value="44100">44.1 kHz</option></select></label><label>解像度<select id="studioRes"><option value="720">720p</option><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">2160p</option></select></label><label>フレームレート<select id="studioFPS"><option value="auto">自動（動きに合わせる）</option><option value="24">24 fps</option><option value="30">30 fps</option><option value="60">60 fps</option></select></label><label>画質<select id="studioQualityLevel"><option value="standard">標準</option><option value="high">高画質</option><option value="max">最高</option></select></label><label>映像 bitrate（自動は空欄）<span class="studio-number-unit"><input id="studioVideoBitrate" type="number" min="1" max="60" step="0.5" inputmode="decimal" placeholder="自動"><span>Mbps</span></span></label><label>音声<select id="studioAudio"><option value="on">AAC を含める</option><option value="off">音声なし</option></select></label><label>音声 bitrate<select id="studioAudioBitrate"><option value="128000">128 kbps</option><option value="192000">192 kbps</option><option value="256000">256 kbps</option><option value="320000">320 kbps</option></select></label><label>書き出す範囲<select id="studioExportRange"><option value="full">曲全体</option><option value="socialHook">縦型ショート 12〜15秒</option><option value="highlight">SNS 60秒版</option></select></label><label class="studio-export-name">ファイル名<input id="studioFileName" type="text" maxlength="80" autocomplete="off" placeholder="タイトルから自動設定"></label></div><p id="studioExportSummary" class="studio-export-summary" role="status" aria-live="polite"></p><p id="studioExportCapability" class="studio-export-capability"></p></details><div class="studio-result-sub"><button id="studioTiming" type="button">歌詞タイミングを調整</button><details class="studio-more"><summary>その他</summary><button id="studioPNG" type="button">現在フレームを画像保存</button></details></div></div>
+      <div class="studio-result" id="studioResult" hidden><div class="studio-result-heading"><span class="studio-kicker">PREVIEW & EXPORT</span><h2>仕上がりを確認して書き出す</h2></div><div class="studio-result-main"><button id="studioExport" class="primary" type="button">MP4を書き出す</button><button id="studioShare" type="button" hidden>動画を共有・保存</button><label class="studio-select-label">画面比<select id="studioAspect" aria-label="書き出しの画面比"><option value="16:9">X・横長</option><option value="9:16">縦動画</option><option value="1:1">正方形</option></select></label></div><div id="studioQuality" class="studio-quality" role="status" aria-live="polite"></div><details class="studio-export-details" id="studioExportDetails"><summary>書き出し詳細設定</summary><div class="studio-export-grid"><label>書き出し preset<select id="studioPreset"><option value="auto">自動おすすめ</option><option value="xStandard">X 標準</option><option value="xHigh">X 高画質</option><option value="youtube1080">YouTube 1080p</option><option value="vertical">9:16 SNS</option><option value="master">高品質マスター</option><option value="custom">カスタム</option></select></label><label>コンテナ<select disabled aria-label="コンテナ"><option>MP4</option></select></label><label>映像コーデック<select disabled aria-label="映像コーデック"><option>H.264 / AVC（自動互換）</option></select></label><label>サンプルレート<select id="studioSampleRate"><option value="48000">48 kHz</option><option value="44100">44.1 kHz</option></select></label><label>解像度<select id="studioRes"><option value="720">720p</option><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">2160p</option></select></label><label>フレームレート<select id="studioFPS"><option value="auto">自動（動きに合わせる）</option><option value="24">24 fps</option><option value="30">30 fps</option><option value="60">60 fps</option></select></label><label>画質<select id="studioQualityLevel"><option value="standard">標準</option><option value="high">高画質</option><option value="max">最高</option></select></label><label>映像 bitrate（自動は空欄）<span class="studio-number-unit"><input id="studioVideoBitrate" type="number" min="1" max="60" step="0.5" inputmode="decimal" placeholder="自動"><span>Mbps</span></span></label><label>音声<select id="studioAudio"><option value="on">AAC を含める</option><option value="off">音声なし</option></select></label><label>音声 bitrate<select id="studioAudioBitrate"><option value="128000">128 kbps</option><option value="192000">192 kbps</option><option value="256000">256 kbps</option><option value="320000">320 kbps</option></select></label><label>書き出す範囲<select id="studioExportRange"><option value="full">曲全体</option><option value="socialHook">縦型ショート 12〜15秒</option><option value="highlight">SNS 60秒版</option></select></label><label class="studio-export-name">ファイル名<input id="studioFileName" type="text" maxlength="80" autocomplete="off" placeholder="タイトルから自動設定"></label></div><p id="studioExportSummary" class="studio-export-summary" role="status" aria-live="polite"></p><p id="studioExportCapability" class="studio-export-capability"></p></details><div class="studio-result-sub"><button id="studioTiming" type="button">歌詞タイミングを調整</button><details class="studio-more"><summary>その他</summary><button id="studioPNG" type="button">現在フレームを画像保存</button></details></div></div>
       <div id="studioTools" class="studio-tools" hidden>
         <div class="studio-tool-row"><button id="studioSocialHook" type="button" aria-pressed="false">縦型ショートを作る（12〜15秒）</button><button id="studioHighlight" type="button" aria-pressed="false">SNS 60秒版</button><span id="highlightChoice" class="muted"></span><button id="highlightNext" type="button" hidden>別候補</button></div>
         <div class="studio-tool-row"><select id="studioPreviewMode" aria-label="プレビューの表示"><option value="editor">編集プレビュー</option><option value="x">Xでの表示</option><option value="vertical">縦動画での表示</option></select></div>
@@ -833,14 +871,14 @@ body:has(.processing-panel:not([hidden])) .kamen-downloads{left:16px;right:auto;
 <dialog id="helpDlg" class="terms help" aria-labelledby="helpTitle">
   <form method="dialog">
     <h2 id="helpTitle">KAMEN（仮面） <span class="edition-badge">Custom Edition</span></h2>
-    <p class="muted mono">Version 2.2.0</p>
+    <p class="muted mono">Version 2.3.0</p>
     <p>日本語の歌詞に動きを付け、曲に合わせたMVをブラウザで作るツールです。オリジナルのJIZURAをベースに、背景画像と自動演出などを独自改修したカスタム版です。</p>
     <ol class="help-steps"><li>画像・音源・LRCを選ぶ。</li><li>自動生成し、プレビューで歌詞と演出を確認する。</li><li>画面比率・範囲・品質を確認してMP4を書き出す。</li></ol>
     <details open><summary>かんたん / 詳細（Easy / Pro）</summary><p>かんたんは素材と自動生成が中心。詳細では全設定を表示します。モードを切り替えても同じ作品を編集します。Undo / Redoは編集設定の履歴です。音源の差し替えは履歴の対象外です。</p></details>
     <details><summary>素材・LRC・フォント</summary><p>音源は拍・音量・周波数・曲の展開を解析します。LRCは歌詞の表示時刻を持つテキストです。時刻が合わない場合はタイムラインで調整できます。時刻なしの歌詞は「タップで同期」で、音楽に合わせて各行の頭をSpaceまたはボタンで記録し、「LRCを書き出す」で保存します。「1行戻す」で直前のタップをやり直せます。全行を同期してから書き出してください。背景画像は1枚です。画像を選び直すと背景を置き換えます。以前の複数画像プロジェクトも読み込めますが、保存された追加素材は保全し、背景1枚で演出します。手持ちのフォントも読み込めます。</p></details>
-    <details><summary>本家JIZURAの生成と手動調整</summary><p>テーマと文字PV・キネティック・ホラーの演出セットを選んで生成します。詳細画面で配色・フォント・動き、行やカットの演出と時刻を調整できます。ロックした項目は再生成時にも保持します。曲名・アーティストは本家のタイトル演出に使われます。</p></details>
+    <details><summary>本家JIZURAの生成と手動調整</summary><p>テーマと文字PV・キネティック・ホラーの演出セットを選んで生成します。詳細画面で配色・フォント・動き、行やカットの演出と時刻を調整できます。ロックした項目は再生成時にも保持します。曲名・アーティストは「MVの曲名表示」で表示方式・位置・サイズを選べます。新規作品は冒頭・末尾3秒を大きく、中間を小さく表示します。MP4・PNGでも同じ表示です。既存作品は保存時の表示を維持し、明示的に変更できます。自動配置でも画面全体に広がる歌詞とは重なる場合があります。</p></details>
     <details><summary>プレビュー・MP4・SNS出力</summary><p>プレビューは編集確認用です。書き出しは指定した解像度・FPS・映像と音声のビットレートで生成し、MP4を検査します。処理が止まった場合は中止して再試行できます。端末の対応状況で失敗した場合も品質設定は自動で下げません。SNS向けには縦画面と曲の切り出し範囲を確認してください。X向けの設定は推定サイズも確認します。</p></details>
-    <details><summary>自動保存・プロジェクト保存・バックアップ</summary><p>v2.2.0の自動保存はこのブラウザ内だけです。起動や表示変更だけでは保存しません。別タブで同じMVが編集された場合は、生成結果と素材を別の作業に保存します。「保存した作業」で切り替えられます。容量不足で保存できなくても生成結果は残ります。端末やブラウザを変えると引き継がれません。「プロジェクト保存」は画像・LRC・設定・読み込んだフォントをJSONにまとめます。音源は含まれないので元ファイルを一緒に保管してください。大切な作品は定期的にバックアップし、保存完了を確認してからページを閉じてください。</p><p>復元できない素材がある場合は、元データ保全のため自動保存を止めます。ブラウザデータを削除せず、保管したプロジェクトを「開く」で読み直してください。</p></details>
+    <details><summary>自動保存・プロジェクト保存・バックアップ</summary><p>v2.3.0の自動保存はこのブラウザ内だけです。起動や表示変更だけでは保存しません。別タブで同じMVが編集された場合は、生成結果と素材を別の作業に保存します。「保存した作業」で切り替えられます。容量不足で保存できなくても生成結果は残ります。端末やブラウザを変えると引き継がれません。「プロジェクト保存」は画像・LRC・設定・読み込んだフォントをJSONにまとめます。音源は含まれないので元ファイルを一緒に保管してください。大切な作品は定期的にバックアップし、保存完了を確認してからページを閉じてください。</p><p>復元できない素材がある場合は、元データ保全のため自動保存を止めます。ブラウザデータを削除せず、保管したプロジェクトを「開く」で読み直してください。</p></details>
     <div class="terms-foot"><span class="muted">素材の権利は「利用について」を確認</span><button value="close" class="primary" autofocus>閉じる</button></div>
   </form>
 </dialog>
@@ -848,8 +886,8 @@ body:has(.processing-panel:not([hidden])) .kamen-downloads{left:16px;right:auto;
 <aside id="processingPanel" class="processing-panel" aria-label="処理状況" hidden></aside>
 
 <script>
-window.KAMEN_APP_INFO=window.JIZURA_APP_INFO=Object.freeze({"name":"KAMEN","edition":"Custom Edition","version":"2.2.0"});
-window.KAMEN_BUILD_INFO=Object.freeze({"sourceCommit":"ffff291ece0c098d2e9f6b856c606b4565a62dbe","sourceDirty":true,"sourceTreeSHA256":"6ff891771d48351db60faf6159b6b1a3513d56b96d590c418153514faccd1e76","upstreamCommit":"fc16bfe43ea4a6c25a21f1caf04d17326de14f00","upstreamSHA256":"5c364cf33e4cd5b5b7ce8ebeec252f2340ae2c45bcc55542968e3fc2fa1c9922","mediaSHA256":"512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"});
+window.KAMEN_APP_INFO=window.JIZURA_APP_INFO=Object.freeze({"name":"KAMEN","edition":"Custom Edition","version":"2.3.0"});
+window.KAMEN_BUILD_INFO=Object.freeze({"sourceCommit":"e031d525701c5506d5e4a0dbbc8655b560e369d9","sourceDirty":true,"sourceTreeSHA256":"91f7e0d896e395f4a23a25a1a8a7c37617c49882fe813c6ecaa993d0c50af270","upstreamCommit":"fc16bfe43ea4a6c25a21f1caf04d17326de14f00","upstreamSHA256":"5c364cf33e4cd5b5b7ce8ebeec252f2340ae2c45bcc55542968e3fc2fa1c9922","mediaSHA256":"512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"});
 (()=>{
 /* ============================================================
    JIZURA — util: math, easing, deterministic randomness, colour
@@ -44828,7 +44866,7 @@ J.saveFile = async (filename, data, options={}) => {
   let panel=document.getElementById('kamenDownloads');
   if(!panel){panel=document.createElement('section');panel.id='kamenDownloads';panel.className='kamen-downloads';panel.setAttribute('aria-label','生成ファイルの保存');
     const title=document.createElement('strong');title.textContent='生成ファイルを保存';panel.appendChild(title);
-    const hint=document.createElement('p');hint.textContent='保存されない場合は、下のファイル名を押してください。この画面を閉じる前に保存してください。';panel.appendChild(hint);document.body.appendChild(panel);}
+    const hint=document.createElement('p');hint.textContent='保存されない場合は、下のファイル名を押してください。この画面を閉じる前に保存してください。';panel.appendChild(hint);(document.getElementById('exportStatusDock')||document.body).appendChild(panel);}
   const url=URL.createObjectURL(blob),row=document.createElement('div'),a=document.createElement('a'),dismiss=document.createElement('button');
   row.className='kamen-download-row';a.href=url;a.download=filename;a.textContent=filename+' を保存';
   const open=document.createElement('a');open.href=url;open.target='_blank';open.rel='noopener';open.textContent='別タブで開く';
@@ -45259,7 +45297,7 @@ J.exportPNGZip = async ({ plan, project, transparent, onProgress, signal, every 
   for (let i = 0; i < total; i += every) {
     if (signal && signal.aborted) throw new Error('キャンセルしました');
     await R.prepareAssetFrame?.(plan,start+i/fps);
-    R.frame(ctx, plan, start+i / fps, { scale, transparent, production:true });
+    R.frame(ctx, plan, start+i / fps, { scale, transparent, production:true, range });
     const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
     zip.add(`jizura_${String(i).padStart(5, '0')}.png`, new Uint8Array(await blob.arrayBuffer()));
     onProgress && onProgress((i+1) / total, `PNG ${i + 1}/${total}`,{stage:'frames',current:i+1,total});
@@ -79113,6 +79151,115 @@ const lrc=J.exportLRC;J.exportLRC=(p,audio,range)=>J.isUpstream(p)?U.lrcText(J.u
 
 window.KAMEN_MODULE_AUDIT.observe("11zzzzzzzzzv_upstream.js");
 
+/* Shared metadata compositor. Generator decisions and source plans remain immutable. */
+(()=>{'use strict';
+const U=window.JIZURAUpstream;
+const own=(o,k)=>Object.prototype.hasOwnProperty.call(o||{},k);
+const modes=['legacy','hybrid','ends','always','none'],positions=['auto','br','bl','tr','tl'];
+J.normalizeCredits=value=>({version:1,mode:modes.includes(value?.mode)?value.mode:'hybrid',position:positions.includes(value?.position)?value.position:'auto',size:['small','standard','large'].includes(value?.size)?value.size:'standard'});
+J.creditDefaults=()=>J.normalizeCredits({});
+J.creditFontCSS=(role,size)=>(role==='title'?700:400)+' '+size+'px "JIZURA Noto CJK JP",sans-serif';
+const ensureFonts=J.ensureFonts;
+J.ensureFonts=async(text,keys,...rest)=>{await ensureFonts(text,keys,...rest);if(keys?.includes('embedded_bold')&&document.fonts?.load)await Promise.all(['title','artist'].map(role=>document.fonts.load(J.creditFontCSS(role,20),text||'曲名')));};
+const defaults=J.defaultProject,migrate=J.migrateProject,plan=J.plan,fonts=J.fontsOfPlan;
+J.defaultProject=()=>{const p=defaults();if(J.upstreamDefaultEnabled)p.credits=J.creditDefaults();return p;};
+J.migrateProject=input=>{const p=migrate(input);if(own(input,'credits')&&input.credits)p.credits=J.normalizeCredits(input.credits);else delete p.credits;return p;};
+J.plan=(p,a)=>{const result=plan(p,a);if(own(p,'credits')&&p.credits)result.credits={...J.normalizeCredits(p.credits),title:String(p.title||'').trim(),artist:String(p.artist||'').trim()};return result;};
+J.fontsOfPlan=p=>[...new Set([...fonts(p),...(p.credits&&p.credits.mode!=='legacy'&&p.credits.mode!=='none'?['embedded_bold']:[])])];
+J.historyFields.push('credits');
+const facades=new WeakMap(),models=new WeakMap(),textBoxes=new WeakMap();
+J.creditStats={measurements:0,textLayouts:0,draws:0};
+J.creditRenderPlan=p=>{
+ if(!p.credits||p.credits.mode==='legacy'||p.creditMetadataSuppressed)return p;
+ let copy=facades.get(p);if(copy)return copy;
+ copy={...p,title:' ',artist:'',titleDisplay:null,creditMetadataSuppressed:true,cuts:p.cuts.map(c=>{
+  if(c.layout==='title'&&c.line<0)return {...c,creditSuppressed:true};
+  if(c.layout==='interlude')return {...c,text:'',note:'',params:{...c.params,showTitle:false,titleText:''}};
+  return c;
+ })};facades.set(p,copy);return copy;
+};
+// Keep array indices and native transition/morph relationships intact.
+for(const proto of [J.Renderer.prototype,U?.Renderer.prototype].filter(Boolean)){
+ const draw=proto.drawCut;proto.drawCut=function(env,...rest){if(env.cut?.creditSuppressed)return;return draw.call(this,env,...rest);};
+}
+const graphemes=s=>typeof Intl.Segmenter==='function'?[...new Intl.Segmenter('ja',{granularity:'grapheme'}).segment(s)].map(x=>x.segment):Array.from(s);
+function lines(ctx,text,width,maxLines){
+ if(!text)return [];const units=graphemes(text.replace(/\s+/gu,' ')),out=[];let line='';
+ while(units.length){const next=units.shift();if(line&&ctx.measureText(line+next).width>width){out.push(line);line='';if(out.length===maxLines){let last=out.pop();while(last&&ctx.measureText(last+'…').width>width)last=graphemes(last).slice(0,-1).join('');out.push(last+'…');return out;}}line+=next;}
+ if(line)out.push(line);return out;
+}
+function textBox(ctx,p,large){
+ const c=p.credits,fontReady=['title','artist'].map(role=>document.fonts?.check?document.fonts.check(J.creditFontCSS(role,20)):true).join(',');
+ let cache=textBoxes.get(p);if(!cache){cache=new Map();textBoxes.set(p,cache);}const old=cache.get(large);
+ if(old&&old.title===c.title&&old.artist===c.artist&&old.size===c.size&&old.fontReady===fontReady)return old.box;
+ J.creditStats.textLayouts++;ctx.save();try{
+ const unit=Math.min(p.W,p.H)/1080*(p.H>p.W?1.25:1),factor={small:.8,standard:1,large:1.25}[c.size],titleSize=(large?48:28)*unit*factor,artistSize=(large?28:20)*unit*factor;
+ const pad=12*unit,gap=8*unit,maxWidth=p.W*(p.H>p.W?.76:large?.58:.38);
+ ctx.font=J.creditFontCSS('title',titleSize);const title=lines(ctx,c.title,maxWidth-pad*2,2),titleWidth=Math.max(0,...title.map(s=>ctx.measureText(s).width));
+ ctx.font=J.creditFontCSS('artist',artistSize);const artist=lines(ctx,c.artist,maxWidth-pad*2,1),artistWidth=Math.max(0,...artist.map(s=>ctx.measureText(s).width));
+ const box={title,artist,titleSize,artistSize,pad,gap,width:Math.min(maxWidth,Math.max(titleWidth,artistWidth)+pad*2),height:title.length*titleSize*1.25+artist.length*artistSize*1.3+(title.length&&artist.length?gap:0)+pad*2};cache.set(large,{title:c.title,artist:c.artist,size:c.size,fontReady,box});return box;}finally{ctx.restore();}
+}
+function sites(p,box){const mx=p.W*.05,my=p.H*.05;return ['br','bl','tr','tl'].map(position=>({position,x:position[1]==='r'?p.W-mx-box.width:mx,y:position[0]==='b'?p.H-my-box.height:my,width:box.width,height:box.height}));}
+const area=(a,b)=>Math.max(0,Math.min(a.x+a.width,b.x+b.width)-Math.max(a.x,b.x))*Math.max(0,Math.min(a.y+a.height,b.y+b.height)-Math.max(a.y,b.y));
+function glyphBounds(ctx,g,ratio){
+ ctx.font=g.font;const m=ctx.measureText(g.ch),x=-(m.actualBoundingBoxLeft||0),y=-(m.actualBoundingBoxAscent||g.px),w=(m.actualBoundingBoxLeft||0)+(m.actualBoundingBoxRight||m.width),h=(m.actualBoundingBoxAscent||g.px)+(m.actualBoundingBoxDescent||0),t=g.m;
+ const corners=[[x,y],[x+w,y],[x,y+h],[x+w,y+h]].map(([a,b])=>[(t[0]*a+t[2]*b+t[4])/ratio,(t[1]*a+t[3]*b+t[5])/ratio]);
+ const xs=corners.map(a=>a[0]),ys=corners.map(a=>a[1]);return {x:Math.min(...xs),y:Math.min(...ys),width:Math.max(...xs)-Math.min(...xs),height:Math.max(...ys)-Math.min(...ys)};
+}
+function placement(owner,ctx,p,cut,range){
+ let cache=models.get(p);if(!cache){cache=new Map();models.set(p,cache);}
+ const fontState=[...J.fontsOfPlan(p).map(k=>J.fontCSS(k,20)),J.creditFontCSS('artist',20)].map(f=>document.fonts?.check?document.fonts.check(f):true).join(',');
+ const key=[cut?.index??'empty',range.start,range.end,p.credits.position,p.credits.size,fontState].join('|');if(cache.has(key))return cache.get(key);
+ // Select against the largest state used in this cut, keeping its corner stable.
+ const big=p.credits.mode!=='always'&&(!cut||cut.start<range.start+3||cut.end>range.end-3),box=textBox(ctx,p,big),candidates=sites(p,box);
+ let bounds=[],measured=true;
+ if(p.credits.position==='auto'&&cut?.line>=0){
+  const cv=owner.creditMeasureCanvas??=document.createElement('canvas');cv.width=320;cv.height=Math.max(1,Math.round(320*p.H/p.W));const mx=cv.getContext('2d'),ratio=320/p.W,copy=J.creditRenderPlan(p);
+  const sample=owner.creditMeasureRenderer??=(J.isUpstream?.(p)&&U?new U.Renderer():new J.Renderer());
+  for(const part of [.2,.5,.8]){const at=cut.start+(cut.end-cut.start)*part;J.creditStats.measurements++;
+   try{
+    if(J.isUpstream?.(p)&&U){const log=[];sample.frame(mx,copy,at,{scale:ratio,transparent:true,noPost:true,noHud:true,noGhost:true,noTrans:true,glyphLog:log,noCredits:true});bounds.push(...log.filter(g=>g.a>.1).map(g=>glyphBounds(mx,g,ratio)));}
+    else{const draw=J.drawItem;try{J.drawItem=(env,item)=>{if(env.pass==='main'&&env.cut?.line>=0){const b=J.measureLyricItemBounds?.(env,item);if(b)bounds.push({x:b.x0,y:b.y0,width:b.x1-b.x0,height:b.y1-b.y0});}return draw(env,item);};sample.frame(mx,copy,at,{scale:ratio,transparent:true,noPost:true,noHud:true,noCredits:true});}finally{J.drawItem=draw;}}
+   }catch{measured=false;}
+  }
+ }
+ const picked=p.credits.position==='auto'?candidates.map((s,index)=>({...s,index,overlap:bounds.reduce((n,b)=>n+area(s,b),0)})).sort((a,b)=>a.overlap-b.overlap||a.index-b.index)[0]:candidates.find(s=>s.position===p.credits.position);
+ const result={position:picked.position,measured:measured&&(cut?.line<0||bounds.length>0||p.credits.position!=='auto'),measuredBounds:bounds.length,overlap:picked.overlap??null};cache.set(key,result);return result;
+}
+J.creditFrameModel=(owner,ctx,p,t,range=null)=>{
+ const c=p.credits;if(!c||['legacy','none'].includes(c.mode)||(!c.title&&!c.artist))return null;
+ const start=range?.start??0,end=range?.end??p.duration,duration=end-start;if(duration<=0||t<start||t>end)return null;
+ const edge=Math.min(3,duration/2),local=t-start;
+ let weight=c.mode==='always'?0:duration<=6?1:Math.max(Math.min(1,Math.max(0,(edge-local)/.25)),Math.min(1,Math.max(0,(local-(duration-edge))/.25)));
+ if(c.mode==='ends'&&!weight)return null;
+ const cut=J.cutAt(p,t),where=placement(owner,ctx,p,cut,{start,end}),baseAlpha=Math.max(0,Math.min(1,local/.25,(end-t)/.25));
+ const model=(large,alpha)=>{const box=textBox(ctx,p,large),site=sites(p,box).find(s=>s.position===where.position);return {...box,...site,alpha:alpha*baseAlpha,large,measured:where.measured,measuredBounds:where.measuredBounds,overlap:where.overlap};};
+ if(c.mode==='ends')return model(true,weight);
+ const large=weight>=.5,result=model(large,large?weight:1-weight);
+ if(weight>0&&weight<1)result.secondary=model(!large,large?1-weight:weight);
+ return result;
+};
+J.drawCredits=(owner,ctx,p,t,opt={})=>{
+ const m=J.creditFrameModel(owner,ctx,p,t,opt.range);owner.lastCreditModel=m;if(!m||!m.alpha)return;
+ const scale=opt.scale||ctx.canvas.width/p.W;
+ for(const layer of [m,m.secondary].filter(Boolean)){
+  ctx.save();ctx.setTransform(scale,0,0,scale,0,0);ctx.globalCompositeOperation='source-over';ctx.filter='none';ctx.shadowBlur=0;ctx.globalAlpha=layer.alpha;
+  ctx.fillStyle='rgba(6,8,12,.72)';const radius=Math.min(layer.pad,layer.height/4);ctx.beginPath();if(ctx.roundRect)ctx.roundRect(layer.x,layer.y,layer.width,layer.height,radius);else ctx.rect(layer.x,layer.y,layer.width,layer.height);ctx.fill();
+  ctx.fillStyle='#FFFFFF';ctx.textAlign='left';ctx.textBaseline='top';let y=layer.y+layer.pad;
+  ctx.font=J.creditFontCSS('title',layer.titleSize);for(const line of layer.title){ctx.fillText(line,layer.x+layer.pad,y);y+=layer.titleSize*1.25;}
+  if(layer.title.length&&layer.artist.length)y+=layer.gap;ctx.font=J.creditFontCSS('artist',layer.artistSize);for(const line of layer.artist){ctx.fillText(line,layer.x+layer.pad,y);y+=layer.artistSize*1.3;}
+  ctx.restore();
+ }
+ J.creditStats.draws++;owner.lastCreditModel=m;
+};
+const frame=J.Renderer.prototype.frame,dispose=J.Renderer.prototype.disposeAssets;
+J.Renderer.prototype.frame=function(ctx,p,t,opt={}){const rendered=frame.call(this,ctx,J.creditRenderPlan(p),t,opt);if(!opt.noCredits&&!opt.noHud&&!opt.backgroundOnly&&!opt.glyphLog)J.drawCredits(this,ctx,p,t,opt);return rendered;};
+J.Renderer.prototype.disposeAssets=function(...args){this.creditMeasureRenderer?.disposeAssets?.();this.creditMeasureRenderer=null;if(this.creditMeasureCanvas)this.creditMeasureCanvas.width=this.creditMeasureCanvas.height=1;this.creditMeasureCanvas=null;return dispose?.apply(this,args);};
+const verify=J.verifyTechnicalExport;J.verifyTechnicalExport=async(r,args)=>{const result=await verify(r,args);if(args.project.credits){result.provenance.credits=J.normalizeCredits(args.project.credits);result.sidecar=new Blob([JSON.stringify(result.provenance,null,2)],{type:'application/json'});}return result;};
+})();
+
+window.KAMEN_MODULE_AUDIT.observe("11zzzzzzzzzw_credits.js");
+
 /* ============================================================
    JIZURA — editor UI
    ============================================================ */
@@ -79153,6 +79300,7 @@ function mergeProject(p) {
   p = J.migrateProject(p || J.defaultProject());
   const d = J.defaultProject();
   const o = Object.assign(d, p || {});
+  if(!p.credits)delete o.credits;
   if (!J.isValidProjectStyle(o.style)) o.style = 'noir';
   o.lang = 'ja';
   o.fx = Object.assign(J.defaultProject().fx, (p && p.fx) || {});
@@ -79264,7 +79412,7 @@ async function loadLocal() {
     try{if(!await flushSaveImpl())S.unsaved=true;else S.recoveredLocal=true;}finally{S.project=previous;}
   }
   if(S.workspaceId)rememberWorkspace(S.workspaceId);
-  observedProject=J.canonicalJSON(J.compactPersistentProjectV111(project));
+  observedProject=projectFingerprint(project);
   return project;
 }
 async function restoreProjectFonts(project) {
@@ -79310,7 +79458,15 @@ async function restorePortableFonts(project) {
 }
 let saveTimer = 0;
 let observedProject='';
-function projectFingerprint(){return J.canonicalJSON(J.compactPersistentProjectV111(S.project));}
+const mediaFingerprintIds=new Map();let nextMediaFingerprint=1;
+function projectFingerprint(project=S.project){
+  const seen=new Set(),ref=value=>{if(typeof value!=='string'||!value.startsWith('data:'))return value;seen.add(value);if(!mediaFingerprintIds.has(value))mediaFingerprintIds.set(value,nextMediaFingerprint++);return 'media:'+mediaFingerprintIds.get(value);};
+  const copy={...project,customBg:{...project.customBg,dataUrl:ref(project.customBg?.dataUrl)}};
+  for(const key of ['visualAssets','proAssets','userFonts'])copy[key]=(project[key]||[]).map(a=>({...a,dataUrl:ref(a.dataUrl)}));
+  const fingerprint=J.canonicalJSON(J.compactPersistentProjectV111(copy));
+  for(const key of mediaFingerprintIds.keys())if(!seen.has(key))mediaFingerprintIds.delete(key);
+  return fingerprint;
+}
 function autosave() { if(!S.project)return;const next=projectFingerprint();if(next===observedProject)return;observedProject=next;S.unsaved=true;++saveRevision;clearTimeout(saveTimer); saveTimer = setTimeout(flushSave, 700); scheduleHistoryObserve(); }
 async function bgDbSetMany(entries, expectedRevision, id=S.workspaceId) {
   const db=await openBgDb();
@@ -79495,7 +79651,7 @@ function sizeViewport() {
   const vp = $('viewport'), c = $('view');
   const plan=viewPlan(), ar = plan.W / plan.H;
   let cssW = vp.clientWidth || 800, cssH = cssW / ar;
-  const maxH = Math.max(220, window.innerHeight * 0.68);
+  const maxH = Math.max(220, Math.min(720,window.innerHeight * 0.65));
   if (cssH > maxH) { cssH = maxH; cssW = cssH * ar; }
   const dpr = Math.min(2, window.devicePixelRatio || 1);
   const pw = Math.round(Math.min(plan.W, cssW * dpr)), ph = Math.round(pw / ar);
@@ -79788,7 +79944,7 @@ function drawStyleGrid() {
   });
 }
 function fontSelectOptions(sel) {
-  return '<option value="">スタイルの既定</option>' + Object.entries(J.FONTS).map(([k, f]) => {
+  return '<option value="">スタイルの既定</option>' + Object.entries(J.FONTS).filter(([,f])=>!f.internal).map(([k, f]) => {
     const g = J.faceOf ? J.faceOf(k) : f, alt = g.label && g.label !== f.label ? ' → ' + g.label : '';   // the face actually used for the lyric language
     return `<option value="${k}" ${sel === k ? 'selected' : ''}>${escapeHtml(f.label + alt)}</option>`;
   }).join('');
@@ -79885,7 +80041,7 @@ async function histGo(d) {
   const currentMap=S.project.autoPalette&&S.project.autoPalette.localMap;
   const currentHash=S.project.autoPalette&&S.project.autoPalette.sourceHash;
   const state=J.restoreHistory(H.list[j],ref=>H.assets.get(ref)||'');
-  Object.assign(S.project,state);
+  Object.assign(S.project,state);if(state.credits===null)delete S.project.credits;
   S.project.autoPalette=J.normalizeAutoPalette(S.project.autoPalette);
   if(!S.project.autoPalette.localMap&&currentMap&&S.project.autoPalette.sourceHash&&S.project.autoPalette.sourceHash===currentHash)S.project.autoPalette.localMap=currentMap;
   await S.renderer.loadAssetDeck?.(S.plan).catch(()=>{});if(S.project.customBg?.dataUrl)await S.renderer.loadCustomBackground(S.project.customBg.dataUrl).catch(()=>{});
@@ -79962,7 +80118,7 @@ function toast(m, cols) {
 function setMode(m) {
   S.mode = m === 'pro' ? 'pro' : 'easy';
   const easy = S.mode === 'easy';
-  $('app').classList.toggle('is-easy', easy);
+  $('app').classList.toggle('is-easy', easy);if($('editorDetails'))$('editorDetails').hidden=easy;
   $('app').classList.toggle('studio-advanced', !easy);
   $('easyPanel').hidden = !easy;
   $('studioAdvanced').setAttribute('aria-expanded', String(!easy));
@@ -80185,7 +80341,7 @@ function syncDirectionUI() {
   if(!locked){processingLocks(false);if($('localWorkspace'))$('localWorkspace').disabled=!!(S.audioLoading||S.tap||S.workspaceStorageUnavailable);}
   const image = !!(S.project.customBg.enabled && S.project.customBg.dataUrl && S.renderer.customBgBitmap);
   const music = !!S.audio;
-  const lyrics = J.parseLyrics(S.project.lyrics).lines.length>0;
+  const lyrics = J.parseLyrics(S.project.lyrics).lines.length>0;if($('previewHint'))$('previewHint').hidden=image||lyrics;
   const generated = !!(S.project.autoDirection && S.audio && S.plan?.lines?.length && image && lyrics);
   $('studioStep').textContent = !J.isUpstream(S.project)?'保存したMV · 編集・書き出し可能':directionBusy?'処理中 · キャンセルできます':({INPUT_READY:'01 / 03　素材を準備',RANDOM_DRAFT_READY:'02 / 03　ランダム案を選択',FINISHED:J.isUpstream?.(S.project)?'03 / 03　生成済み':'03 / 03　最適化済み'})[workflowStateV16()];
   const workflow=workflowStateV16(),draftBlocked=false;
@@ -80375,16 +80531,16 @@ function mountStudio() {
   const overlay=document.createElement('div');overlay.className='social-safe-overlay';overlay.setAttribute('aria-hidden','true');
   overlay.innerHTML='<span class="safe-top"></span><span class="safe-right"></span><span class="safe-bottom"></span>';
   frame.querySelector('.social-video').appendChild(overlay);
-  $('btnAutoDirection').textContent='ランダム生成';
+  $('btnAutoDirection').textContent='本家JIZURAで生成';
 
 
   $('studioAdvanced').addEventListener('click',()=>{
     const expanded=!$('app').classList.contains('studio-advanced');
     setMode(expanded?'pro':'easy');
-    sizeViewport();drawTimeline();
+    sizeViewport();drawTimeline();if(expanded&&innerWidth<1100)$('editorDetails')?.scrollIntoView({block:'start'});
   });
   $('studioAspect').addEventListener('change',e=>{
-    S.project.aspect=e.target.value;S.project.res=1080;S.project.fps=30;S.project.exportSettings.preset='custom';
+    S.project.aspect=e.target.value;S.project.exportSettings.preset='custom';
     refreshLocalPaletteMap();syncOut();syncStudioExportControls();replan();codecNote();flushSave();updateStudioQuality();
   });
   $('studioPreset').addEventListener('change',e=>{
@@ -80672,6 +80828,7 @@ async function exportLRC() {
 function syncUI() {
   if($('upstreamTheme'))$('upstreamTheme').value=S.project.themeId||'';
   document.querySelectorAll('[data-upstream-key]').forEach(el=>{el.checked=!!(el.dataset.upstreamFx?S.project.fx[el.dataset.upstreamKey]:S.project[el.dataset.upstreamKey]);});
+  syncCreditControls();
   $('songTitle').value = S.project.title || ''; $('songArtist').value = S.project.artist || '';
 
   $('lyrics').value = S.project.lyrics;
@@ -80717,8 +80874,8 @@ function bind() {
     }
     e.target.value = '';
   });
-  $('songTitle').addEventListener('input', e => { S.project.title = e.target.value; syncSocialCopy(); replanSoon(300); });
-  $('songArtist').addEventListener('input', e => { S.project.artist = e.target.value; replanSoon(300); });
+  $('songTitle').addEventListener('input', e => { S.project.title = e.target.value; syncSocialCopy();syncCreditControls();if(S.t<.25)S.t=Math.min(.5,S.plan?.duration||.5);replanSoon(150); });
+  $('songArtist').addEventListener('input', e => { S.project.artist = e.target.value;syncCreditControls();if(S.t<.25)S.t=Math.min(.5,S.plan?.duration||.5);replanSoon(150); });
 
   $('btnSyntax').addEventListener('click', e => { const s = $('syntax'); s.hidden = !s.hidden; e.target.setAttribute('aria-expanded', String(!s.hidden)); });
   $('bpm').addEventListener('change', e => { const value=parseFloat(e.target.value)||0;S.project.timing.bpm=value>0?J.clamp(value,45,240):0;e.target.value=S.project.timing.bpm?String(S.project.timing.bpm):'';replan(); });
@@ -81042,7 +81199,7 @@ async function boot() {
     try { const image = await S.renderer.loadCustomBackground(S.project.customBg.dataUrl); validatePaletteSource(S.project, image); }
     catch(e){localRecoveryBlocked=true;console.error('JIZURA background decode failed',e);}
   } else if (S.project.autoPalette.analyzed) J.invalidateAutoPalette(S.project);
-  bind(); syncUI(); replan();mountStudio();mountUpstreamControls();mountVisualAssets();await S.renderer.loadAssetDeck?.(S.plan);
+  bind(); syncUI(); replan();mountStudio();mountUpstreamControls();mountCreditWorkbench();mountVisualAssets();await S.renderer.loadAssetDeck?.(S.plan);
   task.enter('preview');await J.processingYield();
   let savedMode='easy';try{const value=localStorage.getItem('jizura.mode');if(value==='easy'||value==='pro')savedMode=value;}catch(e){}
   setMode(savedMode); resetHistory();clearTimeout(saveTimer);observedProject=projectFingerprint();S.unsaved=!!S.persistenceError;
@@ -81060,6 +81217,28 @@ window.addEventListener('storage',e=>{if(e.key==='jizura.workspace.changed.v3')v
 const start=()=>boot().then(refreshWorkspaces).catch(error=>{S.bootTask?.fail(error);console.error('JIZURA startup failed',error);localRecoveryBlocked=true;showMsg('起動できませんでした。データを削除せずページを再読み込みしてください。解消しない場合はバックアップを保管してお問い合わせください。');saveStatus('起動に失敗しました。保存データは上書きしていません。',true);});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 J.ui = S;
+function syncCreditControls(){
+ if(!$('creditMode')||!S.project)return;
+ const c=S.project.credits?J.normalizeCredits(S.project.credits):{...J.creditDefaults(),mode:'legacy'};
+ const legacy=$('creditMode').querySelector('[value=legacy]');legacy.hidden=c.mode!=='legacy';legacy.disabled=c.mode!=='legacy';
+ $('creditMode').value=c.mode;$('creditPosition').value=c.position;$('creditSize').value=c.size;
+ const empty=!(S.project.title||'').trim()&&!(S.project.artist||'').trim();
+ for(const id of ['creditPosition','creditSize'])$(id).disabled=empty||['none','legacy'].includes(c.mode);
+ $('creditHelp').textContent=c.mode==='legacy'?'保存時の表示を維持しています。表示方式を選ぶと、新しいクレジット表示を適用します。':empty?'曲名かアーティスト名を入力してください。':c.mode==='none'?'曲名とアーティスト名は映像に表示しません。':'再生成せず、プレビューと書き出しに反映します。自動配置でも全画面の歌詞とは重なる場合があります。';
+}
+function mountCreditWorkbench(){
+ const setup=$('studioSetup'),work=document.querySelector('main.work'),bench=document.createElement('div');bench.id='studioWorkbench';setup.before(bench);bench.append(setup,work);
+ setup.querySelector('h1').textContent='歌詞を、映像に。';setup.querySelector('.studio-intro p').textContent='画像・音源・歌詞を読み込み、プレビューを見ながらMVを作成。';
+ setup.querySelector('.studio-status').after(setup.querySelector('.credit-controls'));
+ const options=document.createElement('details');options.className='generation-options';const summary=document.createElement('summary');summary.textContent='テーマと演出セット';options.append(summary,setup.querySelector('.upstream-controls'));setup.querySelector('.credit-controls').after(options);
+ const details=document.createElement('div');details.id='editorDetails';details.hidden=S.mode!=='pro';const back=document.createElement('button');back.type='button';back.textContent='プレビューへ';back.className='ghost small';back.onclick=()=>{$('viewport').scrollIntoView({block:'start',behavior:'smooth'});$('btnPlay').focus({preventScroll:true});};details.append(back,document.querySelector('.col-left'),document.querySelector('.col-right'));setup.append(details);
+ const narrow=matchMedia('(max-width:1099px)'),placeDetails=()=>{if(narrow.matches)bench.append(details);else setup.append(details);};narrow.addEventListener('change',placeDetails);placeDetails();
+ const hint=document.createElement('p');hint.id='previewHint';hint.className='preview-hint';hint.textContent='素材を読み込むと、ここにMVを表示します';$('viewport').append(hint);hint.hidden=!!S.plan.lines.length||!!S.renderer.customBgBitmap;
+ const dock=document.createElement('section');dock.id='exportStatusDock';dock.setAttribute('aria-label','処理状況と保存ファイル');document.querySelector('.col-stage').append(dock);dock.append($('processingPanel'));if($('kamenDownloads'))dock.append($('kamenDownloads'));
+ const context=document.createElement('div');context.className='workspace-strip';$('localSaveStatus').before(context);context.append($('localSaveStatus'),document.querySelector('.workspace-picker'));
+ for(const [id,key]of [['creditMode','mode'],['creditPosition','position'],['creditSize','size']])$(id).addEventListener('change',e=>{remember();S.project.credits={...J.normalizeCredits(S.project.credits),[key]:e.target.value};replan();syncCreditControls();commit();});
+ syncCreditControls();
+}
 function mountUpstreamControls(){
 const upstreamControls=document.createElement('div');upstreamControls.className='upstream-controls';
 upstreamControls.innerHTML='<label>おまかせのテーマ <select id="upstreamTheme"><option value="">テーマなし</option></select></label>';
