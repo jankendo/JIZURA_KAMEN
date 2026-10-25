@@ -1,5 +1,7 @@
 # KAMEN 2.1.0 — original JIZURA generation and MP4 modernization
 
+> Historical 2.1.0 integration record. Current persistence/UI behavior is described in [2.2.0 release notes](WORKSPACES_2_2_0.md).
+
 ## Implementation
 
 The reference is JIZURA 0.10.1 at `fc16bfe43ea4a6c25a21f1caf04d17326de14f00`. `vendor/jizura/upstream.json` lists SHA-256 checksums of all copied sources. Build fails on source drift. Upstream code runs in its own lexical namespace. The build changes only namespace initialization and adds one background-image drawing hook; the original files remain byte-identical. KAMEN's final adapter owns engine selection, legacy compatibility and shared technical export verification.

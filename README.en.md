@@ -1,8 +1,12 @@
-# KAMEN 2.1.0
+# KAMEN 2.2.0
 
 KAMEN makes lyric videos from a background image, audio and LRC/TXT lyrics in the browser. New videos use the original [JIZURA 0.10.1](https://github.com/852wa/JIZURA/tree/fc16bfe43ea4a6c25a21f1caf04d17326de14f00) generator and renderer, with typographic, kinetic and horror expression sets and themes. KAMEN's Japanese input workflow is retained.
 
 Existing project files retain the legacy KAMEN engine. Only an explicit regeneration switches their generator. MP4 export uses Mediabunny, positioned writes in memory blocks, H.264/AAC, software retries and cancellation. Standard exports retain the selected cuts; creative scores do not block saving. Completed video/audio tracks, output settings and decoded samples are checked before offering a download.
+
+## 2.2 changes
+
+Opening another tab no longer creates an autosave conflict. Genuine concurrent edits fork into separate browser-local works with independent media; the saved-work selector restores either copy. Generation survives quota failures, allowing backup/export and save retry. Legacy-only optimization, alternate/score/image-analysis/chant/director/AE/credit/auxiliary-video controls are removed globally. Existing projects still restore and export with their original renderer. See [release notes](docs/WORKSPACES_2_2_0.md) and [storage details](docs/STORAGE.md).
 
 ## Development
 

@@ -126,8 +126,10 @@ jobs:
             if curl -fsS -o /dev/null http://127.0.0.1:4173/; then break; fi
             sleep 1
           done
+          mkdir -p "$RUNNER_TEMP/upstream-qa"
           node dev/kamen_persistence_v111_fast_test.cjs http://127.0.0.1:4173/
           node dev/browser_startup_smoke.cjs http://127.0.0.1:4173/
+          node dev/workspace_conflicts_e2e.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/upstream-qa/workspaces.json"
           KAMEN_LONG_EXPORT=1 node dev/upstream_modernization_e2e.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/upstream-qa"
       - name: Upload MP4 verification evidence
         if: always()

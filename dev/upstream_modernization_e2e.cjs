@@ -37,7 +37,7 @@ const check=(name,data={})=>{report.checks.push({name,status:'PASS',...data});co
  await page.locator('[data-bg-file]').first().setInputFiles({name:'background.png',mimeType:'image/png',buffer:canvas.toBuffer('image/png')});await page.waitForFunction(()=>J.ui.renderer.customBgBitmap);
  await page.locator('#lrcFile').setInputFiles({name:'test.lrc',mimeType:'text/plain',buffer:Buffer.from('[00:00.10]朝の光\n[00:01.50]ここから歩こう')});await page.waitForFunction(()=>J.ui.plan.lines.length===2);
  await page.locator('#btnAutoDirection').click();await page.waitForFunction(()=>J.ui.project.generation?.generated&&!document.querySelector('#btnAutoDirection').disabled,{timeout:60000});
- assert.equal(await page.evaluate(()=>J.ui.project.generation.engine),'jizura');assert(await page.locator('#studioAdaptCurrent').isHidden());check('real image/audio/LRC import and generation button');
+ assert.equal(await page.evaluate(()=>J.ui.project.generation.engine),'jizura');assert.equal(await page.locator('#studioAdaptCurrent').count(),0);check('real image/audio/LRC import and generation button');
  await page.evaluate(()=>{J.ui.project.res=720;J.ui.project.fps=24;J.uiApi.syncUI();J.uiApi.replan();});
  // OS picker cancellation must not start an encode or lose the selected plan.
  const before=await page.evaluate(()=>JSON.stringify(J.ui.plan.cuts));

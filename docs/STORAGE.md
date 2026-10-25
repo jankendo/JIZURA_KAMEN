@@ -1,41 +1,37 @@
-# JIZURA browser storage
+# KAMEN 2.2 browser storage
 
-## Scope
+KAMEN processes projects and media in the browser. Storage belongs to the browser profile and origin: localhost and GitHub Pages do not share it. No application server receives project/media content.
 
-JIZURA is a client-side app. It does not send projects or media to an application server. The saved data below belongs to the browser profile and origin where the app was opened. A local copy at `localhost` has a different storage origin from the hosted Site, so browser storage is not transferred automatically.
+## Current storage contract
 
-## Current stores
+The IndexedDB database remains `jizura-assets-v1`, version 1, object store `assets`. No destructive database upgrade is required.
 
-| Store | Version | Keys | Contents | Purpose |
-|---|---:|---|---|---|
-| `localStorage` | key suffix `v1` | `jizura.project.v1` | One JSON project snapshot: lyrics, timings, style/direction settings, title/artist, background metadata, user-font metadata, audio-file identity, and other project options. Normally the background data URL is stored in IndexedDB and this record has `customBg.storedInIndexedDB: true` with an empty `customBg.dataUrl`; when IndexedDB is unavailable, a small background may be kept directly in the record. | Automatic restore of the current project. Writes are debounced by 700 ms and flushed on `pagehide`. |
-| `localStorage` | no version | `jizura.mode` | The last UI mode (`easy` or `pro`). | Written when the mode changes and restored on startup when the value is valid. |
-| IndexedDB | database `jizura-assets-v1`, version `1` | object store `assets`, key `background` | Background image as a data URL string. | Keeps large background data outside localStorage. |
-| IndexedDB | database `jizura-assets-v1`, version `1` | object store `assets`, key `audio` | The selected audio `File`/`Blob`. | Attempts to restore the selected audio in the same browser origin. Audio is saved only up to 120 MiB. |
-| IndexedDB | database `jizura-assets-v1`, version `1` | object store `assets`, key `font:<content-hash>` | Uploaded font binary as a `Blob`. The key is content-derived so identical files reuse one stored asset. | Restores uploaded fonts after reload without putting binary data in localStorage. |
+| Key | Contents |
+|---|---|
+| `workspace:<id>` | Format 3 record: `id`, independent `revision`, `project`, `savedAt`, optional `forkedFrom`. Project media contain local reference flags instead of large data URLs. |
+| `workspace-media:<id>:background` | This work's background data URL. |
+| `workspace-media:<id>:audio` | This work's audio File/Blob, when at most 120 MiB. |
+| `workspace-media:<id>:font:<assetKey>` | Uploaded font bytes. |
+| `workspace-media:<id>:visualAsset:<id>` / `proAsset:<id>` | Retained legacy assets needed for existing projects. |
 
-There is no Service Worker, Cache Storage, Web Worker, or server-side project database in the checked source. Exported video object URLs are temporary download/share URLs and are revoked after use; they are not persistent backups.
+A single readwrite transaction commits a project's metadata and media. It compares the saved revision before writing. In-memory edit generations suppress superseded saves; they are separate from persisted revisions. Opening an editor, restoring, replanning a preview or switching display mode does not schedule a save. Actual edits are debounced for 700 ms; explicit save stages and pagehide with unsaved changes also flush.
 
-## Project JSON export/import
+Each tab pins its selected ID in sessionStorage `jizura.workspace.v3`. localStorage `jizura.workspace.last.v3` is only a hint for new tabs. `jizura.project.ref.v3` is a small reference, and `jizura.workspace.changed.v3` refreshes the saved-work list in other tabs. Failure to write these hints does not invalidate a committed IndexedDB record. The mode and tap preferences use `jizura.mode` and `jizura.tapOpts`.
 
-The app's **保存 / 開く** controls export/import a `.jizura.json` project. Export serializes schema version 2, the available background data URL, project settings, and uploaded font binaries as data URLs. Import migrates older files, normalizes fields against the current defaults, forces Japanese UI language, validates style/aspect and other setting ranges, restores embedded background/fonts when possible, and clears the saved audio reference.
+## Concurrent tabs and recovery
 
-The project JSON does **not** contain the audio bytes. Users should keep the original audio file and select it again after importing. A project can become large when a high-resolution background and font binaries are embedded.
+Opening another tab does not change a project's revision. If another tab actually edits the same work, the stale writer creates a new UUID and atomically saves its full project and media there. The other tab's work is untouched. Subsequent saves stay in the new work. The saved-work selector restores either copy; switching waits for unsaved edits to commit and stays on the current work if saving fails.
 
-## Migration and recovery
+A generated MV stays available in memory after quota/storage failure. The interface distinguishes completed generation from unsaved data and offers project-file backup, export and save retry. Do not close or reload an unsaved work before making a backup. Cancellation before generation commits retains the previous MV; changed inputs cancel stale results.
 
-- `jizura.project.v1` remains the localStorage key. Its payload and exported projects are normalized by `J.migrateProject`; schema version 1 inputs are migrated to schema version 2, with missing settings filled from current defaults and invalid style/aspect values reset safely.
-- IndexedDB schema version is `1`; the `assets` object store is created if missing. No separate migration history exists in source.
-- To move project settings, background, and uploaded fonts between browsers, use **保存** in the source browser and **開く** in the destination browser, then select the audio again. This exports the one current project; it is not a browser-profile-wide export.
-- To preserve the complete browser profile state, use the browser's own site-data backup/export tools. Do not assume copying the Site source or a ZIP includes a user's browser storage.
-- Clearing browser/site data removes autosaved projects and IndexedDB media, including audio and custom fonts. Keep `.jizura.json` files and original audio files separately.
+Old `project-current-v2`, shared media keys, `jizura.project.v1`, old reference keys and recovery records are migration inputs. The first successful import copies them into a new format 3 namespace; originals are not deleted or overwritten. Later startup uses the new work, avoiding repeated imports. Existing projects retain their legacy rendering engine until explicitly regenerated. A damaged or incompletely restored record blocks automatic overwrites.
 
-## Backup limitations
+## Portable project files
 
-This source backup can document storage schemas, but it cannot read or extract a user's private browser `localStorage`/IndexedDB data from a remote Sites deployment. No per-user browser database is exposed through the Site source project.
+**プロジェクト保存** downloads `.kamen.json`, including lyrics, timing, generator metadata, background, settings and available custom font bytes. Local workspace IDs are outside this document. Opening a project file creates a new local work. Audio bytes are not embedded: retain the original audio and select it again after import. Existing compatible JSON files remain supported.
 
-## v2.1.0 generation compatibility
+Browser-local work is not a durable backup. Browser cleanup, private mode, device changes or storage eviction can remove it. Keep project files and original audio externally. There is no automatic deletion of older works or migration originals in 2.2. Forking copies media and consumes additional quota. Do not clear browser storage as a conflict-resolution step.
 
-Project JSON and browser snapshots now retain `generation: {engine, version, commit, generated?}`. New projects use `engine: "jizura"`, version `0.10.1`, and the immutable upstream commit. Unmarked saved projects are interpreted as `engine: "kamen"` and retain the legacy path. Loading a project does not opt it into the new generator. Explicit regeneration converts it and remaps pre-0.10 LRC row indices, including line times, locks and exported line ranges.
+## Release verification
 
-The new MP4 path writes positioned chunks into fixed-size pages and constructs a Blob without allocating a whole-video ArrayBuffer. Container inspection reads the Blob through Mediabunny's BlobSource. Legacy certification and provenance use the same inspector and incremental SHA-256 reads of at most 1 MiB, with completed digests reused for immutable Blobs. Download links retain their Blob until dismissed; closing the page loses unsaved output. `jizura.tapOpts` stores only tap playback speed and countdown preferences. Optional diagnostic downloads contain browser, export settings, failed attempts and error messages, not source image/audio/lyrics contents.
+`dev/workspace_conflicts_e2e.cjs` covers idle startup, two tabs, genuine concurrent edits, independent media restoration, repeated generation, quota/retry, cancellation, changed inputs, overlapping save/generation, common controls, work switching, and migration from localStorage/v2 IndexedDB. The existing persistence test covers full localStorage quota, 8/50/100 lyric rows, real transaction aborts and legacy render-decision restoration. See `docs/qa/workspaces-2.2.0.json` for recorded results.
