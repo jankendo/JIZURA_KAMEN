@@ -1,4 +1,4 @@
-name: FAST CI and deploy KAMEN
+name: Validate and deploy KAMEN
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -73,8 +73,13 @@ jobs:
         run: node dev/kamen_song_native_v3_fast_test.cjs
       - name: Check export UI behavior
         run: node dev/kamen_export_ui_test.cjs
+      - name: Validate streaming writes and encoder lifecycle
+        run: |
+          node dev/mp4_block_store_test.mjs
+          node dev/upstream_export_regression_test.js
+          node dev/kamen_encoder_liveness_test.cjs
       - name: Build production files
-        run: npm run build
+        run: npm run build:media && npm run build
       - name: Verify production layout
         run: |
           cmp index.html dist/index.html
@@ -83,6 +88,33 @@ jobs:
           test -f dist/THIRD_PARTY_NOTICES.md
           test -f dist/licenses/FFmpeg-LGPL-2.1.txt
           ! grep -q 'jizura-custom-background.jankendo14.chatgpt.site' dist/index.html
+      - name: Upload Pages artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist
+
+  mp4-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Node.js 24
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Build production media and application
+        run: npm run build:media && npm run build
+      - name: Install MP4 verification tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffprobe -version
+          ffmpeg -version
       - name: Browser startup smoke test
         env:
           KAMEN_CHROME: /usr/bin/google-chrome
@@ -96,16 +128,18 @@ jobs:
           done
           node dev/kamen_persistence_v111_fast_test.cjs http://127.0.0.1:4173/
           node dev/browser_startup_smoke.cjs http://127.0.0.1:4173/
-          node dev/kamen_random_v16_test.cjs http://127.0.0.1:4173/
-      - name: Upload Pages artifact
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+          KAMEN_LONG_EXPORT=1 node dev/upstream_modernization_e2e.cjs http://127.0.0.1:4173/ "$RUNNER_TEMP/upstream-qa"
+      - name: Upload MP4 verification evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          path: dist
+          name: upstream-mp4-qa
+          path: ${{ runner.temp }}/upstream-qa
+          retention-days: 7
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: build
+    needs: [build, mp4-validation]
     runs-on: ubuntu-latest
     permissions:
       pages: write

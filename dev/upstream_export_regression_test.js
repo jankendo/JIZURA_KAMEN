@@ -7,7 +7,11 @@ vm.runInContext(fs.readFileSync(path.join(__dirname,'../src/11_export.js'),'utf8
   const candidates=await J.videoAttempts(1920,1080,30,18e6);
   assert(candidates.length>=2,'supported software H.264 retry should be offered');
   assert(candidates.every(c=>c.mux==='avc'),'SNS export must remain H.264');
-  assert(candidates.slice(1).every(c=>c.cfg.hardwareAcceleration==='prefer-software'));
+  assert(candidates.some(c=>c.cfg.hardwareAcceleration==='prefer-software'));
+  const software=candidates.findIndex(c=>c.cfg.hardwareAcceleration==='prefer-software');
+  assert(candidates.slice(0,software).every(c=>!c.cfg.hardwareAcceleration));
+  assert(candidates.slice(software).every(c=>c.cfg.hardwareAcceleration==='prefer-software'));
+  assert.equal(new Set(candidates.map(c=>c.codec+'|'+(c.cfg.hardwareAcceleration||'auto'))).size,candidates.length);
   assert.doesNotThrow(()=>J.verifyEncodedTracks({frames:179,expected:180,audioChunks:20,audioEnd:5900000,audioExpected:6}));
   assert.throws(()=>J.verifyEncodedTracks({frames:0,expected:180}),/フレームが不足/);
   assert.throws(()=>J.verifyEncodedTracks({frames:180,expected:180,audioChunks:0,audioExpected:6}),/音声のエンコード/);

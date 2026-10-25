@@ -1,32 +1,25 @@
-# JIZURA — Lyric Motion Video Maker
+# KAMEN 2.1.0
 
-Turn lyrics into animated lyric videos in your browser. JIZURA combines layouts, entrances, holds, exits, decorations, text treatments, backgrounds, camera moves, effects and transitions. Change the seed or press **Create a variation** to explore another arrangement.
+KAMEN makes lyric videos from a background image, audio and LRC/TXT lyrics in the browser. New videos use the original [JIZURA 0.10.1](https://github.com/852wa/JIZURA/tree/fc16bfe43ea4a6c25a21f1caf04d17326de14f00) generator and renderer, with typographic, kinetic and horror expression sets and themes. KAMEN's Japanese input workflow is retained.
 
-**[Open the English app](https://852wa.github.io/JIZURA/en/)** · [日本語版](https://852wa.github.io/JIZURA/) · [Japanese guide](README.md)
+Existing project files retain the legacy KAMEN engine. Only an explicit regeneration switches their generator. MP4 export uses Mediabunny, positioned writes in memory blocks, H.264/AAC, software retries and cancellation. Standard exports retain the selected cuts; creative scores do not block saving. Completed video/audio tracks, output settings and decoded samples are checked before offering a download.
 
-The English and Japanese browser editions share the same project format and saved browser data. Use the language links at the top of the editor to switch editions without changing your lyrics or settings. English After Effects panels are available as [ScriptUI](https://852wa.github.io/JIZURA/JIZURA_AE_en.jsx) and [CEP](https://852wa.github.io/JIZURA/JIZURA_CEP_en.zip) downloads. The AE JSON format is the same in both languages.
+## Development
 
-## Quick start
+Use Node.js 24, npm, FFmpeg/FFprobe and Google Chrome for browser verification.
 
-1. Paste lyrics into the left panel, one phrase per line. The built-in English sample is shown on a fresh install.
-2. Optionally import audio. JIZURA detects beats and can snap cut boundaries to them. Use **Tap to sync** to mark the start of each line by pressing Space during playback.
-3. Press **Create a variation** (or `R`) to randomize the style, mood, motion, palette and arrangement. **Previous** and **Next** navigate variations; **Change one thing** rerolls just one part.
-4. Set aspect ratio, resolution and frame rate, then export MP4. Advanced mode adds a PNG sequence, transparent PNGs, color key backgrounds and individual technique controls.
+```bash
+npm ci
+npm run build:media
+npm run build
+npm run preview
+```
 
-### Custom image backgrounds
+In another terminal:
 
-In **Export → Background**, choose **Custom image** and load a JPEG, PNG or WebP. The image stays in the browser; images with a long edge over 4096 px are reduced and converted to WebP while loading. Choose **Fill screen** or **Fit image**, then adjust horizontal/vertical position, zoom (50–300%), darkening (0–80%) and blur (0–30 px). These settings apply to the preview, MP4 and PNG sequence. Transparent PNG exports omit the custom image, and green/black key backgrounds take priority. Project JSON embeds the processed image; browser autosave keeps it in IndexedDB instead of localStorage. The AE JSON carries the settings and image, but the current After Effects panels do not place it as footage, so render custom backgrounds in the browser edition.
+```bash
+npm test
+KAMEN_CHROME=/path/to/chrome KAMEN_LONG_EXPORT=1 npm run test:upstream -- http://127.0.0.1:4173/ /tmp/kamen-upstream-qa
+```
 
-Select **Optimize from image** to analyze the visible crop and generate coordinated lyric, secondary, accent and color-offset colors, a suggested mood and background darkening. The deterministic analysis uses a small local canvas and OKLab color clustering; optional readability checks use a compact luminance/detail map to add a restrained shadow, fine stroke or soft local scrim only where needed. Choose which of color matching, readability and mood to apply. Analysis and rendering stay in your browser; the image is never sent to an external server or AI. Manual color edits and manually chosen darkening take priority. Reframing updates the local readability map; analyze again to refresh the palette for the new crop.
-
-**Lyrics language.** The styles are designed around Japanese fonts. For Chinese (Traditional / Simplified) and Korean lyrics, set **Lyrics language** below the lyrics box (Auto-detect is the default: kana → Japanese, Hangul → Korean, Chinese only → Traditional or Simplified by characters such as 們/们 and 說/说). Each font is then replaced with a face in that language with a similar feel — e.g. Noto Sans JP → Noto Sans TC / SC / KR, Noto Serif JP → Noto Serif TC / SC / KR, Dela Gothic One → WDXL Lubrifont TC / ZCOOL QingKe HuangYou / Black Han Sans — so a line never mixes fonts. The AE panels have the same setting, the AE JSON carries the language, and AE falls back to the OS fonts (PingFang, Microsoft JhengHei / YaHei, Apple SD Gothic Neo, Malgun Gothic) when those faces are not installed.
-
-Lyric syntax: `I remember/the dawn` makes a manual cut; `*word*` emphasizes a word; a final `!` adds a flash and shake; `lyric|note` adds small annotation text; `[01:23.45]lyric` imports an LRC timestamp; `# comment` is ignored.
-
-Use **Save** and **Open** for `.jizura.json` projects. **Export for AE** creates arrangement data to import into the After Effects panel. Generated videos and images belong to their creators; rights to music and lyrics remain with their respective rights holders. Project files, lyrics and audio are handled in the browser. Google Fonts are loaded as needed. The tool is MIT licensed; see [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-
-## Build and publish
-
-Run `python3 build.py` at the repository root. It creates `index.html` and `en/index.html`, both standalone pages for GitHub Pages. Run `python3 build_ae.py --lang en` to rebuild `JIZURA_AE_en.jsx`, and `python3 build_cep.py --lang en --out dist` to build `dist/JIZURA_CEP_en.zip` (copy the ZIP to the repository root for Pages downloads). Commit the built pages, panels and translation sources together. Publish from the repository root on GitHub Pages; the English edition is then served at `/JIZURA/en/`. Open either HTML file locally for offline use, with installed fonts as a fallback.
-
-Install `JIZURA_AE_en.jsx` in After Effects' `Scripts/ScriptUI Panels` folder, restart AE, then open it from the Window menu. The English CEP package has a distinct extension ID, so it can coexist with the Japanese CEP panel. Extract the ZIP and use its Windows or macOS installer. These panels require After Effects to verify motion and export behavior; automated checks use a mock AE environment.
+See the [Japanese guide](README.md), [upgrade and validation notes](docs/UPSTREAM_0_10_1.md), [storage documentation](docs/STORAGE.md), and [third-party notices](THIRD_PARTY_NOTICES.md). Browser tests run on Linux Chrome; OS-native dialogs, Windows/macOS Edge and mobile browsers require separate platform testing. Materials are processed locally; no new backend is introduced.

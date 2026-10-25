@@ -11,7 +11,7 @@ const assert=require('node:assert/strict'),{chromium}=require('playwright-core')
  let lo=0,hi=1024*1024;while(lo<hi){const mid=Math.ceil((lo+hi)/2);try{localStorage.setItem('quota-tail','q'.repeat(mid));lo=mid;}catch(e){check(e.name==='QuotaExceededError','unexpected localStorage error');hi=mid-1;}}
  let referenceQuota=false;try{localStorage.setItem('jizura.project.ref.v2',JSON.stringify({key:'project-current-v2',revision:1}));}catch(e){referenceQuota=e.name==='QuotaExceededError';}check(referenceQuota,'small project reference must also hit real quota');
  for(const count of [8,50,100]){
- S.project=J.defaultProject();S.project.lyrics=Array.from({length:count},(_,i)=>`[${String(Math.floor(i/60)).padStart(2,'0')}:${String(i%60).padStart(2,'0')}]日本語の全文 ${i}`).join('\n');
+ S.project=J.legacyDefaultProject();S.project.lyrics=Array.from({length:count},(_,i)=>`[${String(Math.floor(i/60)).padStart(2,'0')}:${String(i%60).padStart(2,'0')}]日本語の全文 ${i}`).join('\n');
  S.project.customBg={...S.project.customBg,enabled:true,dataUrl:background};S.project.overrides=Object.fromEntries(Array.from({length:count},(_,i)=>[i,{lock:true,layout:'center'}]));
  S.project=api.mergeProject(S.project);S.pendingAudioFile=new File(['audio-'+count],'capacity-'+count+'.mp3',{type:'audio/mpeg',lastModified:123});S.project.audioAsset=J.audioAssetInfo(S.pendingAudioFile);
  const audio={duration:count+1,bpm:120,energyRate:1,energy:new Float32Array(count+1).fill(.4),features:{energy:.4}};

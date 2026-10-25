@@ -72,12 +72,12 @@ J.saveFile = async (filename, data, options={}) => {
 
 /* Every asynchronous encoder boundary is cancellable and bounded. */
 J.waitExportStep = (operation,{signal,label='処理',timeout=45000,onTimeout}={}) => new Promise((resolve,reject)=>{
-  let timer,finished=false;
+  let timer,finished=false,lastTick=Date.now(),elapsed=0;
   const finish=(error,value)=>{if(finished)return;finished=true;clearTimeout(timer);signal?.removeEventListener('abort',abort);error?reject(error):resolve(value);};
   const abort=()=>finish(Object.assign(new Error('キャンセルしました'),{name:'AbortError'}));
   if(signal?.aborted){abort();return;}
   signal?.addEventListener('abort',abort,{once:true});
-  timer=setTimeout(()=>{finish(Object.assign(new Error(label+'が応答しません。別の書き出し方法で再試行します'),{code:'ENCODER_TIMEOUT'}));try{onTimeout?.();}catch{}},timeout);
+  const tick=()=>{const now=Date.now();if(!globalThis.document?.hidden)elapsed+=now-lastTick;lastTick=now;if(elapsed>=timeout){finish(Object.assign(new Error(label+'が応答しません。別の書き出し方法で再試行します'),{code:'ENCODER_TIMEOUT'}));try{onTimeout?.();}catch{}}else timer=setTimeout(tick,Math.min(250,timeout-elapsed));};timer=setTimeout(tick,Math.min(250,timeout));
   Promise.resolve().then(()=>typeof operation==='function'?operation():operation).then(v=>finish(null,v),e=>finish(e));
 });
 J.waitEncoderCapacity=async(encoder,limit,{signal,label,getError=()=>null,getProgress=()=>0,timeout=45000}={})=>{
@@ -87,6 +87,7 @@ J.waitEncoderCapacity=async(encoder,limit,{signal,label,getError=()=>null,getPro
     if(getError())throw getError();
     const queue=encoder.encodeQueueSize,n=getProgress();
     if(queue!==previous||n!==output){last=performance.now();previous=queue;output=n;}
+    if(globalThis.document?.hidden)last=performance.now();
     if(performance.now()-last>timeout)throw Object.assign(new Error(label+'が応答しません。別の書き出し方法で再試行します'),{code:'ENCODER_TIMEOUT'});
     await new Promise(r=>setTimeout(r,10));
   }
@@ -101,7 +102,7 @@ J.pickVideoCodec = async (w, h, fps, bitrate) => {
     { codec: 'avc1.4d0033', mux: 'avc', label: 'H.264 Main' },
     { codec: 'avc1.42003e', mux: 'avc', label: 'H.264 Baseline' },
   ];
-  const acceleration = ['prefer-hardware', null, 'prefer-software'];
+  const acceleration = [null, 'prefer-software'];
   for (const hardwareAcceleration of acceleration) for (const c of cands) {
     const cfg = { codec: c.codec, width: w, height: h, bitrate, framerate: fps };
     if (hardwareAcceleration) cfg.hardwareAcceleration = hardwareAcceleration;
@@ -116,7 +117,7 @@ J.pickVideoCodec = async (w, h, fps, bitrate) => {
 /* Keep SNS exports in H.264; retry automatic and software configurations if an encoder stalls. */
 J.videoAttempts = async (w,h,fps,bitrate) => {
   if(typeof VideoEncoder==='undefined')return [];
-  const attempts=[],seen=new Set(),acceleration=['prefer-hardware',null,'prefer-software'];
+  const attempts=[],seen=new Set(),acceleration=[null,'prefer-software'];
   for(const hardwareAcceleration of acceleration)for(const codec of ['avc1.640033','avc1.4d0033','avc1.42003e']){
     const cfg={codec,width:w,height:h,framerate:fps,bitrate,avc:{format:'avc'}};
     if(hardwareAcceleration)cfg.hardwareAcceleration=hardwareAcceleration;
@@ -205,6 +206,19 @@ J.inspectMP4Buffer = (buffer,{requireAudio=true}={}) => {
   return out;
 };
 
+// The fallback supports isolated archive/Node tools without the browser bundle.
+// Production always has the streaming BlobSource inspector and sliced hash bridge.
+J.inspectMP4Blob=async(blob,options={})=>window.JIZURAMedia?.inspectMP4?window.JIZURAMedia.inspectMP4(blob,options):J.inspectMP4Buffer(await blob.arrayBuffer(),options);
+const videoBlobDigests=new WeakMap();
+J.sha256Blob=async(blob,signal)=>{
+ if(signal?.aborted)throw Object.assign(Error('キャンセルしました'),{name:'AbortError'});
+ const immutable=typeof Blob!=='undefined'&&blob instanceof Blob;
+ if(immutable&&videoBlobDigests.has(blob))return videoBlobDigests.get(blob);
+ const digest=await(window.JIZURAMedia?.hashBlob&&typeof blob.slice==='function'?window.JIZURAMedia.hashBlob(blob,{signal}):J.sha256(await blob.arrayBuffer()));
+ if(signal?.aborted)throw Object.assign(Error('キャンセルしました'),{name:'AbortError'});
+ if(immutable)videoBlobDigests.set(blob,digest);return digest;
+};
+
 async function resample(buffer, sr, duration, start=0) {
   const chn = Math.min(2, buffer.numberOfChannels);
   const len = Math.ceil(duration * sr);
@@ -225,14 +239,11 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
   let ac = null;
   if (audio && audio.buffer && project.includeAudio !== false) ac = audioAttempt||await J.pickAudioCodec(exportSettings.sampleRate, Math.min(2, audio.buffer.numberOfChannels),exportSettings.audioBitrate);
   if (audio && audio.buffer && project.includeAudio !== false && !ac) throw new Error('この端末はAAC音声でのMP4書き出しに対応していません。対応ブラウザで開いてください。');
-  const target = new Mp4Muxer.ArrayBufferTarget();
-  const muxOpts = { target, video: { codec: vc.mux, width: w, height: h, frameRate: fps }, fastStart: 'in-memory', firstTimestampBehavior: 'offset' };
-  if (ac) muxOpts.audio = { codec: ac.mux, numberOfChannels: Math.min(2, audio.buffer.numberOfChannels), sampleRate: ac.sr };
-  const muxer = new Mp4Muxer.Muxer(muxOpts);
+  const muxer = await window.JIZURAMedia.createMuxer({width:w,height:h,fps,audio:!!ac});
   const performanceV16={backend:vc.label,codec:vc.cfg.codec,renderMs:0,videoFrameMs:0,encodeSubmitMs:0,queueWaitMs:0,audioResampleMs:0,audioTotalMs:0,muxMs:0,frames:0},pipelineStartedV16=performance.now();
   let err = null,videoFrames=0;
   const venc = new VideoEncoder({ output: (chunk, meta) => {try{muxer.addVideoChunk(chunk,meta);videoFrames++;}catch(e){err=e;}}, error: e => { err = e; } });
-  try{venc.configure(Object.assign({}, vc.cfg, { latencyMode: 'realtime' }));}catch(e){venc.close();throw e;}
+  try{venc.configure(Object.assign({}, vc.cfg, { latencyMode: 'realtime' }));}catch(e){venc.close();await muxer.cancel();throw e;}
   const canvas = document.createElement('canvas'); canvas.width = w; canvas.height = h;
   const ctx = canvas.getContext('2d', { alpha: false });
   const R = new J.Renderer();
@@ -255,7 +266,7 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
     if(pipeline.signal.aborted)throw new Error('キャンセルしました');
     const chn = rs.numberOfChannels;
     let audioChunks=0,audioEnd=0;
-    if(ac.wasm){audioProgress(.92,'音声をエンコードしています',{stage:'audio',indeterminate:true});await guard(()=>window.JIZURAAAC.encode(rs,ac.bitrate,(chunk,meta)=>{if(pipeline.signal.aborted)return;muxer.addAudioChunk(chunk,meta);audioChunks++;audioEnd=Math.max(audioEnd,chunk.timestamp+(chunk.duration||0));},{signal:pipeline.signal,onProgress:(current,total)=>audioProgress(.92+.06*current/total,'音声をエンコード中',{stage:'audio',current,total})}),'AAC音声エンコード',Math.max(60000,Math.min(300000,duration*2000)));}
+    if(ac.wasm){audioProgress(.92,'音声をエンコードしています',{stage:'audio',indeterminate:true});await guard(()=>window.JIZURAAAC.encode(rs,ac.bitrate,(chunk,meta)=>{if(pipeline.signal.aborted)return;muxer.addAudioChunk(chunk,meta);audioChunks++;audioEnd=Math.max(audioEnd,chunk.timestamp+(chunk.duration||0));return muxer.drain('audio');},{signal:pipeline.signal,onProgress:(current,total)=>audioProgress(.92+.06*current/total,'音声をエンコード中',{stage:'audio',current,total})}),'AAC音声エンコード',Math.max(60000,Math.min(300000,duration*2000)));}
     else {
     const aenc = new AudioEncoder({ output: (chunk, meta) => {try{muxer.addAudioChunk(chunk,meta);audioChunks++;audioEnd=Math.max(audioEnd,chunk.timestamp+(chunk.duration||0));}catch(e){err=e;}}, error: e => { err = e; } });
     activeAenc=aenc;
@@ -270,6 +281,7 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
       for (let c = 0; c < chn; c++) data.set(rs.getChannelData(c).subarray(off, off + n), c * n);
       const ad = new AudioData({ format: 'f32-planar', sampleRate: ac.sr, numberOfFrames: n, numberOfChannels: chn, timestamp: Math.round(off * 1e6 / ac.sr), data });
       try{aenc.encode(ad);}finally{ad.close();}
+      await guard(()=>muxer.drain('audio'),'音声MP4書き込み');
       await J.waitEncoderCapacity(aenc,16,{signal:pipeline.signal,label:'音声エンコーダー',getError:()=>err,getProgress:()=>audioChunks});
       if(off%24000===0)audioProgress(.92+.06*off/frames,'音声をエンコード中',{stage:'audio',current:Math.min(frames,off+n),total:frames});
     }
@@ -282,7 +294,7 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
     performanceV16.audioTotalMs=performance.now()-audioStartedV16;
     return {audioChunks,audioEnd};
   };
-  audioJob=ac?encodeAudio().catch(error=>{err=error;return null;}):null;
+  audioJob=ac?encodeAudio().catch(error=>{err=Object.assign(new Error('AAC音声のエンコードに失敗しました：'+(error.message||error)),{cause:error,code:'AUDIO_ENCODE'});return null;}):null;
   const scale = w / plan.W;
   const prevRes = J.glyphs.maxRes; J.glyphs.maxRes = h >= 1000 ? 768 : 512;
   try {
@@ -298,6 +310,7 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
     performanceV16.videoFrameMs+=performance.now()-tickV16;tickV16=performance.now();
     try{venc.encode(vf, { keyFrame: i % (fps * 2) === 0 });}finally{vf.close();}
     performanceV16.encodeSubmitMs+=performance.now()-tickV16;tickV16=performance.now();
+    await guard(()=>muxer.drain('video'),'映像MP4書き込み');
     await J.waitEncoderCapacity(venc,4,{signal:pipeline.signal,label:'映像エンコーダー',getError:()=>err,getProgress:()=>videoFrames});
     performanceV16.queueWaitMs+=performance.now()-tickV16;performanceV16.frames++;
     if(i===Math.min(total-1,fps*3)&&videoFrames===0){await guard(()=>venc.flush(),'映像エンコーダーの完了');if(!videoFrames)throw new Error('映像エンコーダーが出力を返しません');}
@@ -313,15 +326,16 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
   videoDone=true;
   if(ac){onProgress?.(.91,'並行処理した音声の完了を確認しています',{stage:'audio',indeterminate:true});const sound=await audioJob;if(err)throw err;J.verifyEncodedTracks({frames:videoFrames,expected:total,...sound,audioExpected:Math.min(duration,audio.buffer.duration-start)});}
   onProgress&&onProgress(.985,'MP4にまとめています',{stage:'mux',indeterminate:true});
-  const muxStartedV16=performance.now();muxer.finalize();performanceV16.muxMs=performance.now()-muxStartedV16;
+  const muxStartedV16=performance.now();await guard(()=>muxer.finalize(),'MP4の仕上げ');performanceV16.muxMs=performance.now()-muxStartedV16;
   performanceV16.wallMs=performance.now()-pipelineStartedV16;performanceV16.fps=total/(performanceV16.wallMs/1000);
   performanceV16.heapBytes=performance.memory?.usedJSHeapSize??null;
   onProgress&&onProgress(.995,'動画を検査しています',{stage:'verify',indeterminate:true});
-  const validation=J.inspectMP4Buffer(target.buffer,{requireAudio:!!ac});
+  const blob=muxer.blob();
+  const validation=await J.inspectMP4Blob(blob,{requireAudio:!!ac});
   onProgress && onProgress(.995, '生成済みファイルの検査を続けています',{stage:'verify',indeterminate:true});
-  return { blob: new Blob([target.buffer], { type: 'video/mp4' }), codec: vc.label, audio: ac ? ac.mux : null, width: w, height: h, validation, performanceV16 };
+  return { blob, codec: vc.label, audio: ac ? ac.mux : null, width: w, height: h, validation, performanceV16 };
   } finally {
-    pipelineStopped=true;pipeline.abort();signal?.removeEventListener('abort',cancelPipeline);
+    pipelineStopped=true;pipeline.abort();void muxer.cancel().catch(()=>{});signal?.removeEventListener('abort',cancelPipeline);
     if(activeAenc?.state!=='closed')try{activeAenc?.close();}catch{}
     // audioJob already handles rejection; cleanup must never wait for a stuck codec.
     if(venc.state!=='closed')venc.close();
@@ -329,6 +343,8 @@ J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onPro
     canvas.width=canvas.height=1;
   }
 };
+
+J.exportMP4Base = J.exportMP4;
 
 J.exportCapabilities = async (project,audio) => {
   const settings=J.resolveExportSettings(project),estimate=J.estimateExport(project,Math.max(.1,audio?.duration||1),project?.includeAudio!==false);
@@ -385,7 +401,7 @@ J.exportMP4Fallback = async ({plan,project,audio,range=null,onProgress,signal}) 
     }),{signal,label:'動画の録画',timeout:duration*1000+45000});
     recorder.stop();onProgress?.(.98,'MP4を検査しています',{stage:'verify',indeterminate:true});
     const blob=await J.waitExportStep(result,{signal,label:'録画の完了'});
-    const validation=J.inspectMP4Buffer(await blob.arrayBuffer(),{requireAudio:includeAudio});
+    const validation=await J.inspectMP4Blob(blob,{requireAudio:includeAudio});
     onProgress?.(.995,'MP4コンテナ検査完了',{stage:'verify',indeterminate:true});return {blob,codec:'H.264',audio:includeAudio?'aac':null,width:w,height:h,validation,fallback:true};
   }finally{
     cancelAnimationFrame(raf);if(recorder?.state==='recording')recorder.stop();
@@ -394,12 +410,15 @@ J.exportMP4Fallback = async ({plan,project,audio,range=null,onProgress,signal}) 
   }
 };
 
+J.exportMP4FallbackBase = J.exportMP4Fallback;
+
 /* ---------- PNG sequence as ZIP (store, no compression) ---------- */
 const CRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
 const crc32 = (u8) => { let c = 0xffffffff; for (let i = 0; i < u8.length; i++) c = CRC[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0; };
 class ZipWriter {
   constructor() { this.parts = []; this.central = []; this.offset = 0; }
   add(name, u8) {
+    if(this.central.length/2>=65535||this.offset+30+new TextEncoder().encode(name).length+u8.length>0xffffffff)throw Error('ZIPが上限（65,535ファイル・4GB）を超えます。範囲を短くしてください');
     const nb = new TextEncoder().encode(name), crc = crc32(u8);
     const lh = new DataView(new ArrayBuffer(30));
     lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true); lh.setUint16(8, 0, true);
@@ -414,6 +433,7 @@ class ZipWriter {
     this.offset += 30 + nb.length + u8.length;
   }
   finish() {
+    if(this.offset+this.central.reduce((n,p)=>n+(p.byteLength||p.length),0)>0xffffffff)throw Error('ZIPが4GBを超えます');
     const cdSize = this.central.reduce((s, p) => s + (p.byteLength ?? p.length), 0);
     const n = this.central.length / 2;
     const end = new DataView(new ArrayBuffer(22));
@@ -450,26 +470,32 @@ J.createDirectorPack=async({context,project,audioFile})=>{
   add('README.txt','DIRECTOR_CONTEXT.jsonと素材、CHATGPT_PROMPT.mdをChatGPTへ渡してください。音源が含まれない場合は元音源を別途添付してください。JIZURAは外部へ素材を送信しません。\n');
   return zip.finish();
 };
-J.exportPNGZip = async ({ plan, project, transparent, onProgress, signal, every = 1 }) => {
+J.exportPNGZip = async ({ plan, project, transparent, onProgress, signal, every = 1,range=null }) => {
+  if(!Number.isInteger(every)||every<1)throw Error('PNGのフレーム間隔を確認してください');
+  const start=range?.start??0,duration=(range?.end??plan.duration)-start;
+  if(!Number.isFinite(duration)||duration<=0||start<0)throw Error('PNGの書き出し範囲を確認してください');
   const [w, h] = J.outputSize(project);
   const canvas = document.createElement('canvas'); canvas.width = w; canvas.height = h;
   const ctx = canvas.getContext('2d');
   const R = new J.Renderer();
+  try{
   if (!transparent && !plan.keyBg && plan.customBg && plan.customBg.enabled && plan.customBg.dataUrl) await R.loadCustomBackground(plan.customBg.dataUrl);
   await R.loadAssetDeck?.(plan);
-  const fps = plan.fps, total = Math.max(1, Math.round(plan.duration * fps));
+  const fps = plan.fps, total = Math.max(1, Math.round(duration * fps));
+  if(Math.ceil(total/every)>65535)throw Error('ZIPが65,535ファイルを超えます。範囲を短くしてください');
   const zip = new ZipWriter();
   const scale = w / plan.W;
   for (let i = 0; i < total; i += every) {
     if (signal && signal.aborted) throw new Error('キャンセルしました');
-    await R.prepareAssetFrame?.(plan,i/fps);
-    R.frame(ctx, plan, i / fps, { scale, transparent, production:true });
+    await R.prepareAssetFrame?.(plan,start+i/fps);
+    R.frame(ctx, plan, start+i / fps, { scale, transparent, production:true });
     const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
     zip.add(`jizura_${String(i).padStart(5, '0')}.png`, new Uint8Array(await blob.arrayBuffer()));
     onProgress && onProgress((i+1) / total, `PNG ${i + 1}/${total}`,{stage:'frames',current:i+1,total});
   }
   onProgress && onProgress(.995, 'PNGをZIPファイルにまとめています',{stage:'mux',indeterminate:true});
   return zip.finish();
+  }finally{R.disposeAssets?.();R.customBgBitmap?.close?.();canvas.width=canvas.height=1;}
 };
 
 /* ---------- plan JSON for the After Effects panel ---------- */
@@ -502,4 +528,5 @@ J.planForAE = (plan, project) => {
   }
   return clean;
 };
+J.exportMP4FallbackBase=J.exportMP4Fallback;
 })();

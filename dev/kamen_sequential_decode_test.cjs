@@ -2,12 +2,13 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),{engine,root}=require('./custom_test_support.cjs');
 (async()=>{
  const e=engine(),{context,J}=e;let disposed=0,closed=0,requested=[],nullAt=-1;
+ context.sha256=require('@noble/hashes/sha2.js').sha256;
  context.VideoDecoder=class{};
  context.Input=class{async getPrimaryVideoTrack(){return {canDecode:async()=>true,getCodec:async()=>'avc'};}async getPrimaryAudioTrack(){return {getCodec:async()=>'aac'};}dispose(){disposed++;}};
  context.BlobSource=class{};context.Mp4InputFormat=class{};
  context.VideoSampleSink=class{async *samplesAtTimestamps(times){requested=Array.from(times);for(let i=0;i<times.length;i++)yield i===nullAt?null:{timestamp:Math.floor(times[i]*10)/10,duration:.1,displayWidth:1920,displayHeight:1080,draw(ctx){ctx.pixel=times[i];},close(){closed++;}};}};
  context.document.createElement=()=>({getContext:()=>({pixel:0,getImageData(){return {data:new Uint8Array([Math.round(this.pixel*10)%256,0,0,255])};}})});
- const source=fs.readFileSync(path.join(root,'scripts/aac-browser-entry.mjs'),'utf8');vm.runInContext(source.slice(source.indexOf('window.JIZURAMedia=')),context);
+ const source=fs.readFileSync(path.join(root,'scripts/aac-browser-entry.mjs'),'utf8');vm.runInContext(source.slice(source.indexOf('window.JIZURAMedia=')).replace('export class MP4BlockStore','class MP4BlockStore'),context);
  J.observePixelFrame=pixels=>({value:pixels[0]});J.observeVisualPeaks=frames=>({frames});J.musicalTargets=()=>[];J.alignObservedPeaks=()=>({});J.audienceImpact7=()=>({});
  const p={W:1920,H:1080,duration:80},range={start:12,end:72};
  const out=await J.observeExportedMP4(new Blob(['video']),p,range);

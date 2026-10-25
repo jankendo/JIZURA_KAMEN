@@ -143,7 +143,7 @@ Q.verifyFinalArtifact=async(result,args,input)=>{
  if(args.signal?.aborted)throw new DOMException('Aborted','AbortError');
  const selectedInput=await V.snapshot(args.project,args.audio,args.plan,args.range);
  if(!Q.sameFinalInput(input,selectedInput))throw Error('FINAL_ARTIFACT_INPUT_CHANGED');input=selectedInput;
- const p=args.plan,planHash=await V.planHash(p),videoSHA256=await J.sha256(await result.blob.arrayBuffer()),profile=V.outputProfile(p,args.range),validation=result.validation||{},build=window.KAMEN_BUILD_INFO||{};
+ const p=args.plan,planHash=await V.planHash(p),videoSHA256=await J.sha256Blob(result.blob,args.signal),profile=V.outputProfile(p,args.range),validation=result.validation||{},build=window.KAMEN_BUILD_INFO||{};
  const binding={inputHash:input.inputHash,planHash,outputProfile:{...profile,resolution:[validation.width??p.W,validation.height??p.H]},rendererVersion:build.sourceTreeSHA256??build.sourceCommit??V.version,selectedCandidateId:await Q.finalCandidateIdentity(result.provenance?.cinemaV3?.history||[],planHash,videoSHA256),videoSHA256,sourceCommit:build.sourceCommit??null,sourceTreeSHA256:build.sourceTreeSHA256??null,sourceDirty:build.sourceDirty??null};
  if(result.provenance?.videoSHA256&&result.provenance.videoSHA256!==videoSHA256)throw Error('FINAL_ARTIFACT_VIDEO_HASH_MISMATCH');
  const units=await Q.finalArtifactUnits(p,args.range,planHash),frames=[],failures=[];let decodedSamples=0;
