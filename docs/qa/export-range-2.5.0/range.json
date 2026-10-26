@@ -1,0 +1,169 @@
+{
+  "version": "2.5.0",
+  "checks": [
+    {
+      "name": "audio-only editor exposes custom range, waveform and second inputs before MV generation"
+    },
+    {
+      "name": "range audition schedules exactly the selected buffer offset and duration"
+    },
+    {
+      "name": "whole-song playback can seek outside the range and mark a boundary without stopping"
+    },
+    {
+      "name": "keyboard, drag and zoom edit boundaries without changing lyric timing"
+    },
+    {
+      "name": "Web Audio stops at the selected end even while animation frames are suspended"
+    },
+    {
+      "name": "sample-bounded range looping is separate from whole-song loop and can stop at its end"
+    },
+    {
+      "name": "generation and source image/lyric edits retain the chosen audio interval"
+    },
+    {
+      "name": "blank, reversed, negative, out-of-audio and sub-frame inputs block every MP4 action"
+    },
+    {
+      "name": "changing FPS revalidates the one-frame minimum without resetting the chosen range"
+    },
+    {
+      "name": "five responsive widths support normal, playing and error states with 44px controls",
+      "layouts": [
+        {
+          "width": 375,
+          "state": "normal"
+        },
+        {
+          "width": 375,
+          "state": "playing"
+        },
+        {
+          "width": 375,
+          "state": "error"
+        },
+        {
+          "width": 768,
+          "state": "normal"
+        },
+        {
+          "width": 768,
+          "state": "playing"
+        },
+        {
+          "width": 768,
+          "state": "error"
+        },
+        {
+          "width": 1024,
+          "state": "normal"
+        },
+        {
+          "width": 1024,
+          "state": "playing"
+        },
+        {
+          "width": 1024,
+          "state": "error"
+        },
+        {
+          "width": 1100,
+          "state": "normal"
+        },
+        {
+          "width": 1100,
+          "state": "playing"
+        },
+        {
+          "width": 1100,
+          "state": "error"
+        },
+        {
+          "width": 1440,
+          "state": "normal"
+        },
+        {
+          "width": 1440,
+          "state": "playing"
+        },
+        {
+          "width": 1440,
+          "state": "error"
+        }
+      ]
+    },
+    {
+      "name": "custom range survives undo/redo, autosave and browser audio restoration"
+    },
+    {
+      "name": "failed audio replacement and same-file reconnection preserve the chosen interval"
+    },
+    {
+      "name": "unavailable SNS suggestions do not become full-song exports and retain the manual interval"
+    },
+    {
+      "name": "real MP4 starts at source 2.5s, rebases to zero, preserves clip credits and contains the selected 440Hz audio",
+      "duration": "2.026667",
+      "power": {
+        "220": 0.001989657194378513,
+        "440": 1524.9387557206342,
+        "880": 0.009684384906656698
+      },
+      "pixels": {
+        "expected": 13.526371527777778,
+        "wrong": 1359.8526504629629
+      }
+    },
+    {
+      "name": "export locks range controls, cancels without a download and retains the range for retry"
+    },
+    {
+      "name": "AAC fallback preserves the source boundary at the correct decoded clip position",
+      "early": {
+        "220": 366.19453288132615,
+        "440": 0.004472022973785594,
+        "880": 0.00028686058094604295
+      },
+      "late": {
+        "220": 0.0018067968323672561,
+        "440": 305.02461309999916,
+        "880": 0.002777662905046079
+      }
+    },
+    {
+      "name": "concurrent tab conflict preserves each work and its independent range"
+    },
+    {
+      "name": "portable JSON retains custom seconds without embedding audio"
+    },
+    {
+      "name": "a genuinely different audio source resets selection only after successful loading"
+    },
+    {
+      "name": "touch handles and keyboard End select a fractional audio endpoint exactly",
+      "exactEnd": {
+        "selected": 8.123356009070294,
+        "duration": 8.123356009070294
+      },
+      "touched": {
+        "start": 4.06,
+        "end": 8.123356009070294
+      }
+    },
+    {
+      "name": "SNS suggestions retain manual seconds and restore matching portrait preview/output without changing the manual aspect"
+    }
+  ],
+  "errors": [],
+  "build": {
+    "sourceCommit": "847dbb9d5f4da9d275118ade9a11d9276d99f665",
+    "sourceDirty": true,
+    "sourceTreeSHA256": "81db5325e458c62b7b0580186030fff0b3f002b581edcadaa604e9f159c4a34b",
+    "upstreamCommit": "fc16bfe43ea4a6c25a21f1caf04d17326de14f00",
+    "upstreamSHA256": "89cfc4a8a37b4babb04d71e300ea9b29b07ea37aac080723e6a428dff94406f4",
+    "mediaSHA256": "512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"
+  },
+  "browser": "151.0.7922.173",
+  "status": "PASS"
+}

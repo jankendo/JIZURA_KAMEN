@@ -22,7 +22,7 @@ J.migrateProject=input=>{
  p.sourceImport={version:1,requiresGeneration:true,sourceEngine:'kamen'};
  return migrate(p);
 };
-J.plan=(p,a)=>Object.assign(U.plan(p,a),{generation:{...p.generation},customBg:p.customBg,titleDisplay:p.titleDisplay,singleBackground:true,upstream:true,quality:p.quality,outputResolution:p.res});
+J.plan=(p,a)=>{const plan=U.plan(p,a),lyrics=plan.lines.filter(l=>!l.interlude);return Object.assign(plan,{generation:{...p.generation},customBg:p.customBg,titleDisplay:p.titleDisplay,singleBackground:true,upstream:true,quality:p.quality,outputResolution:p.res,hasTimedLyrics:lyrics.length>0&&lyrics.every(l=>Number.isFinite(l.lrc))});};
 J.generateUpstream=(project,audio,{rnd=Math.random}={})=>{
  const q=JSON.parse(JSON.stringify(project)),generated=U.omakase(q,rnd,q.themeId);
  for(const [g,locked]of Object.entries(q.locks?.tech||{}))if(locked&&q.enabled?.[g])generated.enabled[g]={...q.enabled[g]};
@@ -53,12 +53,13 @@ J.verifyTechnicalExport=async(result,args)=>{
  result.validation=v;result.provenance={schema:'kamen-upstream-export-v1',generation:args.project.generation,exportSettings:{width:w,height:h,fps:args.plan.fps,range:args.range},validation:v,creativeState:'ADVISORY',timestamp:new Date().toISOString()};
  result.sidecar=new Blob([JSON.stringify(result.provenance,null,2)],{type:'application/json'});return result;
 };
-const standard=async(args,fallback=false)=>J.verifyTechnicalExport(await(fallback?J.exportMP4FallbackBase:J.exportMP4Base)(args),args);
+const standard=async(args,fallback=false)=>{const selected={...args,range:J.requireExportRange(args.range,args.plan,args.audio)};return J.verifyTechnicalExport(await(fallback?J.exportMP4FallbackBase:J.exportMP4Base)(selected),selected);};
 J.exportMP4=args=>standard(args);
 J.exportMP4Fallback=args=>standard(args,true);
 // One coordinator owns retries. Audio failures retry AAC without changing the
 // video configuration; malformed output and cancellation are never retried.
 J.exportWithRetries=async(args,caps)=>{
+ args={...args,range:J.requireExportRange(args.range,args.plan,args.audio)};
  const diagnostics=[],settings=J.resolveExportSettings(args.project),[w,h]=J.outputSize(args.project);
  const terminal=e=>args.signal?.aborted||e.name==='AbortError'||/EXPORT_INVALID|CINEMA_V5_UNSAFE_EXPORT|PROVENANCE_MISMATCH|検査|フレームが不足/.test(e.message||'');
  const record=(e,attempt,stage)=>diagnostics.push({stage,codec:attempt?.codec||null,acceleration:attempt?.cfg?.hardwareAcceleration||'auto',code:e.code||e.name,message:e.message});

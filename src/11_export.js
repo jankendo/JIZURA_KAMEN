@@ -229,6 +229,7 @@ async function resample(buffer, sr, duration, start=0) {
 
 /* ---------- MP4 ---------- */
 J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onProgress, signal, videoAttempt=null,audioAttempt=null }) => {
+  range=J.requireExportRange(range,plan,audio);
   const [w, h] = J.outputSize(project);
   const fps = plan.fps;
   const px = w * h * fps;
@@ -359,6 +360,7 @@ J.exportCapabilities = async (project,audio) => {
 
 /* Real-time MP4 fallback on browsers with MediaRecorder MP4 support. Never relabel a WebM as MP4. */
 J.exportMP4Fallback = async ({plan,project,audio,range=null,onProgress,signal}) => {
+  range=J.requireExportRange(range,plan,audio);
   onProgress?.(0,'映像と音声を録画する方法で準備しています',{stage:'frames',label:'映像と音声を録画しています',skip:['video','resample','audio','mux'],indeterminate:true});
   const includeAudio=project.includeAudio!==false;
   if(includeAudio&&!audio?.buffer)throw new Error('音源を読み込んでください');
@@ -443,6 +445,7 @@ class ZipWriter {
 }
 J.ZipWriter=ZipWriter;
 J.exportPNGZip = async ({ plan, project, transparent, onProgress, signal, every = 1,range=null }) => {
+  range=J.requireExportRange(range,plan,null);
   if(!Number.isInteger(every)||every<1)throw Error('PNGのフレーム間隔を確認してください');
   const start=range?.start??0,duration=(range?.end??plan.duration)-start;
   if(!Number.isFinite(duration)||duration<=0||start<0)throw Error('PNGの書き出し範囲を確認してください');

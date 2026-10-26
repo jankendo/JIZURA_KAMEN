@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "version": "2.5.0",
+  "browser": "151.0.7922.173",
+  "build": {
+    "sourceCommit": "847dbb9d5f4da9d275118ade9a11d9276d99f665",
+    "sourceDirty": true,
+    "sourceTreeSHA256": "81db5325e458c62b7b0580186030fff0b3f002b581edcadaa604e9f159c4a34b",
+    "upstreamCommit": "fc16bfe43ea4a6c25a21f1caf04d17326de14f00",
+    "upstreamSHA256": "89cfc4a8a37b4babb04d71e300ea9b29b07ea37aac080723e6a428dff94406f4",
+    "mediaSHA256": "512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"
+  },
+  "checks": [
+    "opening an empty editor does not create an autosave",
+    "second tab, restore and preview replan do not update saved revisions",
+    "a genuine concurrent edit forks and saves the generated MV without overwriting the other tab",
+    "forked image, audio and uploaded font restore independently after reload",
+    "repeated generation stays in the fork instead of creating repeated copies",
+    "quota failure preserves the generated MV and enables backup and export",
+    "save retry recovers without regenerating or forking",
+    "cancelling generation before commit preserves the previous MV",
+    "a changed input cancels stale generation without discarding the new input",
+    "overlapping save and generation remain in one workspace",
+    "manual palette input reaches the original planner",
+    "font selection reaches the original planner",
+    "motion input and parameter lock survive regeneration",
+    "palette and background-position controls change actual rendered pixels",
+    "tap synchronization and undo remain available",
+    "saved-work selector restores the selected work",
+    "failed audio restoration does not clear metadata or create a new saved revision",
+    "retired controls are absent from the document",
+    "legacy localStorage migrates once and the original remains intact",
+    "v2 IndexedDB migration preserves the original record and its image",
+    "unavailable IndexedDB still allows generation with an explicit unsaved result"
+  ],
+  "errors": []
+}

@@ -1,4 +1,4 @@
-# KAMEN 2.4 browser storage
+# KAMEN 2.5 browser storage
 
 Processing is local. Storage belongs to a browser profile and origin; localhost and GitHub Pages do not share it. No project/media backend is used.
 
@@ -36,3 +36,11 @@ Current JIZURA projects retain seed, overrides, credits, locks and generation me
 Optional credits remain `{version:1, mode, position, size}`. Missing credits in existing modern works preserve native metadata pixels. New and legacy-source imports use hybrid/auto/standard defaults. Credits participate in undo/redo, autosave, forks and portable files.
 
 Browser storage is not a durable backup; eviction/private-mode cleanup can remove it. Forks and legacy source copies consume additional quota. Keep project JSON and audio externally.
+
+## Seconds-based export ranges in 2.5
+
+The existing exportSettings history/persistence field gains `range: 'custom'` and optional `customRange: {start, end}` in seconds. Storage format 3 and project schema 2 remain unchanged. Existing missing range fields still mean full-song output. Old full/highlight/socialHook choices stay readable; unknown modes normalize to full. A custom mode with malformed/missing values is invalid and never silently becomes full-song export.
+
+Only valid numeric edits enter customRange. Incomplete/invalid numeric text remains an in-memory draft that blocks audition/export until corrected or another mode is chosen. Reload restores the last valid saved selection, not an invalid text draft. Switching to full or an automatic suggestion retains the valid customRange for later return.
+
+Range settings survive regeneration, visual edits, undo/redo, portable files and atomic conflict forks. A successful genuinely different audio load resets mode to full and removes the old customRange. Matching audio restoration/reconnection preserves it; a failed audio load keeps the original audio/selection. Range playback/loop state is transient and does not change saved revisions. Selected ranges are copied/frozen for each output pipeline, including validation and retries.
