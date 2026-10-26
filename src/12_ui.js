@@ -4,8 +4,6 @@
 (() => {
 'use strict';
 if (!document.getElementById('app')) return;          // engine-only pages (tests)
-J.enableSingleBackgroundMode();
-J.enableUpstreamMode?.();
 const $ = id => document.getElementById(id);
 const LS_KEY = 'jizura.project.v1';
 const HUD_CHARS = '0123456789:./-_()【】・No.LYRICRECUNTITLEDXYlinebpminterlude—─／ ';
@@ -15,7 +13,7 @@ const ICON = {
 };
 
 const S = { project: null, plan: null, previewPlan:null, previewAspect:null, audio: null, audioLoad:0, audioLoading:false, audioPendingName:'', audioNotice:'', renderer: new J.Renderer(), playing: false, t: 0, t0: 0, loop: true, need: true, exporting: null, tap: null, slow: false, lineEls: [], curLine: -2,
-  range:null,rangeMode:null,socialPlan:null,highlights:[],highlightIndex:0,alternative:0,directionCandidates:[],directionStats:null,lastQuality:null,lastExport:null,pixelQA:null,exportCapabilities:null,exportValidation:null,selectedLine:-1,timelineZoom:1,timelineStart:0,timelineDragging:null };
+  range:null,rangeMode:null,socialPlan:null,highlights:[],highlightIndex:0,lastExport:null,pixelQA:null,exportCapabilities:null,exportValidation:null,selectedLine:-1,timelineZoom:1,timelineStart:0,timelineDragging:null };
 function markImageLookModified() { if (S.project && S.project.autoPalette && S.project.autoPalette.analyzed) S.project.autoPalette.lookModified = true; }
 
 /* WebAudio player (works inside sandboxed pages where blob media may be blocked) */
@@ -56,7 +54,6 @@ function mergeProject(p) {
   o.titleDisplay.opacity = J.clamp(Number(o.titleDisplay.opacity) || .72, .2, .85);
   o.titleDisplay.enabled = o.titleDisplay.enabled !== false;
   o.exportSettings=Object.assign({},d.exportSettings,(p&&p.exportSettings)||{});
-  o.exportSettings.refinementMode=o.exportSettings.refinementMode==='quality'?'quality':'fast';
   o.exportSettings.preset=J.EXPORT_PRESETS?.[o.exportSettings.preset]?o.exportSettings.preset:'auto';
   o.exportSettings.videoBitrate=Number.isFinite(+o.exportSettings.videoBitrate)?Math.max(0,+o.exportSettings.videoBitrate):0;
   o.exportSettings.audioBitrate=[128000,192000,256000,320000].includes(+o.exportSettings.audioBitrate)?+o.exportSettings.audioBitrate:192000;
@@ -64,7 +61,6 @@ function mergeProject(p) {
   o.visualEnergyDensity=['auto','clean','standard','high_energy','hyper'].includes(o.visualEnergyDensity)?o.visualEnergyDensity:'auto';
   o.hookStrength=['auto','strong','maximum'].includes(o.hookStrength)?o.hookStrength:'auto';
   o.includeAudio=o.includeAudio!==false;
-  o.artDirection = J.validArtDirection && J.validArtDirection(o.artDirection, o) ? o.artDirection : null;
   const en = J.defaultProject().enabled;
   for (const g of Object.keys(en)) en[g] = Object.assign(en[g], ((p && p.enabled) || {})[g] || {});
   o.enabled = en;
@@ -118,7 +114,6 @@ async function readCommittedProject(){
    const asset=key=>id?mediaKey(id,key):key;const get=(key,target)=>{const req=store.get(asset(key));req.onsuccess=()=>{target.dataUrl=req.result||'';if(!req.result)localRecoveryBlocked=true;};};
    if(p.audioAsset){const audio=store.get(asset('audio'));audio.onsuccess=()=>{record.audio=audio.result||null;};}
    if(p.customBg?.storedInIndexedDB&&!p.customBg.dataUrl)get('background',p.customBg);
-   for(const [kind,prefix] of [['visualAssets','visualAsset:'],['proAssets','proAsset:']])for(const a of p[kind]||[])if(a.storedInIndexedDB&&!a.dataUrl)get(prefix+a.id,a);
   };
   tx.oncomplete=()=>resolve(record);tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error||Error('保存データを読み込めません'));
  });
@@ -137,18 +132,18 @@ async function loadLocal() {
     try { p.customBg.dataUrl = await bgDbGet('background');if(!p.customBg.dataUrl)localRecoveryBlocked=true; } catch (e) { localRecoveryBlocked=true;console.error('JIZURA background restore failed',e); }
   }
   if (p.customBg) delete p.customBg.storedInIndexedDB;
-  for(const a of p.visualAssets||[])if(a.storedInIndexedDB&&!a.dataUrl){try{a.dataUrl=await bgDbGet('visualAsset:'+a.id)||'';}catch(e){localRecoveryBlocked=true;console.error('JIZURA asset restore failed',e);}if(!a.dataUrl)localRecoveryBlocked=true;delete a.storedInIndexedDB;}
-  for(const a of p.proAssets||[])if(a.storedInIndexedDB&&!a.dataUrl){try{a.dataUrl=await bgDbGet('proAsset:'+a.id);}catch(e){localRecoveryBlocked=true;console.error('JIZURA asset restore failed',e);}if(!a.dataUrl)localRecoveryBlocked=true;delete a.storedInIndexedDB;}
-  for(const a of [...(p.visualAssets||[]),...(p.proAssets||[])])delete a.storedInIndexedDB;
+  const oldEngine=!J.isUpstream(p),sourceId=S.workspaceId;
   const project=mergeProject(p);
   await restoreProjectFonts(project);
-  if(legacy&&!localRecoveryBlocked){
+  if(oldEngine&&localRecoveryBlocked){localRecoveryBlocked=false;project.customBg={...project.customBg,enabled:false,dataUrl:''};}
+  if((legacy||oldEngine)&&!localRecoveryBlocked){
     // Import the old committed record into a fresh namespace. Never rewrite v2.
-    const audio=S.localAudioSnapshot?.file;S.workspaceId=crypto.randomUUID();S.persistenceRevision=0;
+    const audio=S.localAudioSnapshot?.file;S.workspaceId=crypto.randomUUID();S.persistenceRevision=0;S.workspaceForkOrigin=oldEngine?sourceId:null;
     if(audio)S.pendingAudioFile=audio;
     const previous=S.project;S.project=project;
     try{if(!await flushSaveImpl())S.unsaved=true;else S.recoveredLocal=true;}finally{S.project=previous;}
   }
+  if(oldEngine&&S.workspaceId===sourceId){S.workspaceId=crypto.randomUUID();S.persistenceRevision=0;S.workspaceForkOrigin=sourceId;}
   if(S.workspaceId)rememberWorkspace(S.workspaceId);
   observedProject=projectFingerprint(project);
   return project;
@@ -174,7 +169,7 @@ async function fontAssetDataUrl(meta) {
   return '';
 }
 async function portableProjectJSON() {
-  const project=J.compactPersistentProjectV111(S.project);
+  const project=J.compactPersistentProject(S.project);
   project.schemaVersion=J.PROJECT_SCHEMA_VERSION;
   for (const meta of project.userFonts || []) {
     const dataUrl=await fontAssetDataUrl(meta);
@@ -200,8 +195,8 @@ const mediaFingerprintIds=new Map();let nextMediaFingerprint=1;
 function projectFingerprint(project=S.project){
   const seen=new Set(),ref=value=>{if(typeof value!=='string'||!value.startsWith('data:'))return value;seen.add(value);if(!mediaFingerprintIds.has(value))mediaFingerprintIds.set(value,nextMediaFingerprint++);return 'media:'+mediaFingerprintIds.get(value);};
   const copy={...project,customBg:{...project.customBg,dataUrl:ref(project.customBg?.dataUrl)}};
-  for(const key of ['visualAssets','proAssets','userFonts'])copy[key]=(project[key]||[]).map(a=>({...a,dataUrl:ref(a.dataUrl)}));
-  const fingerprint=J.canonicalJSON(J.compactPersistentProjectV111(copy));
+  for(const key of ['userFonts'])copy[key]=(project[key]||[]).map(a=>({...a,dataUrl:ref(a.dataUrl)}));
+  const fingerprint=J.canonicalJSON(J.compactPersistentProject(copy));
   for(const key of mediaFingerprintIds.keys())if(!seen.has(key))mediaFingerprintIds.delete(key);
   return fingerprint;
 }
@@ -229,12 +224,11 @@ function flushSaveImpl(task) {
   if(!S.project)return Promise.resolve(false);
   if(localRecoveryBlocked){saveStatus('前回のデータを保全中 · 自動保存停止。バックアップから開き直してください。',true);return Promise.resolve(false);}
   const edit=++saveRevision,revision=(S.persistenceRevision||0)+1,project=S.project,source=project.customBg?.dataUrl||'';
-  const entries=[...(S.workflowSaveEntriesV16||[]),['background',source],...(project.visualAssets||[]).filter(a=>a.dataUrl).map(a=>['visualAsset:'+a.id,a.dataUrl]),...(project.proAssets||[]).filter(a=>a.dataUrl).map(a=>['proAsset:'+a.id,a.dataUrl])];
+  const entries=[['background',source],];
   const pendingAudio=[S.pendingAudioFile,S.currentAudioFile,S.localAudioSnapshot?.file].find(file=>J.audioAssetMatches(project.audioAsset,file));if(pendingAudio)entries.push(['audio',pendingAudio]);
   for(const meta of project.userFonts||[]){const bytes=J.userFontBytes?.get(meta.key);if(bytes)entries.push(['font:'+String(meta.assetKey||meta.key),bytes]);}
-  const copy=J.compactPersistentProjectV111(project);
+  const copy=J.compactPersistentProject(project);
   copy.customBg={...copy.customBg,dataUrl:'',storedInIndexedDB:!!source};
-  for(const kind of ['visualAssets','proAssets'])copy[kind]=(copy[kind]||[]).map(a=>({...a,dataUrl:'',storedInIndexedDB:!!a.dataUrl}));
   const record={id:S.workspaceId||crypto.randomUUID(),revision,project:copy,savedAt:Date.now(),format:3,forkedFrom:S.workspaceForkOrigin||null};
   task?.enter('assets');S.unsaved=true;saveStatus('素材・編集内容を保存中…');
   const run=async()=>{
@@ -315,26 +309,15 @@ function audioLike() {
 }
 function viewPlan() { return S.rangeMode==='socialHook'&&S.socialPlan?S.socialPlan:(S.previewPlan||S.plan); }
 function refreshPreviewPlan() {
-  if(S.comparisonDraftV16&&S.project.randomWorkflowV16?.state==='FINISHED'){S.previewPlan={...S.plan,cuts:J.clonePhotoRenderPlan(S.project.randomWorkflowV16.originalCuts)};return;}
   S.previewPlan = S.previewAspect ? J.plan({ ...S.project, aspect:S.previewAspect }, audioLike()) : null;
 }
 function replan() {
   lastCutIdx=-2;
   S.socialPlan=null;
-  S.pixelQA=null;S.exportValidation=null;
+  S.pixelQA=null;S.exportValidation=null;S.lastExport=null;$('studioShare').hidden=true;
   S.plan = J.plan(S.project, audioLike());
-  let restoreNotice=$('songNativeRestoreNotice');
-  if(!restoreNotice){restoreNotice=document.createElement('p');restoreNotice.id='songNativeRestoreNotice';restoreNotice.setAttribute('role','status');$('directionStatus').parentElement.appendChild(restoreNotice);}
-  restoreNotice.hidden=!['REJECTED','PENDING_INPUT'].includes(S.plan.songNativeRestore?.status);
-  restoreNotice.textContent=S.plan.songNativeRestore?.status==='PENDING_INPUT'?'保存されたMVの演出は、音源の読み込み後に互換性を確認します。':'保存されたMVの演出は、現在のバージョンとの互換性を確認できませんでした。元データは保持されています。演出を再確認してください。';
-  // Boot plans before restoring audio. Its temporary direction must not replace
-  // the saved selected direction needed by the resolved-plan equality check.
-  if(S.plan.songNativeDirection&&S.project.artDirection&&S.plan.songNativeRestore?.status!=='PENDING_INPUT')S.project.artDirection.songNativeDirection=J.clonePhotoRenderPlan(S.plan.songNativeDirection);
-  if(S.project.visualAssets?.length) (S.renderer._uiLoadQueue=(S.renderer._uiLoadQueue||Promise.resolve()).catch(()=>{}).then(()=>S.renderer.loadAssetDeck(S.plan))).then(()=>{S.need=true;}).catch(e=>toast(e.message));
-  refreshVisualAssetsUI();
   refreshPreviewPlan();
   if (S.t > S.plan.duration) S.t = 0;
-  if(S.plan.songNativeDirection?.version===9){const st=J.selectionIntegrityV9(S.plan,audioLike());$('directionStatus').dataset.selectionState=st.status;$('directionStatus').textContent=({DRAFT:'解析済み・演出候補を比較中',SELECTED:'演出確定済み',STALE:'再確認が必要',FAILED:'選択失敗'})[st.status];if(!st.ok)delete $('directionStatus').dataset.result;}
   renderLines(); sizeViewport(); drawTimeline(); updateTimeUI();
   S.need = true; ensureFonts(); drawSwatch(); showNow();
   syncDirectionUI(); scheduleHistoryObserve();
@@ -560,11 +543,6 @@ function updateCutInfo() {
   if (!cut) { el.innerHTML = '<span class="hint">この位置にカットはありません</span>'; return; }
   const chip = (cls, k, v) => `<span class="chip ${cls}"><b>${k}</b>${v}</span>`;
   const n = (tbl, k) => (tbl[k] ? tbl[k].name : k);
-  const selected=J.describeJizuraDirectionV8?.(S.plan,cut);
-  if(selected){el.innerHTML=Object.entries({スタイル:selected.style,レイアウト:selected.layout,登場:selected.enter,保持:selected.hold,退場:selected.exit,カメラ:selected.camera,加工:selected.treat,装飾:selected.decor,背景:selected.background,FX:selected.fx||'なし',トランジション:selected.transition||'カット',採用:selected.selection,...(selected.reason?{理由:selected.reason,比較:selected.comparison,Canvas:selected.canvas}:{} )}).map(([k,v])=>chip('',k,escapeHtml(v))).join('');return;}
-  const generated=J.describeSongCompositionV7?.(S.plan,cut);
-  const generatedChip=(cls,key,value)=>chip(cls,key,escapeHtml(value));
-  if(generated){el.innerHTML=[generatedChip('l','構図',`${generated.groups}文字グループ`),generatedChip('e','登場',generated.entry),generatedChip('h','表示中',generated.hold),generatedChip('x','退場',generated.exit),generatedChip('c','カメラ',generated.camera),generatedChip('b','背景',generated.background),generatedChip('','反復',generated.repeat===null?'独立区間':`区間 ${generated.repeat+1} と関連`),generatedChip('','探索',generated.selection)].join('');return;}
   el.innerHTML = [
     `<span class="chip mono">#${String(cut.index + 1).padStart(2, '0')}</span>`,
     chip('l', 'レイアウト', n(J.LAYOUTS, cut.layout)), chip('e', '登場', n(J.ENTER, cut.enter)), chip('h', '保持', n(J.HOLD, cut.hold)), chip('x', '退場', n(J.EXIT, cut.exit)),
@@ -620,7 +598,7 @@ function renderLines() {
     });
     const cutsEl = li.querySelector('.cuts');
     S.plan.cuts.filter(c => c.line === i && J.LAYOUTS[c.layout] && !J.LAYOUTS[c.layout].special).forEach(c => {
-      const sp = document.createElement('span'); sp.textContent = c.registrySelectedV8?`${J.STYLES[c.styleKey]?.name||c.styleKey} · ${J.LAYOUTS[c.layout].name}`:J.LAYOUTS[c.layout].name; sp.title = c.registrySelectedV8?`${c.text}｜${Object.values(J.describeJizuraDirectionV8(S.plan,c)).join(' · ')}`:c.generatedMotionV7?`${c.text}｜${J.describeSongCompositionV7(S.plan,c).selection}`:`${c.text}｜${J.ENTER[c.enter].name} → ${J.EXIT[c.exit].name}`;
+      const sp = document.createElement('span'); sp.textContent = J.LAYOUTS[c.layout].name; sp.title = `${c.text}｜${J.ENTER[c.enter].name} → ${J.EXIT[c.exit].name}`;
       sp.style.borderColor = `hsla(${layoutHue(c.layout)},70%,58%,0.7)`;
       sp.addEventListener('click', () => seek(c.start + Math.min(c.dur * 0.5, c.inDur + 0.05)));
       cutsEl.appendChild(sp);
@@ -646,7 +624,7 @@ function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp
 
 /* ---------------- style tab ---------------- */
 let stylePreviewObserver=null;
-const editorStyles=()=>J.isUpstream(S.project)?window.JIZURAUpstream.STYLES:J.STYLES;
+const editorStyles=()=>J.STYLES;
 const editorStyleOrder=()=>window.JIZURAUpstream.STYLE_ORDER;
 function drawStyleGrid() {
   const g = $('styleGrid');
@@ -782,7 +760,7 @@ async function histGo(d) {
   Object.assign(S.project,state);if(state.credits===null)delete S.project.credits;
   S.project.autoPalette=J.normalizeAutoPalette(S.project.autoPalette);
   if(!S.project.autoPalette.localMap&&currentMap&&S.project.autoPalette.sourceHash&&S.project.autoPalette.sourceHash===currentHash)S.project.autoPalette.localMap=currentMap;
-  await S.renderer.loadAssetDeck?.(S.plan).catch(()=>{});if(S.project.customBg?.dataUrl)await S.renderer.loadCustomBackground(S.project.customBg.dataUrl).catch(()=>{});
+  if(S.project.customBg?.dataUrl)await S.renderer.loadCustomBackground(S.project.customBg.dataUrl).catch(()=>{});
   else await S.renderer.loadCustomBackground('').catch(()=>{});
   fontKey='';syncUI();replan();updateHist();toast(`${j+1} / ${H.list.length} 履歴`);restartPreview();flushSave();H.restoredSnapshot=lookSnap();
   }catch(error){console.error('JIZURA history restore failed',error);toast('履歴の素材を復元できません。バックアップを保管して素材を確認してください。');}
@@ -1004,7 +982,7 @@ function syncStudioExportControls() {
   if(!$('studioPreset')||!S.project)return;
   const e=J.resolveExportSettings(S.project);
 
-  $('studioPreset').value=e.preset;$('studioRes').value=String(S.project.res||1080);$('studioFPS').value=S.project.exportSettings.fpsMode==='auto'?'auto':String(S.project.fps||30);
+  $('studioPreset').value=e.preset;$('studioRes').value=String(S.project.res||1080);$('studioFPS').value=String(S.project.fps||30);
   $('studioQualityLevel').value=S.project.quality||'high';$('studioVideoBitrate').value=e.videoBitrate>0?(e.videoBitrate/1e6).toString():'';
   $('studioSampleRate').value=String(e.sampleRate||48000);
   $('studioAudio').value=S.project.includeAudio===false?'off':'on';$('studioAudioBitrate').value=String(e.audioBitrate||192000);
@@ -1019,7 +997,7 @@ function syncSocialCopy() {
 }
 
 function syncStudioResultVisibility() {
-  const ready = !!((S.project?.autoDirection||S.project?.generation?.generated||!J.isUpstream(S.project)) && S.audio && S.plan?.lines?.length);
+  const ready = !!(S.project?.generation?.generated && S.audio && S.plan?.lines?.length);
   $('studioResult').hidden = !ready;
   $('studioTools').hidden = !ready;
 }
@@ -1027,6 +1005,8 @@ function syncStudioResultVisibility() {
 function invalidateGeneratedMV() {
   if (!S.project) return;
   S.project.autoDirection = false;
+  S.project.generation.generated = false;
+  S.generationNotice=null;S.lastExport=null;$('studioShare').hidden=true;
   S.range = null;
   S.highlights = [];
   S.highlightIndex = 0;
@@ -1040,35 +1020,7 @@ function invalidateGeneratedMV() {
 }
 
 
-function refreshLocalPaletteMap() {
-  if(J.isUpstream(S.project))return;
-  const ap = S.project.autoPalette;
-  if (!ap || !ap.analyzed || !S.renderer.customBgBitmap) return;
-  if (ap.options && ap.options.readability) ap.localMap = J.refreshAutoPaletteMap(S.renderer.customBgBitmap, S.project);
-  else ap.localMap = null;
-  if (S.plan && S.plan.autoPalette) S.plan.autoPalette.localMap = ap.localMap;
-}
-
-function validatePaletteSource(project, image) {
-  if(J.isUpstream(project))return;
-  const ap = project.autoPalette;
-  if (!ap || !ap.analyzed || !image) return;
-  const hash = J.imageFingerprint(image);
-  if (ap.sourceHash && hash && ap.sourceHash !== hash) J.invalidateAutoPalette(project);
-  else {
-    if (!ap.sourceHash && hash) ap.sourceHash = hash;
-    // A persisted v16 map is part of the selected render input. Recomputing
-    // it at the legacy 96px refresh size would replace its 128px source map.
-    const workflow=project.randomWorkflowV16;
-    const savedComplete=project.autoDirection&&project.artDirection?.songNativeResolved;
-    const retained=(savedComplete||J.workflowRendererCompatibleV16(workflow)&&['RANDOM_DRAFT_READY','FINISHED'].includes(workflow.state))&&ap.localMap&&ap.viewportKey===J.autoPaletteViewportKey(project);
-    if (!retained&&ap.options && ap.options.readability) ap.localMap = J.refreshAutoPaletteMap(image, project);
-  }
-}
-
-
 let directionBusy = false, exportPreflightBusy=false;
-const workflowImageFingerprintsV16=new WeakMap();
 const editingLock=J.createControlLock();
 function processingLocks(active){
   if(!active){editingLock.unlock();return;}
@@ -1077,13 +1029,15 @@ function processingLocks(active){
 function syncDirectionUI() {
   const locked=!!(S.exporting||exportPreflightBusy||S.projectLoading||directionBusy||visualBusy);
   if(!locked){processingLocks(false);if($('localWorkspace'))$('localWorkspace').disabled=!!(S.audioLoading||S.tap||S.workspaceStorageUnavailable);}
+  const notices=[];if(S.project.sourceImport?.requiresGeneration)notices.push('旧作品の素材を別の作業に取り込みました。元データは保持しています。素材を確認してMVを再生成してください。');
+  const missingFonts=(S.project.userFonts||[]).filter(f=>!J.userFontBytes.has(f.key));if(missingFonts.length)notices.push('追加フォントを選び直してください：'+missingFonts.map(f=>f.label||f.family).join('、'));
+  $('importNotice').hidden=!notices.length;$('importNotice').textContent=notices.join(' ');
   const image = !!(S.project.customBg.enabled && S.project.customBg.dataUrl && S.renderer.customBgBitmap);
   const music = !!S.audio;
   const lyrics = J.parseLyrics(S.project.lyrics).lines.length>0;if($('previewHint'))$('previewHint').hidden=image||lyrics;
-  const generated = !!(S.project.autoDirection && S.audio && S.plan?.lines?.length && image && lyrics);
-  $('studioStep').textContent = !J.isUpstream(S.project)?'保存したMV · 編集・書き出し可能':directionBusy?'処理中 · キャンセルできます':({INPUT_READY:'01 / 03　素材を準備',RANDOM_DRAFT_READY:'02 / 03　ランダム案を選択',FINISHED:J.isUpstream?.(S.project)?'03 / 03　生成済み':'03 / 03　最適化済み'})[workflowStateV16()];
-  const workflow=workflowStateV16(),draftBlocked=false;
-  const canExport = !draftBlocked && !!(S.audio && lyrics && S.plan?.duration > 0 && !S.audioLoading && !S.exporting && !exportPreflightBusy && !S.tap);
+  const generated = !!S.project.generation.generated;
+  $('studioStep').textContent = directionBusy?'処理中 · 中止できます':generated?'03 / 03　確認して保存':'01 / 03　素材を準備';
+  const canExport = generated && !locked && !!(S.audio && lyrics && S.plan?.duration > 0 && !S.audioLoading && !S.tap);
   $('studioExport').disabled = !canExport;
   $('studioHighlight').disabled = !canExport||S.plan.duration<60;$('studioHighlight').title=(S.plan?.duration||0)<60?'60秒以上の音源で使用できます':'';
   if($('studioSocialHook'))$('studioSocialHook').disabled=!canExport||S.plan.duration<12;
@@ -1092,9 +1046,9 @@ function syncDirectionUI() {
   $('studioTiming').disabled = !lyrics || !!S.exporting;
   const btn = $('btnAutoDirection');
   btn.disabled = directionBusy || S.audioLoading || !!S.tap || !image || !music || !lyrics;
-  btn.textContent='本家JIZURAで'+(S.project.generation?.generated||!J.isUpstream(S.project)?'再生成':'生成');
+  btn.textContent='本家JIZURAで'+(S.project.generation?.generated?'再生成':'生成');
 
-  for(const id of ['btnMP4','eMP4'])if($(id))$(id).disabled=draftBlocked||locked;
+  for(const id of ['btnMP4','eMP4'])if($(id))$(id).disabled=!canExport;
 
 
   for(const [id,ready] of [['studioImageSlot',image],['studioAudioSlot',music],['studioLrcSlot',lyrics]])
@@ -1107,27 +1061,17 @@ function syncDirectionUI() {
   else if (S.audioNotice) $('directionStatus').textContent = S.audioNotice;
   else if (!directionBusy && !$('directionStatus').dataset.result && $('directionStatus').dataset.selectionState!=='FAILED') {
     const missing=[!image&&'背景画像',!music&&'音源',!lyrics&&'歌詞'].filter(Boolean);
-    $('directionStatus').textContent=S.generationNotice|| (missing.length?`あと ${missing.join('・')} を選んでください。`:'素材が揃いました。本家JIZURAで生成できます。');
+    $('directionStatus').textContent=S.generationNotice|| (S.project.sourceImport?.requiresGeneration?'旧作品の素材を別の作業に取り込みました。音源と素材を確認し、MVを再生成してください。':missing.length?`あと ${missing.join('・')} を選んでください。`:'素材が揃いました。本家JIZURAで生成できます。');
   }
-  syncStudioResultVisibility();
+  syncStudioResultVisibility();if($('exportDiagnostics'))$('exportDiagnostics').hidden=!S.lastExportError;
 
   if(locked)processingLocks(true);
 }
-function completedWorkflowSnapshotV16(project){
-  const snapshot=J.compactPersistentProjectV111(project);
-  if(snapshot.randomWorkflowV16){delete snapshot.randomWorkflowV16.finishedProject;delete snapshot.randomWorkflowV16.previousFinishedProject;}
-  return snapshot;
-}
-function workflowStateV16() {
-  if(J.isUpstream?.(S.project))return S.project.generation.generated?'FINISHED':'INPUT_READY';
-  const d=S.project.randomWorkflowV16;
-  if(!J.workflowRendererCompatibleV16(d))return 'INPUT_READY';
-  return d.inputHash===J.songNativeInputIdentity(S.project,audioLike())?d.state:'INPUT_READY';
-}
+function generationState() {return S.project.generation.generated?'FINISHED':'INPUT_READY';}
 async function generateRandomDraft(){return generateUpstreamMV();}
 async function generateUpstreamMV(){
  if(directionBusy||S.exporting||exportPreflightBusy||S.audioLoading||S.projectLoading||S.tap)return;
- const sourceInput=projectFingerprint(),before=S.project,priorPlan=S.plan,priorState={pixelQA:S.pixelQA,exportValidation:S.exportValidation,confirmedCinemaPlan:S.confirmedCinemaPlan,range:S.range,rangeMode:S.rangeMode},audio=S.audio,controller=new AbortController();let committed=false;
+ const sourceInput=projectFingerprint(),before=S.project,priorPlan=S.plan,priorState={pixelQA:S.pixelQA,exportValidation:S.exportValidation,range:S.range,rangeMode:S.rangeMode},audio=S.audio,controller=new AbortController();let committed=false;
  const task=J.processing.begin('本家JIZURA方式でMVを生成しています',[['direction','歌詞・音源から演出を組み立てています',9],['save','生成結果を保存しています',1]],{cancel:()=>controller.abort(),retry:generateRandomDraft});
  directionBusy=true;pause();syncDirectionUI();
  try{
@@ -1135,7 +1079,7 @@ async function generateUpstreamMV(){
   const result=J.generateUpstream(before,audioLike());result.project.generation.generated=true;
   await J.ensureFonts(result.project.lyrics,J.fontsOfPlan(result.plan));
   if(controller.signal.aborted||S.project!==before||S.audio!==audio||projectFingerprint()!==sourceInput)throw new DOMException('生成を中止しました','AbortError');
-  remember();S.project=mergeProject(result.project);S.plan=J.plan(S.project,audioLike());S.pixelQA=null;S.exportValidation=null;S.confirmedCinemaPlan=null;S.range=null;S.rangeMode=null;
+  remember();S.project=mergeProject(result.project);S.plan=J.plan(S.project,audioLike());S.pixelQA=null;S.exportValidation=null;S.range=null;S.rangeMode=null;
   if(controller.signal.aborted)throw new DOMException('生成を中止しました','AbortError');
   committed=true;task.state.cancel=null;task.enter('save');const saved=await flushSave();
   S.generationNotice=saved?(S.workspaceForked?'生成結果を別の作業として保存しました':'JIZURA v'+J.upstreamInfo.version+'で生成しました。演出品質は参考情報です。'):'生成は完了しましたが、ブラウザに保存できませんでした。プロジェクト保存でバックアップしてください。'+(S.persistenceError?.message||'');
@@ -1143,91 +1087,6 @@ async function generateUpstreamMV(){
  }catch(e){if(!committed){if(S.project===before&&projectFingerprint()===sourceInput){S.plan=priorPlan;Object.assign(S,priorState);}else replan();syncUI();renderLines();refreshPreviewPlan();S.need=true;}S.generationNotice=e.message;task.fail(e,e.name==='AbortError');$('directionStatus').textContent=e.message;}
  finally{directionBusy=false;syncDirectionUI();}
 }
-async function optimizeSelectedDraft(){return runRandomWorkflowV16(true);}
-async function runRandomWorkflowV16(finish) {
-  if(directionBusy||S.exporting||exportPreflightBusy||S.audioLoading||S.projectLoading||S.tap)return;
-  if(finish&&workflowStateV16()!=='RANDOM_DRAFT_READY')return;
-  const before={project:S.project,plan:S.plan,pixelQA:S.pixelQA,confirmed:S.confirmedCinemaPlan,range:S.range,rangeMode:S.rangeMode,t:S.t};
-  const sourceIdentity=J.songNativeInputIdentity(S.project,audioLike()),sourceAudio=S.audio;
-  let snapshot=null;try{if(finish)snapshot=J.selectedDraftSnapshotV16(S.project,S.plan,audioLike());}catch(error){$('directionStatus').textContent=error.message;return;}
-  const q=mergeProject(J.clonePhotoRenderPlan(S.project)),controller=new AbortController();
-  const priorFinished=q.randomWorkflowV16?.finishedProject||q.randomWorkflowV16?.previousFinishedProject||(q.randomWorkflowV16?.state==='FINISHED'||!q.randomWorkflowV16&&q.artDirection?.songNativeResolved?completedWorkflowSnapshotV16(q):null);
-  let committed=false,workingPlan=null;
-  const task=J.processing.begin(finish?'現在の案を最適化しています':'ランダム案を生成しています',finish?[['direction','選択した案の可読性と640px合成を検査しています',75],['quality','完成プレビューを観測しています',20],['save','選択案と結果を保存しています',5]]:[['direction','登録技法からランダム案を描画しています',95],['save','ドラフトを保存しています',5]],{retry:finish?optimizeSelectedDraft:generateRandomDraft,cancel:()=>controller.abort()});
-  const assertCurrent=()=>{if(controller.signal.aborted)throw new DOMException('Aborted','AbortError');if(S.audio!==sourceAudio||S.project!==q||J.songNativeInputIdentity(before.project,audioLike())!==sourceIdentity)throw Error('入力が変更されたため処理を中止しました');};
-  directionBusy=true;S.pendingDirectionCommit=true;S.project=q;pause();syncDirectionUI();
-  $('directionStatus').dataset.workflowState=finish?'OPTIMIZING':'INPUT_READY';
-  try{
-    task.enter('direction');await J.processingYield();assertCurrent();
-    const options={signal:controller.signal,onProgress:e=>task.observe(e.current,e.total,e.label),initialPlan:before.plan};
-    let result;
-    const audioFile=S.pendingAudioFile||await bgDbGet('audio').catch(()=>null);assertCurrent();
-    if(finish){
-      if(audioFile)S.workflowSaveEntriesV16=[['finished-audio-v16',audioFile]];
-      result=await J.finishSelectedDraftV16(q,before.plan,audioLike(),snapshot,options);assertCurrent();workingPlan=result.plan;
-      task.enter('quality');
-      await J.ensureFonts(q.lyrics+(q.title||'')+(q.artist||''),J.fontsOfPlan(workingPlan));assertCurrent();
-      // Observe this final render state once. No score-driven genome search.
-      const qa=await J.observeMVQuality(workingPlan,{start:0,end:Math.min(workingPlan.duration,S.audio.duration)},S.audio,{signal:controller.signal,observationCache:new Map(),onProgress:options.onProgress});assertCurrent();
-      if(!qa?.completed)throw Error('V16_FINAL_OBSERVATION_INCOMPLETE');
-      workingPlan.lastPixelQA=qa;S.pixelQA=qa;
-      S.exportCapabilities=await J.exportCapabilities(q,q.includeAudio!==false?S.audio:null).catch(()=>null);assertCurrent();
-      q.artDirection.songNativeDirection=J.clonePhotoRenderPlan(workingPlan.songNativeDirection);
-      q.randomWorkflowV16.state='FINISHED';
-      J.captureSongNativeResolved(q,audioLike(),workingPlan);
-      q.randomWorkflowV16={...q.randomWorkflowV16,draftSourceTreeSHA256:q.randomWorkflowV16.draftSourceTreeSHA256||q.randomWorkflowV16.sourceTreeSHA256,sourceTreeSHA256:window.KAMEN_BUILD_INFO?.sourceTreeSHA256??null,state:'FINISHED',changes:result.changes,finishMetrics:{...result.metrics,qaObservations:1},scaleSafety:result.scaleSafety,nativeSafety:result.nativeSafety,previousFinishedProject:priorFinished};
-      q.randomWorkflowV16.inputHash=J.songNativeInputIdentity(q,audioLike());
-      q.randomWorkflowV16.finishedProject=completedWorkflowSnapshotV16(q);
-    }else{
-      if(before.project.randomWorkflowV16?.state==='FINISHED'||!before.project.randomWorkflowV16&&priorFinished){const previousAudio=await bgDbGet('finished-audio-v16').catch(()=>null)||audioFile;if(previousAudio)S.workflowSaveEntriesV16=[['previous-finished-audio-v16',previousAudio]];}
-      const paletteStarted=performance.now(),bitmap=S.renderer.customBgBitmap;let paletteCacheHit=false;
-      if(bitmap&&q.customBg?.enabled&&q.customBg.dataUrl){
-        const immutable=typeof ImageBitmap!=='undefined'&&bitmap instanceof ImageBitmap,cached=immutable?workflowImageFingerprintsV16.get(bitmap):null;
-        const hash=cached?.source===q.customBg.dataUrl?cached.hash:J.imageFingerprint(bitmap);if(immutable)workflowImageFingerprintsV16.set(bitmap,{source:q.customBg.dataUrl,hash});
-        const ap=q.autoPalette;paletteCacheHit=!!(ap?.analyzed&&ap.sourceHash===hash&&ap.viewportKey===J.autoPaletteViewportKey(q)&&ap.stats&&ap.palette&&(!q.randomWorkflowV16||q.randomWorkflowV16.inputHash===J.songNativeInputIdentity(q,audioLike())));
-        if(!paletteCacheHit){let analyzed=J.analyzeCustomBackground(bitmap,q);if(!ap?.darknessManual&&Math.abs(q.customBg.darkness-analyzed.suggestedDarkness)>.005){q.customBg.darkness=analyzed.suggestedDarkness;analyzed=J.analyzeCustomBackground(bitmap,q);}J.applyImagePalette(q,analyzed,{palette:true,readability:true,mood:false});}
-      }
-      const paletteMs=performance.now()-paletteStarted;
-      result=await J.generateRandomDraftV16(q,audioLike(),options);result.draft.metrics.paletteMs=paletteMs;result.draft.metrics.paletteCacheHit=paletteCacheHit;assertCurrent();workingPlan=result.plan;
-      q.randomWorkflowV16.previousFinishedProject=priorFinished;S.pixelQA=null;
-    }
-    S.comparisonDraftV16=false;
-    S.plan=workingPlan;S.confirmedCinemaPlan=null;S.range=null;S.rangeMode=null;S.exportValidation=null;
-    assertCurrent();task.state.cancel=null;S.pendingDirectionCommit=false;task.enter('save');
-    if(!await flushSave())throw Error('保存できなかったため、前の状態を保持しました。空き容量を確認してください。');
-    assertCurrent();committed=true;commit();fontKey='';syncUI();renderLines();refreshPreviewPlan();sizeViewport();drawTimeline();S.t=Math.min(before.t,S.plan.duration);if(!finish&&!(J.cutAt(S.plan,S.t)?.line>=0)){const first=S.plan.cuts.find(c=>c.line>=0);if(first)S.t=first.start+Math.min(.5,first.dur*.5);}S.need=true;
-    $('directionStatus').dataset.result='true';$('directionStatus').dataset.selectionState=finish?'SELECTED':'DRAFT';$('directionStatus').dataset.workflowState=q.randomWorkflowV16.state;
-    $('directionStatus').textContent=finish?'最適化済み · 640px合成検査済み。芸術品質は未検証です。':'ランダム案 · 未最適化・書き出し前検証未完了。何度でも再生成できます。';
-    if(finish){updateStudioQuality();const n=result.changes.reduce((n,c)=>n+c.changedRoles.length,0);$('workflowChanges').textContent=`技法変更 ${n}件 · `+result.changes.filter(c=>c.changedRoles.length).map(c=>`${c.line+1}行: ${c.changedRoles.join(' / ')}（描画安全性の復旧）`).join('、');}
-    else {$('workflowChanges').textContent=`seed ${q.randomWorkflowV16.seed} · 完成認定前のプレビュー`;}
-    if(finish&&J.cinemaV3?.enabled){
-      try{const V=J.cinemaV3,range={start:0,end:Math.min(workingPlan.duration,S.audio.duration)},renderState=V.qaRenderState(q,workingPlan,range),input=await V.snapshot(q,S.audio,workingPlan,range),planHash=await V.planHash(workingPlan);if(S.project===q&&S.plan===workingPlan&&S.pixelQA?.observationBinding?.planHash===planHash)S.confirmedCinemaPlan={plan:workingPlan,inputHash:input.inputHash,analysisKey:J.canonicalJSON(audioLike()),planHash,pixelQA:S.pixelQA,pixelQAPlan:workingPlan,renderState,rangeKey:J.canonicalJSON(range)};}catch{/* Cache preparation cannot invalidate a saved, measured result. */}
-    }
-    task.complete(finish?'選んだ案の最適化と保存が完了しました':'ランダム案を表示しました');
-  }catch(error){
-    if(!committed&&S.project===q){S.project=before.project;S.plan=before.plan;S.pixelQA=before.pixelQA;S.confirmedCinemaPlan=before.confirmed;S.range=before.range;S.rangeMode=before.rangeMode;S.t=before.t;syncUI();renderLines();refreshPreviewPlan();S.need=true;}
-    const message=J.workflowErrorMessageV16(error);
-    task.fail(new Error(message,{cause:error}),controller.signal.aborted);$('directionStatus').textContent=controller.signal.aborted?'処理をキャンセルしました。前の状態を保持しています。':message;
-    $('directionStatus').dataset.selectionState='FAILED';console.error('KAMEN v16 workflow',error,{diagnostic:error.diagnostic??null});
-  }finally{S.workflowSaveEntriesV16=null;S.pendingDirectionCommit=false;directionBusy=false;syncDirectionUI();}
-}
-
-async function restorePreviousFinishedV16(){
-  if(directionBusy||S.exporting)return;
-  const previous=S.project.randomWorkflowV16?.previousFinishedProject;if(!previous)return;
-  const before={project:S.project,plan:S.plan,audio:S.audio,pending:S.pendingAudioFile};directionBusy=true;S.pendingDirectionCommit=true;syncDirectionUI();
-  try{
-    const q=mergeProject(J.clonePhotoRenderPlan(previous)),file=await bgDbGet('previous-finished-audio-v16');
-    let audio=S.audio;
-    if(J.songNativeInputIdentity(q,audio)!==q.artDirection?.songNativeResolved?.sourceIdentity){if(!file)throw Error('前の完成MVの音源が保存されていません。プロジェクトと元の音源を読み込んでください。');audio=await J.analyzeAudio(file);}
-    const p=J.plan(q,audio);if(p.songNativeRestore?.status!=='RESTORED')throw Error('前の完成MVと音源の互換性を確認できませんでした。');
-    S.project=q;S.plan=p;S.audio=audio;S.pendingAudioFile=file||before.pending;S.pendingDirectionCommit=false;
-    if(!await flushSave())throw Error('復元内容を保存できませんでした。');
-    await S.renderer.loadCustomBackground(q.customBg.dataUrl);S.comparisonDraftV16=false;syncUI();renderLines();refreshPreviewPlan();S.need=true;commit();$('directionStatus').textContent='前の完成MVを復元しました。';
-  }catch(error){S.project=before.project;S.plan=before.plan;S.audio=before.audio;S.pendingAudioFile=before.pending;$('directionStatus').textContent=error.message;}
-  finally{S.pendingDirectionCommit=false;directionBusy=false;syncDirectionUI();}
-}
-
 function updateStudioQuality(){const target=$('studioQuality');if(!target)return;target.textContent=S.exportValidation?'MP4技術検査済み · '+S.exportValidation.width+'×'+S.exportValidation.height+' · '+S.exportValidation.duration.toFixed(2)+'秒':'MP4の映像・音声は書き出し後に検査します。';if($('studioPreflight'))$('studioPreflight').textContent='演出スコアによる保存制限はありません。';}
 
 async function showHighlight() {
@@ -1240,7 +1099,6 @@ async function showHighlight() {
   if($('studioSocialHook'))$('studioSocialHook').setAttribute('aria-pressed','false');
   $('studioHighlight').textContent='曲全体に戻す';
   seek(choice.start);
-  S.pixelQA=await J.analyzeRenderedFrames(S.plan,S.range,S.audio);
   updateStudioQuality();
 }
 
@@ -1248,12 +1106,12 @@ async function showSocialHook(index=null){
   try{if(!S.highlights.length||S.rangeMode!=='socialHook'){S.highlights=J.socialHookCandidates(S.plan,S.audio);S.highlightIndex=0;}if(index!=null)S.highlightIndex=index;}catch(e){$('highlightChoice').textContent=e.message||'15秒版を選べませんでした';return;}
   S.rangeMode='socialHook';
   const selected=S.highlights[S.highlightIndex]||S.highlights[0];S.range={start:selected.start,end:selected.end};
-  const portraitProject=J.deepClone?J.deepClone(S.project):JSON.parse(JSON.stringify(S.project));portraitProject.aspect='9:16';
+  const portraitProject=JSON.parse(JSON.stringify(S.project));portraitProject.aspect='9:16';
   const portraitPlan=J.plan(portraitProject,audioLike());S.socialPlan=J.createSocialHookPlan?J.createSocialHookPlan(portraitPlan,{...selected,assetStrategy:S.project.socialAssetStrategy}):portraitPlan;
   S.project.exportSettings.range='socialHook';S.exportValidation=null;syncStudioExportControls();flushSave();
   $('highlightChoice').textContent=`縦型ショート ${J.fmtTime(selected.start)} → ${J.fmtTime(selected.end)} · ${selected.duration.toFixed(1)}秒 · ${selected.reason}`;
   $('highlightNext').hidden=S.highlights.length<2;$('studioSocialHook').setAttribute('aria-pressed','true');$('studioHighlight').setAttribute('aria-pressed','false');
-  sizeViewport();seek(selected.start);S.pixelQA=await J.analyzeRenderedFrames(viewPlan(),S.range,S.audio);updateStudioQuality();
+  sizeViewport();seek(selected.start);updateStudioQuality();
 }
 
 function mountStudio() {
@@ -1279,7 +1137,7 @@ function mountStudio() {
   });
   $('studioAspect').addEventListener('change',e=>{
     S.project.aspect=e.target.value;S.project.exportSettings.preset='custom';
-    refreshLocalPaletteMap();syncOut();syncStudioExportControls();replan();codecNote();flushSave();updateStudioQuality();
+    syncOut();syncStudioExportControls();replan();codecNote();flushSave();updateStudioQuality();
   });
   $('studioPreset').addEventListener('change',e=>{
     remember();J.applyExportPreset(S.project,e.target.value);syncOut();syncStudioAspect();syncStudioExportControls();replan();
@@ -1289,7 +1147,7 @@ function mountStudio() {
     S.project.res=+e.target.value;S.project.exportSettings.preset='custom';S.exportValidation=null;syncOut();syncStudioExportControls();flushSave();codecNote();updateExportSummary();updateStudioQuality();
   });
   $('studioFPS').addEventListener('change',e=>{
-    S.project.exportSettings.fpsMode=e.target.value==='auto'?'auto':'manual';S.project.fps=e.target.value==='auto'?J.chooseAdaptiveFPS(S.project).fps:+e.target.value;S.project.exportSettings.preset='custom';replan();syncOut();syncStudioExportControls();flushSave();codecNote();updateStudioQuality();
+    S.project.exportSettings.fpsMode='manual';S.project.fps=+e.target.value;S.project.exportSettings.preset='custom';replan();syncOut();syncStudioExportControls();flushSave();codecNote();updateStudioQuality();
   });
   $('studioQualityLevel').addEventListener('change',e=>{
     S.project.quality=e.target.value;S.project.exportSettings.preset='custom';S.project.exportSettings.videoBitrate=0;S.exportValidation=null;
@@ -1379,7 +1237,7 @@ async function codecNote() {
   S.exportCapabilities=caps;
   const sound=S.project.includeAudio===false?'音声なし':caps.aac?'AAC音声':'音声形式は書き出し後に確認';
   $('codecNote').textContent=caps.webCodecs?`H.264 / ${sound}で書き出します（${w}×${h}）。`:caps.recorder?'この端末では代替方法でMP4を書き出します。画面を表示したままお待ちください。':'この端末はMP4の書き出しに対応していません。';
-  $('btnMP4').disabled=!caps.webCodecs&&!caps.recorder; $('eMP4').disabled=!caps.webCodecs&&!caps.recorder;
+  syncDirectionUI();
   updateExportSummary();updateStudioQuality();
 }
 const EXP_BTNS = ['btnMP4', 'btnPNG', 'btnPNGA', 'eMP4'];
@@ -1390,6 +1248,7 @@ function baseName() {
 }
 async function runExport(kind) {
   if (S.exporting||exportPreflightBusy||directionBusy) return;
+  if(!S.project.generation.generated){toast('素材を確認してMVを生成してください。');return;}
   pause();
   const outcome=S.exportOutcome={fileState:'PREPARING',creativeState:'UNMEASURED'};
   const range=exportRangeForSettings();
@@ -1399,7 +1258,6 @@ async function runExport(kind) {
   const socialHook=J.resolveExportSettings(S.project).range==='socialHook';
   let outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;
   let exportPlan=socialHook&&S.socialPlan?.socialHook?.start===range.start&&S.socialPlan?.socialHook?.end===range.end?S.socialPlan:S.plan;
-  const makeOutputPlan=()=>{const target=socialHook?{...S.project,aspect:'9:16'}:S.project,p=J.plan(target,audioLike());return socialHook&&J.createSocialHookPlan?J.createSocialHookPlan(p,{...range,assetStrategy:S.project.socialAssetStrategy}):p;};
   const task=J.processing.begin(kind==='mp4'?'動画を書き出しています':'PNGを書き出しています',[
     ['prepare','書き出し前の映像・歌詞・出力設定を検査しています',8],['fonts','フォントと素材を準備しています',2],
     ['frames','フレームを生成・エンコーダーに送っています',65],['video','映像のエンコード完了を待っています',5],
@@ -1415,43 +1273,11 @@ async function runExport(kind) {
     exportPreflightBusy=true;syncDirectionUI();showMsg('書き出し前に代表フレームを検査しています…');
     try{
     S.exportValidation=null;saveHandle=await destination;if(saveHandle==='declined'){outcome.fileState='CANCELLED';task.fail(new Error('保存を中止しました'),true);return;}
-    if(J.isUpstream(S.project)){
-      if(!exportPlan.lines.length)throw Error('歌詞を読み込んでください');
-      if(!Number.isFinite(exportPlan.duration)||exportPlan.duration<=0)throw Error('動画の長さを確認してください');
-      S.exportCapabilities=await J.exportCapabilities(outputProject,S.project.includeAudio!==false?S.audio:null);
-      if(!S.exportCapabilities.webCodecs&&!S.exportCapabilities.recorder)throw Error('H.264/AAC書き出しに対応していません');
-      outcome.creativeState='NOT_APPLICABLE';
-    }else{
-    let fixes=0,report=null,retainConfirmedPlan=false;
-    const confirmed=S.confirmedCinemaPlan,V=J.cinemaV3;
-    if(!socialHook&&V?.enabled&&confirmed?.plan===exportPlan&&confirmed.pixelQA===S.pixelQA&&confirmed.pixelQA?.completed&&confirmed.pixelQAPlan===exportPlan&&confirmed.rangeKey===J.canonicalJSON(range)){const input=await V.snapshot(outputProject,S.audio,exportPlan,range);retainConfirmedPlan=!!confirmed.renderState&&confirmed.renderState===V.qaRenderState(outputProject,exportPlan,range)&&input.inputHash===confirmed.inputHash&&J.canonicalJSON(audioLike())===confirmed.analysisKey&&await V.planHash(exportPlan)===confirmed.planHash;}
-    outcome.initialConfirmedPlanReused=retainConfirmedPlan;
-    let capabilitiesKey=null;
-    const refreshCapabilities=async()=>{const key=JSON.stringify([outputProject.aspect,outputProject.res,outputProject.fps,outputProject.quality,outputProject.exportSettings,outputProject.includeAudio]);if(key===capabilitiesKey)return;S.exportCapabilities=await J.exportCapabilities(outputProject,S.project.includeAudio!==false?S.audio:null).catch(()=>({webCodecs:false,h264:false,aac:false,recorder:null}));capabilitiesKey=key;};
-    for(let pass=0;pass<3;pass++){
-      outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;
-      const pre=pass===0&&retainConfirmedPlan?{fixes:0,plan:exportPlan}:J.preflightMV(outputProject,S.audio,range,makeOutputPlan);
-      fixes+=pre.fixes;exportPlan=pre.plan;
-      if(socialHook)S.socialPlan=exportPlan;else S.plan=exportPlan;
-      if(pre.fixes){syncUI();replan();}
-      await refreshCapabilities();
-      if(!(pass===0&&retainConfirmedPlan))S.pixelQA=await J.analyzeRenderedFrames(exportPlan,range,S.audio,{onProgress:auditDetail});
-      report=J.checkMVQuality(outputProject,exportPlan,S.audio,range,S.pixelQA,S.exportCapabilities,null);
-      const repaired=J.fixMVQuality(S.project,report,S.audio);fixes+=repaired;
-      if(!repaired)break;
-      S.pixelQA=null;
-      syncUI();replan();
-      if(pass===2){outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;exportPlan=makeOutputPlan();S.pixelQA=null;}
-    }
-    await refreshCapabilities();
-    if(!S.pixelQA?.completed)S.pixelQA=await J.analyzeRenderedFrames(exportPlan,range,S.audio,{onProgress:auditDetail});
-    await J.preparePhotoExport({plan:exportPlan,project:outputProject,audio:S.audio,range,signal:ac.signal,onProgress:(_p,label)=>auditDetail({label})});S.pixelQA=exportPlan.lastPixelQA||S.pixelQA;
-    report=J.checkMVQuality(outputProject,exportPlan,S.audio,range,S.pixelQA,S.exportCapabilities,null);S.lastQuality=report;
-    if(socialHook)S.socialPlan=exportPlan;else S.plan=exportPlan;
-    updateStudioQuality(fixes);
-    outcome.creativeState=J.creativeExportState(report.quality.targetAcceptance);
-    if(!report.ready){outcome.fileState='FAILED_TECHNICAL';$('studioQuality').textContent=(report.exportErrors||report.errors).map(i=>i.message).join(' / ');task.fail(new Error($('studioQuality').textContent));return;}
-    }
+    if(!exportPlan.lines.length)throw Error('歌詞を読み込んでください');
+    if(!Number.isFinite(exportPlan.duration)||exportPlan.duration<=0)throw Error('動画の長さを確認してください');
+    S.exportCapabilities=await J.exportCapabilities(outputProject,S.project.includeAudio!==false?S.audio:null);
+    if(!S.exportCapabilities.webCodecs&&!S.exportCapabilities.recorder)throw Error('H.264/AAC書き出しに対応していません');
+    outcome.creativeState='NOT_APPLICABLE';
     }catch(error){outcome.fileState=ac.signal.aborted?'CANCELLED':'FAILED_TECHNICAL';task.fail(error,ac.signal.aborted);
       if(ac.signal.aborted){$('studioQuality').textContent='書き出し前の検査を中止しました';return;}
       $('studioQuality').textContent='書き出し前の確認に失敗しました：'+error.message;
@@ -1478,10 +1304,10 @@ async function runExport(kind) {
     task.enter('fonts');await J.processingYield();
     await J.ensureFonts(S.project.lyrics + (S.project.title || '') + (S.project.artist || '') + HUD_CHARS, J.fontsOfPlan(exportPlan));
     if (kind === 'mp4') {
-      const args={plan:exportPlan,project:outputProject,audio:S.project.includeAudio!==false?S.audio:null,range,quality:S.project.quality||'high',cinemaV3:J.cinemaV3?.enabled===true,refinementMode:S.project.exportSettings?.refinementMode==='quality'?'quality':'fast',onProgress,signal:ac.signal};
+      const args={plan:exportPlan,project:outputProject,audio:S.project.includeAudio!==false?S.audio:null,range,quality:S.project.quality||'high',onProgress,signal:ac.signal};
       const caps=S.exportCapabilities||await J.exportCapabilities(outputProject,args.audio);
       const r=await J.exportWithRetries(args,caps);
-      outcome.creativeState=J.isUpstream(S.project)?'NOT_APPLICABLE':J.creativeExportState(r.provenance?.machineRefinement?.acceptance||r.provenance?.qualityTarget);
+      outcome.creativeState='NOT_APPLICABLE';
       outcome.fileState='SAVE_AVAILABLE';
       const qualified=['TARGET_MET','NOT_APPLICABLE'].includes(outcome.creativeState);
       txt.textContent = `MP4生成完了 ${(r.blob.size / 1048576).toFixed(1)}MB・${r.codec}${r.audio ? ' + ' + r.audio.toUpperCase() : ''}・${((performance.now() - t0) / 1000).toFixed(0)}秒`;
@@ -1584,7 +1410,7 @@ function syncUI() {
 /* ---------------- wiring ---------------- */
 function bind() {
   for(const type of ['input','change','click'])$('app').addEventListener(type,()=>queueMicrotask(()=>autosave()));
-  $('lyrics').addEventListener('input', e => { S.project.lyrics = e.target.value; $('studioLrcName').textContent=e.target.value.trim()?'歌詞を入力済み':'LRC / TXTを選択'; delete $('directionStatus').dataset.result; syncDirectionUI(); replanSoon(260); });
+  $('lyrics').addEventListener('input', e => { S.project.lyrics = e.target.value; invalidateGeneratedMV(); $('studioLrcName').textContent=e.target.value.trim()?'歌詞を入力済み':'LRC / TXTを選択'; delete $('directionStatus').dataset.result; syncDirectionUI(); replanSoon(260); });
   let lrcLoad=0;
   $('lrcFile').addEventListener('change', async e => {
     const f = e.target.files && e.target.files[0]; if (!f) return;
@@ -1730,7 +1556,7 @@ function bind() {
     catch (err) {task.fail(err);showMsg(err.message||'フォントを読み込めませんでした'); setTimeout(() => showMsg(null), 2500); }
     finally { e.target.value=''; }
   });
-  ['outAspect', 'eAspect'].forEach(id => $(id).addEventListener('change', e => { S.project.aspect = e.target.value; refreshLocalPaletteMap(); syncOut(); replan(); codecNote(); }));
+  ['outAspect', 'eAspect'].forEach(id => $(id).addEventListener('change', e => { S.project.aspect = e.target.value;  syncOut(); replan(); codecNote(); }));
   ['outRes', 'eRes'].forEach(id => $(id).addEventListener('change', e => { S.project.res = +e.target.value; syncOut(); autosave(); codecNote(); }));
   ['outFps', 'eFps'].forEach(id => $(id).addEventListener('change', e => { S.project.fps = +e.target.value; syncOut(); replan(); codecNote(); }));
   $('outQuality').addEventListener('change', e => { S.project.quality = e.target.value; autosave(); });
@@ -1749,7 +1575,7 @@ function bind() {
       const raw = e.target.value;
       S.project.customBg[setting] = setting === 'fit' ? raw : setting === 'zoom' ? (+raw / 100) : setting === 'darkness' ? (+raw / 100) : +raw;
       if (setting === 'darkness' && S.project.autoPalette) S.project.autoPalette.darknessManual = true;
-      refreshLocalPaletteMap();
+
       if (S.plan) S.plan.customBg = Object.assign({}, S.project.customBg);
       syncOut(); S.need = true; autosave(); scheduleHistoryObserve();
     };
@@ -1758,7 +1584,7 @@ function bind() {
   document.querySelectorAll('[data-bg-action="reset"]').forEach(button => button.addEventListener('click', () => {
     S.project.customBg = Object.assign({}, S.project.customBg, { fit: 'cover', x: 50, y: 50, zoom: 1, darkness: 0.2, blur: 0 });
     if (S.project.autoPalette) S.project.autoPalette.darknessManual = true;
-    refreshLocalPaletteMap();
+
     if (S.plan) S.plan.customBg = Object.assign({}, S.project.customBg);
     syncOut(); S.need = true; autosave(); scheduleHistoryObserve();
   }));
@@ -1766,7 +1592,6 @@ function bind() {
     remember();
     await S.renderer.loadCustomBackground('');
     J.invalidateAutoPalette(S.project);
-    // Preserve archived multi-image assets when clearing the active background.
     S.project.customBg = Object.assign({}, S.project.customBg, { enabled: false, dataUrl: '', filename: '' });
     S.project.keyBg = 'off'; invalidateGeneratedMV(); syncOut(); replan(); commit(); flushSave();
   }));
@@ -1813,16 +1638,16 @@ function bind() {
       const project = mergeProject(rawProject);
       task.enter('fonts');await restorePortableFonts(project);task.enter('images');await J.processingYield();
       try {
-        if (project.customBg.dataUrl) { await S.renderer.loadAssetDeck?.({assetDeck:J.validateAssetDeck(project.proAssets)});
-        const image=await S.renderer.loadCustomBackground(project.customBg.dataUrl); validatePaletteSource(project, image); }
+        if (project.customBg.dataUrl) {
+        const image=await S.renderer.loadCustomBackground(project.customBg.dataUrl); }
         else { await S.renderer.loadCustomBackground(''); J.invalidateAutoPalette(project); }
       } catch (err) {throw new Error('背景画像を復元できませんでした。別のバックアップを選んでください。');}
-      S.audioLoad++;S.audioLoading=false;S.audioPendingName='';S.audioNotice='';project.audioAsset=null;
-      S.generationNotice=null;localRecoveryBlocked=false; // A successful explicit import replaces the local project; retained media are not deleted.
-      task.enter('restore');rememberWorkspace(crypto.randomUUID());S.workspaceForkOrigin=null;S.persistenceRevision=0;S.project = project; S.audio = null;S.currentAudioFile=null;S.pendingAudioFile=null; $('audioName').textContent = '曲なし（曲を読み込むと拍を検出します）';
+      S.audioLoad++;S.audioLoading=false;S.audioPendingName='';S.expectedAudioAsset=project.audioAsset;S.audioNotice=project.audioAsset?'音源「'+project.audioAsset.name+'」を選び直してください。':'';
+      S.generationNotice=project.sourceImport?.requiresGeneration?'旧作品の素材を別の作業に取り込みました。音源を選び直し、MVを再生成してください。':null;project.audioAsset=null;localRecoveryBlocked=false; // A successful explicit import replaces the local project; retained media are not deleted.
+      task.enter('restore');rememberWorkspace(crypto.randomUUID());S.workspaceForkOrigin=null;S.persistenceRevision=0;S.project = project; S.audio = null;S.currentAudioFile=null;S.pendingAudioFile=null;S.localAudioSnapshot=null; $('audioName').textContent = '曲なし（曲を読み込むと拍を検出します）';
       delete $('directionStatus').dataset.result; resetHistory(); syncUI(); replan();await flushSave();task.enter('preview');syncStudioResultVisibility();S.need=true;task.complete('プロジェクトを読み込みました。音源は別途選択してください');
     }
-    catch(err){task.fail(err);console.error('JIZURA project import failed',err);toast('プロジェクトを開けません。JSON形式と画像・フォントを確認し、別のバックアップで再試行してください。');await S.renderer.loadAssetDeck?.(S.plan).catch(()=>{});if(S.project.customBg?.dataUrl)await S.renderer.loadCustomBackground(S.project.customBg.dataUrl).catch(()=>{});}
+    catch(err){task.fail(err);console.error('JIZURA project import failed',err);toast('プロジェクトを開けません。JSON形式と画像・フォントを確認し、別のバックアップで再試行してください。');if(S.project.customBg?.dataUrl)await S.renderer.loadCustomBackground(S.project.customBg.dataUrl).catch(()=>{});}
     finally{projectLoadBusy=false;S.projectLoading=false;e.target.disabled=false;e.target.value='';showMsg(null);syncDirectionUI();}
   });
   document.addEventListener('keydown', e => {
@@ -1853,7 +1678,7 @@ function audioSummary(audio) {
   return `${audio.name}（${J.fmtTime(audio.duration)}・${tempo}）`;
 }
 
-/* song file -> beat analysis (file input, or a host such as the After Effects panel) */
+/* Audio file decoding and beat analysis for the browser editor. */
 async function loadAudioFile(f) {
   const project=S.project,request=++S.audioLoad;
   const cancel=new AbortController();
@@ -1867,7 +1692,7 @@ async function loadAudioFile(f) {
     const analyzed=await J.analyzeAudio(f,{onProgress:J.audioProgressEvent(task),onStage:message=>{if(project===S.project&&request===S.audioLoad){$('audioName').textContent=message+' · '+(f.name||'音源');$('studioAudioName').textContent=message;}},signal:{get aborted(){return cancel.signal.aborted||project!==S.project||request!==S.audioLoad;}}});
     if(project!==S.project||request!==S.audioLoad){task.fail(new Error('音源解析を中止しました'),true);return false;}
     S.audio=analyzed;S.currentAudioFile=f;
-    invalidateGeneratedMV();resetHistory();
+    if(!J.audioAssetMatches(S.project.audioAsset||S.expectedAudioAsset,f))invalidateGeneratedMV();S.expectedAudioAsset=null;resetHistory();
     $('audioName').textContent = audioSummary(S.audio);
     S.project.timing.snap = true;
     delete $('directionStatus').dataset.result; syncUI(); replan();
@@ -1901,7 +1726,7 @@ async function restoreAudioFile(){
 }
 
 let visualBusy=false;
-function invalidateVisualDirection(){const automatic=S.project.autoDirection;invalidateGeneratedMV();S.project.autoDirection=automatic;S.pixelQA=null;S.exportValidation=null;}
+function invalidateVisualDirection(){invalidateGeneratedMV();S.pixelQA=null;S.exportValidation=null;}
 async function importVisualAssets(files){
  if(visualBusy||S.projectLoading||S.exporting||exportPreflightBusy||directionBusy||!files.length)return;
  const file=files[0];if(files.length>1)toast('背景は1枚です。先頭の画像を使用します');
@@ -1913,13 +1738,11 @@ async function importVisualAssets(files){
   const dataUrl=await prepareBackgroundFile(file);task.update(1,1,file.name);
   task.enter('preview');await J.processingYield();await S.renderer.loadCustomBackground(dataUrl);
   remember();S.project.customBg={...S.project.customBg,enabled:true,dataUrl,filename:file.name};
-  // Legacy visualAssets/proAssets are retained in backups and IndexedDB, but never selected for rendering.
-  S.project.keyBg='off';J.invalidateAutoPalette(S.project);invalidateVisualDirection();syncUI();replan();await S.renderer.loadAssetDeck(S.plan);commit();
+  S.project.keyBg='off';J.invalidateAutoPalette(S.project);invalidateVisualDirection();syncUI();replan();commit();
   task.enter('save');if(!await flushSave())throw Error('画像は読み込みましたが、保存完了を確認できませんでした。プロジェクト保存でバックアップしてください');
   restartPreview();task.complete('背景画像を読み込みました');
  }catch(e){task.fail(e);toast(e.message);}finally{visualBusy=false;showMsg(null);syncDirectionUI();}
 }
-function refreshVisualAssetsUI(){} // Legacy call sites remain harmless during project restoration.
 function mountVisualAssets(){
  document.querySelectorAll('[data-bg-file]').forEach(input=>{input.multiple=false;});
  const drop=document.querySelector('#studioImageSlot')?.closest('label');if(drop){drop.ondragover=e=>{e.preventDefault();drop.classList.add('drag-over');};drop.ondragleave=()=>drop.classList.remove('drag-over');drop.ondrop=async e=>{e.preventDefault();drop.classList.remove('drag-over');await importVisualAssets(Array.from(e.dataTransfer.files));};}
@@ -1934,10 +1757,10 @@ async function boot() {
   task.enter('project');S.project = await loadLocal();task.enter('images');
   S.directionStats=S.project.autoPalette?.stats||null;
   if (S.project.customBg.dataUrl) {
-    try { const image = await S.renderer.loadCustomBackground(S.project.customBg.dataUrl); validatePaletteSource(S.project, image); }
+    try { const image = await S.renderer.loadCustomBackground(S.project.customBg.dataUrl); }
     catch(e){localRecoveryBlocked=true;console.error('JIZURA background decode failed',e);}
   } else if (S.project.autoPalette.analyzed) J.invalidateAutoPalette(S.project);
-  bind(); syncUI(); replan();mountStudio();mountUpstreamControls();mountCreditWorkbench();mountVisualAssets();await S.renderer.loadAssetDeck?.(S.plan);
+  bind(); syncUI(); replan();mountStudio();mountUpstreamControls();mountCreditWorkbench();mountVisualAssets();
   task.enter('preview');await J.processingYield();
   let savedMode='easy';try{const value=localStorage.getItem('jizura.mode');if(value==='easy'||value==='pro')savedMode=value;}catch(e){}
   setMode(savedMode); resetHistory();clearTimeout(saveTimer);observedProject=projectFingerprint();S.unsaved=!!S.persistenceError;
@@ -1972,7 +1795,7 @@ function mountCreditWorkbench(){
  const details=document.createElement('div');details.id='editorDetails';details.hidden=S.mode!=='pro';const back=document.createElement('button');back.type='button';back.textContent='プレビューへ';back.className='ghost small';back.onclick=()=>{$('viewport').scrollIntoView({block:'start',behavior:'smooth'});$('btnPlay').focus({preventScroll:true});};details.append(back,document.querySelector('.col-left'),document.querySelector('.col-right'));setup.append(details);
  const narrow=matchMedia('(max-width:1099px)'),placeDetails=()=>{if(narrow.matches)bench.append(details);else setup.append(details);};narrow.addEventListener('change',placeDetails);placeDetails();
  const hint=document.createElement('p');hint.id='previewHint';hint.className='preview-hint';hint.textContent='素材を読み込むと、ここにMVを表示します';$('viewport').append(hint);hint.hidden=!!S.plan.lines.length||!!S.renderer.customBgBitmap;
- const dock=document.createElement('section');dock.id='exportStatusDock';dock.setAttribute('aria-label','処理状況と保存ファイル');document.querySelector('.col-stage').append(dock);dock.append($('processingPanel'));if($('kamenDownloads'))dock.append($('kamenDownloads'));
+ const dock=document.createElement('section');dock.id='exportStatusDock';dock.setAttribute('aria-label','処理状況と保存ファイル');document.querySelector('.col-stage').append(dock);dock.append($('processingPanel'),$('exportDiagnostics'));if($('kamenDownloads'))dock.append($('kamenDownloads'));
  const context=document.createElement('div');context.className='workspace-strip';$('localSaveStatus').before(context);context.append($('localSaveStatus'),document.querySelector('.workspace-picker'));
  for(const [id,key]of [['creditMode','mode'],['creditPosition','position'],['creditSize','size']])$(id).addEventListener('change',e=>{remember();S.project.credits={...J.normalizeCredits(S.project.credits),[key]:e.target.value};replan();syncCreditControls();commit();});
  syncCreditControls();
@@ -1985,11 +1808,11 @@ upstreamControls.querySelector('select').value=S.project.themeId||'';
 upstreamControls.querySelector('select').onchange=e=>{S.project.themeId=e.target.value||null;autosave();};
 for(const [key,name] of [['typo','文字PV'],['kinetic','キネティック'],['horror','ホラー'],['unify','統一感'],['typeset','文字整列'],['centerFree','中央を空ける']]){const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.dataset.upstreamKey=key;input.checked=!!S.project[key];input.onchange=()=>{S.project[key]=input.checked;replan();};label.append(input,document.createTextNode(name));upstreamControls.appendChild(label);}
 for(const [key,name] of [['hideNo','飾りの数字を消す'],['hideTime','飾りの時刻を消す']]){const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.dataset.upstreamKey=key;input.dataset.upstreamFx='1';input.checked=!!S.project.fx[key];input.onchange=()=>{S.project.fx[key]=input.checked;replan();};label.append(input,document.createTextNode(name));upstreamControls.appendChild(label);}
-const diagnostics=document.createElement('button');diagnostics.type='button';diagnostics.className='ghost small';diagnostics.textContent='書き出しエラーの詳細を保存';diagnostics.onclick=()=>{if(S.lastExportError)J.saveFile('kamen-export-error.json',JSON.stringify(S.lastExportError,null,2));else toast('記録された書き出しエラーはありません');};upstreamControls.appendChild(diagnostics);
+const diagnostics=document.createElement('button');diagnostics.type='button';diagnostics.className='ghost small export-diagnostics';diagnostics.id='exportDiagnostics';diagnostics.hidden=true;diagnostics.textContent='書き出しエラーの詳細を保存';diagnostics.onclick=()=>{if(S.lastExportError)J.saveFile('kamen-export-error.json',JSON.stringify(S.lastExportError,null,2));else toast('記録された書き出しエラーはありません');};upstreamControls.appendChild(diagnostics);
 $('btnAutoDirection').parentElement.appendChild(upstreamControls);
 }
-// hooks for hosts that embed the app (the After Effects CEP panel)
+// Preserve unsaved edits when leaving the browser editor.
 window.addEventListener('beforeunload',event=>{if(S.unsaved){event.preventDefault();event.returnValue='';}});
 if($('localSaveStatus')){$('localSaveStatus').title='クリックして再保存';$('localSaveStatus').tabIndex=0;$('localSaveStatus').setAttribute('role','button');$('localSaveStatus').addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();flushSave();}});$('localSaveStatus').addEventListener('click',()=>flushSave());}
-J.uiApi = { runRandomWorkflowV16,mergeProject, portableProjectJSON, loadLocal, toast, startTap, tapNow, undoTap, stopTap, exportLRC, replan, syncUI, pause, seek, flushSave, loadAudioFile, restartPreview, generateRandomDraft, optimizeSelectedDraft, workflowStateV16 };
+J.uiApi = { mergeProject, portableProjectJSON, loadLocal, toast, startTap, tapNow, undoTap, stopTap, exportLRC, replan, syncUI, pause, seek, flushSave, loadAudioFile, restartPreview, generateRandomDraft, generationState };
 })();

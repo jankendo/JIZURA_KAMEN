@@ -1,3 +1,5 @@
+> Historical release snapshot. Legacy engine behavior and commands below are superseded by [KAMEN 2.4](../README.en.md), [storage](STORAGE.md) and [validation](VALIDATION.md). Recorded QA is historical evidence only.
+
 # KAMEN 2.2.0 — generation persistence and UI repair
 
 Historical v2.2 release record. Current credits and layout: [v2.3](CREDITS_2_3_0.md).

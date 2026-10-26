@@ -54,3 +54,34 @@ J.highlightCandidates=(plan,audio,maxSeconds=60)=>{
   return picks;
 };
 })();
+
+(()=>{const C=(x,a=0,b=1)=>J.clamp(x,a,b),avg=xs=>xs.length?xs.reduce((a,b)=>a+b,0)/xs.length:0,norm=s=>String(s||'').replace(/[\s\p{P}\p{S}]/gu,'').toLowerCase();
+J.socialHookCandidates=(plan,audio,minSeconds=12,maxSeconds=15)=>{
+ if(!audio?.duration||!plan?.lines?.length||!plan.hasTimedLyrics)throw new Error('15秒版には時刻付きLRCと音源が必要です');
+ minSeconds=C(minSeconds,12,15);maxSeconds=C(maxSeconds,minSeconds,15);
+ const duration=Math.min(audio.duration,plan.duration||audio.duration),lines=plan.lines.filter(l=>Number.isFinite(l.start)&&l.start>=0&&l.start<duration-.1);
+ if(!lines.length)throw new Error('LRCの時刻を読み取れません');
+ const bounds=[...new Set([...lines.map(l=>+l.start.toFixed(3)),+duration.toFixed(3)])].sort((a,b)=>a-b),timeline=audio.features?.timeline||[],beats=audio.beats||plan.beats||[];
+ const sample=(from,to)=>timeline.filter(v=>v.time>=from&&v.time<to),meanKey=(items,key)=>avg(items.map(v=>C(v[key]||0)));
+ const normalized=lines.map(l=>norm(l.text)),freq=new Map();normalized.forEach(s=>freq.set(s,(freq.get(s)||0)+1));
+ const candidates=[];
+ for(const start of bounds.slice(0,-1)){
+  if(start+minSeconds>duration)continue;
+  const ends=bounds.filter(e=>e-start>=minSeconds-.02&&e-start<=maxSeconds+.05);
+  for(const end of ends){
+   const selected=lines.filter(l=>l.start>=start-.01&&l.start<end-.01);if(selected.length<3)continue;
+   const all=sample(start,end),first=sample(start,Math.min(end,start+3)),before=sample(Math.max(0,start-6),start);
+   const energy=meanKey(all,'energy'),early=meanKey(first,'energy'),density=meanKey(all,'density'),rise=C((early-meanKey(before,'energy'))*1.5+.45);
+   const repeats=avg(selected.map(l=>C(((freq.get(norm(l.text))||1)-1)/2))),memorable=avg(selected.map(l=>C(1-[...l.text].length/24)));
+   const chant=selected.filter(l=>/ガンバ|アレー|フォルツァ|アレ/u.test(l.text)).length/selected.length;
+   const beat=beats.length?Math.min(...beats.map(b=>Math.abs(b-start))):.2;
+   const firstStrong=C(early*.7+density*.3),score=.29*energy+.19*firstStrong+.12*rise+.14*repeats+.10*memorable+.11*chant+.05*(1-C(beat/.25))-.025*Math.abs((end-start)-13.5);
+   candidates.push({start:+start.toFixed(2),end:+end.toFixed(2),duration:+(end-start).toFixed(2),score:+score.toFixed(4),reason:'冒頭3秒の強さ・チャントの反復・LRC区切り',complete:true,first3Energy:+early.toFixed(3)});
+  }
+ }
+ candidates.sort((a,b)=>b.score-a.score||a.start-b.start);
+ const picks=[];for(const c of candidates){if(picks.every(p=>Math.abs(p.start-c.start)>=10)){picks.push(c);if(picks.length===3)break;}}
+ if(!picks.length)throw new Error('12〜15秒に収まる自然なLRC区間がありません');
+ return picks;
+};
+})();

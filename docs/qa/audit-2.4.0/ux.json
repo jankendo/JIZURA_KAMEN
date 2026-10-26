@@ -1,0 +1,190 @@
+{
+  "version": "2.4.0",
+  "checks": [
+    {
+      "name": "empty editor disables every MP4 path and hides irrelevant diagnostics"
+    },
+    {
+      "name": "quantized motion does not postpone the first lyric frame"
+    },
+    {
+      "name": "five widths: normal/detail/error/processing layouts, 44px controls, cancellation and retry",
+      "layouts": [
+        {
+          "width": 375,
+          "advanced": false,
+          "state": "normal"
+        },
+        {
+          "width": 375,
+          "advanced": true,
+          "state": "normal"
+        },
+        {
+          "width": 375,
+          "state": "processing/error"
+        },
+        {
+          "width": 768,
+          "advanced": false,
+          "state": "normal"
+        },
+        {
+          "width": 768,
+          "advanced": true,
+          "state": "normal"
+        },
+        {
+          "width": 768,
+          "state": "processing/error"
+        },
+        {
+          "width": 1024,
+          "advanced": false,
+          "state": "normal"
+        },
+        {
+          "width": 1024,
+          "advanced": true,
+          "state": "normal"
+        },
+        {
+          "width": 1024,
+          "state": "processing/error"
+        },
+        {
+          "width": 1100,
+          "advanced": false,
+          "state": "normal"
+        },
+        {
+          "width": 1100,
+          "advanced": true,
+          "state": "normal"
+        },
+        {
+          "width": 1100,
+          "state": "processing/error"
+        },
+        {
+          "width": 1440,
+          "advanced": false,
+          "state": "normal"
+        },
+        {
+          "width": 1440,
+          "advanced": true,
+          "state": "normal"
+        },
+        {
+          "width": 1440,
+          "state": "processing/error"
+        }
+      ]
+    },
+    {
+      "name": "help dialog supports Escape and restores keyboard focus"
+    },
+    {
+      "name": "legacy format-3 work forks, restores image/audio/timing, excludes old decisions and explains missing fonts"
+    },
+    {
+      "name": "explicit regeneration enables output in the new work"
+    },
+    {
+      "name": "metadata edits retain generation and discard a stale share file"
+    },
+    {
+      "name": "direct lyric editing invalidates MP4 readiness"
+    },
+    {
+      "name": "replacing lyrics invalidates every MP4 action until regeneration"
+    },
+    {
+      "name": "invalid lyric import retains current lyrics and presents recovery"
+    }
+  ],
+  "errors": [],
+  "layouts": [
+    {
+      "width": 375,
+      "advanced": false,
+      "state": "normal"
+    },
+    {
+      "width": 375,
+      "advanced": true,
+      "state": "normal"
+    },
+    {
+      "width": 375,
+      "state": "processing/error"
+    },
+    {
+      "width": 768,
+      "advanced": false,
+      "state": "normal"
+    },
+    {
+      "width": 768,
+      "advanced": true,
+      "state": "normal"
+    },
+    {
+      "width": 768,
+      "state": "processing/error"
+    },
+    {
+      "width": 1024,
+      "advanced": false,
+      "state": "normal"
+    },
+    {
+      "width": 1024,
+      "advanced": true,
+      "state": "normal"
+    },
+    {
+      "width": 1024,
+      "state": "processing/error"
+    },
+    {
+      "width": 1100,
+      "advanced": false,
+      "state": "normal"
+    },
+    {
+      "width": 1100,
+      "advanced": true,
+      "state": "normal"
+    },
+    {
+      "width": 1100,
+      "state": "processing/error"
+    },
+    {
+      "width": 1440,
+      "advanced": false,
+      "state": "normal"
+    },
+    {
+      "width": 1440,
+      "advanced": true,
+      "state": "normal"
+    },
+    {
+      "width": 1440,
+      "state": "processing/error"
+    }
+  ],
+  "build": {
+    "sourceCommit": "0fed687c1250275585da0a9964a4e365ac2df6f4",
+    "sourceDirty": true,
+    "sourceTreeSHA256": "cc34cb84ca157043a34297108e72648ecd284b530077808f6617997bbfa30687",
+    "upstreamCommit": "fc16bfe43ea4a6c25a21f1caf04d17326de14f00",
+    "upstreamSHA256": "89cfc4a8a37b4babb04d71e300ea9b29b07ea37aac080723e6a428dff94406f4",
+    "mediaSHA256": "512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"
+  },
+  "browser": "151.0.7922.173",
+  "status": "PASS"
+}

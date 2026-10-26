@@ -53,35 +53,11 @@ J.snapTimelineLineTime = (index,time,lines,beats,duration,beatSnap=true,grid=.1)
   return +J.clamp(next,min,Math.max(min,max)).toFixed(2);
 };
 
-// Acknowledgement follows transaction completion, and a failed write is retryable.
-// This queue does not change database names, keys, formats or schema versions.
-J.createAssetSaveQueue = writeMany => {
-  const saved = new Map();
-  let tail = Promise.resolve(), pending = 0;
-  const persist = entries => {
-    const snapshot = entries.map(([key,value]) => [key,value]);
-    pending++;
-    const result = tail.catch(() => {}).then(async () => {
-      const changes = snapshot.filter(([key,value]) => !saved.has(key) || saved.get(key) !== value);
-      if (changes.length) {
-        await writeMany(changes);
-        for (const [key,value] of changes) saved.set(key,value);
-      }
-      const retained = new Set(snapshot.map(([key]) => key));
-      for (const key of saved.keys()) if (!retained.has(key)) saved.delete(key);
-    }).finally(() => { pending--; });
-    tail = result;
-    return result;
-  };
-  persist.isDurable = entries => pending === 0 && entries.every(([key,value]) => saved.has(key) && saved.get(key) === value);
-  return persist;
-};
-J.historyFields = ['style','mood','seed','fx','enabled','fonts','colors','overrides','autoPalette','autoDirection','artDirection','directorPlan','lyrics','timing','customBg','keyBg','title','artist','titleDisplay','proAssets','visualAssets','scenePins','socialAssetStrategy','aspect','res','fps','quality','includeAudio','practice','userFonts','extra','wa','visualEnergyDensity','hookStrength','exportSettings'];
+J.historyFields = ['style','mood','seed','fx','enabled','fonts','colors','overrides','autoPalette','autoDirection','lyrics','timing','customBg','keyBg','title','artist','titleDisplay','aspect','res','fps','quality','includeAudio','practice','userFonts','extra','wa','exportSettings'];
 J.historySnapshot = (project,intern) => {
   const value={};
   for (const key of J.historyFields) {
     let v=project[key]??null;
-    if ((key==='visualAssets'||key==='proAssets')&&v) v=v.map(a=>({...a,dataUrl:'',__historyAsset:intern(a.dataUrl||'')}));
     if (key==='customBg'&&v) {v={...v,__historyAsset:intern(v.dataUrl||'')};delete v.dataUrl;}
     if (key==='autoPalette'&&v) v={...v,localMap:null};
     value[key]=v;
@@ -90,30 +66,13 @@ J.historySnapshot = (project,intern) => {
 };
 J.restoreHistory = (snapshot,resolve) => {
   const state=JSON.parse(snapshot);
-  for (const key of ['visualAssets','proAssets']) if(state[key]) state[key]=state[key].map(a=>{const ref=a.__historyAsset;delete a.__historyAsset;return {...a,dataUrl:ref?resolve(ref):''};});
   if(state.customBg){const ref=state.customBg.__historyAsset;delete state.customBg.__historyAsset;state.customBg.dataUrl=ref?resolve(ref):'';}
   return state;
 };
 J.pruneHistoryAssets = (snapshots,assets,refs) => {
   const used = new Set();
-  for(const snapshot of snapshots){const state=JSON.parse(snapshot);if(state.customBg?.__historyAsset)used.add(state.customBg.__historyAsset);for(const key of ['visualAssets','proAssets'])for(const a of state[key]||[])if(a.__historyAsset)used.add(a.__historyAsset);}
+  for(const snapshot of snapshots){const state=JSON.parse(snapshot);if(state.customBg?.__historyAsset)used.add(state.customBg.__historyAsset);}
   for(const [ref,url] of assets)if(!used.has(ref)){assets.delete(ref);refs.delete(url);}
-};
-J.waitMediaEvent = (media,event,{timeout=15000,signal}={}) => new Promise((resolve,reject)=>{
-  let timer;
-  const cleanup=()=>{clearTimeout(timer);media.removeEventListener(event,done);media.removeEventListener('error',fail);signal?.removeEventListener('abort',abort);};
-  const done=()=>{cleanup();resolve();};
-  const fail=()=>{cleanup();reject(new Error('動画を読み込めませんでした。素材またはブラウザの対応形式を確認してください。'));};
-  const abort=()=>{cleanup();reject(Object.assign(new Error('キャンセルしました'),{name:'AbortError'}));};
-  if(signal?.aborted){abort();return;}
-  media.addEventListener(event,done);media.addEventListener('error',fail);signal?.addEventListener('abort',abort);
-  timer=setTimeout(()=>{cleanup();reject(new Error('動画の応答がありません。素材を確認して再試行してください。'));},timeout);
-});
-// Equivalent RGB test without materialising and filtering the entire RGBA buffer.
-J.nonBlackRGBFraction = pixels => {
-  let count=0;
-  for(let i=0;i<pixels.length;i+=4){if(pixels[i]>8)count++;if(pixels[i+1]>8)count++;if(pixels[i+2]>8)count++;}
-  return pixels.length?count/(pixels.length/4*3):0;
 };
 J.createControlLock = () => {
   const states=new Map();

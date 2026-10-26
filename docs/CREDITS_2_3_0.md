@@ -1,3 +1,5 @@
+> Historical release snapshot. Legacy engine behavior and commands below are superseded by [KAMEN 2.4](../README.en.md), [storage](STORAGE.md) and [validation](VALIDATION.md). Recorded QA is historical evidence only.
+
 # KAMEN 2.3.0 — shared credits and editor layout
 
 ## Behavior

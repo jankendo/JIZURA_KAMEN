@@ -23,7 +23,9 @@ const upstreamParts=await Promise.all(upstreamNames.map(async name=>{
  if(name==='src/09_render.js'){
   const anchor='ctx.fillStyle = sc.bg; ctx.fillRect(0, 0, W, H);';
   if(!source.includes(anchor))throw Error('Upstream renderer background hook moved');
-  return source.replace(anchor,anchor+' J.drawCustomBackground?.(this,ctx,plan,t,tq,Math.floor(tq/clock+1e-6),sc,scale,allowFilter);');
+  const clockAnchor='const tq = Math.floor(t / stepDur + 1e-6) * stepDur;';
+  if(!source.includes(clockAnchor))throw Error('Upstream lyric clock hook moved');
+  return source.replace(anchor,anchor+' J.drawCustomBackground?.(this,ctx,plan,t,tq,Math.floor(tq/clock+1e-6),sc,scale,allowFilter);').replace(clockAnchor,'const quantized = Math.floor(t / stepDur + 1e-6) * stepDur, activeCut = J.cutAt(plan,t); const tq = activeCut?.line >= 0 && quantized < activeCut.start ? activeCut.start : quantized;');
  }
  return name==='src/01_util.js'?source.replace('const J = (window.J = window.J || {});','const J = {};'):source;
 }));
