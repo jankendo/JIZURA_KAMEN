@@ -609,6 +609,20 @@ button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visi
 @media(prefers-reduced-motion:reduce){#app *,#app *::before,#app *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 #app label:has(>input[type=checkbox]){min-height:44px;align-items:center}
 
+/* Audio-first range selection shares the editor's waveform and transport. */
+.export-range-card{margin:16px 0;padding:20px;border:1px solid #3e4149;border-radius:12px;background:#191c22;min-width:0}
+.range-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.range-heading h2{font-size:19px;margin:5px 0 0}.range-heading>label{display:grid;gap:6px;font-size:13px;min-width:180px}.range-heading select{width:100%;max-width:100%}
+.range-wave{margin-top:16px;padding-inline:22px}.timeline-surface{position:relative;min-width:0}
+#app #exportRangeCard #timeline{display:block!important;width:100%;height:144px;box-sizing:border-box;margin:12px 0;border-color:#424752;background:#101318}
+#app #exportRangeCard .timeline-toolbar{display:flex!important;justify-content:space-between;gap:8px;margin-inline:-22px}.range-lyric-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;margin-top:12px}#app:not(.studio-advanced) .range-lyric-tools{display:none}
+#app .range-handle{position:absolute;width:44px;min-width:44px;height:44px;padding:0;transform:translateX(-50%);border:2px solid #e9c78c;border-radius:8px;background:#e9c78c;color:#17191d;font-size:14px;font-weight:700;cursor:ew-resize;touch-action:none;z-index:2;box-shadow:0 2px 8px #0008}#app .range-handle-start{top:34px}#app .range-handle-end{bottom:14px}#app .range-handle[data-outside=true]{opacity:.6}#app .range-handle:focus-visible{outline-color:#fff}
+.range-manual{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.range-endpoint{display:grid;grid-template-columns:1fr;gap:8px;min-width:0}.range-endpoint>label{font-size:14px;font-weight:600}.range-endpoint input{width:100%;min-width:0;box-sizing:border-box;font-variant-numeric:tabular-nums;background:#101318!important}.range-endpoint input[aria-invalid=true]{border-color:#edaaa4}.range-nudges{display:flex;gap:8px}.range-nudges button{flex:1;min-width:0}
+.range-summary{font-size:14px;font-weight:600;color:#e9c78c;line-height:1.7;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.range-error{color:#ffd0ce;font-size:14px;line-height:1.6;margin-bottom:6px}.range-audition{display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px}.range-audition>button{border-color:#b89e6c!important;color:#f5ddb1!important}.range-audition>label{display:flex;align-items:center;gap:8px;font-size:13px}.range-audition .muted{font-size:12px}.range-instruction{margin:12px 0 0;line-height:1.7}
+#rangeContent[hidden],#rangeManual[hidden],#rangeError[hidden],#rangeEmpty[hidden],#app .range-handle[hidden]{display:none!important}
+@media(max-width:600px){.export-range-card{padding:16px}.range-heading{gap:12px}.range-heading>label{width:100%;min-width:0}.range-manual{grid-template-columns:1fr;gap:16px}.range-endpoint{grid-template-columns:1fr 1fr}.range-endpoint>label,.range-endpoint>input{grid-column:1/-1}.range-endpoint>button{min-width:0;font-size:12px}.range-nudges{gap:4px}.range-nudges button{font-size:12px;padding-inline:4px}.range-audition>button{width:100%}.range-audition>label{flex:1}.range-wave .timeline-tools{gap:4px}.range-wave .timeline-tools button{font-size:12px;padding-inline:8px}.range-wave .timeline-title{display:none}}
+#app.audio-only #studioSocialFrame{display:none}
+@media(min-width:1300px){#rangeContent{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:20px;align-items:start}#rangeContent .range-wave{grid-column:1}#rangeContent .range-manual{grid-column:2;gap:12px}#rangeContent:has(#rangeManual[hidden]) .range-wave{grid-column:1/-1}#rangeContent>.range-error,#rangeContent>.range-summary,#rangeContent>.range-audition,#rangeContent>.range-instruction,#rangeContent>.range-lyric-tools{grid-column:1/-1}.range-endpoint>button{font-size:12px;padding-inline:6px}}
+
 </style>
 </head>
 <body>
@@ -721,14 +735,27 @@ button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visi
         <button id="btnShuffle" class="accent" title="設定はそのままで構成だけ再抽選（ロックした行は維持）">シャッフル</button>
         <button id="btnOmakase" class="primary" title="スタイル・雰囲気・演出・配色をまるごとランダムに（キー R）">おまかせ</button>
       </div>
-      <div class="timeline-toolbar" role="group" aria-label="波形タイムライン">
-        <span class="timeline-title">波形・歌詞タイミング</span>
-        <span id="timelineStatus" class="muted" aria-live="polite">波形上部の歌詞マーカーをドラッグして調整</span>
-        <span class="timeline-tools"><button id="timelineZoomOut" type="button" aria-label="タイムラインを縮小">−</button><button id="timelineFit" type="button">全体</button><button id="timelineZoomIn" type="button" aria-label="タイムラインを拡大">＋</button><button type="button" data-line-nudge="-0.1" aria-label="選択した歌詞を0.1秒早く">選択 −0.1</button><button type="button" data-line-nudge="0.1" aria-label="選択した歌詞を0.1秒遅く">選択 ＋0.1</button></span>
-      </div>
-      <canvas id="timeline" aria-label="タイムライン。クリックで移動、上部の歌詞マーカーをドラッグして開始時刻を変更"></canvas>
+      <section id="exportRangeCard" class="export-range-card" aria-labelledby="exportRangeHeading">
+        <div class="range-heading"><div><span class="studio-kicker">LISTEN & SELECT</span><h2 id="exportRangeHeading">書き出す範囲</h2></div><label>範囲の選び方<select id="studioExportRange"><option value="full">曲全体</option><option value="custom">秒数で指定</option><option value="socialHook">縦型ショート 12〜15秒</option><option value="highlight">SNS 60秒版</option></select></label></div>
+        <p id="rangeEmpty" class="note">音源を読み込むと、聞きながら範囲を指定できます。MV生成前でも利用できます。</p>
+        <div id="rangeContent" hidden>
+          <div class="range-wave">
+            <div class="timeline-toolbar" role="group" aria-label="波形の表示範囲"><span class="timeline-title">波形で探す</span><span class="timeline-tools"><button id="timelineZoomOut" type="button" aria-label="タイムラインを縮小">−</button><button id="timelineFit" type="button">全体</button><button id="timelineZoomIn" type="button" aria-label="タイムラインを拡大">＋</button><button id="rangeFit" type="button">選択範囲を拡大</button></span></div>
+            <div class="timeline-surface"><canvas id="timeline" aria-label="波形。クリックして再生位置を移動。詳細表示では上段の歌詞マーカーをドラッグして時刻を調整"></canvas><button id="rangeHandleStart" class="range-handle range-handle-start" type="button" role="slider" aria-label="書き出し開始秒" aria-orientation="horizontal">始</button><button id="rangeHandleEnd" class="range-handle range-handle-end" type="button" role="slider" aria-label="書き出し終了秒" aria-orientation="horizontal">終</button></div>
+          </div>
+          <div id="rangeManual" class="range-manual" hidden>
+            <div class="range-endpoint"><label for="rangeStart">開始（秒）</label><input id="rangeStart" type="number" min="0" step="0.01" inputmode="decimal" aria-describedby="rangeError"><button id="rangeStartHere" type="button">現在位置を開始に</button><div class="range-nudges"><button type="button" data-range-edge="start" data-range-delta="-0.1" aria-label="開始を0.1秒早く">−0.1秒</button><button type="button" data-range-edge="start" data-range-delta="0.1" aria-label="開始を0.1秒遅く">＋0.1秒</button></div></div>
+            <div class="range-endpoint"><label for="rangeEnd">終了（秒）</label><input id="rangeEnd" type="number" min="0" step="0.01" inputmode="decimal" aria-describedby="rangeError"><button id="rangeEndHere" type="button">現在位置を終了に</button><div class="range-nudges"><button type="button" data-range-edge="end" data-range-delta="-0.1" aria-label="終了を0.1秒早く">−0.1秒</button><button type="button" data-range-edge="end" data-range-delta="0.1" aria-label="終了を0.1秒遅く">＋0.1秒</button></div></div>
+          </div>
+          <p id="rangeError" class="range-error" role="status" aria-live="polite" hidden></p>
+          <p id="rangeSummary" class="range-summary" role="status" aria-live="polite"></p>
+          <div class="range-audition"><button id="rangeAudition" type="button">選択範囲を試聴</button><label><input id="rangeRepeat" type="checkbox">範囲を繰り返す</label><span id="rangePlaybackStatus" class="muted" role="status"></span></div>
+          <p class="note range-instruction">波形をクリックすると曲全体から聞けます。秒数指定の「始」「終」はドラッグ・左右キーで調整できます。MV全体の歌詞時刻は変更しません。</p>
+          <div class="range-lyric-tools"><span id="timelineStatus" class="muted" aria-live="polite">上段の歌詞マーカーをドラッグして調整</span><button type="button" data-line-nudge="-0.1" aria-label="選択した歌詞を0.1秒早く">歌詞 −0.1秒</button><button type="button" data-line-nudge="0.1" aria-label="選択した歌詞を0.1秒遅く">歌詞 ＋0.1秒</button></div>
+        </div>
+      </section>
       <div class="cutinfo" id="cutInfo"></div>
-      <div class="studio-result" id="studioResult" hidden><div class="studio-result-heading"><span class="studio-kicker">PREVIEW & EXPORT</span><h2>仕上がりを確認して書き出す</h2></div><div class="studio-result-main"><button id="studioExport" class="primary" type="button">MP4を書き出す</button><button id="studioShare" type="button" hidden>動画を共有・保存</button><label class="studio-select-label">画面比<select id="studioAspect" aria-label="書き出しの画面比"><option value="16:9">X・横長</option><option value="9:16">縦動画</option><option value="1:1">正方形</option></select></label></div><div id="studioQuality" class="studio-quality" role="status" aria-live="polite"></div><details class="studio-export-details" id="studioExportDetails"><summary>書き出し詳細設定</summary><div class="studio-export-grid"><label>用途別設定<select id="studioPreset"><option value="auto">自動おすすめ</option><option value="xStandard">X 標準</option><option value="xHigh">X 高画質</option><option value="youtube1080">YouTube 1080p</option><option value="vertical">9:16 SNS</option><option value="master">高品質マスター</option><option value="custom">カスタム</option></select></label><label>コンテナ<select disabled aria-label="コンテナ"><option>MP4</option></select></label><label>映像コーデック<select disabled aria-label="映像コーデック"><option>H.264 / AVC（自動互換）</option></select></label><label>サンプルレート<select id="studioSampleRate"><option value="48000">48 kHz</option><option value="44100">44.1 kHz</option></select></label><label>解像度<select id="studioRes"><option value="720">720p</option><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">2160p</option></select></label><label>フレームレート<select id="studioFPS"><option value="24">24 fps</option><option value="30">30 fps</option><option value="60">60 fps</option></select></label><label>画質<select id="studioQualityLevel"><option value="standard">標準</option><option value="high">高画質</option><option value="max">最高</option></select></label><label>映像ビットレート（空欄は自動）<span class="studio-number-unit"><input id="studioVideoBitrate" type="number" min="1" max="60" step="0.5" inputmode="decimal" placeholder="自動"><span>Mbps</span></span></label><label>音声<select id="studioAudio"><option value="on">AAC を含める</option><option value="off">音声なし</option></select></label><label>音声ビットレート<select id="studioAudioBitrate"><option value="128000">128 kbps</option><option value="192000">192 kbps</option><option value="256000">256 kbps</option><option value="320000">320 kbps</option></select></label><label>書き出す範囲<select id="studioExportRange"><option value="full">曲全体</option><option value="socialHook">縦型ショート 12〜15秒</option><option value="highlight">SNS 60秒版</option></select></label><label class="studio-export-name">ファイル名<input id="studioFileName" type="text" maxlength="80" autocomplete="off" placeholder="タイトルから自動設定"></label></div><p id="studioExportSummary" class="studio-export-summary" role="status" aria-live="polite"></p><p id="studioExportCapability" class="studio-export-capability"></p></details><div class="studio-result-sub"><button id="studioTiming" type="button">歌詞タイミングを調整</button><details class="studio-more"><summary>その他</summary><button id="studioPNG" type="button">現在フレームを画像保存</button></details></div></div>
+      <div class="studio-result" id="studioResult" hidden><div class="studio-result-heading"><span class="studio-kicker">PREVIEW & EXPORT</span><h2>仕上がりを確認して書き出す</h2></div><div class="studio-result-main"><button id="studioExport" class="primary" type="button">MP4を書き出す</button><button id="studioShare" type="button" hidden>動画を共有・保存</button><label class="studio-select-label">画面比<select id="studioAspect" aria-label="書き出しの画面比"><option value="16:9">X・横長</option><option value="9:16">縦動画</option><option value="1:1">正方形</option></select></label></div><p id="exportRangeSummary" class="range-summary" role="status" aria-live="polite"></p><div id="studioQuality" class="studio-quality" role="status" aria-live="polite"></div><details class="studio-export-details" id="studioExportDetails"><summary>書き出し詳細設定</summary><div class="studio-export-grid"><label>用途別設定<select id="studioPreset"><option value="auto">自動おすすめ</option><option value="xStandard">X 標準</option><option value="xHigh">X 高画質</option><option value="youtube1080">YouTube 1080p</option><option value="vertical">9:16 SNS</option><option value="master">高品質マスター</option><option value="custom">カスタム</option></select></label><label>コンテナ<select disabled aria-label="コンテナ"><option>MP4</option></select></label><label>映像コーデック<select disabled aria-label="映像コーデック"><option>H.264 / AVC（自動互換）</option></select></label><label>サンプルレート<select id="studioSampleRate"><option value="48000">48 kHz</option><option value="44100">44.1 kHz</option></select></label><label>解像度<select id="studioRes"><option value="720">720p</option><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">2160p</option></select></label><label>フレームレート<select id="studioFPS"><option value="24">24 fps</option><option value="30">30 fps</option><option value="60">60 fps</option></select></label><label>画質<select id="studioQualityLevel"><option value="standard">標準</option><option value="high">高画質</option><option value="max">最高</option></select></label><label>映像ビットレート（空欄は自動）<span class="studio-number-unit"><input id="studioVideoBitrate" type="number" min="1" max="60" step="0.5" inputmode="decimal" placeholder="自動"><span>Mbps</span></span></label><label>音声<select id="studioAudio"><option value="on">AAC を含める</option><option value="off">音声なし</option></select></label><label>音声ビットレート<select id="studioAudioBitrate"><option value="128000">128 kbps</option><option value="192000">192 kbps</option><option value="256000">256 kbps</option><option value="320000">320 kbps</option></select></label><label class="studio-export-name">ファイル名<input id="studioFileName" type="text" maxlength="80" autocomplete="off" placeholder="タイトルから自動設定"></label></div><p id="studioExportSummary" class="studio-export-summary" role="status" aria-live="polite"></p><p id="studioExportCapability" class="studio-export-capability"></p></details><div class="studio-result-sub"><button id="studioTiming" type="button">歌詞タイミングを調整</button><details class="studio-more"><summary>その他</summary><button id="studioPNG" type="button">現在フレームを画像保存</button></details></div></div>
       <div id="studioTools" class="studio-tools" hidden>
         <div class="studio-tool-row"><button id="studioSocialHook" type="button" aria-pressed="false">縦型ショートを作る（12〜15秒）</button><button id="studioHighlight" type="button" aria-pressed="false">SNS 60秒版</button><span id="highlightChoice" class="muted"></span><button id="highlightNext" type="button" hidden>別候補</button></div>
         <div class="studio-tool-row"><select id="studioPreviewMode" aria-label="プレビューの表示"><option value="editor">編集プレビュー</option><option value="x">Xでの表示</option><option value="vertical">縦動画での表示</option></select></div>
@@ -896,12 +923,13 @@ button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visi
 <dialog id="helpDlg" class="terms help" aria-labelledby="helpTitle">
   <form method="dialog">
     <h2 id="helpTitle">KAMEN（仮面） <span class="edition-badge">Custom Edition</span></h2>
-    <p class="muted mono">Version 2.4.0</p>
+    <p class="muted mono">Version 2.5.0</p>
     <p>日本語の歌詞に動きを付け、曲に合わせたMVをブラウザで作るツールです。オリジナルのJIZURAをベースに、背景画像と自動演出などを独自改修したカスタム版です。</p>
     <ol class="help-steps"><li>画像・音源・LRC／TXTを選ぶ。</li><li>自動生成し、プレビューで歌詞と演出を確認する。</li><li>画面比率・範囲・品質を確認してMP4を書き出す。</li></ol>
     <details open><summary>かんたん / 詳細（Easy / Pro）</summary><p>かんたんは素材と自動生成が中心。詳細では全設定を表示します。モードを切り替えても同じ作品を編集します。Undo / Redoは編集設定の履歴です。音源の差し替えは履歴の対象外です。</p></details>
     <details><summary>素材・LRC・フォント</summary><p>音源は拍・音量・周波数・曲の展開を解析します。LRCは歌詞の表示時刻を持つテキストです。時刻が合わない場合はタイムラインで調整できます。時刻なしの歌詞は「タップで同期」で、音楽に合わせて各行の頭をSpaceまたはボタンで記録し、「LRCを書き出す」で保存します。「1行戻す」で直前のタップをやり直せます。全行を同期してから書き出してください。背景画像は1枚です。画像を選び直すと背景を置き換えます。旧KAMEN作品は素材を別の作業に取り込みます。元データは上書きせず、旧演出は再現しません。音源やフォントが見つからない場合は選び直し、MVを再生成してください。AE／CEPには対応しません。手持ちのフォントも読み込めます。</p></details>
     <details><summary>本家JIZURAの生成と手動調整</summary><p>テーマと文字PV・キネティック・ホラーの演出セットを選んで生成します。詳細画面で配色・フォント・動き、行やカットの演出と時刻を調整できます。ロックした項目は再生成時にも保持します。曲名・アーティストは「MVの曲名表示」で表示方式・位置・サイズを選べます。新規作品は冒頭・末尾3秒を大きく、中間を小さく表示します。MP4・PNGでも同じ表示です。既存作品は保存時の表示を維持し、明示的に変更できます。自動配置でも画面全体に広がる歌詞とは重なる場合があります。</p></details>
+    <details><summary>秒数で範囲を指定・試聴</summary><p>音源を読み込むと、MV生成前から「書き出す範囲」を使えます。「秒数で指定」を選び、開始・終了秒を入力するか、波形の「始」「終」をドラッグしてください。ハンドルの左右キーは0.01秒、Shift＋左右キーは0.1秒調整です。再生中に「現在位置を開始に／終了に」を押すこともできます。</p><p>通常再生と波形クリックは曲全体から聞く操作です。「選択範囲を試聴」は開始から終了までを再生し、「範囲を繰り返す」は初期OFFです。ドラッグや範囲試聴中の数値変更は一時停止し、自動再生しません。MV生成後は映像と曲名表示も選択区間で確認できます。</p><p>生成や配色変更でも範囲は保持します。別音源への正常な差し替えでは曲全体に戻ります。保存・復元・Undo／Redo・JSONに有効な秒数を含めます。入力途中の不正な文字は保存せず、修正するまで書き出しを止めます。MP4の時刻は0秒開始、尺はfpsで丸められます。区間連結・フェードは追加しません。</p></details>
     <details><summary>プレビュー・MP4・SNS出力</summary><p>プレビューは編集確認用です。書き出しは指定した解像度・FPS・映像と音声のビットレートで生成し、MP4を検査します。処理が止まった場合は中止して再試行できます。端末の対応状況で失敗した場合も品質設定は自動で下げません。SNS向けには縦画面と曲の切り出し範囲を確認してください。X向けの設定は推定サイズも確認します。</p></details>
     <details><summary>自動保存・プロジェクト保存・バックアップ</summary><p>自動保存はこのブラウザ内だけです。起動や表示変更だけでは保存しません。別タブで同じMVが編集された場合は、生成結果と素材を別の作業に保存します。「保存した作業」で切り替えられます。容量不足で保存できなくても生成結果は残ります。端末やブラウザを変えると引き継がれません。「プロジェクト保存」は画像・LRC・設定・読み込んだフォントをJSONにまとめます。音源は含まれないので元ファイルを一緒に保管してください。大切な作品は定期的にバックアップし、保存完了を確認してからページを閉じてください。</p><p>復元できない素材がある場合は、元データ保全のため自動保存を止めます。ブラウザデータを削除せず、保管したプロジェクトを「開く」で読み直してください。</p></details>
     <div class="terms-foot"><span class="muted">素材の権利は「利用について」を確認</span><button value="close" class="primary" autofocus>閉じる</button></div>
@@ -911,8 +939,8 @@ button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visi
 <aside id="processingPanel" class="processing-panel" aria-label="処理状況" hidden></aside>
 
 <script>
-window.KAMEN_APP_INFO=window.JIZURA_APP_INFO=Object.freeze({"name":"KAMEN","edition":"Custom Edition","version":"2.4.0"});
-window.KAMEN_BUILD_INFO=Object.freeze({"sourceCommit":"0fed687c1250275585da0a9964a4e365ac2df6f4","sourceDirty":true,"sourceTreeSHA256":"cc34cb84ca157043a34297108e72648ecd284b530077808f6617997bbfa30687","upstreamCommit":"fc16bfe43ea4a6c25a21f1caf04d17326de14f00","upstreamSHA256":"89cfc4a8a37b4babb04d71e300ea9b29b07ea37aac080723e6a428dff94406f4","mediaSHA256":"512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"});
+window.KAMEN_APP_INFO=window.JIZURA_APP_INFO=Object.freeze({"name":"KAMEN","edition":"Custom Edition","version":"2.5.0"});
+window.KAMEN_BUILD_INFO=Object.freeze({"sourceCommit":"847dbb9d5f4da9d275118ade9a11d9276d99f665","sourceDirty":true,"sourceTreeSHA256":"81db5325e458c62b7b0580186030fff0b3f002b581edcadaa604e9f159c4a34b","upstreamCommit":"fc16bfe43ea4a6c25a21f1caf04d17326de14f00","upstreamSHA256":"89cfc4a8a37b4babb04d71e300ea9b29b07ea37aac080723e6a428dff94406f4","mediaSHA256":"512ef3e1adbf4bd84f37786646e68af286d90c1cb87ae221433cc6fa951dbcc9"});
 (()=>{
 /* ============================================================
    JIZURA — util: math, easing, deterministic randomness, colour
@@ -39492,6 +39520,28 @@ J.audioAssetMatches=(info,file)=>!!(info&&file&&info.name===file.name&&info.size
 
 window.KAMEN_MODULE_AUDIT.observe("08g_audio_persistence.js");
 
+/* One seconds-based range contract for UI, preview and all export backends. */
+(()=>{'use strict';
+J.validateExportRange=(range,duration,fps=30)=>{
+ const invalid=error=>({valid:false,error,range:null});
+ if(!Number.isFinite(duration)||duration<=0)return invalid('音源を読み込んでください。');
+ if(!range||!Number.isFinite(range.start)||!Number.isFinite(range.end))return invalid('開始秒と終了秒を入力してください。');
+ const {start,end}=range;
+ if(start<0||end<0||start>duration||end>duration+1e-9)return invalid('音源の長さの範囲内で指定してください。');
+ if(end<=start)return invalid('終了秒は開始秒より後にしてください。');
+ if(!Number.isFinite(fps)||fps<=0)return invalid('フレームレートを確認してください。');
+ if(end-start+1e-9<1/fps)return invalid(`範囲を1フレーム以上（${(1/fps).toFixed(3)}秒以上）にしてください。`);
+ return {valid:true,error:'',range:{start,end:Math.min(end,duration)},frames:Math.max(1,Math.round((end-start)*fps)),seconds:end-start};
+};
+J.requireExportRange=(range,plan,audio)=>{
+ const duration=Math.min(plan.duration,audio?.duration??plan.duration),value=J.validateExportRange(range??{start:0,end:duration},duration,plan.fps);
+ if(!value.valid)throw Object.assign(new Error('EXPORT_RANGE: '+value.error),{code:'EXPORT_RANGE'});
+ return Object.freeze(value.range);
+};
+})();
+
+window.KAMEN_MODULE_AUDIT.observe("08h_export_range.js");
+
 /* ============================================================
    JIZURA — portable project schema and migrations
    ============================================================ */
@@ -40146,6 +40196,7 @@ async function resample(buffer, sr, duration, start=0) {
 
 /* ---------- MP4 ---------- */
 J.exportMP4 = async ({ plan, project, audio, range=null, quality = 'high', onProgress, signal, videoAttempt=null,audioAttempt=null }) => {
+  range=J.requireExportRange(range,plan,audio);
   const [w, h] = J.outputSize(project);
   const fps = plan.fps;
   const px = w * h * fps;
@@ -40276,6 +40327,7 @@ J.exportCapabilities = async (project,audio) => {
 
 /* Real-time MP4 fallback on browsers with MediaRecorder MP4 support. Never relabel a WebM as MP4. */
 J.exportMP4Fallback = async ({plan,project,audio,range=null,onProgress,signal}) => {
+  range=J.requireExportRange(range,plan,audio);
   onProgress?.(0,'映像と音声を録画する方法で準備しています',{stage:'frames',label:'映像と音声を録画しています',skip:['video','resample','audio','mux'],indeterminate:true});
   const includeAudio=project.includeAudio!==false;
   if(includeAudio&&!audio?.buffer)throw new Error('音源を読み込んでください');
@@ -40360,6 +40412,7 @@ class ZipWriter {
 }
 J.ZipWriter=ZipWriter;
 J.exportPNGZip = async ({ plan, project, transparent, onProgress, signal, every = 1,range=null }) => {
+  range=J.requireExportRange(range,plan,null);
   if(!Number.isInteger(every)||every<1)throw Error('PNGのフレーム間隔を確認してください');
   const start=range?.start??0,duration=(range?.end??plan.duration)-start;
   if(!Number.isFinite(duration)||duration<=0||start<0)throw Error('PNGの書き出し範囲を確認してください');
@@ -40415,7 +40468,7 @@ J.migrateProject=input=>{
  p.sourceImport={version:1,requiresGeneration:true,sourceEngine:'kamen'};
  return migrate(p);
 };
-J.plan=(p,a)=>Object.assign(U.plan(p,a),{generation:{...p.generation},customBg:p.customBg,titleDisplay:p.titleDisplay,singleBackground:true,upstream:true,quality:p.quality,outputResolution:p.res});
+J.plan=(p,a)=>{const plan=U.plan(p,a),lyrics=plan.lines.filter(l=>!l.interlude);return Object.assign(plan,{generation:{...p.generation},customBg:p.customBg,titleDisplay:p.titleDisplay,singleBackground:true,upstream:true,quality:p.quality,outputResolution:p.res,hasTimedLyrics:lyrics.length>0&&lyrics.every(l=>Number.isFinite(l.lrc))});};
 J.generateUpstream=(project,audio,{rnd=Math.random}={})=>{
  const q=JSON.parse(JSON.stringify(project)),generated=U.omakase(q,rnd,q.themeId);
  for(const [g,locked]of Object.entries(q.locks?.tech||{}))if(locked&&q.enabled?.[g])generated.enabled[g]={...q.enabled[g]};
@@ -40446,12 +40499,13 @@ J.verifyTechnicalExport=async(result,args)=>{
  result.validation=v;result.provenance={schema:'kamen-upstream-export-v1',generation:args.project.generation,exportSettings:{width:w,height:h,fps:args.plan.fps,range:args.range},validation:v,creativeState:'ADVISORY',timestamp:new Date().toISOString()};
  result.sidecar=new Blob([JSON.stringify(result.provenance,null,2)],{type:'application/json'});return result;
 };
-const standard=async(args,fallback=false)=>J.verifyTechnicalExport(await(fallback?J.exportMP4FallbackBase:J.exportMP4Base)(args),args);
+const standard=async(args,fallback=false)=>{const selected={...args,range:J.requireExportRange(args.range,args.plan,args.audio)};return J.verifyTechnicalExport(await(fallback?J.exportMP4FallbackBase:J.exportMP4Base)(selected),selected);};
 J.exportMP4=args=>standard(args);
 J.exportMP4Fallback=args=>standard(args,true);
 // One coordinator owns retries. Audio failures retry AAC without changing the
 // video configuration; malformed output and cancellation are never retried.
 J.exportWithRetries=async(args,caps)=>{
+ args={...args,range:J.requireExportRange(args.range,args.plan,args.audio)};
  const diagnostics=[],settings=J.resolveExportSettings(args.project),[w,h]=J.outputSize(args.project);
  const terminal=e=>args.signal?.aborted||e.name==='AbortError'||/EXPORT_INVALID|CINEMA_V5_UNSAFE_EXPORT|PROVENANCE_MISMATCH|検査|フレームが不足/.test(e.message||'');
  const record=(e,attempt,stage)=>diagnostics.push({stage,codec:attempt?.codec||null,acceleration:attempt?.cfg?.hardwareAcceleration||'auto',code:e.code||e.name,message:e.message});
@@ -40606,22 +40660,25 @@ const ICON = {
 };
 
 const S = { project: null, plan: null, previewPlan:null, previewAspect:null, audio: null, audioLoad:0, audioLoading:false, audioPendingName:'', audioNotice:'', renderer: new J.Renderer(), playing: false, t: 0, t0: 0, loop: true, need: true, exporting: null, tap: null, slow: false, lineEls: [], curLine: -2,
-  range:null,rangeMode:null,socialPlan:null,highlights:[],highlightIndex:0,lastExport:null,pixelQA:null,exportCapabilities:null,exportValidation:null,selectedLine:-1,timelineZoom:1,timelineStart:0,timelineDragging:null };
+  audition:false,rangeLoop:false,rangeDraft:null,rangeDrag:null,range:null,rangeMode:null,socialPlan:null,highlights:[],highlightIndex:0,lastExport:null,pixelQA:null,exportCapabilities:null,exportValidation:null,selectedLine:-1,timelineZoom:1,timelineStart:0,timelineDragging:null };
 function markImageLookModified() { if (S.project && S.project.autoPalette && S.project.autoPalette.analyzed) S.project.autoPalette.lookModified = true; }
 
 /* WebAudio player (works inside sandboxed pages where blob media may be blocked) */
 const AP = {
   ctx: null, src: null, startAt: 0,
-  play(buffer, offset) {
+  play(buffer, offset, options={}) {
     if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
     if (this.ctx.state === 'suspended') this.ctx.resume();
     this.stop();
-    const s = this.ctx.createBufferSource(); s.buffer = buffer; s.connect(this.ctx.destination);
-    const off = Math.max(0, Math.min(offset, buffer.duration - 0.01));
-    const rate=S.tap?.rate||1;s.playbackRate.value=rate;s.start(0, off); this.src = s;this.rate=rate; this.startAt = this.ctx.currentTime - off/rate;
+    const s=this.ctx.createBufferSource();s.buffer=buffer;s.connect(this.ctx.destination);
+    const end=Math.min(buffer.duration,options.end??buffer.duration),off=Math.max(0,Math.min(offset,end-1e-6)),rate=S.tap?.rate||1;
+    s.playbackRate.value=rate;s.loop=!!options.loop;if(s.loop){s.loopStart=options.start||0;s.loopEnd=end;}
+    this.src=s;this.rate=rate;this.startAt=this.ctx.currentTime-off/rate;
+    s.onended=()=>{if(this.src!==s)return;this.src=null;s.disconnect();options.onEnded?.();};
+    if(s.loop)s.start(0,off);else s.start(0,off,Math.max(1e-6,end-off));
   },
-  stop() { if (this.src) { try { this.src.stop(); } catch (e) {} try { this.src.disconnect(); } catch (e) {} this.src = null; } },
-  time() { return this.ctx ? (this.ctx.currentTime - this.startAt)*(this.rate||1) : 0; },
+  stop() { if (this.src) { try { this.src.onended=null;this.src.stop(); } catch (e) {} try { this.src.disconnect(); } catch (e) {} this.src = null; } },
+  time() { let value=this.ctx?(this.ctx.currentTime-this.startAt)*(this.rate||1):0;const r=S.audition&&S.rangeLoop?exportRangeForSettings():null;if(r&&value>=r.end)value=r.start+(value-r.start)%(r.end-r.start);return value; },
 };
 
 /* ---------------- project persistence ---------------- */
@@ -40650,7 +40707,7 @@ function mergeProject(p) {
   o.exportSettings.preset=J.EXPORT_PRESETS?.[o.exportSettings.preset]?o.exportSettings.preset:'auto';
   o.exportSettings.videoBitrate=Number.isFinite(+o.exportSettings.videoBitrate)?Math.max(0,+o.exportSettings.videoBitrate):0;
   o.exportSettings.audioBitrate=[128000,192000,256000,320000].includes(+o.exportSettings.audioBitrate)?+o.exportSettings.audioBitrate:192000;
-  o.exportSettings.range=['full','highlight','socialHook'].includes(o.exportSettings.range)?o.exportSettings.range:'full';
+  o.exportSettings.range=['full','custom','highlight','socialHook'].includes(o.exportSettings.range)?o.exportSettings.range:'full';
   o.visualEnergyDensity=['auto','clean','standard','high_energy','hyper'].includes(o.visualEnergyDensity)?o.visualEnergyDensity:'auto';
   o.hookStrength=['auto','strong','maximum'].includes(o.hookStrength)?o.hookStrength:'auto';
   o.includeAudio=o.includeAudio!==false;
@@ -40900,7 +40957,9 @@ function audioLike() {
   if (T.bpm > 0) return { beats: J.beatGrid(T.bpm, T.beatOffset || 0, 600) };
   return null;
 }
-function viewPlan() { return S.rangeMode==='socialHook'&&S.socialPlan?S.socialPlan:(S.previewPlan||S.plan); }
+function viewPlan() { return S.project?.exportSettings.range==='socialHook'&&S.socialPlan?S.socialPlan:(S.previewPlan||S.plan); }
+function effectiveOutputProject(){return S.project.exportSettings.range==='socialHook'?{...S.project,aspect:'9:16'}:S.project;}
+function refreshSocialPlan(range=exportRangeForSettings()){S.socialPlan=S.project.exportSettings.range==='socialHook'&&S.audio&&range?J.createSocialHookPlan(J.plan(effectiveOutputProject(),audioLike()),{...range}):null;}
 function refreshPreviewPlan() {
   S.previewPlan = S.previewAspect ? J.plan({ ...S.project, aspect:S.previewAspect }, audioLike()) : null;
 }
@@ -40909,6 +40968,7 @@ function replan() {
   S.socialPlan=null;
   S.pixelQA=null;S.exportValidation=null;S.lastExport=null;$('studioShare').hidden=true;
   S.plan = J.plan(S.project, audioLike());
+  refreshSocialPlan();
   refreshPreviewPlan();
   if (S.t > S.plan.duration) S.t = 0;
   renderLines(); sizeViewport(); drawTimeline(); updateTimeUI();
@@ -40977,7 +41037,7 @@ function draw() {
   const c = $('view'), ctx = c.getContext('2d');
   const t0 = performance.now();
   const plan=viewPlan();
-  S.renderer.frame(ctx, plan, S.t, { scale: c.width / plan.W, fast: S.playing && S.slow, range:S.range });
+  S.renderer.frame(ctx, plan, S.t, { scale: c.width / plan.W, fast: S.playing && S.slow, range:S.audition?exportRangeForSettings():null });
   const dt = performance.now() - t0;
   S.slow = S.playing ? (dt > 30 ? true : dt < 14 ? false : S.slow) : false;
   updateTimeUI(); drawTimeline(); updateCutInfo();
@@ -40988,10 +41048,10 @@ function tick(now) {
   if (S.playing) {
     // rAF timestamps can precede the moment play()/seek() stamped t0 → clamp so t never goes negative
     let t = Math.max(0, S.audio ? AP.time() : (now - S.t0) / 1000);
-    const end=S.tap?S.audio.duration:(S.range?.end??S.plan.duration),begin=S.range?.start??0;
-    if (t >= end - 1e-3) {
-      if (S.loop && !S.tap) { seek(begin); t = begin; }
-      else { pause(); t = end - 1e-3; if (S.tap) stopTap(); }
+    const audition=S.audition?exportRangeForSettings():null,end=S.tap?S.audio.duration:(audition?.end??playbackDuration()),begin=audition?.start??0;
+    if (t >= end - 1e-3 && !(S.audition&&S.rangeLoop)) {
+      if (!S.audition && S.loop && !S.tap) { seek(begin); t = begin; }
+      else { pause(); t = end; if (S.tap) stopTap(); }
     }
     S.t = t;
     if(!S.timelineDragging){const win=timelineWindow();if(t<win.start||t>win.end)S.timelineStart=J.clamp(t-win.span*.18,0,Math.max(0,win.duration-win.span));}
@@ -41001,29 +41061,42 @@ function tick(now) {
 }
 function updateTimeUI() {
   $('timeNow').textContent = J.fmtTime(S.t);
-  $('timeDur').textContent = J.fmtTime(S.plan.duration);
-  if (!S.scrubbing) $('scrub').value = String(Math.round(S.t / Math.max(0.001, S.plan.duration) * 10000));
+  $('timeDur').textContent = J.fmtTime(playbackDuration());
+  if (!S.scrubbing) $('scrub').value = String(Math.round(S.t / Math.max(0.001, playbackDuration()) * 10000));
+  syncRangePlayback();
 }
-function play() {
-  if (S.audio) AP.play(S.audio.buffer, S.t);
-  else S.t0 = performance.now() - S.t * 1000;
-  S.playing = true; $('btnPlay').textContent = '❚❚'; $('btnPlay').setAttribute('aria-label', '一時停止');
+function playbackDuration(){return S.audio?.duration||S.plan?.duration||0;}
+function startAudioPlayback(){
+  const range=S.audition?exportRangeForSettings():null;
+  if(S.audition&&!range){pause();return;}
+  AP.play(S.audio.buffer,S.t,{start:range?.start??0,end:range?.end??playbackDuration(),loop:!!range&&S.rangeLoop,onEnded:()=>{
+    const end=range?.end??playbackDuration();S.t=end;
+    if(!S.audition&&S.loop&&!S.tap){S.t=0;startAudioPlayback();}else{pause();if(S.tap)stopTap();}
+    S.need=true;
+  }});
+}
+function play(audition=false) {
+  const range=audition?exportRangeForSettings():null;if(audition&&(!S.audio||!range))return;
+  S.audition=audition;if(range)S.t=range.start;else if(S.t>=playbackDuration()-1e-3)S.t=0;
+  S.playing=true;if(S.audio)startAudioPlayback();else S.t0=performance.now()-S.t*1000;
+  $('btnPlay').textContent='❚❚';$('btnPlay').setAttribute('aria-label','一時停止');syncRangePlayback();S.need=true;
 }
 function pause() {
-  S.playing = false; AP.stop();
-  $('btnPlay').textContent = '▶'; $('btnPlay').setAttribute('aria-label', '再生'); S.need = true;
+  S.playing=false;AP.stop();$('btnPlay').textContent='▶';$('btnPlay').setAttribute('aria-label','再生');syncRangePlayback();S.need=true;
 }
 function seek(t) {
-  S.t = J.clamp(t, 0, Math.max(0, S.plan.duration - 1e-3));
-  if (S.audio) { if (S.playing) AP.play(S.audio.buffer, S.t); }
-  else S.t0 = performance.now() - S.t * 1000;
-  S.need = true;
+  const range=S.audition?exportRangeForSettings():null;
+  if(range&&(t<range.start||t>=range.end)){pause();S.audition=false;}
+  S.t=J.clamp(t,0,playbackDuration());
+  if(S.audio){if(S.playing)startAudioPlayback();}else S.t0=performance.now()-S.t*1000;
+  S.need=true;
 }
+function seekWhole(t){if(S.audition){pause();S.audition=false;}seek(t);}
 
 /* ---------------- timeline ---------------- */
 const layoutHue = k => (J.LAYOUT_ORDER.indexOf(k) * 37 + 30) % 360;
 function timelineWindow() {
-  const win=J.timelineViewport(S.plan.duration,S.timelineZoom,S.timelineStart);S.timelineStart=win.start;return win;
+  const win=J.timelineViewport(playbackDuration(),S.timelineZoom,S.timelineStart);S.timelineStart=win.start;return win;
 }
 function timelineTimeAt(clientX) {
   const canvas=$('timeline'),rect=canvas.getBoundingClientRect(),win=timelineWindow();
@@ -41064,9 +41137,9 @@ function nudgeSelectedLine(delta) {
 }
 function zoomTimeline(factor,anchor=S.t) {
   const before=timelineWindow(),oldAnchor=J.clamp((anchor-before.start)/before.span,0,1);
-  S.timelineZoom=J.clamp(S.timelineZoom*factor,1,Math.max(1,S.plan.duration/4));
-  const afterSpan=Math.min(S.plan.duration,Math.max(4,S.plan.duration/S.timelineZoom));
-  S.timelineStart=J.clamp(anchor-oldAnchor*afterSpan,0,Math.max(0,S.plan.duration-afterSpan));
+  S.timelineZoom=J.clamp(S.timelineZoom*factor,1,Math.max(1,playbackDuration()/4));
+  const afterSpan=Math.min(playbackDuration(),Math.max(4,playbackDuration()/S.timelineZoom));
+  S.timelineStart=J.clamp(anchor-oldAnchor*afterSpan,0,Math.max(0,playbackDuration()-afterSpan));
   drawTimeline();
 }
 let timelineLayer=null,timelineCache=null;
@@ -41075,7 +41148,8 @@ function drawTimeline() {
   const w = Math.max(10, Math.round(c.clientWidth * dpr)), h = Math.max(10, Math.round(c.clientHeight * dpr));
   if (c.width !== w || c.height !== h) { c.width = w; c.height = h; }
   const output=c.getContext('2d'), win=timelineWindow(), X=t=>(t-win.start)/win.span*w;
-  const key=[S.plan,S.audio?.peaks,S.audio?.duration,S.selectedLine,w,h,dpr,win.start,win.span];
+  const detailed=S.mode==='pro';
+  const key=[detailed,S.plan,S.audio?.peaks,S.audio?.duration,S.selectedLine,w,h,dpr,win.start,win.span];
   const rebuild=!timelineCache||key.some((v,i)=>v!==timelineCache[i]);
   if(!timelineLayer)timelineLayer=document.createElement('canvas');
   if(rebuild){timelineLayer.width=w;timelineLayer.height=h;}
@@ -41083,15 +41157,15 @@ function drawTimeline() {
   if(rebuild){
   x.fillStyle = '#131316'; x.fillRect(0, 0, w, h);
   if (S.audio && S.audio.peaks) {
-    const pk = S.audio.peaks, n = pk.length, sd = S.audio.duration;
-    x.fillStyle = '#2b2b33';
-    for (let i = 0; i < w; i += 2) { const t=win.start+i/w*win.span;if(t>sd)break;const v=pk[Math.min(n-1,Math.floor(t/sd*n))];const hh=v*h*.76;x.fillRect(i,h*.56-hh/2,1.5,hh); }
+    const pk = S.audio.peaks, n = pk.length, sd = S.audio.duration,peakScale=1/Math.max(.01,pk.reduce((a,b)=>Math.max(a,b),0));
+    x.fillStyle = detailed?'#687789':'#8196aa';
+    for (let i = 0; i < w; i += 2) { const t=win.start+i/w*win.span;if(t>sd)break;const v=pk[Math.min(n-1,Math.floor(t/sd*n))];const hh=v*peakScale*h*.60;x.fillRect(i,h*.56-hh/2,1.5,hh); }
   }
   const beats = S.plan.beats || [];
   x.fillStyle = '#3a3a44';
   for (const b of beats) { if(b<win.start)continue;if(b>win.end)break;x.fillRect(Math.round(X(b)),h-6*dpr,1,6*dpr); }
   const top = h * 0.3, bot = h - 8 * dpr;
-  for (const cut of S.plan.cuts) {
+  for (const cut of detailed?S.plan.cuts:[]) {
     if(cut.end<win.start||cut.start>win.end)continue;
     const x0 = X(Math.max(win.start,cut.start)), x1 = X(Math.min(win.end,cut.end));
     const hue = layoutHue(cut.layout);
@@ -41104,7 +41178,7 @@ function drawTimeline() {
     }
   }
   x.font = `${10 * dpr}px monospace`;
-  for (const ln of S.plan.lines) {
+  for (const ln of detailed?S.plan.lines:[]) {
     if(ln.start<win.start||ln.start>win.end)continue;
     const lx = X(ln.start),selected=ln.index===S.selectedLine;
     x.fillStyle=selected?'#f5a50c':'#5d5a63';x.fillRect(lx,0,selected?2*dpr:1,top);
@@ -41114,13 +41188,16 @@ function drawTimeline() {
   timelineCache=key;
   }
   output.drawImage(timelineLayer,0,0);
+  const range=exportRangeForSettings();
+  if(range){const left=J.clamp(X(range.start),0,w),right=J.clamp(X(range.end),0,w);output.fillStyle='rgba(0,0,0,.58)';output.fillRect(0,0,left,h);output.fillRect(right,0,w-right,h);output.fillStyle='rgba(217,185,126,.12)';output.fillRect(left,0,right-left,h);output.strokeStyle='#e9c78c';output.lineWidth=2*dpr;output.strokeRect(left,detailed?30*dpr:1,right-left,h-(detailed?30*dpr:2));}
+  positionRangeHandles(win);
   const px = X(S.t);
   if(px>=0&&px<=w){output.fillStyle = '#f5a50c'; output.fillRect(Math.round(px)-dpr,0,2*dpr,h);}
   output.fillStyle='#87838d';output.font=`${9*dpr}px monospace`;output.textBaseline='bottom';
   for(let i=0;i<=4;i++){const xx=i*w/4;output.fillText(J.fmtTime(win.start+win.span*i/4),xx+2*dpr,h-1*dpr);}
 }
 function timelineSeek(ev) {
-  seek(timelineTimeAt(ev.clientX));
+  seekWhole(timelineTimeAt(ev.clientX));
 }
 
 /* ---------------- cut info ---------------- */
@@ -41350,7 +41427,7 @@ async function histGo(d) {
   const currentMap=S.project.autoPalette&&S.project.autoPalette.localMap;
   const currentHash=S.project.autoPalette&&S.project.autoPalette.sourceHash;
   const state=J.restoreHistory(H.list[j],ref=>H.assets.get(ref)||'');
-  Object.assign(S.project,state);if(state.credits===null)delete S.project.credits;
+  pause();S.audition=false;S.rangeDraft=null;S.range=null;S.rangeMode=null;S.socialPlan=null;Object.assign(S.project,state);if(state.credits===null)delete S.project.credits;
   S.project.autoPalette=J.normalizeAutoPalette(S.project.autoPalette);
   if(!S.project.autoPalette.localMap&&currentMap&&S.project.autoPalette.sourceHash&&S.project.autoPalette.sourceHash===currentHash)S.project.autoPalette.localMap=currentMap;
   if(S.project.customBg?.dataUrl)await S.renderer.loadCustomBackground(S.project.customBg.dataUrl).catch(()=>{});
@@ -41534,7 +41611,9 @@ function syncStudioAspect() {
   const select = $('studioAspect');
   if (!select || !S.project) return;
   select.querySelectorAll('[data-project-aspect]').forEach(option => option.remove());
-  const aspect = S.project.aspect || '16:9';
+  const fixed=S.project.exportSettings.range==='socialHook',aspect=fixed?'9:16':S.project.aspect||'16:9';
+  select.disabled=fixed;select.title=fixed?'縦型ショートは9:16固定です。任意の画面比は秒数で指定を選んでください。':'';
+  for(const id of ['outAspect','eAspect']){$(id).value=aspect;$(id).disabled=fixed;$(id).title=select.title;}
   if (![...select.options].some(option => option.value === aspect)) {
     const option = document.createElement('option');
     option.value = aspect;
@@ -41550,17 +41629,93 @@ function syncStudioAspect() {
   }
 }
 
-function exportRangeForSettings() {
-  const settings=J.resolveExportSettings(S.project),full={start:0,end:Math.min(S.plan?.duration||0,S.audio?.duration||S.plan?.duration||0)};
-  if(settings.range==='full')return full;
-  if(S.range)return S.range;
-  try{const choice=settings.range==='socialHook'?J.socialHookCandidates(S.plan,S.audio)[0]:J.highlightCandidates(S.plan,S.audio)[0];return choice?{start:choice.start,end:choice.end}:null;}catch(e){return null;}
+function rangeValidation(){
+  const e=J.resolveExportSettings(S.project),duration=Math.min(S.plan?.duration||playbackDuration(),S.audio?.duration||playbackDuration());
+  let value;
+  if(e.range==='full')value={start:0,end:duration};
+  else if(e.range==='custom'){
+    value=S.rangeDraft?Object.fromEntries(['start','end'].map(k=>[k,S.rangeDraft[k]?.trim()===''?NaN:Number(S.rangeDraft[k])])):e.customRange;
+  }else{
+    if(S.range&&S.rangeMode===e.range)value=S.range;
+    else try{const choice=e.range==='socialHook'?J.socialHookCandidates(S.plan,S.audio)[0]:J.highlightCandidates(S.plan,S.audio)[0];if(choice)value={start:choice.start,end:Math.min(choice.end,duration)};}catch{}
+  }
+  if(!value&&e.range!=='custom')return {valid:false,range:null,error:'この音源・歌詞では推奨区間を選べません。秒数で指定してください。'};
+  return J.validateExportRange(value,duration,S.project.fps||30);
+}
+function exportRangeForSettings(){const v=rangeValidation();return v.valid?v.range:null;}
+const secondsLabel=n=>Number.isFinite(n)?n.toFixed(2):'—';
+function rangeSummaryText(value){return value.valid?`${secondsLabel(value.range.start)}秒 → ${secondsLabel(value.range.end)}秒 ／ ${secondsLabel(value.seconds)}秒`:'範囲を確認してください';}
+function syncRangePlayback(){
+  if(!$('rangeAudition'))return;
+  const active=!!(S.playing&&S.audition),label=active?'範囲の試聴を停止':'選択範囲を試聴';
+  if($('rangeAudition').textContent!==label)$('rangeAudition').textContent=label;
+  if($('rangeAudition').getAttribute('aria-pressed')!==String(active))$('rangeAudition').setAttribute('aria-pressed',String(active));
+  const status=S.playing?(S.audition?'選択範囲を試聴中':'曲全体を再生中'):S.audition?'範囲の試聴を停止しました':'';
+  if($('rangePlaybackStatus').textContent!==status)$('rangePlaybackStatus').textContent=status;
+}
+function clearRangeOutput(){S.exportValidation=null;S.pixelQA=null;S.lastExport=null;$('studioShare').hidden=true;}
+function syncRangeUI(){
+  if(!S.project||!S.plan||!$('exportRangeCard'))return;
+  const enabled=!!S.audio&&!S.audioLoading,custom=S.project.exportSettings.range==='custom',v=rangeValidation();
+  $('rangeEmpty').hidden=enabled;$('rangeContent').hidden=!enabled;$('studioExportRange').disabled=!enabled||!!S.tap;
+  $('rangeManual').hidden=!custom;
+  const stored=S.project.exportSettings.customRange||{start:null,end:null};
+  for(const [edge,id]of [['start','rangeStart'],['end','rangeEnd']]){
+    const input=$(id);if(document.activeElement!==input)input.value=S.rangeDraft?S.rangeDraft[edge]:Number.isFinite(stored[edge])?String(+stored[edge].toFixed(6)):'';
+    input.max=String(S.audio?.duration||0);input.setAttribute('aria-invalid',String(custom&&!v.valid));
+  }
+  $('rangeError').hidden=!enabled||v.valid;$('rangeError').textContent=v.error||'';
+  const summary=enabled?rangeSummaryText(v):'音源を読み込んでください';$('rangeSummary').textContent=summary;$('exportRangeSummary').textContent=summary;
+  $('rangeAudition').disabled=!enabled||!v.valid||!!S.tap;$('rangeRepeat').disabled=!enabled||!v.valid||!!S.tap;$('rangeFit').disabled=!enabled||!v.valid;
+  for(const id of ['rangeHandleStart','rangeHandleEnd'])$(id).hidden=!custom||!v.valid||!enabled;
+  syncRangePlayback();positionRangeHandles(timelineWindow());
+}
+let rangeHandleKey='';
+function positionRangeHandles(win){
+  if(!$('rangeHandleStart')||!S.project)return;const r=exportRangeForSettings();if(!r)return;const key=[r.start,r.end,win.start,win.span,S.project.fps,S.audio?.duration].join(':');if(key===rangeHandleKey)return;rangeHandleKey=key;
+  for(const [edge,id]of [['start','rangeHandleStart'],['end','rangeHandleEnd']]){
+    const button=$(id),ratio=(r[edge]-win.start)/win.span;button.style.left=(J.clamp(ratio,0,1)*100)+'%';button.dataset.outside=String(ratio<0||ratio>1);
+    button.setAttribute('aria-valuemin',String(edge==='start'?0:r.start+1/S.project.fps));button.setAttribute('aria-valuemax',String(edge==='end'?S.audio?.duration||0:r.end-1/S.project.fps));button.setAttribute('aria-valuenow',String(r[edge]));button.setAttribute('aria-valuetext',secondsLabel(r[edge])+'秒');
+  }
+}
+function changedRange(){
+  if(S.audition){pause();S.audition=false;}refreshSocialPlan();clearRangeOutput();syncDirectionUI();updateExportSummary();updateStudioQuality();drawTimeline();S.need=true;
+}
+function editRange(edge,raw,commitNow=false){
+  if(!S.audio||S.tap||S.exporting||exportPreflightBusy||directionBusy||S.projectLoading)return;
+  if(!S.rangeDraft){const r=S.project.exportSettings.customRange||{start:0,end:S.audio.duration};S.rangeDraft={start:String(r.start),end:String(r.end)};}
+  S.project.exportSettings.range='custom';S.rangeMode='custom';S.range=null;S.socialPlan=null;
+  S.rangeDraft[edge]=String(raw);const v=rangeValidation();if(v.valid)S.project.exportSettings.customRange={...v.range};
+  changedRange();if(v.valid){if(commitNow)commit();else autosave();}
+}
+function setRangePosition(edge,time){editRange(edge,time>=S.audio.duration-1e-9?S.audio.duration:Math.max(0,Math.round(time*100)/100),true);}
+function chooseRangeMode(mode){
+  for(const id of ['studioHighlight','studioSocialHook'])$(id).setAttribute('aria-pressed','false');$('studioHighlight').textContent='SNS 60秒版';$('highlightNext').hidden=true;$('highlightChoice').textContent='';
+  if(S.audition){pause();S.audition=false;}remember();S.rangeDraft=null;S.range=null;S.rangeMode=null;S.socialPlan=null;
+  S.project.exportSettings.range=mode;if(mode==='custom'&&!S.project.exportSettings.customRange)S.project.exportSettings.customRange={start:0,end:S.audio.duration};
+  clearRangeOutput();
+}
+function bindRangeUI(){
+  for(const [edge,id]of [['start','rangeStart'],['end','rangeEnd']]){
+    $(id).addEventListener('focus',remember);$(id).addEventListener('input',e=>editRange(edge,e.target.value));$(id).addEventListener('change',()=>{if(rangeValidation().valid)commit();});
+    $(id).addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();const value=Number(e.target.value);if(e.target.value!==''&&Number.isFinite(value))editRange(edge,+(value+(['ArrowLeft','ArrowDown'].includes(e.key)?-1:1)*(e.shiftKey?.1:.01)).toFixed(2),true);}});
+    $('range'+(edge==='start'?'Start':'End')+'Here').addEventListener('click',()=>{remember();setRangePosition(edge,S.playing?AP.time():S.t);});
+    const handle=$('rangeHandle'+(edge==='start'?'Start':'End'));
+    handle.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();e.stopPropagation();const v=rangeValidation();if(!v.valid)return;remember();const min=edge==='start'?0:v.range.start+1/S.project.fps,max=edge==='end'?S.audio.duration:v.range.end-1/S.project.fps,next=e.key==='Home'?min:e.key==='End'?max:v.range[edge]+(e.key==='ArrowLeft'?-1:1)*(e.shiftKey?.1:.01);editRange(edge,Math.max(min,Math.min(max,['Home','End'].includes(e.key)?next:+next.toFixed(2))),true);});
+    handle.addEventListener('pointerdown',e=>{if(S.exporting||exportPreflightBusy||directionBusy||S.tap)return;e.preventDefault();e.stopPropagation();remember();pause();S.audition=false;handle.focus();handle.setPointerCapture(e.pointerId);S.rangeDrag={edge,id:e.pointerId};});
+    handle.addEventListener('pointermove',e=>{if(S.rangeDrag?.id!==e.pointerId)return;const v=rangeValidation();if(!v.valid)return;const min=edge==='start'?0:v.range.start+1/S.project.fps,max=edge==='end'?S.audio.duration:v.range.end-1/S.project.fps,rawTime=timelineTimeAt(e.clientX),time=rawTime>=S.audio.duration-1e-9?S.audio.duration:Math.round(rawTime*100)/100;editRange(edge,Math.max(min,Math.min(max,time)));});
+    const finish=e=>{if(S.rangeDrag?.id!==e.pointerId)return;S.rangeDrag=null;if(rangeValidation().valid)commit();};handle.addEventListener('pointerup',finish);handle.addEventListener('pointercancel',finish);
+  }
+  document.querySelectorAll('[data-range-delta]').forEach(b=>b.addEventListener('click',()=>{const edge=b.dataset.rangeEdge,input=$(edge==='start'?'rangeStart':'rangeEnd');if(input.value!==''&&Number.isFinite(+input.value)){remember();editRange(edge,+(+input.value+Number(b.dataset.rangeDelta)).toFixed(2),true);}}));
+  $('rangeAudition').addEventListener('click',()=>{if(S.playing&&S.audition)pause();else play(true);});
+  $('rangeRepeat').addEventListener('change',e=>{const time=S.playing&&S.audition?AP.time():S.t;S.rangeLoop=e.target.checked;if(S.playing&&S.audition){S.t=time;startAudioPlayback();}});
+  $('rangeFit').addEventListener('click',()=>{const r=exportRangeForSettings();if(!r)return;const duration=playbackDuration(),span=Math.min(duration,Math.max(4,(r.end-r.start)*1.25));S.timelineZoom=Math.max(1,duration/span);S.timelineStart=Math.max(0,r.start-(span-(r.end-r.start))/2);drawTimeline();});
 }
 function updateExportSummary() {
   const out=$('studioExportSummary');if(!out||!S.project)return;
   const range=exportRangeForSettings(),settings=J.resolveExportSettings(S.project);
-  if(!range){out.textContent=settings.range==='socialHook'?'12〜15秒の縦型ショートをLRCから選べません。歌詞タイミングを確認してください。':settings.range==='highlight'?'LRCの区切りから自然な60秒区間を選べません。先に「SNS 60秒版」を確認してください。':'書き出し設定を確認してください。';return;}
-  const estimate=J.estimateExport(S.project,range.end-range.start,S.project.includeAudio!==false);
+  if(!range){out.textContent=rangeValidation().error;return;}
+  const estimate=J.estimateExport(effectiveOutputProject(),range.end-range.start,S.project.includeAudio!==false);
   const mbps=(estimate.videoBitrate/1e6).toFixed(1),audio=S.project.includeAudio!==false?`AAC ${Math.round(estimate.audioBitrate/1000)} kbps`:'音声なし';
   const codec=S.exportCapabilities?.h264?'H.264':S.exportCapabilities?.recorder?'MP4（形式は書き出し後に確認）':'MP4（形式未確認）';
   const name=(settings.fileName||S.project.title||'kamen').trim().replace(/\.mp4$/i,'').replace(/[\\/:*?"<>|]+/g,'_')||'kamen';
@@ -41573,7 +41728,7 @@ function updateExportSummary() {
 }
 function syncStudioExportControls() {
   if(!$('studioPreset')||!S.project)return;
-  const e=J.resolveExportSettings(S.project);
+  const e=J.resolveExportSettings(S.project);syncStudioAspect();
 
   $('studioPreset').value=e.preset;$('studioRes').value=String(S.project.res||1080);$('studioFPS').value=String(S.project.fps||30);
   $('studioQualityLevel').value=S.project.quality||'high';$('studioVideoBitrate').value=e.videoBitrate>0?(e.videoBitrate/1e6).toString():'';
@@ -41581,7 +41736,7 @@ function syncStudioExportControls() {
   $('studioAudio').value=S.project.includeAudio===false?'off':'on';$('studioAudioBitrate').value=String(e.audioBitrate||192000);
 
 
-  $('studioExportRange').value=e.range||'full';$('studioFileName').value=e.fileName||'';updateExportSummary();
+  $('studioExportRange').value=e.range||'full';$('studioFileName').value=e.fileName||'';updateExportSummary();syncRangeUI();
 }
 
 function syncSocialCopy() {
@@ -41617,7 +41772,7 @@ let directionBusy = false, exportPreflightBusy=false;
 const editingLock=J.createControlLock();
 function processingLocks(active){
   if(!active){editingLock.unlock();return;}
-  editingLock.lock([...document.querySelectorAll('#app input,#app select,#app textarea,#app button')].filter(el=>!el.classList.contains('terms-open')&&el.id!=='btnHelp'&&!el.closest('dialog')));
+  editingLock.lock([...document.querySelectorAll('#app input,#app select,#app textarea,#app button')].filter(el=>!el.classList.contains('terms-open')&&el.id!=='btnHelp'&&!el.closest('dialog,.processing-panel')));
 }
 function syncDirectionUI() {
   const locked=!!(S.exporting||exportPreflightBusy||S.projectLoading||directionBusy||visualBusy);
@@ -41629,8 +41784,9 @@ function syncDirectionUI() {
   const music = !!S.audio;
   const lyrics = J.parseLyrics(S.project.lyrics).lines.length>0;if($('previewHint'))$('previewHint').hidden=image||lyrics;
   const generated = !!S.project.generation.generated;
+  $('app').classList.toggle('audio-only',!!S.audio&&!image&&!lyrics);
   $('studioStep').textContent = directionBusy?'処理中 · 中止できます':generated?'03 / 03　確認して保存':'01 / 03　素材を準備';
-  const canExport = generated && !locked && !!(S.audio && lyrics && S.plan?.duration > 0 && !S.audioLoading && !S.tap);
+  const canExport = generated && !locked && !!exportRangeForSettings() && !!(S.audio && lyrics && S.plan?.duration > 0 && !S.audioLoading && !S.tap);
   $('studioExport').disabled = !canExport;
   $('studioHighlight').disabled = !canExport||S.plan.duration<60;$('studioHighlight').title=(S.plan?.duration||0)<60?'60秒以上の音源で使用できます':'';
   if($('studioSocialHook'))$('studioSocialHook').disabled=!canExport||S.plan.duration<12;
@@ -41656,7 +41812,7 @@ function syncDirectionUI() {
     const missing=[!image&&'背景画像',!music&&'音源',!lyrics&&'歌詞'].filter(Boolean);
     $('directionStatus').textContent=S.generationNotice|| (S.project.sourceImport?.requiresGeneration?'旧作品の素材を別の作業に取り込みました。音源と素材を確認し、MVを再生成してください。':missing.length?`あと ${missing.join('・')} を選んでください。`:'素材が揃いました。本家JIZURAで生成できます。');
   }
-  syncStudioResultVisibility();if($('exportDiagnostics'))$('exportDiagnostics').hidden=!S.lastExportError;
+  syncStudioResultVisibility();syncRangeUI();if($('exportDiagnostics'))$('exportDiagnostics').hidden=!S.lastExportError;
 
   if(locked)processingLocks(true);
 }
@@ -41684,8 +41840,8 @@ function updateStudioQuality(){const target=$('studioQuality');if(!target)return
 
 async function showHighlight() {
   const choice=S.highlights[S.highlightIndex];if(!choice)return;
-  S.socialPlan=null;S.range={start:choice.start,end:choice.end};
-  S.rangeMode='highlight';S.project.exportSettings.range='highlight';S.exportValidation=null;syncStudioExportControls();flushSave();
+  S.socialPlan=null;S.range={start:choice.start,end:Math.min(choice.end,S.audio.duration)};
+  if(S.audition)pause();S.audition=false;clearRangeOutput();S.rangeDraft=null;S.rangeMode='highlight';S.project.exportSettings.range='highlight';S.exportValidation=null;syncStudioExportControls();flushSave();
   $('highlightChoice').textContent=`推奨区間 ${J.fmtTime(choice.start)} → ${J.fmtTime(choice.end)} · ${choice.reason}`;
   $('highlightNext').hidden=S.highlights.length<2;
   $('studioHighlight').setAttribute('aria-pressed','true');
@@ -41697,8 +41853,8 @@ async function showHighlight() {
 
 async function showSocialHook(index=null){
   try{if(!S.highlights.length||S.rangeMode!=='socialHook'){S.highlights=J.socialHookCandidates(S.plan,S.audio);S.highlightIndex=0;}if(index!=null)S.highlightIndex=index;}catch(e){$('highlightChoice').textContent=e.message||'15秒版を選べませんでした';return;}
-  S.rangeMode='socialHook';
-  const selected=S.highlights[S.highlightIndex]||S.highlights[0];S.range={start:selected.start,end:selected.end};
+  if(S.audition)pause();S.audition=false;clearRangeOutput();S.rangeDraft=null;S.rangeMode='socialHook';
+  const candidate=S.highlights[S.highlightIndex]||S.highlights[0],selected={...candidate,end:Math.min(candidate.end,S.audio.duration)};selected.duration=selected.end-selected.start;S.range={start:selected.start,end:selected.end};
   const portraitProject=JSON.parse(JSON.stringify(S.project));portraitProject.aspect='9:16';
   const portraitPlan=J.plan(portraitProject,audioLike());S.socialPlan=J.createSocialHookPlan?J.createSocialHookPlan(portraitPlan,{...selected,assetStrategy:S.project.socialAssetStrategy}):portraitPlan;
   S.project.exportSettings.range='socialHook';S.exportValidation=null;syncStudioExportControls();flushSave();
@@ -41761,25 +41917,21 @@ function mountStudio() {
 
 
   $('studioExportRange').addEventListener('change',async e=>{
-    S.project.exportSettings.range=e.target.value;S.exportValidation=null;flushSave();
-    if(e.target.value==='highlight'||e.target.value==='socialHook'){
-      try{if(e.target.value==='socialHook')await showSocialHook();else{S.highlights=J.highlightCandidates(S.plan,S.audio);S.highlightIndex=0;await showHighlight();}}
-      catch(error){$('highlightChoice').textContent=error.message||'SNS用の区間を選べませんでした';updateStudioQuality();}
-    }else{
-      S.range=null;S.rangeMode=null;S.socialPlan=null;S.pixelQA=null;$('studioHighlight').setAttribute('aria-pressed','false');$('studioSocialHook').setAttribute('aria-pressed','false');$('studioHighlight').textContent='SNS 60秒版';$('highlightNext').hidden=true;$('highlightChoice').textContent='';
-      updateExportSummary();updateStudioQuality();
-    }
+    chooseRangeMode(e.target.value);
+    if(e.target.value==='socialHook')await showSocialHook();
+    else if(e.target.value==='highlight'){try{S.highlights=J.highlightCandidates(S.plan,S.audio);S.highlightIndex=0;await showHighlight();}catch(error){$('highlightChoice').textContent=error.message;}}
+    syncStudioExportControls();changedRange();commit();
   });
   $('studioFileName').addEventListener('input',e=>{
     S.project.exportSettings.fileName=e.target.value.slice(0,80);updateExportSummary();flushSave();
   });
   $('studioHighlight').addEventListener('click',()=>{
-    if(S.rangeMode==='highlight'){S.range=null;S.rangeMode=null;S.socialPlan=null;S.project.exportSettings.range='full';syncStudioExportControls();$('studioHighlight').setAttribute('aria-pressed','false');$('studioSocialHook').setAttribute('aria-pressed','false');$('studioHighlight').textContent='SNS 60秒版';$('highlightChoice').textContent='曲全体';$('highlightNext').hidden=true;seek(0);updateStudioQuality();return;}
+    if(S.rangeMode==='highlight'){chooseRangeMode('full');syncStudioExportControls();changedRange();commit();seekWhole(0);return;}
     try{S.highlights=J.highlightCandidates(S.plan,S.audio);S.highlightIndex=0;showHighlight();}
     catch(e){$('highlightChoice').textContent=e.message;}
   });
   $('studioSocialHook').addEventListener('click',()=>{
-    if(S.rangeMode==='socialHook'){S.range=null;S.rangeMode=null;S.socialPlan=null;S.project.exportSettings.range='full';syncStudioExportControls();$('studioSocialHook').setAttribute('aria-pressed','false');$('studioHighlight').setAttribute('aria-pressed','false');$('highlightChoice').textContent='曲全体';sizeViewport();seek(0);updateStudioQuality();return;}
+    if(S.rangeMode==='socialHook'){chooseRangeMode('full');syncStudioExportControls();changedRange();commit();seekWhole(0);return;}
     showSocialHook();
   });
   $('highlightNext').addEventListener('click',()=>{S.highlightIndex=(S.highlightIndex+1)%S.highlights.length;if(S.rangeMode==='socialHook')showSocialHook(S.highlightIndex);else showHighlight();});
@@ -41803,7 +41955,7 @@ function mountStudio() {
     if(S.plan.lines.some(l=>l.start<0 || l.start>S.audio.duration+.15)){
       $('studioQuality').textContent='音源の長さを超える歌詞があります。歌詞タイミングを調整してください。';return;
     }
-    const before=J.canonicalJSON(S.project);S.project.aspect=$('studioAspect').value;
+    const before=J.canonicalJSON(S.project);if(S.project.exportSettings.range!=='socialHook')S.project.aspect=$('studioAspect').value;
     syncOut();if(before!==J.canonicalJSON(S.project))replan();await runExport('mp4');
   });
   $('studioPNG').addEventListener('click',()=>{
@@ -41825,8 +41977,8 @@ function mountStudio() {
   syncStudioResultVisibility();
 }
 async function codecNote() {
-  const [w, h] = J.outputSize(S.project);
-  const caps=await J.exportCapabilities(S.project,S.project.includeAudio!==false?S.audio:null).catch(()=>({webCodecs:false,h264:false,aac:false,recorder:null}));
+  const target=effectiveOutputProject(),[w,h]=J.outputSize(target);
+  const caps=await J.exportCapabilities(target,S.project.includeAudio!==false?S.audio:null).catch(()=>({webCodecs:false,h264:false,aac:false,recorder:null}));
   S.exportCapabilities=caps;
   const sound=S.project.includeAudio===false?'音声なし':caps.aac?'AAC音声':'音声形式は書き出し後に確認';
   $('codecNote').textContent=caps.webCodecs?`H.264 / ${sound}で書き出します（${w}×${h}）。`:caps.recorder?'この端末では代替方法でMP4を書き出します。画面を表示したままお待ちください。':'この端末はMP4の書き出しに対応していません。';
@@ -41844,13 +41996,14 @@ async function runExport(kind) {
   if(!S.project.generation.generated){toast('素材を確認してMVを生成してください。');return;}
   pause();
   const outcome=S.exportOutcome={fileState:'PREPARING',creativeState:'UNMEASURED'};
-  const range=exportRangeForSettings();
-  if(!range){outcome.fileState='FAILED_TECHNICAL';$('studioQuality').textContent='書き出す範囲を選べません。先に「SNS 60秒版」で候補を確認してください。';return;}
+  const resolvedRange=exportRangeForSettings(),range=resolvedRange?Object.freeze({...resolvedRange}):null;
+  if(!range){outcome.fileState='FAILED_TECHNICAL';$('studioQuality').textContent=rangeValidation().error;return;}
   const destination=kind==='mp4'?J.prepareFileSave(baseName()+'.mp4','video/mp4'):Promise.resolve(null);
   let saveHandle=null;
   const socialHook=J.resolveExportSettings(S.project).range==='socialHook';
   let outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;
-  let exportPlan=socialHook&&S.socialPlan?.socialHook?.start===range.start&&S.socialPlan?.socialHook?.end===range.end?S.socialPlan:S.plan;
+  if(socialHook)refreshSocialPlan(range);
+  let exportPlan=socialHook?S.socialPlan:S.plan;
   const task=J.processing.begin(kind==='mp4'?'動画を書き出しています':'PNGを書き出しています',[
     ['prepare','書き出し前の映像・歌詞・出力設定を検査しています',8],['fonts','フォントと素材を準備しています',2],
     ['frames','フレームを生成・エンコーダーに送っています',65],['video','映像のエンコード完了を待っています',5],
@@ -41939,7 +42092,7 @@ async function runExport(kind) {
 function startTap() {
   if (!S.plan.lines.length || !S.audio || S.audioLoading || S.exporting || directionBusy) { toast('歌詞と音源を読み込んでから同期してください。'); return; }
   remember();
-  S.range=null; S.rangeMode=null; S.socialPlan=null; replan();
+  S.audition=false;S.range=null; S.rangeMode=null; S.socialPlan=null; replan();
   let opts={rate:1,count:false};try{opts={...opts,...JSON.parse(localStorage.getItem('jizura.tapOpts')||'{}')};}catch{}
   S.tap = { i: 0,rate:[1,.75,.5].includes(opts.rate)?opts.rate:1,counting:!!opts.count, project:S.project, lyrics:S.project.lyrics, audio:S.audio, changes: [] };
   if (!S.project.timing.lineTimes) S.project.timing.lineTimes = {};
@@ -42002,6 +42155,7 @@ function syncUI() {
 
 /* ---------------- wiring ---------------- */
 function bind() {
+  bindRangeUI();
   for(const type of ['input','change','click'])$('app').addEventListener(type,()=>queueMicrotask(()=>autosave()));
   $('lyrics').addEventListener('input', e => { S.project.lyrics = e.target.value; invalidateGeneratedMV(); $('studioLrcName').textContent=e.target.value.trim()?'歌詞を入力済み':'LRC / TXTを選択'; delete $('directionStatus').dataset.result; syncDirectionUI(); replanSoon(260); });
   let lrcLoad=0;
@@ -42063,13 +42217,13 @@ function bind() {
   $('btnLoop').addEventListener('click', e => { S.loop = !S.loop; e.target.setAttribute('aria-pressed', String(S.loop)); });
   $('btnShuffle').addEventListener('click', () => { remember(); S.project.seed = (Math.random() * 1e9) | 0; $('seed').value = S.project.seed; replan(); commit(); });
   const sc = $('scrub');
-  sc.addEventListener('input', () => { S.scrubbing = true; seek(sc.value / 10000 * S.plan.duration); });
+  sc.addEventListener('input', () => { S.scrubbing = true; seekWhole(sc.value / 10000 * playbackDuration()); });
   sc.addEventListener('change', () => { S.scrubbing = false; });
   const tl = $('timeline');
   tl.tabIndex=0;
   tl.addEventListener('pointerdown',e=>{
     tl.focus();tl.setPointerCapture(e.pointerId);const rect=tl.getBoundingClientRect(),win=timelineWindow(),px=(e.clientX-rect.left)*tl.width/Math.max(1,rect.width),dpr=tl.width/Math.max(1,rect.width);
-    const line=e.offsetY<30?nearestLineMarker(px,win,tl.width,dpr):-1;
+    const line=S.mode==='pro'&&e.offsetY<30?nearestLineMarker(px,win,tl.width,dpr):-1;
     if(e.shiftKey||e.button===1){S.timelineDragging={type:'pan',pointerId:e.pointerId,startX:e.clientX,startStart:S.timelineStart};return;}
     if(line>=0){selectedTimelineLine(line);S.timelineDragging={type:'line',pointerId:e.pointerId,index:line,moved:false};return;}
     S.timelineDragging={type:'seek',pointerId:e.pointerId};timelineSeek(e);
@@ -42237,7 +42391,7 @@ function bind() {
       } catch (err) {throw new Error('背景画像を復元できませんでした。別のバックアップを選んでください。');}
       S.audioLoad++;S.audioLoading=false;S.audioPendingName='';S.expectedAudioAsset=project.audioAsset;S.audioNotice=project.audioAsset?'音源「'+project.audioAsset.name+'」を選び直してください。':'';
       S.generationNotice=project.sourceImport?.requiresGeneration?'旧作品の素材を別の作業に取り込みました。音源を選び直し、MVを再生成してください。':null;project.audioAsset=null;localRecoveryBlocked=false; // A successful explicit import replaces the local project; retained media are not deleted.
-      task.enter('restore');rememberWorkspace(crypto.randomUUID());S.workspaceForkOrigin=null;S.persistenceRevision=0;S.project = project; S.audio = null;S.currentAudioFile=null;S.pendingAudioFile=null;S.localAudioSnapshot=null; $('audioName').textContent = '曲なし（曲を読み込むと拍を検出します）';
+      task.enter('restore');rememberWorkspace(crypto.randomUUID());S.workspaceForkOrigin=null;S.persistenceRevision=0;S.project = project;S.rangeDraft=null;S.range=null;S.rangeMode=null;S.audition=false; S.audio = null;S.currentAudioFile=null;S.pendingAudioFile=null;S.localAudioSnapshot=null; $('audioName').textContent = '曲なし（曲を読み込むと拍を検出します）';
       delete $('directionStatus').dataset.result; resetHistory(); syncUI(); replan();await flushSave();task.enter('preview');syncStudioResultVisibility();S.need=true;task.complete('プロジェクトを読み込みました。音源は別途選択してください');
     }
     catch(err){task.fail(err);console.error('JIZURA project import failed',err);toast('プロジェクトを開けません。JSON形式と画像・フォントを確認し、別のバックアップで再試行してください。');if(S.project.customBg?.dataUrl)await S.renderer.loadCustomBackground(S.project.customBg.dataUrl).catch(()=>{});}
@@ -42245,6 +42399,7 @@ function bind() {
   });
   document.addEventListener('keydown', e => {
     if(e.target?.closest?.('.processing-panel'))return;
+    if(e.target?.closest?.('.range-manual,.range-handle,.range-audition')&&!((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'))return;
     const tag = (e.target && e.target.tagName) || '';
     const typing = /INPUT|TEXTAREA|SELECT/.test(tag) && e.target.type !== 'range' && e.target.type !== 'checkbox';
     if (S.tap && (e.code === 'Space' || e.code === 'Enter') && !typing) { e.preventDefault(); if(!e.repeat)tapNow(); return; }
@@ -42256,8 +42411,8 @@ function bind() {
     else if (e.code === 'ArrowLeft' && S.selectedLine>=0 && e.altKey) nudgeSelectedLine(e.shiftKey?-.01:-.1);
     else if (e.code === 'ArrowRight') seek(S.t + (e.shiftKey ? .01 : .1));
     else if (e.code === 'ArrowLeft') seek(S.t - (e.shiftKey ? .01 : .1));
-    else if (e.code === 'Home') seek(S.range?.start??0);
-    else if (e.code === 'End') seek(S.range?.end??S.plan.duration);
+    else if (e.code === 'Home') seekWhole(0);
+    else if (e.code === 'End') seekWhole(playbackDuration());
     else if (e.code === 'Delete' && S.selectedLine>=0) { if(S.project.timing.lineTimes)delete S.project.timing.lineTimes[S.selectedLine];replan();flushSave();selectedTimelineLine(S.selectedLine); }
     else if (e.code === 'KeyR' && !e.metaKey && !e.ctrlKey && !e.altKey && !S.exporting) { e.preventDefault(); omakase(); }
   });
@@ -42285,7 +42440,7 @@ async function loadAudioFile(f) {
     const analyzed=await J.analyzeAudio(f,{onProgress:J.audioProgressEvent(task),onStage:message=>{if(project===S.project&&request===S.audioLoad){$('audioName').textContent=message+' · '+(f.name||'音源');$('studioAudioName').textContent=message;}},signal:{get aborted(){return cancel.signal.aborted||project!==S.project||request!==S.audioLoad;}}});
     if(project!==S.project||request!==S.audioLoad){task.fail(new Error('音源解析を中止しました'),true);return false;}
     S.audio=analyzed;S.currentAudioFile=f;
-    if(!J.audioAssetMatches(S.project.audioAsset||S.expectedAudioAsset,f))invalidateGeneratedMV();S.expectedAudioAsset=null;resetHistory();
+    if(!J.audioAssetMatches(S.project.audioAsset||S.expectedAudioAsset,f)){invalidateGeneratedMV();S.project.exportSettings.range='full';delete S.project.exportSettings.customRange;S.rangeDraft=null;S.audition=false;}S.expectedAudioAsset=null;resetHistory();
     $('audioName').textContent = audioSummary(S.audio);
     S.project.timing.snap = true;
     delete $('directionStatus').dataset.result; syncUI(); replan();

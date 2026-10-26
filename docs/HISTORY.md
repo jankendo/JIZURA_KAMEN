@@ -1,6 +1,8 @@
 # Historical implementation records
 
-The current product is the modern browser-only KAMEN 2.4 described in the README, STORAGE and VALIDATION documents.
+The current product is the modern browser-only KAMEN 2.5 described in the README, STORAGE and VALIDATION documents.
+
+The [2.4 UX audit](UX_AUDIT_2_4_0.md) remains the record of browser-engine consolidation. Current seconds-range behavior is described in [2.5](EXPORT_RANGE_2_5_0.md).
 
 The following snapshots remain as historical reference, not current specifications or fresh test results:
 

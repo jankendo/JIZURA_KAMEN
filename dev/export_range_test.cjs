@@ -1,0 +1,7 @@
+'use strict';
+const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');const J={};vm.runInNewContext(fs.readFileSync('src/08h_export_range.js','utf8'),{J,Object,Number,Math,Error});
+for(const [range,duration,fps]of [[{start:0,end:3},3,24],[{start:1.23,end:2.77},8,30],[{start:7.9,end:8},8,60]]){const value=J.validateExportRange(range,duration,fps);assert(value.valid);assert.equal(value.frames,Math.round((range.end-range.start)*fps));}
+for(const range of [null,{start:NaN,end:2},{start:1,end:Infinity},{start:-1,end:2},{start:0,end:9},{start:2,end:1},{start:2,end:2},{start:1,end:1.01},{start:'1',end:2}]){assert(!J.validateExportRange(range,8,30).valid,JSON.stringify(range));assert.throws(()=>J.requireExportRange(range??{start:NaN,end:8},{duration:8,fps:30},null),/EXPORT_RANGE/);}
+assert(!J.validateExportRange({start:0,end:1},0,30).valid);assert(!J.validateExportRange({start:0,end:1},1,0).valid);
+const source={start:1,end:2},selected=J.requireExportRange(source,{duration:8,fps:30},{duration:7});source.start=0;assert.equal(selected.start,1);assert(Object.isFrozen(selected));assert.equal(J.requireExportRange(null,{duration:8,fps:30},{duration:7}).end,7);assert.throws(()=>J.requireExportRange({start:6,end:8},{duration:9,fps:24},{duration:7}),/EXPORT_RANGE/);
+console.log('Seconds range validation, frame minimum, source bounds and immutable export snapshots PASS');

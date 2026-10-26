@@ -12,7 +12,7 @@ const run=(file,args)=>new Promise((resolve,reject)=>{const child=spawn(process.
 try{
  for(let i=0;i<60&&!listening&&!serverFailure;i++)await new Promise(r=>setTimeout(r,100));
  if(serverFailure)throw serverFailure;if(!listening||!(await fetch(url)).ok)throw Error('QA server did not start');
- for(const [file,destination]of [['browser_ux_e2e.cjs','ux'],['mv_readability_e2e.cjs','readability'],['workspace_conflicts_e2e.cjs','workspaces.json'],['credits_layout_e2e.cjs','credits'],['upstream_modernization_e2e.cjs','upstream']])await run(file,[url,path.join(out,destination)]);
+ for(const [file,destination]of [['export_range_e2e.cjs','range'],['browser_ux_e2e.cjs','ux'],['mv_readability_e2e.cjs','readability'],['workspace_conflicts_e2e.cjs','workspaces.json'],['credits_layout_e2e.cjs','credits'],['upstream_modernization_e2e.cjs','upstream']])await run(file,[url,path.join(out,destination)]);
 }finally{
  server.kill();const force=setTimeout(()=>server.kill('SIGKILL'),2000);await stopped;clearTimeout(force);
 }

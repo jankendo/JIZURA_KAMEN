@@ -13,22 +13,25 @@ const ICON = {
 };
 
 const S = { project: null, plan: null, previewPlan:null, previewAspect:null, audio: null, audioLoad:0, audioLoading:false, audioPendingName:'', audioNotice:'', renderer: new J.Renderer(), playing: false, t: 0, t0: 0, loop: true, need: true, exporting: null, tap: null, slow: false, lineEls: [], curLine: -2,
-  range:null,rangeMode:null,socialPlan:null,highlights:[],highlightIndex:0,lastExport:null,pixelQA:null,exportCapabilities:null,exportValidation:null,selectedLine:-1,timelineZoom:1,timelineStart:0,timelineDragging:null };
+  audition:false,rangeLoop:false,rangeDraft:null,rangeDrag:null,range:null,rangeMode:null,socialPlan:null,highlights:[],highlightIndex:0,lastExport:null,pixelQA:null,exportCapabilities:null,exportValidation:null,selectedLine:-1,timelineZoom:1,timelineStart:0,timelineDragging:null };
 function markImageLookModified() { if (S.project && S.project.autoPalette && S.project.autoPalette.analyzed) S.project.autoPalette.lookModified = true; }
 
 /* WebAudio player (works inside sandboxed pages where blob media may be blocked) */
 const AP = {
   ctx: null, src: null, startAt: 0,
-  play(buffer, offset) {
+  play(buffer, offset, options={}) {
     if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
     if (this.ctx.state === 'suspended') this.ctx.resume();
     this.stop();
-    const s = this.ctx.createBufferSource(); s.buffer = buffer; s.connect(this.ctx.destination);
-    const off = Math.max(0, Math.min(offset, buffer.duration - 0.01));
-    const rate=S.tap?.rate||1;s.playbackRate.value=rate;s.start(0, off); this.src = s;this.rate=rate; this.startAt = this.ctx.currentTime - off/rate;
+    const s=this.ctx.createBufferSource();s.buffer=buffer;s.connect(this.ctx.destination);
+    const end=Math.min(buffer.duration,options.end??buffer.duration),off=Math.max(0,Math.min(offset,end-1e-6)),rate=S.tap?.rate||1;
+    s.playbackRate.value=rate;s.loop=!!options.loop;if(s.loop){s.loopStart=options.start||0;s.loopEnd=end;}
+    this.src=s;this.rate=rate;this.startAt=this.ctx.currentTime-off/rate;
+    s.onended=()=>{if(this.src!==s)return;this.src=null;s.disconnect();options.onEnded?.();};
+    if(s.loop)s.start(0,off);else s.start(0,off,Math.max(1e-6,end-off));
   },
-  stop() { if (this.src) { try { this.src.stop(); } catch (e) {} try { this.src.disconnect(); } catch (e) {} this.src = null; } },
-  time() { return this.ctx ? (this.ctx.currentTime - this.startAt)*(this.rate||1) : 0; },
+  stop() { if (this.src) { try { this.src.onended=null;this.src.stop(); } catch (e) {} try { this.src.disconnect(); } catch (e) {} this.src = null; } },
+  time() { let value=this.ctx?(this.ctx.currentTime-this.startAt)*(this.rate||1):0;const r=S.audition&&S.rangeLoop?exportRangeForSettings():null;if(r&&value>=r.end)value=r.start+(value-r.start)%(r.end-r.start);return value; },
 };
 
 /* ---------------- project persistence ---------------- */
@@ -57,7 +60,7 @@ function mergeProject(p) {
   o.exportSettings.preset=J.EXPORT_PRESETS?.[o.exportSettings.preset]?o.exportSettings.preset:'auto';
   o.exportSettings.videoBitrate=Number.isFinite(+o.exportSettings.videoBitrate)?Math.max(0,+o.exportSettings.videoBitrate):0;
   o.exportSettings.audioBitrate=[128000,192000,256000,320000].includes(+o.exportSettings.audioBitrate)?+o.exportSettings.audioBitrate:192000;
-  o.exportSettings.range=['full','highlight','socialHook'].includes(o.exportSettings.range)?o.exportSettings.range:'full';
+  o.exportSettings.range=['full','custom','highlight','socialHook'].includes(o.exportSettings.range)?o.exportSettings.range:'full';
   o.visualEnergyDensity=['auto','clean','standard','high_energy','hyper'].includes(o.visualEnergyDensity)?o.visualEnergyDensity:'auto';
   o.hookStrength=['auto','strong','maximum'].includes(o.hookStrength)?o.hookStrength:'auto';
   o.includeAudio=o.includeAudio!==false;
@@ -307,7 +310,9 @@ function audioLike() {
   if (T.bpm > 0) return { beats: J.beatGrid(T.bpm, T.beatOffset || 0, 600) };
   return null;
 }
-function viewPlan() { return S.rangeMode==='socialHook'&&S.socialPlan?S.socialPlan:(S.previewPlan||S.plan); }
+function viewPlan() { return S.project?.exportSettings.range==='socialHook'&&S.socialPlan?S.socialPlan:(S.previewPlan||S.plan); }
+function effectiveOutputProject(){return S.project.exportSettings.range==='socialHook'?{...S.project,aspect:'9:16'}:S.project;}
+function refreshSocialPlan(range=exportRangeForSettings()){S.socialPlan=S.project.exportSettings.range==='socialHook'&&S.audio&&range?J.createSocialHookPlan(J.plan(effectiveOutputProject(),audioLike()),{...range}):null;}
 function refreshPreviewPlan() {
   S.previewPlan = S.previewAspect ? J.plan({ ...S.project, aspect:S.previewAspect }, audioLike()) : null;
 }
@@ -316,6 +321,7 @@ function replan() {
   S.socialPlan=null;
   S.pixelQA=null;S.exportValidation=null;S.lastExport=null;$('studioShare').hidden=true;
   S.plan = J.plan(S.project, audioLike());
+  refreshSocialPlan();
   refreshPreviewPlan();
   if (S.t > S.plan.duration) S.t = 0;
   renderLines(); sizeViewport(); drawTimeline(); updateTimeUI();
@@ -384,7 +390,7 @@ function draw() {
   const c = $('view'), ctx = c.getContext('2d');
   const t0 = performance.now();
   const plan=viewPlan();
-  S.renderer.frame(ctx, plan, S.t, { scale: c.width / plan.W, fast: S.playing && S.slow, range:S.range });
+  S.renderer.frame(ctx, plan, S.t, { scale: c.width / plan.W, fast: S.playing && S.slow, range:S.audition?exportRangeForSettings():null });
   const dt = performance.now() - t0;
   S.slow = S.playing ? (dt > 30 ? true : dt < 14 ? false : S.slow) : false;
   updateTimeUI(); drawTimeline(); updateCutInfo();
@@ -395,10 +401,10 @@ function tick(now) {
   if (S.playing) {
     // rAF timestamps can precede the moment play()/seek() stamped t0 → clamp so t never goes negative
     let t = Math.max(0, S.audio ? AP.time() : (now - S.t0) / 1000);
-    const end=S.tap?S.audio.duration:(S.range?.end??S.plan.duration),begin=S.range?.start??0;
-    if (t >= end - 1e-3) {
-      if (S.loop && !S.tap) { seek(begin); t = begin; }
-      else { pause(); t = end - 1e-3; if (S.tap) stopTap(); }
+    const audition=S.audition?exportRangeForSettings():null,end=S.tap?S.audio.duration:(audition?.end??playbackDuration()),begin=audition?.start??0;
+    if (t >= end - 1e-3 && !(S.audition&&S.rangeLoop)) {
+      if (!S.audition && S.loop && !S.tap) { seek(begin); t = begin; }
+      else { pause(); t = end; if (S.tap) stopTap(); }
     }
     S.t = t;
     if(!S.timelineDragging){const win=timelineWindow();if(t<win.start||t>win.end)S.timelineStart=J.clamp(t-win.span*.18,0,Math.max(0,win.duration-win.span));}
@@ -408,29 +414,42 @@ function tick(now) {
 }
 function updateTimeUI() {
   $('timeNow').textContent = J.fmtTime(S.t);
-  $('timeDur').textContent = J.fmtTime(S.plan.duration);
-  if (!S.scrubbing) $('scrub').value = String(Math.round(S.t / Math.max(0.001, S.plan.duration) * 10000));
+  $('timeDur').textContent = J.fmtTime(playbackDuration());
+  if (!S.scrubbing) $('scrub').value = String(Math.round(S.t / Math.max(0.001, playbackDuration()) * 10000));
+  syncRangePlayback();
 }
-function play() {
-  if (S.audio) AP.play(S.audio.buffer, S.t);
-  else S.t0 = performance.now() - S.t * 1000;
-  S.playing = true; $('btnPlay').textContent = '❚❚'; $('btnPlay').setAttribute('aria-label', '一時停止');
+function playbackDuration(){return S.audio?.duration||S.plan?.duration||0;}
+function startAudioPlayback(){
+  const range=S.audition?exportRangeForSettings():null;
+  if(S.audition&&!range){pause();return;}
+  AP.play(S.audio.buffer,S.t,{start:range?.start??0,end:range?.end??playbackDuration(),loop:!!range&&S.rangeLoop,onEnded:()=>{
+    const end=range?.end??playbackDuration();S.t=end;
+    if(!S.audition&&S.loop&&!S.tap){S.t=0;startAudioPlayback();}else{pause();if(S.tap)stopTap();}
+    S.need=true;
+  }});
+}
+function play(audition=false) {
+  const range=audition?exportRangeForSettings():null;if(audition&&(!S.audio||!range))return;
+  S.audition=audition;if(range)S.t=range.start;else if(S.t>=playbackDuration()-1e-3)S.t=0;
+  S.playing=true;if(S.audio)startAudioPlayback();else S.t0=performance.now()-S.t*1000;
+  $('btnPlay').textContent='❚❚';$('btnPlay').setAttribute('aria-label','一時停止');syncRangePlayback();S.need=true;
 }
 function pause() {
-  S.playing = false; AP.stop();
-  $('btnPlay').textContent = '▶'; $('btnPlay').setAttribute('aria-label', '再生'); S.need = true;
+  S.playing=false;AP.stop();$('btnPlay').textContent='▶';$('btnPlay').setAttribute('aria-label','再生');syncRangePlayback();S.need=true;
 }
 function seek(t) {
-  S.t = J.clamp(t, 0, Math.max(0, S.plan.duration - 1e-3));
-  if (S.audio) { if (S.playing) AP.play(S.audio.buffer, S.t); }
-  else S.t0 = performance.now() - S.t * 1000;
-  S.need = true;
+  const range=S.audition?exportRangeForSettings():null;
+  if(range&&(t<range.start||t>=range.end)){pause();S.audition=false;}
+  S.t=J.clamp(t,0,playbackDuration());
+  if(S.audio){if(S.playing)startAudioPlayback();}else S.t0=performance.now()-S.t*1000;
+  S.need=true;
 }
+function seekWhole(t){if(S.audition){pause();S.audition=false;}seek(t);}
 
 /* ---------------- timeline ---------------- */
 const layoutHue = k => (J.LAYOUT_ORDER.indexOf(k) * 37 + 30) % 360;
 function timelineWindow() {
-  const win=J.timelineViewport(S.plan.duration,S.timelineZoom,S.timelineStart);S.timelineStart=win.start;return win;
+  const win=J.timelineViewport(playbackDuration(),S.timelineZoom,S.timelineStart);S.timelineStart=win.start;return win;
 }
 function timelineTimeAt(clientX) {
   const canvas=$('timeline'),rect=canvas.getBoundingClientRect(),win=timelineWindow();
@@ -471,9 +490,9 @@ function nudgeSelectedLine(delta) {
 }
 function zoomTimeline(factor,anchor=S.t) {
   const before=timelineWindow(),oldAnchor=J.clamp((anchor-before.start)/before.span,0,1);
-  S.timelineZoom=J.clamp(S.timelineZoom*factor,1,Math.max(1,S.plan.duration/4));
-  const afterSpan=Math.min(S.plan.duration,Math.max(4,S.plan.duration/S.timelineZoom));
-  S.timelineStart=J.clamp(anchor-oldAnchor*afterSpan,0,Math.max(0,S.plan.duration-afterSpan));
+  S.timelineZoom=J.clamp(S.timelineZoom*factor,1,Math.max(1,playbackDuration()/4));
+  const afterSpan=Math.min(playbackDuration(),Math.max(4,playbackDuration()/S.timelineZoom));
+  S.timelineStart=J.clamp(anchor-oldAnchor*afterSpan,0,Math.max(0,playbackDuration()-afterSpan));
   drawTimeline();
 }
 let timelineLayer=null,timelineCache=null;
@@ -482,7 +501,8 @@ function drawTimeline() {
   const w = Math.max(10, Math.round(c.clientWidth * dpr)), h = Math.max(10, Math.round(c.clientHeight * dpr));
   if (c.width !== w || c.height !== h) { c.width = w; c.height = h; }
   const output=c.getContext('2d'), win=timelineWindow(), X=t=>(t-win.start)/win.span*w;
-  const key=[S.plan,S.audio?.peaks,S.audio?.duration,S.selectedLine,w,h,dpr,win.start,win.span];
+  const detailed=S.mode==='pro';
+  const key=[detailed,S.plan,S.audio?.peaks,S.audio?.duration,S.selectedLine,w,h,dpr,win.start,win.span];
   const rebuild=!timelineCache||key.some((v,i)=>v!==timelineCache[i]);
   if(!timelineLayer)timelineLayer=document.createElement('canvas');
   if(rebuild){timelineLayer.width=w;timelineLayer.height=h;}
@@ -490,15 +510,15 @@ function drawTimeline() {
   if(rebuild){
   x.fillStyle = '#131316'; x.fillRect(0, 0, w, h);
   if (S.audio && S.audio.peaks) {
-    const pk = S.audio.peaks, n = pk.length, sd = S.audio.duration;
-    x.fillStyle = '#2b2b33';
-    for (let i = 0; i < w; i += 2) { const t=win.start+i/w*win.span;if(t>sd)break;const v=pk[Math.min(n-1,Math.floor(t/sd*n))];const hh=v*h*.76;x.fillRect(i,h*.56-hh/2,1.5,hh); }
+    const pk = S.audio.peaks, n = pk.length, sd = S.audio.duration,peakScale=1/Math.max(.01,pk.reduce((a,b)=>Math.max(a,b),0));
+    x.fillStyle = detailed?'#687789':'#8196aa';
+    for (let i = 0; i < w; i += 2) { const t=win.start+i/w*win.span;if(t>sd)break;const v=pk[Math.min(n-1,Math.floor(t/sd*n))];const hh=v*peakScale*h*.60;x.fillRect(i,h*.56-hh/2,1.5,hh); }
   }
   const beats = S.plan.beats || [];
   x.fillStyle = '#3a3a44';
   for (const b of beats) { if(b<win.start)continue;if(b>win.end)break;x.fillRect(Math.round(X(b)),h-6*dpr,1,6*dpr); }
   const top = h * 0.3, bot = h - 8 * dpr;
-  for (const cut of S.plan.cuts) {
+  for (const cut of detailed?S.plan.cuts:[]) {
     if(cut.end<win.start||cut.start>win.end)continue;
     const x0 = X(Math.max(win.start,cut.start)), x1 = X(Math.min(win.end,cut.end));
     const hue = layoutHue(cut.layout);
@@ -511,7 +531,7 @@ function drawTimeline() {
     }
   }
   x.font = `${10 * dpr}px monospace`;
-  for (const ln of S.plan.lines) {
+  for (const ln of detailed?S.plan.lines:[]) {
     if(ln.start<win.start||ln.start>win.end)continue;
     const lx = X(ln.start),selected=ln.index===S.selectedLine;
     x.fillStyle=selected?'#f5a50c':'#5d5a63';x.fillRect(lx,0,selected?2*dpr:1,top);
@@ -521,13 +541,16 @@ function drawTimeline() {
   timelineCache=key;
   }
   output.drawImage(timelineLayer,0,0);
+  const range=exportRangeForSettings();
+  if(range){const left=J.clamp(X(range.start),0,w),right=J.clamp(X(range.end),0,w);output.fillStyle='rgba(0,0,0,.58)';output.fillRect(0,0,left,h);output.fillRect(right,0,w-right,h);output.fillStyle='rgba(217,185,126,.12)';output.fillRect(left,0,right-left,h);output.strokeStyle='#e9c78c';output.lineWidth=2*dpr;output.strokeRect(left,detailed?30*dpr:1,right-left,h-(detailed?30*dpr:2));}
+  positionRangeHandles(win);
   const px = X(S.t);
   if(px>=0&&px<=w){output.fillStyle = '#f5a50c'; output.fillRect(Math.round(px)-dpr,0,2*dpr,h);}
   output.fillStyle='#87838d';output.font=`${9*dpr}px monospace`;output.textBaseline='bottom';
   for(let i=0;i<=4;i++){const xx=i*w/4;output.fillText(J.fmtTime(win.start+win.span*i/4),xx+2*dpr,h-1*dpr);}
 }
 function timelineSeek(ev) {
-  seek(timelineTimeAt(ev.clientX));
+  seekWhole(timelineTimeAt(ev.clientX));
 }
 
 /* ---------------- cut info ---------------- */
@@ -757,7 +780,7 @@ async function histGo(d) {
   const currentMap=S.project.autoPalette&&S.project.autoPalette.localMap;
   const currentHash=S.project.autoPalette&&S.project.autoPalette.sourceHash;
   const state=J.restoreHistory(H.list[j],ref=>H.assets.get(ref)||'');
-  Object.assign(S.project,state);if(state.credits===null)delete S.project.credits;
+  pause();S.audition=false;S.rangeDraft=null;S.range=null;S.rangeMode=null;S.socialPlan=null;Object.assign(S.project,state);if(state.credits===null)delete S.project.credits;
   S.project.autoPalette=J.normalizeAutoPalette(S.project.autoPalette);
   if(!S.project.autoPalette.localMap&&currentMap&&S.project.autoPalette.sourceHash&&S.project.autoPalette.sourceHash===currentHash)S.project.autoPalette.localMap=currentMap;
   if(S.project.customBg?.dataUrl)await S.renderer.loadCustomBackground(S.project.customBg.dataUrl).catch(()=>{});
@@ -941,7 +964,9 @@ function syncStudioAspect() {
   const select = $('studioAspect');
   if (!select || !S.project) return;
   select.querySelectorAll('[data-project-aspect]').forEach(option => option.remove());
-  const aspect = S.project.aspect || '16:9';
+  const fixed=S.project.exportSettings.range==='socialHook',aspect=fixed?'9:16':S.project.aspect||'16:9';
+  select.disabled=fixed;select.title=fixed?'縦型ショートは9:16固定です。任意の画面比は秒数で指定を選んでください。':'';
+  for(const id of ['outAspect','eAspect']){$(id).value=aspect;$(id).disabled=fixed;$(id).title=select.title;}
   if (![...select.options].some(option => option.value === aspect)) {
     const option = document.createElement('option');
     option.value = aspect;
@@ -957,17 +982,93 @@ function syncStudioAspect() {
   }
 }
 
-function exportRangeForSettings() {
-  const settings=J.resolveExportSettings(S.project),full={start:0,end:Math.min(S.plan?.duration||0,S.audio?.duration||S.plan?.duration||0)};
-  if(settings.range==='full')return full;
-  if(S.range)return S.range;
-  try{const choice=settings.range==='socialHook'?J.socialHookCandidates(S.plan,S.audio)[0]:J.highlightCandidates(S.plan,S.audio)[0];return choice?{start:choice.start,end:choice.end}:null;}catch(e){return null;}
+function rangeValidation(){
+  const e=J.resolveExportSettings(S.project),duration=Math.min(S.plan?.duration||playbackDuration(),S.audio?.duration||playbackDuration());
+  let value;
+  if(e.range==='full')value={start:0,end:duration};
+  else if(e.range==='custom'){
+    value=S.rangeDraft?Object.fromEntries(['start','end'].map(k=>[k,S.rangeDraft[k]?.trim()===''?NaN:Number(S.rangeDraft[k])])):e.customRange;
+  }else{
+    if(S.range&&S.rangeMode===e.range)value=S.range;
+    else try{const choice=e.range==='socialHook'?J.socialHookCandidates(S.plan,S.audio)[0]:J.highlightCandidates(S.plan,S.audio)[0];if(choice)value={start:choice.start,end:Math.min(choice.end,duration)};}catch{}
+  }
+  if(!value&&e.range!=='custom')return {valid:false,range:null,error:'この音源・歌詞では推奨区間を選べません。秒数で指定してください。'};
+  return J.validateExportRange(value,duration,S.project.fps||30);
+}
+function exportRangeForSettings(){const v=rangeValidation();return v.valid?v.range:null;}
+const secondsLabel=n=>Number.isFinite(n)?n.toFixed(2):'—';
+function rangeSummaryText(value){return value.valid?`${secondsLabel(value.range.start)}秒 → ${secondsLabel(value.range.end)}秒 ／ ${secondsLabel(value.seconds)}秒`:'範囲を確認してください';}
+function syncRangePlayback(){
+  if(!$('rangeAudition'))return;
+  const active=!!(S.playing&&S.audition),label=active?'範囲の試聴を停止':'選択範囲を試聴';
+  if($('rangeAudition').textContent!==label)$('rangeAudition').textContent=label;
+  if($('rangeAudition').getAttribute('aria-pressed')!==String(active))$('rangeAudition').setAttribute('aria-pressed',String(active));
+  const status=S.playing?(S.audition?'選択範囲を試聴中':'曲全体を再生中'):S.audition?'範囲の試聴を停止しました':'';
+  if($('rangePlaybackStatus').textContent!==status)$('rangePlaybackStatus').textContent=status;
+}
+function clearRangeOutput(){S.exportValidation=null;S.pixelQA=null;S.lastExport=null;$('studioShare').hidden=true;}
+function syncRangeUI(){
+  if(!S.project||!S.plan||!$('exportRangeCard'))return;
+  const enabled=!!S.audio&&!S.audioLoading,custom=S.project.exportSettings.range==='custom',v=rangeValidation();
+  $('rangeEmpty').hidden=enabled;$('rangeContent').hidden=!enabled;$('studioExportRange').disabled=!enabled||!!S.tap;
+  $('rangeManual').hidden=!custom;
+  const stored=S.project.exportSettings.customRange||{start:null,end:null};
+  for(const [edge,id]of [['start','rangeStart'],['end','rangeEnd']]){
+    const input=$(id);if(document.activeElement!==input)input.value=S.rangeDraft?S.rangeDraft[edge]:Number.isFinite(stored[edge])?String(+stored[edge].toFixed(6)):'';
+    input.max=String(S.audio?.duration||0);input.setAttribute('aria-invalid',String(custom&&!v.valid));
+  }
+  $('rangeError').hidden=!enabled||v.valid;$('rangeError').textContent=v.error||'';
+  const summary=enabled?rangeSummaryText(v):'音源を読み込んでください';$('rangeSummary').textContent=summary;$('exportRangeSummary').textContent=summary;
+  $('rangeAudition').disabled=!enabled||!v.valid||!!S.tap;$('rangeRepeat').disabled=!enabled||!v.valid||!!S.tap;$('rangeFit').disabled=!enabled||!v.valid;
+  for(const id of ['rangeHandleStart','rangeHandleEnd'])$(id).hidden=!custom||!v.valid||!enabled;
+  syncRangePlayback();positionRangeHandles(timelineWindow());
+}
+let rangeHandleKey='';
+function positionRangeHandles(win){
+  if(!$('rangeHandleStart')||!S.project)return;const r=exportRangeForSettings();if(!r)return;const key=[r.start,r.end,win.start,win.span,S.project.fps,S.audio?.duration].join(':');if(key===rangeHandleKey)return;rangeHandleKey=key;
+  for(const [edge,id]of [['start','rangeHandleStart'],['end','rangeHandleEnd']]){
+    const button=$(id),ratio=(r[edge]-win.start)/win.span;button.style.left=(J.clamp(ratio,0,1)*100)+'%';button.dataset.outside=String(ratio<0||ratio>1);
+    button.setAttribute('aria-valuemin',String(edge==='start'?0:r.start+1/S.project.fps));button.setAttribute('aria-valuemax',String(edge==='end'?S.audio?.duration||0:r.end-1/S.project.fps));button.setAttribute('aria-valuenow',String(r[edge]));button.setAttribute('aria-valuetext',secondsLabel(r[edge])+'秒');
+  }
+}
+function changedRange(){
+  if(S.audition){pause();S.audition=false;}refreshSocialPlan();clearRangeOutput();syncDirectionUI();updateExportSummary();updateStudioQuality();drawTimeline();S.need=true;
+}
+function editRange(edge,raw,commitNow=false){
+  if(!S.audio||S.tap||S.exporting||exportPreflightBusy||directionBusy||S.projectLoading)return;
+  if(!S.rangeDraft){const r=S.project.exportSettings.customRange||{start:0,end:S.audio.duration};S.rangeDraft={start:String(r.start),end:String(r.end)};}
+  S.project.exportSettings.range='custom';S.rangeMode='custom';S.range=null;S.socialPlan=null;
+  S.rangeDraft[edge]=String(raw);const v=rangeValidation();if(v.valid)S.project.exportSettings.customRange={...v.range};
+  changedRange();if(v.valid){if(commitNow)commit();else autosave();}
+}
+function setRangePosition(edge,time){editRange(edge,time>=S.audio.duration-1e-9?S.audio.duration:Math.max(0,Math.round(time*100)/100),true);}
+function chooseRangeMode(mode){
+  for(const id of ['studioHighlight','studioSocialHook'])$(id).setAttribute('aria-pressed','false');$('studioHighlight').textContent='SNS 60秒版';$('highlightNext').hidden=true;$('highlightChoice').textContent='';
+  if(S.audition){pause();S.audition=false;}remember();S.rangeDraft=null;S.range=null;S.rangeMode=null;S.socialPlan=null;
+  S.project.exportSettings.range=mode;if(mode==='custom'&&!S.project.exportSettings.customRange)S.project.exportSettings.customRange={start:0,end:S.audio.duration};
+  clearRangeOutput();
+}
+function bindRangeUI(){
+  for(const [edge,id]of [['start','rangeStart'],['end','rangeEnd']]){
+    $(id).addEventListener('focus',remember);$(id).addEventListener('input',e=>editRange(edge,e.target.value));$(id).addEventListener('change',()=>{if(rangeValidation().valid)commit();});
+    $(id).addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();const value=Number(e.target.value);if(e.target.value!==''&&Number.isFinite(value))editRange(edge,+(value+(['ArrowLeft','ArrowDown'].includes(e.key)?-1:1)*(e.shiftKey?.1:.01)).toFixed(2),true);}});
+    $('range'+(edge==='start'?'Start':'End')+'Here').addEventListener('click',()=>{remember();setRangePosition(edge,S.playing?AP.time():S.t);});
+    const handle=$('rangeHandle'+(edge==='start'?'Start':'End'));
+    handle.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();e.stopPropagation();const v=rangeValidation();if(!v.valid)return;remember();const min=edge==='start'?0:v.range.start+1/S.project.fps,max=edge==='end'?S.audio.duration:v.range.end-1/S.project.fps,next=e.key==='Home'?min:e.key==='End'?max:v.range[edge]+(e.key==='ArrowLeft'?-1:1)*(e.shiftKey?.1:.01);editRange(edge,Math.max(min,Math.min(max,['Home','End'].includes(e.key)?next:+next.toFixed(2))),true);});
+    handle.addEventListener('pointerdown',e=>{if(S.exporting||exportPreflightBusy||directionBusy||S.tap)return;e.preventDefault();e.stopPropagation();remember();pause();S.audition=false;handle.focus();handle.setPointerCapture(e.pointerId);S.rangeDrag={edge,id:e.pointerId};});
+    handle.addEventListener('pointermove',e=>{if(S.rangeDrag?.id!==e.pointerId)return;const v=rangeValidation();if(!v.valid)return;const min=edge==='start'?0:v.range.start+1/S.project.fps,max=edge==='end'?S.audio.duration:v.range.end-1/S.project.fps,rawTime=timelineTimeAt(e.clientX),time=rawTime>=S.audio.duration-1e-9?S.audio.duration:Math.round(rawTime*100)/100;editRange(edge,Math.max(min,Math.min(max,time)));});
+    const finish=e=>{if(S.rangeDrag?.id!==e.pointerId)return;S.rangeDrag=null;if(rangeValidation().valid)commit();};handle.addEventListener('pointerup',finish);handle.addEventListener('pointercancel',finish);
+  }
+  document.querySelectorAll('[data-range-delta]').forEach(b=>b.addEventListener('click',()=>{const edge=b.dataset.rangeEdge,input=$(edge==='start'?'rangeStart':'rangeEnd');if(input.value!==''&&Number.isFinite(+input.value)){remember();editRange(edge,+(+input.value+Number(b.dataset.rangeDelta)).toFixed(2),true);}}));
+  $('rangeAudition').addEventListener('click',()=>{if(S.playing&&S.audition)pause();else play(true);});
+  $('rangeRepeat').addEventListener('change',e=>{const time=S.playing&&S.audition?AP.time():S.t;S.rangeLoop=e.target.checked;if(S.playing&&S.audition){S.t=time;startAudioPlayback();}});
+  $('rangeFit').addEventListener('click',()=>{const r=exportRangeForSettings();if(!r)return;const duration=playbackDuration(),span=Math.min(duration,Math.max(4,(r.end-r.start)*1.25));S.timelineZoom=Math.max(1,duration/span);S.timelineStart=Math.max(0,r.start-(span-(r.end-r.start))/2);drawTimeline();});
 }
 function updateExportSummary() {
   const out=$('studioExportSummary');if(!out||!S.project)return;
   const range=exportRangeForSettings(),settings=J.resolveExportSettings(S.project);
-  if(!range){out.textContent=settings.range==='socialHook'?'12〜15秒の縦型ショートをLRCから選べません。歌詞タイミングを確認してください。':settings.range==='highlight'?'LRCの区切りから自然な60秒区間を選べません。先に「SNS 60秒版」を確認してください。':'書き出し設定を確認してください。';return;}
-  const estimate=J.estimateExport(S.project,range.end-range.start,S.project.includeAudio!==false);
+  if(!range){out.textContent=rangeValidation().error;return;}
+  const estimate=J.estimateExport(effectiveOutputProject(),range.end-range.start,S.project.includeAudio!==false);
   const mbps=(estimate.videoBitrate/1e6).toFixed(1),audio=S.project.includeAudio!==false?`AAC ${Math.round(estimate.audioBitrate/1000)} kbps`:'音声なし';
   const codec=S.exportCapabilities?.h264?'H.264':S.exportCapabilities?.recorder?'MP4（形式は書き出し後に確認）':'MP4（形式未確認）';
   const name=(settings.fileName||S.project.title||'kamen').trim().replace(/\.mp4$/i,'').replace(/[\\/:*?"<>|]+/g,'_')||'kamen';
@@ -980,7 +1081,7 @@ function updateExportSummary() {
 }
 function syncStudioExportControls() {
   if(!$('studioPreset')||!S.project)return;
-  const e=J.resolveExportSettings(S.project);
+  const e=J.resolveExportSettings(S.project);syncStudioAspect();
 
   $('studioPreset').value=e.preset;$('studioRes').value=String(S.project.res||1080);$('studioFPS').value=String(S.project.fps||30);
   $('studioQualityLevel').value=S.project.quality||'high';$('studioVideoBitrate').value=e.videoBitrate>0?(e.videoBitrate/1e6).toString():'';
@@ -988,7 +1089,7 @@ function syncStudioExportControls() {
   $('studioAudio').value=S.project.includeAudio===false?'off':'on';$('studioAudioBitrate').value=String(e.audioBitrate||192000);
 
 
-  $('studioExportRange').value=e.range||'full';$('studioFileName').value=e.fileName||'';updateExportSummary();
+  $('studioExportRange').value=e.range||'full';$('studioFileName').value=e.fileName||'';updateExportSummary();syncRangeUI();
 }
 
 function syncSocialCopy() {
@@ -1024,7 +1125,7 @@ let directionBusy = false, exportPreflightBusy=false;
 const editingLock=J.createControlLock();
 function processingLocks(active){
   if(!active){editingLock.unlock();return;}
-  editingLock.lock([...document.querySelectorAll('#app input,#app select,#app textarea,#app button')].filter(el=>!el.classList.contains('terms-open')&&el.id!=='btnHelp'&&!el.closest('dialog')));
+  editingLock.lock([...document.querySelectorAll('#app input,#app select,#app textarea,#app button')].filter(el=>!el.classList.contains('terms-open')&&el.id!=='btnHelp'&&!el.closest('dialog,.processing-panel')));
 }
 function syncDirectionUI() {
   const locked=!!(S.exporting||exportPreflightBusy||S.projectLoading||directionBusy||visualBusy);
@@ -1036,8 +1137,9 @@ function syncDirectionUI() {
   const music = !!S.audio;
   const lyrics = J.parseLyrics(S.project.lyrics).lines.length>0;if($('previewHint'))$('previewHint').hidden=image||lyrics;
   const generated = !!S.project.generation.generated;
+  $('app').classList.toggle('audio-only',!!S.audio&&!image&&!lyrics);
   $('studioStep').textContent = directionBusy?'処理中 · 中止できます':generated?'03 / 03　確認して保存':'01 / 03　素材を準備';
-  const canExport = generated && !locked && !!(S.audio && lyrics && S.plan?.duration > 0 && !S.audioLoading && !S.tap);
+  const canExport = generated && !locked && !!exportRangeForSettings() && !!(S.audio && lyrics && S.plan?.duration > 0 && !S.audioLoading && !S.tap);
   $('studioExport').disabled = !canExport;
   $('studioHighlight').disabled = !canExport||S.plan.duration<60;$('studioHighlight').title=(S.plan?.duration||0)<60?'60秒以上の音源で使用できます':'';
   if($('studioSocialHook'))$('studioSocialHook').disabled=!canExport||S.plan.duration<12;
@@ -1063,7 +1165,7 @@ function syncDirectionUI() {
     const missing=[!image&&'背景画像',!music&&'音源',!lyrics&&'歌詞'].filter(Boolean);
     $('directionStatus').textContent=S.generationNotice|| (S.project.sourceImport?.requiresGeneration?'旧作品の素材を別の作業に取り込みました。音源と素材を確認し、MVを再生成してください。':missing.length?`あと ${missing.join('・')} を選んでください。`:'素材が揃いました。本家JIZURAで生成できます。');
   }
-  syncStudioResultVisibility();if($('exportDiagnostics'))$('exportDiagnostics').hidden=!S.lastExportError;
+  syncStudioResultVisibility();syncRangeUI();if($('exportDiagnostics'))$('exportDiagnostics').hidden=!S.lastExportError;
 
   if(locked)processingLocks(true);
 }
@@ -1091,8 +1193,8 @@ function updateStudioQuality(){const target=$('studioQuality');if(!target)return
 
 async function showHighlight() {
   const choice=S.highlights[S.highlightIndex];if(!choice)return;
-  S.socialPlan=null;S.range={start:choice.start,end:choice.end};
-  S.rangeMode='highlight';S.project.exportSettings.range='highlight';S.exportValidation=null;syncStudioExportControls();flushSave();
+  S.socialPlan=null;S.range={start:choice.start,end:Math.min(choice.end,S.audio.duration)};
+  if(S.audition)pause();S.audition=false;clearRangeOutput();S.rangeDraft=null;S.rangeMode='highlight';S.project.exportSettings.range='highlight';S.exportValidation=null;syncStudioExportControls();flushSave();
   $('highlightChoice').textContent=`推奨区間 ${J.fmtTime(choice.start)} → ${J.fmtTime(choice.end)} · ${choice.reason}`;
   $('highlightNext').hidden=S.highlights.length<2;
   $('studioHighlight').setAttribute('aria-pressed','true');
@@ -1104,8 +1206,8 @@ async function showHighlight() {
 
 async function showSocialHook(index=null){
   try{if(!S.highlights.length||S.rangeMode!=='socialHook'){S.highlights=J.socialHookCandidates(S.plan,S.audio);S.highlightIndex=0;}if(index!=null)S.highlightIndex=index;}catch(e){$('highlightChoice').textContent=e.message||'15秒版を選べませんでした';return;}
-  S.rangeMode='socialHook';
-  const selected=S.highlights[S.highlightIndex]||S.highlights[0];S.range={start:selected.start,end:selected.end};
+  if(S.audition)pause();S.audition=false;clearRangeOutput();S.rangeDraft=null;S.rangeMode='socialHook';
+  const candidate=S.highlights[S.highlightIndex]||S.highlights[0],selected={...candidate,end:Math.min(candidate.end,S.audio.duration)};selected.duration=selected.end-selected.start;S.range={start:selected.start,end:selected.end};
   const portraitProject=JSON.parse(JSON.stringify(S.project));portraitProject.aspect='9:16';
   const portraitPlan=J.plan(portraitProject,audioLike());S.socialPlan=J.createSocialHookPlan?J.createSocialHookPlan(portraitPlan,{...selected,assetStrategy:S.project.socialAssetStrategy}):portraitPlan;
   S.project.exportSettings.range='socialHook';S.exportValidation=null;syncStudioExportControls();flushSave();
@@ -1168,25 +1270,21 @@ function mountStudio() {
 
 
   $('studioExportRange').addEventListener('change',async e=>{
-    S.project.exportSettings.range=e.target.value;S.exportValidation=null;flushSave();
-    if(e.target.value==='highlight'||e.target.value==='socialHook'){
-      try{if(e.target.value==='socialHook')await showSocialHook();else{S.highlights=J.highlightCandidates(S.plan,S.audio);S.highlightIndex=0;await showHighlight();}}
-      catch(error){$('highlightChoice').textContent=error.message||'SNS用の区間を選べませんでした';updateStudioQuality();}
-    }else{
-      S.range=null;S.rangeMode=null;S.socialPlan=null;S.pixelQA=null;$('studioHighlight').setAttribute('aria-pressed','false');$('studioSocialHook').setAttribute('aria-pressed','false');$('studioHighlight').textContent='SNS 60秒版';$('highlightNext').hidden=true;$('highlightChoice').textContent='';
-      updateExportSummary();updateStudioQuality();
-    }
+    chooseRangeMode(e.target.value);
+    if(e.target.value==='socialHook')await showSocialHook();
+    else if(e.target.value==='highlight'){try{S.highlights=J.highlightCandidates(S.plan,S.audio);S.highlightIndex=0;await showHighlight();}catch(error){$('highlightChoice').textContent=error.message;}}
+    syncStudioExportControls();changedRange();commit();
   });
   $('studioFileName').addEventListener('input',e=>{
     S.project.exportSettings.fileName=e.target.value.slice(0,80);updateExportSummary();flushSave();
   });
   $('studioHighlight').addEventListener('click',()=>{
-    if(S.rangeMode==='highlight'){S.range=null;S.rangeMode=null;S.socialPlan=null;S.project.exportSettings.range='full';syncStudioExportControls();$('studioHighlight').setAttribute('aria-pressed','false');$('studioSocialHook').setAttribute('aria-pressed','false');$('studioHighlight').textContent='SNS 60秒版';$('highlightChoice').textContent='曲全体';$('highlightNext').hidden=true;seek(0);updateStudioQuality();return;}
+    if(S.rangeMode==='highlight'){chooseRangeMode('full');syncStudioExportControls();changedRange();commit();seekWhole(0);return;}
     try{S.highlights=J.highlightCandidates(S.plan,S.audio);S.highlightIndex=0;showHighlight();}
     catch(e){$('highlightChoice').textContent=e.message;}
   });
   $('studioSocialHook').addEventListener('click',()=>{
-    if(S.rangeMode==='socialHook'){S.range=null;S.rangeMode=null;S.socialPlan=null;S.project.exportSettings.range='full';syncStudioExportControls();$('studioSocialHook').setAttribute('aria-pressed','false');$('studioHighlight').setAttribute('aria-pressed','false');$('highlightChoice').textContent='曲全体';sizeViewport();seek(0);updateStudioQuality();return;}
+    if(S.rangeMode==='socialHook'){chooseRangeMode('full');syncStudioExportControls();changedRange();commit();seekWhole(0);return;}
     showSocialHook();
   });
   $('highlightNext').addEventListener('click',()=>{S.highlightIndex=(S.highlightIndex+1)%S.highlights.length;if(S.rangeMode==='socialHook')showSocialHook(S.highlightIndex);else showHighlight();});
@@ -1210,7 +1308,7 @@ function mountStudio() {
     if(S.plan.lines.some(l=>l.start<0 || l.start>S.audio.duration+.15)){
       $('studioQuality').textContent='音源の長さを超える歌詞があります。歌詞タイミングを調整してください。';return;
     }
-    const before=J.canonicalJSON(S.project);S.project.aspect=$('studioAspect').value;
+    const before=J.canonicalJSON(S.project);if(S.project.exportSettings.range!=='socialHook')S.project.aspect=$('studioAspect').value;
     syncOut();if(before!==J.canonicalJSON(S.project))replan();await runExport('mp4');
   });
   $('studioPNG').addEventListener('click',()=>{
@@ -1232,8 +1330,8 @@ function mountStudio() {
   syncStudioResultVisibility();
 }
 async function codecNote() {
-  const [w, h] = J.outputSize(S.project);
-  const caps=await J.exportCapabilities(S.project,S.project.includeAudio!==false?S.audio:null).catch(()=>({webCodecs:false,h264:false,aac:false,recorder:null}));
+  const target=effectiveOutputProject(),[w,h]=J.outputSize(target);
+  const caps=await J.exportCapabilities(target,S.project.includeAudio!==false?S.audio:null).catch(()=>({webCodecs:false,h264:false,aac:false,recorder:null}));
   S.exportCapabilities=caps;
   const sound=S.project.includeAudio===false?'音声なし':caps.aac?'AAC音声':'音声形式は書き出し後に確認';
   $('codecNote').textContent=caps.webCodecs?`H.264 / ${sound}で書き出します（${w}×${h}）。`:caps.recorder?'この端末では代替方法でMP4を書き出します。画面を表示したままお待ちください。':'この端末はMP4の書き出しに対応していません。';
@@ -1251,13 +1349,14 @@ async function runExport(kind) {
   if(!S.project.generation.generated){toast('素材を確認してMVを生成してください。');return;}
   pause();
   const outcome=S.exportOutcome={fileState:'PREPARING',creativeState:'UNMEASURED'};
-  const range=exportRangeForSettings();
-  if(!range){outcome.fileState='FAILED_TECHNICAL';$('studioQuality').textContent='書き出す範囲を選べません。先に「SNS 60秒版」で候補を確認してください。';return;}
+  const resolvedRange=exportRangeForSettings(),range=resolvedRange?Object.freeze({...resolvedRange}):null;
+  if(!range){outcome.fileState='FAILED_TECHNICAL';$('studioQuality').textContent=rangeValidation().error;return;}
   const destination=kind==='mp4'?J.prepareFileSave(baseName()+'.mp4','video/mp4'):Promise.resolve(null);
   let saveHandle=null;
   const socialHook=J.resolveExportSettings(S.project).range==='socialHook';
   let outputProject=socialHook?{...S.project,aspect:'9:16'}:S.project;
-  let exportPlan=socialHook&&S.socialPlan?.socialHook?.start===range.start&&S.socialPlan?.socialHook?.end===range.end?S.socialPlan:S.plan;
+  if(socialHook)refreshSocialPlan(range);
+  let exportPlan=socialHook?S.socialPlan:S.plan;
   const task=J.processing.begin(kind==='mp4'?'動画を書き出しています':'PNGを書き出しています',[
     ['prepare','書き出し前の映像・歌詞・出力設定を検査しています',8],['fonts','フォントと素材を準備しています',2],
     ['frames','フレームを生成・エンコーダーに送っています',65],['video','映像のエンコード完了を待っています',5],
@@ -1346,7 +1445,7 @@ async function runExport(kind) {
 function startTap() {
   if (!S.plan.lines.length || !S.audio || S.audioLoading || S.exporting || directionBusy) { toast('歌詞と音源を読み込んでから同期してください。'); return; }
   remember();
-  S.range=null; S.rangeMode=null; S.socialPlan=null; replan();
+  S.audition=false;S.range=null; S.rangeMode=null; S.socialPlan=null; replan();
   let opts={rate:1,count:false};try{opts={...opts,...JSON.parse(localStorage.getItem('jizura.tapOpts')||'{}')};}catch{}
   S.tap = { i: 0,rate:[1,.75,.5].includes(opts.rate)?opts.rate:1,counting:!!opts.count, project:S.project, lyrics:S.project.lyrics, audio:S.audio, changes: [] };
   if (!S.project.timing.lineTimes) S.project.timing.lineTimes = {};
@@ -1409,6 +1508,7 @@ function syncUI() {
 
 /* ---------------- wiring ---------------- */
 function bind() {
+  bindRangeUI();
   for(const type of ['input','change','click'])$('app').addEventListener(type,()=>queueMicrotask(()=>autosave()));
   $('lyrics').addEventListener('input', e => { S.project.lyrics = e.target.value; invalidateGeneratedMV(); $('studioLrcName').textContent=e.target.value.trim()?'歌詞を入力済み':'LRC / TXTを選択'; delete $('directionStatus').dataset.result; syncDirectionUI(); replanSoon(260); });
   let lrcLoad=0;
@@ -1470,13 +1570,13 @@ function bind() {
   $('btnLoop').addEventListener('click', e => { S.loop = !S.loop; e.target.setAttribute('aria-pressed', String(S.loop)); });
   $('btnShuffle').addEventListener('click', () => { remember(); S.project.seed = (Math.random() * 1e9) | 0; $('seed').value = S.project.seed; replan(); commit(); });
   const sc = $('scrub');
-  sc.addEventListener('input', () => { S.scrubbing = true; seek(sc.value / 10000 * S.plan.duration); });
+  sc.addEventListener('input', () => { S.scrubbing = true; seekWhole(sc.value / 10000 * playbackDuration()); });
   sc.addEventListener('change', () => { S.scrubbing = false; });
   const tl = $('timeline');
   tl.tabIndex=0;
   tl.addEventListener('pointerdown',e=>{
     tl.focus();tl.setPointerCapture(e.pointerId);const rect=tl.getBoundingClientRect(),win=timelineWindow(),px=(e.clientX-rect.left)*tl.width/Math.max(1,rect.width),dpr=tl.width/Math.max(1,rect.width);
-    const line=e.offsetY<30?nearestLineMarker(px,win,tl.width,dpr):-1;
+    const line=S.mode==='pro'&&e.offsetY<30?nearestLineMarker(px,win,tl.width,dpr):-1;
     if(e.shiftKey||e.button===1){S.timelineDragging={type:'pan',pointerId:e.pointerId,startX:e.clientX,startStart:S.timelineStart};return;}
     if(line>=0){selectedTimelineLine(line);S.timelineDragging={type:'line',pointerId:e.pointerId,index:line,moved:false};return;}
     S.timelineDragging={type:'seek',pointerId:e.pointerId};timelineSeek(e);
@@ -1644,7 +1744,7 @@ function bind() {
       } catch (err) {throw new Error('背景画像を復元できませんでした。別のバックアップを選んでください。');}
       S.audioLoad++;S.audioLoading=false;S.audioPendingName='';S.expectedAudioAsset=project.audioAsset;S.audioNotice=project.audioAsset?'音源「'+project.audioAsset.name+'」を選び直してください。':'';
       S.generationNotice=project.sourceImport?.requiresGeneration?'旧作品の素材を別の作業に取り込みました。音源を選び直し、MVを再生成してください。':null;project.audioAsset=null;localRecoveryBlocked=false; // A successful explicit import replaces the local project; retained media are not deleted.
-      task.enter('restore');rememberWorkspace(crypto.randomUUID());S.workspaceForkOrigin=null;S.persistenceRevision=0;S.project = project; S.audio = null;S.currentAudioFile=null;S.pendingAudioFile=null;S.localAudioSnapshot=null; $('audioName').textContent = '曲なし（曲を読み込むと拍を検出します）';
+      task.enter('restore');rememberWorkspace(crypto.randomUUID());S.workspaceForkOrigin=null;S.persistenceRevision=0;S.project = project;S.rangeDraft=null;S.range=null;S.rangeMode=null;S.audition=false; S.audio = null;S.currentAudioFile=null;S.pendingAudioFile=null;S.localAudioSnapshot=null; $('audioName').textContent = '曲なし（曲を読み込むと拍を検出します）';
       delete $('directionStatus').dataset.result; resetHistory(); syncUI(); replan();await flushSave();task.enter('preview');syncStudioResultVisibility();S.need=true;task.complete('プロジェクトを読み込みました。音源は別途選択してください');
     }
     catch(err){task.fail(err);console.error('JIZURA project import failed',err);toast('プロジェクトを開けません。JSON形式と画像・フォントを確認し、別のバックアップで再試行してください。');if(S.project.customBg?.dataUrl)await S.renderer.loadCustomBackground(S.project.customBg.dataUrl).catch(()=>{});}
@@ -1652,6 +1752,7 @@ function bind() {
   });
   document.addEventListener('keydown', e => {
     if(e.target?.closest?.('.processing-panel'))return;
+    if(e.target?.closest?.('.range-manual,.range-handle,.range-audition')&&!((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'))return;
     const tag = (e.target && e.target.tagName) || '';
     const typing = /INPUT|TEXTAREA|SELECT/.test(tag) && e.target.type !== 'range' && e.target.type !== 'checkbox';
     if (S.tap && (e.code === 'Space' || e.code === 'Enter') && !typing) { e.preventDefault(); if(!e.repeat)tapNow(); return; }
@@ -1663,8 +1764,8 @@ function bind() {
     else if (e.code === 'ArrowLeft' && S.selectedLine>=0 && e.altKey) nudgeSelectedLine(e.shiftKey?-.01:-.1);
     else if (e.code === 'ArrowRight') seek(S.t + (e.shiftKey ? .01 : .1));
     else if (e.code === 'ArrowLeft') seek(S.t - (e.shiftKey ? .01 : .1));
-    else if (e.code === 'Home') seek(S.range?.start??0);
-    else if (e.code === 'End') seek(S.range?.end??S.plan.duration);
+    else if (e.code === 'Home') seekWhole(0);
+    else if (e.code === 'End') seekWhole(playbackDuration());
     else if (e.code === 'Delete' && S.selectedLine>=0) { if(S.project.timing.lineTimes)delete S.project.timing.lineTimes[S.selectedLine];replan();flushSave();selectedTimelineLine(S.selectedLine); }
     else if (e.code === 'KeyR' && !e.metaKey && !e.ctrlKey && !e.altKey && !S.exporting) { e.preventDefault(); omakase(); }
   });
@@ -1692,7 +1793,7 @@ async function loadAudioFile(f) {
     const analyzed=await J.analyzeAudio(f,{onProgress:J.audioProgressEvent(task),onStage:message=>{if(project===S.project&&request===S.audioLoad){$('audioName').textContent=message+' · '+(f.name||'音源');$('studioAudioName').textContent=message;}},signal:{get aborted(){return cancel.signal.aborted||project!==S.project||request!==S.audioLoad;}}});
     if(project!==S.project||request!==S.audioLoad){task.fail(new Error('音源解析を中止しました'),true);return false;}
     S.audio=analyzed;S.currentAudioFile=f;
-    if(!J.audioAssetMatches(S.project.audioAsset||S.expectedAudioAsset,f))invalidateGeneratedMV();S.expectedAudioAsset=null;resetHistory();
+    if(!J.audioAssetMatches(S.project.audioAsset||S.expectedAudioAsset,f)){invalidateGeneratedMV();S.project.exportSettings.range='full';delete S.project.exportSettings.customRange;S.rangeDraft=null;S.audition=false;}S.expectedAudioAsset=null;resetHistory();
     $('audioName').textContent = audioSummary(S.audio);
     S.project.timing.snap = true;
     delete $('directionStatus').dataset.result; syncUI(); replan();

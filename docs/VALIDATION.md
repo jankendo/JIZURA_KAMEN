@@ -1,4 +1,4 @@
-# KAMEN 2.4 validation
+# KAMEN 2.5 validation
 
 Use Node.js 24, FFmpeg/FFprobe and Chrome/Chromium. Install locked dependencies with `npm ci`; missing required dependencies fail checks.
 
@@ -9,10 +9,11 @@ npm run build
 KAMEN_CHROME=/usr/bin/chromium KAMEN_QA_OUT=/tmp/kamen-browser-qa npm run test:e2e
 ```
 
-`npm test` runs five current-browser contract groups: audio identity, H.264 attempts/track completeness, encoder lifecycle/timeouts/cancellation, positioned MP4 writes/incremental hashing, and legacy source conversion/current project compatibility. No historical engine tests are used to certify the release.
+`npm test` runs six current-browser contract groups: seconds-range validation/snapshots, audio identity, H.264 attempts/track completeness, encoder lifecycle/timeouts/cancellation, positioned MP4 writes/incremental hashing, and legacy source conversion/current project compatibility. No historical engine tests are used to certify the release.
 
 `test:e2e` starts an isolated server on port 4187 (`KAMEN_QA_PORT` overrides it) and runs:
 
+- Seconds range: audio-only selection, exact Web Audio endpoints/looping, whole-song navigation, numeric/keyboard/drag/touch controls, five widths, FPS validity, undo/restore/forks/portable files, audio failure/reconnection/replacement, fractional song ends and successful/unavailable SNS suggestions. Real output checks decode distinguishable audio regions and compare the first MP4 frame with the source-time renderer; cancellation and AAC retry preserve the selected range.
 - UX: 375/768/1024/1100/1440px, normal/detail/processing/error states, control sizes, help focus/Escape, quantized lyric onset, stale sharing after metadata edits, genuine legacy format-3 conversion, regeneration gating and invalid import recovery.
 - MV readability: every cut of a long Japanese lyric with punctuation, all three standard aspects, white/black photographic backgrounds, glyph bounds and contrasting separation pixels.
 - Storage: two tabs, atomic forks and media isolation, fonts, quota/retry, generation cancellation/stale inputs, work switching, localStorage/format-2 migration, unavailable IndexedDB.

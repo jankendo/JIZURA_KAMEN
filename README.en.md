@@ -1,10 +1,12 @@
 # KAMEN
 
-**v2.4.0** is a browser application for Japanese lyric videos made from one background image, audio and LRC/TXT. Generation and lyric rendering use pinned [JIZURA v0.10.1](https://github.com/852wa/JIZURA/tree/fc16bfe43ea4a6c25a21f1caf04d17326de14f00). Themes, typography/kinetic/horror sets, timing edits, title/artist credits, MP4 and PNG exports are supported.
+**v2.5.0** is a browser application for Japanese lyric videos made from one background image, audio and LRC/TXT. Generation and lyric rendering use pinned [JIZURA v0.10.1](https://github.com/852wa/JIZURA/tree/fc16bfe43ea4a6c25a21f1caf04d17326de14f00). Themes, typography/kinetic/horror sets, timing edits, title/artist credits, MP4 and PNG exports are supported.
 
 [Public application](https://jankendo.github.io/JIZURA_KAMEN/). Production updates are published by GitHub Actions after validation of main.
 
-Choose image, audio and lyrics; generate; inspect and adjust the preview; then export. The application validates output tracks, duration, frame count and decoded samples before offering an MP4 download. Creative scores do not block saving. Metadata placement is estimated: inspect full-screen lyrics for overlaps.
+After loading audio, use the export-range card to select one continuous interval with waveform handles, numeric seconds or the current playback position. Whole-song playback remains available outside the interval; the separate range audition stops at its scheduled Web Audio endpoint and optionally loops (off by default). Selection works before MV generation. Generate the full MV, audition the selected video/audio, then export that interval with file timestamps starting at zero. Invalid, reversed, out-of-source or sub-frame ranges block export. Video duration is rounded to output frames; no fades or multi-interval stitching are added.
+
+The selected seconds survive generation, undo/redo, local save/conflict forks and portable JSON. Successfully loading a different audio file resets to the whole song; failed loads and matching soundtrack restoration retain the selection. See [range behavior and verification](docs/EXPORT_RANGE_2_5_0.md). The application validates output tracks, duration, frame count and decoded samples before offering an MP4 download. Creative scores do not block saving. Metadata placement is estimated: inspect full-screen lyrics for overlaps.
 
 The modern browser engine is now the only supported engine. Legacy projects import source image, lyrics, line timing, metadata and available fonts/audio into a **new work** and require explicit regeneration. Original stored records and JSON inputs are preserved. Legacy rendering, optimizers, After Effects/CEP integration and their tools/tests are removed. Current work restoration, undo/redo and concurrent-tab conflict forks remain supported.
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.5.0 — 2026-10-26
+
+- Add an audio-first export-range card using the shared waveform, start/end seconds, current-position markers, pointer/touch handles, keyboard adjustment and zoom.
+- Separate whole-song playback from bounded range audition; schedule Web Audio end/loop positions independently of animation frames.
+- Preserve custom seconds through generation, undo/redo, restore, portable files and concurrent-tab forks. Reset only after a successful different soundtrack load.
+- Validate intervals in the UI and every export backend, freeze each export interval and block invalid/sub-frame selections. Keep existing full-song/SNS modes and retain manual seconds when switching.
+- Restore timed-LRC detection on native plans so existing SNS suggestions continue to work, and keep cancellation controls outside editing locks.
+- Verify actual MP4 source-frame alignment and decoded audio positions, range cancellation/AAC fallback, fractional endpoints and five responsive widths. See [range documentation](docs/EXPORT_RANGE_2_5_0.md).
+
 ## 2.4.0 — 2026-10-26
 
 - Consolidate production generation/rendering on pinned JIZURA 0.10.1. Remove retired KAMEN optimizers, AE/CEP products/builds, dedicated tests and obsolete generated QA catalogs.
