@@ -1,94 +1,60 @@
 # KAMEN（仮面）
 
-KAMEN **v2.3.0** は、背景画像・音源・LRC／TXTから日本語歌詞MVを制作するブラウザーアプリです。新規MVには本家 **[JIZURA v0.10.1](https://github.com/852wa/JIZURA/tree/fc16bfe43ea4a6c25a21f1caf04d17326de14f00)** のおまかせ・プランナー・レンダラーを使用します。文字PV・キネティック・ホラーの演出とテーマ選択を利用できます。
+KAMEN **v2.4.0** は、背景画像1枚・音源・LRC／TXTから日本語歌詞MVを制作するブラウザーアプリです。[JIZURA v0.10.1](https://github.com/852wa/JIZURA/tree/fc16bfe43ea4a6c25a21f1caf04d17326de14f00) の生成・描画を使用し、テーマ、文字PV・キネティック・ホラー、タイミング調整、曲名表示、MP4／PNG出力に対応します。
 
-公開先: [GitHub Pages](https://jankendo.github.io/JIZURA_KAMEN/)。元作品はhakoniwa / 852wa/JIZURA、MITライセンスです。
+公開先: [GitHub Pages](https://jankendo.github.io/JIZURA_KAMEN/)。mainへの反映後、CI成功時に更新されます。
 
-背景画像・音源・歌詞を読み込み、「本家JIZURAで生成」を押します。独自の候補探索・最適化は新規生成と標準書き出しには使用しません。演出品質は参考情報で、スコアによる保存制限はありません。MP4の映像・音声・尺・フレーム数・出力設定と実デコードを検査してから、保存リンクを表示します。
+## 使い方
 
-旧保存データは従来のKAMEN経路で読み込み、開くだけでは本家方式へ変換しません。「本家JIZURAで再生成」を明示的に実行すると切り替わります。元データを残す場合は、先にプロジェクトファイルを保存してください。制作・素材処理はブラウザー内で行います。
+1. 背景画像・音源・歌詞を選び、「本家JIZURAで生成」を押します。
+2. プレビューで歌詞・曲名・配置を確認します。詳細設定でタイミング、配色、書体、演出を調整できます。
+3. 画面比・範囲・出力設定を確認してMP4を書き出します。映像・音声・尺・フレーム数と代表フレームのデコードを検査してから保存リンクを表示します。演出スコアで保存を制限しません。
+4. 「プロジェクト保存」でバックアップします。音源はJSONに含まれないため、元ファイルも保管してください。
 
-MP4はMediabunnyのストリーム出力と分割メモリ書き込みへ移行しました。音声AACの代替処理、ソフトウェアH.264への再試行、中止・再実行に対応します。メモリ消費は動画容量に応じて増えるため、大きすぎる動画では範囲・解像度を下げてください。Windows／macOSのChrome／Edgeを優先し、今回の自動実測環境はLinuxのChromeです。
+曲名は新規作品では冒頭・末尾3秒を大きく、中間を小さく表示します。表示方式・位置・サイズを変更でき、プレビュー・MP4・PNGで共通です。自動配置でも全画面の歌詞とは重なる場合があるため確認してください。
 
-変更内容・テスト・互換性・既知の制約は [更新記録](docs/UPSTREAM_0_10_1.md) を参照してください。
+## v2.4.0の変更
 
-## v2.3.0の変更
+- 現行ブラウザー版へ一本化。旧KAMEN生成・最適化エンジン、AE／CEP、専用ツール・テスト・古い生成証跡を削除しました。上流ソースとライセンスは保持しています。
+- 旧作品は画像・歌詞・行時刻・曲名・利用可能な音源／フォントを新しい作業へ取り込みます。旧演出は再現せず、明示的な再生成が必要です。元のブラウザー保存データや入力JSONは上書きしません。
+- 素材変更で生成状態を無効にし、生成前のMP4書き出しを防ぎます。小さい操作対象、専門用語、不要なエラー詳細ボタンの露出を整理しました。歌詞の初出時刻、写真上の歌詞の縁取り、曲名の配置測定も改善しました。
+- 保存・復元、Undo／Redo、別タブ競合時の分岐保存、容量不足時のバックアップと再保存を維持しています。
 
-曲名とアーティスト名をMVに表示できます。新規作品は冒頭・末尾3秒を大きく、中間を小さく表示します。「冒頭・末尾のみ」「常時小さく」「表示しない」も選択できます。位置は自動または四隅、サイズは3段階です。プレビュー・MP4・PNG・透過PNG ZIPで共通の表示を使います。既存作品は保存時の見た目を維持し、「MVの曲名表示」で明示的に切り替えられます。
+仕様と監査結果は [UX監査](docs/UX_AUDIT_2_4_0.md)、[保存仕様](docs/STORAGE.md)、[検証手順](docs/VALIDATION.md) を参照してください。過去資料の扱いは [履歴案内](docs/HISTORY.md) に記載しています。
 
-素材・曲名・表示設定・生成を左側、プレビューと出力を右側にまとめました。狭い画面は縦並びになり、詳細編集はプレビューの後に配置します。処理状況と保存リンクは出力欄に表示します。画面比の変更で解像度・fpsが初期化される問題と、大きな画像を入力のたびに複製する処理も修正しました。
+## 開発・検証
 
-別タブの同時編集を別の作業へ保存するv2.2の仕組みは維持しています。[表示仕様と今回の検証](docs/CREDITS_2_3_0.md)、[保存仕様](docs/STORAGE.md)、[過去のv2.2変更](docs/WORKSPACES_2_2_0.md)を参照してください。
-
-## ローカル開発
-
-Node.js **24**、npm、Python 3（一部の補助ツール用）を使用します。テストには FFmpeg / FFprobe が必要です。LinuxのブラウザーE2EにはChromeまたはChromiumを別途用意してください。
+Node.js **24**、npm、FFmpeg／FFprobe、ChromeまたはChromiumを使用します。
 
 ```bash
 npm ci
 npm run dev
 ```
 
-`npm run dev` はビルド後に開発サーバーを起動します（127.0.0.1:5173）。本番ビルドと確認用サーバーは次の通りです。
+開発サーバーは `127.0.0.1:5173`。本番ビルドと確認用サーバー:
 
 ```bash
+npm run build:media
 npm run build
 npm run preview
+npm test
+KAMEN_CHROME=/usr/bin/chromium npm run test:e2e
 ```
 
-`npm run build` は `index.html` と `dist/index.html` を同じ内容で生成し、`dist/` にライセンス文書も同梱します。JS・CSS・ローカルフォント・AACフォールバックはHTMLに埋め込みます。`dist/` だけがPages公開対象です。`build.py` は旧JIZURA用の補助資産であり、KAMENの正式ビルドには使用しません。
+E2Eは専用サーバーを起動し、合成素材を使って検証します。証跡は既定で `/tmp/kamen-browser-qa`、`KAMEN_QA_OUT` で変更できます。`KAMEN_LONG_EXPORT=1` で180秒MP4も検証します。テストが必要なツールを見つけられない場合は失敗とし、成功扱いにしません。
 
-## テスト
-
-```bash
-npm run test
-KAMEN_CHROME=/path/to/chrome node dev/pages_e2e.cjs http://127.0.0.1:5173/ /tmp/kamen-qa
-```
-
-回帰テストの件数と結果は実行終了時に表示します。既存の可変フォント／ブラウザー証跡テスト2件は、実在する `JIZURA_BROWSER_QA_REPORT` を指定しないとSKIPになります。SKIPはPASSではありません。FFmpeg・FFprobe欠落によるSKIPにも注意してください。
-
-`credits_layout_e2e.cjs` が表示・配置・MP4/PNG出力を、`workspace_conflicts_e2e.cjs` が保存競合を、`upstream_modernization_e2e.cjs` が現行方式の生成・MP4書き出し・保存復元を確認します。`pages_e2e.cjs` は旧方式の検証ツールです。旧ツールは自作の画像・音声・歌詞を作り、実際のUIで画像・音源・TXT・LRC読込、MV生成、再生、プロジェクト保存／復元、MP4書き出しを検証します。FFprobeで映像／音声、長さ、720p・24fpsを調べ、FFmpegでデコードします。出力先には素材・MP4・JSON・スクリーンショットが入るため、リポジトリ外を指定してください。URL引数には公開URLも指定できます。
-
-E2Eはブラウザーの通常ダウンロード経路を検証するため、ネイティブ保存APIを提供しないプロファイルで実行します。ヘッドレスGoogle Chromeではネイティブ保存ピッカーがAbortErrorとなり、MP4の前処理前に中止されることを再現しました。KAMEN本体の保存処理・エンコーダー・QA条件は変更しません。`KAMEN_FILE_SAVE_MODE=native` で元のAPIを使用した診断も可能です。実際のOS保存ダイアログの操作は、このヘッドレスE2Eの検証範囲外です。
-
-書き出し状態を5秒ごとに記録し、進捗停滞90秒／書き出し工程全体8分で停止します。品質未達時は実際の下書きボタンを操作し、技術的エラーと区別します。保存リンクが残る場合も実クリックします。成功・失敗のJSON、コンソール、状態履歴、スクリーンショット、Playwrightトレースを出力し、CIの検証アーティファクトに7日間保存します。
-
-本家方式の新規MVでは演出品質を理由に保存を止めません。旧KAMEN経路の品質診断は互換性のため残しています。技術的に破損したMP4や不完全な音声は保存対象にしません。
-
-既存の詳細なCanvas／MP4画素比較ハーネスは `dev/browser_export_e2e.cjs` と `dev/qa_browser_download.cjs` にあります。`KAMEN_QA_URL` でHTTP(S)の検証先を指定できます。過去の `docs/qa/`、`dev/*results.json` などは過去の記録であり、今回のテスト結果ではありません。
-
-## GitHub Pages
-
-`.github/workflows/build.yml` は Pull Requestと `main` へのpushで、Node.js 24、`npm ci`、回帰テスト、ビルド、ブラウザーUI／MP4検証を実行します。すべてが成功したときだけ `dist/` を公式Pages Actionsで `github-pages` environmentへデプロイします。Pull Requestは検証のみで本番デプロイしません。依存Actionsは公式の安定版コミットへ固定しています。
-
-リポジトリの Settings → Pages の Source を **GitHub Actions** にします。`contents: read` は検証ジョブ、`pages: write` と `id-token: write` はデプロイジョブだけに付与しています。同時の本番デプロイは直列化します。canonicalと `og:url` は上記公開先で、外部Sitesを変更・更新する処理はありません。
-
-将来の更新は作業ブランチで変更し、`npm ci`・ビルド・テスト・E2Eを実行してコミットし、PRのチェック成功後に通常のマージで `main` へ反映してください。Actions完了後、公開URLでもE2Eを再実行します。秘密情報、ZIP、`node_modules`、個人の素材はコミットしないでください。
-
-不具合時は最後の正常コミットへ `git revert` するPRを作り、同じ検証を通して再デプロイします。移行前の状態は `backup/pre-kamen-migration-20261008-01` タグから参照できます。強制pushや履歴の再作成は不要です。Pages方式を変更する場合はGitHubの正規設定画面／APIで行います。
+`app/` と `src/` が編集対象、ソース順は `scripts/source-manifest.json` で検査します。ビルドは `index.html` と `dist/index.html` を生成し、JS・CSS・ローカルフォント・AAC代替処理を埋め込みます。配布対象はライセンスを含む `dist/`。生成HTMLは直接編集しません。
 
 ## ブラウザー・保存・プライバシー
 
-最新のChrome／Edgeを推奨します。MP4はWebCodecsのH.264と音声AAC、またはアプリが用意する互換経路に依存します。ChromiumでもOS・ビルドにより対応が異なり、同梱AAC WASMフォールバックが使われる場合があります。HTTPSまたはlocalhostのセキュアコンテキストで使ってください。高解像度・長い曲はメモリと時間を多く使用します。
+Chrome／Edgeを推奨します。HTTPSまたはlocalhostを使用してください。MP4は端末のH.264／AAC対応に依存し、AAC代替処理とH.264再試行を備えます。大きな動画はメモリと処理時間を要するため、必要に応じて範囲・解像度を下げてください。
 
-歌詞・画像・音源・制作・書き出しはブラウザー内で処理します。素材をアップロードするバックエンドはありません。プロジェクトや回復用データはブラウザーのローカル保存領域に残ることがあります。JSONバックアップの保存と、共有端末でのデータ管理は利用者が行ってください。必要な追加書体はGoogle Fontsへ取得リクエストを送ります。ローカルのNotoフォントはHTML内に同梱されています。詳細は [docs/STORAGE.md](docs/STORAGE.md) を参照してください。
+素材・制作・出力はブラウザー内で処理し、素材を送信するバックエンドはありません。追加書体はGoogle Fontsへ取得リクエストを送ります。ブラウザー内の自動保存は永続バックアップではありません。
+
+## CI・公開
+
+GitHub ActionsはPR・mainへのpush・手動実行で、単体検証、ビルド、ブラウザー操作、移行・保存競合、実MP4／PNGを検証します。mainへのpushで全検証が成功した場合だけGitHub Pagesへ公開します。PRと手動実行はデプロイしません。変更は通常のPRで反映し、不具合時は正常コミットへ戻すrevert PRで切り戻します。
 
 ## ライセンス
 
-本体は [MIT / Copyright (c) 2026 hakoniwa](LICENSE)。フォントはSIL OFL、MP4 muxerはMIT、Mediabunny/AACパッケージはMPL-2.0、AAC内のFFmpegはLGPLです。[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) と同梱ライセンスを確認してください。AAC上流の正確なFFmpegソース対応については通知内の未確認事項を残しています。作品に使う歌詞・曲・画像の権利は利用者側で確認してください。
-
-## 旧KAMEN方式の開発記録
-
-以下は旧方式の実装・過去の検証記録です。現行版の標準生成経路の説明ではありません。
-
-### Cinema V3 開発
-
-段階的な改修と検証結果は [実装状況](docs/CINEMA_V3_IMPLEMENTATION_STATUS.md) を参照してください。ソース順は `scripts/source-manifest.json` で固定し、追加ファイル・欠落・順序変更はビルドで検出します。既存API・保存形式・品質閾値を維持し、未測定値はnullのまま扱います。美的100点は認定しません。
-
-Cinema V3の検証手順・素材範囲・ブラインド比較・未測定項目・切り戻し: [docs/CINEMA_V3_VALIDATION.md](docs/CINEMA_V3_VALIDATION.md)。
-
-## Song-Generated Visual Grammar v4
-
-新規MVは音響特徴の自己類似性・反復・転換と、歌詞・背景画像から連続した文字構図、カメラ、クロップを生成します。固定アーキタイプ・4モード・Storyレシピの選択は新規生成に使用しません。旧プロジェクトの演出経路と保存データは保持します。
-
-FAST CIはv4の4契約、既存v3互換性、出力UI、ビルド、1秒の合成素材によるChrome生成・保存復元を確認し、mainへのpush後にGitHub Pagesへ公開します。実装・検証範囲と制約は [v4 QAメモ](docs/qa/song-grammar-v4.md) を参照してください。長尺MP4の全フレーム品質と人間による芸術評価は今回の検証対象外です。
+本体は [MIT / Copyright (c) 2026 hakoniwa](LICENSE)。フォントはSIL OFL、Mediabunny／AACはMPL-2.0、AAC内のFFmpegはLGPLです。[第三者通知](THIRD_PARTY_NOTICES.md) を参照してください。AAC上流の正確なFFmpegソース対応には通知記載の未確認事項があります。作品に使う歌詞・曲・画像の権利は利用者が確認してください。

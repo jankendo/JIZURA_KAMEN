@@ -565,3 +565,27 @@ button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visi
 .preview-hint{position:absolute;inset:45% 24px auto;margin:0;text-align:center;color:#a1a7b0;font-size:14px;pointer-events:none}
 #studioWorkbench{width:100%;box-sizing:border-box}#editorDetails>button{margin-bottom:12px}
 @media(max-width:1099px){#studioWorkbench>#editorDetails{margin-top:0;padding:20px;border:1px solid #34373e;border-radius:12px;background:#16181d}}
+
+/* Browser editor: comfortable targets, clear focus and compact disclosure. */
+#app button,#app select,#app .file,#app summary,#localSaveStatus{min-height:44px}
+#app button,#app .file,#app summary{touch-action:manipulation}
+#app input:not([type=checkbox]):not([type=color]):not([type=range]),#app textarea{min-height:44px;font-size:16px}
+#app input[type=range]{min-height:44px;touch-action:pan-y}
+#app input[type=checkbox]{width:20px;height:20px;flex-shrink:0}
+.upstream-controls label{min-height:44px;cursor:pointer}
+#app summary{display:flex;align-items:center;gap:8px}
+#app summary::before{content:'▸';flex-shrink:0}#app details[open]>summary::before{content:'▾'}
+#app summary::marker{content:''}
+#app textarea:focus-visible,#app [tabindex]:focus-visible,#app .file:focus-within{outline:2px solid #e9c78c;outline-offset:3px}
+#app button:disabled,#app select:disabled{opacity:.55;cursor:not-allowed}
+.studio-fields .studio-file{overflow-wrap:anywhere;min-width:0}
+#studioWorkbench .studio-result-sub{flex-wrap:wrap;gap:8px}
+#studioWorkbench .studio-export-grid label{line-height:1.55}
+#app .upstream-controls .export-diagnostics{width:100%;white-space:normal}
+#app .upstream-controls .export-diagnostics[hidden]{display:none}
+#app .transport{flex-wrap:wrap}#app .transport #scrub{flex:1;min-width:80px}
+#app .processing-actions button{min-height:44px}
+#app .ln .cuts details select{min-width:0}
+@media(max-width:600px){#app .bar .acts button,#app .bar .acts .file{font-size:13px;min-height:44px}#app .timeline-tools{flex-wrap:wrap}.credit-grid{grid-template-columns:1fr 1fr}.studio-result-sub>*{max-width:100%}}
+@media(prefers-reduced-motion:reduce){#app *,#app *::before,#app *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+#app label:has(>input[type=checkbox]){min-height:44px;align-items:center}

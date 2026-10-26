@@ -1,41 +1,38 @@
-# KAMEN 2.3 browser storage
+# KAMEN 2.4 browser storage
 
-KAMEN processes projects and media in the browser. Storage belongs to the browser profile and origin: localhost and GitHub Pages do not share it. No application server receives project/media content.
+Processing is local. Storage belongs to a browser profile and origin; localhost and GitHub Pages do not share it. No project/media backend is used.
 
-## Current storage contract
+## Current contract
 
-The IndexedDB database remains `jizura-assets-v1`, version 1, object store `assets`. No destructive database upgrade is required.
+IndexedDB remains `jizura-assets-v1`, version 1, store `assets`. No destructive schema upgrade is performed.
 
-| Key | Contents |
-|---|---|
-| `workspace:<id>` | Format 3 record: `id`, independent `revision`, `project`, `savedAt`, optional `forkedFrom`. Project media contain local reference flags instead of large data URLs. |
-| `workspace-media:<id>:background` | This work's background data URL. |
-| `workspace-media:<id>:audio` | This work's audio File/Blob, when at most 120 MiB. |
-| `workspace-media:<id>:font:<assetKey>` | Uploaded font bytes. |
-| `workspace-media:<id>:visualAsset:<id>` / `proAsset:<id>` | Retained legacy assets needed for existing projects. |
+| Key | Content |
+| --- | --- |
+| `workspace:<id>` | Format 3 record: ID, revision, project, savedAt and optional forkedFrom. |
+| `workspace-media:<id>:background` | Original background data URL. |
+| `workspace-media:<id>:audio` | Matching audio File, when at most 120 MiB. |
+| `workspace-media:<id>:font:<assetKey>` | Available uploaded-font bytes. |
 
-A single readwrite transaction commits a project's metadata and media. It compares the saved revision before writing. In-memory edit generations suppress superseded saves; they are separate from persisted revisions. Opening an editor, restoring (including audio-restore failures), replanning a preview or switching display mode does not schedule a save. Actual edits are debounced for 700 ms; explicit save stages and pagehide with unsaved changes also flush.
+A readwrite transaction atomically checks revision and commits metadata/media. Same-tab saves serialize; superseded edits are not committed. A genuine concurrent-tab conflict forks into a new UUID with its own media. Subsequent saves stay in that work. The saved-work selector waits for unsaved edits and refuses switching if saving fails.
 
-Each tab pins its selected ID in sessionStorage `jizura.workspace.v3`. localStorage `jizura.workspace.last.v3` is only a hint for new tabs. `jizura.project.ref.v3` is a small reference, and `jizura.workspace.changed.v3` refreshes the saved-work list in other tabs. Failure to write these hints does not invalidate a committed IndexedDB record. The mode and tap preferences use `jizura.mode` and `jizura.tapOpts`.
+Opening/restoring/replanning and mode changes do not write a new current-format revision. Real edits debounce for 700 ms. Explicit saves and pagehide with unsaved changes also flush. Quota failure preserves the in-memory result and exposes retry and JSON backup. Do not close an unsaved work before backing it up.
 
-## Concurrent tabs and recovery
+`jizura.workspace.v3` in sessionStorage pins a tab's selection. localStorage `jizura.workspace.last.v3`, `jizura.project.ref.v3` and `jizura.workspace.changed.v3` are hints/notifications, not authoritative data. A hint failure does not invalidate an IndexedDB commit.
 
-Opening another tab does not change a project's revision. If another tab actually edits the same work, the stale writer creates a new UUID and atomically saves its full project and media there. The other tab's work is untouched. Subsequent saves stay in the new work. The saved-work selector restores either copy; switching waits for unsaved edits to commit and stays on the current work if saving fails.
+## Legacy source import
 
-A generated MV stays available in memory after quota/storage failure. The interface distinguishes completed generation from unsaved data and offers project-file backup, export and save retry. Do not close or reload an unsaved work before making a backup. Cancellation before generation commits retains the previous MV; changed inputs cancel stale results.
+Old localStorage, format 2 records and old-engine format 3 works are inputs to source-only conversion. Lyrics, line-owned timing, title/artist, active background, font metadata/available bytes and matching audio are copied into a **new** format 3 work. The original record and its media are never overwritten/deleted. Timing indices from old sorted LRC representations are remapped to native source order. Stored timingOrder 2 remains unchanged.
 
-Old `project-current-v2`, shared media keys, `jizura.project.v1`, old reference keys and recovery records are migration inputs. The first successful import copies them into a new format 3 namespace; originals are not deleted or overwritten. Later startup uses the new work, avoiding repeated imports. Existing projects retain their legacy rendering engine until explicitly regenerated. A damaged or incompletely restored record blocks automatic overwrites.
+Old optimizer/genome/cut decisions and archived multiple-image/video decks are not carried into the modern work. The old renderer is not loaded. The resulting `generation` identifies pinned JIZURA with `generated:false`. `sourceImport = {version:1, sourceEngine:'kamen', requiresGeneration:true}` explains the conversion and gates output. Explicit generation clears requiresGeneration; original data remain unchanged.
 
-## Portable project files
+Missing images, audio or font bytes are shown for reselection. A missing old background can be reselected in the new work. A damaged current work still blocks automatic overwrites to protect its original data. Selecting an old original again intentionally creates another source import. No automatic garbage collection removes originals.
 
-**プロジェクト保存** downloads `.kamen.json`, including lyrics, timing, generator metadata, background, settings and available custom font bytes. Local workspace IDs are outside this document. Opening a project file creates a new local work. Audio bytes are not embedded: retain the original audio and select it again after import. Existing compatible JSON files remain supported.
+## Portable files and current works
 
-Browser-local work is not a durable backup. Browser cleanup, private mode, device changes or storage eviction can remove it. Keep project files and original audio externally. There is no automatic deletion of older works or migration originals in 2.2. Forking copies media and consumes additional quota. Do not clear browser storage as a conflict-resolution step.
+`.kamen.json` contains lyrics, timing, generator metadata, image, settings and available font bytes. Local IDs are outside the file. Opening always creates a new work. Audio bytes are not embedded: keep and reselect the original audio. Its saved identity is used for reconnection during that session; unresolvable audio metadata is not committed as if bytes had been copied.
 
-## Release verification
+Current JIZURA projects retain seed, overrides, credits, locks and generation metadata. Unsupported generator versions are rejected. Same audio identity can reconnect without invalidating generation; replacement audio or lyrics/image requires regeneration. Manual visual/timing edits remain editable without replacing the selected seed. Undo/redo covers project settings and image references; audio replacement is outside that history.
 
-`dev/workspace_conflicts_e2e.cjs` covers idle startup, two tabs, genuine concurrent edits, independent media restoration, repeated generation, quota/retry, cancellation, changed inputs, overlapping save/generation, common controls, work switching, and migration from localStorage/v2 IndexedDB. The existing persistence test covers full localStorage quota, 8/50/100 lyric rows, real transaction aborts and legacy render-decision restoration. See `docs/qa/workspaces-2.2.0.json` for recorded results.
+Optional credits remain `{version:1, mode, position, size}`. Missing credits in existing modern works preserve native metadata pixels. New and legacy-source imports use hybrid/auto/standard defaults. Credits participate in undo/redo, autosave, forks and portable files.
 
-## Credits in 2.3
-
-Storage format 3 is unchanged. Optional `project.credits` is `{version:1, mode, position, size}`. New works default to `hybrid/auto/standard`; missing or null credits in existing works preserve native rendering. Loading never opts a work into the new overlay. Credits participate in undo/redo, autosave, conflict forks, work switching and portable project files. Title and artist remain existing project fields. Planned title/artist strings and measurements are derived, not separately persisted. Technical MP4 provenance records the selected credits configuration.
+Browser storage is not a durable backup; eviction/private-mode cleanup can remove it. Forks and legacy source copies consume additional quota. Keep project JSON and audio externally.

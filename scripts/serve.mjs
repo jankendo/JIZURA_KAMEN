@@ -47,4 +47,4 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, host, () => console.log(`JIZURA local server: http://${host}:${port}/`));
-for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(() => process.exit(0)));
+for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => { server.close(() => process.exit(0)); server.closeAllConnections(); });

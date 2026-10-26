@@ -247,3 +247,9 @@ J.beatGrid = (bpm, offset, duration) => {
   return out;
 };
 })();
+
+(()=>{
+J.audioProgressStages=[['read','音源ファイルを読み込んでいます',3],['decode','音源をデコードしています',12],['wave','波形・音楽の強弱・アタックを解析しています',20],['beat','BPMと拍の位置を解析しています',10],['spectrum','周波数・曲の展開を解析しています',45],['features','音楽の特徴量をまとめています',5],['save','音源と解析後のプロジェクトを保存しています',5]];
+J.audioProgressEvent=task=>e=>{task.enter(e.stage);task.update(e.current,e.total,e.detail+(e.total?` · ${e.current} / ${e.total}`:''));};
+
+})();
